@@ -8,16 +8,71 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+#define aiScreenWidth [UIScreen mainScreen].bounds.size.width
+#define aiScreenHeight [UIScreen mainScreen].bounds.size.height
+#define STATUS_BAR_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
+#define NAVIGATION_BAR_HEIGHT self.navigationController.navigationBar.frame.size.height
+#define TAB_BAR_HEIGHT self.tabBarController.tabBar.frame.size.height
 
+@interface AppDelegate ()
 @end
 
 @implementation AppDelegate
 
+@synthesize window = _window;
+@synthesize domain = _domain;
+@synthesize bossUrl = _bossUrl;
+@synthesize isLogin = _isLogin;
+@synthesize customUrl = _customUrl;
+@synthesize servicePath = _servicePath;
+@synthesize loginId = _loginId;
+
+@synthesize goLogin = _goLogin;
+@synthesize gotoIndex = _gotoIndex;
+@synthesize goBackURL = _goBackURL;
+
+@synthesize versionCode = _versionCode;
+@synthesize md5 = _md5;
+@synthesize code = _code;
+@synthesize s = _s;
+
+@synthesize gotoIndexUrl = _gotoIndexUrl;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    _versionCode = @"1";
+    _md5 = @"f790667720b14a5b0c38b5f6ca66d7d1";
+    _code = CODE;
+    _s = S;
+    
+    //_domain = @"http://www.ued9999.com";
+    //_domain = @"http://192.168.0.158:8089";
+    //_domain = @"http://192.168.0.92";
+    //_domain = @"http://192.168.0.158:8089/app/download.html";
+    _bossUrl = @"https://apiplay.info:1344/boss/";
+    //_bossUrl = @"https://192.168.0.92/boss/";
+    
+    _isLogin = false;
+    _servicePath = @"null";
+    _loginId = 0;
+    _goLogin = NO;
+    _gotoIndex = -1;
+    _gotoIndexUrl = @"";
+    _goBackURL = @"";
+    
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    NSLog(@"old agent :%@", oldAgent);
+    //add my info to the new agent
+    NSString *newAgent = [oldAgent stringByAppendingString:@"app_ios"];
+    NSLog(@"new agent :%@", newAgent);
+    
+    //regist the new agent
+    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    
     return YES;
+    
 }
 
 
@@ -46,6 +101,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 
 @end

@@ -10,8 +10,25 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+//更新版本号
+@property NSString *versionCode;
+@property NSString *md5;
+@property NSString *code;
+@property NSString *s;
 
+@property (strong, nonatomic) UIWindow *window;
+@property (strong,nonatomic) NSString *bossUrl;
+@property (strong,nonatomic) NSString *domain;
+@property (strong,nonatomic) NSString *customUrl;
+@property BOOL isLogin;
+@property (strong,nonatomic) NSString *servicePath;
+@property int loginId;
+@property BOOL goLogin;
+@property NSString *goBackURL;
+
+//mine
+@property int gotoIndex;
+@property (strong,nonatomic) NSString *gotoIndexUrl;
 
 @end
 

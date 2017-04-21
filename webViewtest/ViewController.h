@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : BaseVC<UIWebViewDelegate>//设置代理
 
+- (void) gotoCustom;
 
 @end
 
