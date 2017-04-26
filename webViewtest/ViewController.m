@@ -44,8 +44,7 @@
     
     self.loginId = 0;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
-    
-//    _appDelegate.domain = @"http://192.168.0.158:8089/";
+//    self.appDelegate.domain = @"http://192.168.0.92";
     self.domain = _appDelegate.domain;
     
     _mainWebView.scrollView.bounces=NO;
@@ -429,6 +428,7 @@ void alertView(){
         if ([data containsString:@"\"success\":true"]) {
             NSLog(@"登录成功");
             _appDelegate.isLogin = true;
+            [_mainWebView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
             //[self.mainWebView reload];
         } else {
             NSLog(@"登录失败");
@@ -448,7 +448,7 @@ void alertView(){
     NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
     
     NSHTTPCookieStorage *cookiesStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSDictionary *cd = @{@"User-Agent":@"app_ios"};
+    NSDictionary *cd = @{@"User-Agent":@"IOS"};
     NSHTTPCookie *cookies = [[NSHTTPCookie alloc]initWithProperties:cd];
     NSDictionary *headers=[NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     //2.创建字一个网络请求管理者对象 （http会话管理者）  此对象不是单例对象

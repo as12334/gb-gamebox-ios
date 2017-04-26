@@ -30,6 +30,7 @@
 @property (nonatomic, strong) AFNetworkReachabilityManager *manager;
 
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
+@property (weak, nonatomic) IBOutlet UILabel *bottomText2;
 
 - (void) checkUrl;
 - (void) judgeNet;
@@ -71,7 +72,8 @@
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    [self.bottomText setText:[NSString stringWithFormat:@"Copyrihgt @ %@ Reserved. v%@",app_Name,app_Version]];
+    [self.bottomText setText:[NSString stringWithFormat:@"Copyrihgt @ %@ Reserved.",app_Name]];
+    [self.bottomText2 setText:[NSString stringWithFormat:@"v%@",app_Version]];
 }
 
 #pragma mark  -－－－－－－－－－－－－－－－－－－－－－－－－－-

@@ -80,7 +80,9 @@
     [_loadingHubView setHidden:YES];
     
     NSString *url = webView.request.URL.absoluteString;
-    
+    if([_domain containsString: url]){
+        
+    }
     NSLog(@"加载成功%@",url);
     
     //js方法绑定
@@ -292,10 +294,8 @@
         
         for (JSValue *jsVal in args) {
             jsCustom = jsVal;
-            NSLog(@"%@", jsVal.toString);
         }
-        
-        [args[1] intValue];
+        NSLog(@"+++++++custom gotoPay+++++++%@",args[0]);
         
         PayVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PayVC"];
         

@@ -61,7 +61,14 @@
 //开始加载网页，不仅监听我们指定的请求，还会监听内部发送的请求
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:NO];
-    NSLog(@"开始加载");
+    NSString *url = webView.request.URL.absoluteString;
+    NSLog(@"开始加载%@", url);
+    
+    if([url containsString:_domain]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }
 }
 //
 //网页加载完毕之后会调用该方法
