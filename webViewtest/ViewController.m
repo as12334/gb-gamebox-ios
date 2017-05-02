@@ -27,13 +27,14 @@
 @property NSString *getServicePath;
 @property iKYLoadingHubView *loadingHubView;
 @property int loginId;
+@property BOOL isLofinAfter;
 
 - (void) gotoCustom;
 - (void) getService;
 - (void) login;
 - (NSString *)stringFromHexString:(NSString *)hexString;
 - (void) autoLogin;
-
+- (void) stopLoadWV;
 @end
 
 @implementation ViewController
@@ -44,9 +45,8 @@
     
     self.loginId = 0;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
-//    self.appDelegate.domain = @"http://192.168.0.92";
     self.domain = _appDelegate.domain;
-    
+    self.isLofinAfter = false;
     _mainWebView.scrollView.bounces=NO;
     
     NSLog(@"----url:%@",_appDelegate.domain);
@@ -62,7 +62,7 @@
     
     //2调用系统方法直接访问
     [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
-    
+
     //3设置网页自适应
     self.mainWebView.scalesPageToFit = YES;
     
@@ -73,18 +73,10 @@
     self.mainWebView.delegate=self;
     
     
-    
+    [self.mainWebView reload];
     self.getService;
 
     self.autoLogin;
-    
-//    NSTimer *timer = [NSTimer timerWithTimeInterval:120
-//                                             target:self
-//                                           selector:@selector(autoLogin)
-//                                           userInfo:nil
-//                                            repeats:YES];
-//    
-//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -103,6 +95,10 @@
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     
+    if(_isLofinAfter){
+        self.isLofinAfter = false;
+        [self.mainWebView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
+    }
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）
     JSContext *context=[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
@@ -257,9 +253,9 @@
     };
 
     
-    if(_appDelegate.isLogin){
-        [webView stringByEvaluatingJavaScriptFromString:@"isLogin(document.getElementById('loginState').value);"];
-    }
+//    if(_appDelegate.isLogin){
+//        [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
+//    }
     [_loadingHubView setHidden:YES];
     NSLog(@"加载成功");
     
@@ -298,6 +294,7 @@
     }
     
     if(_loginId != _appDelegate.loginId){
+        [self.mainWebView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
         _loginId = _appDelegate.loginId;
         [self.mainWebView reload];
     }
@@ -353,7 +350,7 @@
 
 
 void alertView(){
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"你的操作时非法的，您要继续吗" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"你的操作是非法的，你要继续吗" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     [alert show];
 }
@@ -428,7 +425,7 @@ void alertView(){
         if ([data containsString:@"\"success\":true"]) {
             NSLog(@"登录成功");
             _appDelegate.isLogin = true;
-            [_mainWebView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
+            self.isLofinAfter = true;
             //[self.mainWebView reload];
         } else {
             NSLog(@"登录失败");
@@ -474,7 +471,7 @@ void alertView(){
         NSLog(@"成功");
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"---%@",responseString);
-        self.appDelegate.servicePath = responseString;
+        self.appDelegate.servicePath = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         
         //解析
         //                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -492,5 +489,6 @@ void alertView(){
 - (void) showLog{
     NSLog(@"sl");
 }
+
 
 @end

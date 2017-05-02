@@ -856,10 +856,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid116;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "4440a230-e9dd-4de6-88e5-76309cdfcd6e";
+				PROVISIONING_PROFILE_SPECIFIER = sid116;
 			};
 			name = _bldz;
 		};
@@ -958,10 +958,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid117;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "42d34368-d0c3-40db-a243-670abff52b23";
+				PROVISIONING_PROFILE_SPECIFIER = sid117;
 			};
 			name = _yytt;
 		};
@@ -1060,10 +1060,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid118;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "f1c4e2aa-1a5f-4b65-9d69-790dc784894c";
+				PROVISIONING_PROFILE_SPECIFIER = sid118;
 			};
 			name = _ys3q;
 		};
@@ -1162,10 +1162,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid120;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "8364109d-dc0e-45c7-bf15-16ccb67789af";
+				PROVISIONING_PROFILE_SPECIFIER = sid120;
 			};
 			name = _cvqb;
 		};
@@ -1264,10 +1264,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid122;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "fb6181eb-d40f-49f5-b93e-3ec338f5786c";
+				PROVISIONING_PROFILE_SPECIFIER = sid122;
 			};
 			name = _qox3;
 		};
@@ -1366,10 +1366,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "e18e6dcc-bb61-4899-ad6c-3c2482284198";
+				PROVISIONING_PROFILE_SPECIFIER = sid123;
 			};
 			name = _seck;
 		};
@@ -1468,10 +1468,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid125;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "8e5f953d-3106-4458-a841-77459522b8b4";
+				PROVISIONING_PROFILE_SPECIFIER = sid125;
 			};
 			name = _bqmn;
 		};
@@ -1570,10 +1570,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid126;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "29f47556-f283-49b3-8e4e-06422bcaab24";
+				PROVISIONING_PROFILE_SPECIFIER = sid126;
 			};
 			name = _8wu8;
 		};
@@ -1672,10 +1672,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid127;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "1bb7bf1a-3393-4dac-a224-e43ac7e91ae9";
+				PROVISIONING_PROFILE_SPECIFIER = sid127;
 			};
 			name = _9mpj;
 		};
@@ -1750,7 +1750,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e9e4cc47-8f52-4a93-9e57-d5c5312b0909";
+				PROVISIONING_PROFILE = "784c0e3b-1b5f-4958-84c0-1d6f9ff8e7d1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1774,10 +1774,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid128;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "784c0e3b-1b5f-4958-84c0-1d6f9ff8e7d1";
+				PROVISIONING_PROFILE_SPECIFIER = sid128;
 			};
 			name = _xjc9;
 		};
@@ -1876,10 +1876,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid129;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "dde2895e-ac7e-433c-9978-ecea3875bc15";
+				PROVISIONING_PROFILE_SPECIFIER = sid129;
 			};
 			name = _0a74;
 		};
@@ -1978,10 +1978,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid130;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "2b1212ae-61ca-4e58-8eb7-5950dcb6338b";
+				PROVISIONING_PROFILE_SPECIFIER = sid130;
 			};
 			name = _ixpm;
 		};
@@ -2080,10 +2080,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid131;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "8c07c527-b462-426f-8768-4625b4d3f936";
+				PROVISIONING_PROFILE_SPECIFIER = sid131;
 			};
 			name = _nb22;
 		};
@@ -2182,10 +2182,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid132;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "eda5b5ba-214a-4e9c-bbbc-482d5a3f3aba";
+				PROVISIONING_PROFILE_SPECIFIER = sid132;
 			};
 			name = _tqjm;
 		};
@@ -2284,10 +2284,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid133;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "3adca9de-9133-4c89-9770-2fc92250b7ee";
+				PROVISIONING_PROFILE_SPECIFIER = sid133;
 			};
 			name = _xwc7;
 		};
@@ -2386,10 +2386,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid134;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "86f16dfd-3559-422e-a757-dd6259130ece";
+				PROVISIONING_PROFILE_SPECIFIER = sid134;
 			};
 			name = _o7av;
 		};
@@ -2488,10 +2488,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid135;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "62a3f19e-a161-496c-b428-f0caac29ea89";
+				PROVISIONING_PROFILE_SPECIFIER = sid135;
 			};
 			name = _miv5;
 		};
@@ -2590,10 +2590,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid136;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "15557b27-8511-42b7-af57-8be7b21f5fc8";
+				PROVISIONING_PROFILE_SPECIFIER = sid136;
 			};
 			name = _5rdu;
 		};
@@ -2692,10 +2692,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid137;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "e74ec83b-7ab5-4891-84d9-aa5bbfc25d8b";
+				PROVISIONING_PROFILE_SPECIFIER = sid137;
 			};
 			name = _gjgz;
 		};
@@ -2794,10 +2794,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid138;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "0c610cb8-115f-48f7-afeb-41e58d3590e7";
+				PROVISIONING_PROFILE_SPECIFIER = sid138;
 			};
 			name = _q7yf;
 		};
@@ -2896,10 +2896,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid139;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "d257b834-73d1-4756-98b2-e5a333e7fe22";
+				PROVISIONING_PROFILE_SPECIFIER = sid139;
 			};
 			name = _3cgv;
 		};
@@ -2998,10 +2998,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid140;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "ee26f5cc-4e7e-4903-b900-a89813591ae9";
+				PROVISIONING_PROFILE_SPECIFIER = sid140;
 			};
 			name = _ix2i;
 		};
@@ -3100,10 +3100,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid142;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "a2c66d51-0ce3-4fa7-8b6c-c8855d58fd17";
+				PROVISIONING_PROFILE_SPECIFIER = sid142;
 			};
 			name = _vbgt;
 		};
@@ -3202,10 +3202,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid143;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "abeb0363-b115-4453-9931-c30307a8e3fa";
+				PROVISIONING_PROFILE_SPECIFIER = sid143;
 			};
 			name = _zhcu;
 		};
@@ -3304,10 +3304,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid150;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "53b8e9cf-33d8-4544-ac07-654f040180cb";
+				PROVISIONING_PROFILE_SPECIFIER = sid150;
 			};
 			name = _zz1g;
 		};
@@ -3406,10 +3406,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid151;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "9c4ae9f8-f12b-4c7d-b862-8ccf9081d29d";
+				PROVISIONING_PROFILE_SPECIFIER = sid151;
 			};
 			name = _tloz;
 		};
@@ -3508,10 +3508,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid153;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "00b1104f-cfc2-4d56-b004-e5e288ee0e88";
+				PROVISIONING_PROFILE_SPECIFIER = sid153;
 			};
 			name = _cqkv;
 		};
@@ -3610,10 +3610,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid155;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "ac07c42b-8a6c-41a1-ab19-d4c7c57ef0be";
+				PROVISIONING_PROFILE_SPECIFIER = sid155;
 			};
 			name = _zqq5;
 		};
@@ -3712,10 +3712,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid156;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "c36f281d-446a-4683-8f42-d52a90e20239";
+				PROVISIONING_PROFILE_SPECIFIER = sid156;
 			};
 			name = _xmil;
 		};
@@ -3814,10 +3814,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid157;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "198e1a48-6b16-43ee-9276-49a62193ba25";
+				PROVISIONING_PROFILE_SPECIFIER = sid157;
 			};
 			name = _uhte;
 		};
@@ -3916,10 +3916,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid159;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "ea6d5ad2-2aaf-4c14-a5e7-1f33be544394";
+				PROVISIONING_PROFILE_SPECIFIER = sid159;
 			};
 			name = _mhi7;
 		};
@@ -3949,108 +3949,6 @@
 				TEST_TARGET_NAME = webViewtest;
 			};
 			name = _mhi7;
-		};
-		1E8E17BE1EA88BBB008021AE /* _hzze */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SFMD88G3NR;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/devedawoo/Downloads/webViewproject的副本/AppBuildDate.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e9e4cc47-8f52-4a93-9e57-d5c5312b0909";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = _hzze;
-		};
-		1E8E17BF1EA88BBB008021AE /* _hzze */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox._hzze;
-				APP_DISPLAY_NAME = "澳门威尼斯赌场";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-160";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = SFMD88G3NR;
-				GCC_PREFIX_HEADER = "/Users/devedawoo/Downloads/webViewproject的副本/AppBuildHeader.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_hzze=1",
-					"COCOAPODS=1",
-				);
-				INFOPLIST_FILE = webViewtest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
-			};
-			name = _hzze;
-		};
-		1E8E17C01EA88BBB008021AE /* _hzze */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = A6JR7P7MSK;
-				INFOPLIST_FILE = webViewtestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
-			};
-			name = _hzze;
-		};
-		1E8E17C11EA88BBB008021AE /* _hzze */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A6JR7P7MSK;
-				INFOPLIST_FILE = webViewtestUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_TARGET_NAME = webViewtest;
-			};
-			name = _hzze;
 		};
 		1E8E17C21EA88BC9008021AE /* _n0o7 */ = {
 			isa = XCBuildConfiguration;
@@ -4120,10 +4018,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid161;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "6fda7a8e-1ba2-4c18-aca7-728f0eb5423b";
+				PROVISIONING_PROFILE_SPECIFIER = sid161;
 			};
 			name = _n0o7;
 		};
@@ -4222,10 +4120,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid162;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "2f373dea-291d-4cd0-83d1-5f0bc669bed7";
+				PROVISIONING_PROFILE_SPECIFIER = sid162;
 			};
 			name = _bgst;
 		};
@@ -4324,10 +4222,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sids;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid115;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22e16c07-8923-4cbe-b825-98cb0d332282";
-				PROVISIONING_PROFILE_SPECIFIER = sids;
+				PROVISIONING_PROFILE = "e1335d40-9fed-4296-9264-f11f0e1183be";
+				PROVISIONING_PROFILE_SPECIFIER = sid115;
 			};
 			name = _kylx;
 		};
@@ -5534,11 +5432,11 @@
 				1E8E17B21EA88B8E008021AE /* _xmil */,
 				1E8E17B61EA88B9D008021AE /* _uhte */,
 				1E8E17BA1EA88BAD008021AE /* _mhi7 */,
-				1E8E17BE1EA88BBB008021AE /* _hzze */,
 				1E8E17C21EA88BC9008021AE /* _n0o7 */,
 				1E8E17C61EA88BD9008021AE /* _bgst */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CF37628D1E6D8014005A420D /* Build configuration list for PBXNativeTarget "webViewtest" */ = {
 			isa = XCConfigurationList;
@@ -5588,11 +5486,11 @@
 				1E8E17B31EA88B8E008021AE /* _xmil */,
 				1E8E17B71EA88B9D008021AE /* _uhte */,
 				1E8E17BB1EA88BAD008021AE /* _mhi7 */,
-				1E8E17BF1EA88BBB008021AE /* _hzze */,
 				1E8E17C31EA88BC9008021AE /* _n0o7 */,
 				1E8E17C71EA88BD9008021AE /* _bgst */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CF3762901E6D8014005A420D /* Build configuration list for PBXNativeTarget "webViewtestTests" */ = {
 			isa = XCConfigurationList;
@@ -5642,11 +5540,11 @@
 				1E8E17B41EA88B8E008021AE /* _xmil */,
 				1E8E17B81EA88B9D008021AE /* _uhte */,
 				1E8E17BC1EA88BAD008021AE /* _mhi7 */,
-				1E8E17C01EA88BBB008021AE /* _hzze */,
 				1E8E17C41EA88BC9008021AE /* _n0o7 */,
 				1E8E17C81EA88BD9008021AE /* _bgst */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CF3762931E6D8014005A420D /* Build configuration list for PBXNativeTarget "webViewtestUITests" */ = {
 			isa = XCConfigurationList;
@@ -5696,11 +5594,11 @@
 				1E8E17B51EA88B8E008021AE /* _xmil */,
 				1E8E17B91EA88B9D008021AE /* _uhte */,
 				1E8E17BD1EA88BAD008021AE /* _mhi7 */,
-				1E8E17C11EA88BBB008021AE /* _hzze */,
 				1E8E17C51EA88BC9008021AE /* _n0o7 */,
 				1E8E17C91EA88BD9008021AE /* _bgst */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

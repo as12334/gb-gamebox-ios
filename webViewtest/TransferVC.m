@@ -167,6 +167,7 @@
             _appDelegate.isLogin = NO;
             self.selfIsLogin = NO;
             _appDelegate.loginId ++;
+            [self.transferWV stopLoading];
             // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
             UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
             
@@ -196,7 +197,7 @@
         }
         
     };
-    [webView stringByEvaluatingJavaScriptFromString:@"isLogin(document.getElementById('getLoginState').value);"];
+    [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
     NSLog(@"加载成功");
 }
 

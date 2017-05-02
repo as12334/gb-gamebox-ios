@@ -197,7 +197,7 @@
     
     self.ocjs;
     
-    [webView stringByEvaluatingJavaScriptFromString:@"isLogin(document.getElementById('getLoginState').value);"];
+    [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
 }
 - (void)ocjs{
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）
@@ -355,6 +355,7 @@
 }
 
 - (void)goBackMainToast{
+    [self.depositWV stopLoading];
     UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"警告⚠️" message:@"您的账号已经被强制踢出" preferredStyle:UIAlertControllerStyleAlert];
     
             // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作

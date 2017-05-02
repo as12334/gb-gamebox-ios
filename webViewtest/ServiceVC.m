@@ -31,13 +31,28 @@
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     _isLoad = false;
     
-    _serviceWV.scrollView.bounces=NO;
     
     //加载动画
     CGRect rx = [ UIScreen mainScreen ].bounds;
     self.loadingHubView = [[iKYLoadingHubView alloc] initWithFrame:CGRectMake(rx.size.width/2-100, rx.size.height/2-75, 200, 150)];
     [self.view addSubview:_loadingHubView];
     [_loadingHubView showHub];
+    
+    _serviceWV.scrollView.bounces=NO;
+    //2调用系统方法直接访问
+//    [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
+    
+    //3设置网页自适应
+    self.serviceWV.scalesPageToFit = YES;
+    
+    //4 设置检测网页中的格式类型，all表示检测所有类型包括超链接、电话号码、地址等。
+    self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
+    
+    //5. 代理方法  不遵守代理  就无法调用他的方法
+    self.serviceWV.delegate=self;
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +77,8 @@
         self.serviceWV.scalesPageToFit = YES;
         self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
         self.serviceWV.delegate=self;
-        [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.appDelegate.servicePath]]];
+        [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
+        
     }else{
         UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"客服正忙请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -119,6 +135,7 @@
     [self presentViewController:alertVc animated:YES completion:^{nil;}];
     NSLog(@"加载失败");
 }
+
 /*
 #pragma mark - Navigation
 

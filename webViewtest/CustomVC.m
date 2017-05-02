@@ -39,6 +39,7 @@
     
     CGRect rx = [ UIScreen mainScreen ].bounds;
     self.loadingHubView = [[iKYLoadingHubView alloc] initWithFrame:CGRectMake(rx.size.width/2-100, rx.size.height/2-75, 200, 150)];
+    
     [self.view addSubview:_loadingHubView];
     [_loadingHubView showHub];
     
@@ -46,10 +47,10 @@
     
     
     
-    if([_appDelegate.customUrl containsString:@"http"]){
+    if([_appDelegate.customUrl containsString:@"http:"]){
         self.request = _appDelegate.customUrl;
     }else{
-        _request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl];
+        self.request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl];
     }
     
     NSLog(@"%@",_request);
@@ -84,7 +85,7 @@
         
     }
     NSLog(@"加载成功%@",url);
-    
+    [webView stringByEvaluatingJavaScriptFromString:@"$('.mui-inner-wrap').height();"];
     //js方法绑定
     self.ocjs;
     
@@ -115,9 +116,9 @@
     }
     
     //判断是否需要登录判断
-//    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"]){
-//        [webView stringByEvaluatingJavaScriptFromString:@"isLogin(document.getElementById('isLogin').value);"];
-//    }
+    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"] && ![_request containsString:@"/help/"]){
+        [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
+    }
 }
 
 //网页加载失败调用该方法
@@ -250,6 +251,7 @@
         
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
+        [self.customWebView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
         _appDelegate.isLogin = true;
         _appDelegate.loginId ++;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -319,36 +321,37 @@
         });
     };
     
-//    context[@"isLogin"] = ^(){
-//        
-//        NSArray *args = [JSContext currentArguments];
-//        NSString *isLogin = [args[0] toString];
-//        
-//        NSLog(@"isLogin:%@",isLogin);
-//        
-//        if([isLogin isEqualToString:@"true"]){
-//            _appDelegate.isLogin = YES;
-//        }else{
-//            self.appDelegate.loginId ++;
-//            _appDelegate.isLogin = NO;
-//            // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-//            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
-//            
-//            // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-//            
-//            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//                _appDelegate.gotoIndex = 0;
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }];
-//            
-//            // 3.将“取消”和“确定”按钮加入到弹框控制器中
-//            
-//            [alertVc addAction:cancle];
-//            
-//            [self presentViewController:alertVc animated:YES completion:^{nil;}];
-//            return;
-//        }
-//    };
+    context[@"loginState"] = ^(){
+        
+        NSArray *args = [JSContext currentArguments];
+        NSString *isLogin = [args[0] toString];
+        
+        NSLog(@"isLogin:%@",isLogin);
+        
+        if([isLogin isEqualToString:@"true"]){
+            _appDelegate.isLogin = YES;
+        }else{
+            self.appDelegate.loginId ++;
+            _appDelegate.isLogin = NO;
+            [self.customWebView stopLoading];
+            // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
+            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
+            
+            // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
+            
+            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                _appDelegate.gotoIndex = 0;
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            // 3.将“取消”和“确定”按钮加入到弹框控制器中
+            
+            [alertVc addAction:cancle];
+            
+            [self presentViewController:alertVc animated:YES completion:^{nil;}];
+            return;
+        }
+    };
 }
 
 

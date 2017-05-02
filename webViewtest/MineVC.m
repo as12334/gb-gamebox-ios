@@ -146,7 +146,7 @@
     [_mineWV setHidden:NO];
     NSLog(@"加载成功");
     self.ocjs;
-    [webView stringByEvaluatingJavaScriptFromString:@"isLogin(document.getElementById('isLogin').value);"];
+    [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
 }
 
 //网页加载失败调用该方法
@@ -241,6 +241,7 @@
             self.appDelegate.loginId ++;
             _appDelegate.isLogin = NO;
             self.selfIsLogin = NO;
+            [self.mineWV stopLoading];
             // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
             UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
             

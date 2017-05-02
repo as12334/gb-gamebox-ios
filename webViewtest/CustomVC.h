@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface CustomVC : UIViewController
+@interface CustomVC : BaseVC<UIWebViewDelegate>
 
 @property(nonatomic,strong)NSString *url;
 

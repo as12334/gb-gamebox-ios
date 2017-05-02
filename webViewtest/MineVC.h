@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface MineVC : UIViewController
+@interface MineVC : BaseVC<UIWebViewDelegate>
 
 @end

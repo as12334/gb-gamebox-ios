@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface ServiceVC : UIViewController
+@interface ServiceVC : BaseVC<UIWebViewDelegate>
 
 @end

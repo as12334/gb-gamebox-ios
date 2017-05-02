@@ -15,5 +15,5 @@
 //Toast
 - (void) addToastWithString:(NSString *)string inView:(UIView *)view;
 - (void) removeToastWithView:(NSTimer *)timer;
-
+- (void) stopLoadWV:(UIWebView *)wv;
 @end

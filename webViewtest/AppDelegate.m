@@ -40,8 +40,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    _versionCode = @"1";
-    _md5 = @"f790667720b14a5b0c38b5f6ca66d7d1";
+    _versionCode = @"2";
+    _md5 = @"3f990aa1e870c0065a2e98e16683e9e9";
     _code = CODE;
     _s = S;
     

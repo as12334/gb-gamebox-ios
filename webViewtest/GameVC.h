@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface GameVC : UIViewController
+@interface GameVC : BaseVC<UIWebViewDelegate>
 
 @end

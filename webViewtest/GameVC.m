@@ -7,17 +7,21 @@
 //
 
 #import "GameVC.h"
+#import "AFNetworking.h"
 #import "AppDelegate.h"
 #import "iKYLoadingHubView.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@interface GameVC ()<UIWebViewDelegate>
-
+@interface GameVC ()<NSURLConnectionDataDelegate>
+/**
+ -  访问url链接
+ */
+@property(nonatomic,strong)NSURL *url;
+@property(nonatomic,weak)IBOutlet UIWebView *webView;
 @property AppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UIWebView *gameWV;
 @property NSString *domain;
 @property iKYLoadingHubView *loadingHubView;
-
 - (void)ocjs;
 
 @end
@@ -34,14 +38,21 @@
     self.loadingHubView = [[iKYLoadingHubView alloc] initWithFrame:CGRectMake(rx.size.width/2-100, rx.size.height/2-75, 200, 150)];
     [self.view addSubview:_loadingHubView];
     [_loadingHubView showHub];
-    
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy=NSHTTPCookieAcceptPolicyAlways;
     _gameWV.scrollView.bounces=NO;
     
     //1.创建一个字符创
     NSString *Request = [NSString stringWithFormat:@"%@",_appDelegate.customUrl];
     
     //2.调用系统方法直接访问
-    [self.gameWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:Request]]];
+//    if([_appDelegate.customUrl containsString:@"https://"]){
+//        NSURL *url = [NSURL URLWithString:_appDelegate.customUrl];
+//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+//        NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+//        [connection start];
+//    }else{
+        [self.gameWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:Request]]];
+//    }
     
     //3设置网页自适应
     self.gameWV.scalesPageToFit = YES;
