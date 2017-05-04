@@ -116,7 +116,7 @@
     }
     
     //判断是否需要登录判断
-    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"] && ![_request containsString:@"/help/"]){
+    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"] && ![_request containsString:@"/help/"] && ![_request containsString:@"/promoDetail.html"]){
         [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
     }
 }
