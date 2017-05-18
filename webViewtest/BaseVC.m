@@ -7,6 +7,7 @@
 //
 
 #import "BaseVC.h"
+#import "AppDelegate.h"
 
 #define aiScreenWidth [UIScreen mainScreen].bounds.size.width
 #define aiScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -22,6 +23,7 @@
 @property(nonatomic,strong)NSMutableData * mData;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property NSString *loadUrl;
+@property AppDelegate *appDelegate;
 @end
 
 @implementation BaseVC
@@ -78,6 +80,35 @@
     }];
 }
 - (void) stopLoadWV:(UIWebView *) wv{
+    
+}
+
+- (void) setErrorHtml:(UIWebView *) wv{
+    self.appDelegate = [[UIApplication sharedApplication] delegate];
+    //获取html文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"NoNetwork" ofType:@"html"];
+    //html转换成字符串
+    NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    //获取app根路径
+    NSString *basePath = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:basePath];
+    
+    //获取status code
+    NSHTTPURLResponse *response = (NSHTTPURLResponse *)[[NSURLCache sharedURLCache] cachedResponseForRequest:wv.request].response;
+    
+    NSInteger statusCode = response.statusCode;
+    NSString *scheme = wv.request.URL.scheme;
+    NSString *netStatus = self.appDelegate.netStatus;
+    NSLog(@"scheme:%@", scheme);
+    NSLog(@"statusCode:%ld", statusCode);
+    NSLog(@"netStatus:%@", netStatus);
+    //请求的协议不为file，并且返回的状态码是404，
+    //状态码为0时必须是在没有网络的状况下才能加载错误页面
+    if (![scheme containsString:@"file"] && (statusCode == 404 || (statusCode == 0 && [netStatus containsString:@"noNetwork"]))) {
+        //捕捉到错误，加载本地html
+        [wv loadHTMLString:htmlString baseURL:baseURL];
+    }
     
 }
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {

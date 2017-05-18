@@ -2,7 +2,6 @@
 //  AppDelegate.m
 //  webViewtest
 //
-//  Created by 牛奶哈哈的小屋 on 2017/3/6.
 //  Copyright © 2017年 牛奶哈哈的小屋. All rights reserved.
 //
 
@@ -35,6 +34,7 @@
 @synthesize md5 = _md5;
 @synthesize code = _code;
 @synthesize s = _s;
+@synthesize netStatus = _netStatus;
 
 @synthesize gotoIndexUrl = _gotoIndexUrl;
 
@@ -59,6 +59,7 @@
     _gotoIndex = -1;
     _gotoIndexUrl = @"";
     _goBackURL = @"";
+    _netStatus = @"";
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];

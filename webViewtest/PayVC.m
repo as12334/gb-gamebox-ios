@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *customWebView;
 @property NSString *domain;
 @property iKYLoadingHubView *loadingHubView;
-
+@property NSString *request;
 - (void)ocjs;
 
 @end
@@ -39,18 +39,16 @@
     
     _customWebView.scrollView.bounces=NO;
     
-    //1.创建一个字符创
-    NSString *request;
     
     if([_appDelegate.customUrl containsString:@"http"]){
-        request = _appDelegate.customUrl;
+        self.request = _appDelegate.customUrl;
     }else{
-        request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl];
+        self.request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl];
     }
     
-    NSLog(request);
+    NSLog(@"%@", _request);
     //2.调用系统方法直接访问
-    [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request]]];
+    [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
     
     //3设置网页自适应
     self.customWebView.scalesPageToFit = YES;
@@ -73,6 +71,7 @@
 //开始加载网页，不仅监听我们指定的请求，还会监听内部发送的请求
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:NO];
+    [self setErrorHtml:webView];
     NSLog(@"开始加载");
 }
 //
@@ -94,6 +93,7 @@
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
+    [self setErrorHtml:webView];
     NSLog(@"加载失败");
 }
 
@@ -239,6 +239,9 @@
         });
     };
     
+    context[@"reload"] = ^() {
+        [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
+    };
 }
 
 

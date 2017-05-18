@@ -25,6 +25,7 @@
 @property int loginId;
 @property BOOL goLogin;
 @property NSString *goBackURL;
+@property NSString *netStatus;;
 
 //mine
 @property int gotoIndex;

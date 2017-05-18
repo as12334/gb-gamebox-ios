@@ -72,7 +72,7 @@
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    [self.bottomText setText:[NSString stringWithFormat:@"Copyrihgt @ %@ Reserved.",app_Name]];
+    [self.bottomText setText:[NSString stringWithFormat:@"Copyrihgt © %@ Reserved.",app_Name]];
     [self.bottomText2 setText:[NSString stringWithFormat:@"v%@",app_Version]];
 }
 
@@ -285,12 +285,16 @@
             case AFNetworkReachabilityStatusNotReachable: {
                 //                [weakSelf loadMessage:@"网络不可用"];
                 NSLog(@"网络不可用");
+                self.appDelegate.netStatus = @"noNetwork";
+                NSLog(@"netStatus:%@", _appDelegate.netStatus);
                 [self addToastWithString:@"网络不可用" inView:self.view];
                 break;
             }
                 
             case AFNetworkReachabilityStatusReachableViaWiFi: {
                 [self addToastWithString:@"正在使用Wifi" inView:self.view];
+                self.appDelegate.netStatus = @"wifi";
+                NSLog(@"netStatus:%@", _appDelegate.netStatus);
                 [self getDataWithURLRequest];
                 NSLog(@"Wifi已开启");
                 break;
@@ -299,6 +303,7 @@
             case AFNetworkReachabilityStatusReachableViaWWAN: {
                 //                [weakSelf loadMessage:@"你现在使用的流量"];
                 NSLog(@"你现在使用的流量");
+                self.appDelegate.netStatus = @"gprs";
                 [self addToastWithString:@"你现在使用的流量" inView:self.view];
                 [self getDataWithURLRequest];
                 break;
@@ -307,6 +312,7 @@
             case AFNetworkReachabilityStatusUnknown: {
                 //                [weakSelf loadMessage:@"你现在使用的未知网络"];
                 NSLog(@"你现在使用的未知网络");
+                self.appDelegate.netStatus = @"unknown";
                 [self addToastWithString:@"你现在使用的未知网络" inView:self.view];
                 [self getDataWithURLRequest];
                 break;

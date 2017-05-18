@@ -45,6 +45,7 @@
     
     self.loginId = 0;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
+//    self.appDelegate.domain = @"http://192.168.0.150:8089/";
     self.domain = _appDelegate.domain;
     self.isLofinAfter = false;
     _mainWebView.scrollView.bounces=NO;
@@ -55,7 +56,7 @@
     
     //初始化动画
     CGRect rx = [ UIScreen mainScreen ].bounds;
-    self.loadingHubView = [[iKYLoadingHubView alloc] initWithFrame:CGRectMake(rx.size.width/2-100, rx.size.height/2-75, 200, 150)];
+    self.loadingHubView = [[iKYLoadingHubView alloc] initWithFrame:CGRectMake(0, 0, rx.size.width, rx.size.height)];
     [self.view addSubview:_loadingHubView];
     
     [_loadingHubView showHub];
@@ -252,7 +253,9 @@
         });
     };
 
-    
+    context[@"reload"] = ^() {
+        [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
+    };
 //    if(_appDelegate.isLogin){
 //        [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
 //    }
@@ -265,6 +268,8 @@
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
+    [self setErrorHtml:webView];
+    
     NSLog(@"加载失败");
 }
 

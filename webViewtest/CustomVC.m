@@ -124,6 +124,7 @@
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
+    [self setErrorHtml:webView];
     NSLog(@"加载失败");
 }
 
@@ -351,6 +352,10 @@
             [self presentViewController:alertVc animated:YES completion:^{nil;}];
             return;
         }
+    };
+    
+    context[@"reload"] = ^() {
+        [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
     };
 }
 

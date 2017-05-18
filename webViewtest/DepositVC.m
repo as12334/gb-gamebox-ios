@@ -345,12 +345,15 @@
         [self.navigationController popViewControllerAnimated:YES];
     };
     
+    context[@"reload"] = ^() {
+        [self.depositWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
+    };
 }
 
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
-    
+    [self setErrorHtml:webView];
     NSLog(@"加载失败");
 }
 
