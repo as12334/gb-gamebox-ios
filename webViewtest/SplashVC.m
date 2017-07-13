@@ -328,9 +328,9 @@
 
 - (void)checkUpdate {
     //地址
-    //_httpsPath = [NSString stringWithFormat:@"https://apiplay.info:1344/boss/app/update.html?type=android&key=%@&code=%@",_appDelegate.md5,_appDelegate.versionCode];
+    _httpsPath = [NSString stringWithFormat:@"https://apiplay.info:1344/boss/app/update.html?type=android&key=%@&code=%@",_appDelegate.md5,_appDelegate.versionCode];
     
-    _httpsPath = [NSString stringWithFormat:@"%@app/update.html?type=ios&key=%@&code=%@",_appDelegate.bossUrl,_appDelegate.md5,_appDelegate.versionCode];
+    //_httpsPath = [NSString stringWithFormat:@"%@app/update.html?type=ios&key=%@&code=%@",_appDelegate.bossUrl,_appDelegate.md5,_appDelegate.versionCode];
     
     NSURL *url = [NSURL URLWithString:_httpsPath];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];

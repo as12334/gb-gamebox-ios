@@ -57,6 +57,13 @@
 #define SID   @"76"
 #define COLOR   @"DEFAULT"
 
+#elif _8f80 //test01
+
+#define CODE   @"8f80"
+#define S   @"18411010ef6abf243fabb237dd8a6fdc"
+#define SID   @"21"
+#define COLOR   @"DEFAULT"
+
 
 #elif _zmis //测试站点三
 
@@ -471,6 +478,121 @@
 #define CODE   @"waln"
 #define S   @"d6a9243545746574658764847746bbss"
 #define SID   @"170"
+#define COLOR   @"DEFAULT"
+
+#elif _rf80 //测试站点
+
+#define CODE   @"rf80"
+#define S   @"352ac58de086e6cfe2831e9f22c825f"
+#define SID   @"21"
+#define COLOR   @"DEFAULT"
+
+#elif _c79k //澳门银河在线赌场Casino
+
+#define CODE   @"c79k"
+#define S   @"33edbae0b10263715a38002443a91a66"
+#define SID   @"169"
+#define COLOR   @"DEFAULT"
+
+
+#elif _ihqx //宝开娱乐
+
+#define CODE   @"ihqx"
+#define S   @"9ba3cb8151c2a4ff24f4f013edbfcf74"
+#define SID   @"171"
+#define COLOR   @"DEFAULT"
+
+
+#elif _izbv //豪森国际
+
+#define CODE   @"izbv"
+#define S   @"5f0b80d73c95780555aadc23d2301243"
+#define SID   @"172"
+#define COLOR   @"DEFAULT"
+
+
+#elif _jr3j //濠利会娱乐城
+
+#define CODE   @"jr3j"
+#define S   @"762c84815fd244388e9839e85c0b132f"
+#define SID   @"173"
+#define COLOR   @"DEFAULT"
+
+
+#elif _x0le //澳门银河娱乐城
+
+#define CODE   @"x0le"
+#define S   @"83ef58b642888ac62c711cae4f1a1e6b"
+#define SID   @"175"
+#define COLOR   @"DEFAULT"
+
+
+#elif _qgjl //全胜娱乐
+
+#define CODE   @"qgjl"
+#define S   @"b8cbc0ef9e63e5eda26f86b31dead216"
+#define SID   @"176"
+#define COLOR   @"DEFAULT"
+
+
+#elif _x1dv //澳门威尼斯人娱乐场
+
+#define CODE   @"x1dv"
+#define S   @"8caf664f1f4e92b96e9e29d4f8229ceb"
+#define SID   @"177"
+#define COLOR   @"DEFAULT"
+
+
+#elif _ptxa //点金坊
+
+#define CODE   @"ptxa"
+#define S   @"b4034680baddc6cecbb609d6fd33785f"
+#define SID   @"178"
+#define COLOR   @"DEFAULT"
+
+
+#elif _rosz //英雄联盟
+
+#define CODE   @"rosz"
+#define S   @"16a74a133f73078c2b549c06d3652fbe"
+#define SID   @"179"
+#define COLOR   @"DEFAULT"
+
+#elif _qfxk //皇冠国际
+
+#define CODE   @"qfxk"
+#define S   @"a3912de7bb2ecaa1fbe8cf850d2c8fe6"
+#define SID   @"180"
+#define COLOR   @"DEFAULT"
+
+
+#elif _4w3g //超博娱乐
+
+#define CODE   @"4w3g"
+#define S   @"f8b3fcf717c9c2f205dc50efda18d0e0"
+#define SID   @"181"
+#define COLOR   @"DEFAULT"
+
+
+#elif _ixuf //雄伟集团
+
+#define CODE   @"ixuf"
+#define S   @"75dbc3bd387d5d3a0e31ddb6773c6e92"
+#define SID   @"182"
+#define COLOR   @"DEFAULT"
+
+#elif _nrpf //美高梅赌场
+
+#define CODE   @"nfpf"
+#define S   @"f3272e5c9722dfab805aa1abc9d194a0"
+#define SID   @"183"
+#define COLOR   @"DEFAULT"
+
+#elif _fyxi //フェニックス・エンターテイメント
+
+#define CODE   @"fyxi"
+#define S   @"8d188612586e44c2184f4e08addb845f"
+#define SID   @"185"
 #define COLOR   @"DEFAULT"
 
 #else
