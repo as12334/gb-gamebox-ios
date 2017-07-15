@@ -583,16 +583,31 @@
 
 #elif _nrpf //美高梅赌场
 
-#define CODE   @"nfpf"
+#define CODE   @"nrpf"
 #define S   @"f3272e5c9722dfab805aa1abc9d194a0"
 #define SID   @"183"
 #define COLOR   @"DEFAULT"
 
-#elif _fyxi //フェニックス・エンターテイメント
+#elif _fyxi //Phoenix Gaming
 
 #define CODE   @"fyxi"
 #define S   @"8d188612586e44c2184f4e08addb845f"
 #define SID   @"185"
+#define COLOR   @"DEFAULT"
+
+#elif _cwad //赛博体育
+
+#define CODE   @"cwad"
+#define S   @"c8826177aa6db7a1d99cf268ed8d9cd8"
+#define SID   @"186"
+#define COLOR   @"DEFAULT"
+
+
+#elif _b02h //澳门银河
+
+#define CODE   @"b02h"
+#define S   @"7628a522783854f655ba977b2fb38bad"
+#define SID   @"187"
 #define COLOR   @"DEFAULT"
 
 #else
