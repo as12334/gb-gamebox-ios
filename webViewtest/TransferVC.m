@@ -44,7 +44,11 @@
     _transferWV.scrollView.bounces=NO;
     
     //请求链接
-    _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/transfer/index.html"];
+    if ([@"integrated" isEqualToString:SITE_TYPE]) {
+        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/transfer/index.html"];
+    } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/withdraw/index.html"];
+    }
     
     //2 调用系统方法直接访问
     if(self.appDelegate.isLogin){

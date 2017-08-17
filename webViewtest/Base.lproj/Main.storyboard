@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UdF-7G-6Jx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UdF-7G-6Jx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XqT-iB-e1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576.8000000000002" y="-1437.0314842578712"/>
+            <point key="canvasLocation" x="1340" y="1109"/>
         </scene>
         <!--CustomVC-->
         <scene sceneID="kL1-BL-GI0">
@@ -65,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMf-WW-0Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4736.8000000000002" y="-1913.793103448276"/>
+            <point key="canvasLocation" x="3465" y="-519"/>
         </scene>
         <!--GameVC-->
         <scene sceneID="1a6-qM-PcV">
@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9Q-l9-yVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5700" y="-1913.793103448276"/>
+            <point key="canvasLocation" x="4281" y="-517"/>
         </scene>
         <!--PayVC-->
         <scene sceneID="HXZ-kk-j9J">
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMW-Dy-MfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6627.5362318840589" y="-1151.0869565217392"/>
+            <point key="canvasLocation" x="4281" y="-1236"/>
         </scene>
         <!--SplashVC-->
         <scene sceneID="4Ui-wq-r0t">
@@ -199,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRe-sE-ggz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1643.4782608695652" y="-518.47826086956525"/>
+            <point key="canvasLocation" x="1870" y="-519"/>
         </scene>
         <!--Main Tab BarVC-->
         <scene sceneID="Yhq-gp-0Le">
@@ -253,13 +253,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucH-35-5nJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4516" y="-533.88305847076469"/>
+            <point key="canvasLocation" x="2001" y="1109"/>
         </scene>
         <!--首页-->
         <scene sceneID="wOw-Eb-0Uv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uU2-Hs-Hyy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="tab_home_selected" id="vYH-pV-t6C"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tab_blue_home.png" id="vYH-pV-t6C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTG-b5-J2j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -272,13 +272,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCh-OU-YhY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2756" y="-1437"/>
+            <point key="canvasLocation" x="1340" y="323"/>
         </scene>
         <!--存款-->
         <scene sceneID="fhE-oP-ErR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9l3-Yq-XUR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="存款" image="tab_deposit_selected" id="PFZ-FP-77K"/>
+                    <tabBarItem key="tabBarItem" title="存款" image="tab_deposit.png" id="PFZ-FP-77K"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FZ7-ZM-e7o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -291,7 +291,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wb0-Ks-jdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3688.8000000000002" y="-532.98350824587715"/>
+            <point key="canvasLocation" x="2002" y="322"/>
         </scene>
         <!--ServiceVC-->
         <scene sceneID="2JE-WI-NzD">
@@ -321,13 +321,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4F-jj-wuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3605.5999999999999" y="988.15592203898063"/>
+            <point key="canvasLocation" x="3332" y="1109"/>
         </scene>
         <!--客服-->
         <scene sceneID="Noy-jF-mNW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="md5-U6-4hI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="客服" image="tab_service_selected" id="FWC-uT-opd"/>
+                    <tabBarItem key="tabBarItem" title="客服" image="tab_service.png" id="FWC-uT-opd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufT-hH-ebj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -340,7 +340,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUp-2b-MAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2749.5999999999999" y="1002.5487256371815"/>
+            <point key="canvasLocation" x="3332" y="325"/>
         </scene>
         <!--MineVC-->
         <scene sceneID="UFl-6k-ZIq">
@@ -369,13 +369,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJI-Gk-gRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576.8000000000002" y="1789.6551724137933"/>
+            <point key="canvasLocation" x="4012" y="1109"/>
         </scene>
         <!--我的-->
         <scene sceneID="vho-eH-hjy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e4w-a1-fWe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="tab_mine_selected" id="Pt3-eF-Oag"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="tab_mine.png" id="Pt3-eF-Oag"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HzQ-A8-yi1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -388,7 +388,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXy-yC-ee5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2756" y="1790.5547226386807"/>
+            <point key="canvasLocation" x="4012" y="325"/>
         </scene>
         <!--TransferVC-->
         <scene sceneID="LNy-RH-dUe">
@@ -418,13 +418,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8LV-d4-N1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576.8000000000002" y="247.82608695652175"/>
+            <point key="canvasLocation" x="2665" y="1109"/>
         </scene>
         <!--转账-->
         <scene sceneID="xTh-Qw-h2C">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CNE-03-KbB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="转账" image="tab_transfer_selected" id="ZWs-hM-cBd"/>
+                    <tabBarItem key="tabBarItem" title="转账" image="tab_transfer.png" id="ZWs-hM-cBd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="92c-rA-Jgb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -437,7 +437,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXU-sK-sQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2750" y="248"/>
+            <point key="canvasLocation" x="2665" y="326"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sMW-dh-nvb">
@@ -455,7 +455,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XA4-Dz-Bfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704.79999999999995" y="-517.6911544227886"/>
+            <point key="canvasLocation" x="1065" y="-519"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QPJ-dz-WsU">
@@ -473,18 +473,19 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gur-3c-CNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5720.289855072464" y="-1151.0869565217392"/>
+            <point key="canvasLocation" x="3465" y="-1236"/>
         </scene>
     </scenes>
     <resources>
         <image name="game_btn_bg" width="32" height="67"/>
         <image name="icon_home" width="32" height="32"/>
         <image name="splash" width="360" height="640"/>
-        <image name="tab_deposit_selected" width="32" height="32"/>
-        <image name="tab_home_selected" width="32" height="32"/>
-        <image name="tab_mine_selected" width="32" height="32"/>
-        <image name="tab_service_selected" width="32" height="32"/>
-        <image name="tab_transfer_selected" width="32" height="32"/>
+        <image name="tab_blue_home.png" width="32" height="32"/>
+        <image name="tab_deposit.png" width="32" height="32"/>
+        <image name="tab_mine.png" width="32" height="32"/>
+        <image name="tab_service.png" width="32" height="32"/>
+        <image name="tab_transfer.png" width="32" height="32"/>
         <image name="title_back" width="32" height="32"/>
     </resources>
+    <color key="tintColor" red="0.093073369941003528" green="0.30069660217449434" blue="0.82636024746192893" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

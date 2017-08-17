@@ -15,6 +15,8 @@
 @property NSString *md5;
 @property NSString *code;
 @property NSString *s;
+@property NSString *siteType;
+@property NSString *theme;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) NSString *bossUrl;

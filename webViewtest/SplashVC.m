@@ -258,7 +258,7 @@
 
 - (void) checkUrl{
     
-    //NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
+//    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
     NSString *path = [NSString stringWithFormat:@"%@%@%@",@"http://",_urlArray[_urlArrayIndex],_talk];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

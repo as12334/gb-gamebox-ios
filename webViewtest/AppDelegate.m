@@ -6,6 +6,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MainTabBarVC.h"
+#import "TransferVC.h"
 
 #define aiScreenWidth [UIScreen mainScreen].bounds.size.width
 #define aiScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -34,6 +36,8 @@
 @synthesize md5 = _md5;
 @synthesize code = _code;
 @synthesize s = _s;
+@synthesize siteType = _siteType;
+@synthesize theme = _theme;
 @synthesize netStatus = _netStatus;
 
 @synthesize gotoIndexUrl = _gotoIndexUrl;
@@ -44,6 +48,8 @@
     _md5 = @"3f990aa1e870c0065a2e98e16683e9e9";
     _code = CODE;
     _s = S;
+    _siteType = SITE_TYPE;
+    _theme = THEME;
     
     //_domain = @"http://www.ued9999.com";
     //_domain = @"http://192.168.0.158:8089";
