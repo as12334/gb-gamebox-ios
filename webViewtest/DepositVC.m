@@ -48,7 +48,11 @@
     _depositWV.scrollView.bounces=NO;
     
     //请求链接
-    _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
+    if ([@"integrated" isEqualToString:SITE_TYPE]) {
+        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
+    } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/lotteryResultHistory/index.html"];
+    }
     
     //2 调用系统方法直接访问
     if(self.appDelegate.isLogin){
@@ -110,18 +114,29 @@
             _selfIsLogin = false;
         }
         
+        NSString *prompt = @"提示";
+        NSString *message = @"您尚未登录";
+        NSString *title = @"返回首页";
+        NSString *loginTitle = @"立即登录";
+        if ([@"185" isEqualToString:SID]) {
+            prompt = @"メッセージ";
+            message = @"ログイン情報エラー";
+            title = @"トップページへ戻る";
+            loginTitle = @"今すぐログイン";
+        }
+        
         // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
         
         // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
         
-        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             NSLog(@"返回首页");
             self.tabBarController.selectedIndex = 0;
             
         }];
         
-        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"立即登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             _appDelegate.customUrl = @"/login/commonLogin.html";
             CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
             [self.navigationController pushViewController:BVC animated:YES];
@@ -242,18 +257,29 @@
             _appDelegate.isLogin = NO;
             self.selfIsLogin = NO;
             _appDelegate.loginId ++;
+            NSString *prompt = @"提示";
+            NSString *message = @"账号异常退出";
+            NSString *title = @"返回首页";
+            NSString *loginTitle = @"立即登录";
+            if ([@"185" isEqualToString:SID]) {
+                prompt = @"メッセージ";
+                message = @"ログイン情報エラー";
+                title = @"トップページへ戻る";
+                loginTitle = @"今すぐログイン";
+            }
+            
             // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
             
             // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
             
-            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 NSLog(@"返回首页");
                 self.tabBarController.selectedIndex = 0;
                 
             }];
             
-            UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"立即登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 _appDelegate.customUrl = @"/login/commonLogin.html";
                 CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
                 [self.navigationController pushViewController:BVC animated:YES];

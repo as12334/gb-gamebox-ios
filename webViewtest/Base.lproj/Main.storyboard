@@ -85,11 +85,11 @@
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="game_btn_bg" translatesAutoresizingMaskIntoConstraints="NO" id="CRo-09-55F">
-                                <rect key="frame" x="312" y="522" width="46" height="92"/>
+                                <rect key="frame" x="312" y="506" width="46" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVI-E8-Ue1">
-                                <rect key="frame" x="314" y="529" width="42" height="39"/>
+                                <rect key="frame" x="314" y="513" width="42" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="title_back"/>
                                 <connections>
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u14-Ks-VAH">
-                                <rect key="frame" x="318" y="570" width="35" height="37"/>
+                                <rect key="frame" x="318" y="554" width="35" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="icon_home"/>
                                 <connections>
@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9Q-l9-yVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4281" y="-517"/>
+            <point key="canvasLocation" x="4280.8000000000002" y="-517.6911544227886"/>
         </scene>
         <!--PayVC-->
         <scene sceneID="HXZ-kk-j9J">

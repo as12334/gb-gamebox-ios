@@ -45,7 +45,7 @@
     
     self.loginId = 0;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
-//    self.appDelegate.domain = @"http://192.168.0.150:8089/";
+//    self.appDelegate.domain = @"http://192.168.0.159";
     self.domain = _appDelegate.domain;
     self.isLofinAfter = false;
     _mainWebView.scrollView.bounces=NO;
@@ -214,12 +214,22 @@
                 }else{
                     self.appDelegate.loginId ++;
                     _appDelegate.isLogin = NO;
+                    
+                    NSString *prompt = @"提示";
+                    NSString *message = @"账号异常退出";
+                    NSString *title = @"返回首页";
+                    if ([@"185" isEqualToString:SID]) {
+                        prompt = @"メッセージ";
+                        message = @"ログイン情報エラー";
+                        title = @"トップページへ戻る";
+                    }
+                    
                     // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-                    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
         
                     // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
         
-                    UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                         
                     }];
         
@@ -256,9 +266,20 @@
     context[@"reload"] = ^() {
         [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
     };
-//    if(_appDelegate.isLogin){
-//        [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
-//    }
+    context[@"demoEnter"] = ^() {
+        self.demoEnter;
+    };
+    context[@"gotoTab"] = ^() {
+        NSArray *args = [JSContext currentArguments];
+        NSString *target;
+        for (JSValue *jsVal in args) {
+            target = jsVal.toString;
+            NSLog(@"%@", jsVal.toString);
+        }
+        if (args[0] != nil) {
+            self.tabBarController.selectedIndex = [target intValue];
+        }
+    };
     [_loadingHubView setHidden:YES];
     NSLog(@"加载成功");
     
@@ -277,22 +298,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-//    if(self.appDelegate.isLogin){
-//        if(_isLogin){
-//            return;
-//        }else{
-//            [self.mainWebView reload];
-//            _isLogin = true;
-//        }
-//        NSLog(@"~~~~~我是一个华丽丽的分割线 啊嘞~~~~");
-//    }else{
-//        if(_isLogin){
-//            [self.mainWebView reload];
-//            _isLogin = false;
-//        }
-//    }
-    
+
     if(_appDelegate.goLogin){
         self.autoLogin;
         _appDelegate.goLogin = NO;
@@ -383,6 +389,46 @@ void alertView(){
     
 }
 
+- (void)demoEnter {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/demo/index.html"];
+    NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]init];
+    
+    [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    [request setValue:@"app_ios" forHTTPHeaderField:@"User-Agent"];
+    
+    [request setHTTPMethod:@"post"]; //指定请求方式
+    [request setURL:URL]; //设置请求的地址
+    NSURLResponse * response;
+    NSError * error;
+    NSData * backData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    if (error) {
+        NSLog(@"error : %@",[error localizedDescription]);
+        _appDelegate.isLogin = false;
+    }else{
+        NSLog(@"response : %@",response);
+        NSString *data = [[NSString alloc]initWithData:backData encoding:NSUTF8StringEncoding];
+        NSLog(@"backData : %@",data);
+        
+        if ([data containsString:@"toIndex"]) {
+            NSLog(@"登录成功");
+            _appDelegate.isLogin = true;
+            self.isLofinAfter = true;
+            [self.mainWebView reload];
+        } else {
+            NSLog(@"登录失败");
+            CustomVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
+            _appDelegate.customUrl = @"/login/commonLogin.html";
+            _appDelegate.isLogin = false;
+            [self.navigationController pushViewController:customVC animated:YES];
+        }
+        
+    }
+}
+
 - (void) autoLogin{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *account = [defaults objectForKey:@"account"];
@@ -431,7 +477,7 @@ void alertView(){
             NSLog(@"登录成功");
             _appDelegate.isLogin = true;
             self.isLofinAfter = true;
-            //[self.mainWebView reload];
+            [self.mainWebView reload];
         } else {
             NSLog(@"登录失败");
             CustomVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];

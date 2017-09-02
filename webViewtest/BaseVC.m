@@ -111,6 +111,22 @@
     }
     
 }
+
+- (void) showDisable:(UIWebView *) wv{
+    self.appDelegate = [[UIApplication sharedApplication] delegate];
+    //获取html文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"disable" ofType:@"html"];
+    //html转换成字符串
+    NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    //获取app根路径
+    NSString *basePath = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:basePath];
+    
+    [wv loadHTMLString:htmlString baseURL:baseURL];
+}
+
+
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     
     //直接验证服务器是否被认证（serverTrust），这种方式直接忽略证书验证，信任该connect

@@ -73,6 +73,12 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:NO];
     NSString *url = webView.request.URL.absoluteString;
+//    NSString *url = @"https://saibo222.com/lottery/mainIndex.html";
+    if([url containsString:@"/lottery/"]) {
+        if ([@"186" isEqualToString:SID]) {
+            url = [[NSString alloc] initWithFormat:@"%@%@", url, @"mainIndex.html"];
+        }
+    }
     NSLog(@"开始加载%@", url);
     
     if([url containsString:_domain]){

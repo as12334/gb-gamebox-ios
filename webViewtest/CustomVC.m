@@ -45,9 +45,7 @@
     
     _customWebView.scrollView.bounces=NO;
     
-    
-    
-    if([_appDelegate.customUrl containsString:@"http:"]){
+    if([_appDelegate.customUrl containsString:@"http"]){
         self.request = _appDelegate.customUrl;
     }else{
         self.request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl];
@@ -335,12 +333,22 @@
             self.appDelegate.loginId ++;
             _appDelegate.isLogin = NO;
             [self.customWebView stopLoading];
+            
+            NSString *prompt = @"提示";
+            NSString *message = @"账号异常退出";
+            NSString *title = @"返回首页";
+            if ([@"185" isEqualToString:SID]) {
+                prompt = @"メッセージ";
+                message = @"ログイン情報エラー";
+                title = @"トップページへ戻る";
+            }
+            
             // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
             
             // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
             
-            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 _appDelegate.gotoIndex = 0;
                 [self.navigationController popViewControllerAnimated:YES];
             }];

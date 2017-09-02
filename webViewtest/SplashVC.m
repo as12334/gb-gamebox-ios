@@ -259,17 +259,20 @@
 - (void) checkUrl{
     
 //    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
-    NSString *path = [NSString stringWithFormat:@"%@%@%@",@"http://",_urlArray[_urlArrayIndex],_talk];
+    NSString *path = [NSString stringWithFormat:@"%@%@%@",@"https://",_urlArray[_urlArrayIndex],_talk];
+    NSLog(@"检测线路：%@", path);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     
     [manager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"http://",_urlArray[_urlArrayIndex]];
+        self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"https://",_urlArray[_urlArrayIndex]];
+        NSLog(@"线路%@可用", path);
         //检测成功后检查更新
         self.checkUpdate;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         _urlArrayIndex ++;
+        NSLog(@"线路%@不可用", path);
         self.checkUrl;
     }];
     
@@ -328,11 +331,12 @@
 
 - (void)checkUpdate {
     //地址
-    _httpsPath = [NSString stringWithFormat:@"https://apiplay.info:1344/boss/app/update.html?type=android&key=%@&code=%@",_appDelegate.md5,_appDelegate.versionCode];
+    _httpsPath = [NSString stringWithFormat:@"https://apiplay.info:1344/boss/app/update.html?type=ios&key=%@&code=%@",_appDelegate.md5,_appDelegate.versionCode];
     
     //_httpsPath = [NSString stringWithFormat:@"%@app/update.html?type=ios&key=%@&code=%@",_appDelegate.bossUrl,_appDelegate.md5,_appDelegate.versionCode];
     
     NSURL *url = [NSURL URLWithString:_httpsPath];
+    NSLog(@"update url = %@", url);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     [connection start];

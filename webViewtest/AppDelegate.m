@@ -51,12 +51,10 @@
     _siteType = SITE_TYPE;
     _theme = THEME;
     
-    //_domain = @"http://www.ued9999.com";
-    //_domain = @"http://192.168.0.158:8089";
-    //_domain = @"http://192.168.0.92";
-    //_domain = @"http://192.168.0.158:8089/app/download.html";
-    _bossUrl = @"https://apiplay.info:1344/boss/";
-    //_bossUrl = @"https://192.168.0.92/boss/";
+    _bossUrl = BASE_URL;
+    if (IS_DEBUG) {
+        _domain = @"http://192.168.0.159";
+    }
     
     _isLogin = false;
     _servicePath = @"null";

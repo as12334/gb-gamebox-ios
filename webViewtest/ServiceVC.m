@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "iKYLoadingHubView.h"
 #import "ViewController.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface ServiceVC ()
 
@@ -19,6 +20,7 @@
 @property NSString *domain;
 @property BOOL isLoad;
 @property iKYLoadingHubView *loadingHubView;
+@property NSString *loadUrl;
 
 - (void)showPage;
 
@@ -29,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
+    self.domain = _appDelegate.domain;
     _isLoad = false;
     
     
@@ -72,14 +75,27 @@
         return;
     }
     NSLog(@"%@",_appDelegate.servicePath);
+    
+    if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        self.appDelegate.servicePath = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/bet/betOrders.html"];
+    }
+    
     if([_appDelegate.servicePath containsString: @"http"]){
         _isLoad = true;
         self.serviceWV.scalesPageToFit = YES;
         self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
         self.serviceWV.delegate=self;
         [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
-        
     }else{
+        NSString *prompt = @"提示";
+        NSString *message = @"客服正忙请稍后再试";
+        NSString *title = @"返回首页";
+        if ([@"185" isEqualToString:SID]) {
+            prompt = @"メッセージ";
+            message = @"カスタマーサービスがビジーです。後でもう一度お試しください";
+            title = @"トップページへ戻る";
+        }
+        
         UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"客服正忙请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
         
         // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
@@ -115,16 +131,51 @@
     [_loadingHubView setHidden:YES];
     [self setErrorHtml:webView];
     NSLog(@"加载成功");
+    
+    [_loadingHubView setHidden:YES];
+    JSContext *context=[_serviceWV valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    
+    context[@"gotoCustom"] = ^() {
+        NSLog(@"+++++++Begin Log+++++++");
+        NSArray *args = [JSContext currentArguments];
+        
+        JSValue *customUrl;
+        
+        for (JSValue *jsVal in args) {
+            customUrl = jsVal;
+            NSLog(@"%@", jsVal.toString);
+        }
+        
+        CustomVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
+        
+        if (args[0] != NULL) {
+            _appDelegate.customUrl = customUrl.toString;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController pushViewController:customVC animated:YES];
+            //[self presentViewController:customVC animated:YES completion:nil];
+        });
+        
+        NSLog(@"-------End Log-------");
+    };
 }
 
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
-    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"客服正忙请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
+    NSString *prompt = @"提示";
+    NSString *message = @"客服正忙请稍后再试";
+    NSString *title = @"返回首页";
+    if ([@"185" isEqualToString:SID]) {
+        prompt = @"メッセージ";
+        message = @"カスタマーサービスがビジーです。後でもう一度お試しください";
+        title = @"トップページへ戻る";
+    }
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
     
     // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
     
-    UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         NSLog(@"返回首页");
         self.tabBarController.selectedIndex = 0;
     }];

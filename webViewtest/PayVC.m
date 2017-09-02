@@ -12,6 +12,7 @@
 #import "CustomVC.h"
 #import "GameVC.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "NSString+Tool.h"
 
 @interface PayVC ()<UIWebViewDelegate>
 
@@ -74,17 +75,25 @@
     [self setErrorHtml:webView];
     NSLog(@"开始加载");
 }
-//
+
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:YES];
     
     [self.navigationItem setTitle:[webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
     
-    
-    
     NSString *url = webView.request.URL.absoluteString;
    
+    NSString *qqWallet = @"https://myun.tenpay.com/";
+    NSString *alipay = @"https://ds.alipay.com/";
+    NSString *weixin = @"weixin";
+    
+    if ([url startsWith:qqWallet] || [url startsWith:alipay] || [[url toLowerCase] containsString:weixin]) {
+        NSLog(@"浏览器加载支付地址：%@", url);
+        NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
+        [[UIApplication sharedApplication] openURL:cleanURL];
+    }
+    
     self.ocjs;
     
     NSLog(@"加载成功%@",url);
@@ -94,19 +103,9 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
     [self setErrorHtml:webView];
-    NSLog(@"加载失败");
+    NSString *url = webView.request.URL.absoluteString;
+    NSLog(@"加载失败%@", url);
 }
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    
-//    [self.navigationController setNavigationBarHidden:NO animated:NO];
-//}
 
 - (void)ocjs{
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）

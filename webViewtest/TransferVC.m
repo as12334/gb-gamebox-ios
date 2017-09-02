@@ -8,9 +8,11 @@
 
 #import "TransferVC.h"
 #import "CustomVC.h"
+#import "GameVC.h"
 #import "AppDelegate.h"
 #import "iKYLoadingHubView.h"
 #import "ViewController.h"
+#import "NSString+Tool.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface TransferVC ()
@@ -19,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *transferWV;
 @property NSString *domain;
 @property BOOL selfIsLogin;
+@property BOOL isLogin;
 @property NSString *loadUrl;
 @property iKYLoadingHubView *loadingHubView;
 @property int loginId;
@@ -34,6 +37,8 @@
     self.selfIsLogin = _appDelegate.isLogin;
     self.loginId = 0;
     
+    _isLogin = _appDelegate.isLogin;
+    
     //加载动画
     CGRect rx = [ UIScreen mainScreen ].bounds;
     self.loadingHubView = [[iKYLoadingHubView alloc] initWithFrame:CGRectMake(rx.size.width/2-100, rx.size.height/2-75, 200, 150)];
@@ -47,7 +52,7 @@
     if ([@"integrated" isEqualToString:SITE_TYPE]) {
         _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/transfer/index.html"];
     } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
-        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/withdraw/index.html"];
+        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/mainIndex.html"];
     }
     
     //2 调用系统方法直接访问
@@ -98,18 +103,27 @@
             [self.transferWV reload];
             _selfIsLogin = false;
         }
+        NSString *prompt = @"提示";
+        NSString *message = @"您尚未登录";
+        NSString *title = @"返回首页";
+        NSString *loginTitle = @"立即登录";
+        if ([@"185" isEqualToString:SID]) {
+            prompt = @"メッセージ";
+            message = @"ログイン情報エラー";
+            title = @"トップページへ戻る";
+            loginTitle = @"今すぐログイン";
+        }
         // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"您尚未登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
         
         // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
         
-        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             NSLog(@"返回首页");
             self.tabBarController.selectedIndex = 0;
-            
         }];
         
-        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"立即登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             _appDelegate.customUrl = @"/login/commonLogin.html";
             CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
             [self.navigationController pushViewController:BVC animated:YES];
@@ -172,18 +186,28 @@
             self.selfIsLogin = NO;
             _appDelegate.loginId ++;
             [self.transferWV stopLoading];
+            NSString *prompt = @"提示";
+            NSString *message = @"账号异常退出";
+            NSString *title = @"返回首页";
+            NSString *loginTitle = @"立即登录";
+            if ([@"185" isEqualToString:SID]) {
+                prompt = @"メッセージ";
+                message = @"ログイン情報エラー";
+                title = @"トップページへ戻る";
+                loginTitle = @"今すぐログイン";
+            }
             // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号异常退出" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
             
             // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
             
-            UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 NSLog(@"返回首页");
                 self.tabBarController.selectedIndex = 0;
                 
             }];
             
-            UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"立即登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 _appDelegate.customUrl = @"/login/commonLogin.html";
                 CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
                 [self.navigationController pushViewController:BVC animated:YES];
@@ -206,6 +230,77 @@
         [self.transferWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
     };
     
+    context[@"gotoGame"] = ^() {
+        NSLog(@"+++++++Begin Log+++++++");
+        NSArray *args = [JSContext currentArguments];
+        
+        JSValue *gameJsVal;
+        for (JSValue *jsVal in args) {
+            gameJsVal = jsVal;
+            NSLog(@"%@", jsVal.toString);
+        }
+        
+        GameVC *GVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameVC"];
+        
+        if (args[0] != NULL) {
+            _appDelegate.customUrl = gameJsVal.toString;
+            if (![_appDelegate.customUrl startsWith:@"http"]) {
+                self.appDelegate.customUrl = [NSString stringWithFormat:@"%@%@", _domain, _appDelegate.customUrl];
+                NSLog(@"game url = %@", _appDelegate.customUrl);
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController pushViewController:GVC animated:YES];
+        });
+    };
+    
+    context[@"gotoTab"] = ^() {
+        NSArray *args = [JSContext currentArguments];
+        NSString *target;
+        for (JSValue *jsVal in args) {
+            target = jsVal.toString;
+            NSLog(@"%@", jsVal.toString);
+        }
+        if (args[0] != nil) {
+            self.tabBarController.selectedIndex = [target intValue];
+        }
+    };
+    
+    context[@"loginOut"] = ^(){
+        //清空单个
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"++++++loginOut++++++");
+        self.appDelegate.isLogin = false;
+        _appDelegate.loginId ++;
+        _isLogin = false;
+    };
+    
+    context[@"gotoCustom"] = ^() {
+        NSLog(@"+++++++Begin Log+++++++");
+        NSArray *args = [JSContext currentArguments];
+        
+        JSValue *customUrl;
+        
+        for (JSValue *jsVal in args) {
+            customUrl = jsVal;
+            NSLog(@"%@", jsVal.toString);
+        }
+        
+        CustomVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
+        
+        if (args[0] != NULL) {
+            _appDelegate.customUrl = customUrl.toString;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController pushViewController:customVC animated:YES];
+            //[self presentViewController:customVC animated:YES completion:nil];
+        });
+        
+        NSLog(@"-------End Log-------");
+    };
+    
     [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
     NSLog(@"加载成功");
 }
@@ -216,6 +311,5 @@
     [self setErrorHtml:webView];
     NSLog(@"加载失败");
 }
-
 
 @end

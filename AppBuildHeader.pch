@@ -11,13 +11,20 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#ifdef DEBUG //开发环境
 
-#define CODE   @"fyxi"
-#define S   @"8d188612586e44c2184f4e08addb845f"
-#define SID   @"185"
-#define THEME @"pink.skin"
-#define SITE_TYPE @"integrated"
+#define IS_DEBUG false
+//生产
+#define BASE_URL @"https://apiplay.info:1344/boss/"
+//开发
+//#define BASE_URL @"http://192.168.0.159/boss/"
+
+#ifdef _DEBUG //开发环境
+
+#define CODE	@"1wl5"
+#define S		@"e840ac55fbb3d773fe845ec5ca7d7803"
+#define SID		@"70"
+#define THEME	@"lottery.skin"
+#define SITE_TYPE	@"lottery"
 
 
 #elif _7cxt //百发彩票
@@ -428,7 +435,7 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
-#elif _rosz //英雄联盟
+#elif _rosz //威尼斯人
 
 #define CODE	@"rosz"
 #define S		@"16a74a133f73078c2b549c06d3652fbe"
@@ -583,6 +590,102 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
+#elif _cghs //钱多多娱乐城
+
+#define CODE	@"cghs"
+#define S		@"651b4a4d03ff024e1d2f8bf95ce5aab7"
+#define SID		@"200"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _vtfw //澳门威尼斯人
+
+#define CODE	@"vtfw"
+#define S		@"a3fddb0bd94b64bc5567db8a7e45330c"
+#define SID		@"201"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _ucuy //博亿娱乐城
+
+#define CODE	@"ucuy"
+#define S		@"5e15309686f8eff34ee8b1ce8deaee1e"
+#define SID		@"202"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _q5tj //中博娱乐城
+
+#define CODE	@"q5tj"
+#define S		@"a8bb0f7bc1dbdfa339cb073ae6a0ece1"
+#define SID		@"203"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _dfvp //百乐博
+
+#define CODE	@"dfvp"
+#define S		@"969119a308e98daabdb99d4142a68d9b"
+#define SID		@"205"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _lnd9 //葡京国际
+
+#define CODE	@"lnd9"
+#define S		@"3a36755a7c5e81248d26a64967fa867d"
+#define SID		@"206"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _xlei //BET365
+
+#define CODE	@"xlei"
+#define S		@"b6b646438ad46b30e90662ec5652e883"
+#define SID		@"207"
+#define THEME	@"green.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _npsa //彩中彩
+
+#define CODE	@"npsa"
+#define S		@"ac5e915502f8dd1f2bd57de36e4b1022"
+#define SID		@"208"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _arau //大发OK
+
+#define CODE	@"arau"
+#define S		@"35968f38b0b8075eedbd08a21d37eded"
+#define SID		@"209"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _1lgt //威廉希尔
+
+#define CODE	@"1lgt"
+#define S		@"f554d72089e9f52ff57f2b2fcf5aba11"
+#define SID		@"210"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _3qj8 //大发OK
+
+#define CODE	@"3qj8"
+#define S		@"c17df53748ec3c865c9fe0fefb09e62e"
+#define SID		@"211"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+
+#elif _cmu6 //金元宝娱乐城
+
+#define CODE	@"cmu6"
+#define S		@"abb85e22063d91075e671251d2394f77"
+#define SID		@"212"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
 
 #else //超博娱乐
 
