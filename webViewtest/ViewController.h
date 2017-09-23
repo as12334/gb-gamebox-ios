@@ -11,6 +11,15 @@
 
 @interface ViewController : BaseVC<UIWebViewDelegate>//设置代理
 
+/*!
+ * 切换TAB
+ */
+- (void) changeTab:(NSString*) target;
 - (void) gotoCustom;
+/*!
+ * 彩票试玩
+ */
+- (void) demoEnter:(NSString *) line;
 
+- (void) reload;
 @end

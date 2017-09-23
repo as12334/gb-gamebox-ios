@@ -52,9 +52,6 @@
     _theme = THEME;
     
     _bossUrl = BASE_URL;
-    if (IS_DEBUG) {
-        _domain = @"http://192.168.0.159";
-    }
     
     _isLogin = false;
     _servicePath = @"null";

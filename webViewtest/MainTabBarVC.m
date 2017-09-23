@@ -75,17 +75,20 @@
             self.tabBar.tintColor = [UIColor colorWithRed:0.09 green:0.40 blue:0.73 alpha:1.0];
         }
     } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
-        deposit.title = @"开奖结果";
+        transfer.title = @"取款";
+        transfer.image = [[UIImage imageNamed:@"tab_withdraw"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+        deposit.title = @"充值/提款";
         transfer.title = @"购彩大厅";
         service.title = @"投注记录";
         
-        deposit.image = [[UIImage imageNamed:@"tab_lottery_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        deposit.image = [[UIImage imageNamed:@"tab_lottery_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         transfer.image = [[UIImage imageNamed:@"tab_hall_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         service.image = [[UIImage imageNamed:@"tab_bet_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
         
         home.selectedImage = [[UIImage imageNamed:@"tab_lottery_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        deposit.selectedImage = [[UIImage imageNamed:@"tab_lottery_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        deposit.selectedImage = [[UIImage imageNamed:@"tab_lottery_deposit_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         transfer.selectedImage = [[UIImage imageNamed:@"tab_hall_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         service.selectedImage = [[UIImage imageNamed:@"tab_bet_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         mine.selectedImage = [[UIImage imageNamed:@"tab_lottery_mine"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -113,6 +116,7 @@
         case 2:
             break;
         case 3:
+            NSLog(@"item name = %@", item.title);
             break;
         case 4:
             break;

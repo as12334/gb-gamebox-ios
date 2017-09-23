@@ -136,6 +136,8 @@
         [self presentViewController:alertVc animated:YES completion:^{nil;}];
     }
     NSLog(@"viewWillAppear");
+    
+    [_mineWV stringByEvaluatingJavaScriptFromString:@"window.page.getUserInfo()"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -255,7 +257,7 @@
             self.selfIsLogin = NO;
             [self.mineWV stopLoading];
             NSString *prompt = @"提示";
-            NSString *message = @"账号异常退出";
+            NSString *message = @"请先登录[104]";
             NSString *title = @"返回首页";
             NSString *loginTitle = @"立即登录";
             if ([@"185" isEqualToString:SID]) {

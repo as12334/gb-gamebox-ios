@@ -79,6 +79,7 @@
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:YES];
+    [_loadingHubView dismissHub];
     
     [self.navigationItem setTitle:[webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
     

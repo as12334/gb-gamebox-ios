@@ -80,24 +80,20 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    if(_appDelegate.gotoIndex != -1){
+        self.tabBarController.selectedIndex = _appDelegate.gotoIndex;
+        _appDelegate.gotoIndex = -1;
+    }
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     //判断是否登录
-    if(self.appDelegate.isLogin){
-        //判断当前页面是否登录
-//        if(_selfIsLogin){
-//            return;
-//        }
-//        
-//        _selfIsLogin = true;
-//        [self.transferWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
+    if(self.appDelegate.isLogin || [@"lottery" isEqualToString:SITE_TYPE]){
         [_transferWV setHidden:NO];
-        if(_loginId != _appDelegate.loginId){
-            _loginId = _appDelegate.loginId;
+        if(_loginId == 0){
+            _loginId = 1;
             [self.transferWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
         }
-    }else{
-        
+    } else {
         [_transferWV setHidden:YES];
         if(_selfIsLogin){
             [self.transferWV reload];
@@ -139,6 +135,10 @@
         [self presentViewController:alertVc animated:YES completion:^{nil;}];
     }
     NSLog(@"viewWillAppear");
+    
+    if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        [_transferWV stringByEvaluatingJavaScriptFromString:@"window.page.menu.getHeadInfo()"];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -156,6 +156,7 @@
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:YES];
+    [_loadingHubView dismissHub];
     JSContext *context=[_transferWV valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
     context[@"gotoIndex"] = ^(){
@@ -181,13 +182,13 @@
         if([isLogin isEqualToString:@"true"]){
             _appDelegate.isLogin = YES;
             self.selfIsLogin = YES;
-        }else{
+        } else  {
             _appDelegate.isLogin = NO;
             self.selfIsLogin = NO;
             _appDelegate.loginId ++;
             [self.transferWV stopLoading];
             NSString *prompt = @"提示";
-            NSString *message = @"账号异常退出";
+            NSString *message = @"请先登录[102]";
             NSString *title = @"返回首页";
             NSString *loginTitle = @"立即登录";
             if ([@"185" isEqualToString:SID]) {
@@ -301,7 +302,9 @@
         NSLog(@"-------End Log-------");
     };
     
-    [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
+    if (![@"lottery" isEqualToString:SITE_TYPE]) {
+        [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
+    }
     NSLog(@"加载成功");
 }
 

@@ -260,20 +260,32 @@
     
 //    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
     NSString *path = [NSString stringWithFormat:@"%@%@%@",@"https://",_urlArray[_urlArrayIndex],_talk];
+    if(IS_DEBUG) {
+        path = [NSString stringWithFormat:@"%@%@%@",@"http://",_urlArray[_urlArrayIndex],_talk];
+    }
+   
     NSLog(@"检测线路：%@", path);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     
     [manager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"https://",_urlArray[_urlArrayIndex]];
+        if(IS_DEBUG) {
+             self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"http://",_urlArray[_urlArrayIndex]];
+        } else {
+             self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"https://",_urlArray[_urlArrayIndex]];
+        }
         NSLog(@"线路%@可用", path);
         //检测成功后检查更新
         self.checkUpdate;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         _urlArrayIndex ++;
         NSLog(@"线路%@不可用", path);
-        self.checkUrl;
+        NSLog(@"线路错误信息返回:%@", [error localizedDescription]);
+        int size = [self.urlArray count];
+        if(_urlArrayIndex < size) {
+            self.checkUrl;
+        }
     }];
     
 }
@@ -281,42 +293,55 @@
 
 // 判断网络
 - (void)judgeNet{
+    NSString *network = @"网络不可用";
+    NSString *wifiing = @"正在使用Wifi";
+    NSString *wifi = @"Wifi已开启";
+    NSString *flow = @"你现在使用的流量";
+    NSString *unknown = @"你现在使用的未知网络";
+    if ([@"185" isEqualToString:SID]) {
+        network = @"ネット使用不可";
+        wifiing = @"WiFi使用中";
+        wifi = @"WiFiオープン";
+        flow = @"パケット使用中";
+        unknown = @"不明のネット使用中";
+    }
+
     self.manager = [AFNetworkReachabilityManager manager];
     __weak typeof(self) weakSelf = self;
     [self.manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case AFNetworkReachabilityStatusNotReachable: {
                 //                [weakSelf loadMessage:@"网络不可用"];
-                NSLog(@"网络不可用");
+                NSLog(network);
                 self.appDelegate.netStatus = @"noNetwork";
                 NSLog(@"netStatus:%@", _appDelegate.netStatus);
-                [self addToastWithString:@"网络不可用" inView:self.view];
+                [self addToastWithString:network inView:self.view];
                 break;
             }
                 
             case AFNetworkReachabilityStatusReachableViaWiFi: {
-                [self addToastWithString:@"正在使用Wifi" inView:self.view];
+                [self addToastWithString:wifiing inView:self.view];
                 self.appDelegate.netStatus = @"wifi";
                 NSLog(@"netStatus:%@", _appDelegate.netStatus);
                 [self getDataWithURLRequest];
-                NSLog(@"Wifi已开启");
+                NSLog(wifi);
                 break;
             }
                 
             case AFNetworkReachabilityStatusReachableViaWWAN: {
                 //                [weakSelf loadMessage:@"你现在使用的流量"];
-                NSLog(@"你现在使用的流量");
+                NSLog(flow);
                 self.appDelegate.netStatus = @"gprs";
-                [self addToastWithString:@"你现在使用的流量" inView:self.view];
+                [self addToastWithString:flow inView:self.view];
                 [self getDataWithURLRequest];
                 break;
             }
                 
             case AFNetworkReachabilityStatusUnknown: {
                 //                [weakSelf loadMessage:@"你现在使用的未知网络"];
-                NSLog(@"你现在使用的未知网络");
+                NSLog(unknown);
                 self.appDelegate.netStatus = @"unknown";
-                [self addToastWithString:@"你现在使用的未知网络" inView:self.view];
+                [self addToastWithString:unknown inView:self.view];
                 [self getDataWithURLRequest];
                 break;
             }

@@ -59,13 +59,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="amJ-0z-WjC"/>
                     <connections>
                         <outlet property="customWebView" destination="AQV-UZ-UeD" id="sKf-XT-rWe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMf-WW-0Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3465" y="-519"/>
+            <point key="canvasLocation" x="2665" y="-1246"/>
         </scene>
         <!--GameVC-->
         <scene sceneID="1a6-qM-PcV">

@@ -47,6 +47,7 @@
     self.appDelegate = [[UIApplication sharedApplication] delegate];
 //    self.appDelegate.domain = @"http://192.168.0.159";
     self.domain = _appDelegate.domain;
+    
     self.isLofinAfter = false;
     _mainWebView.scrollView.bounces=NO;
     
@@ -121,7 +122,6 @@
 
     context[@"gotoPay"] = ^() {
         NSArray *args = [JSContext currentArguments];
-        
         JSValue *jsCustom;
         
         for (JSValue *jsVal in args) {
@@ -216,7 +216,7 @@
                     _appDelegate.isLogin = NO;
                     
                     NSString *prompt = @"提示";
-                    NSString *message = @"账号异常退出";
+                    NSString *message = @"请先登录[100]";
                     NSString *title = @"返回首页";
                     if ([@"185" isEqualToString:SID]) {
                         prompt = @"メッセージ";
@@ -267,7 +267,7 @@
         [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
     };
     context[@"demoEnter"] = ^() {
-        self.demoEnter;
+        [self demoEnter:_domain];
     };
     context[@"gotoTab"] = ^() {
         NSArray *args = [JSContext currentArguments];
@@ -281,10 +281,14 @@
         }
     };
     [_loadingHubView setHidden:YES];
+    [_loadingHubView dismissHub];
     NSLog(@"加载成功");
     
 }
 
+-(void)changeTab:(NSString*) target {
+    self.tabBarController.selectedIndex = [target intValue];
+}
 
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -299,9 +303,17 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 
+    if(_appDelegate.gotoIndex != -1){
+        self.tabBarController.selectedIndex = _appDelegate.gotoIndex;
+        _appDelegate.gotoIndex = -1;
+    }
+    
     if(_appDelegate.goLogin){
         self.autoLogin;
         _appDelegate.goLogin = NO;
+        if ([@"lottery" isEqualToString:SITE_TYPE]) {
+            [_mainWebView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"];
+        }
     }
     
     if(_loginId != _appDelegate.loginId){
@@ -383,15 +395,17 @@ void alertView(){
         NSLog(@"login---%@",responseString);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
         NSLog(@"请求登录接口失败：%@",error);
     }];
     
 }
 
-- (void)demoEnter {
+- (void)demoEnter:(NSString *) line {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/demo/index.html"];
+    if (_domain == nil || _domain == NULL) {
+        self.domain = line;
+    }
+    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/lotteryDemo/demoAccount.html"];
     NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]init];
@@ -413,13 +427,13 @@ void alertView(){
         NSString *data = [[NSString alloc]initWithData:backData encoding:NSUTF8StringEncoding];
         NSLog(@"backData : %@",data);
         
-        if ([data containsString:@"toIndex"]) {
-            NSLog(@"登录成功");
+        if ([data containsString:@"true"]) {
+            NSLog(@"试玩登录成功");
             _appDelegate.isLogin = true;
             self.isLofinAfter = true;
-            [self.mainWebView reload];
+            [_mainWebView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"];
         } else {
-            NSLog(@"登录失败");
+            NSLog(@"试玩登录失败");
             CustomVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
             _appDelegate.customUrl = @"/login/commonLogin.html";
             _appDelegate.isLogin = false;
@@ -534,6 +548,10 @@ void alertView(){
         
     }];
     
+}
+
+- (void) reload {
+    [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
 }
 
 

@@ -48,11 +48,12 @@
     _depositWV.scrollView.bounces=NO;
     
     //请求链接
-    if ([@"integrated" isEqualToString:SITE_TYPE]) {
-        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
-    } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
-        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/lotteryResultHistory/index.html"];
-    }
+    _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
+//    if ([@"integrated" isEqualToString:SITE_TYPE]) {
+//        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
+//    } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
+//        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/lotteryResultHistory/index.html"];
+//    }
     
     //2 调用系统方法直接访问
     if(self.appDelegate.isLogin){
@@ -93,12 +94,6 @@
     
     //判断是否登录
     if(self.appDelegate.isLogin){
-        //判断当前页面是否登录
-//        if(_selfIsLogin){
-//            return;
-//        }
-//        _selfIsLogin = true;
-//        [self.depositWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
         [_depositWV setHidden:NO];
         if(_loginId != _appDelegate.loginId){
             _loginId = _appDelegate.loginId;
@@ -209,6 +204,7 @@
 //    }
     
     [_loadingHubView setHidden:YES];
+    [_loadingHubView dismissHub];
     
     self.ocjs;
     
@@ -258,7 +254,7 @@
             self.selfIsLogin = NO;
             _appDelegate.loginId ++;
             NSString *prompt = @"提示";
-            NSString *message = @"账号异常退出";
+            NSString *message = @"请先登录[101]";
             NSString *title = @"返回首页";
             NSString *loginTitle = @"立即登录";
             if ([@"185" isEqualToString:SID]) {

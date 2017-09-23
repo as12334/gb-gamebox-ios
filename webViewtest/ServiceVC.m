@@ -21,6 +21,8 @@
 @property BOOL isLoad;
 @property iKYLoadingHubView *loadingHubView;
 @property NSString *loadUrl;
+@property BOOL selfIsLogin;
+@property int loginId;
 
 - (void)showPage;
 
@@ -65,9 +67,76 @@
 //即将进入这个界面加载该方法
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"ServiceVC");
+    NSLog(@"refresh data...");
+    if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        [_serviceWV stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"];
+    }
     self.showPage;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        if(_appDelegate.gotoIndex != -1){
+            if(_appDelegate.gotoIndex == self.tabBarController.selectedIndex){
+                [_serviceWV reload];
+            }else{
+                self.tabBarController.selectedIndex = _appDelegate.gotoIndex;
+            }
+            _appDelegate.gotoIndex = -1;
+        }
+        
+        //判断是否登录
+        if(self.appDelegate.isLogin){
+            [_serviceWV setHidden:NO];
+            if(_loginId != _appDelegate.loginId){
+                _loginId = _appDelegate.loginId;
+                [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
+            }
+        } else {
+            [_serviceWV setHidden:YES];
+            
+            if(_selfIsLogin){
+                [self.serviceWV reload];
+                _selfIsLogin = false;
+            }
+            
+            NSString *prompt = @"提示";
+            NSString *message = @"您尚未登录";
+            NSString *title = @"返回首页";
+            NSString *loginTitle = @"立即登录";
+            if ([@"185" isEqualToString:SID]) {
+                prompt = @"メッセージ";
+                message = @"ログイン情報エラー";
+                title = @"トップページへ戻る";
+                loginTitle = @"今すぐログイン";
+            }
+            
+            // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
+            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
+            
+            UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                NSLog(@"返回首页");
+                self.tabBarController.selectedIndex = 0;
+                
+            }];
+            
+            UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                _appDelegate.customUrl = @"/login/commonLogin.html";
+                CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
+                [self.navigationController pushViewController:BVC animated:YES];
+                NSLog(@"立即登录");
+            }];
+            
+            // 3.将“取消”和“确定”按钮加入到弹框控制器中
+            
+            [alertVc addAction:cancle];
+            
+            [alertVc addAction:confirm];
+            
+            [self presentViewController:alertVc animated:YES completion:^{nil;}];
+        }
+    }
 }
 
 - (void)showPage{
@@ -86,7 +155,7 @@
         self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
         self.serviceWV.delegate=self;
         [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
-    }else{
+    }else if (![@"lottery" isEqualToString:SITE_TYPE]){
         NSString *prompt = @"提示";
         NSString *message = @"客服正忙请稍后再试";
         NSString *title = @"返回首页";
@@ -129,6 +198,7 @@
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:YES];
+    [_loadingHubView dismissHub];
     [self setErrorHtml:webView];
     NSLog(@"加载成功");
     

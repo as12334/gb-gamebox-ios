@@ -11,6 +11,8 @@
 #import "iKYLoadingHubView.h"
 #import "GameVC.h"
 #import "PayVC.h"
+#import "ViewController.h"
+#import "UIColor+Hex.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface CustomVC ()<UIWebViewDelegate>
@@ -77,6 +79,7 @@
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:YES];
+    [_loadingHubView dismissHub];
     
     NSString *url = webView.request.URL.absoluteString;
     if([_domain containsString: url]){
@@ -114,7 +117,7 @@
     }
     
     //判断是否需要登录判断
-    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"] && ![_request containsString:@"/help/"] && ![_request containsString:@"/promoDetail.html"]){
+    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"] && ![_request containsString:@"/help/"] && ![_request containsString:@"/promoDetail.html"] && ![_request containsString:@"/lottery/mainIndex.html"] && !([_request containsString:@"/lottery/"] && [_request containsString:@"/index.html"])){
         [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
     }
 }
@@ -335,7 +338,7 @@
             [self.customWebView stopLoading];
             
             NSString *prompt = @"提示";
-            NSString *message = @"账号异常退出";
+            NSString *message = @"请先登录[201]";
             NSString *title = @"返回首页";
             if ([@"185" isEqualToString:SID]) {
                 prompt = @"メッセージ";
@@ -362,10 +365,29 @@
         }
     };
     
+    context[@"gotoTab"] = ^() {
+        NSArray *args = [JSContext currentArguments];
+        NSString *target;
+        for (JSValue *jsVal in args) {
+            target = jsVal.toString;
+            NSLog(@"%@", jsVal.toString);
+        }
+        _appDelegate.gotoIndex = [target intValue];
+        [self.navigationController popViewControllerAnimated:YES];
+        [[ViewController alloc] changeTab:target];
+    };
+    
+    context[@"demoEnter"] = ^() {
+        [[ViewController alloc] demoEnter:self.domain];
+        _appDelegate.gotoIndex = 0;
+        _appDelegate.goLogin = YES;
+        _appDelegate.isLogin = true;
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    
     context[@"reload"] = ^() {
         [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
     };
 }
-
 
 @end
