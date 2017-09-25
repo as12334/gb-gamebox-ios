@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMf-WW-0Hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="-1246"/>
+            <point key="canvasLocation" x="4281" y="-1901"/>
         </scene>
         <!--GameVC-->
         <scene sceneID="1a6-qM-PcV">
@@ -128,7 +128,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baM-Eu-Sqx">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baM-Eu-Sqx" userLabel="Pay Web View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -457,6 +457,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XA4-Dz-Bfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1065" y="-519"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nLI-j1-k5z">
+            <objects>
+                <navigationController id="Ljh-tU-EpB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z3A-zB-TQo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KAT-8g-7RV" kind="relationship" relationship="rootViewController" id="05n-R4-BIe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UmA-aZ-dha" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3465" y="-1901"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QPJ-dz-WsU">

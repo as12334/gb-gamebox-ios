@@ -341,7 +341,7 @@
     };
     
     context[@"goBack"] = ^() {
-        NSLog(@"+++++++GoBack Log+++++++");
+        NSLog(@"+++++++DepositVC GoBack+++++++");
         [self.navigationController popViewControllerAnimated:YES];
     };
     context[@"loginSucc"] = ^() {

@@ -296,7 +296,7 @@
     };
     
     _context[@"goBack"] = ^() {
-        NSLog(@"+++++++GoBack Log+++++++");
+        NSLog(@"+++++++Mine GoBack+++++++");
 
         [self.navigationController popViewControllerAnimated:YES];
     };

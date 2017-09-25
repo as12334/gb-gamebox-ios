@@ -765,6 +765,14 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
+#elif _elpc //大咖汇
+
+#define CODE	@"elpc"
+#define S		@"60fc965f88a2769e7fece3dd31adcff5"
+#define SID		@"223"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

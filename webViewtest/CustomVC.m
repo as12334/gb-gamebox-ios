@@ -22,6 +22,7 @@
 @property NSString *domain;
 @property iKYLoadingHubView *loadingHubView;
 @property NSString *request;
+@property BOOL selfIsLogin;
 
 @property bool isLogin;
 
@@ -65,7 +66,7 @@
     
     //代理方法  不遵守代理  就无法调用他的方法
     self.customWebView.delegate=self;
-    
+        
     NSLog(@"----CustomVC----");
 }
 
@@ -155,6 +156,12 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
+- (void)dealloc {
+    NSLog(@"----dealloc----");
+    _customWebView.delegate = nil;
+    [_customWebView stopLoading];
+}
+
 - (void)ocjs{
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）
     JSContext *context=[_customWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
@@ -218,12 +225,7 @@
     };
     
     context[@"goBack"] = ^() {
-        NSLog(@"+++++++GoBack Log+++++++");
-//        if(_customWebView.canGoBack){
-//            _customWebView.goBack;
-//        }else{
-//            
-//        }
+        NSLog(@"+++++++CustomVC GoBack+++++++");
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
@@ -245,7 +247,6 @@
                 _appDelegate.goLogin = YES;
             }
         }
-        
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         //        [defaults removeObjectForKey:@"account"];
@@ -383,6 +384,16 @@
         _appDelegate.goLogin = YES;
         _appDelegate.isLogin = true;
         [self.navigationController popViewControllerAnimated:YES];
+    };
+    
+    context[@"loginOut"] = ^(){
+        NSLog(@"++++++CustomVC loginOut++++++");
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        self.appDelegate.isLogin = false;
+        self.appDelegate.loginId ++;
+        _selfIsLogin = false;
     };
     
     context[@"reload"] = ^() {

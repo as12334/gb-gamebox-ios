@@ -118,7 +118,7 @@
     JSContext *context=[_gameWV valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
     context[@"goBack"] = ^() {
-        NSLog(@"+++++++GoBack Log+++++++");
+        NSLog(@"+++++++GameVC GoBack+++++++");
         [self.navigationController popViewControllerAnimated:YES];
     };
     
