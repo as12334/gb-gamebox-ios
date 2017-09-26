@@ -117,8 +117,10 @@
         return;
     }
     
+    NSArray* filterUrls = [[NSArray alloc] initWithObjects:@"/login/commonLogin.",@"/signUp/index.",@"/passport/logout.",@"/help/",@"/promoDetail.",@"/lottery/mainIndex.",@"/lottery/",@"/index.",@"/lotteryResultHistory/",nil];
     //判断是否需要登录判断
-    if(![_request containsString:@"/login/commonLogin.html"] && ![_request containsString:@"/signUp/index.html"] && ![_request containsString:@"/passport/logout.html"] && ![_request containsString:@"/help/"] && ![_request containsString:@"/promoDetail.html"] && ![_request containsString:@"/lottery/mainIndex.html"] && !([_request containsString:@"/lottery/"] && [_request containsString:@"/index.html"])){
+    if([filterUrls containsObject: _request] == 1){
+        NSLog(@"——request = %@", _request);
         [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
     }
 }
@@ -135,8 +137,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     if(_appDelegate.isLogin != _isLogin){
-//        [self.customWebView reload];
-//        _isLogin = _appDelegate.isLogin;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
@@ -309,9 +309,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController pushViewController:customVC animated:YES];
-            //[self presentViewController:customVC animated:YES completion:nil];
         });
-        //[self presentViewController:customVC animated:YES completion:nil];
         NSLog(@"-------gotoPay-------");
     };
     

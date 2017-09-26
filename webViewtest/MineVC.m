@@ -87,14 +87,6 @@
     //判断是否登录
     if(self.appDelegate.isLogin){
         [_mineWV setHidden:NO];
-//        //判断当前页面是否登录
-//        if(_selfIsLogin){
-//            return;
-//        }
-//        
-//        _selfIsLogin = true;
-//        [self.mineWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
-        
         if(_loginId != _appDelegate.loginId){
             _loginId = _appDelegate.loginId;
             [self.mineWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
@@ -102,7 +94,7 @@
     }else{
         [_mineWV setHidden:YES];
         NSString *prompt = @"提示";
-        NSString *message = @"您尚未登录";
+        NSString *message = @"您尚未登录，请先登录";
         NSString *title = @"返回首页";
         NSString *loginTitle = @"立即登录";
         if ([@"185" isEqualToString:SID]) {
@@ -128,11 +120,8 @@
         }];
         
         // 3.将“取消”和“确定”按钮加入到弹框控制器中
-        
         [alertVc addAction:cancle];
-        
         [alertVc addAction:confirm];
-        
         [self presentViewController:alertVc animated:YES completion:^{nil;}];
     }
     NSLog(@"viewWillAppear");
@@ -142,7 +131,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
@@ -217,8 +205,7 @@
         NSLog(@"----------------------------:%@", jsV.toString);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController pushViewController:customVC animated:YES];
-            //[self presentViewController:customVC animated:YES completion:nil];
+            [self.navigationController pushViewController:customVC animated:NO];
         });
     };
     
@@ -298,7 +285,7 @@
     _context[@"goBack"] = ^() {
         NSLog(@"+++++++Mine GoBack+++++++");
 
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     };
     _context[@"loginSucc"] = ^() {
         NSLog(@"+++++++loginSucc Log+++++++");

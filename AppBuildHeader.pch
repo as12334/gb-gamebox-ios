@@ -13,16 +13,16 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #define IS_DEBUG false
-#define DEBUG_DOMAIN @"http://192.168.0.92"
+#define DEBUG_DOMAIN @"http://192.168.0.159"
 //生产
 #define BASE_URL @"https://apiplay.info:1344/boss/"
 //开发
 //#define BASE_URL @"http://192.168.0.92/boss/"
 
 #ifdef _DEBUG //开发环境
-#define CODE	@"tcjp"
-#define S		@"d6d4dc315c5bec2139a9a47243f82f35"
-#define SID		@"219"
+#define CODE	@"1wl5"
+#define S		@"e840ac55fbb3d773fe845ec5ca7d7803"
+#define SID		@"70"
 #define THEME	@"lottery.skin"
 #define SITE_TYPE	@"lottery"
 
@@ -770,6 +770,14 @@
 #define CODE	@"elpc"
 #define S		@"60fc965f88a2769e7fece3dd31adcff5"
 #define SID		@"223"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _gwkk //永利娱乐成
+
+#define CODE	@"gwkk"
+#define S		@"73011fc7cb0b4546a386123017069d6c"
+#define SID		@"225"
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 

@@ -110,7 +110,7 @@
         }
         
         NSString *prompt = @"提示";
-        NSString *message = @"您尚未登录";
+        NSString *message = @"您尚未登录，请先登录";
         NSString *title = @"返回首页";
         NSString *loginTitle = @"立即登录";
         if ([@"185" isEqualToString:SID]) {
@@ -124,11 +124,9 @@
         UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
         
         // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-        
         UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             NSLog(@"返回首页");
             self.tabBarController.selectedIndex = 0;
-            
         }];
         
         UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -139,11 +137,8 @@
         }];
         
         // 3.将“取消”和“确定”按钮加入到弹框控制器中
-        
         [alertVc addAction:cancle];
-        
         [alertVc addAction:confirm];
-        
         [self presentViewController:alertVc animated:YES completion:^{nil;}];
     }
     NSLog(@"viewWillAppear");
@@ -164,48 +159,8 @@
 //网页加载完毕之后会调用该方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     NSLog(@"加载成功");
-//    NSString *absoluteString = webView.request.URL.absoluteString;
-//    if([absoluteString containsString:@"login/commonLogin.html"]){
-//        NSLog(@"失效");
-//        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"警告⚠️" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-//        
-//        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            NSLog(@"返回首页");
-//            self.tabBarController.selectedIndex = 0;
-//            
-//        }];
-//        
-//        // 3.将“取消”和“确定”按钮加入到弹框控制器中
-//        
-//        [alertVc addAction:cancle];
-//        
-//        [self presentViewController:alertVc animated:YES completion:^{nil;}];
-//    }else if([absoluteString containsString:@"errors/606.html"]){
-//        NSLog(@"强制退出");
-//        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"警告⚠️" message:@"您的账号已经被强制踢出" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-//        
-//        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            NSLog(@"返回首页");
-//            self.tabBarController.selectedIndex = 0;
-//            
-//        }];
-//        
-//        // 3.将“取消”和“确定”按钮加入到弹框控制器中
-//        
-//        [alertVc addAction:cancle];
-//        
-//        [self presentViewController:alertVc animated:YES completion:^{nil;}];
-//    }else{
-//        self.ocjs;
-//    }
-    
     [_loadingHubView setHidden:YES];
     [_loadingHubView dismissHub];
-    
     self.ocjs;
     
     [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
@@ -213,16 +168,7 @@
 - (void)ocjs{
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）
     JSContext *context=[_depositWV valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    //
-    //    //第二种情况，js是通过对象调用的，我们假设js里面有一个对象 testobject 在调用方法
-    //    //首先创建我们新建类的对象，将他赋值给js的对象
-    //
-    //    TestJSObject *testJO=[TestJSObject new];
-    //    context[@"testobject"]=testJO;
-    //
-    //    //同样我们也用刚才的方式模拟一下js调用方法
-    //    NSString *jsStr1=@"testobject.TestNOParameter()";
-    //    [context evaluateScript:jsStr1];
+    
     context[@"share"] = ^() {
         NSLog(@"+++++++Begin Log+++++++");
         NSArray *args = [JSContext currentArguments];
@@ -253,43 +199,8 @@
             _appDelegate.isLogin = NO;
             self.selfIsLogin = NO;
             _appDelegate.loginId ++;
-            NSString *prompt = @"提示";
-            NSString *message = @"请先登录[101]";
-            NSString *title = @"返回首页";
-            NSString *loginTitle = @"立即登录";
-            if ([@"185" isEqualToString:SID]) {
-                prompt = @"メッセージ";
-                message = @"ログイン情報エラー";
-                title = @"トップページへ戻る";
-                loginTitle = @"今すぐログイン";
-            }
             
-            // 1.创建弹框控制器, UIAlertControllerStyleAlert这个样式代表弹框显示在屏幕中央
-            UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
-            
-            // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-            
-            UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                NSLog(@"返回首页");
-                self.tabBarController.selectedIndex = 0;
-                
-            }];
-            
-            UIAlertAction *confirm = [UIAlertAction actionWithTitle:loginTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                _appDelegate.customUrl = @"/login/commonLogin.html";
-                CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
-                [self.navigationController pushViewController:BVC animated:YES];
-                NSLog(@"立即登录");
-            }];
-            
-            // 3.将“取消”和“确定”按钮加入到弹框控制器中
-            
-            [alertVc addAction:cancle];
-            
-            [alertVc addAction:confirm];
-            
-            [self presentViewController:alertVc animated:YES completion:^{nil;}];
-            return;
+            self.tabBarController.selectedIndex = 0;
         }
         
     };
@@ -310,10 +221,8 @@
             _appDelegate.customUrl = jsCustom.toString;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController pushViewController:customVC animated:YES];
-            //[self presentViewController:customVC animated:YES completion:nil];
+            [self.navigationController pushViewController:customVC animated:NO];
         });
-        //[self presentViewController:customVC animated:YES completion:nil];
         NSLog(@"-------goto-------");
     };
     
@@ -334,15 +243,13 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController pushViewController:customVC animated:YES];
-            //[self presentViewController:customVC animated:YES completion:nil];
         });
-        //[self presentViewController:customVC animated:YES completion:nil];
         NSLog(@"-------gotoPay-------");
     };
     
     context[@"goBack"] = ^() {
         NSLog(@"+++++++DepositVC GoBack+++++++");
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
     };
     context[@"loginSucc"] = ^() {
         NSLog(@"+++++++loginSucc Log+++++++");

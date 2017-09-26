@@ -100,7 +100,7 @@
             }
             
             NSString *prompt = @"提示";
-            NSString *message = @"您尚未登录";
+            NSString *message = @"您尚未登录，请先登录";
             NSString *title = @"返回首页";
             NSString *loginTitle = @"立即登录";
             if ([@"185" isEqualToString:SID]) {
@@ -114,7 +114,6 @@
             UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
             
             // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-            
             UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 NSLog(@"返回首页");
                 self.tabBarController.selectedIndex = 0;
@@ -129,11 +128,8 @@
             }];
             
             // 3.将“取消”和“确定”按钮加入到弹框控制器中
-            
             [alertVc addAction:cancle];
-            
             [alertVc addAction:confirm];
-            
             [self presentViewController:alertVc animated:YES completion:^{nil;}];
         }
     }
@@ -155,31 +151,6 @@
         self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
         self.serviceWV.delegate=self;
         [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
-    }else if (![@"lottery" isEqualToString:SITE_TYPE]){
-        NSString *prompt = @"提示";
-        NSString *message = @"客服正忙请稍后再试";
-        NSString *title = @"返回首页";
-        if ([@"185" isEqualToString:SID]) {
-            prompt = @"メッセージ";
-            message = @"カスタマーサービスがビジーです。後でもう一度お試しください";
-            title = @"トップページへ戻る";
-        }
-        
-        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提示" message:@"客服正忙请稍后再试" preferredStyle:UIAlertControllerStyleAlert];
-        
-        // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-        
-        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"返回首页" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            NSLog(@"返回首页");
-            self.tabBarController.selectedIndex = 0;
-            
-        }];
-        
-        // 3.将“取消”和“确定”按钮加入到弹框控制器中
-        
-        [alertVc addAction:cancle];
-        
-        [self presentViewController:alertVc animated:YES completion:^{nil;}];
     }
 }
 
@@ -217,13 +188,11 @@
         }
         
         CustomVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
-        
         if (args[0] != NULL) {
             _appDelegate.customUrl = customUrl.toString;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController pushViewController:customVC animated:YES];
-            //[self presentViewController:customVC animated:YES completion:nil];
         });
         
         NSLog(@"-------End Log-------");
@@ -233,29 +202,9 @@
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [_loadingHubView setHidden:YES];
-    NSString *prompt = @"提示";
-    NSString *message = @"客服正忙请稍后再试";
-    NSString *title = @"返回首页";
-    if ([@"185" isEqualToString:SID]) {
-        prompt = @"メッセージ";
-        message = @"カスタマーサービスがビジーです。後でもう一度お試しください";
-        title = @"トップページへ戻る";
-    }
-    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:prompt message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    // 2.添加取消按钮，block中存放点击了“取消”按钮要执行的操作
-    
-    UIAlertAction *cancle = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        NSLog(@"返回首页");
-        self.tabBarController.selectedIndex = 0;
-    }];
-    
-    // 3.将“取消”和“确定”按钮加入到弹框控制器中
-    
-    [alertVc addAction:cancle];
-    
-    [self presentViewController:alertVc animated:YES completion:^{nil;}];
-    NSLog(@"加载失败");
+    [_loadingHubView dismissHub];
+    [self setErrorHtml:webView];
+    NSLog(@"ServiceVC 加载失败");
 }
 
 /*

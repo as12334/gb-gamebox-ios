@@ -136,9 +136,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController pushViewController:customVC animated:YES];
-            //[self presentViewController:customVC animated:YES completion:nil];
         });
-        //[self presentViewController:customVC animated:YES completion:nil];
         NSLog(@"-------gotoPay-------");
     };
 
@@ -362,7 +360,6 @@
 
 - (IBAction)ClickBtn:(UIButton *)sender {
     CustomVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomVC"];
-    //BViewVC *BVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BViewVC"];
     [self.navigationController pushViewController:BVC animated:YES];
 }
 
@@ -405,13 +402,13 @@ void alertView(){
     if (_domain == nil || _domain == NULL) {
         self.domain = line;
     }
-    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/lotteryDemo/demoAccount.html"];
+    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/demo/lottery.html"];
     NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]init];
     
     [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    [request setValue:@"app_ios" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
     
     [request setHTTPMethod:@"post"]; //指定请求方式
     [request setURL:URL]; //设置请求的地址
