@@ -379,7 +379,7 @@ void alertView(){
     //    //接口网站
     NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/passport/login.html"];
     NSHTTPCookieStorage *cookiesStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSDictionary *cd = @{@"User-Agent":@"app_ios"};
+    NSDictionary *cd = @{@"User-Agent":@"app_ios, iPhone"};
     NSHTTPCookie *cookies = [[NSHTTPCookie alloc]initWithProperties:cd];
     NSDictionary *headers=[NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     //创建网络请求管理者对象
@@ -453,19 +453,13 @@ void alertView(){
     NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/passport/login.html"];
     NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    //NSDictionary *paraDict = @{@"username":@"qwer1234",@"password":@"12341234"};
-    
     NSString * postString = [NSString stringWithFormat:@"username=%@&password=%@",account,password];
     NSData * postData = [postString dataUsingEncoding:NSUTF8StringEncoding];//将请求参数字符串转成NSData类型
     
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]init];
     
-//    NSMutableString *cookieString = [[NSMutableString alloc] init];
-//    [cookieString appendFormat:@"X-Requested-With", @"XMLHttpRequest"];
-//    [cookieString appendFormat:@"User-Agent", @"app_ios"];
-    
     [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    [request setValue:@"app_ios" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
     
     [request setHTTPMethod:@"post"]; //指定请求方式
     [request setURL:URL]; //设置请求的地址
@@ -496,12 +490,10 @@ void alertView(){
             _appDelegate.isLogin = false;
             [self.navigationController pushViewController:customVC animated:YES];
         }
-        
     }
 };
 
 - (void)getService {
-    
     NSLog(@"----getService-----");
     //1.拿到网站
     NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
@@ -527,34 +519,22 @@ void alertView(){
      第四个参数：成功代码块 请求数据成功后会调用到成功代码块
      第五个参数：失败代码块 请求数据失败后回调用到失败代码块
      */
-    
     [manager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         NSLog(@"成功");
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"---%@",responseString);
         self.appDelegate.servicePath = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
-        //解析
-        //                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        //                NSLog(@"%@",dic);
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
         NSLog(@"失败：%@",error);
-        
     }];
-    
 }
 
 - (void) reload {
     [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
 }
 
-
 - (void) showLog{
     NSLog(@"sl");
 }
-
 
 @end
