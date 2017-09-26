@@ -94,6 +94,7 @@
             [self.transferWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
         }
     } else {
+        [_loadingHubView dismissHub];
         [_transferWV setHidden:YES];
         if(_selfIsLogin){
             [self.transferWV reload];

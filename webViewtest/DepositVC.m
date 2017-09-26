@@ -49,12 +49,6 @@
     
     //请求链接
     _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
-//    if ([@"integrated" isEqualToString:SITE_TYPE]) {
-//        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/wallet/deposit/index.html"];
-//    } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
-//        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/lotteryResultHistory/index.html"];
-//    }
-    
     //2 调用系统方法直接访问
     if(self.appDelegate.isLogin){
         [self.depositWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
@@ -99,9 +93,8 @@
             _loginId = _appDelegate.loginId;
             [self.depositWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
         }
-
-    }else{
-        
+    } else {
+        [_loadingHubView dismissHub];
         [_depositWV setHidden:YES];
         
         if(_selfIsLogin){
@@ -186,7 +179,6 @@
     };
     
     context[@"getLoginState"] = ^(){
-        
         NSArray *args = [JSContext currentArguments];
         NSString *isLogin = [args[0] toString];
         
@@ -202,7 +194,6 @@
             
             self.tabBarController.selectedIndex = 0;
         }
-        
     };
     
     context[@"gotoCustom"] = ^() {

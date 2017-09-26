@@ -34,8 +34,9 @@
     [super viewDidLoad];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.domain = _appDelegate.domain;
+    self.selfIsLogin = _appDelegate.isLogin;
+    self.loginId = 0;
     _isLoad = false;
-    
     
     //加载动画
     CGRect rx = [ UIScreen mainScreen ].bounds;
@@ -45,7 +46,12 @@
     
     _serviceWV.scrollView.bounces=NO;
     //2调用系统方法直接访问
-//    [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
+    if([@"lottery" isEqualToString:SITE_TYPE]){
+        _loadUrl = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/bet/betOrders.html"];
+        if (self.appDelegate.isLogin) {
+            [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
+        }
+    }
     
     //3设置网页自适应
     self.serviceWV.scalesPageToFit = YES;
@@ -67,10 +73,7 @@
 //即将进入这个界面加载该方法
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"refresh data...");
-    if ([@"lottery" isEqualToString:SITE_TYPE]) {
-        [_serviceWV stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"];
-    }
+    
     self.showPage;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
@@ -85,13 +88,16 @@
         }
         
         //判断是否登录
-        if(self.appDelegate.isLogin){
+        if(self.appDelegate.isLogin) {
+            NSLog(@"refresh data...");
             [_serviceWV setHidden:NO];
+            [_serviceWV stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"];
             if(_loginId != _appDelegate.loginId){
                 _loginId = _appDelegate.loginId;
                 [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]]];
             }
         } else {
+            [_loadingHubView dismissHub];
             [_serviceWV setHidden:YES];
             
             if(_selfIsLogin){
@@ -139,13 +145,9 @@
     if(_isLoad){
         return;
     }
-    NSLog(@"%@",_appDelegate.servicePath);
     
-    if ([@"lottery" isEqualToString:SITE_TYPE]) {
-        self.appDelegate.servicePath = [NSString stringWithFormat:@"%@%@",_domain,@"/lottery/bet/betOrders.html"];
-    }
-    
-    if([_appDelegate.servicePath containsString: @"http"]){
+    if(![@"lottery" isEqualToString:SITE_TYPE] && [_appDelegate.servicePath containsString: @"http"]){
+        NSLog(@"%@",_appDelegate.servicePath);
         _isLoad = true;
         self.serviceWV.scalesPageToFit = YES;
         self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
@@ -156,7 +158,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    _appDelegate.loginId = 1;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
@@ -197,6 +199,28 @@
         
         NSLog(@"-------End Log-------");
     };
+    
+    context[@"getLoginState"] = ^(){
+        NSArray *args = [JSContext currentArguments];
+        NSString *isLogin = [args[0] toString];
+        
+        NSLog(@"isLogin:%@",isLogin);
+        
+        if([isLogin isEqualToString:@"true"]){
+            _appDelegate.isLogin = YES;
+            self.selfIsLogin = YES;
+        }else{
+            _appDelegate.isLogin = NO;
+            self.selfIsLogin = NO;
+            _appDelegate.loginId ++;
+            
+            self.tabBarController.selectedIndex = 0;
+        }
+    };
+    
+    if ([@"lottery" isEqualToString:SITE_TYPE]) {
+        [webView stringByEvaluatingJavaScriptFromString:@"getLoginState(isLogin);"];
+    }
 }
 
 //网页加载失败调用该方法
