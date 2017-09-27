@@ -45,7 +45,7 @@
     
     self.loginId = 0;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
-    self.appDelegate.domain = @"http://192.168.0.92";
+//    self.appDelegate.domain = @"http://192.168.0.92";
     self.domain = _appDelegate.domain;
     
     self.isLofinAfter = false;

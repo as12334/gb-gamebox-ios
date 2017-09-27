@@ -1036,7 +1036,7 @@
 			};
 			name = _DEBUG;
 		};
-		A5BE74C41F6CB91B00D3652A /* _ionm */ = {
+		A5BE74C41F6CB91B00D3652A /* _mkoz */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1086,35 +1086,35 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = _ionm;
+			name = _mkoz;
 		};
-		A5BE74C51F6CB91B00D3652A /* _ionm */ = {
+		A5BE74C51F6CB91B00D3652A /* _mkoz */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid221;
-				APP_DISPLAY_NAME = "金沙娱乐场";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-221";
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid227;
+				APP_DISPLAY_NAME = "新葡京娱乐场";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-227";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				GCC_PREFIX_HEADER = "/Users/fei/Desktop/Projects/gamebox-ios/AppBuildHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_ionm=1",
+					"_mkoz=1",
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = webViewtest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid221;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid227;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7e761008-8820-4d9f-af01-9f94fbf82cbd";
-				PROVISIONING_PROFILE_SPECIFIER = sid221;
+				PROVISIONING_PROFILE = "50831162-6fcc-4772-99c2-ffcd46211cda";
+				PROVISIONING_PROFILE_SPECIFIER = sid227;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = _ionm;
+			name = _mkoz;
 		};
-		A5BE74C61F6CB91B00D3652A /* _ionm */ = {
+		A5BE74C61F6CB91B00D3652A /* _mkoz */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1125,9 +1125,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
 			};
-			name = _ionm;
+			name = _mkoz;
 		};
-		A5BE74C71F6CB91B00D3652A /* _ionm */ = {
+		A5BE74C71F6CB91B00D3652A /* _mkoz */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1139,9 +1139,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_TARGET_NAME = webViewtest;
 			};
-			name = _ionm;
+			name = _mkoz;
 		};
-		A5BE74C81F6CB92F00D3652A /* _gwkk */ = {
+		A5BE74C81F6CB92F00D3652A /* _oiqg */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1191,35 +1191,35 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = _gwkk;
+			name = _oiqg;
 		};
-		A5BE74C91F6CB92F00D3652A /* _gwkk */ = {
+		A5BE74C91F6CB92F00D3652A /* _oiqg */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid225;
-				APP_DISPLAY_NAME = "永利娱乐城";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-225";
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid226;
+				APP_DISPLAY_NAME = "银河娱乐城";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-226";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				GCC_PREFIX_HEADER = "/Users/fei/Desktop/Projects/gamebox-ios/AppBuildHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_gwkk=1",
+					"_oiqg=1",
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = webViewtest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid225;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid226;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ebbf2ed4-039b-46b8-a567-fac65c50803f";
-				PROVISIONING_PROFILE_SPECIFIER = sid225;
+				PROVISIONING_PROFILE = "8edaa620-9612-420e-8f24-9f9e7fd9d21a";
+				PROVISIONING_PROFILE_SPECIFIER = sid226;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = _gwkk;
+			name = _oiqg;
 		};
-		A5BE74CA1F6CB92F00D3652A /* _gwkk */ = {
+		A5BE74CA1F6CB92F00D3652A /* _oiqg */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1230,9 +1230,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
 			};
-			name = _gwkk;
+			name = _oiqg;
 		};
-		A5BE74CB1F6CB92F00D3652A /* _gwkk */ = {
+		A5BE74CB1F6CB92F00D3652A /* _oiqg */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1244,7 +1244,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_TARGET_NAME = webViewtest;
 			};
-			name = _gwkk;
+			name = _oiqg;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1253,8 +1253,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5911F58FE1900DFA5A4 /* _DEBUG */,
-				A5BE74C41F6CB91B00D3652A /* _ionm */,
-				A5BE74C81F6CB92F00D3652A /* _gwkk */,
+				A5BE74C41F6CB91B00D3652A /* _mkoz */,
+				A5BE74C81F6CB92F00D3652A /* _oiqg */,
 				A580A1661F7A2EC600064E1B /* _1wl5 */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1264,8 +1264,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5921F58FE1900DFA5A4 /* _DEBUG */,
-				A5BE74C51F6CB91B00D3652A /* _ionm */,
-				A5BE74C91F6CB92F00D3652A /* _gwkk */,
+				A5BE74C51F6CB91B00D3652A /* _mkoz */,
+				A5BE74C91F6CB92F00D3652A /* _oiqg */,
 				A580A1671F7A2EC600064E1B /* _1wl5 */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1275,8 +1275,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5931F58FE1900DFA5A4 /* _DEBUG */,
-				A5BE74C61F6CB91B00D3652A /* _ionm */,
-				A5BE74CA1F6CB92F00D3652A /* _gwkk */,
+				A5BE74C61F6CB91B00D3652A /* _mkoz */,
+				A5BE74CA1F6CB92F00D3652A /* _oiqg */,
 				A580A1681F7A2EC600064E1B /* _1wl5 */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1286,8 +1286,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5941F58FE1900DFA5A4 /* _DEBUG */,
-				A5BE74C71F6CB91B00D3652A /* _ionm */,
-				A5BE74CB1F6CB92F00D3652A /* _gwkk */,
+				A5BE74C71F6CB91B00D3652A /* _mkoz */,
+				A5BE74CB1F6CB92F00D3652A /* _oiqg */,
 				A580A1691F7A2EC600064E1B /* _1wl5 */,
 			);
 			defaultConfigurationIsVisible = 0;

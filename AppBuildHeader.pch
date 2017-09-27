@@ -781,6 +781,22 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
+#elif _oiqg //新葡京娱乐场
+
+#define CODE	@"oiqg"
+#define S		@"7e25cde173684fd16cb76687f09ac243"
+#define SID		@"226"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _mkoz //银河娱乐城
+
+#define CODE	@"mkoz"
+#define S		@"774b8cdf5ccfa039b0ba7ea3b6efa48c"
+#define SID		@"227"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

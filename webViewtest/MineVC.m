@@ -147,7 +147,7 @@
     [_mineWV setHidden:NO];
     NSLog(@"加载成功");
     self.ocjs;
-    [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
+//    [webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
 }
 
 //网页加载失败调用该方法
@@ -284,7 +284,6 @@
     
     _context[@"goBack"] = ^() {
         NSLog(@"+++++++Mine GoBack+++++++");
-
         [self.navigationController popViewControllerAnimated:NO];
     };
     _context[@"loginSucc"] = ^() {
