@@ -17,7 +17,7 @@
 @interface PayVC ()<UIWebViewDelegate>
 
 @property AppDelegate *appDelegate;
-@property (weak, nonatomic) IBOutlet UIWebView *payWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *customWebView;
 @property NSString *domain;
 @property iKYLoadingHubView *loadingHubView;
 @property NSString *request;
@@ -38,7 +38,7 @@
     [self.view addSubview:_loadingHubView];
     [_loadingHubView showHub];
     
-    _payWebView.scrollView.bounces=NO;
+    _customWebView.scrollView.bounces=NO;
     
     
     if([_appDelegate.customUrl containsString:@"http"]){
@@ -49,21 +49,21 @@
     
     NSLog(@"%@", _request);
     //2.调用系统方法直接访问
-    [self.payWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
+    [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
     
     //3设置网页自适应
-    self.payWebView.scalesPageToFit = YES;
+    self.customWebView.scalesPageToFit = YES;
     
     //4 设置检测网页中的格式类型，all表示检测所有类型包括超链接、电话号码、地址等。
-    self.payWebView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.customWebView.dataDetectorTypes = UIDataDetectorTypeAll;
     
     //代理方法  不遵守代理  就无法调用他的方法
-    self.payWebView.delegate=self;
+    self.customWebView.delegate=self;
     
-    //tite颜色
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:155/255.0 blue:213/255.0 alpha:1.0]];
-    
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],
+                                                                      NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     NSLog(@"----PayVC----");
 }
@@ -110,7 +110,7 @@
 
 - (void)ocjs{
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）
-    JSContext *context=[_payWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    JSContext *context=[_customWebView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //
     //    //第二种情况，js是通过对象调用的，我们假设js里面有一个对象 testobject 在调用方法
     //    //首先创建我们新建类的对象，将他赋值给js的对象
@@ -239,7 +239,7 @@
     };
     
     context[@"reload"] = ^() {
-        [self.payWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
+        [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
     };
 }
 

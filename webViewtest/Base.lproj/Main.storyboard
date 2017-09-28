@@ -128,7 +128,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baM-Eu-Sqx" userLabel="Pay Web View">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baM-Eu-Sqx" userLabel="Custom Web View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -504,5 +504,4 @@
         <image name="tab_transfer.png" width="32" height="32"/>
         <image name="title_back" width="32" height="32"/>
     </resources>
-    <color key="tintColor" red="0.093073369941003528" green="0.30069660217449434" blue="0.82636024746192893" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

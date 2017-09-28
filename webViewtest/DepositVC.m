@@ -227,14 +227,16 @@
             NSLog(@"%@", jsVal.toString);
         }
         
-        PayVC *customVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PayVC"];
+        PayVC *payVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PayVC"];
         
         if (args[0] != NULL) {
             _appDelegate.customUrl = jsCustom.toString;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController pushViewController:customVC animated:YES];
+            [self.navigationController pushViewController:payVC animated:YES];
+            //[self presentViewController:customVC animated:YES completion:nil];
         });
+        //[self presentViewController:customVC animated:YES completion:nil];
         NSLog(@"-------gotoPay-------");
     };
     

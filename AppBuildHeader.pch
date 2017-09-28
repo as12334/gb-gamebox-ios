@@ -20,11 +20,11 @@
 //#define BASE_URL @"http://192.168.0.92/boss/"
 
 #ifdef _DEBUG //开发环境
-#define CODE	@"1wl5"
-#define S		@"e840ac55fbb3d773fe845ec5ca7d7803"
-#define SID		@"70"
-#define THEME	@"lottery.skin"
-#define SITE_TYPE	@"lottery"
+#define CODE   @"8l6r"
+#define S   @"6bf3b743e414045e5123fc317fb9b535"
+#define SID   @"71"
+#define THEME   @"default.skin"
+#define SITE_TYPE @"INTEGRATED"
 
 //test06测试环境
 //#define CODE	@"ocu1"
@@ -781,21 +781,7 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
-#elif _oiqg //新葡京娱乐场
 
-#define CODE	@"oiqg"
-#define S		@"7e25cde173684fd16cb76687f09ac243"
-#define SID		@"226"
-#define THEME	@"default.skin"
-#define SITE_TYPE	@"integrated"
-
-#elif _mkoz //银河娱乐城
-
-#define CODE	@"mkoz"
-#define S		@"774b8cdf5ccfa039b0ba7ea3b6efa48c"
-#define SID		@"227"
-#define THEME	@"default.skin"
-#define SITE_TYPE	@"integrated"
 
 #else //超博娱乐
 
