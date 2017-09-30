@@ -553,7 +553,6 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
-
 #elif _xjvs //大唐娱乐城
 
 #define CODE	@"xjvs"
@@ -569,7 +568,6 @@
 #define SID		@"196"
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
-
 
 #elif _sn2m //完美彩票
 
@@ -781,7 +779,77 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
+#elif _oiqg //新葡京娱乐场
 
+#define CODE	@"oiqg"
+#define S		@"7e25cde173684fd16cb76687f09ac243"
+#define SID		@"226"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _mkoz //银河娱乐城
+
+#define CODE	@"mkoz"
+#define S		@"774b8cdf5ccfa039b0ba7ea3b6efa48c"
+#define SID		@"227"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _idr9 //亚盈国际
+
+#define CODE	@"idr9"
+#define S		@"3db0bcb0ae845959c7739038d75af064"
+#define SID		@"228"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _ixyu //美高梅娱乐城
+
+#define CODE	@"ixyu"
+#define S		@"7aa03eb5c0997aa7ad934ece05ff6ce7"
+#define SID		@"229"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _7vhp //四海娱乐
+
+#define CODE	@"7vhp"
+#define S		@"4410d084f2fe81a3e3f3ea03574ba90d"
+#define SID		@"800"
+#define THEME	@"lottery.skin"
+#define SITE_TYPE	@"lottery"
+
+#elif _cx7r //万达彩票
+
+#define CODE	@"cx7r"
+#define S		@"2d06392ce12d94d06a3c6cf5f9b4f4f9"
+#define SID		@"801"
+#define THEME	@"lottery.skin"
+#define SITE_TYPE	@"lottery"
+
+#elif _r7pt
+
+#define CODE	@"r7pt"
+#define S		@"eb43af815ff7fd97bb0f7882e6b81f04"
+#define SID		@"230"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _vxcb //新濠国际
+
+#define CODE	@"vxcb"
+#define S		@"52530f616a9a14fa83aa1dbba28d9df8"
+#define SID		@"231"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _z1yn //新亚洲
+
+#define CODE	@"z1yn"
+#define S		@"e446da46cc2d27b671dc51c430794762"
+#define SID		@"232"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
 
 #else //超博娱乐
 
