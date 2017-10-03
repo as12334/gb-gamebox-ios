@@ -85,14 +85,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="game_btn_bg" translatesAutoresizingMaskIntoConstraints="NO" id="CRo-09-55F">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="CRo-09-55F">
                                 <rect key="frame" x="312" y="506" width="46" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVI-E8-Ue1">
                                 <rect key="frame" x="314" y="513" width="42" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <state key="normal" image="title_back"/>
+                                <state key="normal" image="icon_back.png"/>
                                 <connections>
                                     <action selector="backWV:" destination="fEe-c7-rC8" eventType="touchUpInside" id="FRX-aH-fjc"/>
                                 </connections>
@@ -100,7 +100,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u14-Ks-VAH">
                                 <rect key="frame" x="318" y="554" width="35" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <state key="normal" image="icon_home"/>
+                                <state key="normal" image="icon_home.png"/>
                                 <connections>
                                     <action selector="goBack:" destination="fEe-c7-rC8" eventType="touchUpInside" id="7cr-47-CXU"/>
                                 </connections>
@@ -159,18 +159,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-dk-e6s">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-dk-e6s">
                                 <rect key="frame" x="0.0" y="-31" width="375" height="698"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kjhhljhhj" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3t-zN-5vx">
-                                <rect key="frame" x="10" y="-90" width="335" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myT-Za-t0c">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="myT-Za-t0c">
                                 <rect key="frame" x="65" y="244" width="245" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -260,7 +253,7 @@
         <scene sceneID="wOw-Eb-0Uv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uU2-Hs-Hyy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="tab_blue_home.png" id="vYH-pV-t6C"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tab_0_select.png" id="vYH-pV-t6C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PTG-b5-J2j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -279,7 +272,7 @@
         <scene sceneID="fhE-oP-ErR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9l3-Yq-XUR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="存款" image="tab_deposit.png" id="PFZ-FP-77K"/>
+                    <tabBarItem key="tabBarItem" title="存款" image="tab_1_normal.png" id="PFZ-FP-77K"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FZ7-ZM-e7o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -328,7 +321,7 @@
         <scene sceneID="Noy-jF-mNW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="md5-U6-4hI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="客服" image="tab_service.png" id="FWC-uT-opd"/>
+                    <tabBarItem key="tabBarItem" title="客服" image="tab_3_normal.png" id="FWC-uT-opd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ufT-hH-ebj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -376,7 +369,7 @@
         <scene sceneID="vho-eH-hjy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e4w-a1-fWe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="tab_mine.png" id="Pt3-eF-Oag"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="tab_4_normal.png" id="Pt3-eF-Oag"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HzQ-A8-yi1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -425,7 +418,7 @@
         <scene sceneID="xTh-Qw-h2C">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CNE-03-KbB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="转账" image="tab_transfer.png" id="ZWs-hM-cBd"/>
+                    <tabBarItem key="tabBarItem" title="转账" image="tab_2_normal.png" id="ZWs-hM-cBd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="92c-rA-Jgb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -494,14 +487,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="game_btn_bg" width="32" height="67"/>
-        <image name="icon_home" width="32" height="32"/>
-        <image name="splash" width="360" height="640"/>
-        <image name="tab_blue_home.png" width="32" height="32"/>
-        <image name="tab_deposit.png" width="32" height="32"/>
-        <image name="tab_mine.png" width="32" height="32"/>
-        <image name="tab_service.png" width="32" height="32"/>
-        <image name="tab_transfer.png" width="32" height="32"/>
-        <image name="title_back" width="32" height="32"/>
+        <image name="Logo.png" width="96" height="29"/>
+        <image name="icon_back.png" width="64" height="64"/>
+        <image name="icon_bg.png" width="64" height="134"/>
+        <image name="icon_home.png" width="64" height="64"/>
+        <image name="splash.jpg" width="720" height="1280"/>
+        <image name="tab_0_select.png" width="32" height="32"/>
+        <image name="tab_1_normal.png" width="32" height="32"/>
+        <image name="tab_2_normal.png" width="32" height="32"/>
+        <image name="tab_3_normal.png" width="32" height="32"/>
+        <image name="tab_4_normal.png" width="32" height="32"/>
     </resources>
 </document>

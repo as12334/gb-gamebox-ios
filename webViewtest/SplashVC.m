@@ -63,7 +63,7 @@
     
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     //设置启动页logo
-    [self.splashLogo setImage:[UIImage imageNamed:[NSString stringWithFormat:@"app_logo_%@",SID]]];
+    [self.splashLogo setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Logo",SID]]];
 }
 
 - (void) initBottomText{

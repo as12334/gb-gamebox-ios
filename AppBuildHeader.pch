@@ -20,9 +20,9 @@
 //#define BASE_URL @"http://192.168.0.92/boss/"
 
 #ifdef _DEBUG //开发环境
-#define CODE	@"7vhp"
-#define S		@"4410d084f2fe81a3e3f3ea03574ba90d"
-#define SID		@"800"
+#define CODE	@"1wl5"
+#define S		@"e840ac55fbb3d773fe845ec5ca7d7803"
+#define SID		@"70"
 #define THEME	@"lottery.skin"
 #define SITE_TYPE	@"lottery"
 
