@@ -172,7 +172,6 @@
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:YES];
     [_loadingHubView dismissHub];
-    [self setErrorHtml:webView];
     NSLog(@"加载成功");
     
     [_loadingHubView setHidden:YES];

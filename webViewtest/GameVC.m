@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "iKYLoadingHubView.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "NSString+Tool.h"
 
 @interface GameVC ()<NSURLConnectionDataDelegate>
 /**
@@ -42,17 +43,10 @@
     _gameWV.scrollView.bounces=NO;
     
     //1.创建一个字符创
-    NSString *Request = [NSString stringWithFormat:@"%@",_appDelegate.customUrl];
+    NSString *request = [NSString stringWithFormat:@"%@",_appDelegate.customUrl];
     
     //2.调用系统方法直接访问
-//    if([_appDelegate.customUrl containsString:@"https://"]){
-//        NSURL *url = [NSURL URLWithString:_appDelegate.customUrl];
-//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-//        NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-//        [connection start];
-//    }else{
-        [self.gameWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:Request]]];
-//    }
+    [self.gameWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request.trim]]];
     
     //3设置网页自适应
     self.gameWV.scalesPageToFit = YES;

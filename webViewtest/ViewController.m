@@ -499,7 +499,7 @@ void alertView(){
     NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
     
     NSHTTPCookieStorage *cookiesStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSDictionary *cd = @{@"User-Agent":@"IOS"};
+    NSDictionary *cd = @{@"User-Agent":@"iPhone"};
     NSHTTPCookie *cookies = [[NSHTTPCookie alloc]initWithProperties:cd];
     NSDictionary *headers=[NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     //2.创建字一个网络请求管理者对象 （http会话管理者）  此对象不是单例对象

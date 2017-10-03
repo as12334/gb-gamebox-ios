@@ -49,7 +49,7 @@
     
     NSLog(@"%@", _request);
     //2.调用系统方法直接访问
-    [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request]]];
+    [self.customWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_request.trim]]];
     
     //3设置网页自适应
     self.customWebView.scalesPageToFit = YES;
@@ -72,7 +72,7 @@
 //开始加载网页，不仅监听我们指定的请求，还会监听内部发送的请求
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [_loadingHubView setHidden:NO];
-    [self setErrorHtml:webView];
+//    [self setErrorHtml:webView];
     NSLog(@"开始加载");
 }
 
@@ -102,6 +102,7 @@
 
 //网页加载失败调用该方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    NSLog(@"%@", error);
     [_loadingHubView setHidden:YES];
     [self setErrorHtml:webView];
     NSString *url = webView.request.URL.absoluteString;
