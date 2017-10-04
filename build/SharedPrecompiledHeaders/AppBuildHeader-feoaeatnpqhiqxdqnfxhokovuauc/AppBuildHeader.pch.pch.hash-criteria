@@ -1,0 +1,25 @@
+-x
+objective-c
+-arch
+armv7
+-std=gnu99
+-fobjc-arc
+-fmodules
+-gmodules
+-fbuild-session-file=/var/folders/bj/5c152rl13ysg_04qqdm_l6180000gn/C/org.llvm.clang/ModuleCache/Session.modulevalidation
+-fpascal-strings
+-Os
+-fno-common
+-D_DEBUG=1
+-DCOCOAPODS=1
+-DNS_BLOCK_ASSERTIONS=1
+-DOBJC_OLD_DISPATCH_PROTOTYPES=0
+-isysroot
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk
+-miphoneos-version-min=8.1
+-g
+-fembed-bitcode-marker
+arm-apple-darwin16.7.0
+"4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)"
+SDK_PRODUCT_BUILD_VERSION=14E8301
+14E8301
