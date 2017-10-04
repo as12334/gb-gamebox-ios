@@ -851,6 +851,38 @@
 #define THEME	@"default.skin"
 #define SITE_TYPE	@"integrated"
 
+#elif _87lr //金沙娱乐城
+
+#define CODE	@"87lr"
+#define S		@"fda48978af8fb2425bf09ab2779f1ff7"
+#define SID		@"233"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _cspr //美高梅娱乐城
+
+#define CODE	@"cspr"
+#define S		@"25c606fbc2d92fc2cb043c5f43fcf457"
+#define SID		@"235"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _8gez //拉斯维加斯国际
+
+#define CODE	@"8gez"
+#define S		@"42e9f047a8217a7f3b492622b9ac1598"
+#define SID		@"236"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _98jb //凤凰彩票
+
+#define CODE	@"98jb"
+#define S		@"ba511d7bc727492f66195a35cebd2375"
+#define SID		@"802"
+#define THEME	@"lottery.skin"
+#define SITE_TYPE	@"lottery"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
