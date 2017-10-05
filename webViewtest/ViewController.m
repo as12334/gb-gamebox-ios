@@ -76,7 +76,9 @@
     
     
     [self.mainWebView reload];
-    self.getService;
+    if ([@"integrated" isEqualToString:SITE_TYPE]) {
+        self.getService;
+    }
 
     self.autoLogin;
     

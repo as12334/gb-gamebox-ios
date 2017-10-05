@@ -80,27 +80,14 @@ function init_context() {
     log "Generating project snapshot..."
 
     #临时目录不存在
-    if [ ! -d ${TEMP_PATH} ]; then
-        mkdir -p ${TEMP_PATH}
-    fi
+    # if [ ! -d ${TEMP_PATH} ]; then
+    #     mkdir -p ${TEMP_PATH}
+    # fi
 
     #生成工程快照，保存在工作目录
-    cp -r ${PROJECT_PATH} ${TEMP_PATH}
-    mv ${TEMP_PATH}/${PROJECT_NAME} ${SNAPSHOT_PATH}
-    rm -r ${TEMP_PATH}
-
-    #把工作目录加入到.gitignore
-    if [ -d "${PROJECT_PATH}/.git" ];then
-        if [ ! -f "${PROJECT_PATH}/.gitignore" ];then
-            echo ${SNAPSHOT_NAME} > "${PROJECT_PATH}/.gitignore"
-        else
-             cat ${PROJECT_PATH}/.gitignore | grep "${SNAPSHOT_NAME}" > /dev/null 2>&1
-             if [ $? == 1 ];then
-                echo " " >> "${PROJECT_PATH}/.gitignore"
-                echo ${SNAPSHOT_NAME} >> "${PROJECT_PATH}/.gitignore"
-             fi
-        fi
-    fi
+    # cp -r ${PROJECT_PATH} ${TEMP_PATH}
+    # mv ${TEMP_PATH}/${PROJECT_NAME} ${SNAPSHOT_PATH}
+    # rm -r ${TEMP_PATH}
 }
 
 function generate_targets() {
@@ -140,34 +127,42 @@ function generate_target() {
         mkdir -p ${TARGETS_PATH}
     fi
 
-    log "Generate target |${1}|"
+    log "\nGenerate target |${1}|"
     target=${1}
 
     #复制一个以target命名的新项目，以src_project为蓝本
-    cp -r "${SNAPSHOT_PATH}/${ITEM_NAME}" "${SNAPSHOT_PATH}/${target}"
-    #删除就得资源文件
-    rm -r "${SNAPSHOT_PATH}/${target}/res"
+    cp -r "${PROJECT_PATH}" "${SNAPSHOT_PATH}/${target}"
+    #删除旧得资源文件
+    rm -r "${SNAPSHOT_PATH}/${target}/${ITEM_NAME}/res"
 
     cp -r "${SITE_PATH}/${target}" "${TARGETS_PATH}/${target}"
     #拷贝新的资源文件
-    cp -r "${TARGETS_PATH}/${target}/res" "${SNAPSHOT_PATH}/${target}"
+    cp -r "${TARGETS_PATH}/${target}/res" "${SNAPSHOT_PATH}/${target}/${ITEM_NAME}"
 
     #修改图标
-    cp -a "${TARGETS_PATH}/${target}/AppIcon.appiconset/." "${SNAPSHOT_PATH}/${target}/Assets.xcassets/AppIcon.appiconset/"
+    cp -a "${TARGETS_PATH}/${target}/AppIcon.appiconset/." "${SNAPSHOT_PATH}/${target}/${ITEM_NAME}/Assets.xcassets/AppIcon.appiconset/"
+
+    #替换.pch文件
+    cp -f "${TARGETS_PATH}/${target}/AppBuildHeader.pch" "${SNAPSHOT_PATH}/${target}"
 
     source "${TARGETS_PATH}/${target}/${properties}"
     app_name=${app_name}
     app_bundle_id=${bundle_id_prefix}${app_sid}
     provision_id=${provision_id}
 
-    plist_path="${SNAPSHOT_PATH}/${target}/Info.plist"
+    plist_path="${SNAPSHOT_PATH}/${target}/${ITEM_NAME}/Info.plist"
 
     /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName $app_name" ${plist_path}
     /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $app_bundle_id" ${plist_path}
     /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $app_version" ${plist_path}
 
+    #修改权限
+    sudo chmod -R 777 "${SNAPSHOT_PATH}/${target}"
+    cd "${SNAPSHOT_PATH}/${target}"
+
     #archive 打包
-    xcodebuild archive -scheme ${app_code} -configuration _${app_code} -archivePath $SNAPSHOT_PATH/target.xcarchive CONFIGURATION_BUILD_DIR=$SNAPSHOT_PATH CODE_SIGN_IDENTITY="$code_sign_id" PROVISIONING_PROFILE="${provision_id}"
+    xcodebuild archive -scheme webViewtest -configuration Release -archivePath ./target.xcarchive
+    #  CONFIGURATION_BUILD_DIR=$SNAPSHOT_PATH CODE_SIGN_IDENTITY="$code_sign_id" PROVISIONING_PROFILE="${provision_id}"
 
 }
 

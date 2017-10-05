@@ -2,11 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>teamID</key>
-    <string>SFMD88G3NR</string>
-    <key>method</key>
-    <string>enterprise</string>
-    <key>compileBitcode</key>
-    <false/>
+	<key>teamID</key>
+	<string>Fujian Shitong Photoelectric Network Co., Ltd.</string>
+	<key>method</key>
+	<string>enterprise</string>
+	<key>compileBitcode</key>
+	<false/>
 </dict>
 </plist>
