@@ -26,6 +26,7 @@
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
 
+
 //test06测试环境
 //#define CODE	@"ocu1"
 //#define S		@"bc075350ffffdd9f0ecbc2045d852238"
