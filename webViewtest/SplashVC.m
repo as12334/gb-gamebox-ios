@@ -62,6 +62,7 @@
     
     
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    self.splashLogo.contentMode = UIViewContentModeScaleAspectFit;
     //设置启动页logo
     [self.splashLogo setImage:[UIImage imageNamed:[NSString stringWithFormat:@"app_logo_%@",SID]]];
 }

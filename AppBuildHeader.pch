@@ -21,11 +21,11 @@
 
 #ifdef _DEBUG //开发环境
 
-#define CODE	@"a56r"
-#define S		@"211aa4e091e1794c2ecddf17400768a5"
-#define SID		@"189"
-#define THEME	@"default.skin"
-#define SITE_TYPE	@"integrated"
+#define CODE	@"yg9x"
+#define S		@"07d52e964aad8b95a464c2c70dbd2167"
+#define SID		@"803"
+#define THEME	@"lottery.skin"
+#define SITE_TYPE	@"lottery"
 
 //test06测试环境
 //#define CODE	@"ocu1"
@@ -881,6 +881,30 @@
 #define CODE	@"98jb"
 #define S		@"ba511d7bc727492f66195a35cebd2375"
 #define SID		@"802"
+#define THEME	@"lottery.skin"
+#define SITE_TYPE	@"lottery"
+
+#elif _akm1 //金沙娱乐城
+
+#define CODE	@"akm1"
+#define S		@"c71111f833ef712e9c0ff6ebeba57dfe"
+#define SID		@"237"
+#define THEME	@"default.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _wlf6 //BET365
+
+#define CODE	@"wlf6"
+#define S		@"ae091e504c980c925c64c5f2105f070a"
+#define SID		@"238"
+#define THEME	@"green.skin"
+#define SITE_TYPE	@"integrated"
+
+#elif _yg9x //头彩
+
+#define CODE	@"yg9x"
+#define S		@"07d52e964aad8b95a464c2c70dbd2167"
+#define SID		@"803"
 #define THEME	@"lottery.skin"
 #define SITE_TYPE	@"lottery"
 

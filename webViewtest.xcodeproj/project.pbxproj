@@ -622,7 +622,7 @@
 					CF37625F1E6D8013005A420D = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SFMD88G3NR;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -826,7 +826,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A513E4EE1F7DDDDD00A73592 /* _akm1 */ = {
+		A513E4EE1F7DDDDD00A73592 /* _wlf6 */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -876,35 +876,35 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = _akm1;
+			name = _wlf6;
 		};
-		A513E4EF1F7DDDDD00A73592 /* _akm1 */ = {
+		A513E4EF1F7DDDDD00A73592 /* _wlf6 */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid237;
-				APP_DISPLAY_NAME = "金沙娱乐城";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-237";
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid238;
+				APP_DISPLAY_NAME = BET365;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-238";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				GCC_PREFIX_HEADER = "/Users/fei/Desktop/Projects/gamebox-ios/AppBuildHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_akm1=1",
+					"_wlf6=1",
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = webViewtest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid237;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid238;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1455021f-0329-4987-8f93-0d4029541265";
-				PROVISIONING_PROFILE_SPECIFIER = sid237;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = _akm1;
+			name = _wlf6;
 		};
-		A513E4F01F7DDDDD00A73592 /* _akm1 */ = {
+		A513E4F01F7DDDDD00A73592 /* _wlf6 */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -915,9 +915,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
 			};
-			name = _akm1;
+			name = _wlf6;
 		};
-		A513E4F11F7DDDDD00A73592 /* _akm1 */ = {
+		A513E4F11F7DDDDD00A73592 /* _wlf6 */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -929,9 +929,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_TARGET_NAME = webViewtest;
 			};
-			name = _akm1;
+			name = _wlf6;
 		};
-		A52D74F71F864BB6001B91B2 /* _a56r */ = {
+		A52D74F71F864BB6001B91B2 /* _4hwq */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -981,35 +981,35 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = _a56r;
+			name = _4hwq;
 		};
-		A52D74F81F864BB6001B91B2 /* _a56r */ = {
+		A52D74F81F864BB6001B91B2 /* _4hwq */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid189;
-				APP_DISPLAY_NAME = "永利贵兵会";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-189";
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid222;
+				APP_DISPLAY_NAME = "美高梅娱乐城";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-222";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				GCC_PREFIX_HEADER = "/Users/fei/Desktop/Projects/gamebox-ios/AppBuildHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_a56r=1",
+					"_4hwq=1",
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = webViewtest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid189;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid222;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ee67740a-94ea-4634-b0ca-a16ff1fd4cbc";
-				PROVISIONING_PROFILE_SPECIFIER = sid189;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = _a56r;
+			name = _4hwq;
 		};
-		A52D74F91F864BB6001B91B2 /* _a56r */ = {
+		A52D74F91F864BB6001B91B2 /* _4hwq */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1020,9 +1020,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
 			};
-			name = _a56r;
+			name = _4hwq;
 		};
-		A52D74FA1F864BB6001B91B2 /* _a56r */ = {
+		A52D74FA1F864BB6001B91B2 /* _4hwq */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1034,7 +1034,112 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_TARGET_NAME = webViewtest;
 			};
-			name = _a56r;
+			name = _4hwq;
+		};
+		A52D74FB1F88CE6B001B91B2 /* _ixyu */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SFMD88G3NR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/devedawoo/Downloads/webViewproject的副本/AppBuildDate.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "cc63a9c1-f3cc-45d7-af65-7000a7bc8e39";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = _ixyu;
+		};
+		A52D74FC1F88CE6B001B91B2 /* _ixyu */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid229;
+				APP_DISPLAY_NAME = "美高梅娱乐城";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-229";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SFMD88G3NR;
+				GCC_PREFIX_HEADER = "/Users/fei/Desktop/Projects/gamebox-ios/AppBuildHeader.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_ixyu=1",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = webViewtest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid229;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = _ixyu;
+		};
+		A52D74FD1F88CE6B001B91B2 /* _ixyu */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = A6JR7P7MSK;
+				INFOPLIST_FILE = webViewtestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
+			};
+			name = _ixyu;
+		};
+		A52D74FE1F88CE6B001B91B2 /* _ixyu */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = A6JR7P7MSK;
+				INFOPLIST_FILE = webViewtestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_TARGET_NAME = webViewtest;
+			};
+			name = _ixyu;
 		};
 		A59FC5911F58FE1900DFA5A4 /* _DEBUG */ = {
 			isa = XCBuildConfiguration;
@@ -1095,7 +1200,7 @@
 				APP_DISPLAY_NAME = DEBUG;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				GCC_PREFIX_HEADER = "/Users/fei/Desktop/Projects/gamebox-ios/AppBuildHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1108,8 +1213,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "baaf8aa9-4220-442e-99b7-254ea09539db";
-				PROVISIONING_PROFILE_SPECIFIER = debug;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = _DEBUG;
@@ -1148,8 +1253,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5911F58FE1900DFA5A4 /* _DEBUG */,
-				A513E4EE1F7DDDDD00A73592 /* _akm1 */,
-				A52D74F71F864BB6001B91B2 /* _a56r */,
+				A513E4EE1F7DDDDD00A73592 /* _wlf6 */,
+				A52D74F71F864BB6001B91B2 /* _4hwq */,
+				A52D74FB1F88CE6B001B91B2 /* _ixyu */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _DEBUG;
@@ -1158,8 +1264,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5921F58FE1900DFA5A4 /* _DEBUG */,
-				A513E4EF1F7DDDDD00A73592 /* _akm1 */,
-				A52D74F81F864BB6001B91B2 /* _a56r */,
+				A513E4EF1F7DDDDD00A73592 /* _wlf6 */,
+				A52D74F81F864BB6001B91B2 /* _4hwq */,
+				A52D74FC1F88CE6B001B91B2 /* _ixyu */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _DEBUG;
@@ -1168,8 +1275,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5931F58FE1900DFA5A4 /* _DEBUG */,
-				A513E4F01F7DDDDD00A73592 /* _akm1 */,
-				A52D74F91F864BB6001B91B2 /* _a56r */,
+				A513E4F01F7DDDDD00A73592 /* _wlf6 */,
+				A52D74F91F864BB6001B91B2 /* _4hwq */,
+				A52D74FD1F88CE6B001B91B2 /* _ixyu */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _DEBUG;
@@ -1178,8 +1286,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A59FC5941F58FE1900DFA5A4 /* _DEBUG */,
-				A513E4F11F7DDDDD00A73592 /* _akm1 */,
-				A52D74FA1F864BB6001B91B2 /* _a56r */,
+				A513E4F11F7DDDDD00A73592 /* _wlf6 */,
+				A52D74FA1F864BB6001B91B2 /* _4hwq */,
+				A52D74FE1F88CE6B001B91B2 /* _ixyu */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _DEBUG;
