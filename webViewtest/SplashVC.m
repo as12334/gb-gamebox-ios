@@ -260,10 +260,12 @@
     
 //    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
     NSString *path = [NSString stringWithFormat:@"%@%@%@",@"https://",_urlArray[_urlArrayIndex],_talk];
-    if(IS_DEBUG) {
+    if(IS_DEBUG)
+    {
         path = [NSString stringWithFormat:@"%@%@%@",@"http://",_urlArray[_urlArrayIndex],_talk];
     }
-   
+   //(_urlArrayIndex<_urlArray.count && [_urlArray[_urlArrayIndex] isEqualToString:@"tc803.hongtubet.com"]
+    
     NSLog(@"检测线路：%@", path);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
