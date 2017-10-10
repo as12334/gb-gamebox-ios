@@ -65,6 +65,9 @@
     //2调用系统方法直接访问
     [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
 
+    ///test
+    NSString *originUA = [_mainWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"] ;
+    
     //3设置网页自适应
     self.mainWebView.scalesPageToFit = YES;
     
@@ -103,7 +106,7 @@
     }
     //    //首先创建JSContext 对象（此处通过当前webView的键获取到jscontext）
     JSContext *context=[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    
+
     context[@"share"] = ^() {
         NSLog(@"+++++++Begin Log+++++++");
         NSArray *args = [JSContext currentArguments];
@@ -502,6 +505,7 @@ void alertView(){
     NSDictionary *cd = @{@"User-Agent":@"IOS"};
     NSHTTPCookie *cookies = [[NSHTTPCookie alloc]initWithProperties:cd];
     NSDictionary *headers=[NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+    
     //2.创建字一个网络请求管理者对象 （http会话管理者）  此对象不是单例对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //3.设置网络传输的类型：这里一般都是二进制
