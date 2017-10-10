@@ -251,7 +251,7 @@
             NSLog(@"%@", jsVal.toString);
         }
         
-        GameVC *GVC = [self.storyboard instantiateViewControllerWithIdentifier:@"GameVC"];
+        PayVC *GVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PayVC"];
         
         if (args[0] != NULL) {
             _appDelegate.customUrl = gameJsVal.toString;

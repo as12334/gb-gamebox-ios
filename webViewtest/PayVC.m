@@ -42,9 +42,9 @@
     
     
     if([_appDelegate.customUrl containsString:@"http"]){
-        self.request = _appDelegate.customUrl;
+        self.request = _appDelegate.customUrl.trim ;
     }else{
-        self.request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl];
+        self.request = [NSString stringWithFormat:@"%@%@",_domain,_appDelegate.customUrl.trim];
     }
     
     NSLog(@"%@", _request);
