@@ -20,11 +20,11 @@
 //#define BASE_URL @"http://192.168.0.92/boss/"
 
 #ifdef _DEBUG //开发环境
-#define CODE    @"xwc7"
-#define S        @"0accd87069ed4e9c5adff95abaa9ab11"
-#define SID        @"133"
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define CODE    @"7cxt"
+#define S        @"0ba80324172e558548b0ff1a9f0a6b6d"
+#define SID        @"69"
+#define THEME    @"lottery.skin"
+#define SITE_TYPE    @"lottery"
 
 
 //test06测试环境
