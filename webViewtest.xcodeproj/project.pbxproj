@@ -1056,6 +1056,118 @@
 			};
 			name = _xwc7;
 		};
+		A04E605E1F8DFEC900098A65 /* _cwad */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SFMD88G3NR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/devedawoo/Downloads/webViewproject的副本/AppBuildDate.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "cc63a9c1-f3cc-45d7-af65-7000a7bc8e39";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = _cwad;
+		};
+		A04E605F1F8DFEC900098A65 /* _cwad */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid186;
+				APP_DISPLAY_NAME = "赛博体育";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-186";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SFMD88G3NR;
+				GCC_PREFIX_HEADER = AppBuildHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_cwad=1",
+					"COCOAPODS=1",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = webViewtest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdPartLib/**",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid186;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = _cwad;
+		};
+		A04E60601F8DFEC900098A65 /* _cwad */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = A6JR7P7MSK;
+				INFOPLIST_FILE = webViewtestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
+			};
+			name = _cwad;
+		};
+		A04E60611F8DFEC900098A65 /* _cwad */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = A6JR7P7MSK;
+				INFOPLIST_FILE = webViewtestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_TARGET_NAME = webViewtest;
+			};
+			name = _cwad;
+		};
 		A063CD921F8B5D0400B51CBF /* _cabu */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1279,6 +1391,118 @@
 				TEST_TARGET_NAME = webViewtest;
 			};
 			name = _yg9x;
+		};
+		A0E367961F8F48DC00758033 /* _npsa */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SFMD88G3NR;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/devedawoo/Downloads/webViewproject的副本/AppBuildDate.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "cc63a9c1-f3cc-45d7-af65-7000a7bc8e39";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = _npsa;
+		};
+		A0E367971F8F48DC00758033 /* _npsa */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid208;
+				APP_DISPLAY_NAME = "彩中彩";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-208";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fujian Shitong Photoelectric Network Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SFMD88G3NR;
+				GCC_PREFIX_HEADER = AppBuildHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_npsa=1",
+					"COCOAPODS=1",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = webViewtest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdPartLib/**",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid208;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = _npsa;
+		};
+		A0E367981F8F48DC00758033 /* _npsa */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = A6JR7P7MSK;
+				INFOPLIST_FILE = webViewtestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webViewtest.app/webViewtest";
+			};
+			name = _npsa;
+		};
+		A0E367991F8F48DC00758033 /* _npsa */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = A6JR7P7MSK;
+				INFOPLIST_FILE = webViewtestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiankexun.webViewtestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_TARGET_NAME = webViewtest;
+			};
+			name = _npsa;
 		};
 		A513E4EE1F7DDDDD00A73592 /* _87lr */ = {
 			isa = XCBuildConfiguration;
@@ -1855,6 +2079,8 @@
 				A0D0A79E1F8B26BF001F81EA /* _yg9x */,
 				A04E5FC51F8CFACA00098A65 /* _xwc7 */,
 				A063CD921F8B5D0400B51CBF /* _cabu */,
+				A04E605E1F8DFEC900098A65 /* _cwad */,
+				A0E367961F8F48DC00758033 /* _npsa */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _SNRM;
@@ -1871,6 +2097,8 @@
 				A0D0A79F1F8B26BF001F81EA /* _yg9x */,
 				A04E5FC61F8CFACA00098A65 /* _xwc7 */,
 				A063CD931F8B5D0400B51CBF /* _cabu */,
+				A04E605F1F8DFEC900098A65 /* _cwad */,
+				A0E367971F8F48DC00758033 /* _npsa */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _SNRM;
@@ -1887,6 +2115,8 @@
 				A0D0A7A01F8B26BF001F81EA /* _yg9x */,
 				A04E5FC71F8CFACA00098A65 /* _xwc7 */,
 				A063CD941F8B5D0400B51CBF /* _cabu */,
+				A04E60601F8DFEC900098A65 /* _cwad */,
+				A0E367981F8F48DC00758033 /* _npsa */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _SNRM;
@@ -1903,6 +2133,8 @@
 				A0D0A7A11F8B26BF001F81EA /* _yg9x */,
 				A04E5FC81F8CFACA00098A65 /* _xwc7 */,
 				A063CD951F8B5D0400B51CBF /* _cabu */,
+				A04E60611F8DFEC900098A65 /* _cwad */,
+				A0E367991F8F48DC00758033 /* _npsa */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = _SNRM;
