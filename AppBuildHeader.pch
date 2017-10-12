@@ -20,9 +20,9 @@
 //#define BASE_URL @"http://192.168.0.92/boss/"
 
 #ifdef _DEBUG //开发环境
-#define CODE    @"3qj8"
-#define S        @"c17df53748ec3c865c9fe0fefb09e62e"
-#define SID        @"211"
+#define CODE    @"5rdu"
+#define S        @"7f2fd29cdb5fd604c287a62d18971f62"
+#define SID        @"136"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
