@@ -908,6 +908,14 @@
 #define THEME    @"lottery.skin"
 #define SITE_TYPE    @"lottery"
 
+#elif _ixpm //澳门新葡京
+
+#define CODE    @"ixpm"
+#define S        @"e033cdd1a119af921cf1ce1e3598e04d"
+#define SID        @"130"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
