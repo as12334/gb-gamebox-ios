@@ -916,6 +916,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _5e7b //云顶娱乐
+
+#define CODE    @"5e7b"
+#define S        @"6fe91aa71b5bc3f26bf2007177f1677e"
+#define SID        @"239"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
