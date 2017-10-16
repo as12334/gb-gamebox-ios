@@ -924,6 +924,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _yrxk //亿彩汇
+
+#define CODE    @"yrxk"
+#define S        @"c8722331153db8b8b28c358481eb46b3"
+#define SID        @"805"
+#define THEME    @"lottery.skin"
+#define SITE_TYPE    @"lottery"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
