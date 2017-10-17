@@ -31,6 +31,7 @@
 //每次进入界面只执行一次
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     self.domain = _appDelegate.domain;
     
