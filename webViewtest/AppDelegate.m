@@ -43,7 +43,6 @@
 @synthesize gotoIndexUrl = _gotoIndexUrl;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     _versionCode = @"2";
     _md5 = @"3f990aa1e870c0065a2e98e16683e9e9";
     _code = CODE;

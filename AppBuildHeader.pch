@@ -20,12 +20,18 @@
 //#define BASE_URL @"http://192.168.0.92/boss/"
 
 #ifdef _DEBUG //开发环境
-#define CODE    @"1wl5"
-#define S        @"e840ac55fbb3d773fe845ec5ca7d7803"
-#define SID        @"70"
-#define THEME    @"lottery.skin"
-#define SITE_TYPE    @"lottery"
+//#define CODE    @"1wl5"
+//#define S        @"e840ac55fbb3d773fe845ec5ca7d7803"
+//#define SID        @"70"
+//#define THEME    @"lottery.skin"
+//#define SITE_TYPE    @"lottery"
 
+
+#define CODE    @"74bk"
+#define S        @"b5ed1a1cd527aac4fac2c68a81ea68a4"
+#define SID        @"111"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 //test06测试环境
 //#define CODE	@"ocu1"
