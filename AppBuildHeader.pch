@@ -27,9 +27,9 @@
 //#define SITE_TYPE    @"lottery"
 
 
-#define CODE    @"74bk"
-#define S        @"b5ed1a1cd527aac4fac2c68a81ea68a4"
-#define SID        @"111"
+#define CODE    @"ucuy"
+#define S        @"5e15309686f8eff34ee8b1ce8deaee1e"
+#define SID        @"202"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
@@ -937,6 +937,46 @@
 #define SID        @"805"
 #define THEME    @"lottery.skin"
 #define SITE_TYPE    @"lottery"
+
+#elif _e2ce //威尼斯人
+
+#define CODE    @"e2ce"
+#define S        @"ed02339f84759f139d19024e553e324c"
+#define SID        @"251"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _pox4 //COBO超博
+
+#define CODE    @"pox4"
+#define S        @"000f81e0f185390db9544410a36fd562"
+#define SID        @"252"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wnmt //盛大国际
+
+#define CODE    @"wnmt"
+#define S        @"82c01fa2f5c8ef697e80e0d92af8c853"
+#define SID        @"257"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _7rda //澳门威尼斯人
+
+#define CODE    @"7rda"
+#define S        @"d554451a96f65df06ea2b2f1103ffdba"
+#define SID        @"253"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _vqwq //星博国际
+
+#define CODE    @"vqwq"
+#define S        @"93eb1f0e52410c25318d4821dd650d3f"
+#define SID        @"256"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 #else //超博娱乐
 

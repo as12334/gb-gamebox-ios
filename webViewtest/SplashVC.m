@@ -259,7 +259,16 @@
 - (void) checkUrl{
     
 //    NSString *path = [NSString stringWithFormat:@"%@%@",_domain,@"/index/getCustomerService.html"];
-    NSString *path = [NSString stringWithFormat:@"%@%@%@",@"https://",_urlArray[_urlArrayIndex],_talk];
+    
+    NSString *path = nil ;
+    
+    if ([_urlArray[_urlArrayIndex] containsString:@"hongtubet"] ||
+        [_urlArray[_urlArrayIndex] containsString:@"bdo888"]) //ignore crt
+    {
+         path = [NSString stringWithFormat:@"%@%@%@",@"http://",_urlArray[_urlArrayIndex],_talk];
+    }else{
+         path = [NSString stringWithFormat:@"%@%@%@",@"https://",_urlArray[_urlArrayIndex],_talk];
+    }
     if(IS_DEBUG)
     {
         path = [NSString stringWithFormat:@"%@%@%@",@"http://",_urlArray[_urlArrayIndex],_talk];
@@ -275,7 +284,14 @@
         if(IS_DEBUG) {
              self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"http://",_urlArray[_urlArrayIndex]];
         } else {
-             self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"https://",_urlArray[_urlArrayIndex]];
+            if ([_urlArray[_urlArrayIndex] containsString:@"hongtubet"] ||
+                [_urlArray[_urlArrayIndex] containsString:@"bdo888"]) //ignore crt
+            {
+                self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"http://",_urlArray[_urlArrayIndex]];
+            }else
+            {
+                self.appDelegate.domain = [NSString stringWithFormat:@"%@%@",@"https://",_urlArray[_urlArrayIndex]];
+            }
         }
         NSLog(@"线路%@可用", path);
         //检测成功后检查更新

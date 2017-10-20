@@ -53,6 +53,7 @@
         }
     }
     
+    
     //3设置网页自适应
     self.serviceWV.scalesPageToFit = YES;
     
@@ -152,7 +153,13 @@
         self.serviceWV.scalesPageToFit = YES;
         self.serviceWV.dataDetectorTypes = UIDataDetectorTypeAll;
         self.serviceWV.delegate=self;
-        [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
+        if ([SID isEqualToString:@"202"]) {
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:_appDelegate.servicePath]];
+            _isLoad = FALSE ;
+            self.tabBarController.selectedIndex = 0 ;
+        }else {
+            [self.serviceWV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_appDelegate.servicePath]]];
+        }
     }
 }
 
