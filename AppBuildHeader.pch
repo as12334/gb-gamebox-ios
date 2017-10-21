@@ -970,6 +970,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _yqgk //金凯娱乐
+
+#define CODE    @"yqgk"
+#define S        @"f3f0e906ac6f6f16290aeef3fa5455e9"
+#define SID        @"258"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
