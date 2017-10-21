@@ -26,19 +26,11 @@
 //#define THEME    @"lottery.skin"
 //#define SITE_TYPE    @"lottery"
 
-
-#define CODE    @"ucuy"
-#define S        @"5e15309686f8eff34ee8b1ce8deaee1e"
-#define SID        @"202"
-#define THEME    @"default.skin"
+#define CODE    @"hihk"
+#define S        @"5c441ff853deb589cd515950950ef1ec"
+#define SID        @"141"
+#define THEME    @"green.skin"
 #define SITE_TYPE    @"integrated"
-
-//test06测试环境
-//#define CODE	@"ocu1"
-//#define S		@"bc075350ffffdd9f0ecbc2045d852238"
-//#define SID		@"26"
-//#define THEME	@"lottery.skin"
-//#define SITE_TYPE	@"lottery"
 
 #elif _7cxt //百发彩票
 

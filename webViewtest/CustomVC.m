@@ -399,4 +399,19 @@
     };
 }
 
+#pragma mark-
+- (IBAction)backWV:(UIButton *)sender {
+    if(self.customWebView.canGoBack){
+        [self.customWebView goBack];
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }
+}
+
+- (IBAction)goBack:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end
