@@ -26,11 +26,11 @@
 //#define THEME    @"lottery.skin"
 //#define SITE_TYPE    @"lottery"
 
-#define CODE    @"hihk"
-#define S        @"5c441ff853deb589cd515950950ef1ec"
-#define SID        @"141"
-#define THEME    @"green.skin"
-#define SITE_TYPE    @"integrated"
+#define CODE    @"7vhp"
+#define S        @"4410d084f2fe81a3e3f3ea03574ba90d"
+#define SID        @"800"
+#define THEME    @"lottery.skin"
+#define SITE_TYPE    @"lottery"
 
 #elif _7cxt //百发彩票
 
