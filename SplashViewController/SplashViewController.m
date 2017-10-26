@@ -169,9 +169,11 @@
         _urlArray = ConvertToClassPointer(NSArray, data) ;
         [self checkUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck){
-        NSString *strTmp = ConvertToClassPointer(NSString, [self.serviceRequest contextForType:ServiceRequestTypeDomainCheck]) ;
+//        NSString *strTmp = ConvertToClassPointer(NSString, [self.serviceRequest contextForType:ServiceRequestTypeDomainCheck]) ;
+        NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[_urlArrayIndex]) copy] ;
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        if (isIgnoreHTTPS(strTmp)){
+        
+        if ((isIgnoreHTTPS(strTmp) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)){
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",strTmp]] ;
         }else{
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
@@ -214,7 +216,7 @@
 - (void) checkUrl{
     if (_urlArrayIndex<_urlArray.count){
         [self.serviceRequest cancleAllServices] ;
-        [self.serviceRequest setContext:_urlArray[_urlArrayIndex] forType:ServiceRequestTypeDomainCheck] ;
+//        [self.serviceRequest setContext:[_urlArray[_urlArrayIndex] copy] forType:ServiceRequestTypeDomainCheck] ;
         [self.serviceRequest startCheckDomain:_urlArray[_urlArrayIndex]] ;
     }else{
         showMessage(self.view, NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil),

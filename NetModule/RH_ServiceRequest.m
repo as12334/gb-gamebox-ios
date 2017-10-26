@@ -107,8 +107,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startCheckDomain:(NSString*)doMain
 {
+    NSString *tmpFormat = nil ;
+    
     [self _startServiceWithAPIName:nil
-                        pathFormat:isIgnoreHTTPS(doMain)?@"http://%@/__check":@"https://%@/__check"
+                        pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"https://%@/__check"
                      pathArguments:@[doMain?:@""]
                    headerArguments:nil
                     queryArguments:nil

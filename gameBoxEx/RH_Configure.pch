@@ -19,23 +19,22 @@
 //    API host
 //===========================================================
 #pragma mark- 运行环境配制
-#define IS_DEV_SERVER_ENV                       1
-#define IS_TEST_SERVER_ENV                      0
+#define IS_DEV_SERVER_ENV                       0
+#define IS_TEST_SERVER_ENV                      1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_API_MAIN_URL                         @"https://apiplay.info:1344/boss"
+#define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
 //API的主URL
-#define RH_API_MAIN_URL                         @"https://apiplay.info:1344/boss"
+#define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
 #else
 //正式环境
 #define RH_API_MAIN_URL                         @"https://apiplay.info:1344/boss"
 #endif
 #endif
-
 
 //===========================================================
 //    ignore  https crt domain list
@@ -51,6 +50,14 @@
 #define CODE    @"ptxa"
 #define S        @"b4034680baddc6cecbb609d6fd33785f"
 #define SID        @"178"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _rf80 //TEST01[21]
+
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

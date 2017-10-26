@@ -131,7 +131,8 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSString *tmpStr = domain.trim ;
     tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
     tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
-
+    
+    NSLog(@".....domain:%@",tmpStr) ;
     _domain = tmpStr ;
 }
 
