@@ -13,7 +13,7 @@
 # configuration_list=('_DEBUG' '_98jb')
 configuration_list=(  \
 	# '_DEBUG^71^app12'  \
-     # '_7cxt^69^"百发彩票"' \
+     '_7cxt^69^"百发彩票"' \
      # '_1wl5^70^"天天彩票"'  \
      # '_8l6r^71^"超博娱乐"'  \
      # '_XH5Z^76^"澳门永利"'  \
@@ -139,13 +139,13 @@ configuration_list=(  \
 	)
 
 #自定义project 相关信息 
-project_path='/Users/luis/Documents/project/cp-ios/cp-ios/gameBoxEx'
+project_path='/Users/luis/Documents/project/gamebox-ios/gamebox-ios'
 project_name='gameBoxEx'
 app_version='3.0'
 
 archieve_path='/Users/luis/Desktop/product_achive'
 exportipa_path='/Users/luis/Desktop/product_package'
-exportOptionsPlist_file='/Users/luis/Documents/project/cp-ios/cp-ios/exportOptionPlist.plist'
+exportOptionsPlist_file='/Users/luis/Documents/project/gamebox-ios/gamebox-ios/exportOptionPlist.plist'
 
 
 #switch to project folder
