@@ -52,6 +52,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     {
         showAlertView( @"提示", @"您正在使用的是测试环境");
     }
+    NSLog(@"测试分支");
 }
 
 -(BOOL)needShowUserGuideView
