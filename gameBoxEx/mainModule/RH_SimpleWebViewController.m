@@ -55,6 +55,25 @@
 //    self.contentScrollView = _webView.scrollView;
 
 }
+//重载父类方法
+-(UIEdgeInsets)contentScrollViewEdgeInsetsWithFullScreenModel:(BOOL)fullScreen
+{
+    UIEdgeInsets contentInsets  ;
+    if (fullScreen){
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+                                         0,
+                                         ([self fullScreenIncludeBottomView]?0.0:([self hasBottomView]?MAX(0, [self bottomViewHeight]):0)),
+                                         0) ;
+    }else{
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+                                         0,
+                                         (self.isHiddenTabBar?0:heighTabBar) +
+                                         ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
+                                         0) ;
+    }
+    
+    return contentInsets ;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
