@@ -55,6 +55,25 @@
 //    self.contentScrollView = _webView.scrollView;
 
 }
+//重载父类方法
+-(UIEdgeInsets)contentScrollViewEdgeInsetsWithFullScreenModel:(BOOL)fullScreen
+{
+    UIEdgeInsets contentInsets  ;
+    if (fullScreen){
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+                                         0,
+                                         ([self fullScreenIncludeBottomView]?0.0:([self hasBottomView]?MAX(0, [self bottomViewHeight]):0)),
+                                         0) ;
+    }else{
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+                                         0,
+                                         (self.isHiddenTabBar?0:heighTabBar) +
+                                         ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
+                                         0) ;
+    }
+    
+    return contentInsets ;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -285,7 +304,6 @@
 {
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
-
     NSString *url = webView.request.URL.absoluteString;
     ////账号密码自动填充
     if([url containsString:@"/login/commonLogin.html"] || [url containsString:@"/passport/login.html"]){
@@ -305,7 +323,7 @@
             }
         }
     }
-
+    
     //增加通用 js 处理
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
     [self setupJSCallBackOC:jsContext] ;
@@ -324,12 +342,11 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 //    NSString * requestURLStr = request.URL.absoluteString;
-//
 //    if ([requestURLStr hasPrefix:@"back"]) { ////判断是否点击了back
 //        [self backBarButtonItemHandle] ;
 //        return NO;
 //    }
-
+    
     return YES;
 }
 
@@ -590,7 +607,6 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
-
     }
 }
 
