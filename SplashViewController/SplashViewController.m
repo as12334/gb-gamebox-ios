@@ -188,7 +188,7 @@
     }else if (type == ServiceRequestTypeUpdateCheck){
         RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
         
-        if(checkVersion.mVersionCode<=[RH_APP_VERSION integerValue]){
+        if(checkVersion.mVersionCode<=[RH_APP_VERCODE integerValue]){
             [self splashViewComplete] ;
             return;
         }
@@ -205,11 +205,13 @@
                 if(alertView.firstOtherButtonIndex == buttonIndex){
                     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
                     //itms-services://?action=download-manifest&amp;url=%@/%@/%@/app_%@_%@.plist
-                    NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@/%@/%@/app_%@_%@.plist",appDelegate.domain,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
+                    NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
                     NSLog(@"%@",downLoadIpaUrl);
                     if (openURL(downLoadIpaUrl)==false){
                         [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
                         [self splashViewComplete] ;
+                    }else{
+                        exit(0) ;
                     }
                 }else{
                     [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
