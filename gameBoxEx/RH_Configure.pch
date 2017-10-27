@@ -20,7 +20,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -565,7 +565,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _gc7p //金沙娱乐城
+#elif _gc7p //星河娱乐城
 
 #define CODE    @"gc7p"
 #define S        @"cb6ab7b77f628ebc4eedbb82cf127ee3"
