@@ -17,9 +17,8 @@
 #define RH_SP_COMMON_SITESEC                         @"s"
 
 //移动端信息
-#define RH_SP_COMMON_OSTYPE                         @"type"
-#define RH_SP_COMMON_MD5KEY                         @"key"
-#define RH_SP_COMMON_VERSION                        @"code"
+#define RH_SP_COMMON_OSTYPE                              @"type"
+#define RH_SP_COMMON_CHECKVERSION                        @"code"
 
 //===========================================================
 //通过返回参数
@@ -32,6 +31,17 @@
 //3.message,返回的信息,Sting类型
 #define RH_GP_MESSAGE               @"message"
 
+
+//checkversion model
+#define RH_GP_CHECKVERSION_ID                                       @"id"
+#define RH_GP_CHECKVERSION_APPNAME                                  @"appName"
+#define RH_GP_CHECKVERSION_APPTYPE                                  @"appType"
+#define RH_GP_CHECKVERSION_VERSIONCODE                              @"versionCode"
+#define RH_GP_CHECKVERSION_VERSIONNAME                              @"versionName"
+#define RH_GP_CHECKVERSION_APPURL                                   @"appUrl"
+#define RH_GP_CHECKVERSION_MEMO                                     @"memo"
+#define RH_GP_CHECKVERSION_UPDATETIME                               @"updateTime"
+#define RH_GP_CHECKVERSION_MD5                                      @"md5"
 
 
 

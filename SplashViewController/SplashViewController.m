@@ -12,12 +12,16 @@
 #import "RH_API.h"
 #import "RH_APPDelegate.h"
 #import "MacroDef.h"
+#import "RH_UpdatedVersionModel.h"
 
 #define aiScreenWidth [UIScreen mainScreen].bounds.size.width
 #define aiScreenHeight [UIScreen mainScreen].bounds.size.height
 #define STATUS_BAR_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 #define NAVIGATION_BAR_HEIGHT self.navigationController.navigationBar.frame.size.height
 #define TAB_BAR_HEIGHT self.tabBarController.tabBar.frame.size.height
+
+#define  kUpdateAPPDatePrompt                           @"kUpdateAPPDatePrompt"
+#define  OneDayTotalInterval                             (24*60*60)
 
 @interface SplashViewController ()
 @property(nonatomic,strong) UIWindow * window;
@@ -41,10 +45,11 @@
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
-    self.needObserveNetStatusChanged = YES ;
+    self.needObserveNetStatusChanged = NO ;
     [self netStatusChangedHandle] ;
 
     [self initView] ;
+    
 }
 
 - (void)initView{
@@ -63,7 +68,7 @@
 
 -(void)startReqSiteInfo
 {
-    [self.serviceRequest cancleAllServices] ;
+    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeDomainList] ;
     [self.serviceRequest startReqDomainList] ;
 }
 
@@ -169,7 +174,6 @@
         _urlArray = ConvertToClassPointer(NSArray, data) ;
         [self checkUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck){
-//        NSString *strTmp = ConvertToClassPointer(NSString, [self.serviceRequest contextForType:ServiceRequestTypeDomainCheck]) ;
         NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[_urlArrayIndex]) copy] ;
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         
@@ -178,22 +182,47 @@
         }else{
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
         }
-
+        
         [self.serviceRequest startUpdateCheck] ;
+        
     }else if (type == ServiceRequestTypeUpdateCheck){
-        NSString *receiveInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
-        if(receiveInfo.length==0){
+        RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
+        
+        if(checkVersion.mVersionCode<=[RH_APP_VERSION integerValue]){
             [self splashViewComplete] ;
             return;
         }
-
-        if([[dic objectForKey:@"versionCode"] intValue] > [RH_APP_VERSION intValue]){
-            /**/
-            NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&amp;url=https://%@%@/app_%@_%@.plist",[dic objectForKey:@"appUrl"],CODE,CODE,[dic objectForKey:@"versionName"]];
-            NSLog(@"%@",downLoadIpaUrl);
-            [[UIApplication sharedApplication]openURL: [NSURL URLWithString:downLoadIpaUrl]];
+        
+        //检查今天是否已提醒
+        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+        NSDate *dateTmp = ConvertToClassPointer(NSDate, [userDefaults objectForKey:kUpdateAPPDatePrompt]) ;
+        NSDate *dateCurr = [NSDate date] ;
+        
+        
+        if (dateTmp==nil ||
+            [dateCurr timeIntervalSinceDate:dateTmp]>OneDayTotalInterval){
+            UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if(alertView.firstOtherButtonIndex == buttonIndex){
+                    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                    //itms-services://?action=download-manifest&amp;url=%@/%@/%@/app_%@_%@.plist
+                    NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@/%@/%@/app_%@_%@.plist",appDelegate.domain,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
+                    NSLog(@"%@",downLoadIpaUrl);
+                    if (openURL(downLoadIpaUrl)==false){
+                        [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
+                        [self splashViewComplete] ;
+                    }
+                }else{
+                    [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
+                    [self splashViewComplete] ;
+                }
+                
+            }
+                                                                    title:@"检测到新版本"
+                                                                  message:checkVersion.mMemo
+                                                         cancelButtonName:@"暂不更新"
+                                                        otherButtonTitles:@"立即更新", nil];
+            
+            [alertView show];
         }else{
             [self splashViewComplete] ;
         }
@@ -215,7 +244,7 @@
 
 - (void) checkUrl{
     if (_urlArrayIndex<_urlArray.count){
-        [self.serviceRequest cancleAllServices] ;
+        [self.serviceRequest cancleServiceWithType:ServiceRequestTypeDomainCheck] ;
 //        [self.serviceRequest setContext:[_urlArray[_urlArrayIndex] copy] forType:ServiceRequestTypeDomainCheck] ;
         [self.serviceRequest startCheckDomain:_urlArray[_urlArrayIndex]] ;
     }else{

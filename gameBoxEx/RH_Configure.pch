@@ -12,8 +12,7 @@
 //===========================================================
 //APP 信息
 //===========================================================
-#define RH_APP_MD5VALUE                 @"3f990aa1e870c0065a2e98e16683e9e9"
-#define RH_APP_VERSION                  @"3"
+#define RH_APP_VERSION                  @"2"
 
 //===========================================================
 //    API host
@@ -25,14 +24,17 @@
 //开发环境
 #if  IS_DEV_SERVER_ENV
 #define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
+#define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
 //API的主URL
 #define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
+#define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
 #define RH_API_MAIN_URL                         @"https://apiplay.info:1344/boss"
+#define RH_APP_UPDATECHECK                      @"j5ZSSGKixBXyF+Rub/BRig=="
 #endif
 #endif
 
@@ -162,7 +164,7 @@
 #define CODE    @"nu9r"
 #define S        @"b5a693d5567e5b677f316a17063c1a28"
 #define SID        @"119"
-#define THEME    @"blue.skin"
+#define THEME     @"blue.skin"
 #define SITE_TYPE    @"integrated"
 
 #elif _cvqb //演示站点

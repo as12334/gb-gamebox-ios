@@ -269,7 +269,7 @@ isStart = NO;                                   \
             }
         }
 
-        //        HttpRequestDebugLog("body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
+//        HttpRequestDebugLog("body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
     }
 
     return bodyData;
@@ -319,7 +319,8 @@ isStart = NO;                                   \
 
         _urlRequest = tmpURLRequest;
     }
-
+    
+    NSLog(@"urlRequest:%@",_urlRequest.URL) ;
     return _urlRequest;
 }
 

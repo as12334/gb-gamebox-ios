@@ -77,6 +77,7 @@
 -(void)webViewDidEndLoad:(NSError *)error
 {
     [super webViewDidEndLoad:error] ;
+    [self.contentLoadingIndicateView hiddenView] ;
     if (!error){
         if (self.appDelegate.isLogin){
             [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"] ;
