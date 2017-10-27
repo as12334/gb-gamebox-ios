@@ -12,6 +12,7 @@
 #import "RH_ErrorCode.h"
 #import "RH_API.h"
 #import "coreLib.h"
+#import "RH_UpdatedVersionModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -107,8 +108,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startCheckDomain:(NSString*)doMain
 {
-    NSString *tmpFormat = nil ;
-    
     [self _startServiceWithAPIName:nil
                         pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"https://%@/__check"
                      pathArguments:@[doMain?:@""]
@@ -127,8 +126,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:nil
                     queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
-                                     RH_SP_COMMON_MD5KEY:RH_APP_MD5VALUE,
-                                     RH_SP_COMMON_VERSION:RH_APP_VERSION
+                                     RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
@@ -362,9 +360,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         *reslutData = [tmpData mj_JSONString] ;
         return YES ;
-    }else if (type == ServiceRequestTypeUpdateCheck) {
-        *reslutData = data ;
-        return YES ;
     }
 
     //json解析
@@ -393,7 +388,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
             }
                 break ;
-
+                
+            case ServiceRequestTypeUpdateCheck:
+            {
+                resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
+            }
+                break ;
+                
 //            case ServiceRequestTypeFirstPage:
 //            {
 //                RH_FirstPageModel *firstPageModel = [[RH_FirstPageModel alloc] initWithInfoDic:[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]] ;

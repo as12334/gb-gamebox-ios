@@ -16,10 +16,14 @@
 @end
 
 @implementation RH_CustomServicePageViewController
+{
+    NSInteger _loadingCount ;
+}
 
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
+    _loadingCount = 0 ;
     self.navigationItem.titleView = nil ;
     self.webURL = [NSURL URLWithString:self.appDelegate.servicePath.trim];
 
@@ -77,6 +81,16 @@
 }
 
 #pragma mark-
+//开始加载
+
+-(void)webViewBeginLoad
+{
+    if (!_loadingCount){
+        [super webViewBeginLoad] ;
+        _loadingCount++ ;
+    }
+}
+
 -(void)webViewDidEndLoad:(NSError *)error
 {
     [super webViewDidEndLoad:error] ;
@@ -85,6 +99,7 @@
             [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"] ;
         }
     }
+    
 }
 
 @end

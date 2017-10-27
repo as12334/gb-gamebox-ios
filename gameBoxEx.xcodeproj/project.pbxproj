@@ -237,6 +237,7 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
+		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
 		A0D66FF11F998C380053F0ED /* ClientCoreSDK.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */; };
 		A0D66FF21F998C380053F0ED /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */; };
 		A0D66FF31F998C380053F0ED /* ConfigEntity.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAD1F998B0A0053F0ED /* ConfigEntity.h */; };
@@ -786,6 +787,8 @@
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
 		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UpdatedVersionModel.h; sourceTree = "<group>"; };
+		A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UpdatedVersionModel.m; sourceTree = "<group>"; };
 		A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
 		A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientCoreSDK.m; sourceTree = "<group>"; };
 		A0D66FAD1F998B0A0053F0ED /* ConfigEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigEntity.h; sourceTree = "<group>"; };
@@ -1588,6 +1591,8 @@
 			children = (
 				A010A0041F878B67004E6EF4 /* RH_BasicModel.h */,
 				A010A0051F878B67004E6EF4 /* RH_BasicModel.m */,
+				A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */,
+				A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -2241,6 +2246,7 @@
 				A0E367F21F91A50F00758033 /* AFURLSessionManager.h in Sources */,
 				A0E367F31F91A50F00758033 /* AFURLSessionManager.m in Sources */,
 				A0E367F41F91A50F00758033 /* UIActivityIndicatorView+AFNetworking.h in Sources */,
+				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
 				A0E367F51F91A50F00758033 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A0E367F61F91A50F00758033 /* UIButton+AFNetworking.h in Sources */,
 				A0E367F71F91A50F00758033 /* UIButton+AFNetworking.m in Sources */,
@@ -2477,7 +2483,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A0109C8C1F878199004E6EF4 /* _DEBUG */ = {
+		A0109C8C1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2518,7 +2524,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_7cxt=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2528,12 +2534,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid255;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid69;
 				SDKROOT = iphoneos;
 			};
-			name = _DEBUG;
+			name = Release;
 		};
-		A0109C8F1F878199004E6EF4 /* _DEBUG */ = {
+		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APP_DISPLAY_NAME = UEDBET;
@@ -2554,7 +2560,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = _DEBUG;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2562,18 +2568,18 @@
 		A0109C5D1F878199004E6EF4 /* Build configuration list for PBXProject "gameBoxEx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A0109C8C1F878199004E6EF4 /* _DEBUG */,
+				A0109C8C1F878199004E6EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = _DEBUG;
+			defaultConfigurationName = Release;
 		};
 		A0109C8E1F878199004E6EF4 /* Build configuration list for PBXNativeTarget "gameBoxEx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A0109C8F1F878199004E6EF4 /* _DEBUG */,
+				A0109C8F1F878199004E6EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = _DEBUG;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

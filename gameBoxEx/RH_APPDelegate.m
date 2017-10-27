@@ -47,12 +47,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
-    
-    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
-    {
-        showAlertView( @"提示", @"您正在使用的是测试环境");
-    }
-    NSLog(@"测试分支");
 }
 
 -(BOOL)needShowUserGuideView
@@ -108,6 +102,10 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     [self.window makeKeyAndVisible] ;
 
     [self completedShowMainWindow];
+    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
+    {
+        showAlertView( @"提示", @"您正在使用的是测试环境");
+    }
 }
 
 - (void)completedShowMainWindow

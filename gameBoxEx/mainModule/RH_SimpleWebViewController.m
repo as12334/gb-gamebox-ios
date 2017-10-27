@@ -305,7 +305,6 @@
 {
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
-
     NSString *url = webView.request.URL.absoluteString;
     ////账号密码自动填充
     if([url containsString:@"/login/commonLogin.html"] || [url containsString:@"/passport/login.html"]){
@@ -325,7 +324,7 @@
             }
         }
     }
-
+    
     //增加通用 js 处理
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
     [self setupJSCallBackOC:jsContext] ;
@@ -344,12 +343,11 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 //    NSString * requestURLStr = request.URL.absoluteString;
-//
 //    if ([requestURLStr hasPrefix:@"back"]) { ////判断是否点击了back
 //        [self backBarButtonItemHandle] ;
 //        return NO;
 //    }
-
+    
     return YES;
 }
 
@@ -610,7 +608,6 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
-
     }
 }
 
