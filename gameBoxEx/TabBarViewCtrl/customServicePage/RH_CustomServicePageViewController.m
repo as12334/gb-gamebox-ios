@@ -29,6 +29,7 @@
 
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+   
 }
 
 -(BOOL)tabBarHidden
@@ -60,6 +61,7 @@
         [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
         [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息
     }
+     
 }
 
 #pragma mark-
@@ -67,6 +69,7 @@
 {
     [loginViewContrller hideWithDesignatedWay:YES completedBlock:^{
         [self reloadWebView] ;
+        
     }] ;
 }
 

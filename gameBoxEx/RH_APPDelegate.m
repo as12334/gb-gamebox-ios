@@ -43,7 +43,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //add my info to the new agent
     NSString *newAgent = [oldAgent stringByAppendingString:@"app_ios, iPhone"];
     NSLog(@"new agent :%@", newAgent);
-
+    NSLog(@"熟悉Git1");
     //regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
