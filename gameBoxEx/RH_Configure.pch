@@ -1025,6 +1025,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _2ztl //拉斯维加斯
+
+#define CODE    @"2ztl"
+#define S        @"dc2d576ea0c800e967aebfa6ba614dcf"
+#define SID        @"259"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
@@ -1032,6 +1040,7 @@
 #define SID   @"71"
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
+
 
 #endif
 
