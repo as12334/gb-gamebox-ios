@@ -1063,7 +1063,7 @@
 #define S        @"e1314f35aeacc31b41b4e58d14c4e2fe"
 #define SID        @"806"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"lottery"
 
 #elif _hjnl //凤凰彩票
 
@@ -1071,7 +1071,7 @@
 #define S        @"125cd0009abbc158168b23bfeaa133fe"
 #define SID        @"807"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"lottery"
 
 #else //超博娱乐
 
