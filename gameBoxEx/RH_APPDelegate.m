@@ -41,9 +41,10 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     NSLog(@"old agent :%@", oldAgent);
     //add my info to the new agent
-    NSString *newAgent = [oldAgent stringByAppendingString:@"app_ios, iPhone"];
+    NSLog(@"........%@",getDeviceModel()) ;
+    NSString *newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
+    
     NSLog(@"new agent :%@", newAgent);
-    NSLog(@"熟悉Git1");
     //regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
