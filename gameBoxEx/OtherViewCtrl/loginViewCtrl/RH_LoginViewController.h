@@ -1,24 +1,21 @@
 //
 //  RH_LoginViewController.h
-//  TaskTracking
+//  gameBoxEx
 //
-//  Created by apple pro on 2017/2/18.
-//  Copyright © 2017年 jinguihua. All rights reserved.
+//  Created by luis on 2017/10/7.
+//  Copyright © 2017年 luis. All rights reserved.
 //
 
 #import "RH_BasicViewController.h"
+#import "RH_SimpleWebViewController.h"
 
-@class RH_LoginViewController;
-@protocol RH_LoginViewControllerDelegate <NSObject>
-
-@optional
-- (void)userLoginViewControllerDidSucceedLogin:(RH_LoginViewController *)userLoginViewController;
-
+@class  RH_LoginViewController ;
+@protocol LoginViewControllerDelegate <NSObject>
+-(void)loginViewViewControllerTouchBack:(RH_LoginViewController*)loginViewContrller ;
+-(void)loginViewViewControllerLoginSuccessful:(RH_LoginViewController*)loginViewContrller ;
 @end
 
+@interface RH_LoginViewController : RH_SimpleWebViewController
+@property(nonatomic,weak) id<LoginViewControllerDelegate> delegate;
 
-@interface RH_LoginViewController : RH_BasicViewController
-+(instancetype)shareLoginViewController ;
-
-@property(nonatomic,weak) id<RH_LoginViewControllerDelegate> delegate;
 @end

@@ -345,8 +345,6 @@
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
 		A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */; };
-		F67B30931FA7195400C63829 /* RH_LoginViewControllerEx.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */; };
-		F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -905,9 +903,6 @@
 		A0E53DC21F987D1400CE69E4 /* RH_IMMessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_IMMessageTableCell.h; sourceTree = "<group>"; };
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
-		F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RH_LoginViewControllerEx.xib; path = ../../../../../../Desktop/RH_LoginViewControllerEx.xib; sourceTree = "<group>"; };
-		F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };
-		F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1789,13 +1784,14 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				A08417DF1FA6B4CB00869133 /* loginViewCtrl */,
 				A0E367AC1F90617600758033 /* RH_PayViewController.h */,
 				A0E367AB1F90617600758033 /* RH_PayViewController.m */,
 				A0E368171F95FF5800758033 /* RH_GamesViewController.h */,
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
+				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
+				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
 			);
 			path = OtherViewCtrl;
 			sourceTree = "<group>";
@@ -1807,18 +1803,6 @@
 				A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */,
 			);
 			path = minePage;
-			sourceTree = "<group>";
-		};
-		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
-			isa = PBXGroup;
-			children = (
-				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
-				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
-				F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */,
-				F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */,
-				F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */,
-			);
-			path = loginViewCtrl;
 			sourceTree = "<group>";
 		};
 		A0D66FAA1F998B0A0053F0ED /* Core */ = {
@@ -2138,7 +2122,6 @@
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
-				F67B30931FA7195400C63829 /* RH_LoginViewControllerEx.xib in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
@@ -2240,7 +2223,6 @@
 				A0E53DA61F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
-				F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
 				A0E367E11F91A50F00758033 /* AFAutoPurgingImageCache.h in Sources */,
@@ -2542,7 +2524,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_acpb=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_xmil=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2552,7 +2534,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid188;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid156;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -2560,12 +2542,12 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "鸿泰国际";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-188";
+				APP_DISPLAY_NAME = "新葡京娱乐场";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-156";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "_acpb=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_xmil=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2574,7 +2556,7 @@
 					"$(PROJECT_DIR)/thirdPart/MobileIMSDK4iLib",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid188;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid156;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
