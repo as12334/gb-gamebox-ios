@@ -20,5 +20,5 @@
 @interface RH_LoginOCViewController : RH_BasicViewController
 +(instancetype)shareLoginViewController ;
 
-@property(nonatomic,weak) id<RH_LoginOCViewControllerDelegate> delegate;
+@property(nonatomic,weak) id<RH_LoginOCViewControllerDelegate>delegate;
 @end

@@ -15,8 +15,11 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
-
-@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
+//#import
+//原生的OC登录控制器
+#import "RH_LoginOCViewController.h"
+//原生登录代理和H5代理。方便切换打包用
+@interface RH_SimpleWebViewController ()<RH_LoginOCViewControllerDelegate,LoginViewControllerDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -91,7 +94,10 @@
                     self.myTabBarController.selectedIndex = 0 ;
                 }else{
                     //push login viewController
-                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController] ;
+                    //H5登录接口
+//                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                    //oc原生登录接口
+                    RH_LoginOCViewController *loginViewCtrl = [RH_LoginOCViewController viewController] ;
                     loginViewCtrl.delegate = self ;
                     [self showViewController:loginViewCtrl sender:self] ;
                 }
