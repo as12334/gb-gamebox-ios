@@ -345,7 +345,6 @@
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
 		A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */; };
-		F67B30931FA7195400C63829 /* RH_LoginViewControllerEx.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */; };
 		F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */; };
 /* End PBXBuildFile section */
 
@@ -905,7 +904,6 @@
 		A0E53DC21F987D1400CE69E4 /* RH_IMMessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_IMMessageTableCell.h; sourceTree = "<group>"; };
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
-		F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RH_LoginViewControllerEx.xib; path = ../../../../../../Desktop/RH_LoginViewControllerEx.xib; sourceTree = "<group>"; };
 		F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };
 		F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1816,7 +1814,6 @@
 				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
 				F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */,
 				F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */,
-				F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */,
 			);
 			path = loginViewCtrl;
 			sourceTree = "<group>";
@@ -2138,7 +2135,6 @@
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
-				F67B30931FA7195400C63829 /* RH_LoginViewControllerEx.xib in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
