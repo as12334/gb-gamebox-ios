@@ -1033,6 +1033,46 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _xmwf //澳门威尼斯人
+
+#define CODE    @"xmwf"
+#define S        @"723e8fb7e5907eabf4f90483776b989e"
+#define SID        @"261"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _nt6y //9发bet
+
+#define CODE    @"nt6y"
+#define S        @"385c02cc2239963703e4075ce043d384"
+#define SID        @"262"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _n6pg //太阳城集团
+
+#define CODE    @"n6pg"
+#define S        @"e2b05b1f43f4b4358799164a676c436b"
+#define SID        @"263"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _ywo4 //万濠彩票
+
+#define CODE    @"ywo4"
+#define S        @"e1314f35aeacc31b41b4e58d14c4e2fe"
+#define SID        @"806"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _hjnl //凤凰彩票
+
+#define CODE    @"hjnl"
+#define S        @"125cd0009abbc158168b23bfeaa133fe"
+#define SID        @"807"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
