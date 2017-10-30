@@ -95,9 +95,9 @@
                 }else{
                     //push login viewController
                     //H5登录接口
-//                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
                     //oc原生登录接口
-                    RH_LoginViewControllerEx *loginViewCtrl = [RH_LoginViewControllerEx viewController] ;
+//                    RH_LoginViewControllerEx *loginViewCtrl = [RH_LoginViewControllerEx viewController] ;
                     loginViewCtrl.delegate = self ;
                     [self showViewController:loginViewCtrl sender:self] ;
                 }
