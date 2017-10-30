@@ -1041,8 +1041,6 @@
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
 
-
 #endif
-
 
 #endif /* RH_Configure_h */
