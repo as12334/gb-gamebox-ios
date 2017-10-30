@@ -906,6 +906,7 @@
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
 		F67B30941FA7401400C63829 /* RH_LoginViewControllerEx.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_LoginViewControllerEx.xib; sourceTree = "<group>"; };
+		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
 		F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };
 		F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -953,6 +954,7 @@
 		A0109C591F878199004E6EF4 = {
 			isa = PBXGroup;
 			children = (
+				F67B30961FA742B600C63829 /* sitelist.sh */,
 				A0E53D681F97411F00CE69E4 /* thirdPart */,
 				A0109E071F87852F004E6EF4 /* CoreLib */,
 				A010A0021F878B67004E6EF4 /* NetModule */,
