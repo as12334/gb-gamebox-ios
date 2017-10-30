@@ -237,8 +237,6 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
-		A08417E31FA6B4CB00869133 /* RH_LoginOCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A08417E11FA6B4CB00869133 /* RH_LoginOCViewController.m */; };
-		A08417E41FA6B4CB00869133 /* RH_LoginOCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08417E21FA6B4CB00869133 /* RH_LoginOCViewController.xib */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
 		A0D66FF11F998C380053F0ED /* ClientCoreSDK.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */; };
 		A0D66FF21F998C380053F0ED /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */; };
@@ -347,6 +345,8 @@
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
 		A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */; };
+		F67B30931FA7195400C63829 /* RH_LoginViewControllerEx.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */; };
+		F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -789,9 +789,6 @@
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
 		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A08417E01FA6B4CB00869133 /* RH_LoginOCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoginOCViewController.h; sourceTree = "<group>"; };
-		A08417E11FA6B4CB00869133 /* RH_LoginOCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoginOCViewController.m; sourceTree = "<group>"; };
-		A08417E21FA6B4CB00869133 /* RH_LoginOCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_LoginOCViewController.xib; sourceTree = "<group>"; };
 		A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UpdatedVersionModel.h; sourceTree = "<group>"; };
 		A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UpdatedVersionModel.m; sourceTree = "<group>"; };
 		A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
@@ -908,6 +905,9 @@
 		A0E53DC21F987D1400CE69E4 /* RH_IMMessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_IMMessageTableCell.h; sourceTree = "<group>"; };
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
+		F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RH_LoginViewControllerEx.xib; path = ../../../../../../Desktop/RH_LoginViewControllerEx.xib; sourceTree = "<group>"; };
+		F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };
+		F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1796,8 +1796,6 @@
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
-				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
-				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
 			);
 			path = OtherViewCtrl;
 			sourceTree = "<group>";
@@ -1814,9 +1812,11 @@
 		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				A08417E01FA6B4CB00869133 /* RH_LoginOCViewController.h */,
-				A08417E11FA6B4CB00869133 /* RH_LoginOCViewController.m */,
-				A08417E21FA6B4CB00869133 /* RH_LoginOCViewController.xib */,
+				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
+				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
+				F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */,
+				F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */,
+				F67B30921FA7195400C63829 /* RH_LoginViewControllerEx.xib */,
 			);
 			path = loginViewCtrl;
 			sourceTree = "<group>";
@@ -2138,6 +2138,7 @@
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
+				F67B30931FA7195400C63829 /* RH_LoginViewControllerEx.xib in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
@@ -2162,7 +2163,6 @@
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
-				A08417E41FA6B4CB00869133 /* RH_LoginOCViewController.xib in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
 				A001B3EA1F8EF7CA00309EA4 /* tab_home@2x.png in Resources */,
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
@@ -2240,6 +2240,7 @@
 				A0E53DA61F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
+				F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
 				A0E367E11F91A50F00758033 /* AFAutoPurgingImageCache.h in Sources */,
@@ -2392,7 +2393,6 @@
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
-				A08417E31FA6B4CB00869133 /* RH_LoginOCViewController.m in Sources */,
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,

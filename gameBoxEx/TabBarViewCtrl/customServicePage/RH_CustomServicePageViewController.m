@@ -61,7 +61,6 @@
         [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
         [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息
     }
-     
 }
 
 #pragma mark-

@@ -17,9 +17,9 @@
 #import "RH_GamesViewController.h"
 //#import
 //原生的OC登录控制器
-#import "RH_LoginOCViewController.h"
+#import "RH_LoginViewControllerEx.h"
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<RH_LoginOCViewControllerDelegate,LoginViewControllerDelegate>
+@interface RH_SimpleWebViewController ()<RH_LoginViewControllerExDelegate,LoginViewControllerDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -97,7 +97,7 @@
                     //H5登录接口
 //                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
                     //oc原生登录接口
-                    RH_LoginOCViewController *loginViewCtrl = [RH_LoginOCViewController viewController] ;
+                    RH_LoginViewControllerEx *loginViewCtrl = [RH_LoginViewControllerEx viewController] ;
                     loginViewCtrl.delegate = self ;
                     [self showViewController:loginViewCtrl sender:self] ;
                 }
