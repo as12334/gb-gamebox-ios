@@ -262,9 +262,7 @@ NSString *getDeviceModel(void)
         }else{
             deviceName = @"iPhone" ;
         }
-        
     });
-    
     
     return deviceName;
 }
