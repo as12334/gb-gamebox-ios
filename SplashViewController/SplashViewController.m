@@ -246,6 +246,11 @@
 
 - (void) checkUrl{
     if (_urlArrayIndex<_urlArray.count){
+        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
+                                                             detailText:[NSString stringWithFormat:@"checking domain:%@",_urlArray[_urlArrayIndex]]] ;
+        }
+        
         [self.serviceRequest cancleServiceWithType:ServiceRequestTypeDomainCheck] ;
 //        [self.serviceRequest setContext:[_urlArray[_urlArrayIndex] copy] forType:ServiceRequestTypeDomainCheck] ;
         [self.serviceRequest startCheckDomain:_urlArray[_urlArrayIndex]] ;

@@ -65,9 +65,10 @@
         NSString *url = self.webView.request.URL.absoluteString;
         NSString *qqWallet = @"https://myun.tenpay.com/";
         NSString *alipay = @"https://ds.alipay.com/";
-        NSString *weixin = @"weixin";
+//        NSString *weixin = @"weixin";
 
-        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
+        
+        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay]) {
             NSLog(@"浏览器加载支付地址：%@", url);
             NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
             [[UIApplication sharedApplication] openURL:cleanURL];

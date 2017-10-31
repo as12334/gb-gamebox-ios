@@ -12,7 +12,6 @@
 //===========================================================
 //APP 信息
 //===========================================================
-#define RH_APP_VERCODE                  @"2"
 
 //===========================================================
 //    API host
@@ -23,16 +22,21 @@
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
+#define RH_APP_VERCODE                  @"3
+"
 #define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
+#define RH_APP_VERCODE                  @"3"
 //API的主URL
 #define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
+#define RH_APP_VERCODE                  @"2"
+
 #define RH_API_MAIN_URL                         @"https://apiplay.info:1344/boss"
 #define RH_APP_UPDATECHECK                      @"j5ZSSGKixBXyF+Rub/BRig=="
 #endif

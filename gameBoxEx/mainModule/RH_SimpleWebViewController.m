@@ -348,12 +348,11 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-//    NSString * requestURLStr = request.URL.absoluteString;
-//    if ([requestURLStr hasPrefix:@"back"]) { ////判断是否点击了back
-//        [self backBarButtonItemHandle] ;
-//        return NO;
-//    }
-    
+    NSString* reqUrl = request.URL.absoluteString;
+    if ([reqUrl hasPrefix:@"weixin://"]) {
+        BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
+        //bSucc是否成功调起支付宝
+    }
     return YES;
 }
 
