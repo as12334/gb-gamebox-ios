@@ -57,56 +57,19 @@
 }
 
 #pragma mark-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSString *url = self.webView.request.URL.absoluteString;
-    NSString *qqWallet = @"https://myun.tenpay.com/";
-    NSString *alipay = @"https://ds.alipay.com/";
-    NSString *weixin = @"weixin";
-    NSLog(@"1.浏览器加载支付地址：%@", url);
-    if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
-        NSLog(@"2.浏览器加载支付地址：%@", url);
-        NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
-        [[UIApplication sharedApplication] openURL:cleanURL];
-        
-    }
-    
-    return YES;
-}
-
-//-(void)webViewBeginLoad
-//{
-//    [super webViewBeginLoad] ;
-//
-//    NSString *url = self.webView.request.URL.absoluteString;
-//    NSString *qqWallet = @"https://myun.tenpay.com/";
-//    NSString *alipay = @"https://ds.alipay.com/";
-//    NSString *weixin = @"weixin";
-//    NSLog(@"1.浏览器加载支付地址：%@", url);
-//    if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
-//        NSLog(@"2.浏览器加载支付地址：%@", url);
-//        NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
-//        [[UIApplication sharedApplication] openURL:cleanURL];
-//    }
-//
-//}
-
 -(void)webViewDidEndLoad:(NSError *)error
 {
     [super webViewDidEndLoad:error] ;
 
-//    if (!error){
-//        NSString *url = self.webView.request.URL.absoluteString;
-//        NSString *qqWallet = @"https://myun.tenpay.com/";
-//        NSString *alipay = @"https://ds.alipay.com/";
-//        NSString *weixin = @"weixin";
-//         NSLog(@"1.浏览器加载支付地址：%@", url);
-//        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
-//            NSLog(@"2.浏览器加载支付地址：%@", url);
-//            NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
-//            [[UIApplication sharedApplication] openURL:cleanURL];
-//        }
-//    }
+    if (!error){
+        NSString *url = self.webView.request.URL.absoluteString;
+        NSString *qqWallet = @"https://myun.tenpay.com/";
+        NSString *alipay = @"https://ds.alipay.com/";
+        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay]) {
+            NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
+            [[UIApplication sharedApplication] openURL:cleanURL];
+        }
+    }
 }
 
 #pragma mark-

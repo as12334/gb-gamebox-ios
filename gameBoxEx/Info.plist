@@ -28,11 +28,6 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>com.wechat</key>
-			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
 			<key>jpush.cn</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
