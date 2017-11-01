@@ -8,6 +8,8 @@
 
 #import "RH_MainTabBarController.h"
 #import "RH_MainNavigationController.h"
+#import "RH_APPDelegate.h"
+#import "RH_CustomServicePageViewController.h"
 
 @interface RH_MainTabBarController ()
 @end
@@ -200,13 +202,22 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+    
     if ([super tabBarController:tabBarController shouldSelectViewController:viewController]) {
 
         if (viewController != self.selectedViewController)
         {
             if ([viewController isKindOfClass:[UINavigationController class]]) {
-
                 UIViewController * rootViewController = [(UINavigationController *)viewController topViewController];
+                //
+                if ([rootViewController isKindOfClass:[RH_CustomServicePageViewController class]]){
+                    if ([SID isEqualToString:@"211"]||[SID isEqualToString:@"119"]||[SID isEqualToString:@"136"]){
+                        RH_APPDelegate *appDelegate =  ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate)  ;
+                        openURL(appDelegate.servicePath.trim) ;
+                        return NO ;
+                    }
+                }
+                
                 if ([rootViewController isKindOfClass:[CLViewController class]]) {
                     [(CLViewController *)rootViewController tryRefreshData];
                 }
@@ -214,6 +225,7 @@
         }
         return YES;
     }
+    
     return NO;
 }
 
