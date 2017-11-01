@@ -116,7 +116,8 @@ typedef void(^HTTPRequestCompletedCallbackBlock)(NSHTTPURLResponse * response, i
 //上下文
 @property(nonatomic,strong,readonly) id context;
 
-
+//timeout 时间
+@property(nonatomic,assign) NSTimeInterval  timeOutInterval ;
 @end
 
 #pragma mark- CLHTTPRequest

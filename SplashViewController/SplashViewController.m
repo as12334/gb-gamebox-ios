@@ -33,21 +33,22 @@
 
 @implementation SplashViewController
 {
-    NSInteger _urlArrayIndex ;
+    NSInteger _urlArrayLastIndex ;
     NSArray *_urlArray ;
     NSString *_talk ;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _urlArrayIndex = 0 ;
+    _urlArrayLastIndex = 0 ;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
+    
     self.needObserveNetStatusChanged = NO ;
     [self netStatusChangedHandle] ;
-
+    
     [self initView] ;
     
 }
@@ -172,18 +173,40 @@
 {
     if (type == ServiceRequestTypeDomainList){
         _urlArray = ConvertToClassPointer(NSArray, data) ;
-        [self checkUrl] ;
-    }else if (type == ServiceRequestTypeDomainCheck){
-        NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[_urlArrayIndex]) copy] ;
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         
-        if ((isIgnoreHTTPS(strTmp) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)){
-            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",strTmp]] ;
-        }else{
-            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
+        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+#ifdef TEST_DOMAIN
+            _urlArray = @[TEST_DOMAIN] ;
+#endif
         }
         
-        [self.serviceRequest startUpdateCheck] ;
+        [self checkUrl] ;
+    }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
+              type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
+              type == ServiceRequestTypeDomainCheck05 || type == ServiceRequestTypeDomainCheck06 ||
+              type == ServiceRequestTypeDomainCheck07 || type == ServiceRequestTypeDomainCheck08 ||
+              type == ServiceRequestTypeDomainCheck09 || type == ServiceRequestTypeDomainCheck10 ||
+              type == ServiceRequestTypeDomainCheck11 || type == ServiceRequestTypeDomainCheck12 ||
+              type == ServiceRequestTypeDomainCheck13 || type == ServiceRequestTypeDomainCheck14 ||
+              type == ServiceRequestTypeDomainCheck15 || type == ServiceRequestTypeDomainCheck16 ||
+              type == ServiceRequestTypeDomainCheck17 || type == ServiceRequestTypeDomainCheck18 ||
+              type == ServiceRequestTypeDomainCheck19 || type == ServiceRequestTypeDomainCheck20
+              )
+    {
+        static dispatch_once_t onceToken ;
+        dispatch_once(&onceToken, ^{
+            NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[type-1]) copy] ;
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            
+            if ((isIgnoreHTTPS(strTmp) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)){
+                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",strTmp]] ;
+            }else{
+                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
+            }
+            
+            [self.serviceRequest cancleAllServices] ;//结束所有域名检测
+            [self.serviceRequest startUpdateCheck] ;
+        }) ;
         
     }else if (type == ServiceRequestTypeUpdateCheck){
         RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
@@ -235,9 +258,25 @@
 {
     if (type == ServiceRequestTypeDomainList){
         showErrorMessage(self.view, error, nil) ;
-    }else if (type == ServiceRequestTypeDomainCheck){
-        _urlArrayIndex ++ ;
-        [self checkUrl] ;
+    }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
+              type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
+              type == ServiceRequestTypeDomainCheck05 || type == ServiceRequestTypeDomainCheck06 ||
+              type == ServiceRequestTypeDomainCheck07 || type == ServiceRequestTypeDomainCheck08 ||
+              type == ServiceRequestTypeDomainCheck09 || type == ServiceRequestTypeDomainCheck10 ||
+              type == ServiceRequestTypeDomainCheck11 || type == ServiceRequestTypeDomainCheck12 ||
+              type == ServiceRequestTypeDomainCheck13 || type == ServiceRequestTypeDomainCheck14 ||
+              type == ServiceRequestTypeDomainCheck15 || type == ServiceRequestTypeDomainCheck16 ||
+              type == ServiceRequestTypeDomainCheck17 || type == ServiceRequestTypeDomainCheck18 ||
+              type == ServiceRequestTypeDomainCheck19 || type == ServiceRequestTypeDomainCheck20
+              )
+    {
+        static int totalFail = 0 ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            totalFail ++ ;
+            if (totalFail>=20){
+                [self checkUrl] ;
+            }
+        });
     }else if (type == ServiceRequestTypeUpdateCheck){
         [self splashViewComplete] ;
     }
@@ -245,15 +284,18 @@
 
 
 - (void) checkUrl{
-    if (_urlArrayIndex<_urlArray.count){
+    if (_urlArrayLastIndex<_urlArray.count){
         if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
-                                                             detailText:[NSString stringWithFormat:@"checking domain:%@",_urlArray[_urlArrayIndex]]] ;
+                                                             detailText:[NSString stringWithFormat:@"checking domain:%@",_urlArray[_urlArrayLastIndex]]] ;
         }
         
-        [self.serviceRequest cancleServiceWithType:ServiceRequestTypeDomainCheck] ;
-//        [self.serviceRequest setContext:[_urlArray[_urlArrayIndex] copy] forType:ServiceRequestTypeDomainCheck] ;
-        [self.serviceRequest startCheckDomain:_urlArray[_urlArrayIndex]] ;
+        int minIndex = _urlArrayLastIndex ;
+        int maxIndex = MIN(_urlArray.count, _urlArrayLastIndex+20) ;
+        for (; minIndex < maxIndex ; minIndex++) {
+            [self.serviceRequest startCheckDomain:_urlArray[minIndex] ServiceRequestTypeDomainCheckIndex:(minIndex+1)%21] ;
+        }
+        _urlArrayLastIndex = minIndex + 1 ;
     }else{
         showMessage(self.view, NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil),
                     _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):

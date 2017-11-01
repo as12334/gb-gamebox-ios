@@ -16,7 +16,26 @@
  */
 typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeDomainList = 0,
-    ServiceRequestTypeDomainCheck ,
+    ServiceRequestTypeDomainCheck01 ,
+    ServiceRequestTypeDomainCheck02 ,
+    ServiceRequestTypeDomainCheck03 ,
+    ServiceRequestTypeDomainCheck04 ,
+    ServiceRequestTypeDomainCheck05 ,
+    ServiceRequestTypeDomainCheck06 ,
+    ServiceRequestTypeDomainCheck07 ,
+    ServiceRequestTypeDomainCheck08 ,
+    ServiceRequestTypeDomainCheck09 ,
+    ServiceRequestTypeDomainCheck10 ,
+    ServiceRequestTypeDomainCheck11 ,
+    ServiceRequestTypeDomainCheck12 ,
+    ServiceRequestTypeDomainCheck13 ,
+    ServiceRequestTypeDomainCheck14 ,
+    ServiceRequestTypeDomainCheck15 ,
+    ServiceRequestTypeDomainCheck16 ,
+    ServiceRequestTypeDomainCheck17 ,
+    ServiceRequestTypeDomainCheck18 ,
+    ServiceRequestTypeDomainCheck19 ,
+    ServiceRequestTypeDomainCheck20 ,
     ServiceRequestTypeUpdateCheck ,
     ServiewRequestTypeUserAgent ,
 };
@@ -73,7 +92,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * DOMAIN CHECK
  */
--(void)startCheckDomain:(NSString*)doMain ;
+-(void)startCheckDomain:(NSString*)doMain ServiceRequestTypeDomainCheckIndex:(ServiceRequestType)domainCheckIndex ;
 
 /**
  * update CHECK
@@ -116,6 +135,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 @property(nonatomic,copy) ServiceRequestFailBlock   failBlock;
 
 
+/*
+ *timeout 时间设定
+ */
+@property(nonatomic,assign) NSTimeInterval timeOutInterval ;
 //------------------------------------------------------------------
 
 //设置上下文,服务结束后自动移除上下文

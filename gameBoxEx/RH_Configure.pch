@@ -61,6 +61,7 @@
 
 #elif _rf80 //TEST01[21]
 
+//#define TEST_DOMAIN         @"test01.ccenter.test.so"            //@"test01.ampinplay0matrix.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"

@@ -53,7 +53,7 @@
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
     _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
-    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
+//    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
     [self.contentView addSubview:_webView];
 //    self.contentScrollView = _webView.scrollView;
 
@@ -61,18 +61,22 @@
 //重载父类方法
 -(UIEdgeInsets)contentScrollViewEdgeInsetsWithFullScreenModel:(BOOL)fullScreen
 {
-    UIEdgeInsets contentInsets  ;
+    UIEdgeInsets contentInsets =UIEdgeInsetsZero ;
     if (fullScreen){
         contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
                                          0,
                                          ([self fullScreenIncludeBottomView]?0.0:([self hasBottomView]?MAX(0, [self bottomViewHeight]):0)),
                                          0) ;
     }else{
-        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+        
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
+                                         ([self navigationBarHidden]?0:NavigationBarHeight),
                                          0,
-                                         (self.isHiddenTabBar?0:heighTabBar) +
-                                         ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
+                                         [self tabBarHidden]?0:heighTabBar,
                                          0) ;
+        
+        
+        NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
     }
     
     return contentInsets ;

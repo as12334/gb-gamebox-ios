@@ -78,19 +78,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 @synthesize doSometiongMasks = _doSometiongMasks;
 
 #pragma mark-用户接口定义
-//- (void)startLogin:(NSString*)userName Password:(NSString*)password
-//{
-//    [self _startServiceWithAPIName:RH_API_MAIN_URL
-//                        pathFormat:RH_API_NAME_USERLOGIN
-//                     pathArguments:nil
-//                   headerArguments:nil
-//                    queryArguments:@{RH_SP_USERLOGIN_USERNAME:userName?:@"",
-//                                     RH_SP_USERLOGIN_PASSWORD:password?:@""}
-//                     bodyArguments:nil
-//                          httpType:HTTPRequestTypePost
-//                       serviceType:ServiceRequestTypeLogin
-//                         scopeType:ServiceScopeTypePublic] ;
-//}
 
 -(void)startReqDomainList
 {
@@ -106,7 +93,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startCheckDomain:(NSString*)doMain
+-(void)startCheckDomain:(NSString*)doMain ServiceRequestTypeDomainCheckIndex:(ServiceRequestType)domainCheckIndex
 {
     [self _startServiceWithAPIName:nil
                         pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"https://%@/__check"
@@ -115,7 +102,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
-                       serviceType:ServiceRequestTypeDomainCheck
+                       serviceType:domainCheckIndex
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -204,6 +191,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                            headerArguments:headerArguments
                                                              bodyArguments:bodyArguments
                                                                       type:httpType];
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
 
     //开始请求
     [self _startHttpRequest:httpRequest forType:type scopeType:scopeType];
@@ -231,6 +220,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                     pathArguments:pathArguments
                                                                    queryArguments:queryArgs
                                                                   headerArguments:headerArguments] ;
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
 
     for (id data in datas) {
         if ([data isKindOfClass:[NSData class]]) {
@@ -356,7 +347,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
 
-    if (type == ServiceRequestTypeDomainCheck) {//处理结果数据
+    if (type == ServiceRequestTypeDomainCheck01 ||
+        type == ServiceRequestTypeDomainCheck02 ||
+        type == ServiceRequestTypeDomainCheck03 ||
+        type == ServiceRequestTypeDomainCheck04 ||
+        type == ServiceRequestTypeDomainCheck05 ||
+        type == ServiceRequestTypeDomainCheck06 ||
+        type == ServiceRequestTypeDomainCheck07 ||
+        type == ServiceRequestTypeDomainCheck08 ||
+        type == ServiceRequestTypeDomainCheck09 ||
+        type == ServiceRequestTypeDomainCheck10 ||
+        type == ServiceRequestTypeDomainCheck11 ||
+        type == ServiceRequestTypeDomainCheck12 ||
+        type == ServiceRequestTypeDomainCheck13 ||
+        type == ServiceRequestTypeDomainCheck14 ||
+        type == ServiceRequestTypeDomainCheck15 ||
+        type == ServiceRequestTypeDomainCheck16 ||
+        type == ServiceRequestTypeDomainCheck17 ||
+        type == ServiceRequestTypeDomainCheck18 ||
+        type == ServiceRequestTypeDomainCheck19 ||
+        type == ServiceRequestTypeDomainCheck20
+        )
+    {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         *reslutData = [tmpData mj_JSONString] ;
         return YES ;
