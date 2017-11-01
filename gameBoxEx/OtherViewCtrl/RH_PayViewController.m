@@ -71,6 +71,7 @@
             [[UIApplication sharedApplication] openURL:cleanURL];
         }
     }
+
 }
 
 #pragma mark-

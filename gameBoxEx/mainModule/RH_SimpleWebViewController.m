@@ -35,14 +35,14 @@
     // Do any additional setup after loading the view.
     _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     _domain = self.appDelegate.domain ;
-
+//    self.hiddenStatusBar=NO;
+    [self setHiddenStatusBar:NO];
     self.hiddenTabBar = [self tabBarHidden] ;
     self.hiddenNavigationBar = [self navigationBarHidden] ;
     self.navigationBarItem.rightBarButtonItems = nil ;
 
     //webView
-    _webView = [[UIWebView alloc] initWithFrame:self.contentView.bounds];
-
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     _webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _webView.backgroundColor  = [UIColor clearColor];
     _webView.opaque           = NO;
@@ -53,22 +53,21 @@
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
     _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
-//    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
+    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
     [self.contentView addSubview:_webView];
 //    self.contentScrollView = _webView.scrollView;
-
+    
 }
 //重载父类方法
 -(UIEdgeInsets)contentScrollViewEdgeInsetsWithFullScreenModel:(BOOL)fullScreen
 {
     UIEdgeInsets contentInsets =UIEdgeInsetsZero ;
     if (fullScreen){
-        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+        contentInsets = UIEdgeInsetsMake(0,
                                          0,
-                                         ([self fullScreenIncludeBottomView]?0.0:([self hasBottomView]?MAX(0, [self bottomViewHeight]):0)),
+                                         [self isHiddenTabBar]?0:69,
                                          0) ;
     }else{
-        
         contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
                                          ([self navigationBarHidden]?0:NavigationBarHeight),
                                          0,
@@ -353,7 +352,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString* reqUrl = request.URL.absoluteString;
-    if ([reqUrl hasPrefix:@"weixin://"]) {
+    if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
         //bSucc是否成功调起支付宝
     }
@@ -598,6 +597,7 @@
 
 - (void)webViewBeginLoad {
     //do nothing
+    
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:NSLocalizedString(@"WEBVIEW_LOADING_STATUS", nil) detailText:nil] ;
 }
 

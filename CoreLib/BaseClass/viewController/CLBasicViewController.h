@@ -12,9 +12,9 @@
 #import "MacroDef.h"
 #import "help.h"
 
-#define heighStatusBar          (GreaterThanIOS11System ? 0.0 : 20.0f)
+#define heighStatusBar          (GreaterThanIOS11System ? 20.0 : 20.0f)
 #define heighNavigationBar      44.0f
-#define heighTabBar             (GreaterThanIOS11System ? 0.0 : 49.0f)
+#define heighTabBar             (GreaterThanIOS11System ? 49.0 : 49.0f)
 
 
 @interface CLBasicViewController : CLViewController
