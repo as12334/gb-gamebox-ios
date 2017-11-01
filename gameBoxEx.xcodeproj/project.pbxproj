@@ -1582,13 +1582,13 @@
 				A010A01E1F878B67004E6EF4 /* NSError+RH_HTTPRequest.h */,
 				A010A01F1F878B67004E6EF4 /* NSError+RH_HTTPRequest.m */,
 				A010A0201F878B67004E6EF4 /* RH_API.h */,
-				A010A0211F878B67004E6EF4 /* RH_ConcurrentServicesReqManager.h */,
-				A010A0221F878B67004E6EF4 /* RH_ConcurrentServicesReqManager.m */,
 				A010A0231F878B67004E6EF4 /* RH_ErrorCode.h */,
 				A010A0241F878B67004E6EF4 /* RH_HTTPRequest.h */,
 				A010A0251F878B67004E6EF4 /* RH_HTTPRequest.m */,
 				A010A0261F878B67004E6EF4 /* RH_ServiceRequest.h */,
 				A010A0271F878B67004E6EF4 /* RH_ServiceRequest.m */,
+				A010A0211F878B67004E6EF4 /* RH_ConcurrentServicesReqManager.h */,
+				A010A0221F878B67004E6EF4 /* RH_ConcurrentServicesReqManager.m */,
 			);
 			path = NetModule;
 			sourceTree = "<group>";

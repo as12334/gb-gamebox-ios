@@ -165,20 +165,20 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 #pragma mark -
 
-- (void)applicationDidOpenURL:(NSURL *)url
-            sourceApplication:(NSString *)sourceApplication
-                   annotation:(id)annotation
-                        state:(CLApplicationOpenURLState)state
-{
-    //处理URL
-    if (![self _tryHandleURL:url context:nil]) {
-    }
-}
-
-- (BOOL)_tryHandleURL:(NSURL *)url context:(id)context
-{
-    return NO;
-}
+//- (void)applicationDidOpenURL:(NSURL *)url
+//            sourceApplication:(NSString *)sourceApplication
+//                   annotation:(id)annotation
+//                        state:(CLApplicationOpenURLState)state
+//{
+//    //处理URL
+//    if (![self _tryHandleURL:url context:nil]) {
+//    }
+//}
+//
+//- (BOOL)_tryHandleURL:(NSURL *)url context:(id)context
+//{
+//    return NO;
+//}
 
 #pragma mark -
 
