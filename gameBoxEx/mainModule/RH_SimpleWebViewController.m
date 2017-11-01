@@ -59,6 +59,7 @@
     _webView.frame = CGRectMake(0, edgeInsets.top, self.contentView.frameWidth,
                                 self.contentView.frameHeigh-edgeInsets.top - edgeInsets.bottom) ;
 #endif
+
     [self.contentView addSubview:_webView];
 //    self.contentScrollView = _webView.scrollView;
     
@@ -73,13 +74,11 @@
                                          [self isHiddenTabBar]?0:69,
                                          0) ;
     }else{
-        
-            contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
-                                             ([self navigationBarHidden]?0:NavigationBarHeight),
-                                             0,
-                                             [self tabBarHidden]?0:heighTabBar,
-                                             0) ;
-        
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
+                                         ([self navigationBarHidden]?0:NavigationBarHeight),
+                                         0,
+                                         [self tabBarHidden]?0:heighTabBar,
+                                         0) ;
         
         NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
     }
