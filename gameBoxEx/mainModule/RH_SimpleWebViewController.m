@@ -35,14 +35,13 @@
     // Do any additional setup after loading the view.
     _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     _domain = self.appDelegate.domain ;
-//    self.hiddenStatusBar=NO;
     [self setHiddenStatusBar:NO];
     self.hiddenTabBar = [self tabBarHidden] ;
     self.hiddenNavigationBar = [self navigationBarHidden] ;
     self.navigationBarItem.rightBarButtonItems = nil ;
 
     //webView
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     _webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _webView.backgroundColor  = [UIColor clearColor];
     _webView.opaque           = NO;
@@ -52,8 +51,14 @@
     _webView.dataDetectorTypes = UIDataDetectorTypeAll ;//4 设置检测网页中的格式类型，all表示检测所有类型包括超链接、电话号码、地址等。
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
+#if 0
     _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
-    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
+//    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
+#else
+    UIEdgeInsets edgeInsets = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO] ;
+    _webView.frame = CGRectMake(0, edgeInsets.top, self.contentView.frameWidth,
+                                self.contentView.frameHeigh-edgeInsets.top - edgeInsets.bottom) ;
+#endif
     [self.contentView addSubview:_webView];
 //    self.contentScrollView = _webView.scrollView;
     
@@ -68,11 +73,12 @@
                                          [self isHiddenTabBar]?0:69,
                                          0) ;
     }else{
-        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
-                                         ([self navigationBarHidden]?0:NavigationBarHeight),
-                                         0,
-                                         [self tabBarHidden]?0:heighTabBar,
-                                         0) ;
+        
+            contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
+                                             ([self navigationBarHidden]?0:NavigationBarHeight),
+                                             0,
+                                             [self tabBarHidden]?0:heighTabBar,
+                                             0) ;
         
         
         NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
