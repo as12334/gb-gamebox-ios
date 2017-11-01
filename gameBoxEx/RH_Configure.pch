@@ -1077,6 +1077,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"lottery"
 
+#elif _x70n //美高梅
+
+#define CODE    @"x70n"
+#define S        @"a3fe8abcdf5c2864c2a8f965b161106a"
+#define SID        @"265"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
@@ -1084,6 +1092,8 @@
 #define SID   @"71"
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
+
+
 
 #endif
 
