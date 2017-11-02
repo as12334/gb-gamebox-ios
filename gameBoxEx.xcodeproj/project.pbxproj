@@ -963,7 +963,6 @@
 				A0109C641F878199004E6EF4 /* gameBoxEx */,
 				A0E3678F1F8F433700758033 /* Supporting File */,
 				A0109C631F878199004E6EF4 /* Products */,
-				A0109C971F87827B004E6EF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1001,6 +1000,7 @@
 				A0109C981F87827B004E6EF4 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		A0109E071F87852F004E6EF4 /* CoreLib */ = {
@@ -1977,6 +1977,7 @@
 			isa = PBXGroup;
 			children = (
 				A0E367901F8F433700758033 /* Localizable.strings */,
+				A0109C971F87827B004E6EF4 /* Frameworks */,
 			);
 			path = "Supporting File";
 			sourceTree = "<group>";

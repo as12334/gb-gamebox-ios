@@ -204,7 +204,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _bqmn //新葡京娱乐场
+#elif _bqmn //464彩票
 
 #define CODE    @"bqmn"
 #define S        @"c1b1eec890764e652254b9a7483d12f3"
@@ -998,7 +998,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _vqwq //星博国际
+#elif _vqwq //MGMGAME
 
 #define CODE    @"vqwq"
 #define S        @"93eb1f0e52410c25318d4821dd650d3f"
@@ -1078,7 +1078,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"lottery"
 
-#elif _x70n //美高梅
+#elif _x70n //MGMGAME
 
 #define CODE    @"x70n"
 #define S        @"a3fe8abcdf5c2864c2a8f965b161106a"
