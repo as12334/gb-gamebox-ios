@@ -232,7 +232,7 @@
 #pragma mark -
 
 - (BOOL)shouldAutorotate {
-    return NO;
+    return YES;
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
@@ -241,7 +241,7 @@
 - (NSUInteger)supportedInterfaceOrientations
 #endif
 {
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationLandscapeLeft|UIInterfaceOrientationLandscapeRight;
 }
 
 #pragma mark -
