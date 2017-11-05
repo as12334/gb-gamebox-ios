@@ -232,7 +232,8 @@
 #pragma mark -
 
 - (BOOL)shouldAutorotate {
-    return NO;
+//    return NO;
+    return [self.selectedViewController shouldAutorotate];
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
@@ -241,8 +242,15 @@
 - (NSUInteger)supportedInterfaceOrientations
 #endif
 {
-    return UIInterfaceOrientationMaskPortrait;
+//    return UIInterfaceOrientationMaskPortrait;
+    return [self.selectedViewController supportedInterfaceOrientations];
 }
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return [self.selectedViewController preferredInterfaceOrientationForPresentation];
+}
+
 
 #pragma mark -
 

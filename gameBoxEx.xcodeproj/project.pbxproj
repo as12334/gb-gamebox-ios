@@ -2568,7 +2568,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "_x70n=1";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "_urbr=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2577,7 +2578,7 @@
 					"$(PROJECT_DIR)/thirdPart/MobileIMSDK4iLib",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid265;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid198;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
