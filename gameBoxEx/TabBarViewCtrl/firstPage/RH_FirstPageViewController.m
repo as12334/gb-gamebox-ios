@@ -26,6 +26,7 @@
     [self setHiddenTabBar:NO];
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+    
 }
 
 -(BOOL)tabBarHidden
@@ -172,7 +173,4 @@
     }
 }
 #pragma mark-
-
-
-
 @end
