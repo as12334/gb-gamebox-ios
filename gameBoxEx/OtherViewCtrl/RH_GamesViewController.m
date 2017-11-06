@@ -149,8 +149,6 @@
 }
 
 #pragma mark-
-
-#pragma mark  强制横屏代码
 - (BOOL)shouldAutorotate
 {
     //是否支持转屏
@@ -160,19 +158,7 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     //支持哪些转屏方向
-    return UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
 }
-
-////进入界面直接旋转的方向
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-//{
-//    return UIInterfaceOrientationLandscapeRight;
-//}
-// 是否隐藏状态栏
-//- (BOOL)prefersStatusBarHidden
-//{
-//    return NO;
-//}
-
 
 @end

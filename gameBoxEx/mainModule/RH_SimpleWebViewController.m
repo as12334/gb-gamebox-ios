@@ -132,6 +132,20 @@
 
 }
 
+#pragma mark--
+- (BOOL)shouldAutorotate
+{
+    //是否支持转屏
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    //支持哪些转屏方向
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
 -(BOOL)backButtonHidden
 {
     return NO ;

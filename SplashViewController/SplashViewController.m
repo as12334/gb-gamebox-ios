@@ -69,6 +69,7 @@
 
 -(void)startReqSiteInfo
 {
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
     [self.serviceRequest cancleServiceWithType:ServiceRequestTypeDomainList] ;
     [self.serviceRequest startReqDomainList] ;
 }
@@ -193,6 +194,7 @@
               type == ServiceRequestTypeDomainCheck19 || type == ServiceRequestTypeDomainCheck20
               )
     {
+        [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
         static dispatch_once_t onceToken ;
         dispatch_once(&onceToken, ^{
             NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[type-1]) copy] ;
@@ -277,6 +279,12 @@
                 [self checkUrl] ;
             }
         });
+        
+        if (totalFail>=_urlArray.count){
+            [self.contentLoadingIndicateView hiddenView] ;
+            showAlertView(@"系统提示", @"没有检测到可用的域名!");
+        }
+        
     }else if (type == ServiceRequestTypeUpdateCheck){
         [self splashViewComplete] ;
     }
@@ -376,6 +384,7 @@
 #pragma mark -
 - (void)splashViewComplete
 {
+    [self.contentLoadingIndicateView hiddenView] ;
     BOOL bRet = YES;
     ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
         bRet = [self.delegate splashViewControllerWillHidden:self];
