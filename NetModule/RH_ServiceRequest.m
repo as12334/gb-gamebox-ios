@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain ServiceRequestTypeDomainCheckIndex:(ServiceRequestType)domainCheckIndex
 {
     [self _startServiceWithAPIName:nil
-                        pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"https://%@/__check"
+                        pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"http://%@/__check"
                      pathArguments:@[doMain?:@""]
                    headerArguments:nil
                     queryArguments:nil
@@ -369,8 +369,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         type == ServiceRequestTypeDomainCheck20
         )
     {//处理结果数据
+#if 0
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         *reslutData = [tmpData mj_JSONString] ;
+#else
+        NSString* reqUrl = response.URL.absoluteString.lowercaseString;
+        if ([reqUrl hasPrefix:@"https://"]) {
+            *reslutData = @(YES) ;
+        }else{
+            *reslutData = @(NO) ;
+        }
+        
+#endif
         return YES ;
     }
 

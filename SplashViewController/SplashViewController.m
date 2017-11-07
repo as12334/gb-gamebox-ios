@@ -200,7 +200,9 @@
             NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[type-1]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             
-            if ((isIgnoreHTTPS(strTmp) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)){
+//            if ((isIgnoreHTTPS(strTmp) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV))
+            if (![data boolValue])//http protocol
+            {
                 [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",strTmp]] ;
             }else{
                 [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
@@ -291,7 +293,7 @@
 }
 
 
-- (void) checkUrl{
+- (void)checkUrl{
     if (_urlArrayLastIndex<_urlArray.count){
         if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
