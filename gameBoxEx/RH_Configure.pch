@@ -1086,6 +1086,62 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _0ru7 //太阳城集团
+
+#define CODE    @"0ru7"
+#define S        @"d0d5771115ac221bb153a07d98996d60"
+#define SID        @"266"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _q1mv //bet365
+
+#define CODE    @"q1mv"
+#define S        @"b3d4e9a7c092f99593253226dad03efe"
+#define SID        @"268"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _aqpd //天天彩票
+
+#define CODE    @"aqpd"
+#define S        @"ac5d6cd6c45f649b438e74c5d072089b"
+#define SID        @"808"
+#define THEME    @"lottery.skin"
+#define SITE_TYPE    @"lottery"
+
+#elif _o3km //OPEBET
+
+#define CODE    @"o3km"
+#define S        @"3933af7866fc4637b76771b662d1ffc4"
+#define SID        @"267"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _57h0 //LOVEBET
+
+#define CODE    @"57h0"
+#define S        @"ce7767ba430031b73cdb0ebd7ed38c7a"
+#define SID        @"270"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _7ybc //金沙娱乐城
+
+#define CODE    @"7ybc"
+#define S        @"e4bb0225da3363be6c6881c265bb1a3c"
+#define SID        @"269"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _rqcc //澳门赌场
+
+#define CODE    @"rqcc"
+#define S        @"151c699021898f3706e5b544ae28ff20"
+#define SID        @"272"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

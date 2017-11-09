@@ -53,7 +53,7 @@
     }else{
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
     }
-
+    
     [self reloadWebView] ;//预防两次url 一样，不加载情况
 }
 
