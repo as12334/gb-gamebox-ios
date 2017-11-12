@@ -1099,7 +1099,7 @@
 #define CODE    @"q1mv"
 #define S        @"b3d4e9a7c092f99593253226dad03efe"
 #define SID        @"268"
-#define THEME    @"default.skin"
+#define THEME    @"green.skin"
 #define SITE_TYPE    @"integrated"
 
 #elif _aqpd //天天彩票
@@ -1115,7 +1115,7 @@
 #define CODE    @"o3km"
 #define S        @"3933af7866fc4637b76771b662d1ffc4"
 #define SID        @"267"
-#define THEME    @"default.skin"
+#define THEME    @"blue.skin"
 #define SITE_TYPE    @"integrated"
 
 #elif _57h0 //LOVEBET
@@ -1123,7 +1123,7 @@
 #define CODE    @"57h0"
 #define S        @"ce7767ba430031b73cdb0ebd7ed38c7a"
 #define SID        @"270"
-#define THEME    @"default.skin"
+#define THEME    @"green.skin"
 #define SITE_TYPE    @"integrated"
 
 #elif _7ybc //金沙娱乐城
@@ -1139,6 +1139,14 @@
 #define CODE    @"rqcc"
 #define S        @"151c699021898f3706e5b544ae28ff20"
 #define SID        @"272"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _zrax //VIPBET
+
+#define CODE    @"zrax"
+#define S        @"90e974e3fbae299946d2f89935dc509a"
+#define SID        @"271"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
