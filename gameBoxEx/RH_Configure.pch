@@ -1150,6 +1150,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _1pff //太阳城集团
+
+#define CODE    @"1pff"
+#define S        @"f6017ec42393a04cf3c52fd443558360"
+#define SID        @"273"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
