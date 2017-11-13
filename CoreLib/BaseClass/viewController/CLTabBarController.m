@@ -66,7 +66,11 @@
         if (hidden) {
             tabBarRect.origin.y += CGRectGetHeight(tabBarRect);
         }else{
-            tabBarRect.origin.y -= CGRectGetHeight(tabBarRect);
+            if (GreaterThanIOS11System){
+                tabBarRect.origin.y = [UIScreen mainScreen].bounds.size.height - CGRectGetHeight(tabBarRect) ;
+            }else{
+                tabBarRect.origin.y -= CGRectGetHeight(tabBarRect);
+            }
         }
 
         self.tabBar.hidden = NO;
