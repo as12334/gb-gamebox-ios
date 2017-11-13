@@ -91,6 +91,7 @@
 #import "CLLabel.h"
 #import "MJExtension.h"
 #import "AFNetworking.h"
+#import "CLNavigationBar.h"
 
 #pragma Mark-pageview
 #import "CLPageView.h"

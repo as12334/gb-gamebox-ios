@@ -237,6 +237,7 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
+		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
 		A0D66FF11F998C380053F0ED /* ClientCoreSDK.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */; };
 		A0D66FF21F998C380053F0ED /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */; };
@@ -789,6 +790,8 @@
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
 		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNavigationBar.h; sourceTree = "<group>"; };
+		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
 		A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UpdatedVersionModel.h; sourceTree = "<group>"; };
 		A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UpdatedVersionModel.m; sourceTree = "<group>"; };
 		A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
@@ -1024,6 +1027,7 @@
 		A0109E081F87852F004E6EF4 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				A08578511FB9BE9C00E002B1 /* UINavigationBar */,
 				A0109E091F87852F004E6EF4 /* APPDelegate */,
 				A0109E0C1F87852F004E6EF4 /* BasicClasses */,
 				A0109E301F87852F004E6EF4 /* CacheFile */,
@@ -1823,6 +1827,15 @@
 			path = loginViewCtrl;
 			sourceTree = "<group>";
 		};
+		A08578511FB9BE9C00E002B1 /* UINavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */,
+				A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */,
+			);
+			path = UINavigationBar;
+			sourceTree = "<group>";
+		};
 		A0D66FAA1F998B0A0053F0ED /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -2469,6 +2482,7 @@
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,
+				A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,
@@ -2568,8 +2582,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_o3km=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_w7ls=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
