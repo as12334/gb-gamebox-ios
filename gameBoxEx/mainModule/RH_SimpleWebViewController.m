@@ -15,11 +15,11 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
-//#import
-//原生的OC登录控制器
-#import "RH_LoginViewControllerEx.h"
+#import "CLTabBarController.h"
+#import "MacroDef.h"
+
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<RH_LoginViewControllerExDelegate,LoginViewControllerDelegate>
+@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -51,19 +51,26 @@
     _webView.dataDetectorTypes = UIDataDetectorTypeAll ;//4 设置检测网页中的格式类型，all表示检测所有类型包括超链接、电话号码、地址等。
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
+    
 #if 0
     _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
 //    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
 #else
-    UIEdgeInsets edgeInsets = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO] ;
-    _webView.frame = CGRectMake(0, edgeInsets.top, self.contentView.frameWidth,
-                                self.contentView.frameHeigh-edgeInsets.top - edgeInsets.bottom) ;
+    if (GreaterThanIOS11System){
+        _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
+    }else{
+        UIEdgeInsets edgeInsets = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO] ;
+        _webView.frame = CGRectMake(0, edgeInsets.top, self.contentView.frameWidth,
+                                    self.contentView.frameHeigh-edgeInsets.top - edgeInsets.bottom) ;
+    }
 #endif
 
     [self.contentView addSubview:_webView];
 //    self.contentScrollView = _webView.scrollView;
     
 }
+
 //重载父类方法
 -(UIEdgeInsets)contentScrollViewEdgeInsetsWithFullScreenModel:(BOOL)fullScreen
 {

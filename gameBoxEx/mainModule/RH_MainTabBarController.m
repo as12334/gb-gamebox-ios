@@ -113,11 +113,6 @@
     UITabBarItem *service = [self.tabBar.items objectAtIndex:3];
     UITabBarItem *mine = [self.tabBar.items objectAtIndex:4];
 
-//    home.title = @"首页";
-//    deposit.title = @"存款";
-//    service.title = @"客服";
-//    mine.title = @"我的";
-
     home.image = [[UIImage imageNamed:@"tab_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     deposit.image = [[UIImage imageNamed:@"tab_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -156,13 +151,7 @@
             self.tabBar.tintColor = [UIColor colorWithRed:0.09 green:0.40 blue:0.73 alpha:1.0];
         }
     } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
-//        transfer.title = @"取款";
         transfer.image = [[UIImage imageNamed:@"tab_withdraw"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
-//        deposit.title = @"充值/提款";
-//        transfer.title = @"购彩大厅";
-//        service.title = @"投注记录";
-
         deposit.image = [[UIImage imageNamed:@"tab_lottery_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         transfer.image = [[UIImage imageNamed:@"tab_hall_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         service.image = [[UIImage imageNamed:@"tab_bet_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

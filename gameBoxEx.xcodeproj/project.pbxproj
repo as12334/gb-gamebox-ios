@@ -345,8 +345,6 @@
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
 		A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */; };
-		F67B30951FA7401400C63829 /* RH_LoginViewControllerEx.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67B30941FA7401400C63829 /* RH_LoginViewControllerEx.xib */; };
-		F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -905,10 +903,7 @@
 		A0E53DC21F987D1400CE69E4 /* RH_IMMessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_IMMessageTableCell.h; sourceTree = "<group>"; };
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
-		F67B30941FA7401400C63829 /* RH_LoginViewControllerEx.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_LoginViewControllerEx.xib; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
-		F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };
-		F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1816,9 +1811,6 @@
 			children = (
 				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
 				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
-				F687EE8F1FA71584007FFE66 /* RH_LoginViewControllerEx.h */,
-				F687EE8E1FA71584007FFE66 /* RH_LoginViewControllerEx.m */,
-				F67B30941FA7401400C63829 /* RH_LoginViewControllerEx.xib */,
 			);
 			path = loginViewCtrl;
 			sourceTree = "<group>";
@@ -2172,7 +2164,6 @@
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
-				F67B30951FA7401400C63829 /* RH_LoginViewControllerEx.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2243,7 +2234,6 @@
 				A0E53DA61F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
-				F687EE911FA71584007FFE66 /* RH_LoginViewControllerEx.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
 				A0E367E11F91A50F00758033 /* AFAutoPurgingImageCache.h in Sources */,
