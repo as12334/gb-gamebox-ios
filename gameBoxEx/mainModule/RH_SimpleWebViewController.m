@@ -36,6 +36,7 @@
     _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     _domain = self.appDelegate.domain ;
     [self setHiddenStatusBar:NO];
+    
     self.hiddenTabBar = [self tabBarHidden] ;
     self.hiddenNavigationBar = [self navigationBarHidden] ;
     self.navigationBarItem.rightBarButtonItems = nil ;
@@ -124,6 +125,12 @@
             [alertView show] ;
         }
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated] ;
+    NSLog(@"....webView : (%f,%f),(%f,%f)",self.webView.frameX,self.webView.frameY,self.webView.frameWidth,self.webView.frameHeigh) ;
 }
 
 - (void)dealloc

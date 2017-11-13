@@ -24,11 +24,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.hiddenNavigationBar = YES ;
     self.navigationItem.titleView = nil ;
     [self setupURL] ;
-
-    //
     [self.contentView addSubview:self.gameBgImage];
     [self.contentView bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -58,6 +55,11 @@
 }
 
 -(BOOL)tabBarHidden
+{
+    return YES ;
+}
+
+-(BOOL)navigationBarHidden
 {
     return YES ;
 }
