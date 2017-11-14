@@ -1004,7 +1004,7 @@
 #define S        @"93eb1f0e52410c25318d4821dd650d3f"
 #define SID        @"256"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"lottery"
 
 #elif _yqgk //金凯娱乐
 

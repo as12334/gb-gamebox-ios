@@ -108,7 +108,11 @@
 
             UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex==alertView.cancelButtonIndex){//返回首页
-                    self.myTabBarController.selectedIndex = 0 ;
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                        self.myTabBarController.selectedIndex = 2 ;
+                    }else{
+                        self.myTabBarController.selectedIndex = 0 ;
+                    }
                 }else{
                     //push login viewController
                     //H5登录接口
