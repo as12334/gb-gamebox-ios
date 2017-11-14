@@ -86,7 +86,7 @@
             [[RH_MainNavigationController alloc] initWithRootViewController:[viewControllerClass viewController]];
 
             MyAssert(navigationController != nil);
-
+            
             //初始化视图控制器
             navigationController.tabBarItem.title = NSLocalizedString([tabBarItem myTitle], nil);
             navigationController.tabBarItem.image = [[tabBarItem myImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

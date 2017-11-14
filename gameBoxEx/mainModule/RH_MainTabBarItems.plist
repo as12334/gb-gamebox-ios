@@ -108,5 +108,58 @@
 			<string>RH_MinePageViewController</string>
 		</dict>
 	</array>
+	<key>integratedv3</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_DEPOSITPAGE_TITLE2</string>
+			<key>image</key>
+			<string>tab_deposit</string>
+			<key>selectedImage</key>
+			<string>tab_pink_deposit</string>
+			<key>viewControllerClass</key>
+			<string>RH_DepositeViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_TRANSFERPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_service</string>
+			<key>selectedImage</key>
+			<string>tab_pink_service</string>
+			<key>viewControllerClass</key>
+			<string>RH_TransferViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_FIRSTPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_home</string>
+			<key>selectedImage</key>
+			<string>tab_pink_home</string>
+			<key>viewControllerClass</key>
+			<string>RH_FirstPageViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_CUSTOMERSERVICEPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_transfer</string>
+			<key>selectedImage</key>
+			<string>tab_pink_transfer</string>
+			<key>viewControllerClass</key>
+			<string>RH_CustomServicePageViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_MINEPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_mine</string>
+			<key>selectedImage</key>
+			<string>tab_pink_mine</string>
+			<key>viewControllerClass</key>
+			<string>RH_MinePageViewController</string>
+		</dict>
+	</array>
 </dict>
 </plist>
