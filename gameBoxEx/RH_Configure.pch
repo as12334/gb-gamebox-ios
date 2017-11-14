@@ -1004,7 +1004,7 @@
 #define S        @"93eb1f0e52410c25318d4821dd650d3f"
 #define SID        @"256"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"lottery"
 
 #elif _yqgk //金凯娱乐
 
@@ -1155,6 +1155,14 @@
 #define CODE    @"1pff"
 #define S        @"f6017ec42393a04cf3c52fd443558360"
 #define SID        @"273"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _xngu //亚洲娱乐
+
+#define CODE    @"xngu"
+#define S        @"8bbe8d8c9784edf8c20161176d8adde5"
+#define SID        @"301"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
