@@ -96,7 +96,7 @@
             navigationController.tabBarItem.title = NSLocalizedString([tabBarItem myTitle], nil);
             navigationController.tabBarItem.image = [[tabBarItem myImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navigationController.tabBarItem.selectedImage = [[tabBarItem mySelectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
+            
             navigationController.useForTabRootViewController = YES;
             [viewControllers addObject:navigationController];
         }

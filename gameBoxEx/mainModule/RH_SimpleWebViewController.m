@@ -440,7 +440,11 @@
         if (index>=1 && index !=NSNotFound){
             [self backBarButtonItemHandle] ;
         }else{
-            self.myTabBarController.selectedIndex = 0 ;// jump to first page .
+            if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                self.myTabBarController.selectedIndex = 2 ;
+            }else{
+                self.myTabBarController.selectedIndex = 0 ;
+            }
         }
     };
 
