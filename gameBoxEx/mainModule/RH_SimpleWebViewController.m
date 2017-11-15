@@ -656,7 +656,8 @@
     }
 
     if (error){
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+//        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
     }

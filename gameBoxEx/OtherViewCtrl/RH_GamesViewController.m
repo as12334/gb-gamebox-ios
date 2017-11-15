@@ -147,6 +147,14 @@
     }
 }
 
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    if  (error.code==101){//忽略不处理 。
+    }else{
+        [super webView:webView didFailLoadWithError:error] ;
+    }
+}
+
 #pragma mark-
 - (BOOL)shouldAutorotate
 {
