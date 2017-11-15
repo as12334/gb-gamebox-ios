@@ -57,7 +57,7 @@
 #define S        @"b4034680baddc6cecbb609d6fd33785f"
 #define SID        @"178"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3"
 
 #elif _rf80 //TEST01[21]
 
@@ -1163,6 +1163,14 @@
 #define CODE    @"xngu"
 #define S        @"8bbe8d8c9784edf8c20161176d8adde5"
 #define SID        @"301"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _cdrx //澳门新葡京电玩城
+
+#define CODE    @"cdrx"
+#define S        @"c4c4c2086eea3774953407635e9277eb"
+#define SID        @"302"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

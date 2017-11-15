@@ -95,7 +95,6 @@
 -(void)_homeBackHandle
 {
     [self.navigationController popToRootViewControllerAnimated:YES] ;
-    //    self.myTabBarController.selectedIndex = 0 ;// jump to first page .
 }
 
 -(void)_backBackHandle
@@ -147,7 +146,10 @@
         }
     }
 }
-
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
+}
 #pragma mark-
 - (BOOL)shouldAutorotate
 {

@@ -108,5 +108,58 @@
 			<string>RH_MinePageViewController</string>
 		</dict>
 	</array>
+	<key>integratedv3</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_DEPOSITPAGE_TITLE2</string>
+			<key>image</key>
+			<string>tab_v3_deposit</string>
+			<key>selectedImage</key>
+			<string>tab_v3_deposit_selected</string>
+			<key>viewControllerClass</key>
+			<string>RH_DepositeViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_PROMO_TITLE</string>
+			<key>image</key>
+			<string>tab_v3_promo</string>
+			<key>selectedImage</key>
+			<string>tab_v3_promo_selected</string>
+			<key>viewControllerClass</key>
+			<string>RH_PromoViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_FIRSTPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_v3_home</string>
+			<key>selectedImage</key>
+			<string>tab_v3_home_selected</string>
+			<key>viewControllerClass</key>
+			<string>RH_FirstPageViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_CUSTOMERSERVICEPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_v3_service</string>
+			<key>selectedImage</key>
+			<string>tab_v3_service_selected</string>
+			<key>viewControllerClass</key>
+			<string>RH_CustomServicePageViewController</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>TABBAR_MINEPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_v3_my</string>
+			<key>selectedImage</key>
+			<string>tab_v3_my_selected</string>
+			<key>viewControllerClass</key>
+			<string>RH_MinePageViewController</string>
+		</dict>
+	</array>
 </dict>
 </plist>

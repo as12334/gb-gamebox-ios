@@ -10,6 +10,8 @@
 #import "RH_MainNavigationController.h"
 #import "RH_APPDelegate.h"
 #import "RH_CustomServicePageViewController.h"
+#import "coreLib.h"
+#import "RH_CustomTabBar.h"
 
 @interface RH_MainTabBarController ()
 @end
@@ -62,13 +64,17 @@
 }
 
 #pragma mark -
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        RH_CustomTabBar *tabbar = [[RH_CustomTabBar alloc] init] ;
+        tabbar.midMoveUP = 20.0f ;
+        [self setValue:tabbar forKey:@"tabBar"];
+    }
+    
     self.view.backgroundColor = [UIColor blackColor];
-
     //从文件初始化各tab的视图控制器
     NSDictionary *tabBarSites = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RH_MainTabBarItems" ofType:@"plist"]] ;
     NSArray * tabBarItems = ConvertToClassPointer(NSArray, tabBarSites[SITE_TYPE]);
@@ -76,7 +82,6 @@
     NSMutableArray * viewControllers = [NSMutableArray arrayWithCapacity:tabBarItems.count];
 
     for (NSDictionary * tabBarItem in tabBarItems) {
-
         NSString * viewControllerClassName = [tabBarItem objectForKey:@"viewControllerClass"];
         Class viewControllerClass = NSClassFromString(viewControllerClassName);
 
@@ -86,23 +91,23 @@
             [[RH_MainNavigationController alloc] initWithRootViewController:[viewControllerClass viewController]];
 
             MyAssert(navigationController != nil);
-
+            
             //初始化视图控制器
             navigationController.tabBarItem.title = NSLocalizedString([tabBarItem myTitle], nil);
             navigationController.tabBarItem.image = [[tabBarItem myImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navigationController.tabBarItem.selectedImage = [[tabBarItem mySelectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
-
+            
             navigationController.useForTabRootViewController = YES;
             [viewControllers addObject:navigationController];
         }
     }
 
     self.viewControllers = viewControllers;
-
+    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        self.selectedIndex = 2 ;
+    }
+    
     [self updateTabbarSkins] ;
-
-
 }
 
 -(void)updateTabbarSkins
@@ -113,13 +118,14 @@
     UITabBarItem *service = [self.tabBar.items objectAtIndex:3];
     UITabBarItem *mine = [self.tabBar.items objectAtIndex:4];
 
-    home.image = [[UIImage imageNamed:@"tab_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    deposit.image = [[UIImage imageNamed:@"tab_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    mine.image = [[UIImage imageNamed:@"tab_mine"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if (![SITE_TYPE isEqualToString:@"integratedv3"]){
+        home.image = [[UIImage imageNamed:@"tab_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        deposit.image = [[UIImage imageNamed:@"tab_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        mine.image = [[UIImage imageNamed:@"tab_mine"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
 
     if ([@"integrated" isEqualToString:SITE_TYPE]) {
-//        transfer.title = @"转账";
         transfer.image = [[UIImage imageNamed:@"tab_transfer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         if ([@"blue.skin" isEqualToString:THEME]) {
             home.selectedImage = [[UIImage imageNamed:@"tab_blue_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
