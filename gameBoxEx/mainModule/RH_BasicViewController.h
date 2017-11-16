@@ -70,7 +70,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @interface RH_BasicViewController(IntervalAnimation)
 
 - (void)startDefaultShowIntervalAnimation;
-- (void)startDefaultShowIntervalAnimation_async:(void(^)())block;
+- (void)startDefaultShowIntervalAnimation_async:(void(^)(void))block;
 
 - (void)startIntervalAnimationWithDirection:(CLMoveAnimtedDirection)moveAnimtedDirection
                              completedBlock:(void(^)(BOOL finished))completedBlock;
@@ -132,4 +132,11 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 - (BOOL)needTempSaveDataForKey:(NSString *)key;
 
 @end
+
+
+/*
+ */
+//@interface UIViewController (MainTabBarControllerEx)
+//- (RH_MainTabBarControllerEx *)myTabBarControllerEx ;
+//@end
 

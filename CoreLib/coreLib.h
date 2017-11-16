@@ -92,6 +92,7 @@
 #import "MJExtension.h"
 #import "AFNetworking.h"
 #import "CLNavigationBar.h"
+#import "CLImageTitleStaticCollectionViewCell.h"
 
 #pragma Mark-pageview
 #import "CLPageView.h"

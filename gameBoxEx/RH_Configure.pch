@@ -53,9 +53,9 @@
 
 #ifdef _DEBUG //开发环境
 
-#define CODE    @"ptxa"
-#define S        @"b4034680baddc6cecbb609d6fd33785f"
-#define SID        @"178"
+#define CODE    @"w7ls"
+#define S        @"5613daa85f182719c359efbd2332ce12"
+#define SID        @"217"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3"
 

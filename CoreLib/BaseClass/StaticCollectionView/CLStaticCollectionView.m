@@ -113,6 +113,7 @@
 {
     _allowSelection = YES ;
     _allowCellSeparationLine = YES ;
+    _allowSectionSeparationLine = YES ;
     _averageCellWidth = YES ;
 
     _separationLineWidth = PixelToPoint(1.0) ;
@@ -227,6 +228,42 @@
 }
 
 #pragma mark-
+- (NSIndexPath *)indexPathForSelectedItem {
+    return _selectedItemCell.indexPath?:nil;
+}
+
+- (void)selectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+{
+    if (self.allowSelection) {
+        if (![_selectedItemCell.indexPath isEqual:indexPath]){//没有选中
+            _selectedItemCell.cell.selected = NO ; //de selected old
+            
+            //选择
+            _selectedItemCell = [self _sectionItemAtIndexPath:indexPath];
+            [_selectedItemCell.cell setSelected:YES animated:animated];
+        }
+    }
+}
+
+- (void)deselectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+{
+    if ([_selectedItemCell.indexPath isEqual:indexPath]){//选中
+        [_selectedItemCell.cell setSelected:NO animated:animated] ;
+        _selectedItemCell = nil ;
+    }
+}
+
+- (void)deselectAllItem:(BOOL)animated
+{
+    for (_CLStaticCollectionViewSectionItem *item in self.sectionItemList) {
+        [item.cell setSelected:NO animated:animated];
+    }
+    
+    _selectedItemCell = nil ;
+}
+
+
+#pragma mark-
 -(void)clearAllCells
 {
     for (_CLStaticCollectionViewSectionItem *item in _sectionItemList) {
@@ -291,13 +328,25 @@
     return sectionItem.cell ;
 }
 
+-(_CLStaticCollectionViewSectionItem*)_sectionItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSInteger index = [self _matchIndexPath:indexPath] ;
+    
+    _CLStaticCollectionViewSectionItem *sectionItem = nil ;
+    if (index<self.sectionItemList.count){
+        sectionItem = [self.sectionItemList objectAtIndex:index] ;
+    }
+    
+    return sectionItem ;
+}
+
 -(NSInteger)_matchIndexPath:(NSIndexPath*)indexPath
 {
     NSInteger index = 0 ;
     for (int i=0; i<indexPath.section; i++) {
         index += [self countItemsWithSection:i] ;
     }
-
+    
     index += indexPath.item ;
     return index ;
 }
@@ -375,22 +424,24 @@
 
     ///绘制 section 间分隔线
     for (int i=0; i<sections ; i++) {
-        if (i){//section 分隔线从第二个section开始
-            _CLStaticCollectionViewSectionItem *firstItem = [self _itemCellAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]] ;
-            if (firstItem){
-                CGPoint startPoint = firstItem.cellFrame.origin ;
-                CGPoint endPoint = CGPointMake(self.frameWidth - ((self.borderMask & CLBorderMarkRight)?self.borderWidth + self.borderLineInset.right :0.0f), startPoint.y) ;
+        if (i ){//section 分隔线从第二个section开始
+            if (_allowSectionSeparationLine){
+                _CLStaticCollectionViewSectionItem *firstItem = [self _itemCellAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]] ;
+                if (firstItem){
+                    CGPoint startPoint = firstItem.cellFrame.origin ;
+                    CGPoint endPoint = CGPointMake(self.frameWidth - ((self.borderMask & CLBorderMarkRight)?self.borderWidth + self.borderLineInset.right :0.0f), startPoint.y) ;
 
-                startPoint.x += self.separationLineInset.left ;
-                endPoint.x -= self.separationLineInset.right ;
+                    startPoint.x += self.separationLineInset.left ;
+                    endPoint.x -= self.separationLineInset.right ;
 
-                CLLineLayer *lineLayer = [CLLineLayer layer] ;
-                lineLayer.lineStyle = CLLineStyleNormal     ;
-                lineLayer.lineWidth = self.separationLineWidth    ;
-                lineLayer.lineColor = self.separationLineColor;
-                lineLayer.startPoint = startPoint;
-                lineLayer.endPoint = endPoint;
-                [_separationLineLayer addSublayer:lineLayer];
+                    CLLineLayer *lineLayer = [CLLineLayer layer] ;
+                    lineLayer.lineStyle = CLLineStyleNormal     ;
+                    lineLayer.lineWidth = self.separationLineWidth    ;
+                    lineLayer.lineColor = self.separationLineColor;
+                    lineLayer.startPoint = startPoint;
+                    lineLayer.endPoint = endPoint;
+                    [_separationLineLayer addSublayer:lineLayer];
+                }
             }
         }
 
@@ -460,7 +511,7 @@
         endPoint1.x -= self.separationLineInset.right ;
         endPoint1.y = startPoint1.y ;
 
-        if (i)//第一个 section 绘制分隔线 从1 开始
+        if (i && _allowSectionSeparationLine)//第一个 section 绘制分隔线 从1 开始
         {
             CLLineLayer *lineLayer = [CLLineLayer layer] ;
             lineLayer.lineStyle = CLLineStyleNormal     ;
@@ -573,7 +624,8 @@
     if (_averageCellWidth){
         cellFrame = CGRectMake((self.borderMask&CLBorderMarkLeft?self.borderWidth+self.borderLineInset.left :0.0f)  +
                                       indexPath.item*(cellsWidth+self.separationLineWidth),
-                                      self.borderMask&CLBorderMarkTop?self.borderWidth+self.borderLineInset.top :0.0f,
+                                      self.borderMask&CLBorderMarkTop?self.borderWidth+self.borderLineInset.top :0.0f +
+                                      indexPath.section*(sectionHeigh+self.separationLineWidth) ,
                                       cellsWidth,
                                       sectionHeigh) ;
     }else{
@@ -641,7 +693,6 @@
 
 #pragma mark-Touch
 
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     if (self.allowSelection) {
@@ -702,11 +753,17 @@
     for (UITouch * touch in touches) {
         _CLStaticCollectionViewSectionItem *itemCell = [self highLightItemForPoint:[touch locationInView:self]] ;
         if (itemCell) {
+#if 0
             if (!CGRectContainsPoint(itemCell.cellFrame, [touch locationInView:self])) {
+                 NSLog(@"3..touchesCancelled ") ;
                 [self unHighLightCell:itemCell];
             }
+#else
+            [self unHighLightCell:itemCell] ;
+#endif
         }
     }
+    
 }
 
 -(void)unHighLightCell:(_CLStaticCollectionViewSectionItem*)itemCell

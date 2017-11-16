@@ -125,6 +125,12 @@
 -(void)_homeBackHandle
 {
     [self.navigationController popToRootViewControllerAnimated:YES] ;
+    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        self.myTabBarController.selectedIndex = 2 ;
+    }else{
+        self.myTabBarController.selectedIndex = 0 ;
+    }
+    
 }
 
 -(void)_backBackHandle

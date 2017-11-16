@@ -231,6 +231,7 @@
 		A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109F1C1F87852F004E6EF4 /* MBProgressHUD.h */; };
 		A01EE2671F8878B30085717E /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01EE2651F8878B30085717E /* SplashViewController.m */; };
 		A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE2661F8878B30085717E /* SplashViewController.xib */; };
+		A02142711FBD2968007E565E /* CLImageTitleStaticCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A02142701FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.m */; };
 		A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109EE21F87852F004E6EF4 /* MacroDef.h */; };
 		A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */; };
 		A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */; };
@@ -240,8 +241,6 @@
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
 		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
 		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
-		A0B609AE1FBAF5EB00A44B37 /* tab_v3_home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609AC1FBAF5EB00A44B37 /* tab_v3_home@3x.png */; };
-		A0B609AF1FBAF5EB00A44B37 /* tab_v3_home_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609AD1FBAF5EB00A44B37 /* tab_v3_home_selected@3x.png */; };
 		A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */; };
 		A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B11FBB039F00A44B37 /* tab_v3_deposit@2x.png */; };
 		A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B41FBB05AB00A44B37 /* tab_v3_promo_selected@2x.png */; };
@@ -756,6 +755,8 @@
 		A01EE2641F8878B30085717E /* SplashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A01EE2651F8878B30085717E /* SplashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A01EE2661F8878B30085717E /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		A021426F1FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLImageTitleStaticCollectionViewCell.h; sourceTree = "<group>"; };
+		A02142701FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLImageTitleStaticCollectionViewCell.m; sourceTree = "<group>"; };
 		A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewController.h; sourceTree = "<group>"; };
 		A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewController.m; sourceTree = "<group>"; };
 		A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewController.h; sourceTree = "<group>"; };
@@ -806,8 +807,6 @@
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
 		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
 		A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
-		A0B609AC1FBAF5EB00A44B37 /* tab_v3_home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@3x.png"; sourceTree = "<group>"; };
-		A0B609AD1FBAF5EB00A44B37 /* tab_v3_home_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@3x.png"; sourceTree = "<group>"; };
 		A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected@2x.png"; sourceTree = "<group>"; };
 		A0B609B11FBB039F00A44B37 /* tab_v3_deposit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit@2x.png"; sourceTree = "<group>"; };
 		A0B609B41FBB05AB00A44B37 /* tab_v3_promo_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected@2x.png"; sourceTree = "<group>"; };
@@ -1254,6 +1253,8 @@
 		A0109E771F87852F004E6EF4 /* StaticCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				A021426F1FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.h */,
+				A02142701FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.m */,
 				A0109E781F87852F004E6EF4 /* CLStaticCollectionView.h */,
 				A0109E791F87852F004E6EF4 /* CLStaticCollectionView.m */,
 				A0109E7A1F87852F004E6EF4 /* CLStaticCollectionViewCell.h */,
@@ -1883,9 +1884,7 @@
 				A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */,
 				A0B609B11FBB039F00A44B37 /* tab_v3_deposit@2x.png */,
 				A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */,
-				A0B609AC1FBAF5EB00A44B37 /* tab_v3_home@3x.png */,
 				A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */,
-				A0B609AD1FBAF5EB00A44B37 /* tab_v3_home_selected@3x.png */,
 			);
 			path = v3;
 			sourceTree = "<group>";
@@ -2197,7 +2196,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E3680B1F945E3F00758033 /* RH_MainTabBarItems.plist in Resources */,
-				A0B609AF1FBAF5EB00A44B37 /* tab_v3_home_selected@3x.png in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
 				A0E367951F8F463900758033 /* Localizable.strings in Resources */,
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,
@@ -2237,7 +2235,6 @@
 				A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
-				A0B609AE1FBAF5EB00A44B37 /* tab_v3_home@3x.png in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
@@ -2432,6 +2429,7 @@
 				A0109FC81F8788FF004E6EF4 /* help.m in Sources */,
 				A0109FC91F8788FF004E6EF4 /* CLFormDataHTTPRequest.m in Sources */,
 				A0109FCA1F8788FF004E6EF4 /* CLHTTPRequest.m in Sources */,
+				A02142711FBD2968007E565E /* CLImageTitleStaticCollectionViewCell.m in Sources */,
 				A0109FCB1F8788FF004E6EF4 /* CLNetReachability.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
@@ -2649,7 +2647,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_zrax=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_DEBUG=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

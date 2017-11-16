@@ -137,6 +137,8 @@
 			<string>tab_v3_home</string>
 			<key>selectedImage</key>
 			<string>tab_v3_home_selected</string>
+			<key>showHome</key>
+			<true/>
 			<key>viewControllerClass</key>
 			<string>RH_FirstPageViewController</string>
 		</dict>

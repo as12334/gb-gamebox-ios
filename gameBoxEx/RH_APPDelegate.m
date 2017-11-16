@@ -99,7 +99,12 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] ;
     }
 
+#if 1
     self.window.rootViewController = [RH_MainTabBarController viewController] ;
+#else
+    self.window.rootViewController = [RH_MainTabBarControllerEx createInstanceEmbedInNavigationControllerWithContext:nil] ;
+#endif
+    
     [self.window makeKeyAndVisible] ;
 
     [self completedShowMainWindow];

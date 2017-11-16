@@ -624,4 +624,15 @@ _ACCESSOR(isSupportSavaData, BOOL, _supportSavaData);
 @end
 
 
+//@implementation UIViewController (MainTabBarControllerEx)
+//- (RH_MainTabBarControllerEx *)myTabBarControllerEx
+//{
+//    if ([self isKindOfClass:[RH_MainTabBarControllerEx class]]) {
+//        return (RH_MainTabBarControllerEx *)self;
+//    }else{
+//        UIViewController *topViewCtrl = self.navigationController.viewControllers[0] ;
+//        return [topViewCtrl myTabBarControllerEx];
+//    }
+//}
+//@end
 
