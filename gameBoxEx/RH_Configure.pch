@@ -1142,6 +1142,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _slla //皇冠娱乐城
+
+#define CODE    @"slla"
+#define S        @"2635eea57b1b3d71b9881b168a2a6896"
+#define SID        @"300"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _zrax //VIPBET
 
 #define CODE    @"zrax"

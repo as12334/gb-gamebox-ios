@@ -50,7 +50,6 @@
     [self netStatusChangedHandle] ;
     
     [self initView] ;
-    
 }
 
 - (void)initView{
