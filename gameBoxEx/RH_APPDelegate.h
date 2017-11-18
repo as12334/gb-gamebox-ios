@@ -14,6 +14,7 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 @property(nonatomic,readonly,strong)  NSString *domain  ;
 @property(nonatomic,readonly,strong)  NSString *servicePath ;//客服url ;
 @property(strong,nonatomic)  NSString *customUrl;
+@property(strong,nonatomic)  NSString *logoutUrl ;
 @property(strong,nonatomic)  NSString *goBackURL;
 //mine
 @property (strong,nonatomic) NSString *gotoIndexUrl;

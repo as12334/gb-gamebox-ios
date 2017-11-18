@@ -46,9 +46,27 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
+#pragma
+-(void)refreshWithURL:(NSString*)urlStr
+{
+    self.webURL = [NSURL URLWithString:urlStr] ;
+    self.hiddenTabBar = NO ;
+}
+
 -(void)updateView
 {
-    [self reloadWebView] ;
+    if (self.appDelegate.logoutUrl){
+        if([self.appDelegate.logoutUrl containsString:@"http"]){
+            self.webURL = [NSURL URLWithString:self.appDelegate.logoutUrl.trim] ;
+        }else{
+            self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.logoutUrl.trim]] ;
+        }
+        
+        self.appDelegate.logoutUrl = nil ;
+    }else{
+        self.webURL = [NSURL URLWithString:self.domain] ;
+//        [self reloadWebView] ;
+    }
 }
 
 #pragma mark-

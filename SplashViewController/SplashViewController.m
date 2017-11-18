@@ -46,7 +46,7 @@
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
     
-    self.needObserveNetStatusChanged = NO ;
+    self.needObserveNetStatusChanged = YES ;
     [self netStatusChangedHandle] ;
     
     [self initView] ;
