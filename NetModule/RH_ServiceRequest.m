@@ -373,13 +373,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         *reslutData = [tmpData mj_JSONString] ;
 #else
-        NSString* reqUrl = response.URL.absoluteString.lowercaseString;
-        if ([reqUrl hasPrefix:@"https://"]) {
-            *reslutData = @(YES) ;
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
+            NSString* reqUrl = response.URL.absoluteString.lowercaseString;
+            if ([reqUrl hasPrefix:@"https://"]) {
+                *reslutData = @(YES) ;
+            }else{
+                *reslutData = @(NO) ;
+            }
         }else{
-            *reslutData = @(NO) ;
+            *error = [NSError resultDataNoJSONError] ;
         }
-        
 #endif
         return YES ;
     }
@@ -416,21 +421,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
                 break ;
-                
-//            case ServiceRequestTypeFirstPage:
-//            {
-//                RH_FirstPageModel *firstPageModel = [[RH_FirstPageModel alloc] initWithInfoDic:[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]] ;
-//                NSArray *list = [RH_TaskModel dataArrayWithInfoArray:[[[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]
-//                                                                       dictionaryValueForKey:RH_GP_HOMEPAGE_PAGELIST]
-//                                                                      arrayValueForKey:RH_GP_COMMON_DATALIST]] ;
-//
-//                NSInteger totalCount = [[[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA] dictionaryValueForKey:RH_GP_HOMEPAGE_PAGELIST] integerValueForKey:RH_GP_COMMON_TOTALCOUNT] ;
-//                resultSendData = @{RH_GP_COMMON_DATALIST:list?:@[],
-//                                   RH_GP_COMMON_TOTALCOUNT:@(totalCount),
-//                                   RH_GP_COMMON_DATA:firstPageModel?:@""} ;
-//
-//            }
-//                break;
 
             default:
                 resultSendData = dataObject ;
