@@ -16,7 +16,7 @@
 - (void)showDefaultLoadingErrorStatus;
 
 //显示返回的加载失败状态
-- (void)showDefaultLoadingErrorStatus:(NSError*)error;
+//- (void)showDefaultLoadingErrorStatus:(NSError*)error;
 
 //显示搜索空的状态
 - (void)showSearchEmptyStatus;

@@ -9,6 +9,9 @@
 #import "RH_CustomViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "RH_APPDelegate.h"
+#import "RH_MainNavigationController.h"
+#import "RH_FirstPageViewController.h"
+#import "RH_MainTabBarController.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
@@ -133,7 +136,7 @@
         if (args[0] != NULL) {
             self.appDelegate.customUrl = customUrl.toString;
         }
-
+        
         [self setupURL] ;
     } ;
 

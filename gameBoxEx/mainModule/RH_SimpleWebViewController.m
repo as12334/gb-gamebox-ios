@@ -427,10 +427,20 @@
         if (args[0] != NULL) {
             self.appDelegate.customUrl = customUrl.toString;
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_CustomViewController viewController] sender:self];
-        });
-
+        
+        if ([self.appDelegate.customUrl containsString:@"/passport/logout.html"]){
+            self.appDelegate.logoutUrl = self.appDelegate.customUrl ;
+            if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                self.myTabBarController.selectedIndex = 2 ;
+            }else{
+                self.myTabBarController.selectedIndex = 0 ;
+            }
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showViewController:[RH_CustomViewController viewController] sender:self];
+            });
+        }
+    
         NSLog(@"-------End Log-------");
     } ;
 
@@ -537,8 +547,8 @@
         NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-
         [self.appDelegate updateLoginStatus:false] ;
+        
     };
 
     jsContext[@"loginState"] = ^(){

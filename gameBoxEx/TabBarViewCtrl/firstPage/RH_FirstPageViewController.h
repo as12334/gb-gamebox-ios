@@ -10,5 +10,5 @@
 #import "RH_SimpleWebViewController.h"
 
 @interface RH_FirstPageViewController : RH_SimpleWebViewController
-
+-(void)refreshWithURL:(NSString*)urlStr ;
 @end
