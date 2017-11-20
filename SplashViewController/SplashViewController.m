@@ -46,6 +46,12 @@
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
     
+    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+#ifdef TEST_DOMAIN
+        _urlArray = @[TEST_DOMAIN] ;
+#endif
+    }
+    
     self.needObserveNetStatusChanged = YES ;
     [self netStatusChangedHandle] ;
     
@@ -102,6 +108,8 @@
             [self addToastWithString:wifiing inView:self.view];
             if (_urlArray.count<1){
                 [self startReqSiteInfo];
+            }else{
+                [self checkUrl] ;
             }
         }
             break ;
@@ -111,6 +119,8 @@
             [self addToastWithString:flow inView:self.view];
              if (_urlArray.count<1){
                  [self startReqSiteInfo];
+             }else{
+                 [self checkUrl] ;
              }
         }
             break ;
@@ -120,6 +130,8 @@
             [self addToastWithString:unknown inView:self.view];
              if (_urlArray.count<1){
                  [self startReqSiteInfo];
+             }else{
+                 [self checkUrl] ;
              }
         }
             break;
@@ -173,13 +185,6 @@
 {
     if (type == ServiceRequestTypeDomainList){
         _urlArray = ConvertToClassPointer(NSArray, data) ;
-        
-        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
-#ifdef TEST_DOMAIN
-            _urlArray = @[TEST_DOMAIN] ;
-#endif
-        }
-        
         [self checkUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
               type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
@@ -207,7 +212,13 @@
             }
             
             [self.serviceRequest cancleAllServices] ;//结束所有域名检测
-            [self.serviceRequest startUpdateCheck] ;
+        
+            if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+                [self splashViewComplete] ;
+            }else{
+                [self.serviceRequest startUpdateCheck] ;
+            }
+            
         }) ;
         
     }else if (type == ServiceRequestTypeUpdateCheck){
@@ -229,7 +240,7 @@
             UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if(alertView.firstOtherButtonIndex == buttonIndex){
                     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                    //itms-services://?action=download-manifest&amp;url=%@/%@/%@/app_%@_%@.plist
+                    
                     NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
                     NSLog(@"%@",downLoadIpaUrl);
                     if (openURL(downLoadIpaUrl)==false){
@@ -259,19 +270,7 @@
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeDomainList){
-        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
-#ifdef TEST_DOMAIN
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",TEST_DOMAIN]] ;
-            [self splashViewComplete] ;
-            return;
-#else
-            showErrorMessage(self.view, error, nil) ;
-#endif
-        }else{
-            showErrorMessage(self.view, error, nil) ;
-        }
-        
+        showErrorMessage(self.view, error, nil) ;
     }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
               type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
               type == ServiceRequestTypeDomainCheck05 || type == ServiceRequestTypeDomainCheck06 ||
