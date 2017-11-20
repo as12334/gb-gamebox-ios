@@ -65,7 +65,7 @@
         self.appDelegate.logoutUrl = nil ;
     }else{
         self.webURL = [NSURL URLWithString:self.domain] ;
-//        [self reloadWebView] ;
+        [self reloadWebView] ;
     }
 }
 

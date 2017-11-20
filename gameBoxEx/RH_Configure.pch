@@ -57,7 +57,7 @@
 #define S        @"5613daa85f182719c359efbd2332ce12"
 #define SID        @"217"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3"
+#define SITE_TYPE    @"integrated"
 
 #elif _rf80 //TEST01[21]
 

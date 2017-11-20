@@ -199,7 +199,6 @@
             NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[type-1]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             
-//            if ((isIgnoreHTTPS(strTmp) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV))
             if (![data boolValue])//http protocol
             {
                 [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",strTmp]] ;
@@ -260,7 +259,19 @@
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeDomainList){
-        showErrorMessage(self.view, error, nil) ;
+        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+#ifdef TEST_DOMAIN
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",TEST_DOMAIN]] ;
+            [self splashViewComplete] ;
+            return;
+#else
+            showErrorMessage(self.view, error, nil) ;
+#endif
+        }else{
+            showErrorMessage(self.view, error, nil) ;
+        }
+        
     }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
               type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
               type == ServiceRequestTypeDomainCheck05 || type == ServiceRequestTypeDomainCheck06 ||
