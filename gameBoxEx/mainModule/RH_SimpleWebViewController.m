@@ -390,7 +390,9 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+   
     NSString* reqUrl = request.URL.absoluteString;
+    NSLog(@"----test:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
         //bSucc是否成功调起支付宝
@@ -440,7 +442,6 @@
                 [self showViewController:[RH_CustomViewController viewController] sender:self];
             });
         }
-    
         NSLog(@"-------End Log-------");
     } ;
 

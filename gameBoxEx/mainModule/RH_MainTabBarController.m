@@ -206,7 +206,7 @@
                 UIViewController * rootViewController = [(UINavigationController *)viewController topViewController];
                 //
                 if ([rootViewController isKindOfClass:[RH_CustomServicePageViewController class]]){
-                    if ([SID isEqualToString:@"211"]||[SID isEqualToString:@"119"]||[SID isEqualToString:@"136"]){
+                    if ([SID isEqualToString:@"211"]||[SID isEqualToString:@"119"]||[SID isEqualToString:@"136"]||[SID isEqualToString:@"270"]){
                         RH_APPDelegate *appDelegate =  ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate)  ;
                         openURL(appDelegate.servicePath.trim) ;
                         return NO ;
