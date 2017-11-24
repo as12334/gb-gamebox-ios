@@ -1182,6 +1182,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _dpmi //银河娱乐场官网
+
+#define CODE    @"dpmi"
+#define S        @"167b92cdc52238a737679bc01352c56b"
+#define SID        @"303"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
