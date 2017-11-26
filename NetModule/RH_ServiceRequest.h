@@ -16,26 +16,7 @@
  */
 typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeDomainList = 0,
-    ServiceRequestTypeDomainCheck01 ,
-    ServiceRequestTypeDomainCheck02 ,
-    ServiceRequestTypeDomainCheck03 ,
-    ServiceRequestTypeDomainCheck04 ,
-    ServiceRequestTypeDomainCheck05 ,
-    ServiceRequestTypeDomainCheck06 ,
-    ServiceRequestTypeDomainCheck07 ,
-    ServiceRequestTypeDomainCheck08 ,
-    ServiceRequestTypeDomainCheck09 ,
-    ServiceRequestTypeDomainCheck10 ,
-    ServiceRequestTypeDomainCheck11 ,
-    ServiceRequestTypeDomainCheck12 ,
-    ServiceRequestTypeDomainCheck13 ,
-    ServiceRequestTypeDomainCheck14 ,
-    ServiceRequestTypeDomainCheck15 ,
-    ServiceRequestTypeDomainCheck16 ,
-    ServiceRequestTypeDomainCheck17 ,
-    ServiceRequestTypeDomainCheck18 ,
-    ServiceRequestTypeDomainCheck19 ,
-    ServiceRequestTypeDomainCheck20 ,
+    ServiceRequestTypeDomainCheck ,
     ServiceRequestTypeUpdateCheck ,
     ServiewRequestTypeUserAgent ,
 };
@@ -92,7 +73,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * DOMAIN CHECK
  */
--(void)startCheckDomain:(NSString*)doMain ServiceRequestTypeDomainCheckIndex:(ServiceRequestType)domainCheckIndex ;
+-(void)startCheckDomain:(NSString*)doMain;
 
 /**
  * update CHECK

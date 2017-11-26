@@ -93,16 +93,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startCheckDomain:(NSString*)doMain ServiceRequestTypeDomainCheckIndex:(ServiceRequestType)domainCheckIndex
+-(void)startCheckDomain:(NSString*)doMain
 {
     [self _startServiceWithAPIName:nil
-                        pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"http://%@/__check"
+                        pathFormat:@"http://%@/__check"
                      pathArguments:@[doMain?:@""]
                    headerArguments:nil
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
-                       serviceType:domainCheckIndex
+                       serviceType:ServiceRequestTypeDomainCheck
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -347,27 +347,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
 
-    if (type == ServiceRequestTypeDomainCheck01 ||
-        type == ServiceRequestTypeDomainCheck02 ||
-        type == ServiceRequestTypeDomainCheck03 ||
-        type == ServiceRequestTypeDomainCheck04 ||
-        type == ServiceRequestTypeDomainCheck05 ||
-        type == ServiceRequestTypeDomainCheck06 ||
-        type == ServiceRequestTypeDomainCheck07 ||
-        type == ServiceRequestTypeDomainCheck08 ||
-        type == ServiceRequestTypeDomainCheck09 ||
-        type == ServiceRequestTypeDomainCheck10 ||
-        type == ServiceRequestTypeDomainCheck11 ||
-        type == ServiceRequestTypeDomainCheck12 ||
-        type == ServiceRequestTypeDomainCheck13 ||
-        type == ServiceRequestTypeDomainCheck14 ||
-        type == ServiceRequestTypeDomainCheck15 ||
-        type == ServiceRequestTypeDomainCheck16 ||
-        type == ServiceRequestTypeDomainCheck17 ||
-        type == ServiceRequestTypeDomainCheck18 ||
-        type == ServiceRequestTypeDomainCheck19 ||
-        type == ServiceRequestTypeDomainCheck20
-        )
+    if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
 #if 0
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;

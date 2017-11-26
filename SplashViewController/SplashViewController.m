@@ -23,24 +23,24 @@
 #define  kUpdateAPPDatePrompt                           @"kUpdateAPPDatePrompt"
 #define  OneDayTotalInterval                             (24*60*60)
 
-@interface SplashViewController ()
+@interface SplashViewController ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong) UIWindow * window;
 @property (weak, nonatomic) IBOutlet UIImageView *splashLogo;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText2;
+@property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
 
 @end
 
 @implementation SplashViewController
 {
-    NSInteger _urlArrayLastIndex ;
     NSArray *_urlArray ;
     NSString *_talk ;
 }
+@synthesize checkDomainServices = _checkDomainServices ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _urlArrayLastIndex = 0 ;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
@@ -79,12 +79,31 @@
     [self.serviceRequest startReqDomainList] ;
 }
 
+-(NSMutableArray *)checkDomainServices
+{
+    if (!_checkDomainServices){
+        _checkDomainServices = [[NSMutableArray alloc] init] ;
+    }
+    
+    return _checkDomainServices ;
+}
+
+-(void)cancelAllDomainCheck
+{
+    for (int i=0; i<self.checkDomainServices.count; i++) {
+        RH_ServiceRequest *tmpServiceRequest = ConvertToClassPointer(RH_ServiceRequest, [self.checkDomainServices objectAtIndex:i]) ;
+        [tmpServiceRequest cancleAllServices] ;
+    }
+    
+    [self.checkDomainServices removeAllObjects] ;
+}
+
 #pragma mark-
 -(void)netStatusChangedHandle
 {
     NSString *network = @"网络不可用";
     NSString *wifiing = @"正在使用Wifi";
-    NSString *wifi = @"Wifi已开启";
+//    NSString *wifi = @"Wifi已开启";
     NSString *flow = @"你现在使用的流量";
     NSString *unknown = @"你现在使用的未知网络";
 
@@ -109,7 +128,7 @@
             if (_urlArray.count<1){
                 [self startReqSiteInfo];
             }else{
-                [self checkUrl] ;
+                [self checkAllUrl] ;
             }
         }
             break ;
@@ -120,7 +139,7 @@
              if (_urlArray.count<1){
                  [self startReqSiteInfo];
              }else{
-                 [self checkUrl] ;
+                 [self checkAllUrl] ;
              }
         }
             break ;
@@ -131,7 +150,7 @@
              if (_urlArray.count<1){
                  [self startReqSiteInfo];
              }else{
-                 [self checkUrl] ;
+                 [self checkAllUrl] ;
              }
         }
             break;
@@ -185,23 +204,13 @@
 {
     if (type == ServiceRequestTypeDomainList){
         _urlArray = ConvertToClassPointer(NSArray, data) ;
-        [self checkUrl] ;
-    }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
-              type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
-              type == ServiceRequestTypeDomainCheck05 || type == ServiceRequestTypeDomainCheck06 ||
-              type == ServiceRequestTypeDomainCheck07 || type == ServiceRequestTypeDomainCheck08 ||
-              type == ServiceRequestTypeDomainCheck09 || type == ServiceRequestTypeDomainCheck10 ||
-              type == ServiceRequestTypeDomainCheck11 || type == ServiceRequestTypeDomainCheck12 ||
-              type == ServiceRequestTypeDomainCheck13 || type == ServiceRequestTypeDomainCheck14 ||
-              type == ServiceRequestTypeDomainCheck15 || type == ServiceRequestTypeDomainCheck16 ||
-              type == ServiceRequestTypeDomainCheck17 || type == ServiceRequestTypeDomainCheck18 ||
-              type == ServiceRequestTypeDomainCheck19 || type == ServiceRequestTypeDomainCheck20
-              )
+        [self checkAllUrl] ;
+    }else if (type == ServiceRequestTypeDomainCheck)
     {
         [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
         static dispatch_once_t onceToken ;
         dispatch_once(&onceToken, ^{
-            NSString *strTmp = [ConvertToClassPointer(NSString, _urlArray[type-1]) copy] ;
+            NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             
             if (![data boolValue])//http protocol
@@ -211,7 +220,7 @@
                 [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
             }
             
-            [self.serviceRequest cancleAllServices] ;//结束所有域名检测
+            [self cancelAllDomainCheck] ;
         
             if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
                 [self splashViewComplete] ;
@@ -271,24 +280,11 @@
 {
     if (type == ServiceRequestTypeDomainList){
         showErrorMessage(self.view, error, nil) ;
-    }else if (type == ServiceRequestTypeDomainCheck01 || type == ServiceRequestTypeDomainCheck02 ||
-              type == ServiceRequestTypeDomainCheck03 || type == ServiceRequestTypeDomainCheck04 ||
-              type == ServiceRequestTypeDomainCheck05 || type == ServiceRequestTypeDomainCheck06 ||
-              type == ServiceRequestTypeDomainCheck07 || type == ServiceRequestTypeDomainCheck08 ||
-              type == ServiceRequestTypeDomainCheck09 || type == ServiceRequestTypeDomainCheck10 ||
-              type == ServiceRequestTypeDomainCheck11 || type == ServiceRequestTypeDomainCheck12 ||
-              type == ServiceRequestTypeDomainCheck13 || type == ServiceRequestTypeDomainCheck14 ||
-              type == ServiceRequestTypeDomainCheck15 || type == ServiceRequestTypeDomainCheck16 ||
-              type == ServiceRequestTypeDomainCheck17 || type == ServiceRequestTypeDomainCheck18 ||
-              type == ServiceRequestTypeDomainCheck19 || type == ServiceRequestTypeDomainCheck20
-              )
+    }else if (type == ServiceRequestTypeDomainCheck)
     {
         static int totalFail = 0 ;
         dispatch_async(dispatch_get_main_queue(), ^{
             totalFail ++ ;
-            if (totalFail>=20){
-                [self checkUrl] ;
-            }
         });
         
         if (totalFail>=_urlArray.count){
@@ -302,19 +298,22 @@
 }
 
 
-- (void)checkUrl{
-    if (_urlArrayLastIndex<_urlArray.count){
+- (void)checkAllUrl{
+    if (_urlArray.count){
         if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
-                                                             detailText:[NSString stringWithFormat:@"checking domain:%@",_urlArray[_urlArrayLastIndex]]] ;
+                                                             detailText:@"checking domain"] ;
         }
         
-        int minIndex = _urlArrayLastIndex ;
-        int maxIndex = MIN(_urlArray.count, _urlArrayLastIndex+20) ;
-        for (; minIndex < maxIndex ; minIndex++) {
-            [self.serviceRequest startCheckDomain:_urlArray[minIndex] ServiceRequestTypeDomainCheckIndex:(minIndex+1)%21] ;
+        for (int i=0; i<_urlArray.count; i++) {
+            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
+            RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
+            tmpServiceRequest.delegate = self ;
+            [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
+            [self.checkDomainServices addObject:tmpServiceRequest] ;
+            
+            [tmpServiceRequest startCheckDomain:tmpDomain] ;
         }
-        _urlArrayLastIndex = minIndex + 1 ;
     }else{
         showMessage(self.view, NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil),
                     _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
