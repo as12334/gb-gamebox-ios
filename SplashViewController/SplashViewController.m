@@ -227,7 +227,6 @@
             }else{
                 [self.serviceRequest startUpdateCheck] ;
             }
-            
         }) ;
         
     }else if (type == ServiceRequestTypeUpdateCheck){

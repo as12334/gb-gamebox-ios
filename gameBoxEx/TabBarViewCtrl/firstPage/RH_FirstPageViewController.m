@@ -22,7 +22,7 @@
     self.webURL = [NSURL URLWithString:self.domain] ;
     self.navigationItem.titleView = nil ;
     [self autoLogin] ;
-    [self getService] ;
+   
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     
@@ -113,23 +113,25 @@
 };
 
 
-- (void)getService {
-    //1.拿到网站
-    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/index/getCustomerService.html"];
-    //2.创建字一个网络请求管理者对象 （http会话管理者）  此对象不是单例对象
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //3.设置网络传输的类型：这里一般都是二进制
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
-    [manager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"成功");
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"---%@",responseString);
-        [self.appDelegate updateServicePath:[responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"失败：%@",error);
-    }];
-}
+//- (void)getService {
+//    //1.拿到网站
+//    [self.serviceRequest startGetCustomServiceURL:self.domain] ;
+//
+//    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/index/getCustomerService.html"];
+//    //2.创建字一个网络请求管理者对象 （http会话管理者）  此对象不是单例对象
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    //3.设置网络传输的类型：这里一般都是二进制
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//
+//    [manager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"成功");
+//        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSLog(@"---%@",responseString);
+//        [self.appDelegate updateServicePath:[responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"失败：%@",error);
+//    }];
+//}
 
 - (void)demoEnter{
     NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/demo/lottery.html"];

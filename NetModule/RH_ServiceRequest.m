@@ -13,6 +13,7 @@
 #import "RH_API.h"
 #import "coreLib.h"
 #import "RH_UpdatedVersionModel.h"
+#import "RH_APPDelegate.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -121,6 +122,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startGetCustomServiceURL:(NSString*)domain
+{
+    [self _startServiceWithAPIName:domain
+                        pathFormat:@"index/getCustomerService.html"
+                     pathArguments:nil
+                   headerArguments:nil
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiewRequestTypeGetCustomService
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
 
@@ -355,6 +368,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #else
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
+        
         if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
             NSString* reqUrl = response.URL.absoluteString.lowercaseString;
             if ([reqUrl hasPrefix:@"https://"]) {
@@ -366,6 +380,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *error = [NSError resultDataNoJSONError] ;
         }
 #endif
+        return YES ;
+    }else if (type == ServiewRequestTypeGetCustomService){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        if ([tmpResult.lowercaseString hasPrefix:@"http://"] || [tmpResult.lowercaseString hasPrefix:@"https://"]){
+            *reslutData = tmpResult ;
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateServicePath:[tmpResult stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
+        }else{
+            *error = [NSError resultDataNoJSONError] ;
+        }
+        
         return YES ;
     }
 

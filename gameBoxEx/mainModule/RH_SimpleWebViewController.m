@@ -34,7 +34,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    _domain = self.appDelegate.domain ;
+    _domain = self.appDelegate.domain.trim ;
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integrated"]) {
+        if (self.appDelegate.servicePath.length==0){
+            [self.serviceRequest startGetCustomServiceURL:self.appDelegate.domain.trim] ;
+        }
+    }
+    
     [self setHiddenStatusBar:NO];
     
     self.hiddenTabBar = [self tabBarHidden] ;

@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeDomainCheck ,
     ServiceRequestTypeUpdateCheck ,
     ServiewRequestTypeUserAgent ,
+    ServiewRequestTypeGetCustomService ,//获取客服 地址
 };
 
 
@@ -80,6 +81,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  */
 -(void)startUpdateCheck ;
 
+-(void)startGetCustomServiceURL:(NSString*)domain;
 
 #pragma mark -
 /**

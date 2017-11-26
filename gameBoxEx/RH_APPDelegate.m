@@ -27,7 +27,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 @implementation RH_APPDelegate
 
-
 - (void)doSomethingWhenAppFirstLaunch
 {
     //清理缓存的临时和缓存数据数据
@@ -48,6 +47,8 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    
+
 }
 
 -(BOOL)needShowUserGuideView
@@ -148,11 +149,13 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 -(void)updateServicePath:(NSString*)servicePath
 {
-    NSString *tmpStr = servicePath.trim ;
-    tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
-    tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+    if (servicePath !=_servicePath){
+        NSString *tmpStr = servicePath.trim ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
 
-    _servicePath = tmpStr ;
+        _servicePath = tmpStr ;
+    }
 }
 
 #pragma mark- For MeiQia---overload function
