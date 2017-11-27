@@ -37,7 +37,7 @@
     _domain = self.appDelegate.domain.trim ;
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integrated"]) {
-        if (self.appDelegate.servicePath.length==0){
+        if (self.appDelegate.servicePath.length<1){
             [self.serviceRequest startGetCustomServiceURL:self.appDelegate.domain.trim] ;
         }
     }
