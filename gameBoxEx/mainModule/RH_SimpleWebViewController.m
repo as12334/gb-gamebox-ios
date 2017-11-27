@@ -140,12 +140,6 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated] ;
-    NSLog(@"....webView : (%f,%f),(%f,%f)",self.webView.frameX,self.webView.frameY,self.webView.frameWidth,self.webView.frameHeigh) ;
-}
-
 - (void)dealloc
 {
     if (self.isLoading) {

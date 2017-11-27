@@ -284,12 +284,12 @@
         static int totalFail = 0 ;
         dispatch_async(dispatch_get_main_queue(), ^{
             totalFail ++ ;
+            
+            if (totalFail>=_urlArray.count){
+                [self.contentLoadingIndicateView hiddenView] ;
+                showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+            }
         });
-        
-        if (totalFail>=_urlArray.count){
-            [self.contentLoadingIndicateView hiddenView] ;
-            showAlertView(@"系统提示", @"没有检测到可用的域名!");
-        }
         
     }else if (type == ServiceRequestTypeUpdateCheck){
         [self splashViewComplete] ;

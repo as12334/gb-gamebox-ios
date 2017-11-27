@@ -1196,8 +1196,8 @@
 #define CODE    @"mpyz"
 #define S        @"891c275665274e31b0b04b6d79c5175b"
 #define SID        @"305"
-#define THEME    @"integrated"
-#define SITE_TYPE    @"default.skin"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 
 #elif _sv8i //银河娱乐城
@@ -1205,8 +1205,16 @@
 #define CODE    @"sv8i"
 #define S        @"ee65478134fcdeba198c793a26d510b7"
 #define SID        @"306"
-#define THEME    @"integrated"
-#define SITE_TYPE    @"default.skin"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _7dfu //云顶至尊娱乐城
+
+#define CODE    @"7dfu"
+#define S        @"2bb2c4538cf4ec9bef8fe2cbed393053"
+#define SID        @"307"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 #else //超博娱乐
 
