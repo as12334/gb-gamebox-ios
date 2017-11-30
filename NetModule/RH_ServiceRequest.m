@@ -122,6 +122,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startLoginWithURL:(NSString*)domain UserName:(NSString*)userName Password:(NSString*)password
+{
+    [self _startServiceWithAPIName:domain
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:nil
+                    queryArguments:@{@"username":userName?:@"",
+                                     @"password":password?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiewRequestTypeUserLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startGetCustomServiceURL:(NSString*)domain
 {
     [self _startServiceWithAPIName:domain
@@ -132,6 +147,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
                        serviceType:ServiewRequestTypeGetCustomService
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startTestUrl:(NSString*)testURL
+{
+    [self _startServiceWithAPIName:testURL
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:nil
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeTestUrl
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -393,6 +421,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         
         return YES ;
+    }else if (type == ServiceRequestTypeTestUrl){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        NSLog(@"%@",tmpResult) ;
+    }else if (type == ServiewRequestTypeUserLogin){
+        
     }
 
     //json解析
@@ -427,7 +461,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
                 break ;
-
+                
+           case ServiceRequestTypeTestUrl:
+            {
+                NSLog(@"") ;
+            }
+                break ;
+                
             default:
                 resultSendData = dataObject ;
 

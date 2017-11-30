@@ -148,9 +148,9 @@
     }
 
     [self.webView stopLoading];
+    _webURL = nil;
     // 每次退出 都清除一下缓存被
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-
 }
 
 #pragma mark--
@@ -212,7 +212,8 @@
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
-            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况 
 
         }else {
             _webURL = nil;
@@ -352,6 +353,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSLog(@"-webView finish ---:",webView);
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
     NSString *url = webView.request.URL.absoluteString;
@@ -382,6 +384,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    NSLog(@"-webView finish with error---:%@",error);
     [self _setContentShowState:RH_WebViewContentShowStateNone];
     [self _setLoading:NO];
     [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
@@ -393,9 +396,9 @@
 {
    
     NSString* reqUrl = request.URL.absoluteString;
-    NSLog(@"----test:%@",reqUrl);
+    NSLog(@"-start Request---:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
-        BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
+        [[UIApplication sharedApplication]openURL:request.URL];
         //bSucc是否成功调起支付宝
     }
     return YES;
@@ -513,7 +516,7 @@
         JSValue *gameJsVal;
         for (JSValue *jsVal in args) {
             gameJsVal = jsVal;
-            NSLog(@"%@", jsVal.toString);
+//            NSLog(@"%@", jsVal.toString);
         }
 
         if (args[0] != NULL) {

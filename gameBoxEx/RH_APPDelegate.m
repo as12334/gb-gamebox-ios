@@ -158,6 +158,17 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     }
 }
 
+-(void)setCustomUrl:(NSString *)customUrl
+{
+    if (customUrl !=_customUrl){
+        NSString *tmpStr = customUrl.trim ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+        
+        _customUrl = tmpStr ;
+    }
+}
+
 #pragma mark- For MeiQia---overload function
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {

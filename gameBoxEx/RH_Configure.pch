@@ -1216,6 +1216,46 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _whsl //澳门威尼斯人
+
+#define CODE    @"whsl"
+#define S        @"5ba771f5e1693efea32fcc2ef8521585"
+#define SID        @"308"
+#define THEME    @"default.skin"
+#define SITE_TYPE   @"integrated"
+
+#elif _5noo //新葡京娱乐城
+
+#define CODE    @"5noo"
+#define S        @"952b3163627a274126b667384f4dc5a0"
+#define SID        @"309"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _x3wl //永利国际
+
+#define CODE    @"x3wl"
+#define S        @"2667c66f52574b43732dca4d1f533ac3"
+#define SID        @"311"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _we64 //萬象城国际
+
+#define CODE    @"we64"
+#define S        @"a9234113dc1baaaf761c7bdf2bbd2f16"
+#define SID        @"310"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _mwve //澳门巴黎人
+
+#define CODE    @"mwve"
+#define S        @"8835719d8d8512ce452ba12846d88475"
+#define SID        @"312"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
@@ -1223,7 +1263,6 @@
 #define SID   @"71"
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
-
 
 
 #endif

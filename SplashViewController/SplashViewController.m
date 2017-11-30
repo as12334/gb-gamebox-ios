@@ -278,7 +278,8 @@
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeDomainList){
-        showErrorMessage(self.view, error, nil) ;
+        [self.contentLoadingIndicateView hiddenView] ;
+        showAlertView(error.localizedDescription, @"系统没有返回可用的域名列表") ;
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         static int totalFail = 0 ;
@@ -314,9 +315,9 @@
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
         }
     }else{
-        showMessage(self.view, NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil),
-                    _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
-                    NSLocalizedString(@"SPLASHVIEWCTRL_EMPTY_DOMAINLIST", nil)) ;
+        [self.contentLoadingIndicateView hiddenView] ;
+        showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
+                      NSLocalizedString(@"SPLASHVIEWCTRL_EMPTY_DOMAINLIST", nil)) ;
     }
 }
 

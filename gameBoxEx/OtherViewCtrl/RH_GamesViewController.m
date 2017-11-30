@@ -27,12 +27,12 @@
     self.autoShowWebTitle = YES ;
     
     if([self.appDelegate.customUrl containsString:@"http"]){
-        self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
+        self.webURL = [NSURL URLWithString:self.appDelegate.customUrl] ;
     }else{
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl]] ;
     }
-
-    [self reloadWebView] ;
+    
+//    [self reloadWebView] ;
     [self.contentView addSubview:self.gameBgImage];
     [self.contentView bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
