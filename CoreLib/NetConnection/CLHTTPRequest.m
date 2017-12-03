@@ -300,10 +300,6 @@ isStart = NO;                                   \
 
         NSMutableURLRequest * tmpURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[_requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 
-#if 1  //userAgent
-//        [tmpURLRequest setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-        [tmpURLRequest setValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
-#endif
         //设置方法
         switch (_type) {
             case HTTPRequestTypeGet:

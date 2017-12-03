@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:RH_API_MAIN_URL
                         pathFormat:@"app/line.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
                                      RH_SP_COMMON_SITESEC:S}
                      bodyArguments:nil
@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:nil
                         pathFormat:@"http://%@/__check"
                      pathArguments:@[doMain?:@""]
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:RH_API_MAIN_URL
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
                                      RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
                                      }
@@ -127,13 +127,30 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:domain
                         pathFormat:nil
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
                     queryArguments:@{@"username":userName?:@"",
                                      @"password":password?:@""
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiewRequestTypeUserLogin
+                       serviceType:ServiceRequestTypeUserLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startDemoLoginWithURL:(NSString*)domain
+{
+    [self _startServiceWithAPIName:domain
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeDemoLogin
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -142,11 +159,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:domain
                         pathFormat:@"index/getCustomerService.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
-                       serviceType:ServiewRequestTypeGetCustomService
+                       serviceType:ServiceRequestTypeGetCustomService
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -390,10 +407,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
-#if 0
-        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
-        *reslutData = [tmpData mj_JSONString] ;
-#else
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
         
@@ -407,9 +420,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }else{
             *error = [NSError resultDataNoJSONError] ;
         }
-#endif
         return YES ;
-    }else if (type == ServiewRequestTypeGetCustomService){
+    }else if (type == ServiceRequestTypeGetCustomService){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
         if ([tmpResult.lowercaseString hasPrefix:@"http://"] || [tmpResult.lowercaseString hasPrefix:@"https://"]){
@@ -421,12 +433,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         
         return YES ;
+    }else if (type == ServiceRequestTypeDemoLogin){//处理结果数据
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        
+        if ([[tmpResult lowercaseString] containsString:@"true"]){ //域名响应ok
+            *reslutData = @(YES) ;
+        }else{
+            *reslutData = @(NO) ;
+        }
+        return YES ;
     }else if (type == ServiceRequestTypeTestUrl){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
         NSLog(@"%@",tmpResult) ;
-    }else if (type == ServiewRequestTypeUserLogin){
-        
     }
 
     //json解析
@@ -461,10 +481,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
                 break ;
+              
+           case ServiceRequestTypeUserLogin:
+            {
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+            }
+                break ;
                 
            case ServiceRequestTypeTestUrl:
             {
-                NSLog(@"") ;
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
             }
                 break ;
                 

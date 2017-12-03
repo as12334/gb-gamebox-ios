@@ -22,7 +22,7 @@
     [super viewDidLoad] ;
 
     //请求链接
-    self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.domain,@"/transfer/index.html"]] ;
+    self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.domain,@"/discounts/index.html"]] ;
     self.navigationItem.titleView = nil ;
 
     //增加login status changed notification
@@ -36,8 +36,7 @@
 
 -(BOOL)needLogin
 {
-    //此为综合站 转帐界面
-    return YES ;
+    return NO ;
 }
 
 - (void)dealloc

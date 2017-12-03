@@ -67,7 +67,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3"
 
 #elif _7cxt //百发彩票
 
@@ -1253,6 +1253,22 @@
 #define CODE    @"mwve"
 #define S        @"8835719d8d8512ce452ba12846d88475"
 #define SID        @"312"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _no9y //巴黎人贵宾会
+
+#define CODE    @"no9y"
+#define S        @"77b5741f647310a8e20da52717444794"
+#define SID        @"313"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _reft //澳门金沙
+
+#define CODE    @"reft"
+#define S        @"0a87917f96eaabb2c6604d41e41bc6da"
+#define SID        @"315"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
