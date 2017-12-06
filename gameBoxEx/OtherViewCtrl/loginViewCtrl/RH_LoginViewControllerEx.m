@@ -37,6 +37,7 @@
     
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -52,10 +53,11 @@
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
     [self.contentTableView registerCellWithClass:[RH_LoginViewCell class]] ;
-    
+
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }
+
 
 -(RH_LoginViewCell*)loginViewCell
 {
@@ -63,7 +65,7 @@
         _loginViewCell = [RH_LoginViewCell createInstance] ;
         _loginViewCell.delegate = self ;
     }
-    
+
     return _loginViewCell ;
 }
 
@@ -79,7 +81,7 @@
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     appDelegate.customUrl = RH_API_NAME_SIGNUP ;
-    
+
     [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
 }
 
@@ -132,7 +134,7 @@
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
                 [defaults synchronize];
                 [appDelegate updateLoginStatus:YES] ;
-                
+
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }
@@ -161,9 +163,24 @@
 -(void)backBarButtonItemHandle
 {
     [self.loginViewCell endEditing:YES] ;
-    
+
     ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:)){
         [self.delegate loginViewViewControllerExTouchBack:self];
     }
 }
+
+#pragma mark-
+- (BOOL)shouldAutorotate
+{
+    //是否支持转屏
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    //支持哪些转屏方向
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
 @end

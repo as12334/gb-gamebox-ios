@@ -428,7 +428,7 @@
             loginViewCtrlEx.delegate = self ;
             [self showViewController:loginViewCtrlEx sender:self] ;
         }
-        
+
         return NO ;
     }
     return YES;
@@ -479,7 +479,8 @@
                     RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
                     loginViewCtrlEx.delegate = self ;
                     [self showViewController:loginViewCtrlEx sender:self] ;
-                }else{
+                }else
+                {
                     [self showViewController:[RH_CustomViewController viewController] sender:self];
                 }
             }) ;
@@ -651,12 +652,13 @@
 
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
-
+        JSValue *jsStatus = args[2] ;
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
-        [self.appDelegate updateLoginStatus:true] ;
+        [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
 
         RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
         if (loginViewCtrl){

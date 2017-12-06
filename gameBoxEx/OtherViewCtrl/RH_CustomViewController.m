@@ -153,14 +153,15 @@
 
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
-
+        JSValue *jsStatus = args[2] ;
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.appDelegate updateLoginStatus:true] ;
+            [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
             
             RH_LoginViewControllerEx *loginViewCtrlEx = ConvertToClassPointer(RH_LoginViewControllerEx, self.context) ;
             if (loginViewCtrlEx){
