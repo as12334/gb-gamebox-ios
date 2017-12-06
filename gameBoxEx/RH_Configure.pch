@@ -18,12 +18,11 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      0
+#define IS_TEST_SERVER_ENV                      1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_APP_VERCODE                  @"3
-"
+#define RH_APP_VERCODE                  @"3"
 #define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
@@ -205,7 +204,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _bqmn //464彩票
+#elif _bqmn //幸运彩票
 
 #define CODE    @"bqmn"
 #define S        @"c1b1eec890764e652254b9a7483d12f3"
@@ -1135,7 +1134,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _rqcc //澳门赌场
+#elif _rqcc //金沙娱乐场
 
 #define CODE    @"rqcc"
 #define S        @"151c699021898f3706e5b544ae28ff20"
@@ -1272,6 +1271,30 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _iugy //澳门太阳城
+
+#define CODE    @"iugy"
+#define S        @"b0e13ebdd89985595238bb14d6d68943"
+#define SID        @"318"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _w3ty //太阳城集团
+
+#define CODE    @"w3ty"
+#define S        @"d5086b681e211fc101839277c880ac7a"
+#define SID        @"319"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _r54t //澳门新葡京娱乐城
+
+#define CODE    @"r54t"
+#define S        @"4b6746ce9c99bf1a4b5a8ba641dd8f14"
+#define SID        @"316"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
@@ -1279,7 +1302,6 @@
 #define SID   @"71"
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
-
 
 #endif
 

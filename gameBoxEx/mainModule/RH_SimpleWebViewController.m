@@ -15,6 +15,7 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
+#import "RH_TestViewController.h"
 #import "CLTabBarController.h"
 #import "MacroDef.h"
 
@@ -123,12 +124,16 @@
                     }
                 }else{
                     //push login viewController
-                    //H5登录接口
-                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
-                    //oc原生登录接口
-//                    RH_LoginViewControllerEx *loginViewCtrl = [RH_LoginViewControllerEx viewController] ;
-                    loginViewCtrl.delegate = self ;
-                    [self showViewController:loginViewCtrl sender:self] ;
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){//显示原生登入界面
+                        RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
+                        loginViewCtrlEx.delegate = self ;
+                        [self showViewController:loginViewCtrlEx sender:self] ;
+                    }else{
+                        //H5登录接口
+                        RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                        loginViewCtrl.delegate = self ;
+                        [self showViewController:loginViewCtrl sender:self] ;
+                    }
                 }
             } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
                                                                  message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
@@ -204,6 +209,18 @@
     [self.navigationController popViewControllerAnimated:YES] ;
     [self reloadWebView] ;
 
+}
+
+#pragma mark-
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+}
+
+-(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    [self reloadWebView] ;
 }
 
 #pragma mark -
@@ -353,7 +370,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"-webView finish ---:",webView);
+    NSLog(@"-webView finish ---:");
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
     NSString *url = webView.request.URL.absoluteString;
@@ -380,6 +397,10 @@
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -394,12 +415,21 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-   
     NSString* reqUrl = request.URL.absoluteString;
     NSLog(@"-start Request---:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         [[UIApplication sharedApplication]openURL:request.URL];
         //bSucc是否成功调起支付宝
+    }else if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
+        [reqUrl containsString:@"/login/commonLogin.html"]){
+        //跳转原生
+        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
+            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+            loginViewCtrlEx.delegate = self ;
+            [self showViewController:loginViewCtrlEx sender:self] ;
+        }
+        
+        return NO ;
     }
     return YES;
 }
@@ -443,8 +473,16 @@
             }
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showViewController:[RH_CustomViewController viewController] sender:self];
-            });
+                if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
+                    [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
+                    //跳转原生
+                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+                    loginViewCtrlEx.delegate = self ;
+                    [self showViewController:loginViewCtrlEx sender:self] ;
+                }else{
+                    [self showViewController:[RH_CustomViewController viewController] sender:self];
+                }
+            }) ;
         }
         NSLog(@"-------End Log-------");
     } ;
@@ -673,7 +711,6 @@
 
     if (error){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
-//        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
     }

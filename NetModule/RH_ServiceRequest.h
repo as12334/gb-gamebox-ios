@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeUpdateCheck       ,
     ServiceRequestTypeUserLogin         ,
     ServiceRequestTypeDemoLogin         ,
+    ServiceRequestTypeObtainVerifyCode     ,
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
 };
@@ -83,7 +84,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  */
 -(void)startUpdateCheck ;
 
--(void)startLoginWithURL:(NSString*)domain UserName:(NSString*)userName Password:(NSString*)password ;
+-(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode ;
+
+-(void)startGetVerifyCode ;
 
 -(void)startDemoLoginWithURL:(NSString*)domain ;
 

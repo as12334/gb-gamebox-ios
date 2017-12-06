@@ -11,7 +11,6 @@
 #import "RH_APPDelegate.h"
 
 @interface RH_DepositeViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_DepositeViewController

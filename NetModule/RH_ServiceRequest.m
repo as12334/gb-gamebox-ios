@@ -122,20 +122,43 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startLoginWithURL:(NSString*)domain UserName:(NSString*)userName Password:(NSString*)password
+-(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
-    [self _startServiceWithAPIName:domain
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    
+    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",appDelegate.domain,RH_API_NAME_LOGIN]
                         pathFormat:nil
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone"
                                      }
-                    queryArguments:@{@"username":userName?:@"",
-                                     @"password":password?:@""
-                                     }
+                    queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                    @"password":password?:@"",
+                                                    @"captcha":verCode
+                                                    } :@{@"username":userName?:@"",
+                                                         @"password":password?:@""
+                                                         }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeUserLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startGetVerifyCode
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",appDelegate.domain,RH_API_NAME_VERIFYCODE]
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeObtainVerifyCode
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -443,6 +466,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(NO) ;
         }
         return YES ;
+    }else if (type == ServiceRequestTypeObtainVerifyCode){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
+        *reslutData = image ;
+        return YES ;
+        
     }else if (type == ServiceRequestTypeTestUrl){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;

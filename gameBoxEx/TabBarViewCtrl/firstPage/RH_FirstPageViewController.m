@@ -10,6 +10,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "RH_APPDelegate.h"
 #import "RH_CustomViewController.h"
+#import "RH_API.h"
 
 @interface RH_FirstPageViewController ()
 @end
@@ -72,7 +73,8 @@
         return;
     }
     
-    [self.serviceRequest startLoginWithURL:[NSString stringWithFormat:@"%@%@",self.domain,@"/passport/login.html"] UserName:account Password:password] ;
+    [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+    
     return ;
 
 //    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/passport/login.html"];

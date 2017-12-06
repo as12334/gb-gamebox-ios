@@ -45,5 +45,10 @@
 
 
 
+#pragma mark-接口 API List
+#define RH_API_NAME_LOGIN                                           @"/passport/login.html"
+#define RH_API_NAME_VERIFYCODE                                      @"/captcha/code.html"
+#define RH_API_NAME_SIGNUP                                          @"/signUp/index.html"
+
 #endif /* RH_API_h */
 

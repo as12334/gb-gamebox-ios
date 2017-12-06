@@ -12,7 +12,6 @@
 #import "RH_PromoViewController.h"
 
 @interface RH_PromoViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_PromoViewController

@@ -11,7 +11,6 @@
 #import "RH_APPDelegate.h"
 
 @interface RH_LoginViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
@@ -44,6 +43,7 @@
 {
     return YES ;
 }
+
 
 #pragma mark-
 -(void)webViewDidEndLoad:(NSError *)error

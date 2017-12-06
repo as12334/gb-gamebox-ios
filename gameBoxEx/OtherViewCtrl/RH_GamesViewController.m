@@ -11,7 +11,6 @@
 #import "RH_APPDelegate.h"
 
 @interface RH_GamesViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
@@ -24,7 +23,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.autoShowWebTitle = YES ;
+    self.autoShowWebTitle = NO ;
     
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl] ;
@@ -56,6 +55,7 @@
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
     [pan setTranslation:CGPointMake(0, 0) inView:self.contentView];
 }
+
 - (UIImageView *)gameBgImage
 {
     if (!_gameBgImage) {
