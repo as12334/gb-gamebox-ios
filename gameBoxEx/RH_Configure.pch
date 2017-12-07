@@ -1303,6 +1303,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _huih //澳门新葡京赌场
+
+#define CODE    @"huih"
+#define S        @"dcf79ae77974c0bb315ef4ba1e7f4e04"
+#define SID        @"320"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
