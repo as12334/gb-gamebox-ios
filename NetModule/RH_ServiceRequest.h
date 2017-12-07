@@ -88,9 +88,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 -(void)startGetVerifyCode ;
 
--(void)startDemoLoginWithURL:(NSString*)domain ;
+-(void)startDemoLogin;
 
--(void)startGetCustomServiceURL:(NSString*)domain;
+-(void)startGetCustomService ;
 
 -(void)startTestUrl:(NSString*)testURL ;
 

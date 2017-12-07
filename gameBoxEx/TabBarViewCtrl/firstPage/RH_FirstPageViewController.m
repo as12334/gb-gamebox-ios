@@ -132,11 +132,11 @@
 //}
 
 - (void)demoEnter{
-    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/demo/lottery.html"];
+//    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/demo/lottery.html"];
 //    NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
     [self showProgressIndicatorViewWithAnimated:YES title:@"试玩登入中"];
-    [self.serviceRequest startDemoLoginWithURL:path] ;
+    [self.serviceRequest startDemoLogin] ;
     return ;
 //    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]init];
 //

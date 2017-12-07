@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1292,6 +1292,14 @@
 #define CODE    @"r54t"
 #define S        @"4b6746ce9c99bf1a4b5a8ba641dd8f14"
 #define SID        @"316"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _0chi //威尼斯人娱乐城
+
+#define CODE    @"0chi"
+#define S        @"133b05b6e1d7835cf34ad05409885151"
+#define SID        @"317"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

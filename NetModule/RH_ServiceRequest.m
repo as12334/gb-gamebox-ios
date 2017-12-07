@@ -126,8 +126,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     
-    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",appDelegate.domain,RH_API_NAME_LOGIN]
-                        pathFormat:nil
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_LOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone"
@@ -149,8 +149,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
     NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",appDelegate.domain,RH_API_NAME_VERIFYCODE]
-                        pathFormat:nil
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_VERIFYCODE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone"
@@ -162,10 +162,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startDemoLoginWithURL:(NSString*)domain
+-(void)startDemoLogin
 {
-    [self _startServiceWithAPIName:domain
-                        pathFormat:nil
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEMOLOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone"
@@ -177,10 +178,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startGetCustomServiceURL:(NSString*)domain
+-(void)startGetCustomService
 {
-    [self _startServiceWithAPIName:domain
-                        pathFormat:@"index/getCustomerService.html"
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_GETCUSTOMPATH
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil

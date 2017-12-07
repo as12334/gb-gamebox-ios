@@ -37,12 +37,10 @@
     _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     _domain = self.appDelegate.domain.trim ;
     
-    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integrated"]) {
-        if (self.appDelegate.servicePath.length<1){
-            [self.serviceRequest startGetCustomServiceURL:self.appDelegate.domain.trim] ;
-        }
+    if (self.appDelegate.servicePath.length<1){
+        [self.serviceRequest startGetCustomService] ;
     }
-    
+
     [self setHiddenStatusBar:NO];
     
     self.hiddenTabBar = [self tabBarHidden] ;
@@ -98,7 +96,7 @@
                                          [self tabBarHidden]?0:heighTabBar,
                                          0) ;
         
-        NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
+//        NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
     }
     
     return contentInsets ;
@@ -208,7 +206,6 @@
 {
     [self.navigationController popViewControllerAnimated:YES] ;
     [self reloadWebView] ;
-
 }
 
 #pragma mark-
@@ -563,8 +560,13 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_GamesViewController viewController]
-                              sender:self] ;
+            //add 197 lottery 客服跳到浏览器
+            if ([SID isEqualToString:@"197"] && [self.appDelegate.servicePath.trim hasPrefix:self.appDelegate.customUrl.trim]){
+                openURL(self.appDelegate.servicePath.trim) ;
+            }else{
+                [self showViewController:[RH_GamesViewController viewController]
+                                  sender:self] ;
+            }
         });
     };
 

@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, RH_WebViewContentShowState) {
 -(BOOL)navigationBarHidden ;
 -(BOOL)tabBarHidden ;
 -(BOOL)needLogin ;
+
 //加载指示
 @property(nonatomic,strong,readonly) UIBarButtonItem * loadingBarButtonItem;
 //内容显示状态

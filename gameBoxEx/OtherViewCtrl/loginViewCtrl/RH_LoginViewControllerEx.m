@@ -80,7 +80,7 @@
 -(void)loginViewCellTouchCreateButton:(RH_LoginViewCell*)loginViewCell
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    appDelegate.customUrl = RH_API_NAME_SIGNUP ;
+    appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
 
     [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
 }
