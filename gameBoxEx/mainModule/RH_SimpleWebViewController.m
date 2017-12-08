@@ -416,6 +416,7 @@
     NSLog(@"-start Request---:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         [[UIApplication sharedApplication]openURL:request.URL];
+        return NO ;
         //bSucc是否成功调起支付宝
     }else if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
         [reqUrl containsString:@"/login/commonLogin.html"]){

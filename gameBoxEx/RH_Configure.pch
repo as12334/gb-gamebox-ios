@@ -51,6 +51,7 @@
 //===========================================================
 
 #ifdef _DEBUG //开发环境
+#define TEST_DOMAIN         @"test02.ccenter.test.so"
 
 #define CODE    @"w7ls"
 #define S        @"5613daa85f182719c359efbd2332ce12"
@@ -60,7 +61,8 @@
 
 #elif _rf80 //TEST01[21]
 
-//#define TEST_DOMAIN         @"test01.ccenter.test.so"            //@"test01.ampinplay0matrix.com"
+//#define TEST_DOMAIN         @"test02.ccenter.test.so"
+//@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
