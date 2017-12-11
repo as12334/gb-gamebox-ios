@@ -490,15 +490,18 @@
     jsContext[@"goBack"] = ^() {
         NSLog(@"JSToOc :%@------ goBack",NSStringFromClass([self class])) ;
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self] ;
-        if (index>=1 && index !=NSNotFound){
-            [self backBarButtonItemHandle] ;
-        }else{
-            if ([SITE_TYPE isEqualToString:@"integratedv3"]){
-                self.myTabBarController.selectedIndex = 2 ;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (index>=1 && index !=NSNotFound){
+                [self backBarButtonItemHandle] ;
             }else{
-                self.myTabBarController.selectedIndex = 0 ;
+                if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                    self.myTabBarController.selectedIndex = 2 ;
+                }else{
+                    self.myTabBarController.selectedIndex = 0 ;
+                }
             }
-        }
+        }) ;
     };
 
     jsContext[@"reload"] = ^() {
@@ -663,14 +666,16 @@
         [defaults synchronize];
         [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
 
-        RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
-        if (loginViewCtrl){
-            ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
-                [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
+            if (loginViewCtrl){
+                ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
+                    [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
+                }
+            }else{
+                [self reloadWebView] ;
             }
-        }else{
-            [self reloadWebView] ;
-        }
+        }) ;
     };
 
 #pragma mark- Mine ViewControl
