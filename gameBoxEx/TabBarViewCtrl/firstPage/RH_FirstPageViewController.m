@@ -242,4 +242,9 @@
     }
 }
 
+-(void)tryRefreshData
+{
+    [self reloadWebView] ;
+}
+
 @end
