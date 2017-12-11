@@ -12,7 +12,6 @@
 #import "RH_LoginViewController.h"
 
 @interface RH_CustomServicePageViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_CustomServicePageViewController
@@ -58,10 +57,13 @@
 {
     if (self.appDelegate.isLogin)
     {
-
         [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
-        [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息
-      
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+        }else{
+            [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;
+        }
     }
 }
 

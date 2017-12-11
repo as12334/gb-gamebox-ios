@@ -26,6 +26,4 @@
 #define RH_API_ERRORCODE_NO_JSON_ERROR                      902
 
 
-#define RH_API_ERRORCODE_TASKDETAILNOEXIST_ERROR            500 //任务详情不存在或已删除
-
 #endif /* RH_ErrorCode_h */

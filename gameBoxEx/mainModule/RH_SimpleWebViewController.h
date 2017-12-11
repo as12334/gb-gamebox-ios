@@ -9,6 +9,7 @@
 #import "RH_BasicViewController.h"
 #import "RH_BasicSubViewController.h"
 #import "RH_APPDelegate.h"
+#import "RH_LoginViewControllerEx.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
 //----------------------------------------------------------
@@ -21,7 +22,7 @@ typedef NS_ENUM(NSInteger, RH_WebViewContentShowState) {
 
 //----------------------------------------------------------
 
-@interface RH_SimpleWebViewController : RH_BasicViewController< UIWebViewDelegate,UIScrollViewDelegate >
+@interface RH_SimpleWebViewController : RH_BasicViewController< UIWebViewDelegate,UIScrollViewDelegate,LoginViewControllerExDelegate >
 @property(nonatomic,strong,readonly) UIWebView *webView ;
 @property(nonatomic,copy) NSURL *webURL ;
 @property(nonatomic,assign) BOOL autoShowWebTitle ;
@@ -31,10 +32,12 @@ typedef NS_ENUM(NSInteger, RH_WebViewContentShowState) {
 @property(nonatomic,readonly,weak) RH_APPDelegate *appDelegate ;
 @property(nonatomic,strong) NSString *domain ;
 
+
 -(BOOL)backButtonHidden ;
 -(BOOL)navigationBarHidden ;
 -(BOOL)tabBarHidden ;
 -(BOOL)needLogin ;
+
 //加载指示
 @property(nonatomic,strong,readonly) UIBarButtonItem * loadingBarButtonItem;
 //内容显示状态

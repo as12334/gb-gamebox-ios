@@ -15,10 +15,14 @@
  * 业务服务类型
  */
 typedef NS_ENUM(NSInteger, ServiceRequestType) {
-    ServiceRequestTypeDomainList = 0,
-    ServiceRequestTypeDomainCheck ,
-    ServiceRequestTypeUpdateCheck ,
-    ServiewRequestTypeUserAgent ,
+    ServiceRequestTypeDomainList = 0    ,
+    ServiceRequestTypeDomainCheck       ,
+    ServiceRequestTypeUpdateCheck       ,
+    ServiceRequestTypeUserLogin         ,
+    ServiceRequestTypeDemoLogin         ,
+    ServiceRequestTypeObtainVerifyCode     ,
+    ServiceRequestTypeGetCustomService  ,
+    ServiceRequestTypeTestUrl           ,
 };
 
 
@@ -80,6 +84,15 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  */
 -(void)startUpdateCheck ;
 
+-(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode ;
+
+-(void)startGetVerifyCode ;
+
+-(void)startDemoLogin;
+
+-(void)startGetCustomService ;
+
+-(void)startTestUrl:(NSString*)testURL ;
 
 #pragma mark -
 /**

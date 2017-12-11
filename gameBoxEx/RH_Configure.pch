@@ -22,8 +22,7 @@
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_APP_VERCODE                  @"3
-"
+#define RH_APP_VERCODE                  @"3"
 #define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
@@ -52,6 +51,7 @@
 //===========================================================
 
 #ifdef _DEBUG //开发环境
+#define TEST_DOMAIN         @"test02.ccenter.test.so"
 
 #define CODE    @"w7ls"
 #define S        @"5613daa85f182719c359efbd2332ce12"
@@ -61,13 +61,14 @@
 
 #elif _rf80 //TEST01[21]
 
-//#define TEST_DOMAIN         @"test01.ccenter.test.so"            //@"test01.ampinplay0matrix.com"
+//#define TEST_DOMAIN         @"test02.ccenter.test.so"
+//@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3"
 
 #elif _7cxt //百发彩票
 
@@ -205,7 +206,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _bqmn //464彩票
+#elif _bqmn //幸运彩票
 
 #define CODE    @"bqmn"
 #define S        @"c1b1eec890764e652254b9a7483d12f3"
@@ -1135,7 +1136,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _rqcc //澳门赌场
+#elif _rqcc //金沙娱乐场
 
 #define CODE    @"rqcc"
 #define S        @"151c699021898f3706e5b544ae28ff20"
@@ -1196,8 +1197,8 @@
 #define CODE    @"mpyz"
 #define S        @"891c275665274e31b0b04b6d79c5175b"
 #define SID        @"305"
-#define THEME    @"integrated"
-#define SITE_TYPE    @"default.skin"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 
 #elif _sv8i //银河娱乐城
@@ -1205,8 +1206,112 @@
 #define CODE    @"sv8i"
 #define S        @"ee65478134fcdeba198c793a26d510b7"
 #define SID        @"306"
-#define THEME    @"integrated"
-#define SITE_TYPE    @"default.skin"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _7dfu //云顶至尊娱乐城
+
+#define CODE    @"7dfu"
+#define S        @"2bb2c4538cf4ec9bef8fe2cbed393053"
+#define SID        @"307"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _whsl //澳门威尼斯人
+
+#define CODE    @"whsl"
+#define S        @"5ba771f5e1693efea32fcc2ef8521585"
+#define SID        @"308"
+#define THEME    @"default.skin"
+#define SITE_TYPE   @"integrated"
+
+#elif _5noo //新葡京娱乐城
+
+#define CODE    @"5noo"
+#define S        @"952b3163627a274126b667384f4dc5a0"
+#define SID        @"309"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _x3wl //永利国际
+
+#define CODE    @"x3wl"
+#define S        @"2667c66f52574b43732dca4d1f533ac3"
+#define SID        @"311"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _we64 //萬象城国际
+
+#define CODE    @"we64"
+#define S        @"a9234113dc1baaaf761c7bdf2bbd2f16"
+#define SID        @"310"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _mwve //澳门巴黎人
+
+#define CODE    @"mwve"
+#define S        @"8835719d8d8512ce452ba12846d88475"
+#define SID        @"312"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _no9y //巴黎人贵宾会
+
+#define CODE    @"no9y"
+#define S        @"77b5741f647310a8e20da52717444794"
+#define SID        @"313"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _reft //澳门金沙
+
+#define CODE    @"reft"
+#define S        @"0a87917f96eaabb2c6604d41e41bc6da"
+#define SID        @"315"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _iugy //澳门太阳城
+
+#define CODE    @"iugy"
+#define S        @"b0e13ebdd89985595238bb14d6d68943"
+#define SID        @"318"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _w3ty //太阳城集团
+
+#define CODE    @"w3ty"
+#define S        @"d5086b681e211fc101839277c880ac7a"
+#define SID        @"319"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _r54t //澳门新葡京娱乐城
+
+#define CODE    @"r54t"
+#define S        @"4b6746ce9c99bf1a4b5a8ba641dd8f14"
+#define SID        @"316"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _0chi //威尼斯人娱乐城
+
+#define CODE    @"0chi"
+#define S        @"133b05b6e1d7835cf34ad05409885151"
+#define SID        @"317"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _huih //澳门新葡京赌场
+
+#define CODE    @"huih"
+#define S        @"dcf79ae77974c0bb315ef4ba1e7f4e04"
+#define SID        @"320"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 #else //超博娱乐
 
@@ -1215,8 +1320,6 @@
 #define SID   @"71"
 #define THEME   @"default.skin"
 #define SITE_TYPE @"INTEGRATED"
-
-
 
 #endif
 

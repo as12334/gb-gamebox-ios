@@ -18,11 +18,18 @@
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
 @property(nonatomic,strong)CLButton * backBack;
+
+@property(nonatomic,strong) id context ;
 @end
 
 @implementation RH_CustomViewController
 @synthesize gameBgImage = _gameBgImage              ;
 @synthesize imageFirstPage = _imageFirstPage    ;
+
+-(void)setupViewContext:(id)context
+{
+    self.context = context ;
+}
 
 -(void)viewDidLoad
 {
@@ -146,16 +153,25 @@
 
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
-
+        JSValue *jsStatus = args[2] ;
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
-        [self.appDelegate updateLoginStatus:true] ;
-
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-             [self.navigationController popViewControllerAnimated:YES] ;
+            [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
+            
+            RH_LoginViewControllerEx *loginViewCtrlEx = ConvertToClassPointer(RH_LoginViewControllerEx, self.context) ;
+            if (loginViewCtrlEx){
+                ifRespondsSelector(loginViewCtrlEx.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
+                    [loginViewCtrlEx.delegate loginViewViewControllerExLoginSuccessful:loginViewCtrlEx] ;
+                }
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES] ;
+            
         });
     };
 }

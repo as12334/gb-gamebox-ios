@@ -238,6 +238,9 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
+		A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */; };
+		A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A91FD6915300323C12 /* RH_LoginViewCell.m */; };
+		A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
 		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
 		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
@@ -250,6 +253,7 @@
 		A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609BC1FBB071000A44B37 /* tab_v3_my_selected@2x.png */; };
 		A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */; };
 		A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */; };
+		A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */; };
 		A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
 		A0D66FF11F998C380053F0ED /* ClientCoreSDK.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */; };
@@ -803,6 +807,11 @@
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
 		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A06B64A41FD690EA00323C12 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
+		A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };
+		A06B64A81FD6915300323C12 /* RH_LoginViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewCell.h; sourceTree = "<group>"; };
+		A06B64A91FD6915300323C12 /* RH_LoginViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewCell.m; sourceTree = "<group>"; };
+		A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_LoginViewCell.xib; sourceTree = "<group>"; };
 		A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNavigationBar.h; sourceTree = "<group>"; };
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
 		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
@@ -817,6 +826,8 @@
 		A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my@2x.png"; sourceTree = "<group>"; };
 		A0B609C11FBB096B00A44B37 /* RH_PromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoViewController.h; sourceTree = "<group>"; };
 		A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoViewController.m; sourceTree = "<group>"; };
+		A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_TestViewController.h; sourceTree = "<group>"; };
+		A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_TestViewController.m; sourceTree = "<group>"; };
 		A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomTabBar.h; sourceTree = "<group>"; };
 		A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomTabBar.m; sourceTree = "<group>"; };
 		A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UpdatedVersionModel.h; sourceTree = "<group>"; };
@@ -1832,6 +1843,8 @@
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
+				A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */,
+				A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */,
 			);
 			path = OtherViewCtrl;
 			sourceTree = "<group>";
@@ -1845,11 +1858,24 @@
 			path = minePage;
 			sourceTree = "<group>";
 		};
+		A06B64A71FD6910700323C12 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A06B64A81FD6915300323C12 /* RH_LoginViewCell.h */,
+				A06B64A91FD6915300323C12 /* RH_LoginViewCell.m */,
+				A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				A06B64A71FD6910700323C12 /* cell */,
 				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
 				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
+				A06B64A41FD690EA00323C12 /* RH_LoginViewControllerEx.h */,
+				A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */,
 			);
 			path = loginViewCtrl;
 			sourceTree = "<group>";
@@ -2225,6 +2251,7 @@
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
 				A001B3DC1F8EF7CA00309EA4 /* tab_lottery_deposit@2x.png in Resources */,
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
+				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
 				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
 				A001B3DF1F8EF7CA00309EA4 /* tab_lottery_mine@2x.png in Resources */,
@@ -2279,6 +2306,7 @@
 				A0D670031F998C380053F0ED /* QoS4ReciveDaemon.m in Sources */,
 				A0D670041F998C380053F0ED /* QoS4SendDaemon.h in Sources */,
 				A0D670051F998C380053F0ED /* QoS4SendDaemon.m in Sources */,
+				A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */,
 				A0D670061F998C380053F0ED /* CompletionDefine.h in Sources */,
 				A0D670071F998C380053F0ED /* NSMutableDictionary+Ext.h in Sources */,
 				A0D670081F998C380053F0ED /* NSMutableDictionary+Ext.m in Sources */,
@@ -2295,6 +2323,7 @@
 				A0D670131F998C380053F0ED /* PLoginInfo.m in Sources */,
 				A0D670141F998C380053F0ED /* PLoginInfoResponse.h in Sources */,
 				A0D670151F998C380053F0ED /* PLoginInfoResponse.m in Sources */,
+				A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */,
 				A0D670161F998C380053F0ED /* Protocal.h in Sources */,
 				A0D670171F998C380053F0ED /* Protocal.m in Sources */,
 				A0D670181F998C380053F0ED /* ProtocalFactory.h in Sources */,
@@ -2492,6 +2521,7 @@
 				A0109F6A1F8787E4004E6EF4 /* CLBadgeView.m in Sources */,
 				A0109F6B1F8787E4004E6EF4 /* CLBlurredView.m in Sources */,
 				A0109F6C1F8787E4004E6EF4 /* CLBorderView.m in Sources */,
+				A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */,
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
@@ -2623,7 +2653,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_ys3q=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2634,7 +2664,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid118;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid21;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -2642,13 +2672,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = TEST01;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-118";
+				APP_DISPLAY_NAME = "测试V3";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-21";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_0chi=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2658,7 +2688,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid118;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid21;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

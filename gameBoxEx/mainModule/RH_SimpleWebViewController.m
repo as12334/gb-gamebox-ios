@@ -15,6 +15,7 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
+#import "RH_TestViewController.h"
 #import "CLTabBarController.h"
 #import "MacroDef.h"
 
@@ -34,7 +35,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    _domain = self.appDelegate.domain ;
+    _domain = self.appDelegate.domain.trim ;
+    
+    if (self.appDelegate.servicePath.length<1){
+        [self.serviceRequest startGetCustomService] ;
+    }
+
     [self setHiddenStatusBar:NO];
     
     self.hiddenTabBar = [self tabBarHidden] ;
@@ -90,7 +96,7 @@
                                          [self tabBarHidden]?0:heighTabBar,
                                          0) ;
         
-        NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
+//        NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
     }
     
     return contentInsets ;
@@ -116,12 +122,16 @@
                     }
                 }else{
                     //push login viewController
-                    //H5登录接口
-                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
-                    //oc原生登录接口
-//                    RH_LoginViewControllerEx *loginViewCtrl = [RH_LoginViewControllerEx viewController] ;
-                    loginViewCtrl.delegate = self ;
-                    [self showViewController:loginViewCtrl sender:self] ;
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){//显示原生登入界面
+                        RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
+                        loginViewCtrlEx.delegate = self ;
+                        [self showViewController:loginViewCtrlEx sender:self] ;
+                    }else{
+                        //H5登录接口
+                        RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                        loginViewCtrl.delegate = self ;
+                        [self showViewController:loginViewCtrl sender:self] ;
+                    }
                 }
             } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
                                                                  message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
@@ -133,12 +143,6 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated] ;
-    NSLog(@"....webView : (%f,%f),(%f,%f)",self.webView.frameX,self.webView.frameY,self.webView.frameWidth,self.webView.frameHeigh) ;
-}
-
 - (void)dealloc
 {
     if (self.isLoading) {
@@ -147,9 +151,9 @@
     }
 
     [self.webView stopLoading];
+    _webURL = nil;
     // 每次退出 都清除一下缓存被
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-
 }
 
 #pragma mark--
@@ -202,7 +206,18 @@
 {
     [self.navigationController popViewControllerAnimated:YES] ;
     [self reloadWebView] ;
+}
 
+#pragma mark-
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+}
+
+-(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    [self reloadWebView] ;
 }
 
 #pragma mark -
@@ -211,7 +226,8 @@
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
-            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况 
 
         }else {
             _webURL = nil;
@@ -351,6 +367,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSLog(@"-webView finish ---:");
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
     NSString *url = webView.request.URL.absoluteString;
@@ -377,10 +394,15 @@
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    NSLog(@"-webView finish with error---:%@",error);
     [self _setContentShowState:RH_WebViewContentShowStateNone];
     [self _setLoading:NO];
     [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
@@ -390,12 +412,22 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-   
     NSString* reqUrl = request.URL.absoluteString;
-    NSLog(@"----test:%@",reqUrl);
+    NSLog(@"-start Request---:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
-        BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
+        [[UIApplication sharedApplication]openURL:request.URL];
+        return NO ;
         //bSucc是否成功调起支付宝
+    }else if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
+        [reqUrl containsString:@"/login/commonLogin.html"]){
+        //跳转原生
+        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
+            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+            loginViewCtrlEx.delegate = self ;
+            [self showViewController:loginViewCtrlEx sender:self] ;
+        }
+
+        return NO ;
     }
     return YES;
 }
@@ -439,8 +471,17 @@
             }
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showViewController:[RH_CustomViewController viewController] sender:self];
-            });
+                if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
+                    [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
+                    //跳转原生
+                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+                    loginViewCtrlEx.delegate = self ;
+                    [self showViewController:loginViewCtrlEx sender:self] ;
+                }else
+                {
+                    [self showViewController:[RH_CustomViewController viewController] sender:self];
+                }
+            }) ;
         }
         NSLog(@"-------End Log-------");
     } ;
@@ -449,15 +490,18 @@
     jsContext[@"goBack"] = ^() {
         NSLog(@"JSToOc :%@------ goBack",NSStringFromClass([self class])) ;
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self] ;
-        if (index>=1 && index !=NSNotFound){
-            [self backBarButtonItemHandle] ;
-        }else{
-            if ([SITE_TYPE isEqualToString:@"integratedv3"]){
-                self.myTabBarController.selectedIndex = 2 ;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (index>=1 && index !=NSNotFound){
+                [self backBarButtonItemHandle] ;
             }else{
-                self.myTabBarController.selectedIndex = 0 ;
+                if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                    self.myTabBarController.selectedIndex = 2 ;
+                }else{
+                    self.myTabBarController.selectedIndex = 0 ;
+                }
             }
-        }
+        }) ;
     };
 
     jsContext[@"reload"] = ^() {
@@ -512,7 +556,7 @@
         JSValue *gameJsVal;
         for (JSValue *jsVal in args) {
             gameJsVal = jsVal;
-            NSLog(@"%@", jsVal.toString);
+//            NSLog(@"%@", jsVal.toString);
         }
 
         if (args[0] != NULL) {
@@ -520,8 +564,13 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_GamesViewController viewController]
-                              sender:self] ;
+            //add 197 lottery 客服跳到浏览器
+            if ([SID isEqualToString:@"197"] && [self.appDelegate.servicePath.trim hasPrefix:self.appDelegate.customUrl.trim]){
+                openURL(self.appDelegate.servicePath.trim) ;
+            }else{
+                [self showViewController:[RH_GamesViewController viewController]
+                                  sender:self] ;
+            }
         });
     };
 
@@ -609,21 +658,24 @@
 
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
-
+        JSValue *jsStatus = args[2] ;
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
-        [self.appDelegate updateLoginStatus:true] ;
+        [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
 
-        RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
-        if (loginViewCtrl){
-            ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
-                [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
+            if (loginViewCtrl){
+                ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
+                    [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
+                }
+            }else{
+                [self reloadWebView] ;
             }
-        }else{
-            [self reloadWebView] ;
-        }
+        }) ;
     };
 
 #pragma mark- Mine ViewControl
@@ -669,7 +721,6 @@
 
     if (error){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
-//        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
     }
