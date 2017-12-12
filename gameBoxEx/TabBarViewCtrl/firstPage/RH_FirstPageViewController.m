@@ -77,97 +77,13 @@
     
     return ;
 
-//    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/passport/login.html"];
-//    NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//
-//    NSString * postString = [NSString stringWithFormat:@"username=%@&password=%@",account,password];
-//    NSData * postData = [postString dataUsingEncoding:NSUTF8StringEncoding];//将请求参数字符串转成NSData类型
-//
-//    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]  init];
-//
-//    [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-//    [request setValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
-//
-//    [request setHTTPMethod:@"post"]; //指定请求方式
-//    [request setURL:URL]; //设置请求的地址
-//    [request setHTTPBody:postData];//设置请求的参数
-//
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:[NSOperationQueue mainQueue]
-//                           completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-//                               if (connectionError) {
-//                                   [self.appDelegate updateLoginStatus:false] ;
-//                               }else{
-//                                   NSString *rtnStr = [[NSString alloc]initWithData:data
-//                                                                         encoding:NSUTF8StringEncoding];
-//
-//                                   if ([rtnStr containsString:@"\"success\":true"]) {
-//                                       [self.appDelegate updateLoginStatus:true] ;
-//                                       [self performSelectorOnMainThread:@selector(reloadWebView) withObject:nil waitUntilDone:YES] ;
-//                                   }
-//                               }
-//                           }] ;
-
 };
 
 
-//- (void)getService {
-//    //1.拿到网站
-//    [self.serviceRequest startGetCustomServiceURL:self.domain] ;
-//
-//    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/index/getCustomerService.html"];
-//    //2.创建字一个网络请求管理者对象 （http会话管理者）  此对象不是单例对象
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    //3.设置网络传输的类型：这里一般都是二进制
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//
-//    [manager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"成功");
-//        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        NSLog(@"---%@",responseString);
-//        [self.appDelegate updateServicePath:[responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"失败：%@",error);
-//    }];
-//}
-
 - (void)demoEnter{
-//    NSString *path = [NSString stringWithFormat:@"%@%@",self.domain,@"/demo/lottery.html"];
-//    NSURL * URL = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
     [self showProgressIndicatorViewWithAnimated:YES title:@"试玩登入中"];
     [self.serviceRequest startDemoLogin] ;
     return ;
-//    NSMutableURLRequest * request = [[NSMutableURLRequest alloc]init];
-//
-//    [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-//    [request setValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
-//
-//    [request setHTTPMethod:@"post"]; //指定请求方式
-//    [request setURL:URL]; //设置请求的地址
-//    NSURLResponse * response;
-//    NSError * error;
-//    NSData * backData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//
-//    if (error) {
-//        NSLog(@"error : %@",[error localizedDescription]);
-//        [self.appDelegate updateLoginStatus:false] ;
-//    }else{
-//        NSLog(@"response : %@",response);
-//        NSString *data = [[NSString alloc]initWithData:backData encoding:NSUTF8StringEncoding];
-//        NSLog(@"backData : %@",data);
-//
-//        if ([data containsString:@"true"]) {
-//            NSLog(@"试玩登录成功");
-//            [self.appDelegate updateLoginStatus:true] ;
-//            [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"];
-//        } else {
-//            NSLog(@"试玩登录失败");
-//            self.appDelegate.customUrl = @"/login/commonLogin.html";
-//            [self.appDelegate updateLoginStatus:false] ;
-//            [self showViewController:[RH_CustomViewController viewController] sender:self];
-//        }
-//    }
 }
 
 #pragma mark-
