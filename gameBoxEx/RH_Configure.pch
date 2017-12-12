@@ -1313,6 +1313,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _nekt //澳门巴黎人
+
+#define CODE    @"nekt"
+#define S        @"7ec0f9335f88b8176cdd5be3ffb2afd0"
+#define SID        @"323"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
