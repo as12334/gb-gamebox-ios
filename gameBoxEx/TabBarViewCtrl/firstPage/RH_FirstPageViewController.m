@@ -244,7 +244,9 @@
 
 -(void)tryRefreshData
 {
-    [self reloadWebView] ;
+    if ([self.webView canGoBack]){
+        [self.webView goBack] ;
+    }
 }
 
 @end

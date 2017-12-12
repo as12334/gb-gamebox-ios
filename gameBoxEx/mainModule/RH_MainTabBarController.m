@@ -217,6 +217,15 @@
                     [(CLViewController *)rootViewController tryRefreshData];
                 }
             }
+        }else{
+            if ([viewController isKindOfClass:[UINavigationController class]]) {
+                UIViewController * rootViewController = [(UINavigationController *)viewController topViewController];
+                if ([rootViewController isKindOfClass:[CLViewController class]]) {
+                    ifRespondsSelector(rootViewController, @selector(tryRefreshData)){
+                        [(CLViewController *)rootViewController tryRefreshData];
+                    }
+                }
+            }
         }
         return YES;
     }
