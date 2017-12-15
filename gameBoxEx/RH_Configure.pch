@@ -1321,6 +1321,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _djig //新澳门娱乐城
+
+#define CODE    @"djig"
+#define S        @"b6f963230122edeb138781837c76a808"
+#define SID        @"321"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

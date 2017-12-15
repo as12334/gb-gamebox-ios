@@ -428,6 +428,19 @@
         }
 
         return NO ;
+    }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
+              [reqUrl.lowercaseString isEqualToString:[NSString stringWithFormat:@"%@/",self.domain.lowercaseString]]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+            if (self.myTabBarController.selectedIndex!=2){
+                self.myTabBarController.selectedIndex = 2 ;
+                return NO ;
+            }
+        }else{
+            if (self.myTabBarController.selectedIndex!=0){
+                self.myTabBarController.selectedIndex = 0 ;
+                return NO ;
+            }
+        }
     }
     return YES;
 }
@@ -598,7 +611,6 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
-        
     };
 
     jsContext[@"loginState"] = ^(){
