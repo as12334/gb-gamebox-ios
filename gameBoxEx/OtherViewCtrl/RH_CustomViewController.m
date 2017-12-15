@@ -150,7 +150,7 @@
     jsContext[@"loginSucc"] = ^() {
         NSLog(@"JSToOc :%@------ loginSucc",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
-
+        
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
         JSValue *jsStatus = args[2] ;
@@ -168,11 +168,19 @@
                 ifRespondsSelector(loginViewCtrlEx.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [loginViewCtrlEx.delegate loginViewViewControllerExLoginSuccessful:loginViewCtrlEx] ;
                 }
+            }else{
+                if (jsStatus.toBool==false){
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                        [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;
+                    }else{
+                        [self.serviceRequest startLoginWithUserName:jsAccount.toString Password:jsPassword.toString VerifyCode:nil] ;
+                    }
+                }
             }
             
             [self.navigationController popViewControllerAnimated:YES] ;
-            
-        });
+        }) ;
+        
     };
 }
 
