@@ -72,11 +72,14 @@
     if(account.length==0 || password.length ==0){
         return;
     }
-    
-    [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
-    
-    return ;
+   
+    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+    }else{
+        [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+    }
 
+    return ;
 };
 
 
@@ -116,7 +119,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeUserLogin){
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
         if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
             [self.appDelegate updateLoginStatus:true] ;
@@ -135,7 +138,6 @@
                 }else{
                     [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;
                 }
-                
             }else{
                 showAlertView(@"试玩登入失败", @"提示信息");
                 self.appDelegate.customUrl = @"/login/commonLogin.html";
@@ -148,7 +150,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type==ServiceRequestTypeUserLogin){
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self.appDelegate updateLoginStatus:false] ;
     }else if (type==ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

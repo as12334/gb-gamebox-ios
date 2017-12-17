@@ -50,6 +50,7 @@
 
 #pragma mark-接口 API List
 #define RH_API_NAME_LOGIN                                           @"passport/login.html"
+#define RH_API_NAME_AUTOLOGIN                                       @"login/autoLogin.html"
 #define RH_API_NAME_VERIFYCODE                                      @"captcha/code.html"
 #define RH_API_NAME_DEMOLOGIN                                       @"demo/lottery.html"
 #define RH_API_NAME_GETCUSTOMPATH                                   @"index/getCustomerService.html"

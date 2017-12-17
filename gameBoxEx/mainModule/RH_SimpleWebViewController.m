@@ -676,15 +676,24 @@
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
+        
         [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
-
         dispatch_async(dispatch_get_main_queue(), ^{
             RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
+            
             if (loginViewCtrl){
                 ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
                     [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
                 }
             }else{
+                if (jsStatus.toBool==false){
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                        [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;
+                    }else{
+                        [self.serviceRequest startLoginWithUserName:jsAccount.toString Password:jsPassword.toString VerifyCode:nil] ;
+                    }
+                }
+                
                 [self reloadWebView] ;
             }
         }) ;
@@ -798,6 +807,30 @@
     }
 
     return YES;
+}
+
+
+#pragma mark-
+#pragma mark-
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+        if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+            [self.appDelegate updateLoginStatus:true] ;
+            [self performSelectorOnMainThread:@selector(reloadWebView) withObject:nil waitUntilDone:YES] ;
+        }else{
+            [self.appDelegate updateLoginStatus:false] ;
+        }
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self.appDelegate updateLoginStatus:false] ;
+    }
 }
 
 

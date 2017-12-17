@@ -1329,6 +1329,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _xrql //TSV天时娱乐
+
+#define CODE    @"xrql"
+#define S        @"676d4412fcc80db776fe1a6f5c7097ac"
+#define SID        @"322"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

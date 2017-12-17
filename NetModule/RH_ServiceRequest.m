@@ -144,6 +144,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_AUTOLOGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"username":userName?:@"",
+                                     @"password":password?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeUserAutoLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startGetVerifyCode
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
@@ -514,6 +533,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
               
            case ServiceRequestTypeUserLogin:
+           case ServiceRequestTypeUserAutoLogin:
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
             }
