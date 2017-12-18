@@ -165,10 +165,11 @@
             
             RH_LoginViewControllerEx *loginViewCtrlEx = ConvertToClassPointer(RH_LoginViewControllerEx, self.context) ;
             if (loginViewCtrlEx){
-                ifRespondsSelector(loginViewCtrlEx.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
-                    [loginViewCtrlEx.delegate loginViewViewControllerExLoginSuccessful:loginViewCtrlEx] ;
+                ifRespondsSelector(loginViewCtrlEx.delegate, @selector(loginViewViewControllerExSignSuccessful:SignFlag:)){
+                    [loginViewCtrlEx.delegate loginViewViewControllerExSignSuccessful:loginViewCtrlEx SignFlag:jsStatus.toBool] ;
                 }
-            }else{
+            }else
+            {
                 if (jsStatus.toBool==false){
                     if ([SITE_TYPE isEqualToString:@"integratedv3"]){
                         [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;

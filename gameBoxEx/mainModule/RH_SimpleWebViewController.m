@@ -220,6 +220,24 @@
     [self reloadWebView] ;
 }
 
+-(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    [self reloadWebView] ;
+    
+    if (bFlag==false){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *account = [defaults stringForKey:@"account"] ;
+        NSString *password = [defaults stringForKey:@"password"] ;
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+            [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+        }else{
+            [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+        }
+    }
+}
+
 #pragma mark -
 - (void)setWebURL:(NSURL *)webURL
 {
