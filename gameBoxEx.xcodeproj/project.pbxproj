@@ -249,6 +249,7 @@
 		A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A91FD6915300323C12 /* RH_LoginViewCell.m */; };
 		A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
+		A0ADD3061FE9408B00B24B51 /* RH_SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */; };
 		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
 		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
 		A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */; };
@@ -801,6 +802,8 @@
 		A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_LoginViewCell.xib; sourceTree = "<group>"; };
 		A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNavigationBar.h; sourceTree = "<group>"; };
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
+		A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SlideMenuViewController.h; sourceTree = "<group>"; };
+		A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SlideMenuViewController.m; sourceTree = "<group>"; };
 		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
 		A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
 		A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected@2x.png"; sourceTree = "<group>"; };
@@ -1672,6 +1675,7 @@
 		A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				A0ADD3031FE93FC900B24B51 /* slideMainMenu */,
 				A04E60231F8DAFF000098A65 /* firstPage */,
 				A04E60201F8DAFF000098A65 /* depositePage */,
 				A0E368061F9459F800758033 /* lotteryHallPage */,
@@ -1870,6 +1874,15 @@
 				A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */,
 			);
 			path = UINavigationBar;
+			sourceTree = "<group>";
+		};
+		A0ADD3031FE93FC900B24B51 /* slideMainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */,
+				A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */,
+			);
+			path = slideMainMenu;
 			sourceTree = "<group>";
 		};
 		A0B609C01FBB096B00A44B37 /* promoPage */ = {
@@ -2473,6 +2486,7 @@
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
+				A0ADD3061FE9408B00B24B51 /* RH_SlideMenuViewController.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,

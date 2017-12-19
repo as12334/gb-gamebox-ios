@@ -61,7 +61,7 @@
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
     }
     
-    if (![SITE_TYPE isEqualToString:@"integratedv3"]){
+    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         [self reloadWebView] ;//预防两次url 一样，不加载情况
     }
 }
@@ -117,7 +117,7 @@
 -(void)_homeBackHandle
 {
     [self.navigationController popToRootViewControllerAnimated:YES] ;
-    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         self.myTabBarController.selectedIndex = 2 ;
     }else{
         self.myTabBarController.selectedIndex = 0 ;
@@ -173,7 +173,7 @@
             }else
             {
                 if (jsStatus.toBool==false){
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
                         [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;
                     }else{
                         [self.serviceRequest startLoginWithUserName:jsAccount.toString Password:jsPassword.toString VerifyCode:nil] ;

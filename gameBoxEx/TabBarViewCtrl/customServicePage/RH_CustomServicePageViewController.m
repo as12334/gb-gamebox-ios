@@ -59,7 +59,7 @@
     {
         [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
         
-        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
             [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
         }else{
             [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;

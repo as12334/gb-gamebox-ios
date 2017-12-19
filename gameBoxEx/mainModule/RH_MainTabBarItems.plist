@@ -195,7 +195,7 @@
 			<key>showHome</key>
 			<true/>
 			<key>viewControllerClass</key>
-			<string>RH_FirstPageViewController</string>
+			<string>RH_FirstPageViewControllerEx</string>
 		</dict>
 		<dict>
 			<key>title</key>

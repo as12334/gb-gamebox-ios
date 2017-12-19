@@ -73,7 +73,7 @@
         return;
     }
    
-    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
     }else{
         [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
@@ -107,7 +107,7 @@
         if (self.appDelegate.isLogin)
         {
             [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
-            if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
             }else{
                 [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;
@@ -133,7 +133,7 @@
                 showSuccessMessage(self.view, @"试玩登入成功", nil) ;
                 [self.appDelegate updateLoginStatus:true] ;
                 
-                if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
                     [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
                 }else{
                     [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;

@@ -68,7 +68,8 @@
 {
     [super viewDidLoad];
     
-    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] ||
+        [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         RH_CustomTabBar *tabbar = [[RH_CustomTabBar alloc] init] ;
         tabbar.midMoveUP = 20.0f ;
         [self setValue:tabbar forKey:@"tabBar"];
@@ -103,10 +104,9 @@
     }
 
     self.viewControllers = viewControllers;
-    if (([SITE_TYPE isEqualToString:@"integratedv3"])){
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         self.selectedIndex = 2 ;
     }
-    
     [self updateTabbarSkins] ;
 }
 
@@ -118,7 +118,7 @@
     UITabBarItem *service = [self.tabBar.items objectAtIndex:3];
     UITabBarItem *mine = [self.tabBar.items objectAtIndex:4];
 
-    if (!([SITE_TYPE isEqualToString:@"integratedv3"])){
+    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         home.image = [[UIImage imageNamed:@"tab_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         deposit.image = [[UIImage imageNamed:@"tab_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

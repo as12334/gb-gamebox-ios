@@ -9,14 +9,16 @@
 #import "RH_BasicViewController.h"
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
+#import "UIViewController+CWLateralSlide.h"
+#import "RH_SlideMenuViewController.h"
 
 @interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate>
 @end
 
 @implementation RH_BasicViewController
 @synthesize serviceRequest = _serviceRequest                ;
-
 @synthesize backButtonItem = _backButtonItem                ;
+@synthesize mainMenuButtonItem = _mainMenuButtonItem        ;
 
 -(BOOL)hasNavigationBar
 {
@@ -87,6 +89,26 @@
 -(void)backBarButtonItemHandle
 {
     //do nothing ;
+}
+
+#pragma mark-
+-(UIBarButtonItem *)mainMenuButtonItem
+{
+    if (!_mainMenuButtonItem){
+        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"ic_navigationBar_home")
+                                                           style:UIBarButtonItemStyleDone
+                                                          target:self
+                                                          action:@selector(_mainMenuButtonItemHandle)] ;
+    }
+    
+    return  _mainMenuButtonItem ;
+}
+
+-(void)_mainMenuButtonItemHandle
+{
+    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
+                        animationType:CWDrawerAnimationTypeDefault
+                        configuration:nil] ;
 }
 
 #pragma mark-

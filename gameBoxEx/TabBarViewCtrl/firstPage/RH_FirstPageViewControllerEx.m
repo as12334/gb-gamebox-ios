@@ -20,9 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.navigationBarItem.leftBarButtonItem = self.loginBarButtonItem ;
+    self.navigationBarItem.leftBarButtonItem = self.mainMenuButtonItem ;
     
-    [self setupUI] ;
+//    [self setupUI] ;
 }
 
 #pragma mark-
@@ -39,7 +39,7 @@
     
     [self.contentView addSubview:self.contentTableView] ;
 //    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-    [self setupPageLoadManager] ;
+//    [self setupPageLoadManager] ;
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
