@@ -115,6 +115,9 @@
 #import "CLSectionArrayPageLoadController.h"
 #import "CLPageLoadManagerForTableAndCollectionView.h"
 
+#pragma MARK-侧划
+#import "UIViewController+CWLateralSlide.h"
+
 #pragma MARK-
 #import "SAMKeychain.h"
 #import "SAMKeychainQuery.h"

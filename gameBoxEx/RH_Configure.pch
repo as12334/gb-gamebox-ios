@@ -41,6 +41,33 @@
 #endif
 #endif
 
+
+//===========================================================
+//    界面属性定义
+//===========================================================
+#define   RH_NavigationBar_BackgroundColor              colorWithRGB(197, 54, 65)
+#define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
+#define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
+
+#define   RH_TabBar_BackgroundColor                     colorWithRGB(0, 0, 0)
+#define   RH_TabBar_TitleNormalColor                    colorWithRGB(137, 137, 137)
+#define   RH_TabBar_TitleSelectedColor                  colorWithRGB(213, 201, 78)
+#define   RH_TabBar_TitleFontSize                       [UIFont systemFontOfSize:14.0f]
+
+////默认的视图背景颜色
+#define  RH_View_DefaultBackgroundColor                 colorWithRGB(245, 243, 229)
+////默认分隔线颜色
+#define RH_Line_DefaultColor                            colorWithRGB(245, 243, 229)
+////默认选中指示颜色
+#define RH_Cell_DefaultHolderColor                      ColorWithNumberRGB(0xEEEEEE)
+////默认图片背景颜色
+#define RH_Image_DefaultBackgroundColor                 ColorWithNumberRGB(0xE5E5E5)
+
+////默认文本颜色
+#define RH_Label_DefaultTextGrayColor                       colorWithRGB(171, 171, 171)
+#define RH_Label_DefaultHolderTextColor                 ColorWithNumberRGB(0xbdbdbd)
+
+
 //===========================================================
 //    ignore  https crt domain list
 //===========================================================

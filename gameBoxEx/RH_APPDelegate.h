@@ -20,6 +20,9 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 @property (strong,nonatomic) NSString *gotoIndexUrl;
 @property (nonatomic,assign,readonly) BOOL isLogin;
 
+//wkweb cookie
+@property (nonatomic,strong) NSDictionary *dictUserAgent ;
+
 -(void)updateDomain:(NSString*)domain ;
 -(void)updateServicePath:(NSString*)servicePath ;
 -(void)updateLoginStatus:(BOOL)loginStatus ;

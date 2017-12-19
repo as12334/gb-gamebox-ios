@@ -48,7 +48,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
     
-
+    self.dictUserAgent = dictionnary ;
 }
 
 -(BOOL)needShowUserGuideView

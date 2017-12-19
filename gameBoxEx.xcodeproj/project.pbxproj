@@ -238,6 +238,14 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
+		A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */; };
+		A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */; };
+		A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */; };
+		A058FF351FE8A6BC006EF279 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2F1FE8A6BC006EF279 /* CWDrawerTransition.m */; };
+		A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF311FE8A6BC006EF279 /* CWLateralSlideConfiguration.m */; };
+		A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */; };
+		A058FF3C1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF3A1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m */; };
+		A058FF3F1FE8BE3A006EF279 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058FF3E1FE8BE39006EF279 /* WebKit.framework */; };
 		A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */; };
 		A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A91FD6915300323C12 /* RH_LoginViewCell.m */; };
 		A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */; };
@@ -772,6 +780,21 @@
 		A04E60511F8DAFF000098A65 /* tab_withdraw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_withdraw@2x.png"; sourceTree = "<group>"; };
 		A04E605B1F8DED6000098A65 /* RH_MinePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MinePageViewController.h; sourceTree = "<group>"; };
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
+		A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
+		A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
+		A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
+		A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
+		A058FF2C1FE8A6BC006EF279 /* CWLateralSlideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideConfiguration.h; sourceTree = "<group>"; };
+		A058FF2D1FE8A6BC006EF279 /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
+		A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideAnimator.m; sourceTree = "<group>"; };
+		A058FF2F1FE8A6BC006EF279 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
+		A058FF301FE8A6BC006EF279 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
+		A058FF311FE8A6BC006EF279 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
+		A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_FirstPageViewControllerEx.m; sourceTree = "<group>"; };
+		A058FF381FE8B466006EF279 /* RH_FirstPageViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewControllerEx.h; sourceTree = "<group>"; };
+		A058FF3A1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SimpleWKWebViewController.m; sourceTree = "<group>"; };
+		A058FF3B1FE8BD22006EF279 /* RH_SimpleWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SimpleWKWebViewController.h; sourceTree = "<group>"; };
+		A058FF3E1FE8BE39006EF279 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A06B64A41FD690EA00323C12 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
@@ -888,6 +911,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A058FF3F1FE8BE3A006EF279 /* WebKit.framework in Frameworks */,
 				A0109C9F1F8782A7004E6EF4 /* JavaScriptCore.framework in Frameworks */,
 				A0109C9D1F87829E004E6EF4 /* Security.framework in Frameworks */,
 				A0109C9B1F87828E004E6EF4 /* MobileCoreServices.framework in Frameworks */,
@@ -935,6 +959,7 @@
 				A0109C641F878199004E6EF4 /* gameBoxEx */,
 				A0E3678F1F8F433700758033 /* Supporting File */,
 				A0109C631F878199004E6EF4 /* Products */,
+				A058FF3D1FE8BE39006EF279 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1352,6 +1377,7 @@
 		A0109EF01F87852F004E6EF4 /* OtherLib */ = {
 			isa = PBXGroup;
 			children = (
+				A058FF271FE8A6BC006EF279 /* CWLateralSlide */,
 				A0109EF11F87852F004E6EF4 /* CircleProgressView */,
 				A0109EF41F87852F004E6EF4 /* DNImagePicker */,
 				A0109F1B1F87852F004E6EF4 /* MBProgressHUD */,
@@ -1625,6 +1651,8 @@
 				A010A0721F879ACE004E6EF4 /* RH_BasicPageLoadViewController.m */,
 				A010A0801F879ACE004E6EF4 /* RH_SimpleWebViewController.h */,
 				A010A0811F879ACE004E6EF4 /* RH_SimpleWebViewController.m */,
+				A058FF3B1FE8BD22006EF279 /* RH_SimpleWKWebViewController.h */,
+				A058FF3A1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m */,
 				A010A0781F879ACE004E6EF4 /* RH_MainNavigationController.h */,
 				A010A0791F879ACE004E6EF4 /* RH_MainNavigationController.m */,
 				A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */,
@@ -1676,6 +1704,8 @@
 			children = (
 				A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */,
 				A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */,
+				A058FF381FE8B466006EF279 /* RH_FirstPageViewControllerEx.h */,
+				A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */,
 			);
 			path = firstPage;
 			sourceTree = "<group>";
@@ -1789,6 +1819,31 @@
 				A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */,
 			);
 			path = minePage;
+			sourceTree = "<group>";
+		};
+		A058FF271FE8A6BC006EF279 /* CWLateralSlide */ = {
+			isa = PBXGroup;
+			children = (
+				A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */,
+				A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */,
+				A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */,
+				A058FF2C1FE8A6BC006EF279 /* CWLateralSlideConfiguration.h */,
+				A058FF2D1FE8A6BC006EF279 /* CWInteractiveTransition.h */,
+				A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */,
+				A058FF2F1FE8A6BC006EF279 /* CWDrawerTransition.m */,
+				A058FF301FE8A6BC006EF279 /* UIViewController+CWLateralSlide.h */,
+				A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */,
+				A058FF311FE8A6BC006EF279 /* CWLateralSlideConfiguration.m */,
+			);
+			path = CWLateralSlide;
+			sourceTree = "<group>";
+		};
+		A058FF3D1FE8BE39006EF279 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A058FF3E1FE8BE39006EF279 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A06B64A71FD6910700323C12 /* cell */ = {
@@ -2252,6 +2307,7 @@
 				A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
+				A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */,
 				A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */,
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
@@ -2273,6 +2329,7 @@
 				A010A05E1F87999F004E6EF4 /* RH_ModelInfoCachePool.m in Sources */,
 				A010A05F1F87999F004E6EF4 /* RH_NavigationBarButton.m in Sources */,
 				A010A0601F87999F004E6EF4 /* RH_PageLoadContentPageCell.m in Sources */,
+				A058FF351FE8A6BC006EF279 /* CWDrawerTransition.m in Sources */,
 				A010A0281F8795AC004E6EF4 /* RH_BasicModel.m in Sources */,
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
@@ -2296,11 +2353,13 @@
 				A0109FB41F8788FF004E6EF4 /* UIColor+HexString.m in Sources */,
 				A0109FB51F8788FF004E6EF4 /* UIFont+CLCategory.m in Sources */,
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
+				A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
 				A0109FB91F8788FF004E6EF4 /* UIImage+Representation.m in Sources */,
 				A0E367AD1F90617700758033 /* RH_PayViewController.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
+				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
 				A0109FBB1F8788FF004E6EF4 /* UIImage+Tint.m in Sources */,
 				A0109FBC1F8788FF004E6EF4 /* UIImage+UPload.m in Sources */,
 				A0109FBD1F8788FF004E6EF4 /* UILabel+CalculateShowSize.m in Sources */,
@@ -2313,6 +2372,7 @@
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,
+				A058FF3C1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m in Sources */,
 				A0109FC61F8788FF004E6EF4 /* UIViewController+DesignatedShow.m in Sources */,
 				A0109FC71F8788FF004E6EF4 /* UIViewController+Instance.m in Sources */,
 				A0109FC81F8788FF004E6EF4 /* help.m in Sources */,
@@ -2365,6 +2425,7 @@
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
+				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
@@ -2413,6 +2474,7 @@
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
+				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
@@ -2537,7 +2599,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

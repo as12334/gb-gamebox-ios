@@ -103,7 +103,7 @@
     }
 
     self.viewControllers = viewControllers;
-    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+    if (([SITE_TYPE isEqualToString:@"integratedv3"])){
         self.selectedIndex = 2 ;
     }
     
@@ -118,7 +118,7 @@
     UITabBarItem *service = [self.tabBar.items objectAtIndex:3];
     UITabBarItem *mine = [self.tabBar.items objectAtIndex:4];
 
-    if (![SITE_TYPE isEqualToString:@"integratedv3"]){
+    if (!([SITE_TYPE isEqualToString:@"integratedv3"])){
         home.image = [[UIImage imageNamed:@"tab_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         deposit.image = [[UIImage imageNamed:@"tab_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

@@ -1,12 +1,12 @@
 //
-//  RH_SimpleWebViewController.m
+//  RH_SimpleWKWebViewController.m
 //  TaskTracking
 //
 //  Created by apple pro on 2017/3/5.
 //  Copyright © 2017年 jinguihua. All rights reserved.
 //
 
-#import "RH_SimpleWebViewController.h"
+#import "RH_SimpleWKWebViewController.h"
 #import "coreLib.h"
 #import "RH_CustomViewController.h"
 #import "RH_PayViewController.h"
@@ -20,12 +20,12 @@
 #import "MacroDef.h"
 
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
+@interface RH_SimpleWKWebViewController ()<LoginViewControllerDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
 
-@implementation RH_SimpleWebViewController
+@implementation RH_SimpleWKWebViewController
 @synthesize contentShowState = _contentShowState;
 @synthesize loadingBarButtonItem = _loadingBarButtonItem;
 @synthesize closeWebBarButtonItem = _closeWebBarButtonItem;
@@ -48,14 +48,16 @@
     self.navigationBarItem.rightBarButtonItems = nil ;
 
     //webView
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+    WKWebViewConfiguration *webViewConfigure = [[WKWebViewConfiguration alloc] init] ;
+    webViewConfigure.suppressesIncrementalRendering = YES ;
+    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height) configuration:webViewConfigure] ;
+    
     _webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _webView.backgroundColor  = [UIColor clearColor];
     _webView.opaque           = NO;
-    _webView.delegate         = self;
-    _webView.scalesPageToFit  = YES;//
-    //_webView.dataDetectorTypes= UIDataDetectorTypeLink;
-    _webView.dataDetectorTypes = UIDataDetectorTypeAll ;//4 设置检测网页中的格式类型，all表示检测所有类型包括超链接、电话号码、地址等。
+    _webView.UIDelegate       = self ;
+    _webView.navigationDelegate = self ;
+    _webView.userInteractionEnabled = YES ;
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
     
@@ -111,7 +113,7 @@
             //暂停loading
             _loading = NO ;
             [self.webView stopLoading] ;
-            [self _setContentShowState:RH_WebViewContentShowStateNone] ;
+            [self _setContentShowState:RH_WKWebViewContentShowStateNone] ;
 
             UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex==alertView.cancelButtonIndex){//返回首页
@@ -273,12 +275,12 @@
 
             }else {
 
-                [self _setContentShowState:RH_WebViewContentShowStateNone];
+                [self _setContentShowState:RH_WKWebViewContentShowStateNone];
                 [self.contentLoadingIndicateView showNoNetworkStatus];
             }
         }else {
 
-            [self _setContentShowState:RH_WebViewContentShowStateNone];
+            [self _setContentShowState:RH_WKWebViewContentShowStateNone];
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"无效的地址"
                                                              detailText:nil];
         }
@@ -289,12 +291,11 @@
 {
     //开始加载网页内容
     NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
-    
-    if ([urlRequest.URL.absoluteString isEqualToString:self.webView.request.URL.absoluteString]==FALSE || self.webView.loading==FALSE){
-        //将要加载的与目前已加载的url 不同 ,或者 webview 已不是loading 状态 ,则加载该请求 ，
+    [urlRequest addValue:[self.appDelegate.dictUserAgent stringValueForKey:@"UserAgent"]
+      forHTTPHeaderField:@"UserAgent"] ;
+    if ([urlRequest.URL.absoluteString isEqualToString:self.webView.URL.absoluteString]==FALSE || self.webView.loading==FALSE){
         [self.webView loadRequest:urlRequest];
     }
-//    [self.webView loadRequest:urlRequest];
 }
 
 - (UIBarButtonItem *)loadingBarButtonItem
@@ -335,7 +336,7 @@
             }else {
 
                 if (self.navigationBarItem.rightBarButtonItem == self.loadingBarButtonItem &&
-                    self.contentShowState == RH_WebViewContentShowStateShowed) {
+                    self.contentShowState == RH_WKWebViewContentShowStateShowed) {
                     self.navigationBarItem.rightBarButtonItem =  nil;
                 }
             }
@@ -360,12 +361,12 @@
     }
 }
 
-- (void)_setContentShowState:(RH_WebViewContentShowState)contentShowState
+- (void)_setContentShowState:(RH_WKWebViewContentShowState)contentShowState
 {
     if (_contentShowState != contentShowState) {
         _contentShowState = contentShowState;
 
-        if (_contentShowState == RH_WebViewContentShowStateNone) {
+        if (_contentShowState == RH_WKWebViewContentShowStateNone) {
             self.webView.hidden = YES;
         }else {
             self.webView.hidden = NO;
@@ -376,74 +377,132 @@
 }
 
 #pragma mark-webview delegate
-- (void)webViewDidStartLoad:(UIWebView *)webView
+// 页面开始加载时调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
     //设置状态
     [self _setLoading:YES];
-    if (!self.webView.suppressesIncrementalRendering) {
-        [self _setContentShowState:RH_WebViewContentShowStateShowing];
+    if (!self.webView.configuration.suppressesIncrementalRendering) {
+        [self _setContentShowState:RH_WKWebViewContentShowStateShowing];
     }
-
+    
     [self.contentLoadingIndicateView hiddenView];
     [self webViewBeginLoad];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+// 当内容开始返回时调用
+//- (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation
+//- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation;
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
+{
+    NSLog(@"-webView finish with error---:%@",error);
+    [self _setContentShowState:RH_WKWebViewContentShowStateNone];
+    [self _setLoading:NO];
+    [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
+    
+    [self webViewDidEndLoad:error];
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
+{
+        NSLog(@"-webView finish with error---:%@",error);
+    [self _setContentShowState:RH_WKWebViewContentShowStateNone];
+    [self _setLoading:NO];
+    [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
+    
+    [self webViewDidEndLoad:error];
+}
+
+// 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation;
 {
     NSLog(@"-webView finish ---:");
-    [self _setContentShowState:RH_WebViewContentShowStateShowed];
+    [self _setContentShowState:RH_WKWebViewContentShowStateShowed];
     [self _setLoading:NO];
-    NSString *url = webView.request.URL.absoluteString;
+    NSString *url = webView.URL.absoluteString;
     ////账号密码自动填充
     if([url containsString:@"/login/commonLogin.html"] || [url containsString:@"/passport/login.html"]){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *account = [defaults objectForKey:@"account"];
         NSString *password = [defaults objectForKey:@"password"];
-
+        
         NSLog(@"%@%@",account,password);
-
+        
         if(account != NULL && ![account isEqualToString: @""]){
             account = [NSString stringWithFormat:@"document.getElementById('username').value='%@'",account];
-            [self.webView stringByEvaluatingJavaScriptFromString:account];
-
+            [self.webView stringByEvaluatingJavaScriptFromString:account completionHandler:nil] ;
+            
             if(password != NULL && ![password isEqualToString: @""]){
                 password = [NSString stringWithFormat:@"document.getElementById('password').value='%@'",password];
-                [self.webView stringByEvaluatingJavaScriptFromString:password];
+                [self.webView stringByEvaluatingJavaScriptFromString:password completionHandler:nil];
             }
         }
     }
     
     //增加通用 js 处理
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
+    
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"]){
-        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()" completionHandler:nil] ;
     }
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)addScriptMessageHandler:(id <WKScriptMessageHandler>)scriptMessageHandler name:(NSString *)name
 {
-    NSLog(@"-webView finish with error---:%@",error);
-    [self _setContentShowState:RH_WebViewContentShowStateNone];
-    [self _setLoading:NO];
-    [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
     
-
-    [self webViewDidEndLoad:error];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+///---处理页面弹窗
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
 {
-    NSString* reqUrl = request.URL.absoluteString;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler();
+                                                      }]];
+    
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+
+
+
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          completionHandler(YES);
+                                                      }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action){
+                                                          completionHandler(NO);
+                                                      }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+
+///////--决定是否加载的政策
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    NSString* reqUrl = webView.URL.absoluteString;
     NSLog(@"-start Request---:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
-        [[UIApplication sharedApplication]openURL:request.URL];
-        return NO ;
+        [[UIApplication sharedApplication]openURL:webView.URL];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return  ;
         //bSucc是否成功调起支付宝
     }else if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
-        [reqUrl containsString:@"/login/commonLogin.html"]){
+              [reqUrl containsString:@"/login/commonLogin.html"]){
         //跳转原生
         if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
             RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
@@ -451,22 +510,27 @@
             [self showViewController:loginViewCtrlEx sender:self] ;
         }
 
-        return NO ;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return  ;
     }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
               [reqUrl.lowercaseString isEqualToString:[NSString stringWithFormat:@"%@/",self.domain.lowercaseString]]){
         if ([SITE_TYPE isEqualToString:@"integratedv3"]){
             if (self.myTabBarController.selectedIndex!=2){
                 self.myTabBarController.selectedIndex = 2 ;
-                return NO ;
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return  ;
             }
         }else{
             if (self.myTabBarController.selectedIndex!=0){
                 self.myTabBarController.selectedIndex = 0 ;
-                return NO ;
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return  ;
             }
         }
     }
-    return YES;
+
+    decisionHandler(WKNavigationActionPolicyAllow);
+    return ;
 }
 
 #pragma mark-
@@ -571,7 +635,8 @@
         NSLog(@"JSToOc :%@------ gotoIndex",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
         JSValue *indexJV = args[0];
-        if([self.webView.request.URL.absoluteString containsString:@"/game.html"] && [indexJV.toString intValue] == 0){
+        
+        if([self.webView.URL.absoluteString containsString:@"/game.html"] && [indexJV.toString intValue] == 0){
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_domain]]];
         }else{
 
@@ -756,8 +821,10 @@
     //设置标题
     if ([self hasNavigationBar]) {
         if (self.autoShowWebTitle) {
-            NSString *  webTitle = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-            self.navigationBarItem.title = webTitle.length ? webTitle : self.title;
+            [self.webView stringByEvaluatingJavaScriptFromString:@"document.title" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                NSString *  webTitle = ConvertToClassPointer(NSString,result) ;
+                self.navigationBarItem.title = webTitle.length ? webTitle : self.title;
+            }];
 
         }else {
             self.navigationBarItem.title = self.title;
@@ -857,5 +924,17 @@
     }
 }
 
+@end
 
+
+@implementation  WKWebView (UIViewView)
+-(void)stringByEvaluatingJavaScriptFromString:(NSString*)jsString completionHandler:(void (^ _Nullable)(_Nullable id, NSError * _Nullable error))completionHandler
+{
+    return [self evaluateJavaScript:jsString completionHandler:completionHandler] ;
+}
+
+-(void)stringByEvaluatingJavaScriptFromString:(NSString*)jsString
+{
+    [self stringByEvaluatingJavaScriptFromString:jsString completionHandler:nil] ;
+}
 @end
