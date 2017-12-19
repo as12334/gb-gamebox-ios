@@ -154,6 +154,7 @@
     _webURL = nil;
     // 每次退出 都清除一下缓存被
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
+      
 }
 
 #pragma mark--
@@ -218,6 +219,24 @@
 {
     [self.navigationController popViewControllerAnimated:YES] ;
     [self reloadWebView] ;
+}
+
+-(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    [self reloadWebView] ;
+    
+    if (bFlag==false){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *account = [defaults stringForKey:@"account"] ;
+        NSString *password = [defaults stringForKey:@"password"] ;
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+            [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+        }else{
+            [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+        }
+    }
 }
 
 #pragma mark -
@@ -400,15 +419,15 @@
     }
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    NSLog(@"-webView finish with error---:%@",error);
-    [self _setContentShowState:RH_WebViewContentShowStateNone];
-    [self _setLoading:NO];
-    [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
-
-    [self webViewDidEndLoad:error];
-}
+//- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+//{
+//    NSLog(@"-webView finish with error---:%@",error);
+//    [self _setContentShowState:RH_WebViewContentShowStateNone];
+//    [self _setLoading:NO];
+//    [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
+//
+//    [self webViewDidEndLoad:error];
+//}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {

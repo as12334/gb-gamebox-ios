@@ -12,6 +12,7 @@
 @protocol LoginViewControllerExDelegate <NSObject>
 -(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx*)loginViewContrller ;
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx*)loginViewContrller ;
+-(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx*)loginViewContrller SignFlag:(BOOL)bFlag;
 @end
 
 @interface RH_LoginViewControllerEx : RH_BasicSubViewController
