@@ -154,6 +154,7 @@
     _webURL = nil;
     // 每次退出 都清除一下缓存被
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
+      
 }
 
 #pragma mark--

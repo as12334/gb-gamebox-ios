@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1361,6 +1361,30 @@
 #define CODE    @"xrql"
 #define S        @"676d4412fcc80db776fe1a6f5c7097ac"
 #define SID        @"322"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _pf8z //威尼斯人娱乐城
+
+#define CODE    @"pf8z"
+#define S        @"dcf1530d73a175291070aa46874a1697"
+#define SID        @"327"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _9tjq //全民体育
+
+#define CODE    @"9tjq"
+#define S        @"508df917ddab2f47ac33713d44cf7a42"
+#define SID        @"328"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _ghng //金汇国际
+
+#define CODE    @"ghng"
+#define S        @"1e600a1a1c0a470773d7e8e31f5a8342"
+#define SID        @"329"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
