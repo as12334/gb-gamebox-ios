@@ -441,18 +441,12 @@
     
     //增加通用 js 处理
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
-    
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"]){
         [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()" completionHandler:nil] ;
     }
-}
-
-- (void)addScriptMessageHandler:(id <WKScriptMessageHandler>)scriptMessageHandler name:(NSString *)name
-{
-    
 }
 
 ///---处理页面弹窗

@@ -34,7 +34,6 @@ typedef NS_ENUM(NSInteger, RH_WKWebViewContentShowState) {
 @property(nonatomic,readonly,weak) RH_APPDelegate *appDelegate ;
 @property(nonatomic,strong) NSString *domain ;
 
-
 -(BOOL)backButtonHidden ;
 -(BOOL)navigationBarHidden ;
 -(BOOL)tabBarHidden ;

@@ -31,7 +31,6 @@
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl]] ;
     }
     
-//    [self reloadWebView] ;
     [self.contentView addSubview:self.gameBgImage];
     [self.contentView bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];

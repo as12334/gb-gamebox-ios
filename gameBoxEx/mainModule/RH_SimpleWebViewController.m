@@ -290,12 +290,7 @@
 {
     //开始加载网页内容
     NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
-    
-    if ([urlRequest.URL.absoluteString isEqualToString:self.webView.request.URL.absoluteString]==FALSE || self.webView.loading==FALSE){
-        //将要加载的与目前已加载的url 不同 ,或者 webview 已不是loading 状态 ,则加载该请求 ，
-        [self.webView loadRequest:urlRequest];
-    }
-//    [self.webView loadRequest:urlRequest];
+    [self.webView loadRequest:urlRequest];
 }
 
 - (UIBarButtonItem *)loadingBarButtonItem

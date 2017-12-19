@@ -244,7 +244,6 @@
 		A058FF351FE8A6BC006EF279 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2F1FE8A6BC006EF279 /* CWDrawerTransition.m */; };
 		A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF311FE8A6BC006EF279 /* CWLateralSlideConfiguration.m */; };
 		A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */; };
-		A058FF3C1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF3A1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m */; };
 		A058FF3F1FE8BE3A006EF279 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A058FF3E1FE8BE39006EF279 /* WebKit.framework */; };
 		A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */; };
 		A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06B64A91FD6915300323C12 /* RH_LoginViewCell.m */; };
@@ -792,8 +791,6 @@
 		A058FF311FE8A6BC006EF279 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
 		A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_FirstPageViewControllerEx.m; sourceTree = "<group>"; };
 		A058FF381FE8B466006EF279 /* RH_FirstPageViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewControllerEx.h; sourceTree = "<group>"; };
-		A058FF3A1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SimpleWKWebViewController.m; sourceTree = "<group>"; };
-		A058FF3B1FE8BD22006EF279 /* RH_SimpleWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SimpleWKWebViewController.h; sourceTree = "<group>"; };
 		A058FF3E1FE8BE39006EF279 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1651,8 +1648,6 @@
 				A010A0721F879ACE004E6EF4 /* RH_BasicPageLoadViewController.m */,
 				A010A0801F879ACE004E6EF4 /* RH_SimpleWebViewController.h */,
 				A010A0811F879ACE004E6EF4 /* RH_SimpleWebViewController.m */,
-				A058FF3B1FE8BD22006EF279 /* RH_SimpleWKWebViewController.h */,
-				A058FF3A1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m */,
 				A010A0781F879ACE004E6EF4 /* RH_MainNavigationController.h */,
 				A010A0791F879ACE004E6EF4 /* RH_MainNavigationController.m */,
 				A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */,
@@ -2372,7 +2367,6 @@
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,
-				A058FF3C1FE8BD22006EF279 /* RH_SimpleWKWebViewController.m in Sources */,
 				A0109FC61F8788FF004E6EF4 /* UIViewController+DesignatedShow.m in Sources */,
 				A0109FC71F8788FF004E6EF4 /* UIViewController+Instance.m in Sources */,
 				A0109FC81F8788FF004E6EF4 /* help.m in Sources */,
