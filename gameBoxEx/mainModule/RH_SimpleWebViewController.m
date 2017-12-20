@@ -115,14 +115,14 @@
 
             UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex==alertView.cancelButtonIndex){//返回首页
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
                         self.myTabBarController.selectedIndex = 2 ;
                     }else{
                         self.myTabBarController.selectedIndex = 0 ;
                     }
                 }else{
                     //push login viewController
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){//显示原生登入界面
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登入界面
                         RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
                         loginViewCtrlEx.delegate = self ;
                         [self showViewController:loginViewCtrlEx sender:self] ;
@@ -231,7 +231,7 @@
         NSString *account = [defaults stringForKey:@"account"] ;
         NSString *password = [defaults stringForKey:@"password"] ;
         
-        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
             [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
         }else{
             [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
@@ -414,7 +414,7 @@
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
-    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
     }
 }
@@ -438,7 +438,7 @@
         [[UIApplication sharedApplication]openURL:request.URL];
         return NO ;
         //bSucc是否成功调起支付宝
-    }else if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
+    }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
         [reqUrl containsString:@"/login/commonLogin.html"]){
         //跳转原生
         if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
@@ -450,7 +450,7 @@
         return NO ;
     }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
               [reqUrl.lowercaseString isEqualToString:[NSString stringWithFormat:@"%@/",self.domain.lowercaseString]]){
-        if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
             if (self.myTabBarController.selectedIndex!=2){
                 self.myTabBarController.selectedIndex = 2 ;
                 return NO ;
@@ -497,14 +497,14 @@
         
         if ([self.appDelegate.customUrl containsString:@"/passport/logout.html"]){
             self.appDelegate.logoutUrl = self.appDelegate.customUrl ;
-            if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 self.myTabBarController.selectedIndex = 2 ;
             }else{
                 self.myTabBarController.selectedIndex = 0 ;
             }
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ([SITE_TYPE isEqualToString:@"integratedv3"] &&
+                if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
                     [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
                     //跳转原生
                     RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
@@ -528,7 +528,7 @@
             if (index>=1 && index !=NSNotFound){
                 [self backBarButtonItemHandle] ;
             }else{
-                if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
                     self.myTabBarController.selectedIndex = 2 ;
                 }else{
                     self.myTabBarController.selectedIndex = 0 ;
@@ -707,7 +707,7 @@
                 }
             }else{
                 if (jsStatus.toBool==false){
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"]){
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
                         [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;
                     }else{
                         [self.serviceRequest startLoginWithUserName:jsAccount.toString Password:jsPassword.toString VerifyCode:nil] ;
