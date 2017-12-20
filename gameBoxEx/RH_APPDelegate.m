@@ -40,7 +40,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     NSLog(@"old agent :%@", oldAgent);
     //add my info to the new agent
-    NSLog(@"........%@",getDeviceModel()) ;
+    NSLog(@"........%@",getDeviceModel()) ;//app_ios app_android
     NSString *newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
     
     NSLog(@"new agent :%@", newAgent);
@@ -129,12 +129,19 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 #pragma mark----
 -(void)updateLoginStatus:(BOOL)loginStatus
 {
-//    if (_isLogin !=loginStatus){
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if (_isLogin !=loginStatus){
+            NSLog(@"updateLoginStatus :%d",loginStatus) ;
+            _isLogin = loginStatus ;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
+        }
+    }else{
         NSLog(@"updateLoginStatus :%d",loginStatus) ;
         _isLogin = loginStatus ;
 
         [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
-//    }
+    }
 }
 
 -(void)updateDomain:(NSString*)domain ;

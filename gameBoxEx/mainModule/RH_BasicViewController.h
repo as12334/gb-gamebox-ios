@@ -34,8 +34,13 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateView *contentLoadingIndicateView ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 
-@property(nonatomic,readonly,strong) UIBarButtonItem *mainMenuButtonItem   ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *backButtonItem       ;
+
+@property(nonatomic,readonly,strong) UIBarButtonItem *mainMenuButtonItem   ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *loginButtonItem   ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *tryLoginButtonItem   ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *signButtonItem   ;
+-(void)mainMenuButtonItemHandle ;
 
 -(CGPoint)contentLoadingIndicateViewAdditionalOffset ;
 -(void)configureContentLoadingIndicateView:(RH_LoadingIndicateView*)contentLoadingIndicateView ;

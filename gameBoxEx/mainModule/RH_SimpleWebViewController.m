@@ -152,8 +152,11 @@
 
     [self.webView stopLoading];
     _webURL = nil;
+    
+    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
     // 每次退出 都清除一下缓存被
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    }
       
 }
 

@@ -8,6 +8,7 @@
 
 #import "RH_BasicViewController.h"
 #import "RH_SimpleWebViewController.h"
+#import "RH_SimpleWKWebViewController.h"
 
 @interface RH_CustomViewController : RH_SimpleWebViewController
 

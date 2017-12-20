@@ -33,7 +33,6 @@
 -(NSDictionary*)cellExtraInfo:(NSIndexPath*)indexPath ;
 -(id)cellContext:(NSIndexPath*)indexPath ;
 -(UITableViewCell*)cellViewAtIndexPath:(NSIndexPath*)indexPath ;
-
 @end
 
 
