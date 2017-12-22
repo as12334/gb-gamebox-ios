@@ -31,7 +31,6 @@ typedef NS_ENUM(NSInteger, RH_WKWebViewContentShowState) {
 @property(nonatomic,readonly,getter=isLoading) BOOL loading ;
 @property(nonatomic,strong,readonly) UIBarButtonItem * backBarButtonItem ;
 
-@property(nonatomic,readonly,weak) RH_APPDelegate *appDelegate ;
 @property(nonatomic,strong) NSString *domain ;
 
 -(BOOL)backButtonHidden ;

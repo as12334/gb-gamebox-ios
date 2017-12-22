@@ -22,6 +22,7 @@
 @synthesize loginButtonItem = _loginButtonItem              ;
 @synthesize tryLoginButtonItem = _tryLoginButtonItem        ;
 @synthesize signButtonItem  = _signButtonItem               ;
+@synthesize logoButtonItem  = _logoButtonItem               ;
 
 -(BOOL)hasNavigationBar
 {
@@ -55,8 +56,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    
     self.needObserveNetStatusChanged = YES ;
-    self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        self.view.backgroundColor = RH_View_DefaultBackgroundColor ;
+    }else{
+        self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
+    }
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
 //    self.navigationBarItem.titleView = self.mainNavigationView ;
@@ -189,6 +196,21 @@
 -(void)_signButtonItemHandle
 {
     
+}
+
+#pragma mark-
+-(UIBarButtonItem *)logoButtonItem
+{
+    if (!_logoButtonItem){
+        NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
+        UIImage *menuImage = ImageWithName(logoName);
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:menuImage];
+        
+        imageView.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+        _logoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView] ;
+    }
+    
+    return  _logoButtonItem ;
 }
 
 #pragma mark-

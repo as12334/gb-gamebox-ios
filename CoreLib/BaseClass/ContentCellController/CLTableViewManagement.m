@@ -12,6 +12,7 @@
 #import "UITableViewCell+ShowContent.h"
 #import "ScreenAdaptation.h"
 #import "UITableView+Register.h"
+#import "UIView+Instance.h"
 
 @interface CLTableViewManagement()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong,readonly) UITableView *tableView ;
@@ -46,15 +47,26 @@
         if (_cellsExtraInfo.tableViewCellClass){
             [_tableView registerClass:_cellsExtraInfo.tableViewCellClass forCellReuseIdentifier:_cellsExtraInfo.cellClassName] ;
         }
-
+        
         for (int i=0; i<_sectionsInfo.count; i++)
         {
-            NSArray *rows = [self _sectionInfoInSection:i].rowsInfo ;
+            NSDictionary *sectionInfo = [self _sectionInfoInSection:i] ;
+            //增加注册 headerview,footer view
+            if (sectionInfo.tableViewSectionHeaderViewClass){
+                [_tableView registerHeaderFooterViewWithClass:sectionInfo.tableViewSectionHeaderViewClass
+                                           andReuseIdentifier:sectionInfo.sectionHeaderViewClassName] ;
+            }
+            
+            if (sectionInfo.tableViewSectionFooterViewClass){
+                [_tableView registerHeaderFooterViewWithClass:sectionInfo.tableViewSectionFooterViewClass
+                                           andReuseIdentifier:sectionInfo.sectionFooterViewClassName] ;
+            }
+            
+            NSArray *rows = sectionInfo.rowsInfo ;
             for (int m=0; m<rows.count; m++) {
                 NSDictionary *rowInfo = [self _rowInfoForIndexPath:[NSIndexPath indexPathForItem:m inSection:i]] ;
                 Class cellClass = rowInfo.tableViewCellClass ;
                 if (cellClass){
-//                    [_tableView registerClass:cellClass forCellReuseIdentifier:rowInfo.cellClassName] ;
                     [_tableView registerCellWithClass:cellClass nibNameOrNil:rowInfo.cellClassName bundleOrNil:nil
                                    andReuseIdentifier:rowInfo.cellClassName] ;
 
@@ -107,7 +119,17 @@
 -(NSDictionary*)_sectionInfoInSection:(NSInteger)section
 {
     NSDictionary *sectionInfo = ConvertToClassPointer(NSDictionary, [self.sectionsInfo objectAtIndex:section]) ;
-    return sectionInfo;
+    
+    NSMutableDictionary *tmpSectionInfo = [NSMutableDictionary dictionary] ;
+    if (self.cellsExtraInfo){
+        [tmpSectionInfo addEntriesFromDictionary:self.cellsExtraInfo] ;
+    }
+    
+    if (sectionInfo){
+        [tmpSectionInfo addEntriesFromDictionary:sectionInfo] ;
+    }
+    
+    return [NSDictionary dictionaryWithDictionary:tmpSectionInfo];
 }
 
 -(NSDictionary*)_rowInfoForIndexPath:(NSIndexPath*)indexPath
@@ -137,6 +159,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     CGFloat tmp = [[self _sectionInfoInSection:section] sectionHeaderHeight:tableView.sectionHeaderHeight] ;
+    if ([[self _sectionInfoInSection:section] isPixelUnit]){
+        tmp = PixelToPoint(tmp) ;
+    }
+    
     return (tableView.style==UITableViewStylePlain?MAX(0,tmp):MAX(0.1, tmp));
 }
 
@@ -151,12 +177,47 @@
     NSDictionary* rowInfo = [self _rowInfoForIndexPath:indexPath] ;
     if ([self _rowInfoForIndexPath:indexPath].isCustomHeight) {//自定义高度cell 返回
         Class cellClass = [rowInfo tableViewCellClass];
-        id context = [self.delegate tableViewManagement:self cellContextAtIndexPath:indexPath] ;
+        id context = nil ;
+        ifRespondsSelector(self.delegate, @selector(tableViewManagement:cellContextAtIndexPath:)){
+            context = [self.delegate tableViewManagement:self cellContextAtIndexPath:indexPath] ;
+        }
 
         return  [cellClass heightForCellWithInfo:rowInfo tableView:tableView context:context];
     }else {
         return rowInfo.height;
     }
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSDictionary *sectionDict = ConvertToClassPointer(NSDictionary, [self.sectionsInfo objectAtIndex:section]) ;
+    if (sectionDict.sectionHeaderViewClassName){
+        UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionDict.sectionHeaderViewClassName] ;
+        if (headerView){
+            ifRespondsSelector(self.delegate, @selector(tableViewManagement:Section:HeaderView:)){
+                [self.delegate tableViewManagement:self Section:section HeaderView:headerView] ;
+            }
+        }
+        
+        return headerView ;
+    }
+    return nil ;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    NSDictionary *sectionDict = ConvertToClassPointer(NSDictionary, [self.sectionsInfo objectAtIndex:section]) ;
+    if (sectionDict.sectionFooterViewClassName){
+        UIView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionDict.sectionFooterViewClassName] ;
+        if (footerView){
+            ifRespondsSelector(self.delegate, @selector(tableViewManagement:Section:FooterView:)){
+                [self.delegate tableViewManagement:self Section:section FooterView:footerView] ;
+            }
+        }
+        
+        return footerView ;
+    }
+    return nil ;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -273,6 +334,11 @@
     return [self boolValueForKey:@"isCustomHeight" defaultValue:NO];
 }
 
+- (BOOL)isPixelUnit
+{
+    return [self boolValueForKey:@"isPixelUnit" defaultValue:NO];
+}
+
 - (NSString *)cellClassName {
     return [self stringValueForKey:@"cellClass"];
 }
@@ -281,6 +347,29 @@
 {
     Class class = NSClassFromString([self cellClassName]);
     return [class isSubclassOfClass:[UITableViewCell class]] ? class : nil;
+}
+
+
+- (NSString *)sectionHeaderViewClassName
+{
+    return [self stringValueForKey:@"sectionHeaderViewClass"];
+}
+
+- (Class)tableViewSectionHeaderViewClass
+{
+    Class class = NSClassFromString([self sectionHeaderViewClassName]);
+    return [class isSubclassOfClass:[UIView class]] ? class : nil;
+}
+
+- (NSString *)sectionFooterViewClassName
+{
+    return [self stringValueForKey:@"sectionFooterViewClass"];
+}
+
+- (Class)tableViewSectionFooterViewClass
+{
+    Class class = NSClassFromString([self sectionFooterViewClassName]);
+    return [class isSubclassOfClass:[UIView class]] ? class : nil;
 }
 
 @end

@@ -10,17 +10,30 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "RH_APPDelegate.h"
 #import "RH_CustomViewController.h"
+#import "RH_BannerViewCell.h"
+#import "RH_DaynamicLabelCell.h"
+#import "RH_HomeCategoryCell.h"
+#import "RH_HomeCategoryItemsCell.h"
 #import "RH_API.h"
 
-@interface RH_FirstPageViewControllerEx ()
+@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate>
+@property (nonatomic,strong,readonly) UILabel *labDomain ;
+@property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
+@property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
+@property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
+
 @end
 
 @implementation RH_FirstPageViewControllerEx
-//@synthesize loginBarButtonItem = _loginBarButtonItem ;
+@synthesize  labDomain = _labDomain                         ;
+@synthesize dynamicLabCell = _dynamicLabCell                ;
+@synthesize homeCategoryCell = _homeCategoryCell            ;
+@synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationBarItem.leftBarButtonItem = self.mainMenuButtonItem ;
+    self.navigationBarItem.leftBarButtonItems = @[self.mainMenuButtonItem,self.logoButtonItem] ;
     self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     
     // 注册手势驱动
@@ -29,24 +42,57 @@
         [weakSelf mainMenuButtonItemHandle];
     }];
     
-//    [self setupUI] ;
+    [self setupUI] ;
+}
+
+-(BOOL)hasTopView
+{
+    return YES ;
+}
+
+-(CGFloat)topViewHeight
+{
+    return 20.0f ;
+}
+
+#pragma mark-
+-(UILabel*)labDomain
+{
+    if (!_labDomain){
+        _labDomain = [[UILabel alloc] init] ;
+        if ([self.appDelegate.domain containsString:@"//"]){
+            NSArray *tmpArray = [self.appDelegate.domain componentsSeparatedByString:@"//"] ;
+            _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",tmpArray.count>1?tmpArray[1]:tmpArray[0]] ;
+        }else{
+            _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",self.appDelegate.domain] ;
+        }
+        _labDomain.font = [UIFont systemFontOfSize:12.0f] ;
+        _labDomain.textColor = RH_Label_DefaultTextColor ;
+        _labDomain.translatesAutoresizingMaskIntoConstraints = NO ;
+    }
+    
+    return _labDomain ;
 }
 
 #pragma mark-
 -(void)setupUI
 {
+    [self.topView addSubview:self.labDomain] ;
+    setCenterConstraint(self.labDomain, self.topView) ;
+    self.topView.backgroundColor = colorWithRGB(226, 226, 226) ;
+    
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
-//    [self.contentTableView registerCellWithClass:[RH_BannerViewCell class]] ;
-//    [self.contentTableView registerCellWithClass:[RH_LotteryHallViewCell class]] ;
-//    [self.contentTableView registerCellWithClass:[RH_DaynamicLabelCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_BannerViewCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_DaynamicLabelCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_HomeCategoryCell class]] ;
     
     [self.contentView addSubview:self.contentTableView] ;
-//    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-//    [self setupPageLoadManager] ;
+    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
+    [self setupPageLoadManager] ;
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -66,21 +112,32 @@
 }
 
 #pragma mark-
-//-(UIBarButtonItem*)loginBarButtonItem
-//{
-//    if (!_loginBarButtonItem){
-//        _loginBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登入/注册"
-//                                                               style:UIBarButtonItemStyleDone
-//                                                              target:self
-//                                                              action:@selector(loginBarButtonItemHandke)];
-//    }
-//
-//    return  _loginBarButtonItem ;
-//}
-
--(void)loginBarButtonItemHandke
+-(RH_DaynamicLabelCell *)dynamicLabCell
 {
-//    [self showViewController:[RH_LoginViewController viewController] sender:self] ;
+    if (!_dynamicLabCell){
+        _dynamicLabCell = [RH_DaynamicLabelCell createInstance] ;
+    }
+    return _dynamicLabCell ;
+}
+
+#pragma mark-
+-(RH_HomeCategoryCell *)homeCategoryCell
+{
+    if (!_homeCategoryCell){
+        _homeCategoryCell = [RH_HomeCategoryCell createInstance] ;
+    }
+    
+    return _homeCategoryCell ;
+}
+
+#pragma mark-
+-(RH_HomeCategoryItemsCell *)homeCategoryItemsCell
+{
+    if (!_homeCategoryItemsCell){
+        _homeCategoryItemsCell = [RH_HomeCategoryItemsCell createInstance] ;
+    }
+    
+    return _homeCategoryItemsCell ;
 }
 
 #pragma mark-
@@ -97,7 +154,7 @@
 #if 0
     //    [self.serviceRequest startGetOpenCode:nil isHistory:NO] ;
 #else
-    [self loadDataSuccessWithDatas:@[@"",@"",@"",@"",@"",@""] totalCount:6] ;
+    [self loadDataSuccessWithDatas:@[@"",@"",@"",@""] totalCount:4] ;
 #endif
 }
 
@@ -142,71 +199,53 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.pageLoadManager.currentDataCount){
-//        if (indexPath.section==0){
-//            return [RH_BannerViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-//        }else if (indexPath.section==1){
-//            return [RH_DaynamicLabelCell heightForCellWithInfo:nil tableView:tableView context:nil];
-//        }else if (indexPath.section>1){
-//            return [RH_LotteryHallViewCell heightForCellWithInfo:@{RH_LotteryHall_Expand:[indexPath isEqual:self.expandIndexPath]?@(YES):@(NO),
-//                                                                   RH_LotteryHall_ExpandLeft:@(self.expandIndexPathLeft)
-//                                                                   }
-//                                                       tableView:tableView context:nil] ;
-//        }else{
-//            return 0.0f ;
-//        }
-//    }else{
-//        return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
-//    }
+    if (self.pageLoadManager.currentDataCount){
+        if (indexPath.section==0){
+            return [RH_BannerViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        }else if (indexPath.section==1){
+            return [RH_DaynamicLabelCell heightForCellWithInfo:nil tableView:tableView context:nil];
+        }else if (indexPath.section==2){
+            return [RH_HomeCategoryCell heightForCellWithInfo:nil tableView:tableView context:nil];
+        }else if (indexPath.section==3){
+            return [RH_HomeCategoryItemsCell heightForCellWithInfo:nil tableView:tableView context:nil];
+        }else{
+            return 0.0f ;
+        }
+    }else{
+        return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
+    }
     return 0.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.pageLoadManager.currentDataCount){
-//        if (indexPath.section==0){
-//            RH_BannerViewCell *bannerViewCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_BannerViewCell defaultReuseIdentifier]] ;
-//            bannerViewCell.delegate = self ;
-//            [bannerViewCell updateCellWithInfo:nil context:@[@"",@""]];
-//            return bannerViewCell ;
-//        }else if (indexPath.section==1){
-//            RH_DaynamicLabelCell *dynamicLabCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DaynamicLabelCell defaultReuseIdentifier]] ;
-//            [dynamicLabCell updateCellWithInfo:nil context:nil] ;
-//            return dynamicLabCell ;
-//        }else if (indexPath.section>1){
-//            RH_LotteryHallViewCell *lotteryHallCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_LotteryHallViewCell defaultReuseIdentifier]] ;
-//            lotteryHallCell.delegate = self ;
-//            [lotteryHallCell updateCellWithInfo:@{RH_LotteryHall_Expand:[indexPath isEqual:self.expandIndexPath]?@(YES):@(NO),
-//                                                  RH_LotteryHall_ExpandLeft:@(self.expandIndexPathLeft)
-//                                                  }
-//                                        context:nil];
-//            return lotteryHallCell ;
-//        }
-//    }else{
-//        return self.loadingIndicateTableViewCell ;
-//    }
+    if (self.pageLoadManager.currentDataCount){
+        if (indexPath.section==0){
+            RH_BannerViewCell *bannerViewCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_BannerViewCell defaultReuseIdentifier]] ;
+            bannerViewCell.delegate = self ;
+            [bannerViewCell updateCellWithInfo:nil context:@[@"",@""]];
+            return bannerViewCell ;
+        }else if (indexPath.section==1){
+            [self.dynamicLabCell updateCellWithInfo:nil context:nil];
+            return self.dynamicLabCell ;
+        }else if (indexPath.section==2){
+            [self.homeCategoryCell updateCellWithInfo:nil context:nil] ;
+            return self.homeCategoryCell  ;
+        }else if (indexPath.section==3){
+            [self.homeCategoryItemsCell updateCellWithInfo:nil context:nil] ;
+            return self.homeCategoryItemsCell  ;
+        }
+    }else{
+        return self.loadingIndicateTableViewCell ;
+    }
     
     return nil ;
 }
 
-//#pragma mark- cells Delegate
-//- (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
-//{
-//    NSLog(@"") ;
-//}
-//
-//-(void)lotteryHallViewCellTouchExpend:(RH_LotteryHallViewCell*)lotteryHallViewCell isLeft:(BOOL)bLeft
-//{
-//    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:lotteryHallViewCell] ;
-//    if ([indexPath isEqual:self.expandIndexPath] && self.expandIndexPathLeft==bLeft){
-//        //收起扩展显示
-//        self.expandIndexPath = nil ;
-//    }else{
-//        self.expandIndexPath = indexPath ;
-//        self.expandIndexPathLeft = bLeft ;
-//    }
-//
-//    [self.contentTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic] ;
-//}
+#pragma mark- cells Delegate
+- (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
+{
+    NSLog(@"") ;
+}
 
 @end
