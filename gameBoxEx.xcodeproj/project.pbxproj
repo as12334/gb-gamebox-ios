@@ -250,6 +250,12 @@
 		A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
 		A0ADD3061FE9408B00B24B51 /* RH_SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */; };
+		A0ADD3091FEA0AEA00B24B51 /* RH_SimpleWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3071FEA0AE900B24B51 /* RH_SimpleWKWebViewController.m */; };
+		A0ADD30D1FEA63B400B24B51 /* RH_SlideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */; };
+		A0ADD30F1FEA665F00B24B51 /* RH_SlideHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD30E1FEA665F00B24B51 /* RH_SlideHeaderView.xib */; };
+		A0ADD3111FEA8CC700B24B51 /* RH_MainMenuCells.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD3101FEA8CC700B24B51 /* RH_MainMenuCells.plist */; };
+		A0ADD3151FEA8EA200B24B51 /* RH_MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3131FEA8EA200B24B51 /* RH_MainMenuCell.m */; };
+		A0ADD3161FEA8EA200B24B51 /* RH_MainMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD3141FEA8EA200B24B51 /* RH_MainMenuCell.xib */; };
 		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
 		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
 		A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */; };
@@ -804,6 +810,15 @@
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
 		A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SlideMenuViewController.h; sourceTree = "<group>"; };
 		A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SlideMenuViewController.m; sourceTree = "<group>"; };
+		A0ADD3071FEA0AE900B24B51 /* RH_SimpleWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SimpleWKWebViewController.m; sourceTree = "<group>"; };
+		A0ADD3081FEA0AEA00B24B51 /* RH_SimpleWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SimpleWKWebViewController.h; sourceTree = "<group>"; };
+		A0ADD30B1FEA63B400B24B51 /* RH_SlideHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SlideHeaderView.h; sourceTree = "<group>"; };
+		A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SlideHeaderView.m; sourceTree = "<group>"; };
+		A0ADD30E1FEA665F00B24B51 /* RH_SlideHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SlideHeaderView.xib; sourceTree = "<group>"; };
+		A0ADD3101FEA8CC700B24B51 /* RH_MainMenuCells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_MainMenuCells.plist; sourceTree = "<group>"; };
+		A0ADD3121FEA8EA200B24B51 /* RH_MainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MainMenuCell.h; sourceTree = "<group>"; };
+		A0ADD3131FEA8EA200B24B51 /* RH_MainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MainMenuCell.m; sourceTree = "<group>"; };
+		A0ADD3141FEA8EA200B24B51 /* RH_MainMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MainMenuCell.xib; sourceTree = "<group>"; };
 		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
 		A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
 		A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected@2x.png"; sourceTree = "<group>"; };
@@ -1651,6 +1666,8 @@
 				A010A0721F879ACE004E6EF4 /* RH_BasicPageLoadViewController.m */,
 				A010A0801F879ACE004E6EF4 /* RH_SimpleWebViewController.h */,
 				A010A0811F879ACE004E6EF4 /* RH_SimpleWebViewController.m */,
+				A0ADD3081FEA0AEA00B24B51 /* RH_SimpleWKWebViewController.h */,
+				A0ADD3071FEA0AE900B24B51 /* RH_SimpleWKWebViewController.m */,
 				A010A0781F879ACE004E6EF4 /* RH_MainNavigationController.h */,
 				A010A0791F879ACE004E6EF4 /* RH_MainNavigationController.m */,
 				A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */,
@@ -1879,10 +1896,25 @@
 		A0ADD3031FE93FC900B24B51 /* slideMainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				A0ADD30A1FEA62E800B24B51 /* cells */,
 				A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */,
 				A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */,
+				A0ADD3101FEA8CC700B24B51 /* RH_MainMenuCells.plist */,
 			);
 			path = slideMainMenu;
+			sourceTree = "<group>";
+		};
+		A0ADD30A1FEA62E800B24B51 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				A0ADD30B1FEA63B400B24B51 /* RH_SlideHeaderView.h */,
+				A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */,
+				A0ADD30E1FEA665F00B24B51 /* RH_SlideHeaderView.xib */,
+				A0ADD3121FEA8EA200B24B51 /* RH_MainMenuCell.h */,
+				A0ADD3131FEA8EA200B24B51 /* RH_MainMenuCell.m */,
+				A0ADD3141FEA8EA200B24B51 /* RH_MainMenuCell.xib */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		A0B609C01FBB096B00A44B37 /* promoPage */ = {
@@ -2185,6 +2217,7 @@
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
+				A0ADD3161FEA8EA200B24B51 /* RH_MainMenuCell.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
@@ -2202,6 +2235,7 @@
 				A001B3D71F8EF7CA00309EA4 /* tab_green_transfer@2x.png in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
+				A0ADD30F1FEA665F00B24B51 /* RH_SlideHeaderView.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
@@ -2222,6 +2256,7 @@
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
+				A0ADD3111FEA8CC700B24B51 /* RH_MainMenuCells.plist in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
 				A001B3EA1F8EF7CA00309EA4 /* tab_home@2x.png in Resources */,
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
@@ -2435,6 +2470,7 @@
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
+				A0ADD3151FEA8EA200B24B51 /* RH_MainMenuCell.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
 				A0109FFA1F8788FF004E6EF4 /* UIImage+MultiFormat.m in Sources */,
@@ -2443,6 +2479,7 @@
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
+				A0ADD3091FEA0AEA00B24B51 /* RH_SimpleWKWebViewController.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,
 				A010A0011F8788FF004E6EF4 /* ScreenAdaptation.m in Sources */,
 				A0109F691F8787E4004E6EF4 /* CLAPPDelegate.m in Sources */,
@@ -2467,6 +2504,7 @@
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
 				A0109F7F1F8787E4004E6EF4 /* CLCellContext.m in Sources */,
+				A0ADD30D1FEA63B400B24B51 /* RH_SlideHeaderView.m in Sources */,
 				A0109F801F8787E4004E6EF4 /* CLContentViewForCell.m in Sources */,
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
@@ -2607,7 +2645,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_7rda=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

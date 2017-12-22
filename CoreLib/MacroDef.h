@@ -24,7 +24,11 @@
 #define IS_SUPPORT_ARC  __has_feature(objc_arc)
 
 //----------------------------------------------------------
+//----------------------------------------------------------
 
+#define MainScreenH [UIScreen mainScreen].bounds.size.height
+#define MainScreenW [UIScreen mainScreen].bounds.size.width
+#define MainScreenBounds [UIScreen mainScreen].bounds
 
 /**
  *字符号转成DATA encoding utf-8

@@ -19,6 +19,9 @@
 @synthesize serviceRequest = _serviceRequest                ;
 @synthesize backButtonItem = _backButtonItem                ;
 @synthesize mainMenuButtonItem = _mainMenuButtonItem        ;
+@synthesize loginButtonItem = _loginButtonItem              ;
+@synthesize tryLoginButtonItem = _tryLoginButtonItem        ;
+@synthesize signButtonItem  = _signButtonItem               ;
 
 -(BOOL)hasNavigationBar
 {
@@ -32,6 +35,9 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        return UIStatusBarStyleDefault ;
+    }
     return UIStatusBarStyleLightContent ;
 }
 
@@ -95,20 +101,94 @@
 -(UIBarButtonItem *)mainMenuButtonItem
 {
     if (!_mainMenuButtonItem){
-        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"ic_navigationBar_home")
-                                                           style:UIBarButtonItemStyleDone
-                                                          target:self
-                                                          action:@selector(_mainMenuButtonItemHandle)] ;
+        UIImage *menuImage = ImageWithName(@"ic_navigationBar_home");
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(mainMenuButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
     }
     
     return  _mainMenuButtonItem ;
 }
 
--(void)_mainMenuButtonItemHandle
+-(void)mainMenuButtonItemHandle
 {
     [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
                         animationType:CWDrawerAnimationTypeDefault
                         configuration:nil] ;
+}
+
+#pragma mark-
+-(UIBarButtonItem *)tryLoginButtonItem
+{
+    if (!_tryLoginButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(18, 121, 217) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"试玩" forState:UIControlStateNormal] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        [button addTarget:self action:@selector(_tryLoginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _tryLoginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _tryLoginButtonItem ;
+}
+
+-(void)_tryLoginButtonItemHandle
+{
+    
+}
+
+#pragma mark-
+-(UIBarButtonItem *)loginButtonItem
+{
+    if (!_loginButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(29, 194, 142) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"登录" forState:UIControlStateNormal] ;
+        [button addTarget:self action:@selector(_loginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        _loginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _loginButtonItem ;
+}
+
+-(void)_loginButtonItemHandle
+{
+    
+}
+
+#pragma mark-
+-(UIBarButtonItem *)signButtonItem
+{
+    if (!_signButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(240, 175, 1) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"注册" forState:UIControlStateNormal] ;
+        [button addTarget:self action:@selector(_signButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        _signButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _signButtonItem ;
+}
+
+-(void)_signButtonItemHandle
+{
+    
 }
 
 #pragma mark-

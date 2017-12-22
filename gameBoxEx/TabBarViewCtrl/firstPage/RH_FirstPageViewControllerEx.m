@@ -21,6 +21,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationBarItem.leftBarButtonItem = self.mainMenuButtonItem ;
+    self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
+    
+    // 注册手势驱动
+    __weak typeof(self)weakSelf = self;
+    [self cw_registerShowIntractiveWithEdgeGesture:NO direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
+        [weakSelf mainMenuButtonItemHandle];
+    }];
     
 //    [self setupUI] ;
 }

@@ -60,6 +60,8 @@
     _webView.userInteractionEnabled = YES ;
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
+    [_webView setCustomUserAgent:[self.appDelegate.dictUserAgent stringValueForKey:@"UserAgent"]] ;
+    
     
 #if 0
     _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
@@ -291,11 +293,7 @@
 {
     //开始加载网页内容
     NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
-    [urlRequest addValue:[self.appDelegate.dictUserAgent stringValueForKey:@"UserAgent"]
-      forHTTPHeaderField:@"UserAgent"] ;
-    if ([urlRequest.URL.absoluteString isEqualToString:self.webView.URL.absoluteString]==FALSE || self.webView.loading==FALSE){
-        [self.webView loadRequest:urlRequest];
-    }
+    [self.webView loadRequest:urlRequest];
 }
 
 - (UIBarButtonItem *)loadingBarButtonItem
@@ -440,8 +438,8 @@
     }
     
     //增加通用 js 处理
-    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
-    [self setupJSCallBackOC:jsContext] ;
+//    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
+//    [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"]){
