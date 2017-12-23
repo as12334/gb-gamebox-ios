@@ -41,11 +41,18 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSLog(@"old agent :%@", oldAgent);
     //add my info to the new agent
     NSLog(@"........%@",getDeviceModel()) ;//app_ios app_android
-    NSString *newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
+    NSString *newAgent = nil ;
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        ////用于后台切换 v3 环境
+        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios,app_version 3.0 , %@",getDeviceModel()]];
+    }else{
+        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
+    }
     
     NSLog(@"new agent :%@", newAgent);
     //regist the new agent
-    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
+    NSMutableDictionary *dictionnary = [[NSMutableDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil] ;
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
     
     self.dictUserAgent = dictionnary ;

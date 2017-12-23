@@ -93,6 +93,7 @@
 //#import "AFNetworking.h"
 #import "CLNavigationBar.h"
 #import "CLImageTitleStaticCollectionViewCell.h"
+#import "KIPageView.h"
 
 #pragma Mark-pageview
 #import "CLPageView.h"

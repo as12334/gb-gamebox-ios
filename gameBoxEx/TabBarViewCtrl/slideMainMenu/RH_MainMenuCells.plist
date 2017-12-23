@@ -41,19 +41,19 @@
 					<key>title</key>
 					<string>在线客服</string>
 					<key>image</key>
-					<string>mm_firstpage_icon</string>
+					<string>mm_customer_icon</string>
 				</dict>
 				<dict>
 					<key>title</key>
 					<string>注册条款</string>
 					<key>image</key>
-					<string>mm_firstpage_icon</string>
+					<string>mm_signintro_icon</string>
 				</dict>
 				<dict>
 					<key>title</key>
 					<string>语言</string>
 					<key>image</key>
-					<string>mm_firstpage_icon</string>
+					<string>mm_language_icon</string>
 				</dict>
 			</array>
 		</dict>

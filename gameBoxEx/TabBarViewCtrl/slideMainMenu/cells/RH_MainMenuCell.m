@@ -24,6 +24,7 @@
 {
     [super awakeFromNib];
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
+    self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.textColor = [UIColor whiteColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;

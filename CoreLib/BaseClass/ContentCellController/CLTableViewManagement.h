@@ -19,6 +19,9 @@
 //生成的cell 回调，
 -(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell ;
 
+//生成section header&footer view 回调，
+-(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement Section:(NSInteger)section HeaderView:(UIView*)headerView ;
+-(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement Section:(NSInteger)section FooterView:(UIView*)footerView ;
 
 //点击了删除自定义cell
 - (void)tableViewManagement:(CLTableViewManagement *)contentViewCellController commitDeleteCustomCellAtIndexPath:(NSIndexPath *)indexPath ;
@@ -33,6 +36,7 @@
 -(NSDictionary*)cellExtraInfo:(NSIndexPath*)indexPath ;
 -(id)cellContext:(NSIndexPath*)indexPath ;
 -(UITableViewCell*)cellViewAtIndexPath:(NSIndexPath*)indexPath ;
+
 @end
 
 
@@ -43,7 +47,12 @@
 - (CGFloat)sectionHeaderHeight:(CGFloat)defaultValue ;
 - (CGFloat)sectionFooterHeight:(CGFloat)defaultValue ;
 - (BOOL)isCustomHeight  ;
+- (BOOL)isPixelUnit     ;
 - (NSString *)cellClassName ;
 - (Class)tableViewCellClass ;
 
+- (NSString *)sectionHeaderViewClassName ;
+- (Class)tableViewSectionHeaderViewClass ;
+- (NSString *)sectionFooterViewClassName ;
+- (Class)tableViewSectionFooterViewClass ;
 @end

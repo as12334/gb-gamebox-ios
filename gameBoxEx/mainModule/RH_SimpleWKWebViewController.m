@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     _domain = self.appDelegate.domain.trim ;
     
     if (self.appDelegate.servicePath.length<1){

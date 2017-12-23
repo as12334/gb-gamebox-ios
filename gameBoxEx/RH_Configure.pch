@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      0
+#define IS_TEST_SERVER_ENV                      1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -55,16 +55,16 @@
 #define   RH_TabBar_TitleFontSize                       [UIFont systemFontOfSize:14.0f]
 
 ////默认的视图背景颜色
-#define  RH_View_DefaultBackgroundColor                 colorWithRGB(245, 243, 229)
+#define  RH_View_DefaultBackgroundColor                 colorWithRGB(239, 239, 239)
 ////默认分隔线颜色
-#define RH_Line_DefaultColor                            colorWithRGB(245, 243, 229)
+#define RH_Line_DefaultColor                            colorWithRGB(209, 209, 209)
 ////默认选中指示颜色
 #define RH_Cell_DefaultHolderColor                      ColorWithNumberRGB(0xEEEEEE)
 ////默认图片背景颜色
 #define RH_Image_DefaultBackgroundColor                 ColorWithNumberRGB(0xE5E5E5)
 
 ////默认文本颜色
-#define RH_Label_DefaultTextGrayColor                       colorWithRGB(171, 171, 171)
+#define RH_Label_DefaultTextColor                       colorWithRGB(51, 51, 51)
 #define RH_Label_DefaultHolderTextColor                 ColorWithNumberRGB(0xbdbdbd)
 
 
@@ -78,11 +78,13 @@
 //===========================================================
 
 #ifdef _DEBUG //开发环境
-#define TEST_DOMAIN         @"test02.ccenter.test.so"
 
-#define CODE    @"w7ls"
-#define S        @"5613daa85f182719c359efbd2332ce12"
-#define SID        @"217"
+//#define TEST_DOMAIN         @"test02.ccenter.test.so"
+//@"test01.ampinplay0matrix.com"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

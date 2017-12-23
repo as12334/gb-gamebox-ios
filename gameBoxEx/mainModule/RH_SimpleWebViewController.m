@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     _domain = self.appDelegate.domain.trim ;
     
     if (self.appDelegate.servicePath.length<1){
@@ -293,6 +292,11 @@
 {
     //开始加载网页内容
     NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
+//    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+////        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
+//        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
+//    }
+    
     [self.webView loadRequest:urlRequest];
 }
 
