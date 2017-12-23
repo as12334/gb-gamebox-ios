@@ -29,13 +29,12 @@
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = [UIColor clearColor] ;
-    
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
+    
     [self.contentView addSubview:self.collectionView] ;
     [self.collectionView reloadData] ;
-    
     _selectedIndex = 0 ;
     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft] ;
 }
@@ -56,11 +55,14 @@
         flowLayout.itemSize = CGSizeMake(HomeCategoryCellWidth, HomeCategoryCellHeight) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, HomeCategoryCellHeight) collectionViewLayout:flowLayout];
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin ;
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.allowsMultipleSelection = NO ;
+        _collectionView.allowsSelection = YES ;
         [_collectionView registerCellWithClass:[RH_HomeCategorySubCell class]];
     }
     return _collectionView;

@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -97,7 +97,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _7cxt //百发彩票
 
@@ -1387,6 +1387,14 @@
 #define CODE    @"ghng"
 #define S        @"1e600a1a1c0a470773d7e8e31f5a8342"
 #define SID        @"329"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _whk7 //澳门百乐门娱乐城
+
+#define CODE    @"whk7"
+#define S        @"09a39312956823dc58c439c011edbe8d"
+#define SID        @"326"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

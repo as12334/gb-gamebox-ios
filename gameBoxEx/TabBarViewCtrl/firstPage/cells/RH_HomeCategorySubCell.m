@@ -10,8 +10,13 @@
 #import "coreLib.h"
 
 @interface RH_HomeCategorySubCell()<CLMaskViewDataSource>
+@property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
 @property (nonatomic,strong) IBOutlet UIImageView *imgIcon ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
+
+//向下指示图
+@property (nonatomic,strong) IBOutlet UIImageView *indicatorImgView ;
+
 @end
 
 @implementation RH_HomeCategorySubCell
@@ -24,9 +29,25 @@
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
     self.labTitle.textColor =  RH_Label_DefaultTextColor ;
     
-    self.selectionOption = CLSelectionOptionSelected|CLSelectionOptionHighlighted ;
-    self.selectionColor = [UIColor whiteColor] ;
+    self.selectionOption = CLSelectionOptionNone ;
+    self.borderMask = CLBorderMarkNone ;
+    self.borderView.borderColor = RH_Line_DefaultColor ;
+    self.indicatorImgView.hidden = YES ;
 }
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated] ;
+    self.indicatorImgView.hidden = !selected ;
+    self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
+    self.borderView.backgroundColor = selected?[UIColor whiteColor]:[UIColor clearColor] ;
+}
+
+-(void)setSelected:(BOOL)selected
+{
+    [self setSelected:selected animated:NO] ;
+}
+
 
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
