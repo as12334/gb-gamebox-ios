@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -79,14 +79,11 @@
 
 #ifdef _DEBUG //开发环境
 
-//#define TEST_DOMAIN         @"test02.ccenter.test.so"
-//@"test01.ampinplay0matrix.com"
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define CODE    @"rf80"
-#define S        @"632fbc122abfffdec078a665a76a1c16"
-#define SID        @"21"
+#define CODE    @"8l6r"
+#define S        @"6bf3b743e414045e5123fc317fb9b535"
+#define SID        @"71"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3"
 
 #elif _rf80 //TEST01[21]
 
@@ -121,7 +118,7 @@
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3"
+#define SITE_TYPE    @"integrated"
 
 #elif _XH5Z //澳门永利
 
