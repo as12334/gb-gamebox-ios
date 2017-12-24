@@ -258,6 +258,13 @@
 		A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEC81FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m */; };
 		A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07DCEC91FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib */; };
 		A07FE36D1FECF97A00D5DF71 /* tt_item_image.png in Resources */ = {isa = PBXBuildFile; fileRef = A07FE36C1FECF97900D5DF71 /* tt_item_image.png */; };
+		A07FE3701FEF453700D5DF71 /* CLSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE36E1FEF453700D5DF71 /* CLSegmentedControl.m */; };
+		A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE3721FEF791E00D5DF71 /* RH_NavigationUserInfoView.m */; };
+		A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */; };
+		A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE3761FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m */; };
+		A07FE37B1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE37A1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m */; };
+		A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */; };
+		A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
 		A0ADD3061FE9408B00B24B51 /* RH_SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */; };
 		A0ADD30D1FEA63B400B24B51 /* RH_SlideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */; };
@@ -836,6 +843,18 @@
 		A07DCEC81FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeCategoryItemSubCell.m; sourceTree = "<group>"; };
 		A07DCEC91FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeCategoryItemSubCell.xib; sourceTree = "<group>"; };
 		A07FE36C1FECF97900D5DF71 /* tt_item_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_item_image.png; sourceTree = "<group>"; };
+		A07FE36E1FEF453700D5DF71 /* CLSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSegmentedControl.m; sourceTree = "<group>"; };
+		A07FE36F1FEF453700D5DF71 /* CLSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSegmentedControl.h; sourceTree = "<group>"; };
+		A07FE3711FEF791E00D5DF71 /* RH_NavigationUserInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NavigationUserInfoView.h; sourceTree = "<group>"; };
+		A07FE3721FEF791E00D5DF71 /* RH_NavigationUserInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NavigationUserInfoView.m; sourceTree = "<group>"; };
+		A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NavigationUserInfoView.xib; sourceTree = "<group>"; };
+		A07FE3761FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MainTabBarControllerEx.m; sourceTree = "<group>"; };
+		A07FE3771FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MainTabBarControllerEx.h; sourceTree = "<group>"; };
+		A07FE3791FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoSubViewControler.h; sourceTree = "<group>"; };
+		A07FE37A1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoSubViewControler.m; sourceTree = "<group>"; };
+		A07FE37D1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NaviUserInfoTableCell.h; sourceTree = "<group>"; };
+		A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NaviUserInfoTableCell.m; sourceTree = "<group>"; };
+		A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NaviUserInfoTableCell.xib; sourceTree = "<group>"; };
 		A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNavigationBar.h; sourceTree = "<group>"; };
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
 		A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SlideMenuViewController.h; sourceTree = "<group>"; };
@@ -1278,6 +1297,8 @@
 		A0109E771F87852F004E6EF4 /* StaticCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				A07FE36F1FEF453700D5DF71 /* CLSegmentedControl.h */,
+				A07FE36E1FEF453700D5DF71 /* CLSegmentedControl.m */,
 				A021426F1FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.h */,
 				A02142701FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.m */,
 				A0109E781F87852F004E6EF4 /* CLStaticCollectionView.h */,
@@ -1698,8 +1719,14 @@
 		A010A0631F879ACE004E6EF4 /* mainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A07FE37C1FEFA16600D5DF71 /* cells */,
 				A010A06F1F879ACE004E6EF4 /* RH_BasicHelpView.h */,
 				A010A0701F879ACE004E6EF4 /* RH_BasicHelpView.m */,
+				A07FE3711FEF791E00D5DF71 /* RH_NavigationUserInfoView.h */,
+				A07FE3721FEF791E00D5DF71 /* RH_NavigationUserInfoView.m */,
+				A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */,
+				A07FE3791FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.h */,
+				A07FE37A1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m */,
 				A010A0751F879ACE004E6EF4 /* RH_BasicViewController.h */,
 				A010A0761F879ACE004E6EF4 /* RH_BasicViewController.m */,
 				A010A0731F879ACE004E6EF4 /* RH_BasicSubViewController.h */,
@@ -1714,6 +1741,8 @@
 				A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */,
 				A010A07A1F879ACE004E6EF4 /* RH_MainTabBarController.h */,
 				A010A07B1F879ACE004E6EF4 /* RH_MainTabBarController.m */,
+				A07FE3771FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.h */,
+				A07FE3761FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m */,
 				A010A07C1F879ACE004E6EF4 /* RH_MainTabBarItems.plist */,
 			);
 			path = mainModule;
@@ -1915,6 +1944,16 @@
 				A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		A07FE37C1FEFA16600D5DF71 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				A07FE37D1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.h */,
+				A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */,
+				A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
@@ -2300,6 +2339,7 @@
 				A0E3680B1F945E3F00758033 /* RH_MainTabBarItems.plist in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
 				A0E367951F8F463900758033 /* Localizable.strings in Resources */,
+				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
@@ -2310,6 +2350,7 @@
 				A0ADD3161FEA8EA200B24B51 /* RH_MainMenuCell.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
+				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
@@ -2468,6 +2509,7 @@
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
+				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				A010A0571F87999F004E6EF4 /* RH_BasicImageModel.m in Sources */,
 				A010A0591F87999F004E6EF4 /* RH_CommonInputContainerView.m in Sources */,
 				A010A05C1F87999F004E6EF4 /* RH_LoadingIndicateTableViewCell.m in Sources */,
@@ -2570,6 +2612,7 @@
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
+				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
@@ -2619,6 +2662,7 @@
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
+				A07FE37B1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
@@ -2647,8 +2691,10 @@
 				A0109F9F1F8787E4004E6EF4 /* CLBasicViewControllerAnimatedTransitioning.m in Sources */,
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
+				A07FE3701FEF453700D5DF71 /* CLSegmentedControl.m in Sources */,
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,
 				A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */,
+				A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,

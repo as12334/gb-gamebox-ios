@@ -11,8 +11,12 @@
 #import "RH_ImagePickerViewController.h"
 #import "UIViewController+CWLateralSlide.h"
 #import "RH_SlideMenuViewController.h"
+#import "RH_NavigationUserInfoView.h"
+#import "RH_UserInfoSubViewControler.h"
 
 @interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate>
+@property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
+@property (nonatomic,strong,readonly) RH_UserInfoSubViewControler *userInfoSubViewCtrl ;
 @end
 
 @implementation RH_BasicViewController
@@ -23,6 +27,9 @@
 @synthesize tryLoginButtonItem = _tryLoginButtonItem        ;
 @synthesize signButtonItem  = _signButtonItem               ;
 @synthesize logoButtonItem  = _logoButtonItem               ;
+@synthesize userInfoButtonItem = _userInfoButtonItem        ;
+@synthesize navigationUserInfoView = _navigationUserInfoView ;
+@synthesize userInfoSubViewCtrl = _userInfoSubViewCtrl      ;
 
 -(BOOL)hasNavigationBar
 {
@@ -211,6 +218,58 @@
     }
     
     return  _logoButtonItem ;
+}
+
+#pragma mark-
+-(RH_NavigationUserInfoView *)navigationUserInfoView
+{
+    if (!_navigationUserInfoView){
+        _navigationUserInfoView = [RH_NavigationUserInfoView createInstance] ;
+        [_navigationUserInfoView addTarget:self
+                                    action:@selector(userInfoButtonItemHandle)
+                          forControlEvents:UIControlEventTouchUpInside] ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 40.0f, 80.0f) ;
+    }
+    
+    return _navigationUserInfoView ;
+}
+
+-(UIBarButtonItem *)userInfoButtonItem
+{
+    if (!_userInfoButtonItem){
+        _userInfoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navigationUserInfoView] ;
+    }
+    
+    return  _userInfoButtonItem ;
+}
+
+-(RH_UserInfoSubViewControler *)userInfoSubViewCtrl
+{
+    if (!_userInfoSubViewCtrl){
+        _userInfoSubViewCtrl = [RH_UserInfoSubViewControler viewController] ;
+        _userInfoSubViewCtrl.view.frame = self.view.bounds ;
+    }
+    
+    return _userInfoSubViewCtrl ;
+}
+
+-(void)userInfoButtonItemHandle
+{
+    if (self.userInfoSubViewCtrl.parentViewController != self) {
+        //加入成为子控制器
+        [self addChildViewController:self.userInfoSubViewCtrl];
+        //开始显示
+        [self.userInfoSubViewCtrl beginAppearanceTransition:YES animated:YES];
+        [self.contentView addSubview:self.userInfoSubViewCtrl.view];
+        [self.userInfoSubViewCtrl endAppearanceTransition];
+        
+    }else {
+        //移除显示
+        [self.userInfoSubViewCtrl beginAppearanceTransition:YES animated:YES];
+        [self.userInfoSubViewCtrl.view removeFromSuperview];
+        [self.userInfoSubViewCtrl endAppearanceTransition];
+        [self.userInfoSubViewCtrl removeFromParentViewController] ;
+    }
 }
 
 #pragma mark-

@@ -13,6 +13,8 @@
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-40)/3.0)
 
 @interface RH_HomeCategoryItemsCell()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property (nonatomic,strong) IBOutlet CLSegmentedControl *segmentHeaderView ;
+@property (nonatomic,strong) IBOutlet NSLayoutConstraint *layoutSegmentHeaderViewHeight ;
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @end
 
@@ -20,7 +22,7 @@
 @synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return HomeCategoryItemsCellWidth * 3 + (3-1)*10 + 20.0f;
+    return HomeCategoryItemsCellWidth * 3 + (3-1)*10 + 20.0f + 37.0f ;
 }
 
 - (void)awakeFromNib
@@ -34,11 +36,41 @@
     self.separatorLineWidth = PixelToPoint(1.0f) ;
     [self.contentView addSubview:self.collectionView] ;
     [self.collectionView reloadData] ;
+    
+    //test added
+    [self configSegmentView:self.segmentHeaderView] ;
+    
+    [self.segmentHeaderView addSectionsWithTitles:@[@"天天彩票",@"BB彩票",@"KG彩票"]] ;
+    self.segmentHeaderView.selectedSectionIndex = 0 ;
 }
 
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    
+}
+
+#pragma mark-
+-(void)configSegmentView:(CLSegmentedControl*)segmentControl
+{
+    segmentControl.backgroundColor = [UIColor clearColor] ;
+    segmentControl.separatorLineWidth = 0.f;
+    segmentControl.borderMask = CLBorderMarkBottom;
+    segmentControl.borderColor = [UIColor grayColor];
+    segmentControl.apportionsSelectedIndicatorLineByContent = YES;
+    segmentControl.showSelectedIndicatorLine = YES;
+    segmentControl.selectedIndicatorLineInset = UIEdgeInsetsMake(0.F, -8.F, 0.F, -8.F);
+    segmentControl.selectedIndicatorLineColor = [UIColor blueColor];
+    segmentControl.selectedIndicatorLineWidth = 2.f;
+    [segmentControl setTextColor:colorWithRGB(124, 124, 124) forState:CLSegmentedControlSectionStateNormal];
+    [segmentControl setTextColor:colorWithRGB(53, 118, 185) forState:CLSegmentedControlSectionStateSelected];
+    segmentControl.textFont = [UIFont systemFontOfSize:14.f];
+    [segmentControl addTarget:self action:@selector(_segmentedControlHandle:) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)_segmentedControlHandle:(id)sender
+{
+    
 }
 
 #pragma mark-
@@ -52,8 +84,12 @@
         flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellWidth) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:flowLayout];
-        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,
+                                                                             self.layoutSegmentHeaderViewHeight.constant,
+                                                                             self.contentView.frameWidth,
+                                                                             self.contentView.frameHeigh - self.layoutSegmentHeaderViewHeight.constant)
+                                             collectionViewLayout:flowLayout];
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.showsHorizontalScrollIndicator = NO;
