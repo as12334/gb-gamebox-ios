@@ -10,7 +10,7 @@
 #import "RH_HomeCategoryItemSubCell.h"
 #import "coreLib.h"
 
-#define HomeCategoryItemsCellWidth                     floorf((MainScreenW-30)/3.0)
+#define HomeCategoryItemsCellWidth                     floorf((MainScreenW-40)/3.0)
 
 @interface RH_HomeCategoryItemsCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
@@ -20,7 +20,7 @@
 @synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return  HomeCategoryItemsCellWidth * 3;
+    return HomeCategoryItemsCellWidth * 3 + (3-1)*10 + 20.0f;
 }
 
 - (void)awakeFromNib
@@ -34,7 +34,6 @@
     self.separatorLineWidth = PixelToPoint(1.0f) ;
     [self.contentView addSubview:self.collectionView] ;
     [self.collectionView reloadData] ;
-    
 }
 
 #pragma mark -
@@ -48,16 +47,20 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 5.f;
-        flowLayout.minimumInteritemSpacing = 5.f;
-        flowLayout.sectionInset = UIEdgeInsetsMake(10, 10.f, 10.0f, 10.f);
+        flowLayout.minimumInteritemSpacing = 5.0f ;
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
         flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellWidth) ;
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:flowLayout];
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
+        
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10) ;
         [_collectionView registerCellWithClass:[RH_HomeCategoryItemSubCell class]];
     }
     return _collectionView;
@@ -71,14 +74,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 0;
+    return section<2?3:2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_HomeCategoryItemSubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_HomeCategoryItemSubCell defaultReuseIdentifier] forIndexPath:indexPath];
 
-    [cell updateViewWithInfo:nil context:nil];
+    [cell updateViewWithInfo:nil context:indexPath];
     return cell;
 }
 

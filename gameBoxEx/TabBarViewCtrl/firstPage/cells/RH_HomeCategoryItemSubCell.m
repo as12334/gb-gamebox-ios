@@ -19,18 +19,26 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.contentView.backgroundColor = [UIColor whiteColor] ;
+    self.contentView.layer.cornerRadius = 6.0f ;
+    self.contentView.layer.masksToBounds = YES ;
     
-    self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
     self.labTitle.textColor =  RH_Label_DefaultTextColor ;
     
-    self.selectionOption = CLSelectionOptionSelected|CLSelectionOptionHighlighted ;
-    self.selectionColor = [UIColor whiteColor] ;
+    self.selectionOption = CLSelectionOptionHighlighted ;
+    self.selectionColor = RH_Cell_DefaultHolderColor ;
+}
+
+-(UIView *)showSelectionView
+{
+    return self.contentView ;
 }
 
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.labTitle.text = @"捕鱼" ;
+    NSIndexPath *indexPath = ConvertToClassPointer(NSIndexPath, context) ;
+    self.labTitle.text = [NSString stringWithFormat:@"AG %ld.%ld",indexPath.section,indexPath.item] ;
 }
 
 @end
