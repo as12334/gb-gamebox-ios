@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      0
+#define IS_TEST_SERVER_ENV                      1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -134,7 +134,7 @@
 #define S        @"49c7e4a3b15215ed1d3d346140a868fb"
 #define SID        @"110"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3"
 
 #elif _74bk //新葡京娱乐场
 

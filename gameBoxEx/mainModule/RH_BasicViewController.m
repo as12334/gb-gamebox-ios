@@ -73,7 +73,6 @@
     }
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
-//    self.navigationBarItem.titleView = self.mainNavigationView ;
 }
 
 - (void)didReceiveMemoryWarning {

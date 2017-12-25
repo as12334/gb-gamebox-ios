@@ -11,6 +11,7 @@
 @interface RH_NavigationUserInfoView ()
 @property (nonatomic,strong) IBOutlet UILabel *labUserName ;
 @property (nonatomic,strong) IBOutlet UILabel *labBalance  ;
+@property (weak, nonatomic) IBOutlet UIView *vv;
 @end
 
 @implementation RH_NavigationUserInfoView
