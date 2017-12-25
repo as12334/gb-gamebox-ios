@@ -225,10 +225,12 @@
 {
     if (!_navigationUserInfoView){
         _navigationUserInfoView = [RH_NavigationUserInfoView createInstance] ;
-        [_navigationUserInfoView addTarget:self
-                                    action:@selector(userInfoButtonItemHandle)
-                          forControlEvents:UIControlEventTouchUpInside] ;
-        _navigationUserInfoView.frame = CGRectMake(0, 0, 40.0f, 80.0f) ;
+//        [_navigationUserInfoView addTarget:self
+//                                    action:@selector(userInfoButtonItemHandle)
+//                          forControlEvents:UIControlEventTouchUpInside] ;
+        [_navigationUserInfoView.buttonCover addTarget:self
+                                                action:@selector(userInfoButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 40.0f, 60.0f) ;
     }
     
     return _navigationUserInfoView ;

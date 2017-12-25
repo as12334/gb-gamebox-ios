@@ -11,6 +11,7 @@
 @interface RH_NavigationUserInfoView ()
 @property (nonatomic,strong) IBOutlet UILabel *labUserName ;
 @property (nonatomic,strong) IBOutlet UILabel *labBalance  ;
+@property (nonatomic,strong) IBOutlet UIButton *btnCover ;
 @end
 
 @implementation RH_NavigationUserInfoView
@@ -25,8 +26,13 @@
     self.labBalance.font = [UIFont systemFontOfSize:10.0f] ;
     
     //test
-    self.labUserName.text = @"EVDKFJDLFDDFD" ;
+    self.labUserName.text = @"EVDDDFD" ;
     self.labBalance.text = @"¥300.00" ;
 }
 
+#pragma mark-
+-(UIButton *)buttonCover
+{
+    return self.btnCover ;
+}
 @end

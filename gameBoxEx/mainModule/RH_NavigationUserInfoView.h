@@ -10,5 +10,5 @@
 #import "coreLib.h"
 
 @interface RH_NavigationUserInfoView :UIControl
-
+@property (nonatomic,strong,readonly)  UIButton *buttonCover ;
 @end
