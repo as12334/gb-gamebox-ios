@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RH_NavigationUserInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJB-mv-pEV">
+                    <rect key="frame" x="16.5" y="4.5" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_navigationBar_more" translatesAutoresizingMaskIntoConstraints="NO" id="Pn5-Lt-hd7">
+                    <rect key="frame" x="56" y="15" width="2" height="10"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_navigationBar_balance" translatesAutoresizingMaskIntoConstraints="NO" id="g4D-T6-ATd">
+                    <rect key="frame" x="2" y="27" width="6" height="6"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVW-8H-3Fp">
+                    <rect key="frame" x="54" y="36" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9b-E1-mBY">
+                    <rect key="frame" x="17" y="18.5" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="g4D-T6-ATd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="HRD-bw-pm4"/>
+                <constraint firstItem="g4D-T6-ATd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="10" id="HeN-qe-173"/>
+                <constraint firstItem="bJB-mv-pEV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-7" id="I0i-J3-Lbj"/>
+                <constraint firstItem="a9b-E1-mBY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="7" id="SBJ-tS-GBj"/>
+                <constraint firstItem="a9b-E1-mBY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g4D-T6-ATd" secondAttribute="trailing" constant="4" id="WBM-bd-ooH"/>
+                <constraint firstItem="Pn5-Lt-hd7" firstAttribute="leading" secondItem="a9b-E1-mBY" secondAttribute="trailing" constant="4" id="bTQ-NU-RUH"/>
+                <constraint firstItem="bJB-mv-pEV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="fn7-Tx-Obp"/>
+                <constraint firstItem="Pn5-Lt-hd7" firstAttribute="leading" secondItem="bJB-mv-pEV" secondAttribute="trailing" constant="4" id="ghc-kE-PXz"/>
+                <constraint firstItem="Pn5-Lt-hd7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mQE-zX-Byo"/>
+                <constraint firstAttribute="trailing" secondItem="Pn5-Lt-hd7" secondAttribute="trailing" constant="2" id="zYh-ov-Jtu"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="labBalance" destination="a9b-E1-mBY" id="Y1K-c9-Li8"/>
+                <outlet property="labUserName" destination="bJB-mv-pEV" id="P3a-bQ-5FV"/>
+            </connections>
+            <point key="canvasLocation" x="-714" y="-522"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_navigationBar_balance" width="6" height="6"/>
+        <image name="ic_navigationBar_more" width="2" height="10"/>
+    </resources>
+</document>

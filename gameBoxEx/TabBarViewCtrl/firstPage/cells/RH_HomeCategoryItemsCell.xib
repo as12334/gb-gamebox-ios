@@ -17,10 +17,28 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="328" height="211.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IRW-7F-wVf" customClass="CLSegmentedControl">
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="37"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="37" id="qev-nY-9TY"/>
+                        </constraints>
+                    </view>
+                </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="IRW-7F-wVf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1pz-Au-6he"/>
+                    <constraint firstAttribute="trailing" secondItem="IRW-7F-wVf" secondAttribute="trailing" id="Y3l-UX-I67"/>
+                    <constraint firstItem="IRW-7F-wVf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pJn-Lb-B9n"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="-1016" y="-802"/>
+            <connections>
+                <outlet property="layoutSegmentHeaderViewHeight" destination="qev-nY-9TY" id="baZ-Zv-8lg"/>
+                <outlet property="segmentHeaderView" destination="IRW-7F-wVf" id="u4j-Zd-0ZL"/>
+            </connections>
+            <point key="canvasLocation" x="-1113" y="-943"/>
         </tableViewCell>
     </objects>
 </document>

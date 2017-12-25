@@ -46,7 +46,7 @@
 //    界面属性定义
 //===========================================================
 #define   RH_NavigationBar_BackgroundColor              colorWithRGB(255, 255, 255)
-#define   RH_NavigationBar_ForegroundColor              colorWithRGB(102, 102, 102)
+#define   RH_NavigationBar_ForegroundColor              colorWithRGB(51, 51, 51)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
 
 #define   RH_TabBar_BackgroundColor                     colorWithRGB(0, 0, 0)
@@ -79,14 +79,11 @@
 
 #ifdef _DEBUG //开发环境
 
-//#define TEST_DOMAIN         @"test02.ccenter.test.so"
-//@"test01.ampinplay0matrix.com"
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define CODE    @"rf80"
-#define S        @"632fbc122abfffdec078a665a76a1c16"
-#define SID        @"21"
+#define CODE    @"8l6r"
+#define S        @"6bf3b743e414045e5123fc317fb9b535"
+#define SID        @"71"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3"
 
 #elif _rf80 //TEST01[21]
 
