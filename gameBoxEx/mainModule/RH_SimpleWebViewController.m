@@ -113,7 +113,7 @@
     }
 
     [self.webView stopLoading];
-    // 每次退出 都清除一下缓存被
+    // 每次退出 都清除一下缓存
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 
 }
