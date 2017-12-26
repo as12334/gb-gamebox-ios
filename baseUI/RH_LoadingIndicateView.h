@@ -15,6 +15,9 @@
 //显示默认的加载失败状态
 - (void)showDefaultLoadingErrorStatus;
 
+//显示未用户未登入提示
+- (void)showDefaultNeedLoginStatus;
+
 //显示返回的加载失败状态
 //- (void)showDefaultLoadingErrorStatus:(NSError*)error;
 

@@ -129,6 +129,17 @@
     [self backBarButtonItemHandle] ;
 }
 
+-(BOOL)needLogin
+{
+    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+        if ([self.appDelegate.customUrl containsString:@"/transfer/index.html"]) {
+            return YES ;
+        }
+    }
+    
+    return NO ;
+}
+
 #pragma mark-
 -(void)setupJSCallBackOC:(JSContext *)jsContext
 {
@@ -146,9 +157,32 @@
             self.appDelegate.customUrl = customUrl.toString;
         }
         
-        [self setupURL] ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
+                [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
+                //跳转原生
+                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+                loginViewCtrlEx.delegate = self ;
+                [self showViewController:loginViewCtrlEx sender:self] ;
+            }else
+            {
+                self.webURL = nil ;
+                [self setupURL] ;
+            }
+        }) ;
     } ;
 
+    jsContext[@"loginOut"] = ^(){
+        NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.appDelegate updateLoginStatus:false] ;
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self reloadWebView] ;
+        }
+    };
+    
     jsContext[@"loginSucc"] = ^() {
         NSLog(@"JSToOc :%@------ loginSucc",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
