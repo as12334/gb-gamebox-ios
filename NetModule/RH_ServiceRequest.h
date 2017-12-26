@@ -24,6 +24,10 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeObtainVerifyCode     ,
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
+    
+    
+    //V3接口
+    ServiceRequestTypeV3HomeInfo        ,
 };
 
 
@@ -95,6 +99,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startGetCustomService ;
 
 -(void)startTestUrl:(NSString*)testURL ;
+
+#pragma mark - v3 接口定义
+#pragma mark  - 首页接口 
+-(void)startV3HomeInfo ;
 
 #pragma mark -
 /**
