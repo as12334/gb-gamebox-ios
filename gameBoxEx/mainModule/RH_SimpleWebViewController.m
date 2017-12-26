@@ -115,6 +115,7 @@
             UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex==alertView.cancelButtonIndex){//返回首页
                     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                        [self.navigationController popToRootViewControllerAnimated:NO];
                         self.myTabBarController.selectedIndex = 2 ;
                     }else{
                         self.myTabBarController.selectedIndex = 0 ;
@@ -768,7 +769,15 @@
     }
 
     if (error){
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+        if ([self needLogin]){
+            if (!self.appDelegate.isLogin){
+                [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
+            }else{
+                [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+            }
+        }else{
+            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+        }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
     }

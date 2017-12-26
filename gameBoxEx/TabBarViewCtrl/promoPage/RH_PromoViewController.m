@@ -52,10 +52,7 @@
 
 -(void)updateView
 {
-    if (self.appDelegate.isLogin)
-    {
-        [self reloadWebView] ;
-    }
+    [self reloadWebView] ;
 }
 
 #pragma mark-

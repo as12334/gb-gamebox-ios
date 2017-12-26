@@ -20,7 +20,11 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.webURL = [NSURL URLWithString:self.domain] ;
+    if (![SITE_TYPE isEqualToString:@"lottery"]){ //非彩票 站
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/mainIndex.html",self.domain]] ;
+    }else{
+        self.webURL = [NSURL URLWithString:self.domain] ;
+    }
     self.navigationItem.titleView = nil ;
     [self autoLogin] ;
    
@@ -58,7 +62,12 @@
         
         self.appDelegate.logoutUrl = nil ;
     }else{
-        self.webURL = [NSURL URLWithString:self.domain] ;
+        if (![SITE_TYPE isEqualToString:@"lottery"]){ //非彩票 站
+            self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/mainIndex.html",self.domain]] ;
+        }else{
+            self.webURL = [NSURL URLWithString:self.domain] ;
+        }
+        
         [self reloadWebView] ;
     }
 }
