@@ -32,6 +32,7 @@
 @synthesize requesting   = _requesting;
 @synthesize urlRequest   = _urlRequest;
 @synthesize context      = _context;
+@synthesize timeOutInterval = _timeOutInterval ;
 
 + (NSString *)_pathWithFormat:(NSString *)pathFormat arguments:(NSArray *)pathArguments
 {
@@ -190,7 +191,8 @@
                                               reason:@"请求的URL必须为HTTP请求"
                                             userInfo:nil];
         }
-
+        
+        
         //生成查询参数
         NSString * queryArgumentStr = nil;
 
@@ -226,6 +228,7 @@
 
     return self;
 }
+
 
 + (NSData *)_dataWithBodyArguments:(NSDictionary *)bodyArguments
 {
@@ -275,6 +278,19 @@ isStart = NO;                                   \
     return bodyData;
 }
 
+#pragma mark-timeout interval
+-(void)setTimeOutInterval:(NSTimeInterval)timeOutInterval
+{
+    _timeOutInterval = MAX(0.0, timeOutInterval) ;
+}
+
+-(NSTimeInterval)timeOutInterval
+{
+    if (_urlRequest) return _urlRequest.timeoutInterval ;
+    
+    return MAX(0, _timeOutInterval) ;
+}
+
 - (NSURLRequest *)urlRequest
 {
     //lazy init
@@ -316,7 +332,11 @@ isStart = NO;                                   \
         if (_bodyData) {
             [tmpURLRequest setHTTPBody:_bodyData];
         }
-
+        
+        if (_timeOutInterval>0){
+            tmpURLRequest.timeoutInterval = _timeOutInterval ;
+        }
+        
         _urlRequest = tmpURLRequest;
     }
     

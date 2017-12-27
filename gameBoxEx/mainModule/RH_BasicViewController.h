@@ -12,6 +12,7 @@
 #import "RH_LoadingIndicateView.h"
 #import "RH_LoadingIndicateTableViewCell.h"
 #import "RH_ErrorCode.h"
+#import "RH_APPDelegate.h"
 
 typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 
@@ -33,12 +34,22 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @property(nonatomic,readonly,strong) RH_ServiceRequest *serviceRequest ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateView *contentLoadingIndicateView ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
+@property(nonatomic,readonly,weak) RH_APPDelegate *appDelegate ;
 
 @property(nonatomic,readonly,strong) UIBarButtonItem *backButtonItem       ;
+
+@property(nonatomic,readonly,strong) UIBarButtonItem *mainMenuButtonItem    ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *loginButtonItem       ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *tryLoginButtonItem    ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *signButtonItem        ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *logoButtonItem        ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *userInfoButtonItem    ;
+-(void)mainMenuButtonItemHandle ;
 
 -(CGPoint)contentLoadingIndicateViewAdditionalOffset ;
 -(void)configureContentLoadingIndicateView:(RH_LoadingIndicateView*)contentLoadingIndicateView ;
 -(void)backBarButtonItemHandle      ;
+-(void)userInfoButtonItemHandle ;
 @end
 
 
@@ -70,7 +81,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @interface RH_BasicViewController(IntervalAnimation)
 
 - (void)startDefaultShowIntervalAnimation;
-- (void)startDefaultShowIntervalAnimation_async:(void(^)())block;
+- (void)startDefaultShowIntervalAnimation_async:(void(^)(void))block;
 
 - (void)startIntervalAnimationWithDirection:(CLMoveAnimtedDirection)moveAnimtedDirection
                              completedBlock:(void(^)(BOOL finished))completedBlock;
@@ -132,4 +143,11 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 - (BOOL)needTempSaveDataForKey:(NSString *)key;
 
 @end
+
+
+/*
+ */
+//@interface UIViewController (MainTabBarControllerEx)
+//- (RH_MainTabBarControllerEx *)myTabBarControllerEx ;
+//@end
 

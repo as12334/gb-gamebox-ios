@@ -90,7 +90,10 @@
 #import "UIImageView+WebCache.h"
 #import "CLLabel.h"
 #import "MJExtension.h"
-#import "AFNetworking.h"
+#import "CLNavigationBar.h"
+#import "CLImageTitleStaticCollectionViewCell.h"
+#import "KIPageView.h"
+#import "CLSegmentedControl.h"
 
 #pragma Mark-pageview
 #import "CLPageView.h"
@@ -112,6 +115,9 @@
 #import "CLArrayPageLoadController.h"
 #import "CLSectionArrayPageLoadController.h"
 #import "CLPageLoadManagerForTableAndCollectionView.h"
+
+#pragma MARK-侧划
+#import "UIViewController+CWLateralSlide.h"
 
 #pragma MARK-
 #import "SAMKeychain.h"

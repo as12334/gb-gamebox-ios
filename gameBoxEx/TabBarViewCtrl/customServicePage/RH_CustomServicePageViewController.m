@@ -12,12 +12,12 @@
 #import "RH_LoginViewController.h"
 
 @interface RH_CustomServicePageViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_CustomServicePageViewController
 {
     NSInteger _loadingCount ;
+//    RH_APPDelegate *_appDelegate;
 }
 
 -(void)viewDidLoad
@@ -26,7 +26,6 @@
     _loadingCount = 0 ;
     self.navigationItem.titleView = nil ;
     self.webURL = [NSURL URLWithString:self.appDelegate.servicePath.trim];
-
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
    
@@ -59,9 +58,13 @@
     if (self.appDelegate.isLogin)
     {
         [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
-        [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+        }else{
+            [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;
+        }
     }
-     
 }
 
 #pragma mark-

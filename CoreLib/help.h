@@ -177,6 +177,12 @@ NSString * hashStrWithStr(NSString *STR,HashFuncType TYPE) ;
 float systemVersion(void);
 
 /*
+ *获取手机弄号
+*/
+NSString *getDeviceModel(void) ;
+
+
+/*
  *获取屏幕尺寸
  */
 CGSize screenSize(void);

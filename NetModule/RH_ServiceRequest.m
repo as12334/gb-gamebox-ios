@@ -13,6 +13,7 @@
 #import "RH_API.h"
 #import "coreLib.h"
 #import "RH_UpdatedVersionModel.h"
+#import "RH_APPDelegate.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -78,26 +79,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 @synthesize doSometiongMasks = _doSometiongMasks;
 
 #pragma mark-用户接口定义
-//- (void)startLogin:(NSString*)userName Password:(NSString*)password
-//{
-//    [self _startServiceWithAPIName:RH_API_MAIN_URL
-//                        pathFormat:RH_API_NAME_USERLOGIN
-//                     pathArguments:nil
-//                   headerArguments:nil
-//                    queryArguments:@{RH_SP_USERLOGIN_USERNAME:userName?:@"",
-//                                     RH_SP_USERLOGIN_PASSWORD:password?:@""}
-//                     bodyArguments:nil
-//                          httpType:HTTPRequestTypePost
-//                       serviceType:ServiceRequestTypeLogin
-//                         scopeType:ServiceScopeTypePublic] ;
-//}
 
 -(void)startReqDomainList
 {
     [self _startServiceWithAPIName:RH_API_MAIN_URL
                         pathFormat:@"app/line.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
                                      RH_SP_COMMON_SITESEC:S}
                      bodyArguments:nil
@@ -109,9 +97,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain
 {
     [self _startServiceWithAPIName:nil
-                        pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"https://%@/__check"
+                        pathFormat:@"http://%@/__check"
                      pathArguments:@[doMain?:@""]
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
@@ -124,13 +112,132 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:RH_API_MAIN_URL
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
                                      RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeUpdateCheck
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_LOGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                    @"password":password?:@"",
+                                                    @"captcha":verCode
+                                                    } :@{@"username":userName?:@"",
+                                                         @"password":password?:@""
+                                                         }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeUserLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_AUTOLOGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"username":userName?:@"",
+                                     @"password":password?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeUserAutoLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startGetVerifyCode
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_VERIFYCODE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeObtainVerifyCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startDemoLogin
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEMOLOGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeDemoLogin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startGetCustomService
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_GETCUSTOMPATH
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeGetCustomService
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startTestUrl:(NSString*)testURL
+{
+    [self _startServiceWithAPIName:testURL
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:nil
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeTestUrl
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - v3 接口定义
+-(void)startV3HomeInfo
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_HOMEINFO
+                     pathArguments:nil
+                   headerArguments:@{RH_SP_COMMON_V3_OSTYPE:@"ios",
+                                     RH_SP_COMMON_V3_VERSION:RH_SP_COMMON_V3_VERSION_VALUE
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3HomeInfo
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -204,6 +311,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                            headerArguments:headerArguments
                                                              bodyArguments:bodyArguments
                                                                       type:httpType];
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
 
     //开始请求
     [self _startHttpRequest:httpRequest forType:type scopeType:scopeType];
@@ -231,6 +340,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                     pathArguments:pathArguments
                                                                    queryArguments:queryArgs
                                                                   headerArguments:headerArguments] ;
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
 
     for (id data in datas) {
         if ([data isKindOfClass:[NSData class]]) {
@@ -356,10 +467,54 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
 
-    if (type == ServiceRequestTypeDomainCheck) {//处理结果数据
+    if (type == ServiceRequestTypeDomainCheck)
+    {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
-        *reslutData = [tmpData mj_JSONString] ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        
+        if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
+            NSString* reqUrl = response.URL.absoluteString.lowercaseString;
+            if ([reqUrl hasPrefix:@"https://"]) {
+                *reslutData = @(YES) ;
+            }else{
+                *reslutData = @(NO) ;
+            }
+        }else{
+            *error = [NSError resultDataNoJSONError] ;
+        }
         return YES ;
+    }else if (type == ServiceRequestTypeGetCustomService){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        if ([tmpResult.lowercaseString hasPrefix:@"http://"] || [tmpResult.lowercaseString hasPrefix:@"https://"]){
+            *reslutData = tmpResult ;
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateServicePath:[tmpResult stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
+        }else{
+            *error = [NSError resultDataNoJSONError] ;
+        }
+        
+        return YES ;
+    }else if (type == ServiceRequestTypeDemoLogin){//处理结果数据
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        
+        if ([[tmpResult lowercaseString] containsString:@"true"]){ //域名响应ok
+            *reslutData = @(YES) ;
+        }else{
+            *reslutData = @(NO) ;
+        }
+        return YES ;
+    }else if (type == ServiceRequestTypeObtainVerifyCode){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
+        *reslutData = image ;
+        return YES ;
+        
+    }else if (type == ServiceRequestTypeTestUrl){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        NSLog(@"%@",tmpResult) ;
     }
 
     //json解析
@@ -394,22 +549,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
                 break ;
+              
+           case ServiceRequestTypeUserLogin:
+           case ServiceRequestTypeUserAutoLogin:
+            {
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+            }
+                break ;
                 
-//            case ServiceRequestTypeFirstPage:
-//            {
-//                RH_FirstPageModel *firstPageModel = [[RH_FirstPageModel alloc] initWithInfoDic:[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]] ;
-//                NSArray *list = [RH_TaskModel dataArrayWithInfoArray:[[[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]
-//                                                                       dictionaryValueForKey:RH_GP_HOMEPAGE_PAGELIST]
-//                                                                      arrayValueForKey:RH_GP_COMMON_DATALIST]] ;
-//
-//                NSInteger totalCount = [[[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA] dictionaryValueForKey:RH_GP_HOMEPAGE_PAGELIST] integerValueForKey:RH_GP_COMMON_TOTALCOUNT] ;
-//                resultSendData = @{RH_GP_COMMON_DATALIST:list?:@[],
-//                                   RH_GP_COMMON_TOTALCOUNT:@(totalCount),
-//                                   RH_GP_COMMON_DATA:firstPageModel?:@""} ;
-//
-//            }
-//                break;
-
+           case ServiceRequestTypeTestUrl:
+            {
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+            }
+                break ;
+                
             default:
                 resultSendData = dataObject ;
 

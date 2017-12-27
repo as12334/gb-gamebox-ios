@@ -56,11 +56,18 @@
 @property(nonatomic,strong) UIColor* separationLineColor      ;
 
 @property(nonatomic,assign) BOOL allowSelection               ;
+@property(nonatomic,assign) BOOL allowSectionSeparationLine   ;
 @property(nonatomic,assign) BOOL allowCellSeparationLine      ;
 @property(nonatomic,assign) BOOL averageCellWidth             ;// cell 宽度是否平均分，
 
 @property(nonatomic,weak) id<CLStaticCollectionViewDataSource> dataSource ;
 @property(nonatomic,weak) id<CLStaticCollectionViewDelegate> delegate   ;
+
+//选择
+- (NSIndexPath *)indexPathForSelectedItem; // returns nil or an anyone selected index path
+- (void)selectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+- (void)deselectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+- (void)deselectAllItem:(BOOL)animated;
 
 
 -(void)reloadData ;

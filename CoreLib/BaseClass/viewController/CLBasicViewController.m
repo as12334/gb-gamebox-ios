@@ -148,7 +148,7 @@
 -(UINavigationBar*)navigationBar
 {
     if (!_navigationBar){
-        _navigationBar = [[UINavigationBar alloc] init] ;
+        _navigationBar = [[CLNavigationBar alloc] init] ;
         _navigationBar.tintColor = [UIColor whiteColor] ;
     }
 

@@ -12,7 +12,6 @@
 #import "RH_lotteryHallViewController.h"
 
 @interface RH_lotteryHallViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_lotteryHallViewController

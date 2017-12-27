@@ -223,7 +223,7 @@ static char PROGRESSINDICATORVIEW ;
     [self.progressIndicatorView show:animated] ;
 }
 
--(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)())completeBlock
+-(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)(void))completeBlock
 {
     if (self.progressIndicatorView.superview){
         self.progressIndicatorView.animationType = MBProgressHUDAnimationZoom ;

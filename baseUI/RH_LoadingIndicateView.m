@@ -49,6 +49,22 @@
                                detailText:@"点击页面重试"];
 }
 
+- (void)showDefaultNeedLoginStatus
+{
+    [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                    title:@"用户未登入"
+                               detailText:nil];
+}
+
+- (void)showDefaultLoadingErrorStatus:(NSError*)error
+{
+    NSString *errMessage = [error.userInfo stringValueForKey:@"JsToAppMessage"]?:error.localizedDescription ;
+                                                                                  
+    [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                    title:[NSString stringWithFormat:@"[%ld]%@",error.code,errMessage]
+                               detailText:@"点击页面重试"];
+}
+
 - (void)showNoNetworkStatus
 {
     [self showNoNetworkStatusWithImage:ImageWithName(@"icon_none_network")

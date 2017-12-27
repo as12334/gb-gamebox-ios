@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo_1" translatesAutoresizingMaskIntoConstraints="NO" id="fV5-jP-Idu">
-                    <rect key="frame" x="143.5" y="319" width="88" height="29"/>
+                    <rect key="frame" x="143.5" y="379" width="88" height="29"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copy Right ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tr-Ll-PYS">
                     <rect key="frame" x="141" y="615" width="93" height="18"/>
@@ -45,7 +45,7 @@
             <constraints>
                 <constraint firstItem="fV5-jP-Idu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3sm-z6-7Tv"/>
                 <constraint firstItem="5tr-Ll-PYS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="J7x-ra-oqM"/>
-                <constraint firstItem="fV5-jP-Idu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ZCS-vg-P8j"/>
+                <constraint firstItem="fV5-jP-Idu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="60" id="ZCS-vg-P8j"/>
                 <constraint firstItem="cWo-Z3-yZJ" firstAttribute="top" secondItem="5tr-Ll-PYS" secondAttribute="bottom" constant="11" id="cG6-Py-z8W"/>
                 <constraint firstItem="jaX-og-6WG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cul-53-BhS"/>
                 <constraint firstItem="jaX-og-6WG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lwD-N8-KgB"/>

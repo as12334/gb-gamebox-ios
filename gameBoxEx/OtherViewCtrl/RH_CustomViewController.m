@@ -9,28 +9,48 @@
 #import "RH_CustomViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "RH_APPDelegate.h"
+#import "RH_MainNavigationController.h"
+#import "RH_FirstPageViewController.h"
+#import "RH_MainTabBarController.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
+@property(nonatomic,strong)CLButton * homeBack;
+@property(nonatomic,strong)CLButton * backBack;
+
+@property(nonatomic,strong) id context ;
 @end
 
 @implementation RH_CustomViewController
 @synthesize gameBgImage = _gameBgImage              ;
 @synthesize imageFirstPage = _imageFirstPage    ;
 
+-(void)setupViewContext:(id)context
+{
+    self.context = context ;
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.hiddenNavigationBar = YES ;
     self.navigationItem.titleView = nil ;
     [self setupURL] ;
-
-    //
     [self.contentView addSubview:self.gameBgImage];
     [self.contentView bringSubviewToFront:self.gameBgImage] ;
+    UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
+    [self.gameBgImage setUserInteractionEnabled:YES];//开启图片控件的用户交互
+    [self.gameBgImage addGestureRecognizer:pan];
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.contentView, -0.0f) ;
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.contentView, -60.0f) ;
+}
+-(void)handlePan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint point=[pan translationInView:self.view];
+    NSLog(@"%f,%f",point.x,point.y);
+    pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
+    //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
+    [pan setTranslation:CGPointMake(0, 0) inView:self.contentView];
 }
 
 -(void)setupURL
@@ -40,11 +60,18 @@
     }else{
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
     }
-
-    [self reloadWebView] ;//预防两次url 一样，不加载情况
+    
+    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+        [self reloadWebView] ;//预防两次url 一样，不加载情况
+    }
 }
 
 -(BOOL)tabBarHidden
+{
+    return YES ;
+}
+
+-(BOOL)navigationBarHidden
 {
     return YES ;
 }
@@ -60,26 +87,26 @@
         _gameBgImage.clipsToBounds = YES;
         _gameBgImage.userInteractionEnabled = YES;
 
-        CLButton * homeBack = [[CLButton alloc] initWithFrame:CGRectMake(0, 0, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
-        homeBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-        [homeBack setBackgroundColor:BlackColorWithAlpha(0.2f)
+       _homeBack = [[CLButton alloc] initWithFrame:CGRectMake(0, 0, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
+        _homeBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+        [_homeBack setBackgroundColor:BlackColorWithAlpha(0.2f)
                                   forState:UIControlStateHighlighted];
-        [homeBack setBackgroundImage:ImageWithName(@"icon_home") forState:UIControlStateNormal] ;
-        [homeBack addTarget:self
+        [_homeBack setBackgroundImage:ImageWithName(@"icon_home") forState:UIControlStateNormal] ;
+        [_homeBack addTarget:self
                            action:@selector(_homeBackHandle)
                  forControlEvents:UIControlEventTouchUpInside];
-        [_gameBgImage addSubview:homeBack];
+        [_gameBgImage addSubview:_homeBack];
 
 
-        CLButton * backBack = [[CLButton alloc] initWithFrame:CGRectMake(0, floor(_gameBgImage.boundHeigh/2.0)+1, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
-        backBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-        [backBack setBackgroundColor:BlackColorWithAlpha(0.2f)
+        _backBack = [[CLButton alloc] initWithFrame:CGRectMake(0, floor(_gameBgImage.boundHeigh/2.0)+1, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
+        _backBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+        [_backBack setBackgroundColor:BlackColorWithAlpha(0.2f)
                             forState:UIControlStateHighlighted];
-        [backBack setBackgroundImage:ImageWithName(@"title_back") forState:UIControlStateNormal] ;
-        [backBack addTarget:self
+        [_backBack setBackgroundImage:ImageWithName(@"title_back") forState:UIControlStateNormal] ;
+        [_backBack addTarget:self
                      action:@selector(_backBackHandle)
            forControlEvents:UIControlEventTouchUpInside];
-        [_gameBgImage addSubview:backBack];
+        [_gameBgImage addSubview:_backBack];
 
     }
 
@@ -90,12 +117,27 @@
 -(void)_homeBackHandle
 {
     [self.navigationController popToRootViewControllerAnimated:YES] ;
-//    self.myTabBarController.selectedIndex = 0 ;// jump to first page .
+    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+        self.myTabBarController.selectedIndex = 2 ;
+    }else{
+        self.myTabBarController.selectedIndex = 0 ;
+    }
 }
 
 -(void)_backBackHandle
 {
     [self backBarButtonItemHandle] ;
+}
+
+-(BOOL)needLogin
+{
+    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+        if ([self.appDelegate.customUrl containsString:@"/transfer/index.html"]) {
+            return YES ;
+        }
+    }
+    
+    return NO ;
 }
 
 #pragma mark-
@@ -114,27 +156,68 @@
         if (args[0] != NULL) {
             self.appDelegate.customUrl = customUrl.toString;
         }
-
-        [self setupURL] ;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
+                [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
+                //跳转原生
+                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+                loginViewCtrlEx.delegate = self ;
+                [self showViewController:loginViewCtrlEx sender:self] ;
+            }else
+            {
+                self.webURL = nil ;
+                [self setupURL] ;
+            }
+        }) ;
     } ;
 
+    jsContext[@"loginOut"] = ^(){
+        NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.appDelegate updateLoginStatus:false] ;
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self reloadWebView] ;
+        }
+    };
+    
     jsContext[@"loginSucc"] = ^() {
         NSLog(@"JSToOc :%@------ loginSucc",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
-
+        
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
-
+        JSValue *jsStatus = args[2] ;
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
-        [self.appDelegate updateLoginStatus:true] ;
-
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-             [self.navigationController popViewControllerAnimated:YES] ;
-        });
+            [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
+            
+            RH_LoginViewControllerEx *loginViewCtrlEx = ConvertToClassPointer(RH_LoginViewControllerEx, self.context) ;
+            if (loginViewCtrlEx){
+                ifRespondsSelector(loginViewCtrlEx.delegate, @selector(loginViewViewControllerExSignSuccessful:SignFlag:)){
+                    [loginViewCtrlEx.delegate loginViewViewControllerExSignSuccessful:loginViewCtrlEx SignFlag:jsStatus.toBool] ;
+                }
+            }else
+            {
+                if (jsStatus.toBool==false){
+                    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+                        [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;
+                    }else{
+                        [self.serviceRequest startLoginWithUserName:jsAccount.toString Password:jsPassword.toString VerifyCode:nil] ;
+                    }
+                }
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES] ;
+        }) ;
+        
     };
 }
 

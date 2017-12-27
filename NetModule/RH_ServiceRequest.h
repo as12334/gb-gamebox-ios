@@ -15,10 +15,19 @@
  * 业务服务类型
  */
 typedef NS_ENUM(NSInteger, ServiceRequestType) {
-    ServiceRequestTypeDomainList = 0,
-    ServiceRequestTypeDomainCheck ,
-    ServiceRequestTypeUpdateCheck ,
-    ServiewRequestTypeUserAgent ,
+    ServiceRequestTypeDomainList = 0    ,
+    ServiceRequestTypeDomainCheck       ,
+    ServiceRequestTypeUpdateCheck       ,
+    ServiceRequestTypeUserLogin         ,
+    ServiceRequestTypeUserAutoLogin     ,
+    ServiceRequestTypeDemoLogin         ,
+    ServiceRequestTypeObtainVerifyCode     ,
+    ServiceRequestTypeGetCustomService  ,
+    ServiceRequestTypeTestUrl           ,
+    
+    
+    //V3接口
+    ServiceRequestTypeV3HomeInfo        ,
 };
 
 
@@ -73,13 +82,27 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * DOMAIN CHECK
  */
--(void)startCheckDomain:(NSString*)doMain ;
+-(void)startCheckDomain:(NSString*)doMain;
 
 /**
  * update CHECK
  */
 -(void)startUpdateCheck ;
 
+-(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode ;
+-(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password;
+
+-(void)startGetVerifyCode ;
+
+-(void)startDemoLogin;
+
+-(void)startGetCustomService ;
+
+-(void)startTestUrl:(NSString*)testURL ;
+
+#pragma mark - v3 接口定义
+#pragma mark  - 首页接口 
+-(void)startV3HomeInfo ;
 
 #pragma mark -
 /**
@@ -116,6 +139,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 @property(nonatomic,copy) ServiceRequestFailBlock   failBlock;
 
 
+/*
+ *timeout 时间设定
+ */
+@property(nonatomic,assign) NSTimeInterval timeOutInterval ;
 //------------------------------------------------------------------
 
 //设置上下文,服务结束后自动移除上下文

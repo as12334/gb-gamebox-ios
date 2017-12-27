@@ -13,6 +13,7 @@
 #import <objc/runtime.h>
 #import <mach/mach.h>
 #import "SAMKeychain.h"
+#import "sys/utsname.h"
 
 #pragma mark -
 NSString * const defaultReuseDef = @"defaultReuseDef";
@@ -214,6 +215,56 @@ float systemVersion()
 
 
     return version;
+}
+
+NSString *getDeviceModel(void)
+{
+    static NSString *deviceName = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        struct utsname systemInfo;
+        uname(&systemInfo);
+//        deviceName = [[UIDevice currentDevice] systemName];
+        NSString * deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+        //iPhone
+        if ([deviceString isEqualToString:@"iPhone1,1"]){
+            deviceName =  @"iPhone 1G";
+        }else if ([deviceString isEqualToString:@"iPhone1,2"]){
+            deviceName =  @"iPhone 3G";
+        }else if ([deviceString isEqualToString:@"iPhone2,1"]){
+            deviceName =  @"iPhone 3GS";
+        }else if ([deviceString isEqualToString:@"iPhone3,1"]){
+            deviceName = @"iPhone 4";
+        }else if ([deviceString isEqualToString:@"iPhone3,2"]){
+            deviceName = @"Verizon iPhone 4";
+        }else if ([deviceString isEqualToString:@"iPhone4,1"]){
+            deviceName = @"iPhone 4S" ;
+        }else if ([deviceString isEqualToString:@"iPhone5,1"]){
+            deviceName = @"iPhone 5";
+        }else if ([deviceString isEqualToString:@"iPhone5,2"]){
+            deviceName = @"iPhone 5";
+        }else if ([deviceString isEqualToString:@"iPhone5,3"]){
+            deviceName = @"iPhone 5C";
+        }else if ([deviceString isEqualToString:@"iPhone5,4"]){
+            deviceName =  @"iPhone 5C";
+        }else if ([deviceString isEqualToString:@"iPhone6,1"]){
+            deviceName = @"iPhone 5S";
+        }else if ([deviceString isEqualToString:@"iPhone6,2"]){
+            deviceName = @"iPhone 5S";
+        }else if ([deviceString isEqualToString:@"iPhone7,1"]){
+            deviceName = @"iPhone 6 Plus";
+        }else if ([deviceString isEqualToString:@"iPhone7,2"]){
+            deviceName = @"iPhone 6";
+        }else if ([deviceString isEqualToString:@"iPhone8,1"]){
+            deviceName = @"iPhone 6s" ;
+        }else if ([deviceString isEqualToString:@"iPhone8,2"]){
+           deviceName = @"iPhone 6s Plus";
+        }else{
+            deviceName = @"iPhone" ;
+        }
+    });
+    
+    return deviceName;
 }
 
 CGSize screenSize()

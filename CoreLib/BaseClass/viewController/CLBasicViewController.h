@@ -11,10 +11,11 @@
 #import "CLBorderView.h"
 #import "MacroDef.h"
 #import "help.h"
+#import "CLNavigationBar.h"
 
-#define heighStatusBar          (GreaterThanIOS11System ? 0.0 : 20.0f)
+#define heighStatusBar          (GreaterThanIOS11System ? 20.0 : 20.0f)
 #define heighNavigationBar      44.0f
-#define heighTabBar             (GreaterThanIOS11System ? 0.0 : 49.0f)
+#define heighTabBar             (GreaterThanIOS11System ? 49.0 : 49.0f)
 
 
 @interface CLBasicViewController : CLViewController
@@ -27,7 +28,7 @@
 }
 @property(nonatomic,strong,readonly) UIView *contentView ;
 #pragma mark-navigation Bar
-@property(nonatomic,strong,readonly) UINavigationBar *navigationBar ;
+@property(nonatomic,strong,readonly) CLNavigationBar *navigationBar ;
 @property(nonatomic,strong,readonly) UINavigationItem *navigationBarItem ;
 @property(nonatomic,assign,getter=isHiddenNavigationBar) BOOL hiddenNavigationBar ;
 

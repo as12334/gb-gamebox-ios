@@ -15,7 +15,11 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
+#import "RH_TestViewController.h"
+#import "CLTabBarController.h"
+#import "MacroDef.h"
 
+//原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
@@ -30,16 +34,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    _domain = self.appDelegate.domain ;
+    _domain = self.appDelegate.domain.trim ;
+    
+    if (self.appDelegate.servicePath.length<1){
+        [self.serviceRequest startGetCustomService] ;
+    }
 
+    [self setHiddenStatusBar:NO];
+    
     self.hiddenTabBar = [self tabBarHidden] ;
     self.hiddenNavigationBar = [self navigationBarHidden] ;
     self.navigationBarItem.rightBarButtonItems = nil ;
 
     //webView
-    _webView = [[UIWebView alloc] initWithFrame:self.contentView.bounds];
-
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     _webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _webView.backgroundColor  = [UIColor clearColor];
     _webView.opaque           = NO;
@@ -49,27 +57,45 @@
     _webView.dataDetectorTypes = UIDataDetectorTypeAll ;//4 设置检测网页中的格式类型，all表示检测所有类型包括超链接、电话号码、地址等。
     _webView.hidden           = YES;
     _webView.scrollView.delegate = self;
+    
+#if 0
     _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
-    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
+//    _webView.scrollView.scrollIndicatorInsets = [self contentScrollViewIndicatorContentEdgeInsetsWithFullScreenModel:NO];
+#else
+
+    if (@available(iOS 11.0, *))
+    {
+        _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        _webView.scrollView.contentInset = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO];
+    }else{
+        UIEdgeInsets edgeInsets = [self contentScrollViewEdgeInsetsWithFullScreenModel:NO] ;
+        _webView.frame = CGRectMake(0, edgeInsets.top, self.contentView.frameWidth,
+                                    self.contentView.frameHeigh-edgeInsets.top - edgeInsets.bottom) ;
+    }
+#endif
+
     [self.contentView addSubview:_webView];
 //    self.contentScrollView = _webView.scrollView;
-
+    
 }
+
 //重载父类方法
 -(UIEdgeInsets)contentScrollViewEdgeInsetsWithFullScreenModel:(BOOL)fullScreen
 {
-    UIEdgeInsets contentInsets  ;
+    UIEdgeInsets contentInsets =UIEdgeInsetsZero ;
     if (fullScreen){
-        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+        contentInsets = UIEdgeInsetsMake(0,
                                          0,
-                                         ([self fullScreenIncludeBottomView]?0.0:([self hasBottomView]?MAX(0, [self bottomViewHeight]):0)),
+                                         [self isHiddenTabBar]?0:69,
                                          0) ;
     }else{
-        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar),
+        contentInsets = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar)+
+                                         ([self navigationBarHidden]?0:NavigationBarHeight),
                                          0,
-                                         (self.isHiddenTabBar?0:heighTabBar) +
-                                         ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
+                                         [self tabBarHidden]?0:heighTabBar,
                                          0) ;
+        
+//        NSLog(@"contentinset top %f,bottom:%f",contentInsets.top,contentInsets.bottom) ;
     }
     
     return contentInsets ;
@@ -88,12 +114,24 @@
 
             UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex==alertView.cancelButtonIndex){//返回首页
-                    self.myTabBarController.selectedIndex = 0 ;
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                        [self.navigationController popToRootViewControllerAnimated:NO];
+                        self.myTabBarController.selectedIndex = 2 ;
+                    }else{
+                        self.myTabBarController.selectedIndex = 0 ;
+                    }
                 }else{
                     //push login viewController
-                    RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController] ;
-                    loginViewCtrl.delegate = self ;
-                    [self showViewController:loginViewCtrl sender:self] ;
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登入界面
+                        RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
+                        loginViewCtrlEx.delegate = self ;
+                        [self showViewController:loginViewCtrlEx sender:self] ;
+                    }else{
+                        //H5登录接口
+                        RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                        loginViewCtrl.delegate = self ;
+                        [self showViewController:loginViewCtrl sender:self] ;
+                    }
                 }
             } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
                                                                  message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
@@ -113,10 +151,33 @@
     }
 
     [self.webView stopLoading];
+<<<<<<< HEAD
     // 每次退出 都清除一下缓存
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-
+=======
+    _webURL = nil;
+    
+    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+    // 每次退出 都清除一下缓存被
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    }
+      
 }
+>>>>>>> origin/dev_luis
+
+#pragma mark--
+- (BOOL)shouldAutorotate
+{
+    //是否支持转屏
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    //支持哪些转屏方向
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 
 -(BOOL)backButtonHidden
 {
@@ -154,7 +215,36 @@
 {
     [self.navigationController popViewControllerAnimated:YES] ;
     [self reloadWebView] ;
+}
 
+#pragma mark-
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+}
+
+-(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    [self reloadWebView] ;
+}
+
+-(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    [self reloadWebView] ;
+    
+    if (bFlag==false){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *account = [defaults stringForKey:@"account"] ;
+        NSString *password = [defaults stringForKey:@"password"] ;
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+        }else{
+            [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+        }
+    }
 }
 
 #pragma mark -
@@ -163,7 +253,8 @@
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
-            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况 
 
         }else {
             _webURL = nil;
@@ -207,6 +298,11 @@
 {
     //开始加载网页内容
     NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
+//    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+////        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
+//        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
+//    }
+    
     [self.webView loadRequest:urlRequest];
 }
 
@@ -303,6 +399,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSLog(@"-webView finish ---:");
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
     NSString *url = webView.request.URL.absoluteString;
@@ -329,25 +426,55 @@
     JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    NSLog(@"-webView finish with error---:%@",error);
     [self _setContentShowState:RH_WebViewContentShowStateNone];
     [self _setLoading:NO];
     [self.contentLoadingIndicateView showNothingWithTitle:@"点击页面刷新" detailText:nil];
+    
 
     [self webViewDidEndLoad:error];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-//    NSString * requestURLStr = request.URL.absoluteString;
-//    if ([requestURLStr hasPrefix:@"back"]) { ////判断是否点击了back
-//        [self backBarButtonItemHandle] ;
-//        return NO;
-//    }
-    
+    NSString* reqUrl = request.URL.absoluteString;
+    NSLog(@"-start Request---:%@",reqUrl);
+    if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
+        [[UIApplication sharedApplication]openURL:request.URL];
+        return NO ;
+        //bSucc是否成功调起支付宝
+    }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
+        [reqUrl containsString:@"/login/commonLogin.html"]){
+        //跳转原生
+        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
+            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+            loginViewCtrlEx.delegate = self ;
+            [self showViewController:loginViewCtrlEx sender:self] ;
+        }
+
+        return NO ;
+    }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
+              [reqUrl.lowercaseString isEqualToString:[NSString stringWithFormat:@"%@/",self.domain.lowercaseString]]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            if (self.myTabBarController.selectedIndex!=2){
+                self.myTabBarController.selectedIndex = 2 ;
+                return NO ;
+            }
+        }else{
+            if (self.myTabBarController.selectedIndex!=0){
+                self.myTabBarController.selectedIndex = 0 ;
+                return NO ;
+            }
+        }
+    }
     return YES;
 }
 
@@ -380,10 +507,28 @@
         if (args[0] != NULL) {
             self.appDelegate.customUrl = customUrl.toString;
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_CustomViewController viewController] sender:self];
-        });
-
+        
+        if ([self.appDelegate.customUrl containsString:@"/passport/logout.html"]){
+            self.appDelegate.logoutUrl = self.appDelegate.customUrl ;
+            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                self.myTabBarController.selectedIndex = 2 ;
+            }else{
+                self.myTabBarController.selectedIndex = 0 ;
+            }
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
+                    [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
+                    //跳转原生
+                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+                    loginViewCtrlEx.delegate = self ;
+                    [self showViewController:loginViewCtrlEx sender:self] ;
+                }else
+                {
+                    [self showViewController:[RH_CustomViewController viewController] sender:self];
+                }
+            }) ;
+        }
         NSLog(@"-------End Log-------");
     } ;
 
@@ -391,11 +536,18 @@
     jsContext[@"goBack"] = ^() {
         NSLog(@"JSToOc :%@------ goBack",NSStringFromClass([self class])) ;
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self] ;
-        if (index>=1 && index !=NSNotFound){
-            [self backBarButtonItemHandle] ;
-        }else{
-            self.myTabBarController.selectedIndex = 0 ;// jump to first page .
-        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (index>=1 && index !=NSNotFound){
+                [self backBarButtonItemHandle] ;
+            }else{
+                if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+                    self.myTabBarController.selectedIndex = 2 ;
+                }else{
+                    self.myTabBarController.selectedIndex = 0 ;
+                }
+            }
+        }) ;
     };
 
     jsContext[@"reload"] = ^() {
@@ -450,7 +602,7 @@
         JSValue *gameJsVal;
         for (JSValue *jsVal in args) {
             gameJsVal = jsVal;
-            NSLog(@"%@", jsVal.toString);
+//            NSLog(@"%@", jsVal.toString);
         }
 
         if (args[0] != NULL) {
@@ -458,8 +610,13 @@
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_GamesViewController viewController]
-                              sender:self] ;
+            //add 197 lottery 客服跳到浏览器
+            if ([SID isEqualToString:@"197"] && [self.appDelegate.servicePath.trim hasPrefix:self.appDelegate.customUrl.trim]){
+                openURL(self.appDelegate.servicePath.trim) ;
+            }else{
+                [self showViewController:[RH_GamesViewController viewController]
+                                  sender:self] ;
+            }
         });
     };
 
@@ -486,7 +643,6 @@
         NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-
         [self.appDelegate updateLoginStatus:false] ;
     };
 
@@ -547,21 +703,33 @@
 
         JSValue *jsAccount = args[0];
         JSValue *jsPassword = args[1];
-
+        JSValue *jsStatus = args[2] ;
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
-        [self.appDelegate updateLoginStatus:true] ;
-
-        RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
-        if (loginViewCtrl){
-            ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
-                [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
+        
+        [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RH_LoginViewController *loginViewCtrl = ConvertToClassPointer(RH_LoginViewController, self) ;
+            
+            if (loginViewCtrl){
+                ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerLoginSuccessful:)){
+                    [loginViewCtrl.delegate loginViewViewControllerLoginSuccessful:loginViewCtrl];
+                }
+            }else{
+                if (jsStatus.toBool==false){
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                        [self.serviceRequest startAutoLoginWithUserName:jsAccount.toString Password:jsPassword.toString] ;
+                    }else{
+                        [self.serviceRequest startLoginWithUserName:jsAccount.toString Password:jsPassword.toString VerifyCode:nil] ;
+                    }
+                }
+                
+                [self reloadWebView] ;
             }
-        }else{
-            [self reloadWebView] ;
-        }
+        }) ;
     };
 
 #pragma mark- Mine ViewControl
@@ -589,6 +757,7 @@
 
 - (void)webViewBeginLoad {
     //do nothing
+    
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:NSLocalizedString(@"WEBVIEW_LOADING_STATUS", nil) detailText:nil] ;
 }
 
@@ -605,7 +774,15 @@
     }
 
     if (error){
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+        if ([self needLogin]){
+            if (!self.appDelegate.isLogin){
+                [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
+            }else{
+                [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+            }
+        }else{
+            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+        }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
     }
@@ -671,6 +848,30 @@
     }
 
     return YES;
+}
+
+
+#pragma mark-
+#pragma mark-
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+        if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+            [self.appDelegate updateLoginStatus:true] ;
+            [self performSelectorOnMainThread:@selector(reloadWebView) withObject:nil waitUntilDone:YES] ;
+        }else{
+            [self.appDelegate updateLoginStatus:false] ;
+        }
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self.appDelegate updateLoginStatus:false] ;
+    }
 }
 
 

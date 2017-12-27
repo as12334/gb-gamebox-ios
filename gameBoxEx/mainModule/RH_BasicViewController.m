@@ -9,14 +9,27 @@
 #import "RH_BasicViewController.h"
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
+#import "UIViewController+CWLateralSlide.h"
+#import "RH_SlideMenuViewController.h"
+#import "RH_NavigationUserInfoView.h"
+#import "RH_UserInfoSubViewControler.h"
 
 @interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate>
+@property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
+@property (nonatomic,strong,readonly) RH_UserInfoSubViewControler *userInfoSubViewCtrl ;
 @end
 
 @implementation RH_BasicViewController
 @synthesize serviceRequest = _serviceRequest                ;
-
 @synthesize backButtonItem = _backButtonItem                ;
+@synthesize mainMenuButtonItem = _mainMenuButtonItem        ;
+@synthesize loginButtonItem = _loginButtonItem              ;
+@synthesize tryLoginButtonItem = _tryLoginButtonItem        ;
+@synthesize signButtonItem  = _signButtonItem               ;
+@synthesize logoButtonItem  = _logoButtonItem               ;
+@synthesize userInfoButtonItem = _userInfoButtonItem        ;
+@synthesize navigationUserInfoView = _navigationUserInfoView ;
+@synthesize userInfoSubViewCtrl = _userInfoSubViewCtrl      ;
 
 -(BOOL)hasNavigationBar
 {
@@ -30,6 +43,9 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        return UIStatusBarStyleDefault ;
+    }
     return UIStatusBarStyleLightContent ;
 }
 
@@ -47,8 +63,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    
     self.needObserveNetStatusChanged = YES ;
-    self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        self.view.backgroundColor = RH_View_DefaultBackgroundColor ;
+    }else{
+        self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
+    }
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
 //    self.navigationBarItem.titleView = self.mainNavigationView ;
@@ -87,6 +109,169 @@
 -(void)backBarButtonItemHandle
 {
     //do nothing ;
+}
+
+#pragma mark-
+-(UIBarButtonItem *)mainMenuButtonItem
+{
+    if (!_mainMenuButtonItem){
+        UIImage *menuImage = ImageWithName(@"ic_navigationBar_home");
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(mainMenuButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _mainMenuButtonItem ;
+}
+
+-(void)mainMenuButtonItemHandle
+{
+    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
+                        animationType:CWDrawerAnimationTypeDefault
+                        configuration:nil] ;
+}
+
+#pragma mark-
+-(UIBarButtonItem *)tryLoginButtonItem
+{
+    if (!_tryLoginButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(18, 121, 217) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"试玩" forState:UIControlStateNormal] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        [button addTarget:self action:@selector(_tryLoginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _tryLoginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _tryLoginButtonItem ;
+}
+
+-(void)_tryLoginButtonItemHandle
+{
+    
+}
+
+#pragma mark-
+-(UIBarButtonItem *)loginButtonItem
+{
+    if (!_loginButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(29, 194, 142) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"登录" forState:UIControlStateNormal] ;
+        [button addTarget:self action:@selector(_loginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        _loginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _loginButtonItem ;
+}
+
+-(void)_loginButtonItemHandle
+{
+    
+}
+
+#pragma mark-
+-(UIBarButtonItem *)signButtonItem
+{
+    if (!_signButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(240, 175, 1) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"注册" forState:UIControlStateNormal] ;
+        [button addTarget:self action:@selector(_signButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        _signButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _signButtonItem ;
+}
+
+-(void)_signButtonItemHandle
+{
+    
+}
+
+#pragma mark-
+-(UIBarButtonItem *)logoButtonItem
+{
+    if (!_logoButtonItem){
+        NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
+        UIImage *menuImage = ImageWithName(logoName);
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:menuImage];
+        
+        imageView.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+        _logoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView] ;
+    }
+    
+    return  _logoButtonItem ;
+}
+
+#pragma mark-
+-(RH_NavigationUserInfoView *)navigationUserInfoView
+{
+    if (!_navigationUserInfoView){
+        _navigationUserInfoView = [RH_NavigationUserInfoView createInstance] ;
+//        [_navigationUserInfoView addTarget:self
+//                                    action:@selector(userInfoButtonItemHandle)
+//                          forControlEvents:UIControlEventTouchUpInside] ;
+        [_navigationUserInfoView.buttonCover addTarget:self
+                                                action:@selector(userInfoButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 40.0f, 60.0f) ;
+    }
+    
+    return _navigationUserInfoView ;
+}
+
+-(UIBarButtonItem *)userInfoButtonItem
+{
+    if (!_userInfoButtonItem){
+        _userInfoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navigationUserInfoView] ;
+    }
+    
+    return  _userInfoButtonItem ;
+}
+
+-(RH_UserInfoSubViewControler *)userInfoSubViewCtrl
+{
+    if (!_userInfoSubViewCtrl){
+        _userInfoSubViewCtrl = [RH_UserInfoSubViewControler viewController] ;
+        _userInfoSubViewCtrl.view.frame = self.view.bounds ;
+    }
+    
+    return _userInfoSubViewCtrl ;
+}
+
+-(void)userInfoButtonItemHandle
+{
+    if (self.userInfoSubViewCtrl.parentViewController != self) {
+        //加入成为子控制器
+        [self addChildViewController:self.userInfoSubViewCtrl];
+        //开始显示
+        [self.userInfoSubViewCtrl beginAppearanceTransition:YES animated:YES];
+        [self.contentView addSubview:self.userInfoSubViewCtrl.view];
+        [self.userInfoSubViewCtrl endAppearanceTransition];
+        
+    }else {
+        //移除显示
+        [self.userInfoSubViewCtrl beginAppearanceTransition:YES animated:YES];
+        [self.userInfoSubViewCtrl.view removeFromSuperview];
+        [self.userInfoSubViewCtrl endAppearanceTransition];
+        [self.userInfoSubViewCtrl removeFromParentViewController] ;
+    }
 }
 
 #pragma mark-
@@ -624,4 +809,15 @@ _ACCESSOR(isSupportSavaData, BOOL, _supportSavaData);
 @end
 
 
+//@implementation UIViewController (MainTabBarControllerEx)
+//- (RH_MainTabBarControllerEx *)myTabBarControllerEx
+//{
+//    if ([self isKindOfClass:[RH_MainTabBarControllerEx class]]) {
+//        return (RH_MainTabBarControllerEx *)self;
+//    }else{
+//        UIViewController *topViewCtrl = self.navigationController.viewControllers[0] ;
+//        return [topViewCtrl myTabBarControllerEx];
+//    }
+//}
+//@end
 

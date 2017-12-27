@@ -11,7 +11,6 @@
 #import "RH_APPDelegate.h"
 
 @interface RH_PayViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_PayViewController
@@ -65,14 +64,13 @@
         NSString *url = self.webView.request.URL.absoluteString;
         NSString *qqWallet = @"https://myun.tenpay.com/";
         NSString *alipay = @"https://ds.alipay.com/";
-        NSString *weixin = @"weixin";
 
-        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
-            NSLog(@"浏览器加载支付地址：%@", url);
+        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay]) {
             NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
             [[UIApplication sharedApplication] openURL:cleanURL];
         }
     }
+
 }
 
 #pragma mark-
