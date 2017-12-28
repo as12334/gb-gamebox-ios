@@ -7,6 +7,7 @@
 //
 
 #import "RH_BasicModel.h"
+#import "RH_LotteryInfoModel.h"
 
 @interface RH_LotteryAPIInfoModel : RH_BasicModel
 @property(nonatomic,assign,readonly) NSInteger  mID ;
@@ -16,5 +17,7 @@
 @property(nonatomic,assign,readonly) NSInteger  mSiteID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiTypeID ;
+@property(nonatomic,assign,readonly) NSArray<RH_LotteryInfoModel*> *mLotteryInfoList ;
+-(void)updateLotteryInfoWithList:(NSArray*)infoList ;
 
 @end

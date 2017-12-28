@@ -42,10 +42,10 @@ NSString * const HTTPRequestResultErrorDomin = @"HTTPRequestResultErrorDomin";
 
 + (NSError *)resultErrorWithResultInfo:(NSDictionary *)info
 {
-    NSInteger errorCode = [info integerValueForKey:RH_GP_ERRORCODE];
+    NSInteger errorCode = [info integerValueForKey:RH_GP_V3_CODE];
     errorCode = errorCode ?: RH_API_ERRORCODE_UNKNOW_ERROR;
 
-    NSString * message = [info stringValueForKey:RH_GP_MESSAGE];
+    NSString * message = [info stringValueForKey:RH_GP_V3_MESSAGE];
     return ERROR_CREATE(HTTPRequestResultErrorDomin,
                         errorCode,
                         message ?: NSLocalizedString(@"ls_access_server_error",nil),nil);

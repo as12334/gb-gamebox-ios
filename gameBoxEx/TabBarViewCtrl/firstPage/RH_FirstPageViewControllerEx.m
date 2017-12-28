@@ -14,7 +14,9 @@
 #import "RH_DaynamicLabelCell.h"
 #import "RH_HomeCategoryCell.h"
 #import "RH_HomeCategoryItemsCell.h"
+#import "RH_HomePageModel.h"
 #import "RH_API.h"
+
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
@@ -152,12 +154,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-#if 0
-    //    [self.serviceRequest startGetOpenCode:nil isHistory:NO] ;
-#else
     [self.serviceRequest startV3HomeInfo] ;
-    [self loadDataSuccessWithDatas:@[@"",@"",@"",@""] totalCount:4] ;
-#endif
 }
 
 -(void)cancelLoadDataHandle
@@ -175,28 +172,52 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    //    if (type == ServiceRequestTypeStaticOpenCode){
-    //        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-    //        [self loadDataSuccessWithDatas:dictTmp.allValues totalCount:dictTmp.allValues.count] ;
-    //    }
+    if (type == ServiceRequestTypeV3HomeInfo){
+        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, data) ;
+        [self loadDataSuccessWithDatas:homePageModel?@[homePageModel]:nil
+                            totalCount:homePageModel?1:1] ;
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    //    if (type == ServiceRequestTypeStaticOpenCode){
-    //        [self loadDataFailWithError:error] ;
-    //    }
+    if (type == ServiceRequestTypeV3HomeInfo){
+        [self loadDataFailWithError:error] ;
+    }
 }
 
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return MAX(1, self.pageLoadManager.currentDataCount) ;
+    return MAX(1, self.pageLoadManager.currentDataCount?3:0) ;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  1 ;
+    if (self.pageLoadManager.currentDataCount){
+        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+        switch (section) {
+            case 0: //bannel
+                return homePageModel.mBannerList.count?1:0 ;
+                break;
+            
+            case 1: //announcement
+                return homePageModel.mAnnouncementList.count?1:0 ;
+                break;
+            
+            case 2: //category
+                return homePageModel.mLotteryCategoryList.count?1:0 ;
+                break;
+                
+            default:
+                break;
+        }
+        
+    }else{
+        return  1 ;
+    }
+    
+    return  0 ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -222,16 +243,17 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
+        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
         if (indexPath.section==0){
             RH_BannerViewCell *bannerViewCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_BannerViewCell defaultReuseIdentifier]] ;
             bannerViewCell.delegate = self ;
-            [bannerViewCell updateCellWithInfo:nil context:@[@"",@""]];
+            [bannerViewCell updateCellWithInfo:nil context:homePageModel.mBannerList];
             return bannerViewCell ;
         }else if (indexPath.section==1){
-            [self.dynamicLabCell updateCellWithInfo:nil context:nil];
+            [self.dynamicLabCell updateCellWithInfo:nil context:homePageModel.mAnnouncementList];
             return self.dynamicLabCell ;
         }else if (indexPath.section==2){
-            [self.homeCategoryCell updateCellWithInfo:nil context:nil] ;
+            [self.homeCategoryCell updateCellWithInfo:nil context:homePageModel.mLotteryCategoryList] ;
             return self.homeCategoryCell  ;
         }else if (indexPath.section==3){
             [self.homeCategoryItemsCell updateCellWithInfo:nil context:nil] ;

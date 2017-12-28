@@ -57,7 +57,23 @@
     backgroundView.backgroundColor = [UIColor clearColor] ;
 //    navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBarTitleFontSize,
 //                                          NSForegroundColorAttributeName:[UIColor whiteColor]} ;
-
+    
+//    UINavigationBar *bar = [super navigationBar];
+//    if (bar) {
+//        CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
+//        [bar.layer insertSublayer:gradientLayer atIndex:1];
+//        gradientLayer.frame = CGRectMake(0, -20, bar.bounds.size.width, 64);
+//        gradientLayer.locations = @[@(0.2), @(0.5), @(0.8)];
+//
+//        gradientLayer.colors =  @[(__bridge id)[UIColor redColor].CGColor,
+//                                  (__bridge id)[UIColor blueColor].CGColor,
+//                                  (__bridge id)[UIColor purpleColor].CGColor,
+//                                  (__bridge id)[UIColor orangeColor].CGColor];
+//        gradientLayer.startPoint = CGPointMake(0, 0);
+//        gradientLayer.endPoint = CGPointMake(1, 1);
+//
+//    }
+//    return bar;
 }
 
 - (void)viewDidLoad {

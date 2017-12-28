@@ -26,11 +26,15 @@
         _mSiteID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_SITEID] ;
         _mApiTypeID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_APITYPEID] ;
         _mRelationID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_RELATIONID] ;
-//        _mOpenDate = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_OPENCODE_TIME]] ;
     }
     
     return self ;
 }
 
+#pragma mark-
+-(void)updateLotteryInfoWithList:(NSArray*)infoList
+{
+    _mLotteryInfoList = [RH_LotteryInfoModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, infoList)] ;
+}
 
 @end

@@ -240,6 +240,10 @@
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
+		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
+		A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */; };
+		A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */; };
+		A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747BC1FF4F74F0068D0E4 /* RH_LotteryCategoryModel.m */; };
 		A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */; };
 		A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */; };
 		A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */; };
@@ -758,6 +762,14 @@
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
 		A05747A61FF2879E0068D0E4 /* RH_LotteryInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryInfoModel.h; sourceTree = "<group>"; };
+		A05747B31FF4D6850068D0E4 /* RH_BannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BannelModel.h; sourceTree = "<group>"; };
+		A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BannelModel.m; sourceTree = "<group>"; };
+		A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_AnnouncementModel.m; sourceTree = "<group>"; };
+		A05747B71FF4E2070068D0E4 /* RH_AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_AnnouncementModel.h; sourceTree = "<group>"; };
+		A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomePageModel.m; sourceTree = "<group>"; };
+		A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomePageModel.h; sourceTree = "<group>"; };
+		A05747BC1FF4F74F0068D0E4 /* RH_LotteryCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryCategoryModel.m; sourceTree = "<group>"; };
+		A05747BD1FF4F7500068D0E4 /* RH_LotteryCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryCategoryModel.h; sourceTree = "<group>"; };
 		A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
 		A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
@@ -1571,6 +1583,14 @@
 				A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */,
 				A05747A61FF2879E0068D0E4 /* RH_LotteryInfoModel.h */,
 				A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */,
+				A05747B31FF4D6850068D0E4 /* RH_BannelModel.h */,
+				A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */,
+				A05747B71FF4E2070068D0E4 /* RH_AnnouncementModel.h */,
+				A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */,
+				A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */,
+				A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */,
+				A05747BD1FF4F7500068D0E4 /* RH_LotteryCategoryModel.h */,
+				A05747BC1FF4F74F0068D0E4 /* RH_LotteryCategoryModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -2153,6 +2173,7 @@
 				A07DCEC61FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m in Sources */,
 				A0ADD3291FEB627F00B24B51 /* KIPageViewCell.m in Sources */,
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
+				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
@@ -2169,6 +2190,7 @@
 				A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
+				A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */,
 				A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */,
 				A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */,
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
@@ -2232,6 +2254,7 @@
 				A0109FBF1F8788FF004E6EF4 /* UITableView+Register.m in Sources */,
 				A0109FC01F8788FF004E6EF4 /* UITableViewCell+ShowContent.m in Sources */,
 				A0109FC11F8788FF004E6EF4 /* UIView+FrameSize.m in Sources */,
+				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
@@ -2319,6 +2342,7 @@
 				A0109F731F8787E4004E6EF4 /* CLLabel.m in Sources */,
 				A0109F741F8787E4004E6EF4 /* CLLineLayer.m in Sources */,
 				A0109F751F8787E4004E6EF4 /* CLMaskView.m in Sources */,
+				A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */,
 				A0109F761F8787E4004E6EF4 /* CLSectionControl.m in Sources */,
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
@@ -2474,7 +2498,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_cbe1=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -68,6 +68,32 @@
 #define RH_API_NAME_DEMOLOGIN                                       @"demo/lottery.html"
 #define RH_API_NAME_GETCUSTOMPATH                                   @"index/getCustomerService.html"
 
+#pragma mark - v3 首页 banner 模型
+#define RH_GP_Banner_CAROUSEL_ID                                      @"carousel_id"
+#define RH_GP_Banner_COVER                                             @"cover"
+#define RH_GP_Banner_ID                                                 @"id"
+#define RH_GP_Banner_LANGUAGE                                           @"language"
+#define RH_GP_Banner_LINK                                               @"link"
+#define RH_GP_Banner_NAME                                               @"name"
+#define RH_GP_Banner_ENDTIME                                               @"end_time"
+#define RH_GP_Banner_STARTTIME                                               @"start_time"
+#define RH_GP_Banner_ORDERNUM                                               @"order_num"
+#define RH_GP_Banner_STATUS                                               @"status"
+#define RH_GP_Banner_TYPE                                               @"type"
+
+
+#pragma mark - v3 首页 announcement 公告模型
+#define RH_GP_ANNOUNCEMENT_TYPE                                      @"announcementType"
+#define RH_GP_ANNOUNCEMENT_CODE                                      @"code"
+#define RH_GP_ANNOUNCEMENT_DISPLAY                                                 @"display"
+#define RH_GP_ANNOUNCEMENT_ID                                                 @"id"
+#define RH_GP_ANNOUNCEMENT_ISTASK                                                 @"isTask"
+#define RH_GP_ANNOUNCEMENT_CONTENT                                                 @"content"
+#define RH_GP_ANNOUNCEMENT_LANGUAGE                                                 @"language"
+#define RH_GP_ANNOUNCEMENT_ORDERNUM                                                 @"orderNum"
+#define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                                 @"publishTime"
+#define RH_GP_ANNOUNCEMENT_TITLE                                                @"title"
+
 
 #pragma mark - v3 彩票游戏API 信息模型
 #define RH_GP_LOTTERYAPIINFO_ID                                     @"id"
@@ -106,7 +132,15 @@
 //请求参数 无
 
 //返回参数
-#define RH_GP_BINDBANKCARD_COUNT                      @"count"
+#define RH_GP_HOMEINFO_ANNOUNCEMENT_LIST                      @"announcement"
+#define RH_GP_HOMEINFO_BANNER_LIST                            @"banner"
+#define RH_GP_HOMEINFO_SITEAPIRELATION                        @"siteApiRelation"
+#define RH_GP_HOMEINFO_SITEAPIRELATION_APITYPE                        @"apiType"
+#define RH_GP_HOMEINFO_SITEAPIRELATION_SITEAPIS                        @"siteApis"
+#define RH_GP_HOMEINFO_LOTTERYGAME                        @"lotteryGame"
+#define RH_GP_HOMEINFO_CASINOMAP                           @"casinoMap"
+#define RH_GP_HOMEINFO_CASINOMAP_AGEXIST                           @"AGExist"
+#define RH_GP_HOMEINFO_CASINOMAP_GGEXIST                           @"GGExist"
 
 
 #endif /* RH_API_h */

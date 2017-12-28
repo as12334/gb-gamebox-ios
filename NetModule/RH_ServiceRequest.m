@@ -14,6 +14,9 @@
 #import "coreLib.h"
 #import "RH_UpdatedVersionModel.h"
 #import "RH_APPDelegate.h"
+///-------DATA MODULE--------------------//
+#import "RH_HomePageModel.h"
+
 
 //----------------------------------------------------------
 //访问权限
@@ -523,10 +526,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                   error:&tempError] : @{};
     if (tempError) { //json解析错误
         tempError = [NSError resultDataNoJSONError];
+    }else{
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
+                tempError = [NSError resultErrorWithResultInfo:dataObject];
+            }
+        }
     }
-//    else if ([dataObject integerValueForKey:RH_GP_SUCCESS defaultValue:-1]!=0) { //结果错误
-//        tempError = [NSError resultErrorWithResultInfo:dataObject];
-//    }
 
     if (error) {
         *error = tempError;
@@ -559,6 +565,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeTestUrl:
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+            }
+                break ;
+              
+           case ServiceRequestTypeV3HomeInfo:
+            {
+                resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;
                 

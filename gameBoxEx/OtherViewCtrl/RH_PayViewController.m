@@ -24,8 +24,6 @@
     }else{
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
     }
-
-    [self reloadWebView] ;
 }
 
 +(void)configureNavigationBar:(UINavigationBar*)navigationBar
