@@ -155,6 +155,7 @@
 #if 0
     //    [self.serviceRequest startGetOpenCode:nil isHistory:NO] ;
 #else
+    [self.serviceRequest startV3HomeInfo] ;
     [self loadDataSuccessWithDatas:@[@"",@"",@"",@""] totalCount:4] ;
 #endif
 }

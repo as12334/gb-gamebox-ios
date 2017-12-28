@@ -224,6 +224,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - v3 接口定义
+-(void)startV3HomeInfo
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_HOMEINFO
+                     pathArguments:nil
+                   headerArguments:@{RH_SP_COMMON_V3_OSTYPE:@"ios",
+                                     RH_SP_COMMON_V3_VERSION:RH_SP_COMMON_V3_VERSION_VALUE
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3HomeInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
 #pragma mark -
 
 - (NSMutableDictionary *)doSometiongMasks {
