@@ -1397,6 +1397,22 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _rb4b //澳门银河线上赌场
+
+#define CODE    @"rb4b"
+#define S        @"02d0b739ec970c92aba0ba76aa6c63f5"
+#define SID        @"330"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _xdvv //澳门金沙娱乐城
+
+#define CODE    @"xdvv"
+#define S        @"c44314ad405649cf9b5a6c8e89387956"
+#define SID        @"331"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

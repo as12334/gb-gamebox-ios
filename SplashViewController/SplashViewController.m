@@ -271,7 +271,7 @@
             [alertView show];
         }else{
             [self splashViewComplete] ;
-        }
+        } 
     }
 }
 
