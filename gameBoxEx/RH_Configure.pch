@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1108,7 +1108,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"lottery"
 
-#elif _x70n //MGMGAME
+#elif _x70n //澳门美高梅
 
 #define CODE    @"x70n"
 #define S        @"a3fe8abcdf5c2864c2a8f965b161106a"

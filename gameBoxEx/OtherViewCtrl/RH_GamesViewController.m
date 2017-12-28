@@ -103,6 +103,8 @@
 
 -(void)_backBackHandle
 {
+    NSLog(@"----uiview%f",self.view.frame.size.height);
+    NSLog(@"----webView%f",self.webView.frame.size.height);
     [self backBarButtonItemHandle] ;
 }
 +(void)configureNavigationBar:(UINavigationBar*)navigationBar
