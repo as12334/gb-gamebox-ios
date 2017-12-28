@@ -238,6 +238,8 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
+		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
+		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */; };
 		A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */; };
 		A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */; };
@@ -293,62 +295,6 @@
 		A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */; };
 		A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
-		A0D66FF11F998C380053F0ED /* ClientCoreSDK.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */; };
-		A0D66FF21F998C380053F0ED /* ClientCoreSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */; };
-		A0D66FF31F998C380053F0ED /* ConfigEntity.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAD1F998B0A0053F0ED /* ConfigEntity.h */; };
-		A0D66FF41F998C380053F0ED /* ConfigEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FAE1F998B0A0053F0ED /* ConfigEntity.m */; };
-		A0D66FF51F998C380053F0ED /* ChatBaseEvent.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB01F998B0A0053F0ED /* ChatBaseEvent.h */; };
-		A0D66FF61F998C380053F0ED /* ChatTransDataEvent.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB11F998B0A0053F0ED /* ChatTransDataEvent.h */; };
-		A0D66FF71F998C380053F0ED /* MessageQoSEvent.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB21F998B0A0053F0ED /* MessageQoSEvent.h */; };
-		A0D66FF81F998C380053F0ED /* AutoReLoginDaemon.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB41F998B0A0053F0ED /* AutoReLoginDaemon.h */; };
-		A0D66FF91F998C380053F0ED /* AutoReLoginDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB51F998B0A0053F0ED /* AutoReLoginDaemon.m */; };
-		A0D66FFA1F998C380053F0ED /* KeepAliveDaemon.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB61F998B0A0053F0ED /* KeepAliveDaemon.h */; };
-		A0D66FFB1F998C380053F0ED /* KeepAliveDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB71F998B0A0053F0ED /* KeepAliveDaemon.m */; };
-		A0D66FFC1F998C380053F0ED /* LocalUDPDataReciever.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB81F998B0A0053F0ED /* LocalUDPDataReciever.h */; };
-		A0D66FFD1F998C380053F0ED /* LocalUDPDataReciever.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FB91F998B0A0053F0ED /* LocalUDPDataReciever.m */; };
-		A0D66FFE1F998C380053F0ED /* LocalUDPDataSender.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FBA1F998B0A0053F0ED /* LocalUDPDataSender.h */; };
-		A0D66FFF1F998C380053F0ED /* LocalUDPDataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FBB1F998B0A0053F0ED /* LocalUDPDataSender.m */; };
-		A0D670001F998C380053F0ED /* LocalUDPSocketProvider.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FBC1F998B0A0053F0ED /* LocalUDPSocketProvider.h */; };
-		A0D670011F998C380053F0ED /* LocalUDPSocketProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FBD1F998B0A0053F0ED /* LocalUDPSocketProvider.m */; };
-		A0D670021F998C380053F0ED /* QoS4ReciveDaemon.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FBE1F998B0A0053F0ED /* QoS4ReciveDaemon.h */; };
-		A0D670031F998C380053F0ED /* QoS4ReciveDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FBF1F998B0A0053F0ED /* QoS4ReciveDaemon.m */; };
-		A0D670041F998C380053F0ED /* QoS4SendDaemon.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC01F998B0A0053F0ED /* QoS4SendDaemon.h */; };
-		A0D670051F998C380053F0ED /* QoS4SendDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC11F998B0A0053F0ED /* QoS4SendDaemon.m */; };
-		A0D670061F998C380053F0ED /* CompletionDefine.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC31F998B0A0053F0ED /* CompletionDefine.h */; };
-		A0D670071F998C380053F0ED /* NSMutableDictionary+Ext.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC41F998B0A0053F0ED /* NSMutableDictionary+Ext.h */; };
-		A0D670081F998C380053F0ED /* NSMutableDictionary+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC51F998B0A0053F0ED /* NSMutableDictionary+Ext.m */; };
-		A0D670091F998C380053F0ED /* CharsetHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC71F998B0A0053F0ED /* CharsetHelper.h */; };
-		A0D6700A1F998C380053F0ED /* CharsetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC81F998B0A0053F0ED /* CharsetHelper.m */; };
-		A0D6700B1F998C380053F0ED /* ErrorCode.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FC91F998B0A0053F0ED /* ErrorCode.h */; };
-		A0D6700C1F998C380053F0ED /* PErrorResponse.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FCA1F998B0A0053F0ED /* PErrorResponse.h */; };
-		A0D6700D1F998C380053F0ED /* PErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FCB1F998B0A0053F0ED /* PErrorResponse.m */; };
-		A0D6700E1F998C380053F0ED /* PKeepAlive.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FCC1F998B0A0053F0ED /* PKeepAlive.h */; };
-		A0D6700F1F998C380053F0ED /* PKeepAlive.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FCD1F998B0A0053F0ED /* PKeepAlive.m */; };
-		A0D670101F998C380053F0ED /* PKeepAliveResponse.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FCE1F998B0A0053F0ED /* PKeepAliveResponse.h */; };
-		A0D670111F998C380053F0ED /* PKeepAliveResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FCF1F998B0A0053F0ED /* PKeepAliveResponse.m */; };
-		A0D670121F998C380053F0ED /* PLoginInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD01F998B0A0053F0ED /* PLoginInfo.h */; };
-		A0D670131F998C380053F0ED /* PLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD11F998B0A0053F0ED /* PLoginInfo.m */; };
-		A0D670141F998C380053F0ED /* PLoginInfoResponse.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD21F998B0A0053F0ED /* PLoginInfoResponse.h */; };
-		A0D670151F998C380053F0ED /* PLoginInfoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD31F998B0A0053F0ED /* PLoginInfoResponse.m */; };
-		A0D670161F998C380053F0ED /* Protocal.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD41F998B0A0053F0ED /* Protocal.h */; };
-		A0D670171F998C380053F0ED /* Protocal.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD51F998B0A0053F0ED /* Protocal.m */; };
-		A0D670181F998C380053F0ED /* ProtocalFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD61F998B0A0053F0ED /* ProtocalFactory.h */; };
-		A0D670191F998C380053F0ED /* ProtocalFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD71F998B0A0053F0ED /* ProtocalFactory.m */; };
-		A0D6701A1F998C380053F0ED /* ProtocalType.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FD81F998B0A0053F0ED /* ProtocalType.h */; };
-		A0D6701B1F998C380053F0ED /* ToolKits.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FDA1F998B0A0053F0ED /* ToolKits.h */; };
-		A0D6701C1F998C380053F0ED /* ToolKits.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FDB1F998B0A0053F0ED /* ToolKits.m */; };
-		A0D6701D1F998C380053F0ED /* UDPUtils.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FDC1F998B0A0053F0ED /* UDPUtils.h */; };
-		A0D6701E1F998C380053F0ED /* UDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FDD1F998B0A0053F0ED /* UDPUtils.m */; };
-		A0D6701F1F998C380053F0ED /* NSObject+RMArchivable.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE31F998B0A0053F0ED /* NSObject+RMArchivable.h */; };
-		A0D670201F998C380053F0ED /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE41F998B0A0053F0ED /* NSObject+RMArchivable.m */; };
-		A0D670211F998C380053F0ED /* NSObject+RMCopyable.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE51F998B0A0053F0ED /* NSObject+RMCopyable.h */; };
-		A0D670221F998C380053F0ED /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE61F998B0A0053F0ED /* NSObject+RMCopyable.m */; };
-		A0D670231F998C380053F0ED /* NSUserDefaults+RMSaveCustomObject.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE71F998B0A0053F0ED /* NSUserDefaults+RMSaveCustomObject.h */; };
-		A0D670241F998C380053F0ED /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE81F998B0A0053F0ED /* NSUserDefaults+RMSaveCustomObject.m */; };
-		A0D670251F998C380053F0ED /* RMMapper.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FE91F998B0A0053F0ED /* RMMapper.h */; };
-		A0D670261F998C380053F0ED /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FEA1F998B0A0053F0ED /* RMMapper.m */; };
-		A0D670271F998C380053F0ED /* GCDAsyncUdpSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FEF1F998B0A0053F0ED /* GCDAsyncUdpSocket.h */; };
-		A0D670281F998C380053F0ED /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D66FF01F998B0A0053F0ED /* GCDAsyncUdpSocket.m */; };
 		A0E367951F8F463900758033 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0E367901F8F433700758033 /* Localizable.strings */; };
 		A0E3679E1F8F91D700758033 /* RH_BasicModel.h in Sources */ = {isa = PBXBuildFile; fileRef = A010A0041F878B67004E6EF4 /* RH_BasicModel.h */; };
 		A0E367AD1F90617700758033 /* RH_PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E367AB1F90617600758033 /* RH_PayViewController.m */; };
@@ -362,7 +308,6 @@
 		A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A0E3680E1F94835500758033 /* RH_LotteryRecPageViewController.h */; };
 		A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E3680F1F94835500758033 /* RH_LotteryRecPageViewController.m */; };
 		A0E368181F95FF5800758033 /* RH_GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E368161F95FF5700758033 /* RH_GamesViewController.m */; };
-		A0E53DA61F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DA41F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m */; };
 		A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DA91F974CAA00CE69E4 /* RH_ChatInputBar.m */; };
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
@@ -809,6 +754,10 @@
 		A04E60511F8DAFF000098A65 /* tab_withdraw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_withdraw@2x.png"; sourceTree = "<group>"; };
 		A04E605B1F8DED6000098A65 /* RH_MinePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MinePageViewController.h; sourceTree = "<group>"; };
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
+		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
+		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
+		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
+		A05747A61FF2879E0068D0E4 /* RH_LotteryInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryInfoModel.h; sourceTree = "<group>"; };
 		A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
 		A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
@@ -896,62 +845,6 @@
 		A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomTabBar.m; sourceTree = "<group>"; };
 		A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UpdatedVersionModel.h; sourceTree = "<group>"; };
 		A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UpdatedVersionModel.m; sourceTree = "<group>"; };
-		A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
-		A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientCoreSDK.m; sourceTree = "<group>"; };
-		A0D66FAD1F998B0A0053F0ED /* ConfigEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigEntity.h; sourceTree = "<group>"; };
-		A0D66FAE1F998B0A0053F0ED /* ConfigEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigEntity.m; sourceTree = "<group>"; };
-		A0D66FB01F998B0A0053F0ED /* ChatBaseEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatBaseEvent.h; sourceTree = "<group>"; };
-		A0D66FB11F998B0A0053F0ED /* ChatTransDataEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatTransDataEvent.h; sourceTree = "<group>"; };
-		A0D66FB21F998B0A0053F0ED /* MessageQoSEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageQoSEvent.h; sourceTree = "<group>"; };
-		A0D66FB41F998B0A0053F0ED /* AutoReLoginDaemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoReLoginDaemon.h; sourceTree = "<group>"; };
-		A0D66FB51F998B0A0053F0ED /* AutoReLoginDaemon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoReLoginDaemon.m; sourceTree = "<group>"; };
-		A0D66FB61F998B0A0053F0ED /* KeepAliveDaemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeepAliveDaemon.h; sourceTree = "<group>"; };
-		A0D66FB71F998B0A0053F0ED /* KeepAliveDaemon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeepAliveDaemon.m; sourceTree = "<group>"; };
-		A0D66FB81F998B0A0053F0ED /* LocalUDPDataReciever.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataReciever.h; sourceTree = "<group>"; };
-		A0D66FB91F998B0A0053F0ED /* LocalUDPDataReciever.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalUDPDataReciever.m; sourceTree = "<group>"; };
-		A0D66FBA1F998B0A0053F0ED /* LocalUDPDataSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataSender.h; sourceTree = "<group>"; };
-		A0D66FBB1F998B0A0053F0ED /* LocalUDPDataSender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalUDPDataSender.m; sourceTree = "<group>"; };
-		A0D66FBC1F998B0A0053F0ED /* LocalUDPSocketProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalUDPSocketProvider.h; sourceTree = "<group>"; };
-		A0D66FBD1F998B0A0053F0ED /* LocalUDPSocketProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalUDPSocketProvider.m; sourceTree = "<group>"; };
-		A0D66FBE1F998B0A0053F0ED /* QoS4ReciveDaemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QoS4ReciveDaemon.h; sourceTree = "<group>"; };
-		A0D66FBF1F998B0A0053F0ED /* QoS4ReciveDaemon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QoS4ReciveDaemon.m; sourceTree = "<group>"; };
-		A0D66FC01F998B0A0053F0ED /* QoS4SendDaemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QoS4SendDaemon.h; sourceTree = "<group>"; };
-		A0D66FC11F998B0A0053F0ED /* QoS4SendDaemon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QoS4SendDaemon.m; sourceTree = "<group>"; };
-		A0D66FC31F998B0A0053F0ED /* CompletionDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletionDefine.h; sourceTree = "<group>"; };
-		A0D66FC41F998B0A0053F0ED /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
-		A0D66FC51F998B0A0053F0ED /* NSMutableDictionary+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Ext.m"; sourceTree = "<group>"; };
-		A0D66FC71F998B0A0053F0ED /* CharsetHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharsetHelper.h; sourceTree = "<group>"; };
-		A0D66FC81F998B0A0053F0ED /* CharsetHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharsetHelper.m; sourceTree = "<group>"; };
-		A0D66FC91F998B0A0053F0ED /* ErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
-		A0D66FCA1F998B0A0053F0ED /* PErrorResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PErrorResponse.h; sourceTree = "<group>"; };
-		A0D66FCB1F998B0A0053F0ED /* PErrorResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PErrorResponse.m; sourceTree = "<group>"; };
-		A0D66FCC1F998B0A0053F0ED /* PKeepAlive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKeepAlive.h; sourceTree = "<group>"; };
-		A0D66FCD1F998B0A0053F0ED /* PKeepAlive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKeepAlive.m; sourceTree = "<group>"; };
-		A0D66FCE1F998B0A0053F0ED /* PKeepAliveResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
-		A0D66FCF1F998B0A0053F0ED /* PKeepAliveResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKeepAliveResponse.m; sourceTree = "<group>"; };
-		A0D66FD01F998B0A0053F0ED /* PLoginInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLoginInfo.h; sourceTree = "<group>"; };
-		A0D66FD11F998B0A0053F0ED /* PLoginInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLoginInfo.m; sourceTree = "<group>"; };
-		A0D66FD21F998B0A0053F0ED /* PLoginInfoResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLoginInfoResponse.h; sourceTree = "<group>"; };
-		A0D66FD31F998B0A0053F0ED /* PLoginInfoResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLoginInfoResponse.m; sourceTree = "<group>"; };
-		A0D66FD41F998B0A0053F0ED /* Protocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protocal.h; sourceTree = "<group>"; };
-		A0D66FD51F998B0A0053F0ED /* Protocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Protocal.m; sourceTree = "<group>"; };
-		A0D66FD61F998B0A0053F0ED /* ProtocalFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtocalFactory.h; sourceTree = "<group>"; };
-		A0D66FD71F998B0A0053F0ED /* ProtocalFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProtocalFactory.m; sourceTree = "<group>"; };
-		A0D66FD81F998B0A0053F0ED /* ProtocalType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtocalType.h; sourceTree = "<group>"; };
-		A0D66FDA1F998B0A0053F0ED /* ToolKits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolKits.h; sourceTree = "<group>"; };
-		A0D66FDB1F998B0A0053F0ED /* ToolKits.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolKits.m; sourceTree = "<group>"; };
-		A0D66FDC1F998B0A0053F0ED /* UDPUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPUtils.h; sourceTree = "<group>"; };
-		A0D66FDD1F998B0A0053F0ED /* UDPUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDPUtils.m; sourceTree = "<group>"; };
-		A0D66FE31F998B0A0053F0ED /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMArchivable.h"; sourceTree = "<group>"; };
-		A0D66FE41F998B0A0053F0ED /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMArchivable.m"; sourceTree = "<group>"; };
-		A0D66FE51F998B0A0053F0ED /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+RMCopyable.h"; sourceTree = "<group>"; };
-		A0D66FE61F998B0A0053F0ED /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RMCopyable.m"; sourceTree = "<group>"; };
-		A0D66FE71F998B0A0053F0ED /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
-		A0D66FE81F998B0A0053F0ED /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
-		A0D66FE91F998B0A0053F0ED /* RMMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMMapper.h; sourceTree = "<group>"; };
-		A0D66FEA1F998B0A0053F0ED /* RMMapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMMapper.m; sourceTree = "<group>"; };
-		A0D66FEF1F998B0A0053F0ED /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
-		A0D66FF01F998B0A0053F0ED /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		A0E3678C1F8F3F2000758033 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DNImagePicker.strings"; sourceTree = "<group>"; };
 		A0E367911F8F433700758033 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0E367921F8F433700758033 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -968,8 +861,6 @@
 		A0E3680F1F94835500758033 /* RH_LotteryRecPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryRecPageViewController.m; sourceTree = "<group>"; };
 		A0E368161F95FF5700758033 /* RH_GamesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GamesViewController.m; sourceTree = "<group>"; };
 		A0E368171F95FF5800758033 /* RH_GamesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GamesViewController.h; sourceTree = "<group>"; };
-		A0E53DA31F9746A600CE69E4 /* RH_CustomPageViewControllerEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomPageViewControllerEx.h; sourceTree = "<group>"; };
-		A0E53DA41F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomPageViewControllerEx.m; sourceTree = "<group>"; };
 		A0E53DA81F974CAA00CE69E4 /* RH_ChatInputBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChatInputBar.h; sourceTree = "<group>"; };
 		A0E53DA91F974CAA00CE69E4 /* RH_ChatInputBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChatInputBar.m; sourceTree = "<group>"; };
 		A0E53DBE1F984DCA00CE69E4 /* RH_IMMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_IMMessageModel.h; sourceTree = "<group>"; };
@@ -1013,8 +904,6 @@
 				A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */,
 				A001B3F41F8F018600309EA4 /* RH_CustomServicePageViewController.h */,
 				A001B3F51F8F018600309EA4 /* RH_CustomServicePageViewController.m */,
-				A0E53DA31F9746A600CE69E4 /* RH_CustomPageViewControllerEx.h */,
-				A0E53DA41F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m */,
 				A0E53DA81F974CAA00CE69E4 /* RH_ChatInputBar.h */,
 				A0E53DA91F974CAA00CE69E4 /* RH_ChatInputBar.m */,
 			);
@@ -1678,6 +1567,10 @@
 				A010A0051F878B67004E6EF4 /* RH_BasicModel.m */,
 				A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */,
 				A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */,
+				A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */,
+				A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */,
+				A05747A61FF2879E0068D0E4 /* RH_LotteryInfoModel.h */,
+				A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -2070,156 +1963,6 @@
 			path = v3;
 			sourceTree = "<group>";
 		};
-		A0D66FAA1F998B0A0053F0ED /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FAB1F998B0A0053F0ED /* ClientCoreSDK.h */,
-				A0D66FAC1F998B0A0053F0ED /* ClientCoreSDK.m */,
-				A0D66FAD1F998B0A0053F0ED /* ConfigEntity.h */,
-				A0D66FAE1F998B0A0053F0ED /* ConfigEntity.m */,
-				A0D66FAF1F998B0A0053F0ED /* Delegate */,
-				A0D66FB31F998B0A0053F0ED /* Impl */,
-				A0D66FC21F998B0A0053F0ED /* Other */,
-				A0D66FC61F998B0A0053F0ED /* Protocal */,
-				A0D66FD91F998B0A0053F0ED /* Utils */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		A0D66FAF1F998B0A0053F0ED /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FB01F998B0A0053F0ED /* ChatBaseEvent.h */,
-				A0D66FB11F998B0A0053F0ED /* ChatTransDataEvent.h */,
-				A0D66FB21F998B0A0053F0ED /* MessageQoSEvent.h */,
-			);
-			path = Delegate;
-			sourceTree = "<group>";
-		};
-		A0D66FB31F998B0A0053F0ED /* Impl */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FB41F998B0A0053F0ED /* AutoReLoginDaemon.h */,
-				A0D66FB51F998B0A0053F0ED /* AutoReLoginDaemon.m */,
-				A0D66FB61F998B0A0053F0ED /* KeepAliveDaemon.h */,
-				A0D66FB71F998B0A0053F0ED /* KeepAliveDaemon.m */,
-				A0D66FB81F998B0A0053F0ED /* LocalUDPDataReciever.h */,
-				A0D66FB91F998B0A0053F0ED /* LocalUDPDataReciever.m */,
-				A0D66FBA1F998B0A0053F0ED /* LocalUDPDataSender.h */,
-				A0D66FBB1F998B0A0053F0ED /* LocalUDPDataSender.m */,
-				A0D66FBC1F998B0A0053F0ED /* LocalUDPSocketProvider.h */,
-				A0D66FBD1F998B0A0053F0ED /* LocalUDPSocketProvider.m */,
-				A0D66FBE1F998B0A0053F0ED /* QoS4ReciveDaemon.h */,
-				A0D66FBF1F998B0A0053F0ED /* QoS4ReciveDaemon.m */,
-				A0D66FC01F998B0A0053F0ED /* QoS4SendDaemon.h */,
-				A0D66FC11F998B0A0053F0ED /* QoS4SendDaemon.m */,
-			);
-			path = Impl;
-			sourceTree = "<group>";
-		};
-		A0D66FC21F998B0A0053F0ED /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FC31F998B0A0053F0ED /* CompletionDefine.h */,
-				A0D66FC41F998B0A0053F0ED /* NSMutableDictionary+Ext.h */,
-				A0D66FC51F998B0A0053F0ED /* NSMutableDictionary+Ext.m */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		A0D66FC61F998B0A0053F0ED /* Protocal */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FC71F998B0A0053F0ED /* CharsetHelper.h */,
-				A0D66FC81F998B0A0053F0ED /* CharsetHelper.m */,
-				A0D66FC91F998B0A0053F0ED /* ErrorCode.h */,
-				A0D66FCA1F998B0A0053F0ED /* PErrorResponse.h */,
-				A0D66FCB1F998B0A0053F0ED /* PErrorResponse.m */,
-				A0D66FCC1F998B0A0053F0ED /* PKeepAlive.h */,
-				A0D66FCD1F998B0A0053F0ED /* PKeepAlive.m */,
-				A0D66FCE1F998B0A0053F0ED /* PKeepAliveResponse.h */,
-				A0D66FCF1F998B0A0053F0ED /* PKeepAliveResponse.m */,
-				A0D66FD01F998B0A0053F0ED /* PLoginInfo.h */,
-				A0D66FD11F998B0A0053F0ED /* PLoginInfo.m */,
-				A0D66FD21F998B0A0053F0ED /* PLoginInfoResponse.h */,
-				A0D66FD31F998B0A0053F0ED /* PLoginInfoResponse.m */,
-				A0D66FD41F998B0A0053F0ED /* Protocal.h */,
-				A0D66FD51F998B0A0053F0ED /* Protocal.m */,
-				A0D66FD61F998B0A0053F0ED /* ProtocalFactory.h */,
-				A0D66FD71F998B0A0053F0ED /* ProtocalFactory.m */,
-				A0D66FD81F998B0A0053F0ED /* ProtocalType.h */,
-			);
-			path = Protocal;
-			sourceTree = "<group>";
-		};
-		A0D66FD91F998B0A0053F0ED /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FDA1F998B0A0053F0ED /* ToolKits.h */,
-				A0D66FDB1F998B0A0053F0ED /* ToolKits.m */,
-				A0D66FDC1F998B0A0053F0ED /* UDPUtils.h */,
-				A0D66FDD1F998B0A0053F0ED /* UDPUtils.m */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		A0D66FDE1F998B0A0053F0ED /* Thirdpart */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FE21F998B0A0053F0ED /* RMMapper */,
-				A0D66FEE1F998B0A0053F0ED /* UDP */,
-			);
-			path = Thirdpart;
-			sourceTree = "<group>";
-		};
-		A0D66FE21F998B0A0053F0ED /* RMMapper */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FE31F998B0A0053F0ED /* NSObject+RMArchivable.h */,
-				A0D66FE41F998B0A0053F0ED /* NSObject+RMArchivable.m */,
-				A0D66FE51F998B0A0053F0ED /* NSObject+RMCopyable.h */,
-				A0D66FE61F998B0A0053F0ED /* NSObject+RMCopyable.m */,
-				A0D66FE71F998B0A0053F0ED /* NSUserDefaults+RMSaveCustomObject.h */,
-				A0D66FE81F998B0A0053F0ED /* NSUserDefaults+RMSaveCustomObject.m */,
-				A0D66FE91F998B0A0053F0ED /* RMMapper.h */,
-				A0D66FEA1F998B0A0053F0ED /* RMMapper.m */,
-				A0D66FEB1F998B0A0053F0ED /* RMMapperExample */,
-			);
-			path = RMMapper;
-			sourceTree = "<group>";
-		};
-		A0D66FEB1F998B0A0053F0ED /* RMMapperExample */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FEC1F998B0A0053F0ED /* RMMapperExample */,
-			);
-			path = RMMapperExample;
-			sourceTree = "<group>";
-		};
-		A0D66FEC1F998B0A0053F0ED /* RMMapperExample */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FED1F998B0A0053F0ED /* AFNetworking */,
-			);
-			path = RMMapperExample;
-			sourceTree = "<group>";
-		};
-		A0D66FED1F998B0A0053F0ED /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		A0D66FEE1F998B0A0053F0ED /* UDP */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FEF1F998B0A0053F0ED /* GCDAsyncUdpSocket.h */,
-				A0D66FF01F998B0A0053F0ED /* GCDAsyncUdpSocket.m */,
-			);
-			path = UDP;
-			sourceTree = "<group>";
-		};
 		A0E3678F1F8F433700758033 /* Supporting File */ = {
 			isa = PBXGroup;
 			children = (
@@ -2250,18 +1993,8 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				A0E53D691F97411F00CE69E4 /* MobileIMSDK4iLib */,
 			);
 			path = thirdPart;
-			sourceTree = "<group>";
-		};
-		A0E53D691F97411F00CE69E4 /* MobileIMSDK4iLib */ = {
-			isa = PBXGroup;
-			children = (
-				A0D66FAA1F998B0A0053F0ED /* Core */,
-				A0D66FDE1F998B0A0053F0ED /* Thirdpart */,
-			);
-			path = MobileIMSDK4iLib;
 			sourceTree = "<group>";
 		};
 		A0E53DC11F987CDC00CE69E4 /* cells */ = {
@@ -2414,70 +2147,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0D66FF11F998C380053F0ED /* ClientCoreSDK.h in Sources */,
-				A0D66FF21F998C380053F0ED /* ClientCoreSDK.m in Sources */,
-				A0D66FF31F998C380053F0ED /* ConfigEntity.h in Sources */,
-				A0D66FF41F998C380053F0ED /* ConfigEntity.m in Sources */,
-				A0D66FF51F998C380053F0ED /* ChatBaseEvent.h in Sources */,
-				A0D66FF61F998C380053F0ED /* ChatTransDataEvent.h in Sources */,
-				A0D66FF71F998C380053F0ED /* MessageQoSEvent.h in Sources */,
-				A0D66FF81F998C380053F0ED /* AutoReLoginDaemon.h in Sources */,
-				A0D66FF91F998C380053F0ED /* AutoReLoginDaemon.m in Sources */,
-				A0D66FFA1F998C380053F0ED /* KeepAliveDaemon.h in Sources */,
-				A0D66FFB1F998C380053F0ED /* KeepAliveDaemon.m in Sources */,
-				A0D66FFC1F998C380053F0ED /* LocalUDPDataReciever.h in Sources */,
-				A0D66FFD1F998C380053F0ED /* LocalUDPDataReciever.m in Sources */,
-				A0D66FFE1F998C380053F0ED /* LocalUDPDataSender.h in Sources */,
-				A0D66FFF1F998C380053F0ED /* LocalUDPDataSender.m in Sources */,
-				A0D670001F998C380053F0ED /* LocalUDPSocketProvider.h in Sources */,
-				A0D670011F998C380053F0ED /* LocalUDPSocketProvider.m in Sources */,
-				A0D670021F998C380053F0ED /* QoS4ReciveDaemon.h in Sources */,
-				A0D670031F998C380053F0ED /* QoS4ReciveDaemon.m in Sources */,
-				A0D670041F998C380053F0ED /* QoS4SendDaemon.h in Sources */,
-				A0D670051F998C380053F0ED /* QoS4SendDaemon.m in Sources */,
 				A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */,
-				A0D670061F998C380053F0ED /* CompletionDefine.h in Sources */,
-				A0D670071F998C380053F0ED /* NSMutableDictionary+Ext.h in Sources */,
-				A0D670081F998C380053F0ED /* NSMutableDictionary+Ext.m in Sources */,
 				A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */,
-				A0D670091F998C380053F0ED /* CharsetHelper.h in Sources */,
-				A0D6700A1F998C380053F0ED /* CharsetHelper.m in Sources */,
-				A0D6700B1F998C380053F0ED /* ErrorCode.h in Sources */,
-				A0D6700C1F998C380053F0ED /* PErrorResponse.h in Sources */,
-				A0D6700D1F998C380053F0ED /* PErrorResponse.m in Sources */,
-				A0D6700E1F998C380053F0ED /* PKeepAlive.h in Sources */,
-				A0D6700F1F998C380053F0ED /* PKeepAlive.m in Sources */,
-				A0D670101F998C380053F0ED /* PKeepAliveResponse.h in Sources */,
-				A0D670111F998C380053F0ED /* PKeepAliveResponse.m in Sources */,
-				A0D670121F998C380053F0ED /* PLoginInfo.h in Sources */,
-				A0D670131F998C380053F0ED /* PLoginInfo.m in Sources */,
-				A0D670141F998C380053F0ED /* PLoginInfoResponse.h in Sources */,
-				A0D670151F998C380053F0ED /* PLoginInfoResponse.m in Sources */,
 				A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */,
-				A0D670161F998C380053F0ED /* Protocal.h in Sources */,
 				A07DCEC61FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m in Sources */,
 				A0ADD3291FEB627F00B24B51 /* KIPageViewCell.m in Sources */,
-				A0D670171F998C380053F0ED /* Protocal.m in Sources */,
-				A0D670181F998C380053F0ED /* ProtocalFactory.h in Sources */,
-				A0D670191F998C380053F0ED /* ProtocalFactory.m in Sources */,
-				A0D6701A1F998C380053F0ED /* ProtocalType.h in Sources */,
-				A0D6701B1F998C380053F0ED /* ToolKits.h in Sources */,
-				A0D6701C1F998C380053F0ED /* ToolKits.m in Sources */,
-				A0D6701D1F998C380053F0ED /* UDPUtils.h in Sources */,
-				A0D6701E1F998C380053F0ED /* UDPUtils.m in Sources */,
-				A0D6701F1F998C380053F0ED /* NSObject+RMArchivable.h in Sources */,
-				A0D670201F998C380053F0ED /* NSObject+RMArchivable.m in Sources */,
-				A0D670211F998C380053F0ED /* NSObject+RMCopyable.h in Sources */,
-				A0D670221F998C380053F0ED /* NSObject+RMCopyable.m in Sources */,
-				A0D670231F998C380053F0ED /* NSUserDefaults+RMSaveCustomObject.h in Sources */,
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
-				A0D670241F998C380053F0ED /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
-				A0D670251F998C380053F0ED /* RMMapper.h in Sources */,
-				A0D670261F998C380053F0ED /* RMMapper.m in Sources */,
-				A0D670271F998C380053F0ED /* GCDAsyncUdpSocket.h in Sources */,
-				A0D670281F998C380053F0ED /* GCDAsyncUdpSocket.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
-				A0E53DA61F9746A600CE69E4 /* RH_CustomPageViewControllerEx.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
@@ -2600,6 +2276,7 @@
 				A0109FE61F8788FF004E6EF4 /* NSObject+MJCoding.m in Sources */,
 				A0109FE71F8788FF004E6EF4 /* NSObject+MJKeyValue.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
+				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
 				A0109FEB1F8788FF004E6EF4 /* SAMKeychain.m in Sources */,
@@ -2695,6 +2372,7 @@
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,
 				A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */,
 				A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */,
+				A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,
