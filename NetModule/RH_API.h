@@ -69,6 +69,32 @@
 #define RH_API_NAME_GETCUSTOMPATH                                   @"index/getCustomerService.html"
 
 
+#pragma mark - v3 彩票游戏API 信息模型
+#define RH_GP_LOTTERYAPIINFO_ID                                     @"id"
+#define RH_GP_LOTTERYAPIINFO_RELATIONID                             @"relationId"
+#define RH_GP_LOTTERYAPIINFO_NAME                                   @"name"
+#define RH_GP_LOTTERYAPIINFO_LANGUAGE                               @"local"
+#define RH_GP_LOTTERYAPIINFO_SITEID                                 @"siteId"
+#define RH_GP_LOTTERYAPIINFO_APIID                                  @"apiId"
+#define RH_GP_LOTTERYAPIINFO_APITYPEID                              @"apiTypeId"
+
+
+#pragma mark - v3 彩票游戏信息模型
+#define RH_GP_LOTTERYINFO_ID                              @"id"
+#define RH_GP_LOTTERYINFO_GAMEID                              @"gameId"
+#define RH_GP_LOTTERYINFO_SITEID                              @"siteId"
+#define RH_GP_LOTTERYINFO_APIID                              @"apiId"
+#define RH_GP_LOTTERYINFO_GAMETYPE                              @"gameType"
+#define RH_GP_LOTTERYIINFO_VIEWS                              @"views"
+#define RH_GP_LOTTERYINFO_ORDERNUM                              @"orderNum"
+#define RH_GP_LOTTERYINFO_URL                              @"url"
+#define RH_GP_LOTTERYINFO_STATUS                              @"status"
+#define RH_GP_LOTTERYINFO_APITYPEID                              @"apiTypeId"
+#define RH_GP_LOTTERYINFO_SUPPORTTERMINAL                              @"supportTerminal"
+#define RH_GP_LOTTERYINFO_CODE                                   @"code"
+#define RH_GP_LOTTERYINFO_NAME                              @"name"
+#define RH_GP_LOTTERYINFO_COVER                              @"cover"
+#define RH_GP_LOTTERYINFO_CANTRY                              @"canTry"
 
 
 //===========================================================

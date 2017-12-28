@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -90,6 +90,8 @@
 //#define TEST_DOMAIN         @"test02.ccenter.test.so"
 //@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"msite.pro.so"
+//#define TEST_DOMAIN         @"pro.gbboss.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
@@ -1106,7 +1108,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"lottery"
 
-#elif _x70n //MGMGAME
+#elif _x70n //澳门美高梅
 
 #define CODE    @"x70n"
 #define S        @"a3fe8abcdf5c2864c2a8f965b161106a"
@@ -1394,6 +1396,23 @@
 #define SID        @"326"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
+
+#elif _rb4b //澳门银河线上赌场
+
+#define CODE    @"rb4b"
+#define S        @"02d0b739ec970c92aba0ba76aa6c63f5"
+#define SID        @"330"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _xdvv //澳门金沙娱乐城
+
+#define CODE    @"xdvv"
+#define S        @"c44314ad405649cf9b5a6c8e89387956"
+#define SID        @"331"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 
 #else //超博娱乐
 

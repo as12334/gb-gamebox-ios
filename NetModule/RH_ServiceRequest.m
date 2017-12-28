@@ -232,7 +232,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_HOMEINFO
                      pathArguments:nil
                    headerArguments:@{RH_SP_COMMON_V3_OSTYPE:@"ios",
-                                     RH_SP_COMMON_V3_VERSION:RH_SP_COMMON_V3_VERSION_VALUE
+                                     RH_SP_COMMON_V3_VERSION:RH_SP_COMMON_V3_VERSION_VALUE,
+                                     @"User-Agent":@"app_ios, iPhone"
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -241,9 +242,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-
 #pragma mark -
-
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
 }

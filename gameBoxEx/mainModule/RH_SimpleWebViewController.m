@@ -151,10 +151,6 @@
     }
 
     [self.webView stopLoading];
-<<<<<<< HEAD
-    // 每次退出 都清除一下缓存
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-=======
     _webURL = nil;
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
@@ -163,7 +159,6 @@
     }
       
 }
->>>>>>> origin/dev_luis
 
 #pragma mark--
 - (BOOL)shouldAutorotate
