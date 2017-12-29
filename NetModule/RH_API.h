@@ -103,6 +103,7 @@
 #define RH_GP_LOTTERYAPIINFO_SITEID                                 @"siteId"
 #define RH_GP_LOTTERYAPIINFO_APIID                                  @"apiId"
 #define RH_GP_LOTTERYAPIINFO_APITYPEID                              @"apiTypeId"
+#define RH_GP_LOTTERYAPIINFO_GAMELIST                              @"gameList"
 
 
 #pragma mark - v3 彩票游戏信息模型

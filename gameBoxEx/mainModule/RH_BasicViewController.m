@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
 #import "UIViewController+CWLateralSlide.h"
-#import "RH_SlideMenuViewController.h"
+//#import "RH_SlideMenuViewController.h"
 #import "RH_NavigationUserInfoView.h"
 #import "RH_UserInfoSubViewControler.h"
 
@@ -143,9 +143,9 @@
 
 -(void)mainMenuButtonItemHandle
 {
-    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
-                        animationType:CWDrawerAnimationTypeDefault
-                        configuration:nil] ;
+//    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
+//                        animationType:CWDrawerAnimationTypeDefault
+//                        configuration:nil] ;
 }
 
 #pragma mark-

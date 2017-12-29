@@ -18,6 +18,6 @@
 @property(nonatomic,assign,readonly) NSInteger  mApiID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiTypeID ;
 @property(nonatomic,assign,readonly) NSArray<RH_LotteryInfoModel*> *mLotteryInfoList ;
--(void)updateLotteryInfoWithList:(NSArray*)infoList ;
+//-(void)updateLotteryInfoWithList:(NSArray*)infoList ;
 
 @end

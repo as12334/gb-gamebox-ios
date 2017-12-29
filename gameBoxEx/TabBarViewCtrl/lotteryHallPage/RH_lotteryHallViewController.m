@@ -35,6 +35,14 @@
     return NO ;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    if ([SITE_TYPE isEqualToString:@"lottery"] && self.appDelegate.isLogin) {
+        [self.webView stringByEvaluatingJavaScriptFromString:@"window.top.page.autoLoginPlByApp()"] ;
+    }
+}
+
 #pragma mark-
 -(void)webViewDidEndLoad:(NSError *)error
 {

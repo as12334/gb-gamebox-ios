@@ -35,16 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationBarItem.leftBarButtonItems = @[self.mainMenuButtonItem,self.logoButtonItem] ;
+//    self.navigationBarItem.leftBarButtonItems = @[self.mainMenuButtonItem,self.logoButtonItem] ;
 //    self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
-    
+    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
     self.navigationBarItem.rightBarButtonItem = self.userInfoButtonItem ;
-    // 注册手势驱动
-    __weak typeof(self)weakSelf = self;
-    [self cw_registerShowIntractiveWithEdgeGesture:NO direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
-        [weakSelf mainMenuButtonItemHandle];
-    }];
-    
     [self setupUI] ;
 }
 
@@ -189,7 +183,7 @@
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return MAX(1, self.pageLoadManager.currentDataCount?3:0) ;
+    return MAX(1, self.pageLoadManager.currentDataCount?4:0) ;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -207,6 +201,10 @@
             
             case 2: //category
                 return homePageModel.mLotteryCategoryList.count?1:0 ;
+                break;
+           
+            case 3: //category
+                return 1 ;
                 break;
                 
             default:
@@ -250,10 +248,10 @@
             [bannerViewCell updateCellWithInfo:nil context:homePageModel.mBannerList];
             return bannerViewCell ;
         }else if (indexPath.section==1){
-            [self.dynamicLabCell updateCellWithInfo:nil context:homePageModel.mAnnouncementList];
+            [self.dynamicLabCell updateCellWithInfo:nil context:homePageModel.showAnnouncementContent];
             return self.dynamicLabCell ;
         }else if (indexPath.section==2){
-            [self.homeCategoryCell updateCellWithInfo:nil context:homePageModel.mLotteryCategoryList] ;
+            [self.homeCategoryCell updateCellWithInfo:nil context:homePageModel] ;
             return self.homeCategoryCell  ;
         }else if (indexPath.section==3){
             [self.homeCategoryItemsCell updateCellWithInfo:nil context:nil] ;

@@ -272,19 +272,12 @@
 		A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */; };
 		A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
-		A0ADD3061FE9408B00B24B51 /* RH_SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */; };
-		A0ADD30D1FEA63B400B24B51 /* RH_SlideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */; };
-		A0ADD30F1FEA665F00B24B51 /* RH_SlideHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD30E1FEA665F00B24B51 /* RH_SlideHeaderView.xib */; };
-		A0ADD3111FEA8CC700B24B51 /* RH_MainMenuCells.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD3101FEA8CC700B24B51 /* RH_MainMenuCells.plist */; };
-		A0ADD3151FEA8EA200B24B51 /* RH_MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3131FEA8EA200B24B51 /* RH_MainMenuCell.m */; };
-		A0ADD3161FEA8EA200B24B51 /* RH_MainMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD3141FEA8EA200B24B51 /* RH_MainMenuCell.xib */; };
 		A0ADD31E1FEB613400B24B51 /* RH_DaynamicLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD31A1FEB613400B24B51 /* RH_DaynamicLabelCell.m */; };
 		A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD31B1FEB613400B24B51 /* RH_DaynamicLabelCell.xib */; };
 		A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD31C1FEB613400B24B51 /* RH_BannerViewCell.xib */; };
 		A0ADD3211FEB613400B24B51 /* RH_BannerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD31D1FEB613400B24B51 /* RH_BannerViewCell.m */; };
 		A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3251FEB627F00B24B51 /* KIPageView.m */; };
 		A0ADD3291FEB627F00B24B51 /* KIPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD3261FEB627F00B24B51 /* KIPageViewCell.m */; };
-		A0ADD32C1FEB690E00B24B51 /* tt_banner_image.png in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD32B1FEB690E00B24B51 /* tt_banner_image.png */; };
 		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
 		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
 		A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */; };
@@ -818,15 +811,6 @@
 		A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NaviUserInfoTableCell.xib; sourceTree = "<group>"; };
 		A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNavigationBar.h; sourceTree = "<group>"; };
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
-		A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SlideMenuViewController.h; sourceTree = "<group>"; };
-		A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SlideMenuViewController.m; sourceTree = "<group>"; };
-		A0ADD30B1FEA63B400B24B51 /* RH_SlideHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SlideHeaderView.h; sourceTree = "<group>"; };
-		A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SlideHeaderView.m; sourceTree = "<group>"; };
-		A0ADD30E1FEA665F00B24B51 /* RH_SlideHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SlideHeaderView.xib; sourceTree = "<group>"; };
-		A0ADD3101FEA8CC700B24B51 /* RH_MainMenuCells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_MainMenuCells.plist; sourceTree = "<group>"; };
-		A0ADD3121FEA8EA200B24B51 /* RH_MainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MainMenuCell.h; sourceTree = "<group>"; };
-		A0ADD3131FEA8EA200B24B51 /* RH_MainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MainMenuCell.m; sourceTree = "<group>"; };
-		A0ADD3141FEA8EA200B24B51 /* RH_MainMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MainMenuCell.xib; sourceTree = "<group>"; };
 		A0ADD3181FEB613400B24B51 /* RH_DaynamicLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_DaynamicLabelCell.h; sourceTree = "<group>"; };
 		A0ADD3191FEB613400B24B51 /* RH_BannerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BannerViewCell.h; sourceTree = "<group>"; };
 		A0ADD31A1FEB613400B24B51 /* RH_DaynamicLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_DaynamicLabelCell.m; sourceTree = "<group>"; };
@@ -838,7 +822,6 @@
 		A0ADD3251FEB627F00B24B51 /* KIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIPageView.m; sourceTree = "<group>"; };
 		A0ADD3261FEB627F00B24B51 /* KIPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIPageViewCell.m; sourceTree = "<group>"; };
 		A0ADD3271FEB627F00B24B51 /* KIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIPageView.h; sourceTree = "<group>"; };
-		A0ADD32B1FEB690E00B24B51 /* tt_banner_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt_banner_image.png; sourceTree = "<group>"; };
 		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
 		A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
 		A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected@2x.png"; sourceTree = "<group>"; };
@@ -1674,7 +1657,6 @@
 		A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				A0ADD3031FE93FC900B24B51 /* slideMainMenu */,
 				A04E60231F8DAFF000098A65 /* firstPage */,
 				A04E60201F8DAFF000098A65 /* depositePage */,
 				A0E368061F9459F800758033 /* lotteryHallPage */,
@@ -1701,7 +1683,6 @@
 			isa = PBXGroup;
 			children = (
 				A0ADD32A1FEB68D900B24B51 /* testUI */,
-				A0ADD32B1FEB690E00B24B51 /* tt_banner_image.png */,
 				A07DCEC01FEBA5120006FAE4 /* tt_category_icon.png */,
 				A07FE36C1FECF97900D5DF71 /* tt_item_image.png */,
 				A0ADD3171FEB60BA00B24B51 /* cells */,
@@ -1890,30 +1871,6 @@
 			path = UINavigationBar;
 			sourceTree = "<group>";
 		};
-		A0ADD3031FE93FC900B24B51 /* slideMainMenu */ = {
-			isa = PBXGroup;
-			children = (
-				A0ADD30A1FEA62E800B24B51 /* cells */,
-				A0ADD3041FE9408B00B24B51 /* RH_SlideMenuViewController.h */,
-				A0ADD3051FE9408B00B24B51 /* RH_SlideMenuViewController.m */,
-				A0ADD3101FEA8CC700B24B51 /* RH_MainMenuCells.plist */,
-			);
-			path = slideMainMenu;
-			sourceTree = "<group>";
-		};
-		A0ADD30A1FEA62E800B24B51 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				A0ADD30B1FEA63B400B24B51 /* RH_SlideHeaderView.h */,
-				A0ADD30C1FEA63B400B24B51 /* RH_SlideHeaderView.m */,
-				A0ADD30E1FEA665F00B24B51 /* RH_SlideHeaderView.xib */,
-				A0ADD3121FEA8EA200B24B51 /* RH_MainMenuCell.h */,
-				A0ADD3131FEA8EA200B24B51 /* RH_MainMenuCell.m */,
-				A0ADD3141FEA8EA200B24B51 /* RH_MainMenuCell.xib */,
-			);
-			path = cells;
-			sourceTree = "<group>";
-		};
 		A0ADD3171FEB60BA00B24B51 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -2100,7 +2057,6 @@
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
-				A0ADD3161FEA8EA200B24B51 /* RH_MainMenuCell.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
@@ -2122,7 +2078,6 @@
 				A07DCEC11FEBA5120006FAE4 /* tt_category_icon.png in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
-				A0ADD30F1FEA665F00B24B51 /* RH_SlideHeaderView.xib in Resources */,
 				A07FE36D1FECF97A00D5DF71 /* tt_item_image.png in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
@@ -2134,7 +2089,6 @@
 				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
 				A001B3DF1F8EF7CA00309EA4 /* tab_lottery_mine@2x.png in Resources */,
 				A001B3E01F8EF7CA00309EA4 /* tab_lottery_normal@2x.png in Resources */,
-				A0ADD32C1FEB690E00B24B51 /* tt_banner_image.png in Resources */,
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
@@ -2147,7 +2101,6 @@
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
-				A0ADD3111FEA8CC700B24B51 /* RH_MainMenuCells.plist in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
 				A001B3EA1F8EF7CA00309EA4 /* tab_home@2x.png in Resources */,
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
@@ -2317,7 +2270,6 @@
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
-				A0ADD3151FEA8EA200B24B51 /* RH_MainMenuCell.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
 				A0109FFA1F8788FF004E6EF4 /* UIImage+MultiFormat.m in Sources */,
@@ -2352,7 +2304,6 @@
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
 				A0109F7F1F8787E4004E6EF4 /* CLCellContext.m in Sources */,
 				A0ADD3211FEB613400B24B51 /* RH_BannerViewCell.m in Sources */,
-				A0ADD30D1FEA63B400B24B51 /* RH_SlideHeaderView.m in Sources */,
 				A0109F801F8787E4004E6EF4 /* CLContentViewForCell.m in Sources */,
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
@@ -2373,7 +2324,6 @@
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
-				A0ADD3061FE9408B00B24B51 /* RH_SlideMenuViewController.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,

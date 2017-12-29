@@ -26,15 +26,16 @@
         _mSiteID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_SITEID] ;
         _mApiTypeID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_APITYPEID] ;
         _mRelationID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_RELATIONID] ;
+        _mLotteryInfoList = [RH_LotteryInfoModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_LOTTERYAPIINFO_GAMELIST]] ;
     }
     
     return self ;
 }
 
-#pragma mark-
--(void)updateLotteryInfoWithList:(NSArray*)infoList
-{
-    _mLotteryInfoList = [RH_LotteryInfoModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, infoList)] ;
-}
+//#pragma mark-
+//-(void)updateLotteryInfoWithList:(NSArray*)infoList
+//{
+//    _mLotteryInfoList = [RH_LotteryInfoModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, infoList)] ;
+//}
 
 @end

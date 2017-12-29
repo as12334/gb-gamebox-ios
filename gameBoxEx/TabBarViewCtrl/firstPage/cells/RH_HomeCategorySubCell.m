@@ -8,11 +8,13 @@
 
 #import "RH_HomeCategorySubCell.h"
 #import "coreLib.h"
+#import "RH_LotteryCategoryModel.h"
 
 @interface RH_HomeCategorySubCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
 @property (nonatomic,strong) IBOutlet UIImageView *imgIcon ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
+@property (nonatomic,strong) RH_LotteryCategoryModel *lotteryCategoryModel ;
 
 //向下指示图
 @property (nonatomic,strong) IBOutlet UIImageView *indicatorImgView ;
@@ -51,6 +53,7 @@
 
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
+    self.lotteryCategoryModel = ConvertToClassPointer(RH_LotteryCategoryModel, context) ;
     self.labTitle.text = @"捕鱼游戏" ;
 }
 

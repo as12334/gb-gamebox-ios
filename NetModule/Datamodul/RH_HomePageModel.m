@@ -14,7 +14,7 @@
 @end ;
 
 @implementation RH_HomePageModel
-
+@synthesize showAnnouncementContent = _showAnnouncementContent ;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     self = [super initWithInfoDic:info] ;
@@ -24,20 +24,34 @@
         _mLotteryCategoryList = [RH_LotteryCategoryModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_SITEAPIRELATION]] ;
         _mCasinoMap = [info dictionaryValueForKey:RH_GP_HOMEINFO_CASINOMAP] ;
         
-        NSDictionary *lotteryGames = [[info dictionaryValueForKey:RH_GP_HOMEINFO_LOTTERYGAME] dictionaryValueForKey:RH_GP_HOMEINFO_LOTTERYGAME] ;
+//        NSDictionary *lotteryGames = [[info dictionaryValueForKey:RH_GP_HOMEINFO_LOTTERYGAME] dictionaryValueForKey:RH_GP_HOMEINFO_LOTTERYGAME] ;
         
-        for (RH_LotteryCategoryModel *categoryModel in _mLotteryCategoryList) {
-            if (categoryModel.mApiType == 4){
-                //彩票站点
-                for (RH_LotteryAPIInfoModel *lotteryApiInfoModel in categoryModel.mSiteApis) {
-                    [lotteryApiInfoModel updateLotteryInfoWithList:
-                     [lotteryGames arrayValueForKey:[NSString stringWithFormat:@"%d",lotteryApiInfoModel.mApiID]]] ;
-                }
-            }
-        }
+//        for (RH_LotteryCategoryModel *categoryModel in _mLotteryCategoryList) {
+//            if (categoryModel.mApiType == 4){
+//                //彩票站点
+//                for (RH_LotteryAPIInfoModel *lotteryApiInfoModel in categoryModel.mSiteApis) {
+//                    [lotteryApiInfoModel updateLotteryInfoWithList:
+//                     [lotteryGames arrayValueForKey:[NSString stringWithFormat:@"%d",lotteryApiInfoModel.mApiID]]] ;
+//                }
+//            }
+//        }
     }
     
     return self ;
 }
 
+-(NSString *)showAnnouncementContent
+{
+    if (!_showAnnouncementContent){
+        NSMutableString *mutStr = [[NSMutableString alloc] init] ;
+        for (int i=0; i<_mAnnouncementList.count; i++) {
+            RH_AnnouncementModel *announcementModel = ConvertToClassPointer(RH_AnnouncementModel, _mAnnouncementList[i]) ;
+            [mutStr appendString:announcementModel.mContent] ;
+        }
+        
+        _showAnnouncementContent = [NSString stringWithString:mutStr] ;
+    }
+    
+    return _showAnnouncementContent ;
+}
 @end

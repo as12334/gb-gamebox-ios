@@ -12,8 +12,7 @@
 
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-40)/3.0)
 
-@interface RH_HomeCategoryItemsCell()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic,strong) IBOutlet CLSegmentedControl *segmentHeaderView ;
+@interface RH_HomeCategoryItemsCell()<UICollectionViewDelegate,UICollectionViewDataSource>;
 @property (nonatomic,strong) IBOutlet NSLayoutConstraint *layoutSegmentHeaderViewHeight ;
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @end
@@ -28,20 +27,20 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor clearColor] ;
+    self.backgroundColor = [UIColor whiteColor] ;
     self.contentView.backgroundColor = [UIColor clearColor] ;
     
-    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
-    self.separatorLineColor = RH_Line_DefaultColor ;
-    self.separatorLineWidth = PixelToPoint(1.0f) ;
-    [self.contentView addSubview:self.collectionView] ;
-    [self.collectionView reloadData] ;
+//    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
+//    self.separatorLineColor = RH_Line_DefaultColor ;
+//    self.separatorLineWidth = PixelToPoint(1.0f) ;
+//    [self.contentView addSubview:self.collectionView] ;
+//    [self.collectionView reloadData] ;
     
-    //test added
-    [self configSegmentView:self.segmentHeaderView] ;
-    
-    [self.segmentHeaderView addSectionsWithTitles:@[@"天天彩票",@"BB彩票",@"KG彩票"]] ;
-    self.segmentHeaderView.selectedSectionIndex = 0 ;
+//    //test added
+//    [self configSegmentView:self.segmentHeaderView] ;
+//
+//    [self.segmentHeaderView addSectionsWithTitles:@[@"天天彩票",@"BB彩票",@"KG彩票"]] ;
+//    self.segmentHeaderView.selectedSectionIndex = 0 ;
 }
 
 #pragma mark -

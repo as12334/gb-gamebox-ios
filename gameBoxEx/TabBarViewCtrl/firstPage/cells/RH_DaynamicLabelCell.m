@@ -48,7 +48,7 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.labScrollText.text = @"abcdefg你上课可是你的拿到了" ;
+    self.labScrollText.text = ConvertToClassPointer(NSString, context) ;
     self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
     self.labScrollText.frame = CGRectMake(self.scrollView.frameWidth,
                                           floorf((self.scrollView.frameHeigh-self.textSize.height)/2.0),
