@@ -99,7 +99,6 @@
     if (self.bannerModels.count > index) {
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
         [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]] ;
-//        [imageView setImage:ImageWithName(@"tt_banner_image")] ;
     }
     
     return cell;

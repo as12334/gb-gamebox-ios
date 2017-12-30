@@ -1,27 +1,24 @@
 //
-//  RH_HomeCategorySubCell.m
+//  RH_HomeChildCategorySubCell.m
 //  gameBoxEx
 //
 //  Created by luis on 2017/12/21.
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
-#import "RH_HomeCategorySubCell.h"
+#import "RH_HomeChildCategorySubCell.h"
 #import "coreLib.h"
-#import "RH_LotteryCategoryModel.h"
+#import "RH_LotteryAPIInfoModel.h"
 
-@interface RH_HomeCategorySubCell()<CLMaskViewDataSource>
+@interface RH_HomeChildCategorySubCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
 @property (nonatomic,strong) IBOutlet UIImageView *imgIcon ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
-@property (nonatomic,strong) RH_LotteryCategoryModel *lotteryCategoryModel ;
-
-//向下指示图
-@property (nonatomic,strong) IBOutlet UIImageView *indicatorImgView ;
+@property (nonatomic,strong) RH_LotteryAPIInfoModel *lotteryApiModel ;
 
 @end
 
-@implementation RH_HomeCategorySubCell
+@implementation RH_HomeChildCategorySubCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -33,16 +30,14 @@
     
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
-    self.borderView.borderColor = RH_Line_DefaultColor ;
-    self.indicatorImgView.hidden = YES ;
+    self.borderView.borderColor = [UIColor blueColor] ;
+
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
-    self.indicatorImgView.hidden = !selected ;
     self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
-    self.borderView.backgroundColor = selected?[UIColor whiteColor]:[UIColor clearColor] ;
 }
 
 -(void)setSelected:(BOOL)selected
@@ -53,9 +48,9 @@
 
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.lotteryCategoryModel = ConvertToClassPointer(RH_LotteryCategoryModel, context) ;
-    self.labTitle.text = self.lotteryCategoryModel.mApiTypeName ;
-    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryCategoryModel.showCover]] ;
+    self.lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
+    self.labTitle.text = self.lotteryApiModel.mName ;
+    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover]] ;
 }
 
 @end

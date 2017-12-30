@@ -17,7 +17,6 @@
 @property (nonatomic,strong,readonly) NSArray<RH_BannelModel*> *mBannerList ;
 @property (nonatomic,strong,readonly) NSArray<RH_AnnouncementModel*> *mAnnouncementList ;
 @property (nonatomic,strong,readonly) NSArray<RH_LotteryCategoryModel*> *mLotteryCategoryList ;
-@property (nonatomic,strong,readonly) NSDictionary *mCasinoMap ;
 
 #pragma mark-
 @property (nonatomic,strong,readonly) NSString *showAnnouncementContent ;

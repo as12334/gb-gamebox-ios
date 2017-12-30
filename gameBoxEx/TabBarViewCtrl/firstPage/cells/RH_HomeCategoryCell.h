@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CLTableViewCell.h"
 
+@class RH_HomeCategoryCell ;
+@protocol HomeCategoryCellDelegate
+@optional
+-(void)homeCategoryCellDidChangedSelectedIndex:(RH_HomeCategoryCell*)homeCategoryCell ;
+@end
+
 @interface RH_HomeCategoryCell : CLTableViewCell
+@property(nonatomic,weak) id<HomeCategoryCellDelegate> delegate ;
 @property(nonatomic,readonly,assign) NSInteger selectedIndex ;
 @end

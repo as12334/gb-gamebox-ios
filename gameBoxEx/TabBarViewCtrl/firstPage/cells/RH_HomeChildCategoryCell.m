@@ -1,55 +1,48 @@
 //
-//  RH_HomeCategoryCell.m
+//  RH_HomeChildCategoryCell.m
 //  lotteryBox
 //
 //  Created by luis on 2017/12/10.
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
-#import "RH_HomeCategoryCell.h"
-#import "RH_HomeCategorySubCell.h"
+#import "RH_HomeChildCategoryCell.h"
+#import "RH_HomeChildCategorySubCell.h"
 #import "coreLib.h"
-#import "RH_HomePageModel.h"
+#import "RH_LotteryAPIInfoModel.h"
 
-#define HomeCategoryCellHeight                    80.0f
-#define HomeCategoryCellWidth                     floorf((MainScreenW-20)/5.0)
+#define HomeChildCategoryCellHeight                    30.0f
+#define HomeChildCategoryCellWidth                     floorf((MainScreenW-20)/3.0)
 
-@interface RH_HomeCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic,strong) RH_HomePageModel *homePageModel ;
-@property (nonatomic,strong) IBOutlet CLBorderView *collectionBGView ;
+@interface RH_HomeChildCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property (nonatomic,strong) NSArray  *subCategoryList ;
 @property (nonatomic,strong) IBOutlet UICollectionView *collectionView ;
 @end
 
-@implementation RH_HomeCategoryCell
+@implementation RH_HomeChildCategoryCell
 @synthesize collectionView = _collectionView ;
-@synthesize selectedIndex = _selectedIndex  ;
-
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return  HomeCategoryCellHeight;
+    return  HomeChildCategoryCellHeight;
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor] ;
-    self.contentView.backgroundColor = [UIColor clearColor] ;
+    self.contentView.backgroundColor = [UIColor whiteColor] ;
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     _selectedIndex = 0 ;
     
-    self.collectionBGView.backgroundColor = [UIColor whiteColor] ;
-    self.collectionBGView.borderMask = CLBorderMarkTop ;
-    self.collectionBGView.borderColor = RH_Line_DefaultColor ;
-    self.collectionBGView.borderWidth = 1.0f ;
     [self configureCollection:self.collectionView] ;
 }
 
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.homePageModel = ConvertToClassPointer(RH_HomePageModel, context) ;
+    self.subCategoryList = ConvertToClassPointer(NSArray, context) ;
     [self.collectionView reloadData] ;
-    if (_selectedIndex<0 || _selectedIndex>=self.homePageModel.mLotteryCategoryList.count){
+    if (_selectedIndex<0 || _selectedIndex>=self.subCategoryList.count){
         _selectedIndex = 0 ;
     }
     
@@ -63,7 +56,7 @@
     flowLayout.minimumLineSpacing = 0.f;
     flowLayout.minimumInteritemSpacing = 0.f;
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 10.f, 0.0f, 10.f);
-    flowLayout.itemSize = CGSizeMake(HomeCategoryCellWidth, HomeCategoryCellHeight) ;
+    flowLayout.itemSize = CGSizeMake(HomeChildCategoryCellWidth, HomeChildCategoryCellHeight) ;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     collectionView.collectionViewLayout = flowLayout ;
@@ -73,28 +66,29 @@
     collectionView.dataSource = self;
     collectionView.allowsMultipleSelection = NO ;
     collectionView.allowsSelection = YES ;
-    [collectionView registerCellWithClass:[RH_HomeCategorySubCell class]];
+    [collectionView registerCellWithClass:[RH_HomeChildCategorySubCell class]];
 }
+
 
 #pragma mark -
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.homePageModel.mLotteryCategoryList.count;
+    return self.subCategoryList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RH_HomeCategorySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_HomeCategorySubCell defaultReuseIdentifier] forIndexPath:indexPath];
+    RH_HomeChildCategorySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_HomeChildCategorySubCell defaultReuseIdentifier] forIndexPath:indexPath];
 
-    [cell updateViewWithInfo:nil context:self.homePageModel.mLotteryCategoryList[indexPath.item]];
+    [cell updateViewWithInfo:nil context:self.subCategoryList[indexPath.item]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectedIndex = indexPath.item ;
-    ifRespondsSelector(self.delegate, @selector(homeCategoryCellDidChangedSelectedIndex:)){
-        [self.delegate homeCategoryCellDidChangedSelectedIndex:self] ;
+    ifRespondsSelector(self.delegate, @selector(homeChildCategoryCellDidChangedSelectedIndex:)){
+        [self.delegate homeChildCategoryCellDidChangedSelectedIndex:self] ;
     }
 }
 

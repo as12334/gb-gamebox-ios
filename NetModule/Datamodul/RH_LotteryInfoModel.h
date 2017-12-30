@@ -25,5 +25,8 @@
 @property(nonatomic,strong,readonly) NSString  *mCover ;
 @property(nonatomic,strong,readonly) NSString  *mCantry ;
 
+//-extent
+@property(nonatomic,strong,readonly) NSString *showCover ;
+
 @end
 

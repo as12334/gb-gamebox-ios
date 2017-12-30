@@ -13,23 +13,30 @@
 #import "RH_BannerViewCell.h"
 #import "RH_DaynamicLabelCell.h"
 #import "RH_HomeCategoryCell.h"
+#import "RH_HomeChildCategoryCell.h"
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomePageModel.h"
 #import "RH_API.h"
 
 
-@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate>
+@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
+@property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
 
+//-
+@property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
+@property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
 @end
 
 @implementation RH_FirstPageViewControllerEx
 @synthesize  labDomain = _labDomain                         ;
 @synthesize dynamicLabCell = _dynamicLabCell                ;
 @synthesize homeCategoryCell = _homeCategoryCell            ;
+@synthesize homeChildCatetoryCell = _homeChildCatetoryCell  ;
+//@synthesize homeSubCategoryCell = _homeSubCategoryCell      ;
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
 
 - (void)viewDidLoad {
@@ -86,6 +93,7 @@
     [self.contentTableView registerCellWithClass:[RH_BannerViewCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DaynamicLabelCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_HomeCategoryCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_HomeChildCategoryCell class]] ;
     
     [self.contentView addSubview:self.contentTableView] ;
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
@@ -117,17 +125,39 @@
     return _dynamicLabCell ;
 }
 
-#pragma mark-
+#pragma mark- homeCategoryCell-
 -(RH_HomeCategoryCell *)homeCategoryCell
 {
     if (!_homeCategoryCell){
         _homeCategoryCell = [RH_HomeCategoryCell createInstance] ;
+        _homeCategoryCell.delegate = self ;
     }
     
     return _homeCategoryCell ;
 }
 
-#pragma mark-
+-(void)homeCategoryCellDidChangedSelectedIndex:(RH_HomeCategoryCell*)homeCategoryCell
+{
+    [self.contentTableView reloadData] ;
+}
+
+#pragma mark -homeChildCatetoryCell
+-(RH_HomeChildCategoryCell *)homeChildCatetoryCell
+{
+    if (!_homeChildCatetoryCell){
+        _homeChildCatetoryCell = [RH_HomeChildCategoryCell createInstance] ;
+        _homeChildCatetoryCell.delegate = self ;
+    }
+    return _homeChildCatetoryCell ;
+}
+
+-(void)homeChildCategoryCellDidChangedSelectedIndex:(RH_HomeChildCategoryCell*)homeChildCategoryCell
+{
+    [self.contentTableView reloadData] ;
+}
+
+
+#pragma mark- homeCategoryItemsCell
 -(RH_HomeCategoryItemsCell *)homeCategoryItemsCell
 {
     if (!_homeCategoryItemsCell){
@@ -135,6 +165,27 @@
     }
     
     return _homeCategoryItemsCell ;
+}
+
+#pragma mark- selectedCategoryModel
+-(RH_LotteryCategoryModel *)selectedCategoryModel
+{
+    RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+    if (homePageModel){
+        return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
+    }
+    return nil ;
+}
+
+-(NSArray *)currentCategoryItemsList
+{
+    if (self.selectedCategoryModel.isExistSubCategory){
+        NSInteger index = self.homeChildCatetoryCell.selectedIndex ;
+        RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[index] ;
+        return lotteryApiModel.mGameItems ;
+    }else{
+        return self.selectedCategoryModel.mSiteApis ;
+    }
 }
 
 #pragma mark-
@@ -183,7 +234,7 @@
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return MAX(1, self.pageLoadManager.currentDataCount?4:0) ;
+    return MAX(1, self.pageLoadManager.currentDataCount?5:0) ;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -203,10 +254,17 @@
                 return homePageModel.mLotteryCategoryList.count?1:0 ;
                 break;
            
-            case 3: //category
-                return 1 ;
+            case 3: //child category
+                {
+                    return self.selectedCategoryModel.isExistSubCategory?1:0 ;
+                }
                 break;
-                
+            
+            case 4: // categoryitem
+            {
+                return 1 ;
+            }
+                break;
             default:
                 break;
         }
@@ -226,9 +284,11 @@
         }else if (indexPath.section==1){
             return [RH_DaynamicLabelCell heightForCellWithInfo:nil tableView:tableView context:nil];
         }else if (indexPath.section==2){
-            return [RH_HomeCategoryCell heightForCellWithInfo:nil tableView:tableView context:nil];
+                return [RH_HomeCategoryCell heightForCellWithInfo:nil tableView:tableView context:nil];
         }else if (indexPath.section==3){
-            return [RH_HomeCategoryItemsCell heightForCellWithInfo:nil tableView:tableView context:nil];
+            return [RH_HomeChildCategoryCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        }else if (indexPath.section==4){
+            return [RH_HomeCategoryItemsCell heightForCellWithInfo:nil tableView:tableView context:self.currentCategoryItemsList];
         }else{
             return 0.0f ;
         }
@@ -254,7 +314,10 @@
             [self.homeCategoryCell updateCellWithInfo:nil context:homePageModel] ;
             return self.homeCategoryCell  ;
         }else if (indexPath.section==3){
-            [self.homeCategoryItemsCell updateCellWithInfo:nil context:nil] ;
+            [self.homeChildCatetoryCell updateCellWithInfo:nil context:self.selectedCategoryModel.mSiteApis] ;
+            return self.homeChildCatetoryCell  ;
+        }else if (indexPath.section==4){
+            [self.homeCategoryItemsCell updateCellWithInfo:nil context:self.currentCategoryItemsList] ;
             return self.homeCategoryItemsCell  ;
         }
     }else{

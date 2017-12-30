@@ -9,11 +9,13 @@
 #import "RH_LotteryAPIInfoModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
+#import "RH_APPDelegate.h"
 
 @interface RH_LotteryAPIInfoModel ()
 @end ;
 
 @implementation RH_LotteryAPIInfoModel
+@synthesize showCover = _showCover  ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -26,16 +28,21 @@
         _mSiteID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_SITEID] ;
         _mApiTypeID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_APITYPEID] ;
         _mRelationID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_RELATIONID] ;
-        _mLotteryInfoList = [RH_LotteryInfoModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_LOTTERYAPIINFO_GAMELIST]] ;
+        _mCover = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_COVER] ;
+        _mGameItems = [RH_LotteryInfoModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_LOTTERYAPIINFO_GAMELIST]] ;
     }
     
     return self ;
 }
 
-//#pragma mark-
-//-(void)updateLotteryInfoWithList:(NSArray*)infoList
-//{
-//    _mLotteryInfoList = [RH_LotteryInfoModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, infoList)] ;
-//}
+-(NSString *)showCover
+{
+    if (!_showCover){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+    }
+    
+    return _showCover ;
+}
 
 @end

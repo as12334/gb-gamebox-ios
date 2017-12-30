@@ -13,15 +13,19 @@
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-40)/3.0)
 
 @interface RH_HomeCategoryItemsCell()<UICollectionViewDelegate,UICollectionViewDataSource>;
-@property (nonatomic,strong) IBOutlet NSLayoutConstraint *layoutSegmentHeaderViewHeight ;
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
+@property (nonatomic,strong) NSArray *itemsList ;
 @end
 
 @implementation RH_HomeCategoryItemsCell
 @synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return HomeCategoryItemsCellWidth * 3 + (3-1)*10 + 20.0f + 37.0f ;
+    NSArray *array = ConvertToClassPointer(NSArray, context) ;
+    NSInteger number = array.count ;
+    NSInteger lines = MAX(number%3?(number/3)+1:(number/3) ,3);
+    
+    return HomeCategoryItemsCellWidth * lines + (lines-1)*5 + 30.0f ;
 }
 
 - (void)awakeFromNib
@@ -30,46 +34,18 @@
     self.backgroundColor = [UIColor whiteColor] ;
     self.contentView.backgroundColor = [UIColor clearColor] ;
     
-//    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
-//    self.separatorLineColor = RH_Line_DefaultColor ;
-//    self.separatorLineWidth = PixelToPoint(1.0f) ;
-//    [self.contentView addSubview:self.collectionView] ;
-//    [self.collectionView reloadData] ;
-    
-//    //test added
-//    [self configSegmentView:self.segmentHeaderView] ;
-//
-//    [self.segmentHeaderView addSectionsWithTitles:@[@"天天彩票",@"BB彩票",@"KG彩票"]] ;
-//    self.segmentHeaderView.selectedSectionIndex = 0 ;
+    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
+    self.separatorLineColor = RH_Line_DefaultColor ;
+    self.separatorLineWidth = PixelToPoint(1.0f) ;
+    [self.contentView addSubview:self.collectionView] ;
+    [self.collectionView reloadData] ;
 }
 
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    
-}
-
-#pragma mark-
--(void)configSegmentView:(CLSegmentedControl*)segmentControl
-{
-    segmentControl.backgroundColor = [UIColor clearColor] ;
-    segmentControl.separatorLineWidth = 0.f;
-    segmentControl.borderMask = CLBorderMarkBottom;
-    segmentControl.borderColor = [UIColor grayColor];
-    segmentControl.apportionsSelectedIndicatorLineByContent = YES;
-    segmentControl.showSelectedIndicatorLine = YES;
-    segmentControl.selectedIndicatorLineInset = UIEdgeInsetsMake(0.F, -8.F, 0.F, -8.F);
-    segmentControl.selectedIndicatorLineColor = [UIColor blueColor];
-    segmentControl.selectedIndicatorLineWidth = 2.f;
-    [segmentControl setTextColor:colorWithRGB(124, 124, 124) forState:CLSegmentedControlSectionStateNormal];
-    [segmentControl setTextColor:colorWithRGB(53, 118, 185) forState:CLSegmentedControlSectionStateSelected];
-    segmentControl.textFont = [UIFont systemFontOfSize:14.f];
-    [segmentControl addTarget:self action:@selector(_segmentedControlHandle:) forControlEvents:UIControlEventValueChanged];
-}
-
--(void)_segmentedControlHandle:(id)sender
-{
-    
+    self.itemsList = ConvertToClassPointer(NSArray, context) ;
+    [self.collectionView reloadData] ;
 }
 
 #pragma mark-
@@ -84,9 +60,9 @@
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,
-                                                                             self.layoutSegmentHeaderViewHeight.constant,
+                                                                             0,
                                                                              self.contentView.frameWidth,
-                                                                             self.contentView.frameHeigh - self.layoutSegmentHeaderViewHeight.constant)
+                                                                             self.contentView.frameHeigh)
                                              collectionViewLayout:flowLayout];
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
@@ -104,19 +80,21 @@
 #pragma mark -
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3 ;
+    NSInteger number = self.itemsList.count ;
+    return (number%3?(number/3)+1:(number/3)) ;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return section<2?3:2;
+    NSInteger leftItems = self.itemsList.count - section*3 ;
+    return MIN(3, leftItems) ;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_HomeCategoryItemSubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_HomeCategoryItemSubCell defaultReuseIdentifier] forIndexPath:indexPath];
-
-    [cell updateViewWithInfo:nil context:indexPath];
+    
+    [cell updateViewWithInfo:nil context:self.itemsList[indexPath.section*3+indexPath.item]];
     return cell;
 }
 
