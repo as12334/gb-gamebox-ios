@@ -10,4 +10,6 @@
 
 @interface RH_CustomTabBar : UITabBar
 @property (nonatomic,assign) CGFloat midMoveUP ;
+
+- (void)setViewBackgroundColor:(UIColor *)color;
 @end
