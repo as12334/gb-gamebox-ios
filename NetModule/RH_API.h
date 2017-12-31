@@ -21,13 +21,15 @@
 #define RH_SP_COMMON_CHECKVERSION                        @"code"
 
 
-//v3原生通用参数定义
-#define RH_SP_COMMON_V3_OSTYPE                              @"os_type"
+//v3原生接口公共规范
+#define RH_SP_COMMON_V3_OSTYPE                              @"terminal"
 #define RH_SP_COMMON_V3_VERSION                             @"version"
+#define RH_SP_COMMON_V3_THEME                               @"theme"
+#define RH_SP_COMMON_V3_RESOLUTION                          @"resolution"
 #define RH_SP_COMMON_V3_VERSION_VALUE                       @"3.0"
 
 //===========================================================
-//通过返回参数
+//通过返回参数
 //===========================================================
 
 //1.success,标记是否成功,BOOL类型
@@ -93,6 +95,10 @@
 #define RH_GP_ANNOUNCEMENT_ORDERNUM                                                 @"orderNum"
 #define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                                 @"publishTime"
 #define RH_GP_ANNOUNCEMENT_TITLE                                                @"title"
+
+#pragma mark - V3 活动图 信息 
+
+
 
 #pragma mark - V3 首页api 分类模型
 #define RH_GP_LotteryCategory_APITYPE                                     @"apiType"

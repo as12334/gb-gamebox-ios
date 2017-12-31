@@ -1,5 +1,5 @@
 //
-//  RH_CommonViewController.h
+//  RH_V3SimpleWebViewController.h
 //  gameBoxEx
 //
 //  Created by luis on 2017/10/7.
@@ -9,6 +9,6 @@
 #import "RH_BasicViewController.h"
 #import "RH_SimpleWebViewController.h"
 
-@interface RH_CommonViewController : RH_SimpleWebViewController
+@interface RH_V3SimpleWebViewController : RH_SimpleWebViewController
 
 @end

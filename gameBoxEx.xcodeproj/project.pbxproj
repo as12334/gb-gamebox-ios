@@ -248,6 +248,13 @@
 		A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747C21FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib */; };
 		A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747C51FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib */; };
 		A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747C61FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m */; };
+		A05747E31FF886810068D0E4 /* RH_UserInfoGengeralCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747DE1FF886810068D0E4 /* RH_UserInfoGengeralCell.xib */; };
+		A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747DF1FF886810068D0E4 /* RH_UserInfoTotalCell.xib */; };
+		A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747E01FF886810068D0E4 /* RH_UserInfoTotalCell.m */; };
+		A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747E11FF886810068D0E4 /* RH_UserInfoGengeralCell.m */; };
+		A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747E21FF886810068D0E4 /* RH_userInfoView.m */; };
+		A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747E81FF889EE0068D0E4 /* RH_userInfoView.xib */; };
+		A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747EA1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m */; };
 		A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */; };
 		A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */; };
 		A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */; };
@@ -272,7 +279,6 @@
 		A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE3721FEF791E00D5DF71 /* RH_NavigationUserInfoView.m */; };
 		A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */; };
 		A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE3761FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m */; };
-		A07FE37B1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE37A1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m */; };
 		A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */; };
 		A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
@@ -773,6 +779,17 @@
 		A05747C51FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeChildCategorySubCell.xib; sourceTree = "<group>"; };
 		A05747C61FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeChildCategorySubCell.m; sourceTree = "<group>"; };
 		A05747C71FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomeChildCategorySubCell.h; sourceTree = "<group>"; };
+		A05747DA1FF886810068D0E4 /* RH_userInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_userInfoView.h; sourceTree = "<group>"; };
+		A05747DC1FF886810068D0E4 /* RH_UserInfoTotalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoTotalCell.h; sourceTree = "<group>"; };
+		A05747DD1FF886810068D0E4 /* RH_UserInfoGengeralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoGengeralCell.h; sourceTree = "<group>"; };
+		A05747DE1FF886810068D0E4 /* RH_UserInfoGengeralCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_UserInfoGengeralCell.xib; sourceTree = "<group>"; };
+		A05747DF1FF886810068D0E4 /* RH_UserInfoTotalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_UserInfoTotalCell.xib; sourceTree = "<group>"; };
+		A05747E01FF886810068D0E4 /* RH_UserInfoTotalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoTotalCell.m; sourceTree = "<group>"; };
+		A05747E11FF886810068D0E4 /* RH_UserInfoGengeralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoGengeralCell.m; sourceTree = "<group>"; };
+		A05747E21FF886810068D0E4 /* RH_userInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_userInfoView.m; sourceTree = "<group>"; };
+		A05747E81FF889EE0068D0E4 /* RH_userInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_userInfoView.xib; sourceTree = "<group>"; };
+		A05747EA1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_V3SimpleWebViewController.m; sourceTree = "<group>"; };
+		A05747EB1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_V3SimpleWebViewController.h; sourceTree = "<group>"; };
 		A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
 		A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
@@ -814,8 +831,6 @@
 		A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NavigationUserInfoView.xib; sourceTree = "<group>"; };
 		A07FE3761FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MainTabBarControllerEx.m; sourceTree = "<group>"; };
 		A07FE3771FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MainTabBarControllerEx.h; sourceTree = "<group>"; };
-		A07FE3791FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoSubViewControler.h; sourceTree = "<group>"; };
-		A07FE37A1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoSubViewControler.m; sourceTree = "<group>"; };
 		A07FE37D1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NaviUserInfoTableCell.h; sourceTree = "<group>"; };
 		A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NaviUserInfoTableCell.m; sourceTree = "<group>"; };
 		A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NaviUserInfoTableCell.xib; sourceTree = "<group>"; };
@@ -1625,14 +1640,13 @@
 		A010A0631F879ACE004E6EF4 /* mainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A05747D91FF886810068D0E4 /* userInfoView */,
 				A07FE37C1FEFA16600D5DF71 /* cells */,
 				A010A06F1F879ACE004E6EF4 /* RH_BasicHelpView.h */,
 				A010A0701F879ACE004E6EF4 /* RH_BasicHelpView.m */,
 				A07FE3711FEF791E00D5DF71 /* RH_NavigationUserInfoView.h */,
 				A07FE3721FEF791E00D5DF71 /* RH_NavigationUserInfoView.m */,
 				A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */,
-				A07FE3791FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.h */,
-				A07FE37A1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m */,
 				A010A0751F879ACE004E6EF4 /* RH_BasicViewController.h */,
 				A010A0761F879ACE004E6EF4 /* RH_BasicViewController.m */,
 				A010A0731F879ACE004E6EF4 /* RH_BasicSubViewController.h */,
@@ -1800,6 +1814,8 @@
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
+				A05747EB1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.h */,
+				A05747EA1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m */,
 				A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */,
 				A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */,
 			);
@@ -1813,6 +1829,30 @@
 				A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */,
 			);
 			path = minePage;
+			sourceTree = "<group>";
+		};
+		A05747D91FF886810068D0E4 /* userInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				A05747DB1FF886810068D0E4 /* cells */,
+				A05747DA1FF886810068D0E4 /* RH_userInfoView.h */,
+				A05747E21FF886810068D0E4 /* RH_userInfoView.m */,
+				A05747E81FF889EE0068D0E4 /* RH_userInfoView.xib */,
+			);
+			path = userInfoView;
+			sourceTree = "<group>";
+		};
+		A05747DB1FF886810068D0E4 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				A05747DC1FF886810068D0E4 /* RH_UserInfoTotalCell.h */,
+				A05747E01FF886810068D0E4 /* RH_UserInfoTotalCell.m */,
+				A05747DF1FF886810068D0E4 /* RH_UserInfoTotalCell.xib */,
+				A05747DD1FF886810068D0E4 /* RH_UserInfoGengeralCell.h */,
+				A05747E11FF886810068D0E4 /* RH_UserInfoGengeralCell.m */,
+				A05747DE1FF886810068D0E4 /* RH_UserInfoGengeralCell.xib */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		A058FF271FE8A6BC006EF279 /* CWLateralSlide */ = {
@@ -2095,6 +2135,7 @@
 				A07DCEC11FEBA5120006FAE4 /* tt_category_icon.png in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
+				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				A07FE36D1FECF97A00D5DF71 /* tt_item_image.png in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
@@ -2102,10 +2143,12 @@
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
 				A001B3DC1F8EF7CA00309EA4 /* tab_lottery_deposit@2x.png in Resources */,
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
+				A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
 				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
 				A001B3DF1F8EF7CA00309EA4 /* tab_lottery_mine@2x.png in Resources */,
+				A05747E31FF886810068D0E4 /* RH_UserInfoGengeralCell.xib in Resources */,
 				A001B3E01F8EF7CA00309EA4 /* tab_lottery_normal@2x.png in Resources */,
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
@@ -2200,6 +2243,7 @@
 				A0109FAA1F8788FF004E6EF4 /* NSObject+IntervalAnimation.m in Sources */,
 				A0109FAB1F8788FF004E6EF4 /* NSObject+ShowViewControllerDelegate.m in Sources */,
 				A0109FAC1F8788FF004E6EF4 /* NSString+Base64.m in Sources */,
+				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
@@ -2241,6 +2285,7 @@
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
+				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
@@ -2334,8 +2379,8 @@
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
-				A07FE37B1FEFA04F00D5DF71 /* RH_UserInfoSubViewControler.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
+				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
@@ -2350,6 +2395,7 @@
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
+				A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */,
 				A0109F961F8787E4004E6EF4 /* CLScanImageView.m in Sources */,
 				A0109F971F8787E4004E6EF4 /* CLStaticCollectionView.m in Sources */,
 				A0109F981F8787E4004E6EF4 /* CLStaticCollectionViewCell.m in Sources */,

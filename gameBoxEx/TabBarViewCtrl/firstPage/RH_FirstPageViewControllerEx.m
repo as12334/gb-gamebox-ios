@@ -16,6 +16,7 @@
 #import "RH_HomeChildCategoryCell.h"
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomePageModel.h"
+#import "RH_V3SimpleWebViewController.h"
 #import "RH_API.h"
 
 
@@ -42,11 +43,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.navigationBarItem.leftBarButtonItems = @[self.mainMenuButtonItem,self.logoButtonItem] ;
-//    self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
-    self.navigationBarItem.rightBarButtonItem = self.userInfoButtonItem ;
+    [self setNeedUpdateView] ;
     [self setupUI] ;
+    
+    //增加login status changed notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }
 
 -(BOOL)hasTopView
@@ -58,6 +60,20 @@
 {
     return 20.0f ;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+#pragma mark-
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
+        [self setNeedUpdateView] ;
+    }
+}
+
 
 #pragma mark-
 -(UILabel*)labDomain
@@ -71,7 +87,7 @@
             _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",self.appDelegate.domain] ;
         }
         _labDomain.font = [UIFont systemFontOfSize:12.0f] ;
-        _labDomain.textColor = RH_Label_DefaultTextColor ;
+        _labDomain.textColor = [UIColor whiteColor] ;
         _labDomain.translatesAutoresizingMaskIntoConstraints = NO ;
     }
     
@@ -83,7 +99,9 @@
 {
     [self.topView addSubview:self.labDomain] ;
     setCenterConstraint(self.labDomain, self.topView) ;
-    self.topView.backgroundColor = colorWithRGB(226, 226, 226) ;
+    self.topView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    self.topView.borderMask = CLBorderMarkTop ;
+    self.topView.borderColor = colorWithRGB(204, 204, 204) ;
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
@@ -114,6 +132,15 @@
                                                                      startSection:0
                                                                          startRow:0
                                                                    segmentedCount:1] ;
+}
+
+-(void)updateView
+{
+    if (self.appDelegate.isLogin){
+        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
+    }else{
+        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
+    }
 }
 
 #pragma mark-
@@ -188,10 +215,10 @@
     }
 }
 
-#pragma mark-
+#pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {
-    if (NetworkAvailable()){
+    if (NetworkAvailable() && [self.pageLoadManager currentDataCount]==0){
         [self startUpdateData] ;
     }
 }
@@ -327,10 +354,10 @@
     return nil ;
 }
 
-#pragma mark- cells Delegate
+#pragma mark- Banner Cells Delegate
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
-    NSLog(@"") ;
+    [self showViewController:[RH_V3SimpleWebViewController viewControllerWithContext:bannerModel.contentURL] sender:self] ;
 }
 
 @end

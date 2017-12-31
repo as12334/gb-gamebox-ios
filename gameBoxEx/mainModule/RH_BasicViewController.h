@@ -50,6 +50,11 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 -(void)configureContentLoadingIndicateView:(RH_LoadingIndicateView*)contentLoadingIndicateView ;
 -(void)backBarButtonItemHandle      ;
 -(void)userInfoButtonItemHandle ;
+
+#pragma mark-
+-(void)tryLoginButtonItemHandle ;
+-(void)loginButtonItemHandle    ;
+-(void)signButtonItemHandle     ;
 @end
 
 
