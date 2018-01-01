@@ -19,8 +19,9 @@
 {
     self = [super initWithInfoDic:info] ;
     if (self){
-        _mBannerList = [RH_BannelModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_BANNER_LIST]] ;
-        _mAnnouncementList = [RH_AnnouncementModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_ANNOUNCEMENT_LIST]] ;
+        _mActivityInfo = [[RH_ActivityModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_HOMEINFO_ACTIVITY]] ;
+        _mBannerList = [RH_BannelModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_BANNER]] ;
+        _mAnnouncementList = [RH_AnnouncementModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_ANNOUNCEMENT]] ;
         _mLotteryCategoryList = [RH_LotteryCategoryModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_SITEAPIRELATION]] ;
     }
     
@@ -41,4 +42,5 @@
     
     return _showAnnouncementContent ;
 }
+
 @end

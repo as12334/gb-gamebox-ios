@@ -10,13 +10,15 @@
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
 #import "UIViewController+CWLateralSlide.h"
-//#import "RH_SlideMenuViewController.h"
+#import "RH_userInfoView.h"
 #import "RH_NavigationUserInfoView.h"
-#import "RH_UserInfoSubViewControler.h"
+#import "RH_LoginViewControllerEx.h"
+#import "RH_CustomViewController.h"
+#import "RH_API.h"
 
-@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate>
+@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
-@property (nonatomic,strong,readonly) RH_UserInfoSubViewControler *userInfoSubViewCtrl ;
+@property (nonatomic,strong,readonly) RH_userInfoView *userInfoView ;
 @end
 
 @implementation RH_BasicViewController
@@ -29,7 +31,7 @@
 @synthesize logoButtonItem  = _logoButtonItem               ;
 @synthesize userInfoButtonItem = _userInfoButtonItem        ;
 @synthesize navigationUserInfoView = _navigationUserInfoView ;
-@synthesize userInfoSubViewCtrl = _userInfoSubViewCtrl      ;
+@synthesize userInfoView = _userInfoView                      ;
 
 -(BOOL)hasNavigationBar
 {
@@ -154,25 +156,26 @@
     if (!_tryLoginButtonItem){
         CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
         button.frame = CGRectMake(0, 0, 40,30);
-        [button setBackgroundColor:colorWithRGB(18, 121, 217) forState:UIControlStateNormal];
+        [button setBackgroundColor:colorWithRGB(177, 52, 207) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         [button setTitle:@"试玩" forState:UIControlStateNormal] ;
         button.layer.cornerRadius = 4.0f ;
         button.layer.masksToBounds = YES ;
         [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
-        [button addTarget:self action:@selector(_tryLoginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        [button addTarget:self action:@selector(tryLoginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _tryLoginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
     }
     
     return  _tryLoginButtonItem ;
 }
 
--(void)_tryLoginButtonItemHandle
+-(void)tryLoginButtonItemHandle
 {
-    
+    [self showProgressIndicatorViewWithAnimated:YES title:@"试玩请求中..."] ;
+    [self.serviceRequest startDemoLogin] ;
 }
 
-#pragma mark-
+#pragma mark-  loginButton Item
 -(UIBarButtonItem *)loginButtonItem
 {
     if (!_loginButtonItem){
@@ -181,7 +184,7 @@
         [button setBackgroundColor:colorWithRGB(29, 194, 142) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         [button setTitle:@"登录" forState:UIControlStateNormal] ;
-        [button addTarget:self action:@selector(_loginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        [button addTarget:self action:@selector(loginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
         button.layer.cornerRadius = 4.0f ;
         button.layer.masksToBounds = YES ;
         [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
@@ -191,10 +194,41 @@
     return  _loginButtonItem ;
 }
 
--(void)_loginButtonItemHandle
+-(void)loginButtonItemHandle
 {
-    
+    RH_LoginViewControllerEx *loginViewControllerEx = [RH_LoginViewControllerEx viewControllerWithContext:nil] ;
+    loginViewControllerEx.delegate = self ;
+    [self showViewController:loginViewControllerEx sender:self] ;
 }
+
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+}
+
+-(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+}
+
+-(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    
+    if (bFlag==false){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *account = [defaults stringForKey:@"account"] ;
+        NSString *password = [defaults stringForKey:@"password"] ;
+        
+        [self showProgressIndicatorViewWithAnimated:YES title:@"自动login..."] ;
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+        }else{
+            [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+        }
+    }
+}
+
 
 #pragma mark-
 -(UIBarButtonItem *)signButtonItem
@@ -205,7 +239,7 @@
         [button setBackgroundColor:colorWithRGB(240, 175, 1) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         [button setTitle:@"注册" forState:UIControlStateNormal] ;
-        [button addTarget:self action:@selector(_signButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        [button addTarget:self action:@selector(signButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
         button.layer.cornerRadius = 4.0f ;
         button.layer.masksToBounds = YES ;
         [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
@@ -215,9 +249,10 @@
     return  _signButtonItem ;
 }
 
--(void)_signButtonItemHandle
+-(void)signButtonItemHandle
 {
-    
+    self.appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
+    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
 }
 
 #pragma mark-
@@ -260,32 +295,40 @@
     return  _userInfoButtonItem ;
 }
 
--(RH_UserInfoSubViewControler *)userInfoSubViewCtrl
+-(RH_userInfoView *)userInfoView
 {
-    if (!_userInfoSubViewCtrl){
-        _userInfoSubViewCtrl = [RH_UserInfoSubViewControler viewController] ;
-        _userInfoSubViewCtrl.view.frame = self.view.bounds ;
+    if (!_userInfoView){
+        _userInfoView = [RH_userInfoView createInstance] ;
+        _userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
+                                         64,
+                                         userInfoViewWidth,
+                                         0);
     }
-    
-    return _userInfoSubViewCtrl ;
+
+    return _userInfoView ;
 }
 
 -(void)userInfoButtonItemHandle
 {
-    if (self.userInfoSubViewCtrl.parentViewController != self) {
-        //加入成为子控制器
-        [self addChildViewController:self.userInfoSubViewCtrl];
-        //开始显示
-        [self.userInfoSubViewCtrl beginAppearanceTransition:YES animated:YES];
-        [self.contentView addSubview:self.userInfoSubViewCtrl.view];
-        [self.userInfoSubViewCtrl endAppearanceTransition];
-        
-    }else {
-        //移除显示
-        [self.userInfoSubViewCtrl beginAppearanceTransition:YES animated:YES];
-        [self.userInfoSubViewCtrl.view removeFromSuperview];
-        [self.userInfoSubViewCtrl endAppearanceTransition];
-        [self.userInfoSubViewCtrl removeFromParentViewController] ;
+    if (self.userInfoView.superview==nil) { //展现动画
+        [self.view addSubview:self.userInfoView] ;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
+                                                 64,
+                                                 userInfoViewWidth,
+                                                 userInfoViewHeigh);
+        } completion:^(BOOL finished) {
+            
+        }] ;
+    }else {//移出动画
+        [UIView animateWithDuration:0.5 animations:^{
+            self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
+                                                 64,
+                                                 userInfoViewWidth,
+                                                 0);
+        } completion:^(BOOL finished) {
+            [self.userInfoView removeFromSuperview] ;
+        }] ;
     }
 }
 

@@ -94,6 +94,7 @@
 #import "CLImageTitleStaticCollectionViewCell.h"
 #import "KIPageView.h"
 #import "CLSegmentedControl.h"
+#import "CLSelectionControl.h"
 
 #pragma Mark-pageview
 #import "CLPageView.h"

@@ -46,10 +46,10 @@
 //    界面属性定义
 //===========================================================
 #define   RH_NavigationBar_BackgroundColor              colorWithRGB(51, 120, 211)
-#define   RH_NavigationBar_ForegroundColor              colorWithRGB(51, 51, 51)
+#define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
 
-#define   RH_TabBar_BackgroundColor                     colorWithRGB(0, 0, 0)
+#define   RH_TabBar_BackgroundColor                     colorWithRGB(193, 194, 195)
 #define   RH_TabBar_TitleNormalColor                    colorWithRGB(137, 137, 137)
 #define   RH_TabBar_TitleSelectedColor                  colorWithRGB(213, 201, 78)
 #define   RH_TabBar_TitleFontSize                       [UIFont systemFontOfSize:14.0f]

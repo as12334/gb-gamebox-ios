@@ -16,15 +16,18 @@
 #import "RH_HomeChildCategoryCell.h"
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomePageModel.h"
+#import "RH_V3SimpleWebViewController.h"
+#import "RH_ActivithyView.h"
 #import "RH_API.h"
 
 
-@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate>
+@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,ActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
+@property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
 
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
@@ -36,17 +39,18 @@
 @synthesize dynamicLabCell = _dynamicLabCell                ;
 @synthesize homeCategoryCell = _homeCategoryCell            ;
 @synthesize homeChildCatetoryCell = _homeChildCatetoryCell  ;
-//@synthesize homeSubCategoryCell = _homeSubCategoryCell      ;
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
+@synthesize activityView = _activityView                    ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.navigationBarItem.leftBarButtonItems = @[self.mainMenuButtonItem,self.logoButtonItem] ;
-//    self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
-    self.navigationBarItem.rightBarButtonItem = self.userInfoButtonItem ;
+    [self setNeedUpdateView] ;
     [self setupUI] ;
+    
+    //增加login status changed notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }
 
 -(BOOL)hasTopView
@@ -58,6 +62,20 @@
 {
     return 20.0f ;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+#pragma mark-
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
+        [self setNeedUpdateView] ;
+    }
+}
+
 
 #pragma mark-
 -(UILabel*)labDomain
@@ -71,7 +89,7 @@
             _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",self.appDelegate.domain] ;
         }
         _labDomain.font = [UIFont systemFontOfSize:12.0f] ;
-        _labDomain.textColor = RH_Label_DefaultTextColor ;
+        _labDomain.textColor = [UIColor whiteColor] ;
         _labDomain.translatesAutoresizingMaskIntoConstraints = NO ;
     }
     
@@ -83,7 +101,9 @@
 {
     [self.topView addSubview:self.labDomain] ;
     setCenterConstraint(self.labDomain, self.topView) ;
-    self.topView.backgroundColor = colorWithRGB(226, 226, 226) ;
+    self.topView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    self.topView.borderMask = CLBorderMarkTop ;
+    self.topView.borderColor = colorWithRGB(204, 204, 204) ;
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
@@ -114,6 +134,15 @@
                                                                      startSection:0
                                                                          startRow:0
                                                                    segmentedCount:1] ;
+}
+
+-(void)updateView
+{
+    if (self.appDelegate.isLogin){
+        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
+    }else{
+        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
+    }
 }
 
 #pragma mark-
@@ -188,10 +217,57 @@
     }
 }
 
-#pragma mark-
+#pragma mark-activityView
+-(RH_ActivithyView *)activityView
+{
+    if (!_activityView){
+        _activityView = [RH_ActivithyView createInstance] ;
+        _activityView.frame = CGRectMake(self.view.frameWidth - activithyViewWidth -10,
+                                         self.view.frameHeigh - activithyViewHeigh - TabBarHeight - 10,
+                                         activithyViewWidth,
+                                         activithyViewHeigh) ;
+        _activityView.delegate = self ;
+    }
+    
+    return _activityView ;
+}
+-(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
+{
+    
+}
+
+-(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView
+{
+    [self activityViewHide] ;
+}
+
+-(void)activityViewShowWith:(RH_ActivityModel*)activityModel
+{
+    if (self.activityView.superview) return ;
+    
+    self.activityView.alpha = 0.0 ;
+    [self.view addSubview:self.activityView] ;
+    [UIView animateWithDuration:1.0f animations:^{
+        self.activityView.activityModel = activityModel ;
+    } completion:^(BOOL finished) {
+        self.activityView.alpha = 1.0f;
+    }] ;
+}
+
+-(void)activityViewHide{
+    if (self.activityView.superview){
+        [UIView animateWithDuration:1.0f animations:^{
+            [self.activityView removeFromSuperview] ;
+        } completion:^(BOOL finished) {
+            self.activityView.alpha = 0.0f;
+        }] ;
+    }
+}
+
+#pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {
-    if (NetworkAvailable()){
+    if (NetworkAvailable() && [self.pageLoadManager currentDataCount]==0){
         [self startUpdateData] ;
     }
 }
@@ -221,6 +297,33 @@
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, data) ;
         [self loadDataSuccessWithDatas:homePageModel?@[homePageModel]:nil
                             totalCount:homePageModel?1:1] ;
+        
+        if (homePageModel.mActivityInfo){
+            [self activityViewShowWith:homePageModel.mActivityInfo] ;
+        }else{
+            [self activityViewHide] ;
+        }
+    }else if (type == ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if ([data boolValue]){
+                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                [self.appDelegate updateLoginStatus:true] ;
+                
+            }else{
+                showAlertView(@"试玩登入失败", @"提示信息");
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }] ;
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+            if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                [self.appDelegate updateLoginStatus:true] ;
+            }else{
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }] ;
+        
     }
 }
 
@@ -228,6 +331,14 @@
 {
     if (type == ServiceRequestTypeV3HomeInfo){
         [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"试玩登入失败", @"提示信息");
+        }] ;
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"自动login失败", @"提示信息");
+        }] ;
     }
 }
 
@@ -327,10 +438,10 @@
     return nil ;
 }
 
-#pragma mark- cells Delegate
+#pragma mark- Banner Cells Delegate
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
-    NSLog(@"") ;
+    [self showViewController:[RH_V3SimpleWebViewController viewControllerWithContext:bannerModel.contentURL] sender:self] ;
 }
 
 @end

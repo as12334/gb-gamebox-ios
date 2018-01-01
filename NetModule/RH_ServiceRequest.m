@@ -240,7 +240,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                      }
                     queryArguments:nil
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3HomeInfo
                          scopeType:ServiceScopeTypePublic];
 }
@@ -298,14 +298,34 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      serviceType:(ServiceRequestType)type
                        scopeType:(ServiceScopeType)scopeType
 {
-
-//    NSMutableDictionary *queryArgs = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",RH_SP_OSTYPE,RH_CURRENT_VERSION,RH_SP_VERSION,getDeviceID(),RH_SP_DEVICEID, nil] ;
     NSMutableDictionary *queryArgs = [NSMutableDictionary dictionary] ;
-
+    
     if (queryArguments.count){
         [queryArgs addEntriesFromDictionary:queryArguments] ;
     }
 
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
+        if ([THEME isEqualToString:@"pink.skin"]){
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEME isEqualToString:@"blue.skin"]){
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else{
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }
+        
+        [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
+        CLScreenSizeType screenType = mainScreenType();
+        switch (screenType) {
+            case CLScreenSizeTypeBig:
+                [queryArgs setValue:@"3x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
+                break;
+            default:
+                [queryArgs setValue:@"2x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
+                break;
+        }
+    }
+    
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:apiName
                                                                 pathFormat:pathFormat
                                                              pathArguments:pathArguments

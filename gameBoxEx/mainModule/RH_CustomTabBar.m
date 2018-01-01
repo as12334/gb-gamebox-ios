@@ -12,7 +12,7 @@
 @interface RH_CustomTabBar ()
 
 @property (nonatomic, strong) UIButton *centerBtn;
-@property (nonatomic, strong) CALayer *backLayer;
+@property (nonatomic, strong) CALayer *midBackLayer;
 @end
 
 @implementation RH_CustomTabBar
@@ -59,19 +59,18 @@
         //给底部Tabbar添加背景；
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            _backLayer = [CALayer new];
-            _backLayer.frame = CGRectMake(CGRectGetMinX(frame) - 30 + frame.size.width/2, CGRectGetMinY(frame), 60, 50);
-            _backLayer.backgroundColor = [UIColor blackColor].CGColor;
-            _backLayer.cornerRadius = 30;
-            [midView.superview.layer insertSublayer:_backLayer below:midView.layer];
+            _midBackLayer = [CALayer new];
+            _midBackLayer.frame = CGRectMake(CGRectGetMinX(frame) - 30 + frame.size.width/2, CGRectGetMinY(frame), 60, 50);
+            _midBackLayer.backgroundColor = RH_TabBar_BackgroundColor.CGColor ;
+            _midBackLayer.cornerRadius = 30;
+            [midView.superview.layer insertSublayer:_midBackLayer below:midView.layer];
         });
     }
 }
 
 
 - (void)setViewBackgroundColor:(UIColor *)color {
-    NSLog(@"setcolor");
-    _backLayer.backgroundColor = [color CGColor];
+    _midBackLayer.backgroundColor = [color CGColor];
 }
 #pragma mark - UIViewGeometry
 // 重写hitTest方法，让超出tabBar部分也能响应事件
