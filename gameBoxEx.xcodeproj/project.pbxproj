@@ -325,6 +325,8 @@
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
 		A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */; };
+		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
+		F6BD31841FFA0E85000AC941 /* RH_MachineAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -904,6 +906,9 @@
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
+		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
+		F6BD31821FFA0E85000AC941 /* RH_MachineAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MachineAnimationView.h; sourceTree = "<group>"; };
+		F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MachineAnimationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1694,6 +1699,8 @@
 				A01CB48C1FF9C81800447130 /* RH_ActivithyView.h */,
 				A01CB4951FF9C81800447130 /* RH_ActivithyView.m */,
 				A01CB4941FF9C81800447130 /* RH_ActivithyView.xib */,
+				F6BD31821FFA0E85000AC941 /* RH_MachineAnimationView.h */,
+				F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */,
 			);
 			path = activityView;
 			sourceTree = "<group>";
@@ -1701,6 +1708,7 @@
 		A01CB49F1FF9DD0C00447130 /* 效果图 */ = {
 			isa = PBXGroup;
 			children = (
+				F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */,
 				A01CB4A01FF9DD0C00447130 /* 未拆开_01.png */,
 				A01CB4A11FF9DD0C00447130 /* 很遗憾_01.png */,
 				A01CB4A21FF9DD0C00447130 /* guize_01.png */,
@@ -2159,6 +2167,7 @@
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
+				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
 				A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */,
 				A01CB4A51FF9DD0C00447130 /* 很遗憾_01.png in Resources */,
@@ -2379,6 +2388,7 @@
 				A0109FFB1F8788FF004E6EF4 /* UIImage+WebP.m in Sources */,
 				A0109FFC1F8788FF004E6EF4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
+				F6BD31841FFA0E85000AC941 /* RH_MachineAnimationView.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,

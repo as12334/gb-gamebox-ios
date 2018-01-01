@@ -19,7 +19,7 @@
 #import "RH_V3SimpleWebViewController.h"
 #import "RH_ActivithyView.h"
 #import "RH_API.h"
-
+#import "RH_MachineAnimationView.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,ActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
@@ -233,7 +233,8 @@
 }
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
-    
+    RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
+    [machineView showAnimation];
 }
 
 -(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView
