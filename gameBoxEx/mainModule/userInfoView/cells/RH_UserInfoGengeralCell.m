@@ -8,6 +8,7 @@
 
 #import "RH_UserInfoGengeralCell.h"
 #import "coreLib.h"
+#import "RH_UserApiBalanceModel.h"
 
 @interface RH_UserInfoGengeralCell()
 @property (weak, nonatomic) IBOutlet UILabel *labTitle          ;
@@ -26,12 +27,20 @@
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.labTitle.textColor = colorWithRGB(51, 51, 51) ;
     self.labTitleValue.textColor = colorWithRGB(51, 51, 51) ;
-    self.labTitle.font = [UIFont systemFontOfSize:19.0f] ;
-    self.labTitleValue.font = [UIFont systemFontOfSize:19.0f] ;
+    self.labTitle.font = [UIFont systemFontOfSize:15.0f] ;
+    self.labTitleValue.font = [UIFont systemFontOfSize:15.0f] ;
+    
+    self.labTitle.text = @"" ;
+    self.labTitleValue.text = @"" ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    RH_UserApiBalanceModel *userApiBalance = ConvertToClassPointer(RH_UserApiBalanceModel, context) ;
+    if (userApiBalance){
+        self.labTitle.text = userApiBalance.mApiName ;
+        self.labTitleValue.text = [NSString stringWithFormat:@"%.2f",userApiBalance.mBalance] ;
+    }
 }
 
 @end

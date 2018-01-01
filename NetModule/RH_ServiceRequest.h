@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     //V3接口
     ServiceRequestTypeV3HomeInfo        ,
     ServiceRequestTypeV3UserInfo        ,
+    ServiceRequestTypeV3MineLinkInfo    ,
 };
 
 
@@ -105,6 +106,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3HomeInfo ;
 #pragma mark - 用户信息
 -(void)startV3UserInfo ;
+#pragma mark - 我的 link info
+-(void)startV3MineLinkInfo ;
 
 #pragma mark -
 /**

@@ -48,7 +48,7 @@
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
     [self setNeedUpdateView] ;
     [self setupUI] ;
-    
+    self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }
@@ -94,6 +94,18 @@
     }
     
     return _labDomain ;
+}
+
+#pragma mark- tap gesture
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return (self.userInfoView.superview?YES:NO) ;
+}
+
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
+{
+    [self userInfoButtonItemHandle] ;
 }
 
 #pragma mark-

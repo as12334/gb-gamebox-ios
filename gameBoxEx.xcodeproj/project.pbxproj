@@ -237,6 +237,9 @@
 		A01CB4A61FF9DD0C00447130 /* guize_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4A21FF9DD0C00447130 /* guize_01.png */; };
 		A01CB4A71FF9DD0C00447130 /* 恭喜您_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4A31FF9DD0C00447130 /* 恭喜您_01.png */; };
 		A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4A81FFA116A00447130 /* RH_BasicMainViewController.m */; };
+		A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */; };
+		A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */; };
+		A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */; };
 		A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109F1C1F87852F004E6EF4 /* MBProgressHUD.h */; };
 		A01EE2671F8878B30085717E /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01EE2651F8878B30085717E /* SplashViewController.m */; };
 		A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE2661F8878B30085717E /* SplashViewController.xib */; };
@@ -732,6 +735,12 @@
 		A01CB4A31FF9DD0C00447130 /* 恭喜您_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "恭喜您_01.png"; sourceTree = "<group>"; };
 		A01CB4A81FFA116A00447130 /* RH_BasicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BasicMainViewController.m; sourceTree = "<group>"; };
 		A01CB4A91FFA116A00447130 /* RH_BasicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BasicMainViewController.h; sourceTree = "<group>"; };
+		A01CB4AB1FFA131B00447130 /* RH_UserApiBalanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserApiBalanceModel.h; sourceTree = "<group>"; };
+		A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserApiBalanceModel.m; sourceTree = "<group>"; };
+		A01CB4AE1FFA160200447130 /* RH_UserBalanceGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserBalanceGroupModel.h; sourceTree = "<group>"; };
+		A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserBalanceGroupModel.m; sourceTree = "<group>"; };
+		A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoManager.m; sourceTree = "<group>"; };
+		A01CB4B21FFA1B8A00447130 /* RH_UserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoManager.h; sourceTree = "<group>"; };
 		A01EE2641F8878B30085717E /* SplashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A01EE2651F8878B30085717E /* SplashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A01EE2661F8878B30085717E /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -1617,6 +1626,10 @@
 				A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */,
 				A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */,
 				A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */,
+				A01CB4AB1FFA131B00447130 /* RH_UserApiBalanceModel.h */,
+				A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */,
+				A01CB4AE1FFA160200447130 /* RH_UserBalanceGroupModel.h */,
+				A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */,
 				A01CB4881FF9C09F00447130 /* RH_ActivityModel.h */,
 				A01CB4891FF9C09F00447130 /* RH_ActivityModel.m */,
 				A05747BD1FF4F7500068D0E4 /* RH_LotteryCategoryModel.h */,
@@ -1666,6 +1679,8 @@
 				A07FE37C1FEFA16600D5DF71 /* cells */,
 				A010A06F1F879ACE004E6EF4 /* RH_BasicHelpView.h */,
 				A010A0701F879ACE004E6EF4 /* RH_BasicHelpView.m */,
+				A01CB4B21FFA1B8A00447130 /* RH_UserInfoManager.h */,
+				A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */,
 				A07FE3711FEF791E00D5DF71 /* RH_NavigationUserInfoView.h */,
 				A07FE3721FEF791E00D5DF71 /* RH_NavigationUserInfoView.m */,
 				A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */,
@@ -2365,6 +2380,7 @@
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
 				A0109FEB1F8788FF004E6EF4 /* SAMKeychain.m in Sources */,
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
+				A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */,
 				A0109FED1F8788FF004E6EF4 /* MKAnnotationView+WebCache.m in Sources */,
 				A0109FEE1F8788FF004E6EF4 /* NSData+ImageContentType.m in Sources */,
 				A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */,
@@ -2437,6 +2453,7 @@
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
+				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
 				A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */,
@@ -2458,6 +2475,7 @@
 				A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */,
 				A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
+				A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,

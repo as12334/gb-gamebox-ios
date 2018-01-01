@@ -143,8 +143,18 @@
 #define RH_GP_LOTTERYINFO_COVER                              @"cover"
 #define RH_GP_LOTTERYINFO_CANTRY                              @"canTry"
 
+#pragma mark - V3 用户api 总计Balance 信息模型
+#define RH_GP_USERBALANCEGROUP_ASSETS                          @"assets"
+#define RH_GP_USERBALANCEGROUP_BALANCE                          @"balance"
+#define RH_GP_USERBALANCEGROUP_CURRSIGN                         @"currSign"
+#define RH_GP_USERBALANCEGROUP_USERNAME                         @"username"
+#define RH_GP_USERBALANCEGROUP_APIS                             @"apis"
 
-#pragma mark - V3 用户 
+#pragma mark - V3 用户api Balance 信息模型
+#define RH_GP_USERAPIINFO_APIID                              @"apiId"
+#define RH_GP_USERAPIINFO_APINAME                            @"apiName"
+#define RH_GP_USERAPIINFO_BALANCE                            @"balance"
+#define RH_GP_USERAPIINFO_STATUS                             @"status"
 
 //===========================================================
 //v3接口定义
@@ -165,6 +175,10 @@
 #define RH_API_NAME_USERINFO                        @"mineOrigin/getUserInfo.html"
 //请求参数 无
 
+#pragma mark- v3 我的 接口
+//api的路径
+#define RH_API_NAME_MINELINKINFO                        @"mineOrigin/getLink.html"
+//请求参数 无
 
 #endif /* RH_API_h */
 

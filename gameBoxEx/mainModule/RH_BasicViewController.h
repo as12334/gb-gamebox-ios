@@ -13,6 +13,7 @@
 #import "RH_LoadingIndicateTableViewCell.h"
 #import "RH_ErrorCode.h"
 #import "RH_APPDelegate.h"
+#import "RH_userInfoView.h"
 
 typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 
@@ -37,13 +38,13 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @property(nonatomic,readonly,weak) RH_APPDelegate *appDelegate ;
 
 @property(nonatomic,readonly,strong) UIBarButtonItem *backButtonItem       ;
-
-@property(nonatomic,readonly,strong) UIBarButtonItem *mainMenuButtonItem    ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *loginButtonItem       ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *tryLoginButtonItem    ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *signButtonItem        ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *logoButtonItem        ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *userInfoButtonItem    ;
+@property (nonatomic,strong,readonly) RH_userInfoView *userInfoView ;
+
 -(void)mainMenuButtonItemHandle ;
 
 -(CGPoint)contentLoadingIndicateViewAdditionalOffset ;

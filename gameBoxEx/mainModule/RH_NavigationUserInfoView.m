@@ -7,6 +7,7 @@
 //
 
 #import "RH_NavigationUserInfoView.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_NavigationUserInfoView ()
 @property (nonatomic,strong) IBOutlet UILabel *labUserName ;
@@ -25,14 +26,35 @@
     self.labBalance.textColor = RH_NavigationBar_ForegroundColor ;
     self.labBalance.font = [UIFont systemFontOfSize:10.0f] ;
     
-    //test
-    self.labUserName.text = @"EVDDDFD" ;
-    self.labBalance.text = @"¥300.00" ;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotificatin:)
+                                                 name:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
+    [self updateUI] ;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+-(void)updateUI
+{
+    RH_UserBalanceGroupModel *userBalanceGroupModel = UserBalanceInfo ;
+    self.labUserName.text = userBalanceGroupModel.mUserName ;
+    self.labBalance.text = [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mBalance] ;
 }
 
 #pragma mark-
 -(UIButton *)buttonCover
 {
     return self.btnCover ;
+}
+
+#pragma mark-
+-(void)handleNotificatin:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:RHNT_UserInfoManagerBalanceChangedNotification]){
+        [self performSelectorOnMainThread:@selector(updateUI) withObject:self waitUntilDone:NO] ;
+    }
 }
 @end

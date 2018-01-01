@@ -62,7 +62,7 @@
                 <outlet property="labBalance" destination="a9b-E1-mBY" id="Y1K-c9-Li8"/>
                 <outlet property="labUserName" destination="bJB-mv-pEV" id="P3a-bQ-5FV"/>
             </connections>
-            <point key="canvasLocation" x="-1339" y="-546.5"/>
+            <point key="canvasLocation" x="-1576" y="-532"/>
         </view>
     </objects>
     <resources>

@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
 #import "UIViewController+CWLateralSlide.h"
-#import "RH_userInfoView.h"
 #import "RH_NavigationUserInfoView.h"
 #import "RH_LoginViewControllerEx.h"
 #import "RH_CustomViewController.h"
@@ -18,13 +17,11 @@
 
 @interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
-@property (nonatomic,strong,readonly) RH_userInfoView *userInfoView ;
 @end
 
 @implementation RH_BasicViewController
 @synthesize serviceRequest = _serviceRequest                ;
 @synthesize backButtonItem = _backButtonItem                ;
-@synthesize mainMenuButtonItem = _mainMenuButtonItem        ;
 @synthesize loginButtonItem = _loginButtonItem              ;
 @synthesize tryLoginButtonItem = _tryLoginButtonItem        ;
 @synthesize signButtonItem  = _signButtonItem               ;
@@ -128,27 +125,27 @@
     //do nothing ;
 }
 
-#pragma mark-
--(UIBarButtonItem *)mainMenuButtonItem
-{
-    if (!_mainMenuButtonItem){
-        UIImage *menuImage = ImageWithName(@"ic_navigationBar_home");
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
-        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(mainMenuButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
-    }
-    
-    return  _mainMenuButtonItem ;
-}
-
--(void)mainMenuButtonItemHandle
-{
-//    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
-//                        animationType:CWDrawerAnimationTypeDefault
-//                        configuration:nil] ;
-}
+//#pragma mark-
+//-(UIBarButtonItem *)mainMenuButtonItem
+//{
+//    if (!_mainMenuButtonItem){
+//        UIImage *menuImage = ImageWithName(@"ic_navigationBar_home");
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+//        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
+//        [button addTarget:self action:@selector(mainMenuButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+//        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+//    }
+//    
+//    return  _mainMenuButtonItem ;
+//}
+//
+//-(void)mainMenuButtonItemHandle
+//{
+////    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
+////                        animationType:CWDrawerAnimationTypeDefault
+////                        configuration:nil] ;
+//}
 
 #pragma mark-
 -(UIBarButtonItem *)tryLoginButtonItem
@@ -280,7 +277,7 @@
 //                          forControlEvents:UIControlEventTouchUpInside] ;
         [_navigationUserInfoView.buttonCover addTarget:self
                                                 action:@selector(userInfoButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _navigationUserInfoView.frame = CGRectMake(0, 0, 40.0f, 60.0f) ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 60.0f, 40.0f) ;
     }
     
     return _navigationUserInfoView ;
