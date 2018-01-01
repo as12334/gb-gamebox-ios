@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RH_MineRecordStaticCell">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9im-fs-rBD">
+                    <rect key="frame" x="27" y="25" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.34407040480000001" green="0.75406646730000004" blue="0.97258412839999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="50B-db-xrU"/>
+                        <constraint firstAttribute="width" constant="20" id="NdN-UD-WI0"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看所参与的游戏记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyF-bl-Y7o">
+                    <rect key="frame" x="55" y="37.5" width="92" height="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmX-4G-jrP">
+                    <rect key="frame" x="55" y="19" width="53.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="9im-fs-rBD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="H21-Oa-O8i"/>
+                <constraint firstItem="9im-fs-rBD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Oms-Pk-njD"/>
+                <constraint firstItem="pyF-bl-Y7o" firstAttribute="leading" secondItem="9im-fs-rBD" secondAttribute="trailing" constant="8" id="PjB-5g-Spj"/>
+                <constraint firstItem="UmX-4G-jrP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-8" id="QNR-wq-jhO"/>
+                <constraint firstItem="UmX-4G-jrP" firstAttribute="leading" secondItem="9im-fs-rBD" secondAttribute="trailing" constant="8" id="a2d-Cz-Zmm"/>
+                <constraint firstItem="pyF-bl-Y7o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="8" id="gdJ-x8-Gag"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cellImageView" destination="9im-fs-rBD" id="fYV-SH-4XZ"/>
+                <outlet property="explainLab" destination="pyF-bl-Y7o" id="79b-Tf-4f6"/>
+                <outlet property="titleLab" destination="UmX-4G-jrP" id="pgJ-pU-8vo"/>
+            </connections>
+            <point key="canvasLocation" x="-175" y="-155"/>
+        </view>
+    </objects>
+</document>

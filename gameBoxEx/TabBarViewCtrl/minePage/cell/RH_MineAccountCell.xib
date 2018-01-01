@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="KGk-i7-Jjw" customClass="RH_MineAccountCell">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="366" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFb-MB-RUN" customClass="CLSelectionControl">
+                        <rect key="frame" x="0.0" y="0.0" width="173.5" height="50"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me_recharge_icon" translatesAutoresizingMaskIntoConstraints="NO" id="xs0-RH-dWi">
+                                <rect key="frame" x="55" y="15" width="20" height="20"/>
+                                <color key="backgroundColor" red="0.76564584400000002" green="0.93989927029999998" blue="0.88011945489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="B4B-rs-dhe"/>
+                                    <constraint firstAttribute="width" constant="20" id="bty-eY-9jr"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTL-7y-WS3">
+                                <rect key="frame" x="86" y="14" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="6yL-9T-Al3"/>
+                                    <constraint firstAttribute="height" constant="21" id="ynZ-fe-y9B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aTL-7y-WS3" firstAttribute="centerY" secondItem="hFb-MB-RUN" secondAttribute="centerY" id="2PQ-dD-0n5"/>
+                            <constraint firstItem="aTL-7y-WS3" firstAttribute="centerY" secondItem="xs0-RH-dWi" secondAttribute="centerY" id="2Xq-ej-7ex"/>
+                            <constraint firstItem="aTL-7y-WS3" firstAttribute="centerX" secondItem="hFb-MB-RUN" secondAttribute="centerX" constant="20" id="9pd-U8-jyA"/>
+                            <constraint firstItem="aTL-7y-WS3" firstAttribute="leading" secondItem="xs0-RH-dWi" secondAttribute="trailing" constant="11" id="G7e-aG-F1P"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTn-2W-nb0" customClass="CLBorderView">
+                        <rect key="frame" x="182" y="5" width="1" height="39"/>
+                        <color key="backgroundColor" red="0.89694794040000003" green="0.89572503479999999" blue="0.91708614909999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="TXE-td-foo"/>
+                            <constraint firstAttribute="height" constant="39" id="lid-7x-S7v"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsC-1H-Pms" customClass="CLSelectionControl">
+                        <rect key="frame" x="189.5" y="0.0" width="176.5" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWt-Oi-iYv">
+                                <rect key="frame" x="87.5" y="15" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="bbE-1A-KUg"/>
+                                    <constraint firstAttribute="width" constant="42" id="wZA-cV-5bj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me_withdraw_icon" translatesAutoresizingMaskIntoConstraints="NO" id="adg-mr-ABf">
+                                <rect key="frame" x="59.5" y="15" width="20" height="20"/>
+                                <color key="backgroundColor" red="0.76564584400000002" green="0.93989927029999998" blue="0.88011945489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="aMu-VM-DvB"/>
+                                    <constraint firstAttribute="width" constant="20" id="tOk-3U-TKT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oWt-Oi-iYv" firstAttribute="centerX" secondItem="dsC-1H-Pms" secondAttribute="centerX" constant="20" id="Rvs-Ll-kd1"/>
+                            <constraint firstItem="oWt-Oi-iYv" firstAttribute="centerY" secondItem="adg-mr-ABf" secondAttribute="centerY" id="YlM-DF-rgT"/>
+                            <constraint firstItem="oWt-Oi-iYv" firstAttribute="centerY" secondItem="dsC-1H-Pms" secondAttribute="centerY" id="tk3-2U-MB3"/>
+                            <constraint firstItem="oWt-Oi-iYv" firstAttribute="leading" secondItem="adg-mr-ABf" secondAttribute="trailing" constant="8" id="vSp-j5-SW2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dsC-1H-Pms" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2EA-l1-Onq"/>
+                    <constraint firstItem="pTn-2W-nb0" firstAttribute="leading" secondItem="hFb-MB-RUN" secondAttribute="trailing" constant="8" id="5mE-Pe-G3P"/>
+                    <constraint firstAttribute="bottom" secondItem="hFb-MB-RUN" secondAttribute="bottom" constant="-0.5" id="IM8-If-NyN"/>
+                    <constraint firstAttribute="bottom" secondItem="dsC-1H-Pms" secondAttribute="bottom" constant="-0.5" id="MOV-Ui-bX0"/>
+                    <constraint firstItem="dsC-1H-Pms" firstAttribute="leading" secondItem="pTn-2W-nb0" secondAttribute="trailing" constant="6" id="Mjt-uo-k7G"/>
+                    <constraint firstItem="pTn-2W-nb0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Q56-Fh-jPd"/>
+                    <constraint firstAttribute="trailing" secondItem="dsC-1H-Pms" secondAttribute="trailing" id="SfT-KH-kRw"/>
+                    <constraint firstItem="hFb-MB-RUN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ttb-mD-6Ck"/>
+                    <constraint firstItem="hFb-MB-RUN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="U3a-3P-2CO"/>
+                    <constraint firstItem="pTn-2W-nb0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="uZK-kR-h0g"/>
+                    <constraint firstAttribute="bottom" secondItem="pTn-2W-nb0" secondAttribute="bottom" constant="5.5" id="wRh-h2-Lin"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="rechargeControl" destination="hFb-MB-RUN" id="pV2-hk-DKh"/>
+                <outlet property="withDrawControl" destination="dsC-1H-Pms" id="0cY-Nk-PhV"/>
+            </connections>
+            <point key="canvasLocation" x="-59" y="-232"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="me_recharge_icon" width="33" height="33"/>
+        <image name="me_withdraw_icon" width="33" height="33"/>
+    </resources>
+</document>
