@@ -8,12 +8,14 @@
 
 #import "RH_LotteryInfoModel.h"
 #import "coreLib.h"
+#import "RH_APPDelegate.h"
 #import "RH_API.h"
 
 @interface RH_LotteryInfoModel ()
 @end ;
 
 @implementation RH_LotteryInfoModel
+@synthesize showCover = _showCover ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -34,12 +36,19 @@
         _mStatus = [info stringValueForKey:RH_GP_LOTTERYINFO_STATUS] ;
         _mGameType = [info stringValueForKey:RH_GP_LOTTERYINFO_GAMETYPE];
         _mOrderNum = [info integerValueForKey:RH_GP_LOTTERYINFO_ORDERNUM] ;
-        
-//        _mOpenDate = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_OPENCODE_TIME]] ;
     }
     
     return self ;
 }
 
-
+#pragma mark-
+-(NSString *)showCover
+{
+    if (!_showCover){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+    }
+    
+    return _showCover ;
+}
 @end

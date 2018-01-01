@@ -14,10 +14,12 @@
 @property(nonatomic,assign,readonly) NSInteger  mRelationID ;
 @property(nonatomic,strong,readonly) NSString  *mName ;
 @property(nonatomic,strong,readonly) NSString  *mLocal ;
+@property(nonatomic,strong,readonly) NSString  *mCover ;
 @property(nonatomic,assign,readonly) NSInteger  mSiteID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiTypeID ;
-@property(nonatomic,assign,readonly) NSArray<RH_LotteryInfoModel*> *mLotteryInfoList ;
-//-(void)updateLotteryInfoWithList:(NSArray*)infoList ;
+@property(nonatomic,strong,readonly) NSArray<RH_LotteryInfoModel*> *mGameItems ;
 
+//extend
+@property(nonatomic,strong,readonly) NSString *showCover ;
 @end

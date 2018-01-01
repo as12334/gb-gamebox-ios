@@ -244,6 +244,10 @@
 		A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */; };
 		A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */; };
 		A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747BC1FF4F74F0068D0E4 /* RH_LotteryCategoryModel.m */; };
+		A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747C01FF635DF0068D0E4 /* RH_HomeChildCategoryCell.m */; };
+		A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747C21FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib */; };
+		A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747C51FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib */; };
+		A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747C61FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m */; };
 		A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */; };
 		A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */; };
 		A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */; };
@@ -763,6 +767,12 @@
 		A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomePageModel.h; sourceTree = "<group>"; };
 		A05747BC1FF4F74F0068D0E4 /* RH_LotteryCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryCategoryModel.m; sourceTree = "<group>"; };
 		A05747BD1FF4F7500068D0E4 /* RH_LotteryCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryCategoryModel.h; sourceTree = "<group>"; };
+		A05747C01FF635DF0068D0E4 /* RH_HomeChildCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeChildCategoryCell.m; sourceTree = "<group>"; };
+		A05747C11FF635DF0068D0E4 /* RH_HomeChildCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomeChildCategoryCell.h; sourceTree = "<group>"; };
+		A05747C21FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeChildCategoryCell.xib; sourceTree = "<group>"; };
+		A05747C51FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeChildCategorySubCell.xib; sourceTree = "<group>"; };
+		A05747C61FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeChildCategorySubCell.m; sourceTree = "<group>"; };
+		A05747C71FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomeChildCategorySubCell.h; sourceTree = "<group>"; };
 		A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
 		A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
@@ -1886,6 +1896,12 @@
 				A07DCEBB1FEBA4170006FAE4 /* RH_HomeCategorySubCell.h */,
 				A07DCEBC1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m */,
 				A07DCEBD1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib */,
+				A05747C11FF635DF0068D0E4 /* RH_HomeChildCategoryCell.h */,
+				A05747C01FF635DF0068D0E4 /* RH_HomeChildCategoryCell.m */,
+				A05747C21FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib */,
+				A05747C71FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.h */,
+				A05747C61FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m */,
+				A05747C51FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib */,
 				A07DCEC31FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.h */,
 				A07DCEC41FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m */,
 				A07DCEC21FEBCE450006FAE4 /* RH_HomeCategoryItemsCell.xib */,
@@ -2074,10 +2090,12 @@
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
 				A001B3D61F8EF7CA00309EA4 /* tab_green_service@2x.png in Resources */,
+				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
 				A001B3D71F8EF7CA00309EA4 /* tab_green_transfer@2x.png in Resources */,
 				A07DCEC11FEBA5120006FAE4 /* tt_category_icon.png in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
+				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				A07FE36D1FECF97A00D5DF71 /* tt_item_image.png in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
@@ -2247,6 +2265,7 @@
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
+				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
 				A0109FE51F8788FF004E6EF4 /* NSObject+MJClass.m in Sources */,
 				A0109FE61F8788FF004E6EF4 /* NSObject+MJCoding.m in Sources */,
@@ -2259,6 +2278,7 @@
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
 				A0109FED1F8788FF004E6EF4 /* MKAnnotationView+WebCache.m in Sources */,
 				A0109FEE1F8788FF004E6EF4 /* NSData+ImageContentType.m in Sources */,
+				A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */,
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,

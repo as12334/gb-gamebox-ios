@@ -94,6 +94,12 @@
 #define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                                 @"publishTime"
 #define RH_GP_ANNOUNCEMENT_TITLE                                                @"title"
 
+#pragma mark - V3 首页api 分类模型
+#define RH_GP_LotteryCategory_APITYPE                                     @"apiType"
+#define RH_GP_LotteryCategory_APITYPENAME                                     @"apiTypeName"
+#define RH_GP_LotteryCategory_COVER                                     @"cover"
+#define RH_GP_LotteryCategory_LOCALE                                     @"locale"
+#define RH_GP_LotteryCategory_SITEAPIS                                     @"siteApis"
 
 #pragma mark - v3 彩票游戏API 信息模型
 #define RH_GP_LOTTERYAPIINFO_ID                                     @"id"
@@ -103,7 +109,9 @@
 #define RH_GP_LOTTERYAPIINFO_SITEID                                 @"siteId"
 #define RH_GP_LOTTERYAPIINFO_APIID                                  @"apiId"
 #define RH_GP_LOTTERYAPIINFO_APITYPEID                              @"apiTypeId"
-#define RH_GP_LOTTERYAPIINFO_GAMELIST                              @"gameList"
+#define RH_GP_LOTTERYAPIINFO_COVER                                  @"cover"
+#define RH_GP_LOTTERYAPIINFO_GAMELIST                               @"gameList"
+
 
 
 #pragma mark - v3 彩票游戏信息模型
@@ -136,9 +144,6 @@
 #define RH_GP_HOMEINFO_ANNOUNCEMENT_LIST                      @"announcement"
 #define RH_GP_HOMEINFO_BANNER_LIST                            @"banner"
 #define RH_GP_HOMEINFO_SITEAPIRELATION                        @"siteApiRelation"
-#define RH_GP_HOMEINFO_SITEAPIRELATION_APITYPE                        @"apiType"
-#define RH_GP_HOMEINFO_SITEAPIRELATION_SITEAPIS                        @"siteApis"
-#define RH_GP_HOMEINFO_LOTTERYGAME                        @"lotteryGame"
 #define RH_GP_HOMEINFO_CASINOMAP                           @"casinoMap"
 #define RH_GP_HOMEINFO_CASINOMAP_AGEXIST                           @"AGExist"
 #define RH_GP_HOMEINFO_CASINOMAP_GGEXIST                           @"GGExist"
