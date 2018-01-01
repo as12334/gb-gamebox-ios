@@ -234,14 +234,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_HOMEINFO
                      pathArguments:nil
-                   headerArguments:@{RH_SP_COMMON_V3_OSTYPE:@"ios",
-                                     RH_SP_COMMON_V3_VERSION:RH_SP_COMMON_V3_VERSION_VALUE,
-                                     @"User-Agent":@"app_ios, iPhone"
-                                     }
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3HomeInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3UserInfo
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_USERINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UserInfo
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -523,6 +534,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         
         if ([[tmpResult lowercaseString] containsString:@"true"]){ //域名响应ok
             *reslutData = @(YES) ;
+            
+            if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                [self startV3UserInfo] ;
+            }
+            
         }else{
             *reslutData = @(NO) ;
         }

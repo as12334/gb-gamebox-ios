@@ -44,7 +44,7 @@
         id value = self[key];
         return  (value == nil || [value isEqual:[NSNull null]]) ? nil : ([value isKindOfClass:[NSString class]] ? value : [value description]);
     }
-
+    
     return nil;
 }
 
@@ -200,7 +200,7 @@
 {
     CGFloat fontSize = [self fontSize:17.f];
     NSString * fontName = [self fontName];
-
+    
     if (fontName.length) {
         return [UIFont fontWithName:fontName size:fontSize];
     }else {
@@ -238,6 +238,11 @@
 
 - (UIViewController *)targetViewControllerWithContext:(id)context {
     return [[self targetViewControllerClass] viewControllerWithContext:context];
+}
+
+- (id)targetContext
+{
+    return [self valueForKey:@"targetContext"] ;
 }
 
 #pragma mark -
@@ -284,8 +289,9 @@
             dictionary[key] = value;
         }
     }
-
+    
     return dictionary;
 }
 
 @end
+
