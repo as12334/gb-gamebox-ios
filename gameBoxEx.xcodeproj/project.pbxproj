@@ -246,6 +246,7 @@
 		A01CB4A51FF9DD0C00447130 /* 很遗憾_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4A11FF9DD0C00447130 /* 很遗憾_01.png */; };
 		A01CB4A61FF9DD0C00447130 /* guize_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4A21FF9DD0C00447130 /* guize_01.png */; };
 		A01CB4A71FF9DD0C00447130 /* 恭喜您_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4A31FF9DD0C00447130 /* 恭喜您_01.png */; };
+		A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4A81FFA116A00447130 /* RH_BasicMainViewController.m */; };
 		A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109F1C1F87852F004E6EF4 /* MBProgressHUD.h */; };
 		A01EE2671F8878B30085717E /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01EE2651F8878B30085717E /* SplashViewController.m */; };
 		A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE2661F8878B30085717E /* SplashViewController.xib */; };
@@ -754,6 +755,8 @@
 		A01CB4A11FF9DD0C00447130 /* 很遗憾_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "很遗憾_01.png"; sourceTree = "<group>"; };
 		A01CB4A21FF9DD0C00447130 /* guize_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guize_01.png; sourceTree = "<group>"; };
 		A01CB4A31FF9DD0C00447130 /* 恭喜您_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "恭喜您_01.png"; sourceTree = "<group>"; };
+		A01CB4A81FFA116A00447130 /* RH_BasicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BasicMainViewController.m; sourceTree = "<group>"; };
+		A01CB4A91FFA116A00447130 /* RH_BasicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BasicMainViewController.h; sourceTree = "<group>"; };
 		A01EE2641F8878B30085717E /* SplashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A01EE2651F8878B30085717E /* SplashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A01EE2661F8878B30085717E /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -1712,6 +1715,8 @@
 				A07FE3741FEF799500D5DF71 /* RH_NavigationUserInfoView.xib */,
 				A010A0751F879ACE004E6EF4 /* RH_BasicViewController.h */,
 				A010A0761F879ACE004E6EF4 /* RH_BasicViewController.m */,
+				A01CB4A91FFA116A00447130 /* RH_BasicMainViewController.h */,
+				A01CB4A81FFA116A00447130 /* RH_BasicMainViewController.m */,
 				A010A0731F879ACE004E6EF4 /* RH_BasicSubViewController.h */,
 				A010A0741F879ACE004E6EF4 /* RH_BasicSubViewController.m */,
 				A010A0711F879ACE004E6EF4 /* RH_BasicPageLoadViewController.h */,
@@ -2382,6 +2387,7 @@
 				A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
+				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
