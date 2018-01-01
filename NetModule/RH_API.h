@@ -156,6 +156,12 @@
 #define RH_GP_USERAPIINFO_BALANCE                            @"balance"
 #define RH_GP_USERAPIINFO_STATUS                             @"status"
 
+#pragma mark - V3 link 信息模型
+#define RH_GP_LINK_CODE                             @"code"
+#define RH_GP_LINK_LINK                             @"link"
+#define RH_GP_LINK_NAME                             @"name"
+
+#pragma mark - V3
 //===========================================================
 //v3接口定义
 //===========================================================
