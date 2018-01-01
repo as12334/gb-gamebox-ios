@@ -240,7 +240,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                      }
                     queryArguments:nil
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3HomeInfo
                          scopeType:ServiceScopeTypePublic];
 }
@@ -305,23 +305,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
 
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        [queryArguments setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
+        [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
         if ([THEME isEqualToString:@"pink.skin"]){
-            [queryArguments setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEME isEqualToString:@"blue.skin"]){
-            [queryArguments setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
-            [queryArguments setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }
         
-        [queryArguments setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
+        [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
         CLScreenSizeType screenType = mainScreenType();
         switch (screenType) {
             case CLScreenSizeTypeBig:
-                [queryArguments setValue:@"3x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
+                [queryArgs setValue:@"3x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
                 break;
             default:
-                [queryArguments setValue:@"2x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
+                [queryArgs setValue:@"2x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
                 break;
         }
     }

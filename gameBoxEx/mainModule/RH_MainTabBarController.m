@@ -73,9 +73,11 @@
         RH_CustomTabBar *tabbar = [[RH_CustomTabBar alloc] init] ;
         tabbar.midMoveUP = 20.0f ;
         [self setValue:tabbar forKey:@"tabBar"];
+        [RH_CustomTabBar appearance].translucent = NO;
+        [RH_CustomTabBar appearance].barTintColor = RH_TabBar_BackgroundColor ;
     }
     
-    self.view.backgroundColor = [UIColor blackColor];
+//    self.view.backgroundColor = [UIColor blackColor];
     //从文件初始化各tab的视图控制器
     NSDictionary *tabBarSites = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RH_MainTabBarItems" ofType:@"plist"]] ;
     NSArray * tabBarItems = ConvertToClassPointer(NSArray, tabBarSites[SITE_TYPE]);
@@ -194,6 +196,20 @@
 }
 
 #pragma mark -
+//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+//    static int index = 0;
+//    RH_CustomTabBar *tabbar = (RH_CustomTabBar *)tabBar;
+//    for (int i = 0; i < tabBar.items.count; i++) {
+//        if (tabBar.items[i] == item) {
+//            index = i;
+//        }
+//    }
+//    if (index != 2) {
+//        [tabbar setViewBackgroundColor:[UIColor whiteColor]];
+//    }else {
+//        [tabbar setViewBackgroundColor:[UIColor blackColor]];
+//    }
+//}
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {

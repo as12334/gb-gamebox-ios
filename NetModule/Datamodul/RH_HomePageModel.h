@@ -12,8 +12,10 @@
 #import "RH_LotteryInfoModel.h"
 #import "RH_LotteryCategoryModel.h"
 #import "RH_LotteryInfoModel.h"
+#import "RH_ActivityModel.h"
 
 @interface RH_HomePageModel : RH_BasicModel
+@property (nonatomic,strong,readonly) RH_ActivityModel *mActivityInfo ;
 @property (nonatomic,strong,readonly) NSArray<RH_BannelModel*> *mBannerList ;
 @property (nonatomic,strong,readonly) NSArray<RH_AnnouncementModel*> *mAnnouncementList ;
 @property (nonatomic,strong,readonly) NSArray<RH_LotteryCategoryModel*> *mLotteryCategoryList ;

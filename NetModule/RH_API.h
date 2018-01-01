@@ -85,19 +85,25 @@
 
 
 #pragma mark - v3 首页 announcement 公告模型
-#define RH_GP_ANNOUNCEMENT_TYPE                                      @"announcementType"
-#define RH_GP_ANNOUNCEMENT_CODE                                      @"code"
-#define RH_GP_ANNOUNCEMENT_DISPLAY                                                 @"display"
+#define RH_GP_ANNOUNCEMENT_TYPE                                               @"announcementType"
+#define RH_GP_ANNOUNCEMENT_CODE                                               @"code"
+#define RH_GP_ANNOUNCEMENT_DISPLAY                                            @"display"
 #define RH_GP_ANNOUNCEMENT_ID                                                 @"id"
-#define RH_GP_ANNOUNCEMENT_ISTASK                                                 @"isTask"
-#define RH_GP_ANNOUNCEMENT_CONTENT                                                 @"content"
-#define RH_GP_ANNOUNCEMENT_LANGUAGE                                                 @"language"
-#define RH_GP_ANNOUNCEMENT_ORDERNUM                                                 @"orderNum"
-#define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                                 @"publishTime"
+#define RH_GP_ANNOUNCEMENT_ISTASK                                             @"isTask"
+#define RH_GP_ANNOUNCEMENT_CONTENT                                             @"content"
+#define RH_GP_ANNOUNCEMENT_LANGUAGE                                             @"language"
+#define RH_GP_ANNOUNCEMENT_ORDERNUM                                             @"orderNum"
+#define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                          @"publishTime"
 #define RH_GP_ANNOUNCEMENT_TITLE                                                @"title"
 
 #pragma mark - V3 活动图 信息 
-
+#define RH_GP_ACTIVITY_ACTIVITYID                                               @"activityId"
+#define RH_GP_ACTIVITY_DESCRTIPTION                                             @"description"
+#define RH_GP_ACTIVITY_DISTANCESIDE                                             @"distanceSide"
+#define RH_GP_ACTIVITY_DISTANCETOP                                              @"distanceTop"
+#define RH_GP_ACTIVITY_LANGUAGE                                                @"language"
+#define RH_GP_ACTIVITY_LOCATION                                                 @"location"
+#define RH_GP_ACTIVITY_NORMALEFFECT                                             @"normalEffect"
 
 
 #pragma mark - V3 首页api 分类模型
@@ -147,12 +153,15 @@
 //请求参数 无
 
 //返回参数
-#define RH_GP_HOMEINFO_ANNOUNCEMENT_LIST                      @"announcement"
-#define RH_GP_HOMEINFO_BANNER_LIST                            @"banner"
+#define RH_GP_HOMEINFO_ACTIVITY                        @"activity"
+#define RH_GP_HOMEINFO_ANNOUNCEMENT                      @"announcement"
+#define RH_GP_HOMEINFO_BANNER                            @"banner"
 #define RH_GP_HOMEINFO_SITEAPIRELATION                        @"siteApiRelation"
-#define RH_GP_HOMEINFO_CASINOMAP                           @"casinoMap"
-#define RH_GP_HOMEINFO_CASINOMAP_AGEXIST                           @"AGExist"
-#define RH_GP_HOMEINFO_CASINOMAP_GGEXIST                           @"GGExist"
+
+#pragma mark- v3 用户信息 接口
+//api的路径
+#define RH_API_NAME_USERINFO                        @"mineOrigin/getUserInfo.html"
+//请求参数 无
 
 
 #endif /* RH_API_h */

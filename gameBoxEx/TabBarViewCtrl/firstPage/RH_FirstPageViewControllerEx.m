@@ -17,15 +17,17 @@
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomePageModel.h"
 #import "RH_V3SimpleWebViewController.h"
+#import "RH_ActivithyView.h"
 #import "RH_API.h"
 
 
-@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate>
+@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,ActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
+@property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
 
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
@@ -37,8 +39,8 @@
 @synthesize dynamicLabCell = _dynamicLabCell                ;
 @synthesize homeCategoryCell = _homeCategoryCell            ;
 @synthesize homeChildCatetoryCell = _homeChildCatetoryCell  ;
-//@synthesize homeSubCategoryCell = _homeSubCategoryCell      ;
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
+@synthesize activityView = _activityView                    ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -215,6 +217,53 @@
     }
 }
 
+#pragma mark-activityView
+-(RH_ActivithyView *)activityView
+{
+    if (!_activityView){
+        _activityView = [RH_ActivithyView createInstance] ;
+        _activityView.frame = CGRectMake(self.view.frameWidth - activithyViewWidth -10,
+                                         self.view.frameHeigh - activithyViewHeigh - TabBarHeight - 10,
+                                         activithyViewWidth,
+                                         activithyViewHeigh) ;
+        _activityView.delegate = self ;
+    }
+    
+    return _activityView ;
+}
+-(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
+{
+    
+}
+
+-(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView
+{
+    [self activityViewHide] ;
+}
+
+-(void)activityViewShowWith:(RH_ActivityModel*)activityModel
+{
+    if (self.activityView.superview) return ;
+    
+    self.activityView.alpha = 0.0 ;
+    [self.view addSubview:self.activityView] ;
+    [UIView animateWithDuration:1.0f animations:^{
+        self.activityView.activityModel = activityModel ;
+    } completion:^(BOOL finished) {
+        self.activityView.alpha = 1.0f;
+    }] ;
+}
+
+-(void)activityViewHide{
+    if (self.activityView.superview){
+        [UIView animateWithDuration:1.0f animations:^{
+            [self.activityView removeFromSuperview] ;
+        } completion:^(BOOL finished) {
+            self.activityView.alpha = 0.0f;
+        }] ;
+    }
+}
+
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {
@@ -248,6 +297,33 @@
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, data) ;
         [self loadDataSuccessWithDatas:homePageModel?@[homePageModel]:nil
                             totalCount:homePageModel?1:1] ;
+        
+        if (homePageModel.mActivityInfo){
+            [self activityViewShowWith:homePageModel.mActivityInfo] ;
+        }else{
+            [self activityViewHide] ;
+        }
+    }else if (type == ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if ([data boolValue]){
+                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                [self.appDelegate updateLoginStatus:true] ;
+                
+            }else{
+                showAlertView(@"试玩登入失败", @"提示信息");
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }] ;
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+            if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                [self.appDelegate updateLoginStatus:true] ;
+            }else{
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }] ;
+        
     }
 }
 
@@ -255,6 +331,14 @@
 {
     if (type == ServiceRequestTypeV3HomeInfo){
         [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"试玩登入失败", @"提示信息");
+        }] ;
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"自动login失败", @"提示信息");
+        }] ;
     }
 }
 

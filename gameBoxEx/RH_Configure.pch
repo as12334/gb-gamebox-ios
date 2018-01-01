@@ -49,7 +49,7 @@
 #define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
 
-#define   RH_TabBar_BackgroundColor                     colorWithRGB(0, 0, 0)
+#define   RH_TabBar_BackgroundColor                     colorWithRGB(193, 194, 195)
 #define   RH_TabBar_TitleNormalColor                    colorWithRGB(137, 137, 137)
 #define   RH_TabBar_TitleSelectedColor                  colorWithRGB(213, 201, 78)
 #define   RH_TabBar_TitleFontSize                       [UIFont systemFontOfSize:14.0f]
@@ -90,7 +90,7 @@
 //#define TEST_DOMAIN         @"test02.ccenter.test.so"
 //@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-//#define TEST_DOMAIN         @"msite.pro.so"
+//#define TEST_DOMAIN         @"msite2.pro.so"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"

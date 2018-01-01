@@ -25,9 +25,9 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
     
-    
     //V3接口
     ServiceRequestTypeV3HomeInfo        ,
+    
 };
 
 

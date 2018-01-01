@@ -13,6 +13,8 @@
 #import "RH_userInfoView.h"
 #import "RH_NavigationUserInfoView.h"
 #import "RH_LoginViewControllerEx.h"
+#import "RH_CustomViewController.h"
+#import "RH_API.h"
 
 @interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
@@ -169,7 +171,8 @@
 
 -(void)tryLoginButtonItemHandle
 {
-    
+    [self showProgressIndicatorViewWithAnimated:YES title:@"试玩请求中..."] ;
+    [self.serviceRequest startDemoLogin] ;
 }
 
 #pragma mark-  loginButton Item
@@ -217,6 +220,7 @@
         NSString *account = [defaults stringForKey:@"account"] ;
         NSString *password = [defaults stringForKey:@"password"] ;
         
+        [self showProgressIndicatorViewWithAnimated:YES title:@"自动login..."] ;
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
             [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
         }else{
@@ -247,7 +251,8 @@
 
 -(void)signButtonItemHandle
 {
-    
+    self.appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
+    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
 }
 
 #pragma mark-
