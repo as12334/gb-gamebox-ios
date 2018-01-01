@@ -61,6 +61,7 @@
 - (Class)targetViewControllerClass;
 - (UIViewController *)targetViewController;
 - (UIViewController *)targetViewControllerWithContext:(id)context;
+- (id)targetContext ;
 
 //tableView
 - (NSArray *)rows;
@@ -78,3 +79,4 @@
 - (NSDictionary *)objectsForKeys:(NSArray *)keys;
 
 @end
+
