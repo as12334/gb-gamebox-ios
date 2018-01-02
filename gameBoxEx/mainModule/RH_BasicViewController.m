@@ -50,10 +50,25 @@
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
-    navigationBar.barStyle = UIBarStyleDefault ;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
-    [navigationBar insertSubview:backgroundView atIndex:0] ;
-    backgroundView.backgroundColor = [UIColor clearColor] ;
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = RH_NavigationBar_BackgroundColor;
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+        [navigationBar insertSubview:backgroundView atIndex:0] ;
+        backgroundView.backgroundColor = [UIColor clearColor] ;
+    }
 //    navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBarTitleFontSize,
 //                                          NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     

@@ -644,7 +644,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if (resultSendData){
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
-                    [userInfoManager setUserBalanceInfo:resultSendData] ;
+                    [userInfoManager setMineGroupInfo:resultSendData] ;
                 }
             }
                 break ;

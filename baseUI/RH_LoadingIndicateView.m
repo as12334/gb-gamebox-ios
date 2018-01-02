@@ -53,7 +53,7 @@
 {
     [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
                                     title:@"用户未登入"
-                               detailText:nil];
+                               detailText:@"点击页面登入"];
 }
 
 - (void)showDefaultLoadingErrorStatus:(NSError*)error
