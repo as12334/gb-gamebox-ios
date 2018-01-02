@@ -7,10 +7,9 @@
 //
 
 #import "RH_MePageViewController.h"
-//#import "RH_MineCustomerServicesController.h"
-//#import "RH_MineSettingViewController.h"
 #import "RH_MinePageBannarCell.h"
-@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MinePageBannarCellDelegate>
+#import "RH_UserInfoManager.h"
+@interface RH_MePageViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
@@ -25,29 +24,43 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的" ;
-    [self.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self setupUI];
+    [self setNeedUpdateView] ;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
+}
+
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:RHNT_UserInfoManagerMineGroupChangedNotification]){
+        [self setNeedUpdateView] ;
+    }
+}
+#pragma mark-
+
+-(RH_LoadingIndicateView*)contentLoadingIndicateView
+{
+    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+}
+
+
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self loginButtonItemHandle] ;
 }
 
 #pragma mark-
 -(UIBarButtonItem *)barButtonCustom
 {
     if (!_barButtonCustom){
-#if 1
         UIImage *menuImage = ImageWithName(@"mine_page_customer");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
         [button setBackgroundImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonCustomHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonCustom = [[UIBarButtonItem alloc] initWithCustomView:button] ;
-#else
-        _barButtonCustom = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"mine_page_customer")
-                                                            style:UIBarButtonItemStyleDone
-                                                           target:self
-                                                           action:@selector(_barButtonCustomHandle)] ;
-#endif
     }
     
     return _barButtonCustom ;
@@ -62,19 +75,12 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 1
         UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
         [button setBackgroundImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
-#else
-        _barButtonSetting = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"mine_page_settings")
-                                                             style:UIBarButtonItemStyleDone
-                                                           target:self
-                                                            action:@selector(_barButtonSettingHandle)] ;
-#endif
     }
     
     return _barButtonSetting ;
@@ -85,16 +91,29 @@
 //    [self showViewController:[RH_MineSettingViewController viewController] sender:self] ;
 }
 
+
 #pragma mark-
 -(void)setupUI
 {
     [self.navigationBar setBarTintColor:colorWithRGB(27, 117, 217)];
-    self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
-    self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
+//    self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
+//    self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.tableViewManagement reloadData] ;
 }
+
+#pragma mark-
+-(void)updateView
+{
+    if (!self.appDelegate.isLogin){//未login
+        [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
+        [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
+    }else{
+        [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogin"] ;
+    }
+}
+
 
 #pragma mark-
 -(CLTableViewManagement*)tableViewManagement
@@ -108,29 +127,10 @@
     }
     return _tableViewManagement ;
 }
--(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
+
+-(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    _bannarCell = ConvertToClassPointer(RH_MinePageBannarCell, cell);
-    _bannarCell.delegate=self;
+    return self.loadingIndicateTableViewCell ;
 }
 
-//-(void)testTimePickerClick:(RH_MinePageBannarCell *)cell
-//{
-//    CLChooseTimeViewController * vc =[CLChooseTimeViewController new];
-//    
-//    __weak typeof(self)weekSelf = self;
-//    
-//    [vc backDate:^(NSArray *goDate, NSArray *backDate) {
-//        
-//        cell.labAccoutInfo.text = [NSString stringWithFormat:@"%@ : %@",[goDate componentsJoinedByString:@"-"],[backDate componentsJoinedByString:@"-"]];
-//        NSLog(@"--%@",[NSString stringWithFormat:@"%@ : %@",[goDate componentsJoinedByString:@"-"],[backDate componentsJoinedByString:@"-"]]);
-//        [cell updateCellIfNeeded];
-//    }];
-//    
-//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:vc];
-//    [self presentViewController:nav animated:YES completion:^{
-//        
-//        
-//    }];
-//}
 @end

@@ -143,9 +143,37 @@
 #define RH_GP_LOTTERYINFO_COVER                              @"cover"
 #define RH_GP_LOTTERYINFO_CANTRY                              @"canTry"
 
+#pragma mark - V3 用户api 总计Balance 信息模型
+#define RH_GP_USERBALANCEGROUP_ASSETS                          @"assets"
+#define RH_GP_USERBALANCEGROUP_BALANCE                          @"balance"
+#define RH_GP_USERBALANCEGROUP_CURRSIGN                         @"currSign"
+#define RH_GP_USERBALANCEGROUP_USERNAME                         @"username"
+#define RH_GP_USERBALANCEGROUP_APIS                             @"apis"
 
-#pragma mark - V3 用户 
+#pragma mark - V3 用户api Balance 信息模型
+#define RH_GP_USERAPIINFO_APIID                              @"apiId"
+#define RH_GP_USERAPIINFO_APINAME                            @"apiName"
+#define RH_GP_USERAPIINFO_BALANCE                            @"balance"
+#define RH_GP_USERAPIINFO_STATUS                             @"status"
 
+#pragma mark - V3 link 信息模型
+#define RH_GP_LINK_CODE                             @"code"
+#define RH_GP_LINK_LINK                             @"link"
+#define RH_GP_LINK_NAME                             @"name"
+
+#pragma mark - V3 MINE 信息模型
+#define RH_GP_MINEINFO_AVATARURL                             @"avatarUrl"
+#define RH_GP_MINEINFO_CURRENCY                             @"currency"
+#define RH_GP_MINEINFO_PREFERENTIALAMOUNT                             @"preferentialAmount"
+#define RH_GP_MINEINFO_RECOMDAMOUNT                             @"recomdAmount"
+#define RH_GP_MINEINFO_TOTALASSETS                             @"totalAssets"
+#define RH_GP_MINEINFO_TRANSFERAMOUNT                             @"transferAmount"
+#define RH_GP_MINEINFO_UNREADCOUNT                             @"unReadCount"
+#define RH_GP_MINEINFO_USERNAME                             @"username"
+#define RH_GP_MINEINFO_WALLETBALANCE                             @"walletBalance"
+#define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
+
+#pragma mark - V3
 //===========================================================
 //v3接口定义
 //===========================================================
@@ -165,6 +193,15 @@
 #define RH_API_NAME_USERINFO                        @"mineOrigin/getUserInfo.html"
 //请求参数 无
 
+#pragma mark- v3 我的 接口
+//api的路径
+#define RH_API_NAME_MINEGROUPINFO                        @"mineOrigin/getLink.html"
+//请求参数 无
+//返回参数
+#define RH_GP_MINEGROUPINFO_ISBIT                          @"isBit"
+#define RH_GP_MINEGROUPINFO_ISCASH                         @"isCash"
+#define RH_GP_MINEGROUPINFO_LINK                           @"link"
+#define RH_GP_MINEGROUPINFO_USER                           @"user"
 
 #endif /* RH_API_h */
 

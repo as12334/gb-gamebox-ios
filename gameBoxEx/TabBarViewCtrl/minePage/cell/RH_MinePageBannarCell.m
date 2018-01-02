@@ -8,6 +8,7 @@
 
 #import "RH_MinePageBannarCell.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_MinePageBannarCell()
 @property (nonatomic,strong) IBOutlet UIImageView *imgICON ;
@@ -33,6 +34,7 @@
     
     return 124;
 }
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -48,14 +50,11 @@
     [self.label_TotalMoney setTextColor:colorWithRGB(27, 117, 217)];
     [self.label_leftMoney setTextColor:colorWithRGB(11, 186, 135)];
     [self.label_LeftMoneyText setTextColor:colorWithRGB(51, 51, 51)];
-    [self switchLoginStatus:NO] ;
 }
--(void)testPickerClick:(id)sender
+
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    [self.delegate testTimePickerClick:self];
+    self.label_UserNickName.text =  MineGroupInfo.mUserInfo.mUserName ;
 }
--(void)switchLoginStatus:(BOOL)bLogin
-{
-    
-}
+
 @end

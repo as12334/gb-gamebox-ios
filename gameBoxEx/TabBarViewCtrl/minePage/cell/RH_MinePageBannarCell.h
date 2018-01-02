@@ -7,11 +7,7 @@
 //
 
 #import "CLTableViewCell.h"
-@class RH_MinePageBannarCell;
-@protocol MinePageBannarCellDelegate<NSObject>
--(void)testTimePickerClick:(RH_MinePageBannarCell *)cell;
-@end
+
 @interface RH_MinePageBannarCell : CLTableViewCell
 @property (nonatomic,strong) IBOutlet UILabel *labAccoutInfo ;
-@property(nonatomic,weak)id<MinePageBannarCellDelegate>delegate;
 @end

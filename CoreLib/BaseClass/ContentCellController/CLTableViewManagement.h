@@ -13,6 +13,8 @@
 @protocol CLTableViewManagementDelegate <NSObject>
 @optional
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath;
+-(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath;
+
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement canDeleteCustomCellAtIndexPath:(NSIndexPath *)indexPath;
 - (NSString*)tableViewManagement:(CLTableViewManagement *)tableViewManagement titleForDeleteConfirmationButtonForCustomRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -26,6 +28,9 @@
 //点击了删除自定义cell
 - (void)tableViewManagement:(CLTableViewManagement *)contentViewCellController commitDeleteCustomCellAtIndexPath:(NSIndexPath *)indexPath ;
 
+//滑动UItableview调用的方法
+-(void)tableviewManagement:(CLTableViewManagement *)tableViewManagement scrollView:(UIScrollView *)scrollView;
+
 @end
 
 @interface CLTableViewManagement : NSObject
@@ -33,6 +38,7 @@
 
 -(id)initWithTableView:(UITableView*)tableView configureFileName:(NSString*)plist bundle:(NSBundle*)bundleOrNil ;
 -(void)reloadData ;
+-(void)reloadDataWithPlistName:(NSString*)plistFile;
 -(NSDictionary*)cellExtraInfo:(NSIndexPath*)indexPath ;
 -(id)cellContext:(NSIndexPath*)indexPath ;
 -(UITableViewCell*)cellViewAtIndexPath:(NSIndexPath*)indexPath ;
@@ -47,6 +53,7 @@
 - (CGFloat)sectionHeaderHeight:(CGFloat)defaultValue ;
 - (CGFloat)sectionFooterHeight:(CGFloat)defaultValue ;
 - (BOOL)isCustomHeight  ;
+- (BOOL)isCustomCell    ;
 - (BOOL)isPixelUnit     ;
 - (NSString *)cellClassName ;
 - (Class)tableViewCellClass ;
@@ -56,3 +63,4 @@
 - (NSString *)sectionFooterViewClassName ;
 - (Class)tableViewSectionFooterViewClass ;
 @end
+

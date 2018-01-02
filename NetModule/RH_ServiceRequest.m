@@ -14,9 +14,11 @@
 #import "coreLib.h"
 #import "RH_UpdatedVersionModel.h"
 #import "RH_APPDelegate.h"
+#import "RH_UserInfoManager.h"
 ///-------DATA MODULE--------------------//
 #import "RH_HomePageModel.h"
-
+#import "RH_UserBalanceGroupModel.h"
+#import "RH_MineGroupInfoModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -253,6 +255,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3UserInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3MineLinkInfo
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_MINEGROUPINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3MineGroupInfo
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -537,6 +553,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 [self startV3UserInfo] ;
+                [self startV3MineLinkInfo] ;
             }
             
         }else{
@@ -607,6 +624,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
+           
+           case ServiceRequestTypeV3UserInfo:
+            {
+                resultSendData = [[RH_UserBalanceGroupModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserBalanceInfo:resultSendData] ;
+                }
+            }
+                break ;
+            
+            case ServiceRequestTypeV3MineGroupInfo:
+            {
+                resultSendData = [[RH_MineGroupInfoModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setMineGroupInfo:resultSendData] ;
+                }
             }
                 break ;
                 

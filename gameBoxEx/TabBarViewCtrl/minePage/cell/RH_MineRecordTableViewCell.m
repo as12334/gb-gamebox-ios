@@ -29,7 +29,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.staticCollectionView.allowCellSeparationLine = YES ;
+    self.staticCollectionView.allowCellSeparationLine = NO ;
     self.staticCollectionView.allowSectionSeparationLine = YES ;
     self.staticCollectionView.averageCellWidth = YES ;
     self.staticCollectionView.dataSource = self ;

@@ -39,7 +39,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDa-hE-joe">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDa-hE-joe">
                         <rect key="frame" x="10" y="18" width="91" height="95"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -84,7 +84,7 @@
                 <outlet property="label_UserNickName" destination="flw-Rs-j00" id="DPD-Yb-TN2"/>
                 <outlet property="label_leftMoney" destination="4Hk-Yo-iri" id="fTh-AG-bBB"/>
             </connections>
-            <point key="canvasLocation" x="-49" y="-4"/>
+            <point key="canvasLocation" x="-66" y="-193"/>
         </tableViewCell>
     </objects>
 </document>

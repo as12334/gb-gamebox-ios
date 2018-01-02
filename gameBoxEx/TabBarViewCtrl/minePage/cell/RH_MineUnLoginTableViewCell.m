@@ -12,7 +12,7 @@
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
     
-    return 124;
+    return MainScreenH - StatusBarHeight - NavigationBarHeight - TabBarHeight;
 }
 
 - (void)awakeFromNib {

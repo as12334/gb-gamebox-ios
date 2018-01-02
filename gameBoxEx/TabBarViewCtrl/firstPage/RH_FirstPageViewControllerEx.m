@@ -19,7 +19,7 @@
 #import "RH_V3SimpleWebViewController.h"
 #import "RH_ActivithyView.h"
 #import "RH_API.h"
-
+#import "RH_MachineAnimationView.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,ActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
@@ -48,7 +48,7 @@
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
     [self setNeedUpdateView] ;
     [self setupUI] ;
-    
+    self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }
@@ -94,6 +94,18 @@
     }
     
     return _labDomain ;
+}
+
+#pragma mark- tap gesture
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return (self.userInfoView.superview?YES:NO) ;
+}
+
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
+{
+    [self userInfoButtonItemHandle] ;
 }
 
 #pragma mark-
@@ -233,7 +245,8 @@
 }
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
-    
+    RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
+    [machineView showAnimation];
 }
 
 -(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "coreLib.h"
 
-#define userInfoViewWidth                                               120.0f
-#define userInfoViewHeigh                                               300.0f
+#define userInfoViewWidth                                               200.0f
+#define userInfoViewHeigh                                               400.0f
 
 @interface RH_userInfoView : CLBorderView
 

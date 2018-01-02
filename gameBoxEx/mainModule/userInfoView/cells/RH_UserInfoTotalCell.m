@@ -8,13 +8,16 @@
 
 #import "RH_UserInfoTotalCell.h"
 #import "coreLib.h"
+#import "RH_UserBalanceGroupModel.h"
 
 @interface RH_UserInfoTotalCell()
 @property (weak, nonatomic) IBOutlet CLBorderView  *tBalanceView  ;
-@property (weak, nonatomic) IBOutlet CLLabel  *labTBalance  ;
+@property (weak, nonatomic) IBOutlet UIView  *balanceBGView  ;
+@property (weak, nonatomic) IBOutlet UILabel  *labTBalance  ;
 @property (weak, nonatomic) IBOutlet UILabel  *labTBalanceValue ;
 @property (weak, nonatomic) IBOutlet CLBorderView  *tWalletView  ;
-@property (weak, nonatomic) IBOutlet CLLabel  *labTWallet  ;
+@property (weak, nonatomic) IBOutlet UIView  *walletBGView    ;
+@property (weak, nonatomic) IBOutlet UILabel  *labTWallet  ;
 @property (weak, nonatomic) IBOutlet UILabel  *labTWalletValue ;
 
 @end
@@ -38,32 +41,38 @@
     self.tWalletView.borderColor = colorWithRGB(242, 242, 242)  ;
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
-    self.labTBalance.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
-    self.labTBalance.backgroundColor = colorWithRGB(153, 153, 153) ;
+    self.balanceBGView.backgroundColor = colorWithRGB(153, 153, 153) ;
+    self.balanceBGView.layer.cornerRadius = 4.0f ;
+    self.balanceBGView.layer.masksToBounds = YES ;
     self.labTBalance.textColor = [UIColor whiteColor] ;
-    self.labTBalance.font = [UIFont systemFontOfSize:19.0f] ;
-    self.labTBalance.layer.cornerRadius = 6.0f ;
+    self.labTBalance.font = [UIFont systemFontOfSize:15.0f] ;
     
-    self.labTWallet.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
-    self.labTWallet.backgroundColor = colorWithRGB(153, 153, 153) ;
+    self.walletBGView.backgroundColor = colorWithRGB(153, 153, 153) ;
+    self.walletBGView.layer.cornerRadius = 4.0f ;
+    self.walletBGView.layer.masksToBounds = YES ;
     self.labTWallet.textColor = [UIColor whiteColor] ;
     self.labTWallet.font = [UIFont systemFontOfSize:19.0f] ;
-    self.labTWallet.layer.cornerRadius = 6.0f ;
     
-    self.labTBalanceValue.textColor = [UIColor blackColor] ;
-    self.labTBalanceValue.font = [UIFont systemFontOfSize:19.0f] ;
-    self.labTWalletValue.textColor = [UIColor blackColor] ;
-    self.labTWalletValue.font = [UIFont systemFontOfSize:19.0f] ;
+    self.labTBalanceValue.textColor = colorWithRGB(51, 51, 51) ;
+    self.labTBalanceValue.font = [UIFont systemFontOfSize:15.0f] ;
+    self.labTWalletValue.textColor = colorWithRGB(51, 51, 51) ;
+    self.labTWalletValue.font = [UIFont systemFontOfSize:15.0f] ;
+    
+    self.labTBalance.text = @"总资产" ;
+    self.labTBalanceValue.text = @"" ;
+    self.labTWallet.text = @"钱包"    ;
+    self.labTWalletValue.text = @""  ;
+    
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    RH_UserBalanceGroupModel *userBalanceGroupModel = ConvertToClassPointer(RH_UserBalanceGroupModel, context) ;
+    if (userBalanceGroupModel){
+        self.labTBalanceValue.text = userBalanceGroupModel.mAssets ;
+        self.labTWalletValue.text = userBalanceGroupModel.mBalance ;
+    }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end
