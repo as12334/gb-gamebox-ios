@@ -7,8 +7,8 @@
 //
 
 #import "RH_MePageViewController.h"
-#import "RH_MineCustomerServicesController.h"
-#import "RH_MineSettingViewController.h"
+//#import "RH_MineCustomerServicesController.h"
+//#import "RH_MineSettingViewController.h"
 #import "RH_MinePageBannarCell.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MinePageBannarCellDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
@@ -25,6 +25,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的" ;
+    [self.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self setupUI];
     
 }
@@ -34,14 +36,14 @@
 {
     if (!_barButtonCustom){
 #if 1
-        UIImage *menuImage = ImageWithName(@"me_custom_icon");
+        UIImage *menuImage = ImageWithName(@"mine_page_customer");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
         [button setBackgroundImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonCustomHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonCustom = [[UIBarButtonItem alloc] initWithCustomView:button] ;
 #else
-        _barButtonCustom = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"me_custom_icon")
+        _barButtonCustom = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"mine_page_customer")
                                                             style:UIBarButtonItemStyleDone
                                                            target:self
                                                            action:@selector(_barButtonCustomHandle)] ;
@@ -53,7 +55,7 @@
 
 -(void)_barButtonCustomHandle
 {
-    [self showViewController:[RH_MineCustomerServicesController viewController] sender:self] ;
+//    [self showViewController:[RH_MineCustomerServicesController viewController] sender:self] ;
 }
 
 #pragma mark-
@@ -61,14 +63,14 @@
 {
     if (!_barButtonSetting){
 #if 1
-        UIImage *menuImage = ImageWithName(@"me_setting_icon");
+        UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
         [button setBackgroundImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
 #else
-        _barButtonSetting = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"me_setting_icon")
+        _barButtonSetting = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"mine_page_settings")
                                                              style:UIBarButtonItemStyleDone
                                                            target:self
                                                             action:@selector(_barButtonSettingHandle)] ;
@@ -80,12 +82,13 @@
 
 -(void)_barButtonSettingHandle
 {
-    [self showViewController:[RH_MineSettingViewController viewController] sender:self] ;
+//    [self showViewController:[RH_MineSettingViewController viewController] sender:self] ;
 }
 
 #pragma mark-
 -(void)setupUI
 {
+    [self.navigationBar setBarTintColor:colorWithRGB(27, 117, 217)];
     self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
     self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;

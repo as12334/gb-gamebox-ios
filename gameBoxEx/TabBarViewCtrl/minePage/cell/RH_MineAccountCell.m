@@ -8,9 +8,13 @@
 
 #import "RH_MineAccountCell.h"
 #import "CLSelectionControl.h"
+#import "coreLib.h"
 @interface RH_MineAccountCell()
 @property (weak, nonatomic) IBOutlet CLSelectionControl *rechargeControl;
 @property (weak, nonatomic) IBOutlet CLSelectionControl *withDrawControl;
+
+@property (strong, nonatomic) IBOutlet UIImageView *image_Topup;
+@property (strong, nonatomic) IBOutlet UIImageView *image_Withdraw;
 
 @end
 @implementation RH_MineAccountCell
@@ -26,6 +30,13 @@
     self.withDrawControl.selectionColorAlpha = 0.3f ;
 }
 
+- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
+    NSLog(@"info:%@",info);
+    NSArray *rowsinfo = info[@"rowsInfo"];
+    self.image_Withdraw.image = ImageWithName(rowsinfo[0][@"image"]);
+    self.image_Topup.image = ImageWithName(rowsinfo[1][@"image"]);
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

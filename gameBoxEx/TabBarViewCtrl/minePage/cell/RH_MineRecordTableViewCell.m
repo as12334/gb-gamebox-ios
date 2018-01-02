@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_MineRecordStaticCell.h"
 #import "RH_MainTabBarController.h"
+
 #define cellHeight                  50.0f
 #define lineCellCount                2
 

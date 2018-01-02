@@ -160,7 +160,7 @@
 			<key>selectedImage</key>
 			<string>tab_v3_my_selected</string>
 			<key>viewControllerClass</key>
-			<string>RH_MinePageViewController</string>
+			<string>RH_MePageViewController</string>
 		</dict>
 	</array>
 	<key>integratedv3oc</key>
