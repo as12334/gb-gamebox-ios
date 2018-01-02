@@ -241,6 +241,8 @@
 		A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */; };
 		A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */; };
 		A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */; };
+		A01CB4B91FFB1BDC00447130 /* RH_MineInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */; };
+		A01CB4BC1FFB1E7900447130 /* RH_MineGroupInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4BB1FFB1E7900447130 /* RH_MineGroupInfoModel.m */; };
 		A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109F1C1F87852F004E6EF4 /* MBProgressHUD.h */; };
 		A01EE2671F8878B30085717E /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01EE2651F8878B30085717E /* SplashViewController.m */; };
 		A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE2661F8878B30085717E /* SplashViewController.xib */; };
@@ -746,6 +748,10 @@
 		A01CB4B21FFA1B8A00447130 /* RH_UserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoManager.h; sourceTree = "<group>"; };
 		A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LinkInfoModel.m; sourceTree = "<group>"; };
 		A01CB4B51FFA60D300447130 /* RH_LinkInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LinkInfoModel.h; sourceTree = "<group>"; };
+		A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineInfoModel.m; sourceTree = "<group>"; };
+		A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineInfoModel.h; sourceTree = "<group>"; };
+		A01CB4BA1FFB1E7900447130 /* RH_MineGroupInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineGroupInfoModel.h; sourceTree = "<group>"; };
+		A01CB4BB1FFB1E7900447130 /* RH_MineGroupInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineGroupInfoModel.m; sourceTree = "<group>"; };
 		A01EE2641F8878B30085717E /* SplashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A01EE2651F8878B30085717E /* SplashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A01EE2661F8878B30085717E /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -1632,6 +1638,10 @@
 				A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */,
 				A01CB4B51FFA60D300447130 /* RH_LinkInfoModel.h */,
 				A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */,
+				A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */,
+				A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */,
+				A01CB4BA1FFB1E7900447130 /* RH_MineGroupInfoModel.h */,
+				A01CB4BB1FFB1E7900447130 /* RH_MineGroupInfoModel.m */,
 				A05747B71FF4E2070068D0E4 /* RH_AnnouncementModel.h */,
 				A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */,
 				A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */,
@@ -2280,6 +2290,7 @@
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
+				A01CB4BC1FFB1E7900447130 /* RH_MineGroupInfoModel.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
 				A010A0961F879D57004E6EF4 /* CLViewControllerTransitioningDelegate.h in Sources */,
 				A010A0891F879B23004E6EF4 /* RH_BasicHelpView.m in Sources */,
@@ -2334,6 +2345,7 @@
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
 				A0109FBB1F8788FF004E6EF4 /* UIImage+Tint.m in Sources */,
 				A0109FBC1F8788FF004E6EF4 /* UIImage+UPload.m in Sources */,
+				A01CB4B91FFB1BDC00447130 /* RH_MineInfoModel.m in Sources */,
 				A0109FBD1F8788FF004E6EF4 /* UILabel+CalculateShowSize.m in Sources */,
 				A0E368181F95FF5800758033 /* RH_GamesViewController.m in Sources */,
 				A0109FBE1F8788FF004E6EF4 /* UIScrollView+ScrollToBorder.m in Sources */,

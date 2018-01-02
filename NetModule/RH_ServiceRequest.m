@@ -18,6 +18,7 @@
 ///-------DATA MODULE--------------------//
 #import "RH_HomePageModel.h"
 #import "RH_UserBalanceGroupModel.h"
+#import "RH_MineGroupInfoModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -261,13 +262,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_MINELINKINFO
+                        pathFormat:RH_API_NAME_MINEGROUPINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3MineLinkInfo
+                       serviceType:ServiceRequestTypeV3MineGroupInfo
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -629,6 +630,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3UserInfo:
             {
                 resultSendData = [[RH_UserBalanceGroupModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserBalanceInfo:resultSendData] ;
+                }
+            }
+                break ;
+            
+            case ServiceRequestTypeV3MineGroupInfo:
+            {
+                resultSendData = [[RH_MineGroupInfoModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
                 if (resultSendData){
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;

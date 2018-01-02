@@ -161,6 +161,18 @@
 #define RH_GP_LINK_LINK                             @"link"
 #define RH_GP_LINK_NAME                             @"name"
 
+#pragma mark - V3 MINE 信息模型
+#define RH_GP_MINEINFO_AVATARURL                             @"avatarUrl"
+#define RH_GP_MINEINFO_CURRENCY                             @"currency"
+#define RH_GP_MINEINFO_PREFERENTIALAMOUNT                             @"preferentialAmount"
+#define RH_GP_MINEINFO_RECOMDAMOUNT                             @"recomdAmount"
+#define RH_GP_MINEINFO_TOTALASSETS                             @"totalAssets"
+#define RH_GP_MINEINFO_TRANSFERAMOUNT                             @"transferAmount"
+#define RH_GP_MINEINFO_UNREADCOUNT                             @"unReadCount"
+#define RH_GP_MINEINFO_USERNAME                             @"username"
+#define RH_GP_MINEINFO_WALLETBALANCE                             @"walletBalance"
+#define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
+
 #pragma mark - V3
 //===========================================================
 //v3接口定义
@@ -183,8 +195,13 @@
 
 #pragma mark- v3 我的 接口
 //api的路径
-#define RH_API_NAME_MINELINKINFO                        @"mineOrigin/getLink.html"
+#define RH_API_NAME_MINEGROUPINFO                        @"mineOrigin/getLink.html"
 //请求参数 无
+//返回参数
+#define RH_GP_MINEGROUPINFO_ISBIT                          @"isBit"
+#define RH_GP_MINEGROUPINFO_ISCASH                         @"isCash"
+#define RH_GP_MINEGROUPINFO_LINK                           @"link"
+#define RH_GP_MINEGROUPINFO_USER                           @"user"
 
 #endif /* RH_API_h */
 

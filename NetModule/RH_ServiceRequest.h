@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     //V3接口
     ServiceRequestTypeV3HomeInfo        ,
     ServiceRequestTypeV3UserInfo        ,
-    ServiceRequestTypeV3MineLinkInfo    ,
+    ServiceRequestTypeV3MineGroupInfo    ,
 };
 
 
