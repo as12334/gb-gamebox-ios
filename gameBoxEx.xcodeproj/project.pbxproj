@@ -17,6 +17,8 @@
 		189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */; };
 		189C13B31FF9E99F00B14298 /* RH_MineRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */; };
 		189C13B41FF9E99F00B14298 /* RH_UserCenterCells.plist in Resources */ = {isa = PBXBuildFile; fileRef = 189C13AA1FF9E99E00B14298 /* RH_UserCenterCells.plist */; };
+		189C1D391FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C1D371FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.m */; };
+		189C1D3A1FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C1D381FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.xib */; };
 		A001B3C71F8E130F00309EA4 /* RH_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */; };
 		A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */; };
 		A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A04E60281F8DAFF000098A65 /* tab_blue_deposit@2x.png */; };
@@ -367,6 +369,9 @@
 		189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineRecordTableViewCell.xib; sourceTree = "<group>"; };
 		189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MePageViewController.h; sourceTree = "<group>"; };
 		189C13AA1FF9E99E00B14298 /* RH_UserCenterCells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_UserCenterCells.plist; sourceTree = "<group>"; };
+		189C1D361FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineUnLoginTableViewCell.h; sourceTree = "<group>"; };
+		189C1D371FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineUnLoginTableViewCell.m; sourceTree = "<group>"; };
+		189C1D381FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MineUnLoginTableViewCell.xib; sourceTree = "<group>"; };
 		A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewController.h; sourceTree = "<group>"; };
 		A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewController.m; sourceTree = "<group>"; };
 		A001B3F01F8EFEB500309EA4 /* RH_TransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_TransferViewController.h; sourceTree = "<group>"; };
@@ -965,6 +970,9 @@
 				189C13A61FF9E99E00B14298 /* RH_MineRecordTableViewCell.h */,
 				189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */,
 				189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */,
+				189C1D361FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.h */,
+				189C1D371FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.m */,
+				189C1D381FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2246,6 +2254,7 @@
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
 				189C13B41FF9E99F00B14298 /* RH_UserCenterCells.plist in Resources */,
+				189C1D3A1FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.xib in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
@@ -2507,6 +2516,7 @@
 				A0109F9D1F8787E4004E6EF4 /* CLUserGuideView.m in Sources */,
 				A0109F9E1F8787E4004E6EF4 /* CLBasicViewController.m in Sources */,
 				A0109F9F1F8787E4004E6EF4 /* CLBasicViewControllerAnimatedTransitioning.m in Sources */,
+				189C1D391FFB2E0200BBEDC4 /* RH_MineUnLoginTableViewCell.m in Sources */,
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
 				A07FE3701FEF453700D5DF71 /* CLSegmentedControl.m in Sources */,
