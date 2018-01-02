@@ -89,14 +89,14 @@
 
 //#define TEST_DOMAIN         @"test02.ccenter.test.so"
 //@"test01.ampinplay0matrix.com"
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN         @"msite2.pro.so"
-//#define TEST_DOMAIN         @"pro.gbboss.com"
+#define TEST_DOMAIN         @"pro.gbboss.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3oc"
+#define SITE_TYPE    @"integrated"
 
 #elif _7cxt //百发彩票
 
@@ -1410,6 +1410,14 @@
 #define CODE    @"xdvv"
 #define S        @"c44314ad405649cf9b5a6c8e89387956"
 #define SID        @"331"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wzt8 //金尊娱乐城
+
+#define CODE    @"wzt8"
+#define S        @"a895535f5c2dbb0b0c3fd1eeb561cebe"
+#define SID        @"332"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
