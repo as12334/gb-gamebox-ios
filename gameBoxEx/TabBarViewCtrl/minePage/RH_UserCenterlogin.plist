@@ -59,7 +59,7 @@
 							<key>detailTitle</key>
 							<string>查看所参与的游戏记录</string>
 							<key>targetKey</key>
-							<string>RH_GamesRecordViewController</string>
+							<string>RH_BettingRecordViewController</string>
 							<key>targetContext</key>
 							<integer>0</integer>
 						</dict>
@@ -69,7 +69,7 @@
 							<key>title</key>
 							<string>额度转换</string>
 							<key>targetKey</key>
-							<string>RH_MineSecurityCenterController</string>
+							<string>RH_DepositeViewController</string>
 							<key>image</key>
 							<string>mine_page_quotaswitch</string>
 						</dict>
@@ -80,8 +80,6 @@
 							<string>资金记录</string>
 							<key>image</key>
 							<string>mine_page_fundsrecords</string>
-							<key>targetKey</key>
-							<string>RH_GamesRecordViewController</string>
 							<key>targetContext</key>
 							<integer>1</integer>
 						</dict>
@@ -92,8 +90,6 @@
 							<string>安全中心</string>
 							<key>image</key>
 							<string>mine_page_securitycenter</string>
-							<key>targetKey</key>
-							<string>RH_GamesRecordViewController</string>
 							<key>targetContext</key>
 							<integer>2</integer>
 						</dict>
@@ -102,6 +98,8 @@
 							<string>查看所参与的优惠记录</string>
 							<key>title</key>
 							<string>优惠记录</string>
+							<key>targetKey</key>
+							<string>RH_PromoViewController</string>
 							<key>image</key>
 							<string>mine_page_preferentialrecords</string>
 						</dict>

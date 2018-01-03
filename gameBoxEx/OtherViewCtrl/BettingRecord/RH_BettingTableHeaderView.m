@@ -57,6 +57,11 @@
                             [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:nil],
                             ] ;
         
+        self.backgroundColor = colorWithRGB(225, 226, 227)  ;
+        self.borderMask = CLBorderMarkTop | CLBorderMarkBottom ;
+        self.borderWidth = PixelToPoint(1.0) ;
+        self.borderColor = [UIColor whiteColor] ;
+        
         [self addSubview:self.headerStaticView] ;
         [self.headerStaticView reloadData] ;
     }
@@ -78,6 +83,7 @@
         _headerStaticView.averageCellWidth = NO ;
         _headerStaticView.separationLineColor = [UIColor whiteColor];
         _headerStaticView.separationLineWidth = 2.0f ;
+        _headerStaticView.backgroundColor = [UIColor clearColor] ;
     }
     
     return _headerStaticView ;

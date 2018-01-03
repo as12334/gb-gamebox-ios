@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor grayColor];
     self.navigationBarHidden = YES;
 
     //导航过渡代理

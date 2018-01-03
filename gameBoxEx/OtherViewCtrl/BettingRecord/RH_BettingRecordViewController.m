@@ -43,7 +43,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return 80.0f ;
+    return 50.0f ;
 }
 
 -(BOOL)hasBottomView
@@ -53,7 +53,7 @@
 
 -(CGFloat)bottomViewHeight
 {
-    return 80.0f ;
+    return 50.0f ;
 }
 
 #pragma mark-
@@ -92,32 +92,13 @@
                                                                    segmentedCount:1] ;
 }
 
--(void)updateView
+-(BOOL)showNotingIndicaterView
 {
-    CGRect oldFrame = self.bottomView.frame ;
-    CGRect newFrame = CGRectMake(0,self.view.frameHeigh - (GreaterThanIOS10System?0:(self.isHiddenTabBar?0:heighTabBar))
-                                 - [self bottomViewHeight],
-                                 self.view.frameWidth,
-                                 [self bottomViewHeight]);
-    
-    if (oldFrame.size.height !=newFrame.size.height){
-        [UIView animateWithDuration:0.1f animations:^{
-            self.bottomView.frame = newFrame ;
-        } completion:^(BOOL finished) {
-            //更新tableview contentinset
-            self.contentTableView.contentInset = UIEdgeInsetsMake(
-                                                      (GreaterThanIOS11System?0:(self.isHiddenStatusBar?0:heighStatusBar)) +
-                                                      (self.isHiddenNavigationBar?0:heighNavigationBar) +
-                                                      ([self hasTopView]?MAX(0, [self topViewHeight]):0),
-                                                      0,
-                                                      (GreaterThanIOS10System?0:(self.isHiddenTabBar?0:heighTabBar)) +
-                                                      ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
-                                                      0) ;
-            
-            self.contentTableView.scrollIndicatorInsets = self.contentTableView.contentInset ;
-            [self.contentTableView reloadData] ;
-        }] ;
-    }
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"您暂无相关数据记录"] ;
+    return YES ;
+
 }
 
 #pragma mark-
@@ -136,7 +117,7 @@
 -(RH_BettingTableHeaderView *)bettingTableHeaderView
 {
     if (!_bettingTableHeaderView){
-        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 30.0f)] ;
+        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 50.0f)] ;
         _bettingTableHeaderView.backgroundColor = colorWithRGB(240, 240, 240) ;
     }
     

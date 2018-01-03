@@ -19,11 +19,11 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    self.backgroundColor = colorWithRGB(225, 226, 227)  ;
+    self.backgroundColor = [UIColor clearColor] ;
     self.labTitle.textColor = colorWithRGB(49, 50, 51)  ;
     self.labDesc.textColor = colorWithRGB(79, 124, 184) ;
-    self.labTitle.font = [UIFont systemFontOfSize:17.0f] ;
-    self.labDesc.font = [UIFont systemFontOfSize:13.0f] ;
+    self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
+    self.labDesc.font = [UIFont systemFontOfSize:12.0f] ;
 }
 
 #pragma mark-

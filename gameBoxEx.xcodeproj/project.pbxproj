@@ -249,6 +249,11 @@
 		A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181511FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m */; };
 		A01181601FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A011815D1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib */; };
 		A01181611FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A011815F1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m */; };
+		A011816F1FFCAB21008F6D1E /* WHC_StackView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181631FFCAB20008F6D1E /* WHC_StackView.m */; };
+		A01181701FFCAB21008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181651FFCAB20008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.m */; };
+		A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181661FFCAB20008F6D1E /* UIView+WHC_Frame.m */; };
+		A01181721FFCAB21008F6D1E /* CALayer+WHC_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181691FFCAB20008F6D1E /* CALayer+WHC_Frame.m */; };
+		A01181731FFCAB21008F6D1E /* UIView+WHC_AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A011816C1FFCAB20008F6D1E /* UIView+WHC_AutoLayout.m */; };
 		A01CB48A1FF9C09F00447130 /* RH_ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4891FF9C09F00447130 /* RH_ActivityModel.m */; };
 		A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4941FF9C81800447130 /* RH_ActivithyView.xib */; };
 		A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4951FF9C81800447130 /* RH_ActivithyView.m */; };
@@ -780,6 +785,18 @@
 		A011815D1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_BettingStaticHeaderCell.xib; sourceTree = "<group>"; };
 		A011815E1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingStaticHeaderCell.h; sourceTree = "<group>"; };
 		A011815F1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingStaticHeaderCell.m; sourceTree = "<group>"; };
+		A01181631FFCAB20008F6D1E /* WHC_StackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_StackView.m; sourceTree = "<group>"; };
+		A01181641FFCAB20008F6D1E /* WHC_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_AutoLayout.h; sourceTree = "<group>"; };
+		A01181651FFCAB20008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+WHC_AutoHeightForCell.m"; sourceTree = "<group>"; };
+		A01181661FFCAB20008F6D1E /* UIView+WHC_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WHC_Frame.m"; sourceTree = "<group>"; };
+		A01181671FFCAB20008F6D1E /* UIView+WHC_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WHC_AutoLayout.h"; sourceTree = "<group>"; };
+		A01181681FFCAB20008F6D1E /* WHC_AutoLayoutUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_AutoLayoutUtilities.h; sourceTree = "<group>"; };
+		A01181691FFCAB20008F6D1E /* CALayer+WHC_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+WHC_Frame.m"; sourceTree = "<group>"; };
+		A011816A1FFCAB20008F6D1E /* WHC_StackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_StackView.h; sourceTree = "<group>"; };
+		A011816B1FFCAB20008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+WHC_AutoHeightForCell.h"; sourceTree = "<group>"; };
+		A011816C1FFCAB20008F6D1E /* UIView+WHC_AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WHC_AutoLayout.m"; sourceTree = "<group>"; };
+		A011816D1FFCAB20008F6D1E /* UIView+WHC_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WHC_Frame.h"; sourceTree = "<group>"; };
+		A011816E1FFCAB20008F6D1E /* CALayer+WHC_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+WHC_Frame.h"; sourceTree = "<group>"; };
 		A01CB4881FF9C09F00447130 /* RH_ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ActivityModel.h; sourceTree = "<group>"; };
 		A01CB4891FF9C09F00447130 /* RH_ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityModel.m; sourceTree = "<group>"; };
 		A01CB48C1FF9C81800447130 /* RH_ActivithyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ActivithyView.h; sourceTree = "<group>"; };
@@ -1477,6 +1494,7 @@
 		A0109EF01F87852F004E6EF4 /* OtherLib */ = {
 			isa = PBXGroup;
 			children = (
+				A01181621FFCAB20008F6D1E /* WHC_AutoLayoutKit */,
 				A0ADD3231FEB627F00B24B51 /* KIPageView */,
 				A058FF271FE8A6BC006EF279 /* CWLateralSlide */,
 				A0109EF11F87852F004E6EF4 /* CircleProgressView */,
@@ -1828,6 +1846,25 @@
 				A011815D1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib */,
 			);
 			path = cells;
+			sourceTree = "<group>";
+		};
+		A01181621FFCAB20008F6D1E /* WHC_AutoLayoutKit */ = {
+			isa = PBXGroup;
+			children = (
+				A01181641FFCAB20008F6D1E /* WHC_AutoLayout.h */,
+				A01181681FFCAB20008F6D1E /* WHC_AutoLayoutUtilities.h */,
+				A011816A1FFCAB20008F6D1E /* WHC_StackView.h */,
+				A01181631FFCAB20008F6D1E /* WHC_StackView.m */,
+				A011816B1FFCAB20008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.h */,
+				A01181651FFCAB20008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.m */,
+				A01181671FFCAB20008F6D1E /* UIView+WHC_AutoLayout.h */,
+				A011816C1FFCAB20008F6D1E /* UIView+WHC_AutoLayout.m */,
+				A011816D1FFCAB20008F6D1E /* UIView+WHC_Frame.h */,
+				A01181661FFCAB20008F6D1E /* UIView+WHC_Frame.m */,
+				A011816E1FFCAB20008F6D1E /* CALayer+WHC_Frame.h */,
+				A01181691FFCAB20008F6D1E /* CALayer+WHC_Frame.m */,
+			);
+			path = WHC_AutoLayoutKit;
 			sourceTree = "<group>";
 		};
 		A01CB48B1FF9C81800447130 /* activityView */ = {
@@ -2379,6 +2416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01181701FFCAB21008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.m in Sources */,
 				A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */,
 				A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */,
 				A01181611FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m in Sources */,
@@ -2397,6 +2435,7 @@
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
 				A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */,
+				A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */,
 				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
 				A0E367B21F906A3D00758033 /* RH_CustomViewController.h in Sources */,
 				A0E367AE1F9061E500758033 /* RH_PayViewController.h in Sources */,
@@ -2535,6 +2574,7 @@
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
 				A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */,
 				A0109FED1F8788FF004E6EF4 /* MKAnnotationView+WebCache.m in Sources */,
+				A01181721FFCAB21008F6D1E /* CALayer+WHC_Frame.m in Sources */,
 				A0109FEE1F8788FF004E6EF4 /* NSData+ImageContentType.m in Sources */,
 				A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */,
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
@@ -2550,6 +2590,7 @@
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
+				A011816F1FFCAB21008F6D1E /* WHC_StackView.m in Sources */,
 				A0109FFA1F8788FF004E6EF4 /* UIImage+MultiFormat.m in Sources */,
 				A0109FFB1F8788FF004E6EF4 /* UIImage+WebP.m in Sources */,
 				A0109FFC1F8788FF004E6EF4 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -2638,6 +2679,7 @@
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
 				A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */,
+				A01181731FFCAB21008F6D1E /* UIView+WHC_AutoLayout.m in Sources */,
 				A0109C671F878199004E6EF4 /* RH_APPDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2733,7 +2775,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

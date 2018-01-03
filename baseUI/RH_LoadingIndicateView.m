@@ -86,9 +86,9 @@
 
 - (void)showSearchEmptyStatus
 {
-    [self showImageStatusWithImage:ImageWithName(@"icon_search_empty")
+    [self showImageStatusWithImage:ImageWithName(@"empty_searchRec_image")
                              title:nil
-                        detailText:@"没有找到您要的内容哦 〜"];
+                        detailText:@"您暂无相关数据记录"];
 }
 
 @end

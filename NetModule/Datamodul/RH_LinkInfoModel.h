@@ -12,5 +12,7 @@
 @property(nonatomic,strong,readonly) NSString  *mCode ;
 @property(nonatomic,strong,readonly) NSString  *mLink ;
 @property(nonatomic,strong,readonly) NSString  *mName ;
+//------extend
+@property(nonatomic,strong,readonly) NSString *targetLink ;
 
 @end

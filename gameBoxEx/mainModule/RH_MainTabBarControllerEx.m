@@ -112,7 +112,6 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor clearColor] ;
     
     //内容视图
     self.contentView = [[UIView alloc] initWithFrame:self.view.bounds];

@@ -63,6 +63,7 @@
 @property(nonatomic,weak) id<CLStaticCollectionViewDataSource> dataSource ;
 @property(nonatomic,weak) id<CLStaticCollectionViewDelegate> delegate   ;
 
+
 //选择
 - (NSIndexPath *)indexPathForSelectedItem; // returns nil or an anyone selected index path
 - (void)selectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;

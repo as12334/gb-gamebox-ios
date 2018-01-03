@@ -23,7 +23,7 @@
     self.borderView.backgroundColor = [UIColor clearColor] ;
     self.borderView.layer.cornerRadius = 3.0f ;
     self.borderView.layer.borderColor = RH_Line_DefaultColor.CGColor ;
-    self.borderView.layer.masksToBounds = 1.0f ;
+    self.borderView.layer.borderWidth = 1.0f  ;
     self.borderView.layer.masksToBounds = YES ;
     
     self.labDate.textColor = colorWithRGB(51, 51, 51) ;
@@ -35,6 +35,10 @@
     self.selectionColorAlpha = 0.7f ;
     
     self.labDate.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
+}
+
+-(UIView *)showSelectionView{
+    return self.borderView ;
 }
 
 #pragma mark-

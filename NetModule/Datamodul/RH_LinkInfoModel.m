@@ -15,6 +15,7 @@
 @end ;
 
 @implementation RH_LinkInfoModel
+@synthesize targetLink = _targetLink ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -28,5 +29,13 @@
     return self ;
 }
 
-
+-(NSString *)targetLink
+{
+    if (!_targetLink){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        _targetLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mLink] ;
+    }
+    
+    return _targetLink ;
+}
 @end

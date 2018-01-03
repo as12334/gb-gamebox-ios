@@ -12,8 +12,8 @@
 #import "coreLib.h"
 
 @interface RH_BettingRecordHeaderView()<CLStaticCollectionViewDelegate,CLStaticCollectionViewDataSource>
-@property (nonatomic,strong) UILabel *labTitle      ;
-@property (nonatomic,strong) UIButton *btnSearch    ;
+@property (nonatomic,strong) IBOutlet UILabel *labTitle      ;
+@property (nonatomic,strong) IBOutlet UIButton *btnSearch    ;
 //日期展示
 @property (nonatomic,strong) IBOutlet CLStaticCollectionView *selectedDateStaticView ;
 @end
@@ -27,6 +27,7 @@
 {
     [super awakeFromNib] ;
     _typeHeaderList = @[@"全 部",@"充 值",@"提 现",@"礼 金",@"投 注"] ;
+    self.backgroundColor = [UIColor whiteColor] ;
     
     self.labTitle.textColor = colorWithRGB(72, 73, 74) ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
@@ -42,6 +43,7 @@
     self.selectedDateStaticView.allowSectionSeparationLine = NO ;
     self.selectedDateStaticView.averageCellWidth = NO ;
     self.selectedDateStaticView.separationLineColor = RH_Line_DefaultColor ;
+    self.selectedDateStaticView.backgroundColor = [UIColor clearColor] ;
     [self.selectedDateStaticView reloadData] ;
 }
 

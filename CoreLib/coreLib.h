@@ -95,6 +95,7 @@
 #import "KIPageView.h"
 #import "CLSegmentedControl.h"
 #import "CLSelectionControl.h"
+#import "WHC_AutoLayout.h"
 
 #pragma Mark-pageview
 #import "CLPageView.h"

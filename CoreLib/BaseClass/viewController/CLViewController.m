@@ -10,6 +10,7 @@
 #import "UIViewController+CLTabBarController.h"
 #import "CLTabBarController.h"
 #import <objc/runtime.h>
+#import "MacroDef.h"
 
 @interface CLViewController ()
 
@@ -25,7 +26,12 @@
     [self.myTabBarController setTabBarHidden:self.hiddenTabBar
                                     animated:animated
                                   animations:nil
-                                  completion:nil] ;
+                                  completion:^{
+                                      if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                          //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                          self.view.frame = MainScreenBounds ;
+                                      }
+                                  }] ;
 
     //更新视图
     if (_needUpdateViewWhenViewAppear) {
@@ -54,7 +60,12 @@
         [self.myTabBarController setTabBarHidden:self.hiddenTabBar
                                         animated:YES
                                       animations:nil
-                                      completion:nil] ;
+                                      completion:^{
+                                          if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                              //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                              self.view.frame = MainScreenBounds ;
+                                          }
+                                      }] ;
 
     }
 }

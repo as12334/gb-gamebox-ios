@@ -54,9 +54,9 @@
              completion:(void (^)(void))completionBlock
 {
     //系统版本在7.0以下且tabbar不是半透明不支持隐藏标题栏
-    if (!GreaterThanIOS7System || self.tabBar.translucent == NO) {
-        return;
-    }
+//    if (!GreaterThanIOS7System || self.tabBar.translucent == NO) {
+//        return;
+//    }
 
     if (_tabBarHidden != hidden) {
         _tabBarHidden = hidden;
