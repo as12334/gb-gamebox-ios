@@ -42,13 +42,13 @@
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
     self.balanceBGView.backgroundColor = colorWithRGB(153, 153, 153) ;
-    self.balanceBGView.layer.cornerRadius = 4.0f ;
+    self.balanceBGView.layer.cornerRadius = 5.0f ;
     self.balanceBGView.layer.masksToBounds = YES ;
     self.labTBalance.textColor = [UIColor whiteColor] ;
     self.labTBalance.font = [UIFont systemFontOfSize:15.0f] ;
     
     self.walletBGView.backgroundColor = colorWithRGB(153, 153, 153) ;
-    self.walletBGView.layer.cornerRadius = 4.0f ;
+    self.walletBGView.layer.cornerRadius = 5.0f ;
     self.walletBGView.layer.masksToBounds = YES ;
     self.labTWallet.textColor = [UIColor whiteColor] ;
     self.labTWallet.font = [UIFont systemFontOfSize:19.0f] ;
