@@ -1,0 +1,241 @@
+//
+//  RH_BettingRecordViewController.m
+//  lotteryBox
+//
+//  Created by luis on 2017/12/8.
+//  Copyright © 2017年 luis. All rights reserved.
+//
+
+#import "RH_BettingRecordViewController.h"
+#import "RH_BettingRecordHeaderView.h"
+#import "RH_BettingTableHeaderView.h"
+#import "RH_BettingRecordBottomView.h"
+#import "coreLib.h"
+
+@interface RH_BettingRecordViewController ()
+@property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
+@property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
+@property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
+@end
+
+@implementation RH_BettingRecordViewController
+@synthesize bettingRecordHeaderView = _bettingRecordHeaderView ;
+@synthesize bettingTableHeaderView = _bettingTableHeaderView     ;
+@synthesize bettingBottomView = _bettingBottomView               ;
+
+
+-(BOOL)isSubViewController
+{
+    return YES ;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.title =@"投注记录";
+    [self setupUI] ;
+}
+
+-(BOOL)hasTopView
+{
+    return TRUE ;
+}
+
+-(CGFloat)topViewHeight
+{
+    return 80.0f ;
+}
+
+-(BOOL)hasBottomView
+{
+    return YES ;
+}
+
+-(CGFloat)bottomViewHeight
+{
+    return 80.0f ;
+}
+
+#pragma mark-
+-(void)setupUI
+{
+    [self.topView addSubview:self.bettingRecordHeaderView] ;
+    [self.bottomView addSubview:self.bettingBottomView] ;
+    self.bottomView.borderMask = CLBorderMarkTop ;
+    self.bottomView.borderColor = RH_Line_DefaultColor ;
+    
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
+    self.contentTableView.delegate = self   ;
+    self.contentTableView.dataSource = self ;
+    self.contentTableView.sectionFooterHeight = 0.0f ;
+    self.contentTableView.sectionHeaderHeight = 0.0f ;
+    self.contentTableView.tableHeaderView = self.bettingTableHeaderView ;
+    [self.contentView addSubview:self.contentTableView] ;
+    
+    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
+    [self setupPageLoadManager] ;
+}
+
+-(RH_LoadingIndicateView*)contentLoadingIndicateView
+{
+    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+}
+
+
+- (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
+{
+    return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
+                                                          pageLoadControllerClass:nil
+                                                                         pageSize:[self defaultPageSize]
+                                                                     startSection:0
+                                                                         startRow:0
+                                                                   segmentedCount:1] ;
+}
+
+-(void)updateView
+{
+    CGRect oldFrame = self.bottomView.frame ;
+    CGRect newFrame = CGRectMake(0,self.view.frameHeigh - (GreaterThanIOS10System?0:(self.isHiddenTabBar?0:heighTabBar))
+                                 - [self bottomViewHeight],
+                                 self.view.frameWidth,
+                                 [self bottomViewHeight]);
+    
+    if (oldFrame.size.height !=newFrame.size.height){
+        [UIView animateWithDuration:0.1f animations:^{
+            self.bottomView.frame = newFrame ;
+        } completion:^(BOOL finished) {
+            //更新tableview contentinset
+            self.contentTableView.contentInset = UIEdgeInsetsMake(
+                                                      (GreaterThanIOS11System?0:(self.isHiddenStatusBar?0:heighStatusBar)) +
+                                                      (self.isHiddenNavigationBar?0:heighNavigationBar) +
+                                                      ([self hasTopView]?MAX(0, [self topViewHeight]):0),
+                                                      0,
+                                                      (GreaterThanIOS10System?0:(self.isHiddenTabBar?0:heighTabBar)) +
+                                                      ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
+                                                      0) ;
+            
+            self.contentTableView.scrollIndicatorInsets = self.contentTableView.contentInset ;
+            [self.contentTableView reloadData] ;
+        }] ;
+    }
+}
+
+#pragma mark-
+-(RH_BettingRecordHeaderView *)bettingRecordHeaderView
+{
+    if (!_bettingRecordHeaderView){
+        _bettingRecordHeaderView = [RH_BettingRecordHeaderView createInstance] ;
+        _bettingRecordHeaderView.frame = self.topView.bounds ;
+        _bettingRecordHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
+    }
+    
+    return _bettingRecordHeaderView ;
+}
+
+#pragma mark-sort table header view
+-(RH_BettingTableHeaderView *)bettingTableHeaderView
+{
+    if (!_bettingTableHeaderView){
+        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 30.0f)] ;
+        _bettingTableHeaderView.backgroundColor = colorWithRGB(240, 240, 240) ;
+    }
+    
+    return _bettingTableHeaderView ;
+}
+
+#pragma mark-sort bottom view
+-(RH_BettingRecordBottomView*)bettingBottomView
+{
+    if (!_bettingBottomView){
+        _bettingBottomView = [RH_BettingRecordBottomView createInstance] ;
+        _bettingBottomView.frame = self.bottomView.bounds ;
+        _bettingBottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
+    }
+    
+    return _bettingBottomView ;
+}
+
+
+#pragma mark-
+-(void)netStatusChangedHandle
+{
+    if (NetworkAvailable()){
+        [self startUpdateData] ;
+    }
+}
+
+#pragma mark- 请求回调
+-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+{
+#if 0
+    //    [self.serviceRequest startGetOpenCode:nil isHistory:NO] ;
+#else
+    [self loadDataSuccessWithDatas:nil  totalCount:0] ;
+#endif
+}
+
+-(void)cancelLoadDataHandle
+{
+    [self.serviceRequest cancleAllServices] ;
+}
+
+#pragma mark-
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self startUpdateData] ;
+}
+
+
+#pragma mark-
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    //    if (type == ServiceRequestTypeStaticOpenCode){
+    //        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+    //        [self loadDataSuccessWithDatas:dictTmp.allValues totalCount:dictTmp.allValues.count] ;
+    //    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    //    if (type == ServiceRequestTypeStaticOpenCode){
+    //        [self loadDataFailWithError:error] ;
+    //    }
+}
+
+#pragma mark-tableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1 ;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return MAX(1, self.pageLoadManager.currentDataCount) ;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.pageLoadManager.currentDataCount){
+//        return [RH_LotteryRecordCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+    }else{
+        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+        return height ;
+    }
+    
+    return 0.0f ;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.pageLoadManager.currentDataCount){
+//        RH_LotteryRecordCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_LotteryRecordCell defaultReuseIdentifier]] ;
+//        [lotteryRecordCell updateCellWithInfo:nil context:indexPath];
+//        return lotteryRecordCell ;
+    }else{
+        return self.loadingIndicateTableViewCell ;
+    }
+    
+    return nil ;
+}
+
+@end

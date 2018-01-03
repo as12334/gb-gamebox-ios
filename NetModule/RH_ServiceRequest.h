@@ -28,7 +28,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     //V3接口
     ServiceRequestTypeV3HomeInfo        ,
     ServiceRequestTypeV3UserInfo        ,
-    ServiceRequestTypeV3MineGroupInfo    ,
+    ServiceRequestTypeV3MineGroupInfo   ,
+    ServiceRequestTypeV3APIGameList     ,
 };
 
 
@@ -108,6 +109,13 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3UserInfo ;
 #pragma mark - 我的 link info
 -(void)startV3MineLinkInfo ;
+#pragma mark - 电子游戏list
+-(void)startV3GameListWithApiID:(NSInteger)apiID
+                      ApiTypeID:(NSInteger)apiTypeID
+                     PageNumber:(NSInteger)pageNumber
+                       PageSize:(NSInteger)pageSize
+                     SearchName:(NSString*)searchName ;
+
 
 #pragma mark -
 /**

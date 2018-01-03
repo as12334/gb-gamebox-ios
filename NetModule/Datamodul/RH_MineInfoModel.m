@@ -30,6 +30,7 @@
         _mTransferAmount = [info floatValueForKey:RH_GP_MINEINFO_TRANSFERAMOUNT] ;
         _mWithdrawAmount = [info floatValueForKey:RH_GP_MINEINFO_WITHDRAWAMOUNT] ;
         _mPreferentialAmount = [info stringValueForKey:RH_GP_MINEINFO_PREFERENTIALAMOUNT] ;
+        _mLoginTime = [info stringValueForKey:RH_GP_MINEINFO_LOGINTIME] ;
     }
     
     return self ;

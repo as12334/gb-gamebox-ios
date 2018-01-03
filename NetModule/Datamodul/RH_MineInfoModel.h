@@ -12,6 +12,7 @@
 @property(nonatomic,strong,readonly) NSString  *mAvatalUrl ;
 @property(nonatomic,strong,readonly) NSString  *mCurrency ;
 @property(nonatomic,strong,readonly) NSString  *mPreferentialAmount ;
+@property(nonatomic,strong,readonly) NSString  *mLoginTime ;
 @property(nonatomic,strong,readonly) NSString  *mRecomdAmount ;
 @property(nonatomic,assign,readonly) float  mTotalAssets ;
 @property(nonatomic,assign,readonly) float  mTransferAmount ;

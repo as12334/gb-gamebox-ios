@@ -10,8 +10,6 @@
 				<dict>
 					<key>isCustomCell</key>
 					<true/>
-					<key>cellClass</key>
-					<string>RH_MineUnLoginTableViewCell</string>
 				</dict>
 			</array>
 		</dict>

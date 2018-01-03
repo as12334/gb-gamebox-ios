@@ -188,8 +188,17 @@
         ifRespondsSelector(self.delegate, @selector(tableViewManagement:cellContextAtIndexPath:)){
             context = [self.delegate tableViewManagement:self cellContextAtIndexPath:indexPath] ;
         }
+    
+        if (cellClass==nil){
+            ifRespondsSelector(self.delegate, @selector(tableViewManagement:customCellHeightAtIndexPath:)){
+                return [self.delegate tableViewManagement:self customCellHeightAtIndexPath:indexPath] ;
+            }
+            
+            return 0.0f ;
+        }else{
+            return  [cellClass heightForCellWithInfo:rowInfo tableView:tableView context:context];
+        }
         
-        return  [cellClass heightForCellWithInfo:rowInfo tableView:tableView context:context];
     }else {
         return rowInfo.height;
     }

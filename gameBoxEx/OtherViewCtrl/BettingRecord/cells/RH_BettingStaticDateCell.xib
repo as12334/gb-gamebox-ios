@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RH_BettingStaticDateCell">
+            <rect key="frame" x="0.0" y="0.0" width="202" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMP-kO-p8L">
+                    <rect key="frame" x="0.0" y="5" width="202" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="betRec_calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="gpa-Nq-xRC">
+                            <rect key="frame" x="2" y="3" width="24" height="24"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LS2-fi-YxN">
+                            <rect key="frame" x="34" y="5" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="LS2-fi-YxN" firstAttribute="leading" secondItem="gpa-Nq-xRC" secondAttribute="trailing" constant="8" id="2Tw-Yc-dGz"/>
+                        <constraint firstItem="LS2-fi-YxN" firstAttribute="centerY" secondItem="nMP-kO-p8L" secondAttribute="centerY" id="9je-WZ-Zvq"/>
+                        <constraint firstItem="gpa-Nq-xRC" firstAttribute="leading" secondItem="nMP-kO-p8L" secondAttribute="leading" constant="2" id="G56-dO-QEq"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LS2-fi-YxN" secondAttribute="trailing" constant="2" id="Txn-Kk-RiL"/>
+                        <constraint firstItem="gpa-Nq-xRC" firstAttribute="centerY" secondItem="nMP-kO-p8L" secondAttribute="centerY" id="zxo-jf-g5m"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="nMP-kO-p8L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Wy-IW-zeB"/>
+                <constraint firstAttribute="bottom" secondItem="nMP-kO-p8L" secondAttribute="bottom" constant="5" id="4b3-Ny-5XP"/>
+                <constraint firstAttribute="trailing" secondItem="nMP-kO-p8L" secondAttribute="trailing" id="aEU-gm-I2a"/>
+                <constraint firstItem="nMP-kO-p8L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="cSU-SX-ycP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="borderView" destination="nMP-kO-p8L" id="eQK-sZ-9yX"/>
+                <outlet property="labDate" destination="LS2-fi-YxN" id="AhE-l5-WAb"/>
+            </connections>
+            <point key="canvasLocation" x="-1049" y="-385"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="betRec_calendar_icon" width="24" height="24"/>
+    </resources>
+</document>

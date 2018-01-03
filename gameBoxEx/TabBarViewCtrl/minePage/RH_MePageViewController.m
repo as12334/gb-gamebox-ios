@@ -128,6 +128,11 @@
     return _tableViewManagement ;
 }
 
+-(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath
+{
+    return MainScreenH - StatusBarHeight - NavigationBarHeight - TabBarHeight ;
+}
+
 -(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.loadingIndicateTableViewCell ;
