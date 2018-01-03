@@ -10,6 +10,8 @@
 #import "coreLib.h"
 #import "RH_MineRecordStaticCell.h"
 #import "RH_MainTabBarController.h"
+#import "RH_UserInfoManager.h"
+#import "RH_CustomViewController.h"
 
 #define cellHeight                  50.0f
 #define lineCellCount                2
@@ -83,6 +85,15 @@
     
     if (viewCtrl){
         [self showViewController:viewCtrl] ;
+    }else{
+        //是否有h5 link
+        NSString *code = [dict stringValueForKey:@"code"] ;
+        if (code.length){
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            RH_LinkInfoModel *linkInfo =  [MineGroupInfo getLinkInfoWithCode:code] ;
+            appDelegate.customUrl = linkInfo.targetLink ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
+        }
     }
     
     return NO ;

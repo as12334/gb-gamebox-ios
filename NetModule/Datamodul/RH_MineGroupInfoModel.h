@@ -16,4 +16,5 @@
 @property (nonatomic,strong,readonly) NSArray<RH_LinkInfoModel*> *mLink ;
 @property (nonatomic,strong,readonly) RH_MineInfoModel *mUserInfo ;
 
+-(RH_LinkInfoModel*)getLinkInfoWithCode:(NSString*)code ;
 @end

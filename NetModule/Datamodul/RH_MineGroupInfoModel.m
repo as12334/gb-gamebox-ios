@@ -29,5 +29,14 @@
     return self ;
 }
 
+-(RH_LinkInfoModel*)getLinkInfoWithCode:(NSString*)code
+{
+    for (RH_LinkInfoModel *linkInfoModel in _mLink) {
+        if ([linkInfoModel.mCode isEqualToString:code])
+            return linkInfoModel ;
+    }
+    
+    return nil ;
+}
 
 @end

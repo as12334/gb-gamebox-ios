@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sectionsInfo</key>
+	<array>
+		<dict>
+			<key>rowsInfo</key>
+			<array>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineMoreNextCell</string>
+					<key>title</key>
+					<string>常见问题</string>
+					<key>targetKey</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineMoreNextCell</string>
+					<key>title</key>
+					<string>注册条款</string>
+				</dict>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineMoreNextCell</string>
+					<key>title</key>
+					<string>关于我们</string>
+				</dict>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineMoreLanguageCell</string>
+					<key>title</key>
+					<string>语言选择</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>cellsExtraInfo</key>
+	<dict>
+		<key>isCustomHeight</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

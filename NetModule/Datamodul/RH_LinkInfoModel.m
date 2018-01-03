@@ -33,7 +33,7 @@
 {
     if (!_targetLink){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _targetLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mLink] ;
+        _targetLink = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mLink] ;
     }
     
     return _targetLink ;

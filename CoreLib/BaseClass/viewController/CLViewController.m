@@ -27,9 +27,11 @@
                                     animated:animated
                                   animations:nil
                                   completion:^{
-                                      if (self.isHiddenTabBar && GreaterThanIOS10System){
-                                          //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
-                                          self.view.frame = MainScreenBounds ;
+                                      if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                                          if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                              //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                              self.view.frame = MainScreenBounds ;
+                                          }
                                       }
                                   }] ;
 
@@ -61,9 +63,11 @@
                                         animated:YES
                                       animations:nil
                                       completion:^{
-                                          if (self.isHiddenTabBar && GreaterThanIOS10System){
-                                              //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
-                                              self.view.frame = MainScreenBounds ;
+                                          if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                                              if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                                  //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                                  self.view.frame = MainScreenBounds ;
+                                              }
                                           }
                                       }] ;
 
