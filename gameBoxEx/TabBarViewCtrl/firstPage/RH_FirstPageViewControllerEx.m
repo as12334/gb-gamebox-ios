@@ -20,6 +20,7 @@
 #import "RH_ActivithyView.h"
 #import "RH_API.h"
 #import "RH_MachineAnimationView.h"
+#import "RH_BasicAlertView.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,ActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
@@ -28,6 +29,7 @@
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
 @property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
+@property (nonatomic, strong) RH_BasicAlertView *rhAlertView ;
 
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
@@ -100,12 +102,25 @@
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    return (self.userInfoView.superview?YES:NO) ;
+    return (self.userInfoView.superview?YES:NO)||(self.rhAlertView.superview?YES:NO) ;
 }
 
 -(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
 {
-    [self userInfoButtonItemHandle] ;
+    if (self.userInfoView.superview){
+        [self userInfoButtonItemHandle] ;
+    }
+    
+    if (self.rhAlertView.superview){
+        [UIView animateWithDuration:0.5 animations:^{
+            self.rhAlertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.rhAlertView removeFromSuperview];
+                self.rhAlertView = nil;
+            }
+        }];
+    }
 }
 
 #pragma mark-
@@ -156,6 +171,7 @@
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     }
 }
+
 
 #pragma mark-
 -(RH_DaynamicLabelCell *)dynamicLabCell
@@ -276,6 +292,9 @@
         }] ;
     }
 }
+
+#pragma mark-alertView
+
 
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
@@ -449,6 +468,27 @@
     }
     
     return nil ;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==1){
+        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+        if (self.rhAlertView == nil) {
+            self.rhAlertView = [[RH_BasicAlertView alloc] init];
+            [self.view addSubview:self.rhAlertView];
+            self.rhAlertView.whc_Center(0, 0).whc_Width(screenSize().width/3*2).whc_Height(200);
+            self.rhAlertView.layer.cornerRadius = 20;
+            self.rhAlertView.clipsToBounds = YES;
+            self.rhAlertView.transform = CGAffineTransformMakeScale(0, 0);
+            self.rhAlertView.alpha = 0.f;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.rhAlertView.alpha = 1.0;
+                self.rhAlertView.transform = CGAffineTransformIdentity;
+            }];
+        }
+        [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
+    }
 }
 
 #pragma mark- Banner Cells Delegate

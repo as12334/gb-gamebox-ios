@@ -36,15 +36,35 @@
     self.btnSearch.layer.cornerRadius = 4.0f ;
     self.btnSearch.layer.masksToBounds = YES ;
     
-    self.selectedDateStaticView.dataSource = self ;
-    self.selectedDateStaticView.delegate = self ;
-    self.selectedDateStaticView.allowSelection = YES ;
-    self.selectedDateStaticView.allowCellSeparationLine = NO ;
-    self.selectedDateStaticView.allowSectionSeparationLine = NO ;
-    self.selectedDateStaticView.averageCellWidth = NO ;
-    self.selectedDateStaticView.separationLineColor = RH_Line_DefaultColor ;
-    self.selectedDateStaticView.backgroundColor = [UIColor clearColor] ;
-    [self.selectedDateStaticView reloadData] ;
+    WHC_StackView *stackView = [[WHC_StackView alloc] init];
+    [self addSubview:stackView];
+    stackView.whc_LeftSpaceToView(0, self.labTitle).whc_TopSpace(0).whc_BottomSpace(0).whc_RightSpaceToView(0, self.btnSearch);
+    stackView.whc_Column = 2;
+    stackView.whc_HSpace = 20;
+    stackView.whc_VSpace = 0;
+    stackView.whc_Orientation = Horizontal;
+    
+    NSArray *dateCell1 = [[NSBundle mainBundle] loadNibNamed:@"RH_BettingStaticDateCell" owner:nil options:nil];
+    NSArray *dateCell2 = [[NSBundle mainBundle] loadNibNamed:@"RH_BettingStaticDateCell" owner:nil options:nil];
+    [stackView addSubview:[dateCell1 firstObject]];
+    [stackView addSubview:[dateCell2 firstObject]];
+    
+    [stackView whc_StartLayout];
+    
+    UILabel *label_ = [[UILabel alloc] init];
+    [stackView addSubview:label_];
+    label_.whc_Center(0, 0).whc_Width(30);
+    label_.text = @"~";
+    label_.textAlignment = NSTextAlignmentCenter;
+//    self.selectedDateStaticView.dataSource = self ;
+//    self.selectedDateStaticView.delegate = self ;
+//    self.selectedDateStaticView.allowSelection = YES ;
+//    self.selectedDateStaticView.allowCellSeparationLine = NO ;
+//    self.selectedDateStaticView.allowSectionSeparationLine = NO ;
+//    self.selectedDateStaticView.averageCellWidth = NO ;
+//    self.selectedDateStaticView.separationLineColor = RH_Line_DefaultColor ;
+//    self.selectedDateStaticView.backgroundColor = [UIColor clearColor] ;
+//    [self.selectedDateStaticView reloadData] ;
 }
 
 #pragma mark-
