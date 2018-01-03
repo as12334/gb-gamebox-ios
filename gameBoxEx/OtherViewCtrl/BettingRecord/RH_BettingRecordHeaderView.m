@@ -31,6 +31,7 @@
     
     self.labTitle.textColor = colorWithRGB(72, 73, 74) ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
+    self.labTitle.adjustsFontSizeToFitWidth = YES;
     self.btnSearch.backgroundColor = colorWithRGB(44, 103, 182) ;
     [self.btnSearch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
     self.btnSearch.layer.cornerRadius = 4.0f ;
