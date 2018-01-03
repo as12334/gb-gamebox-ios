@@ -14,6 +14,9 @@
 @interface RH_BettingRecordHeaderView()<CLStaticCollectionViewDelegate,CLStaticCollectionViewDataSource>
 @property (nonatomic,strong) IBOutlet UILabel *labTitle      ;
 @property (nonatomic,strong) IBOutlet UIButton *btnSearch    ;
+@property (nonatomic,strong,readonly) RH_BettingStaticDateCell *startBettingDateCell ;
+@property (nonatomic,strong,readonly) RH_BettingStaticDateCell *endBettingDateCell ;
+
 //日期展示
 @property (nonatomic,strong) IBOutlet CLStaticCollectionView *selectedDateStaticView ;
 @end
@@ -22,6 +25,8 @@
 {
     NSArray *_typeHeaderList ;
 }
+@synthesize startBettingDateCell = _startBettingDateCell    ;
+@synthesize endBettingDateCell = _endBettingDateCell        ;
 
 -(void)awakeFromNib
 {
@@ -31,6 +36,7 @@
     
     self.labTitle.textColor = colorWithRGB(72, 73, 74) ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
+    self.labTitle.adjustsFontSizeToFitWidth = YES;
     self.btnSearch.backgroundColor = colorWithRGB(44, 103, 182) ;
     [self.btnSearch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
     self.btnSearch.layer.cornerRadius = 4.0f ;
@@ -38,16 +44,14 @@
     
     WHC_StackView *stackView = [[WHC_StackView alloc] init];
     [self addSubview:stackView];
-    stackView.whc_LeftSpaceToView(0, self.labTitle).whc_TopSpace(0).whc_BottomSpace(0).whc_RightSpaceToView(0, self.btnSearch);
+    stackView.whc_LeftSpaceToView(2, self.labTitle).whc_TopSpace(0).whc_BottomSpace(0).whc_RightSpaceToView(0, self.btnSearch);
     stackView.whc_Column = 2;
     stackView.whc_HSpace = 20;
     stackView.whc_VSpace = 0;
     stackView.whc_Orientation = Horizontal;
     
-    NSArray *dateCell1 = [[NSBundle mainBundle] loadNibNamed:@"RH_BettingStaticDateCell" owner:nil options:nil];
-    NSArray *dateCell2 = [[NSBundle mainBundle] loadNibNamed:@"RH_BettingStaticDateCell" owner:nil options:nil];
-    [stackView addSubview:[dateCell1 firstObject]];
-    [stackView addSubview:[dateCell2 firstObject]];
+    [stackView addSubview:self.startBettingDateCell];
+    [stackView addSubview:self.endBettingDateCell];
     
     [stackView whc_StartLayout];
     
@@ -65,6 +69,25 @@
 //    self.selectedDateStaticView.separationLineColor = RH_Line_DefaultColor ;
 //    self.selectedDateStaticView.backgroundColor = [UIColor clearColor] ;
 //    [self.selectedDateStaticView reloadData] ;
+}
+
+#pragma mark -
+-(RH_BettingStaticDateCell *)startBettingDateCell
+{
+    if (!_startBettingDateCell){
+        _startBettingDateCell =  [RH_BettingStaticDateCell createInstance] ;
+    }
+    
+    return _startBettingDateCell ;
+}
+
+-(RH_BettingStaticDateCell*)endBettingDateCell
+{
+    if (!_endBettingDateCell){
+        _endBettingDateCell =  [RH_BettingStaticDateCell createInstance] ;
+    }
+    
+    return _endBettingDateCell ;
 }
 
 #pragma mark-
