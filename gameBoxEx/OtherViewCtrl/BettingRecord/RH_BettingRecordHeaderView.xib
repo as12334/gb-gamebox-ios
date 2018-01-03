@@ -15,10 +15,6 @@
             <rect key="frame" x="0.0" y="0.0" width="391" height="62"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-oY-3OT" customClass="CLStaticCollectionView">
-                    <rect key="frame" x="70" y="0.0" width="271" height="62"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投注日期:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9s-eU-aW5">
                     <rect key="frame" x="8" y="23" width="57" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -39,11 +35,7 @@
             <constraints>
                 <constraint firstItem="Zbi-vQ-juB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1qa-i3-Lsg"/>
                 <constraint firstItem="E9s-eU-aW5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2Wu-DB-qaP"/>
-                <constraint firstAttribute="bottom" secondItem="GZo-oY-3OT" secondAttribute="bottom" id="ALb-n9-2uS"/>
-                <constraint firstItem="GZo-oY-3OT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BIR-CD-xy2"/>
-                <constraint firstItem="GZo-oY-3OT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="70" id="blk-Jb-og0"/>
                 <constraint firstAttribute="trailing" secondItem="Zbi-vQ-juB" secondAttribute="trailing" constant="8" id="g7i-Il-jR8"/>
-                <constraint firstAttribute="trailing" secondItem="GZo-oY-3OT" secondAttribute="trailing" constant="50" id="x5T-kZ-sWe"/>
                 <constraint firstItem="E9s-eU-aW5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="y2I-tH-QY3"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -52,7 +44,6 @@
             <connections>
                 <outlet property="btnSearch" destination="Zbi-vQ-juB" id="zsF-Xe-oNr"/>
                 <outlet property="labTitle" destination="E9s-eU-aW5" id="vpn-Cc-cwn"/>
-                <outlet property="selectedDateStaticView" destination="GZo-oY-3OT" id="emZ-uT-vlc"/>
             </connections>
             <point key="canvasLocation" x="-639.5" y="-831"/>
         </view>
