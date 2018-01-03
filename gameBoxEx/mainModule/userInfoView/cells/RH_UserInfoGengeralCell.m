@@ -27,8 +27,8 @@
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.labTitle.textColor = colorWithRGB(51, 51, 51) ;
     self.labTitleValue.textColor = colorWithRGB(51, 51, 51) ;
-    self.labTitle.font = [UIFont systemFontOfSize:15.0f] ;
-    self.labTitleValue.font = [UIFont systemFontOfSize:15.0f] ;
+    self.labTitle.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labTitleValue.font = [UIFont systemFontOfSize:12.0f] ;
     
     self.labTitle.text = @"" ;
     self.labTitleValue.text = @"" ;

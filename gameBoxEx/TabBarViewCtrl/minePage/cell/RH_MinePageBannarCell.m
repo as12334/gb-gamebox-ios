@@ -42,6 +42,7 @@
     imageBackView.frame = CGRectMake(0, 0, screenSize().width, [RH_MinePageBannarCell heightForCellWithInfo:nil tableView:nil context:nil]);
     [self.contentView insertSubview:imageBackView atIndex:0];
     imageBackView.image = ImageWithName(@"mine_page_accountback");
+    
     [self.imageUserAvator setImage:ImageWithName(@"mine_page_useravator")];
     [self.label_UserNickName setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TimeTitle setTextColor:colorWithRGB(102, 102, 102)];
@@ -55,6 +56,10 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.label_UserNickName.text =  MineGroupInfo.mUserInfo.mUserName ;
+    self.label_TotalMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineGroupInfo.mUserInfo.mTotalAssets];
+    self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineGroupInfo.mUserInfo.mWithdrawAmount];
+    self.label_TimeLast.text = MineGroupInfo.mUserInfo.mLoginTime ;
+
 }
 
 @end

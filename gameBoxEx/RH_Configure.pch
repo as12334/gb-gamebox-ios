@@ -1413,6 +1413,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _wzt8 //金尊娱乐城
+
+#define CODE    @"wzt8"
+#define S        @"a895535f5c2dbb0b0c3fd1eeb561cebe"
+#define SID        @"332"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"
