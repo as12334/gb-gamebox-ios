@@ -8,7 +8,6 @@
 
 #import "RH_DaynamicLabelCell.h"
 #import "coreLib.h"
-
 @interface  RH_DaynamicLabelCell()
 @property(nonatomic,strong) IBOutlet CLLabel *labRemark;
 @property(nonatomic,strong,readonly) UIView *scrollView ;
@@ -44,6 +43,7 @@
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = 1.0f ;
+    
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -55,6 +55,7 @@
                                           self.textSize.width,
                                           self.textSize.height) ;
 }
+
 
 #pragma mark-
 -(void)willMoveToWindow:(UIWindow *)newWindow
