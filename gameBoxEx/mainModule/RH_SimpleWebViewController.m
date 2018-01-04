@@ -18,6 +18,7 @@
 #import "RH_TestViewController.h"
 #import "CLTabBarController.h"
 #import "MacroDef.h"
+#import "RH_API.h"
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
@@ -623,6 +624,18 @@
         for (JSValue *jsVal in args) {
             jsCustom = jsVal;
             NSLog(@"%@", jsVal.toString);
+        }
+        
+        if ([jsCustom.toString containsString:RH_API_NAME_APPDOWNLOADURL]){
+            NSString *downloadURL = nil ;
+            if([jsCustom.toString containsString:@"http"]){
+                downloadURL = jsCustom.toString.trim ;
+            }else{
+                downloadURL = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,jsCustom.toString.trim] ;
+            }
+            
+            openURL(downloadURL) ;
+            return  ;
         }
 
         if (args[0] != NULL) {

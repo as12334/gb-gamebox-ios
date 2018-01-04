@@ -20,6 +20,7 @@
 #define RH_SP_COMMON_OSTYPE                              @"type"
 #define RH_SP_COMMON_CHECKVERSION                        @"code"
 
+#define RH_API_NAME_APPDOWNLOADURL                        @"app/download.html"
 
 //v3原生接口公共规范
 #define RH_SP_COMMON_V3_OSTYPE                              @"terminal"
