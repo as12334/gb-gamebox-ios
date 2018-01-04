@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CLTableViewCell.h"
 
+@class RH_HomeCategoryItemsCell ;
+@protocol HomeCategoryItemsCellDelegate
+@optional
+-(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel ;
+@end
+
 @interface RH_HomeCategoryItemsCell : CLTableViewCell
+@property (nonatomic,weak) id<HomeCategoryItemsCellDelegate> delegate ;
 @end

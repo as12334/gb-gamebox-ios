@@ -268,5 +268,6 @@ NSString * appStoreHTTPURL(NSString * appID) ;
 void gotoAppStore(NSString * appID) ;
 BOOL openURL(NSString * url);
 BOOL isIgnoreHTTPS(NSString *domain) ;
+NSString *getIPAddress(BOOL preferIPv4) ;
 
 #endif /* help_h */

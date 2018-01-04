@@ -110,6 +110,7 @@
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
         [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
     }else{
+        [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogin"] ;
     }
 }

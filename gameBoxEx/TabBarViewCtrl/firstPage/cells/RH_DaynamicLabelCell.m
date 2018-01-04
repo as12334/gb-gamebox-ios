@@ -18,6 +18,9 @@
 @end
 
 @implementation RH_DaynamicLabelCell
+{
+    NSTimeInterval _dynamicTimeInterval ;
+}
 @synthesize labScrollText  =_labScrollText              ;
 @synthesize scrollView = _scrollView                    ;
 
@@ -29,6 +32,7 @@
 #pragma mark-
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _dynamicTimeInterval = 10.0f  ;// default ;
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
@@ -44,11 +48,20 @@
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = 1.0f ;
     
+    self.selectionOption = CLSelectionOptionHighlighted ;
+    self.selectionColor = [UIColor lightGrayColor] ;
+}
+
+-(UIView *)showSelectionView
+{
+    return self.scrollView ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.labScrollText.text = ConvertToClassPointer(NSString, context) ;
+    NSString *strTmp = ConvertToClassPointer(NSString, context) ;
+    _dynamicTimeInterval = strTmp.length * 0.5 ;// 一个字符 0.5
+    self.labScrollText.text = strTmp ;
     self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
     self.labScrollText.frame = CGRectMake(self.scrollView.frameWidth,
                                           floorf((self.scrollView.frameHeigh-self.textSize.height)/2.0),
@@ -68,7 +81,7 @@
 
 -(void)start{
     if (self.isAnimation) return ;
-    [UIView animateWithDuration:10//动画持续时间
+    [UIView animateWithDuration:_dynamicTimeInterval//动画持续时间
                           delay:0//动画延迟执行的时间
                         options:(UIViewAnimationOptionCurveLinear)//动画的过渡效果
                      animations:^{

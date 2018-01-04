@@ -9,24 +9,24 @@
 #import "RH_BasicModel.h"
 
 @interface RH_LotteryInfoModel : RH_BasicModel
-@property(nonatomic,assign,readonly) NSInteger  mID ;
-@property(nonatomic,assign,readonly) NSInteger  mGameID ;
-@property(nonatomic,assign,readonly) NSInteger  mSiteID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiID ;
-@property(nonatomic,strong,readonly) NSString  *mGameType ;
-@property(nonatomic,strong,readonly) NSString  *mViews ;
-@property(nonatomic,assign,readonly) NSInteger  mOrderNum ;
-@property(nonatomic,strong,readonly) NSString  *mUrl ;
-@property(nonatomic,strong,readonly) NSString  *mStatus ;
 @property(nonatomic,assign,readonly) NSInteger  mApiTypeID ;
-@property(nonatomic,assign,readonly) NSInteger  mSupportTerminal ;
+@property(nonatomic,assign,readonly) NSInteger  mAutoPay ;
 @property(nonatomic,strong,readonly) NSString  *mCode ;
-@property(nonatomic,strong,readonly) NSString  *mName ;
 @property(nonatomic,strong,readonly) NSString  *mCover ;
-@property(nonatomic,strong,readonly) NSString  *mCantry ;
+@property(nonatomic,assign,readonly) NSInteger  mGameID ;
+@property(nonatomic,strong,readonly) NSString  *mGameLink ;
+@property(nonatomic,strong,readonly) NSString  *mGameMsg ;
+@property(nonatomic,strong,readonly) NSString  *mGameType ;
+@property(nonatomic,strong,readonly) NSString  *mName ;
+@property(nonatomic,assign,readonly) NSInteger  mOrderNum ;
+@property(nonatomic,assign,readonly) NSInteger  mSiteID ;
+@property(nonatomic,strong,readonly) NSString  *mStatus ;
+@property(nonatomic,strong,readonly) NSString  *mSystemStatus ;
 
 //-extent
 @property(nonatomic,strong,readonly) NSString *showCover ;
+@property(nonnull,strong,readonly) NSString *showGameLink ;
 
 @end
 

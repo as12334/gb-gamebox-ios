@@ -240,8 +240,8 @@
 		A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */ = {isa = PBXBuildFile; fileRef = A011811A1FFB763A008F6D1E /* RH_UserCenterlogout.plist */; };
 		A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */ = {isa = PBXBuildFile; fileRef = A011811D1FFB763A008F6D1E /* RH_UserCenterlogin.plist */; };
 		A01181531FFC6BE4008F6D1E /* RH_BettingRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181421FFC6BE4008F6D1E /* RH_BettingRecordViewController.m */; };
-		A01181551FFC6BE4008F6D1E /* RH_BettingStaticDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01181471FFC6BE4008F6D1E /* RH_BettingStaticDateCell.xib */; };
-		A01181561FFC6BE4008F6D1E /* RH_BettingStaticDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181481FFC6BE4008F6D1E /* RH_BettingStaticDateCell.m */; };
+		A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01181471FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib */; };
+		A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181481FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m */; };
 		A01181581FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A011814C1FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib */; };
 		A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A011814D1FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m */; };
 		A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A011814F1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib */; };
@@ -364,6 +364,8 @@
 		A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */; };
 		A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */; };
 		A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */; };
+		A0E782721FFE2A2A007BFBF3 /* RH_DomainTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E782701FFE2A2A007BFBF3 /* RH_DomainTableCell.m */; };
+		A0E782731FFE2A2A007BFBF3 /* RH_DomainTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E782711FFE2A2A007BFBF3 /* RH_DomainTableCell.xib */; };
 		B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107AAE1FFCC83C0086DDC3 /* RH_BasicAlertView.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6BD31841FFA0E85000AC941 /* RH_MachineAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */; };
@@ -777,9 +779,9 @@
 		A011811A1FFB763A008F6D1E /* RH_UserCenterlogout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_UserCenterlogout.plist; sourceTree = "<group>"; };
 		A011811D1FFB763A008F6D1E /* RH_UserCenterlogin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_UserCenterlogin.plist; sourceTree = "<group>"; };
 		A01181421FFC6BE4008F6D1E /* RH_BettingRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordViewController.m; sourceTree = "<group>"; };
-		A01181441FFC6BE4008F6D1E /* RH_BettingStaticDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingStaticDateCell.h; sourceTree = "<group>"; };
-		A01181471FFC6BE4008F6D1E /* RH_BettingStaticDateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_BettingStaticDateCell.xib; sourceTree = "<group>"; };
-		A01181481FFC6BE4008F6D1E /* RH_BettingStaticDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingStaticDateCell.m; sourceTree = "<group>"; };
+		A01181441FFC6BE4008F6D1E /* RH_BettingSelectedDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingSelectedDateView.h; sourceTree = "<group>"; };
+		A01181471FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_BettingSelectedDateView.xib; sourceTree = "<group>"; };
+		A01181481FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingSelectedDateView.m; sourceTree = "<group>"; };
 		A011814A1FFC6BE4008F6D1E /* RH_BettingTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingTableHeaderView.h; sourceTree = "<group>"; };
 		A011814B1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordBottomView.h; sourceTree = "<group>"; };
 		A011814C1FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_BettingRecordHeaderView.xib; sourceTree = "<group>"; };
@@ -1012,6 +1014,9 @@
 		A0E53DC21F987D1400CE69E4 /* RH_IMMessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_IMMessageTableCell.h; sourceTree = "<group>"; };
 		A0E53DC31F987D1400CE69E4 /* RH_IMMessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_IMMessageTableCell.m; sourceTree = "<group>"; };
 		A0E53DC41F987D1400CE69E4 /* RH_IMMessageTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_IMMessageTableCell.xib; sourceTree = "<group>"; };
+		A0E7826F1FFE2A2A007BFBF3 /* RH_DomainTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DomainTableCell.h; sourceTree = "<group>"; };
+		A0E782701FFE2A2A007BFBF3 /* RH_DomainTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DomainTableCell.m; sourceTree = "<group>"; };
+		A0E782711FFE2A2A007BFBF3 /* RH_DomainTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DomainTableCell.xib; sourceTree = "<group>"; };
 		B8107AAD1FFCC83C0086DDC3 /* RH_BasicAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BasicAlertView.h; sourceTree = "<group>"; };
 		B8107AAE1FFCC83C0086DDC3 /* RH_BasicAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BasicAlertView.m; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
@@ -1856,9 +1861,9 @@
 		A01181431FFC6BE4008F6D1E /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				A01181441FFC6BE4008F6D1E /* RH_BettingStaticDateCell.h */,
-				A01181481FFC6BE4008F6D1E /* RH_BettingStaticDateCell.m */,
-				A01181471FFC6BE4008F6D1E /* RH_BettingStaticDateCell.xib */,
+				A01181441FFC6BE4008F6D1E /* RH_BettingSelectedDateView.h */,
+				A01181481FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m */,
+				A01181471FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib */,
 				A011815E1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.h */,
 				A011815F1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m */,
 				A011815D1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib */,
@@ -1913,6 +1918,7 @@
 		A01EE2631F88784A0085717E /* SplashViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A0E7826E1FFE2A07007BFBF3 /* cell */,
 				A01EE2641F8878B30085717E /* SplashViewController.h */,
 				A01EE2651F8878B30085717E /* SplashViewController.m */,
 				A01EE2661F8878B30085717E /* SplashViewController.xib */,
@@ -2306,6 +2312,16 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		A0E7826E1FFE2A07007BFBF3 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				A0E7826F1FFE2A2A007BFBF3 /* RH_DomainTableCell.h */,
+				A0E782701FFE2A2A007BFBF3 /* RH_DomainTableCell.m */,
+				A0E782711FFE2A2A007BFBF3 /* RH_DomainTableCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2412,6 +2428,7 @@
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
 				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
+				A0E782731FFE2A2A007BFBF3 /* RH_DomainTableCell.xib in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
@@ -2449,7 +2466,7 @@
 				A0B609B71FBB05AC00A44B37 /* tab_v3_promo@2x.png in Resources */,
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
-				A01181551FFC6BE4008F6D1E /* RH_BettingStaticDateCell.xib in Resources */,
+				A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
 				A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */,
@@ -2656,7 +2673,7 @@
 				A0109F6C1F8787E4004E6EF4 /* CLBorderView.m in Sources */,
 				A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */,
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
-				A01181561FFC6BE4008F6D1E /* RH_BettingStaticDateCell.m in Sources */,
+				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
 				A0109F701F8787E4004E6EF4 /* CLContentView.m in Sources */,
@@ -2704,6 +2721,7 @@
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
+				A0E782721FFE2A2A007BFBF3 /* RH_DomainTableCell.m in Sources */,
 				A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */,
 				A0109F961F8787E4004E6EF4 /* CLScanImageView.m in Sources */,
 				A0109F971F8787E4004E6EF4 /* CLStaticCollectionView.m in Sources */,
