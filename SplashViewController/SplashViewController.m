@@ -349,7 +349,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         NSDate *dateTmp = ConvertToClassPointer(NSDate, [userDefaults objectForKey:kUpdateAPPDatePrompt]) ;
         NSDate *dateCurr = [NSDate date] ;
         
-        
         if (dateTmp==nil ||
             [dateCurr timeIntervalSinceDate:dateTmp]>OneDayTotalInterval){
             UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
