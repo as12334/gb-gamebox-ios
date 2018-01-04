@@ -84,6 +84,8 @@
 							<integer>1</integer>
 						</dict>
 						<dict>
+							<key>targetKey</key>
+							<string>RH_MineSafetyCenterViewController</string>
 							<key>detailTitle</key>
 							<string>保护您的账户安全</string>
 							<key>title</key>
