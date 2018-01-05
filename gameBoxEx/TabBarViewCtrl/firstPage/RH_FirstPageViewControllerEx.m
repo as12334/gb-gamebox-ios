@@ -241,6 +241,9 @@
                 self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
                 [self showViewController:[RH_GamesViewController viewController] sender:self] ;
                 return ;
+            }else if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
+                
+                return ;
             }else if (lotteryAPIInfoModel.mGameMsg.length){
                 showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
                 return ;
@@ -269,6 +272,13 @@
             }
         }
     }else{
+        if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
+            RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
+            if (lotteryAPIInfoModel.mApiTypeID==2){ //进入 电子游戏 列表 。。。
+                return ;
+            }
+        }
+        
         showAlertView(@"提示信息", @"您尚未登入") ;
     }
 }
@@ -381,6 +391,9 @@
         
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
+            if (self.appDelegate.isLogin){
+                [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID] ;
+            }
         }else{
             [self activityViewHide] ;
         }
@@ -485,7 +498,7 @@
             return 0.0f ;
         }
     }else{
-        return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
+        return MainScreenH - StatusBarHeight  - NavigationBarHeight - TabBarHeight - [self topViewHeight] ;
     }
     return 0.0f ;
 }

@@ -216,6 +216,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startAPIRetrive:(NSInteger)apiID
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_APIRETRIVE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_APIRETRIVE_APIID:@(apiID)}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeAPIRetrive
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startTestUrl:(NSString*)testURL
 {
     [self _startServiceWithAPIName:testURL
@@ -269,6 +283,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3MineGroupInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3ActivityStaus:(NSString*)activityID
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_ACTIVITYSTATUS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_ACTIVITYSTATUS_MESSAGEID:activityID?:@""}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ActivityStatus
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -365,7 +393,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }else if ([THEME isEqualToString:@"blue.skin"]){
             [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
-            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"white" forKey:RH_SP_COMMON_V3_THEME] ;
         }
         
         [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;

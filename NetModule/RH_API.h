@@ -176,6 +176,15 @@
 #define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
 
+
+#pragma mark -
+#pragma mark - 回收接口
+//api的路径
+#define RH_API_NAME_APIRETRIVE                        @"transfer/auto/recovery.html"
+//请求参数
+#define RH_SP_APIRETRIVE_APIID                        @"search.apiId"
+
+
 #pragma mark - V3
 //===========================================================
 //v3接口定义
@@ -205,6 +214,14 @@
 #define RH_GP_MINEGROUPINFO_ISCASH                         @"isCash"
 #define RH_GP_MINEGROUPINFO_LINK                           @"link"
 #define RH_GP_MINEGROUPINFO_USER                           @"user"
+
+#pragma mark - V3  浮动图抢红包次数
+//api的路径
+#define RH_API_NAME_ACTIVITYSTATUS                        @"ntl/activity/countDrawTimes.html"
+//请求参数
+#define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
+//返回参数
+
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径

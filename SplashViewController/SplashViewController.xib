@@ -43,7 +43,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="n3i-VU-N6c">
-                    <rect key="frame" x="10" y="60" width="355" height="239"/>
+                    <rect key="frame" x="10" y="80" width="355" height="219"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-Ki-d3M">
@@ -57,7 +57,7 @@
             <constraints>
                 <constraint firstItem="fV5-jP-Idu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3sm-z6-7Tv"/>
                 <constraint firstItem="fV5-jP-Idu" firstAttribute="top" secondItem="n3i-VU-N6c" secondAttribute="bottom" constant="80" id="5RM-NE-777"/>
-                <constraint firstItem="n3i-VU-N6c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="7yV-6v-Gz6"/>
+                <constraint firstItem="n3i-VU-N6c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="7yV-6v-Gz6"/>
                 <constraint firstItem="5tr-Ll-PYS" firstAttribute="top" secondItem="4at-Ki-d3M" secondAttribute="bottom" constant="8" id="89p-Yr-UTK"/>
                 <constraint firstItem="5tr-Ll-PYS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="J7x-ra-oqM"/>
                 <constraint firstItem="fV5-jP-Idu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="60" id="ZCS-vg-P8j"/>
