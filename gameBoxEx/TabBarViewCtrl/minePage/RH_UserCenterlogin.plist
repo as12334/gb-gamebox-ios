@@ -82,6 +82,8 @@
 							<string>mine_page_fundsrecords</string>
 							<key>targetContext</key>
 							<integer>1</integer>
+							<key>targetKey</key>
+							<string>RH_CapitalRecordViewController</string>
 						</dict>
 						<dict>
 							<key>targetKey</key>
