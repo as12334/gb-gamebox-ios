@@ -135,7 +135,7 @@
 							<key>image</key>
 							<string>mine_page_sharefriends</string>
 							<key>targetKey</key>
-							<string>RH_MineMessageCenterController</string>
+							<string>RH_LotteryGameListViewController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -145,7 +145,7 @@
 							<key>image</key>
 							<string>mine_page_applypreferential</string>
 							<key>targetKey</key>
-							<string>RH_MineIdeaAndFeedBackController</string>
+							<string>RH_MPApplyDiscountController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
