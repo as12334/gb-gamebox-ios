@@ -23,12 +23,16 @@
 //    [self.navigationBar setHidden:YES];
     [self setupUI];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationBar.hidden = YES;
+}
 -(void)setupUI{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
-    self.contentTableView.frame = CGRectMake(0,-64, self.view.frameWidth, self.contentView.frameHeigh-114);
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
     [self.contentTableView registerCellWithClass:[RH_MPGameNoticeCell class]] ;
+    self.contentTableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }
