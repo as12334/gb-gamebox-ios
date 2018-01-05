@@ -2134,12 +2134,9 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-
 				79FB81491FFDCD4600325BF3 /* CapitalRecord */,
-
 				B8107ABD1FFE18B20086DDC3 /* MineSettings */,
 				B8107AB01FFDB86B0086DDC3 /* MineSafetyCenter */,
-
 				A0AE8AA01FFCD20E00836C1B /* MineMoreInfo */,
 				A01181411FFC6BE4008F6D1E /* BettingRecord */,
 				A08417DF1FA6B4CB00869133 /* loginViewCtrl */,
@@ -2999,7 +2996,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_sy7u=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
