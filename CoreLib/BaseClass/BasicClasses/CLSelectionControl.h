@@ -10,7 +10,6 @@
 #import "CLSelectionProtocol.h"
 
 @interface CLSelectionControl : UIControl<CLSelectionProtocol>
-
 @property(nonatomic,strong) UIView * backgroundView;
 
 @end

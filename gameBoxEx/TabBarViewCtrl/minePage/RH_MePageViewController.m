@@ -9,6 +9,7 @@
 #import "RH_MePageViewController.h"
 #import "RH_MinePageBannarCell.h"
 #import "RH_UserInfoManager.h"
+#import "RH_MineSettingsViewController.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -88,7 +89,7 @@
 
 -(void)_barButtonSettingHandle
 {
-//    [self showViewController:[RH_MineSettingViewController viewController] sender:self] ;
+    [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
 }
 
 
@@ -96,8 +97,10 @@
 -(void)setupUI
 {
     [self.navigationBar setBarTintColor:colorWithRGB(27, 117, 217)];
-//    self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
-//    self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
+    if (self.appDelegate.isLogin) {
+        self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
+        self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
+    }
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.tableViewManagement reloadData] ;
@@ -110,6 +113,7 @@
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
         [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
     }else{
+        [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogin"] ;
     }
 }

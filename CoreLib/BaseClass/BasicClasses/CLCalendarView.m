@@ -186,7 +186,7 @@
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0,40,BXScreenW,
                                                                     self.boundHeigh - 40.0f)];
 
-        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        _datePicker.datePickerMode = UIDatePickerModeDate;
 //        [_datePicker addTarget:self action:@selector(datePickerChangedHandle:) forControlEvents: UIControlEventValueChanged];
     }
 

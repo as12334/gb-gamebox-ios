@@ -21,8 +21,13 @@
 #import "RH_API.h"
 #import "RH_MachineAnimationView.h"
 #import "RH_BasicAlertView.h"
+#import "RH_UserInfoManager.h"
+#import "RH_CustomViewController.h"
+#import "RH_GamesViewController.h"
 
-@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,ActivithyViewDelegate>
+@interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
+        ActivithyViewDelegate,
+        HomeCategoryItemsCellDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
@@ -167,6 +172,7 @@
 {
     if (self.appDelegate.isLogin){
         self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
+        [self startUpdateData] ;
     }else{
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     }
@@ -219,9 +225,52 @@
 {
     if (!_homeCategoryItemsCell){
         _homeCategoryItemsCell = [RH_HomeCategoryItemsCell createInstance] ;
+        _homeCategoryItemsCell.delegate = self ;
     }
     
     return _homeCategoryItemsCell ;
+}
+
+-(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel
+{
+    if (HasLogin)
+    {
+        if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
+            RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
+            if (lotteryAPIInfoModel.mGameLink.length){
+                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
+                return ;
+            }else if (lotteryAPIInfoModel.mGameMsg.length){
+                showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
+                return ;
+            }else if ([self.serviceRequest isRequesting]){
+                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
+                return ;
+            }else{
+                showAlertView(@"提示信息",@"游戏维护中") ;
+                return ;
+            }
+        }else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]]){
+            RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, cellItemModel) ;
+            if (lotteryInfoModel.mGameLink.length){
+                self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                return ;
+            }else if (lotteryInfoModel.mGameMsg.length){
+                showAlertView(@"提示信息",lotteryInfoModel.mGameMsg) ;
+                return ;
+            }else if ([self.serviceRequest isRequesting]){
+                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
+                return ;
+            }else{
+                showAlertView(@"提示信息",@"游戏维护中") ;
+                return ;
+            }
+        }
+    }else{
+        showAlertView(@"提示信息", @"您尚未登入") ;
+    }
 }
 
 #pragma mark- selectedCategoryModel
@@ -250,8 +299,8 @@
 {
     if (!_activityView){
         _activityView = [RH_ActivithyView createInstance] ;
-        _activityView.frame = CGRectMake(self.view.frameWidth - activithyViewWidth -10,
-                                         self.view.frameHeigh - activithyViewHeigh - TabBarHeight - 10,
+        _activityView.frame = CGRectMake(self.view.frameWidth - activithyViewWidth -5,
+                                         self.view.frameHeigh - activithyViewHeigh ,
                                          activithyViewWidth,
                                          activithyViewHeigh) ;
         _activityView.delegate = self ;

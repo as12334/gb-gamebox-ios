@@ -12,7 +12,7 @@
 #import "RH_BettingRecordBottomView.h"
 #import "coreLib.h"
 
-@interface RH_BettingRecordViewController ()
+@interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
@@ -108,9 +108,28 @@
         _bettingRecordHeaderView = [RH_BettingRecordHeaderView createInstance] ;
         _bettingRecordHeaderView.frame = self.topView.bounds ;
         _bettingRecordHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
+        _bettingRecordHeaderView.delegate = self ;
     }
     
     return _bettingRecordHeaderView ;
+}
+
+-(void)bettingRecordHeaderViewWillSelectedStartDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
+{
+    [self showCalendarView:@"设置开始日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  bettingRecordHeaderView.startDate = returnDate ;
+              }] ;
+}
+
+-(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
+{
+    [self showCalendarView:@"设置结止日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  bettingRecordHeaderView.endDate = returnDate ;
+              }] ;
 }
 
 #pragma mark-sort table header view

@@ -9,6 +9,8 @@
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomeCategoryItemSubCell.h"
 #import "coreLib.h"
+#import "RH_LotteryAPIInfoModel.h"
+#import "RH_LotteryInfoModel.h"
 
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-40)/3.0)
 
@@ -100,6 +102,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    ifRespondsSelector(self.delegate, @selector(homeCategoryItemsCellDidTouchItemCell:DataModel:)){
+        [self.delegate homeCategoryItemsCellDidTouchItemCell:self DataModel:self.itemsList[indexPath.section*3+indexPath.item]] ;
+    }
 }
 
 @end

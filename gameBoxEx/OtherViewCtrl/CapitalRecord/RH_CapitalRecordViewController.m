@@ -63,13 +63,13 @@
     self.bottomView.borderMask = CLBorderMarkTop ;
     self.bottomView.borderColor = RH_Line_DefaultColor ;
     
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
-    self.contentTableView.tableHeaderView = self.capitalTableHeaderView ;
+//    self.contentTableView.tableHeaderView = self.capitalTableHeaderView ;
     [self.contentView addSubview:self.contentTableView] ;
     
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
