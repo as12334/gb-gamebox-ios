@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RH_LotteryGameListTopView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入游戏名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o4Y-Hg-yXF">
+                    <rect key="frame" x="24" y="2" width="267" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaR-OY-PY6">
+                    <rect key="frame" x="291" y="2" width="60" height="30"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="aNu-t9-mB8"/>
+                        <constraint firstAttribute="height" constant="30" id="r7y-IA-vac"/>
+                    </constraints>
+                    <state key="normal" title="搜索">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="MaR-OY-PY6" secondAttribute="trailing" constant="24" id="2iF-fd-9j3"/>
+                <constraint firstItem="MaR-OY-PY6" firstAttribute="leading" secondItem="o4Y-Hg-yXF" secondAttribute="trailing" id="9Rj-Ch-05e"/>
+                <constraint firstAttribute="bottom" secondItem="o4Y-Hg-yXF" secondAttribute="bottom" constant="3" id="DCW-vu-f7k"/>
+                <constraint firstItem="o4Y-Hg-yXF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="XiA-rw-IVu"/>
+                <constraint firstAttribute="bottom" secondItem="MaR-OY-PY6" secondAttribute="bottom" constant="3" id="icY-H7-9SU"/>
+                <constraint firstItem="o4Y-Hg-yXF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="j1S-gc-76o"/>
+                <constraint firstItem="MaR-OY-PY6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="u4t-kz-Ojk"/>
+                <constraint firstItem="MaR-OY-PY6" firstAttribute="leading" secondItem="o4Y-Hg-yXF" secondAttribute="trailing" id="vIj-jG-e10"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="textField" destination="o4Y-Hg-yXF" id="KFN-Zs-Bne"/>
+            </connections>
+            <point key="canvasLocation" x="32.5" y="61.5"/>
+        </view>
+    </objects>
+</document>

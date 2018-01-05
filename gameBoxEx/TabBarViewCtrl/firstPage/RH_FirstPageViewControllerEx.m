@@ -24,6 +24,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CustomViewController.h"
 #import "RH_GamesViewController.h"
+#import "RH_LotteryGameListViewController.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -242,7 +243,8 @@
                 [self showViewController:[RH_GamesViewController viewController] sender:self] ;
                 return ;
             }else if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
-                
+                [self showViewController:[RH_LotteryGameListViewController viewControllerWithContext:lotteryAPIInfoModel]
+                                  sender:self] ;
                 return ;
             }else if (lotteryAPIInfoModel.mGameMsg.length){
                 showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
@@ -275,6 +277,8 @@
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
             if (lotteryAPIInfoModel.mApiTypeID==2){ //进入 电子游戏 列表 。。。
+                [self showViewController:[RH_LotteryGameListViewController viewControllerWithContext:lotteryAPIInfoModel]
+                                  sender:self] ;
                 return ;
             }
         }
@@ -353,7 +357,6 @@
 }
 
 #pragma mark-alertView
-
 
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
