@@ -320,7 +320,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_APIGAMELIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
+                    queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3APIGameList
@@ -707,6 +707,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
                     [userInfoManager setMineGroupInfo:resultSendData] ;
                 }
+            }
+                break ;
+            
+            case ServiceRequestTypeV3APIGameList:
+            {
+                NSArray *tmpArray = [RH_LotteryInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_APIGAMELIST_LIST]] ;
+                NSInteger total = [[[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     dictionaryValueForKey:@"page"] dictionaryValueForKey:@"page"] integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]   ;
+                
+                resultSendData = @{RH_GP_APIGAMELIST_LIST:tmpArray?:@[],
+                                   RH_GP_APIGAMELIST_TOTALCOUNT:@(total)
+                                   } ;
             }
                 break ;
                 
