@@ -16,6 +16,16 @@
 		189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A51FF9E99E00B14298 /* RH_MineRecordStaticCell.xib */; };
 		189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */; };
 		189C13B31FF9E99F00B14298 /* RH_MineRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */; };
+		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
+		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
+		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
+		79FB815E1FFE091600325BF3 /* RH_CapitalStaticDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */; };
+		79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */; };
+		79FB81631FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81621FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m */; };
+		79FB81651FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81641FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib */; };
+		79FB81681FFE22B800325BF3 /* RH_CapitalTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81671FFE22B800325BF3 /* RH_CapitalTableHeaderView.m */; };
+		79FB816B1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */; };
+		79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */; };
 		A001B3C71F8E130F00309EA4 /* RH_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */; };
 		A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */; };
 		A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A04E60281F8DAFF000098A65 /* tab_blue_deposit@2x.png */; };
@@ -397,6 +407,22 @@
 		189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineRecordTableViewCell.m; sourceTree = "<group>"; };
 		189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineRecordTableViewCell.xib; sourceTree = "<group>"; };
 		189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MePageViewController.h; sourceTree = "<group>"; };
+		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
+		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
+		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
+		79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordHeaderView.m; sourceTree = "<group>"; };
+		79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CapitalRecordHeaderView.xib; sourceTree = "<group>"; };
+		79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalStaticDataCell.h; sourceTree = "<group>"; };
+		79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalStaticDataCell.m; sourceTree = "<group>"; };
+		79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CapitalStaticDataCell.xib; sourceTree = "<group>"; };
+		79FB81611FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CatipalStaticHeaderCell.h; sourceTree = "<group>"; };
+		79FB81621FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CatipalStaticHeaderCell.m; sourceTree = "<group>"; };
+		79FB81641FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CatipalStaticHeaderCell.xib; sourceTree = "<group>"; };
+		79FB81661FFE22B800325BF3 /* RH_CapitalTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableHeaderView.h; sourceTree = "<group>"; };
+		79FB81671FFE22B800325BF3 /* RH_CapitalTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableHeaderView.m; sourceTree = "<group>"; };
+		79FB81691FFE26C400325BF3 /* RH_CapitalRecordBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordBottomView.h; sourceTree = "<group>"; };
+		79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordBottomView.m; sourceTree = "<group>"; };
+		79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CapitalRecordBottomView.xib; sourceTree = "<group>"; };
 		A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewController.h; sourceTree = "<group>"; };
 		A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewController.m; sourceTree = "<group>"; };
 		A001B3F01F8EFEB500309EA4 /* RH_TransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_TransferViewController.h; sourceTree = "<group>"; };
@@ -1053,6 +1079,37 @@
 				189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
+			isa = PBXGroup;
+			children = (
+				79FB814D1FFDD70C00325BF3 /* cells */,
+				79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */,
+				79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */,
+				79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */,
+				79FB81661FFE22B800325BF3 /* RH_CapitalTableHeaderView.h */,
+				79FB81671FFE22B800325BF3 /* RH_CapitalTableHeaderView.m */,
+				79FB81691FFE26C400325BF3 /* RH_CapitalRecordBottomView.h */,
+				79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */,
+				79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */,
+				79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */,
+				79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */,
+			);
+			path = CapitalRecord;
+			sourceTree = "<group>";
+		};
+		79FB814D1FFDD70C00325BF3 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */,
+				79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */,
+				79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */,
+				79FB81611FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.h */,
+				79FB81621FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m */,
+				79FB81641FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		A001B3EF1F8EFEB500309EA4 /* transferPage */ = {
@@ -2049,6 +2106,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				79FB81491FFDCD4600325BF3 /* CapitalRecord */,
 				A0AE8AA01FFCD20E00836C1B /* MineMoreInfo */,
 				A01181411FFC6BE4008F6D1E /* BettingRecord */,
 				A08417DF1FA6B4CB00869133 /* loginViewCtrl */,
@@ -2383,6 +2441,7 @@
 				A01CB4A41FF9DD0C00447130 /* 未拆开_01.png in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
+				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
@@ -2391,6 +2450,7 @@
 				A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
+				79FB81651FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
@@ -2414,6 +2474,8 @@
 				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
+				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
+				79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
 				A001B3DC1F8EF7CA00309EA4 /* tab_lottery_deposit@2x.png in Resources */,
@@ -2511,6 +2573,7 @@
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
+				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				A010A0571F87999F004E6EF4 /* RH_BasicImageModel.m in Sources */,
 				A010A0591F87999F004E6EF4 /* RH_CommonInputContainerView.m in Sources */,
@@ -2541,6 +2604,7 @@
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
 				A0109FB01F8788FF004E6EF4 /* UIActionSheet+Block.m in Sources */,
+				79FB815E1FFE091600325BF3 /* RH_CapitalStaticDataCell.m in Sources */,
 				A0109FB11F8788FF004E6EF4 /* UIAlertView+Block.m in Sources */,
 				A0109FB21F8788FF004E6EF4 /* UICollectionReusableView+ShowContent.m in Sources */,
 				A0109FB31F8788FF004E6EF4 /* UICollectionView+Register.m in Sources */,
@@ -2592,6 +2656,7 @@
 				A0109FD31F8788FF004E6EF4 /* DNImagePickerController.m in Sources */,
 				A0109FD41F8788FF004E6EF4 /* DNPhotoBrowser.m in Sources */,
 				A0109FD51F8788FF004E6EF4 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
+				79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */,
 				A0109FD61F8788FF004E6EF4 /* UIColor+Hex.m in Sources */,
 				B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */,
 				A0109FD71F8788FF004E6EF4 /* UIView+DNImagePicker.m in Sources */,
@@ -2636,6 +2701,7 @@
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
+				79FB81681FFE22B800325BF3 /* RH_CapitalTableHeaderView.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
@@ -2684,6 +2750,7 @@
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
+				79FB816B1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m in Sources */,
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
@@ -2694,6 +2761,7 @@
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
+				79FB81631FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,

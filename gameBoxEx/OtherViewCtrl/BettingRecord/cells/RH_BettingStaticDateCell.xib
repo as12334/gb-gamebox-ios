@@ -22,7 +22,7 @@
                             <rect key="frame" x="2" y="-2" width="24" height="24"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="LS2-fi-YxN">
-                            <rect key="frame" x="30" y="2" width="37.5" height="18"/>
+                            <rect key="frame" x="30" y="1" width="37.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                 <outlet property="borderView" destination="nMP-kO-p8L" id="eQK-sZ-9yX"/>
                 <outlet property="labDate" destination="LS2-fi-YxN" id="AhE-l5-WAb"/>
             </connections>
-            <point key="canvasLocation" x="-1418" y="-475"/>
+            <point key="canvasLocation" x="-1494" y="-683"/>
         </view>
     </objects>
     <resources>
