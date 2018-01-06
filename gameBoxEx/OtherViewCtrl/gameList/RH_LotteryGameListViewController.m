@@ -10,6 +10,8 @@
 #import "RH_LotteryGameListTopView.h"
 #import "RH_GameListCollectionViewCell.h"
 #import "RH_LotteryAPIInfoModel.h"
+#import "RH_GamesViewController.h"
+#import "RH_UserInfoManager.h"
 #import "RH_API.h"
 
 @interface RH_LotteryGameListViewController ()
@@ -21,6 +23,7 @@
     RH_LotteryAPIInfoModel *_lotteryApiModel ;
 }
 @synthesize searchView = _searchView;
+
 -(void)setupViewContext:(id)context
 {
     _lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
@@ -38,29 +41,63 @@
 {
     return YES;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    self.title = _lotteryApiModel.mName ;
+    self.needObserverTapGesture = YES ;
 }
+
 -(void)setupUI{
     [self.topView addSubview:self.searchView];
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    //设置collectionView滚动方向
-    //    [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    //设置headerView的尺寸大小
-    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width,0);
+    UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.minimumLineSpacing = 10.f;
+    flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.f, 10.0f, 10.0f);
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
     //该方法也可以设置itemSize
 //    layout.itemSize =CGSizeMake(110, 150);
-    self.contentCollectionView = [self createCollectionViewWithLayout:layout updateControl:NO loadControl:NO];
+    self.contentCollectionView = [self createCollectionViewWithLayout:flowLayout updateControl:NO loadControl:NO];
     self.contentCollectionView.delegate=self;
     self.contentCollectionView.dataSource=self;
     [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
+    [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
+    
     [self.contentView addSubview:self.contentCollectionView] ;
     [self.contentCollectionView reloadData] ;
     
     [self setupPageLoadManager] ;
 }
+
+-(RH_LoadingIndicateView*)contentLoadingIndicateView
+{
+    return self.loadingIndicateCollectionViewCell.loadingIndicateView ;
+}
+
+
+- (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
+{
+    return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentCollectionView
+                                                          pageLoadControllerClass:nil
+                                                                         pageSize:[self defaultPageSize]
+                                                                     startSection:0
+                                                                         startRow:0
+                                                                   segmentedCount:1] ;
+}
+
+#pragma mark-
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return self.searchView.isEdit ;
+}
+
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self.searchView endEditing:YES] ;
+}
+
 #pragma mark searchView
 -(RH_LotteryGameListTopView *)searchView
 {
@@ -80,6 +117,11 @@
 }
 
 #pragma mark- 请求回调
+-(NSUInteger)defaultPageSize
+{
+    return 20 ;
+}
+
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
@@ -95,6 +137,8 @@
 }
 
 #pragma mark-
+
+
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
     [self startUpdateData] ;
@@ -140,18 +184,9 @@
         [gameCell updateViewWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return gameCell;
     }else{
-//        RH_LoadingIndicaterCollectionViewCell * cell = [collectionView  dequeueReusableCellWithReuseIdentifier:[RH_LoadingIndicaterCollectionViewCell defaultReuseIdentifier] forIndexPath:indexPath];
-//        cell.backgroundColor = [UIColor whiteColor];
-//        cell.loadingIndicateView.delegate = self;
-//        _pageLoadingIndicateView = cell.loadingIndicateView;
-//
-//        //更新加载指示视图
-//        [self setNeedUpdateIndicaterView];
-        
-//        return cell;
+        return self.loadingIndicateCollectionViewCell ;
     }
     
-    return nil ;
 }
 
 //设置每个item的尺寸
@@ -160,27 +195,53 @@
     if (self.pageLoadManager.currentDataCount){
         return [RH_GameListCollectionViewCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:nil] ;
     }else{
-        return CGSizeZero  ;
+        return CGSizeMake(MainScreenW, MainScreenH - StatusBarHeight - NavigationBarHeight - [self topViewHeight])  ;
     }
 }
 
-//设置每个item的UIEdgeInsets
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    if (self.pageLoadManager.currentDataCount){
+        if (HasLogin)
+        {
+            RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
+            if (lotteryInfoModel.mGameLink.length){
+                self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
+                return ;
+            }else if (lotteryInfoModel.mGameMsg.length){
+                showAlertView(@"提示信息",lotteryInfoModel.mGameMsg) ;
+                return ;
+            }else if ([self.serviceRequest isRequesting]){
+                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
+                return ;
+            }else{
+                showAlertView(@"提示信息",@"游戏维护中") ;
+                return ;
+            }
+        }else{
+            showAlertView(@"提示信息", @"您尚未登入") ;
+        }
+    }
 }
 
-//设置每个item水平间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 10;
-}
-
-
-//设置每个item垂直间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 15;
-}
+////设置每个item的UIEdgeInsets
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(10, 10, 10, 10);
+//}
+//
+////设置每个item水平间距
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+//{
+//    return 10;
+//}
+//
+//
+////设置每个item垂直间距
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+//{
+//    return 15;
+//}
 
 @end

@@ -26,4 +26,15 @@
     self.textField.layer.borderWidth = 1.0f;
     
 }
+
+-(BOOL)isEdit
+{
+    return self.textField.isEditing ;
+}
+
+-(BOOL)endEditing:(BOOL)force
+{
+    [self.textField resignFirstResponder] ;
+    return YES ;
+}
 @end

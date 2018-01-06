@@ -397,6 +397,20 @@
     //do nothing
 }
 
+#pragma mark- RH_LoadingIndicaterCollectionViewCell
+-(RH_LoadingIndicaterCollectionViewCell*)loadingIndicateCollectionViewCell
+{
+    if (!_loadingIndicateCollectionViewCell) {
+        _loadingIndicateCollectionViewCell = [self.contentCollectionView dequeueReusableCellWithReuseIdentifier:[RH_LoadingIndicaterCollectionViewCell defaultReuseIdentifier] forIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]  ;
+        _loadingIndicateCollectionViewCell.backgroundColor = [UIColor clearColor];
+        _loadingIndicateCollectionViewCell.contentInset = UIEdgeInsetsMake(5.f, 0.f, 5.f, 0.f);
+        _loadingIndicateCollectionViewCell.loadingIndicateView.backgroundColor = [UIColor whiteColor];
+        _loadingIndicateCollectionViewCell.loadingIndicateView.delegate = self;
+    }
+    
+    return _loadingIndicateCollectionViewCell;
+}
+
 @end
 
 
