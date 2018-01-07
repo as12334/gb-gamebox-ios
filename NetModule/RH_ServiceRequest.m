@@ -625,6 +625,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
         NSLog(@"%@",tmpResult) ;
+    }else if (type == ServiceRequestTypeAPIRetrive){ //游戏 回收api
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+        return YES ;
     }
 
     //json解析

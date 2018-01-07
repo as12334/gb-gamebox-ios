@@ -84,7 +84,6 @@
     }
 }
 
-
 #pragma mark-
 -(UILabel*)labDomain
 {
@@ -104,7 +103,6 @@
     return _labDomain ;
 }
 
-#pragma mark- tap gesture
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -175,7 +173,7 @@
         self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
         [self startUpdateData] ;
     }else{
-        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
+        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
     }
 }
 

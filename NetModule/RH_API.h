@@ -222,6 +222,13 @@
 #define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
 //返回参数
 
+#pragma mark - V3 拆红包
+//api的路径
+#define RH_API_NAME_OPENACTIVITY                        @"ntl/activity/getPacket.html"
+//请求参数
+#define RH_SP_OPENACTIVITY_MESSAGEID                    @"activityMessageId"
+#define RH_SP_OPENACTIVITY_TOKEN                        @"gb.token"
+//返回参数
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径
