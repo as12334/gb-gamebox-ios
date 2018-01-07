@@ -14,13 +14,14 @@
 #import "RH_UserInfoManager.h"
 #import "RH_API.h"
 
-@interface RH_LotteryGameListViewController ()
+@interface RH_LotteryGameListViewController ()<GameListChooseGameSearchDelegate>
 @property(nonatomic,strong,readonly)RH_LotteryGameListTopView *searchView;
 @end
 
 @implementation RH_LotteryGameListViewController
 {
     RH_LotteryAPIInfoModel *_lotteryApiModel ;
+    NSString *_searchString;
 }
 @synthesize searchView = _searchView;
 
@@ -56,6 +57,7 @@
     flowLayout.minimumLineSpacing = 10.f;
     flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.f, 10.0f, 10.0f);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    flowLayout.itemSize = CGSizeMake((MainScreenW -50)/4,(MainScreenW-50)/4*7/5);
     
     //该方法也可以设置itemSize
 //    layout.itemSize =CGSizeMake(110, 150);
@@ -104,6 +106,7 @@
     if (!_searchView) {
         _searchView = [RH_LotteryGameListTopView createInstance];
         _searchView.frame = CGRectMake(0, 0, self.topView.frameWidth, 35);
+        _searchView.searchDelegate=self;
     }
     return _searchView;
 }
@@ -119,7 +122,7 @@
 #pragma mark- 请求回调
 -(NSUInteger)defaultPageSize
 {
-    return 20 ;
+    return self.contentCollectionView.frameHeigh/((MainScreenW-50)/4*7/5)*4;
 }
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
@@ -128,7 +131,7 @@
                                         ApiTypeID:_lotteryApiModel.mApiTypeID
                                        PageNumber:page
                                          PageSize:pageSize
-                                       SearchName:nil] ;
+                                       SearchName:_searchString] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -223,6 +226,12 @@
             showAlertView(@"提示信息", @"您尚未登入") ;
         }
     }
+}
+#pragma mark 搜索的代理
+-(void)gameListChooseGameSearch:(NSString *)searchGameString
+{
+    _searchString = searchGameString;
+    [self startUpdateData];
 }
 
 ////设置每个item的UIEdgeInsets

@@ -173,7 +173,7 @@
         self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
         [self startUpdateData] ;
     }else{
-        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
+        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     }
 }
 

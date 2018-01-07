@@ -8,6 +8,8 @@
 
 #import "RH_MineSafetyCenterViewController.h"
 #import "RH_MineSafetyCenterHeaderView.h"
+#import "CL_GesturelLockController.h"
+#import "coreLib.h"
 @interface RH_MineSafetyCenterViewController () <CLTableViewManagementDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -58,6 +60,10 @@
 }
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item ==2) {
+        CL_GesturelLockController *gestureLock = [[CL_GesturelLockController alloc]init];
+        [self.navigationController pushViewController:gestureLock animated:YES];
+    }
     return YES;
 }
 @end
