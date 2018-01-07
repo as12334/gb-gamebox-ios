@@ -14,6 +14,10 @@
 {
     /** 判断是当设置密码用，还是解锁密码用*/
     PwdState Amode;
+    /**
+     标记起始点在button里面，后续的滑动才有回调
+     */
+    BOOL _startAtButton;
 }
 /** 解锁时手指经过的所有的btn集合*/
 @property (nonatomic,strong)NSMutableArray * btnsArray;
@@ -46,6 +50,7 @@
     self = [super initWithFrame: frame];
     if (self) {
         Amode = mode;
+        _startAtButton = NO;
         self.backgroundColor = [UIColor clearColor];
         if (self.lineColor == nil) {
             self.lineColor = [UIColor greenColor];
@@ -80,6 +85,7 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     for (UIButton *button in self.nineBtnArray) {
         if (CGRectContainsPoint(button.frame,[[touches anyObject] locationInView:self])) {
+            _startAtButton = YES;
             //创建贝塞尔曲线
             UIBezierPath *path = [[UIBezierPath alloc]init];
             path.lineCapStyle = kCGLineCapRound; //线条拐角
@@ -92,12 +98,12 @@
             slayer.fillColor = [UIColor clearColor].CGColor;
             slayer.lineCap = kCALineCapRound;
             slayer.lineJoin = kCALineJoinRound;
-            slayer.strokeColor = [UIColor cyanColor].CGColor;
+            slayer.strokeColor = [UIColor whiteColor].CGColor;
             slayer.lineWidth = path.lineWidth;
             [self.layer addSublayer:slayer];
             _slayer = slayer;
             //获取当前手指的位置
-            CGPoint point = [self getCurrentTouch:touches];
+            CGPoint point = button.center;
             //获取当前手指移动到了哪个btn
             UIButton *btn = [self getCurrentBtnWithPoint:point];
             [_path moveToPoint:point];
@@ -110,24 +116,25 @@
 }
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-    CGPoint movePoint = [self getCurrentTouch:touches];
-    UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
-    if (btn && btn.selected != YES) {
-        btn.selected = YES;
-        [self.btnsArray addObject:btn];
-    }
-    self.currentPoint = movePoint;
-    for (UIButton *btn in self.btnsArray) {
-        if (CGRectContainsPoint(btn.frame, self.currentPoint)) {
-            [_path addLineToPoint:btn.center];
-            _slayer.path = _path.CGPath;
+    if (_startAtButton==YES) {
+        CGPoint movePoint = [self getCurrentTouch:touches];
+        UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
+        if (btn && btn.selected != YES) {
+            btn.selected = YES;
+            [self.btnsArray addObject:btn];
+        }
+        self.currentPoint = movePoint;
+        for (UIButton *btn in self.btnsArray) {
+            if (CGRectContainsPoint(btn.frame, self.currentPoint)) {
+                [_path addLineToPoint:btn.center];
+                _slayer.path = _path.CGPath;
+            }
         }
     }
     
 }
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
+    if (_startAtButton==YES) {
     for (UIButton *btn in self.subviews) {
         [btn setSelected:NO];
     }
@@ -164,6 +171,8 @@
         
     }
     [_slayer removeFromSuperlayer];
+        _startAtButton = NO;
+    }
 }
 
 
