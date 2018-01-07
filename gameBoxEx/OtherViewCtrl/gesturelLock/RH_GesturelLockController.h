@@ -1,5 +1,5 @@
 //
-//  CL_LockSetPWDController.h
+//  RH_GesturelLockController.h
 //  lotteryBox
 //
 //  Created by Lewis on 2017/12/17.
@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RH_BasicPageLoadViewController.h"
-@interface CL_LockSetPWDController : RH_BasicPageLoadViewController
+#import "RH_BasicViewController.h"
+@interface RH_GesturelLockController : RH_BasicViewController
 
 @end

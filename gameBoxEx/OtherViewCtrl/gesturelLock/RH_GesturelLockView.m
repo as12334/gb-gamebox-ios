@@ -6,11 +6,11 @@
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
-#import "CLGesturelLockView.h"
+#import "RH_GesturelLockView.h"
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-@interface CLGesturelLockView()
+@interface RH_GesturelLockView()
 {
     /** 判断是当设置密码用，还是解锁密码用*/
     PwdState Amode;
@@ -31,7 +31,7 @@
 @property (nonatomic, strong)UIBezierPath * path;
 @property (nonatomic, strong)CAShapeLayer * slayer;
 @end
-@implementation CLGesturelLockView
+@implementation RH_GesturelLockView
 
 -(NSMutableArray *)btnsArray{
     if (_btnsArray == nil) {

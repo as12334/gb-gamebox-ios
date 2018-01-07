@@ -1,16 +1,18 @@
 //
-//  CL_LockSetPWDController.m
+//  RH_LockSetPWDController.m
 //  lotteryBox
 //
 //  Created by Lewis on 2017/12/17.
 //  Copyright © 2017年 luis. All rights reserved.
 //
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#import "CL_LockSetPWDController.h"
-#import "CLGesturelLockView.h"
-#import "CL_GesturelLockController.h"
-@interface CL_LockSetPWDController ()
+
+#import "RH_LockSetPWDController.h"
+#import "RH_GesturelLockView.h"
+#import "RH_GesturelLockController.h"
+#import "RH_UserInfoManager.h"
+#import "coreLib.h"
+
+@interface RH_LockSetPWDController ()
 {
     NSString *pwdStr1;
     NSString *pwdStr2;
@@ -18,20 +20,20 @@
 }
 @end
 
-@implementation CL_LockSetPWDController
-- (BOOL)isSubViewController {
-    return YES;
-}
+@implementation RH_LockSetPWDController
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    self.title = @"设置解锁密码";
+    isFirst = YES;
 }
 -(void)setupUI{
-    isFirst = YES;
-    self.title = @"设置解锁密码";
     self.view.backgroundColor = RH_NavigationBar_BackgroundColor;
-    CLGesturelLockView *lockView = [[CLGesturelLockView alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT-SCREEN_WIDTH)*0.5,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateSetting];
+    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]  initWithFrame:CGRectMake(0,
+                                                                                           StatusBarHeight+NavigationBarHeight,
+                                                                                           MainScreenW,
+                                                                                           MainScreenH - StatusBarHeight - NavigationBarHeight) WithMode:PwdStateSetting];
     [lockView setBtnImage:[UIImage imageNamed:@"gesturelLock_normal"]];
     [lockView setBtnSelectdImgae:[UIImage imageNamed:@"gesturelLock_Selected"]];
     [lockView setBtnErrorImage:[UIImage imageNamed:@"gesturelLock_error"]];
@@ -46,16 +48,13 @@
         }else{
             pwdStr2 = resultPwd;
         }
+        
         if ([pwdStr1 isEqualToString:pwdStr2]) {
-            [[NSUserDefaults standardUserDefaults] setObject:resultPwd forKey:@"passWord"];
-            if (self.navigationController.viewControllers.count > 1) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }else{
-                CL_GesturelLockController *vc = [[CL_GesturelLockController alloc]init];
-                [vcs.navigationController pushViewController:vc animated:YES];
-            }
+            [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:pwdStr1] ;
+            [self backBarButtonItemHandle] ;
+            
         }else{
-//            [WSProgressHUD showErrorWithStatus:@"两次设置的密码不一致"];
+            showAlertView(@"请重新设置 ", @"两次设置的密码不一致") ;
             vcs.title = @"设置解锁密码";
             isFirst = YES;
             pwdStr2 = @"";
@@ -65,5 +64,6 @@
     
     [self.view addSubview:lockView];
 }
+
 
 @end
