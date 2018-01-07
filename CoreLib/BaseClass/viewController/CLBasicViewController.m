@@ -424,6 +424,7 @@ static char CONTENTCOLLECTIONVIEW ;
                                                    (self.isHiddenTabBar?0:heighTabBar) +
                                                    ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
                                                    0) ;
+    
 
     if (bUpdateControl){
         [collectionView addSubview:self.updateRefreshCtrl] ;

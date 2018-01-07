@@ -42,7 +42,7 @@
 					<key>detailTitle</key>
 					<string>设置</string>
 					<key>targetKey</key>
-					<string></string>
+					<string>CL_GesturelLockController</string>
 				</dict>
 				<dict>
 					<key>detailTitle</key>
