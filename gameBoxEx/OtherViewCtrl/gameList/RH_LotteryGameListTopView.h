@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RH_LotteryGameListTopView : UIView
-
+-(BOOL)isEdit ;
 @end

@@ -8,6 +8,13 @@
 
 #import "RH_GameListCollectionViewCell.h"
 #import "coreLib.h"
+#import "RH_LotteryInfoModel.h"
+
+@interface  RH_GameListCollectionViewCell()
+@property(nonatomic,strong) IBOutlet UILabel *labName;
+@property(nonatomic,strong) IBOutlet UIImageView *imageView;
+
+@end
 
 @implementation RH_GameListCollectionViewCell
 
@@ -19,6 +26,22 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.selectionOption = CLSelectionOptionHighlighted ;
+    self.selectionColor = RH_Cell_DefaultHolderColor ;
+    self.selectionColorAlpha = 0.3f ;
+}
+
+-(UIView *)showSelectionView
+{
+    return self.imageView ;
+}
+
+-(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, context) ;
+    self.labName.text = lotteryInfoModel.mName ;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:lotteryInfoModel.showCover]] ;
 }
 
 @end
