@@ -48,7 +48,7 @@
                 <outlet property="btnSearch" destination="Zbi-vQ-juB" id="zsF-Xe-oNr"/>
                 <outlet property="labTitle" destination="E9s-eU-aW5" id="vpn-Cc-cwn"/>
             </connections>
-            <point key="canvasLocation" x="-639.5" y="-831"/>
+            <point key="canvasLocation" x="-855.5" y="-895"/>
         </view>
     </objects>
 </document>

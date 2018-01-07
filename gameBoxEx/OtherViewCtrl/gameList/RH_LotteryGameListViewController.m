@@ -9,12 +9,23 @@
 #import "RH_LotteryGameListViewController.h"
 #import "RH_LotteryGameListTopView.h"
 #import "RH_GameListCollectionViewCell.h"
+#import "RH_LotteryAPIInfoModel.h"
+#import "RH_API.h"
+
 @interface RH_LotteryGameListViewController ()
 @property(nonatomic,strong,readonly)RH_LotteryGameListTopView *searchView;
 @end
 
 @implementation RH_LotteryGameListViewController
+{
+    RH_LotteryAPIInfoModel *_lotteryApiModel ;
+}
 @synthesize searchView = _searchView;
+-(void)setupViewContext:(id)context
+{
+    _lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
+}
+
 -(BOOL)hasTopView
 {
     return YES;
@@ -47,6 +58,8 @@
     [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
     [self.contentView addSubview:self.contentCollectionView] ;
     [self.contentCollectionView reloadData] ;
+    
+    [self setupPageLoadManager] ;
 }
 #pragma mark searchView
 -(RH_LotteryGameListTopView *)searchView
@@ -57,6 +70,56 @@
     }
     return _searchView;
 }
+
+#pragma mark- netStatusChangedHandle
+-(void)netStatusChangedHandle
+{
+    if (NetworkAvailable() && [self.pageLoadManager currentDataCount]==0){
+        [self startUpdateData] ;
+    }
+}
+
+#pragma mark- 请求回调
+-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+{
+    [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
+                                        ApiTypeID:_lotteryApiModel.mApiTypeID
+                                       PageNumber:page
+                                         PageSize:pageSize
+                                       SearchName:nil] ;
+}
+
+-(void)cancelLoadDataHandle
+{
+    [self.serviceRequest cancleAllServices] ;
+}
+
+#pragma mark-
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self startUpdateData] ;
+}
+
+
+#pragma mark-
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeV3APIGameList){
+        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+        [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_APIGAMELIST_LIST]
+                            totalCount:[dictTmp integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]] ;
+
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeV3APIGameList){
+        [self loadDataFailWithError:error] ;
+    }
+}
+
+
 #pragma mark collectionView代理方法
 //返回section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -67,34 +130,39 @@
 //每个section的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 90;
+    return MAX(1, self.pageLoadManager.currentDataCount);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.pageLoadManager.currentDataCount){
+        RH_GameListCollectionViewCell *gameCell = [self.contentCollectionView dequeueReusableCellWithReuseIdentifier:[RH_GameListCollectionViewCell defaultReuseIdentifier] forIndexPath:indexPath];
+        [gameCell updateViewWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        return gameCell;
+    }else{
+//        RH_LoadingIndicaterCollectionViewCell * cell = [collectionView  dequeueReusableCellWithReuseIdentifier:[RH_LoadingIndicaterCollectionViewCell defaultReuseIdentifier] forIndexPath:indexPath];
+//        cell.backgroundColor = [UIColor whiteColor];
+//        cell.loadingIndicateView.delegate = self;
+//        _pageLoadingIndicateView = cell.loadingIndicateView;
+//
+//        //更新加载指示视图
+//        [self setNeedUpdateIndicaterView];
+        
+//        return cell;
+    }
     
-//      RH_GameListCollectionViewCell *noticeCell = [self.contentCollectionView dequeueReusableCellWithIdentifier:[RH_GameListCollectionViewCell defaultReuseIdentifier]];
-    RH_GameListCollectionViewCell *gameCell = [self.contentCollectionView dequeueReusableCellWithReuseIdentifier:[RH_GameListCollectionViewCell defaultReuseIdentifier] forIndexPath:indexPath];
-    return gameCell;
+    return nil ;
 }
 
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((self.view.frameWidth-50)/4, (self.view.frameWidth-50)/4*7/5);
+    if (self.pageLoadManager.currentDataCount){
+        return [RH_GameListCollectionViewCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:nil] ;
+    }else{
+        return CGSizeZero  ;
+    }
 }
-
-//footer的size
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-//{
-//    return CGSizeMake(10, 10);
-//}
-
-//header的size
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    return CGSizeMake(10, 10);
-//}
 
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

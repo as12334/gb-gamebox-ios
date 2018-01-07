@@ -16,20 +16,22 @@
 
 @implementation RH_LotteryAPIInfoModel
 @synthesize showCover = _showCover  ;
+@synthesize showGameLink = _showGameLink ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     self = [super initWithInfoDic:info] ;
     if (self){
-        _mID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_ID] ;
-        _mName = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_NAME] ;
         _mApiID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_APIID] ;
-        _mLocal = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_LANGUAGE] ;
-        _mSiteID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_SITEID] ;
         _mApiTypeID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_APITYPEID] ;
-        _mRelationID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_RELATIONID] ;
+        _mAutoPay = [info boolValueForKey:RH_GP_LOTTERYINFO_AUTOPAY] ;
         _mCover = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_COVER] ;
+        _mGameLink = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_GAMELINK] ;
         _mGameItems = [RH_LotteryInfoModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_LOTTERYAPIINFO_GAMELIST]] ;
+        _mGameMsg = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_GAMEMSG] ;
+        _mLocal = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_LOCAL] ;
+        _mName = [info stringValueForKey:RH_GP_LOTTERYAPIINFO_NAME] ;
+        _mSiteID = [info integerValueForKey:RH_GP_LOTTERYAPIINFO_SITEID] ;
     }
     
     return self ;
@@ -43,6 +45,17 @@
     }
     
     return _showCover ;
+}
+
+
+-(NSString *)showGameLink
+{
+    if (!_showGameLink){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+    }
+    
+    return _showGameLink ;
 }
 
 @end

@@ -8,5 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class RH_BettingRecordHeaderView ;
+@protocol BettingRecordHeaderViewDelegate
+@optional
+-(void)bettingRecordHeaderViewWillSelectedStartDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
+-(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
+@end
+
 @interface RH_BettingRecordHeaderView : UIView
+@property (nonatomic,weak) id<BettingRecordHeaderViewDelegate> delegate ;
+@property (nonatomic,strong) NSDate *startDate ;
+@property (nonatomic,strong) NSDate *endDate ;
+
 @end

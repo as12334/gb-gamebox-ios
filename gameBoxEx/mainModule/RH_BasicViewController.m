@@ -455,20 +455,26 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     [self.calendarBackgroundView removeFromSuperview] ;
     [shareCalendarView removeFromSuperview] ;
 
-
-    shareCalendarView.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height -shareCalendarView.boundHeigh-(self.isHiddenTabBar?0.0f:TabBarHeight),
-                                         shareCalendarView.boundWidth, shareCalendarView.boundHeigh) ;
+    CGRect finalFrame = CGRectMake(0,
+                                   [UIScreen mainScreen].bounds.size.height -shareCalendarView.boundHeigh-(self.isHiddenTabBar?0.0f:TabBarHeight),
+                                   shareCalendarView.boundWidth,
+                                   shareCalendarView.boundHeigh) ;
 
     if (!shareCalendarView.superview){
         [self.calendarBackgroundView addSubview:shareCalendarView] ;
-//        shareCalendarView.center = self.calendarBackgroundView.center ;
     }
-
+    
+    [self.view addSubview:self.calendarBackgroundView] ;
+    shareCalendarView.frame = CGRectMake(0,
+                                         MainScreenH,
+                                         shareCalendarView.boundWidth,
+                                         0) ;
+    
     [UIView animateWithDuration:UINavigationControllerHideShowBarDuration
                      animations:^{
-                         [self.view addSubview:self.calendarBackgroundView] ;
-                         [self.view bringSubviewToFront:self.calendarBackgroundView] ;
+                         shareCalendarView.frame = finalFrame ;
                      } completion:^(BOOL finished) {
+                         [self.view bringSubviewToFront:self.calendarBackgroundView] ;
                      }] ;
 }
 
@@ -479,8 +485,9 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     if (bAnimated){
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration
                          animations:^{
-                             [self.calendarBackgroundView removeFromSuperview] ;
+                             
         } completion:^(BOOL finished) {
+             [self.calendarBackgroundView removeFromSuperview] ;
         }] ;
     }else{
         [self.calendarBackgroundView removeFromSuperview] ;

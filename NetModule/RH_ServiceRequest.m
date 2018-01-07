@@ -216,6 +216,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startAPIRetrive:(NSInteger)apiID
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_APIRETRIVE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_APIRETRIVE_APIID:@(apiID)}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeAPIRetrive
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startTestUrl:(NSString*)testURL
 {
     [self _startServiceWithAPIName:testURL
@@ -272,6 +286,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startV3ActivityStaus:(NSString*)activityID
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_ACTIVITYSTATUS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_ACTIVITYSTATUS_MESSAGEID:activityID?:@""}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ActivityStatus
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startV3GameListWithApiID:(NSInteger)apiID
                       ApiTypeID:(NSInteger)apiTypeID
                      PageNumber:(NSInteger)pageNumber
@@ -292,7 +320,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_APIGAMELIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
+                    queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3APIGameList
@@ -365,7 +393,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }else if ([THEME isEqualToString:@"blue.skin"]){
             [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
-            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"white" forKey:RH_SP_COMMON_V3_THEME] ;
         }
         
         [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
@@ -639,6 +667,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeUserAutoLogin:
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+                
+                if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
+                    [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
+                    [self startV3UserInfo] ;
+                    [self startV3MineLinkInfo] ;
+                }
             }
                 break ;
                 
@@ -673,6 +707,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
                     [userInfoManager setMineGroupInfo:resultSendData] ;
                 }
+            }
+                break ;
+            
+            case ServiceRequestTypeV3APIGameList:
+            {
+                NSArray *tmpArray = [RH_LotteryInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_APIGAMELIST_LIST]] ;
+                NSInteger total = [[[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     dictionaryValueForKey:@"page"] dictionaryValueForKey:@"page"] integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]   ;
+                
+                resultSendData = @{RH_GP_APIGAMELIST_LIST:tmpArray?:@[],
+                                   RH_GP_APIGAMELIST_TOTALCOUNT:@(total)
+                                   } ;
             }
                 break ;
                 

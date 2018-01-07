@@ -13,6 +13,10 @@
 #import "RH_APPDelegate.h"
 #import "MacroDef.h"
 #import "RH_UpdatedVersionModel.h"
+#import "RH_DomainTableCell.h"
+
+#define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
+#define RHNT_DomainCheckFail                @"DomainCheckFail "
 
 #define aiScreenWidth [UIScreen mainScreen].bounds.size.width
 #define aiScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -23,13 +27,95 @@
 #define  kUpdateAPPDatePrompt                           @"kUpdateAPPDatePrompt"
 #define  OneDayTotalInterval                             (24*60*60)
 
+typedef NS_ENUM(NSInteger, DoMainStatus) {
+    doMainStatus_None  = 0,
+    doMainStatus_Checking ,
+    doMainStatus_Successful ,
+    doMainStatus_Failure ,
+};
+
+@interface _DoMainCheckStatusModel:NSObject
+@property(nonatomic,strong,readonly) NSString *doMain        ;
+@property(nonatomic,assign,readonly) DoMainStatus status        ;
+-(instancetype)initWithDomain:(NSString*)domain Status:(DoMainStatus)status ;
+-(NSString*)showStatus ;
+@end
+
+@implementation _DoMainCheckStatusModel
+-(instancetype)initWithDomain:(NSString*)domain Status:(DoMainStatus)status
+{
+    self = [super init] ;
+    if (self){
+        _doMain = domain ;
+        _status = status ;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
+                                                     name:RHNT_DomainCheckSuccessful
+                                                   object:nil] ;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
+                                                     name:RHNT_DomainCheckFail
+                                                   object:nil] ;
+    }
+    
+    return self ;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+-(void)handleNotification:(NSNotification*)nt
+{
+    NSString *doMain = ConvertToClassPointer(NSString, nt.object) ;
+    if ([doMain isEqualToString:self.doMain]){
+        if ([nt.name isEqualToString:RHNT_DomainCheckSuccessful]){
+            _status = doMainStatus_Successful ;
+            return ;
+        }else if ([nt.name isEqualToString:RHNT_DomainCheckFail]){
+            _status = doMainStatus_Failure ;
+            return ;
+        }
+    }
+}
+
+-(NSString*)showStatus
+{
+    switch (_status) {
+        case doMainStatus_None:
+            return @"等待检测中..." ;
+            break;
+        
+        case doMainStatus_Checking:
+            return @"检测中..." ;
+            break;
+            
+        case doMainStatus_Successful:
+            return @"检测成功..." ;
+            break;
+            
+        case doMainStatus_Failure:
+            return @"检测失败..." ;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return @"等待检测中..."  ;
+}
+@end
+
+
 @interface SplashViewController ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong) UIWindow * window;
 @property (weak, nonatomic) IBOutlet UIImageView *splashLogo;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText2;
+@property (nonatomic,strong) IBOutlet UILabel *labIPAddr ;
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
-
+@property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
+@property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
 @end
 
 @implementation SplashViewController
@@ -38,6 +124,7 @@
     NSString *_talk ;
 }
 @synthesize checkDomainServices = _checkDomainServices ;
+@synthesize domainCheckStatusList = _domainCheckStatusList ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,6 +157,11 @@
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     [self.bottomText setText:[NSString stringWithFormat:@"Copyrihgt © %@ Reserved.",app_Name]];
     [self.bottomText2 setText:[NSString stringWithFormat:@"v%@",app_Version]];
+    
+    [self.domainTableView registerCellWithClass:[RH_DomainTableCell class]] ;
+    self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
+    self.domainTableView.dataSource = self ;
+    self.domainTableView.delegate = self ;
 }
 
 -(void)startReqSiteInfo
@@ -98,6 +190,16 @@
     [self.checkDomainServices removeAllObjects] ;
 }
 
+#pragma mark -
+-(NSMutableArray *)domainCheckStatusList
+{
+    if (!_domainCheckStatusList){
+        _domainCheckStatusList = [NSMutableArray array] ;
+    }
+    
+    return _domainCheckStatusList ;
+}
+
 #pragma mark-
 -(void)netStatusChangedHandle
 {
@@ -124,6 +226,7 @@
 
         case ReachableViaWiFi:
         {
+            self.labIPAddr.text = getIPAddress(TRUE) ;
             [self addToastWithString:wifiing inView:self.view];
             if (_urlArray.count<1){
                 [self startReqSiteInfo];
@@ -135,6 +238,7 @@
 
         case ReachableViaWWAN:
         {
+            self.labIPAddr.text = getIPAddress(TRUE) ;
             [self addToastWithString:flow inView:self.view];
              if (_urlArray.count<1){
                  [self startReqSiteInfo];
@@ -208,6 +312,8 @@
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckSuccessful
+                                                            object:[ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy]] ;
         static dispatch_once_t onceToken ;
         dispatch_once(&onceToken, ^{
             NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
@@ -229,6 +335,7 @@
             }
         }) ;
         
+        [self.domainTableView reloadData] ;
     }else if (type == ServiceRequestTypeUpdateCheck){
         RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
         
@@ -242,13 +349,10 @@
         NSDate *dateTmp = ConvertToClassPointer(NSDate, [userDefaults objectForKey:kUpdateAPPDatePrompt]) ;
         NSDate *dateCurr = [NSDate date] ;
         
-        
         if (dateTmp==nil ||
             [dateCurr timeIntervalSinceDate:dateTmp]>OneDayTotalInterval){
             UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if(alertView.firstOtherButtonIndex == buttonIndex){
-                    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                    
                     NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
                     NSLog(@"%@",downLoadIpaUrl);
                     if (openURL(downLoadIpaUrl)==false){
@@ -282,6 +386,8 @@
         showAlertView(error.localizedDescription, @"系统没有返回可用的域名列表") ;
     }else if (type == ServiceRequestTypeDomainCheck)
     {
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckFail
+                                                            object:[ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy]] ;
         static int totalFail = 0 ;
         dispatch_async(dispatch_get_main_queue(), ^{
             totalFail ++ ;
@@ -292,6 +398,7 @@
             }
         });
         
+        [self.domainTableView reloadData] ;
     }else if (type == ServiceRequestTypeUpdateCheck){
         [self splashViewComplete] ;
     }
@@ -313,7 +420,12 @@
             [self.checkDomainServices addObject:tmpServiceRequest] ;
             
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
+            [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
         }
+        
+        //显示检测的域名 ---
+        [self.domainTableView reloadData] ;
+        
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
@@ -389,6 +501,28 @@
         }
     }
 
+}
+
+#pragma mark -tableview delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.domainCheckStatusList.count ;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [RH_DomainTableCell heightForCellWithInfo:nil tableView:nil context:nil] ;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _DoMainCheckStatusModel *checkModel = self.domainCheckStatusList[indexPath.item] ;
+    RH_DomainTableCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_DomainTableCell defaultReuseIdentifier]] ;
+    [cell updateCellWithInfo:@{@"title":checkModel.doMain,
+                               @"detailTitle":checkModel.showStatus}
+                     context:nil] ;
+    
+    return cell ;
 }
 
 #pragma mark -

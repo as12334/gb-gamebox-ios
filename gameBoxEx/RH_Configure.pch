@@ -1421,6 +1421,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _sy7u //恒大娱乐城
+
+#define CODE    @"sy7u"
+#define S        @"17a3e6031779fbac4a87992bc0204f28"
+#define SID        @"335"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

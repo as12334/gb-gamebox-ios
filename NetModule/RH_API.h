@@ -20,6 +20,7 @@
 #define RH_SP_COMMON_OSTYPE                              @"type"
 #define RH_SP_COMMON_CHECKVERSION                        @"code"
 
+#define RH_API_NAME_APPDOWNLOADURL                        @"app/download.html"
 
 //v3原生接口公共规范
 #define RH_SP_COMMON_V3_OSTYPE                              @"terminal"
@@ -114,34 +115,35 @@
 #define RH_GP_LotteryCategory_SITEAPIS                                     @"siteApis"
 
 #pragma mark - v3 彩票游戏API 信息模型
-#define RH_GP_LOTTERYAPIINFO_ID                                     @"id"
-#define RH_GP_LOTTERYAPIINFO_RELATIONID                             @"relationId"
-#define RH_GP_LOTTERYAPIINFO_NAME                                   @"name"
-#define RH_GP_LOTTERYAPIINFO_LANGUAGE                               @"local"
-#define RH_GP_LOTTERYAPIINFO_SITEID                                 @"siteId"
-#define RH_GP_LOTTERYAPIINFO_APIID                                  @"apiId"
-#define RH_GP_LOTTERYAPIINFO_APITYPEID                              @"apiTypeId"
-#define RH_GP_LOTTERYAPIINFO_COVER                                  @"cover"
-#define RH_GP_LOTTERYAPIINFO_GAMELIST                               @"gameList"
+#define RH_GP_LOTTERYAPIINFO_APIID                                     @"apiId"
+#define RH_GP_LOTTERYAPIINFO_APITYPEID                             @"apiTypeId"
+#define RH_GP_LOTTERYAPIINFO_AUTOPAY                                   @"autoPay"
+#define RH_GP_LOTTERYAPIINFO_COVER                               @"cover"
+#define RH_GP_LOTTERYAPIINFO_GAMELINK                                 @"gameLink"
+#define RH_GP_LOTTERYAPIINFO_GAMELIST                                  @"gameList"
+#define RH_GP_LOTTERYAPIINFO_GAMEMSG                              @"gameMsg"
+#define RH_GP_LOTTERYAPIINFO_LOCAL                                  @"local"
+#define RH_GP_LOTTERYAPIINFO_NAME                               @"name"
+#define RH_GP_LOTTERYAPIINFO_SITEID                               @"siteId"
 
 
 
 #pragma mark - v3 彩票游戏信息模型
-#define RH_GP_LOTTERYINFO_ID                              @"id"
-#define RH_GP_LOTTERYINFO_GAMEID                              @"gameId"
-#define RH_GP_LOTTERYINFO_SITEID                              @"siteId"
 #define RH_GP_LOTTERYINFO_APIID                              @"apiId"
-#define RH_GP_LOTTERYINFO_GAMETYPE                              @"gameType"
-#define RH_GP_LOTTERYIINFO_VIEWS                              @"views"
-#define RH_GP_LOTTERYINFO_ORDERNUM                              @"orderNum"
-#define RH_GP_LOTTERYINFO_URL                              @"url"
-#define RH_GP_LOTTERYINFO_STATUS                              @"status"
 #define RH_GP_LOTTERYINFO_APITYPEID                              @"apiTypeId"
-#define RH_GP_LOTTERYINFO_SUPPORTTERMINAL                              @"supportTerminal"
-#define RH_GP_LOTTERYINFO_CODE                                   @"code"
+#define RH_GP_LOTTERYINFO_AUTOPAY                               @"autoPay"
+#define RH_GP_LOTTERYINFO_CODE                            @"code"
+#define RH_GP_LOTTERYIINFO_COVER                              @"cover"
+#define RH_GP_LOTTERYINFO_GAMEID                            @"gameId"
+#define RH_GP_LOTTERYINFO_GAMELINK                                @"gameLink"
+#define RH_GP_LOTTERYINFO_GAMEMSG                                @"gameMsg"
+#define RH_GP_LOTTERYINFO_GAMETYPE                             @"gameType"
 #define RH_GP_LOTTERYINFO_NAME                              @"name"
-#define RH_GP_LOTTERYINFO_COVER                              @"cover"
-#define RH_GP_LOTTERYINFO_CANTRY                              @"canTry"
+#define RH_GP_LOTTERYINFO_ORDERNUM                                   @"orderNum"
+#define RH_GP_LOTTERYINFO_SITEID                              @"siteId"
+#define RH_GP_LOTTERYINFO_STATUS                              @"status"
+#define RH_GP_LOTTERYINFO_SYSTEMSTATUS                              @"systemStatus"
+
 
 #pragma mark - V3 用户api 总计Balance 信息模型
 #define RH_GP_USERBALANCEGROUP_ASSETS                          @"assets"
@@ -174,6 +176,15 @@
 #define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
 
+
+#pragma mark -
+#pragma mark - 回收接口
+//api的路径
+#define RH_API_NAME_APIRETRIVE                        @"transfer/auto/recovery.html"
+//请求参数
+#define RH_SP_APIRETRIVE_APIID                        @"search.apiId"
+
+
 #pragma mark - V3
 //===========================================================
 //v3接口定义
@@ -204,15 +215,26 @@
 #define RH_GP_MINEGROUPINFO_LINK                           @"link"
 #define RH_GP_MINEGROUPINFO_USER                           @"user"
 
+#pragma mark - V3  浮动图抢红包次数
+//api的路径
+#define RH_API_NAME_ACTIVITYSTATUS                        @"ntl/activity/countDrawTimes.html"
+//请求参数
+#define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
+//返回参数
+
+
 #pragma mark - V3 电子游戏清单 接口
 //api的路径
 #define RH_API_NAME_APIGAMELIST                        @"origin/getCasinoGame.html"
 //请求参数 无
-#define RH_SP_APIGAMELIST_APIID                          @"apiId"
-#define RH_SP_APIGAMELIST_APITYPEID                      @"apiTypeId"
-#define RH_SP_APIGAMELIST_PAGENUMBER                     @"pageNumber"
-#define RH_SP_APIGAMELIST_PAGESIZE                       @"pageSize"
-#define RH_SP_APIGAMELIST_NAME                           @"name"
+#define RH_SP_APIGAMELIST_APIID                          @"search.apiId"
+#define RH_SP_APIGAMELIST_APITYPEID                      @"search.apiTypeId"
+#define RH_SP_APIGAMELIST_PAGENUMBER                     @"paging.pageNumber"
+#define RH_SP_APIGAMELIST_PAGESIZE                       @"paging.pageSize"
+#define RH_SP_APIGAMELIST_NAME                           @"search.name"
+//返回参数
+#define RH_GP_APIGAMELIST_LIST                           @"casinoGames"
+#define RH_GP_APIGAMELIST_TOTALCOUNT                           @"totalCount"
 
 #endif /* RH_API_h */
 

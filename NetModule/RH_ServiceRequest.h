@@ -24,12 +24,14 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeObtainVerifyCode     ,
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
+    ServiceRequestTypeAPIRetrive        , //api 回收接口
     
     //V3接口
     ServiceRequestTypeV3HomeInfo        ,
     ServiceRequestTypeV3UserInfo        ,
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
+    ServiceRequestTypeV3ActivityStatus    , //获取红包状态
 };
 
 
@@ -100,6 +102,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 -(void)startGetCustomService ;
 
+-(void)startAPIRetrive:(NSInteger)apiID ;
+
 -(void)startTestUrl:(NSString*)testURL ;
 
 #pragma mark - v3 接口定义
@@ -109,6 +113,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3UserInfo ;
 #pragma mark - 我的 link info
 -(void)startV3MineLinkInfo ;
+#pragma mark - 红包状态
+-(void)startV3ActivityStaus:(NSString*)activityID ;
+
 #pragma mark - 电子游戏list
 -(void)startV3GameListWithApiID:(NSInteger)apiID
                       ApiTypeID:(NSInteger)apiTypeID

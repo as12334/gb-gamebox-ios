@@ -1,24 +1,27 @@
 //
-//  RH_BettingStaticDateCell.m
-//  cpLottery
+//  RH_CapitalStaticDataCell.m
+//  gameBoxEx
 //
-//  Created by Lewis on 2017/11/8.
-//  Copyright © 2017年 luis. All rights reserved.
+//  Created by Richard on 04/01/18.
+//  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_BettingStaticDateCell.h"
+#import "RH_CapitalStaticDataCell.h"
 #import "coreLib.h"
-@interface RH_BettingStaticDateCell()
-@property (weak, nonatomic) IBOutlet UIView *borderView   ;
-@property (weak, nonatomic) IBOutlet UILabel *labDate           ;
+
+
+@interface RH_CapitalStaticDataCell()
+@property (weak, nonatomic) IBOutlet UIView *borderView;
+
+@property (weak, nonatomic) IBOutlet UILabel *labDate;
 
 @end
 
 
-@implementation RH_BettingStaticDateCell
--(void)awakeFromNib
-{
-    [super awakeFromNib] ;
+@implementation RH_CapitalStaticDataCell
+
+-(void)awakeFromNib{
+    [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor] ;
     self.borderView.backgroundColor = [UIColor clearColor] ;
     self.borderView.layer.cornerRadius = 3.0f ;
@@ -35,12 +38,11 @@
     self.selectionColorAlpha = 0.7f ;
     
     self.labDate.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
+    
 }
 
--(UIView *)showSelectionView{
-    return self.borderView ;
+-(UIView *)showSelectionView
+{
+    return self.borderView;
 }
-
-#pragma mark-
-
 @end

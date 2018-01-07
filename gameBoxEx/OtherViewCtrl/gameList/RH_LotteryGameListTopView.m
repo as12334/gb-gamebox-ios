@@ -11,8 +11,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
-@implementation RH_LotteryGameListTopView
 
+@implementation RH_LotteryGameListTopView
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
