@@ -7,6 +7,8 @@
 //
 
 #import "RH_MachineAnimationView.h"
+#import "coreLib.h"
+
 @interface RH_MachineAnimationView()
 @property(nonatomic,strong,readonly)UIWindow *subwindow;
 @property(nonatomic,strong,readonly)UIImageView *imageView;
@@ -21,6 +23,11 @@
 @synthesize imageView = _imageView;
 @synthesize openLotteryView = _openLotteryView;
 @synthesize closeBtn = _closeBtn;
+-(void)setupViewWithContext:(id)context
+{
+    
+}
+
 -(UIWindow *)subwindow
 {
     if(!_subwindow){

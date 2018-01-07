@@ -322,8 +322,13 @@
 }
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
-    RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
-    [machineView showAnimation];
+    if (self.appDelegate.isLogin){
+        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+        RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstanceWithContext:homePageModel.mActivityInfo];
+        [machineView showAnimation];
+    }else{
+        showAlertView(@"您尚未登入", @"不能参与活动") ;
+    }
 }
 
 -(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView
