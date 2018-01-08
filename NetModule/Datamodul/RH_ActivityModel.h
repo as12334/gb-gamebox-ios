@@ -16,6 +16,10 @@
 @property(nonatomic,strong,readonly) NSString  *mLanguage ;
 @property(nonatomic,strong,readonly) NSString  *mLocation ;
 @property(nonatomic,strong,readonly) NSString  *mNormalEffect ;
+@property(nonatomic,strong,readonly) NSString  *mIsEnd;
+@property(nonatomic,strong,readonly) NSString  *mDrawTimes;
+@property(nonatomic,strong,readonly) NSString  *mNextLotteryTime;
+@property(nonatomic,strong,readonly) NSString  *mToken;
 
 //extend
 @property(nonatomic,strong,readonly) NSString  *showEffectURL ;

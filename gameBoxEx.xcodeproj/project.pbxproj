@@ -392,6 +392,8 @@
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
 		B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */; };
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
+		F6A2AC89200311980077CB92 /* RH_OpenActivithyView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AC88200311980077CB92 /* RH_OpenActivithyView.m */; };
+		F6A2AC8B200311DF0077CB92 /* RH_OpenActivithyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AC8A200311DF0077CB92 /* RH_OpenActivithyView.xib */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6BD31841FFA0E85000AC941 /* RH_MachineAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
@@ -1092,6 +1094,9 @@
 		B832D0531FFE321000B403B0 /* RH_MineSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsCell.h; sourceTree = "<group>"; };
 		B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSettingsCell.m; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
+		F6A2AC87200311980077CB92 /* RH_OpenActivithyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_OpenActivithyView.h; sourceTree = "<group>"; };
+		F6A2AC88200311980077CB92 /* RH_OpenActivithyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_OpenActivithyView.m; sourceTree = "<group>"; };
+		F6A2AC8A200311DF0077CB92 /* RH_OpenActivithyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_OpenActivithyView.xib; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6BD31821FFA0E85000AC941 /* RH_MachineAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MachineAnimationView.h; sourceTree = "<group>"; };
 		F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MachineAnimationView.m; sourceTree = "<group>"; };
@@ -2031,6 +2036,9 @@
 			isa = PBXGroup;
 			children = (
 				A01CB49F1FF9DD0C00447130 /* 效果图 */,
+				F6A2AC87200311980077CB92 /* RH_OpenActivithyView.h */,
+				F6A2AC88200311980077CB92 /* RH_OpenActivithyView.m */,
+				F6A2AC8A200311DF0077CB92 /* RH_OpenActivithyView.xib */,
 				A01CB48C1FF9C81800447130 /* RH_ActivithyView.h */,
 				A01CB4951FF9C81800447130 /* RH_ActivithyView.m */,
 				A01CB4941FF9C81800447130 /* RH_ActivithyView.xib */,
@@ -2639,6 +2647,7 @@
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
 				A0E782791FFE5C12007BFBF3 /* RH_DomainTableCell.xib in Resources */,
 				A01181601FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib in Resources */,
+				F6A2AC8B200311DF0077CB92 /* RH_OpenActivithyView.xib in Resources */,
 				B8107AB61FFDBB360086DDC3 /* RH_MineSafetyCenter.plist in Resources */,
 				A0E367951F8F463900758033 /* Localizable.strings in Resources */,
 				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
@@ -2869,6 +2878,7 @@
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
 				A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
+				F6A2AC89200311980077CB92 /* RH_OpenActivithyView.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,

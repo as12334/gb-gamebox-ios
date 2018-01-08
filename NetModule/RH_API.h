@@ -230,6 +230,10 @@
 //请求参数
 #define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
 //返回参数
+#define RH_GP_ACTIVITYSTATUS_ISEND                        @"isEnd"
+#define RH_GP_ACTIVITYSTATUS_DRAWTIMES                    @"drawTimes"
+#define RH_GP_ACTIVITYSTATUS_NEXTLOTTERYTIME              @"nextLotteryTime"
+#define RH_GP_ACTIVITYSTATUS_TOKEN                        @"token"
 
 #pragma mark - V3 拆红包
 //api的路径

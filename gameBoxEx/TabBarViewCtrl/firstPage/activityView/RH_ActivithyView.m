@@ -29,7 +29,6 @@
 {
     if (![_activityModel isEqual:activityModel]){
         _activityModel = activityModel ;
-        
         [self.imgView sd_setImageWithURL:[NSURL URLWithString:_activityModel.showEffectURL]] ;
     }
 }

@@ -28,8 +28,11 @@
         _mDistanceTop = [info stringValueForKey:RH_GP_ACTIVITY_DISTANCETOP] ;
         _mDistanceSide = [info integerValueForKey:RH_GP_ACTIVITY_DISTANCESIDE] ;
         _mNormalEffect = [info stringValueForKey:RH_GP_ACTIVITY_NORMALEFFECT] ;
+        _mIsEnd = [info stringValueForKey:RH_GP_ACTIVITYSTATUS_ISEND];
+        _mDrawTimes = [info stringValueForKey:RH_GP_ACTIVITYSTATUS_DRAWTIMES];
+        _mNextLotteryTime = [info stringValueForKey:RH_GP_ACTIVITYSTATUS_NEXTLOTTERYTIME];
+        _mToken = [info stringValueForKey:RH_GP_ACTIVITYSTATUS_TOKEN];
     }
-    
     return self ;
 }
 

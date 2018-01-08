@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
+    ServiceRequestTypeV3OpenActivity    ,//拆红包
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
     ServiceRequestTypeV3DepositList     , //资金记录 。。。
 };
@@ -117,6 +118,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3MineLinkInfo ;
 #pragma mark - 红包状态
 -(void)startV3ActivityStaus:(NSString*)activityID ;
+
+#pragma mark  - V3 拆红包
+-(void)startV3OpenActivity:(NSString *)activityID ;
 
 #pragma mark - 电子游戏list
 -(void)startV3GameListWithApiID:(NSInteger)apiID
