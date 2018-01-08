@@ -18,7 +18,7 @@
 					<key>detailTitle</key>
 					<string>修改</string>
 					<key>targetKey</key>
-					<string></string>
+					<string>RH_ModifyPasswordController</string>
 					<key>title</key>
 					<string>修改登录密码</string>
 					<key>cellClass</key>
@@ -28,7 +28,7 @@
 					<key>detailTitle</key>
 					<string>设置</string>
 					<key>targetKey</key>
-					<string></string>
+					<string>RH_ModifySafetyPasswordController</string>
 					<key>cellClass</key>
 					<string>RH_MineSafetyCenterCell</string>
 					<key>title</key>

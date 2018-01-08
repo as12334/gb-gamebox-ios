@@ -372,6 +372,49 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3DepositList
+                         scopeType:ServiceScopeTypePublic] ;
+}
+
+- (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"password":currentPwd?:@"" ,
+                                     @"newPassword":newPwd?:@"" ,}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ModifyPassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
+- (void)startV3ChangeSaftyPasswordMainPage {
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ModifySafetyPassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 用户安全码初始化信息
+- (void)startV3UserSafetyInfo
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_USERSAFEINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UserSafeInfo
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -657,6 +700,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 [self startV3UserInfo] ;
                 [self startV3MineLinkInfo] ;
+                [self startV3UserSafetyInfo] ;
             }
             
         }else{
@@ -739,6 +783,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
                     [self startV3UserInfo] ;
                     [self startV3MineLinkInfo] ;
+                    [self startV3UserSafetyInfo] ;
                 }
             }
                 break ;
@@ -798,6 +843,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = @{RH_GP_BETTINGLIST_LIST:tmpArray?:@[],
                                    RH_GP_BETTINGLIST_TOTALCOUNT:@(total)
                                    } ;
+            }
+                break ;
+            
+            case ServiceRequestTypeV3UserSafeInfo:
+            {
+                resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:resultSendData] ;
+                }
             }
                 break ;
                 
