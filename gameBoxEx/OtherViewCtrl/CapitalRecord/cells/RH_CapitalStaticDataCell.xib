@@ -47,7 +47,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="borderView" destination="9bP-kU-a9s" id="yfJ-Pb-Nl2"/>
+                <outlet property="borderView" destination="9bP-kU-a9s" id="u5G-lg-atd"/>
                 <outlet property="labDate" destination="Gxm-4E-uwX" id="WXC-4E-Hw1"/>
             </connections>
             <point key="canvasLocation" x="-1494" y="-683"/>
