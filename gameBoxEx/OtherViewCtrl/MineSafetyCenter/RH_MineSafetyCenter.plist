@@ -42,7 +42,7 @@
 					<key>detailTitle</key>
 					<string>设置</string>
 					<key>targetKey</key>
-					<string></string>
+					<string>RH_LockSetPWDController</string>
 				</dict>
 				<dict>
 					<key>detailTitle</key>

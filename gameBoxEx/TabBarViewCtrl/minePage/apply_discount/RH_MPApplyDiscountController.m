@@ -30,7 +30,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return 30;
+    return 100;
 }
 
 - (void)viewDidLoad {
@@ -90,6 +90,7 @@
         _contentScrollowView.pagingEnabled = YES;
         _contentScrollowView.backgroundColor = [UIColor yellowColor];
         _contentScrollowView.bounces = NO;
+        _contentScrollowView.scrollEnabled = NO;
         _contentScrollowView.showsHorizontalScrollIndicator = NO;
     }
     return _contentScrollowView;

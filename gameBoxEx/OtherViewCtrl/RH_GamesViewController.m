@@ -15,11 +15,20 @@
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
 @property(nonatomic,strong)CLButton * backBack;
+
 @end
 
-@implementation RH_GamesViewController
+@implementation RH_GamesViewController{
+    NSInteger _apiID  ;
+}
 @synthesize gameBgImage = _gameBgImage              ;
-@synthesize imageFirstPage = _imageFirstPage    ;
+@synthesize imageFirstPage = _imageFirstPage        ;
+
+-(void)setupViewContext:(id)context
+{
+    _apiID = [context integerValue] ;
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
@@ -91,8 +100,13 @@
     
     return _gameBgImage;
 }
+
 -(void)_homeBackHandle
 {
+    if (_apiID>0){
+        [self.serviceRequest startAPIRetrive:_apiID] ;
+    }
+    
     [self.navigationController popToRootViewControllerAnimated:YES] ;
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         self.myTabBarController.selectedIndex = 2 ;
@@ -103,10 +117,9 @@
 
 -(void)_backBackHandle
 {
-    NSLog(@"----uiview%f",self.view.frame.size.height);
-    NSLog(@"----webView%f",self.webView.frame.size.height);
     [self backBarButtonItemHandle] ;
 }
+
 +(void)configureNavigationBar:(UINavigationBar*)navigationBar
 {
     if (navigationBar){
@@ -135,10 +148,20 @@
 }
 
 #pragma mark-
+-(void)backBarButtonItemHandle
+{
+    if (_apiID>0){
+        [self.serviceRequest startAPIRetrive:_apiID] ;
+    }
+    
+    [super backBarButtonItemHandle] ;
+}
+
+#pragma mark-
 -(void)webViewDidEndLoad:(NSError *)error
 {
     [super webViewDidEndLoad:error] ;
-
+    
     if (!error){
         NSString *url = self.webView.request.URL.absoluteString;
         NSString *qqWallet = @"https://myun.tenpay.com/";

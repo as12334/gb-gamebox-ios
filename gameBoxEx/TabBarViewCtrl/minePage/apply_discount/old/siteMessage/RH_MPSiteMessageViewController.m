@@ -16,6 +16,10 @@
 
 @implementation RH_MPSiteMessageViewController
 @synthesize chooseView = _chooseView;
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationBar.hidden = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.navigationBar.hidden = YES ;
@@ -38,15 +42,14 @@
 }
 -(void)setupUI{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
-    self.contentTableView.frame = CGRectMake(0,80, self.view.frameWidth, self.view.frameHeigh -80);
+//    self.contentTableView.frame = CGRectMake(0, 0, self.view.frameWidth, self.contentView.frameHeigh);
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
     [self.contentTableView registerCellWithClass:[RH_MPSiteSystemNoticeCell class]] ;
-    
+    self.contentTableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }
-
 #pragma mark- tabelView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -63,7 +66,14 @@
     //    return [RH_MPGameNoticeCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
     return 80;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 80;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return self.chooseView;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_MPSiteSystemNoticeCell *noticeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]];

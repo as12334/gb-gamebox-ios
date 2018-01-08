@@ -8,6 +8,8 @@
 
 #import "CLPushPopAnimatedTransitioning.h"
 #import "MacroDef.h"
+#import "help.h"
+#import "UIView+FrameSize.h"
 
 @implementation CLPushPopAnimatedTransitioning
 {
@@ -47,6 +49,13 @@
     CGRect finalFrame   = [transitionContext finalFrameForViewController:toVC];
     CGFloat viewWidth   = CGRectGetWidth(finalFrame);
 
+    //fixed ios 10.0 ,tabbar issue;
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if (GreaterThanIOS10System){
+            finalFrame = CGRectMake(0, 0, toVC.view.frameWidth, toVC.view.frameHeigh) ;
+        }
+    }
+    
     //黑色mask视图
     UIView * maskView = [[UIView alloc] initWithFrame:containerView.bounds];
     maskView.backgroundColor = BlackColorWithAlpha(0.6f);

@@ -11,6 +11,7 @@
 #import "RH_ServiceRequest.h"
 #import "RH_LoadingIndicateView.h"
 #import "RH_LoadingIndicateTableViewCell.h"
+#import "RH_LoadingIndicaterCollectionViewCell.h"
 #import "RH_ErrorCode.h"
 #import "RH_APPDelegate.h"
 #import "RH_userInfoView.h"
@@ -23,6 +24,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
     CalendaCompleteBlock _calendarCompleteBlock ;
     RH_LoadingIndicateView *_contentLoadingIndicateView ;
     RH_LoadingIndicateTableViewCell *_loadingIndicateTableViewCell ;
+    RH_LoadingIndicaterCollectionViewCell *_loadingIndicateCollectionViewCell ;
 
     CLScanImageView __weak * _scanImageView;
 
@@ -35,7 +37,8 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @property(nonatomic,readonly,strong) RH_ServiceRequest *serviceRequest ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateView *contentLoadingIndicateView ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
-@property(nonatomic,readonly,weak) RH_APPDelegate *appDelegate ;
+@property(nonatomic,readonly,strong) RH_LoadingIndicaterCollectionViewCell *loadingIndicateCollectionViewCell ;
+@property(nonatomic,readonly,weak)  RH_APPDelegate *appDelegate ;
 
 @property(nonatomic,readonly,strong) UIBarButtonItem *backButtonItem       ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *loginButtonItem       ;

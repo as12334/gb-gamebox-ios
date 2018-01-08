@@ -160,8 +160,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     [self.domainTableView registerCellWithClass:[RH_DomainTableCell class]] ;
     self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
-    self.domainTableView.dataSource = self ;
-    self.domainTableView.delegate = self ;
+//    self.domainTableView.dataSource = self ;
+//    self.domainTableView.delegate = self ;
+    self.domainTableView.hidden = YES ;
 }
 
 -(void)startReqSiteInfo

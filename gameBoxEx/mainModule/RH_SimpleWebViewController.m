@@ -604,13 +604,19 @@
         if (args[0] != NULL) {
             self.appDelegate.customUrl = gameJsVal.toString;
         }
+        
+        NSInteger apiTypeID  = -1 ;
+        if (args.count>1){
+            JSValue *jsval = args[1] ;
+            apiTypeID = jsval.toInt32 ;
+        }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             //add 197 lottery 客服跳到浏览器
             if ([SID isEqualToString:@"197"] && [self.appDelegate.servicePath.trim hasPrefix:self.appDelegate.customUrl.trim]){
                 openURL(self.appDelegate.servicePath.trim) ;
             }else{
-                [self showViewController:[RH_GamesViewController viewController]
+                [self showViewController:[RH_GamesViewController viewControllerWithContext:@(apiTypeID)]
                                   sender:self] ;
             }
         });

@@ -23,12 +23,16 @@
     self.view.backgroundColor = [UIColor greenColor];
     [self setupUI];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationBar.hidden = YES;
+}
 -(void)setupUI{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
     [self.contentTableView registerCellWithClass:[RH_MPSystemNoticeCell class]] ;
-    
+    self.contentTableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }

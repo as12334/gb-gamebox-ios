@@ -30,6 +30,9 @@
                     <state key="normal" title="搜索">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="searchGame:" destination="iN0-l3-epB" eventType="touchUpInside" id="6wC-j6-DdK"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

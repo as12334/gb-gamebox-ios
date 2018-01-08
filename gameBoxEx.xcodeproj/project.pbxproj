@@ -397,6 +397,10 @@
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6BD31841FFA0E85000AC941 /* RH_MachineAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */; };
+		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
+		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
+		F6E402052001BDC900C52B97 /* RH_GesturelLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */; };
+		F6E402082001F0B200C52B97 /* RH_GestureOpenLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1119,6 +1123,14 @@
 		F6E401AD1FFF592500C52B97 /* RH_LotteryGameListTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_LotteryGameListTopView.xib; sourceTree = "<group>"; };
 		F6E401B21FFF5DE100C52B97 /* RH_GameListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameListCollectionViewCell.xib; sourceTree = "<group>"; };
 		F6E401B51FFF5E5400C52B97 /* 1a39.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1a39.jpg; sourceTree = "<group>"; };
+		F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GesturelLockController.h; sourceTree = "<group>"; };
+		F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GesturelLockController.m; sourceTree = "<group>"; };
+		F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LockSetPWDController.h; sourceTree = "<group>"; };
+		F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LockSetPWDController.m; sourceTree = "<group>"; };
+		F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GesturelLockView.h; sourceTree = "<group>"; };
+		F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GesturelLockView.m; sourceTree = "<group>"; };
+		F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureOpenLockView.h; sourceTree = "<group>"; };
+		F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GestureOpenLockView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2185,6 +2197,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				F6E401FC2001BDC900C52B97 /* gesturelLock */,
 				A0B5A5651FFF6C1300E2CDD8 /* gameList */,
 				79FB81491FFDCD4600325BF3 /* CapitalRecord */,
 				B8107ABD1FFE18B20086DDC3 /* MineSettings */,
@@ -2558,6 +2571,21 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
+			isa = PBXGroup;
+			children = (
+				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
+				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
+				F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */,
+				F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */,
+				F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */,
+				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
+				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
+				F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */,
+			);
+			path = gesturelLock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2742,6 +2770,7 @@
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
+				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
@@ -2773,6 +2802,7 @@
 				A010A08C1F879B23004E6EF4 /* RH_BasicViewController.m in Sources */,
 				A010A08D1F879B23004E6EF4 /* RH_MainNavigationController.m in Sources */,
 				A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */,
+				F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
@@ -2877,6 +2907,7 @@
 				B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */,
 				A010A0941F879BC9004E6EF4 /* RH_ImagePickerViewController.m in Sources */,
 				A0109FDF1F8788FF004E6EF4 /* MBProgressHUD.m in Sources */,
+				F6E402082001F0B200C52B97 /* RH_GestureOpenLockView.m in Sources */,
 				A0109FE01F8788FF004E6EF4 /* MJExtensionConst.m in Sources */,
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
@@ -2997,6 +3028,7 @@
 				A0109F9F1F8787E4004E6EF4 /* CLBasicViewControllerAnimatedTransitioning.m in Sources */,
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
+				F6E402052001BDC900C52B97 /* RH_GesturelLockView.m in Sources */,
 				A0B5A5751FFF6C1400E2CDD8 /* RH_LotteryGameListViewController.m in Sources */,
 				A07FE3701FEF453700D5DF71 /* CLSegmentedControl.m in Sources */,
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,

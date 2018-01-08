@@ -21,6 +21,16 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FPd-SO-3Ql">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.broderWidth">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderColor" value="[[UIColor whiteColor]CGColor]"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美女" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLP-An-MFP">
                         <rect key="frame" x="0.0" y="56" width="50" height="10"/>
@@ -42,6 +52,10 @@
                 <constraint firstAttribute="trailing" secondItem="JLP-An-MFP" secondAttribute="trailing" id="zgY-fb-PlZ"/>
             </constraints>
             <size key="customSize" width="50" height="70"/>
+            <connections>
+                <outlet property="imageView" destination="FPd-SO-3Ql" id="EYI-wD-abW"/>
+                <outlet property="labName" destination="JLP-An-MFP" id="pk3-3u-AKt"/>
+            </connections>
             <point key="canvasLocation" x="32" y="72"/>
         </collectionViewCell>
     </objects>

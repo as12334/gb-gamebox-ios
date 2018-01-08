@@ -7,7 +7,7 @@
 //
 
 #import "CLCollectionViewCell.h"
-
+#import "RH_GameListCollectionViewCell.h"
 @interface RH_GameListCollectionViewCell : CLCollectionViewCell
 
 @end
