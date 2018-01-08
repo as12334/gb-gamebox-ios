@@ -30,6 +30,7 @@
 /** */
 @property (nonatomic, strong)UIBezierPath * path;
 @property (nonatomic, strong)CAShapeLayer * slayer;
+@property (nonatomic,strong)UIView *bigView;
 @end
 @implementation RH_GesturelLockView
 
@@ -51,16 +52,20 @@
     if (self) {
         Amode = mode;
         _startAtButton = NO;
-        self.backgroundColor = [UIColor clearColor];
+//        self.backgroundColor = [UIColor clearColor];
         if (self.lineColor == nil) {
             self.lineColor = [UIColor greenColor];
         }
+//        _bigView = [[UIView alloc]initWithFrame:self.frame];
+//        _bigView.backgroundColor = [UIColor clearColor];
+//        [self addSubview:_bigView];
         //        1、创建九个btn
         for (int i = 0; i<9; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.tag = i;
             btn.userInteractionEnabled = NO;
             [self addSubview:btn];
+            [self bringSubviewToFront:btn];
             [self.nineBtnArray addObject:btn];
         }
     }
@@ -100,7 +105,8 @@
             slayer.lineJoin = kCALineJoinRound;
             slayer.strokeColor = [UIColor whiteColor].CGColor;
             slayer.lineWidth = path.lineWidth;
-            [self.layer addSublayer:slayer];
+//            slayer.fillRule = kCAFillRuleEvenOdd;
+            [self.layer insertSublayer:slayer atIndex:0];
             _slayer = slayer;
             //获取当前手指的位置
             CGPoint point = button.center;
@@ -120,8 +126,6 @@
         
         CGPoint movePoint = [self getCurrentTouch:touches];
         UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
-        
-        
         if (btn && btn.selected != YES) {
             btn.selected = YES;
             [self.btnsArray addObject:btn];

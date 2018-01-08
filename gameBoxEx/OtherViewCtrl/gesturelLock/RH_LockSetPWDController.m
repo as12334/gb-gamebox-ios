@@ -34,7 +34,7 @@
                                                                                            StatusBarHeight+NavigationBarHeight,
                                                                                            MainScreenW,
                                                                                            MainScreenH - StatusBarHeight - NavigationBarHeight) WithMode:PwdStateSetting];
-    [lockView setBtnImage:[UIImage imageNamed:@"gesturelLock_normal"]];
+    [lockView setBtnImage:[UIImage imageNamed:@"gesturelLock_error"]];
     [lockView setBtnSelectdImgae:[UIImage imageNamed:@"gesturelLock_Selected"]];
     [lockView setBtnErrorImage:[UIImage imageNamed:@"gesturelLock_error"]];
     __weak typeof (self)vcs = self;
