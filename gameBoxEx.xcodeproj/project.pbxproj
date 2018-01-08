@@ -23,7 +23,6 @@
 		79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */; };
 		79FB81631FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81621FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m */; };
 		79FB81651FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81641FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib */; };
-		79FB81681FFE22B800325BF3 /* RH_CapitalTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81671FFE22B800325BF3 /* RH_CapitalTableHeaderView.m */; };
 		79FB816B1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */; };
 		79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */; };
 		A001B3C71F8E130F00309EA4 /* RH_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */; };
@@ -437,8 +436,6 @@
 		79FB81611FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CatipalStaticHeaderCell.h; sourceTree = "<group>"; };
 		79FB81621FFE0A7200325BF3 /* RH_CatipalStaticHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CatipalStaticHeaderCell.m; sourceTree = "<group>"; };
 		79FB81641FFE0A9300325BF3 /* RH_CatipalStaticHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CatipalStaticHeaderCell.xib; sourceTree = "<group>"; };
-		79FB81661FFE22B800325BF3 /* RH_CapitalTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableHeaderView.h; sourceTree = "<group>"; };
-		79FB81671FFE22B800325BF3 /* RH_CapitalTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableHeaderView.m; sourceTree = "<group>"; };
 		79FB81691FFE26C400325BF3 /* RH_CapitalRecordBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordBottomView.h; sourceTree = "<group>"; };
 		79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordBottomView.m; sourceTree = "<group>"; };
 		79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CapitalRecordBottomView.xib; sourceTree = "<group>"; };
@@ -1162,8 +1159,6 @@
 				79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */,
 				79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */,
 				79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */,
-				79FB81661FFE22B800325BF3 /* RH_CapitalTableHeaderView.h */,
-				79FB81671FFE22B800325BF3 /* RH_CapitalTableHeaderView.m */,
 				79FB81691FFE26C400325BF3 /* RH_CapitalRecordBottomView.h */,
 				79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */,
 				79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */,
@@ -2916,7 +2911,6 @@
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
-				79FB81681FFE22B800325BF3 /* RH_CapitalTableHeaderView.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,

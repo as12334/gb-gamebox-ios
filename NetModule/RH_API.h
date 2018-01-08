@@ -243,5 +243,12 @@
 #define RH_GP_APIGAMELIST_LIST                           @"casinoGames"
 #define RH_GP_APIGAMELIST_TOTALCOUNT                           @"totalCount"
 
+#pragma mark -v3 投注记录 清单
+//api的路径
+#define RH_API_NAME_BETTINGLIST                        @"mineOrigin/getBettingList.html"
+//请求参数 无
+#define RH_SP_BETTINGLIST_STARTDATE                          @"beginBetTime"
+#define RH_SP_BETTINGLIST_ENDDATE                            @"endBetTime"
+
 #endif /* RH_API_h */
 

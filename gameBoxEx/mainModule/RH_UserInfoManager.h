@@ -15,7 +15,7 @@
 
 #define HasLogin                    [[RH_UserInfoManager shareUserManager] hasLogin]
 #define UserBalanceInfo             [RH_UserInfoManager shareUserManager].userBalanceGroupInfo
-#define MineGroupInfo             [RH_UserInfoManager shareUserManager].mineGroupInfo
+#define MineGroupInfo               [RH_UserInfoManager shareUserManager].mineGroupInfo
 
 typedef void(^AutoLoginCompletation)(BOOL result) ;
 

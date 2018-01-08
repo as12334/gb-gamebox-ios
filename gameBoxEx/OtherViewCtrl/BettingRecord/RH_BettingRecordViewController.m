@@ -167,11 +167,8 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-#if 0
-    //    [self.serviceRequest startGetOpenCode:nil isHistory:NO] ;
-#else
-    [self loadDataSuccessWithDatas:nil  totalCount:0] ;
-#endif
+    [self.serviceRequest startV3BettingList:dateStringWithFormatter(self.bettingRecordHeaderView.startDate, @"yyyy-MM-dd")
+                                    EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd")] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -189,17 +186,17 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    //    if (type == ServiceRequestTypeStaticOpenCode){
-    //        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-    //        [self loadDataSuccessWithDatas:dictTmp.allValues totalCount:dictTmp.allValues.count] ;
-    //    }
+    if (type == ServiceRequestTypeV3BettingList){
+        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+        [self loadDataSuccessWithDatas:dictTmp.allValues totalCount:dictTmp.allValues.count] ;
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    //    if (type == ServiceRequestTypeStaticOpenCode){
-    //        [self loadDataFailWithError:error] ;
-    //    }
+    if (type == ServiceRequestTypeV3BettingList){
+        [self loadDataFailWithError:error] ;
+    }
 }
 
 #pragma mark-tableView
