@@ -11,8 +11,9 @@ typedef enum {
     PwdStateSetting, //设置密码模式
     PwdStateResult //解锁模式
 } PwdState;
-@class CLGesturelLockView;
-@interface CLGesturelLockView : UIView
+
+@class RH_GesturelLockView;
+@interface RH_GesturelLockView : UIView
 /** btn图片*/
 @property (nonatomic,strong)UIImage * btnImage;
 

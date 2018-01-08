@@ -21,12 +21,6 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (UISwitch *)rightSwitch {
     if (_rightSwitch == nil) {
         _rightSwitch = [[UISwitch alloc] init];
@@ -47,6 +41,9 @@
         
         [self.contentView addSubview:self.rightSwitch];
         self.rightSwitch.whc_RightSpace(20).whc_CenterY(0).whc_Width(51).whc_Height(31);
+        
+        self.selectionOption = CLSelectionOptionHighlighted ;
+        self.selectionColor = RH_Cell_DefaultHolderColor ;
         
     }
     return self;

@@ -13,6 +13,8 @@
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
 
+#define  key_screenlockFlag                             @"key_screenlockFlag"
+#define  key_screenlockPassword                          @"key_screenlockPassword"
 
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly) RH_ServiceRequest * serviceRequest;
@@ -66,6 +68,36 @@
     return appDelegate.isLogin ;
 }
 
+#pragma mark -
+-(BOOL)isScreenLock
+{
+    NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockFlag expectType:[NSString class]] ;
+    return [bFlag boolValue] ;
+}
+
+-(void)updateScreenLockFlag:(BOOL)lock
+{
+    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:lock?@"1":@"0"
+                                                                            forKey:key_screenlockFlag
+                                                                             async:YES] ;
+}
+
+#pragma mark-
+-(NSString *)screenLockPassword
+{
+    NSString *screenLock = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockPassword
+                                                                                               expectType:[NSString class]] ;
+    return screenLock ;
+}
+
+-(void)updateScreenLockPassword:(NSString *)lockPassrod
+{
+    if (lockPassrod){
+        [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:lockPassrod
+                                                                                forKey:key_screenlockPassword
+                                                                                 async:YES] ;
+    }
+}
 
 #pragma mark-
 - (RH_ServiceRequest *)serviceRequest

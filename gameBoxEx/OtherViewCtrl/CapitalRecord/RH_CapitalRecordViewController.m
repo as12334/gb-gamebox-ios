@@ -7,21 +7,18 @@
 //
 
 #import "RH_CapitalRecordViewController.h"
-#import "RH_CapitalTableHeaderView.h"
 #import "RH_CapitalRecordHeaderView.h"
 #import "RH_CapitalRecordBottomView.h"
 
 
 @interface RH_CapitalRecordViewController ()
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
-@property(nonatomic,strong,readonly) RH_CapitalTableHeaderView *capitalTableHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
 
 @end
 
 @implementation RH_CapitalRecordViewController
 @synthesize capitalRecordHeaderView = _capitalRecordHeaderView ;
-@synthesize capitalTableHeaderView = _capitalTableHeaderView     ;
 @synthesize capitalBottomView = _capitalBottomView               ;
 
 -(BOOL)isSubViewController
@@ -35,7 +32,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return 50.0f ;
+    return 150.0f ;
 }
 
 -(BOOL)hasBottomView
@@ -69,7 +66,6 @@
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
-//    self.contentTableView.tableHeaderView = self.capitalTableHeaderView ;
     [self.contentView addSubview:self.contentTableView] ;
     
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
@@ -113,21 +109,6 @@
     return _capitalRecordHeaderView ;
     
 }
-
-#pragma mark-sort table header view
--(RH_CapitalTableHeaderView *)capitalTableHeaderView
-{
-    if (!_capitalTableHeaderView){
-        _capitalTableHeaderView = [[RH_CapitalTableHeaderView alloc] initWithFrame:CGRectMake(0, 50, self.contentTableView.frameWidth, 50.0f)] ;
-//        _capitalTableHeaderView.backgroundColor = colorWithRGB(240, 240, 240) ;
-    }
-    
-    return _capitalTableHeaderView ;
-    
-}
-
-
-
 
 #pragma mark-sort bottom view
 -(RH_CapitalRecordBottomView *)capitalBottomView
@@ -223,18 +204,7 @@
     
     return nil ;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.capitalTableHeaderView;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 
 @end

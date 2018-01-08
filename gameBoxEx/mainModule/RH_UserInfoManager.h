@@ -15,7 +15,7 @@
 
 #define HasLogin                    [[RH_UserInfoManager shareUserManager] hasLogin]
 #define UserBalanceInfo             [RH_UserInfoManager shareUserManager].userBalanceGroupInfo
-#define MineGroupInfo             [RH_UserInfoManager shareUserManager].mineGroupInfo
+#define MineGroupInfo               [RH_UserInfoManager shareUserManager].mineGroupInfo
 
 typedef void(^AutoLoginCompletation)(BOOL result) ;
 
@@ -27,5 +27,12 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 -(BOOL)hasLogin ;
 -(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo ;
 -(void)setMineGroupInfo:(RH_MineGroupInfoModel *)mineGroupInfo ;
+
+
+///----app 层 相关开关
+@property (nonatomic,assign,readonly) BOOL isScreenLock ;
+@property (nonatomic,strong,readonly) NSString *screenLockPassword ;
+-(void)updateScreenLockFlag:(BOOL)lock ;
+-(void)updateScreenLockPassword:(NSString*)lockPassrod ;
 
 @end

@@ -1,27 +1,32 @@
 //
-//  CL_GestureOpenLockView.m
+//  RH_GestureOpenLockView.m
 //  gameBoxEx
 //
 //  Created by lewis on 2018/1/7.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "CL_GestureOpenLockView.h"
-#import "CLGesturelLockView.h"
+#import "RH_GestureOpenLockView.h"
+#import "RH_GesturelLockView.h"
 #import "MBProgressHUD.h"
 #import "coreLib.h"
-#import "CL_LockSetPWDController.h"
+#import "RH_LockSetPWDController.h"
+#import "RH_UserInfoManager.h"
+
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-@interface CL_GestureOpenLockView()
+
+@interface RH_GestureOpenLockView()
 @property(nonatomic,strong)MBProgressHUD *hud;
 @property(nonatomic,strong,readonly)UIWindow *subwindow;
 @property(nonatomic,strong,readonly)UILabel *titleLab;
 @end
-@implementation CL_GestureOpenLockView
+
+@implementation RH_GestureOpenLockView
 {
    BOOL _boolMark;
 }
+
 @synthesize subwindow = _subwindow;
 @synthesize titleLab = _titleLab;
 
@@ -38,6 +43,7 @@
     }
     return self;
 }
+
 -(UIWindow *)subwindow
 {
     if(!_subwindow){
@@ -47,6 +53,7 @@
     }
     return _subwindow;
 }
+
 //添加一个uilabel
 -(UILabel *)titleLab
 {
@@ -61,10 +68,11 @@
     }
     return _titleLab;
 }
+
 -(void)createUI{
 //    self.backgroundColor = RH_NavigationBar_BackgroundColor;
     //解锁界面
-    CLGesturelLockView *lockView = [[CLGesturelLockView alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT-SCREEN_WIDTH)*0.5,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateResult];
+    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT-SCREEN_WIDTH)*0.5,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateResult];
     [lockView setBtnImage:[UIImage imageNamed:@"gesturelLock_normal"]];
     [lockView setBtnSelectdImgae:[UIImage imageNamed:@"gesturelLock_Selected"]];
     [lockView setBtnErrorImage:[UIImage imageNamed:@"gesturelLock_error"]];
@@ -97,6 +105,8 @@
         }
     };
 }
+
+
 -(void)hideProgressHUD
 {
     if (_boolMark == YES) {
@@ -119,7 +129,8 @@
         [self.subwindow setHidden:YES];
         [self removeFromSuperview];
     }
-    CL_LockSetPWDController *vc = [[CL_LockSetPWDController alloc]init];
+    
+    RH_LockSetPWDController *vc = [[RH_LockSetPWDController alloc]init];
     [self showViewController:vc];
     
 }

@@ -36,7 +36,7 @@
 -(void)handleNotification:(NSNotification*)nt
 {
     if ([nt.name isEqualToString:RHNT_UserInfoManagerMineGroupChangedNotification]){
-        [self setNeedUpdateView] ;
+        [self performSelectorOnMainThread:@selector(setNeedUpdateView) withObject:self waitUntilDone:NO] ;
     }
 }
 #pragma mark-

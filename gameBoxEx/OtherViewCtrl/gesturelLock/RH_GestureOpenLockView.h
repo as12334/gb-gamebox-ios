@@ -1,5 +1,5 @@
 //
-//  CL_GestureOpenLockView.h
+//  RH_GestureOpenLockView.h
 //  gameBoxEx
 //
 //  Created by lewis on 2018/1/7.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CL_GestureOpenLockView : UIView
+@interface RH_GestureOpenLockView : UIView
 
 @end

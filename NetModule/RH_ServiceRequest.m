@@ -339,6 +339,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_BETTINGLIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
+                                     RH_SP_BETTINGLIST_ENDDATE:endDate?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BettingList
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -750,6 +766,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = @{RH_GP_APIGAMELIST_LIST:tmpArray?:@[],
                                    RH_GP_APIGAMELIST_TOTALCOUNT:@(total)
                                    } ;
+            }
+                break ;
+            
+            case ServiceRequestTypeV3BettingList:
+            {
+                
             }
                 break ;
                 
