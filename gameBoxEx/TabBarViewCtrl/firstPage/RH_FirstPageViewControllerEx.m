@@ -25,7 +25,8 @@
 #import "RH_CustomViewController.h"
 #import "RH_GamesViewController.h"
 #import "RH_LotteryGameListViewController.h"
-
+#import "RH_ActivityModel.h"
+#import "RH_OpenActivithyView.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate>
@@ -35,8 +36,9 @@
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
 @property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
+@property (nonatomic,strong,readonly) RH_OpenActivithyView *openActivityView;
 @property (nonatomic, strong) RH_BasicAlertView *rhAlertView ;
-
+@property (nonatomic,strong)  RH_ActivityModel *activityModel;
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
@@ -49,6 +51,7 @@
 @synthesize homeChildCatetoryCell = _homeChildCatetoryCell  ;
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
 @synthesize activityView = _activityView                    ;
+@synthesize openActivityView = _openActivityView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -172,6 +175,7 @@
     if (self.appDelegate.isLogin){
         self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
         [self startUpdateData] ;
+        
     }else{
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
     }
@@ -289,6 +293,7 @@
 -(RH_LotteryCategoryModel *)selectedCategoryModel
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+    [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
     if (homePageModel){
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
@@ -320,12 +325,25 @@
     
     return _activityView ;
 }
+
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
     if (self.appDelegate.isLogin){
-        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-        RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstanceWithContext:homePageModel.mActivityInfo];
-        [machineView showAnimation];
+        if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3ActivityStatus]){
+            return ;
+        }
+        
+        if (self.activityModel){
+            RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
+            machineView.activityModel = self.activityModel;
+            [machineView showAnimation];
+        }else{
+            [self showProgressIndicatorViewWithAnimated:YES title:@"请求超时，请重新打开红包"];
+            // 2. 等待0.5秒中, 然后再清空
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
+            });
+        }
     }else{
         showAlertView(@"您尚未登入", @"不能参与活动") ;
     }
@@ -397,9 +415,6 @@
         
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
-            if (self.appDelegate.isLogin){
-                [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID] ;
-            }
         }else{
             [self activityViewHide] ;
         }
@@ -423,7 +438,9 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
-        
+    }
+    else if (type == ServiceRequestTypeV3ActivityStatus){
+        self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
     }
 }
 

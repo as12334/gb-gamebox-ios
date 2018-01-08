@@ -45,7 +45,9 @@
 }
 
 - (id)initWithContext:(id)context {
-    return [self init];
+    self = [self init] ;
+    [self setupViewWithContext:context] ;
+    return self;
 }
 
 - (void)showViewController:(UIViewController*)viewController

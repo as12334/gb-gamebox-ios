@@ -8,12 +8,15 @@
 
 #import "RH_MachineAnimationView.h"
 #import "coreLib.h"
-
-@interface RH_MachineAnimationView()
+#import "RH_ServiceRequest.h"
+#import "RH_OpenActivithyView.h"
+@interface RH_MachineAnimationView()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)UIWindow *subwindow;
 @property(nonatomic,strong,readonly)UIImageView *imageView;
-@property(nonatomic,strong,readonly)UIImageView *openLotteryView;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
+
+@property(nonatomic,strong,readonly) RH_ServiceRequest *serviceRequest ;
+@property(nonatomic,strong,readonly)RH_OpenActivithyView *activithyView;
 @end
 @implementation RH_MachineAnimationView
 {
@@ -21,13 +24,9 @@
 }
 @synthesize subwindow = _subwindow;
 @synthesize imageView = _imageView;
-@synthesize openLotteryView = _openLotteryView;
 @synthesize closeBtn = _closeBtn;
--(void)setupViewWithContext:(id)context
-{
-    
-}
-
+@synthesize serviceRequest = _serviceRequest;
+@synthesize activithyView = _activithyView;
 -(UIWindow *)subwindow
 {
     if(!_subwindow){
@@ -50,13 +49,15 @@
 /**
  开奖时的大图
  */
--(UIImageView *)openLotteryView
+-(RH_OpenActivithyView *)activithyView
 {
-    if (!_openLotteryView ) {
-        _openLotteryView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
-        [_openLotteryView setImage:[UIImage imageNamed:@"恭喜您_01"]];
+    if (!_activithyView) {
+        _activithyView = [RH_OpenActivithyView createInstance];;
+        _activithyView.frame = CGRectMake(0, 0, 300, 300);
+        _activithyView.center = self.center;
+        _activithyView.activityModel = self.activityModel;
     }
-    return _openLotteryView;
+    return _activithyView;
 }
 -(instancetype)initWithFrame:(CGRect)frame;
 {
@@ -64,9 +65,9 @@
         self.frame = self.subwindow.bounds;
         self.subwindow.userInteractionEnabled = YES;
         [self.subwindow addSubview:self.imageView];
-        [self.subwindow addSubview:self.openLotteryView];
-        self.openLotteryView.center = self.subwindow.center;
-        self.openLotteryView.alpha = 0;
+        [self.subwindow addSubview:self.activithyView];
+        self.activithyView.center = self.subwindow.center;
+        self.activithyView.alpha = 0;
         self.subwindow.backgroundColor = [UIColor grayColor];
         //显示时建立引用循环
         _animationTimes = 0;
@@ -80,10 +81,12 @@
 }
 -(void)showAnimation
 {
-    if (!self.openLotteryView&&!self.closeBtn) {
+    if (!self.activithyView&&!self.closeBtn) {
         [self.subwindow addSubview:self.closeBtn];
-        [self.subwindow addSubview:self.openLotteryView];
+        [self.subwindow addSubview:self.activithyView];
     }
+    self.activithyView.timeLabel.text = self.activityModel.mNextLotteryTime;
+    self.activithyView.chanceLabel.text = self.activityModel.mDrawTimes;
     [self startanimationRotate];
     [self startanimationTranslation];
 }
@@ -96,7 +99,7 @@
                          [self.subwindow setHidden:NO];
                          self.subwindow.alpha = 0.8;
                          self.imageView.alpha = 0;
-                         self.openLotteryView.alpha = 1.f;
+                         self.activithyView.alpha = 1.f;
                      }
                      completion:^(BOOL finished){
                    
@@ -132,7 +135,7 @@
         //隐藏
         
         [UIView animateWithDuration:1.f animations:^{
-            self.openLotteryView.alpha = 0;
+            self.activithyView.alpha = 0;
             self.subwindow.alpha = 0;
             self.closeBtn.alpha = 0;
         } completion:^(BOOL finished) {
@@ -142,7 +145,7 @@
                 [subView removeFromSuperview];
             }
             [self.closeBtn removeFromSuperview];
-            [self.openLotteryView removeFromSuperview];
+            [self.activithyView removeFromSuperview];
         }];
         
     }
