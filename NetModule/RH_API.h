@@ -177,6 +177,15 @@
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
 
 
+#pragma mark - V3 投注记录 信息模型
+#define RH_GP_BETTING_ID                                @"id"
+#define RH_GP_BETTING_APIID                             @"apiId"
+#define RH_GP_BETTING_GAMEID                            @"gameId"
+#define RH_GP_BETTING_TERMINAL                          @"terminal"
+#define RH_GP_BETTING_BETTIME                           @"betTime"
+#define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
+#define RH_GP_BETTING_ORDERSTATE                      @"orderState"
+
 #pragma mark -
 #pragma mark - 回收接口
 //api的路径
@@ -247,8 +256,20 @@
 //api的路径
 #define RH_API_NAME_BETTINGLIST                        @"mineOrigin/getBettingList.html"
 //请求参数 无
-#define RH_SP_BETTINGLIST_STARTDATE                          @"beginBetTime"
-#define RH_SP_BETTINGLIST_ENDDATE                            @"endBetTime"
+#define RH_SP_BETTINGLIST_STARTDATE                          @"search.beginBetTime"
+#define RH_SP_BETTINGLIST_ENDDATE                            @"search.endBetTime"
+#define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.currentIndex"
+#define RH_SP_BETTINGLIST_PAGESIZE                           @"paging.pageSize"
+//返回参数
+#define RH_GP_BETTINGLIST_LIST                              @"list"
+#define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
+
+#pragma mark -V3 资金记录 清单
+//api的路径
+#define RH_API_NAME_DEPOSITLIST                        @"mineOrigin/getFundRecord.html"
+//请求参数 无
+#define RH_SP_DEPOSITLIST_STARTDATE                          @"beginBetTime"
+#define RH_SP_DEPOSITLIST_ENDDATE                            @"endBetTime"
 
 #endif /* RH_API_h */
 

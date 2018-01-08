@@ -98,6 +98,14 @@
     }
 }
 
+#pragma mark -
+-(IBAction)btn_touch:(id)sender
+{
+    ifRespondsSelector(self.delegate, @selector(bettingRecordHeaderViewTouchSearchButton:)){
+        [self.delegate bettingRecordHeaderViewTouchSearchButton:self] ;
+    }
+}
+
 #pragma mark-
 -(void)setStartDate:(NSDate *)startDate
 {

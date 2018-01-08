@@ -282,6 +282,9 @@
 		A01EE2671F8878B30085717E /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01EE2651F8878B30085717E /* SplashViewController.m */; };
 		A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE2661F8878B30085717E /* SplashViewController.xib */; };
 		A02142711FBD2968007E565E /* CLImageTitleStaticCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A02142701FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.m */; };
+		A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */; };
+		A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A039BD9F20036B2B0080D56F /* RH_BettingRecordCell.xib */; };
+		A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA120036B2C0080D56F /* RH_BettingRecordCell.m */; };
 		A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109EE21F87852F004E6EF4 /* MacroDef.h */; };
 		A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */; };
 		A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */; };
@@ -876,6 +879,11 @@
 		A01EE2661F8878B30085717E /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		A021426F1FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLImageTitleStaticCollectionViewCell.h; sourceTree = "<group>"; };
 		A02142701FBD2967007E565E /* CLImageTitleStaticCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLImageTitleStaticCollectionViewCell.m; sourceTree = "<group>"; };
+		A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingInfoModel.m; sourceTree = "<group>"; };
+		A039BD9D200321B30080D56F /* RH_BettingInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingInfoModel.h; sourceTree = "<group>"; };
+		A039BD9F20036B2B0080D56F /* RH_BettingRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_BettingRecordCell.xib; sourceTree = "<group>"; };
+		A039BDA020036B2B0080D56F /* RH_BettingRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordCell.h; sourceTree = "<group>"; };
+		A039BDA120036B2C0080D56F /* RH_BettingRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordCell.m; sourceTree = "<group>"; };
 		A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewController.h; sourceTree = "<group>"; };
 		A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewController.m; sourceTree = "<group>"; };
 		A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewController.h; sourceTree = "<group>"; };
@@ -1873,6 +1881,8 @@
 				A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */,
 				A01CB4B51FFA60D300447130 /* RH_LinkInfoModel.h */,
 				A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */,
+				A039BD9D200321B30080D56F /* RH_BettingInfoModel.h */,
+				A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */,
 				A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */,
 				A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */,
 				A01CB4BA1FFB1E7900447130 /* RH_MineGroupInfoModel.h */,
@@ -1991,6 +2001,9 @@
 				A011815E1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.h */,
 				A011815F1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m */,
 				A011815D1FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib */,
+				A039BDA020036B2B0080D56F /* RH_BettingRecordCell.h */,
+				A039BDA120036B2C0080D56F /* RH_BettingRecordCell.m */,
+				A039BD9F20036B2B0080D56F /* RH_BettingRecordCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -2636,6 +2649,7 @@
 				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
 				A01CB4A61FF9DD0C00447130 /* guize_01.png in Resources */,
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
+				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
 				A01CB4A41FF9DD0C00447130 /* 未拆开_01.png in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
@@ -2860,6 +2874,7 @@
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
+				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				A0109FD31F8788FF004E6EF4 /* DNImagePickerController.m in Sources */,
 				A0109FD41F8788FF004E6EF4 /* DNPhotoBrowser.m in Sources */,
 				A0109FD51F8788FF004E6EF4 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
@@ -2976,6 +2991,7 @@
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
+				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,

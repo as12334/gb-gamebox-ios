@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3APIGameList     ,
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
+    ServiceRequestTypeV3DepositList     , //资金记录 。。。
 };
 
 
@@ -125,8 +126,11 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                      SearchName:(NSString*)searchName ;
 
 #pragma mark - 投注记录
--(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate ;
-
+-(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize ;
+#pragma mark - 资金记录
+-(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate ;
 
 #pragma mark -
 /**

@@ -19,6 +19,7 @@
 #import "RH_HomePageModel.h"
 #import "RH_UserBalanceGroupModel.h"
 #import "RH_MineGroupInfoModel.h"
+#import "RH_BettingInfoModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -328,6 +329,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     [self _startServiceWithAPIName:appDelegate.domain
@@ -340,6 +343,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3BettingList
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITLIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_DEPOSITLIST_STARTDATE:startDate?:@"",
+                                     RH_SP_DEPOSITLIST_ENDDATE:endDate?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositList
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -656,7 +675,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
     if (tempError) { //json解析错误
-        tempError = [NSError resultDataNoJSONError];
+        tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
         if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
@@ -747,7 +766,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             case ServiceRequestTypeV3BettingList:
             {
+                NSArray *tmpArray = [RH_BettingInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_BETTINGLIST_LIST]] ;
+                NSInteger total = [[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     dictionaryValueForKey:@"statisticsData"]  integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT]   ;
                 
+                resultSendData = @{RH_GP_BETTINGLIST_LIST:tmpArray?:@[],
+                                   RH_GP_BETTINGLIST_TOTALCOUNT:@(total)
+                                   } ;
             }
                 break ;
                 
