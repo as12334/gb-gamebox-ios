@@ -8,8 +8,7 @@
 
 #import "CLStaticCollectionViewCell.h"
 
-@interface RH_CapitalStaticDataCell : CLStaticCollectionViewCell
-@property (weak, nonatomic,readonly) UILabel *dateYear;
-@property (weak, nonatomic,readonly) UILabel *dateMMDD;
-@property (weak, nonatomic,readonly) UILabel *dateInfo;
+@interface RH_CapitalStaticDataCell : UIView
+-(void)addTarget:(id)object Selector:(SEL)selector  ;
+-(void)updateUIWithDate:(NSDate*)date ;
 @end

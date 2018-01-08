@@ -1429,6 +1429,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _fluv //大赢家娱乐城
+
+#define CODE    @"fluv"
+#define S        @"1aeec332b2951b8a2f64e94c47e66606"
+#define SID        @"333"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

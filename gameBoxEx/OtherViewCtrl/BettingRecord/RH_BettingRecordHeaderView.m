@@ -36,6 +36,8 @@
     self.btnSearch.layer.cornerRadius = 4.0f ;
     self.btnSearch.layer.masksToBounds = YES ;
     
+    
+    
     _startDate = [NSDate date] ;
     _endDate = [NSDate date]  ;
     
