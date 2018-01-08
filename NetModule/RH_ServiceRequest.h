@@ -32,6 +32,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
+    ServiceRequestTypeV3ModifyPassword  , //修改密码
+    ServiceRequestTypeV3ModifySafetyPassword ,
 };
 
 
@@ -123,6 +125,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                        PageSize:(NSInteger)pageSize
                      SearchName:(NSString*)searchName ;
 
+#pragma mark - 修改密码
+- (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd;
+#pragma mark - 修改安全密码
+- (void)startV3ChangeSaftyPasswordMainPage;
 
 #pragma mark -
 /**

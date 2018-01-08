@@ -8,13 +8,13 @@
 
 #import "RH_MineSafetyCenterViewController.h"
 #import "RH_MineSafetyCenterHeaderView.h"
-<<<<<<< HEAD
+
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifySafetyPasswordController.h"
-=======
+
 #import "RH_GesturelLockController.h"
 #import "coreLib.h"
->>>>>>> origin/dev_luis
+
 @interface RH_MineSafetyCenterViewController () <CLTableViewManagementDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -65,7 +65,7 @@
 }
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
-<<<<<<< HEAD
+
    
     if (indexPath.row ==0) {
         RH_ModifyPasswordController *vc = [[RH_ModifyPasswordController alloc]init];
@@ -76,7 +76,7 @@
         [self showViewController:vc sender:nil];
     }
     
-=======
+
     if (indexPath.item ==2) {
         NSDictionary *cellInfo = [tableViewManagement cellExtraInfo:indexPath] ;
         UIViewController *targetViewCtrl = [cellInfo targetViewController] ;
@@ -84,7 +84,7 @@
             [self showViewController:targetViewCtrl sender:self] ;
         }
     }
->>>>>>> origin/dev_luis
+
     return YES;
 }
 @end

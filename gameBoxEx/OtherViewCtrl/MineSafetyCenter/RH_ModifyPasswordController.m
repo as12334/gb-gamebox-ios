@@ -8,7 +8,8 @@
 
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
-@interface RH_ModifyPasswordController () <CLTableViewManagementDelegate>
+#import "coreLib.h"
+@interface RH_ModifyPasswordController () <CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong) UIButton *button;
@@ -24,12 +25,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"修改登录密码";
+    self.needObserverTapGesture = YES ;
+    self.needObserverKeyboard = YES ;
     [self setupInfo];
 }
 
+#pragma mark - keyboard
+- (void)keyboardFrameWillChange
+{
+    
+}
+
+- (void)keyboardFrameDidChange
+{
+    
+}
+
+#pragma mark-
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     
-    return self.userInfoView.superview? YES : NO;
+    return YES;
 }
 
 - (void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer {
@@ -87,7 +102,16 @@
         showMessage(self.view, nil, @"两次输入的密码不一样！");
         return;
     }
-    
+    [self.serviceRequest startV3ChangePasswordWith:currentPwd and:newPwd];
+    self.serviceRequest.delegate = self;
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+    NSLog(@"%s", __func__);
+    NSLog(@"%@", error);
+}
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
+    NSLog(@"%s", __func__);
 }
 
 @end

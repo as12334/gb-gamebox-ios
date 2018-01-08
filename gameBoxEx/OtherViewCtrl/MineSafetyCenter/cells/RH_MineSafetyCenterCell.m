@@ -34,6 +34,9 @@
         self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
         self.backgroundColor = colorWithRGB(255, 255, 255);
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.selectionOption = CLSelectionOptionHighlighted;
+        self.selectionColor = RH_Cell_DefaultHolderColor;
+
     }
     return self;
 }

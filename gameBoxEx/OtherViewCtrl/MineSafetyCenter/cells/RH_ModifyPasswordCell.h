@@ -11,5 +11,5 @@
 @interface RH_ModifyPasswordCell : CLTableViewCell
 
 @property (nonatomic, strong, readonly) UITextField *textField;
-
+-(BOOL)isEditing ;
 @end

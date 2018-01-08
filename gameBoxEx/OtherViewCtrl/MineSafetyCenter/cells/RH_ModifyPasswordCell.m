@@ -25,6 +25,11 @@
     // Configure the view for the selected state
 }
 
+-(BOOL)isEditing
+{
+    return self.textField.isEditing ;
+}
+
 - (UITextField *)textField {
     if (_textField == nil) {
         _textField = [[UITextField alloc] init];
@@ -51,6 +56,8 @@
         [self.contentView addSubview:self.textField];
         self.textField.whc_CenterY(0).whc_RightSpace(20).whc_Height(39).whc_Width(screenSize().width/5*3);
         self.textField.font = [UIFont systemFontOfSize:14];
+        self.selectionOption = CLSelectionOptionHighlighted;
+        self.selectionColor = RH_Cell_DefaultHolderColor;
     }
     return self;
 }
