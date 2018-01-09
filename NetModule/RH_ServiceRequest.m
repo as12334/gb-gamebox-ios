@@ -734,10 +734,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 [self startV3UserInfo] ;
-                [self startV3MineLinkInfo] ;
-                [self startV3UserSafetyInfo] ;
             }
-            
         }else{
             *reslutData = @(NO) ;
         }
@@ -783,8 +780,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
         }
          return YES ;
-    }
-    else if (type == ServiceRequestTypeV3BettingDetails){
+    }else if (type == ServiceRequestTypeV3BettingDetails){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -841,8 +837,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
                     [self startV3UserInfo] ;
-                    [self startV3MineLinkInfo] ;
-                    [self startV3UserSafetyInfo] ;
                 }
             }
                 break ;
