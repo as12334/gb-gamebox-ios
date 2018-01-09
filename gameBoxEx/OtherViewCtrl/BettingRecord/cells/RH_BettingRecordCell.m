@@ -68,8 +68,20 @@
     }
     
     switch (indexPath.item) {
-        case 0: //
-           
+        case 0: //游戏名称
+            titleCell.labTitle.text = self.bettingInfoModel.showName ;
+            break;
+        
+        case 1: //投注时间
+            titleCell.labTitle.text = self.bettingInfoModel.showBettingDate ;
+            break;
+            
+//        case 2: //投注额
+//            titleCell.labTitle.text = self.bettingInfoModel.
+//            break;
+        
+        case 3: //投注额
+            //            titleCell.labTitle.text = self.bettingInfoModel.m
             break;
             
         default:
