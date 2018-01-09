@@ -200,9 +200,6 @@
             [self.delegate dropdownMenuDidHidden:self]; // 已经隐藏回调代理
         }
     }];
-    
-    
-    
     _mainBtn.selected = NO;
 }
 

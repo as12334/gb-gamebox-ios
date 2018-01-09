@@ -92,7 +92,7 @@
     
     
 //    self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_RightSpace(10).whc_Height(30);
-     self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-20 ).whc_Height(30);
+     self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-20 ).whc_Height(40);
     self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
     self.serachBtn.layer.cornerRadius = 3.0f;
     self.serachBtn.layer.masksToBounds = YES;
