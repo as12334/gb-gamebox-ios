@@ -11,7 +11,7 @@
 //  iOS开发者公会-议事区  QQ群号：413102158
 //
 
-#import "LMJDropdownMenu.h"
+#import "RH_DropdownMenu.h"
 #import "coreLib.h"
 
 
@@ -54,7 +54,7 @@
 
 
 
-@implementation LMJDropdownMenu
+@implementation RH_DropdownMenu
 {
     UIImageView * _arrowMark;   // 尖头图标
     UIView      * _listView;    // 下拉列表背景View
@@ -200,9 +200,6 @@
             [self.delegate dropdownMenuDidHidden:self]; // 已经隐藏回调代理
         }
     }];
-    
-    
-    
     _mainBtn.selected = NO;
 }
 

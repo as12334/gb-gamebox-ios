@@ -10,21 +10,20 @@
 #import "RH_CapitalStaticDataCell.h"
 #import "CLStaticCollectionViewTitleCell.h"
 #import "coreLib.h"
-#import "LMJDropdownMenu.h"
+#import "RH_DropdownMenu.h"
 
 
-@interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate,LMJDropdownMenuDelegate>
+@interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate,RH_DropdownMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labDateTitle;
 /**快选*/
 @property (weak, nonatomic) IBOutlet UIButton *btnQuickSelect;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *startCapitalDateCell ;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *endCapitalDateCell ;
-@property (weak, nonatomic) IBOutlet UIButton *typeBtn;  // 类型
 @property (weak, nonatomic) IBOutlet UIButton *serachBtn; //搜索
 @property (weak, nonatomic) IBOutlet UILabel *withdrawalLab;  //取款处理中的金额
 @property (weak, nonatomic) IBOutlet UILabel *transferLab;//转账处理中的金额
 
-@property (weak, nonatomic) IBOutlet LMJDropdownMenu *TypeDropList;
+@property (weak, nonatomic) IBOutlet RH_DropdownMenu *typeDropList;
 
 @end
 
@@ -83,17 +82,17 @@
 //    [self.typeBtn addTarget:self action:@selector(typeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
    
-    [self addSubview:self.TypeDropList];
-    self.TypeDropList.whc_LeftSpace(18).whc_TopSpaceToView(10, view_Line).whc_RightSpace(screenSize().width/2 + 20).whc_Height(30);
-    [self.TypeDropList setMenuTitles:@[@"选项一",@"选项二",@"选项三",@"选项四"] rowHeight:30];
-    self.TypeDropList.delegate = self;
-    [self bringSubviewToFront:self.TypeDropList];
-    self.TypeDropList.backgroundColor = [UIColor redColor];
-    [self.TypeDropList resignFirstResponder];
-    self.TypeDropList.userInteractionEnabled = YES;
+   
+    self.typeDropList.whc_LeftSpace(10).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-20 ).whc_Height(30);
+    [self.typeDropList setMenuTitles:@[@"选项一",@"选项二",@"选项三",@"选项四"] rowHeight:30];
+    self.typeDropList.delegate = self;
+    [self bringSubviewToFront:self.typeDropList];
+    [self.typeDropList resignFirstResponder];
+    self.typeDropList.userInteractionEnabled = YES;
     
     
-    self.serachBtn.whc_LeftSpaceToView(18, self.typeBtn).whc_CenterYToView(0, self.typeBtn).whc_TopSpaceToView(10, view_Line).whc_RightSpace(20).whc_Height(30);
+//    self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_RightSpace(10).whc_Height(30);
+     self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-20 ).whc_Height(40);
     self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
     self.serachBtn.layer.cornerRadius = 3.0f;
     self.serachBtn.layer.masksToBounds = YES;
@@ -112,16 +111,10 @@
 
     UIView *bgView = [UIView new];
     [self addSubview:bgView];
-    bgView.whc_LeftSpace(18).whc_TopSpaceToView(0, self.typeBtn).whc_WidthEqualView(self.typeBtn).whc_Height(50);
-    bgView.backgroundColor = [UIColor redColor];
+    bgView.whc_LeftSpace(18).whc_TopSpaceToView(0, self.typeDropList).whc_WidthEqualView(self.typeDropList).whc_Height(50);
     bgView.tag = 888;
     bgView.hidden = YES;
     
-//    UIView *bgView = [UIView new];
-//    [self addSubview:bgView];
-//    bgView.whc_LeftSpace(18).whc_TopSpaceToView(0, btn).whc_WidthEqualView(btn).whc_Height(50);
-//    bgView.backgroundColor = [UIColor redColor];
-//    bgView.hidden = YES;
 }
 
 #pragma mark --- 搜索按钮
@@ -211,21 +204,21 @@
 
 #pragma mark - LMJDropdownMenu Delegate
 
-- (void)dropdownMenu:(LMJDropdownMenu *)menu selectedCellNumber:(NSInteger)number{
+- (void)dropdownMenu:(RH_DropdownMenu *)menu selectedCellNumber:(NSInteger)number{
     NSLog(@"你选择了：%ld",number);
 }
 
-- (void)dropdownMenuWillShow:(LMJDropdownMenu *)menu{
+- (void)dropdownMenuWillShow:(RH_DropdownMenu *)menu{
     NSLog(@"--将要显示--");
 }
-- (void)dropdownMenuDidShow:(LMJDropdownMenu *)menu{
+- (void)dropdownMenuDidShow:(RH_DropdownMenu *)menu{
     NSLog(@"--已经显示--");
 }
 
-- (void)dropdownMenuWillHidden:(LMJDropdownMenu *)menu{
+- (void)dropdownMenuWillHidden:(RH_DropdownMenu *)menu{
     NSLog(@"--将要隐藏--");
 }
-- (void)dropdownMenuDidHidden:(LMJDropdownMenu *)menu{
+- (void)dropdownMenuDidHidden:(RH_DropdownMenu *)menu{
     NSLog(@"--已经隐藏--");
 }
 

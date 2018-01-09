@@ -296,6 +296,12 @@
 #pragma mark -V3 资金记录 清单
 //api的路径
 #define RH_API_NAME_DEPOSITLIST                        @"mineOrigin/getFundRecord.html"
+
+#pragma mark -V3 资金记录 清单详情
+//api的路径
+#define RH_API_NAME_DEPOSITLISTDETAILS                        @"mineOrigin/getFundRecordDetails.html"
+
+
 //请求参数 无
 #define RH_SP_DEPOSITLIST_STARTDATE                          @"beginBetTime"
 #define RH_SP_DEPOSITLIST_ENDDATE                            @"endBetTime"

@@ -453,6 +453,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 资金记录详情 根据ID进行查询
+-(void)startV3DepositListDetail:(NSString*)searchId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:@"id"];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositListDetails
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);

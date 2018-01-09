@@ -9,7 +9,7 @@
 #import "RH_CapitalRecordViewController.h"
 #import "RH_CapitalRecordHeaderView.h"
 #import "RH_CapitalRecordBottomView.h"
-
+#import "RH_CapitalTableViewCell.h"
 
 @interface RH_CapitalRecordViewController ()
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
@@ -52,6 +52,8 @@
     
 }
 
+
+
 #pragma mark-
 -(void)setupUI
 {
@@ -62,15 +64,21 @@
     self.bottomView.borderColor = RH_Line_DefaultColor ;
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
-    
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
     [self.contentView addSubview:self.contentTableView] ;
+    [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     
+//    [self.contentCollectionView registerCellWithClass:[RH_CapitalTableViewCell class] andReuseIdentifier:@"RH_CapitalTableViewCell"];
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-    [self setupPageLoadManager] ;
+//    [self setupPageLoadManager] ;
+}
+
+
+- (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
+    return  YES;
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -177,32 +185,33 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return MAX(1, self.pageLoadManager.currentDataCount) ;
+//    return MAX(1, self.pageLoadManager.currentDataCount) ;
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount){
-        //        return [RH_LotteryRecordCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-    }else{
-        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
-        return height ;
-    }
+//    if (self.pageLoadManager.currentDataCount){
+//        //        return [RH_LotteryRecordCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+//    }else{
+//        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+//        return height ;
+//    }
     
-    return 0.0f ;
+    return 40.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount){
-//                RH_LotteryRecordCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_LotteryRecordCell defaultReuseIdentifier]] ;
-        //        [lotteryRecordCell updateCellWithInfo:nil context:indexPath];
-        //        return lotteryRecordCell ;
-    }else{
-        return self.loadingIndicateTableViewCell ;
-    }
-    
-    return nil ;
+//    if (self.pageLoadManager.currentDataCount){
+                RH_CapitalTableViewCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
+                [lotteryRecordCell updateCellWithInfo:nil context:nil];
+                return lotteryRecordCell ;
+//    }else{
+//        return self.loadingIndicateTableViewCell ;
+//    }
+//
+//    return nil ;
 }
 
 
