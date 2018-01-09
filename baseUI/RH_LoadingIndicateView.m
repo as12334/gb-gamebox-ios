@@ -58,10 +58,8 @@
 
 - (void)showDefaultLoadingErrorStatus:(NSError*)error
 {
-    NSString *errMessage = [error.userInfo stringValueForKey:@"JsToAppMessage"]?:error.localizedDescription ;
-                                                                                  
     [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
-                                    title:[NSString stringWithFormat:@"[%ld]%@",error.code,errMessage]
+                                    title:[NSString stringWithFormat:@"[%ld]%@",error.code,error.description]
                                detailText:@"点击页面重试"];
 }
 

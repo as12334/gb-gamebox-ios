@@ -115,7 +115,7 @@
 							<key>image</key>
 							<string>mine_page_messagecenter</string>
 							<key>targetKey</key>
-							<string>RH_MineDailyCashController</string>
+							<string>RH_BettingRecordDetailController</string>
 						</dict>
 					</array>
 				</dict>

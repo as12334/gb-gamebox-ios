@@ -137,7 +137,7 @@ static char  HIDDENSTATUSBAR ;
     if (![self isViewShowing]) {
         _needUpdateViewWhenViewAppear = YES;
     }else{
-        [self updateView];
+        [self performSelectorOnMainThread:@selector(updateView) withObject:self waitUntilDone:NO] ;
     }
 }
 

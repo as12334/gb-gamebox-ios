@@ -10,4 +10,6 @@
 
 @interface RH_MineSafetyCenterCell : CLTableViewCell
 
+@property (nonatomic, strong, readonly) UITextField *textField;
+
 @end

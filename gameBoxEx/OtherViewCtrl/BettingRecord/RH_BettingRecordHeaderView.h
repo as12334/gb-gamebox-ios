@@ -13,6 +13,7 @@
 @optional
 -(void)bettingRecordHeaderViewWillSelectedStartDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
 -(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
+-(void)bettingRecordHeaderViewTouchSearchButton:(RH_BettingRecordHeaderView*)bettingRecordHeaderView ;
 @end
 
 @interface RH_BettingRecordHeaderView : UIView

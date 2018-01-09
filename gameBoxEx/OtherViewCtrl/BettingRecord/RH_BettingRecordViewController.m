@@ -10,6 +10,8 @@
 #import "RH_BettingRecordHeaderView.h"
 #import "RH_BettingTableHeaderView.h"
 #import "RH_BettingRecordBottomView.h"
+#import "RH_BettingRecordCell.h"
+#import "RH_API.h"
 #import "coreLib.h"
 
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
@@ -70,6 +72,7 @@
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
     self.contentTableView.tableHeaderView = self.bettingTableHeaderView ;
+    [self.contentTableView registerCellWithClass:[RH_BettingRecordCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
@@ -168,7 +171,7 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3BettingList:dateStringWithFormatter(self.bettingRecordHeaderView.startDate, @"yyyy-MM-dd")
-                                    EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd")] ;
+                                    EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd") PageNumber:page PageSize:pageSize] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -188,7 +191,8 @@
 {
     if (type == ServiceRequestTypeV3BettingList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        [self loadDataSuccessWithDatas:dictTmp.allValues totalCount:dictTmp.allValues.count] ;
+        [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_BETTINGLIST_LIST]
+                            totalCount:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]] ;
     }
 }
 
@@ -213,7 +217,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-//        return [RH_LotteryRecordCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        return [RH_BettingRecordCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
     }else{
         CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
@@ -225,14 +229,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-//        RH_LotteryRecordCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_LotteryRecordCell defaultReuseIdentifier]] ;
-//        [lotteryRecordCell updateCellWithInfo:nil context:indexPath];
-//        return lotteryRecordCell ;
+        RH_BettingRecordCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_BettingRecordCell defaultReuseIdentifier]] ;
+        [bettingRecordCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        return bettingRecordCell ;
     }else{
         return self.loadingIndicateTableViewCell ;
     }
-    
-    return nil ;
 }
 
 @end

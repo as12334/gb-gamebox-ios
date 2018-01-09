@@ -176,6 +176,23 @@
 #define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
 
+#pragma mark - V3 投注记录 信息模型
+#define RH_GP_BETTING_ID                                @"id"
+#define RH_GP_BETTING_APIID                             @"apiId"
+#define RH_GP_BETTING_GAMEID                            @"gameId"
+#define RH_GP_BETTING_TERMINAL                          @"terminal"
+#define RH_GP_BETTING_BETTIME                           @"betTime"
+#define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
+#define RH_GP_BETTING_ORDERSTATE                      @"orderState"
+
+#pragma mark - V3 用户安全码 初始化信息模型
+#define RH_GP_USERSAFETY_HASREALNAME                                @"hasRealName"
+#define RH_GP_USERSAFETY_HASPERMISSIONPWD                             @"hasPermissionPwd"
+#define RH_GP_USERSAFETY_ISOPENCAPTCHA                            @"isOpenCaptcha"
+#define RH_GP_USERSAFETY_REMINDTIMES                          @"remindTimes"
+#define RH_GP_USERSAFETY_LOCKTIME                             @"lockTime"
+
+
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -208,6 +225,8 @@
 #pragma mark- v3 我的 接口
 //api的路径
 #define RH_API_NAME_MINEGROUPINFO                        @"mineOrigin/getLink.html"
+#define RH_API_NAME_MINEMODIFYPASSWORD                   @"origin/updateLoginPassword.html"
+#define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
 //请求参数 无
 //返回参数
 #define RH_GP_MINEGROUPINFO_ISBIT                          @"isBit"
@@ -217,7 +236,7 @@
 
 #pragma mark - V3  浮动图抢红包次数
 //api的路径
-#define RH_API_NAME_ACTIVITYSTATUS                        @"ntl/activity/countDrawTimes.html"
+#define RH_API_NAME_ACTIVITYSTATUS                        @"origin/countDrawTimes.html"
 //请求参数
 #define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
 //返回参数
@@ -227,8 +246,10 @@
 #define RH_GP_ACTIVITYSTATUS_TOKEN                        @"token"
 
 #pragma mark - V3 拆红包
-//api的路径
-#define RH_API_NAME_OPENACTIVITY                        @"ntl/activity/getPacket.html"
+/**
+ api的路径
+ */
+#define RH_API_NAME_OPENACTIVITY                        @"origin/getPacket.html"
 //请求参数
 #define RH_SP_OPENACTIVITY_MESSAGEID                    @"activityMessageId"
 #define RH_SP_OPENACTIVITY_TOKEN                        @"gb.token"
@@ -251,8 +272,33 @@
 //api的路径
 #define RH_API_NAME_BETTINGLIST                        @"mineOrigin/getBettingList.html"
 //请求参数 无
-#define RH_SP_BETTINGLIST_STARTDATE                          @"beginBetTime"
-#define RH_SP_BETTINGLIST_ENDDATE                            @"endBetTime"
+#define RH_SP_BETTINGLIST_STARTDATE                          @"search.beginBetTime"
+#define RH_SP_BETTINGLIST_ENDDATE                            @"search.endBetTime"
+#define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.currentIndex"
+#define RH_SP_BETTINGLIST_PAGESIZE                           @"paging.pageSize"
+//返回参数
+#define RH_GP_BETTINGLIST_LIST                              @"list"
+#define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
+
+#pragma mark -v3    投注记录明细
+//api路径
+#define RH_API_NAME_BETTINGDETAILS                     @"mineOrigin/getBettingDetails.html"
+//请求参数
+#define RH_SP_BETTINGDETAILS_LISTID                     @"id"
+//返回参数
+#define RH_GP_BETTINGDETAILS_
+
+#pragma mark -V3 资金记录 清单
+//api的路径
+#define RH_API_NAME_DEPOSITLIST                        @"mineOrigin/getFundRecord.html"
+//请求参数 无
+#define RH_SP_DEPOSITLIST_STARTDATE                          @"beginBetTime"
+#define RH_SP_DEPOSITLIST_ENDDATE                            @"endBetTime"
+
+#pragma mark -V3 用户安全码初始化信息
+//api的路径
+#define RH_API_NAME_USERSAFEINFO                        @"mineOrigin/initSafePassword.html"
+//请求参数 无
 
 #endif /* RH_API_h */
 

@@ -336,6 +336,8 @@
         if (self.activityModel){
             RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
             machineView.activityModel = self.activityModel;
+            RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+            [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
             [machineView showAnimation];
         }else{
             [self showProgressIndicatorViewWithAnimated:YES title:@"请求超时，请重新打开红包"];
@@ -441,6 +443,9 @@
     }
     else if (type == ServiceRequestTypeV3ActivityStatus){
         self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
+    }
+    else if (type == ServiceRequestTypeV3OpenActivity){
+        
     }
 }
 

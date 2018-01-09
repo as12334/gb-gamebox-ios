@@ -49,13 +49,14 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
+    
 }
 
 #pragma mark-
 -(void)setupUI
 {
     [self.topView addSubview:self.capitalRecordHeaderView] ;
-    self.topView.backgroundColor = [UIColor greenColor];
+    self.capitalRecordHeaderView.userInteractionEnabled = YES;
     [self.bottomView addSubview:self.capitalBottomView] ;
     self.bottomView.borderMask = CLBorderMarkTop ;
     self.bottomView.borderColor = RH_Line_DefaultColor ;
@@ -105,9 +106,7 @@
         _capitalRecordHeaderView.frame = self.topView.bounds ;
         _capitalRecordHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
     }
-    
     return _capitalRecordHeaderView ;
-    
 }
 
 #pragma mark-sort bottom view
@@ -122,6 +121,7 @@
     return _capitalBottomView ;
     
 }
+
 
 #pragma mark-
 -(void)netStatusChangedHandle

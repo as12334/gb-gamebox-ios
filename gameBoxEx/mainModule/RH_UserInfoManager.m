@@ -25,6 +25,7 @@
 @synthesize serviceRequest = _serviceRequest;
 @synthesize userBalanceGroupInfo = _userBalanceGroupInfo ;
 @synthesize mineGroupInfo = _mineGroupInfo ;
+@synthesize userSafetyInfo = _userSafetyInfo ;
 
 +(instancetype)shareUserManager
 {
@@ -61,6 +62,16 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
 }
 
+#pragma mark -
+-(RH_UserSafetyCodeModel *)userSafetyInfo
+{
+    return _userSafetyInfo ;
+}
+
+-(void)setUserSafetyInfo:(RH_UserSafetyCodeModel *)userSafetyInfo
+{
+    _userSafetyInfo = userSafetyInfo ;
+}
 
 -(BOOL)hasLogin
 {

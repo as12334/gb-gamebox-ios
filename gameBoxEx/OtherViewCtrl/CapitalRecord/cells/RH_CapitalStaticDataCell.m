@@ -11,7 +11,8 @@
 
 
 @interface RH_CapitalStaticDataCell()
-@property (weak, nonatomic) IBOutlet UIView *borderView;
+
+@property (weak, nonatomic) IBOutlet CLSelectionControl *borderView;
 
 @property (weak, nonatomic) IBOutlet UILabel *labDate;
 
@@ -31,18 +32,19 @@
     
     self.labDate.textColor = colorWithRGB(51, 51, 51) ;
     self.labDate.font = [UIFont systemFontOfSize:14.0f] ;
-    
-    
-    self.selectionOption = CLSelectionOptionHighlighted ;
-    self.selectionColor = RH_Cell_DefaultHolderColor ;
-    self.selectionColorAlpha = 0.7f ;
-    
     self.labDate.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
-    
 }
 
--(UIView *)showSelectionView
+#pragma mark-
+-(void)addTarget:(id)object Selector:(SEL)selector
 {
-    return self.borderView;
+//    [self.borderView addTarget:object action:selector forControlEvents:UIControlEventTouchUpInside] ;
+}
+
+-(void)updateUIWithDate:(NSDate*)date
+{
+    if (date){
+        self.labDate.text = dateStringWithFormatter(date, @"yyyy-MM-dd") ;
+    }
 }
 @end
