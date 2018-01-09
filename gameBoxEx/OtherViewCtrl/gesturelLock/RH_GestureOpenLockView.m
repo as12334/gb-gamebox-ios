@@ -49,7 +49,7 @@
     if(!_subwindow){
         _subwindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _subwindow.windowLevel = UIWindowLevelStatusBar + 1;
-        _subwindow.backgroundColor = [UIColor blackColor];
+        _subwindow.backgroundColor = [UIColor whiteColor];
     }
     return _subwindow;
 }
@@ -72,10 +72,11 @@
 -(void)createUI{
 //    self.backgroundColor = RH_NavigationBar_BackgroundColor;
     //解锁界面
-    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT-SCREEN_WIDTH)*0.5,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateResult];
-    [lockView setBtnImage:[UIImage imageNamed:@"gesturelLock_normal"]];
-    [lockView setBtnSelectdImgae:[UIImage imageNamed:@"gesturelLock_Selected"]];
-    [lockView setBtnErrorImage:[UIImage imageNamed:@"gesturelLock_error"]];
+    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]initWithFrame:CGRectMake(0, 220,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateResult];
+    lockView.center = self.center;
+    lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
+    lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
+    lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
     [self.subwindow addSubview:lockView];
     
     //解锁手势完成之后判断密码是否正确

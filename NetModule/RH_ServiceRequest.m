@@ -418,6 +418,41 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark 拆红包
+-(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setValue:activityID forKey:RH_SP_OPENACTIVITY_MESSAGEID ];
+    [dict setValue:gbtoken forKey:RH_SP_OPENACTIVITY_TOKEN];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_OPENACTIVITY
+                     pathArguments:nil
+                   headerArguments:nil
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OpenActivity
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark 投注记录详情
+-(void)startV3BettingDetails:(NSInteger)listId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init] ;
+    [dict setValue:@(listId) forKey:RH_SP_BETTINGDETAILS_LISTID] ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_BETTINGDETAILS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BettingDetails
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -732,12 +767,36 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *error = tempError;
         
         if (dataObject){
-            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
+            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject  objectForKey:@"data"])] ;
         }
         
         return YES ;
     }
-
+    else if (type == ServiceRequestTypeV3OpenActivity){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *error = tempError;
+        
+        if (dataObject){
+            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
+        }
+         return YES ;
+    }
+    else if (type == ServiceRequestTypeV3BettingDetails){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *error = tempError;
+        
+        if (dataObject){
+            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
+        }
+         return YES ;
+    }
+    
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data

@@ -26,6 +26,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.contentView.backgroundColor = [UIColor clearColor] ;
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0F) ;
@@ -34,12 +35,17 @@
     self.staticCollectView.allowCellSeparationLine = NO ;
     self.staticCollectView.allowSectionSeparationLine = NO ;
     self.staticCollectView.averageCellWidth = NO ;
+    self.staticCollectView.userInteractionEnabled = NO ;
     self.staticCollectView.backgroundColor = [UIColor clearColor] ;
     
     self.staticCollectView.dataSource = self ;
-    
-    self.selectionOption = CLSelectionOptionHighlighted ;
+    self.selectionOption = CLSelectionOptionHighlighted|CLSelectionOptionSelected ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
+}
+
+-(UIView *)showSelectionView
+{
+    return self.staticCollectView ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

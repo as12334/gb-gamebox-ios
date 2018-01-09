@@ -59,7 +59,7 @@
 - (void)showDefaultLoadingErrorStatus:(NSError*)error
 {
     [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
-                                    title:[NSString stringWithFormat:@"[%ld]%@",error.code,error.description]
+                                    title:[NSString stringWithFormat:@"[%d]%@",error.code,error.localizedDescription]
                                detailText:@"点击页面重试"];
 }
 
