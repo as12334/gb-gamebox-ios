@@ -16,6 +16,7 @@
 		189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A51FF9E99E00B14298 /* RH_MineRecordStaticCell.xib */; };
 		189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */; };
 		189C13B31FF9E99F00B14298 /* RH_MineRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */; };
+		797252EA2004687200A73F05 /* LMJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252E82004687200A73F05 /* LMJDropdownMenu.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -434,6 +435,9 @@
 		189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineRecordTableViewCell.m; sourceTree = "<group>"; };
 		189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineRecordTableViewCell.xib; sourceTree = "<group>"; };
 		189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MePageViewController.h; sourceTree = "<group>"; };
+		797252E72004687100A73F05 /* dropdownMenu_cornerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownMenu_cornerIcon.png; sourceTree = "<group>"; };
+		797252E82004687200A73F05 /* LMJDropdownMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LMJDropdownMenu.m; sourceTree = "<group>"; };
+		797252E92004687200A73F05 /* LMJDropdownMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMJDropdownMenu.h; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -1195,6 +1199,9 @@
 		79FB814D1FFDD70C00325BF3 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				797252E72004687100A73F05 /* dropdownMenu_cornerIcon.png */,
+				797252E92004687200A73F05 /* LMJDropdownMenu.h */,
+				797252E82004687200A73F05 /* LMJDropdownMenu.m */,
 				79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */,
 				79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */,
 				79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */,
@@ -3027,6 +3034,7 @@
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
+				797252EA2004687200A73F05 /* LMJDropdownMenu.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
@@ -3133,7 +3141,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_bldz=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3144,7 +3152,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid309;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid116;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -3152,12 +3160,12 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "恒大娱乐城";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-335";
+				APP_DISPLAY_NAME = "电子777娱乐";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-116";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3168,7 +3176,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid335;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid116;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
