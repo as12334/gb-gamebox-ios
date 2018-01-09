@@ -32,6 +32,7 @@
         _mGameName = [info stringValueForKey:RH_GP_BETTING_GAMENAME] ;
         _mBettime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_BETTING_BETTIME]] ;
         _mTerminal = [info stringValueForKey:RH_GP_BETTING_TERMINAL] ;
+        _mProfitAmount = [info floatValueForKey:RH_GP_BETTING_PROFITAMOUNT] ;
         _mOrderState = [info stringValueForKey:RH_GP_BETTING_ORDERSTATE] ;
     }
     
@@ -80,13 +81,17 @@
     return _showSingleAmount ;
 }
 
-//-(NSString *)showProfitAmount
-//{
-//    if (!_showProfitAmount){
-//        if (_m)
-//    }
-//
-//    return _showProfitAmount ;
-//}
+-(NSString *)showProfitAmount
+{
+    if (!_showProfitAmount){
+        if (_mProfitAmount==0){
+            _showProfitAmount = @"--" ;
+        }else{
+            _showProfitAmount = [NSString stringWithFormat:@"%.02f",_mProfitAmount] ;
+        }
+    }
+
+    return _showProfitAmount ;
+}
 
 @end

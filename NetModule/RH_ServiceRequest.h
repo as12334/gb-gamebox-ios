@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
     ServiceRequestTypeV3BettingDetails  ,  //投注记录详情。。。
     ServiceRequestTypeV3DepositList     , //资金记录 。。。
+    ServiceRequestTypeV3DepositListDetails     , //资金记录详情 。。。
     ServiceRequestTypeV3ModifyPassword  , //修改密码
     ServiceRequestTypeV3ModifySafetyPassword ,
     ServiceRequestTypeV3UserSafeInfo   , //用户安全码信息
@@ -142,6 +143,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                  PageSize:(NSInteger)pageSize ;
 #pragma mark - 资金记录
 -(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate ;
+
+#pragma mark - 资金记录详情 根据ID进行查询
+-(void)startV3DepositListDetail:(NSString*)searchId;
 
 #pragma mark - 修改密码
 - (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd;

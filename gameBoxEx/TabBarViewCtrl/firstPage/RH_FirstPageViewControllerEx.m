@@ -240,13 +240,13 @@
     {
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
-            if (lotteryAPIInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
-                return ;
-            }else if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
+            if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
                 [self showViewController:[RH_LotteryGameListViewController viewControllerWithContext:lotteryAPIInfoModel]
                                   sender:self] ;
+                return ;
+            }else if (lotteryAPIInfoModel.mGameLink.length){
+                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
                 return ;
             }else if (lotteryAPIInfoModel.mGameMsg.length){
                 showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
@@ -284,7 +284,6 @@
                 return ;
             }
         }
-        
         showAlertView(@"提示信息", @"您尚未登入") ;
     }
 }
