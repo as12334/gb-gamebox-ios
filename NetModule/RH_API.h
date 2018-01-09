@@ -179,7 +179,9 @@
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"
 #define RH_GP_BETTING_APIID                             @"apiId"
+#define RH_GP_BETTING_APINAME                           @"apiName"
 #define RH_GP_BETTING_GAMEID                            @"gameId"
+#define RH_GP_BETTING_GAMENAME                          @"gameName"
 #define RH_GP_BETTING_TERMINAL                          @"terminal"
 #define RH_GP_BETTING_BETTIME                           @"betTime"
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
