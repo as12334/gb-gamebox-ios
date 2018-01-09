@@ -32,8 +32,12 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
+    ServiceRequestTypeV3OpenActivity    ,//拆红包
+    ServiceRequestTypeV3BettingList     , //投注记录 。。。
+    ServiceRequestTypeV3DepositList     , //资金记录 。。。
     ServiceRequestTypeV3ModifyPassword  , //修改密码
     ServiceRequestTypeV3ModifySafetyPassword ,
+    ServiceRequestTypeV3UserSafeInfo   , //用户安全码信息
 };
 
 
@@ -118,6 +122,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 红包状态
 -(void)startV3ActivityStaus:(NSString*)activityID ;
 
+#pragma mark  - V3 拆红包
+-(void)startV3OpenActivity:(NSString *)activityID ;
+
 #pragma mark - 电子游戏list
 -(void)startV3GameListWithApiID:(NSInteger)apiID
                       ApiTypeID:(NSInteger)apiTypeID
@@ -125,10 +132,20 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                        PageSize:(NSInteger)pageSize
                      SearchName:(NSString*)searchName ;
 
+#pragma mark - 投注记录
+-(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize ;
+#pragma mark - 资金记录
+-(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate ;
+
 #pragma mark - 修改密码
 - (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd;
 #pragma mark - 修改安全密码
 - (void)startV3ChangeSaftyPasswordMainPage;
+
+#pragma mark - 用户安全码初始化信息
+- (void)startV3UserSafetyInfo ;
 
 #pragma mark -
 /**

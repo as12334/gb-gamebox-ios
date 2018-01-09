@@ -401,11 +401,12 @@
     if (![self showLoadDataErrorIndicaterForError:error]) {
 
         if (![self loadingIndicateView].isHidden) {
-
-#if DEBUG
-            showErrorMessage(self.view, error, @"获取数据失败");
-#endif
-            [[self loadingIndicateView] showDefaultLoadingErrorStatus];
+            if ([SITE_TYPE isEqualToString:@"integratedv3oc"])
+            {
+                [[self loadingIndicateView] showDefaultLoadingErrorStatus:error];
+            }else{
+                [[self loadingIndicateView] showDefaultLoadingErrorStatus];
+            }
         }else{
             showErrorMessage(self.view, error, @"获取数据失败");
         }

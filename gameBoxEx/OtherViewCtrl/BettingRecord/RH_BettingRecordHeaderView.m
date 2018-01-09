@@ -36,6 +36,8 @@
     self.btnSearch.layer.cornerRadius = 4.0f ;
     self.btnSearch.layer.masksToBounds = YES ;
     
+    
+    
     _startDate = [NSDate date] ;
     _endDate = [NSDate date]  ;
     
@@ -95,6 +97,14 @@
 {
     ifRespondsSelector(self.delegate, @selector(bettingRecordHeaderViewWillSelectedEndDate:DefaultDate:)){
         [self.delegate bettingRecordHeaderViewWillSelectedEndDate:self DefaultDate:_endDate] ;
+    }
+}
+
+#pragma mark -
+-(IBAction)btn_touch:(id)sender
+{
+    ifRespondsSelector(self.delegate, @selector(bettingRecordHeaderViewTouchSearchButton:)){
+        [self.delegate bettingRecordHeaderViewTouchSearchButton:self] ;
     }
 }
 

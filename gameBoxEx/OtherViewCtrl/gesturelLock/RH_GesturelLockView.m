@@ -117,8 +117,11 @@
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if (_startAtButton==YES) {
+        
         CGPoint movePoint = [self getCurrentTouch:touches];
         UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
+        
+        
         if (btn && btn.selected != YES) {
             btn.selected = YES;
             [self.btnsArray addObject:btn];

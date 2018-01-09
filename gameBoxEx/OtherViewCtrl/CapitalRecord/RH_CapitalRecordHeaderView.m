@@ -11,29 +11,21 @@
 #import "CLStaticCollectionViewTitleCell.h"
 #import "coreLib.h"
 
-@interface RH_CapitalRecordHeaderView()<CLStaticCollectionViewDelegate,CLStaticCollectionViewDataSource>
+@interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labDateTitle;
-
-/**
- 快选
- */
+/**快选*/
 @property (weak, nonatomic) IBOutlet UIButton *btnQuickSelect;
-
-/**
- 搜索
- */
-@property (weak, nonatomic) IBOutlet UIButton *btnSearch;
-
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *startCapitalDateCell ;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *endCapitalDateCell ;
-//日期展示
-@property (nonatomic,strong) IBOutlet CLStaticCollectionView *selectedDateStaticView ;
+@property (weak, nonatomic) IBOutlet UIButton *typeBtn;  // 类型
+@property (weak, nonatomic) IBOutlet UIButton *serachBtn; //搜索
+@property (weak, nonatomic) IBOutlet UILabel *withdrawalLab;  //取款处理中的金额
+@property (weak, nonatomic) IBOutlet UILabel *transferLab;//转账处理中的金额
+
+
 @end
 
 @implementation RH_CapitalRecordHeaderView
-{
-    NSArray *_typeHeaderList ;
-}
 
 @synthesize startCapitalDateCell = _startCapitalDateCell    ;
 @synthesize endCapitalDateCell = _endCapitalDateCell        ;
@@ -41,18 +33,18 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    _typeHeaderList = @[@"全 部",@"充 值",@"提 现",@"礼 金",@"投 注"] ;
     self.backgroundColor = [UIColor whiteColor] ;
+    self.userInteractionEnabled = YES;
+
     
-    
-    self.btnSearch.backgroundColor = colorWithRGB(44, 103, 182) ;
-    [self.btnSearch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
-    self.btnSearch.layer.cornerRadius = 4.0f ;
-    self.btnSearch.layer.masksToBounds = YES ;
+    self.btnQuickSelect.backgroundColor = colorWithRGB(27, 117, 217);
+    [self.btnQuickSelect setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
+    self.btnQuickSelect.layer.cornerRadius = 4.0f ;
+    self.btnQuickSelect.layer.masksToBounds = YES ;
     
     WHC_StackView *stackView = [[WHC_StackView alloc] init];
     [self addSubview:stackView];
-    stackView.whc_LeftSpaceToView(2, self.labDateTitle).whc_TopSpace(0).whc_BottomSpace(0).whc_RightSpaceToView(0, self.btnQuickSelect);
+    stackView.whc_LeftSpaceToView(0, self.labDateTitle).whc_TopSpace(0).whc_RightSpaceToView(5, self.btnQuickSelect).whc_Height(44);
     stackView.whc_Column = 2;
     stackView.whc_HSpace = 20;
     stackView.whc_VSpace = 0;
@@ -68,88 +60,91 @@
     label_.whc_Center(0, 0).whc_Width(30);
     label_.text = @"~";
     label_.textAlignment = NSTextAlignmentCenter;
-    //    self.selectedDateStaticView.dataSource = self ;
-    //    self.selectedDateStaticView.delegate = self ;
-    //    self.selectedDateStaticView.allowSelection = YES ;
-    //    self.selectedDateStaticView.allowCellSeparationLine = NO ;
-    //    self.selectedDateStaticView.allowSectionSeparationLine = NO ;
-    //    self.selectedDateStaticView.averageCellWidth = NO ;
-    //    self.selectedDateStaticView.separationLineColor = RH_Line_DefaultColor ;
-    //    self.selectedDateStaticView.backgroundColor = [UIColor clearColor] ;
-    //    [self.selectedDateStaticView reloadData] ;
+    
+    UIView *view_Line = [UIView new];
+    [self addSubview:view_Line];
+    view_Line.whc_TopSpaceToView(5, stackView).whc_LeftSpace(25).whc_RightSpace(0).whc_Height(1);
+    view_Line.backgroundColor = RH_Line_DefaultColor;
+    
+    [self addSubview:self.typeBtn];
+    self.typeBtn.backgroundColor = [UIColor whiteColor];
+    [self.typeBtn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
+    self.typeBtn.layer.borderWidth = 1;
+    self.typeBtn.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.typeBtn.layer.cornerRadius = 3.0f;
+    self.typeBtn.layer.masksToBounds = YES;
+    self.typeBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.typeBtn.whc_LeftSpace(18).whc_TopSpaceToView(10, view_Line).whc_RightSpace(screenSize().width/2 + 20).whc_Height(40);
+    self.serachBtn.whc_LeftSpaceToView(18, self.typeBtn).whc_CenterYToView(0, self.typeBtn).whc_TopSpaceToView(10, view_Line).whc_RightSpace(20).whc_Height(40);
+    self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
+    self.serachBtn.layer.cornerRadius = 3.0f;
+    self.serachBtn.layer.masksToBounds = YES;
+    self.serachBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    [self.serachBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIView *view_Line2 = [UIView new];
+    [self addSubview:view_Line2];
+    view_Line2.whc_TopSpaceToView(10, self.serachBtn).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+    view_Line2.backgroundColor = RH_Line_DefaultColor;
+    
+    self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
+   
+    self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
+    
+    
 }
+
 
 #pragma mark -
 -(RH_CapitalStaticDataCell *)startCapitalDateCell
 {
     if (!_startCapitalDateCell) {
         _startCapitalDateCell = [RH_CapitalStaticDataCell createInstance];
+        [_startCapitalDateCell updateUIWithDate:_startDate] ;
+        [_startCapitalDateCell addTarget:self Selector:@selector(startCapatitalDateCellHandle)] ;
     }
     return _startCapitalDateCell;
+}
+
+-(void)startCapatitalDateCellHandle
+{
+    ifRespondsSelector(self.delegate, @selector(CapitalRecordHeaderViewWillSelectedStartDate:DefaultDate:)){
+        [self.delegate CapitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_startDate] ;
+    }
 }
 
 -(RH_CapitalStaticDataCell *)endCapitalDateCell
 {
     if (!_endCapitalDateCell) {
         _endCapitalDateCell = [RH_CapitalStaticDataCell createInstance];
+        [_endCapitalDateCell updateUIWithDate:_endDate] ;
+        [_endCapitalDateCell addTarget:self Selector:@selector(endCapitalDateCellHandle)] ;
     }
     return _endCapitalDateCell;
 }
 
-#pragma mark-
-- (NSUInteger)staticCollectionView:(CLStaticCollectionView *)collectionView numberOfItemsInSection:(NSUInteger)section
-{
-    return 3 ;
-}
 
-- (CLStaticCollectionViewCell *)staticCollectionView:(CLStaticCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)endCapitalDateCellHandle
 {
-    if (indexPath.item==0){
-        RH_CapitalStaticDataCell * cell = [collectionView dequeueReusableCellWithIdentifier:[RH_CapitalStaticDataCell defaultReuseIdentifier]] ;
-        if (!cell){
-            cell = [RH_CapitalStaticDataCell createInstance]  ;
-            [cell setupReuseIdentifier:[RH_CapitalStaticDataCell defaultReuseIdentifier]] ;
-        }
-        
-        return  cell ;
-    }else if (indexPath.item==1){
-        CLStaticCollectionViewTitleCell * cell = [collectionView dequeueReusableCellWithIdentifier:[CLStaticCollectionViewTitleCell defaultReuseIdentifier]] ;
-        if (!cell){
-            cell = [CLStaticCollectionViewTitleCell createInstance]  ;
-            [cell setupReuseIdentifier:[CLStaticCollectionViewTitleCell defaultReuseIdentifier]] ;
-        }
-        
-        cell.labTitle.text = @"~" ;
-        cell.labTitle.textColor = colorWithRGB(51, 51, 51) ;
-        
-        return  cell ;
-    }else if (indexPath.item==2){
-        RH_CapitalStaticDataCell * cell = [collectionView dequeueReusableCellWithIdentifier:[RH_CapitalStaticDataCell defaultReuseIdentifier]] ;
-        if (!cell){
-            cell = [RH_CapitalStaticDataCell createInstance]  ;
-            [cell setupReuseIdentifier:[RH_CapitalStaticDataCell defaultReuseIdentifier]] ;
-        }
-        
-        return  cell ;
+    ifRespondsSelector(self.delegate, @selector(CapitalRecordHeaderViewWillSelectedEndDate:DefaultDate:)){
+        [self.delegate CapitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_endDate] ;
     }
-    
-    return nil ;
 }
 
-- (NSString*)staticCollectionView:(CLStaticCollectionView *)collectionView cellWidthWeightAtIndexPath:(NSUInteger)section
+#pragma mark ---
+-(void)setStartDate:(NSDate *)startDate
 {
-    return @"5:1:5" ;
+    if (![_startDate isEqualToDate:startDate]){
+        _startDate = startDate;
+        [self.startCapitalDateCell updateUIWithDate:_startDate];
+    }
 }
 
--(void)staticCollectionView:(CLStaticCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)setEndDate:(NSDate *)endDate
 {
-    [collectionView deselectItemAtIndexPath:indexPath animated:NO] ;
-    if (indexPath.item==0){
-        
-        [self.selectedDateStaticView reloadData] ;
-    }else if (indexPath.item==2){
-        
-        [self.selectedDateStaticView reloadData] ;
+    if(![_endDate isEqualToDate:endDate]){
+        _endDate = endDate;
+        [self.endCapitalDateCell updateUIWithDate:_endDate];
     }
 }
 
