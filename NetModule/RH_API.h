@@ -185,7 +185,8 @@
 #define RH_GP_BETTING_TERMINAL                          @"terminal"
 #define RH_GP_BETTING_BETTIME                           @"betTime"
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
-#define RH_GP_BETTING_ORDERSTATE                      @"orderState"
+#define RH_GP_BETTING_PROFITAMOUNT                      @"profitAmount"
+#define RH_GP_BETTING_ORDERSTATE                        @"orderState"
 
 #pragma mark - V3 用户安全码 初始化信息模型
 #define RH_GP_USERSAFETY_HASREALNAME                                @"hasRealName"
@@ -279,6 +280,8 @@
 //返回参数
 #define RH_GP_BETTINGLIST_LIST                              @"list"
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
+#define RH_GP_BETTINGLIST_TOTALSINGLEAMOUN                  @"singleAmount"
+#define RH_GP_BETTINGLIST_TOTALPROFIT                       @"profit"
 
 #pragma mark -V3 资金记录 清单
 //api的路径

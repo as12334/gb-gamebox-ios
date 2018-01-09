@@ -18,6 +18,7 @@
 @property(nonatomic,strong,readonly) NSString*  mTerminal ;
 @property(nonatomic,strong,readonly) NSDate*    mBettime    ;
 @property(nonatomic,assign,readonly) CGFloat    mSingleAmount ;
+@property(nonatomic,assign,readonly) CGFloat    mProfitAmount ;
 @property(nonatomic,strong,readonly) NSString*  mOrderState ;
 
 

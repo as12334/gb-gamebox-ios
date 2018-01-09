@@ -34,8 +34,12 @@
     self.staticCollectView.allowCellSeparationLine = NO ;
     self.staticCollectView.allowSectionSeparationLine = NO ;
     self.staticCollectView.averageCellWidth = NO ;
+    self.staticCollectView.backgroundColor = [UIColor clearColor] ;
     
     self.staticCollectView.dataSource = self ;
+    
+    self.selectionOption = CLSelectionOptionHighlighted ;
+    self.selectionColor = RH_Cell_DefaultHolderColor ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -76,12 +80,16 @@
             titleCell.labTitle.text = self.bettingInfoModel.showBettingDate ;
             break;
             
-//        case 2: //投注额
-//            titleCell.labTitle.text = self.bettingInfoModel.
-//            break;
+        case 2: //投注额
+            titleCell.labTitle.text = self.bettingInfoModel.showSingleAmount ;
+            break;
         
-        case 3: //投注额
-            //            titleCell.labTitle.text = self.bettingInfoModel.m
+        case 3: //派彩
+            titleCell.labTitle.text = self.bettingInfoModel.showProfitAmount ;
+            break;
+       
+        case 4: //状态
+            titleCell.labTitle.text = self.bettingInfoModel.showStatus ;
             break;
             
         default:
@@ -92,7 +100,7 @@
 
 - (NSString*)staticCollectionView:(CLStaticCollectionView *)collectionView cellWidthWeightAtIndexPath:(NSUInteger)section
 {
-    return @"1:1:1:1:1" ;
+    return @"1:1.3:0.8:0.8:0.8" ;
 }
 
 @end

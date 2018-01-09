@@ -135,6 +135,11 @@
               }] ;
 }
 
+-(void)bettingRecordHeaderViewTouchSearchButton:(RH_BettingRecordHeaderView*)bettingRecordHeaderView
+{
+    [self startUpdateData] ;
+}
+
 #pragma mark-sort table header view
 -(RH_BettingTableHeaderView *)bettingTableHeaderView
 {
@@ -236,5 +241,7 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
+
+
 
 @end
