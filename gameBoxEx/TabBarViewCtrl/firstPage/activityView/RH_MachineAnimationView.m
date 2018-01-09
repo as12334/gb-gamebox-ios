@@ -133,7 +133,6 @@
 {
     if (self.subwindow) {
         //隐藏
-        
         [UIView animateWithDuration:1.f animations:^{
             self.activithyView.alpha = 0;
             self.subwindow.alpha = 0;

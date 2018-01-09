@@ -7,6 +7,7 @@
 //
 
 #import "RH_GesturelLockView.h"
+#import "coreLib.h"
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -30,6 +31,7 @@
 /** */
 @property (nonatomic, strong)UIBezierPath * path;
 @property (nonatomic, strong)CAShapeLayer * slayer;
+@property (nonatomic,strong)UIView *bigView;
 @end
 @implementation RH_GesturelLockView
 
@@ -51,16 +53,21 @@
     if (self) {
         Amode = mode;
         _startAtButton = NO;
-        self.backgroundColor = [UIColor clearColor];
+//        self.backgroundColor = [UIColor clearColor];
         if (self.lineColor == nil) {
             self.lineColor = [UIColor greenColor];
         }
+//        _bigView = [[UIView alloc]initWithFrame:self.frame];
+//        _bigView.backgroundColor = [UIColor clearColor];
+//        [self addSubview:_bigView];
         //        1、创建九个btn
         for (int i = 0; i<9; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.tag = i;
             btn.userInteractionEnabled = NO;
             [self addSubview:btn];
+            [self bringSubviewToFront:btn];
+            
             [self.nineBtnArray addObject:btn];
         }
     }
@@ -70,6 +77,7 @@
     for (int index = 0; index<self.subviews.count; index ++) {
         //        拿到每个btn
         UIButton *btn = self.subviews[index];
+        [btn setBackgroundImage:self.btnImage forState:UIControlStateNormal];
         //        设置frame
         CGFloat btnW = 74;
         CGFloat btnH = 74;
@@ -77,7 +85,6 @@
         //x = 间距 + 列号*（间距+btnW）
         CGFloat btnX = margin + (index % 3)*(margin + btnW);
         CGFloat btnY = margin + (index / 3)*(margin + btnH);
-        
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
     }
 }
@@ -90,7 +97,7 @@
             UIBezierPath *path = [[UIBezierPath alloc]init];
             path.lineCapStyle = kCGLineCapRound; //线条拐角
             path.lineJoinStyle = kCGLineCapRound; //终点处理
-            path.lineWidth = 10;
+            path.lineWidth = 1;
             _path = path;
             CAShapeLayer * slayer = [CAShapeLayer layer];
             slayer.path = path.CGPath;
@@ -98,9 +105,10 @@
             slayer.fillColor = [UIColor clearColor].CGColor;
             slayer.lineCap = kCALineCapRound;
             slayer.lineJoin = kCALineJoinRound;
-            slayer.strokeColor = [UIColor whiteColor].CGColor;
+            slayer.strokeColor =colorWithRGB(35, 120, 214).CGColor;
             slayer.lineWidth = path.lineWidth;
-            [self.layer addSublayer:slayer];
+//            slayer.fillRule = kCAFillRuleEvenOdd;
+            [self.layer insertSublayer:slayer atIndex:0];
             _slayer = slayer;
             //获取当前手指的位置
             CGPoint point = button.center;
@@ -120,8 +128,6 @@
         
         CGPoint movePoint = [self getCurrentTouch:touches];
         UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
-        
-        
         if (btn && btn.selected != YES) {
             btn.selected = YES;
             [self.btnsArray addObject:btn];
@@ -186,6 +192,7 @@
     for (UIButton *btn in self.btnsArray) {
         btn.selected = NO;
         btn.enabled = NO;
+        [btn setBackgroundImage:self.btnErrorImage forState:UIControlStateNormal];
     }
     // 1.2 设置线段颜色为红色
     self.lineColor = [UIColor redColor];
@@ -196,6 +203,7 @@
         for (UIButton *btn in self.btnsArray) {
             btn.selected = NO;
             btn.enabled = YES;
+            [btn setBackgroundImage:self.btnImage forState:UIControlStateNormal];
         }
         [self clear];
     });
@@ -226,7 +234,7 @@
 -(UIButton *)getCurrentBtnWithPoint:(CGPoint) currentPoint{
     for (UIButton *btn in self.subviews) {
         if (CGRectContainsPoint(btn.frame, currentPoint)) {
-            
+            [btn setBackgroundImage:self.btnSelectdImgae forState:UIControlStateNormal];
             return btn;
         }
     }
@@ -235,20 +243,20 @@
 
 
 
--(void)setBtnSelectdImgae:(UIImage *)btnSelectdImgae{
-    for (UIButton *btn in self.subviews) {
-        [btn setBackgroundImage:btnSelectdImgae forState:UIControlStateSelected];
-    }
-}
--(void)setBtnImage:(UIImage *)btnImage{
-    for (UIButton *btn in self.subviews) {
-        [btn setImage:btnImage forState:UIControlStateNormal];
-    }
-}
--(void)setBtnErrorImage:(UIImage *)btnErrorImage{
-    for (UIButton *btn in self.subviews) {
-        [btn setImage:btnErrorImage forState:UIControlStateDisabled];
-    }
-}
+//-(void)setBtnSelectdImgae:(UIImage *)btnSelectdImgae{
+//    for (UIButton *btn in self.subviews) {
+//        [btn setBackgroundImage:btnSelectdImgae forState:UIControlStateSelected];
+//    }
+//}
+//-(void)setBtnImage:(UIImage *)btnImage{
+//    for (UIButton *btn in self.subviews) {
+//        [btn setImage:btnImage forState:UIControlStateNormal];
+//    }
+//}
+//-(void)setBtnErrorImage:(UIImage *)btnErrorImage{
+//    for (UIButton *btn in self.subviews) {
+//        [btn setImage:btnErrorImage forState:UIControlStateDisabled];
+//    }
+//}
 
 @end
