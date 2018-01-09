@@ -420,6 +420,10 @@
 		F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACCC200494BA0077CB92 /* RH_CapitalRecordDetailsController.m */; };
 		F6A2ACD1200495940077CB92 /* RH_CapitalRecordDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACCF200495940077CB92 /* RH_CapitalRecordDetailsCell.m */; };
 		F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACD0200495940077CB92 /* RH_CapitalRecordDetailsCell.xib */; };
+		F6A2ACD82004B8390077CB92 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACD72004B8390077CB92 /* RH_CapitalTableViewCell.m */; };
+		F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACDB2004DDE00077CB92 /* RH_MineDiscountRecordController.m */; };
+		F6A2ACE12004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACDF2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m */; };
+		F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACE02004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6BD31841FFA0E85000AC941 /* RH_MachineAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
@@ -1166,6 +1170,13 @@
 		F6A2ACCE200495940077CB92 /* RH_CapitalRecordDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordDetailsCell.h; sourceTree = "<group>"; };
 		F6A2ACCF200495940077CB92 /* RH_CapitalRecordDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordDetailsCell.m; sourceTree = "<group>"; };
 		F6A2ACD0200495940077CB92 /* RH_CapitalRecordDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CapitalRecordDetailsCell.xib; sourceTree = "<group>"; };
+		F6A2ACD62004B8390077CB92 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
+		F6A2ACD72004B8390077CB92 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
+		F6A2ACDA2004DDE00077CB92 /* RH_MineDiscountRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineDiscountRecordController.h; sourceTree = "<group>"; };
+		F6A2ACDB2004DDE00077CB92 /* RH_MineDiscountRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineDiscountRecordController.m; sourceTree = "<group>"; };
+		F6A2ACDE2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineDiscountRecordTableViewCell.h; sourceTree = "<group>"; };
+		F6A2ACDF2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineDiscountRecordTableViewCell.m; sourceTree = "<group>"; };
+		F6A2ACE02004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MineDiscountRecordTableViewCell.xib; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6BD31821FFA0E85000AC941 /* RH_MachineAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MachineAnimationView.h; sourceTree = "<group>"; };
 		F6BD31831FFA0E85000AC941 /* RH_MachineAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MachineAnimationView.m; sourceTree = "<group>"; };
@@ -1257,6 +1268,8 @@
 				79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */,
 				79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */,
 				79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */,
+				F6A2ACD62004B8390077CB92 /* RH_CapitalTableViewCell.h */,
+				F6A2ACD72004B8390077CB92 /* RH_CapitalTableViewCell.m */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -2270,6 +2283,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				F6A2ACD92004DD600077CB92 /* mineDiscountRecord */,
 				F6E401FC2001BDC900C52B97 /* gesturelLock */,
 				A0B5A5651FFF6C1300E2CDD8 /* gameList */,
 				79FB81491FFDCD4600325BF3 /* CapitalRecord */,
@@ -2758,6 +2772,26 @@
 			path = capitalRecordDetails;
 			sourceTree = "<group>";
 		};
+		F6A2ACD92004DD600077CB92 /* mineDiscountRecord */ = {
+			isa = PBXGroup;
+			children = (
+				F6A2ACDD2004DDFE0077CB92 /* cells */,
+				F6A2ACDA2004DDE00077CB92 /* RH_MineDiscountRecordController.h */,
+				F6A2ACDB2004DDE00077CB92 /* RH_MineDiscountRecordController.m */,
+			);
+			path = mineDiscountRecord;
+			sourceTree = "<group>";
+		};
+		F6A2ACDD2004DDFE0077CB92 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F6A2ACDE2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.h */,
+				F6A2ACDF2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m */,
+				F6A2ACE02004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
 			isa = PBXGroup;
 			children = (
@@ -2837,6 +2871,7 @@
 			files = (
 				A0E3680B1F945E3F00758033 /* RH_MainTabBarItems.plist in Resources */,
 				F6A2ACB720044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.xib in Resources */,
+				F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
 				A0E782791FFE5C12007BFBF3 /* RH_DomainTableCell.xib in Resources */,
 				A01181601FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib in Resources */,
@@ -2963,6 +2998,7 @@
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
+				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				F6A2ACB320044C5A0077CB92 /* RH_MPGameNoticHeaderView.m in Sources */,
@@ -3099,6 +3135,7 @@
 				A0109FD51F8788FF004E6EF4 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
 				79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */,
 				A0109FD61F8788FF004E6EF4 /* UIColor+Hex.m in Sources */,
+				F6A2ACE12004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m in Sources */,
 				B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */,
 				A0109FD71F8788FF004E6EF4 /* UIView+DNImagePicker.m in Sources */,
 				A0109FD81F8788FF004E6EF4 /* DNAlbumTableViewCell.m in Sources */,
@@ -3147,6 +3184,7 @@
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
+				F6A2ACD82004B8390077CB92 /* RH_CapitalTableViewCell.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				F6A2ACBB20044C5A0077CB92 /* RH_MPSystemNoticeCell.m in Sources */,

@@ -300,20 +300,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3ActivityStatus
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark  - V3 拆红包
--(void)startV3OpenActivity:(NSString *)activityID
-{
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_OPENACTIVITY
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3OpenActivity
-                         scopeType:ServiceScopeTypePublic];
-}
 -(void)startV3GameListWithApiID:(NSInteger)apiID
                       ApiTypeID:(NSInteger)apiTypeID
                      PageNumber:(NSInteger)pageNumber
@@ -428,7 +414,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_OPENACTIVITY
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -452,7 +438,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3BettingDetails
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark 资金记录详情
+-(void)startV3DepositListDetails:(NSString *)searchId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init] ;
+    [dict setValue:searchId forKey:RH_API_DEPOSITLISTDETAILS_SEARCHID] ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositListDetails
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -795,6 +796,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
         }
          return YES ;
+    }
+    else if (type == ServiceRequestTypeV3DepositListDetails){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *error = tempError;
+        
+//        if (dataObject){
+//            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
+//        }
+        return YES;
     }
     //json解析
     NSError * tempError = nil;

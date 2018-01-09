@@ -295,6 +295,18 @@
 #define RH_SP_DEPOSITLIST_STARTDATE                          @"beginBetTime"
 #define RH_SP_DEPOSITLIST_ENDDATE                            @"endBetTime"
 
+/**
+    资金详情
+ */
+#pragma mark -V3  资金记录详情
+//api路径
+#define RH_API_NAME_DEPOSITLISTDETAILS                @"mineOrigin/getFundRecordDetails.html"
+//请求参数
+#define RH_API_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
+//返回参数
+
+
+
 #pragma mark -V3 用户安全码初始化信息
 //api的路径
 #define RH_API_NAME_USERSAFEINFO                        @"mineOrigin/initSafePassword.html"

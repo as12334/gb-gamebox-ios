@@ -1,18 +1,19 @@
 //
-//  RH_CapitalRecordDetailsController.m
+//  RH_MineDiscountRecordController.m
 //  gameBoxEx
 //
 //  Created by lewis on 2018/1/9.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_CapitalRecordDetailsController.h"
-#import "RH_CapitalRecordDetailsCell.h"
-@interface RH_CapitalRecordDetailsController ()
+#import "RH_MineDiscountRecordController.h"
+#import "RH_MineDiscountRecordTableViewCell.h"
+@interface RH_MineDiscountRecordController ()
 
 @end
 
-@implementation RH_CapitalRecordDetailsController
+@implementation RH_MineDiscountRecordController
+
 -(BOOL)isSubViewController
 {
     return YES ;
@@ -20,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"资金记录详情";
+    self.title = @"投注记录详情";
     [self createUI];
 }
 -(void)createUI{
@@ -29,11 +30,11 @@
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
-    [self.contentTableView registerCellWithClass:[RH_CapitalRecordDetailsCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_MineDiscountRecordTableViewCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-    [self setupPageLoadManager] ;
+//    [self setupPageLoadManager] ;
 }
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
@@ -69,7 +70,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3DepositListDetails:@"1"] ;
+    [self.serviceRequest startV3BettingDetails:4866637] ;
 }
 -(void)cancelLoadDataHandle
 {
@@ -120,17 +121,18 @@
     //        return height ;
     //    }
     
-    return 40.0f ;
+    return 70.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    if (self.pageLoadManager.currentDataCount){
-    RH_CapitalRecordDetailsCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalRecordDetailsCell defaultReuseIdentifier]] ;
-    [bettingRecordCell updateCellWithInfo:nil context:nil] ;
-    return bettingRecordCell ;
+    RH_MineDiscountRecordTableViewCell *discountRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_MineDiscountRecordTableViewCell defaultReuseIdentifier]] ;
+    [discountRecordCell updateCellWithInfo:nil context:nil] ;
+    return discountRecordCell ;
     //    }else{
     //        return self.loadingIndicateTableViewCell ;
     //    }
 }
+
 @end
