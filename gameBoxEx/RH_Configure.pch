@@ -114,6 +114,15 @@
 #define THEME    @"lottery.skin"
 #define SITE_TYPE    @"lottery"
 
+
+#elif _zmis //测试站点三
+
+#define CODE    @"zmis"
+#define S        @"5ef84e61a56641ee0c28301a46a01a7c"
+#define SID        @"80"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _8l6r //超博娱乐
 
 #define CODE    @"8l6r"
@@ -170,7 +179,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _bldz //电子777娱乐 ---线上测试站 
+#elif _bldz //电子777娱乐  线上测试站
 
 #define CODE    @"bldz"
 #define S        @"29c781bbc7bd176510f9695dfdf8dd35"
