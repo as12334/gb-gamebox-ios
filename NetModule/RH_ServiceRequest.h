@@ -142,7 +142,11 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize ;
 #pragma mark - 资金记录
--(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate ;
+-(void)startV3DepositList:(NSString*)startDate
+                  EndDate:(NSString*)endDate
+               SearchType:(NSString*)type
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize ;
 
 #pragma mark - 资金记录详情 根据ID进行查询
 -(void)startV3DepositListDetail:(NSString*)searchId;
