@@ -9,9 +9,9 @@
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
 #import "RH_UserInfoManager.h"
-@interface RH_ModifySafetyPasswordController() <CLTableViewManagementDelegate>
+@interface RH_ModifySafetyPasswordController() <CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
-@property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
+@property (nonatomic, strong) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong) UIButton *button;
 @end
 @implementation RH_ModifySafetyPasswordController
@@ -49,8 +49,40 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    //没有安全密码，需要设置。
+    if (UserSafetyInfo.mHasRealName == NO && UserSafetyInfo.mHasPersimmionPwd == NO) {
+        [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifySafetyPasswordNoName"] ;
+        [self.button setTitle:@"确认" forState:UIControlStateNormal];
+        self.title = @"设置安全密码";
+    }
     
-    if ()
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (UserSafetyInfo.mHasRealName == NO) {
+        [self showInputNameAlertView];
+    }
+}
+
+- (void)showInputNameAlertView {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"设置真实姓名" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"请输入真实姓名";
+    }];
+    UIAlertAction *actionDefault = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *textF = alertController.textFields[0];
+        if (textF.text.length == 0) {
+            [self showInputNameAlertView];
+        }else {
+            [self.serviceRequest startV3SetRealName:textF.text];
+            self.serviceRequest.delegate = self;
+        }
+    }];
+    [alertController addAction:actionDefault];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (CLTableViewManagement *)tableViewManagement {
@@ -68,21 +100,60 @@
 
 - (void)modifyPassword {
     
-    RH_ModifyPasswordCell *truelyNameCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    RH_ModifyPasswordCell *currentPwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    RH_ModifyPasswordCell *newPwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    RH_ModifyPasswordCell *newPwdCell2 = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-    NSString *currentPwd = currentPwdCell.textField.text;
-    NSString *newPwd = newPwdCell.textField.text;
-    NSString *newPwd2 = newPwdCell2.textField.text;
-    NSString *truelyName = truelyNameCell.textField.text;
-    if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0 || truelyName.length == 0) {
-        showMessage(self.view, nil, @"请输入密码");
-        return;
+    if (UserSafetyInfo.mHasPersimmionPwd == NO && UserSafetyInfo.mHasRealName == NO) {
+        RH_ModifyPasswordCell *pwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        RH_ModifyPasswordCell *pwdCell2 = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        NSString *pwd = pwdCell.textField.text;
+        NSString *pwd2 = pwdCell2.textField.text;
+        if (pwd.length == 0 || pwd2.length == 0) {
+            showMessage(self.view, nil, @"请输入密码");
+            return;
+        }
+        if (![pwd isEqualToString:pwd2]) {
+            showMessage(self.view, nil, @"两次输入密码不一样！");
+            return;
+        }
+        [self.serviceRequest startV3UpdateSafePassword:NO name:nil originPassword:nil newPassword:pwd confirmPassword:pwd2 verifyCode:nil];
+        self.serviceRequest.delegate = self;
     }
-    if (![newPwd isEqualToString:newPwd2]) {
-        showMessage(self.view, nil, @"两次输入的密码不一样！");
-        return;
+    if (UserSafetyInfo.mHasPersimmionPwd == NO) {
+        RH_ModifyPasswordCell *truelyNameCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        RH_ModifyPasswordCell *currentPwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        RH_ModifyPasswordCell *newPwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+        RH_ModifyPasswordCell *newPwdCell2 = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+        NSString *currentPwd = currentPwdCell.textField.text;
+        NSString *newPwd = newPwdCell.textField.text;
+        NSString *newPwd2 = newPwdCell2.textField.text;
+        NSString *truelyName = truelyNameCell.textField.text;
+        if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0 || truelyName.length == 0) {
+            showMessage(self.view, nil, @"请输入密码");
+            return;
+        }
+        if (![newPwd isEqualToString:newPwd2]) {
+            showMessage(self.view, nil, @"两次输入的密码不一样！");
+            return;
+        }
+        [self.serviceRequest startV3UpdateSafePassword:NO name:truelyName originPassword:nil newPassword:newPwd confirmPassword:newPwd2 verifyCode:nil];
+        self.serviceRequest.delegate = self;
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+    NSLog(@"%s", __func__);
+    NSLog(@"%@", error);
+}
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
+    NSLog(@"%s", __func__);
+    if (type == ServiceRequestTypeV3SetRealName) {
+        NSLog(@"%@", data);
+    }
+    if (type == ServiceRequestTypeV3UpdateSafePassword) {
+        NSLog(@"%@", data);
+        [self.serviceRequest startV3UserSafetyInfo];
+    }
+    if (type == ServiceRequestTypeV3UserSafeInfo) {
+        NSLog(@"%@", data);
+        RH_UserSafetyCodeModel *model = data;
     }
 }
 @end

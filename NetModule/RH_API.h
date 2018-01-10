@@ -289,6 +289,16 @@
 //api的路径
 #define RH_API_NAME_USERSAFEINFO                        @"mineOrigin/initSafePassword.html"
 //请求参数 无
+#pragma mark -V3 设置真实姓名
+//API的路径
+#define RH_API_NAME_SETREALNAME                         @"mineOrigin/setRealName.html"
+//请求参数
+#pragma mark -V3 修改安全密码接口
+//api路径
+#define RH_API_NAME_UPDATESAFEPASSWORD                    @"mineOrigin/updateSafePassword.html"
+//请求参数 无
+#pragma mark -V3 修改登录密码
+#define RH_API_NAME_UPDATE_LOGINPASSWORD                    @"mineOrigin/updateLoginPassword.html"
 
 #endif /* RH_API_h */
 

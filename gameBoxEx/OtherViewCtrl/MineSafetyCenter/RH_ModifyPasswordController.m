@@ -102,7 +102,7 @@
         showMessage(self.view, nil, @"两次输入的密码不一样！");
         return;
     }
-    [self.serviceRequest startV3ChangePasswordWith:currentPwd and:newPwd];
+    [self.serviceRequest startV3UpdateLoginPassword:currentPwd newPassword:newPwd verifyCode:nil];
     self.serviceRequest.delegate = self;
 }
 

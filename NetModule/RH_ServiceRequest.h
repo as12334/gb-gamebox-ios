@@ -38,6 +38,9 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3ModifyPassword  , //修改密码
     ServiceRequestTypeV3ModifySafetyPassword ,
     ServiceRequestTypeV3UserSafeInfo   , //用户安全码信息
+    ServiceRequestTypeV3SetRealName     ,//设置真实姓名
+    ServiceRequestTypeV3UpdateSafePassword,//修改安全密码
+    ServiceRequestTypeV3UpdateLoginPassword,//修改登录密码
 };
 
 
@@ -147,7 +150,23 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo ;
 
-#pragma mark -
+#pragma mark - 设置真实名字
+- (void)startV3SetRealName: (NSString*)name;
+
+#pragma mark - 修改安全密码接口
+- (void)startV3UpdateSafePassword:(BOOL)needCaptcha
+                             name:(nullable NSString *)realName
+                   originPassword:(nullable NSString *)originPwd
+                      newPassword:(nullable NSString *)pwd1
+                  confirmPassword:(nullable NSString *)pwd2
+                       verifyCode:(nullable NSString *)code;
+
+#pragma mark - 修改登录密码
+- (void)startV3UpdateLoginPassword:(NSString *)password
+                       newPassword:(NSString *)newPassword
+                        verifyCode:(NSString *)code;
+
+
 /**
  * 取消所有服务
  */
