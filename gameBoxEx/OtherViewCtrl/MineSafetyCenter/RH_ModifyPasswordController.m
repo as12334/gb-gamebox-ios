@@ -23,6 +23,7 @@
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *confirmSettingPasswordCell ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCodeCell *passwordCodeCell ;
 
+@property (nonatomic, strong) UILabel *label_Notice;
 @end
 
 @implementation RH_ModifyPasswordController
@@ -83,17 +84,23 @@
     [self.tableViewManagement reloadData];
     
     UIView *view_Footer = [[UIView alloc] init];
-    view_Footer.frame = CGRectMake(0, 0, screenSize().width, 80);
+    view_Footer.frame = CGRectMake(0, 0, screenSize().width, 120);
     self.contentTableView.tableFooterView = view_Footer;
     
     [view_Footer addSubview:self.modifyButton];
     self.modifyButton.whc_Center(0, 0).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(44);
     
+    self.label_Notice = [[UILabel alloc] init];
+    [view_Footer addSubview:self.label_Notice];
+    self.label_Notice.whc_LeftSpace(20).whc_TopSpace(0).whc_Width(screenSize().width/2).whc_Height(30);
+    self.label_Notice.font = [UIFont systemFontOfSize:10];
+    self.label_Notice.textColor = colorWithRGB(153, 153, 153);
+    self.label_Notice.textAlignment = NSTextAlignmentLeft;
 }
 
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
-        _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_ModifyPassword" bundle:nil];
+        _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_ModifyPasswordUsercode" bundle:nil];
         _tableViewManagement.delegate = self;
     }
     return _tableViewManagement;
