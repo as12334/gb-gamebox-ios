@@ -148,6 +148,13 @@
               }] ;
 }
 
+#pragma mark --- 搜索按钮点击
+-(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)bettingRecordHeaderView
+{
+    NSLog(@"搜索");
+}
+
+
 #pragma mark-
 -(void)netStatusChangedHandle
 {
