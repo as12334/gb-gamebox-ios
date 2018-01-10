@@ -8,6 +8,7 @@
 
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
+#import "RH_UserInfoManager.h"
 @interface RH_ModifySafetyPasswordController() <CLTableViewManagementDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -46,6 +47,12 @@
     [self.button addTarget:self action:@selector(modifyPassword) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
         _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_ModifySafetyPassword" bundle:nil];
@@ -70,7 +77,7 @@
     NSString *newPwd2 = newPwdCell2.textField.text;
     NSString *truelyName = truelyNameCell.textField.text;
     if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0 || truelyName.length == 0) {
-        showMessage(self.view, @"错误", @"请输入密码");
+        showMessage(self.view, nil, @"请输入密码");
         return;
     }
     if (![newPwd isEqualToString:newPwd2]) {

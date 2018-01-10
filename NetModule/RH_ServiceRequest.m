@@ -454,11 +454,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 资金记录详情 根据ID进行查询
--(void)startV3DepositListDetail:(NSString*)searchId{
+-(void)startV3DepositListDetail:(NSString*)searchId
+{
     RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:@"id"];
-    [self _startServiceWithAPIName:appDelegate.domain pathFormat:RH_API_NAME_DEPOSITLISTDETAILS pathArguments:nil headerArguments:@{@"User-Agent":@"app_ios, iPhone"} queryArguments:dict bodyArguments:nil httpType:HTTPRequestTypePost serviceType:ServiceRequestTypeV3DepositListDetails scopeType:ServiceScopeTypePublic];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositListDetails
+                         scopeType:ServiceScopeTypePublic];
 }
 
 #pragma mark -
@@ -742,10 +751,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 [self startV3UserInfo] ;
-                [self startV3MineLinkInfo] ;
-                [self startV3UserSafetyInfo] ;
             }
-            
         }else{
             *reslutData = @(NO) ;
         }
@@ -791,8 +797,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
         }
          return YES ;
-    }
-    else if (type == ServiceRequestTypeV3BettingDetails){
+    }else if (type == ServiceRequestTypeV3BettingDetails){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -849,8 +854,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
                     [self startV3UserInfo] ;
-                    [self startV3MineLinkInfo] ;
-                    [self startV3UserSafetyInfo] ;
                 }
             }
                 break ;
@@ -921,6 +924,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
                     [userInfoManager setUserSafetyInfo:resultSendData] ;
                 }
+            }
+                break ;
+           
+          case ServiceRequestTypeV3ModifyPassword:
+            {
+                NSLog(@"") ;
             }
                 break ;
                 

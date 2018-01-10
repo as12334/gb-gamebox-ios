@@ -119,7 +119,6 @@ NSString * const HTTPRequestResultErrorDomin = @"HTTPRequestResultErrorDomin";
 {
     NSInteger errorCode = [info integerValueForKey:RH_GP_V3_CODE];
     errorCode = errorCode ?: RH_API_ERRORCODE_UNKNOW_ERROR;
-
     NSString * message = [info stringValueForKey:RH_GP_V3_MESSAGE];
     return ERROR_CREATE(HTTPRequestResultErrorDomin,
                         errorCode,

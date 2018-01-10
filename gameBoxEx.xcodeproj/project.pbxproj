@@ -286,6 +286,7 @@
 		A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A039BD9F20036B2B0080D56F /* RH_BettingRecordCell.xib */; };
 		A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA120036B2C0080D56F /* RH_BettingRecordCell.m */; };
 		A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA4200389710080D56F /* RH_UserSafetyCodeModel.m */; };
+		A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */; };
 		A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109EE21F87852F004E6EF4 /* MacroDef.h */; };
 		A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */; };
 		A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */; };
@@ -393,6 +394,7 @@
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
 		B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */; };
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
+		B87A6B0F20045C8400C9788F /* RH_ModifySafetyPasswordNoName.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B0E20045C8400C9788F /* RH_ModifySafetyPasswordNoName.plist */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* RH_ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* RH_ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -918,6 +920,8 @@
 		A039BDA120036B2C0080D56F /* RH_BettingRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordCell.m; sourceTree = "<group>"; };
 		A039BDA4200389710080D56F /* RH_UserSafetyCodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserSafetyCodeModel.m; sourceTree = "<group>"; };
 		A039BDA5200389710080D56F /* RH_UserSafetyCodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserSafetyCodeModel.h; sourceTree = "<group>"; };
+		A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingDetailModel.h; sourceTree = "<group>"; };
+		A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingDetailModel.m; sourceTree = "<group>"; };
 		A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewController.h; sourceTree = "<group>"; };
 		A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewController.m; sourceTree = "<group>"; };
 		A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewController.h; sourceTree = "<group>"; };
@@ -1125,6 +1129,7 @@
 		B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_MineSettings.plist; sourceTree = "<group>"; };
 		B832D0531FFE321000B403B0 /* RH_MineSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsCell.h; sourceTree = "<group>"; };
 		B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSettingsCell.m; sourceTree = "<group>"; };
+		B87A6B0E20045C8400C9788F /* RH_ModifySafetyPasswordNoName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_ModifySafetyPasswordNoName.plist; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* RH_ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -1967,6 +1972,8 @@
 				A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */,
 				A039BD9D200321B30080D56F /* RH_BettingInfoModel.h */,
 				A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */,
+				A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */,
+				A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */,
 				A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */,
 				A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */,
 				A01CB4BA1FFB1E7900447130 /* RH_MineGroupInfoModel.h */,
@@ -2615,6 +2622,7 @@
 				B8107AB11FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.h */,
 				B8107AB21FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m */,
 				B8F0E5012001BD3E00A3AC94 /* RH_ModifySafetyPassword.plist */,
+				B87A6B0E20045C8400C9788F /* RH_ModifySafetyPasswordNoName.plist */,
 				B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */,
 				B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */,
 				B8F0E5032001EFA100A3AC94 /* RH_ModifyPasswordController.h */,
@@ -2945,6 +2953,7 @@
 				A001B3EC1F8EF7CA00309EA4 /* tab_service@2x.png in Resources */,
 				A0B609B71FBB05AC00A44B37 /* tab_v3_promo@2x.png in Resources */,
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
+				B87A6B0F20045C8400C9788F /* RH_ModifySafetyPasswordNoName.plist in Resources */,
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
 				A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
@@ -3065,6 +3074,7 @@
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
 				A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */,
+				A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */,
 				A0109FB91F8788FF004E6EF4 /* UIImage+Representation.m in Sources */,
 				A0E367AD1F90617700758033 /* RH_PayViewController.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,

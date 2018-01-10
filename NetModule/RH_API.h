@@ -196,6 +196,28 @@
 #define RH_GP_USERSAFETY_LOCKTIME                             @"lockTime"
 
 
+#pragma mark - V3 投注详情 模型
+#define RH_GP_BETTINGDETAIL_APIID                                @"apiId"
+#define RH_GP_BETTINGDETAIL_APINAME                              @"apiName"
+#define RH_GP_BETTINGDETAIL_APITYPEID                            @"apiTypeId"
+#define RH_GP_BETTINGDETAIL_BETDETAIL                            @"betDetail"
+#define RH_GP_BETTINGDETAIL_BETID                                @"betId"
+#define RH_GP_BETTINGDETAIL_BETTIME                              @"betTime"
+#define RH_GP_BETTINGDETAIL_BETTYPENAME                           @"betTypeName"
+#define RH_GP_BETTINGDETAIL_CONTRIBUTIONAMOUNT                    @"contributionAmount"
+#define RH_GP_BETTINGDETAIL_EFFECTIVETRADEAMOUNT                      @"effectiveTradeAmount"
+#define RH_GP_BETTINGDETAIL_GAMEID                                @"gameId"
+#define RH_GP_BETTINGDETAIL_GAMENAME                                @"gameName"
+#define RH_GP_BETTINGDETAIL_GAMETYPE                                @"gameType"
+#define RH_GP_BETTINGDETAIL_ODDSTYPENAME                                @"oddsTypeName"
+#define RH_GP_BETTINGDETAIL_ORDERSTATE                                @"orderState"
+#define RH_GP_BETTINGDETAIL_PAYOUTTIME                                @"payoutTime"
+#define RH_GP_BETTINGDETAIL_PROFITAMOUNT                                @"profitAmount"
+#define RH_GP_BETTINGDETAIL_RESULTARRAY                                @"resultArray"
+#define RH_GP_BETTINGDETAIL_SINGLEAMOUNT                                @"singleAmount"
+#define RH_GP_BETTINGDETAIL_TERMINAL                                @"terminal"
+#define RH_GP_BETTINGDETAIL_USERNAME                                @"userName"
+
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -228,7 +250,7 @@
 #pragma mark- v3 我的 接口
 //api的路径
 #define RH_API_NAME_MINEGROUPINFO                        @"mineOrigin/getLink.html"
-#define RH_API_NAME_MINEMODIFYPASSWORD                   @"origin/updateLoginPassword.html"
+#define RH_API_NAME_MINEMODIFYPASSWORD                   @"mineOrigin/updateLoginPassword.html"
 #define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
 //请求参数 无
 //返回参数
