@@ -961,6 +961,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break ;
             
+            case ServiceRequestTypeV3DepositList:
+            {
+                
+            }
+                break ;
+                
             case ServiceRequestTypeV3UserSafeInfo:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;

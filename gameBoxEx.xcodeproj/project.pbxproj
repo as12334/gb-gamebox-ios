@@ -18,6 +18,8 @@
 		189C13B31FF9E99F00B14298 /* RH_MineRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */; };
 		797252EA2004687200A73F05 /* RH_DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252E82004687200A73F05 /* RH_DropdownMenu.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
+		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
+		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -468,6 +470,10 @@
 		797252E92004687200A73F05 /* RH_DropdownMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DropdownMenu.h; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
+		79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoModel.h; sourceTree = "<group>"; };
+		79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoModel.m; sourceTree = "<group>"; };
+		79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetailModel.h; sourceTree = "<group>"; };
+		79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetailModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -1977,6 +1983,10 @@
 				A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */,
 				A01CB4B51FFA60D300447130 /* RH_LinkInfoModel.h */,
 				A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */,
+				79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */,
+				79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */,
+				79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */,
+				79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */,
 				A039BD9D200321B30080D56F /* RH_BettingInfoModel.h */,
 				A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */,
 				A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */,
@@ -3013,6 +3023,7 @@
 				A0E367AE1F9061E500758033 /* RH_PayViewController.h in Sources */,
 				A0E3679E1F8F91D700758033 /* RH_BasicModel.h in Sources */,
 				A0E7827A1FFE5C12007BFBF3 /* RH_DomainTableCell.m in Sources */,
+				79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */,
 				A001B3F61F8F073B00309EA4 /* RH_CustomServicePageViewController.m in Sources */,
 				A001B3F21F8EFF4200309EA4 /* RH_TransferViewController.m in Sources */,
 				A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */,
@@ -3125,6 +3136,7 @@
 				F6A2AC89200311980077CB92 /* RH_OpenActivithyView.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
+				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
