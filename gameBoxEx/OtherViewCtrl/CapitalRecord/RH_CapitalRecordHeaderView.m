@@ -105,7 +105,9 @@
 
 #pragma mark --- 搜索按钮
 -(void)searchBtnClick{
-    NSLog(@"搜索");
+    ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewTouchSearchButton:)){
+        [self.delegate capitalRecordHeaderViewTouchSearchButton:self] ;
+    }
 }
 
 -(void)typeBtnClick:(UIButton *)btn{
@@ -134,7 +136,6 @@
 }
 
 
-
 #pragma mark -startCapitalDateCell
 -(RH_CapitalStaticDataCell *)startCapitalDateCell
 {
@@ -148,8 +149,8 @@
 
 -(void)startCapatitalDateCellHandle
 {
-    ifRespondsSelector(self.delegate, @selector(CapitalRecordHeaderViewWillSelectedStartDate:DefaultDate:)){
-        [self.delegate CapitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_startDate] ;
+    ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewWillSelectedStartDate:DefaultDate:)){
+        [self.delegate capitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_startDate] ;
     }
 }
 
@@ -166,8 +167,8 @@
 
 -(void)endCapitalDateCellHandle
 {
-    ifRespondsSelector(self.delegate, @selector(CapitalRecordHeaderViewWillSelectedEndDate:DefaultDate:)){
-        [self.delegate CapitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_endDate] ;
+    ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewWillSelectedEndDate:DefaultDate:)){
+        [self.delegate capitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_endDate] ;
     }
 }
 

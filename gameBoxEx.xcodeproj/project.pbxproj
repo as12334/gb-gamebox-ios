@@ -367,6 +367,7 @@
 		A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609BC1FBB071000A44B37 /* tab_v3_my_selected@2x.png */; };
 		A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */; };
 		A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */; };
+		A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */; };
 		A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */; };
 		A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
@@ -1091,6 +1092,8 @@
 		A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my@2x.png"; sourceTree = "<group>"; };
 		A0B609C11FBB096B00A44B37 /* RH_PromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoViewController.h; sourceTree = "<group>"; };
 		A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoViewController.m; sourceTree = "<group>"; };
+		A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoOverviewModel.m; sourceTree = "<group>"; };
+		A0B86B9C20063E250009AB25 /* RH_CapitalInfoOverviewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoOverviewModel.h; sourceTree = "<group>"; };
 		A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_TestViewController.h; sourceTree = "<group>"; };
 		A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_TestViewController.m; sourceTree = "<group>"; };
 		A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomTabBar.h; sourceTree = "<group>"; };
@@ -1987,6 +1990,8 @@
 				79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */,
 				79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */,
 				79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */,
+				A0B86B9C20063E250009AB25 /* RH_CapitalInfoOverviewModel.h */,
+				A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */,
 				A039BD9D200321B30080D56F /* RH_BettingInfoModel.h */,
 				A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */,
 				A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */,
@@ -3264,6 +3269,7 @@
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
+				A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
 				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,

@@ -144,6 +144,7 @@
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
+    
     [self.contentTableView registerCellWithClass:[RH_BannerViewCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DaynamicLabelCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_HomeCategoryCell class]] ;
@@ -177,7 +178,7 @@
         [self startUpdateData] ;
         
     }else{
-        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
+        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
     }
 }
 
@@ -377,8 +378,6 @@
         }] ;
     }
 }
-
-#pragma mark-alertView
 
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle

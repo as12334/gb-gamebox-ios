@@ -140,13 +140,10 @@
 }
 
 #pragma mark-
-
-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
     [self startUpdateData] ;
 }
-
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data

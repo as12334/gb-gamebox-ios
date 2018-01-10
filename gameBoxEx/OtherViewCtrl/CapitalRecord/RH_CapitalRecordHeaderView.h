@@ -11,8 +11,9 @@
 @class RH_CapitalRecordHeaderView ;
 @protocol CapitalRecordHeaderViewDelegate
 @optional
--(void)CapitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView*)CapitalRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
--(void)CapitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView*)CapitalRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
+-(void)capitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView*)CapitalRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
+-(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView*)CapitalRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
+-(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView*)bettingRecordHeaderView ;
 @end
 
 @interface RH_CapitalRecordHeaderView : UIView
