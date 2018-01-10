@@ -9,6 +9,7 @@
 #import "RH_BettingRecordDetailController.h"
 #import "RH_BettingRecordDetailCell.h"
 #import "RH_BettingInfoModel.h"
+#import "RH_BettingDetailModel.h"
 
 @interface RH_BettingRecordDetailController ()
 
@@ -102,8 +103,9 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3BettingDetails){
-        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        
+        RH_BettingDetailModel *bettingDetailModel = ConvertToClassPointer(RH_BettingDetailModel, data) ;
+        [self loadDataSuccessWithDatas:bettingDetailModel?@[bettingDetailModel]:@[]
+                            totalCount:bettingDetailModel?1:0] ;
     }
 }
 
@@ -122,31 +124,28 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return MAX(1, self.pageLoadManager.currentDataCount) ;
-    return 10;
+    return MAX(1, self.pageLoadManager.currentDataCount) ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.pageLoadManager.currentDataCount){
-//        return [RH_BettingRecordDetailCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-//    }else{
-//        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
-//        return height ;
-//    }
+    if (self.pageLoadManager.currentDataCount){
+        return [RH_BettingRecordDetailCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+    }else{
+        return   MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+    }
     
-    return 40.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.pageLoadManager.currentDataCount){
+    if (self.pageLoadManager.currentDataCount){
         RH_BettingRecordDetailCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_BettingRecordDetailCell defaultReuseIdentifier]] ;
-        [bettingRecordCell updateCellWithInfo:nil context:nil] ;
+        [bettingRecordCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return bettingRecordCell ;
-//    }else{
-//        return self.loadingIndicateTableViewCell ;
-//    }
+    }else{
+        return self.loadingIndicateTableViewCell ;
+    }
 }
 
 @end

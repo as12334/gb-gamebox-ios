@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="202" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bP-kU-a9s">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bP-kU-a9s" customClass="CLSelectionControl">
                     <rect key="frame" x="0.0" y="10" width="202" height="20"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="betRec_calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Cr6-84-XgU">

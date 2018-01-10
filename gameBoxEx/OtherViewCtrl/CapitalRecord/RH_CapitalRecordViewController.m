@@ -10,6 +10,7 @@
 #import "RH_CapitalRecordHeaderView.h"
 #import "RH_CapitalRecordBottomView.h"
 #import "RH_CapitalTableViewCell.h"
+#import "coreLib.h"
 
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
@@ -52,8 +53,6 @@
     
 }
 
-
-
 #pragma mark-
 -(void)setupUI
 {
@@ -70,16 +69,11 @@
     self.contentTableView.sectionHeaderHeight = 0.0f ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
-    
-//    [self.contentCollectionView registerCellWithClass:[RH_CapitalTableViewCell class] andReuseIdentifier:@"RH_CapitalTableViewCell"];
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-//    [self setupPageLoadManager] ;
+    
+    [self setupPageLoadManager] ;
 }
 
-
-- (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
-    return  YES;
-}
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
@@ -166,11 +160,13 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-#if 0
-    //    [self.serviceRequest startGetOpenCode:nil isHistory:NO] ;
-#else
-    [self loadDataSuccessWithDatas:nil  totalCount:0] ;
-#endif
+    NSDate *startDate = [[NSDate date] dateWithMoveDay:-300] ;
+    NSDate *endDate = [NSDate date] ;
+    [self.serviceRequest startV3DepositList:dateStringWithFormatter(startDate, @"yyyy-MM-dd")
+                                    EndDate:dateStringWithFormatter(endDate, @"yyyy-MM-dd")
+                                 SearchType:nil
+                                 PageNumber:page
+                                   PageSize:pageSize] ;
 }
 
 -(void)cancelLoadDataHandle

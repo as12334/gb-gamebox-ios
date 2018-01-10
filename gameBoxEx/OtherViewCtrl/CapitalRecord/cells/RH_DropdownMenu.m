@@ -146,6 +146,7 @@
     
     if(button.selected == NO) {
         [self showDropDown];
+        
     }
     else {
         [self hideDropDown];
@@ -153,10 +154,9 @@
 }
 
 - (void)showDropDown{   // 显示下拉列表
+
     
     [_listView.superview bringSubviewToFront:_listView]; // 将下拉列表置于最上层
-    
-    
     
     if ([self.delegate respondsToSelector:@selector(dropdownMenuWillShow:)]) {
         [self.delegate dropdownMenuWillShow:self]; // 将要显示回调代理
@@ -186,8 +186,6 @@
     if ([self.delegate respondsToSelector:@selector(dropdownMenuWillHidden:)]) {
         [self.delegate dropdownMenuWillHidden:self]; // 将要隐藏回调代理
     }
-    
-    
     [UIView animateWithDuration:AnimateTime animations:^{
         
         _arrowMark.transform = CGAffineTransformIdentity;
@@ -244,4 +242,7 @@
     
     [self hideDropDown];
 }
+
+
+
 @end
