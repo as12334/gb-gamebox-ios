@@ -418,7 +418,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-<<<<<<< HEAD
 #pragma mark - 设置真实名字
 - (void)startV3SetRealName:(NSString *)name {
     
@@ -474,7 +473,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 
-=======
 #pragma mark 拆红包
 -(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
 {
@@ -528,7 +526,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark -
->>>>>>> origin/dev_luis
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
 }
@@ -983,6 +980,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     [userInfoManager setUserSafetyInfo:resultSendData] ;
                 }
             }
+                break ;
+           
+          case ServiceRequestTypeV3ModifyPassword:
                 break ;
                 
             default:

@@ -47,7 +47,8 @@
     [self.button addTarget:self action:@selector(modifyPassword) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     //没有安全密码，需要设置。
     if (UserSafetyInfo.mHasRealName == NO && UserSafetyInfo.mHasPersimmionPwd == NO) {
@@ -67,7 +68,7 @@
 }
 
 - (void)showInputNameAlertView {
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"设置真实姓名" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"请输入真实姓名";
