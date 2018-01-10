@@ -926,6 +926,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
+           
+          case ServiceRequestTypeV3ModifyPassword:
+            {
+                NSLog(@"") ;
+            }
+                break ;
                 
             default:
                 resultSendData = dataObject ;
