@@ -866,8 +866,6 @@
 
 
 #pragma mark-
-#pragma mark-
-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
@@ -878,6 +876,17 @@
         }else{
             [self.appDelegate updateLoginStatus:false] ;
         }
+    }else if (type==ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if ([data boolValue]){
+                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                [self.appDelegate updateLoginStatus:true] ;
+                [self backBarButtonItemHandle] ;
+            }else{
+                showAlertView(@"试玩登入失败", @"提示信息");
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }] ;
     }
 }
 
@@ -885,6 +894,11 @@
 {
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self.appDelegate updateLoginStatus:false] ;
+    }else if (type==ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"提示信息");
+            [self.appDelegate updateLoginStatus:false] ;
+        }] ;
     }
 }
 

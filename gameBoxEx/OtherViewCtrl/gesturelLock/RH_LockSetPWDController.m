@@ -29,14 +29,11 @@
     isFirst = YES;
 }
 -(void)setupUI{
-    self.view.backgroundColor = RH_NavigationBar_BackgroundColor;
-    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]  initWithFrame:CGRectMake(0,
-                                                                                           StatusBarHeight+NavigationBarHeight,
-                                                                                           MainScreenW,
-                                                                                           MainScreenH - StatusBarHeight - NavigationBarHeight) WithMode:PwdStateSetting];
-    [lockView setBtnImage:[UIImage imageNamed:@"gesturelLock_normal"]];
-    [lockView setBtnSelectdImgae:[UIImage imageNamed:@"gesturelLock_Selected"]];
-    [lockView setBtnErrorImage:[UIImage imageNamed:@"gesturelLock_error"]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]  initWithFrame:CGRectMake(0,220,MainScreenW,MainScreenH - StatusBarHeight - NavigationBarHeight) WithMode:PwdStateSetting];
+    lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
+    lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
+    lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
     __weak typeof (self)vcs = self;
     lockView.setPwdData = ^(NSString *resultPwd){
         

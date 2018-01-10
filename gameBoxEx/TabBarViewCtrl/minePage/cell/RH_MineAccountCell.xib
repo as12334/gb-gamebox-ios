@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFb-MB-RUN" customClass="CLSelectionControl">
                         <rect key="frame" x="0.0" y="0.0" width="173.5" height="50"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me_recharge_icon" translatesAutoresizingMaskIntoConstraints="NO" id="xs0-RH-dWi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_withdrawcash" translatesAutoresizingMaskIntoConstraints="NO" id="xs0-RH-dWi">
                                 <rect key="frame" x="42" y="8.5" width="33" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -43,6 +43,9 @@
                             <constraint firstItem="aTL-7y-WS3" firstAttribute="centerX" secondItem="hFb-MB-RUN" secondAttribute="centerX" constant="20" id="9pd-U8-jyA"/>
                             <constraint firstItem="aTL-7y-WS3" firstAttribute="leading" secondItem="xs0-RH-dWi" secondAttribute="trailing" constant="11" id="G7e-aG-F1P"/>
                         </constraints>
+                        <connections>
+                            <action selector="btn_recharge:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="B4d-E4-YSR"/>
+                        </connections>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTn-2W-nb0" customClass="CLBorderView">
                         <rect key="frame" x="182" y="5" width="1" height="39"/>
@@ -65,7 +68,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me_withdraw_icon" translatesAutoresizingMaskIntoConstraints="NO" id="adg-mr-ABf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_toppedup" translatesAutoresizingMaskIntoConstraints="NO" id="adg-mr-ABf">
                                 <rect key="frame" x="46.5" y="8.5" width="33" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -77,6 +80,9 @@
                             <constraint firstItem="oWt-Oi-iYv" firstAttribute="centerY" secondItem="dsC-1H-Pms" secondAttribute="centerY" id="tk3-2U-MB3"/>
                             <constraint firstItem="oWt-Oi-iYv" firstAttribute="leading" secondItem="adg-mr-ABf" secondAttribute="trailing" constant="8" id="vSp-j5-SW2"/>
                         </constraints>
+                        <connections>
+                            <action selector="btn_withDraw:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="alR-CZ-lsV"/>
+                        </connections>
                     </view>
                 </subviews>
                 <constraints>
@@ -103,7 +109,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="me_recharge_icon" width="33" height="33"/>
-        <image name="me_withdraw_icon" width="33" height="33"/>
+        <image name="mine_page_toppedup" width="33" height="33"/>
+        <image name="mine_page_withdrawcash" width="33" height="33"/>
     </resources>
 </document>

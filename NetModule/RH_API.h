@@ -179,11 +179,14 @@
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"
 #define RH_GP_BETTING_APIID                             @"apiId"
+#define RH_GP_BETTING_APINAME                           @"apiName"
 #define RH_GP_BETTING_GAMEID                            @"gameId"
+#define RH_GP_BETTING_GAMENAME                          @"gameName"
 #define RH_GP_BETTING_TERMINAL                          @"terminal"
 #define RH_GP_BETTING_BETTIME                           @"betTime"
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
-#define RH_GP_BETTING_ORDERSTATE                      @"orderState"
+#define RH_GP_BETTING_PROFITAMOUNT                      @"profitAmount"
+#define RH_GP_BETTING_ORDERSTATE                        @"orderState"
 
 #pragma mark - V3 用户安全码 初始化信息模型
 #define RH_GP_USERSAFETY_HASREALNAME                                @"hasRealName"
@@ -236,7 +239,7 @@
 
 #pragma mark - V3  浮动图抢红包次数
 //api的路径
-#define RH_API_NAME_ACTIVITYSTATUS                        @"ntl/activity/countDrawTimes.html"
+#define RH_API_NAME_ACTIVITYSTATUS                        @"origin/countDrawTimes.html"
 //请求参数
 #define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
 //返回参数
@@ -246,8 +249,10 @@
 #define RH_GP_ACTIVITYSTATUS_TOKEN                        @"token"
 
 #pragma mark - V3 拆红包
-//api的路径
-#define RH_API_NAME_OPENACTIVITY                        @"ntl/activity/getPacket.html"
+/**
+ api的路径
+ */
+#define RH_API_NAME_OPENACTIVITY                        @"origin/getPacket.html"
 //请求参数
 #define RH_SP_OPENACTIVITY_MESSAGEID                    @"activityMessageId"
 #define RH_SP_OPENACTIVITY_TOKEN                        @"gb.token"
@@ -277,10 +282,26 @@
 //返回参数
 #define RH_GP_BETTINGLIST_LIST                              @"list"
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
+#define RH_GP_BETTINGLIST_TOTALSINGLEAMOUN                  @"singleAmount"
+#define RH_GP_BETTINGLIST_TOTALPROFIT                       @"profit"
+
+#pragma mark -v3    投注记录明细
+//api路径
+#define RH_API_NAME_BETTINGDETAILS                     @"mineOrigin/getBettingDetails.html"
+//请求参数
+#define RH_SP_BETTINGDETAILS_LISTID                     @"id"
+//返回参数
+#define RH_GP_BETTINGDETAILS_
 
 #pragma mark -V3 资金记录 清单
 //api的路径
 #define RH_API_NAME_DEPOSITLIST                        @"mineOrigin/getFundRecord.html"
+
+#pragma mark -V3 资金记录 清单详情
+//api的路径
+#define RH_API_NAME_DEPOSITLISTDETAILS                        @"mineOrigin/getFundRecordDetails.html"
+
+
 //请求参数 无
 #define RH_SP_DEPOSITLIST_STARTDATE                          @"beginBetTime"
 #define RH_SP_DEPOSITLIST_ENDDATE                            @"endBetTime"

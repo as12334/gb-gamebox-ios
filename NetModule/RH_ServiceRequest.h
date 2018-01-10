@@ -34,7 +34,9 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
     ServiceRequestTypeV3OpenActivity    ,//拆红包
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
+    ServiceRequestTypeV3BettingDetails  ,  //投注记录详情。。。
     ServiceRequestTypeV3DepositList     , //资金记录 。。。
+    ServiceRequestTypeV3DepositListDetails     , //资金记录详情 。。。
     ServiceRequestTypeV3ModifyPassword  , //修改密码
     ServiceRequestTypeV3ModifySafetyPassword ,
     ServiceRequestTypeV3UserSafeInfo   , //用户安全码信息
@@ -126,7 +128,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3ActivityStaus:(NSString*)activityID ;
 
 #pragma mark  - V3 拆红包
--(void)startV3OpenActivity:(NSString *)activityID ;
+-(void)startV3OpenActivity:(NSString *)activityID
+                andGBtoken:(NSString *)gbtoken ;
 
 #pragma mark - 电子游戏list
 -(void)startV3GameListWithApiID:(NSInteger)apiID
@@ -136,11 +139,16 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                      SearchName:(NSString*)searchName ;
 
 #pragma mark - 投注记录
+-(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate ;
+
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize ;
 #pragma mark - 资金记录
 -(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate ;
+
+#pragma mark - 资金记录详情 根据ID进行查询
+-(void)startV3DepositListDetail:(NSString*)searchId;
 
 #pragma mark - 修改密码
 - (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd;
@@ -149,6 +157,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo ;
+#pragma mark - 投注记录详情
+-(void)startV3BettingDetails:(NSInteger)listId;
 
 #pragma mark - 设置真实名字
 - (void)startV3SetRealName: (NSString*)name;

@@ -24,13 +24,6 @@
     }
     return self;
 }
-//-(void)setActivityModel:(RH_ActivityModel *)activityModel
-//{
-//    if (![_activityModel isEqual:activityModel]){
-//        _activityModel = activityModel ;
-//        
-//    }
-//}
 -(void)awakeFromNib
 {
     [super awakeFromNib];

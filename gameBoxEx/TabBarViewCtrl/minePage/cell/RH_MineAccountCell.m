@@ -9,6 +9,10 @@
 #import "RH_MineAccountCell.h"
 #import "CLSelectionControl.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+#import "RH_APPDelegate.h"
+#import "RH_CustomViewController.h"
+
 @interface RH_MineAccountCell()
 @property (weak, nonatomic) IBOutlet CLSelectionControl *rechargeControl;
 @property (weak, nonatomic) IBOutlet CLSelectionControl *withDrawControl;
@@ -35,12 +39,23 @@
     NSArray *rowsinfo = info[@"rowsInfo"];
     self.image_Withdraw.image = ImageWithName(rowsinfo[0][@"image"]);
     self.image_Topup.image = ImageWithName(rowsinfo[1][@"image"]);
+}
+
+
+-(IBAction)btn_recharge:(id)sender //充值
+{
+    RH_LinkInfoModel *linkInfoModel = [MineGroupInfo getLinkInfoWithCode:@"deposit"] ;
+    if (linkInfoModel){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        appDelegate.customUrl = linkInfoModel.targetLink ;
+        [self showViewController:[RH_CustomViewController viewController]] ;
+    }
+}
+
+-(IBAction)btn_withDraw:(id)sender ////提现
+{
     
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 @end
