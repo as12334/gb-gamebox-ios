@@ -68,31 +68,17 @@
     [self addSubview:view_Line];
     view_Line.whc_TopSpaceToView(5, stackView).whc_LeftSpace(10).whc_RightSpace(0).whc_Height(1);
     view_Line.backgroundColor = RH_Line_DefaultColor;
-    
-//    [self addSubview:self.typeBtn];
-//    self.typeBtn.backgroundColor = [UIColor whiteColor];
-//    [self.typeBtn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
-//    self.typeBtn.layer.borderWidth = 1;
-//    self.typeBtn.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
-//    self.typeBtn.layer.cornerRadius = 3.0f;
-//    self.typeBtn.layer.masksToBounds = YES;
-//    self.typeBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
-//    [self.typeBtn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateSelected];
-//    self.typeBtn.whc_LeftSpace(18).whc_TopSpaceToView(10, view_Line).whc_RightSpace(screenSize().width/2 + 20).whc_Height(30);
-//    [self.typeBtn addTarget:self action:@selector(typeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
    
-   
-    self.typeDropList.whc_LeftSpace(10).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-20 ).whc_Height(30);
+    [self addSubview:self.typeDropList];
+//    self.typeDropList.whc_LeftSpace(10).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2 ).whc_Height(30);
     [self.typeDropList setMenuTitles:@[@"选项一",@"选项二",@"选项三",@"选项四"] rowHeight:30];
     self.typeDropList.delegate = self;
-    [self bringSubviewToFront:self.typeDropList];
-    [self.typeDropList resignFirstResponder];
-    self.typeDropList.userInteractionEnabled = YES;
+    self.typeDropList.arrowMark.image = [UIImage imageNamed:@"dropdownMenu_cornerIcon"];
+ 
+
     
-    
-//    self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_RightSpace(10).whc_Height(30);
-     self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_CenterYToView(0, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-20 ).whc_Height(40);
+    [self addSubview:self.serachBtn];
+//    self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-15 ).whc_Height(30);
     self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
     self.serachBtn.layer.cornerRadius = 3.0f;
     self.serachBtn.layer.masksToBounds = YES;
@@ -102,7 +88,7 @@
     
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
-    view_Line2.whc_TopSpaceToView(10, self.serachBtn).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+    view_Line2.whc_TopSpaceToView(10, self.typeDropList).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
     view_Line2.backgroundColor = RH_Line_DefaultColor;
     
     self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
@@ -149,7 +135,7 @@
 
 
 
-#pragma mark -
+#pragma mark -startCapitalDateCell
 -(RH_CapitalStaticDataCell *)startCapitalDateCell
 {
     if (!_startCapitalDateCell) {

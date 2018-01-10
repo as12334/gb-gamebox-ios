@@ -11,7 +11,7 @@
 #import "RH_CapitalRecordBottomView.h"
 #import "RH_CapitalTableViewCell.h"
 
-@interface RH_CapitalRecordViewController ()
+@interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
 
@@ -112,6 +112,7 @@
     if (!_capitalRecordHeaderView){
         _capitalRecordHeaderView = [RH_CapitalRecordHeaderView createInstance] ;
         _capitalRecordHeaderView.frame = self.topView.bounds ;
+        _capitalRecordHeaderView.delegate = self;
         _capitalRecordHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
     }
     return _capitalRecordHeaderView ;
@@ -125,11 +126,27 @@
         _capitalBottomView.frame = self.bottomView.bounds ;
         _capitalBottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
     }
-    
     return _capitalBottomView ;
-    
 }
 
+#pragma mark - CapitalRecordHeaderViewDelegate
+-(void)CapitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置开始日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  CapitalRecordHeaderView.startDate = returnDate ;
+              }] ;
+}
+
+-(void)CapitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置结止日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  CapitalRecordHeaderView.endDate = returnDate ;
+              }] ;
+}
 
 #pragma mark-
 -(void)netStatusChangedHandle
