@@ -287,6 +287,7 @@
 		A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA120036B2C0080D56F /* RH_BettingRecordCell.m */; };
 		A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA4200389710080D56F /* RH_UserSafetyCodeModel.m */; };
 		A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */; };
+		A039BDAB2005C3ED0080D56F /* RH_ModifyPasswordUsercode.plist in Resources */ = {isa = PBXBuildFile; fileRef = A039BDAA2005C3EC0080D56F /* RH_ModifyPasswordUsercode.plist */; };
 		A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109EE21F87852F004E6EF4 /* MacroDef.h */; };
 		A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */; };
 		A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */; };
@@ -922,6 +923,7 @@
 		A039BDA5200389710080D56F /* RH_UserSafetyCodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserSafetyCodeModel.h; sourceTree = "<group>"; };
 		A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingDetailModel.h; sourceTree = "<group>"; };
 		A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingDetailModel.m; sourceTree = "<group>"; };
+		A039BDAA2005C3EC0080D56F /* RH_ModifyPasswordUsercode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_ModifyPasswordUsercode.plist; sourceTree = "<group>"; };
 		A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewController.h; sourceTree = "<group>"; };
 		A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewController.m; sourceTree = "<group>"; };
 		A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewController.h; sourceTree = "<group>"; };
@@ -2628,6 +2630,7 @@
 				B8F0E5032001EFA100A3AC94 /* RH_ModifyPasswordController.h */,
 				B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */,
 				B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */,
+				A039BDAA2005C3EC0080D56F /* RH_ModifyPasswordUsercode.plist */,
 			);
 			path = MineSafetyCenter;
 			sourceTree = "<group>";
@@ -2862,6 +2865,7 @@
 				A01181601FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib in Resources */,
 				F6A2AC8B200311DF0077CB92 /* RH_OpenActivithyView.xib in Resources */,
 				B8107AB61FFDBB360086DDC3 /* RH_MineSafetyCenter.plist in Resources */,
+				A039BDAB2005C3ED0080D56F /* RH_ModifyPasswordUsercode.plist in Resources */,
 				A0E367951F8F463900758033 /* Localizable.strings in Resources */,
 				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,

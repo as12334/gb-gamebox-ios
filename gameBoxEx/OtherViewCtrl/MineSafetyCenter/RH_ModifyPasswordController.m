@@ -9,6 +9,8 @@
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
 #import "coreLib.h"
+#import "RH_API.h"
+
 @interface RH_ModifyPasswordController () <CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -137,6 +139,10 @@
             showErrorMessage(self.view, error, @"修改密码失败");
         }] ;
         
+        NSDictionary *userInfo = error.userInfo ;
+        if ([userInfo boolValueForKey:RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA]){
+            
+        }
     }
 }
 

@@ -250,8 +250,6 @@
 #pragma mark- v3 我的 接口
 //api的路径
 #define RH_API_NAME_MINEGROUPINFO                        @"mineOrigin/getLink.html"
-#define RH_API_NAME_MINEMODIFYPASSWORD                   @"mineOrigin/updateLoginPassword.html"
-#define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
 //请求参数 无
 //返回参数
 #define RH_GP_MINEGROUPINFO_ISBIT                          @"isBit"
@@ -313,7 +311,6 @@
 //请求参数
 #define RH_SP_BETTINGDETAILS_LISTID                     @"id"
 //返回参数
-#define RH_GP_BETTINGDETAILS_
 
 #pragma mark -V3 资金记录 清单
 //api的路径
@@ -323,7 +320,6 @@
 //api的路径
 #define RH_API_NAME_DEPOSITLISTDETAILS                        @"mineOrigin/getFundRecordDetails.html"
 
-
 //请求参数 无
 #define RH_SP_DEPOSITLIST_STARTDATE                          @"beginBetTime"
 #define RH_SP_DEPOSITLIST_ENDDATE                            @"endBetTime"
@@ -332,6 +328,16 @@
 //api的路径
 #define RH_API_NAME_USERSAFEINFO                        @"mineOrigin/initSafePassword.html"
 //请求参数 无
+
+#pragma mark - V3 修改用户密码
+#define RH_API_NAME_MINEMODIFYPASSWORD                   @"mineOrigin/updateLoginPassword.html"
+//返回参数
+#define RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA           @"isOpenCaptcha"
+#define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES             @"remainTimes"
+
+#pragma mark - V3 修改用户安全密码
+#define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
+
 
 #endif /* RH_API_h */
 
