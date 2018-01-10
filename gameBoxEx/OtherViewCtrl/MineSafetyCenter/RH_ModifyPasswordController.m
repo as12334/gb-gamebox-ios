@@ -23,11 +23,13 @@
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *confirmSettingPasswordCell ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCodeCell *passwordCodeCell ;
 
+@property (nonatomic, strong,readonly) UILabel *label_Notice;
 @end
 
 @implementation RH_ModifyPasswordController
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize modifyButton = _modifyButton  ;
+@synthesize label_Notice = _label_Notice  ;
 
 - (BOOL)isSubViewController {
     return YES;
@@ -83,12 +85,14 @@
     [self.tableViewManagement reloadData];
     
     UIView *view_Footer = [[UIView alloc] init];
-    view_Footer.frame = CGRectMake(0, 0, screenSize().width, 80);
+    view_Footer.frame = CGRectMake(0, 0, screenSize().width, 120);
     self.contentTableView.tableFooterView = view_Footer;
     
     [view_Footer addSubview:self.modifyButton];
     self.modifyButton.whc_Center(0, 0).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(44);
     
+    [view_Footer addSubview:self.label_Notice];
+    self.label_Notice.whc_LeftSpace(20).whc_TopSpace(0).whc_Width(screenSize().width/2).whc_Height(30);
 }
 
 - (CLTableViewManagement *)tableViewManagement {
@@ -150,6 +154,17 @@
 
 }
 
+-(UILabel *)label_Notice
+{
+    if (!_label_Notice){
+        _label_Notice = [[UILabel alloc] init];
+        _label_Notice.font = [UIFont systemFontOfSize:10];
+        _label_Notice.textColor = colorWithRGB(153, 153, 153);
+        _label_Notice.textAlignment = NSTextAlignmentLeft;
+    }
+    
+    return _label_Notice ;
+}
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
@@ -174,6 +189,8 @@
         if ([userInfo boolValueForKey:RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA]){
             [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
         }
+        
+        self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
     }
 }
 
