@@ -23,13 +23,6 @@
     [super awakeFromNib];
     // Initialization code
 }
-
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//    [super setSelected:selected animated:animated];
-//
-//    // Configure the view for the selected state
-//}
-
 -(UILabel *)dataLab
 {
     if(_dataLab == nil){
@@ -61,7 +54,6 @@
     }
     return _timeoutTypeLab;
 }
-
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
@@ -69,7 +61,6 @@
     }
     return self;
 }
-
 -(void)initUI{
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
     self.separatorLineColor = colorWithRGB(242, 242, 242);
@@ -77,30 +68,34 @@
     self.backgroundColor = colorWithRGB(255, 255, 255);
     
     [self.contentView addSubview:self.dataLab];
-    self.dataLab.whc_LeftSpace(10).whc_TopSpace(20).whc_Width(100).whc_Height(30);
+    [self.contentView addSubview:self.moneyTypeLab];
+    [self.contentView addSubview:self.depositTypeLab];
+    [self.contentView addSubview:self.timeoutTypeLab];
+    
+    CGFloat widthRect = self.contentView.frame.size.width;
+    self.dataLab.whc_LeftSpace(10).whc_TopSpace(5).whc_Width(80).whc_Height(30);
     self.dataLab.textColor = colorWithRGB(153, 153, 153);
     self.dataLab.font = [UIFont systemFontOfSize:12.f];
     self.dataLab.text = @"2018-01-09";
-    
-    [self.contentView addSubview:self.moneyTypeLab];
-    self.moneyTypeLab.whc_LeftSpaceToView(50, self.dataLab).whc_TopSpace(20).whc_Width(60).whc_Height(30);
+    self.moneyTypeLab.whc_LeftSpace(screenSize().width > 375?0.45*widthRect:0.36*widthRect).whc_TopSpace(5).whc_Width(40).whc_Height(30);
     self.moneyTypeLab.textColor = colorWithRGB(81, 214, 131);
     self.moneyTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.moneyTypeLab.text = @"+100";
+self.timeoutTypeLab.whc_RightSpace(10).whc_TopSpace(5).whc_Width(40).whc_Height(30);
     
-    [self.contentView addSubview:self.depositTypeLab];
-    self.depositTypeLab.whc_LeftSpaceToView(60, self.moneyTypeLab).whc_TopSpace(20).whc_Width(60).whc_Height(30);
+    self.timeoutTypeLab.textColor = colorWithRGB(244, 158, 46);
+    self.timeoutTypeLab.font = [UIFont systemFontOfSize:12.f];
+    self.timeoutTypeLab.text = @"超时";
+
+    self.depositTypeLab.whc_RightSpace(screenSize().width > 375?0.35*widthRect:0.28*widthRect).whc_TopSpace(5).whc_Width(40).whc_Height(30);
     self.depositTypeLab.textColor = colorWithRGB(51, 51, 51);
     self.depositTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.depositTypeLab.text = @"存款";
     
-    [self.contentView addSubview:self.timeoutTypeLab];
-    self.timeoutTypeLab.whc_LeftSpaceToView(50, self.depositTypeLab).whc_TopSpace(20).whc_Width(60).whc_Height(30);
-    self.timeoutTypeLab.textColor = colorWithRGB(244, 158, 46);
-    self.timeoutTypeLab.font = [UIFont systemFontOfSize:12.f];
-    self.timeoutTypeLab.text = @"超时";
-    
-    
+    self.dataLab.textAlignment = NSTextAlignmentCenter;
+    self.moneyTypeLab.textAlignment = NSTextAlignmentCenter;
+    self.depositTypeLab.textAlignment = NSTextAlignmentCenter;
+    self.timeoutTypeLab.textAlignment = NSTextAlignmentCenter;
 }
 
 @end

@@ -17,10 +17,10 @@
 @protocol ActivithyViewDelegate
 @optional
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView ;
--(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView ;
 @end
 
 @interface RH_ActivithyView : CLSelectionControl
 @property (nonatomic,weak) id<ActivithyViewDelegate> delegate ;
 @property (nonatomic,strong) RH_ActivityModel *activityModel ;
+@property(nonatomic,strong) IBOutlet UIImageView *imgView ;
 @end

@@ -11,7 +11,7 @@
 #import "RH_UserInfoGengeralCell.h"
 
 @interface RH_ActivithyView ()
-@property(nonatomic,strong) IBOutlet UIImageView *imgView ;
+
 @end
 
 @implementation RH_ActivithyView
@@ -41,10 +41,4 @@
     }
 }
 
--(IBAction)btn_cancel:(id)sender
-{
-    ifRespondsSelector(self.delegate, @selector(activithyViewDidTouchCancel:)){
-        [self.delegate activithyViewDidTouchCancel:self] ;
-    }
-}
 @end

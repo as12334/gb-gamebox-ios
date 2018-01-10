@@ -20,8 +20,8 @@
 #import "RH_UserBalanceGroupModel.h"
 #import "RH_MineGroupInfoModel.h"
 #import "RH_BettingInfoModel.h"
-#import "RH_SettingDetailsModel.h"
 #import "RH_OpenActivityModel.h"
+#import "RH_BettingDetailModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -346,35 +346,31 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startV3DepositList:(NSString*)startDate EndDate:(NSString*)endDate
+-(void)startV3DepositList:(NSString*)startDate
+                  EndDate:(NSString*)endDate
+               SearchType:(NSString*)type
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize
 {
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:startDate?:@"" forKey:RH_SP_DEPOSITLIST_STARTDATE] ;
+    [dictTmp setValue:endDate?:@"" forKey:RH_SP_DEPOSITLIST_ENDDATE] ;
+    [dictTmp setValue:@(pageNumber) forKey:RH_SP_DEPOSITLIST_PAGENUMBER] ;
+    [dictTmp setValue:@(pageSize) forKey:RH_SP_DEPOSITLIST_PAGESIZE] ;
+    if (type.length){
+        [dictTmp setValue:startDate?:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
+    }
+    
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{RH_SP_DEPOSITLIST_STARTDATE:startDate?:@"",
-                                     RH_SP_DEPOSITLIST_ENDDATE:endDate?:@""
-                                     }
+                    queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3DepositList
                          scopeType:ServiceScopeTypePublic] ;
-}
-
-- (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd
-{
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{@"password":currentPwd?:@"" ,
-                                     @"newPassword":newPwd?:@"" ,}
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3ModifyPassword
-                         scopeType:ServiceScopeTypePublic];
 }
 
 - (void)startV3ChangeSaftyPasswordMainPage {
@@ -404,6 +400,65 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3UserSafeInfo
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 设置真实名字
+- (void)startV3SetRealName:(NSString *)name {
+    
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SETREALNAME
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"realName":name?:@""}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SetRealName
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 修改安全密码
+- (void)startV3UpdateSafePassword:(BOOL)needCaptcha name:(NSString *)realName originPassword:(NSString *)originPwd newPassword:(NSString *)pwd1 confirmPassword:(NSString *)pwd2 verifyCode:(NSString *)code {
+    
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"realName":realName?:@"",
+                                     @"needCaptcha":@(needCaptcha)?:NO,
+                                     @"originPwd": originPwd?:@"",
+                                     @"pwd1"    :pwd1?:@"",
+                                     @"pwd2"    :pwd2?:@"",
+                                     @"code"    :code?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UpdateSafePassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 修改登录密码
+- (void)startV3UpdateLoginPassword:(NSString *)password newPassword:(NSString *)newPassword verifyCode:(NSString *)code
+{
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:password?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD] ;
+    [dictTmp setValue:newPassword?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_NEWPASSWORD] ;
+    if (code.length){
+        [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
+    }
+    
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dictTmp
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UpdateLoginPassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
 
 #pragma mark 拆红包
 -(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
@@ -439,12 +494,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3BettingDetails
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark 资金记录详情
--(void)startV3DepositListDetails:(NSString *)searchId
+
+#pragma mark - 资金记录详情 根据ID进行查询
+-(void)startV3DepositListDetail:(NSString*)searchId
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init] ;
-    [dict setValue:searchId forKey:RH_API_DEPOSITLISTDETAILS_SEARCHID] ;
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:@"id"];
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
                      pathArguments:nil
@@ -455,6 +511,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositListDetails
                          scopeType:ServiceScopeTypePublic];
 }
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -736,10 +793,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
                 [self startV3UserInfo] ;
-                [self startV3MineLinkInfo] ;
-                [self startV3UserSafetyInfo] ;
             }
-            
         }else{
             *reslutData = @(NO) ;
         }
@@ -761,54 +815,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
-    }else if (type == ServiceRequestTypeV3ActivityStatus){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *error = tempError;
-        
-        if (dataObject){
-            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject  objectForKey:@"data"])] ;
-        }
-        
-        return YES ;
-    }
-//    else if (type == ServiceRequestTypeV3OpenActivity){
-//        NSError * tempError = nil;
-//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-//                                                                                      error:&tempError] : @{};
-//        *error = tempError;
-//        
-//        if (dataObject){
-//            *reslutData  = [[ alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
-//        }
-//         return YES ;
-//    }
-    else if (type == ServiceRequestTypeV3BettingDetails){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *error = tempError;
-        
-        if (dataObject){
-            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
-        }
-         return YES ;
-    }
-    else if (type == ServiceRequestTypeV3DepositListDetails){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *error = tempError;
-        
-//        if (dataObject){
-//            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
-//        }
-        return YES;
     }
     //json解析
     NSError * tempError = nil;
@@ -854,8 +860,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
                     [self startV3UserInfo] ;
-                    [self startV3MineLinkInfo] ;
-                    [self startV3UserSafetyInfo] ;
                 }
             }
                 break ;
@@ -928,9 +932,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
-                case ServiceRequestTypeV3BettingDetails:
+                case ServiceRequestTypeV3ActivityStatus:
             {
-                resultSendData = [[RH_SettingDetailsModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+                resultSendData = [[RH_ActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break;
                 case ServiceRequestTypeV3OpenActivity:
@@ -938,6 +942,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_OpenActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break;
+            case ServiceRequestTypeV3BettingDetails:
+            {
+                resultSendData = [[RH_BettingDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
 

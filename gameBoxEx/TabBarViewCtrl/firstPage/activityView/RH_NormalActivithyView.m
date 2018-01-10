@@ -8,7 +8,6 @@
 
 #import "RH_NormalActivithyView.h"
 #import "RH_OpenActivityModel.h"
-#import "RH_ActivityDeliveryTool.h"
 @interface RH_NormalActivithyView()
 @property (weak, nonatomic) IBOutlet UIImageView *backDropImageView;
 @property (weak, nonatomic) IBOutlet UIView *normalBackDropView;
@@ -16,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *openActivityView;
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 @property (weak, nonatomic) IBOutlet UILabel *gainActivityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nextOpentimeLabel;
 @end
 @implementation RH_NormalActivithyView
 
@@ -30,8 +30,22 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    self.gainActivityLabel.text  = self.gainStr;
     
+}
+-(void)setActivityModel:(RH_ActivityModel *)activityModel
+{
+    if (![_activityModel isEqual:activityModel]){
+        _activityModel = activityModel ;
+       [self.nextOpentimeLabel setText:self.activityModel.mNextLotteryTime];
+    }
+    
+}
+-(void)setOpenModel:(RH_OpenActivityModel *)openModel
+{
+    if (![_openModel isEqual:openModel]){
+        _openModel = openModel ;
+        [self.gainActivityLabel setText:self.openModel.mAward];
+    }
 }
 - (IBAction)gameRuleSeletcd:(id)sender {
     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-03"];
@@ -50,7 +64,7 @@
     [self.openActivityView setHidden:YES];
 }
 - (IBAction)openActivityBtnClick:(id)sender {
-    self.gainActivityLabel.text = [RH_ActivityDeliveryTool deliveryStrTool].openActivityStr;
+    [self.delegate normalActivithyViewOpenActivityClick:self];
      self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
     [self.normalBackDropView setHidden: YES];
     [self.activityRuleDropView setHidden:YES];

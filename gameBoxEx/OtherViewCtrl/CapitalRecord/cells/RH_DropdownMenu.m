@@ -11,7 +11,7 @@
 //  iOS开发者公会-议事区  QQ群号：413102158
 //
 
-#import "LMJDropdownMenu.h"
+#import "RH_DropdownMenu.h"
 #import "coreLib.h"
 
 
@@ -54,9 +54,8 @@
 
 
 
-@implementation LMJDropdownMenu
+@implementation RH_DropdownMenu
 {
-    UIImageView * _arrowMark;   // 尖头图标
     UIView      * _listView;    // 下拉列表背景View
     UITableView * _tableView;   // 下拉列表
     
@@ -130,6 +129,7 @@
     _listView.layer.borderColor   = [UIColor lightTextColor].CGColor;
     _listView.layer.borderWidth   = 0.5f;
 
+
     
     // 下拉列表TableView
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,VIEW_WIDTH(_listView), VIEW_HEIGHT(_listView))];
@@ -167,7 +167,7 @@
         
         _arrowMark.transform = CGAffineTransformMakeRotation(M_PI);
         _listView.frame  = CGRectMake(VIEW_X(_listView), VIEW_Y(_listView), VIEW_WIDTH(_listView), _rowHeight *_titleArr.count);
-        _tableView.frame = CGRectMake(10, 10, VIEW_WIDTH(_listView), VIEW_HEIGHT(_listView));
+        _tableView.frame = CGRectMake(0, 0, VIEW_WIDTH(_listView), VIEW_HEIGHT(_listView));
         
     }completion:^(BOOL finished) {
         
@@ -192,7 +192,7 @@
         
         _arrowMark.transform = CGAffineTransformIdentity;
         _listView.frame  = CGRectMake(VIEW_X(_listView), VIEW_Y(_listView), VIEW_WIDTH(_listView), 0);
-        _tableView.frame = CGRectMake(10, 10, VIEW_WIDTH(_listView), VIEW_HEIGHT(_listView));
+        _tableView.frame = CGRectMake(0, 0, VIEW_WIDTH(_listView), VIEW_HEIGHT(_listView));
         
     }completion:^(BOOL finished) {
         
@@ -200,9 +200,6 @@
             [self.delegate dropdownMenuDidHidden:self]; // 已经隐藏回调代理
         }
     }];
-    
-    
-    
     _mainBtn.selected = NO;
 }
 

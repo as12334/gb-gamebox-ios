@@ -10,6 +10,8 @@
 #import "RH_MinePageBannarCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_MineSettingsViewController.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -30,12 +32,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
-                                                 name:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
+                                                 name:NT_LoginStatusChangedNotification object:nil] ;
 }
 
 -(void)handleNotification:(NSNotification*)nt
 {
-    if ([nt.name isEqualToString:RHNT_UserInfoManagerMineGroupChangedNotification]){
+    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
         [self setNeedUpdateView] ;
     }
 }
@@ -113,6 +115,14 @@
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
         [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
     }else{
+        if (MineGroupInfo==nil){
+            [self.serviceRequest startV3MineLinkInfo] ;
+        }
+        
+        if (UserSafetyInfo==nil){
+            [self.serviceRequest startV3UserSafetyInfo] ;
+        }
+        
         [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogin"] ;
     }
