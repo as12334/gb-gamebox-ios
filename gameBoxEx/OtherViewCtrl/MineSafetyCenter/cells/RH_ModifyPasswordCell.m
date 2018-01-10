@@ -30,6 +30,15 @@
     return self.textField.isEditing ;
 }
 
+-(BOOL)endEditing:(BOOL)force
+{
+    if (self.textField.isEditing){
+        [self.textField resignFirstResponder] ;
+    }
+    
+    return YES ;
+}
+
 - (UITextField *)textField {
     if (_textField == nil) {
         _textField = [[UITextField alloc] init];

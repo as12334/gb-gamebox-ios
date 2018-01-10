@@ -8,6 +8,7 @@
 
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
+#import "RH_ModifyPasswordCodeCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
 
@@ -15,6 +16,13 @@
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong,readonly) UIButton *modifyButton;
+
+//--
+@property (nonatomic,strong,readonly) RH_ModifyPasswordCell *currentPasswordCell ;
+@property (nonatomic,strong,readonly) RH_ModifyPasswordCell *newSettingPasswordCell    ;
+@property (nonatomic,strong,readonly) RH_ModifyPasswordCell *confirmSettingPasswordCell ;
+@property (nonatomic,strong,readonly) RH_ModifyPasswordCodeCell *passwordCodeCell ;
+
 @end
 
 @implementation RH_ModifyPasswordController
@@ -33,15 +41,39 @@
     [self setupInfo];
 }
 
+#pragma mark - tableview cell--
+-(RH_ModifyPasswordCell *)currentPasswordCell
+{
+    return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
+}
+
+-(RH_ModifyPasswordCell *)newSettingPasswordCell
+{
+    return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]) ;
+}
+
+-(RH_ModifyPasswordCell *)confirmSettingPasswordCell
+{
+    return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]]) ;
+}
+
+-(RH_ModifyPasswordCodeCell *)passwordCodeCell
+{
+    return ConvertToClassPointer(RH_ModifyPasswordCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
+}
+
 #pragma mark-
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     
-    return YES;
+    return self.currentPasswordCell.isEditing || self.newSettingPasswordCell.isEditing || self.confirmSettingPasswordCell.isEditing || self.passwordCodeCell.isEditing ;
 }
 
-- (void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer {
-    
-    [self.view endEditing:YES];
+- (void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self.currentPasswordCell endEditing:YES] ;
+    [self.newSettingPasswordCell endEditing:YES] ;
+    [self.confirmSettingPasswordCell endEditing:YES] ;
+    [self.passwordCodeCell endEditing:YES] ;
 }
 
 - (void)setupInfo {
@@ -54,14 +86,8 @@
     view_Footer.frame = CGRectMake(0, 0, screenSize().width, 80);
     self.contentTableView.tableFooterView = view_Footer;
     
-//    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     [view_Footer addSubview:self.modifyButton];
     self.modifyButton.whc_Center(0, 0).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(44);
-//    self.button.backgroundColor = colorWithRGB(27, 117, 217);
-//    self.button.layer.cornerRadius = 5;
-//    self.button.clipsToBounds = YES;
-//    [self.button setTitle:@"修改" forState:UIControlStateNormal];
-//    [self.button addTarget:self action:@selector(modifyPassword) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -95,13 +121,10 @@
 
 - (void)modifyButtonHandle
 {
+    NSString *currentPwd = self.currentPasswordCell.textField.text;
+    NSString *newPwd = self.newSettingPasswordCell.textField.text;
+    NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
     
-    RH_ModifyPasswordCell *currentPwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    RH_ModifyPasswordCell *newPwdCell = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    RH_ModifyPasswordCell *newPwdCell2 = (RH_ModifyPasswordCell *)[self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    NSString *currentPwd = currentPwdCell.textField.text;
-    NSString *newPwd = newPwdCell.textField.text;
-    NSString *newPwd2 = newPwdCell2.textField.text;
     if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0) {
         showMessage(self.view, @"错误", @"请输入密码");
         return;
@@ -111,19 +134,27 @@
         return;
     }
     
+    if (self.passwordCodeCell){//需要输入验证码
+        if (self.passwordCodeCell.passwordCode.length<1){
+            showMessage(self.view, nil, @"请输入验证码！");
+            return;
+        }
+    }
+    
     if (NetworkAvailable()){
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在修改密码"];
-        [self.serviceRequest startV3ChangePasswordWith:currentPwd and:newPwd];
+        [self.serviceRequest startV3UpdateLoginPassword:currentPwd newPassword:newPwd verifyCode:self.passwordCodeCell.passwordCode];
     }else{
         showAlertView(@"无网络", @"请稍后再试") ;
     }
+
 }
 
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3ModifyPassword){
+    if (type == ServiceRequestTypeV3UpdateLoginPassword){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"密码修改成功", @"提示信息") ;
         }] ;
@@ -134,14 +165,14 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3ModifyPassword){
+    if (type == ServiceRequestTypeV3UpdateLoginPassword){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(self.view, error, @"修改密码失败");
         }] ;
         
         NSDictionary *userInfo = error.userInfo ;
         if ([userInfo boolValueForKey:RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA]){
-            
+            [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
         }
     }
 }

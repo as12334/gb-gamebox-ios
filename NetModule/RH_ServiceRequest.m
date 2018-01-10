@@ -387,21 +387,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic] ;
 }
 
-- (void)startV3ChangePasswordWith:(NSString *)currentPwd and:(NSString *)newPwd
-{
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{@"password":currentPwd?:@"" ,
-                                     @"newPassword":newPwd?:@"" ,}
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3ModifyPassword
-                         scopeType:ServiceScopeTypePublic];
-}
-
 - (void)startV3ChangeSaftyPasswordMainPage {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     [self _startServiceWithAPIName:appDelegate.domain
@@ -429,6 +414,65 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3UserSafeInfo
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 设置真实名字
+- (void)startV3SetRealName:(NSString *)name {
+    
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SETREALNAME
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"realName":name?:@""}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SetRealName
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 修改安全密码
+- (void)startV3UpdateSafePassword:(BOOL)needCaptcha name:(NSString *)realName originPassword:(NSString *)originPwd newPassword:(NSString *)pwd1 confirmPassword:(NSString *)pwd2 verifyCode:(NSString *)code {
+    
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"realName":realName?:@"",
+                                     @"needCaptcha":@(needCaptcha)?:NO,
+                                     @"originPwd": originPwd?:@"",
+                                     @"pwd1"    :pwd1?:@"",
+                                     @"pwd2"    :pwd2?:@"",
+                                     @"code"    :code?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UpdateSafePassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 修改登录密码
+- (void)startV3UpdateLoginPassword:(NSString *)password newPassword:(NSString *)newPassword verifyCode:(NSString *)code
+{
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:password?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD] ;
+    [dictTmp setValue:newPassword?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_NEWPASSWORD] ;
+    if (code.length){
+        [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
+    }
+    
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dictTmp
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UpdateLoginPassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
 
 #pragma mark 拆红包
 -(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
