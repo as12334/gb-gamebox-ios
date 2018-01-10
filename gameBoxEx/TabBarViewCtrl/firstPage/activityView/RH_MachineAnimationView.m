@@ -10,31 +10,24 @@
 #import "coreLib.h"
 #import "RH_ServiceRequest.h"
 #import "RH_OpenActivithyView.h"
+#import "RH_NormalActivithyView.h"
 @interface RH_MachineAnimationView()<RH_ServiceRequestDelegate>
-@property(nonatomic,strong,readonly)UIWindow *subwindow;
 @property(nonatomic,strong,readonly)UIImageView *imageView;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
 
 @property(nonatomic,strong,readonly) RH_ServiceRequest *serviceRequest ;
 @property(nonatomic,strong,readonly)RH_OpenActivithyView *activithyView;
+@property(nonatomic,strong,readonly)RH_NormalActivithyView *normalActivityView;
 @end
 @implementation RH_MachineAnimationView
 {
     int _animationTimes;
 }
-@synthesize subwindow = _subwindow;
 @synthesize imageView = _imageView;
 @synthesize closeBtn = _closeBtn;
 @synthesize serviceRequest = _serviceRequest;
 @synthesize activithyView = _activithyView;
--(UIWindow *)subwindow
-{
-    if(!_subwindow){
-        _subwindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _subwindow.windowLevel = UIWindowLevelStatusBar + 1;
-    }
-    return _subwindow;
-}
+@synthesize normalActivityView = _normalActivityView;
 /**
  动画的图片
  */
@@ -49,57 +42,62 @@
 /**
  开奖时的大图
  */
--(RH_OpenActivithyView *)activithyView
+//-(RH_OpenActivithyView *)activithyView
+//{
+//    if (!_activithyView) {
+//        _activithyView = [RH_OpenActivithyView createInstance];;
+//        _activithyView.frame = CGRectMake(0, 0, 300, 300);
+//        _activithyView.center = self.center;
+//        _activithyView. = self.activityModel;
+//    }
+//    return _activithyView;
+//}
+/**
+    未打开的红包大图
+ */
+-(RH_NormalActivithyView *)normalActivityView
 {
-    if (!_activithyView) {
-        _activithyView = [RH_OpenActivithyView createInstance];;
-        _activithyView.frame = CGRectMake(0, 0, 300, 300);
-        _activithyView.center = self.center;
-        _activithyView.activityModel = self.activityModel;
+    if (!_normalActivityView) {
+        _normalActivityView = [RH_NormalActivithyView createInstance];
+        _normalActivityView.frame =CGRectMake(0, 0, 300,350);
+//        _normalActivityView
     }
-    return _activithyView;
+    return _normalActivityView;
 }
 -(instancetype)initWithFrame:(CGRect)frame;
 {
     if (self=[super initWithFrame:frame]) {
-        self.frame = self.subwindow.bounds;
-        self.subwindow.userInteractionEnabled = YES;
-        [self.subwindow addSubview:self.imageView];
-        [self.subwindow addSubview:self.activithyView];
-        self.activithyView.center = self.subwindow.center;
-        self.activithyView.alpha = 0;
-        self.subwindow.backgroundColor = [UIColor grayColor];
+        self.userInteractionEnabled = YES;
+        [self addSubview:self.imageView];
+        [self addSubview:self.normalActivityView];
+        self.normalActivityView.center = self.center;
+        self.normalActivityView.alpha = 0;
         //显示时建立引用循环
         _animationTimes = 0;
-        [self.subwindow addSubview:self];
-        self.subwindow.alpha = 0;
-        [self.subwindow setHidden:YES];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeSubwindow)];
-        [self.subwindow addGestureRecognizer:tap];
+//        [self.subwindow addGestureRecognizer:tap];
     }
     return self;
 }
 -(void)showAnimation
 {
-    if (!self.activithyView&&!self.closeBtn) {
-        [self.subwindow addSubview:self.closeBtn];
-        [self.subwindow addSubview:self.activithyView];
+    if (!self.normalActivityView&&!self.closeBtn) {
+        [self addSubview:self.closeBtn];
+        [self addSubview:self.normalActivityView];
     }
-    self.activithyView.timeLabel.text = self.activityModel.mNextLotteryTime;
-    self.activithyView.chanceLabel.text = self.activityModel.mDrawTimes;
+    self.normalActivityView.nextOpentimeLabel.text = self.openActivityModel.mNextLotteryTime;
     [self startanimationRotate];
     [self startanimationTranslation];
 }
+
 -(void)startanimationTranslation
 {
     // 执行动画
     [UIView animateWithDuration:1.f
                      animations:^{
-                         self.imageView.center = self.subwindow.center;
-                         [self.subwindow setHidden:NO];
-                         self.subwindow.alpha = 0.8;
+                         self.imageView.center = self.center;
                          self.imageView.alpha = 0;
-                         self.activithyView.alpha = 1.f;
+                         self.normalActivityView.alpha = 1.f;
                      }
                      completion:^(BOOL finished){
                    
@@ -131,23 +129,7 @@
 }
 - (void)closeSubwindow
 {
-    if (self.subwindow) {
-        //隐藏
-        [UIView animateWithDuration:1.f animations:^{
-            self.activithyView.alpha = 0;
-            self.subwindow.alpha = 0;
-            self.closeBtn.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self.subwindow setHidden:YES];
-            for(UIView *subView in [self.subwindow subviews])
-            {
-                [subView removeFromSuperview];
-            }
-            [self.closeBtn removeFromSuperview];
-            [self.activithyView removeFromSuperview];
-        }];
-        
-    }
+   
 }
 
 @end

@@ -179,11 +179,14 @@
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"
 #define RH_GP_BETTING_APIID                             @"apiId"
+#define RH_GP_BETTING_APINAME                           @"apiName"
 #define RH_GP_BETTING_GAMEID                            @"gameId"
+#define RH_GP_BETTING_GAMENAME                          @"gameName"
 #define RH_GP_BETTING_TERMINAL                          @"terminal"
 #define RH_GP_BETTING_BETTIME                           @"betTime"
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
-#define RH_GP_BETTING_ORDERSTATE                      @"orderState"
+#define RH_GP_BETTING_PROFITAMOUNT                      @"profitAmount"
+#define RH_GP_BETTING_ORDERSTATE                        @"orderState"
 
 #pragma mark - V3 用户安全码 初始化信息模型
 #define RH_GP_USERSAFETY_HASREALNAME                                @"hasRealName"
@@ -254,6 +257,11 @@
 #define RH_SP_OPENACTIVITY_MESSAGEID                    @"activityMessageId"
 #define RH_SP_OPENACTIVITY_TOKEN                        @"gb.token"
 //返回参数
+#define RH_GP_OPENACTIVITY_AWARD                        @"award"
+#define RH_GP_OPENACTIVITY_GAMENUM                      @"gameNum"
+#define RH_GP_OPENACTIVITY_NEXTLOTTERYTIME              @"nextLotteryTime"
+#define RH_GP_OPENACTIVITY_TOKEN                        @"token"
+
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径
@@ -279,6 +287,8 @@
 //返回参数
 #define RH_GP_BETTINGLIST_LIST                              @"list"
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
+#define RH_GP_BETTINGLIST_TOTALSINGLEAMOUN                  @"singleAmount"
+#define RH_GP_BETTINGLIST_TOTALPROFIT                       @"profit"
 
 #pragma mark -v3    投注记录明细
 //api路径

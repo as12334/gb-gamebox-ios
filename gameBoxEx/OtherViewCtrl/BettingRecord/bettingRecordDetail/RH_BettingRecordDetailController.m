@@ -8,16 +8,27 @@
 
 #import "RH_BettingRecordDetailController.h"
 #import "RH_BettingRecordDetailCell.h"
+#import "RH_BettingInfoModel.h"
+
 @interface RH_BettingRecordDetailController ()
 
 @end
 
 @implementation RH_BettingRecordDetailController
+{
+    RH_BettingInfoModel *_bettingInfoModel ;
+}
+
+-(void)setupViewContext:(id)context
+{
+    _bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, context) ;
+}
 
 -(BOOL)isSubViewController
 {
     return YES ;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -25,6 +36,7 @@
     [self createUI];
     
 }
+
 -(void)createUI{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
@@ -71,8 +83,11 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3BettingDetails:4866637] ;
+
+//    [self.serviceRequest startV3BettingDetails:4866637] ;
+    [self.serviceRequest startV3BettingDetails:_bettingInfoModel.mID] ;
 }
+
 -(void)cancelLoadDataHandle
 {
     [self.serviceRequest cancleAllServices] ;

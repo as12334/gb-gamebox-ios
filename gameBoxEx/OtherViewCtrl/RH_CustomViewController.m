@@ -219,6 +219,17 @@
         }) ;
         
     };
+    
+    jsContext[@"demoEnter"] = ^() {
+        [self performSelectorOnMainThread:@selector(demoEnter) withObject:self waitUntilDone:NO] ;
+    };
+}
+
+#pragma mark-
+- (void)demoEnter{
+    [self showProgressIndicatorViewWithAnimated:YES title:@"试玩登入中"];
+    [self.serviceRequest startDemoLogin] ;
+    return ;
 }
 
 #pragma mark-

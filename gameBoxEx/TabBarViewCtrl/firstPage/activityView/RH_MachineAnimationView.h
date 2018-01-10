@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RH_ActivityModel.h"
+#import "RH_OpenActivityModel.h"
 
 @interface RH_MachineAnimationView : UIView
-@property(nonatomic,strong)RH_ActivityModel *activityModel;
+@property(nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 -(void)showAnimation;
 @end

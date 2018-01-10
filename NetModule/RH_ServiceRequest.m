@@ -20,7 +20,8 @@
 #import "RH_UserBalanceGroupModel.h"
 #import "RH_MineGroupInfoModel.h"
 #import "RH_BettingInfoModel.h"
-
+#import "RH_SettingDetailsModel.h"
+#import "RH_OpenActivityModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -773,18 +774,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         
         return YES ;
     }
-    else if (type == ServiceRequestTypeV3OpenActivity){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *error = tempError;
-        
-        if (dataObject){
-            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
-        }
-         return YES ;
-    }
+//    else if (type == ServiceRequestTypeV3OpenActivity){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *error = tempError;
+//        
+//        if (dataObject){
+//            *reslutData  = [[ alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
+//        }
+//         return YES ;
+//    }
     else if (type == ServiceRequestTypeV3BettingDetails){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -927,7 +928,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
-                
+                case ServiceRequestTypeV3BettingDetails:
+            {
+                resultSendData = [[RH_SettingDetailsModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
+                case ServiceRequestTypeV3OpenActivity:
+            {
+                resultSendData = [[RH_OpenActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
             default:
                 resultSendData = dataObject ;
 

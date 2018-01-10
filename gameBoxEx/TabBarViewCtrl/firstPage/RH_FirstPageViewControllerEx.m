@@ -27,9 +27,12 @@
 #import "RH_LotteryGameListViewController.h"
 #import "RH_ActivityModel.h"
 #import "RH_OpenActivithyView.h"
+#import "RH_OpenActivityModel.h"
+#import "RH_NormalActivithyView.h"
+#import "RH_ActivityDeliveryTool.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
-        HomeCategoryItemsCellDelegate>
+        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
@@ -42,6 +45,8 @@
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
+@property (nonatomic,strong,readonly) RH_MachineAnimationView *machineView;
+@property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -52,6 +57,7 @@
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
 @synthesize activityView = _activityView                    ;
 @synthesize openActivityView = _openActivityView;
+@synthesize machineView = _machineView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -128,6 +134,15 @@
             }
         }];
     }
+}
+#pragma mark -红包
+-(RH_MachineAnimationView *)machineView
+{
+    if (!_machineView) {
+        _machineView = [[RH_MachineAnimationView alloc]initWithFrame:CGRectMake(0, 0, 300,350)];
+        _machineView.center = self.view.center;
+    }
+    return _machineView;
 }
 
 #pragma mark-
@@ -240,13 +255,13 @@
     {
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
-            if (lotteryAPIInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
-                return ;
-            }else if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
+            if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
                 [self showViewController:[RH_LotteryGameListViewController viewControllerWithContext:lotteryAPIInfoModel]
                                   sender:self] ;
+                return ;
+            }else if (lotteryAPIInfoModel.mGameLink.length){
+                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
                 return ;
             }else if (lotteryAPIInfoModel.mGameMsg.length){
                 showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
@@ -284,7 +299,6 @@
                 return ;
             }
         }
-        
         showAlertView(@"提示信息", @"您尚未登入") ;
     }
 }
@@ -334,13 +348,19 @@
         }
         
         if (self.activityModel){
-            RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
-            machineView.activityModel = self.activityModel;
+        //在window上加一个遮罩层
+            UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
+            bigView.backgroundColor = [UIColor grayColor];
+            bigView.alpha = 0.8;
+            [[UIApplication sharedApplication].keyWindow addSubview:bigView];
+            [[UIApplication sharedApplication].keyWindow addSubview:self.machineView];
+            
             RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
             [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
-            [machineView showAnimation];
+            [RH_ActivityDeliveryTool deliveryStrTool].nextTimeStr = homePageModel.mActivityInfo.mNextLotteryTime;
+            [self.machineView showAnimation];
         }else{
-            [self showProgressIndicatorViewWithAnimated:YES title:@"请求超时，请重新打开红包"];
+            [self showProgressIndicatorViewWithAnimated:YES title:@"正在加载，请稍后打开红包"];
             // 2. 等待0.5秒中, 然后再清空
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
@@ -350,7 +370,6 @@
         showAlertView(@"您尚未登入", @"不能参与活动") ;
     }
 }
-
 -(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView
 {
     [self activityViewHide] ;
@@ -445,7 +464,8 @@
         self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
-        
+        self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
+        [RH_ActivityDeliveryTool deliveryStrTool].openActivityStr = self.openActivityModel.mAward;
     }
 }
 

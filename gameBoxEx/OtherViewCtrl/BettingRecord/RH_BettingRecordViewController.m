@@ -13,6 +13,7 @@
 #import "RH_BettingRecordCell.h"
 #import "RH_API.h"
 #import "coreLib.h"
+#import "RH_BettingRecordDetailController.h"
 
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
@@ -72,6 +73,9 @@
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
     self.contentTableView.tableHeaderView = self.bettingTableHeaderView ;
+    self.contentTableView.allowsSelection = YES ;
+    self.contentTableView.allowsMultipleSelection = NO ;
+    
     [self.contentTableView registerCellWithClass:[RH_BettingRecordCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     
@@ -133,6 +137,11 @@
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.endDate = returnDate ;
               }] ;
+}
+
+-(void)bettingRecordHeaderViewTouchSearchButton:(RH_BettingRecordHeaderView*)bettingRecordHeaderView
+{
+    [self startUpdateData] ;
 }
 
 #pragma mark-sort table header view
@@ -235,6 +244,16 @@
     }else{
         return self.loadingIndicateTableViewCell ;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.pageLoadManager.currentDataCount){
+        [self showViewController:[RH_BettingRecordDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]]
+                          sender:self] ;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
 }
 
 @end
