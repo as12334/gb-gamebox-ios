@@ -86,14 +86,14 @@
     if (viewCtrl){
         [self showViewController:viewCtrl] ;
     }else{
-        //是否有h5 link
-        NSString *code = [dict stringValueForKey:@"code"] ;
-        if (code.length){
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            RH_LinkInfoModel *linkInfo =  [MineGroupInfo getLinkInfoWithCode:code] ;
-            appDelegate.customUrl = linkInfo.targetLink ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }
+//        //是否有h5 link
+//        NSString *code = [dict stringValueForKey:@"code"] ;
+//        if (code.length){
+//            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+//            RH_LinkInfoModel *linkInfo =  [MineGroupInfo getLinkInfoWithCode:code] ;
+//            appDelegate.customUrl = linkInfo.targetLink ;
+//            [self showViewController:[RH_CustomViewController viewController]] ;
+//        }
     }
     
     return NO ;

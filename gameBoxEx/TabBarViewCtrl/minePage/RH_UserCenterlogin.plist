@@ -106,6 +106,8 @@
 							<string>mine_page_preferentialrecords</string>
 							<key>code</key>
 							<string>myPromo</string>
+							<key>targetKey</key>
+							<string>RH_MineDiscountRecordController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -115,7 +117,7 @@
 							<key>image</key>
 							<string>mine_page_messagecenter</string>
 							<key>targetKey</key>
-							<string></string>
+							<string>RH_BettingRecordDetailController</string>
 						</dict>
 					</array>
 				</dict>
