@@ -19,29 +19,32 @@
 #import "RH_V3SimpleWebViewController.h"
 #import "RH_ActivithyView.h"
 #import "RH_API.h"
-#import "RH_MachineAnimationView.h"
 #import "RH_BasicAlertView.h"
 #import "RH_UserInfoManager.h"
 #import "RH_CustomViewController.h"
 #import "RH_GamesViewController.h"
 #import "RH_LotteryGameListViewController.h"
 #import "RH_ActivityModel.h"
-#import "RH_OpenActivithyView.h"
+#import "RH_OpenActivityModel.h"
+#import "RH_NormalActivithyView.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
-        HomeCategoryItemsCellDelegate>
+        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
 @property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
-@property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
-@property (nonatomic,strong,readonly) RH_OpenActivithyView *openActivityView;
+
 @property (nonatomic, strong) RH_BasicAlertView *rhAlertView ;
 @property (nonatomic,strong)  RH_ActivityModel *activityModel;
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
+
+@property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
+@property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
+@property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -51,7 +54,8 @@
 @synthesize homeChildCatetoryCell = _homeChildCatetoryCell  ;
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
 @synthesize activityView = _activityView                    ;
-@synthesize openActivityView = _openActivityView;
+@synthesize normalActivityView= _normalActivityView         ;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -144,6 +148,7 @@
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
+    
     [self.contentTableView registerCellWithClass:[RH_BannerViewCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DaynamicLabelCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_HomeCategoryCell class]] ;
@@ -177,7 +182,7 @@
         [self startUpdateData] ;
         
     }else{
-        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem,self.tryLoginButtonItem] ;
+        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
     }
 }
 
@@ -318,28 +323,68 @@
         _activityView.frame = CGRectMake(self.view.frameWidth - activithyViewWidth -5,
                                          self.view.frameHeigh - activithyViewHeigh ,
                                          activithyViewWidth,
-                                         activithyViewHeigh) ;
+                                         activithyViewHeigh
+        ) ;
         _activityView.delegate = self ;
     }
     
     return _activityView ;
 }
-
+#pragma mark 拆红包大图
+-(RH_NormalActivithyView *)normalActivityView
+{
+    if (!_normalActivityView) {
+        _normalActivityView = [RH_NormalActivithyView createInstance];
+        _normalActivityView.frame =CGRectMake(0, 0, 300, 350);
+        _normalActivityView.center =self.view.center;
+        _normalActivityView.delegate = self;
+    }
+    return _normalActivityView;
+}
+-(void)normalActivithyViewOpenActivityClick:(RH_NormalActivithyView *)view
+{
+    RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+    [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
+}
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
     if (self.appDelegate.isLogin){
         if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3ActivityStatus]){
             return ;
         }
-        
         if (self.activityModel){
-            RH_MachineAnimationView *machineView = [RH_MachineAnimationView createInstance];
-            machineView.activityModel = self.activityModel;
-            RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-            [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
-            [machineView showAnimation];
+        //在window上加一个遮罩层
+            UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
+            bigView.backgroundColor = [UIColor grayColor];
+            bigView.alpha = 0.8;
+            [[UIApplication sharedApplication].keyWindow addSubview:bigView];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
+            imageView.image = activityView.imgView.image;
+            [[UIApplication sharedApplication].keyWindow addSubview:imageView];
+            //红包动画
+            [UIView animateWithDuration:1.f animations:^{
+                imageView.center = self.view.center;
+                imageView.alpha = 0;
+                CGRect frame = imageView.frame;
+                frame.size.width +=100;
+                frame.size.height +=100;
+                imageView.frame=frame;
+                CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+                //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
+                animation.fromValue = [NSNumber numberWithFloat:0.f];
+                animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
+                animation.duration  = 1;
+                animation.speed = 2;
+                animation.autoreverses = NO;
+                animation.fillMode =kCAFillModeForwards;
+                animation.repeatCount = MAXFLOAT; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
+                [imageView.layer addAnimation:animation forKey:nil];
+            } completion:^(BOOL finished) {
+                [imageView removeFromSuperview];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.normalActivityView];
+            }];
         }else{
-            [self showProgressIndicatorViewWithAnimated:YES title:@"请求超时，请重新打开红包"];
+            [self showProgressIndicatorViewWithAnimated:YES title:@"正在加载，请稍后打开红包"];
             // 2. 等待0.5秒中, 然后再清空
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
@@ -377,8 +422,6 @@
         }] ;
     }
 }
-
-#pragma mark-alertView
 
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
@@ -442,9 +485,11 @@
     }
     else if (type == ServiceRequestTypeV3ActivityStatus){
         self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
+        self.normalActivityView.activityModel = self.activityModel;
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
-        
+        self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
+        self.normalActivityView.openModel = self.openActivityModel;
     }
 }
 

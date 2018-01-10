@@ -20,8 +20,8 @@
 #import "RH_UserBalanceGroupModel.h"
 #import "RH_MineGroupInfoModel.h"
 #import "RH_BettingInfoModel.h"
+#import "RH_OpenActivityModel.h"
 #import "RH_BettingDetailModel.h"
-
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -301,20 +301,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3ActivityStatus
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark  - V3 拆红包
--(void)startV3OpenActivity:(NSString *)activityID
-{
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_OPENACTIVITY
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3OpenActivity
-                         scopeType:ServiceScopeTypePublic];
-}
 -(void)startV3GameListWithApiID:(NSInteger)apiID
                       ApiTypeID:(NSInteger)apiTypeID
                      PageNumber:(NSInteger)pageNumber
@@ -484,7 +470,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_OPENACTIVITY
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -829,32 +815,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
-    }else if (type == ServiceRequestTypeV3ActivityStatus){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *error = tempError;
-        
-        if (dataObject){
-            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject  objectForKey:@"data"])] ;
-        }
-        
-        return YES ;
     }
-    else if (type == ServiceRequestTypeV3OpenActivity){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *error = tempError;
-        
-        if (dataObject){
-            *reslutData  = [[RH_ActivityModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
-        }
-         return YES ;
-    }
-    
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -961,6 +922,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break ;
             
+            case ServiceRequestTypeV3DepositList:
+            {
+                
+            }
+                break ;
+                
             case ServiceRequestTypeV3UserSafeInfo:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -971,13 +938,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
-           
+                case ServiceRequestTypeV3ActivityStatus:
+            {
+                resultSendData = [[RH_ActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
+                case ServiceRequestTypeV3OpenActivity:
+            {
+                resultSendData = [[RH_OpenActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
             case ServiceRequestTypeV3BettingDetails:
             {
                 resultSendData = [[RH_BettingDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;
-                
             default:
                 resultSendData = dataObject ;
 

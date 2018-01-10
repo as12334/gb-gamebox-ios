@@ -70,7 +70,6 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-    
     [self setupPageLoadManager] ;
 }
 
@@ -142,6 +141,13 @@
               }] ;
 }
 
+#pragma mark --- 搜索按钮点击
+-(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)bettingRecordHeaderView
+{
+    NSLog(@"搜索");
+}
+
+
 #pragma mark-
 -(void)netStatusChangedHandle
 {
@@ -210,16 +216,18 @@
 //        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
 //        return height ;
 //    }
-    
+
     return 40.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    if (self.pageLoadManager.currentDataCount){
-                RH_CapitalTableViewCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
-                [lotteryRecordCell updateCellWithInfo:nil context:nil];
-                return lotteryRecordCell ;
+
+        RH_CapitalTableViewCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
+        [lotteryRecordCell updateCellWithInfo:nil context:nil];
+        return lotteryRecordCell ;
+
 //    }else{
 //        return self.loadingIndicateTableViewCell ;
 //    }

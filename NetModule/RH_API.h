@@ -219,6 +219,37 @@
 #define RH_GP_BETTINGDETAIL_USERNAME                                @"userName"
 
 
+#pragma mark - V3 资金记录 模型
+#define RH_GP_CAPITAL_ID                                @"id"
+#define RH_GP_CAPITAL_CREATETIME                        @"createTime"
+#define RH_GP_CAPITAL_TRANSACTIONMONEY                  @"transactionMoney"
+#define RH_GP_CAPITAL_TRANSACTIONTYPE                   @"transactionType"
+#define RH_GP_CAPITAL_TRANSACTION_TYPENAME              @"transaction_typeName"
+#define RH_GP_CAPITAL_STATUS                            @"status"
+#define RH_GP_CAPITAL_STATUSNAME                        @"statusName"
+
+#pragma mark - V3 资金详情 模型
+#define RH_GP_CAPITALDETAIL_APIID                                @"apiId"
+#define RH_GP_CAPITALDETAIL_APINAME                              @"apiName"
+#define RH_GP_CAPITALDETAIL_APITYPEID                            @"apiTypeId"
+#define RH_GP_CAPITALDETAIL_BETDETAIL                            @"betDetail"
+#define RH_GP_CAPITALDETAIL_BETID                                @"betId"
+#define RH_GP_CAPITALDETAIL_BETTIME                              @"betTime"
+#define RH_GP_CAPITALDETAIL_BETTYPENAME                           @"betTypeName"
+#define RH_GP_CAPITALDETAIL_CONTRIBUTIONAMOUNT                    @"contributionAmount"
+#define RH_GP_CAPITALDETAIL_EFFECTIVETRADEAMOUNT                      @"effectiveTradeAmount"
+#define RH_GP_CAPITALDETAIL_GAMEID                                @"gameId"
+#define RH_GP_CAPITALDETAIL_GAMENAME                                @"gameName"
+#define RH_GP_CAPITALDETAIL_GAMETYPE                                @"gameType"
+#define RH_GP_CAPITALDETAIL_ODDSTYPENAME                                @"oddsTypeName"
+#define RH_GP_CAPITALDETAIL_ORDERSTATE                                @"orderState"
+#define RH_GP_CAPITALDETAIL_PAYOUTTIME                                @"payoutTime"
+#define RH_GP_CAPITALDETAIL_PROFITAMOUNT                                @"profitAmount"
+#define RH_GP_CAPITALDETAIL_RESULTARRAY                                @"resultArray"
+#define RH_GP_CAPITALDETAIL_SINGLEAMOUNT                                @"singleAmount"
+#define RH_GP_CAPITALDETAIL_TERMINAL                                @"terminal"
+#define RH_GP_CAPITALDETAIL_USERNAME                                @"userName"
+
 #pragma mark -
 #pragma mark - 回收接口
 //api的路径
@@ -277,6 +308,11 @@
 #define RH_SP_OPENACTIVITY_MESSAGEID                    @"activityMessageId"
 #define RH_SP_OPENACTIVITY_TOKEN                        @"gb.token"
 //返回参数
+#define RH_GP_OPENACTIVITY_AWARD                        @"award"
+#define RH_GP_OPENACTIVITY_GAMENUM                      @"gameNum"
+#define RH_GP_OPENACTIVITY_NEXTLOTTERYTIME              @"nextLotteryTime"
+#define RH_GP_OPENACTIVITY_TOKEN                        @"token"
+
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径
@@ -326,6 +362,18 @@
 #pragma mark -V3 资金记录 清单详情
 //api的路径
 #define RH_API_NAME_DEPOSITLISTDETAILS                        @"mineOrigin/getFundRecordDetails.html"
+
+/**
+    资金详情
+ */
+#pragma mark -V3  资金记录详情
+//api路径
+#define RH_API_NAME_DEPOSITLISTDETAILS                @"mineOrigin/getFundRecordDetails.html"
+//请求参数
+#define RH_API_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
+//返回参数
+
+
 
 #pragma mark -V3 用户安全码初始化信息
 //api的路径

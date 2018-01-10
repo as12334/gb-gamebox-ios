@@ -28,8 +28,8 @@
         _mType = [info stringValueForKey:RH_GP_Banner_TYPE] ;
         _mCover = [info stringValueForKey:RH_GP_Banner_COVER] ;
         _mStatus = [info integerValueForKey:RH_GP_Banner_STATUS] ;
-        _mEndTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_Banner_ENDTIME]*1000] ;
-        _mStartTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_Banner_STARTTIME]] ;
+        _mEndTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_Banner_ENDTIME]/1000.0] ;
+        _mStartTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_Banner_STARTTIME]/1000.0] ;
         _mLanguage = [info stringValueForKey:RH_GP_Banner_LANGUAGE] ;
         _mOrderNum = [info integerValueForKey:RH_GP_Banner_ORDERNUM] ;
         _mCarouselID = [info integerValueForKey:RH_GP_Banner_CAROUSEL_ID] ;

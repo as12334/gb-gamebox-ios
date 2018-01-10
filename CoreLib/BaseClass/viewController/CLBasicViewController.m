@@ -358,7 +358,8 @@ static char CONTENTTABLEVIEW ;
     tableView.delegate = self ;
     tableView.dataSource = self ;
     tableView.backgroundColor = [UIColor clearColor] ;
-    tableView.contentInset = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar) +
+    
+    tableView.contentInset = UIEdgeInsetsMake((self.isHiddenStatusBar?0:(GreaterThanIOS11System?0:heighStatusBar)) +
                                               (self.isHiddenNavigationBar?0:heighNavigationBar) +
                                               ([self hasTopView]?MAX(0, [self topViewHeight]):0),
                                               0,

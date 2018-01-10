@@ -61,7 +61,7 @@
     
     //该方法也可以设置itemSize
 //    layout.itemSize =CGSizeMake(110, 150);
-    self.contentCollectionView = [self createCollectionViewWithLayout:flowLayout updateControl:NO loadControl:NO];
+    self.contentCollectionView = [self createCollectionViewWithLayout:flowLayout updateControl:YES loadControl:YES];
     self.contentCollectionView.delegate=self;
     self.contentCollectionView.dataSource=self;
     [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
@@ -140,13 +140,10 @@
 }
 
 #pragma mark-
-
-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
     [self startUpdateData] ;
 }
-
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data

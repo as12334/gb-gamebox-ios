@@ -84,6 +84,8 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+
+//    [self.serviceRequest startV3BettingDetails:4866637] ;
     [self.serviceRequest startV3BettingDetails:_bettingInfoModel.mID] ;
 }
 
