@@ -151,9 +151,6 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 资金记录详情 根据ID进行查询
 -(void)startV3DepositListDetail:(NSString*)searchId;
 
-#pragma mark - 修改安全密码
-- (void)startV3ChangeSaftyPasswordMainPage;
-
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo ;
 #pragma mark - 投注记录详情
@@ -165,12 +162,11 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)startV3SetRealName: (NSString*)name;
 
 #pragma mark - 修改安全密码接口
-- (void)startV3UpdateSafePassword:(BOOL)needCaptcha
-                             name:(nullable NSString *)realName
-                   originPassword:(nullable NSString *)originPwd
-                      newPassword:(nullable NSString *)pwd1
-                  confirmPassword:(nullable NSString *)pwd2
-                       verifyCode:(nullable NSString *)code;
+- (void)startV3ModifySafePasswordWithRealName:(nullable NSString *)realName
+                               originPassword:(nullable NSString *)originPwd
+                                  newPassword:(nullable NSString *)pwd1
+                              confirmPassword:(nullable NSString *)pwd2
+                                   verifyCode:(nullable NSString *)code;
 
 #pragma mark - 修改登录密码
 - (void)startV3UpdateLoginPassword:(NSString *)password

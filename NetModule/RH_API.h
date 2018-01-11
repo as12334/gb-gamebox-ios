@@ -384,7 +384,17 @@
 #pragma mark -V3 修改安全密码接口
 //api路径
 #define RH_API_NAME_UPDATESAFEPASSWORD                    @"mineOrigin/updateSafePassword.html"
-//请求参数 无
+//请求参数
+#define RH_SP_UPDATESAFEPASSWORD_REALNAME                     @"realName"
+#define RH_SP_UPDATESAFEPASSWORD_ORIGINPWD                     @"originPwd"
+#define RH_SP_UPDATESAFEPASSWORD_NEWPWD                       @"pwd1"
+#define RH_SP_UPDATESAFEPASSWORD_CONFIRMPWD                       @"pwd2"
+#define RH_SP_UPDATESAFEPASSWORD_VERIFYCODE                       @"code"
+
+//返回参数
+#define RH_GP_UPDATESAFEPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
+#define RH_GP_UPDATESAFEPASSWORD_REMAINTIMES                @"remainTimes"
+
 
 #pragma mark - V3 修改用户密码
 #define RH_API_NAME_MINEMODIFYPASSWORD                   @"mineOrigin/updateLoginPassword.html"
@@ -396,9 +406,6 @@
 //返回参数
 #define RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
 #define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
-
-#pragma mark - V3 修改用户安全密码
-#define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
 
 
 #endif /* RH_API_h */

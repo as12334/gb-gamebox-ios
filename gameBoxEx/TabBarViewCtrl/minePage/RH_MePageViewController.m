@@ -119,10 +119,6 @@
             [self.serviceRequest startV3MineLinkInfo] ;
         }
         
-        if (UserSafetyInfo==nil){
-            [self.serviceRequest startV3UserSafetyInfo] ;
-        }
-        
         [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogin"] ;
     }

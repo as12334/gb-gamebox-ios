@@ -374,19 +374,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic] ;
 }
 
-- (void)startV3ChangeSaftyPasswordMainPage {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3ModifySafetyPassword
-                         scopeType:ServiceScopeTypePublic];
-}
-
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo
 {
@@ -418,20 +405,27 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 修改安全密码
-- (void)startV3UpdateSafePassword:(BOOL)needCaptcha name:(NSString *)realName originPassword:(NSString *)originPwd newPassword:(NSString *)pwd1 confirmPassword:(NSString *)pwd2 verifyCode:(NSString *)code {
+- (void)startV3ModifySafePasswordWithRealName:(nullable NSString *)realName
+                               originPassword:(nullable NSString *)originPwd
+                                  newPassword:(nullable NSString *)pwd1
+                              confirmPassword:(nullable NSString *)pwd2
+                                   verifyCode:(nullable NSString *)code
+{
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:realName?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_REALNAME] ;
+    [dictTmp setValue:originPwd?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_ORIGINPWD] ;
+    [dictTmp setValue:pwd1?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_NEWPWD] ;
+    [dictTmp setValue:pwd2?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_CONFIRMPWD] ;
+    if (code.length){
+        [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
+    }
     
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{@"realName":realName?:@"",
-                                     @"needCaptcha":@(needCaptcha)?:NO,
-                                     @"originPwd": originPwd?:@"",
-                                     @"pwd1"    :pwd1?:@"",
-                                     @"pwd2"    :pwd2?:@"",
-                                     @"code"    :code?:@""
-                                     }
+                    queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3UpdateSafePassword
