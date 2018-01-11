@@ -9,6 +9,7 @@
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
 #import "RH_UserInfoManager.h"
+#import "RH_ModifySafetyPwdCodeCell.h"
 
 typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     ModifySafetyStatus_Init                         ,
@@ -25,6 +26,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *userPermissionCell      ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *userNewPermissionCell      ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *userConfirmPermissionCell  ;
+@property (nonatomic,strong,readonly) RH_ModifySafetyPwdCodeCell *userPasswordCodeCell  ;
 
 @property (nonatomic, strong,readonly) UIView *footerView ;
 @property (nonatomic, strong,readonly) UIButton *modifyButton ;
@@ -91,7 +93,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 #pragma mark -
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     
-    return self.userNameCell.isEditing || self.userPermissionCell.isEditing || self.userNewPermissionCell.isEditing || self.userConfirmPermissionCell.isEditing ;
+    return self.userNameCell.isEditing || self.userPermissionCell.isEditing || self.userNewPermissionCell.isEditing || self.userConfirmPermissionCell.isEditing || self.userPasswordCodeCell.isEditing;
 }
 
 - (void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -100,6 +102,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     [self.userPermissionCell endEditing:YES] ;
     [self.userNewPermissionCell endEditing:YES] ;
     [self.userConfirmPermissionCell endEditing:YES] ;
+    [self.userPasswordCodeCell endEditing:YES] ;
 }
 
 #pragma mark -
@@ -121,6 +124,17 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 -(RH_ModifyPasswordCell *)userConfirmPermissionCell
 {
     return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
+}
+-(RH_ModifySafetyPwdCodeCell *)userPasswordCodeCell
+{
+    if (_modifySafetyStatus == ModifySafetyStatus_SetPermissionPasswordUsedCode){
+        return ConvertToClassPointer(RH_ModifySafetyPwdCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
+    }else if (_modifySafetyStatus == ModifySafetyStatus_UpdatePermissionPasswordUsedCode)
+    {
+        return ConvertToClassPointer(RH_ModifySafetyPwdCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]) ;
+    }
+    
+    return nil ;
 }
 
 #pragma mark - footerView
@@ -187,12 +201,20 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             return;
         }
         
+        if (self.userPasswordCodeCell){
+            if (self.userPasswordCodeCell.passwordCode.length<1){
+                showMessage(self.view, nil, @"请输入验证码");
+                [self.userPasswordCodeCell becomeFirstResponder] ;
+                return;
+            }
+        }
+        
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
         [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
                                                     originPassword:nil
                                                        newPassword:newPassword
                                                    confirmPassword:confirmPassword
-                                                        verifyCode:nil] ;
+                                                        verifyCode:self.userPasswordCodeCell.passwordCode] ;
         
         return ;
     }else{
@@ -262,7 +284,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         [UserSafetyInfo updateHasRealName:YES] ;
         [self setNeedUpdateView] ;
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
-        [UserSafetyInfo updateHasPersimmionPwd:YES] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"已设定安全密码":@"已更新安全密码", nil);
             [self backBarButtonItemHandle] ;
@@ -276,10 +297,10 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     }else if (type == ServiceRequestTypeV3SetRealName){
         showErrorMessage(self.view, error, @"设置真实姓名失败") ;
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
-        [UserSafetyInfo updateHasPersimmionPwd:YES] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(self.view, error, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"设定失败":@"更新失败") ;
         }] ;
+        [self setNeedUpdateView] ;
     }
 }
 

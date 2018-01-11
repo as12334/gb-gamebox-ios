@@ -82,6 +82,9 @@
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(typeLabelPulldownList)];
+    self.typeLabel.backgroundColor = colorWithRGB(27, 117, 217);
+    self.typeLabel.layer.cornerRadius = 3.0f;
+    self.typeLabel.layer.masksToBounds = YES;
     [self.typeLabel addGestureRecognizer:tap];
     
 }

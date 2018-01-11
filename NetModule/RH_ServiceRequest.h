@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3UpdateLoginPassword,//修改登录密码
     ServiceRequestTypeV3DepositPullDownList, //资金记录下拉列表
     ServiceRequestTypeV3AddBankCard,   //添加银行卡
+    ServiceRequestTypeV3SafetyObtainVerifyCode ,
 };
 
 
@@ -184,6 +185,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                             bankName:(NSString *)bankName
                       bankcardNumber:(NSString *)bankcardNumber
                          bankDeposit:(NSString *)bankDeposit;
+
+
+#pragma mark - 生成安全验证码
+-(void)startV3GetSafetyVerifyCode ;
 /**
  * 取消所有服务
  */

@@ -78,6 +78,7 @@
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
     [self setupPageLoadManager] ;
+    self.needObserverTapGesture = YES ;
 }
 
 
@@ -128,13 +129,23 @@
 {
     if (!self.listView.superview) {
         frame.origin.y +=heighStatusBar+NavigationBarHeight+frame.size.height;
-        frame.size.height = 200;
         self.listView.frame = frame;
         [self.view addSubview:self.listView];
+        [UIView animateWithDuration:.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 200;
+            self.listView.frame = framee;
+        }];
     }
     else
     {
-        [self.listView removeFromSuperview];
+        [UIView animateWithDuration:.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
     }
     
 }
@@ -172,7 +183,24 @@
 {
     NSLog(@"搜索");
 }
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return self.listView.superview?YES:NO ;
+}
 
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
+{
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+}
 
 #pragma mark-
 -(void)netStatusChangedHandle

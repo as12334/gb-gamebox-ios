@@ -291,12 +291,14 @@
 		A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */; };
 		A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E60251F8DAFF000098A65 /* RH_FirstPageViewController.m */; };
 		A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */; };
-		A0522A57200731A700A5A6E9 /* RH_ModifySafetyInitInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A56200731A700A5A6E9 /* RH_ModifySafetyInitInfo.plist */; };
-		A0522A592007350A00A5A6E9 /* RH_ModifySafetyNoRealName.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A582007350A00A5A6E9 /* RH_ModifySafetyNoRealName.plist */; };
-		A0522A5B2007358200A5A6E9 /* RH_ModifySafetyNoPermission.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5A2007358200A5A6E9 /* RH_ModifySafetyNoPermission.plist */; };
-		A0522A5D2007649600A5A6E9 /* RH_ModifySafetyNoPermissionUsedCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5C2007649600A5A6E9 /* RH_ModifySafetyNoPermissionUsedCode.plist */; };
+		A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A56200731A700A5A6E9 /* ModifySafetyInitInfo.plist */; };
+		A0522A592007350A00A5A6E9 /* ModifySafetyNoRealName.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A582007350A00A5A6E9 /* ModifySafetyNoRealName.plist */; };
+		A0522A5B2007358200A5A6E9 /* ModifySafetyNoPermission.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5A2007358200A5A6E9 /* ModifySafetyNoPermission.plist */; };
+		A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5C2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist */; };
 		A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5E2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist */; };
 		A0522A622007818600A5A6E9 /* RH_BankCradModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A602007818500A5A6E9 /* RH_BankCradModel.m */; };
+		A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */; };
+		A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
@@ -452,6 +454,8 @@
 		F6A2AD632007001E0077CB92 /* RH_WithdrawDispositCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */; };
 		F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */; };
 		F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */; };
+		F6A2AD6C200793A90077CB92 /* RH_MPGameSeletedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */; };
+		F6A2AD6E200793DB0077CB92 /* RH_MPGameSeletedDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD6D200793DB0077CB92 /* RH_MPGameSeletedDateView.xib */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -992,13 +996,16 @@
 		A04E60511F8DAFF000098A65 /* tab_withdraw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_withdraw@2x.png"; sourceTree = "<group>"; };
 		A04E605B1F8DED6000098A65 /* RH_MinePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MinePageViewController.h; sourceTree = "<group>"; };
 		A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageViewController.m; sourceTree = "<group>"; };
-		A0522A56200731A700A5A6E9 /* RH_ModifySafetyInitInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_ModifySafetyInitInfo.plist; sourceTree = "<group>"; };
-		A0522A582007350A00A5A6E9 /* RH_ModifySafetyNoRealName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_ModifySafetyNoRealName.plist; sourceTree = "<group>"; };
-		A0522A5A2007358200A5A6E9 /* RH_ModifySafetyNoPermission.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_ModifySafetyNoPermission.plist; sourceTree = "<group>"; };
-		A0522A5C2007649600A5A6E9 /* RH_ModifySafetyNoPermissionUsedCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_ModifySafetyNoPermissionUsedCode.plist; sourceTree = "<group>"; };
+		A0522A56200731A700A5A6E9 /* ModifySafetyInitInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyInitInfo.plist; sourceTree = "<group>"; };
+		A0522A582007350A00A5A6E9 /* ModifySafetyNoRealName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyNoRealName.plist; sourceTree = "<group>"; };
+		A0522A5A2007358200A5A6E9 /* ModifySafetyNoPermission.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyNoPermission.plist; sourceTree = "<group>"; };
+		A0522A5C2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyNoPermissionUsedCode.plist; sourceTree = "<group>"; };
 		A0522A5E2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyPasswordUsedCode.plist; sourceTree = "<group>"; };
 		A0522A602007818500A5A6E9 /* RH_BankCradModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BankCradModel.m; sourceTree = "<group>"; };
 		A0522A612007818600A5A6E9 /* RH_BankCradModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BankCradModel.h; sourceTree = "<group>"; };
+		A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_ModifySafetyPwdCodeCell.xib; sourceTree = "<group>"; };
+		A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPwdCodeCell.m; sourceTree = "<group>"; };
+		A0522A6520078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPwdCodeCell.h; sourceTree = "<group>"; };
 		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
@@ -1247,6 +1254,9 @@
 		F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalPulldownListView.m; sourceTree = "<group>"; };
 		F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTypeModel.m; sourceTree = "<group>"; };
 		F6A2AD682007663D0077CB92 /* RH_CapitalTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTypeModel.h; sourceTree = "<group>"; };
+		F6A2AD6A200793A90077CB92 /* RH_MPGameSeletedDateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPGameSeletedDateView.h; sourceTree = "<group>"; };
+		F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameSeletedDateView.m; sourceTree = "<group>"; };
+		F6A2AD6D200793DB0077CB92 /* RH_MPGameSeletedDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MPGameSeletedDateView.xib; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -2427,10 +2437,10 @@
 			children = (
 				B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */,
 				A0522A5E2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist */,
-				A0522A56200731A700A5A6E9 /* RH_ModifySafetyInitInfo.plist */,
-				A0522A582007350A00A5A6E9 /* RH_ModifySafetyNoRealName.plist */,
-				A0522A5A2007358200A5A6E9 /* RH_ModifySafetyNoPermission.plist */,
-				A0522A5C2007649600A5A6E9 /* RH_ModifySafetyNoPermissionUsedCode.plist */,
+				A0522A56200731A700A5A6E9 /* ModifySafetyInitInfo.plist */,
+				A0522A582007350A00A5A6E9 /* ModifySafetyNoRealName.plist */,
+				A0522A5A2007358200A5A6E9 /* ModifySafetyNoPermission.plist */,
+				A0522A5C2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist */,
 				B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */,
 				B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */,
 			);
@@ -2747,6 +2757,9 @@
 				B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */,
 				B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */,
 				B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */,
+				A0522A6520078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.h */,
+				A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */,
+				A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */,
 				B8107AB71FFDCB780086DDC3 /* RH_MineSafetyCenterCell.h */,
 				B8107AB81FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m */,
 				B8107ABA1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.h */,
@@ -2835,6 +2848,9 @@
 				F6A2AC9420044C590077CB92 /* RH_MPGameNoticHeaderView.h */,
 				F6A2AC9520044C590077CB92 /* RH_MPGameNoticHeaderView.m */,
 				F6A2AC9620044C590077CB92 /* RH_MPGameNoticHeaderView.xib */,
+				F6A2AD6A200793A90077CB92 /* RH_MPGameSeletedDateView.h */,
+				F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */,
+				F6A2AD6D200793DB0077CB92 /* RH_MPGameSeletedDateView.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3035,7 +3051,7 @@
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
-				A0522A57200731A700A5A6E9 /* RH_ModifySafetyInitInfo.plist in Resources */,
+				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
 				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
 				F6A2ACB920044C5A0077CB92 /* RH_MPSiteMessageTopChooseView.xib in Resources */,
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
@@ -3085,7 +3101,7 @@
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
-				A0522A5D2007649600A5A6E9 /* RH_ModifySafetyNoPermissionUsedCode.plist in Resources */,
+				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
 				79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */,
 				A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */,
@@ -3111,9 +3127,11 @@
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
+				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
+				F6A2AD6E200793DB0077CB92 /* RH_MPGameSeletedDateView.xib in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
@@ -3123,7 +3141,7 @@
 				189C13AD1FF9E99F00B14298 /* RH_MineAccountCell.xib in Resources */,
 				189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
-				A0522A592007350A00A5A6E9 /* RH_ModifySafetyNoRealName.plist in Resources */,
+				A0522A592007350A00A5A6E9 /* ModifySafetyNoRealName.plist in Resources */,
 				A01181581FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib in Resources */,
 				A001B3EA1F8EF7CA00309EA4 /* tab_home@2x.png in Resources */,
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
@@ -3135,7 +3153,7 @@
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
 				A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */,
-				A0522A5B2007358200A5A6E9 /* RH_ModifySafetyNoPermission.plist in Resources */,
+				A0522A5B2007358200A5A6E9 /* ModifySafetyNoPermission.plist in Resources */,
 				A0B5A5711FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.xib in Resources */,
 				B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */,
 				F6A2AD3B2005A84A0077CB92 /* close.png in Resources */,
@@ -3329,6 +3347,7 @@
 				B87A6B1D2006405100C9788F /* RH_PreferentialListController.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
+				F6A2AD6C200793A90077CB92 /* RH_MPGameSeletedDateView.m in Sources */,
 				A0109FE51F8788FF004E6EF4 /* NSObject+MJClass.m in Sources */,
 				B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */,
 				A0109FE61F8788FF004E6EF4 /* NSObject+MJCoding.m in Sources */,
@@ -3400,6 +3419,7 @@
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				A0109F791F8787E4004E6EF4 /* CLTextField.m in Sources */,
+				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,

@@ -12,9 +12,9 @@
 #import "RH_CapitalTypeModel.h"
 @interface RH_CapitalPulldownListView()<UITableViewDelegate,UITableViewDataSource,RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
-@property(nonatomic,strong)NSDictionary *dict;
 @property(nonatomic,strong)UITableView *tabelView;
 @property(nonatomic,strong)RH_CapitalTypeModel *typeModel;
+@property(nonatomic,strong)NSMutableArray *typeNameArray;
 @end
 @implementation RH_CapitalPulldownListView
 @synthesize serviceRequest = _serviceRequest;
@@ -22,7 +22,12 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.typeNameArray =[NSMutableArray array];
         [self.serviceRequest startV3DepositPulldownList];
+        self.layer.cornerRadius = 10.f;
+        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.borderWidth = 1.f;
+        self.layer.masksToBounds = YES;
         [self addSubview:self.tabelView];
     }
     return self;
@@ -54,7 +59,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dict.allValues.count;
+    return self.typeNameArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -67,8 +72,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-//    cell.textLabel.text  =  self.dict.allValues[indexPath.item];
-//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.text  =  self.typeNameArray[indexPath.item];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 #pragma mark- 请求回调
@@ -86,9 +91,11 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3DepositPullDownList){
-        self.typeModel = ConvertToClassPointer(RH_CapitalTypeModel, data);
-//        RH_CapitalTypeModel dataArrayWithDictInfo:<#(NSDictionary *)#>
-        [_tabelView reloadData];
+        for (RH_CapitalTypeModel *tymodel in data) {
+            self.typeModel = tymodel;
+            [self.typeNameArray addObject:self.typeModel.mTypeName];
+        }
+        [self.tabelView reloadData];
     }
 }
 
