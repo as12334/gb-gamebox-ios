@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^typeLabelPullDownSelectedBlock)(CGRect frame);
 @class RH_CapitalRecordHeaderView ;
 @protocol CapitalRecordHeaderViewDelegate
 @optional
@@ -20,5 +20,5 @@
 @property (nonatomic,weak) id<CapitalRecordHeaderViewDelegate> delegate ;
 @property (nonatomic,strong) NSDate *startDate ;
 @property (nonatomic,strong) NSDate *endDate ;
-
+@property (nonatomic,copy)typeLabelPullDownSelectedBlock block;
 @end

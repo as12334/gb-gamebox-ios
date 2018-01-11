@@ -126,8 +126,6 @@
 #define RH_GP_LOTTERYAPIINFO_NAME                               @"name"
 #define RH_GP_LOTTERYAPIINFO_SITEID                               @"siteId"
 
-
-
 #pragma mark - v3 彩票游戏信息模型
 #define RH_GP_LOTTERYINFO_APIID                              @"apiId"
 #define RH_GP_LOTTERYINFO_APITYPEID                              @"apiTypeId"
@@ -229,26 +227,26 @@
 #define RH_GP_CAPITAL_STATUSNAME                        @"statusName"
 
 #pragma mark - V3 资金详情 模型
-#define RH_GP_CAPITALDETAIL_APIID                                @"apiId"
-#define RH_GP_CAPITALDETAIL_APINAME                              @"apiName"
-#define RH_GP_CAPITALDETAIL_APITYPEID                            @"apiTypeId"
-#define RH_GP_CAPITALDETAIL_BETDETAIL                            @"betDetail"
-#define RH_GP_CAPITALDETAIL_BETID                                @"betId"
-#define RH_GP_CAPITALDETAIL_BETTIME                              @"betTime"
-#define RH_GP_CAPITALDETAIL_BETTYPENAME                           @"betTypeName"
-#define RH_GP_CAPITALDETAIL_CONTRIBUTIONAMOUNT                    @"contributionAmount"
-#define RH_GP_CAPITALDETAIL_EFFECTIVETRADEAMOUNT                      @"effectiveTradeAmount"
-#define RH_GP_CAPITALDETAIL_GAMEID                                @"gameId"
-#define RH_GP_CAPITALDETAIL_GAMENAME                                @"gameName"
-#define RH_GP_CAPITALDETAIL_GAMETYPE                                @"gameType"
-#define RH_GP_CAPITALDETAIL_ODDSTYPENAME                                @"oddsTypeName"
-#define RH_GP_CAPITALDETAIL_ORDERSTATE                                @"orderState"
-#define RH_GP_CAPITALDETAIL_PAYOUTTIME                                @"payoutTime"
-#define RH_GP_CAPITALDETAIL_PROFITAMOUNT                                @"profitAmount"
-#define RH_GP_CAPITALDETAIL_RESULTARRAY                                @"resultArray"
-#define RH_GP_CAPITALDETAIL_SINGLEAMOUNT                                @"singleAmount"
-#define RH_GP_CAPITALDETAIL_TERMINAL                                @"terminal"
-#define RH_GP_CAPITALDETAIL_USERNAME                                @"userName"
+#define RH_GP_CAPITALDETAIL_ADMINISTRATIVEFEE                    @"administrativeFee"
+#define RH_GP_CAPITALDETAIL_CREATETIME                           @"createTime"
+#define RH_GP_CAPITALDETAIL_DEDUCTFAVORABLE                      @"deductFavorable"
+#define RH_GP_CAPITALDETAIL_FAILUREREASON                        @"failureReason"
+#define RH_GP_CAPITALDETAIL_FUNDTYPE                             @"fundType"
+#define RH_GP_CAPITALDETAIL_ID                                   @"id"
+#define RH_GP_CAPITALDETAIL_PAYERBANKCARD                        @"payerBankcard"
+#define RH_GP_CAPITALDETAIL_POUNDAGE                             @"poundage"
+#define RH_GP_CAPITALDETAIL_REALNAME                             @"realName"
+#define RH_GP_CAPITALDETAIL_RECHARGEADDRESS                      @"rechargeAddress"
+#define RH_GP_CAPITALDETAIL_RECHARGEAMOUNT                       @"rechargeAmount"
+#define RH_GP_CAPITALDETAIL_RECHARGETOTALAMOUNT                  @"rechargeTotalAmount"
+#define RH_GP_CAPITALDETAIL_STATUS                                @"status"
+#define RH_GP_CAPITALDETAIL_STATUSNAME                           @"statusName"
+#define RH_GP_CAPITALDETAIL_TRANSACTIONMONEY                     @"transactionMoney"
+#define RH_GP_CAPITALDETAIL_TRANSACTIONNO                        @"transactionNo"
+#define RH_GP_CAPITALDETAIL_TRANSACTIONTYPE                      @"transactionType"
+#define RH_GP_CAPITALDETAIL_TRANSACTIONWAY                       @"transactionWay"
+#define RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME                   @"transactionWayName"
+#define RH_GP_CAPITALDETAIL_USERNAME                             @"userName"
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -364,11 +362,20 @@
 #define RH_GP_DEPOSITLIST_TOTALCOUNT            @"totalCount"
 
 /**
+    资金记录下拉列表
+ */
+#pragma mark 资金记录下拉列表
+//api路径
+#define RH_API_NAME_DEPOSITPULLDOWNLIST                 @"mineOrigin/getTransactionType.html"
+//请求参数
+//返回参数
+
+/**
     资金详情
  */
 #pragma mark -V3  资金记录详情
 //api路径
-#define RH_API_NAME_DEPOSITLISTDETAILS                @"mineOrigin/getFundRecordDetails.html"
+#define RH_API_NAME_DEPOSITLISTDETAILS               @"mineOrigin/getFundRecordDetails.html"
 //请求参数
 #define RH_SP_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
 

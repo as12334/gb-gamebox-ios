@@ -23,6 +23,8 @@
 #import "RH_OpenActivityModel.h"
 #import "RH_BettingDetailModel.h"
 #import "RH_CapitalInfoOverviewModel.h"
+#import "RH_CapitalDetailModel.h"
+#import "RH_CapitalTypeModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -433,7 +435,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 修改登录密码
-- (void)startV3UpdateLoginPassword:(NSString *)password newPassword:(NSString *)newPassword verifyCode:(NSString *)code
+- (void)startV3UpdateLoginPassword:(NSString *)password
+                       newPassword:(NSString *)newPassword
+                        verifyCode:(NSString *)code
 {
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:password?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD] ;
@@ -495,7 +499,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:searchId forKey:@"id"];
+    [dict setValue:searchId forKey:RH_SP_DEPOSITLISTDETAILS_SEARCHID];
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
                      pathArguments:nil
@@ -506,7 +510,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositListDetails
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark 资金详情下拉列表
+-(void)startV3DepositPulldownList
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITPULLDOWNLIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositPullDownList
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -946,6 +963,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3BettingDetails:
             {
                 resultSendData = [[RH_BettingDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
+            case ServiceRequestTypeV3DepositListDetails:
+            {
+               resultSendData = [[RH_CapitalDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
+            case ServiceRequestTypeV3DepositPullDownList:
+            {
+
+//                resultSendData = [[RH_CapitalTypeModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+                resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break ;
             default:

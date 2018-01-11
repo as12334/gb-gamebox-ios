@@ -12,17 +12,18 @@
 #import "RH_CapitalTableViewCell.h"
 #import "coreLib.h"
 #import "RH_CapitalInfoOverviewModel.h"
-
+#import "RH_CapitalRecordDetailsController.h"
+#import "RH_CapitalPulldownListView.h"
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
-
+@property (nonatomic,strong,readonly) RH_CapitalPulldownListView *listView;
 @end
 
 @implementation RH_CapitalRecordViewController
 @synthesize capitalRecordHeaderView = _capitalRecordHeaderView ;
 @synthesize capitalBottomView = _capitalBottomView               ;
-
+@synthesize listView =_listView;
 -(BOOL)isSubViewController
 {
     return YES ;
@@ -59,6 +60,10 @@
 -(void)setupUI
 {
     [self.topView addSubview:self.capitalRecordHeaderView] ;
+    __block RH_CapitalRecordViewController *weakSelf = self;
+    self.capitalRecordHeaderView.block = ^(CGRect frame){
+        [weakSelf pullDownAndCloseListView:frame];
+    };
     self.capitalRecordHeaderView.userInteractionEnabled = YES;
     [self.bottomView addSubview:self.capitalBottomView] ;
     self.bottomView.borderMask = CLBorderMarkTop ;
@@ -112,6 +117,27 @@
     }
     return _capitalRecordHeaderView ;
 }
+-(RH_CapitalPulldownListView *)listView
+{
+    if (!_listView) {
+        _listView = [[RH_CapitalPulldownListView alloc]init];
+    }
+    return _listView;
+}
+-(void)pullDownAndCloseListView:(CGRect )frame
+{
+    if (!self.listView.superview) {
+        frame.origin.y +=heighStatusBar+NavigationBarHeight+frame.size.height;
+        frame.size.height = 200;
+        self.listView.frame = frame;
+        [self.view addSubview:self.listView];
+    }
+    else
+    {
+        [self.listView removeFromSuperview];
+    }
+    
+}
 
 #pragma mark-sort bottom view
 -(RH_CapitalRecordBottomView *)capitalBottomView
@@ -125,7 +151,7 @@
 }
 
 #pragma mark - CapitalRecordHeaderViewDelegate
--(void)CapitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
+-(void)capitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
@@ -133,8 +159,7 @@
                   CapitalRecordHeaderView.startDate = returnDate ;
               }] ;
 }
-
--(void)CapitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
+-(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
     [self showCalendarView:@"设置结止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
@@ -142,7 +167,6 @@
                   CapitalRecordHeaderView.endDate = returnDate ;
               }] ;
 }
-
 #pragma mark --- 搜索按钮点击
 -(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)bettingRecordHeaderView
 {
@@ -226,7 +250,14 @@
     }else{
         return self.loadingIndicateTableViewCell ;
     }
-
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.pageLoadManager.currentDataCount){
+        [self showViewController:[RH_CapitalRecordDetailsController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]]
+                          sender:self] ;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
+}
 @end

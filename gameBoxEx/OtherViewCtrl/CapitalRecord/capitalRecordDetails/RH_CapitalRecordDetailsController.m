@@ -8,8 +8,11 @@
 
 #import "RH_CapitalRecordDetailsController.h"
 #import "RH_CapitalRecordDetailsCell.h"
+#import "coreLib.h"
+#import "RH_CapitalDetailModel.h"
+#import "RH_CapitalInfoModel.h"
 @interface RH_CapitalRecordDetailsController ()
-
+@property(nonatomic,strong)RH_CapitalInfoModel *infoModel;
 @end
 
 @implementation RH_CapitalRecordDetailsController
@@ -17,21 +20,27 @@
 {
     return YES ;
 }
+-(void)setupViewContext:(id)context
+{
+    _infoModel = ConvertToClassPointer(RH_CapitalInfoModel, context);
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"资金记录详情";
-    [self createUI];
+    if ([self.infoModel.mTransactionType isEqualToString:@"transfers"]) {
+        [self createUI:[RH_CapitalRecordDetailsCell class]];
+    }
+    
 }
--(void)createUI{
+-(void)createUI:(id)cell{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
-    [self.contentTableView registerCellWithClass:[RH_CapitalRecordDetailsCell class]] ;
+    [self.contentTableView registerCellWithClass:cell] ;
     [self.contentView addSubview:self.contentTableView] ;
-    
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
     [self setupPageLoadManager] ;
 }
@@ -69,7 +78,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3DepositListDetails:@"1"] ;
+    [self.serviceRequest startV3DepositListDetail:[NSString stringWithFormat:@"%d",self.infoModel.mId]] ;
 }
 -(void)cancelLoadDataHandle
 {
@@ -86,15 +95,17 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3BettingDetails){
-        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+    if (type == ServiceRequestTypeV3DepositListDetails){
         
+        RH_CapitalDetailModel *detailModel = ConvertToClassPointer(RH_CapitalDetailModel, data);
+        [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
+                            totalCount:detailModel?1:0] ;
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3BettingDetails){
+    if (type == ServiceRequestTypeV3DepositListDetails){
         [self loadDataFailWithError:error] ;
     }
 }
@@ -107,30 +118,29 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //    return MAX(1, self.pageLoadManager.currentDataCount) ;
-    return 10;
+        return MAX(1, self.pageLoadManager.currentDataCount) ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    if (self.pageLoadManager.currentDataCount){
-    //        return [RH_BettingRecordDetailCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-    //    }else{
-    //        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
-    //        return height ;
-    //    }
+        if (self.pageLoadManager.currentDataCount){
+            return [RH_CapitalRecordDetailsCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        }else{
+            CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+            return height ;
+        }
     
-    return 40.0f ;
+//    return 40.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    if (self.pageLoadManager.currentDataCount){
+    if (self.pageLoadManager.currentDataCount&&[self.infoModel.mTransactionType isEqualToString:@"transfers"]){
     RH_CapitalRecordDetailsCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalRecordDetailsCell defaultReuseIdentifier]] ;
-    [bettingRecordCell updateCellWithInfo:nil context:nil] ;
+    [bettingRecordCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     return bettingRecordCell ;
-    //    }else{
-    //        return self.loadingIndicateTableViewCell ;
-    //    }
+        }else{
+            return self.loadingIndicateTableViewCell ;
+        }
 }
 @end

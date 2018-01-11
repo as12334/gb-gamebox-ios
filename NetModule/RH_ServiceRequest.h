@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SetRealName     ,//设置真实姓名
     ServiceRequestTypeV3UpdateSafePassword,//修改安全密码
     ServiceRequestTypeV3UpdateLoginPassword,//修改登录密码
+    ServiceRequestTypeV3DepositPullDownList, //资金记录下拉列表
+    
 };
 
 
@@ -155,8 +157,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)startV3UserSafetyInfo ;
 #pragma mark - 投注记录详情
 -(void)startV3BettingDetails:(NSInteger)listId;
-#pragma mark - 资金详情记录
--(void)startV3DepositListDetails:(NSString *)searchId;
+
 
 #pragma mark - 设置真实名字
 - (void)startV3SetRealName: (NSString*)name;
@@ -169,11 +170,12 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                                    verifyCode:(nullable NSString *)code;
 
 #pragma mark - 修改登录密码
-- (void)startV3UpdateLoginPassword:(NSString *)password
-                       newPassword:(NSString *)newPassword
-                        verifyCode:(NSString *)code;
+- (void)startV3UpdateLoginPassword:(NSString*)password
+                       newPassword:(NSString*)newPassword
+                        verifyCode:(NSString*)code ;
 
-
+#pragma mark - 资金记录下拉列表
+-(void)startV3DepositPulldownList;
 
 /**
  * 取消所有服务

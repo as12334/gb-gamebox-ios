@@ -10,10 +10,8 @@
 #import "RH_CapitalStaticDataCell.h"
 #import "CLStaticCollectionViewTitleCell.h"
 #import "coreLib.h"
-#import "RH_DropdownMenu.h"
 
-
-@interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate,RH_DropdownMenuDelegate>
+@interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labDateTitle;
 /**快选*/
 @property (weak, nonatomic) IBOutlet UIButton *btnQuickSelect;
@@ -22,8 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *serachBtn; //搜索
 @property (weak, nonatomic) IBOutlet UILabel *withdrawalLab;  //取款处理中的金额
 @property (weak, nonatomic) IBOutlet UILabel *transferLab;//转账处理中的金额
-
-@property (weak, nonatomic) IBOutlet RH_DropdownMenu *typeDropList;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 
 @end
 
@@ -52,7 +49,6 @@
     stackView.whc_HSpace = 20;
     stackView.whc_VSpace = 0;
     stackView.whc_Orientation = Horizontal;
-    
     [stackView addSubview:self.startCapitalDateCell];
     [stackView addSubview:self.endCapitalDateCell];
     
@@ -68,17 +64,7 @@
     [self addSubview:view_Line];
     view_Line.whc_TopSpaceToView(5, stackView).whc_LeftSpace(10).whc_RightSpace(0).whc_Height(1);
     view_Line.backgroundColor = RH_Line_DefaultColor;
-   
-    [self addSubview:self.typeDropList];
-//    self.typeDropList.whc_LeftSpace(10).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2 ).whc_Height(30);
-    [self.typeDropList setMenuTitles:@[@"选项一",@"选项二",@"选项三",@"选项四"] rowHeight:30];
-    self.typeDropList.delegate = self;
-    self.typeDropList.arrowMark.image = [UIImage imageNamed:@"dropdownMenu_cornerIcon"];
- 
-
-    
     [self addSubview:self.serachBtn];
-//    self.serachBtn.whc_LeftSpaceToView(10, self.typeDropList).whc_TopSpaceToView(10, view_Line).whc_Width(screenSize().width/2-15 ).whc_Height(30);
     self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
     self.serachBtn.layer.cornerRadius = 3.0f;
     self.serachBtn.layer.masksToBounds = YES;
@@ -88,12 +74,15 @@
     
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
-    view_Line2.whc_TopSpaceToView(10, self.typeDropList).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+    view_Line2.whc_TopSpaceToView(10, self.typeLabel).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
     view_Line2.backgroundColor = RH_Line_DefaultColor;
     
     self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
    
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(typeLabelPulldownList)];
+    [self.typeLabel addGestureRecognizer:tap];
     
 }
 
@@ -123,7 +112,7 @@
 -(void)startCapatitalDateCellHandle
 {
     ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewWillSelectedStartDate:DefaultDate:)){
-        [self.delegate capitalRecordHeaderViewWillSelectedEndDate:self DefaultDate:_startDate] ;
+        [self.delegate capitalRecordHeaderViewWillSelectedStartDate:self DefaultDate:_startDate] ;
     }
 }
 
@@ -161,26 +150,12 @@
         [self.endCapitalDateCell updateUIWithDate:_endDate];
     }
 }
-
-#pragma mark - LMJDropdownMenu Delegate
-
-- (void)dropdownMenu:(RH_DropdownMenu *)menu selectedCellNumber:(NSInteger)number{
-    NSLog(@"你选择了：%ld",number);
+#pragma mark 类型下拉列表
+-(void)typeLabelPulldownList
+{
+    self.block(self.typeLabel.frame);
 }
 
-- (void)dropdownMenuWillShow:(RH_DropdownMenu *)menu{
-    NSLog(@"--将要显示--");
-}
-- (void)dropdownMenuDidShow:(RH_DropdownMenu *)menu{
-    NSLog(@"--已经显示--");
-}
-
-- (void)dropdownMenuWillHidden:(RH_DropdownMenu *)menu{
-    NSLog(@"--将要隐藏--");
-}
-- (void)dropdownMenuDidHidden:(RH_DropdownMenu *)menu{
-    NSLog(@"--已经隐藏--");
-}
 
 
 @end
