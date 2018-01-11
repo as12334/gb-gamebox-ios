@@ -8,7 +8,7 @@
 
 #import "RH_CapitalTableViewCell.h"
 #import "coreLib.h"
-
+#import "RH_CapitalInfoModel.h"
 @interface RH_CapitalTableViewCell ()
 
 @property(nonatomic,strong)UILabel *dataLab; //日期
@@ -18,6 +18,11 @@
 @end
 
 @implementation RH_CapitalTableViewCell
+
++ (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    return 40.0f ;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -97,5 +102,13 @@ self.timeoutTypeLab.whc_RightSpace(10).whc_TopSpace(5).whc_Width(40).whc_Height(
     self.depositTypeLab.textAlignment = NSTextAlignmentCenter;
     self.timeoutTypeLab.textAlignment = NSTextAlignmentCenter;
 }
-
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_CapitalInfoModel *capitalInfoModel = ConvertToClassPointer(RH_CapitalInfoModel, context);
+    self.dataLab.text = dateStringWithFormatter(capitalInfoModel.mCreateTime, @"yyyy-MM-dd");
+    self.moneyTypeLab.text = capitalInfoModel.mTransactionMoney;
+    self.depositTypeLab.text = capitalInfoModel.mTransaction_typeName;
+    self.timeoutTypeLab.text = capitalInfoModel.mStatusName;
+    
+}
 @end

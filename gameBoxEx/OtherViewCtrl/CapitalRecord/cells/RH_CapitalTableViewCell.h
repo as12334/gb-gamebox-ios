@@ -7,7 +7,7 @@
 //
 
 #import "CLTableViewCell.h"
-
+//typedef void (^CapitalTableViewCellSeletedDetail)(void);
 @interface RH_CapitalTableViewCell : CLTableViewCell
-
+//-(void)capitalTabelViewCellSeletedDetail:(CapitalTableViewCellSeletedDetail)seletedDetail;
 @end

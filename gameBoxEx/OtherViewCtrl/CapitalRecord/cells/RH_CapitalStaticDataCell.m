@@ -38,7 +38,7 @@
 #pragma mark-
 -(void)addTarget:(id)object Selector:(SEL)selector
 {
-//    [self.borderView addTarget:object action:selector forControlEvents:UIControlEventTouchUpInside] ;
+    [self.borderView addTarget:object action:selector forControlEvents:UIControlEventTouchUpInside] ;
 }
 
 -(void)updateUIWithDate:(NSDate*)date

@@ -8,9 +8,16 @@
 
 #import "RH_BasicModel.h"
 #import "RH_CapitalInfoModel.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface RH_CapitalInfoOverviewModel : RH_BasicModel
-//@property (nonatomic,strong,readonly) NSString *
-//@property (nonatomic,strong,readonly) NSArray<RH_CapitalInfoModel*> capitalList ;
+@property (nonatomic,assign,readonly) CGFloat mWithdrawSum ;
+@property (nonatomic,assign,readonly) CGFloat mTransferSum ;
+@property (nonatomic,assign,readonly) NSInteger mTotalCount ;
+@property (nonatomic,strong,readonly) NSArray<RH_CapitalInfoModel*> *mList ;
 
+
+//extend
+@property (nonatomic,strong,readonly) NSString *showWithDrawSum ;
+@property (nonatomic,strong,readonly) NSString *showTransferSum ;
 @end

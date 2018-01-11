@@ -11,17 +11,19 @@
 #import "RH_CapitalRecordBottomView.h"
 #import "RH_CapitalTableViewCell.h"
 #import "coreLib.h"
-
+#import "RH_CapitalInfoOverviewModel.h"
+#import "RH_CapitalRecordDetailsController.h"
+#import "RH_CapitalPulldownListView.h"
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
-
+@property (nonatomic,strong,readonly) RH_CapitalPulldownListView *listView;
 @end
 
 @implementation RH_CapitalRecordViewController
 @synthesize capitalRecordHeaderView = _capitalRecordHeaderView ;
 @synthesize capitalBottomView = _capitalBottomView               ;
-
+@synthesize listView =_listView;
 -(BOOL)isSubViewController
 {
     return YES ;
@@ -53,10 +55,15 @@
     
 }
 
+
 #pragma mark-
 -(void)setupUI
 {
     [self.topView addSubview:self.capitalRecordHeaderView] ;
+    __block RH_CapitalRecordViewController *weakSelf = self;
+    self.capitalRecordHeaderView.block = ^(CGRect frame){
+        [weakSelf pullDownAndCloseListView:frame];
+    };
     self.capitalRecordHeaderView.userInteractionEnabled = YES;
     [self.bottomView addSubview:self.capitalBottomView] ;
     self.bottomView.borderMask = CLBorderMarkTop ;
@@ -110,6 +117,27 @@
     }
     return _capitalRecordHeaderView ;
 }
+-(RH_CapitalPulldownListView *)listView
+{
+    if (!_listView) {
+        _listView = [[RH_CapitalPulldownListView alloc]init];
+    }
+    return _listView;
+}
+-(void)pullDownAndCloseListView:(CGRect )frame
+{
+    if (!self.listView.superview) {
+        frame.origin.y +=heighStatusBar+NavigationBarHeight+frame.size.height;
+        frame.size.height = 200;
+        self.listView.frame = frame;
+        [self.view addSubview:self.listView];
+    }
+    else
+    {
+        [self.listView removeFromSuperview];
+    }
+    
+}
 
 #pragma mark-sort bottom view
 -(RH_CapitalRecordBottomView *)capitalBottomView
@@ -123,7 +151,7 @@
 }
 
 #pragma mark - CapitalRecordHeaderViewDelegate
--(void)CapitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
+-(void)capitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
@@ -131,8 +159,7 @@
                   CapitalRecordHeaderView.startDate = returnDate ;
               }] ;
 }
-
--(void)CapitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
+-(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
     [self showCalendarView:@"设置结止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
@@ -140,7 +167,6 @@
                   CapitalRecordHeaderView.endDate = returnDate ;
               }] ;
 }
-
 #pragma mark --- 搜索按钮点击
 -(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)bettingRecordHeaderView
 {
@@ -183,58 +209,55 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    //    if (type == ServiceRequestTypeStaticOpenCode){
-    //        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-    //        [self loadDataSuccessWithDatas:dictTmp.allValues totalCount:dictTmp.allValues.count] ;
-    //    }
+    if (type == ServiceRequestTypeV3DepositList){
+        RH_CapitalInfoOverviewModel *capitalInfoOverModel = ConvertToClassPointer(RH_CapitalInfoOverviewModel, data) ;
+        
+        [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
+                            totalCount:capitalInfoOverModel.mTotalCount] ;
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    //    if (type == ServiceRequestTypeStaticOpenCode){
-    //        [self loadDataFailWithError:error] ;
-    //    }
+    if (type == ServiceRequestTypeV3DepositList){
+        [self loadDataFailWithError:error] ;
+    }
 }
 
 #pragma mark-tableView
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1 ;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return MAX(1, self.pageLoadManager.currentDataCount) ;
-    return 10;
+    return MAX(1, self.pageLoadManager.currentDataCount) ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.pageLoadManager.currentDataCount){
-//        //        return [RH_LotteryRecordCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-//    }else{
-//        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
-//        return height ;
-//    }
-
-    return 40.0f ;
+    if (self.pageLoadManager.currentDataCount){
+        return [RH_CapitalTableViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+    }else{
+        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+        return height ;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.pageLoadManager.currentDataCount){
+    if (self.pageLoadManager.currentDataCount){
+        RH_CapitalTableViewCell *capitalCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
+        [capitalCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        return capitalCell ;
 
-        RH_CapitalTableViewCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
-        [lotteryRecordCell updateCellWithInfo:nil context:nil];
-        return lotteryRecordCell ;
-
-//    }else{
-//        return self.loadingIndicateTableViewCell ;
-//    }
-//
-//    return nil ;
+    }else{
+        return self.loadingIndicateTableViewCell ;
+    }
 }
-
-
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.pageLoadManager.currentDataCount){
+        [self showViewController:[RH_CapitalRecordDetailsController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]]
+                          sender:self] ;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
+}
 @end

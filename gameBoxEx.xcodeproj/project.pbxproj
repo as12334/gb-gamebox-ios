@@ -16,7 +16,6 @@
 		189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A51FF9E99E00B14298 /* RH_MineRecordStaticCell.xib */; };
 		189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */; };
 		189C13B31FF9E99F00B14298 /* RH_MineRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */; };
-		797252EA2004687200A73F05 /* RH_DropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252E82004687200A73F05 /* RH_DropdownMenu.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
@@ -442,6 +441,8 @@
 		F6A2AD5E2006FFEB0077CB92 /* RH_WithdrawDispositController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */; };
 		F6A2AD622007001E0077CB92 /* RH_WithdrawDispositCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */; };
 		F6A2AD632007001E0077CB92 /* RH_WithdrawDispositCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */; };
+		F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */; };
+		F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -478,8 +479,6 @@
 		189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineRecordTableViewCell.xib; sourceTree = "<group>"; };
 		189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MePageViewController.h; sourceTree = "<group>"; };
 		797252E72004687100A73F05 /* dropdownMenu_cornerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownMenu_cornerIcon.png; sourceTree = "<group>"; };
-		797252E82004687200A73F05 /* RH_DropdownMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DropdownMenu.m; sourceTree = "<group>"; };
-		797252E92004687200A73F05 /* RH_DropdownMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DropdownMenu.h; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
 		79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoModel.h; sourceTree = "<group>"; };
@@ -1223,6 +1222,10 @@
 		F6A2AD5F2007001E0077CB92 /* RH_WithdrawDispositCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawDispositCell.h; sourceTree = "<group>"; };
 		F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawDispositCell.m; sourceTree = "<group>"; };
 		F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawDispositCell.xib; sourceTree = "<group>"; };
+		F6A2AD6420070D160077CB92 /* RH_CapitalPulldownListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalPulldownListView.h; sourceTree = "<group>"; };
+		F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalPulldownListView.m; sourceTree = "<group>"; };
+		F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTypeModel.m; sourceTree = "<group>"; };
+		F6A2AD682007663D0077CB92 /* RH_CapitalTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTypeModel.h; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -1310,8 +1313,8 @@
 			isa = PBXGroup;
 			children = (
 				797252E72004687100A73F05 /* dropdownMenu_cornerIcon.png */,
-				797252E92004687200A73F05 /* RH_DropdownMenu.h */,
-				797252E82004687200A73F05 /* RH_DropdownMenu.m */,
+				F6A2AD6420070D160077CB92 /* RH_CapitalPulldownListView.h */,
+				F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */,
 				79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */,
 				79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */,
 				79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */,
@@ -2015,6 +2018,8 @@
 				A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */,
 				79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */,
 				79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */,
+				F6A2AD682007663D0077CB92 /* RH_CapitalTypeModel.h */,
+				F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */,
 				79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */,
 				79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */,
 				A0B86B9C20063E250009AB25 /* RH_CapitalInfoOverviewModel.h */,
@@ -3132,6 +3137,8 @@
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
+				F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */,
+				F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */,
 				A010A0571F87999F004E6EF4 /* RH_BasicImageModel.m in Sources */,
 				A010A0591F87999F004E6EF4 /* RH_CommonInputContainerView.m in Sources */,
 				A010A05C1F87999F004E6EF4 /* RH_LoadingIndicateTableViewCell.m in Sources */,
@@ -3353,7 +3360,6 @@
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
-				797252EA2004687200A73F05 /* RH_DropdownMenu.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,

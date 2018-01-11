@@ -1375,6 +1375,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _q6gw //澳门威尼斯人
+
+#define CODE    @"q6gw"
+#define S        @"bf9a7aec14afdaa27e6f2484786d2f32"
+#define SID        @"325"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _pf8z //威尼斯人娱乐城
 
 #define CODE    @"pf8z"
@@ -1436,6 +1444,14 @@
 #define CODE    @"sy7u"
 #define S        @"17a3e6031779fbac4a87992bc0204f28"
 #define SID        @"335"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _hnvv //CH娱乐城
+
+#define CODE    @"hnvv"
+#define S        @"f1a8a4adbaacee35fca82cba7cbdd737"
+#define SID        @"336"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
