@@ -358,11 +358,6 @@
 #define RH_SP_DEPOSITLIST_PAGENUMBER                    @"paging.pageNumber"
 #define RH_SP_DEPOSITLIST_PAGESIZE                      @"paging.pageSize"
 
-
-#pragma mark -V3 资金记录 清单详情
-//api的路径
-#define RH_API_NAME_DEPOSITLISTDETAILS                        @"mineOrigin/getFundRecordDetails.html"
-
 /**
     资金详情
  */
@@ -370,9 +365,11 @@
 //api路径
 #define RH_API_NAME_DEPOSITLISTDETAILS                @"mineOrigin/getFundRecordDetails.html"
 //请求参数
-#define RH_API_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
+#define RH_SP_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
 //返回参数
-
+#define RH_GP_DEPOSITLISTDETAILS_LIST               @"fundListApps"
+#define RH_GP_DEPOSITLISTDETAILS_TRANSFERSUM            @"transferSum"
+#define RH_GP_DEPOSITLISTDETAILS_WITHDRAWSUM            @"withdrawSum"
 
 
 #pragma mark -V3 用户安全码初始化信息
@@ -396,8 +393,8 @@
 #define RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE                     @"code"
 
 //返回参数
-#define RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA           @"isOpenCaptcha"
-#define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES             @"remainTimes"
+#define RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
+#define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
 
 #pragma mark - V3 修改用户安全密码
 #define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
