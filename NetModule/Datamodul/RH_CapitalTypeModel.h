@@ -11,6 +11,6 @@
 @interface RH_CapitalTypeModel : RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mTypeId;
 @property(nonatomic,strong,readonly)NSString *mTypeName;
-@property(nonatomic,strong,readonly)NSArray *mTypeArray;
+@property(nonatomic,strong,readonly)NSMutableArray *mTypeArray;
 +(NSMutableArray *)dataArrayWithDictInfo:(NSDictionary *)dictInfo ;
 @end
