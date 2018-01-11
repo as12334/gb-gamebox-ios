@@ -19,17 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sWl-6k-CSv">
-                        <rect key="frame" x="100" y="22" width="121" height="29"/>
+                        <rect key="frame" x="81" y="28" width="159" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <segments>
-                            <segment title="银行卡账户">
-                                <size key="contentOffset" width="3" height="0.0"/>
-                            </segment>
+                            <segment title="银行卡账户"/>
                             <segment title="Second"/>
                         </segments>
                     </segmentedControl>
                 </subviews>
             </tableViewCellContentView>
+            <point key="canvasLocation" x="73" y="96.5"/>
         </tableViewCell>
     </objects>
 </document>
