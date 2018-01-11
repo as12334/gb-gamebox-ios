@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3UpdateSafePassword,//修改安全密码
     ServiceRequestTypeV3UpdateLoginPassword,//修改登录密码
     ServiceRequestTypeV3DepositPullDownList, //资金记录下拉列表
-    
+    ServiceRequestTypeV3AddBankCard,   //添加银行卡
 };
 
 
@@ -163,20 +163,27 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)startV3SetRealName: (NSString*)name;
 
 #pragma mark - 修改安全密码接口
-- (void)startV3ModifySafePasswordWithRealName:(nullable NSString *)realName
-                               originPassword:(nullable NSString *)originPwd
-                                  newPassword:(nullable NSString *)pwd1
-                              confirmPassword:(nullable NSString *)pwd2
-                                   verifyCode:(nullable NSString *)code;
+- (void)startV3ModifySafePasswordWithRealName:(NSString *)realName
+                               originPassword:(NSString *)originPwd
+                                  newPassword:(NSString *)pwd1
+                              confirmPassword:(NSString *)pwd2
+                                   verifyCode:(NSString *)code;
 
 #pragma mark - 修改登录密码
 - (void)startV3UpdateLoginPassword:(NSString*)password
                        newPassword:(NSString*)newPassword
                         verifyCode:(NSString*)code ;
 
+
 #pragma mark - 资金记录下拉列表
 -(void)startV3DepositPulldownList;
 
+
+#pragma mark - 添加银行卡
+-(void)startV3addBankCarkbankcardMasterName:(NSString *)bankcardMasterName
+                            bankName:(NSString *)bankName
+                      bankcardNumber:(NSString *)bankcardNumber
+                         bankDeposit:(NSString *)bankDeposit;
 /**
  * 取消所有服务
  */

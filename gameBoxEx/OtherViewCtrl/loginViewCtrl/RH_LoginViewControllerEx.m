@@ -90,6 +90,7 @@
     [self.serviceRequest startLoginWithUserName:self.loginViewCell.userName
                                   Password:self.loginViewCell.userPassword
                                 VerifyCode:self.loginViewCell.verifyCode] ;
+    
 }
 
 -(void)loginViewCellTouchCreateButton:(RH_LoginViewCell*)loginViewCell

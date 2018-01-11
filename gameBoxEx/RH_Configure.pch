@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_TEST_SERVER_ENV                      0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1460,6 +1460,22 @@
 #define CODE    @"fluv"
 #define S        @"1aeec332b2951b8a2f64e94c47e66606"
 #define SID        @"333"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _j8kq //澳门威尼斯人
+
+#define CODE    @"j8kq"
+#define S        @"c19e8ca17a0f2bc82467f62449ecb4d8"
+#define SID        @"337"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _kbmv //澳门银河赌场
+
+#define CODE    @"kbmv"
+#define S        @"9c45d23ba918c53c4ec659b1dc2869e7"
+#define SID        @"338"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

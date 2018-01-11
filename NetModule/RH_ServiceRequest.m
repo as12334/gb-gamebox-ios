@@ -25,6 +25,7 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalDetailModel.h"
 #import "RH_CapitalTypeModel.h"
+#import "RH_BankCradModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -510,6 +511,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositListDetails
                          scopeType:ServiceScopeTypePublic];
 }
+
 #pragma mark 资金详情下拉列表
 -(void)startV3DepositPulldownList
 {
@@ -524,6 +526,32 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositPullDownList
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 添加银行卡
+-(void)startV3addBankCarkbankcardMasterName:(NSString *)bankcardMasterName
+                                   bankName:(NSString *)bankName
+                             bankcardNumber:(NSString *)bankcardNumber
+                                bankDeposit:(NSString *)bankDeposit
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:bankcardMasterName forKey:RH_SP_BANKCARDMASTERNAME];
+    [dict setValue:bankName forKey:RH_SP_BANKNAME];
+    [dict setValue:bankcardNumber forKey:RH_SP_BANKCARDNUMBER];
+    [dict setValue:bankDeposit forKey:RH_SP_BANKDEPOSIT];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDBANKCARD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddBankCard
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -833,6 +861,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
+  
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -965,6 +994,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_BettingDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;
+
             case ServiceRequestTypeV3DepositListDetails:
             {
                resultSendData = [[RH_CapitalDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -972,11 +1002,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositPullDownList:
             {
-
-//                resultSendData = [[RH_CapitalTypeModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
                 resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break ;
+
+            case ServiceRequestTypeV3AddBankCard:
+            {
+                resultSendData = [RH_BankCradModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+            
+            }
+                break;
+
             default:
                 resultSendData = dataObject ;
 
