@@ -10,4 +10,12 @@
 
 @interface RH_PreferentialListCell : CLTableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *label_Title;
+
+
+
+
+
+
+
 @end

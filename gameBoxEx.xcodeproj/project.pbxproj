@@ -2358,11 +2358,11 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
 				B87A6B1A2006191600C9788F /* preferentialList */,
-=======
+
 				F6A2ACD92004DD600077CB92 /* mineDiscountRecord */,
->>>>>>> origin/dev_luis
+
 				F6E401FC2001BDC900C52B97 /* gesturelLock */,
 				A0B5A5651FFF6C1300E2CDD8 /* gameList */,
 				79FB81491FFDCD4600325BF3 /* CapitalRecord */,
@@ -3025,11 +3025,10 @@
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
 				F6A2ACBC20044C5A0077CB92 /* RH_MPSystemNoticeCell.xib in Resources */,
 				A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */,
-<<<<<<< HEAD
+
 				A01CB4A51FF9DD0C00447130 /* 很遗憾_01.png in Resources */,
 				B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */,
-=======
->>>>>>> origin/dev_luis
+
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
