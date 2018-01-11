@@ -977,7 +977,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3DepositPullDownList:
             {
 
-//                resultSendData = [[RH_CapitalTypeModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+                resultSendData = [[RH_CapitalTypeModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
                 resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break ;

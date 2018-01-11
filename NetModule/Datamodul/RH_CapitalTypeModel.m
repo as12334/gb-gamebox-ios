@@ -19,6 +19,7 @@
         _mTypeId= [info stringValueForKey:@"typeKey"];
         _mTypeName = [info stringValueForKey:@"typeValue"];
 //        _mTypeArray = [info arrayValueForKey:@""];
+        _mTypeArray = [NSMutableArray array];
         
     }
     return self;
@@ -33,7 +34,6 @@
                            @"typeValue":dictInfo[key]
                            }] ;
     }
-    
     return [self dataArrayWithInfoArray:array] ;
 }
 

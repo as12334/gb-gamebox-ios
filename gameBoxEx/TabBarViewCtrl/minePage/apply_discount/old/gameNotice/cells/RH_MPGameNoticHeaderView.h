@@ -10,7 +10,7 @@
 #import "RH_MPGameNoticHeaderView.h"
 @class RH_MPGameNoticHeaderView;
 @protocol MPGameNoticHeaderViewDelegate<NSObject>
-
+//-(void)
 @end
 @interface RH_MPGameNoticHeaderView : UIView
 
