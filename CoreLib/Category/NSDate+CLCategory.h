@@ -51,6 +51,9 @@
 + (NSDate *)dateWithDateComponents:(NSDateComponents *)dateComponents;
 + (NSDate *)dateWithDateComponents:(NSDateComponents *)dateComponents calendar:(NSCalendar *)calendar;
 
+//通过时间戳获取日期
++(NSDate *)dateWithSince1990:(NSTimeInterval)timeInterval ;
+
 //获取时间分量
 @property(nonatomic,readonly) NSInteger era;
 @property(nonatomic,readonly) NSInteger year;

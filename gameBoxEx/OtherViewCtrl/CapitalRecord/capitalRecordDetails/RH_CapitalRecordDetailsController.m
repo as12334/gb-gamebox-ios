@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"资金记录详情";
+    [self createUI];
 }
 -(void)createUI{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
@@ -68,7 +69,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3BettingDetails:1] ;
+    [self.serviceRequest startV3DepositListDetails:@"1"] ;
 }
 -(void)cancelLoadDataHandle
 {

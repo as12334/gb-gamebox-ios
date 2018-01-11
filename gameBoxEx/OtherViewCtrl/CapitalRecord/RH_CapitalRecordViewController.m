@@ -53,6 +53,7 @@
     
 }
 
+
 #pragma mark-
 -(void)setupUI
 {
@@ -70,7 +71,6 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-    
     [self setupPageLoadManager] ;
 }
 
@@ -217,16 +217,18 @@
 //        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
 //        return height ;
 //    }
-    
+
     return 40.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    if (self.pageLoadManager.currentDataCount){
-                RH_CapitalTableViewCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
-                [lotteryRecordCell updateCellWithInfo:nil context:nil];
-                return lotteryRecordCell ;
+
+        RH_CapitalTableViewCell *lotteryRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalTableViewCell defaultReuseIdentifier]] ;
+        [lotteryRecordCell updateCellWithInfo:nil context:nil];
+        return lotteryRecordCell ;
+
 //    }else{
 //        return self.loadingIndicateTableViewCell ;
 //    }
