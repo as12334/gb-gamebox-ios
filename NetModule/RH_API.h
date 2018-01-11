@@ -357,6 +357,11 @@
 #define RH_SP_DEPOSITLIST_TYPE                          @"search.transactionType"
 #define RH_SP_DEPOSITLIST_PAGENUMBER                    @"paging.pageNumber"
 #define RH_SP_DEPOSITLIST_PAGESIZE                      @"paging.pageSize"
+//返回参数
+#define RH_GP_DEPOSITLIST_LIST               @"fundListApps"
+#define RH_GP_DEPOSITLIST_TRANSFERSUM            @"transferSum"
+#define RH_GP_DEPOSITLIST_WITHDRAWSUM            @"withdrawSum"
+
 
 /**
     资金详情
@@ -366,10 +371,6 @@
 #define RH_API_NAME_DEPOSITLISTDETAILS                @"mineOrigin/getFundRecordDetails.html"
 //请求参数
 #define RH_SP_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
-//返回参数
-#define RH_GP_DEPOSITLISTDETAILS_LIST               @"fundListApps"
-#define RH_GP_DEPOSITLISTDETAILS_TRANSFERSUM            @"transferSum"
-#define RH_GP_DEPOSITLISTDETAILS_WITHDRAWSUM            @"withdrawSum"
 
 
 #pragma mark -V3 用户安全码初始化信息

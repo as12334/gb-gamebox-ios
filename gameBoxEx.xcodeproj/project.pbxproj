@@ -20,6 +20,7 @@
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
+		79BA770B20064A7700BBFC13 /* RH_CapitalDetaliViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA770A20064A7700BBFC13 /* RH_CapitalDetaliViewController.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -488,6 +489,8 @@
 		79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoModel.m; sourceTree = "<group>"; };
 		79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetailModel.h; sourceTree = "<group>"; };
 		79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetailModel.m; sourceTree = "<group>"; };
+		79BA770920064A7700BBFC13 /* RH_CapitalDetaliViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetaliViewController.h; sourceTree = "<group>"; };
+		79BA770A20064A7700BBFC13 /* RH_CapitalDetaliViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetaliViewController.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -1304,6 +1307,8 @@
 				79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */,
 				79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */,
 				79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */,
+				79BA770920064A7700BBFC13 /* RH_CapitalDetaliViewController.h */,
+				79BA770A20064A7700BBFC13 /* RH_CapitalDetaliViewController.m */,
 			);
 			path = CapitalRecord;
 			sourceTree = "<group>";
@@ -3353,6 +3358,7 @@
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
+				79BA770B20064A7700BBFC13 /* RH_CapitalDetaliViewController.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
 				A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */,

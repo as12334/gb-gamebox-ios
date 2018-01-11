@@ -16,6 +16,8 @@
 {
     if (self = [super initWithInfoDic:info])
     {
+//        _mTransferSum = [info floatValueForKey:RH_GP_DEPOSITLISTDETAILS_TRANSFERSUM] ;
+//        _mWithdrawSum = [info floatValueForKey:RH_GP_DEPOSITLISTDETAILS_LIST]
     }
     return self;
 }

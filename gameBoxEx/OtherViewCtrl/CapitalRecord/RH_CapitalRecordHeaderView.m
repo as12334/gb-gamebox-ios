@@ -94,12 +94,6 @@
     self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
    
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
-
-    UIView *bgView = [UIView new];
-    [self addSubview:bgView];
-    bgView.whc_LeftSpace(18).whc_TopSpaceToView(0, self.typeDropList).whc_WidthEqualView(self.typeDropList).whc_Height(50);
-    bgView.tag = 888;
-    bgView.hidden = YES;
     
 }
 
@@ -108,27 +102,6 @@
     ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewTouchSearchButton:)){
         [self.delegate capitalRecordHeaderViewTouchSearchButton:self] ;
     }
-}
-
--(void)typeBtnClick:(UIButton *)btn{
-    UIView *bgView = [self viewWithTag:888];
-    
-   
-    if(!btn.selected){
-        //显示
-        NSLog(@"1");
-        bgView.hidden = NO;
-        
-    }else
-    {
-        //隐藏
-        NSLog(@"2");
-         bgView.hidden = YES;
-
-    }
-    btn.selected = !btn.selected;
-    
-   
 }
 
 -(void)quickBtnClick{
@@ -208,5 +181,6 @@
 - (void)dropdownMenuDidHidden:(RH_DropdownMenu *)menu{
     NSLog(@"--已经隐藏--");
 }
+
 
 @end
