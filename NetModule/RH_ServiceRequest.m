@@ -550,7 +550,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-
+-(void)startV3GetSafetyVerifyCode
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SAFETYCAPCHA
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -838,7 +854,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(NO) ;
         }
         return YES ;
-    }else if (type == ServiceRequestTypeObtainVerifyCode){
+    }else if (type == ServiceRequestTypeObtainVerifyCode ||
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
         *reslutData = image ;
@@ -970,6 +987,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeV3UserSafeInfo:
+            case ServiceRequestTypeV3UpdateSafePassword:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
@@ -1020,6 +1038,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
 
         *reslutData = resultSendData;
+    }else{
+        switch (type) {
+            case ServiceRequestTypeV3UpdateSafePassword:
+            {
+                RH_UserSafetyCodeModel *userSafetyCode = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (userSafetyCode){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:userSafetyCode] ;
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 
     return YES;

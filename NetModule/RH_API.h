@@ -431,6 +431,9 @@
 #define RH_GP_ADDBANKCARD_MSG   @"msg"
 #define RH_GP_ADDBANKCARD_VERSION   @"version"
 
+#pragma mark - V3 获取安全密码验证码
+#define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
+//请求参数 -无
 
 
 #endif /* RH_API_h */
