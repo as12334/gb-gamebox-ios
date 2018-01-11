@@ -22,6 +22,7 @@
 #import "RH_BettingInfoModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_BettingDetailModel.h"
+#import "RH_CapitalInfoOverviewModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -924,7 +925,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             case ServiceRequestTypeV3DepositList:
             {
-                
+                resultSendData = [[RH_CapitalInfoOverviewModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;
                 

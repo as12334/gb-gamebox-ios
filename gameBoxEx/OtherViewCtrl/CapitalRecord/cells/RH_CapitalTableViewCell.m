@@ -19,6 +19,11 @@
 
 @implementation RH_CapitalTableViewCell
 
++ (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    return 40.0f ;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

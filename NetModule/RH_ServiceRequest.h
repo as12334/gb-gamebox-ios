@@ -138,8 +138,6 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                      SearchName:(NSString*)searchName ;
 
 #pragma mark - 投注记录
--(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate ;
-
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize ;

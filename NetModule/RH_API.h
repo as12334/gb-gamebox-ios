@@ -361,7 +361,7 @@
 #define RH_GP_DEPOSITLIST_LIST               @"fundListApps"
 #define RH_GP_DEPOSITLIST_TRANSFERSUM            @"transferSum"
 #define RH_GP_DEPOSITLIST_WITHDRAWSUM            @"withdrawSum"
-
+#define RH_GP_DEPOSITLIST_TOTALCOUNT            @"totalCount"
 
 /**
     资金详情
