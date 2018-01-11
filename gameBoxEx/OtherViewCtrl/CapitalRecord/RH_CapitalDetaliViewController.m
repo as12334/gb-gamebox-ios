@@ -8,6 +8,7 @@
 
 #import "RH_CapitalDetaliViewController.h"
 
+
 @interface RH_CapitalDetaliViewController ()
 
 @end
@@ -24,11 +25,9 @@
     [self setUpUI];
 }
 
--(void)setUpUI
-{
+-(void)setUpUI{
     
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

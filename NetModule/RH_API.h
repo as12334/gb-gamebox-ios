@@ -400,6 +400,30 @@
 #pragma mark - V3 修改用户安全密码
 #define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
 
+#pragma mark - V3 添加银行卡
+#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/addCard.html"
+//请求参数
+#define RH_SP_BANKCARDMASTERNAME  @"bankcardMasterName"
+#define RH_SP_BANKNAME        @"bankName"
+#define RH_SP_BANKCARDNUMBER   @"bankcardNumber"
+#define RH_SP_BANKDEPOSIT  @"bankDeposit"
+
+//返回参数
+#define RH_GP_ADDBANKCARD_CODE  @"code"
+#define RH_GP_ADDBANKCARD_DATA  @"data"
+#define RH_GP_ADDBANKCARD_VALUE @"value"
+#define RH_GP_ADDBANKCARD_TEXT   @"text"
+#define RH_GP_ADDBANKCARD_ERROR  @"error"
+#define RH_GP_ADDBANKCARD_MSG   @"msg"
+#define RH_GP_ADDBANKCARD_VERSION   @"version"
+
+
+
+
+
+
+
+
 
 #endif /* RH_API_h */
 

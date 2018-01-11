@@ -21,6 +21,7 @@
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
 		79BA770B20064A7700BBFC13 /* RH_CapitalDetaliViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA770A20064A7700BBFC13 /* RH_CapitalDetaliViewController.m */; };
+		79BA770E200703BE00BBFC13 /* RH_BankCradModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA770D200703BE00BBFC13 /* RH_BankCradModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -491,6 +492,8 @@
 		79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetailModel.m; sourceTree = "<group>"; };
 		79BA770920064A7700BBFC13 /* RH_CapitalDetaliViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetaliViewController.h; sourceTree = "<group>"; };
 		79BA770A20064A7700BBFC13 /* RH_CapitalDetaliViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetaliViewController.m; sourceTree = "<group>"; };
+		79BA770C200703BE00BBFC13 /* RH_BankCradModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCradModel.h; sourceTree = "<group>"; };
+		79BA770D200703BE00BBFC13 /* RH_BankCradModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCradModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -2050,6 +2053,8 @@
 				F6A2AD4E2005F5930077CB92 /* RH_OpenActivityModel.m */,
 				A05747BD1FF4F7500068D0E4 /* RH_LotteryCategoryModel.h */,
 				A05747BC1FF4F74F0068D0E4 /* RH_LotteryCategoryModel.m */,
+				79BA770C200703BE00BBFC13 /* RH_BankCradModel.h */,
+				79BA770D200703BE00BBFC13 /* RH_BankCradModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3353,6 +3358,7 @@
 				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
+				79BA770E200703BE00BBFC13 /* RH_BankCradModel.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				797252EA2004687200A73F05 /* RH_DropdownMenu.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,

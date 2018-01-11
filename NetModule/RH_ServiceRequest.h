@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SetRealName     ,//设置真实姓名
     ServiceRequestTypeV3UpdateSafePassword,//修改安全密码
     ServiceRequestTypeV3UpdateLoginPassword,//修改登录密码
+    ServiceRequestTypeV3AddBankCard,   //添加银行卡
 };
 
 
@@ -180,7 +181,11 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                         verifyCode:(NSString *)code;
 
 
-
+#pragma mark - 添加银行卡
+-(void)startV3addBankCarkbankcardMasterName:(NSString *_Nullable)bankcardMasterName
+                            bankName:(NSString *_Nullable)bankName
+                      bankcardNumber:(NSString *_Nullable)bankcardNumber
+                         bankDeposit:(NSString *_Nullable)bankDeposit;
 /**
  * 取消所有服务
  */
