@@ -427,23 +427,21 @@
 		F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACDB2004DDE00077CB92 /* RH_MineDiscountRecordController.m */; };
 		F6A2ACE12004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACDF2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m */; };
 		F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACE02004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib */; };
-		F6A2AD382005A84A0077CB92 /* open-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD2A2005A8480077CB92 /* open-hover.png */; };
-		F6A2AD392005A84A0077CB92 /* role.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD2B2005A8480077CB92 /* role.png */; };
-		F6A2AD3A2005A84A0077CB92 /* button-03.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD2C2005A8480077CB92 /* button-03.png */; };
 		F6A2AD3B2005A84A0077CB92 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD2D2005A8490077CB92 /* close.png */; };
-		F6A2AD3C2005A84A0077CB92 /* button-02.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD2E2005A8490077CB92 /* button-02.png */; };
-		F6A2AD3D2005A84A0077CB92 /* confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD2F2005A8490077CB92 /* confirm.png */; };
-		F6A2AD3E2005A84A0077CB92 /* confirm-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD302005A8490077CB92 /* confirm-hover.png */; };
 		F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD312005A8490077CB92 /* hongbao-03.png */; };
-		F6A2AD402005A84A0077CB92 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD322005A8490077CB92 /* open.png */; };
 		F6A2AD412005A84A0077CB92 /* hongbao-04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD332005A8490077CB92 /* hongbao-04.png */; };
 		F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD342005A8490077CB92 /* hongbao-02.png */; };
-		F6A2AD432005A84A0077CB92 /* role-hover.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD352005A8490077CB92 /* role-hover.png */; };
-		F6A2AD442005A84A0077CB92 /* button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD362005A84A0077CB92 /* button-01.png */; };
 		F6A2AD452005A84A0077CB92 /* hongbao-01.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD372005A84A0077CB92 /* hongbao-01.png */; };
 		F6A2AD482005AA8D0077CB92 /* RH_NormalActivithyView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD472005AA8D0077CB92 /* RH_NormalActivithyView.m */; };
 		F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD492005AAA20077CB92 /* RH_NormalActivithyView.xib */; };
 		F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD4E2005F5930077CB92 /* RH_OpenActivityModel.m */; };
+		F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD532006EE790077CB92 /* button-02.png */; };
+		F6A2AD582006EE7A0077CB92 /* button-03.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD542006EE790077CB92 /* button-03.png */; };
+		F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD552006EE790077CB92 /* button-can'topen.png */; };
+		F6A2AD5A2006EE7A0077CB92 /* button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD562006EE7A0077CB92 /* button-01.png */; };
+		F6A2AD5E2006FFEB0077CB92 /* RH_WithdrawDispositController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */; };
+		F6A2AD622007001E0077CB92 /* RH_WithdrawDispositCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */; };
+		F6A2AD632007001E0077CB92 /* RH_WithdrawDispositCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -1206,25 +1204,25 @@
 		F6A2ACDE2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineDiscountRecordTableViewCell.h; sourceTree = "<group>"; };
 		F6A2ACDF2004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineDiscountRecordTableViewCell.m; sourceTree = "<group>"; };
 		F6A2ACE02004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MineDiscountRecordTableViewCell.xib; sourceTree = "<group>"; };
-		F6A2AD2A2005A8480077CB92 /* open-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "open-hover.png"; sourceTree = "<group>"; };
-		F6A2AD2B2005A8480077CB92 /* role.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = role.png; sourceTree = "<group>"; };
-		F6A2AD2C2005A8480077CB92 /* button-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-03.png"; sourceTree = "<group>"; };
 		F6A2AD2D2005A8490077CB92 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
-		F6A2AD2E2005A8490077CB92 /* button-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-02.png"; sourceTree = "<group>"; };
-		F6A2AD2F2005A8490077CB92 /* confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm.png; sourceTree = "<group>"; };
-		F6A2AD302005A8490077CB92 /* confirm-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm-hover.png"; sourceTree = "<group>"; };
 		F6A2AD312005A8490077CB92 /* hongbao-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-03.png"; sourceTree = "<group>"; };
-		F6A2AD322005A8490077CB92 /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
 		F6A2AD332005A8490077CB92 /* hongbao-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-04.png"; sourceTree = "<group>"; };
 		F6A2AD342005A8490077CB92 /* hongbao-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02.png"; sourceTree = "<group>"; };
-		F6A2AD352005A8490077CB92 /* role-hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "role-hover.png"; sourceTree = "<group>"; };
-		F6A2AD362005A84A0077CB92 /* button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-01.png"; sourceTree = "<group>"; };
 		F6A2AD372005A84A0077CB92 /* hongbao-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-01.png"; sourceTree = "<group>"; };
 		F6A2AD462005AA8D0077CB92 /* RH_NormalActivithyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NormalActivithyView.h; sourceTree = "<group>"; };
 		F6A2AD472005AA8D0077CB92 /* RH_NormalActivithyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NormalActivithyView.m; sourceTree = "<group>"; };
 		F6A2AD492005AAA20077CB92 /* RH_NormalActivithyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NormalActivithyView.xib; sourceTree = "<group>"; };
 		F6A2AD4D2005F5930077CB92 /* RH_OpenActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_OpenActivityModel.h; sourceTree = "<group>"; };
 		F6A2AD4E2005F5930077CB92 /* RH_OpenActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_OpenActivityModel.m; sourceTree = "<group>"; };
+		F6A2AD532006EE790077CB92 /* button-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-02.png"; sourceTree = "<group>"; };
+		F6A2AD542006EE790077CB92 /* button-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-03.png"; sourceTree = "<group>"; };
+		F6A2AD552006EE790077CB92 /* button-can'topen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-can'topen.png"; sourceTree = "<group>"; };
+		F6A2AD562006EE7A0077CB92 /* button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-01.png"; sourceTree = "<group>"; };
+		F6A2AD5C2006FFEB0077CB92 /* RH_WithdrawDispositController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawDispositController.h; sourceTree = "<group>"; };
+		F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawDispositController.m; sourceTree = "<group>"; };
+		F6A2AD5F2007001E0077CB92 /* RH_WithdrawDispositCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawDispositCell.h; sourceTree = "<group>"; };
+		F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawDispositCell.m; sourceTree = "<group>"; };
+		F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawDispositCell.xib; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -2191,21 +2189,16 @@
 		A01CB49F1FF9DD0C00447130 /* 效果图 */ = {
 			isa = PBXGroup;
 			children = (
+				F6A2AD562006EE7A0077CB92 /* button-01.png */,
+				F6A2AD532006EE790077CB92 /* button-02.png */,
+				F6A2AD542006EE790077CB92 /* button-03.png */,
+				F6A2AD552006EE790077CB92 /* button-can'topen.png */,
 				F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */,
-				F6A2AD362005A84A0077CB92 /* button-01.png */,
-				F6A2AD2E2005A8490077CB92 /* button-02.png */,
-				F6A2AD2C2005A8480077CB92 /* button-03.png */,
 				F6A2AD2D2005A8490077CB92 /* close.png */,
-				F6A2AD302005A8490077CB92 /* confirm-hover.png */,
-				F6A2AD2F2005A8490077CB92 /* confirm.png */,
 				F6A2AD372005A84A0077CB92 /* hongbao-01.png */,
 				F6A2AD342005A8490077CB92 /* hongbao-02.png */,
 				F6A2AD312005A8490077CB92 /* hongbao-03.png */,
 				F6A2AD332005A8490077CB92 /* hongbao-04.png */,
-				F6A2AD2A2005A8480077CB92 /* open-hover.png */,
-				F6A2AD322005A8490077CB92 /* open.png */,
-				F6A2AD352005A8490077CB92 /* role-hover.png */,
-				F6A2AD2B2005A8480077CB92 /* role.png */,
 			);
 			path = "效果图";
 			sourceTree = "<group>";
@@ -2376,6 +2369,7 @@
 		A04E605A1F8DED6000098A65 /* minePage */ = {
 			isa = PBXGroup;
 			children = (
+				F6A2AD5B2006FF760077CB92 /* withdrawdisposit */,
 				F6A2AC8C20044C590077CB92 /* apply_discount */,
 				189C139C1FF9E99E00B14298 /* cell */,
 				189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */,
@@ -2865,6 +2859,18 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		F6A2AD5B2006FF760077CB92 /* withdrawdisposit */ = {
+			isa = PBXGroup;
+			children = (
+				F6A2AD5C2006FFEB0077CB92 /* RH_WithdrawDispositController.h */,
+				F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */,
+				F6A2AD5F2007001E0077CB92 /* RH_WithdrawDispositCell.h */,
+				F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */,
+				F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */,
+			);
+			path = withdrawdisposit;
+			sourceTree = "<group>";
+		};
 		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
 			isa = PBXGroup;
 			children = (
@@ -2946,6 +2952,7 @@
 				F6A2ACB720044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.xib in Resources */,
 				F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
+				F6A2AD582006EE7A0077CB92 /* button-03.png in Resources */,
 				A0E782791FFE5C12007BFBF3 /* RH_DomainTableCell.xib in Resources */,
 				A01181601FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib in Resources */,
 				B8107AB61FFDBB360086DDC3 /* RH_MineSafetyCenter.plist in Resources */,
@@ -2954,8 +2961,6 @@
 				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,
 				F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */,
-				F6A2AD3A2005A84A0077CB92 /* button-03.png in Resources */,
-				F6A2AD402005A84A0077CB92 /* open.png in Resources */,
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
@@ -2965,6 +2970,7 @@
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
 				F6A2ACB220044C5A0077CB92 /* RH_MPGameNoticeCell.xib in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
+				F6A2AD632007001E0077CB92 /* RH_WithdrawDispositCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
@@ -2972,7 +2978,6 @@
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
-				F6A2AD392005A84A0077CB92 /* role.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
@@ -2997,19 +3002,19 @@
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
 				A001B3D61F8EF7CA00309EA4 /* tab_green_service@2x.png in Resources */,
+				F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */,
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
 				A001B3D71F8EF7CA00309EA4 /* tab_green_transfer@2x.png in Resources */,
 				A0AE8AB41FFCD57300836C1B /* RH_MineMoreCells.plist in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
-				F6A2AD442005A84A0077CB92 /* button-01.png in Resources */,
 				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
+				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
 				79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */,
 				A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */,
-				F6A2AD432005A84A0077CB92 /* role-hover.png in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
 				F6A2AD412005A84A0077CB92 /* hongbao-04.png in Resources */,
@@ -3017,17 +3022,16 @@
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
 				A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */,
 				A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */,
-				F6A2AD3C2005A84A0077CB92 /* button-02.png in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
 				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
 				A001B3DF1F8EF7CA00309EA4 /* tab_lottery_mine@2x.png in Resources */,
 				F6A2AD452005A84A0077CB92 /* hongbao-01.png in Resources */,
 				A05747E31FF886810068D0E4 /* RH_UserInfoGengeralCell.xib in Resources */,
+				F6A2AD5A2006EE7A0077CB92 /* button-01.png in Resources */,
 				A001B3E01F8EF7CA00309EA4 /* tab_lottery_normal@2x.png in Resources */,
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
-				F6A2AD3D2005A84A0077CB92 /* confirm.png in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
@@ -3039,7 +3043,6 @@
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
-				F6A2AD382005A84A0077CB92 /* open-hover.png in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
 				B8F0E5022001BD3E00A3AC94 /* RH_ModifySafetyPassword.plist in Resources */,
 				189C13AD1FF9E99F00B14298 /* RH_MineAccountCell.xib in Resources */,
@@ -3048,7 +3051,6 @@
 				A01181581FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib in Resources */,
 				A001B3EA1F8EF7CA00309EA4 /* tab_home@2x.png in Resources */,
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
-				F6A2AD3E2005A84A0077CB92 /* confirm-hover.png in Resources */,
 				A001B3EC1F8EF7CA00309EA4 /* tab_service@2x.png in Resources */,
 				A0B609B71FBB05AC00A44B37 /* tab_v3_promo@2x.png in Resources */,
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
@@ -3226,6 +3228,7 @@
 				F6A2ACE12004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m in Sources */,
 				B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */,
 				A0109FD71F8788FF004E6EF4 /* UIView+DNImagePicker.m in Sources */,
+				F6A2AD5E2006FFEB0077CB92 /* RH_WithdrawDispositController.m in Sources */,
 				A0109FD81F8788FF004E6EF4 /* DNAlbumTableViewCell.m in Sources */,
 				A0109FD91F8788FF004E6EF4 /* DNAssetsViewCell.m in Sources */,
 				A0109FDA1F8788FF004E6EF4 /* DNBadgeLabel.m in Sources */,
@@ -3271,6 +3274,7 @@
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
+				F6A2AD622007001E0077CB92 /* RH_WithdrawDispositCell.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,

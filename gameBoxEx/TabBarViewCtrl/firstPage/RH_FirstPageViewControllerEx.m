@@ -45,6 +45,8 @@
 @property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
+@property (nonatomic,strong)UIView *shadeView;
+
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -341,11 +343,25 @@
     }
     return _normalActivityView;
 }
+#pragma mark 拆红包代理
 -(void)normalActivithyViewOpenActivityClick:(RH_NormalActivithyView *)view
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-    [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
+    if (self.openActivityModel.mToken==nil) {
+        [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
+    }
+    else
+    {
+        [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.openActivityModel.mToken];
+    }
+    
 }
+-(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view
+{
+    [self.shadeView removeFromSuperview];
+    [self.normalActivityView removeFromSuperview];
+}
+
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
     if (self.appDelegate.isLogin){
@@ -358,6 +374,7 @@
             bigView.backgroundColor = [UIColor grayColor];
             bigView.alpha = 0.8;
             [[UIApplication sharedApplication].keyWindow addSubview:bigView];
+            _shadeView = bigView;
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
             imageView.image = activityView.imgView.image;
             [[UIApplication sharedApplication].keyWindow addSubview:imageView];
