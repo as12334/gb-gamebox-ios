@@ -107,7 +107,7 @@
 							<key>code</key>
 							<string>myPromo</string>
 							<key>targetKey</key>
-							<string>RH_MineDiscountRecordController</string>
+							<string>RH_PreferentialListController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
