@@ -35,11 +35,11 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1e-fn-3cO">
                             <rect key="frame" x="43" y="45" width="40" height="40"/>
-                            <color key="backgroundColor" red="1" green="0.0" blue="0.049691020330000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="a9s-Yj-tJ7"/>
                                 <constraint firstAttribute="width" constant="40" id="cl9-xr-daW"/>
                             </constraints>
+                            <state key="normal" backgroundImage="button-01.png"/>
                             <connections>
                                 <action selector="openActivityBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="ibR-cd-FOB"/>
                             </connections>
@@ -62,7 +62,7 @@
                                 <constraint firstAttribute="height" constant="30" id="4mq-lp-C3W"/>
                                 <constraint firstAttribute="width" constant="80" id="zFc-Ds-Cen"/>
                             </constraints>
-                            <state key="normal" title="游戏规则"/>
+                            <state key="normal" backgroundImage="button-02.png"/>
                             <connections>
                                 <action selector="gameRuleSeletcd:" destination="iN0-l3-epB" eventType="touchUpInside" id="EkY-4k-usP"/>
                             </connections>
@@ -88,7 +88,7 @@
                                 <constraint firstAttribute="width" constant="59" id="Y9G-vF-rgL"/>
                                 <constraint firstAttribute="height" constant="26" id="gU8-I8-ji8"/>
                             </constraints>
-                            <state key="normal" title="确定"/>
+                            <state key="normal" backgroundImage="button-03.png"/>
                             <connections>
                                 <action selector="besureSeleted:" destination="iN0-l3-epB" eventType="touchUpInside" id="KNx-s4-Nj5"/>
                             </connections>
@@ -128,7 +128,10 @@
                                 <constraint firstAttribute="height" constant="40" id="Koh-a9-1OE"/>
                                 <constraint firstAttribute="width" constant="40" id="qAy-cZ-Izi"/>
                             </constraints>
-                            <state key="normal" title="拆"/>
+                            <state key="normal" backgroundImage="button-01.png"/>
+                            <connections>
+                                <action selector="openActivityBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="WnJ-Mb-hJE"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncN-g3-qS8">
                             <rect key="frame" x="31" y="144" width="64" height="30"/>
@@ -136,7 +139,7 @@
                                 <constraint firstAttribute="width" constant="64" id="DmZ-qF-TBW"/>
                                 <constraint firstAttribute="height" constant="30" id="xwf-nz-5WW"/>
                             </constraints>
-                            <state key="normal" title="游戏规则"/>
+                            <state key="normal" backgroundImage="button-02.png"/>
                             <connections>
                                 <action selector="gameRuleSeletcd:" destination="iN0-l3-epB" eventType="touchUpInside" id="NlF-wk-8xz"/>
                             </connections>
@@ -177,11 +180,16 @@
                 <outlet property="gainActivityLabel" destination="oPM-9G-Pfi" id="Vtb-IM-mDD"/>
                 <outlet property="nextOpentimeLabel" destination="h4K-WG-zj5" id="pHI-nj-ZkR"/>
                 <outlet property="normalBackDropView" destination="eu8-Gm-T3U" id="E6p-bt-a44"/>
+                <outlet property="openActivityBtn" destination="9yV-Oc-gG1" id="PGy-jY-MNU"/>
+                <outlet property="openActivityFriestBtn" destination="y1e-fn-3cO" id="mO9-fA-bCs"/>
                 <outlet property="openActivityView" destination="2L7-mQ-4Mp" id="qdD-h6-ctD"/>
             </connections>
         </view>
     </objects>
     <resources>
+        <image name="button-01.png" width="134" height="130"/>
+        <image name="button-02.png" width="206" height="68"/>
+        <image name="button-03.png" width="133" height="58"/>
         <image name="close.png" width="40" height="40"/>
         <image name="hongbao-04.png" width="750" height="753"/>
     </resources>

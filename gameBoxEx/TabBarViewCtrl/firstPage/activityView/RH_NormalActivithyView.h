@@ -12,6 +12,7 @@
 @class RH_NormalActivithyView;
 @protocol RH_NormalActivithyViewDelegate<NSObject>
 -(void)normalActivithyViewOpenActivityClick:(RH_NormalActivithyView *)view;
+-(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view;
 @end
 @interface RH_NormalActivithyView : UIView
 @property (nonatomic,copy)NSString *gainStr;

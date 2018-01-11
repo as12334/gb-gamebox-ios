@@ -16,6 +16,8 @@
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 @property (weak, nonatomic) IBOutlet UILabel *gainActivityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextOpentimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *openActivityBtn;
+@property (weak, nonatomic) IBOutlet UIButton *openActivityFriestBtn;
 @end
 @implementation RH_NormalActivithyView
 
@@ -42,9 +44,23 @@
 }
 -(void)setOpenModel:(RH_OpenActivityModel *)openModel
 {
-    if (![_openModel isEqual:openModel]){
+    
+    if (![_openModel.mGameNum isEqual:openModel.mGameNum]){
         _openModel = openModel ;
         [self.gainActivityLabel setText:self.openModel.mAward];
+        if ([self.openModel.mGameNum isEqualToString:@"60"]) {
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled=NO;
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
+        else
+        {
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled=YES;
+            self.openActivityFriestBtn.userInteractionEnabled = YES;
+        }
     }
 }
 - (IBAction)gameRuleSeletcd:(id)sender {
@@ -55,6 +71,11 @@
     
 }
 - (IBAction)closeClick:(id)sender {
+    [self.delegate normalActivityViewCloseActivityClick:self];
+    self.backDropImageView.image = [UIImage imageNamed:@"hongbao-03"];
+    [self.normalBackDropView setHidden: YES];
+    [self.activityRuleDropView setHidden:NO];
+    [self.openActivityView setHidden:YES];
     
 }
 - (IBAction)besureSeleted:(id)sender {
