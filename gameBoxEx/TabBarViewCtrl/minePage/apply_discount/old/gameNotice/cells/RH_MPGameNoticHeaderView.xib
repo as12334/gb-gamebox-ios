@@ -42,8 +42,11 @@
                         <constraint firstAttribute="height" constant="30" id="ia6-AZ-nWL"/>
                     </constraints>
                     <state key="normal" title="快选"/>
+                    <connections>
+                        <action selector="gameTypeSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="XxN-A6-j64"/>
+                    </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="UIControl">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="CLSelectionControl">
                     <rect key="frame" x="280" y="10" width="88" height="30"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-Nk-qPz">
@@ -60,6 +63,9 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.99924090610000005" green="1" blue="0.7613985271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="gameTypeSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="mPI-Jt-CeS"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -84,6 +90,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="ennDateView" destination="ouN-Zh-vUs" id="M1G-dX-9rX"/>
+                <outlet property="gameTypeControl" destination="N3P-XL-iS1" id="9zJ-HF-FLa"/>
+                <outlet property="kuaixuanBtn" destination="ZRi-HB-1cd" id="rD5-42-gcw"/>
                 <outlet property="startDateView" destination="1KE-og-ORj" id="4gO-40-gB3"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="52"/>

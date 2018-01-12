@@ -9,14 +9,18 @@
 #import "RH_MPGameNoticeViewController.h"
 #import "RH_MPGameNoticeCell.h"
 #import "RH_MPGameNoticHeaderView.h"
-@interface RH_MPGameNoticeViewController ()
+#import "RH_MPGameNoticePulldownView.h"
+@interface RH_MPGameNoticeViewController ()<MPGameNoticHeaderViewDelegate>
 @property (nonatomic,strong,readonly)RH_MPGameNoticeCell *gameNoticeCell;
 @property (nonatomic,strong,readonly)RH_MPGameNoticHeaderView *headerView;
+@property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
+
 @end
 
 @implementation RH_MPGameNoticeViewController
 @synthesize gameNoticeCell = _gameNoticeCell;
 @synthesize headerView = _headerView;
+@synthesize listView = _listView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -35,6 +39,7 @@
     self.contentTableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
+    self.needObserverTapGesture = YES ;
 }
 #pragma  mark headerView
 -(RH_MPGameNoticHeaderView *)headerView
@@ -42,8 +47,26 @@
     if (!_headerView) {
         _headerView = [RH_MPGameNoticHeaderView createInstance];
         _headerView.frame  = CGRectMake(0, 0, self.view.frameWidth, 50);
+        _headerView.delegate=self;
     }
     return _headerView;
+}
+#pragma mark - CapitalRecordHeaderViewDelegate
+-(void)gameNoticHeaderViewStartDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置开始日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  view.startDate = returnDate ;
+              }] ;
+}
+-(void)gameNoticHeaderViewEndDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置结止日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  view.endDate = returnDate ;
+              }] ;
 }
 #pragma mark-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -66,7 +89,10 @@
     return 50;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-   
+    __block RH_MPGameNoticeViewController *weakSelf = self;
+    self.headerView.block = ^(CGRect frame){
+        [weakSelf selectedHeaderViewGameType:frame];
+    };
     return self.headerView;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,6 +100,56 @@
     RH_MPGameNoticeCell *noticeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_MPGameNoticeCell defaultReuseIdentifier]];
     return noticeCell ;
 }
+#pragma mark 点击headerview的游戏类型
+-(RH_MPGameNoticePulldownView *)listView
+{
+    if (!_listView) {
+        _listView = [[RH_MPGameNoticePulldownView alloc]init];
+    }
+    return _listView;
+}
+-(void)selectedHeaderViewGameType:(CGRect )frame
+{
+    if (!self.listView.superview) {
+        frame.origin.y +=self.topView.frameY+self.topView.frameHeigh+frame.size.height;
+        self.listView.frame = frame;
+        [self.view addSubview:self.listView];
+        [UIView animateWithDuration:.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 200;
+            self.listView.frame = framee;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+}
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return self.listView.superview?YES:NO ;
+}
+
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
+{
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+}
+
 
 
 @end

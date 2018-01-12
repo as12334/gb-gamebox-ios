@@ -20,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *serachBtn; //搜索
 @property (weak, nonatomic) IBOutlet UILabel *withdrawalLab;  //取款处理中的金额
 @property (weak, nonatomic) IBOutlet UILabel *transferLab;//转账处理中的金额
-@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *typeButton;
+
 
 @end
 
@@ -74,18 +75,20 @@
     
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
-    view_Line2.whc_TopSpaceToView(10, self.typeLabel).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+    view_Line2.whc_TopSpaceToView(10, self.typeButton).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
     view_Line2.backgroundColor = RH_Line_DefaultColor;
     
     self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
    
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(typeLabelPulldownList)];
-    self.typeLabel.backgroundColor = colorWithRGB(27, 117, 217);
-    self.typeLabel.layer.cornerRadius = 3.0f;
-    self.typeLabel.layer.masksToBounds = YES;
-    [self.typeLabel addGestureRecognizer:tap];
+
+//    self.typeButton.backgroundColor = colorWithRGB(27, 117, 217);
+    [self.typeButton setBackgroundColor:colorWithRGB(27, 117, 217)];
+    self.typeButton.layer.cornerRadius = 3.0f;
+    self.typeButton.layer.masksToBounds = YES;
+    [self.typeButton addTarget:self action:@selector(typeLabelPulldownList) forControlEvents:UIControlEventTouchUpInside];
+    
     
 }
 
@@ -156,7 +159,8 @@
 #pragma mark 类型下拉列表
 -(void)typeLabelPulldownList
 {
-    self.block(self.typeLabel.frame);
+    __block RH_CapitalRecordHeaderView *weakSelf = self;
+    self.block(weakSelf.typeButton.frame);
 }
 
 

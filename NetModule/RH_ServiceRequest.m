@@ -27,7 +27,8 @@
 #import "RH_CapitalTypeModel.h"
 #import "RH_BankCradModel.h"
 #import "RH_PromoInfoModel.h"
-
+#import "RH_SystemNoticeModel.h"
+#import "RH_SystemNoticeDetailModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -552,6 +553,87 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 获取系统公告
+-(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
+                                endTime:(NSDate *)endTime
+                             pageNumber:(NSInteger)pageNumber
+                               pageSize:(NSInteger)pageSize
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
+    [dict setValue:endTime forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SYSTEMNOTICE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SYSTEMNOTICE_PAGESIZE];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SYSTEMNOTICE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SYSTEMNOTICE
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取公告详情
+-(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_SYSTEMNOTICEDETAIL_SEARCHID];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SYSTEMNOTICEDETAIL
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -  游戏公告
+-(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
+                              endTime:(NSDate *)endTime
+                           pageNumber:(NSInteger)pageNumber
+                             pageSize:(NSInteger)pageSize
+                                apiId:(NSInteger)apiId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime forKey:RH_SP_GAMENOTICE_STARTTIME];
+    [dict setValue:endTime forKey:RH_SP_GAMENOTICE_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_GAMENOTICE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
+    [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_GAMENOTICE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GAMENOTICE
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -  游戏公告详情
+-(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_API_NAME_GAMENOTICEDETAIL];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GAMENOTICEDETAIL
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+
 -(void)startV3GetSafetyVerifyCode
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
@@ -1065,6 +1147,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break ;
                 
+            case ServiceRequestTypeV3SYSTEMNOTICE:
+            {
+                NSArray *tmpArray = [RH_SystemNoticeModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                      integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]   ;
+                resultSendData = @{RH_GP_SYSTEMNOTICE_LIST:tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
+                
+            }
+                break;
+            case ServiceRequestTypeV3SYSTEMNOTICEDETAIL:
+            {
+                resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+
             default:
                 resultSendData = dataObject ;
 
