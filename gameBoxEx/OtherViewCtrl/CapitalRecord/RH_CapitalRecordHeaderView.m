@@ -9,6 +9,7 @@
 #import "RH_CapitalRecordHeaderView.h"
 #import "RH_CapitalStaticDataCell.h"
 #import "CLStaticCollectionViewTitleCell.h"
+#import "RH_CapitalPulldownListView.h"
 #import "coreLib.h"
 
 @interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate>
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *withdrawalLab;  //取款处理中的金额
 @property (weak, nonatomic) IBOutlet UILabel *transferLab;//转账处理中的金额
 @property (weak, nonatomic) IBOutlet UIButton *typeButton;
-
+@property (nonatomic,strong)RH_CapitalPulldownListView *listView;
 
 @end
 
@@ -35,8 +36,6 @@
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor whiteColor] ;
     self.userInteractionEnabled = YES;
-
-    
     self.btnQuickSelect.backgroundColor = colorWithRGB(27, 117, 217);
     [self.btnQuickSelect setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
     self.btnQuickSelect.layer.cornerRadius = 4.0f ;
@@ -88,6 +87,12 @@
     self.typeButton.layer.cornerRadius = 3.0f;
     self.typeButton.layer.masksToBounds = YES;
     [self.typeButton addTarget:self action:@selector(typeLabelPulldownList) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.listView = [[RH_CapitalPulldownListView alloc]init];
+    __block RH_CapitalRecordHeaderView *weakSelf = self;
+    self.listView.block = ^(NSString *str){
+        [weakSelf.typeButton setTitle:str forState:UIControlStateNormal];
+    };
     
     
 }
