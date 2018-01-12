@@ -51,7 +51,7 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     if (self) {
         self.detailTextLabel.textColor = colorWithRGB(153, 153, 153);
         self.detailTextLabel.font = [UIFont systemFontOfSize:14];

@@ -11,7 +11,7 @@
 
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifySafetyPasswordController.h"
-
+#import "RH_BankCardController.h"
 #import "RH_GesturelLockController.h"
 #import "coreLib.h"
 
@@ -85,6 +85,10 @@
         }
     }
 
+    if (indexPath.row == 3) {
+        RH_BankCardController *vc = [[RH_BankCardController alloc] init];
+        [self showViewController:vc sender:nil];
+    }
     return YES;
 }
 @end

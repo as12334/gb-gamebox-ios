@@ -407,6 +407,12 @@
 		B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */; };
 		B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */; };
 		B87A6B252007136800C9788F /* RH_PreferentialList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B242007136800C9788F /* RH_PreferentialList.plist */; };
+		B87A6B292008907F00C9788F /* RH_BankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B282008907F00C9788F /* RH_BankCardController.m */; };
+		B87A6B2B200892B600C9788F /* RH_BankCard.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2A200892B600C9788F /* RH_BankCard.plist */; };
+		B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */; };
+		B87A6B3120089CE500C9788F /* RH_BankCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2F20089CE500C9788F /* RH_BankCardCell.xib */; };
+		B87A6B332008ADCF00C9788F /* RH_BankCardAdd.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B322008ADCF00C9788F /* RH_BankCardAdd.plist */; };
+		B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B352008B47C00C9788F /* RH_BankPickerSelectView.m */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -1180,6 +1186,15 @@
 		B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PreferentialListCell.m; sourceTree = "<group>"; };
 		B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_PreferentialListCell.xib; sourceTree = "<group>"; };
 		B87A6B242007136800C9788F /* RH_PreferentialList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_PreferentialList.plist; sourceTree = "<group>"; };
+		B87A6B272008907F00C9788F /* RH_BankCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardController.h; sourceTree = "<group>"; };
+		B87A6B282008907F00C9788F /* RH_BankCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardController.m; sourceTree = "<group>"; };
+		B87A6B2A200892B600C9788F /* RH_BankCard.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_BankCard.plist; sourceTree = "<group>"; };
+		B87A6B2D20089CE500C9788F /* RH_BankCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardCell.h; sourceTree = "<group>"; };
+		B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardCell.m; sourceTree = "<group>"; };
+		B87A6B2F20089CE500C9788F /* RH_BankCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BankCardCell.xib; sourceTree = "<group>"; };
+		B87A6B322008ADCF00C9788F /* RH_BankCardAdd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_BankCardAdd.plist; sourceTree = "<group>"; };
+		B87A6B342008B47C00C9788F /* RH_BankPickerSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankPickerSelectView.h; sourceTree = "<group>"; };
+		B87A6B352008B47C00C9788F /* RH_BankPickerSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankPickerSelectView.m; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -2381,6 +2396,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				B87A6B2620088FF900C9788F /* bankCard */,
 				B87A6B1A2006191600C9788F /* preferentialList */,
 				F6A2ACD92004DD600077CB92 /* mineDiscountRecord */,
 				F6E401FC2001BDC900C52B97 /* gesturelLock */,
@@ -2809,6 +2825,30 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		B87A6B2620088FF900C9788F /* bankCard */ = {
+			isa = PBXGroup;
+			children = (
+				B87A6B2C2008949200C9788F /* cells */,
+				B87A6B272008907F00C9788F /* RH_BankCardController.h */,
+				B87A6B282008907F00C9788F /* RH_BankCardController.m */,
+				B87A6B2A200892B600C9788F /* RH_BankCard.plist */,
+				B87A6B322008ADCF00C9788F /* RH_BankCardAdd.plist */,
+				B87A6B342008B47C00C9788F /* RH_BankPickerSelectView.h */,
+				B87A6B352008B47C00C9788F /* RH_BankPickerSelectView.m */,
+			);
+			path = bankCard;
+			sourceTree = "<group>";
+		};
+		B87A6B2C2008949200C9788F /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				B87A6B2D20089CE500C9788F /* RH_BankCardCell.h */,
+				B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */,
+				B87A6B2F20089CE500C9788F /* RH_BankCardCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		F6A2AC8C20044C590077CB92 /* apply_discount */ = {
 			isa = PBXGroup;
 			children = (
@@ -3112,6 +3152,7 @@
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
 				A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */,
 				A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */,
+				B87A6B2B200892B600C9788F /* RH_BankCard.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
 				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
@@ -3131,6 +3172,7 @@
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
+				B87A6B332008ADCF00C9788F /* RH_BankCardAdd.plist in Resources */,
 				F6A2AD6E200793DB0077CB92 /* RH_MPGameSeletedDateView.xib in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
@@ -3150,6 +3192,7 @@
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
 				A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */,
+				B87A6B3120089CE500C9788F /* RH_BankCardCell.xib in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
 				A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */,
@@ -3269,6 +3312,7 @@
 				A0109FB51F8788FF004E6EF4 /* UIFont+CLCategory.m in Sources */,
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
 				A0AE8AB21FFCD57300836C1B /* RH_MineMoreNextCell.m in Sources */,
+				B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */,
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
 				A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */,
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
@@ -3305,6 +3349,7 @@
 				F6A2ACBD20044C5A0077CB92 /* RH_MPSystemNoticHeaderView.m in Sources */,
 				A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
+				B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */,
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
@@ -3435,6 +3480,7 @@
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
+				B87A6B292008907F00C9788F /* RH_BankCardController.m in Sources */,
 				79FB816B1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m in Sources */,
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,

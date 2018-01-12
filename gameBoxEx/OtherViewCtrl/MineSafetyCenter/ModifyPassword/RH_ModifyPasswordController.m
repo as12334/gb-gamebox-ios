@@ -111,7 +111,7 @@
 #pragma mark- modify
 -(UIButton *)modifyButton
 {
-    if (!_modifyButton){
+    if (!_modifyButton) {
         _modifyButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
         _modifyButton.backgroundColor = colorWithRGB(27, 117, 217);
         _modifyButton.layer.cornerRadius = 5;

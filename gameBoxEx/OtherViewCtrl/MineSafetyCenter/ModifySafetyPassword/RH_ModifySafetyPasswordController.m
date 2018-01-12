@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 
 @property (nonatomic, strong,readonly) UIView *footerView ;
 @property (nonatomic, strong,readonly) UIButton *modifyButton ;
+@property (nonatomic, strong)           UILabel *label_Notice ;
 @end
 
 @implementation RH_ModifySafetyPasswordController
@@ -57,6 +58,16 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
+    
+    UIView *view_Footer = [[UIView alloc] init];
+    view_Footer.frame = CGRectMake(0, 0, screenSize().width, 150);
+    self.contentTableView.tableFooterView = view_Footer;
+    
+    [view_Footer addSubview:self.modifyButton];
+    self.modifyButton.whc_Center(0, 0).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(44);
+    self.label_Notice = [UILabel new];
+    [view_Footer addSubview:self.label_Notice];
+    self.label_Notice.whc_LeftSpace(20).whc_TopSpace(0).whc_Width(screenSize().width/2).whc_Height(30);
 }
 
 -(void)updateView
