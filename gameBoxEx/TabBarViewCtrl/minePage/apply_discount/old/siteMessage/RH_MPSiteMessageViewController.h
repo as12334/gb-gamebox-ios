@@ -7,7 +7,8 @@
 //
 
 #import "RH_BasicPageLoadViewController.h"
-
+#import "RH_SiteSendMessageView.h"
 @interface RH_MPSiteMessageViewController : RH_BasicPageLoadViewController
+
 
 @end

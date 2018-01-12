@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "RH_MPGameNoticHeaderView.h"
+typedef void (^GameNoticHeaderViewBlock)(CGRect frame);
 @class RH_MPGameNoticHeaderView;
 @protocol MPGameNoticHeaderViewDelegate<NSObject>
-//-(void)
+-(void)gameNoticHeaderViewStartDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate*)defaultDate ;
+-(void)gameNoticHeaderViewEndDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate*)defaultDate ;
 @end
 @interface RH_MPGameNoticHeaderView : UIView
+@property (nonatomic,strong) NSDate *startDate ;
+@property (nonatomic,strong) NSDate *endDate ;
+@property(nonatomic,weak)id<MPGameNoticHeaderViewDelegate>delegate;
+@property(nonatomic,copy)GameNoticHeaderViewBlock block;
 
 @end

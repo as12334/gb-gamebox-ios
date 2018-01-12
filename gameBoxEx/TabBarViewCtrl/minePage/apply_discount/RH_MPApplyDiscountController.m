@@ -11,14 +11,17 @@
 #import "RH_MPGameNoticeViewController.h"
 #import "RH_MPSystemNoticeViewController.h"
 #import "RH_MPSiteMessageViewController.h"
+#import "RH_SiteSendMessageView.h"
 @interface RH_MPApplyDiscountController ()
 @property(nonatomic,strong,readonly)UISegmentedControl *segmentedControl;
 @property(nonatomic,strong,readonly)UIScrollView *contentScrollowView;
+@property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendMessageView;
 @end
 
 @implementation RH_MPApplyDiscountController
 @synthesize segmentedControl = _segmentedControl;
 @synthesize contentScrollowView = _contentScrollowView;
+@synthesize sendMessageView = _sendMessageView;
 -(BOOL)isSubViewController
 {
     return YES;
@@ -52,6 +55,14 @@
     VC.view.frame = CGRectMake(0,0, MainScreenW, MainScreenH);
     [self.contentScrollowView addSubview:VC.view];
 }
+-(RH_SiteSendMessageView *)sendMessageView
+{
+    if (!_sendMessageView) {
+        _sendMessageView = [RH_SiteSendMessageView createInstance];
+        _sendMessageView.frame = self.view.frame;
+    }
+    return _sendMessageView;
+}
 #pragma mark - 分段控制器
 -(UISegmentedControl *)segmentedControl
 {
@@ -79,6 +90,7 @@
         VC.view.frame = CGRectMake(sender.selectedSegmentIndex*MainScreenW,0, MainScreenW,self.contentView.frameHeigh-NavigationBarHeight-self.topView.frameHeigh);
         [self.contentScrollowView addSubview:VC.view];
 }
+
 #pragma mark - contentScrollowView
 -(UIScrollView *)contentScrollowView
 {
@@ -107,10 +119,7 @@
     NSInteger count = self.childViewControllers.count;
     self.contentScrollowView.contentSize = CGSizeMake(count*MainScreenW, 0);
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 /*
 #pragma mark - Navigation
