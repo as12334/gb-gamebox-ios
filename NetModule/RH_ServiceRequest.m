@@ -25,6 +25,9 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalDetailModel.h"
 #import "RH_CapitalTypeModel.h"
+#import "RH_BankCradModel.h"
+#import "RH_SystemNoticeModel.h"
+#import "RH_SystemNoticeDetailModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -376,19 +379,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic] ;
 }
 
-- (void)startV3ChangeSaftyPasswordMainPage {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
-                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3ModifySafetyPassword
-                         scopeType:ServiceScopeTypePublic];
-}
-
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo
 {
@@ -420,20 +410,27 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 修改安全密码
-- (void)startV3UpdateSafePassword:(BOOL)needCaptcha name:(NSString *)realName originPassword:(NSString *)originPwd newPassword:(NSString *)pwd1 confirmPassword:(NSString *)pwd2 verifyCode:(NSString *)code {
+- (void)startV3ModifySafePasswordWithRealName:(nullable NSString *)realName
+                               originPassword:(nullable NSString *)originPwd
+                                  newPassword:(nullable NSString *)pwd1
+                              confirmPassword:(nullable NSString *)pwd2
+                                   verifyCode:(nullable NSString *)code
+{
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:realName?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_REALNAME] ;
+    [dictTmp setValue:originPwd?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_ORIGINPWD] ;
+    [dictTmp setValue:pwd1?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_NEWPWD] ;
+    [dictTmp setValue:pwd2?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_CONFIRMPWD] ;
+    if (code.length){
+        [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
+    }
     
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     [self _startServiceWithAPIName:appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{@"realName":realName?:@"",
-                                     @"needCaptcha":@(needCaptcha)?:NO,
-                                     @"originPwd": originPwd?:@"",
-                                     @"pwd1"    :pwd1?:@"",
-                                     @"pwd2"    :pwd2?:@"",
-                                     @"code"    :code?:@""
-                                     }
+                    queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3UpdateSafePassword
@@ -441,7 +438,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 修改登录密码
-- (void)startV3UpdateLoginPassword:(NSString *)password newPassword:(NSString *)newPassword verifyCode:(NSString *)code
+- (void)startV3UpdateLoginPassword:(NSString *)password
+                       newPassword:(NSString *)newPassword
+                        verifyCode:(NSString *)code
 {
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:password?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD] ;
@@ -514,6 +513,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositListDetails
                          scopeType:ServiceScopeTypePublic];
 }
+
 #pragma mark 资金详情下拉列表
 -(void)startV3DepositPulldownList
 {
@@ -528,6 +528,129 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositPullDownList
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 添加银行卡
+-(void)startV3addBankCarkbankcardMasterName:(NSString *)bankcardMasterName
+                                   bankName:(NSString *)bankName
+                             bankcardNumber:(NSString *)bankcardNumber
+                                bankDeposit:(NSString *)bankDeposit
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:bankcardMasterName forKey:RH_SP_BANKCARDMASTERNAME];
+    [dict setValue:bankName forKey:RH_SP_BANKNAME];
+    [dict setValue:bankcardNumber forKey:RH_SP_BANKCARDNUMBER];
+    [dict setValue:bankDeposit forKey:RH_SP_BANKDEPOSIT];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDBANKCARD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddBankCard
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取系统公告
+-(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
+                                endTime:(NSDate *)endTime
+                             pageNumber:(NSInteger)pageNumber
+                               pageSize:(NSInteger)pageSize
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
+    [dict setValue:endTime forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SYSTEMNOTICE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SYSTEMNOTICE_PAGESIZE];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SYSTEMNOTICE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SYSTEMNOTICE
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取公告详情
+-(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_SYSTEMNOTICEDETAIL_SEARCHID];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SYSTEMNOTICEDETAIL
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -  游戏公告
+-(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
+                              endTime:(NSDate *)endTime
+                           pageNumber:(NSInteger)pageNumber
+                             pageSize:(NSInteger)pageSize
+                                apiId:(NSInteger)apiId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime forKey:RH_SP_GAMENOTICE_STARTTIME];
+    [dict setValue:endTime forKey:RH_SP_GAMENOTICE_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_GAMENOTICE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
+    [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_GAMENOTICE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GAMENOTICE
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -  游戏公告详情
+-(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_API_NAME_GAMENOTICEDETAIL];
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GAMENOTICEDETAIL
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+
+-(void)startV3GetSafetyVerifyCode
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_SAFETYCAPCHA
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -814,7 +937,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(NO) ;
         }
         return YES ;
-    }else if (type == ServiceRequestTypeObtainVerifyCode){
+    }else if (type == ServiceRequestTypeObtainVerifyCode ||
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
         *reslutData = image ;
@@ -837,6 +961,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
+  
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -945,6 +1070,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeV3UserSafeInfo:
+            case ServiceRequestTypeV3UpdateSafePassword:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
@@ -969,6 +1095,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_BettingDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;
+
             case ServiceRequestTypeV3DepositListDetails:
             {
                resultSendData = [[RH_CapitalDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -976,11 +1103,33 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositPullDownList:
             {
-
-                resultSendData = [[RH_CapitalTypeModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
                 resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break ;
+
+            case ServiceRequestTypeV3AddBankCard:
+            {
+                resultSendData = [RH_BankCradModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+            
+            }
+                break;
+            case ServiceRequestTypeV3SYSTEMNOTICE:
+            {
+                NSArray *tmpArray = [RH_SystemNoticeModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                      integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]   ;
+                resultSendData = @{RH_GP_SYSTEMNOTICE_LIST:tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
+                
+            }
+                break;
+            case ServiceRequestTypeV3SYSTEMNOTICEDETAIL:
+            {
+                resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+
             default:
                 resultSendData = dataObject ;
 
@@ -988,6 +1137,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
 
         *reslutData = resultSendData;
+    }else{
+        switch (type) {
+            case ServiceRequestTypeV3UpdateSafePassword:
+            {
+                RH_UserSafetyCodeModel *userSafetyCode = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (userSafetyCode){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:userSafetyCode] ;
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 
     return YES;

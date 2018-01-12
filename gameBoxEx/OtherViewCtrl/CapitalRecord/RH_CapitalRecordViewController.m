@@ -52,7 +52,7 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-    
+    [self.serviceRequest startV3LoadGameNoticeStartTime:[NSDate dateWithYear:2017 month:01 day:01 hour:12 minute:0 second:0] endTime:[NSDate dateWithYear:2018 month:01 day:01 hour:12 minute:0 second:0] pageNumber:nil pageSize:nil apiId:nil];
 }
 
 
@@ -243,6 +243,10 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
+    if (type == ServiceRequestTypeV3GAMENOTICE) {
+        
+    }
+
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

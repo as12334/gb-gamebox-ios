@@ -28,4 +28,27 @@
     return self ;
 }
 
+-(void)updateHasRealName:(BOOL)bFlag
+{
+    _mHasRealName = bFlag ;
+}
+-(void)updateHasPersimmionPwd:(BOOL)bFlag
+{
+    _mHasPersimmionPwd = bFlag ;
+}
+
+-(void)updateOpenCaptch:(BOOL)bFlag
+{
+    _mIsOpenCaptch = bFlag ;
+}
+-(void)updateRemindTime:(NSInteger)remindTime
+{
+    _mRemindTime = remindTime ;
+}
+
+-(void)updateLockTime:(NSString*)lockTime
+{
+    _mLockTime = lockTime ;
+}
+
 @end

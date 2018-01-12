@@ -15,4 +15,10 @@
 @property (nonatomic,assign,readonly) BOOL mIsOpenCaptch ;
 @property (nonatomic,assign,readonly) NSInteger mRemindTime ;
 @property (nonatomic,strong,readonly) NSString *mLockTime ;
+
+-(void)updateHasRealName:(BOOL)bFlag ;
+-(void)updateHasPersimmionPwd:(BOOL)bFlag ;
+-(void)updateOpenCaptch:(BOOL)bFlag ;
+-(void)updateRemindTime:(NSInteger)remindTime ;
+-(void)updateLockTime:(NSString*)lockTime ;
 @end

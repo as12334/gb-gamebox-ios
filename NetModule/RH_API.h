@@ -85,6 +85,14 @@
 #define RH_GP_Banner_TYPE                                               @"type"
 
 
+#pragma mark -系统公告模型
+#define RH_GP_SYSTEMNOTICE_ID                               @"id"
+#define RH_GP_SYSTEMNOTICE_CONTENT                          @"content"
+#define RH_GP_SYSTEMNOTICE_PUBLISHTIME                      @"publishTime"
+#define RH_GP_SYSTEMNOTICE_LINK                             @"link"
+#define RH_GP_SYSTEMNOTICE_MINDATE                          @"minDate"
+#define RH_GP_SYSTEMNOTICE_MAXDATE                          @"maxDate"
+
 #pragma mark - v3 首页 announcement 公告模型
 #define RH_GP_ANNOUNCEMENT_TYPE                                               @"announcementType"
 #define RH_GP_ANNOUNCEMENT_CODE                                               @"code"
@@ -391,7 +399,17 @@
 #pragma mark -V3 修改安全密码接口
 //api路径
 #define RH_API_NAME_UPDATESAFEPASSWORD                    @"mineOrigin/updateSafePassword.html"
-//请求参数 无
+//请求参数
+#define RH_SP_UPDATESAFEPASSWORD_REALNAME                     @"realName"
+#define RH_SP_UPDATESAFEPASSWORD_ORIGINPWD                     @"originPwd"
+#define RH_SP_UPDATESAFEPASSWORD_NEWPWD                       @"pwd1"
+#define RH_SP_UPDATESAFEPASSWORD_CONFIRMPWD                       @"pwd2"
+#define RH_SP_UPDATESAFEPASSWORD_VERIFYCODE                       @"code"
+
+//返回参数
+#define RH_GP_UPDATESAFEPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
+#define RH_GP_UPDATESAFEPASSWORD_REMAINTIMES                @"remainTimes"
+
 
 #pragma mark - V3 修改用户密码
 #define RH_API_NAME_MINEMODIFYPASSWORD                   @"mineOrigin/updateLoginPassword.html"
@@ -404,8 +422,87 @@
 #define RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
 #define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
 
-#pragma mark - V3 修改用户安全密码
-#define RH_API_NAME_MINEMODIFYSAFETYPASSWORD             @"mineOrigin/updateSafePassword.html"
+#pragma mark - V3 添加银行卡
+#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/addCard.html"
+//请求参数
+#define RH_SP_BANKCARDMASTERNAME  @"bankcardMasterName"
+#define RH_SP_BANKNAME        @"bankName"
+#define RH_SP_BANKCARDNUMBER   @"bankcardNumber"
+#define RH_SP_BANKDEPOSIT  @"bankDeposit"
+
+//返回参数
+#define RH_GP_ADDBANKCARD_CODE  @"code"
+#define RH_GP_ADDBANKCARD_DATA  @"data"
+#define RH_GP_ADDBANKCARD_VALUE @"value"
+#define RH_GP_ADDBANKCARD_TEXT   @"text"
+#define RH_GP_ADDBANKCARD_ERROR  @"error"
+#define RH_GP_ADDBANKCARD_MSG   @"msg"
+#define RH_GP_ADDBANKCARD_VERSION   @"version"
+
+#pragma mark - V3 获取安全密码验证码
+#define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
+//请求参数 -无
+
+
+#pragma mark - V3 系统公告
+#define RH_API_NAME_SYSTEMNOTICE            @"mineOrigin/getSysNotice.html"
+//请求参数
+#define RH_SP_SYSTEMNOTICE_STARTTIME    @"search.startTime"
+#define RH_SP_SYSTEMNOTICE_ENDTIME      @"search.endTime"
+#define RH_SP_SYSTEMNOTICE_PAGENUMBER   @"paging.pageNumber"
+#define RH_SP_SYSTEMNOTICE_PAGESIZE     @"paging.pageSize"
+
+//返回参数
+#define RH_GP_SYSTEMNOTICE_LIST        @"list"
+#define RH_GP_SYSTEMNOTICE_TOTALNUM    @"pageTotal"
+
+#pragma mark - V3 系统公告详情
+#define RH_API_NAME_SYSTEMNOTICEDETAIL            @"mineOrigin/getSysNoticeDetail.html"
+//请求参数
+#define RH_SP_SYSTEMNOTICEDETAIL_SEARCHID    @"searchId"
+
+//返回参数
+#define RH_GP_SYSTEMNOTICEDETAIL_DATA        @"data"
+#define RH_GP_SYSTEMNOTICEDETAIL_ID          @"id"
+#define RH_GP_SYSTEMNOTICEDETAIL_CONTENT     @"content"
+#define RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME @"publishTime"
+#define RH_GP_SYSTEMNOTICEDETAIL_LINK        @"link"
+#define RH_GP_SYSTEMNOTICEDETAIL_TITLE        @"title"
+
+#pragma mark - V3 游戏公告
+#define RH_API_NAME_GAMENOTICE           @"mineOrigin/getGameNotice.html"
+//请求参数
+#define RH_SP_GAMENOTICE_STARTTIME    @"search.startTime"
+#define RH_SP_GAMENOTICE_ENDTIME      @"search.endTime"
+#define RH_SP_GAMENOTICE_PAGENUMBER   @"paging.pageNumber"
+#define RH_SP_GAMENOTICE_PAGESIZE     @"paging.pageSize"
+#define RH_SP_GAMENOTICE_APIID        @"search.apiId"
+
+//返回参数
+#define RH_GP_GAMENOTICE_LIST        @"list"
+#define RH_GP_GAMENOTICE_ID          @"id"
+#define RH_GP_GAMENOTICE_CONTENT     @"content"
+#define RH_GP_GAMENOTICE_PUBLISHTIME @"publishTime"
+#define RH_GP_GAMENOTICE_LINK        @"link"
+#define RH_GP_GAMENOTICE_PAGETOTAL   @"pageTotal"
+#define RH_GP_GAMENOTICE_MINDATE     @"minDate"
+#define RH_GP_GAMENOTICE_MAXDATE     @"maxDate"
+
+
+#pragma mark - V3 游戏公告详情
+#define RH_API_NAME_GAMENOTICEDETAIL           @"mineOrigin/getGameNoticeDetail.html"
+//请求参数
+#define RH_SP_GAMENOTICEDETAIL_SEARCHID    @"searchId"
+
+//返回参数
+#define RH_GP_GAMENOTICEDETAIL_LIST        @"list"
+#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
+#define RH_GP_GAMENOTICEDETAIL_CONTENT     @"content"
+#define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME @"publishTime"
+#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
+#define RH_GP_GAMENOTICEDETAIL_PAGETOTAL   @"pageTotal"
+#define RH_GP_GAMENOTICEDETAIL_MINDATE     @"minDate"
+#define RH_GP_GAMENOTICEDETAIL_MAXDATE     @"maxDate"
 
 
 #endif /* RH_API_h */

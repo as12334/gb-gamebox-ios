@@ -43,7 +43,12 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3UpdateSafePassword,//修改安全密码
     ServiceRequestTypeV3UpdateLoginPassword,//修改登录密码
     ServiceRequestTypeV3DepositPullDownList, //资金记录下拉列表
-    
+    ServiceRequestTypeV3AddBankCard,   //添加银行卡
+    ServiceRequestTypeV3SafetyObtainVerifyCode ,
+    ServiceRequestTypeV3SYSTEMNOTICE           , //系统公告
+    ServiceRequestTypeV3SYSTEMNOTICEDETAIL     , //系统公告详情
+    ServiceRequestTypeV3GAMENOTICE           , //游戏公告
+    ServiceRequestTypeV3GAMENOTICEDETAIL     , //游戏公告详情
 };
 
 
@@ -153,9 +158,6 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 资金记录详情 根据ID进行查询
 -(void)startV3DepositListDetail:(NSString*)searchId;
 
-#pragma mark - 修改安全密码
-- (void)startV3ChangeSaftyPasswordMainPage;
-
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo ;
 #pragma mark - 投注记录详情
@@ -166,21 +168,84 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)startV3SetRealName: (NSString*)name;
 
 #pragma mark - 修改安全密码接口
-- (void)startV3UpdateSafePassword:(BOOL)needCaptcha
-                             name:(nullable NSString *)realName
-                   originPassword:(nullable NSString *)originPwd
-                      newPassword:(nullable NSString *)pwd1
-                  confirmPassword:(nullable NSString *)pwd2
-                       verifyCode:(nullable NSString *)code;
+- (void)startV3ModifySafePasswordWithRealName:(NSString *)realName
+                               originPassword:(NSString *)originPwd
+                                  newPassword:(NSString *)pwd1
+                              confirmPassword:(NSString *)pwd2
+                                   verifyCode:(NSString *)code;
 
 #pragma mark - 修改登录密码
-- (void)startV3UpdateLoginPassword:(NSString *)password
-                       newPassword:(NSString *)newPassword
-                        verifyCode:(NSString *)code;
+- (void)startV3UpdateLoginPassword:(NSString*)password
+                       newPassword:(NSString*)newPassword
+                        verifyCode:(NSString*)code ;
+
 
 #pragma mark - 资金记录下拉列表
 -(void)startV3DepositPulldownList;
 
+
+#pragma mark - 添加银行卡
+
+/**
+ 添加银行卡
+ @param bankcardMasterName  卡主名
+ @param bankName   银行
+ @param bankcardNumber 卡号
+ @param bankDeposit 开户银行
+ */
+-(void)startV3addBankCarkbankcardMasterName:(NSString *)bankcardMasterName
+                            bankName:(NSString *)bankName
+                      bankcardNumber:(NSString *)bankcardNumber
+                         bankDeposit:(NSString *)bankDeposit;
+
+
+#pragma mark -- 系统公告
+/**
+ 系统公告API接口
+ @param startTime 开始时间
+ @param endTime 结束时间
+ @param pageNumber 第几页
+ @param pageSize 一页展示多少条默认20
+ */
+-(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
+                                endTime:(NSDate *)endTime
+                             pageNumber:(NSInteger)pageNumber
+                               pageSize:(NSInteger)pageSize;
+
+#pragma mark -- 系统公告详情
+
+/**
+  系统公告详情
+
+ @param searchId 公告id
+ */
+-(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId;
+
+#pragma mark -  游戏公告
+/**
+ 游戏公告
+
+ @param startTime 开始时间
+ @param endTime 结束时间
+ @param pageNumber 第几页
+ @param pageSize 一页展示多少条默认20
+ @param apiId 游戏类型
+ */
+-(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
+                              endTime:(NSDate *)endTime
+                           pageNumber:(NSInteger)pageNumber
+                             pageSize:(NSInteger)pageSize
+                                apiId:(NSInteger)apiId;
+#pragma mark -  游戏公告详情
+/**
+ 游戏公告详情
+
+ @param searchId Id
+ */
+-(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId;
+
+#pragma mark - 生成安全验证码
+-(void)startV3GetSafetyVerifyCode ;
 /**
  * 取消所有服务
  */
