@@ -45,6 +45,10 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3DepositPullDownList, //资金记录下拉列表
     ServiceRequestTypeV3AddBankCard,   //添加银行卡
     ServiceRequestTypeV3SafetyObtainVerifyCode ,
+    ServiceRequestTypeV3SYSTEMNOTICE           , //系统公告
+    ServiceRequestTypeV3SYSTEMNOTICEDETAIL     , //系统公告详情
+    ServiceRequestTypeV3GAMENOTICE           , //游戏公告
+    ServiceRequestTypeV3GAMENOTICEDETAIL     , //游戏公告详情
 };
 
 
@@ -181,11 +185,64 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 
 #pragma mark - 添加银行卡
+
+/**
+ 添加银行卡
+ @param bankcardMasterName  卡主名
+ @param bankName   银行
+ @param bankcardNumber 卡号
+ @param bankDeposit 开户银行
+ */
 -(void)startV3addBankCarkbankcardMasterName:(NSString *)bankcardMasterName
                             bankName:(NSString *)bankName
                       bankcardNumber:(NSString *)bankcardNumber
                          bankDeposit:(NSString *)bankDeposit;
 
+
+#pragma mark -- 系统公告
+/**
+ 系统公告API接口
+ @param startTime 开始时间
+ @param endTime 结束时间
+ @param pageNumber 第几页
+ @param pageSize 一页展示多少条默认20
+ */
+-(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
+                                endTime:(NSDate *)endTime
+                             pageNumber:(NSInteger)pageNumber
+                               pageSize:(NSInteger)pageSize;
+
+#pragma mark -- 系统公告详情
+
+/**
+  系统公告详情
+
+ @param searchId 公告id
+ */
+-(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId;
+
+#pragma mark -  游戏公告
+/**
+ 游戏公告
+
+ @param startTime 开始时间
+ @param endTime 结束时间
+ @param pageNumber 第几页
+ @param pageSize 一页展示多少条默认20
+ @param apiId 游戏类型
+ */
+-(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
+                              endTime:(NSDate *)endTime
+                           pageNumber:(NSInteger)pageNumber
+                             pageSize:(NSInteger)pageSize
+                                apiId:(NSInteger)apiId;
+#pragma mark -  游戏公告详情
+/**
+ 游戏公告详情
+
+ @param searchId Id
+ */
+-(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId;
 
 #pragma mark - 生成安全验证码
 -(void)startV3GetSafetyVerifyCode ;

@@ -436,5 +436,72 @@
 //请求参数 -无
 
 
+#pragma mark - V3 系统公告
+#define RH_API_NAME_SYSTEMNOTICE            @"mineOrigin/getSysNotice.html"
+//请求参数
+#define RH_SP_SYSTEMNOTICE_STARTTIME    @"search.startTime"
+#define RH_SP_SYSTEMNOTICE_ENDTIME      @"search.endTime"
+#define RH_SP_SYSTEMNOTICE_PAGENUMBER   @"paging.pageNumber"
+#define RH_SP_SYSTEMNOTICE_PAGESIZE     @"paging.pageSize"
+
+//返回参数
+#define RH_GP_SYSTEMNOTICE_LIST        @"list"
+#define RH_GP_SYSTEMNOTICE_ID          @"id"
+#define RH_GP_SYSTEMNOTICE_CONTENT     @"content"
+#define RH_GP_SYSTEMNOTICE_PUBLISHTIME @"publishTime"
+#define RH_GP_SYSTEMNOTICE_LINK        @"link"
+#define RH_GP_SYSTEMNOTICE_PAGETOTAL   @"pageTotal"
+#define RH_GP_SYSTEMNOTICE_MINDATE     @"minDate"
+#define RH_GP_SYSTEMNOTICE_MAXDATE     @"maxDate"
+
+#pragma mark - V3 系统公告详情
+#define RH_API_NAME_SYSTEMNOTICEDETAIL            @"mineOrigin/getSysNoticeDetail.html"
+//请求参数
+#define RH_SP_SYSTEMNOTICEDETAIL_SEARCHID    @"searchId"
+
+//返回参数
+#define RH_GP_SYSTEMNOTICEDETAIL_DATA        @"data"
+#define RH_GP_SYSTEMNOTICEDETAIL_ID          @"id"
+#define RH_GP_SYSTEMNOTICEDETAIL_CONTENT     @"content"
+#define RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME @"publishTime"
+#define RH_GP_SYSTEMNOTICEDETAIL_LINK        @"link"
+#define RH_GP_SYSTEMNOTICEDETAIL_TITLE        @"title"
+
+#pragma mark - V3 游戏公告
+#define RH_API_NAME_GAMENOTICE           @"mineOrigin/getGameNotice.html"
+//请求参数
+#define RH_SP_GAMENOTICE_STARTTIME    @"search.startTime"
+#define RH_SP_GAMENOTICE_ENDTIME      @"search.endTime"
+#define RH_SP_GAMENOTICE_PAGENUMBER   @"paging.pageNumber"
+#define RH_SP_GAMENOTICE_PAGESIZE     @"paging.pageSize"
+#define RH_SP_GAMENOTICE_APIID        @"search.apiId"
+
+//返回参数
+#define RH_GP_GAMENOTICE_LIST        @"list"
+#define RH_GP_GAMENOTICE_ID          @"id"
+#define RH_GP_GAMENOTICE_CONTENT     @"content"
+#define RH_GP_GAMENOTICE_PUBLISHTIME @"publishTime"
+#define RH_GP_GAMENOTICE_LINK        @"link"
+#define RH_GP_GAMENOTICE_PAGETOTAL   @"pageTotal"
+#define RH_GP_GAMENOTICE_MINDATE     @"minDate"
+#define RH_GP_GAMENOTICE_MAXDATE     @"maxDate"
+
+
+#pragma mark - V3 游戏公告详情
+#define RH_API_NAME_GAMENOTICEDETAIL           @"mineOrigin/getGameNoticeDetail.html"
+//请求参数
+#define RH_SP_GAMENOTICEDETAIL_SEARCHID    @"searchId"
+
+//返回参数
+#define RH_GP_GAMENOTICEDETAIL_LIST        @"list"
+#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
+#define RH_GP_GAMENOTICEDETAIL_CONTENT     @"content"
+#define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME @"publishTime"
+#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
+#define RH_GP_GAMENOTICEDETAIL_PAGETOTAL   @"pageTotal"
+#define RH_GP_GAMENOTICEDETAIL_MINDATE     @"minDate"
+#define RH_GP_GAMENOTICEDETAIL_MAXDATE     @"maxDate"
+
+
 #endif /* RH_API_h */
 
