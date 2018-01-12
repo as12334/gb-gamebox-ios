@@ -86,8 +86,22 @@
     if (viewCtrl){
         [self showViewController:viewCtrl] ;
     }else{
-//        //是否有h5 link
-//        NSString *code = [dict stringValueForKey:@"code"] ;
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        NSString *code = [dict stringValueForKey:@"code"] ;
+        if ([code isEqualToString:@"transfer"]){
+            appDelegate.customUrl = @"/transfer/index.html" ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
+        }else if ([code isEqualToString:@"gameNotice"]){
+            appDelegate.customUrl = @"/message/gameNotice.html?isSendMessage=true" ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
+        }else if ([code isEqualToString:@"bankCard"]){
+            appDelegate.customUrl = @"/bankCard/page/addCard.html" ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
+        }else if ([code isEqualToString:@"btc"]){
+            appDelegate.customUrl = @"/bankCard/page/addBtc.html" ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
+        }
+        
 //        if (code.length){
 //            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
 //            RH_LinkInfoModel *linkInfo =  [MineGroupInfo getLinkInfoWithCode:code] ;

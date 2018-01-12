@@ -299,6 +299,7 @@
 		A0522A622007818600A5A6E9 /* RH_BankCradModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A602007818500A5A6E9 /* RH_BankCradModel.m */; };
 		A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */; };
 		A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */; };
+		A0522A6A20085E6600A5A6E9 /* RH_PromoInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
@@ -403,10 +404,9 @@
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
 		B87A6B182005EA8100C9788F /* RH_ModifyPasswordCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */; };
 		B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */; };
-		B87A6B1D2006405100C9788F /* RH_PreferentialListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PreferentialListController.m */; };
+		B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PromoListController.m */; };
 		B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */; };
 		B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */; };
-		B87A6B252007136800C9788F /* RH_PreferentialList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B242007136800C9788F /* RH_PreferentialList.plist */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -1006,6 +1006,8 @@
 		A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_ModifySafetyPwdCodeCell.xib; sourceTree = "<group>"; };
 		A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPwdCodeCell.m; sourceTree = "<group>"; };
 		A0522A6520078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPwdCodeCell.h; sourceTree = "<group>"; };
+		A0522A6820085E6600A5A6E9 /* RH_PromoInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoInfoModel.h; sourceTree = "<group>"; };
+		A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoInfoModel.m; sourceTree = "<group>"; };
 		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
@@ -1174,12 +1176,11 @@
 		B87A6B152005EA8100C9788F /* RH_ModifyPasswordCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCodeCell.h; sourceTree = "<group>"; };
 		B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCodeCell.m; sourceTree = "<group>"; };
 		B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ModifyPasswordCodeCell.xib; sourceTree = "<group>"; };
-		B87A6B1B2006405100C9788F /* RH_PreferentialListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PreferentialListController.h; sourceTree = "<group>"; };
-		B87A6B1C2006405100C9788F /* RH_PreferentialListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PreferentialListController.m; sourceTree = "<group>"; };
+		B87A6B1B2006405100C9788F /* RH_PromoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PromoListController.h; sourceTree = "<group>"; };
+		B87A6B1C2006405100C9788F /* RH_PromoListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PromoListController.m; sourceTree = "<group>"; };
 		B87A6B1F200646C800C9788F /* RH_PreferentialListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PreferentialListCell.h; sourceTree = "<group>"; };
 		B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PreferentialListCell.m; sourceTree = "<group>"; };
 		B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_PreferentialListCell.xib; sourceTree = "<group>"; };
-		B87A6B242007136800C9788F /* RH_PreferentialList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_PreferentialList.plist; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -2049,6 +2050,8 @@
 				A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */,
 				79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */,
 				79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */,
+				A0522A6820085E6600A5A6E9 /* RH_PromoInfoModel.h */,
+				A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */,
 				F6A2AD682007663D0077CB92 /* RH_CapitalTypeModel.h */,
 				F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */,
 				79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */,
@@ -2381,7 +2384,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				B87A6B1A2006191600C9788F /* preferentialList */,
+				B87A6B1A2006191600C9788F /* promoList */,
 				F6A2ACD92004DD600077CB92 /* mineDiscountRecord */,
 				F6E401FC2001BDC900C52B97 /* gesturelLock */,
 				A0B5A5651FFF6C1300E2CDD8 /* gameList */,
@@ -2788,15 +2791,14 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
-		B87A6B1A2006191600C9788F /* preferentialList */ = {
+		B87A6B1A2006191600C9788F /* promoList */ = {
 			isa = PBXGroup;
 			children = (
 				B87A6B1E2006405800C9788F /* cells */,
-				B87A6B1B2006405100C9788F /* RH_PreferentialListController.h */,
-				B87A6B1C2006405100C9788F /* RH_PreferentialListController.m */,
-				B87A6B242007136800C9788F /* RH_PreferentialList.plist */,
+				B87A6B1B2006405100C9788F /* RH_PromoListController.h */,
+				B87A6B1C2006405100C9788F /* RH_PromoListController.m */,
 			);
-			path = preferentialList;
+			path = promoList;
 			sourceTree = "<group>";
 		};
 		B87A6B1E2006405800C9788F /* cells */ = {
@@ -3080,7 +3082,6 @@
 				F6A2ACB420044C5A0077CB92 /* RH_MPGameNoticHeaderView.xib in Resources */,
 				B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
-				B87A6B252007136800C9788F /* RH_PreferentialList.plist in Resources */,
 				F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */,
 				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
@@ -3169,6 +3170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A01181701FFCAB21008F6D1E /* UITableViewCell+WHC_AutoHeightForCell.m in Sources */,
+				A0522A6A20085E6600A5A6E9 /* RH_PromoInfoModel.m in Sources */,
 				A06B64A61FD690EA00323C12 /* RH_LoginViewControllerEx.m in Sources */,
 				A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */,
 				A01181611FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m in Sources */,
@@ -3344,7 +3346,7 @@
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
-				B87A6B1D2006405100C9788F /* RH_PreferentialListController.m in Sources */,
+				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
 				F6A2AD6C200793A90077CB92 /* RH_MPGameSeletedDateView.m in Sources */,

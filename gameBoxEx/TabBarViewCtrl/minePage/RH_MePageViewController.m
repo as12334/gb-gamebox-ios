@@ -11,8 +11,11 @@
 #import "RH_UserInfoManager.h"
 #import "RH_MineSettingsViewController.h"
 #import "RH_UserInfoManager.h"
+#import "RH_MineAccountCell.h"
+#import "RH_WithdrawDispositController.h"
+#import "RH_CustomViewController.h"
 
-@interface RH_MePageViewController ()<CLTableViewManagementDelegate>
+@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
@@ -124,6 +127,18 @@
     }
 }
 
+#pragma mark -mineAcceount delegate
+-(void)mineAccountCellTouchRchargeButton:(RH_MineAccountCell*)mineAccountCell
+{
+    self.tabBarController.selectedIndex = 0 ;
+}
+
+-(void)mineAccountCellTouchWithDrawButton:(RH_MineAccountCell*)mineAccountCell
+{
+//    [self showViewController:[RH_WithdrawDispositController viewController] sender:self] ;
+    self.appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
+    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+}
 
 #pragma mark-
 -(CLTableViewManagement*)tableViewManagement
@@ -136,6 +151,14 @@
         _tableViewManagement.delegate = self ;
     }
     return _tableViewManagement ;
+}
+
+-(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
+{
+    RH_MineAccountCell *mineAccountCell = ConvertToClassPointer(RH_MineAccountCell, cell) ;
+    if (mineAccountCell){
+        mineAccountCell.delegate = self ;
+    }
 }
 
 -(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath

@@ -107,7 +107,7 @@
 							<key>code</key>
 							<string>myPromo</string>
 							<key>targetKey</key>
-							<string>RH_PreferentialListController</string>
+							<string>RH_PromoListController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -150,8 +150,8 @@
 							<string>申请优惠</string>
 							<key>image</key>
 							<string>mine_page_applypreferential</string>
-							<key>targetKey</key>
-							<string>RH_MPApplyDiscountController</string>
+							<key>code</key>
+							<string>gameNotice</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -162,6 +162,26 @@
 							<string>mine_page_look_more</string>
 							<key>title</key>
 							<string>查看更多</string>
+						</dict>
+						<dict>
+							<key>detailTitle</key>
+							<string>建议反馈</string>
+							<key>code</key>
+							<string>bankCard</string>
+							<key>image</key>
+							<string>mine_page_look_more</string>
+							<key>title</key>
+							<string>银行卡 h5</string>
+						</dict>
+						<dict>
+							<key>detailTitle</key>
+							<string>建议反馈</string>
+							<key>code</key>
+							<string>btc</string>
+							<key>image</key>
+							<string>mine_page_look_more</string>
+							<key>title</key>
+							<string>bit币 h5</string>
 						</dict>
 					</array>
 				</dict>

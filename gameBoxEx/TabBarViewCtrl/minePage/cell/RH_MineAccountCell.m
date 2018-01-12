@@ -44,17 +44,22 @@
 
 -(IBAction)btn_recharge:(id)sender //充值
 {
-    RH_LinkInfoModel *linkInfoModel = [MineGroupInfo getLinkInfoWithCode:@"deposit"] ;
-    if (linkInfoModel){
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        appDelegate.customUrl = linkInfoModel.targetLink ;
-        [self showViewController:[RH_CustomViewController viewController]] ;
+//    RH_LinkInfoModel *linkInfoModel = [MineGroupInfo getLinkInfoWithCode:@"deposit"] ;
+//    if (linkInfoModel){
+//        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+//        appDelegate.customUrl = linkInfoModel.targetLink ;
+//        [self showViewController:[RH_CustomViewController viewController]] ;
+//    }
+    ifRespondsSelector(self.delegate, @selector(mineAccountCellTouchRchargeButton:)){
+        [self.delegate mineAccountCellTouchRchargeButton:self] ;
     }
 }
 
 -(IBAction)btn_withDraw:(id)sender ////提现
 {
-    
+    ifRespondsSelector(self.delegate, @selector(mineAccountCellTouchWithDrawButton:)){
+        [self.delegate mineAccountCellTouchWithDrawButton:self] ;
+    }
 }
 
 

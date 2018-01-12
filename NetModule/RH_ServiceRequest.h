@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3DepositPullDownList, //资金记录下拉列表
     ServiceRequestTypeV3AddBankCard,   //添加银行卡
     ServiceRequestTypeV3SafetyObtainVerifyCode ,
+    ServiceRequestTypeV3PromoList,   //优惠 list
 };
 
 
@@ -189,6 +190,12 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 生成安全验证码
 -(void)startV3GetSafetyVerifyCode ;
+
+#pragma mark - 优惠列表
+-(void)startV3PromoList:(NSInteger)pageNumber
+               PageSize:(NSInteger)pageSize ;
+
+#pragma mark -
 /**
  * 取消所有服务
  */

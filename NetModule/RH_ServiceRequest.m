@@ -26,6 +26,8 @@
 #import "RH_CapitalDetailModel.h"
 #import "RH_CapitalTypeModel.h"
 #import "RH_BankCradModel.h"
+#import "RH_PromoInfoModel.h"
+
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -568,6 +570,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startV3PromoList:(NSInteger)pageNumber
+               PageSize:(NSInteger)pageSize
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_PROMOLIST
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{RH_SP_PROMOLIST_PAGENUMBER:@(pageNumber),
+                                     RH_SP_PROMOLIST_PAGESIZE:@(pageSize)
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3PromoList
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -997,6 +1018,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
+                
                 case ServiceRequestTypeV3ActivityStatus:
             {
                 resultSendData = [[RH_ActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
@@ -1030,7 +1052,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             }
                 break;
-
+                
+           case ServiceRequestTypeV3PromoList:
+            {
+                NSArray *list = [RH_PromoInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_PROMOLIST_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     integerValueForKey:RH_GP_PROMOLIST_TOTALCOUNT]   ;
+                
+                resultSendData = @{RH_GP_PROMOLIST_LIST:list?:@[],
+                                   RH_GP_PROMOLIST_TOTALCOUNT:@(total)
+                                   } ;
+            }
+                break ;
+                
             default:
                 resultSendData = dataObject ;
 
