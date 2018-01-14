@@ -30,6 +30,7 @@
 #import "RH_SystemNoticeDetailModel.h"
 #import "RH_UserGroupInfoModel.h"
 #import "RH_GameNoticeModel.h"
+#import "RH_GameNoticeDetailModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1155,6 +1156,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3GAMENOTICE:
             {
                 resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3GAMENOTICEDETAIL:
+            {
+                resultSendData = [[RH_GameNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
             case ServiceRequestTypeV3ONESTEPRECOVERY:

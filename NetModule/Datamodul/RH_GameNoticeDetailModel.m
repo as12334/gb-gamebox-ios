@@ -15,7 +15,12 @@
 {
     if (self = [super initWithInfoDic:info])
     {
-        
+        _mID = [info integerValueForKey:RH_GP_GAMENOTICEDETAIL_ID];
+        _mTitle = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_TITLE];
+        _mLink = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_LINK];
+        _mGameName = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_GAMENAME];
+        _mPublishTime = [info integerValueForKey:RH_GP_GAMENOTICEDETAIL_PUBLISHTIME];
+        _mContext = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_CONTEXT];
     }
     return self;
 }
