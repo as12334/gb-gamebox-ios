@@ -64,6 +64,7 @@
     return self;
 }
 - (void)layoutSubviews {
+    [super layoutSubviews];
     self.pickView.whc_BottomSpace(0);
 }
 
