@@ -100,7 +100,7 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3SYSTEMNOTICEDETAIL){
+    if (type == ServiceRequestTypeV3SystemNoticeDetail){
         RH_SystemNoticeDetailModel *detailModel = ConvertToClassPointer(RH_SystemNoticeDetailModel, data);
         [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
                             totalCount:detailModel?1:0] ;
@@ -109,7 +109,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3SYSTEMNOTICEDETAIL){
+    if (type == ServiceRequestTypeV3SystemNoticeDetail){
         [self loadDataFailWithError:error] ;
     }
 }

@@ -232,7 +232,7 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3GAMENOTICE){
+    if (type == ServiceRequestTypeV3GameNotice){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_GAMENOTICE_LIST]
@@ -242,7 +242,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3GAMENOTICE){
+    if (type == ServiceRequestTypeV3GameNotice){
         [self loadDataFailWithError:error] ;
     }
 }
