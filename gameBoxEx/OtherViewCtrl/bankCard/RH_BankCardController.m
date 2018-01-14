@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 - (void)setupInfo {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
+    self.contentTableView.tableFooterView = [self footerView];
     [self.tableViewManagement reloadData];
 }
 
