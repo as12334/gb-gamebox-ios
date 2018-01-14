@@ -69,6 +69,7 @@
     self.serachBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.serachBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.serachBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.serachBtn.whc_RightSpace(10).whc_TopSpaceToView(10, view_Line).whc_Height(35).whc_Width(screenSize().width/2-20);
     
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
@@ -85,7 +86,12 @@
     self.typeButton.layer.cornerRadius = 3.0f;
     self.typeButton.layer.masksToBounds = YES;
     [self.typeButton addTarget:self action:@selector(typeLabelPulldownList) forControlEvents:UIControlEventTouchUpInside];
+    self.typeButton.whc_TopSpaceToView(10, view_Line).whc_LeftSpace(10).whc_Height(35).whc_Width(screenSize().width/2-20);
     
+    UIImageView *imageArrow = [[UIImageView alloc] init];
+    [self addSubview:imageArrow];
+    imageArrow.image = ImageWithName(@"home_markcell_image");
+    imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(20).whc_Height(10);
 }
 
 #pragma mark --- 搜索按钮
