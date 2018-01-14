@@ -472,6 +472,9 @@
 		F6A2ADC3200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC1200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m */; };
 		F6A2ADC4200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ADC2200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib */; };
 		F6A2ADC7200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC6200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m */; };
+		F6A2ADCA200B46B50077CB92 /* RH_GameNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */; };
+		F6A2ADCE200B46E50077CB92 /* RH_GameNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */; };
+		F6A2ADCF200B46E50077CB92 /* RH_GameNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -1301,6 +1304,11 @@
 		F6A2ADC2200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MPSystemNoticeDetailCell.xib; sourceTree = "<group>"; };
 		F6A2ADC5200B05C40077CB92 /* RH_MPSystemNoticeDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeDetailController.h; sourceTree = "<group>"; };
 		F6A2ADC6200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeDetailController.m; sourceTree = "<group>"; };
+		F6A2ADC8200B46B50077CB92 /* RH_GameNoticeDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailController.h; sourceTree = "<group>"; };
+		F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailController.m; sourceTree = "<group>"; };
+		F6A2ADCB200B46E50077CB92 /* RH_GameNoticeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailCell.h; sourceTree = "<group>"; };
+		F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailCell.m; sourceTree = "<group>"; };
+		F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameNoticeDetailCell.xib; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -2913,6 +2921,8 @@
 				F6A2AC9020044C590077CB92 /* cells */,
 				F6A2AC9720044C590077CB92 /* RH_MPGameNoticeViewController.h */,
 				F6A2AC9820044C590077CB92 /* RH_MPGameNoticeViewController.m */,
+				F6A2ADC8200B46B50077CB92 /* RH_GameNoticeDetailController.h */,
+				F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */,
 			);
 			path = gameNotice;
 			sourceTree = "<group>";
@@ -2923,6 +2933,9 @@
 				F6A2AC9120044C590077CB92 /* RH_MPGameNoticeCell.h */,
 				F6A2AC9220044C590077CB92 /* RH_MPGameNoticeCell.m */,
 				F6A2AC9320044C590077CB92 /* RH_MPGameNoticeCell.xib */,
+				F6A2ADCB200B46E50077CB92 /* RH_GameNoticeDetailCell.h */,
+				F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */,
+				F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */,
 				F6A2AC9420044C590077CB92 /* RH_MPGameNoticHeaderView.h */,
 				F6A2AC9520044C590077CB92 /* RH_MPGameNoticHeaderView.m */,
 				F6A2AC9620044C590077CB92 /* RH_MPGameNoticHeaderView.xib */,
@@ -3188,6 +3201,7 @@
 				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
+				F6A2ADCF200B46E50077CB92 /* RH_GameNoticeDetailCell.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
@@ -3320,6 +3334,7 @@
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
+				F6A2ADCE200B46E50077CB92 /* RH_GameNoticeDetailCell.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */,
 				F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */,
@@ -3564,6 +3579,7 @@
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
+				F6A2ADCA200B46B50077CB92 /* RH_GameNoticeDetailController.m in Sources */,
 				A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */,
 				A0109F961F8787E4004E6EF4 /* CLScanImageView.m in Sources */,
 				A0109F971F8787E4004E6EF4 /* CLStaticCollectionView.m in Sources */,
@@ -3691,7 +3707,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

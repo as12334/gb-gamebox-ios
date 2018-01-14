@@ -936,7 +936,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
-        
         if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
             NSString* reqUrl = response.URL.absoluteString.lowercaseString;
             if ([reqUrl hasPrefix:@"https://"]) {
@@ -1183,6 +1182,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3GAMENOTICE:
             {
                 resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
             }
                 break;
             case ServiceRequestTypeV3ONESTEPRECOVERY:

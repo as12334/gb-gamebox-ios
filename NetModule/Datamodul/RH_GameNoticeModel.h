@@ -28,7 +28,7 @@
 @property (nonatomic , assign , readonly) NSInteger              mMinDate;
 @property (nonatomic , assign , readonly) NSInteger              mMaxDate;
 @property (nonatomic , strong , readonly) NSArray<ListModel *>   * mListModel;
-@property (nonatomic , strong , readonly) NSArray<ApiSelectModel *>     * mApiSelectModel;
+@property (nonatomic , strong , readonly) NSArray<ApiSelectModel *>    * mApiSelectModel;
 @property (nonatomic , assign , readonly) NSInteger              mPageTotal;
 
 @end

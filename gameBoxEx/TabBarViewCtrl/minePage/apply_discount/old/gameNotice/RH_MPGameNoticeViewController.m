@@ -11,6 +11,8 @@
 #import "RH_MPGameNoticHeaderView.h"
 #import "RH_MPGameNoticePulldownView.h"
 #import "RH_API.h"
+#import "RH_GameNoticeModel.h"
+#import "RH_GameNoticeDetailController.h"
 @interface RH_MPGameNoticeViewController ()<MPGameNoticHeaderViewDelegate>
 @property (nonatomic,strong,readonly)RH_MPGameNoticeCell *gameNoticeCell;
 @property (nonatomic,strong,readonly)RH_MPGameNoticHeaderView *headerView;
@@ -120,6 +122,11 @@
     }else{
         return self.loadingIndicateTableViewCell ;
     }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RH_GameNoticeDetailController *detailVC= [RH_GameNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark 点击headerview的游戏类型
 -(RH_MPGameNoticePulldownView *)listView
@@ -233,10 +240,9 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3GAMENOTICE){
-        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        
-        [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_GAMENOTICE_LIST]
-                            totalCount:[dictTmp integerValueForKey:RH_GP_GAMENOTICE_PAGETOTAL]]  ;
+        RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
+        [self loadDataSuccessWithDatas:gameModel.mApiSelectModel
+                            totalCount:gameModel.mPageTotal]  ;
     }
 }
 
