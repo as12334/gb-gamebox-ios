@@ -13,7 +13,7 @@ typedef void (^typeLabelPullDownSelectedBlock)(CGRect frame);
 @optional
 -(void)capitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView*)CapitalRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
 -(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView*)CapitalRecordHeaderView DefaultDate:(NSDate*)defaultDate ;
--(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView*)bettingRecordHeaderView ;
+-(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView*)capitalRecordHeaderView ;
 @end
 
 @interface RH_CapitalRecordHeaderView : UIView
