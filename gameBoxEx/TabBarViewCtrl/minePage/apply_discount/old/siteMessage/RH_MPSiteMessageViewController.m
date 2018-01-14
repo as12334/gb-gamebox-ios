@@ -208,7 +208,7 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3SITEMESSAGE){
+    if (type == ServiceRequestTypeV3SiteMessage){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]]  ;
@@ -217,7 +217,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3SITEMESSAGE){
+    if (type == ServiceRequestTypeV3SiteMessage){
         [self loadDataFailWithError:error] ;
     }
 }

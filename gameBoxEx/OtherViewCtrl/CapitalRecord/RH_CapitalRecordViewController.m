@@ -52,7 +52,7 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-    [self.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:@"hello" advisoryTitle:@"1234" advisoryContent:@"23456"];
+ 
 }
 
 
@@ -258,9 +258,7 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
-    if (type == ServiceRequestTypeV3ADDAPPLYDISCOUNTS) {
-        
-    }
+
 
 }
 
