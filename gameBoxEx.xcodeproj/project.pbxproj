@@ -420,6 +420,9 @@
 		B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B39200AF20C00C9788F /* RH_BitCoinController.m */; };
 		B87A6B3C200AFBDE00C9788F /* RH_BitCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B3B200AFBDE00C9788F /* RH_BitCoin.plist */; };
 		B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B3F200B04BA00C9788F /* RH_BitCoinCell.m */; };
+		B87A6B44200B751D00C9788F /* RH_WithdrawMoneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B43200B751D00C9788F /* RH_WithdrawMoneyController.m */; };
+		B87A6B49200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */; };
+		B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -1222,6 +1225,11 @@
 		B87A6B3B200AFBDE00C9788F /* RH_BitCoin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_BitCoin.plist; sourceTree = "<group>"; };
 		B87A6B3E200B04BA00C9788F /* RH_BitCoinCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BitCoinCell.h; sourceTree = "<group>"; };
 		B87A6B3F200B04BA00C9788F /* RH_BitCoinCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BitCoinCell.m; sourceTree = "<group>"; };
+		B87A6B42200B751D00C9788F /* RH_WithdrawMoneyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawMoneyController.h; sourceTree = "<group>"; };
+		B87A6B43200B751D00C9788F /* RH_WithdrawMoneyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawMoneyController.m; sourceTree = "<group>"; };
+		B87A6B46200B7E1000C9788F /* RH_WithdrawMoneyLowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawMoneyLowCell.h; sourceTree = "<group>"; };
+		B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawMoneyLowCell.m; sourceTree = "<group>"; };
+		B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawMoneyLowCell.xib; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -2443,6 +2451,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				B87A6B41200B736700C9788F /* withdrawMoney */,
 				B87A6B37200AF1CF00C9788F /* BitCoin */,
 				B87A6B2620088FF900C9788F /* bankCard */,
 				B87A6B1A2006191600C9788F /* promoList */,
@@ -2916,6 +2925,26 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		B87A6B41200B736700C9788F /* withdrawMoney */ = {
+			isa = PBXGroup;
+			children = (
+				B87A6B45200B7CC300C9788F /* cells */,
+				B87A6B42200B751D00C9788F /* RH_WithdrawMoneyController.h */,
+				B87A6B43200B751D00C9788F /* RH_WithdrawMoneyController.m */,
+			);
+			path = withdrawMoney;
+			sourceTree = "<group>";
+		};
+		B87A6B45200B7CC300C9788F /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				B87A6B46200B7E1000C9788F /* RH_WithdrawMoneyLowCell.h */,
+				B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */,
+				B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		F6A2AC8C20044C590077CB92 /* apply_discount */ = {
 			isa = PBXGroup;
 			children = (
@@ -3256,6 +3285,7 @@
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
+				B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
 				B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */,
 				A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */,
@@ -3352,6 +3382,7 @@
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */,
 				F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */,
+				B87A6B44200B751D00C9788F /* RH_WithdrawMoneyController.m in Sources */,
 				A010A0571F87999F004E6EF4 /* RH_BasicImageModel.m in Sources */,
 				A010A0591F87999F004E6EF4 /* RH_CommonInputContainerView.m in Sources */,
 				A010A05C1F87999F004E6EF4 /* RH_LoadingIndicateTableViewCell.m in Sources */,
@@ -3374,6 +3405,7 @@
 				A0109FA71F8788FF004E6EF4 /* NSData+Base64.m in Sources */,
 				A0109FA81F8788FF004E6EF4 /* NSDate+CLCategory.m in Sources */,
 				A0109FA91F8788FF004E6EF4 /* NSDictionary+CLCategory.m in Sources */,
+				B87A6B49200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m in Sources */,
 				A01181531FFC6BE4008F6D1E /* RH_BettingRecordViewController.m in Sources */,
 				A0B5A5781FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m in Sources */,
 				A0109FAA1F8788FF004E6EF4 /* NSObject+IntervalAnimation.m in Sources */,
