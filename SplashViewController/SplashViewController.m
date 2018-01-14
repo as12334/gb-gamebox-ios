@@ -290,16 +290,12 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 //closeToast
 - (void) removeToastWithView:(NSTimer *)timer {
-
     UILabel* label = [timer userInfo];
-
     CGRect initRect = CGRectMake(0, STATUS_BAR_HEIGHT + 44, aiScreenWidth, 0);
     //    label消失
     [UIView animateWithDuration:0.5 animations:^{
-
         label.frame = initRect;
     } completion:^(BOOL finished){
-
         [label removeFromSuperview];
     }];
 }

@@ -175,23 +175,27 @@
 #define RH_GP_USERAPIINFO_BALANCE                            @"balance"
 #define RH_GP_USERAPIINFO_STATUS                             @"status"
 
+
 #pragma mark - V3 link 信息模型
 #define RH_GP_LINK_CODE                             @"code"
 #define RH_GP_LINK_LINK                             @"link"
 #define RH_GP_LINK_NAME                             @"name"
 
 #pragma mark - V3 MINE 信息模型
-#define RH_GP_MINEINFO_AVATARURL                             @"avatarUrl"
-#define RH_GP_MINEINFO_CURRENCY                             @"currency"
-#define RH_GP_MINEINFO_PREFERENTIALAMOUNT                    @"preferentialAmount"
-#define RH_GP_MINEINFO_RECOMDAMOUNT                             @"recomdAmount"
+#define RH_GP_MINEINFO_AVATARURL                               @"avatarUrl"
+#define RH_GP_MINEINFO_CURRENCY                                @"currency"
+#define RH_GP_MINEINFO_PREFERENTIALAMOUNT                      @"preferentialAmount"
+#define RH_GP_MINEINFO_RECOMDAMOUNT                            @"recomdAmount"
 #define RH_GP_MINEINFO_TOTALASSETS                             @"totalAssets"
-#define RH_GP_MINEINFO_TRANSFERAMOUNT                             @"transferAmount"
+#define RH_GP_MINEINFO_TRANSFERAMOUNT                          @"transferAmount"
 #define RH_GP_MINEINFO_UNREADCOUNT                             @"unReadCount"
-#define RH_GP_MINEINFO_USERNAME                             @"username"
-#define RH_GP_MINEINFO_WALLETBALANCE                             @"walletBalance"
-#define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
+#define RH_GP_MINEINFO_USERNAME                                @"username"
+#define RH_GP_MINEINFO_WALLETBALANCE                           @"walletBalance"
+#define RH_GP_MINEINFO_WITHDRAWAMOUNT                          @"withdrawAmount"
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
+#define RH_GP_MINEINFO_ISBIT                                   @"isBit"
+#define RH_GP_MINEINFO_ISCASH                                  @"isCash"
+
 
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"

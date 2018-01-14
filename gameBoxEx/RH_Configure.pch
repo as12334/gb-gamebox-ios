@@ -1479,6 +1479,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _jeia //澳门新葡京官方授权直营网
+
+#define CODE    @"jeia"
+#define S        @"5e16369b35dbaf9b27107cab926a7de7"
+#define SID        @"339"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

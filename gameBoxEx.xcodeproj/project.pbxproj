@@ -278,7 +278,6 @@
 		A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */; };
 		A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */; };
 		A01CB4B91FFB1BDC00447130 /* RH_MineInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */; };
-		A01CB4BC1FFB1E7900447130 /* RH_MineGroupInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4BB1FFB1E7900447130 /* RH_MineGroupInfoModel.m */; };
 		A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109F1C1F87852F004E6EF4 /* MBProgressHUD.h */; };
 		A01EE2671F8878B30085717E /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01EE2651F8878B30085717E /* SplashViewController.m */; };
 		A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE2661F8878B30085717E /* SplashViewController.xib */; };
@@ -304,6 +303,7 @@
 		A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */; };
 		A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */; };
 		A0522A6A20085E6600A5A6E9 /* RH_PromoInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */; };
+		A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
@@ -411,7 +411,6 @@
 		B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PromoListController.m */; };
 		B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */; };
 		B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */; };
-		B87A6B252007136800C9788F /* RH_PreferentialList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B242007136800C9788F /* RH_PreferentialList.plist */; };
 		B87A6B292008907F00C9788F /* RH_BankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B282008907F00C9788F /* RH_BankCardController.m */; };
 		B87A6B2B200892B600C9788F /* RH_BankCard.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2A200892B600C9788F /* RH_BankCard.plist */; };
 		B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */; };
@@ -957,8 +956,6 @@
 		A01CB4B51FFA60D300447130 /* RH_LinkInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LinkInfoModel.h; sourceTree = "<group>"; };
 		A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineInfoModel.m; sourceTree = "<group>"; };
 		A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineInfoModel.h; sourceTree = "<group>"; };
-		A01CB4BA1FFB1E7900447130 /* RH_MineGroupInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineGroupInfoModel.h; sourceTree = "<group>"; };
-		A01CB4BB1FFB1E7900447130 /* RH_MineGroupInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineGroupInfoModel.m; sourceTree = "<group>"; };
 		A01EE2641F8878B30085717E /* SplashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A01EE2651F8878B30085717E /* SplashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A01EE2661F8878B30085717E /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
@@ -1030,6 +1027,8 @@
 		A0522A6520078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPwdCodeCell.h; sourceTree = "<group>"; };
 		A0522A6820085E6600A5A6E9 /* RH_PromoInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoInfoModel.h; sourceTree = "<group>"; };
 		A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoInfoModel.m; sourceTree = "<group>"; };
+		A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserGroupInfoModel.m; sourceTree = "<group>"; };
+		A0522A6F200B001500A5A6E9 /* RH_UserGroupInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserGroupInfoModel.h; sourceTree = "<group>"; };
 		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
@@ -1203,7 +1202,6 @@
 		B87A6B1F200646C800C9788F /* RH_PreferentialListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PreferentialListCell.h; sourceTree = "<group>"; };
 		B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PreferentialListCell.m; sourceTree = "<group>"; };
 		B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_PreferentialListCell.xib; sourceTree = "<group>"; };
-		B87A6B242007136800C9788F /* RH_PreferentialList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_PreferentialList.plist; sourceTree = "<group>"; };
 		B87A6B272008907F00C9788F /* RH_BankCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardController.h; sourceTree = "<group>"; };
 		B87A6B282008907F00C9788F /* RH_BankCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardController.m; sourceTree = "<group>"; };
 		B87A6B2A200892B600C9788F /* RH_BankCard.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_BankCard.plist; sourceTree = "<group>"; };
@@ -2103,12 +2101,12 @@
 				A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */,
 				A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */,
 				A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */,
-				A01CB4BA1FFB1E7900447130 /* RH_MineGroupInfoModel.h */,
-				A01CB4BB1FFB1E7900447130 /* RH_MineGroupInfoModel.m */,
 				A05747B71FF4E2070068D0E4 /* RH_AnnouncementModel.h */,
 				A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */,
 				A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */,
 				A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */,
+				A0522A6F200B001500A5A6E9 /* RH_UserGroupInfoModel.h */,
+				A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */,
 				A01CB4AB1FFA131B00447130 /* RH_UserApiBalanceModel.h */,
 				A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */,
 				A01CB4AE1FFA160200447130 /* RH_UserBalanceGroupModel.h */,
@@ -2429,9 +2427,8 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				B87A6B1A2006191600C9788F /* promoList */,
 				B87A6B2620088FF900C9788F /* bankCard */,
-				B87A6B1A2006191600C9788F /* preferentialList */,
+				B87A6B1A2006191600C9788F /* promoList */,
 				F6A2ACD92004DD600077CB92 /* mineDiscountRecord */,
 				F6E401FC2001BDC900C52B97 /* gesturelLock */,
 				A0B5A5651FFF6C1300E2CDD8 /* gameList */,
@@ -3293,7 +3290,6 @@
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
-				A01CB4BC1FFB1E7900447130 /* RH_MineGroupInfoModel.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
 				A010A0961F879D57004E6EF4 /* CLViewControllerTransitioningDelegate.h in Sources */,
 				F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */,
@@ -3531,6 +3527,7 @@
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
+				A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */,
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,

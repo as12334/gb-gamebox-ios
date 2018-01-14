@@ -18,7 +18,6 @@
 ///-------DATA MODULE--------------------//
 #import "RH_HomePageModel.h"
 #import "RH_UserBalanceGroupModel.h"
-#import "RH_MineGroupInfoModel.h"
 #import "RH_BettingInfoModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_BettingDetailModel.h"
@@ -29,6 +28,7 @@
 #import "RH_PromoInfoModel.h"
 #import "RH_SystemNoticeModel.h"
 #import "RH_SystemNoticeDetailModel.h"
+#import "RH_UserGroupInfoModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -81,6 +81,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //上下文
 @property(nonatomic,strong,readonly) NSMutableDictionary * contexts;
 @property(nonatomic,strong,readonly) NSMutableDictionary * doSometiongMasks;
+
+//
+@property (nonatomic,strong,readonly) RH_APPDelegate *appDelegate ;
 @end
 
 //------------------------------------------------------------------
@@ -91,9 +94,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 @synthesize uniqueID = _uniqueID;
 @synthesize contexts = _contexts;
 @synthesize doSometiongMasks = _doSometiongMasks;
+@synthesize appDelegate = _appDelegate ;
 
+
+-(RH_APPDelegate *)appDelegate
+{
+    if (!_appDelegate){
+        _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    }
+    
+    return _appDelegate ;
+}
 #pragma mark-用户接口定义
-
 -(void)startReqDomainList
 {
     [self _startServiceWithAPIName:RH_API_MAIN_URL
@@ -138,9 +150,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -160,9 +170,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_AUTOLOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -179,10 +187,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startGetVerifyCode
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
     NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_VERIFYCODE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -197,8 +204,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startDemoLogin
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEMOLOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -213,8 +219,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startGetCustomService
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETCUSTOMPATH
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -227,8 +232,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startAPIRetrive:(NSInteger)apiID
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_APIRETRIVE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -255,8 +259,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - v3 接口定义
 -(void)startV3HomeInfo
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HOMEINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -269,8 +272,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3UserInfo
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -283,8 +285,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3MineLinkInfo
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEGROUPINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -297,8 +298,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3ActivityStaus:(NSString*)activityID
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYSTATUS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -323,8 +323,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [dictTmp setValue:searchName forKey:RH_SP_APIGAMELIST_NAME] ;
     }
     
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_APIGAMELIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -339,8 +338,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -368,8 +366,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [dictTmp setValue:startDate?:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
     }
     
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -383,8 +380,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERSAFEINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -396,10 +392,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 设置真实名字
-- (void)startV3SetRealName:(NSString *)name {
-    
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+- (void)startV3SetRealName:(NSString *)name
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SETREALNAME
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -426,8 +421,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
     }
     
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -450,8 +444,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
     }
     
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -466,11 +459,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 拆红包
 -(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     [dict setValue:activityID forKey:RH_SP_OPENACTIVITY_MESSAGEID ];
     [dict setValue:gbtoken forKey:RH_SP_OPENACTIVITY_TOKEN];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_OPENACTIVITY
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -484,10 +476,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 投注记录详情
 -(void)startV3BettingDetails:(NSInteger)listId
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init] ;
     [dict setValue:@(listId) forKey:RH_SP_BETTINGDETAILS_LISTID] ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGDETAILS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -501,10 +492,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 资金记录详情 根据ID进行查询
 -(void)startV3DepositListDetail:(NSString*)searchId
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_DEPOSITLISTDETAILS_SEARCHID];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -518,8 +508,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 资金详情下拉列表
 -(void)startV3DepositPulldownList
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITPULLDOWNLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -536,13 +525,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              bankcardNumber:(NSString *)bankcardNumber
                                 bankDeposit:(NSString *)bankDeposit
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:bankcardMasterName forKey:RH_SP_BANKCARDMASTERNAME];
     [dict setValue:bankName forKey:RH_SP_BANKNAME];
     [dict setValue:bankcardNumber forKey:RH_SP_BANKCARDNUMBER];
     [dict setValue:bankDeposit forKey:RH_SP_BANKDEPOSIT];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBANKCARD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -559,13 +547,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
-     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:startTime forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
     [dict setValue:endTime forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
     [dict setValue:@(pageNumber) forKey:RH_SP_SYSTEMNOTICE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_SYSTEMNOTICE_PAGESIZE];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -578,10 +565,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - 获取公告详情
 -(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId{
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_SYSTEMNOTICEDETAIL_SEARCHID];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -599,14 +585,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:startTime forKey:RH_SP_GAMENOTICE_STARTTIME];
     [dict setValue:endTime forKey:RH_SP_GAMENOTICE_ENDTIME];
     [dict setValue:@(pageNumber) forKey:RH_SP_GAMENOTICE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
     [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -619,10 +604,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark -  游戏公告详情
 -(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_API_NAME_GAMENOTICEDETAIL];
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -636,10 +620,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3GetSafetyVerifyCode
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
     NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SAFETYCAPCHA
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -655,8 +638,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3PromoList:(NSInteger)pageNumber
                PageSize:(NSInteger)pageSize
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_PROMOLIST
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -936,8 +918,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         NSString *tmpResult = [tmpData mj_JSONString] ;
         if ([tmpResult.lowercaseString hasPrefix:@"http://"] || [tmpResult.lowercaseString hasPrefix:@"https://"]){
             *reslutData = tmpResult ;
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            [appDelegate updateServicePath:[tmpResult stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
+            [self.appDelegate updateServicePath:[tmpResult stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
         }else{
             *error = [NSError resultDataNoJSONError] ;
         }
@@ -1039,22 +1020,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            
            case ServiceRequestTypeV3UserInfo:
             {
-                resultSendData = [[RH_UserBalanceGroupModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                resultSendData = [[RH_UserGroupInfoModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
-                if (resultSendData){
+                RH_UserGroupInfoModel *userGroupModel = ConvertToClassPointer(RH_UserGroupInfoModel, resultSendData) ;
+                if (userGroupModel){
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
-                    [userInfoManager setUserBalanceInfo:resultSendData] ;
-                }
-            }
-                break ;
-            
-            case ServiceRequestTypeV3MineGroupInfo:
-            {
-                resultSendData = [[RH_MineGroupInfoModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
-                
-                if (resultSendData){
-                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
-                    [userInfoManager setMineGroupInfo:resultSendData] ;
+                    [userInfoManager setUserBalanceInfo:userGroupModel.mUserBalanceGroupInfo] ;
+                    [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
                 }
             }
                 break ;

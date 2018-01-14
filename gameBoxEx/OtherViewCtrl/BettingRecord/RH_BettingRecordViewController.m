@@ -18,13 +18,13 @@
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
-@property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
+//@property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
 @end
 
 @implementation RH_BettingRecordViewController
 @synthesize bettingRecordHeaderView = _bettingRecordHeaderView ;
 @synthesize bettingTableHeaderView = _bettingTableHeaderView     ;
-@synthesize bettingBottomView = _bettingBottomView               ;
+//@synthesize bettingBottomView = _bettingBottomView               ;
 
 
 -(BOOL)isSubViewController
@@ -51,19 +51,19 @@
 
 -(BOOL)hasBottomView
 {
-    return YES ;
+    return NO ;
 }
 
--(CGFloat)bottomViewHeight
-{
-    return 50.0f ;
-}
+//-(CGFloat)bottomViewHeight
+//{
+//    return 50.0f ;
+//}
 
 #pragma mark-
 -(void)setupUI
 {
     [self.topView addSubview:self.bettingRecordHeaderView] ;
-    [self.bottomView addSubview:self.bettingBottomView] ;
+//    [self.bottomView addSubview:self.bettingBottomView] ;
     self.bottomView.borderMask = CLBorderMarkTop ;
     self.bottomView.borderColor = RH_Line_DefaultColor ;
     
@@ -155,17 +155,17 @@
     return _bettingTableHeaderView ;
 }
 
-#pragma mark-sort bottom view
--(RH_BettingRecordBottomView*)bettingBottomView
-{
-    if (!_bettingBottomView){
-        _bettingBottomView = [RH_BettingRecordBottomView createInstance] ;
-        _bettingBottomView.frame = self.bottomView.bounds ;
-        _bettingBottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
-    }
-    
-    return _bettingBottomView ;
-}
+//#pragma mark-sort bottom view
+//-(RH_BettingRecordBottomView*)bettingBottomView
+//{
+//    if (!_bettingBottomView){
+//        _bettingBottomView = [RH_BettingRecordBottomView createInstance] ;
+//        _bettingBottomView.frame = self.bottomView.bounds ;
+//        _bettingBottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
+//    }
+//
+//    return _bettingBottomView ;
+//}
 
 
 #pragma mark-

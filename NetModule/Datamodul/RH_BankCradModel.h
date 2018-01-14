@@ -18,7 +18,7 @@
 @property (nonatomic,strong,readonly) NSArray<DataModel *>  *mData;
 @property(nonatomic,assign,readonly)NSInteger mCode;
 @property(nonatomic,assign,readonly)NSInteger mError;
-@property(nonatomic,strong,readonly)NSString *mMsg;
+@property(nonatomic,strong,readonly)NSString  *mMsg;
 @property(nonatomic,strong,readonly)NSString *mVersion;
 
 @end
