@@ -609,7 +609,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_API_NAME_GAMENOTICEDETAIL];
     [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                        pathFormat:RH_API_NAME_GAMENOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dict
