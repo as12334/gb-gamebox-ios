@@ -145,6 +145,7 @@
                     [weakSelf.listView removeFromSuperview];
                 }];
                 weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
+                
             }
         };
     }

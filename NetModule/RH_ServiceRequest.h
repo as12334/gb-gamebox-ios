@@ -51,6 +51,11 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GAMENOTICE           , //游戏公告
     ServiceRequestTypeV3GAMENOTICEDETAIL     , //游戏公告详情
     ServiceRequestTypeV3ONESTEPRECOVERY      , //一键回收
+    ServiceRequestTypeV3SAVEANDADDBTC      ,  //添加/保存比特币
+    ServiceRequestTypeV3SITEMESSAGE       ,  //站点信息 系统信息
+    ServiceRequestTypeV3SITEMESSAGEDETAIL  ,  //站点信息 系统信息详情
+    ServiceRequestTypeV3SYSTEMMESSAGEYES     ,  //系统信息标记为已读
+    ServiceRequestTypeV3SYSTEMMESSAGEDELTE   ,  //系统信息删除
 };
 
 
@@ -256,6 +261,20 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark -  一键回收
 //请求参数  无
 -(void)startV3OneStepRecovery;
+
+#pragma mark - V3 添加/保存比特币
+-(void)startV3SaveAndAddBtcWithBankcardNumber:(NSString *)bankcardNumber;
+
+#pragma mark - 站点信息 - 系统消息
+-(void)startV3LoadSystemMessageWithpageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;
+
+#pragma mark - 站点信息 - 系统消息详情
+-(void)startV3LoadSystemMessageDetailWithSearchId:(NSString *)searchId;
+
+#pragma mark - 站点信息 - 系统消息标记已读
+-(void)startV3LoadSystemMessageReadYesWithIds:(NSString *)ids;
+#pragma mark - 站点信息 - 系统消息删除
+-(void)startV3LoadSystemMessageDeleteWithIds:(NSString *)ids;
 
 #pragma mark -
 /**

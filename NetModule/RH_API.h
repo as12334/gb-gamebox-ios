@@ -293,6 +293,29 @@
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME                   @"transactionWayName"
 #define RH_GP_CAPITALDETAIL_USERNAME                             @"userName"
 
+#pragma mark - V3 添加/保存比特币 模型
+#define RH_GP_ADDBTC_ID                  @"id"
+#define RH_GP_ADDBTC_USERID              @"userId"
+#define RH_GP_ADDBTC_BANKCARDMASTERNAME  @"bankcardMasterName"
+#define RH_GP_ADDBTC_BANKCARDNUMBER      @"bankcardNumber"
+#define RH_GP_ADDBTC_CREATETIME          @"createTime"
+#define RH_GP_ADDBTC_USECOUNT            @"useCount"
+#define RH_GP_ADDBTC_USESTAUTS           @"useStauts"
+#define RH_GP_ADDBTC_ISDEFAULT           @"isDefault"
+#define RH_GP_ADDBTC_BANKNAME            @"bankName"
+#define RH_GP_ADDBTC_BANKDEPOSIT         @"bankDeposit"
+#define RH_GP_ADDBTC_CUSTOMBANKNAME      @"customBankName"
+#define RH_GP_ADDBTC_TYPE                @"type"
+
+#pragma mark - V3 站点信息 系统信息列表 模型
+#define RH_GP_SITEMESSAGE_ID            @"id"
+#define RH_GP_SITEMESSAGE_CONTENT       @"content"
+#define RH_GP_SITEMESSAGE_PUBLISHTIME   @"publishTime"
+#define RH_GP_SITEMESSAGE_LINK          @"link"
+#define RH_GP_SITEMESSAGE_TITLE         @"title"
+#define RH_GP_SITEMESSAGE_READ          @"read"
+#define RH_GP_SITEMESSAGE_SEARCHID      @"searchId"
+
 #pragma mark -
 #pragma mark - 回收接口
 //api的路径
@@ -538,6 +561,34 @@
 #pragma mark - V3 添加比特币
 #define RH_API_NAME_ADDBTC   @"mineOrigin/addBtc.html"
 //请求参数
+#define RH_SP_ADDBTC_BANKCARDNUMBER   @"bankcardNumber"
+
+#pragma mark - V3 站点信息 系统信息列表
+#define RH_API_NAME_SITEMESSAGE   @"mineOrigin/getSiteSysNotice.html"
+//请求参数
+#define RH_SP_SITEMESSAGE_PAGINGPAGENUMBER   @"paging.pageNumber"
+#define RH_SP_SITEMESSAGE_PAGINGPAGESIZE   @"paging.pageNumber"
+//返回参数
+#define RH_GP_SITEMESSAGE_PAGETOTALNUM   @"pageTotal"
+
+
+#pragma mark - V3 站点信息 系统信息列表详情
+#define RH_API_NAME_SITEMESSAGEDETAIL   @"mineOrigin/getSiteSysNoticeDetail.html"
+//请求参数
+#define RH_SP_SITEMESSAGEDETAIL_SEARCHID   @"searchId"
+
+
+#pragma mark - V3 站点信息 系统信息标记为已读
+
+#define RH_API_NAME_SITEMESSAGEREDAYES   @"mineOrigin/getSiteSysNoticeDetail.html"
+//请求参数
+#define RH_SP_SITEMESSAGEREDAYES_IDS   @"ids"
+
+
+#pragma mark - V3 站点信息 系统信息删除
+#define RH_API_NAME_SITEMESSAGEDELETE   @"mineOrigin/deleteSiteSysNotice.html"
+//请求参数
+#define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
 
 #endif /* RH_API_h */

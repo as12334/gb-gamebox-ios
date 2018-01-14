@@ -18,20 +18,57 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="mine_page_accountback" translatesAutoresizingMaskIntoConstraints="NO" id="Uvz-AZ-NDL">
-                        <rect key="frame" x="16" y="11" width="288" height="58"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEA-dy-iGA">
+                        <rect key="frame" x="8" y="6" width="303" height="68"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYc-DP-efl">
+                                <rect key="frame" x="28" y="8" width="267" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-01-01 00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Tu-6l-o88">
+                                <rect key="frame" x="200.5" y="53" width="94.5" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="11" id="b1N-Sx-i4h"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-Az-fv6">
+                                <rect key="frame" x="3" y="5" width="20" height="20"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="S15-p8-k4n"/>
+                                    <constraint firstAttribute="height" constant="20" id="vqk-Fu-hN4"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oYc-DP-efl" firstAttribute="leading" secondItem="dEA-dy-iGA" secondAttribute="leading" constant="28" id="0Aw-fz-jIA"/>
+                            <constraint firstAttribute="bottom" secondItem="3Tu-6l-o88" secondAttribute="bottom" constant="4" id="3J7-z8-5DL"/>
+                            <constraint firstItem="oYc-DP-efl" firstAttribute="top" secondItem="dEA-dy-iGA" secondAttribute="top" constant="8" id="NO4-Cf-t4Y"/>
+                            <constraint firstItem="3Tu-6l-o88" firstAttribute="top" secondItem="oYc-DP-efl" secondAttribute="bottom" constant="7" id="PMh-9T-PUc"/>
+                            <constraint firstAttribute="trailing" secondItem="oYc-DP-efl" secondAttribute="trailing" constant="8" id="R8f-pL-d7Z"/>
+                            <constraint firstAttribute="trailing" secondItem="3Tu-6l-o88" secondAttribute="trailing" constant="8" id="i2z-E0-5iI"/>
+                            <constraint firstItem="PxR-Az-fv6" firstAttribute="leading" secondItem="dEA-dy-iGA" secondAttribute="leading" constant="3" id="kmE-xQ-jFE"/>
+                            <constraint firstItem="PxR-Az-fv6" firstAttribute="top" secondItem="dEA-dy-iGA" secondAttribute="top" constant="5" id="r0R-nf-ox2"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Uvz-AZ-NDL" secondAttribute="bottom" constant="10.5" id="CNh-8p-0yv"/>
-                    <constraint firstAttribute="trailing" secondItem="Uvz-AZ-NDL" secondAttribute="trailing" constant="16" id="OQr-iG-BM6"/>
-                    <constraint firstItem="Uvz-AZ-NDL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="UOp-7b-VzV"/>
-                    <constraint firstItem="Uvz-AZ-NDL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="lvD-DR-CjT"/>
+                    <constraint firstAttribute="bottom" secondItem="dEA-dy-iGA" secondAttribute="bottom" constant="5.5" id="End-8N-u8w"/>
+                    <constraint firstItem="dEA-dy-iGA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="OHO-dL-f4Y"/>
+                    <constraint firstItem="dEA-dy-iGA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="p76-jK-7Kr"/>
+                    <constraint firstAttribute="trailing" secondItem="dEA-dy-iGA" secondAttribute="trailing" constant="9" id="uc1-9m-tUH"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="timeLabel" destination="3Tu-6l-o88" id="QJD-FT-Pz6"/>
+                <outlet property="titleLabel" destination="oYc-DP-efl" id="ru7-rI-3ha"/>
+            </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="mine_page_accountback" width="375" height="125"/>
-    </resources>
 </document>
