@@ -52,6 +52,7 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
+    [self.serviceRequest startV3SaveAndAddBtcWithBankcardNumber:@"ndsdnoioiioe293020358675904"];
 }
 
 
@@ -256,6 +257,9 @@
         
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
+    }
+    if (type == ServiceRequestTypeV3SAVEANDADDBTC) {
+        
     }
 
 }
