@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RH_ServiceRequest.h"
+#import "RH_GameNoticeModel.h"
+typedef void (^GameNoticePulldownViewBlock)(void);
 @interface RH_MPGameNoticePulldownView : UIView
-
+@property(nonatomic,strong)NSArray<ApiSelectModel *> *modelArray;
+@property(nonatomic,strong)GameNoticePulldownViewBlock block;
+@property (nonatomic,copy)NSString *gameTypeString;
 @end

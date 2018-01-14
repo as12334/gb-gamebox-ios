@@ -11,7 +11,7 @@
 @interface RH_SiteMessageModel : RH_BasicModel
 @property(nonatomic,assign,readonly)NSInteger mId;
 @property(nonatomic,strong,readonly)NSString *mContent;
-@property(nonatomic,strong,readonly)NSString *mPublishTime;
+@property(nonatomic,strong,readonly)NSDate *mPublishTime;
 @property(nonatomic,strong,readonly)NSString *mLink;
 @property(nonatomic,strong,readonly)NSString *mTitle;
 @property(nonatomic,assign,readonly)BOOL mRead;
