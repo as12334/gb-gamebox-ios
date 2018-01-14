@@ -594,7 +594,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setValue:endTime?:@"" forKey:RH_SP_GAMENOTICE_ENDTIME];
     [dict setValue:@(pageNumber) forKey:RH_SP_GAMENOTICE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
-    [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
+    if (apiId>0){
+        [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
+    }
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICE
                      pathArguments:nil
@@ -609,7 +611,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:searchId forKey:RH_API_NAME_GAMENOTICEDETAIL];
+    [dict setValue:searchId forKey:RH_SP_GAMENOTICEDETAIL_SEARCHID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICEDETAIL
                      pathArguments:nil
@@ -1019,7 +1021,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
-        
         if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
             NSString* reqUrl = response.URL.absoluteString.lowercaseString;
             if ([reqUrl hasPrefix:@"https://"]) {
@@ -1249,6 +1250,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3GAMENOTICE:
             {
                 resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
             }
                 break;
             case ServiceRequestTypeV3GAMENOTICEDETAIL:

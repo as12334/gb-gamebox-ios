@@ -19,5 +19,6 @@ typedef void (^GameNoticHeaderViewBlock)(CGRect frame);
 @property (nonatomic,strong) NSDate *endDate ;
 @property(nonatomic,weak)id<MPGameNoticHeaderViewDelegate>delegate;
 @property(nonatomic,copy)GameNoticHeaderViewBlock block;
+@property (weak, nonatomic) IBOutlet UILabel *gameTypeLabel;
 
 @end

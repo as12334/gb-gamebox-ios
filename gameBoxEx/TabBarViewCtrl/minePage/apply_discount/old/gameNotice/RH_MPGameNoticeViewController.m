@@ -11,6 +11,8 @@
 #import "RH_MPGameNoticHeaderView.h"
 #import "RH_MPGameNoticePulldownView.h"
 #import "RH_API.h"
+#import "RH_GameNoticeModel.h"
+#import "RH_GameNoticeDetailController.h"
 @interface RH_MPGameNoticeViewController ()<MPGameNoticHeaderViewDelegate>
 @property (nonatomic,strong,readonly)RH_MPGameNoticeCell *gameNoticeCell;
 @property (nonatomic,strong,readonly)RH_MPGameNoticHeaderView *headerView;
@@ -89,6 +91,7 @@
                   view.endDate = returnDate ;
                   weakSelf.endDate = returnDate;
               }] ;
+     [self startUpdateData] ;
 }
 #pragma mark-
 #pragma mark-tableView
@@ -121,11 +124,30 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RH_GameNoticeDetailController *detailVC= [RH_GameNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 #pragma mark 点击headerview的游戏类型
 -(RH_MPGameNoticePulldownView *)listView
 {
     if (!_listView) {
         _listView = [[RH_MPGameNoticePulldownView alloc]init];
+        __block RH_MPGameNoticeViewController *weakSelf = self;
+        _listView.block = ^(){
+            if (weakSelf.listView.superview){
+                [UIView animateWithDuration:0.2f animations:^{
+                    CGRect framee = weakSelf.listView.frame;
+                    framee.size.height = 0;
+                    weakSelf.listView.frame = framee;
+                } completion:^(BOOL finished) {
+                    [weakSelf.listView removeFromSuperview];
+                }];
+                weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
+                
+            }
+        };
     }
     return _listView;
 }
@@ -213,9 +235,9 @@
 {
     [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
                                                 endTime:self.endDate
-                                             pageNumber:page
+                                             pageNumber:1
                                                pageSize:pageSize
-                                                  apiId:1];
+                                                  apiId:0];
 }
 -(void)cancelLoadDataHandle
 {
@@ -233,10 +255,10 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3GAMENOTICE){
-        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        
-        [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_GAMENOTICE_LIST]
-                            totalCount:[dictTmp integerValueForKey:RH_GP_GAMENOTICE_PAGETOTAL]]  ;
+        RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
+        self.listView.modelArray = gameModel.mApiSelectModel;
+        [self loadDataSuccessWithDatas:gameModel.mListModel
+                            totalCount:gameModel.mPageTotal]  ;
     }
 }
 
