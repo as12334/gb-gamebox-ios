@@ -33,6 +33,9 @@
         _mLoginTime = [info stringValueForKey:RH_GP_MINEINFO_LOGINTIME] ;
         _mIsBit = [info boolValueForKey:RH_GP_MINEINFO_ISBIT] ;
         _mIsCash = [info boolValueForKey:RH_GP_MINEINFO_ISCASH] ;
+        _mBankCard = [[RH_BankCardModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BANKCARD]] ;
+        _mBtcCode = [[RH_BitCodeModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BTCCODE]] ;
+        _mRealName = [info stringValueForKey:RH_GP_MINEINFO_REALNAME] ;
     }
     
     return self ;

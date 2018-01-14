@@ -299,11 +299,18 @@
 		A0522A5B2007358200A5A6E9 /* ModifySafetyNoPermission.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5A2007358200A5A6E9 /* ModifySafetyNoPermission.plist */; };
 		A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5C2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist */; };
 		A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A5E2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist */; };
-		A0522A622007818600A5A6E9 /* RH_BankCradModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A602007818500A5A6E9 /* RH_BankCradModel.m */; };
+		A0522A622007818600A5A6E9 /* RH_BankCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A602007818500A5A6E9 /* RH_BankCardModel.m */; };
 		A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */; };
 		A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */; };
 		A0522A6A20085E6600A5A6E9 /* RH_PromoInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */; };
 		A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */; };
+		A0522A75200B41DB00A5A6E9 /* MineSafetyCenterOnlyCard.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A71200B41DA00A5A6E9 /* MineSafetyCenterOnlyCard.plist */; };
+		A0522A76200B41DB00A5A6E9 /* MineSafetyCenterNone.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A72200B41DA00A5A6E9 /* MineSafetyCenterNone.plist */; };
+		A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A73200B41DB00A5A6E9 /* MineSafetyCenterInit.plist */; };
+		A0522A78200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A74200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist */; };
+		A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A79200B42E500A5A6E9 /* MineSafetyCenterBoth.plist */; };
+		A0522A7D200B6FD600A5A6E9 /* RH_BitCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */; };
+		A0522A7F200B768700A5A6E9 /* BankCardInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A7E200B768700A5A6E9 /* BankCardInit.plist */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
@@ -400,7 +407,6 @@
 		A0E7827A1FFE5C12007BFBF3 /* RH_DomainTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */; };
 		B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107AAE1FFCC83C0086DDC3 /* RH_BasicAlertView.m */; };
 		B8107AB31FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107AB21FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m */; };
-		B8107AB61FFDBB360086DDC3 /* RH_MineSafetyCenter.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AB51FFDBB360086DDC3 /* RH_MineSafetyCenter.plist */; };
 		B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107AB81FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m */; };
 		B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABB1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m */; };
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
@@ -412,10 +418,9 @@
 		B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */; };
 		B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */; };
 		B87A6B292008907F00C9788F /* RH_BankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B282008907F00C9788F /* RH_BankCardController.m */; };
-		B87A6B2B200892B600C9788F /* RH_BankCard.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2A200892B600C9788F /* RH_BankCard.plist */; };
+		B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2A200892B600C9788F /* BankCardExist.plist */; };
 		B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */; };
-		B87A6B3120089CE500C9788F /* RH_BankCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2F20089CE500C9788F /* RH_BankCardCell.xib */; };
-		B87A6B332008ADCF00C9788F /* RH_BankCardAdd.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B322008ADCF00C9788F /* RH_BankCardAdd.plist */; };
+		B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B322008ADCF00C9788F /* BankCardNone.plist */; };
 		B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B352008B47C00C9788F /* RH_BankPickerSelectView.m */; };
 		B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B39200AF20C00C9788F /* RH_BitCoinController.m */; };
 		B87A6B3C200AFBDE00C9788F /* RH_BitCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B3B200AFBDE00C9788F /* RH_BitCoin.plist */; };
@@ -1026,8 +1031,8 @@
 		A0522A5A2007358200A5A6E9 /* ModifySafetyNoPermission.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyNoPermission.plist; sourceTree = "<group>"; };
 		A0522A5C2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyNoPermissionUsedCode.plist; sourceTree = "<group>"; };
 		A0522A5E2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifySafetyPasswordUsedCode.plist; sourceTree = "<group>"; };
-		A0522A602007818500A5A6E9 /* RH_BankCradModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BankCradModel.m; sourceTree = "<group>"; };
-		A0522A612007818600A5A6E9 /* RH_BankCradModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BankCradModel.h; sourceTree = "<group>"; };
+		A0522A602007818500A5A6E9 /* RH_BankCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardModel.m; sourceTree = "<group>"; };
+		A0522A612007818600A5A6E9 /* RH_BankCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BankCardModel.h; sourceTree = "<group>"; };
 		A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_ModifySafetyPwdCodeCell.xib; sourceTree = "<group>"; };
 		A0522A6420078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPwdCodeCell.m; sourceTree = "<group>"; };
 		A0522A6520078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPwdCodeCell.h; sourceTree = "<group>"; };
@@ -1035,6 +1040,14 @@
 		A0522A6920085E6600A5A6E9 /* RH_PromoInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoInfoModel.m; sourceTree = "<group>"; };
 		A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserGroupInfoModel.m; sourceTree = "<group>"; };
 		A0522A6F200B001500A5A6E9 /* RH_UserGroupInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserGroupInfoModel.h; sourceTree = "<group>"; };
+		A0522A71200B41DA00A5A6E9 /* MineSafetyCenterOnlyCard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MineSafetyCenterOnlyCard.plist; sourceTree = "<group>"; };
+		A0522A72200B41DA00A5A6E9 /* MineSafetyCenterNone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MineSafetyCenterNone.plist; sourceTree = "<group>"; };
+		A0522A73200B41DB00A5A6E9 /* MineSafetyCenterInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MineSafetyCenterInit.plist; sourceTree = "<group>"; };
+		A0522A74200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MineSafetyCenterOnlyBit.plist; sourceTree = "<group>"; };
+		A0522A79200B42E500A5A6E9 /* MineSafetyCenterBoth.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MineSafetyCenterBoth.plist; sourceTree = "<group>"; };
+		A0522A7B200B6FD600A5A6E9 /* RH_BitCodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BitCodeModel.h; sourceTree = "<group>"; };
+		A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BitCodeModel.m; sourceTree = "<group>"; };
+		A0522A7E200B768700A5A6E9 /* BankCardInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BankCardInit.plist; sourceTree = "<group>"; };
 		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
@@ -1190,7 +1203,6 @@
 		B8107AAE1FFCC83C0086DDC3 /* RH_BasicAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BasicAlertView.m; sourceTree = "<group>"; };
 		B8107AB11FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterViewController.h; sourceTree = "<group>"; };
 		B8107AB21FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSafetyCenterViewController.m; sourceTree = "<group>"; };
-		B8107AB51FFDBB360086DDC3 /* RH_MineSafetyCenter.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_MineSafetyCenter.plist; sourceTree = "<group>"; };
 		B8107AB71FFDCB780086DDC3 /* RH_MineSafetyCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterCell.h; sourceTree = "<group>"; };
 		B8107AB81FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSafetyCenterCell.m; sourceTree = "<group>"; };
 		B8107ABA1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterHeaderView.h; sourceTree = "<group>"; };
@@ -1210,11 +1222,10 @@
 		B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_PreferentialListCell.xib; sourceTree = "<group>"; };
 		B87A6B272008907F00C9788F /* RH_BankCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardController.h; sourceTree = "<group>"; };
 		B87A6B282008907F00C9788F /* RH_BankCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardController.m; sourceTree = "<group>"; };
-		B87A6B2A200892B600C9788F /* RH_BankCard.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_BankCard.plist; sourceTree = "<group>"; };
+		B87A6B2A200892B600C9788F /* BankCardExist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BankCardExist.plist; sourceTree = "<group>"; };
 		B87A6B2D20089CE500C9788F /* RH_BankCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardCell.h; sourceTree = "<group>"; };
 		B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardCell.m; sourceTree = "<group>"; };
-		B87A6B2F20089CE500C9788F /* RH_BankCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BankCardCell.xib; sourceTree = "<group>"; };
-		B87A6B322008ADCF00C9788F /* RH_BankCardAdd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_BankCardAdd.plist; sourceTree = "<group>"; };
+		B87A6B322008ADCF00C9788F /* BankCardNone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BankCardNone.plist; sourceTree = "<group>"; };
 		B87A6B342008B47C00C9788F /* RH_BankPickerSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankPickerSelectView.h; sourceTree = "<group>"; };
 		B87A6B352008B47C00C9788F /* RH_BankPickerSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankPickerSelectView.m; sourceTree = "<group>"; };
 		B87A6B38200AF20C00C9788F /* RH_BitCoinController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BitCoinController.h; sourceTree = "<group>"; };
@@ -2111,8 +2122,10 @@
 				A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */,
 				A039BD9D200321B30080D56F /* RH_BettingInfoModel.h */,
 				A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */,
-				A0522A612007818600A5A6E9 /* RH_BankCradModel.h */,
-				A0522A602007818500A5A6E9 /* RH_BankCradModel.m */,
+				A0522A612007818600A5A6E9 /* RH_BankCardModel.h */,
+				A0522A602007818500A5A6E9 /* RH_BankCardModel.m */,
+				A0522A7B200B6FD600A5A6E9 /* RH_BitCodeModel.h */,
+				A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */,
 				A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */,
 				A039BDA82005BAD40080D56F /* RH_BettingDetailModel.m */,
 				A01CB4B81FFB1BDC00447130 /* RH_MineInfoModel.h */,
@@ -2806,7 +2819,11 @@
 				B8107AB41FFDBAF80086DDC3 /* cells */,
 				A0522A55200706F500A5A6E9 /* ModifySafetyPassword */,
 				A0522A532007069B00A5A6E9 /* ModifyPassword */,
-				B8107AB51FFDBB360086DDC3 /* RH_MineSafetyCenter.plist */,
+				A0522A73200B41DB00A5A6E9 /* MineSafetyCenterInit.plist */,
+				A0522A72200B41DA00A5A6E9 /* MineSafetyCenterNone.plist */,
+				A0522A74200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist */,
+				A0522A71200B41DA00A5A6E9 /* MineSafetyCenterOnlyCard.plist */,
+				A0522A79200B42E500A5A6E9 /* MineSafetyCenterBoth.plist */,
 				B8107AB11FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.h */,
 				B8107AB21FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m */,
 			);
@@ -2878,8 +2895,9 @@
 				B87A6B2C2008949200C9788F /* cells */,
 				B87A6B272008907F00C9788F /* RH_BankCardController.h */,
 				B87A6B282008907F00C9788F /* RH_BankCardController.m */,
-				B87A6B2A200892B600C9788F /* RH_BankCard.plist */,
-				B87A6B322008ADCF00C9788F /* RH_BankCardAdd.plist */,
+				A0522A7E200B768700A5A6E9 /* BankCardInit.plist */,
+				B87A6B2A200892B600C9788F /* BankCardExist.plist */,
+				B87A6B322008ADCF00C9788F /* BankCardNone.plist */,
 				B87A6B342008B47C00C9788F /* RH_BankPickerSelectView.h */,
 				B87A6B352008B47C00C9788F /* RH_BankPickerSelectView.m */,
 			);
@@ -2891,7 +2909,6 @@
 			children = (
 				B87A6B2D20089CE500C9788F /* RH_BankCardCell.h */,
 				B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */,
-				B87A6B2F20089CE500C9788F /* RH_BankCardCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3158,7 +3175,6 @@
 				F6A2AD582006EE7A0077CB92 /* button-03.png in Resources */,
 				A0E782791FFE5C12007BFBF3 /* RH_DomainTableCell.xib in Resources */,
 				A01181601FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.xib in Resources */,
-				B8107AB61FFDBB360086DDC3 /* RH_MineSafetyCenter.plist in Resources */,
 				A039BDAB2005C3ED0080D56F /* RH_ModifyPasswordUsercode.plist in Resources */,
 				A0E367951F8F463900758033 /* Localizable.strings in Resources */,
 				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
@@ -3170,6 +3186,7 @@
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
+				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
 				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
 				F6A2ACB220044C5A0077CB92 /* RH_MPGameNoticeCell.xib in Resources */,
@@ -3230,7 +3247,7 @@
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
 				A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */,
 				A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */,
-				B87A6B2B200892B600C9788F /* RH_BankCard.plist in Resources */,
+				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
 				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
@@ -3241,6 +3258,7 @@
 				A001B3E01F8EF7CA00309EA4 /* tab_lottery_normal@2x.png in Resources */,
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
+				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
@@ -3248,13 +3266,15 @@
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
 				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
+				A0522A75200B41DB00A5A6E9 /* MineSafetyCenterOnlyCard.plist in Resources */,
 				F6A2ADC4200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
-				B87A6B332008ADCF00C9788F /* RH_BankCardAdd.plist in Resources */,
+				B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */,
 				F6A2AD6E200793DB0077CB92 /* RH_MPGameSeletedDateView.xib in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
+				A0522A76200B41DB00A5A6E9 /* MineSafetyCenterNone.plist in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
 				B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */,
@@ -3266,12 +3286,13 @@
 				A01181581FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib in Resources */,
 				A001B3EA1F8EF7CA00309EA4 /* tab_home@2x.png in Resources */,
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
+				A0522A7F200B768700A5A6E9 /* BankCardInit.plist in Resources */,
 				A001B3EC1F8EF7CA00309EA4 /* tab_service@2x.png in Resources */,
 				A0B609B71FBB05AC00A44B37 /* tab_v3_promo@2x.png in Resources */,
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
 				A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */,
-				B87A6B3120089CE500C9788F /* RH_BankCardCell.xib in Resources */,
+				A0522A78200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
 				A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */,
@@ -3310,7 +3331,7 @@
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
-				A0522A622007818600A5A6E9 /* RH_BankCradModel.m in Sources */,
+				A0522A622007818600A5A6E9 /* RH_BankCardModel.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
@@ -3390,6 +3411,7 @@
 				79FB815E1FFE091600325BF3 /* RH_CapitalStaticDataCell.m in Sources */,
 				A0109FB11F8788FF004E6EF4 /* UIAlertView+Block.m in Sources */,
 				B8107AB31FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m in Sources */,
+				A0522A7D200B6FD600A5A6E9 /* RH_BitCodeModel.m in Sources */,
 				A0109FB21F8788FF004E6EF4 /* UICollectionReusableView+ShowContent.m in Sources */,
 				A0109FB31F8788FF004E6EF4 /* UICollectionView+Register.m in Sources */,
 				A0109FB41F8788FF004E6EF4 /* UIColor+HexString.m in Sources */,
@@ -3723,7 +3745,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -24,7 +24,7 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalDetailModel.h"
 #import "RH_CapitalTypeModel.h"
-#import "RH_BankCradModel.h"
+#import "RH_BankCardModel.h"
 #import "RH_PromoInfoModel.h"
 #import "RH_SystemNoticeModel.h"
 #import "RH_SystemNoticeDetailModel.h"
@@ -656,8 +656,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 一键回收
 -(void)startV3OneStepRecovery
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    [self _startServiceWithAPIName:appDelegate.domain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONESTEPRECOVERY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -949,7 +948,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(YES) ;
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                [self startV3UserInfo] ;
+//                [self startV3UserInfo] ;
             }
         }else{
             *reslutData = @(NO) ;
@@ -1018,7 +1017,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self startV3UserInfo] ;
+//                    [self startV3UserInfo] ;
                 }
             }
                 break ;
@@ -1116,13 +1115,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break ;
-
-            case ServiceRequestTypeV3AddBankCard:
-            {
-                resultSendData = [RH_BankCradModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
-            
-            }
-                break;
                 
            case ServiceRequestTypeV3PromoList:
             {

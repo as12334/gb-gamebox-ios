@@ -7,6 +7,9 @@
 //
 
 #import "RH_BasicModel.h"
+#import "RH_BankCardModel.h"
+#import "RH_BitCodeModel.h"
+
 
 @interface RH_MineInfoModel : RH_BasicModel
 @property(nonatomic,strong,readonly) NSString  *mAvatalUrl ;
@@ -22,5 +25,9 @@
 @property(nonatomic,assign,readonly) float  mWithdrawAmount ;
 @property(nonatomic,assign,readonly) BOOL  mIsBit ;
 @property(nonatomic,assign,readonly) BOOL  mIsCash ;
+@property(nonatomic,strong,readonly) RH_BankCardModel *mBankCard ;
+@property(nonatomic,strong,readonly) RH_BitCodeModel *mBtcCode  ;
+@property(nonatomic,strong,readonly) NSString  *mRealName ;
 
 @end
+

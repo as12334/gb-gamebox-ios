@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GAMENOTICE           , //游戏公告
     ServiceRequestTypeV3GAMENOTICEDETAIL     , //游戏公告详情
     ServiceRequestTypeV3ONESTEPRECOVERY      , //一键回收
+    ServiceRequestTypeV3BankCardInfo        , //用户银行卡信息
 };
 
 

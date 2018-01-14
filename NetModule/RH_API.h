@@ -210,7 +210,9 @@
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
 #define RH_GP_MINEINFO_ISBIT                                   @"isBit"
 #define RH_GP_MINEINFO_ISCASH                                  @"isCash"
-
+#define RH_GP_MINEINFO_BANKCARD                                @"bankcard"
+#define RH_GP_MINEINFO_BTCCODE                                 @"btc"
+#define RH_GP_MINEINFO_REALNAME                               @"realName"
 
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"
@@ -285,6 +287,15 @@
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAY                       @"transactionWay"
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME                   @"transactionWayName"
 #define RH_GP_CAPITALDETAIL_USERNAME                             @"userName"
+
+#pragma mark - V3 银行卡 信息模型
+#define RH_GP_BANKCARDINFO_BANKNAME                                 @"bankName"
+#define RH_GP_BANKCARDINFO_BANKCARDMASTERNAME                       @"bankcardMasterName"
+#define RH_GP_BANKCARDINFO_BANKCARDNUMBER                           @"bankcardNumber"
+
+#pragma mark - V3 bit币 信息模型
+#define RH_GP_BITCODEINFO_BTCNUM                                   @"btcNum"
+#define RH_GP_BITCODEINFO_BTCNUMBER                                @"btcNumber"
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -458,10 +469,7 @@
 #define RH_SP_BANKCARDNUMBER   @"bankcardNumber"
 #define RH_SP_BANKDEPOSIT  @"bankDeposit"
 
-//返回参数
-#define RH_GP_ADDBANKCARD_VALUE @"value"
-#define RH_GP_ADDBANKCARD_TEXT   @"text"
-
+//返回参数-无
 
 #pragma mark - V3 获取安全密码验证码
 #define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
@@ -532,7 +540,6 @@
 #pragma mark - V3 一键回收
 #define RH_API_NAME_ONESTEPRECOVERY          @"mineOrigin/recovery.html"
 //请求参数  无
-
 
 #endif /* RH_API_h */
 

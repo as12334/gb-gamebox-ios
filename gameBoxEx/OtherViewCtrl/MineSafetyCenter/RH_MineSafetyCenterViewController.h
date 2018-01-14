@@ -7,7 +7,8 @@
 //
 
 #import "RH_BasicPageLoadViewController.h"
+#import "RH_BasicSubViewController.h"
 
-@interface RH_MineSafetyCenterViewController : RH_BasicPageLoadViewController
+@interface RH_MineSafetyCenterViewController : RH_BasicSubViewController
 
 @end
