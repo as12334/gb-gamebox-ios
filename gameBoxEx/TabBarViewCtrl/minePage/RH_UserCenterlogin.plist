@@ -117,7 +117,7 @@
 							<key>image</key>
 							<string>mine_page_messagecenter</string>
 							<key>targetKey</key>
-							<string>RH_CapitalDetaliViewController</string>
+							<string>RH_MPApplyDiscountController</string>
 						</dict>
 					</array>
 				</dict>

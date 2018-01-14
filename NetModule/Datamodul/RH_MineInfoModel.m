@@ -31,6 +31,8 @@
         _mWithdrawAmount = [info floatValueForKey:RH_GP_MINEINFO_WITHDRAWAMOUNT] ;
         _mPreferentialAmount = [info stringValueForKey:RH_GP_MINEINFO_PREFERENTIALAMOUNT] ;
         _mLoginTime = [info stringValueForKey:RH_GP_MINEINFO_LOGINTIME] ;
+        _mIsBit = [info boolValueForKey:RH_GP_MINEINFO_ISBIT] ;
+        _mIsCash = [info boolValueForKey:RH_GP_MINEINFO_ISCASH] ;
     }
     
     return self ;

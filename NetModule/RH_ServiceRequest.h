@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SYSTEMNOTICEDETAIL     , //系统公告详情
     ServiceRequestTypeV3GAMENOTICE           , //游戏公告
     ServiceRequestTypeV3GAMENOTICEDETAIL     , //游戏公告详情
+    ServiceRequestTypeV3ONESTEPRECOVERY      , //一键回收
 };
 
 
@@ -251,6 +252,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 优惠列表
 -(void)startV3PromoList:(NSInteger)pageNumber
                PageSize:(NSInteger)pageSize ;
+
+#pragma mark -  一键回收
+//请求参数  无
+-(void)startV3OneStepRecovery;
 
 #pragma mark -
 /**

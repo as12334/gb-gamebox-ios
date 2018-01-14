@@ -24,8 +24,8 @@
 @implementation RH_UserInfoManager
 @synthesize serviceRequest = _serviceRequest;
 @synthesize userBalanceGroupInfo = _userBalanceGroupInfo ;
-@synthesize mineGroupInfo = _mineGroupInfo ;
 @synthesize userSafetyInfo = _userSafetyInfo ;
+@synthesize mineSettingInfo = _mineSettingInfo ;
 
 +(instancetype)shareUserManager
 {
@@ -51,17 +51,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
 }
 
-#pragma mark - mineGroupInfo
--(RH_MineGroupInfoModel *)mineGroupInfo{
-    return _mineGroupInfo ;
-}
-
--(void)setMineGroupInfo:(RH_MineGroupInfoModel *)mineGroupInfo
-{
-    _mineGroupInfo = mineGroupInfo ;
-    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
-}
-
 #pragma mark -
 -(RH_UserSafetyCodeModel *)userSafetyInfo
 {
@@ -71,6 +60,16 @@
 -(void)setUserSafetyInfo:(RH_UserSafetyCodeModel *)userSafetyInfo
 {
     _userSafetyInfo = userSafetyInfo ;
+}
+
+-(RH_MineInfoModel *)mineSettingInfo
+{
+    return _mineSettingInfo ;
+}
+
+-(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo
+{
+    _mineSettingInfo = mineSettingInfo ;
 }
 
 -(BOOL)hasLogin

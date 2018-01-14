@@ -12,7 +12,7 @@
 #import "RH_MPGameNoticePulldownView.h"
 #import "RH_SystemNoticeModel.h"
 #import "RH_API.h"
-
+#import "RH_MPSystemNoticeDetailController.h"
 @interface RH_MPSystemNoticeViewController ()<MPSystemNoticHeaderViewDelegate>
 @property (nonatomic,strong,readonly)RH_MPSystemNoticeCell *systemNoticeCell;
 @property (nonatomic,strong,readonly)RH_MPSystemNoticHeaderView *headerView;
@@ -250,6 +250,11 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    RH_MPSystemNoticeDetailController *detailVC = [[RH_MPSystemNoticeDetailController alloc]init];
+    RH_MPSystemNoticeDetailController *detailVC= [RH_MPSystemNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 @end
 
