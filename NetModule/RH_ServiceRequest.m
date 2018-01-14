@@ -750,6 +750,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SYSTEMMESSAGEDELTE
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark - 申请优惠
+-(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
+                                  advisoryTitle:(NSString *)advisoryTitle
+                                advisoryContent:(NSString *)advisoryContent
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:advisoryType forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE];
+    [dict setValue:advisoryTitle forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE];
+    [dict setValue:advisoryContent forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ADDAPPLYDISCOUNTS
+                         scopeType:ServiceScopeTypePublic];
+    
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {

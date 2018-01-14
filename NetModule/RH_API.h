@@ -590,6 +590,13 @@
 //请求参数
 #define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
+#pragma mark - V3 添加申请优惠
+#define RH_API_NAME_ADDAPPLYDISCOUNTS   @"mineOrigin/addNoticeSite.html"
+//请求参数
+#define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE      @"result.advisoryType"
+#define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE     @"result.advisoryTitle"
+#define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT   @"result.advisoryContent"
+
 
 #endif /* RH_API_h */
 
