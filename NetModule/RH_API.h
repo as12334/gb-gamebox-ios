@@ -93,6 +93,21 @@
 #define RH_GP_SYSTEMNOTICE_MINDATE                          @"minDate"
 #define RH_GP_SYSTEMNOTICE_MAXDATE                          @"maxDate"
 
+#pragma mark -游戏公告模型
+#define RH_GP_GAMENOTICE_ID          @"id"
+#define RH_GP_GAMENOTICE_TITLE          @"title"
+#define RH_GP_GAMENOTICE_LINK        @"link"
+#define RH_GP_GAMENOTICE_GAMENAME        @"gameName"
+#define RH_GP_GAMENOTICE_PUBLISHTIME   @"publishTime"
+#define RH_GP_GAMENOTICE_CONTEXT    @"context"
+#define RH_GP_GAMENOTICE_MINDATE     @"minDate"
+#define RH_GP_GAMENOTICE_MAXDATE     @"maxDate"
+#define RH_GP_GAMENOTICE_APISELECT    @"apiSelect"
+#define RH_GP_GAMENOTICE_APIID    @"apiId"
+#define RH_GP_GAMENOTICE_APINAME    @"apiName"
+
+
+
 #pragma mark - v3 首页 announcement 公告模型
 #define RH_GP_ANNOUNCEMENT_TYPE                                               @"announcementType"
 #define RH_GP_ANNOUNCEMENT_CODE                                               @"code"
@@ -475,7 +490,6 @@
 #define RH_SP_SYSTEMNOTICEDETAIL_SEARCHID    @"searchId"
 
 //返回参数
-#define RH_GP_SYSTEMNOTICEDETAIL_DATA        @"data"
 #define RH_GP_SYSTEMNOTICEDETAIL_ID          @"id"
 #define RH_GP_SYSTEMNOTICEDETAIL_CONTENT     @"content"
 #define RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME @"publishTime"
@@ -493,13 +507,7 @@
 
 //返回参数
 #define RH_GP_GAMENOTICE_LIST        @"list"
-#define RH_GP_GAMENOTICE_ID          @"id"
-#define RH_GP_GAMENOTICE_CONTENT     @"content"
-#define RH_GP_GAMENOTICE_PUBLISHTIME @"publishTime"
-#define RH_GP_GAMENOTICE_LINK        @"link"
 #define RH_GP_GAMENOTICE_PAGETOTAL   @"pageTotal"
-#define RH_GP_GAMENOTICE_MINDATE     @"minDate"
-#define RH_GP_GAMENOTICE_MAXDATE     @"maxDate"
 
 
 #pragma mark - V3 游戏公告详情

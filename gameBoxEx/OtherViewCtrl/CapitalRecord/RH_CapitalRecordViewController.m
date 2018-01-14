@@ -52,7 +52,6 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-    
 }
 
 
@@ -179,9 +178,12 @@
               }] ;
 }
 #pragma mark --- 搜索按钮点击
--(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)bettingRecordHeaderView
+-(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
 {
     NSLog(@"搜索");
+    [self.serviceRequest startV3LoadGameNoticeStartTime:capitalRecordHeaderView.startDate endTime:capitalRecordHeaderView.endDate pageNumber:1 pageSize:1 apiId:nil];
+    
+
 }
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -242,6 +244,9 @@
         
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
+    }
+    if (type == ServiceRequestTypeV3GAMENOTICE) {
+        
     }
 }
 
