@@ -11,7 +11,7 @@
 #import "RH_GameNoticeDetailModel.h"
 #import "RH_GameNoticeModel.h"
 @interface RH_GameNoticeDetailController ()
-@property (nonatomic,strong)ApiSelectModel *noticeModel;
+@property (nonatomic,strong)ListModel *noticeModel;
 @end
 
 @implementation RH_GameNoticeDetailController
@@ -22,7 +22,7 @@
 }
 -(void)setupViewContext:(id)context
 {
-    self.noticeModel = ConvertToClassPointer(ApiSelectModel, context);
+    self.noticeModel = ConvertToClassPointer(ListModel, context);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,16 +73,12 @@
     }
 }
 #pragma mark- 请求回调
-//-(NSUInteger)defaultPageSize
-//{
-//
-//}
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     
 //    [self.serviceRequest startV3LoadSystemNoticeDetailSearchId:self.systemModel.mID];
-    [self.serviceRequest startV3LoadGameNoticeDetailSearchId:[NSString stringWithFormat:@"%d",self.noticeModel.mApiId]];
+    [self.serviceRequest startV3LoadGameNoticeDetailSearchId:self.noticeModel.mId];
 }
 -(void)cancelLoadDataHandle
 {

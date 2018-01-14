@@ -91,6 +91,7 @@
                   view.endDate = returnDate ;
                   weakSelf.endDate = returnDate;
               }] ;
+     [self startUpdateData] ;
 }
 #pragma mark-
 #pragma mark-tableView
@@ -133,6 +134,19 @@
 {
     if (!_listView) {
         _listView = [[RH_MPGameNoticePulldownView alloc]init];
+        __block RH_MPGameNoticeViewController *weakSelf = self;
+        _listView.block = ^(){
+            if (weakSelf.listView.superview){
+                [UIView animateWithDuration:0.2f animations:^{
+                    CGRect framee = weakSelf.listView.frame;
+                    framee.size.height = 0;
+                    weakSelf.listView.frame = framee;
+                } completion:^(BOOL finished) {
+                    [weakSelf.listView removeFromSuperview];
+                }];
+                weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
+            }
+        };
     }
     return _listView;
 }
@@ -220,9 +234,9 @@
 {
     [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
                                                 endTime:self.endDate
-                                             pageNumber:page
+                                             pageNumber:1
                                                pageSize:pageSize
-                                                  apiId:1];
+                                                  apiId:0];
 }
 -(void)cancelLoadDataHandle
 {
@@ -241,7 +255,8 @@
 {
     if (type == ServiceRequestTypeV3GAMENOTICE){
         RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
-        [self loadDataSuccessWithDatas:gameModel.mApiSelectModel
+        self.listView.modelArray = gameModel.mApiSelectModel;
+        [self loadDataSuccessWithDatas:gameModel.mListModel
                             totalCount:gameModel.mPageTotal]  ;
     }
 }

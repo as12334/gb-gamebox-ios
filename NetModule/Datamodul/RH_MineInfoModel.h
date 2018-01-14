@@ -20,5 +20,7 @@
 @property(nonatomic,strong,readonly) NSString  *mUserName ;
 @property(nonatomic,assign,readonly) float  mWalletBalance ;
 @property(nonatomic,assign,readonly) float  mWithdrawAmount ;
+@property(nonatomic,assign,readonly) BOOL  mIsBit ;
+@property(nonatomic,assign,readonly) BOOL  mIsCash ;
 
 @end

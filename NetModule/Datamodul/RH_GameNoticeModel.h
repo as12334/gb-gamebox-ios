@@ -12,7 +12,7 @@
 @property (nonatomic , strong , readonly) NSString              * mId;
 @property (nonatomic , strong , readonly) NSString              * mTitle;
 @property (nonatomic , strong , readonly) NSString              * mGameName;
-@property (nonatomic , assign , readonly) NSInteger              mPublishTime;
+@property (nonatomic , strong , readonly) NSDate                *mPublishTime;
 @property (nonatomic , strong , readonly) NSString              * mContext;
 @property (nonatomic , strong , readonly) NSString              * mLink;
 

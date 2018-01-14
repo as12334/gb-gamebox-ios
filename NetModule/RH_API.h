@@ -106,6 +106,13 @@
 #define RH_GP_GAMENOTICE_APIID    @"apiId"
 #define RH_GP_GAMENOTICE_APINAME    @"apiName"
 
+#pragma mark - 游戏公告详情 模型
+#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
+#define RH_GP_GAMENOTICEDETAIL_TITLE         @"title"
+#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
+#define RH_GP_GAMENOTICEDETAIL_GAMENAME        @"gameName"
+#define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME   @"publishTime"
+#define RH_GP_GAMENOTICEDETAIL_CONTEXT    @"context"
 
 
 #pragma mark - v3 首页 announcement 公告模型
@@ -190,23 +197,27 @@
 #define RH_GP_USERAPIINFO_BALANCE                            @"balance"
 #define RH_GP_USERAPIINFO_STATUS                             @"status"
 
+
 #pragma mark - V3 link 信息模型
 #define RH_GP_LINK_CODE                             @"code"
 #define RH_GP_LINK_LINK                             @"link"
 #define RH_GP_LINK_NAME                             @"name"
 
 #pragma mark - V3 MINE 信息模型
-#define RH_GP_MINEINFO_AVATARURL                             @"avatarUrl"
-#define RH_GP_MINEINFO_CURRENCY                             @"currency"
-#define RH_GP_MINEINFO_PREFERENTIALAMOUNT                    @"preferentialAmount"
-#define RH_GP_MINEINFO_RECOMDAMOUNT                             @"recomdAmount"
+#define RH_GP_MINEINFO_AVATARURL                               @"avatarUrl"
+#define RH_GP_MINEINFO_CURRENCY                                @"currency"
+#define RH_GP_MINEINFO_PREFERENTIALAMOUNT                      @"preferentialAmount"
+#define RH_GP_MINEINFO_RECOMDAMOUNT                            @"recomdAmount"
 #define RH_GP_MINEINFO_TOTALASSETS                             @"totalAssets"
-#define RH_GP_MINEINFO_TRANSFERAMOUNT                             @"transferAmount"
+#define RH_GP_MINEINFO_TRANSFERAMOUNT                          @"transferAmount"
 #define RH_GP_MINEINFO_UNREADCOUNT                             @"unReadCount"
-#define RH_GP_MINEINFO_USERNAME                             @"username"
-#define RH_GP_MINEINFO_WALLETBALANCE                             @"walletBalance"
-#define RH_GP_MINEINFO_WITHDRAWAMOUNT                             @"withdrawAmount"
+#define RH_GP_MINEINFO_USERNAME                                @"username"
+#define RH_GP_MINEINFO_WALLETBALANCE                           @"walletBalance"
+#define RH_GP_MINEINFO_WITHDRAWAMOUNT                          @"withdrawAmount"
 #define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
+#define RH_GP_MINEINFO_ISBIT                                   @"isBit"
+#define RH_GP_MINEINFO_ISCASH                                  @"isCash"
+
 
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"
@@ -516,18 +527,17 @@
 #define RH_SP_GAMENOTICEDETAIL_SEARCHID    @"searchId"
 
 //返回参数
-#define RH_GP_GAMENOTICEDETAIL_LIST        @"list"
-#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
-#define RH_GP_GAMENOTICEDETAIL_CONTENT     @"content"
-#define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME @"publishTime"
-#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
 #define RH_GP_GAMENOTICEDETAIL_PAGETOTAL   @"pageTotal"
-#define RH_GP_GAMENOTICEDETAIL_MINDATE     @"minDate"
-#define RH_GP_GAMENOTICEDETAIL_MAXDATE     @"maxDate"
+
 
 #pragma mark - V3 一键回收
 #define RH_API_NAME_ONESTEPRECOVERY          @"mineOrigin/recovery.html"
 //请求参数  无
+
+
+#pragma mark - V3 添加比特币
+#define RH_API_NAME_ADDBTC   @"mineOrigin/addBtc.html"
+//请求参数
 
 
 #endif /* RH_API_h */

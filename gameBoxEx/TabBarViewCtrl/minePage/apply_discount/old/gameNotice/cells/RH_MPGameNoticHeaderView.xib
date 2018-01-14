@@ -91,6 +91,7 @@
             <connections>
                 <outlet property="ennDateView" destination="ouN-Zh-vUs" id="M1G-dX-9rX"/>
                 <outlet property="gameTypeControl" destination="N3P-XL-iS1" id="9zJ-HF-FLa"/>
+                <outlet property="gameTypeLabel" destination="SQ6-WI-fEL" id="oN9-QF-IIf"/>
                 <outlet property="kuaixuanBtn" destination="ZRi-HB-1cd" id="rD5-42-gcw"/>
                 <outlet property="startDateView" destination="1KE-og-ORj" id="4gO-40-gB3"/>
             </connections>

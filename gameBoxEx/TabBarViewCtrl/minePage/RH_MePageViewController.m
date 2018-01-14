@@ -118,8 +118,10 @@
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
         [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
     }else{
-        if (MineGroupInfo==nil){
-            [self.serviceRequest startV3MineLinkInfo] ;
+        if (MineSettingInfo==nil){
+            if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3UserInfo]==FALSE){
+                [self.serviceRequest startV3UserInfo] ;
+            }
         }
         
         [self.contentLoadingIndicateView hiddenView] ;
