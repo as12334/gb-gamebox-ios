@@ -24,7 +24,7 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalDetailModel.h"
 #import "RH_CapitalTypeModel.h"
-#import "RH_BankCradModel.h"
+#import "RH_BankCardModel.h"
 #import "RH_PromoInfoModel.h"
 #import "RH_SystemNoticeModel.h"
 #import "RH_SystemNoticeDetailModel.h"
@@ -752,6 +752,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SYSTEMMESSAGEDELTE
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark - 申请优惠
+-(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
+                                  advisoryTitle:(NSString *)advisoryTitle
+                                advisoryContent:(NSString *)advisoryContent
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:advisoryType forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE];
+    [dict setValue:advisoryTitle forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE];
+    [dict setValue:advisoryContent forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ADDAPPLYDISCOUNTS
+                         scopeType:ServiceScopeTypePublic];
+    
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -1031,7 +1051,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(YES) ;
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                [self startV3UserInfo] ;
+//                [self startV3UserInfo] ;
             }
         }else{
             *reslutData = @(NO) ;
@@ -1100,7 +1120,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self startV3UserInfo] ;
+//                    [self startV3UserInfo] ;
                 }
             }
                 break ;
@@ -1198,13 +1218,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break ;
-
-            case ServiceRequestTypeV3AddBankCard:
-            {
-                resultSendData = [RH_BankCradModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
-            
-            }
-                break;
                 
            case ServiceRequestTypeV3PromoList:
             {
@@ -1250,6 +1263,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
             }
                 break;
+                
             case ServiceRequestTypeV3SAVEANDADDBTC:
             {
                 resultSendData = [[RH_AddBtcModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;

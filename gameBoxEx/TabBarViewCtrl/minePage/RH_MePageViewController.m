@@ -120,7 +120,7 @@
     }else{
         if (MineSettingInfo==nil){
             if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3UserInfo]==FALSE){
-                [self.serviceRequest startV3UserInfo] ;
+//                [self.serviceRequest startV3UserInfo] ;
             }
         }
         

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>cellsExtraInfo</key>
+	<dict>
+		<key>isCustomHeight</key>
+		<true/>
+	</dict>
+	<key>sectionsInfo</key>
+	<array>
+		<dict>
+			<key>sectionHeaderHeight</key>
+			<string>10</string>
+			<key>rowsInfo</key>
+			<array>
+				<dict>
+					<key>detailTitle</key>
+					<string>修改</string>
+					<key>targetKey</key>
+					<string>RH_ModifyPasswordController</string>
+					<key>title</key>
+					<string>修改登录密码</string>
+					<key>cellClass</key>
+					<string>RH_MineSafetyCenterCell</string>
+				</dict>
+				<dict>
+					<key>detailTitle</key>
+					<string>设置</string>
+					<key>targetKey</key>
+					<string>RH_ModifySafetyPasswordController</string>
+					<key>cellClass</key>
+					<string>RH_MineSafetyCenterCell</string>
+					<key>title</key>
+					<string>修改安全密码</string>
+				</dict>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineSafetyCenterCell</string>
+					<key>title</key>
+					<string>锁屏手势</string>
+					<key>detailTitle</key>
+					<string>设置</string>
+					<key>targetKey</key>
+					<string>RH_LockSetPWDController</string>
+				</dict>
+				<dict>
+					<key>detailTitle</key>
+					<string>设置</string>
+					<key>targetKey</key>
+					<string>RH_BitCoinController</string>
+					<key>cellClass</key>
+					<string>RH_MineSafetyCenterCell</string>
+					<key>title</key>
+					<string>Bit币</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

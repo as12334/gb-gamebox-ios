@@ -14,6 +14,16 @@
 #import "RH_BankCardController.h"
 #import "RH_GesturelLockController.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+
+typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
+    SafetyCenterStatus_Init                        ,
+    SafetyCenterStatus_None                        ,
+    SafetyCenterStatus_OnlyCard                   ,
+    SafetyCenterStatus_OnlyBit                    ,
+    SafetyCenterStatus_Both                       ,
+};
+
 
 @interface RH_MineSafetyCenterViewController () <CLTableViewManagementDelegate>
 
@@ -22,6 +32,10 @@
 @end
 
 @implementation RH_MineSafetyCenterViewController
+{
+    SafetyCenterStatus _safetyCenterStatus  ;
+}
+
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize headerView = _headerView;
 
@@ -35,6 +49,7 @@
     self.title = @"安全中心";
     [self setupInfo];
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
+    [self setNeedUpdateView] ;
 }
 
 
@@ -51,17 +66,86 @@
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
-    self.contentTableView.tableHeaderView = [self headerView];
-    
     [self.tableViewManagement reloadData];
 }
 
+-(void)updateView
+{
+    if (MineSettingInfo==nil){
+        _safetyCenterStatus = SafetyCenterStatus_Init ;
+        [self.tableViewManagement reloadDataWithPlistName:@"MineSafetyCenterInit"] ;
+        [self loadingIndicateViewDidTap:nil] ;
+        return ;
+    }else{
+        [self.contentLoadingIndicateView hiddenView] ;
+        self.contentTableView.tableHeaderView = [self headerView];
+        
+        if (MineSettingInfo.mIsBit && MineSettingInfo.mIsCash)
+        {
+            _safetyCenterStatus = SafetyCenterStatus_Both ;
+            [self.tableViewManagement reloadDataWithPlistName:@"MineSafetyCenterBoth"] ;
+            return ;
+        }else if (MineSettingInfo.mIsBit){
+            _safetyCenterStatus = SafetyCenterStatus_OnlyBit ;
+            [self.tableViewManagement reloadDataWithPlistName:@"MineSafetyCenterOnlyBit"] ;
+            return ;
+        }else if (MineSettingInfo.mIsCash){
+            _safetyCenterStatus = SafetyCenterStatus_OnlyCard ;
+            [self.tableViewManagement reloadDataWithPlistName:@"MineSafetyCenterOnlyCard"] ;
+            return ;
+        }else{
+            _safetyCenterStatus = SafetyCenterStatus_None ;
+            [self.tableViewManagement reloadDataWithPlistName:@"MineSafetyCenterNone"] ;
+            return ;
+        }
+    }
+}
+
+#pragma mark-
+-(RH_LoadingIndicateView*)contentLoadingIndicateView
+{
+    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+}
+
+
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初如化安全信息" detailText:@"请稍等"] ;
+    [self.serviceRequest startV3UserInfo] ;
+}
+
+#pragma mark - service request
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeV3UserInfo){
+        [self setNeedUpdateView] ;
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+    if (type == ServiceRequestTypeV3UserInfo){
+        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
+}
+
+
+#pragma mark-
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
         _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_MineSafetyCenter" bundle:nil];
         _tableViewManagement.delegate = self;
     }
     return _tableViewManagement;
+}
+
+-(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath
+{
+    return MainScreenH - StatusBarHeight - NavigationBarHeight ;
+}
+
+-(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.loadingIndicateTableViewCell ;
 }
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {

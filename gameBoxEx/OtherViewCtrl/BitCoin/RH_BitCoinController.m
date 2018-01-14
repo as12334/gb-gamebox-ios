@@ -42,6 +42,6 @@
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
-    
+    [self.tableViewManegement reloadData] ;
 }
 @end
