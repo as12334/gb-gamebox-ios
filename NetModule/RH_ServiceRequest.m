@@ -30,6 +30,9 @@
 #import "RH_SystemNoticeDetailModel.h"
 #import "RH_UserGroupInfoModel.h"
 #import "RH_GameNoticeModel.h"
+#import "RH_GameNoticeDetailModel.h"
+#import "RH_AddBtcModel.h"
+#import "RH_SiteMessageModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -608,7 +611,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_API_NAME_GAMENOTICEDETAIL];
     [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                        pathFormat:RH_API_NAME_GAMENOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dict
@@ -667,6 +670,105 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3ONESTEPRECOVERY
                          scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - V3 添加/保存比特币
+-(void)startV3SaveAndAddBtcWithBankcardNumber:(NSString *)bankcardNumber
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:bankcardNumber forKey:RH_SP_ADDBTC_BANKCARDNUMBER];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDBTC
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SAVEANDADDBTC
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息 - 系统消息
+-(void)startV3LoadSystemMessageWithpageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SITEMESSAGE_PAGINGPAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SITEMESSAGE_PAGINGPAGESIZE];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SITEMESSAGE
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息 - 系统消息详情
+-(void)startV3LoadSystemMessageDetailWithSearchId:(NSString *)searchId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_SITEMESSAGEDETAIL_SEARCHID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SITEMESSAGEDETAIL
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息 - 系统消息标记已读
+-(void)startV3LoadSystemMessageReadYesWithIds:(NSString *)ids
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_SITEMESSAGEREDAYES_IDS];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGEREDAYES
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SYSTEMMESSAGEYES
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 站点信息 - 系统消息删除
+-(void)startV3LoadSystemMessageDeleteWithIds:(NSString *)ids
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_SITEMESSAGEDELETE_IDS];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGEDELETE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SYSTEMMESSAGEDELTE
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 申请优惠
+-(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
+                                  advisoryTitle:(NSString *)advisoryTitle
+                                advisoryContent:(NSString *)advisoryContent
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:advisoryType forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE];
+    [dict setValue:advisoryTitle forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE];
+    [dict setValue:advisoryContent forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ADDAPPLYDISCOUNTS
+                         scopeType:ServiceScopeTypePublic];
+    
 }
 
 #pragma mark -
@@ -1149,9 +1251,30 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
+            case ServiceRequestTypeV3GAMENOTICEDETAIL:
+            {
+                resultSendData = [[RH_GameNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
             case ServiceRequestTypeV3ONESTEPRECOVERY:
             {
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+            }
+                break;
+                
+            case ServiceRequestTypeV3SAVEANDADDBTC:
+            {
+                resultSendData = [[RH_AddBtcModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3SITEMESSAGE:
+            {
+                NSArray *tmpArray = [RH_SiteMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:RH_GP_SITEMESSAGE_PAGETOTALNUM]   ;
+                resultSendData = @{RH_GP_SYSTEMNOTICE_LIST:tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
             }
                 break;
 

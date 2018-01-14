@@ -52,6 +52,7 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
+    [self.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:@"hello" advisoryTitle:@"1234" advisoryContent:@"23456"];
 }
 
 
@@ -257,9 +258,10 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
-    if (type == ServiceRequestTypeV3GAMENOTICE) {
+    if (type == ServiceRequestTypeV3ADDAPPLYDISCOUNTS) {
         
     }
+
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

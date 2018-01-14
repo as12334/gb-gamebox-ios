@@ -106,6 +106,13 @@
 #define RH_GP_GAMENOTICE_APIID    @"apiId"
 #define RH_GP_GAMENOTICE_APINAME    @"apiName"
 
+#pragma mark - 游戏公告详情 模型
+#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
+#define RH_GP_GAMENOTICEDETAIL_TITLE         @"title"
+#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
+#define RH_GP_GAMENOTICEDETAIL_GAMENAME        @"gameName"
+#define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME   @"publishTime"
+#define RH_GP_GAMENOTICEDETAIL_CONTEXT    @"context"
 
 
 #pragma mark - v3 首页 announcement 公告模型
@@ -296,6 +303,30 @@
 #pragma mark - V3 bit币 信息模型
 #define RH_GP_BITCODEINFO_BTCNUM                                   @"btcNum"
 #define RH_GP_BITCODEINFO_BTCNUMBER                                @"btcNumber"
+
+
+#pragma mark - V3 添加/保存比特币 模型
+#define RH_GP_ADDBTC_ID                  @"id"
+#define RH_GP_ADDBTC_USERID              @"userId"
+#define RH_GP_ADDBTC_BANKCARDMASTERNAME  @"bankcardMasterName"
+#define RH_GP_ADDBTC_BANKCARDNUMBER      @"bankcardNumber"
+#define RH_GP_ADDBTC_CREATETIME          @"createTime"
+#define RH_GP_ADDBTC_USECOUNT            @"useCount"
+#define RH_GP_ADDBTC_USESTAUTS           @"useStauts"
+#define RH_GP_ADDBTC_ISDEFAULT           @"isDefault"
+#define RH_GP_ADDBTC_BANKNAME            @"bankName"
+#define RH_GP_ADDBTC_BANKDEPOSIT         @"bankDeposit"
+#define RH_GP_ADDBTC_CUSTOMBANKNAME      @"customBankName"
+#define RH_GP_ADDBTC_TYPE                @"type"
+
+#pragma mark - V3 站点信息 系统信息列表 模型
+#define RH_GP_SITEMESSAGE_ID            @"id"
+#define RH_GP_SITEMESSAGE_CONTENT       @"content"
+#define RH_GP_SITEMESSAGE_PUBLISHTIME   @"publishTime"
+#define RH_GP_SITEMESSAGE_LINK          @"link"
+#define RH_GP_SITEMESSAGE_TITLE         @"title"
+#define RH_GP_SITEMESSAGE_READ          @"read"
+#define RH_GP_SITEMESSAGE_SEARCHID      @"searchId"
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -528,18 +559,52 @@
 #define RH_SP_GAMENOTICEDETAIL_SEARCHID    @"searchId"
 
 //返回参数
-#define RH_GP_GAMENOTICEDETAIL_LIST        @"list"
-#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
-#define RH_GP_GAMENOTICEDETAIL_CONTENT     @"content"
-#define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME @"publishTime"
-#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
 #define RH_GP_GAMENOTICEDETAIL_PAGETOTAL   @"pageTotal"
-#define RH_GP_GAMENOTICEDETAIL_MINDATE     @"minDate"
-#define RH_GP_GAMENOTICEDETAIL_MAXDATE     @"maxDate"
+
 
 #pragma mark - V3 一键回收
 #define RH_API_NAME_ONESTEPRECOVERY          @"mineOrigin/recovery.html"
 //请求参数  无
+
+#pragma mark - V3 添加比特币
+#define RH_API_NAME_ADDBTC   @"mineOrigin/addBtc.html"
+//请求参数
+#define RH_SP_ADDBTC_BANKCARDNUMBER   @"bankcardNumber"
+
+#pragma mark - V3 站点信息 系统信息列表
+#define RH_API_NAME_SITEMESSAGE   @"mineOrigin/getSiteSysNotice.html"
+//请求参数
+#define RH_SP_SITEMESSAGE_PAGINGPAGENUMBER   @"paging.pageNumber"
+#define RH_SP_SITEMESSAGE_PAGINGPAGESIZE   @"paging.pageNumber"
+//返回参数
+#define RH_GP_SITEMESSAGE_PAGETOTALNUM   @"pageTotal"
+
+
+#pragma mark - V3 站点信息 系统信息列表详情
+#define RH_API_NAME_SITEMESSAGEDETAIL   @"mineOrigin/getSiteSysNoticeDetail.html"
+//请求参数
+#define RH_SP_SITEMESSAGEDETAIL_SEARCHID   @"searchId"
+
+
+#pragma mark - V3 站点信息 系统信息标记为已读
+
+#define RH_API_NAME_SITEMESSAGEREDAYES   @"mineOrigin/getSiteSysNoticeDetail.html"
+//请求参数
+#define RH_SP_SITEMESSAGEREDAYES_IDS   @"ids"
+
+
+#pragma mark - V3 站点信息 系统信息删除
+#define RH_API_NAME_SITEMESSAGEDELETE   @"mineOrigin/deleteSiteSysNotice.html"
+//请求参数
+#define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
+
+#pragma mark - V3 添加申请优惠
+#define RH_API_NAME_ADDAPPLYDISCOUNTS   @"mineOrigin/addNoticeSite.html"
+//请求参数
+#define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE      @"result.advisoryType"
+#define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE     @"result.advisoryTitle"
+#define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT   @"result.advisoryContent"
+
 
 #endif /* RH_API_h */
 
