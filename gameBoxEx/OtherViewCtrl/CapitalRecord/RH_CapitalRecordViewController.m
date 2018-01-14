@@ -105,7 +105,6 @@
     return YES ;
     
 }
-
 #pragma mark-
 -(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
 {
@@ -121,6 +120,19 @@
 {
     if (!_listView) {
         _listView = [[RH_CapitalPulldownListView alloc]init];
+        __block RH_CapitalRecordViewController *weakSelf = self;
+        _listView.block = ^(){
+            if (weakSelf.listView.superview){
+                [UIView animateWithDuration:0.2f animations:^{
+                    CGRect framee = weakSelf.listView.frame;
+                    framee.size.height = 0;
+                    weakSelf.listView.frame = framee;
+                } completion:^(BOOL finished) {
+                    [weakSelf.listView removeFromSuperview];
+                }];
+                [weakSelf.capitalRecordHeaderView.typeButton setTitle:weakSelf.listView.typeString forState:UIControlStateNormal];
+            }
+        };
     }
     return _listView;
 }
