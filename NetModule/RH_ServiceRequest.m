@@ -29,6 +29,7 @@
 #import "RH_PromoInfoModel.h"
 #import "RH_SystemNoticeModel.h"
 #import "RH_SystemNoticeDetailModel.h"
+#import "RH_GameNoticeModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -561,8 +562,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
      NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:startTime forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
-    [dict setValue:endTime forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
+    [dict setValue:startTime?:@"" forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
     [dict setValue:@(pageNumber) forKey:RH_SP_SYSTEMNOTICE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_SYSTEMNOTICE_PAGESIZE];
     [self _startServiceWithAPIName:appDelegate.domain
@@ -601,8 +602,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:startTime forKey:RH_SP_GAMENOTICE_STARTTIME];
-    [dict setValue:endTime forKey:RH_SP_GAMENOTICE_ENDTIME];
+    [dict setValue:startTime?:@"" forKey:RH_SP_GAMENOTICE_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_GAMENOTICE_ENDTIME];
     [dict setValue:@(pageNumber) forKey:RH_SP_GAMENOTICE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
     [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
@@ -668,6 +669,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3PromoList
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 一键回收
+-(void)startV3OneStepRecovery
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_ONESTEPRECOVERY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ONESTEPRECOVERY
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -1161,6 +1178,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3SYSTEMNOTICEDETAIL:
             {
                 resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3GAMENOTICE:
+            {
+                resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3ONESTEPRECOVERY:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
             }
                 break;
 

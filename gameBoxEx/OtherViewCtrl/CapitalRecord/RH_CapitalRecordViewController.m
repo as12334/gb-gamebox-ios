@@ -52,7 +52,6 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-    [self.serviceRequest startV3LoadGameNoticeStartTime:[NSDate dateWithYear:2017 month:01 day:01 hour:12 minute:0 second:0] endTime:[NSDate dateWithYear:2018 month:01 day:01 hour:12 minute:0 second:0] pageNumber:nil pageSize:nil apiId:nil];
 }
 
 
@@ -191,9 +190,12 @@
               }] ;
 }
 #pragma mark --- 搜索按钮点击
--(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)bettingRecordHeaderView
+-(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
 {
     NSLog(@"搜索");
+    [self.serviceRequest startV3LoadGameNoticeStartTime:capitalRecordHeaderView.startDate endTime:capitalRecordHeaderView.endDate pageNumber:1 pageSize:1 apiId:nil];
+    
+
 }
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -258,7 +260,6 @@
     if (type == ServiceRequestTypeV3GAMENOTICE) {
         
     }
-
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

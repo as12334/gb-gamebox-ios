@@ -50,6 +50,8 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
     self.needObserverTapGesture = YES ;
+     [self setupPageLoadManager] ;
+    
     self.topView.frame = CGRectMake(0, 0, self.view.frameWidth, 50);
     [self.topView addSubview:self.headerView];
     __block RH_MPGameNoticeViewController *weakSelf = self;
@@ -213,7 +215,7 @@
                                                 endTime:self.endDate
                                              pageNumber:page
                                                pageSize:pageSize
-                                                  apiId:@1];
+                                                  apiId:1];
 }
 -(void)cancelLoadDataHandle
 {
