@@ -14,6 +14,10 @@
 @end
 
 @implementation RH_WithdrawDispositController
+-(BOOL)isSubViewController
+{
+    return YES ;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

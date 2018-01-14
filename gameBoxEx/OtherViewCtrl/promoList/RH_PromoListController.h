@@ -1,5 +1,5 @@
 //
-//  RH_PreferentialListController.h
+//  RH_PromoListController.h
 //  gameBoxEx
 //
 //  Created by Lenny on 2018/1/10.
@@ -8,6 +8,6 @@
 
 #import "RH_BasicPageLoadViewController.h"
 
-@interface RH_PreferentialListController : RH_BasicPageLoadViewController
+@interface RH_PromoListController : RH_BasicPageLoadViewController
 
 @end

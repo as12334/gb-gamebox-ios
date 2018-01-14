@@ -8,7 +8,27 @@
 
 #import "RH_PreferentialListCell.h"
 #import "coreLib.h"
+#import "RH_PromoInfoModel.h"
+
+@interface RH_PreferentialListCell ()
+@property (weak, nonatomic) IBOutlet UILabel *label_Title;
+@property (weak, nonatomic) IBOutlet UILabel *label_Bottom;
+@property (weak, nonatomic) IBOutlet UILabel *label_Time;
+@property (weak, nonatomic) IBOutlet UIImageView *image_Right;
+@property (weak, nonatomic) IBOutlet UILabel *label_RightMoney;
+@property (weak, nonatomic) IBOutlet UILabel *label_Grant;
+@property (nonatomic,strong) RH_PromoInfoModel *promoInfoModel ;
+
+@end
+
+
+
 @implementation RH_PreferentialListCell
+
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    return 75.0f ;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -33,27 +53,38 @@
     self.label_Grant.textColor = colorWithRGB(255, 255, 255);
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-- (void)setCellGranted:(PreferentialListCellBackType)grant {
-    switch (grant) {
-        case PreferentialListCellBackTypeDidGrant:
-            [self.image_Right setImage:ImageWithName(@"mine_preferentialbackorange")];
-            self.label_Grant.text = @"已发放";
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    self.promoInfoModel = ConvertToClassPointer(RH_PromoInfoModel, context) ;
+    self.label_Title.text = self.promoInfoModel.mActivityName ;
+    self.label_Bottom.text = self.promoInfoModel.mPreferentialAuditName;
+    self.label_Time.text = self.promoInfoModel.showApplyTime ;
+    self.label_RightMoney.text = self.promoInfoModel.showPreferentialValue ;
+    self.label_Grant.text = self.promoInfoModel.mCheckStateName ;
+    
+    switch (self.promoInfoModel.mCheckState) {
+        case 0: //进行中
+        {
+            
+        }
+            break ;
+        case 1: //待审核
+        {
+                
+        }
             break;
-            case PreferentialListCellBackTypeNotGrant:
-            [self.image_Right setImage:ImageWithName(@"mine_preferentialbackgreen")];
-            self.label_Grant.text = @"已审核";
+        
+        case 2: //已发放
+        case 4:
+        {
+            
+        }
             break;
-            case PreferentialListCellBackTypePermitting:
-            [self.image_Right setImage:ImageWithName(@"mine_preferentialbackgray")];
-            self.label_Grant.text = @"待审核";
-            break;
-        default:
+            
+        default: //未通过
+        {
+            
+        }
             break;
     }
 }

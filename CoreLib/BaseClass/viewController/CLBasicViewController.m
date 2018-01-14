@@ -760,7 +760,6 @@ static char TAPGESTURERECOGNIZER   ;
 {
     //do nothing
 }
-
 @end
 
 

@@ -10,14 +10,18 @@
 #import "RH_ServiceRequest.h"
 #import "coreLib.h"
 #import "RH_CapitalTypeModel.h"
+#import "MBProgressHUD.h"
 @interface RH_CapitalPulldownListView()<UITableViewDelegate,UITableViewDataSource,RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong)UITableView *tabelView;
 @property(nonatomic,strong)RH_CapitalTypeModel *typeModel;
 @property(nonatomic,strong)NSMutableArray *typeNameArray;
+@property(nonatomic,strong,readonly)MBProgressHUD *HUD ;
+
 @end
 @implementation RH_CapitalPulldownListView
 @synthesize serviceRequest = _serviceRequest;
+
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -29,6 +33,10 @@
         self.layer.borderWidth = 1.f;
         self.layer.masksToBounds = YES;
         [self addSubview:self.tabelView];
+        _HUD = [[MBProgressHUD alloc]initWithFrame:self.bounds];
+        _HUD.progress = 0.4;
+        [self addSubview:_HUD];
+        [_HUD show:YES];
     }
     return self;
 }
@@ -78,13 +86,15 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    self.typeString = self.typeNameArray[indexPath.item];
+    self.block();
 }
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
   
     [self.serviceRequest startV3DepositPulldownList] ;
+    
 }
 
 -(void)cancelLoadDataHandle
@@ -100,13 +110,18 @@
             [self.typeNameArray addObject:self.typeModel.mTypeName];
         }
         [self.tabelView reloadData];
+        [self.HUD hide:YES];
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3DepositPullDownList){
-        
+//        [self.activityIndicator stopAnimating];
+        self.HUD.labelColor = [UIColor whiteColor];
+        self.HUD.labelFont = [UIFont systemFontOfSize:13];
+        self.HUD.labelText = @"数据加载失败";
+        [self.HUD hide:YES afterDelay:1];
     }
 }
 

@@ -114,6 +114,17 @@
 #define RH_GP_ACTIVITY_LOCATION                                                 @"location"
 #define RH_GP_ACTIVITY_NORMALEFFECT                                             @"normalEffect"
 
+#pragma mark - V3 我的优惠信息 模型
+#define RH_GP_PROMOINFO_ACTIVITYNAME                                        @"activityName"
+#define RH_GP_PROMOINFO_ACTIVITYVERSION                                     @"activityVersion"
+#define RH_GP_PROMOINFO_APPLYTIME                                              @"applyTime"
+#define RH_GP_PROMOINFO_CHECKSTATE                                          @"checkState"
+#define RH_GP_PROMOINFO_CHECKSTATENAME                                          @"checkStateName"
+#define RH_GP_PROMOINFO_ID                                                  @"id"
+#define RH_GP_PROMOINFO_PREFERENTIALAUDIT                                    @"preferentialAudit"
+#define RH_GP_PROMOINFO_PREFERENTIALAUDITNAME                                    @"preferentialAuditName"
+#define RH_GP_PROMOINFO_PREFERENTIALVALUE                                   @"preferentialValue"
+#define RH_GP_PROMOINFO_USERID                                              @"userId"
 
 #pragma mark - V3 首页api 分类模型
 #define RH_GP_LotteryCategory_APITYPE                                     @"apiType"
@@ -378,9 +389,7 @@
 //请求参数
 //返回参数
 
-/**
-    资金详情
- */
+/**资金详情*/
 #pragma mark -V3  资金记录详情
 //api路径
 #define RH_API_NAME_DEPOSITLISTDETAILS               @"mineOrigin/getFundRecordDetails.html"
@@ -443,6 +452,14 @@
 #define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
 //请求参数 -无
 
+#pragma mark - V3 优惠记录列表
+#define RH_API_NAME_PROMOLIST             @"mineOrigin/getMyPromo.html"
+//请求参数
+#define RH_SP_PROMOLIST_PAGESIZE                     @"paging.pageSize"
+#define RH_SP_PROMOLIST_PAGENUMBER                     @"paging.pageNumber"
+//返回参数
+#define RH_GP_PROMOLIST_LIST        @"list"
+#define RH_GP_PROMOLIST_TOTALCOUNT        @"totalCount"
 
 #pragma mark - V3 系统公告
 #define RH_API_NAME_SYSTEMNOTICE            @"mineOrigin/getSysNotice.html"
