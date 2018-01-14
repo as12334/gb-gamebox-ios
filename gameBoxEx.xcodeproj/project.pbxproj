@@ -411,7 +411,6 @@
 		B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PromoListController.m */; };
 		B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */; };
 		B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */; };
-		B87A6B252007136800C9788F /* RH_PreferentialList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B242007136800C9788F /* RH_PreferentialList.plist */; };
 		B87A6B292008907F00C9788F /* RH_BankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B282008907F00C9788F /* RH_BankCardController.m */; };
 		B87A6B2B200892B600C9788F /* RH_BankCard.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B2A200892B600C9788F /* RH_BankCard.plist */; };
 		B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */; };
@@ -1203,7 +1202,6 @@
 		B87A6B1F200646C800C9788F /* RH_PreferentialListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PreferentialListCell.h; sourceTree = "<group>"; };
 		B87A6B20200646C800C9788F /* RH_PreferentialListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PreferentialListCell.m; sourceTree = "<group>"; };
 		B87A6B21200646C800C9788F /* RH_PreferentialListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_PreferentialListCell.xib; sourceTree = "<group>"; };
-		B87A6B242007136800C9788F /* RH_PreferentialList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_PreferentialList.plist; sourceTree = "<group>"; };
 		B87A6B272008907F00C9788F /* RH_BankCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardController.h; sourceTree = "<group>"; };
 		B87A6B282008907F00C9788F /* RH_BankCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardController.m; sourceTree = "<group>"; };
 		B87A6B2A200892B600C9788F /* RH_BankCard.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_BankCard.plist; sourceTree = "<group>"; };
@@ -2429,9 +2427,8 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				B87A6B1A2006191600C9788F /* promoList */,
 				B87A6B2620088FF900C9788F /* bankCard */,
-				B87A6B1A2006191600C9788F /* preferentialList */,
+				B87A6B1A2006191600C9788F /* promoList */,
 				F6A2ACD92004DD600077CB92 /* mineDiscountRecord */,
 				F6E401FC2001BDC900C52B97 /* gesturelLock */,
 				A0B5A5651FFF6C1300E2CDD8 /* gameList */,
@@ -3654,7 +3651,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_bldz=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3678,7 +3675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

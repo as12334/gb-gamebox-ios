@@ -670,6 +670,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3PromoList
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark - 一键回收
+-(void)startV3OneStepRecovery
+{
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [self _startServiceWithAPIName:appDelegate.domain
+                        pathFormat:RH_API_NAME_ONESTEPRECOVERY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ONESTEPRECOVERY
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -1161,6 +1177,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3SYSTEMNOTICEDETAIL:
             {
                 resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3ONESTEPRECOVERY:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
             }
                 break;
 

@@ -440,13 +440,9 @@
 #define RH_SP_BANKDEPOSIT  @"bankDeposit"
 
 //返回参数
-#define RH_GP_ADDBANKCARD_CODE  @"code"
-#define RH_GP_ADDBANKCARD_DATA  @"data"
 #define RH_GP_ADDBANKCARD_VALUE @"value"
 #define RH_GP_ADDBANKCARD_TEXT   @"text"
-#define RH_GP_ADDBANKCARD_ERROR  @"error"
-#define RH_GP_ADDBANKCARD_MSG   @"msg"
-#define RH_GP_ADDBANKCARD_VERSION   @"version"
+
 
 #pragma mark - V3 获取安全密码验证码
 #define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
@@ -520,6 +516,10 @@
 #define RH_GP_GAMENOTICEDETAIL_PAGETOTAL   @"pageTotal"
 #define RH_GP_GAMENOTICEDETAIL_MINDATE     @"minDate"
 #define RH_GP_GAMENOTICEDETAIL_MAXDATE     @"maxDate"
+
+#pragma mark - V3 一键回收
+#define RH_API_NAME_ONESTEPRECOVERY          @"mineOrigin/recovery.html"
+//请求参数  无
 
 
 #endif /* RH_API_h */
