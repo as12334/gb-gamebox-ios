@@ -12,7 +12,7 @@
 @property (nonatomic , strong , readonly) NSString              * mId;
 @property (nonatomic , strong , readonly) NSString              * mTitle;
 @property (nonatomic , strong , readonly) NSString              * mGameName;
-@property (nonatomic , assign , readonly) NSInteger              mPublishTime;
+@property (nonatomic , strong , readonly) NSDate                *mPublishTime;
 @property (nonatomic , strong , readonly) NSString              * mContext;
 @property (nonatomic , strong , readonly) NSString              * mLink;
 
@@ -28,7 +28,7 @@
 @property (nonatomic , assign , readonly) NSInteger              mMinDate;
 @property (nonatomic , assign , readonly) NSInteger              mMaxDate;
 @property (nonatomic , strong , readonly) NSArray<ListModel *>   * mListModel;
-@property (nonatomic , strong , readonly) NSArray<ApiSelectModel *>     * mApiSelectModel;
+@property (nonatomic , strong , readonly) NSArray<ApiSelectModel *>    * mApiSelectModel;
 @property (nonatomic , assign , readonly) NSInteger              mPageTotal;
 
 @end

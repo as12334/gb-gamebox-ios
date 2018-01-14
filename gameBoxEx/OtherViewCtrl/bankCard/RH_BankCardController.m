@@ -208,7 +208,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初如化银行卡信息" detailText:@"请稍等"] ;
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初始化银行卡信息" detailText:@"请稍等"] ;
     [self.serviceRequest startV3UserInfo] ;
 }
 

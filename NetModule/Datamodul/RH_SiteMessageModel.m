@@ -17,7 +17,7 @@
     {
         _mId = [info integerValueForKey:RH_GP_SITEMESSAGE_ID];
         _mContent = [info stringValueForKey:RH_GP_SITEMESSAGE_CONTENT];
-        _mPublishTime = [info stringValueForKey:RH_GP_SITEMESSAGE_PUBLISHTIME];
+        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SITEMESSAGE_PUBLISHTIME]/1000.0] ;
         _mLink = [info stringValueForKey:RH_GP_SITEMESSAGE_LINK];
         _mTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_TITLE];
         _mRead = [info boolValueForKey:RH_GP_SITEMESSAGE_READ];

@@ -192,7 +192,7 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3SYSTEMNOTICE){
+    if (type == ServiceRequestTypeV3SystemNotice){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
@@ -202,7 +202,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3SYSTEMNOTICE){
+    if (type == ServiceRequestTypeV3SystemNotice){
         [self loadDataFailWithError:error] ;
     }
 }
