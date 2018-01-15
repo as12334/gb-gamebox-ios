@@ -314,6 +314,14 @@
 		A0522A7D200B6FD600A5A6E9 /* RH_BitCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */; };
 		A0522A7F200B768700A5A6E9 /* BankCardInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A7E200B768700A5A6E9 /* BankCardInit.plist */; };
 		A0522A82200C5B8100A5A6E9 /* RH_BankInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A80200C5B8100A5A6E9 /* RH_BankInfoModel.m */; };
+		A0522A85200C84C400A5A6E9 /* RH_PromoViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A84200C84C400A5A6E9 /* RH_PromoViewControllerEx.m */; };
+		A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A86200C873D00A5A6E9 /* RH_PromoContentPageCell.m */; };
+		A0522A8D200C89A000A5A6E9 /* RH_PromoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A8B200C89A000A5A6E9 /* RH_PromoTableCell.m */; };
+		A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A8C200C89A000A5A6E9 /* RH_PromoTableCell.xib */; };
+		A0522A92200C922E00A5A6E9 /* RH_PromoTypeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A8F200C922D00A5A6E9 /* RH_PromoTypeHeaderView.m */; };
+		A0522A93200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A91200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib */; };
+		A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A94200C9F1100A5A6E9 /* RH_PromoCategoryCell.m */; };
+		A0522A98200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0522A96200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
@@ -1063,6 +1071,19 @@
 		A0522A7E200B768700A5A6E9 /* BankCardInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BankCardInit.plist; sourceTree = "<group>"; };
 		A0522A80200C5B8100A5A6E9 /* RH_BankInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BankInfoModel.m; sourceTree = "<group>"; };
 		A0522A81200C5B8100A5A6E9 /* RH_BankInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BankInfoModel.h; sourceTree = "<group>"; };
+		A0522A83200C84C400A5A6E9 /* RH_PromoViewControllerEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PromoViewControllerEx.h; sourceTree = "<group>"; };
+		A0522A84200C84C400A5A6E9 /* RH_PromoViewControllerEx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PromoViewControllerEx.m; sourceTree = "<group>"; };
+		A0522A86200C873D00A5A6E9 /* RH_PromoContentPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoContentPageCell.m; sourceTree = "<group>"; };
+		A0522A87200C873D00A5A6E9 /* RH_PromoContentPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoContentPageCell.h; sourceTree = "<group>"; };
+		A0522A8A200C89A000A5A6E9 /* RH_PromoTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PromoTableCell.h; sourceTree = "<group>"; };
+		A0522A8B200C89A000A5A6E9 /* RH_PromoTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PromoTableCell.m; sourceTree = "<group>"; };
+		A0522A8C200C89A000A5A6E9 /* RH_PromoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_PromoTableCell.xib; sourceTree = "<group>"; };
+		A0522A8F200C922D00A5A6E9 /* RH_PromoTypeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RH_PromoTypeHeaderView.m; path = gameBoxEx/TabBarViewCtrl/promoPage/RH_PromoTypeHeaderView.m; sourceTree = SOURCE_ROOT; };
+		A0522A90200C922E00A5A6E9 /* RH_PromoTypeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RH_PromoTypeHeaderView.h; path = gameBoxEx/TabBarViewCtrl/promoPage/RH_PromoTypeHeaderView.h; sourceTree = SOURCE_ROOT; };
+		A0522A91200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RH_PromoTypeHeaderView.xib; path = gameBoxEx/TabBarViewCtrl/promoPage/RH_PromoTypeHeaderView.xib; sourceTree = SOURCE_ROOT; };
+		A0522A94200C9F1100A5A6E9 /* RH_PromoCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoCategoryCell.m; sourceTree = "<group>"; };
+		A0522A95200C9F1100A5A6E9 /* RH_PromoCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoCategoryCell.h; sourceTree = "<group>"; };
+		A0522A96200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_PromoCategoryCell.xib; sourceTree = "<group>"; };
 		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
@@ -2556,6 +2577,22 @@
 			path = ModifySafetyPassword;
 			sourceTree = "<group>";
 		};
+		A0522A89200C892100A5A6E9 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				A0522A95200C9F1100A5A6E9 /* RH_PromoCategoryCell.h */,
+				A0522A94200C9F1100A5A6E9 /* RH_PromoCategoryCell.m */,
+				A0522A96200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib */,
+				A0522A90200C922E00A5A6E9 /* RH_PromoTypeHeaderView.h */,
+				A0522A8F200C922D00A5A6E9 /* RH_PromoTypeHeaderView.m */,
+				A0522A91200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib */,
+				A0522A8A200C89A000A5A6E9 /* RH_PromoTableCell.h */,
+				A0522A8B200C89A000A5A6E9 /* RH_PromoTableCell.m */,
+				A0522A8C200C89A000A5A6E9 /* RH_PromoTableCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		A05747D91FF886810068D0E4 /* userInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2738,8 +2775,13 @@
 		A0B609C01FBB096B00A44B37 /* promoPage */ = {
 			isa = PBXGroup;
 			children = (
+				A0522A89200C892100A5A6E9 /* cells */,
 				A0B609C11FBB096B00A44B37 /* RH_PromoViewController.h */,
 				A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */,
+				A0522A87200C873D00A5A6E9 /* RH_PromoContentPageCell.h */,
+				A0522A86200C873D00A5A6E9 /* RH_PromoContentPageCell.m */,
+				A0522A83200C84C400A5A6E9 /* RH_PromoViewControllerEx.h */,
+				A0522A84200C84C400A5A6E9 /* RH_PromoViewControllerEx.m */,
 			);
 			path = promoPage;
 			sourceTree = "<group>";
@@ -3240,6 +3282,7 @@
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
 				B87A6B3C200AFBDE00C9788F /* RH_BitCoin.plist in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
+				A0522A93200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
@@ -3291,8 +3334,10 @@
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
 				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
+				A0522A98200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib in Resources */,
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				F6A2ADCF200B46E50077CB92 /* RH_GameNoticeDetailCell.xib in Resources */,
+				A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
@@ -3406,6 +3451,7 @@
 				A001B3F21F8EFF4200309EA4 /* RH_TransferViewController.m in Sources */,
 				A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
+				A0522A85200C84C400A5A6E9 /* RH_PromoViewControllerEx.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
 				A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */,
 				F6A2ACC020044C5A0077CB92 /* RH_MPApplyDiscountController.m in Sources */,
@@ -3548,6 +3594,7 @@
 				A01EE2671F8878B30085717E /* SplashViewController.m in Sources */,
 				A0109FDD1F8788FF004E6EF4 /* DNSendButton.m in Sources */,
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
+				A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */,
 				B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */,
 				A010A0941F879BC9004E6EF4 /* RH_ImagePickerViewController.m in Sources */,
 				F6A2AD74200850340077CB92 /* RH_MPSiteMessageHeaderView.m in Sources */,
@@ -3702,14 +3749,17 @@
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,
 				A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */,
 				F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */,
+				A0522A8D200C89A000A5A6E9 /* RH_PromoTableCell.m in Sources */,
 				189C13AB1FF9E99F00B14298 /* RH_MePageViewController.m in Sources */,
 				A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */,
 				A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */,
 				B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */,
+				A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,
+				A0522A92200C922E00A5A6E9 /* RH_PromoTypeHeaderView.m in Sources */,
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
 				A0AE8AB31FFCD57300836C1B /* RH_MineMoreLanguageCell.m in Sources */,
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
