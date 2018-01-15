@@ -1146,6 +1146,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
                     [userInfoManager setUserBalanceInfo:userGroupModel.mUserBalanceGroupInfo] ;
                     [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
+                    [userInfoManager setBankList:userGroupModel.mBankList] ;
                 }
             }
                 break ;

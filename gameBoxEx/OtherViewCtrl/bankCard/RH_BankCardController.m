@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 };
 
 
-@interface RH_BankCardController ()<CLTableViewManagementDelegate,BankPickerSelectViewDelegate>
+@interface RH_BankCardController ()<CLTableViewManagementDelegate,BankPickerSelectViewDelegate, RH_ServiceRequestDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic,strong, readonly)  RH_ModifyPasswordCell *realNameCell ;
 @property (nonatomic,strong, readonly)  RH_BankCardCell *bankSelectedCell ;
@@ -63,6 +63,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     [self setNeedUpdateView] ;
 }
 
+
 - (void)setupInfo {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
@@ -72,11 +73,12 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 -(void)updateView
 {
+    NSLog(@"%s", __func__);
     if (MineSettingInfo==nil){
         _bankCardStatus = BankCardStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"BankCardInit"] ;
         [self loadingIndicateViewDidTap:nil] ;
-        return ;
+        
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         
@@ -84,14 +86,23 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         {
             _bankCardStatus = BankCardStatus_Exist ;
             [self.tableViewManagement reloadDataWithPlistName:@"BankCardExist"] ;
-            return ;
+//            [self.addButton setTitle:@"编辑" forState:UIControlStateNormal];
+            
         }else{
             self.contentTableView.tableFooterView = self.footerView ;
             _bankCardStatus = BankCardStatus_None ;
             [self.tableViewManagement reloadDataWithPlistName:@"BankCardNone"] ;
-            return ;
+            [self.addButton setTitle:@"添加" forState:UIControlStateNormal];
+            
         }
     }
+    
+    for (RH_ModifyPasswordCell *cell in self.contentTableView.visibleCells) {
+        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]) {
+            cell.textField.secureTextEntry = NO;
+        }
+    }
+    
 }
 
 #pragma mark -
@@ -127,7 +138,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     if (self.bankPickerSelectView.superview){
         [self.bankPickerSelectView removeFromSuperview] ;
     }
-    
+    self.bankPickerSelectView.backgroundColor = colorWithRGB(153, 153, 153);
     self.bankPickerSelectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
     [self.view addSubview:self.bankPickerSelectView] ;
     [UIView animateWithDuration:0.5f animations:^{
@@ -150,7 +161,9 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 -(void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView*)bankPickerSelectView WithSelectedBank:(id)bankModel
 {
-    
+    RH_BankCardCell *cell = (RH_BankCardCell *)[self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    cell.detailTextLabel.text = ((RH_BankInfoModel *)bankModel).mBankName;
+    [self hideBankPickerSelectView];
 }
 
 -(void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView*)bankPickerSelectView
@@ -161,22 +174,22 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 #pragma mark -
 -(RH_ModifyPasswordCell *)realNameCell
 {
-    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:0 inSection:0]]):nil ;
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]):nil ;
 }
 
 -(RH_BankCardCell *)bankSelectedCell
 {
-    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_BankCardCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:1 inSection:0]]):nil ;
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_BankCardCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]]):nil ;
 }
 
 -(RH_ModifyPasswordCell *)bankCardNumCell
 {
-    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:2 inSection:0]]):nil ;
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]]):nil ;
 }
 
 -(RH_ModifyPasswordCell *)bankLocationCell
 {
-    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:3 inSection:0]]):nil ;
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]]):nil ;
 }
 
 #pragma mark - footerView
@@ -207,99 +220,22 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 - (void)addButtonHandle
 {
-//    if (_modifySafetyStatus == ModifySafetyStatus_SetRealName){
-//        NSString *realName = [self.userNameCell.textField.text copy] ;
-//        if (realName.length<1){
-//            showMessage(self.view, nil, @"请输入真实姓名");
-//            [self.userNameCell.textField becomeFirstResponder] ;
-//        }
-//
-//        [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
-//        [self.serviceRequest startV3SetRealName:realName];
-//
-//        return ;
-//    }else if (_modifySafetyStatus == ModifySafetyStatus_SetPermissionPassword){
-//        NSString *realName = [self.userNameCell.textField.text copy] ;
-//        NSString *newPassword = [self.userPermissionCell.textField.text copy] ;
-//        NSString *confirmPassword = [self.userNewPermissionCell.textField.text copy] ;
-//        if (realName.length<1){
-//            showMessage(self.view, nil, @"请输入真实姓名");
-//            [self.userNameCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (newPassword.length<1){
-//            showMessage(self.view, nil, @"请输入新密码");
-//            [self.userPermissionCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (confirmPassword.length<1){
-//            showMessage(self.view, nil, @"请重新输入新密码");
-//            [self.userNewPermissionCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (![newPassword isEqualToString:confirmPassword]) {
-//            showMessage(self.view, nil, @"两次输入密码不一样！");
-//            [self.userPermissionCell.textField becomeFirstResponder] ;
-//            return;
-//        }
-//
-//        if (self.userPasswordCodeCell){
-//            if (self.userPasswordCodeCell.passwordCode.length<1){
-//                showMessage(self.view, nil, @"请输入验证码");
-//                [self.userPasswordCodeCell becomeFirstResponder] ;
-//                return;
-//            }
-//        }
-//
-//        [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
-//        [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
-//                                                    originPassword:nil
-//                                                       newPassword:newPassword
-//                                                   confirmPassword:confirmPassword
-//                                                        verifyCode:self.userPasswordCodeCell.passwordCode] ;
-//
-//        return ;
-//    }else{
-//        NSString *realName = [self.userNameCell.textField.text copy] ;
-//        NSString *oldPassword = [self.userPermissionCell.textField.text copy] ;
-//        NSString *newPassword = [self.userNewPermissionCell.textField.text copy] ;
-//        NSString *confirmPassword = [self.userConfirmPermissionCell.textField.text copy] ;
-//        if (realName.length<1){
-//            showMessage(self.view, nil, @"请输入真实姓名");
-//            [self.userNameCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (oldPassword.length<1){
-//            showMessage(self.view, nil, @"请输入旧密码");
-//            [self.userPermissionCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (newPassword.length<1){
-//            showMessage(self.view, nil, @"请输入新密码");
-//            [self.userNewPermissionCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (confirmPassword.length<1){
-//            showMessage(self.view, nil, @"请重新输入新密码");
-//            [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
-//        }
-//
-//        if (![newPassword isEqualToString:confirmPassword]) {
-//            showMessage(self.view, nil, @"两次输入密码不一样！");
-//            [self.userNewPermissionCell.textField becomeFirstResponder] ;
-//            return;
-//        }
-//
-//        [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
-//        [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
-//                                                    originPassword:oldPassword
-//                                                       newPassword:newPassword
-//                                                   confirmPassword:confirmPassword
-//                                                        verifyCode:nil] ;
-//
-//        return ;
-//    }
+    NSLog(@"%s", __func__);
     
+    [self.tableViewManagement reloadDataWithPlistName:@"BankCardNone"];
+    if (self.realNameCell.textField.text.length == 0 || self.bankLocationCell.textField.text.length == 0 || self.bankCardNumCell.textField.text.length == 0 || self.bankSelectedCell.detailTextLabel.text.length == 0) {
+        return ;
+    }
+    
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在添加"];
+    [self.serviceRequest startV3addBankCarkbankcardMasterName:self.realNameCell.textField.text bankName:self.bankSelectedCell.detailTextLabel.text bankcardNumber:self.bankCardNumCell.textField.text bankDeposit:self.bankLocationCell.textField.text];
+    self.serviceRequest.delegate = self;
+    
+    for (RH_ModifyPasswordCell *cell in self.contentTableView.visibleCells) {
+        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]) {
+            cell.textField.secureTextEntry = NO;
+        }
+    }
 }
 
 
@@ -319,15 +255,18 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 #pragma mark - service request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     if (type == ServiceRequestTypeV3UserInfo){
         [self setNeedUpdateView] ;
     }
+    NSLog(@"%@", data);
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3UserInfo){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
+    NSLog(@"%@", error);
 }
 
 #pragma mark-
