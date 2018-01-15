@@ -9,6 +9,9 @@
 #import "RH_BankCardController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
+#import "RH_ModifyPasswordCell.h"
+#import "RH_BankCardCell.h"
+#import "RH_BankPickerSelectView.h"
 
 typedef NS_ENUM(NSInteger,BankCardStatus ) {
     BankCardStatus_Init                        ,
@@ -17,9 +20,16 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 };
 
 
-@interface RH_BankCardController ()<CLTableViewManagementDelegate>
+@interface RH_BankCardController ()<CLTableViewManagementDelegate,BankPickerSelectViewDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
+@property (nonatomic,strong, readonly)  RH_ModifyPasswordCell *realNameCell ;
+@property (nonatomic,strong, readonly)  RH_BankCardCell *bankSelectedCell ;
+@property (nonatomic,strong, readonly)  RH_ModifyPasswordCell *bankCardNumCell ;
+@property (nonatomic,strong, readonly)  RH_ModifyPasswordCell *bankLocationCell ;
 
+@property (nonatomic,strong, readonly)  RH_BankPickerSelectView *bankPickerSelectView ;
+
+////---
 @property (nonatomic, strong,readonly) UIView *footerView ;
 @property (nonatomic, strong,readonly) UIButton *addButton ;
 @end
@@ -27,10 +37,18 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 @implementation RH_BankCardController
 {
     BankCardStatus _bankCardStatus ;
+    
+    //添加银行卡所需信息
+    NSString *_addBankCardRealName ;
+    NSString *_addBankCardBankName ;
+    NSString *_addBankCardBankCardNumber ;
+    NSString *_addBankCardMasterBankName ;
+    
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView ;
 @synthesize addButton = _addButton ;
+@synthesize bankPickerSelectView = _bankPickerSelectView ;
 
 - (BOOL)isSubViewController {
     return YES;
@@ -41,6 +59,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     // Do any additional setup after loading the view.
     self.title = @"我的银行卡";
     [self setupInfo];
+    self.needObserverTapGesture = YES ;
     [self setNeedUpdateView] ;
 }
 
@@ -72,6 +91,91 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
             return ;
         }
     }
+}
+
+#pragma mark -
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
+    return self.realNameCell.isEditing || self.bankCardNumCell.isEditing || self.bankLocationCell.isEditing ||[_bankPickerSelectView superview] ;
+}
+
+- (void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    [self.realNameCell endEditing:YES] ;
+    [self.bankCardNumCell endEditing:YES] ;
+    [self.bankLocationCell endEditing:YES] ;
+    
+    if (_bankPickerSelectView.superview){
+        [self hideBankPickerSelectView] ;
+    }
+}
+
+#pragma mark -
+-(RH_BankPickerSelectView *)bankPickerSelectView
+{
+    if (!_bankPickerSelectView){
+        _bankPickerSelectView = [RH_BankPickerSelectView createInstance] ;
+        _bankPickerSelectView.delegate = self ;
+    }
+    
+    return _bankPickerSelectView ;
+}
+
+-(void)showBankPickerSelectView
+{
+    if (self.bankPickerSelectView.superview){
+        [self.bankPickerSelectView removeFromSuperview] ;
+    }
+    
+    self.bankPickerSelectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+    [self.view addSubview:self.bankPickerSelectView] ;
+    [UIView animateWithDuration:0.5f animations:^{
+        self.bankPickerSelectView.frame = CGRectMake(0, MainScreenH - BankPickerSelectViewHeight , MainScreenW, BankPickerSelectViewHeight) ;
+    } completion:^(BOOL finished) {
+    }] ;
+}
+
+-(void)hideBankPickerSelectView
+{
+    if (self.bankPickerSelectView.superview){
+        [self.view addSubview:self.bankPickerSelectView] ;
+        [UIView animateWithDuration:0.5f animations:^{
+            self.bankPickerSelectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+        } completion:^(BOOL finished) {
+            [self.bankPickerSelectView removeFromSuperview] ;
+        }] ;
+    }
+}
+
+-(void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView*)bankPickerSelectView WithSelectedBank:(id)bankModel
+{
+    
+}
+
+-(void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView*)bankPickerSelectView
+{
+    
+}
+
+#pragma mark -
+-(RH_ModifyPasswordCell *)realNameCell
+{
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:0 inSection:0]]):nil ;
+}
+
+-(RH_BankCardCell *)bankSelectedCell
+{
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_BankCardCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:1 inSection:0]]):nil ;
+}
+
+-(RH_ModifyPasswordCell *)bankCardNumCell
+{
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:2 inSection:0]]):nil ;
+}
+
+-(RH_ModifyPasswordCell *)bankLocationCell
+{
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellContext:[NSIndexPath indexPathForItem:3 inSection:0]]):nil ;
 }
 
 #pragma mark - footerView
@@ -246,6 +350,16 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         }else if (indexPath.item == 3){ //开户行
             return MineSettingInfo.mBankCard.mBankCardMasterName ;
         }
+    }else if (_bankCardStatus == BankCardStatus_None){
+        if (indexPath.item == 0){ //真实姓名
+            return _addBankCardRealName?:@"" ;
+        }else if (indexPath.item == 1){ //选择银行
+            return _addBankCardBankName?:@"请选择银行" ;
+        }else if (indexPath.item == 2){ //卡号
+            return _addBankCardBankCardNumber?:@"" ;
+        }else if (indexPath.item == 3){ //开户行
+            return _addBankCardMasterBankName?:@"" ;
+        }
     }
     
     return nil ;
@@ -253,6 +367,11 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_bankCardStatus == BankCardStatus_None){
+       if (indexPath.item == 1){ //选择银行
+           [self showBankPickerSelectView] ;
+        }
+    }
     return YES;
 }
 

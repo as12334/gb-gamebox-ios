@@ -21,6 +21,7 @@
         _mLinkList = [RH_LinkInfoModel dataArrayWithInfoArray:[info arrayValueForKey:@"link"]] ;
         _mUserSetting = [[RH_MineInfoModel alloc] initWithInfoDic:[info dictionaryValueForKey:@"user"]] ;
         _mUserBalanceGroupInfo = [[RH_UserBalanceGroupModel alloc] initWithInfoDic:[info dictionaryValueForKey:@"userApi"]] ;
+        _mBankList = [RH_BankInfoModel dataArrayWithInfoArray:[info arrayValueForKey:@"bankList"]] ;
     }
     
     return self ;

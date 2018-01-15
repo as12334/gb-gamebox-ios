@@ -22,6 +22,9 @@
         self.separatorLineWidth = 1;
         self.separatorLineColor = colorWithRGB(234, 234, 234);
         self.separatorInset = UIEdgeInsetsMake(0, 20, 0, 0);
+        
+        self.selectionOption = CLSelectionOptionHighlighted ;
+        self.selectionColor = RH_Cell_DefaultHolderColor ;
     }
     
     return self ;

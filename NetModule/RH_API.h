@@ -203,6 +203,10 @@
 #define RH_GP_LINK_LINK                             @"link"
 #define RH_GP_LINK_NAME                             @"name"
 
+#pragma mark - V3 银行信息模型
+#define RH_GP_BANK_NAME                             @"text"
+#define RH_GP_BANK_CODE                             @"value"
+
 #pragma mark - V3 MINE 信息模型
 #define RH_GP_MINEINFO_AVATARURL                               @"avatarUrl"
 #define RH_GP_MINEINFO_CURRENCY                                @"currency"
@@ -299,6 +303,7 @@
 #define RH_GP_BANKCARDINFO_BANKNAME                                 @"bankName"
 #define RH_GP_BANKCARDINFO_BANKCARDMASTERNAME                       @"bankcardMasterName"
 #define RH_GP_BANKCARDINFO_BANKCARDNUMBER                           @"bankcardNumber"
+#define RH_GP_BANKCARDINFO_BANKDEPOSIT                              @"bankDeposit"
 
 #pragma mark - V3 bit币 信息模型
 #define RH_GP_BITCODEINFO_BTCNUM                                   @"btcNum"

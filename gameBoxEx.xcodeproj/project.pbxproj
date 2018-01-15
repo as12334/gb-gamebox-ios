@@ -313,6 +313,7 @@
 		A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A79200B42E500A5A6E9 /* MineSafetyCenterBoth.plist */; };
 		A0522A7D200B6FD600A5A6E9 /* RH_BitCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */; };
 		A0522A7F200B768700A5A6E9 /* BankCardInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0522A7E200B768700A5A6E9 /* BankCardInit.plist */; };
+		A0522A82200C5B8100A5A6E9 /* RH_BankInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0522A80200C5B8100A5A6E9 /* RH_BankInfoModel.m */; };
 		A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */; };
 		A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */; };
 		A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747B41FF4D6860068D0E4 /* RH_BannelModel.m */; };
@@ -1060,6 +1061,8 @@
 		A0522A7B200B6FD600A5A6E9 /* RH_BitCodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BitCodeModel.h; sourceTree = "<group>"; };
 		A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BitCodeModel.m; sourceTree = "<group>"; };
 		A0522A7E200B768700A5A6E9 /* BankCardInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BankCardInit.plist; sourceTree = "<group>"; };
+		A0522A80200C5B8100A5A6E9 /* RH_BankInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BankInfoModel.m; sourceTree = "<group>"; };
+		A0522A81200C5B8100A5A6E9 /* RH_BankInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BankInfoModel.h; sourceTree = "<group>"; };
 		A05747A21FF27F140068D0E4 /* RH_LotteryAPIInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryAPIInfoModel.m; sourceTree = "<group>"; };
 		A05747A31FF27F150068D0E4 /* RH_LotteryAPIInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryAPIInfoModel.h; sourceTree = "<group>"; };
 		A05747A51FF2879E0068D0E4 /* RH_LotteryInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryInfoModel.m; sourceTree = "<group>"; };
@@ -2146,6 +2149,8 @@
 				A039BD9C200321B30080D56F /* RH_BettingInfoModel.m */,
 				A0522A612007818600A5A6E9 /* RH_BankCardModel.h */,
 				A0522A602007818500A5A6E9 /* RH_BankCardModel.m */,
+				A0522A81200C5B8100A5A6E9 /* RH_BankInfoModel.h */,
+				A0522A80200C5B8100A5A6E9 /* RH_BankInfoModel.m */,
 				A0522A7B200B6FD600A5A6E9 /* RH_BitCodeModel.h */,
 				A0522A7C200B6FD600A5A6E9 /* RH_BitCodeModel.m */,
 				A039BDA72005BAD40080D56F /* RH_BettingDetailModel.h */,
@@ -3632,6 +3637,7 @@
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */,
 				A0109F791F8787E4004E6EF4 /* CLTextField.m in Sources */,
+				A0522A82200C5B8100A5A6E9 /* RH_BankInfoModel.m in Sources */,
 				797F678F2008A25E009E3FAB /* RH_GameNoticeModel.m in Sources */,
 				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,

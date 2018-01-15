@@ -26,6 +26,7 @@
 @synthesize userBalanceGroupInfo = _userBalanceGroupInfo ;
 @synthesize userSafetyInfo = _userSafetyInfo ;
 @synthesize mineSettingInfo = _mineSettingInfo ;
+@synthesize bankList = _bankList ;
 
 +(instancetype)shareUserManager
 {
@@ -70,6 +71,16 @@
 -(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo
 {
     _mineSettingInfo = mineSettingInfo ;
+}
+
+-(NSArray<RH_BankInfoModel *> *)bankList
+{
+    return _bankList ;
+}
+
+-(void)setBankList:(NSArray<RH_BankInfoModel *> *)bankList
+{
+    _bankList = bankList ;
 }
 
 -(BOOL)hasLogin

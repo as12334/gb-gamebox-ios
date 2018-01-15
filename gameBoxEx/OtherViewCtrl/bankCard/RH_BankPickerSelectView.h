@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#define BankPickerSelectViewHeight              200
+
+@class RH_BankPickerSelectView ;
+@protocol BankPickerSelectViewDelegate
+@optional
+-(void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView*)bankPickerSelectView WithSelectedBank:(id)bankModel;
+-(void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView*)bankPickerSelectView ;
+
+@end
 
 @interface RH_BankPickerSelectView : UIView
+@property (nonatomic,weak) id<BankPickerSelectViewDelegate> delegate ;
 
 @end
