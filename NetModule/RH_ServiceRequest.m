@@ -1051,7 +1051,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(YES) ;
             
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-//                [self startV3UserInfo] ;
+                [self startV3UserInfo] ;
             }
         }else{
             *reslutData = @(NO) ;
@@ -1120,7 +1120,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
                     [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
-//                    [self startV3UserInfo] ;
+                    [self startV3UserInfo] ;
                 }
             }
                 break ;
