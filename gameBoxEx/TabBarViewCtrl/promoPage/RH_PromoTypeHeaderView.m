@@ -12,12 +12,10 @@
 
 @interface RH_PromoTypeHeaderView()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong,readonly) UICollectionView *collectionTypeView ;
+@property (nonatomic,strong) NSArray *arrayTypeList ;
 @end
 
 @implementation RH_PromoTypeHeaderView
-{
-    NSArray *_typeHeaderList ;
-}
 @synthesize collectionTypeView = _collectionTypeView ;
 @synthesize selectedType = _selectedType ;
 
@@ -27,9 +25,15 @@
     self.backgroundColor = [UIColor whiteColor] ;
     [self addSubview:self.collectionTypeView] ;
     [self.collectionTypeView reloadData] ;
-    _typeHeaderList = @[@"全部",@"测试二",@"测试三",@"测试四",@"测试五",@"测试六",@"测试七",@"测试八",@"测试九",@"测试十",@"测试十一",@"测试十二",@"测试十三"];
     _selectedType = 0 ;
      [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedType inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+}
+
+-(void)updateView:(NSArray*)typeList
+{
+    self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
+    [self.collectionTypeView reloadData] ;
+    NSLog(@"...........height:%f",self.collectionTypeView.contentSize.height) ;
 }
 
 #pragma mark -
@@ -55,7 +59,7 @@
 #pragma mark-
 -(NSInteger)allTypes
 {
-    return _typeHeaderList.count ;
+    return self.arrayTypeList.count ;
 }
 
 -(NSInteger)selectedType
@@ -84,20 +88,20 @@
 //每个section的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return  _typeHeaderList.count ;
+    return  self.arrayTypeList.count ;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_PromoCategoryCell *typeCell = [self.collectionTypeView dequeueReusableCellWithReuseIdentifier:[RH_PromoCategoryCell defaultReuseIdentifier] forIndexPath:indexPath];
-    [typeCell updateViewWithInfo:nil context:_typeHeaderList[indexPath.item]] ;
+    [typeCell updateViewWithInfo:nil context:self.arrayTypeList[indexPath.item]] ;
     return typeCell;
 }
 
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RH_PromoCategoryCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:_typeHeaderList[indexPath.item]] ;
+    return [RH_PromoCategoryCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:self.arrayTypeList[indexPath.item]] ;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

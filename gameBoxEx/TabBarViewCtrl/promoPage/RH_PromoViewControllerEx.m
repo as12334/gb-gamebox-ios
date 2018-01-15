@@ -10,6 +10,7 @@
 #import "RH_PromoTypeHeaderView.h"
 #import "RH_PromoContentPageCell.h"
 #import "coreLib.h"
+#import "RH_DiscountActivityTypeModel.h"
 
 @interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource>
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
@@ -25,9 +26,12 @@
     // Do any additional setup after loading the view.
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
     [self setNeedUpdateView] ;
-    [self setupInfo] ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+    
+    //初始化 优惠类别信息
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等..."] ;
+    [self.serviceRequest startV3LoadDiscountActivityType] ;
 }
 
 -(BOOL)hasTopView{
@@ -36,7 +40,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return self.typeTopView.containSize.height ;
+    return TopViewHeight ;//self.typeTopView.containSize.height ;
 }
 
 -(void)setupInfo
@@ -57,6 +61,20 @@
         self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
     }else{
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
+    }
+}
+
+-(void)adjuestTopViewHeight
+{
+    CGRect oldFrame = self.topView.frame ;
+    CGRect newFrame = CGRectMake(0,oldFrame.origin.y,oldFrame.size.width,[self topViewHeight]);
+    
+    if (CGRectEqualToRect(oldFrame, newFrame)){
+        [UIView animateWithDuration:0.1f animations:^{
+            self.topView.frame = newFrame ;
+        } completion:^(BOOL finished) {
+            [self setupInfo] ;
+        }] ;
     }
 }
 
@@ -118,5 +136,23 @@
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
 }
 
+
+#pragma mark-
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeV3PromoActivityType){
+        NSArray *typeList = ConvertToClassPointer(NSArray , data) ;
+        [self.typeTopView updateView:typeList] ;
+        [self.contentLoadingIndicateView hiddenView] ;
+        [self adjuestTopViewHeight] ;
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeV3PromoActivityType){
+        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
+}
 
 @end

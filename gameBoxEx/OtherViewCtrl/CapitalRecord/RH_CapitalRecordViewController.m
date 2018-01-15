@@ -52,7 +52,8 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
- 
+//    [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:1 pageSize:1];
+     [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:@"012e9ffd-07f8-429b-b733-404a087ac8c5"];
 }
 
 
@@ -194,9 +195,6 @@
 -(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
 {
     NSLog(@"搜索");
-    [self.serviceRequest startV3LoadGameNoticeStartTime:capitalRecordHeaderView.startDate endTime:capitalRecordHeaderView.endDate pageNumber:1 pageSize:1 apiId:nil];
-    
-
 }
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -258,6 +256,10 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
+    if (type == ServiceRequestTypeV3Tabbar2ActivityTypeList) {
+        
+    }
+   
 
 
 }

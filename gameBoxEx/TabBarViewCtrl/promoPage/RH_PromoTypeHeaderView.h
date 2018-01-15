@@ -12,4 +12,5 @@
 @property (nonatomic,assign,readonly) NSInteger allTypes ;
 @property (nonatomic,assign,readonly) CGSize containSize ;
 @property (nonatomic,assign) NSInteger selectedType ;
+-(void)updateView:(NSArray*)typeList ;
 @end

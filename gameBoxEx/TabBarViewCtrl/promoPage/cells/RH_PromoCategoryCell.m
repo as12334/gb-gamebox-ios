@@ -8,19 +8,19 @@
 
 #import "RH_PromoCategoryCell.h"
 #import "coreLib.h"
-#import "RH_LotteryCategoryModel.h"
+#import "RH_DiscountActivityTypeModel.h"
 
 @interface RH_PromoCategoryCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
-
+@property (nonatomic,strong) RH_DiscountActivityTypeModel *activityTypeModel ;
 @end
 
 @implementation RH_PromoCategoryCell
 +(CGSize)sizeForViewWithInfo:(NSDictionary *)info containerViewSize:(CGSize)containerViewSize context:(id)context
 {
-    NSString *strTmp = ConvertToClassPointer(NSString, context) ;
-    CGSize size = caculaterLabelTextDrawSize(strTmp, [UIFont systemFontOfSize:12.0f], containerViewSize.width) ;
+    RH_DiscountActivityTypeModel *discountType = ConvertToClassPointer(RH_DiscountActivityTypeModel, context) ;
+    CGSize size = caculaterLabelTextDrawSize(discountType.mActivityTypeName, [UIFont systemFontOfSize:12.0f], containerViewSize.width) ;
     return CGSizeMake(size.width + 20 ,30) ;
 }
 
@@ -52,7 +52,8 @@
 
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.labTitle.text = ConvertToClassPointer(NSString, context) ;
+    self.activityTypeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, context) ;
+    self.labTitle.text = self.activityTypeModel.mActivityTypeName ;
 }
 
 @end
