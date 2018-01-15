@@ -45,8 +45,33 @@
     [self.button setTitle:@"退出登录" forState:UIControlStateNormal];
     [self.button setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
     [self.button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [self.button addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
     [self.tableViewManagement reloadData];
     
+}
+
+#pragma mark - 退出登录
+-(void)loginOut
+{
+    [self.serviceRequest startV3UserLoginOut];
+}
+
+#pragma mark-
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeV3UserLoginOut){
+       
+    }
+   
+    
+    
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeV3UserLoginOut){
+        [self loadDataFailWithError:error] ;
+    }
 }
 
 - (CLTableViewManagement *)tableViewManagement {

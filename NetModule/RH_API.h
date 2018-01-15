@@ -72,16 +72,16 @@
 #define RH_API_NAME_GETCUSTOMPATH                                   @"index/getCustomerService.html"
 
 #pragma mark - v3 首页 banner 模型
-#define RH_GP_Banner_CAROUSEL_ID                                      @"carousel_id"
-#define RH_GP_Banner_COVER                                             @"cover"
+#define RH_GP_Banner_CAROUSEL_ID                                        @"carousel_id"
+#define RH_GP_Banner_COVER                                              @"cover"
 #define RH_GP_Banner_ID                                                 @"id"
 #define RH_GP_Banner_LANGUAGE                                           @"language"
 #define RH_GP_Banner_LINK                                               @"link"
 #define RH_GP_Banner_NAME                                               @"name"
-#define RH_GP_Banner_ENDTIME                                               @"end_time"
-#define RH_GP_Banner_STARTTIME                                               @"start_time"
-#define RH_GP_Banner_ORDERNUM                                               @"order_num"
-#define RH_GP_Banner_STATUS                                               @"status"
+#define RH_GP_Banner_ENDTIME                                            @"end_time"
+#define RH_GP_Banner_STARTTIME                                          @"start_time"
+#define RH_GP_Banner_ORDERNUM                                           @"order_num"
+#define RH_GP_Banner_STATUS                                             @"status"
 #define RH_GP_Banner_TYPE                                               @"type"
 
 
@@ -94,25 +94,25 @@
 #define RH_GP_SYSTEMNOTICE_MAXDATE                          @"maxDate"
 
 #pragma mark -游戏公告模型
-#define RH_GP_GAMENOTICE_ID          @"id"
+#define RH_GP_GAMENOTICE_ID             @"id"
 #define RH_GP_GAMENOTICE_TITLE          @"title"
-#define RH_GP_GAMENOTICE_LINK        @"link"
-#define RH_GP_GAMENOTICE_GAMENAME        @"gameName"
-#define RH_GP_GAMENOTICE_PUBLISHTIME   @"publishTime"
-#define RH_GP_GAMENOTICE_CONTEXT    @"context"
-#define RH_GP_GAMENOTICE_MINDATE     @"minDate"
-#define RH_GP_GAMENOTICE_MAXDATE     @"maxDate"
-#define RH_GP_GAMENOTICE_APISELECT    @"apiSelect"
-#define RH_GP_GAMENOTICE_APIID    @"apiId"
-#define RH_GP_GAMENOTICE_APINAME    @"apiName"
+#define RH_GP_GAMENOTICE_LINK           @"link"
+#define RH_GP_GAMENOTICE_GAMENAME       @"gameName"
+#define RH_GP_GAMENOTICE_PUBLISHTIME    @"publishTime"
+#define RH_GP_GAMENOTICE_CONTEXT        @"context"
+#define RH_GP_GAMENOTICE_MINDATE        @"minDate"
+#define RH_GP_GAMENOTICE_MAXDATE        @"maxDate"
+#define RH_GP_GAMENOTICE_APISELECT      @"apiSelect"
+#define RH_GP_GAMENOTICE_APIID          @"apiId"
+#define RH_GP_GAMENOTICE_APINAME        @"apiName"
 
 #pragma mark - 游戏公告详情 模型
-#define RH_GP_GAMENOTICEDETAIL_ID          @"id"
+#define RH_GP_GAMENOTICEDETAIL_ID            @"id"
 #define RH_GP_GAMENOTICEDETAIL_TITLE         @"title"
-#define RH_GP_GAMENOTICEDETAIL_LINK        @"link"
-#define RH_GP_GAMENOTICEDETAIL_GAMENAME        @"gameName"
+#define RH_GP_GAMENOTICEDETAIL_LINK          @"link"
+#define RH_GP_GAMENOTICEDETAIL_GAMENAME      @"gameName"
 #define RH_GP_GAMENOTICEDETAIL_PUBLISHTIME   @"publishTime"
-#define RH_GP_GAMENOTICEDETAIL_CONTEXT    @"context"
+#define RH_GP_GAMENOTICEDETAIL_CONTEXT       @"context"
 
 
 #pragma mark - v3 首页 announcement 公告模型
@@ -121,71 +121,71 @@
 #define RH_GP_ANNOUNCEMENT_DISPLAY                                            @"display"
 #define RH_GP_ANNOUNCEMENT_ID                                                 @"id"
 #define RH_GP_ANNOUNCEMENT_ISTASK                                             @"isTask"
-#define RH_GP_ANNOUNCEMENT_CONTENT                                             @"content"
-#define RH_GP_ANNOUNCEMENT_LANGUAGE                                             @"language"
-#define RH_GP_ANNOUNCEMENT_ORDERNUM                                             @"orderNum"
-#define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                          @"publishTime"
-#define RH_GP_ANNOUNCEMENT_TITLE                                                @"title"
+#define RH_GP_ANNOUNCEMENT_CONTENT                                            @"content"
+#define RH_GP_ANNOUNCEMENT_LANGUAGE                                           @"language"
+#define RH_GP_ANNOUNCEMENT_ORDERNUM                                           @"orderNum"
+#define RH_GP_ANNOUNCEMENT_PUBLISHTIME                                        @"publishTime"
+#define RH_GP_ANNOUNCEMENT_TITLE                                              @"title"
 
 #pragma mark - V3 活动图 信息 
 #define RH_GP_ACTIVITY_ACTIVITYID                                               @"activityId"
 #define RH_GP_ACTIVITY_DESCRTIPTION                                             @"description"
 #define RH_GP_ACTIVITY_DISTANCESIDE                                             @"distanceSide"
 #define RH_GP_ACTIVITY_DISTANCETOP                                              @"distanceTop"
-#define RH_GP_ACTIVITY_LANGUAGE                                                @"language"
+#define RH_GP_ACTIVITY_LANGUAGE                                                 @"language"
 #define RH_GP_ACTIVITY_LOCATION                                                 @"location"
 #define RH_GP_ACTIVITY_NORMALEFFECT                                             @"normalEffect"
 
 #pragma mark - V3 我的优惠信息 模型
 #define RH_GP_PROMOINFO_ACTIVITYNAME                                        @"activityName"
 #define RH_GP_PROMOINFO_ACTIVITYVERSION                                     @"activityVersion"
-#define RH_GP_PROMOINFO_APPLYTIME                                              @"applyTime"
+#define RH_GP_PROMOINFO_APPLYTIME                                           @"applyTime"
 #define RH_GP_PROMOINFO_CHECKSTATE                                          @"checkState"
-#define RH_GP_PROMOINFO_CHECKSTATENAME                                          @"checkStateName"
+#define RH_GP_PROMOINFO_CHECKSTATENAME                                      @"checkStateName"
 #define RH_GP_PROMOINFO_ID                                                  @"id"
-#define RH_GP_PROMOINFO_PREFERENTIALAUDIT                                    @"preferentialAudit"
-#define RH_GP_PROMOINFO_PREFERENTIALAUDITNAME                                    @"preferentialAuditName"
+#define RH_GP_PROMOINFO_PREFERENTIALAUDIT                                   @"preferentialAudit"
+#define RH_GP_PROMOINFO_PREFERENTIALAUDITNAME                               @"preferentialAuditName"
 #define RH_GP_PROMOINFO_PREFERENTIALVALUE                                   @"preferentialValue"
 #define RH_GP_PROMOINFO_USERID                                              @"userId"
 
 #pragma mark - V3 首页api 分类模型
 #define RH_GP_LotteryCategory_APITYPE                                     @"apiType"
-#define RH_GP_LotteryCategory_APITYPENAME                                     @"apiTypeName"
-#define RH_GP_LotteryCategory_COVER                                     @"cover"
-#define RH_GP_LotteryCategory_LOCALE                                     @"locale"
-#define RH_GP_LotteryCategory_SITEAPIS                                     @"siteApis"
+#define RH_GP_LotteryCategory_APITYPENAME                                 @"apiTypeName"
+#define RH_GP_LotteryCategory_COVER                                       @"cover"
+#define RH_GP_LotteryCategory_LOCALE                                      @"locale"
+#define RH_GP_LotteryCategory_SITEAPIS                                    @"siteApis"
 
 #pragma mark - v3 彩票游戏API 信息模型
-#define RH_GP_LOTTERYAPIINFO_APIID                                     @"apiId"
+#define RH_GP_LOTTERYAPIINFO_APIID                                 @"apiId"
 #define RH_GP_LOTTERYAPIINFO_APITYPEID                             @"apiTypeId"
-#define RH_GP_LOTTERYAPIINFO_AUTOPAY                                   @"autoPay"
-#define RH_GP_LOTTERYAPIINFO_COVER                               @"cover"
-#define RH_GP_LOTTERYAPIINFO_GAMELINK                                 @"gameLink"
-#define RH_GP_LOTTERYAPIINFO_GAMELIST                                  @"gameList"
-#define RH_GP_LOTTERYAPIINFO_GAMEMSG                              @"gameMsg"
-#define RH_GP_LOTTERYAPIINFO_LOCAL                                  @"local"
-#define RH_GP_LOTTERYAPIINFO_NAME                               @"name"
-#define RH_GP_LOTTERYAPIINFO_SITEID                               @"siteId"
+#define RH_GP_LOTTERYAPIINFO_AUTOPAY                               @"autoPay"
+#define RH_GP_LOTTERYAPIINFO_COVER                                 @"cover"
+#define RH_GP_LOTTERYAPIINFO_GAMELINK                              @"gameLink"
+#define RH_GP_LOTTERYAPIINFO_GAMELIST                              @"gameList"
+#define RH_GP_LOTTERYAPIINFO_GAMEMSG                               @"gameMsg"
+#define RH_GP_LOTTERYAPIINFO_LOCAL                                 @"local"
+#define RH_GP_LOTTERYAPIINFO_NAME                                  @"name"
+#define RH_GP_LOTTERYAPIINFO_SITEID                                @"siteId"
 
 #pragma mark - v3 彩票游戏信息模型
-#define RH_GP_LOTTERYINFO_APIID                              @"apiId"
-#define RH_GP_LOTTERYINFO_APITYPEID                              @"apiTypeId"
-#define RH_GP_LOTTERYINFO_AUTOPAY                               @"autoPay"
+#define RH_GP_LOTTERYINFO_APIID                           @"apiId"
+#define RH_GP_LOTTERYINFO_APITYPEID                       @"apiTypeId"
+#define RH_GP_LOTTERYINFO_AUTOPAY                         @"autoPay"
 #define RH_GP_LOTTERYINFO_CODE                            @"code"
-#define RH_GP_LOTTERYIINFO_COVER                              @"cover"
-#define RH_GP_LOTTERYINFO_GAMEID                            @"gameId"
-#define RH_GP_LOTTERYINFO_GAMELINK                                @"gameLink"
-#define RH_GP_LOTTERYINFO_GAMEMSG                                @"gameMsg"
-#define RH_GP_LOTTERYINFO_GAMETYPE                             @"gameType"
-#define RH_GP_LOTTERYINFO_NAME                              @"name"
-#define RH_GP_LOTTERYINFO_ORDERNUM                                   @"orderNum"
-#define RH_GP_LOTTERYINFO_SITEID                              @"siteId"
-#define RH_GP_LOTTERYINFO_STATUS                              @"status"
-#define RH_GP_LOTTERYINFO_SYSTEMSTATUS                              @"systemStatus"
+#define RH_GP_LOTTERYIINFO_COVER                          @"cover"
+#define RH_GP_LOTTERYINFO_GAMEID                          @"gameId"
+#define RH_GP_LOTTERYINFO_GAMELINK                        @"gameLink"
+#define RH_GP_LOTTERYINFO_GAMEMSG                         @"gameMsg"
+#define RH_GP_LOTTERYINFO_GAMETYPE                        @"gameType"
+#define RH_GP_LOTTERYINFO_NAME                            @"name"
+#define RH_GP_LOTTERYINFO_ORDERNUM                        @"orderNum"
+#define RH_GP_LOTTERYINFO_SITEID                          @"siteId"
+#define RH_GP_LOTTERYINFO_STATUS                          @"status"
+#define RH_GP_LOTTERYINFO_SYSTEMSTATUS                    @"systemStatus"
 
 
 #pragma mark - V3 用户api 总计Balance 信息模型
-#define RH_GP_USERBALANCEGROUP_ASSETS                          @"assets"
+#define RH_GP_USERBALANCEGROUP_ASSETS                           @"assets"
 #define RH_GP_USERBALANCEGROUP_BALANCE                          @"balance"
 #define RH_GP_USERBALANCEGROUP_CURRSIGN                         @"currSign"
 #define RH_GP_USERBALANCEGROUP_USERNAME                         @"username"
@@ -219,7 +219,7 @@
 #define RH_GP_MINEINFO_ISCASH                                  @"isCash"
 #define RH_GP_MINEINFO_BANKCARD                                @"bankcard"
 #define RH_GP_MINEINFO_BTCCODE                                 @"btc"
-#define RH_GP_MINEINFO_REALNAME                               @"realName"
+#define RH_GP_MINEINFO_REALNAME                                @"realName"
 
 #pragma mark - V3 投注记录 信息模型
 #define RH_GP_BETTING_ID                                @"id"
@@ -234,9 +234,9 @@
 #define RH_GP_BETTING_ORDERSTATE                        @"orderState"
 
 #pragma mark - V3 用户安全码 初始化信息模型
-#define RH_GP_USERSAFETY_HASREALNAME                                @"hasRealName"
-#define RH_GP_USERSAFETY_HASPERMISSIONPWD                             @"hasPermissionPwd"
-#define RH_GP_USERSAFETY_ISOPENCAPTCHA                            @"isOpenCaptcha"
+#define RH_GP_USERSAFETY_HASREALNAME                          @"hasRealName"
+#define RH_GP_USERSAFETY_HASPERMISSIONPWD                     @"hasPermissionPwd"
+#define RH_GP_USERSAFETY_ISOPENCAPTCHA                        @"isOpenCaptcha"
 #define RH_GP_USERSAFETY_REMINDTIMES                          @"remindTimes"
 #define RH_GP_USERSAFETY_LOCKTIME                             @"lockTime"
 
@@ -248,20 +248,20 @@
 #define RH_GP_BETTINGDETAIL_BETDETAIL                            @"betDetail"
 #define RH_GP_BETTINGDETAIL_BETID                                @"betId"
 #define RH_GP_BETTINGDETAIL_BETTIME                              @"betTime"
-#define RH_GP_BETTINGDETAIL_BETTYPENAME                           @"betTypeName"
-#define RH_GP_BETTINGDETAIL_CONTRIBUTIONAMOUNT                    @"contributionAmount"
-#define RH_GP_BETTINGDETAIL_EFFECTIVETRADEAMOUNT                      @"effectiveTradeAmount"
-#define RH_GP_BETTINGDETAIL_GAMEID                                @"gameId"
-#define RH_GP_BETTINGDETAIL_GAMENAME                                @"gameName"
-#define RH_GP_BETTINGDETAIL_GAMETYPE                                @"gameType"
-#define RH_GP_BETTINGDETAIL_ODDSTYPENAME                                @"oddsTypeName"
-#define RH_GP_BETTINGDETAIL_ORDERSTATE                                @"orderState"
-#define RH_GP_BETTINGDETAIL_PAYOUTTIME                                @"payoutTime"
-#define RH_GP_BETTINGDETAIL_PROFITAMOUNT                                @"profitAmount"
-#define RH_GP_BETTINGDETAIL_RESULTARRAY                                @"resultArray"
-#define RH_GP_BETTINGDETAIL_SINGLEAMOUNT                                @"singleAmount"
-#define RH_GP_BETTINGDETAIL_TERMINAL                                @"terminal"
-#define RH_GP_BETTINGDETAIL_USERNAME                                @"userName"
+#define RH_GP_BETTINGDETAIL_BETTYPENAME                          @"betTypeName"
+#define RH_GP_BETTINGDETAIL_CONTRIBUTIONAMOUNT                   @"contributionAmount"
+#define RH_GP_BETTINGDETAIL_EFFECTIVETRADEAMOUNT                 @"effectiveTradeAmount"
+#define RH_GP_BETTINGDETAIL_GAMEID                               @"gameId"
+#define RH_GP_BETTINGDETAIL_GAMENAME                             @"gameName"
+#define RH_GP_BETTINGDETAIL_GAMETYPE                             @"gameType"
+#define RH_GP_BETTINGDETAIL_ODDSTYPENAME                         @"oddsTypeName"
+#define RH_GP_BETTINGDETAIL_ORDERSTATE                           @"orderState"
+#define RH_GP_BETTINGDETAIL_PAYOUTTIME                           @"payoutTime"
+#define RH_GP_BETTINGDETAIL_PROFITAMOUNT                         @"profitAmount"
+#define RH_GP_BETTINGDETAIL_RESULTARRAY                          @"resultArray"
+#define RH_GP_BETTINGDETAIL_SINGLEAMOUNT                         @"singleAmount"
+#define RH_GP_BETTINGDETAIL_TERMINAL                             @"terminal"
+#define RH_GP_BETTINGDETAIL_USERNAME                             @"userName"
 
 
 #pragma mark - V3 资金记录 模型
@@ -327,6 +327,27 @@
 #define RH_GP_SITEMESSAGE_TITLE         @"title"
 #define RH_GP_SITEMESSAGE_READ          @"read"
 #define RH_GP_SITEMESSAGE_SEARCHID      @"searchId"
+
+#pragma mark - V3 站点信息 我的消息 模型
+#define RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYCONTENT    @"advisoryContent"
+#define RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTIME       @"advisoryTime"
+#define RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTITLE      @"advisoryTitle"
+#define RH_GP_SITEMESSAGE_MYMESSAGE_ID                 @"id"
+#define RH_GP_SITEMESSAGE_MYMESSAGE_REPLYTITLE         @"replyTitle"
+
+#pragma mark - V3 优惠活动Tabbar2 活动模型
+#define RH_GP_DISCOUNTACTIVITY_ID                      @"id"
+#define RH_GP_DISCOUNTACTIVITY_ACTIVITYKEY             @"activityKey"
+#define RH_GP_DISCOUNTACTIVITY_ACTIVITYTYPENAME        @"activityTypeName"
+#define RH_GP_DISCOUNTACTIVITY_URL                     @"url"
+#define RH_GP_DISCOUNTACTIVITY_PHOTO                   @"photo"
+
+#pragma mark - V3 系统公告详情 模型
+#define RH_GP_SYSTEMNOTICEDETAIL_ID          @"id"
+#define RH_GP_SYSTEMNOTICEDETAIL_CONTENT     @"content"
+#define RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME @"publishTime"
+#define RH_GP_SYSTEMNOTICEDETAIL_LINK        @"link"
+#define RH_GP_SYSTEMNOTICEDETAIL_TITLE       @"title"
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -512,11 +533,11 @@
 #define RH_SP_PROMOLIST_PAGESIZE                     @"paging.pageSize"
 #define RH_SP_PROMOLIST_PAGENUMBER                     @"paging.pageNumber"
 //返回参数
-#define RH_GP_PROMOLIST_LIST        @"list"
+#define RH_GP_PROMOLIST_LIST              @"list"
 #define RH_GP_PROMOLIST_TOTALCOUNT        @"totalCount"
 
 #pragma mark - V3 系统公告
-#define RH_API_NAME_SYSTEMNOTICE            @"mineOrigin/getSysNotice.html"
+#define RH_API_NAME_SYSTEMNOTICE        @"mineOrigin/getSysNotice.html"
 //请求参数
 #define RH_SP_SYSTEMNOTICE_STARTTIME    @"search.startTime"
 #define RH_SP_SYSTEMNOTICE_ENDTIME      @"search.endTime"
@@ -528,25 +549,20 @@
 #define RH_GP_SYSTEMNOTICE_TOTALNUM    @"pageTotal"
 
 #pragma mark - V3 系统公告详情
-#define RH_API_NAME_SYSTEMNOTICEDETAIL            @"mineOrigin/getSysNoticeDetail.html"
+#define RH_API_NAME_SYSTEMNOTICEDETAIL       @"mineOrigin/getSysNoticeDetail.html"
 //请求参数
 #define RH_SP_SYSTEMNOTICEDETAIL_SEARCHID    @"searchId"
 
-//返回参数
-#define RH_GP_SYSTEMNOTICEDETAIL_ID          @"id"
-#define RH_GP_SYSTEMNOTICEDETAIL_CONTENT     @"content"
-#define RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME @"publishTime"
-#define RH_GP_SYSTEMNOTICEDETAIL_LINK        @"link"
-#define RH_GP_SYSTEMNOTICEDETAIL_TITLE        @"title"
 
 #pragma mark - V3 游戏公告
 #define RH_API_NAME_GAMENOTICE           @"mineOrigin/getGameNotice.html"
 //请求参数
 #define RH_SP_GAMENOTICE_STARTTIME    @"search.startTime"
 #define RH_SP_GAMENOTICE_ENDTIME      @"search.endTime"
+#define RH_SP_GAMENOTICE_APIID        @"search.apiId"
 #define RH_SP_GAMENOTICE_PAGENUMBER   @"paging.pageNumber"
 #define RH_SP_GAMENOTICE_PAGESIZE     @"paging.pageSize"
-#define RH_SP_GAMENOTICE_APIID        @"search.apiId"
+
 
 //返回参数
 #define RH_GP_GAMENOTICE_LIST        @"list"
@@ -598,13 +614,32 @@
 //请求参数
 #define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
-#pragma mark - V3 添加申请优惠
+#pragma mark - V3 站点消息  发送消息验证
+#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY  @"mineOrigin/goAddNoticeSite.html"
+
+#pragma mark - V3 站点消息  发送消息
 #define RH_API_NAME_ADDAPPLYDISCOUNTS   @"mineOrigin/addNoticeSite.html"
 //请求参数
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE      @"result.advisoryType"
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE     @"result.advisoryTitle"
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT   @"result.advisoryContent"
 
+#pragma mark - V3 站点信息  我的消息
+#define RH_API_NAME_SITEMESSAGE_MYMESSAGE   @"mineOrigin/advisoryMessage.html"
+//请求参数
+#define RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER  @"paging.pageNumber"
+#define RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE    @"paging.pageSize"
+
+#pragma mark - V3 Tabbar 优惠主页面 优惠活动类型
+#define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS  @"discountsOrigin/getActivityType.html"
+
+#pragma mark - V3 Tabbar 优惠主页面 优惠活动类别
+#define RH_API_NAME_TABBAR2_GETACTIVITY_DATALIST        @"discountsOrigin/getActivityTypeList.html"
+//请求参数
+#define RH_SP_TABBAR2_GETACTIVITY_DATALIST_KEY          @"key"
+
+#pragma mark - V3 退出登录
+#define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"
 
 #endif /* RH_API_h */
 
