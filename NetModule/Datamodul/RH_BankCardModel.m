@@ -18,6 +18,7 @@
         _mBankName = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKNAME] ;
         _mBankCardNumber = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKCARDNUMBER] ;
         _mBankCardMasterName = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKCARDMASTERNAME] ;
+        _mBankDeposit = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKDEPOSIT] ;
     }
     return self;
 }

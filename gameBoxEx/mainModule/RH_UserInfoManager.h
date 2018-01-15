@@ -10,6 +10,7 @@
 #import "RH_UserBalanceGroupModel.h"
 #import "RH_UserSafetyCodeModel.h"
 #import "RH_MineInfoModel.h"
+#import "RH_BankInfoModel.h"
 
 #define  RHNT_UserInfoManagerBalanceChangedNotification           @"UserInfoManagerBalanceChangedNotification"
 #define  RHNT_UserInfoManagerMineGroupChangedNotification         @"UserInfoManagerMineGroupChangedNotification"
@@ -18,6 +19,7 @@
 #define UserBalanceInfo             [RH_UserInfoManager shareUserManager].userBalanceGroupInfo
 #define UserSafetyInfo              [RH_UserInfoManager shareUserManager].userSafetyInfo
 #define MineSettingInfo             [RH_UserInfoManager shareUserManager].mineSettingInfo
+#define BankList                    [RH_UserInfoManager shareUserManager].bankList
 
 typedef void(^AutoLoginCompletation)(BOOL result) ;
 
@@ -26,11 +28,13 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property(nonatomic,strong,readonly) RH_UserBalanceGroupModel *userBalanceGroupInfo ;
 @property(nonatomic,strong,readonly) RH_UserSafetyCodeModel *userSafetyInfo ;
 @property(nonatomic,strong,readonly) RH_MineInfoModel *mineSettingInfo ;
+@property(nonatomic,strong,readonly) NSArray<RH_BankInfoModel*> *bankList ;
 
 -(BOOL)hasLogin ;
 -(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo ;
 -(void)setUserSafetyInfo:(RH_UserSafetyCodeModel *)userSafetyInfo ;
 -(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo ;
+-(void)setBankList:(NSArray<RH_BankInfoModel *> *)bankList ;
 
 ///----app 层 相关开关
 @property (nonatomic,assign,readonly) BOOL isScreenLock ;

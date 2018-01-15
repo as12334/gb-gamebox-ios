@@ -17,14 +17,6 @@
 
 @implementation RH_BankPickerSelectView
 @synthesize pickView = _pickView;
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (UIPickerView *)pickView {
     
     if (_pickView == nil) {
@@ -69,10 +61,14 @@
 }
 
 - (void)cancel {
-    
+    ifRespondsSelector(self.delegate, @selector(bankPickerSelectViewDidTouchCancelButton:)){
+        [self.delegate bankPickerSelectViewDidTouchCancelButton:self] ;
+    }
 }
 - (void)confirm {
-    
+    ifRespondsSelector(self.delegate, @selector(bankPickerSelectViewDidTouchConfirmButton:WithSelectedBank:)){
+        [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:nil] ;
+    }
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
