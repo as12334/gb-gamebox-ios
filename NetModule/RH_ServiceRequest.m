@@ -33,6 +33,10 @@
 #import "RH_GameNoticeDetailModel.h"
 #import "RH_AddBtcModel.h"
 #import "RH_SiteMessageModel.h"
+#import "RH_SiteMyMessageModel.h"
+#import "RH_DiscountActivityTypeModel.h"
+#import "RH_DiscountActivityModel.h"
+
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -752,7 +756,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SystemMessageDelete
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark - 申请优惠
+#pragma mark - 发送消息验证
+-(void)startV3AddApplyDiscountsVerify
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddApplyDiscountsVerify
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 消息中心 发送消息
 -(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
                                   advisoryTitle:(NSString *)advisoryTitle
                                 advisoryContent:(NSString *)advisoryContent
@@ -770,9 +787,71 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3AddApplyDiscounts
                          scopeType:ServiceScopeTypePublic];
-    
 }
 
+#pragma mark - tabbar2 优惠活动主界面类型
+-(void)startV3LoadDiscountActivityType
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3PromoActivityType
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - tabbar2 优惠活动主界面列表
+-(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:mKey forKey:RH_SP_TABBAR2_GETACTIVITY_DATALIST_KEY];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_TABBAR2_GETACTIVITY_DATALIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3Tabbar2ActivityTypeList
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - 退出登录
+-(void)startV3UserLoginOut
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_LOGINOUT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UserLoginOut
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息  我的消息
+-(void)startV3SiteMessageMyMessageWithpageNumber:(NSInteger)pageNumber
+                                        pageSize:(NSInteger)pageSize
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SiteMessageMyMessage
+                         scopeType:ServiceScopeTypePublic];
+    
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1081,7 +1160,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-  
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1278,6 +1356,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = @{RH_GP_SYSTEMNOTICE_LIST:tmpArray?:@[],
                                    RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
                                    } ;
+            }
+                break;
+            case ServiceRequestTypeV3SiteMessageMyMessage:
+            {
+               
+            }
+                break;
+                
+            case ServiceRequestTypeV3PromoActivityType:
+            {
+                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+                
+            case ServiceRequestTypeV3Tabbar2ActivityTypeList:
+            {
+                 resultSendData =[[RH_DiscountActivityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
 

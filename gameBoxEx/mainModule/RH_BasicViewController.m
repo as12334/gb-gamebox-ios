@@ -15,7 +15,7 @@
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
 
-@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate>
+@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
 @end
 
@@ -307,6 +307,7 @@
     return  _userInfoButtonItem ;
 }
 
+#pragma mark - userInfoView
 -(RH_userInfoView *)userInfoView
 {
     if (!_userInfoView){
@@ -315,9 +316,22 @@
                                          64,
                                          userInfoViewWidth,
                                          0);
+        _userInfoView.delegate = self ;
     }
 
     return _userInfoView ;
+}
+
+-(void)userInfoViewDidTouchOneStepRecoryButton:(RH_userInfoView*)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    [self.serviceRequest startV3OneStepRecovery] ;
+}
+
+-(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    self.myTabBarController.selectedIndex = 0 ;
 }
 
 -(void)userInfoButtonItemHandle
