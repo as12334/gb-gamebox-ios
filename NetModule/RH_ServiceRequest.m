@@ -886,7 +886,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SystemMessageDelete
+                       serviceType:ServiceRequestTypeV3MyMessageMyMessageReadYes
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - 站点信息 - 我的消息删除
@@ -901,7 +901,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SystemMessageDelete
+                       serviceType:ServiceRequestTypeV3MyMessageMyMessageDelete
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -1537,6 +1537,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {
                 resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+                case ServiceRequestTypeV3MyMessageMyMessageReadYes:
+            {
+                
             }
                 break;
             default:

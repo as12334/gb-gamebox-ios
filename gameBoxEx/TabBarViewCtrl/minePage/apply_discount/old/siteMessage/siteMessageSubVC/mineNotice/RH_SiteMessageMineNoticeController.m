@@ -137,7 +137,7 @@
         str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
     }
     [self.deleteModelArray removeAllObjects];
-    [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+    [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
     [self startUpdateData] ;
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
@@ -150,7 +150,7 @@
         str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
     }
     [self.deleteModelArray removeAllObjects];
-    [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
+    [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
     [self startUpdateData] ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -217,8 +217,6 @@
             for (int i = 0; i<array.count; i++) {
                 RH_SiteMyMessageModel *myModel = ConvertToClassPointer(RH_SiteMyMessageModel, array[i]);
                 myModel.number = @0;
-//                [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
-//                                    totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]] ;
                 [self loadDataSuccessWithDatas:array totalCount:i];
                 [self.siteModelArray addObject:myModel];
             }
