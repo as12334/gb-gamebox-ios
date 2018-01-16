@@ -13,8 +13,8 @@
 #import "RH_DiscountActivityTypeModel.h"
 
 @interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource>
-@property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;
+@property(nonatomic,strong,readonly) CLPageView *pageView ;
 @end
 
 @implementation RH_PromoViewControllerEx
@@ -35,24 +35,23 @@
 }
 
 -(BOOL)hasTopView{
-    return YES ;
+    return NO ;
 }
 
--(CGFloat)topViewHeight
-{
-    return self.typeTopView.viewHeight ;
-}
 
 -(void)setupInfo
 {
-    [self.topView addSubview:self.typeTopView] ;
+    self.typeTopView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, self.typeTopView.viewHeight) ;
+    self.typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:self.typeTopView] ;
+    
     //分页视图
-//    [self.contentView addSubview:self.pageView];
+    [self.contentView addSubview:self.pageView];
     //注册复用
-//    [self.pageView registerCellForPage:[RH_PromoContentPageCell class] andReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier]] ;
-//
-//    //设置索引
-//    self.pageView.dispalyPageIndex = self.typeTopView.selectedType;
+    [self.pageView registerCellForPage:[RH_PromoContentPageCell class] andReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier]] ;
+
+    //设置索引
+    self.pageView.dispalyPageIndex = self.typeTopView.selectedType;
 }
 
 -(void)updateView
@@ -61,20 +60,6 @@
         self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
     }else{
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
-    }
-}
-
--(void)adjuestTopViewHeight
-{
-    CGRect oldFrame = self.topView.frame ;
-    CGRect newFrame = CGRectMake(0,oldFrame.origin.y,oldFrame.size.width,[self topViewHeight]);
-    
-    if (CGRectEqualToRect(oldFrame, newFrame)){
-        [UIView animateWithDuration:0.1f animations:^{
-            self.topView.frame = newFrame ;
-        } completion:^(BOOL finished) {
-            [self setupInfo] ;
-        }] ;
     }
 }
 
@@ -91,9 +76,6 @@
 {
     if (!_typeTopView){
         _typeTopView = [RH_PromoTypeHeaderView createInstance] ;
-        _typeTopView.frame = self.topView.bounds ;
-        _typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
-        _typeTopView.backgroundColor = [UIColor redColor] ;
     }
     
     return _typeTopView ;
@@ -145,8 +127,7 @@
         NSArray *typeList = ConvertToClassPointer(NSArray , data) ;
         [self.typeTopView updateView:typeList] ;
         [self.contentLoadingIndicateView hiddenView] ;
-        [self adjuestTopViewHeight] ;
-//        [self updateTopView] ;
+        [self setupInfo] ;
     }
 }
 

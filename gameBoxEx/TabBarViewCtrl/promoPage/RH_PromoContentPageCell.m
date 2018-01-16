@@ -11,7 +11,6 @@
 #import "RH_PromoTableCell.h"
 #import "RH_API.h"
 
-
 @interface RH_PromoContentPageCell()
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @end
@@ -53,7 +52,8 @@
 
 #pragma mark-
 - (UIEdgeInsets)contentScorllViewInitContentInset {
-    return UIEdgeInsetsMake(NavigationBarHeight + StatusBarHeight + TopViewHeight, 0.f, 0.f, 0.f) ;
+//    return UIEdgeInsetsMake(NavigationBarHeight + StatusBarHeight + TopViewHeight, 0.f, 0.f, 0.f) ;
+    return UIEdgeInsetsMake(0.0f, 0.f, 0.f, 0.f) ;
 }
 
 -(void)networkStatusChangeHandle
