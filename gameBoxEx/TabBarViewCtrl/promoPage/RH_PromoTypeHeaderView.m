@@ -18,6 +18,7 @@
 @implementation RH_PromoTypeHeaderView
 @synthesize collectionTypeView = _collectionTypeView ;
 @synthesize selectedType = _selectedType ;
+@synthesize viewHeight = _viewHeight  ;
 
 -(void)awakeFromNib
 {
@@ -27,13 +28,35 @@
     [self.collectionTypeView reloadData] ;
     _selectedType = 0 ;
      [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedType inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+    _viewHeight = 0.0f ;
 }
 
 -(void)updateView:(NSArray*)typeList
 {
     self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
     [self.collectionTypeView reloadData] ;
-    NSLog(@"...........height:%f",self.collectionTypeView.contentSize.height) ;
+}
+
+-(CGFloat)viewHeight
+{
+    if (_arrayTypeList.count==0) return 0.0f ;
+    
+    if (_viewHeight==0){
+        CGFloat width = 10 ;
+        CGFloat rows = 1 ;
+        for (int i=0; i<_arrayTypeList.count; i++) {
+            CGSize size = [RH_PromoCategoryCell sizeForViewWithInfo:nil containerViewSize:self.collectionTypeView.bounds.size context:self.arrayTypeList[i]] ;
+            width +=size.width + 10 ;
+            if (width>self.collectionTypeView.frameWidth){//换行
+                width = size.width + 10 ;
+                rows ++ ;
+            }
+        }
+        
+        _viewHeight = rows*30 + (rows+1)*10 ;
+    }
+    
+    return _viewHeight ;
 }
 
 #pragma mark -

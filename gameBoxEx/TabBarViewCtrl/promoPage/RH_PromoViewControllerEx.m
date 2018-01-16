@@ -40,7 +40,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return TopViewHeight ;//self.typeTopView.containSize.height ;
+    return self.typeTopView.viewHeight;
 }
 
 -(void)setupInfo

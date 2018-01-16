@@ -10,7 +10,9 @@
 
 @interface RH_PromoTypeHeaderView : UIView
 @property (nonatomic,assign,readonly) NSInteger allTypes ;
-@property (nonatomic,assign,readonly) CGSize containSize ;
 @property (nonatomic,assign) NSInteger selectedType ;
+@property (nonatomic,assign,readonly) CGFloat viewHeight ;
+
 -(void)updateView:(NSArray*)typeList ;
+
 @end
