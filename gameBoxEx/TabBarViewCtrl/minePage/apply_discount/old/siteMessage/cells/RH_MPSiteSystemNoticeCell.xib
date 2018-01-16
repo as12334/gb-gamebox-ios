@@ -22,7 +22,7 @@
                         <rect key="frame" x="8" y="6" width="303" height="68"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYc-DP-efl">
-                                <rect key="frame" x="28" y="8" width="267" height="38"/>
+                                <rect key="frame" x="46" y="8" width="249" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,25 +36,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-Az-fv6">
-                                <rect key="frame" x="3" y="5" width="20" height="20"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meD-tU-9Uf">
+                                <rect key="frame" x="8" y="19" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="S15-p8-k4n"/>
-                                    <constraint firstAttribute="height" constant="20" id="vqk-Fu-hN4"/>
+                                    <constraint firstAttribute="height" constant="30" id="Zjt-gS-5qz"/>
+                                    <constraint firstAttribute="width" constant="30" id="e6A-lw-yVa"/>
                                 </constraints>
-                            </imageView>
+                                <connections>
+                                    <action selector="chooseEditBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cMc-Lc-g9V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="oYc-DP-efl" firstAttribute="leading" secondItem="dEA-dy-iGA" secondAttribute="leading" constant="28" id="0Aw-fz-jIA"/>
                             <constraint firstAttribute="bottom" secondItem="3Tu-6l-o88" secondAttribute="bottom" constant="4" id="3J7-z8-5DL"/>
-                            <constraint firstItem="oYc-DP-efl" firstAttribute="top" secondItem="dEA-dy-iGA" secondAttribute="top" constant="8" id="NO4-Cf-t4Y"/>
-                            <constraint firstItem="3Tu-6l-o88" firstAttribute="top" secondItem="oYc-DP-efl" secondAttribute="bottom" constant="7" id="PMh-9T-PUc"/>
-                            <constraint firstAttribute="trailing" secondItem="oYc-DP-efl" secondAttribute="trailing" constant="8" id="R8f-pL-d7Z"/>
+                            <constraint firstItem="meD-tU-9Uf" firstAttribute="centerY" secondItem="dEA-dy-iGA" secondAttribute="centerY" id="A3e-Do-6kH"/>
+                            <constraint firstAttribute="trailing" secondItem="oYc-DP-efl" secondAttribute="trailing" constant="8" id="Bwa-5n-ah5"/>
+                            <constraint firstItem="oYc-DP-efl" firstAttribute="leading" secondItem="meD-tU-9Uf" secondAttribute="trailing" constant="8" id="GrJ-yQ-ZDm"/>
+                            <constraint firstItem="oYc-DP-efl" firstAttribute="top" secondItem="dEA-dy-iGA" secondAttribute="top" constant="8" id="ZNh-9c-iTf"/>
+                            <constraint firstItem="oYc-DP-efl" firstAttribute="top" secondItem="dEA-dy-iGA" secondAttribute="top" constant="8" id="Zch-wF-JJq"/>
+                            <constraint firstItem="3Tu-6l-o88" firstAttribute="top" secondItem="oYc-DP-efl" secondAttribute="bottom" constant="7" id="bv6-BT-nP1"/>
+                            <constraint firstAttribute="trailing" secondItem="oYc-DP-efl" secondAttribute="trailing" constant="8" id="c0K-Q8-kvZ"/>
                             <constraint firstAttribute="trailing" secondItem="3Tu-6l-o88" secondAttribute="trailing" constant="8" id="i2z-E0-5iI"/>
-                            <constraint firstItem="PxR-Az-fv6" firstAttribute="leading" secondItem="dEA-dy-iGA" secondAttribute="leading" constant="3" id="kmE-xQ-jFE"/>
-                            <constraint firstItem="PxR-Az-fv6" firstAttribute="top" secondItem="dEA-dy-iGA" secondAttribute="top" constant="5" id="r0R-nf-ox2"/>
+                            <constraint firstItem="meD-tU-9Uf" firstAttribute="leading" secondItem="dEA-dy-iGA" secondAttribute="leading" constant="8" id="spS-jI-3fU"/>
+                            <constraint firstItem="3Tu-6l-o88" firstAttribute="top" secondItem="oYc-DP-efl" secondAttribute="bottom" constant="7" id="zP3-wR-Eug"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -66,6 +71,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="editBtn" destination="meD-tU-9Uf" id="Oep-mP-c8u"/>
                 <outlet property="timeLabel" destination="3Tu-6l-o88" id="QJD-FT-Pz6"/>
                 <outlet property="titleLabel" destination="oYc-DP-efl" id="ru7-rI-3ha"/>
             </connections>

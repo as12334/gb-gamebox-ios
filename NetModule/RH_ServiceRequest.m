@@ -35,7 +35,7 @@
 #import "RH_SiteMessageModel.h"
 #import "RH_SiteMyMessageModel.h"
 #import "RH_DiscountActivityTypeModel.h"
-#import "RH_DIscountActivityModel.h"
+#import "RH_DiscountActivityModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -799,7 +799,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3Tabbar2ActivityType
+                       serviceType:ServiceRequestTypeV3PromoActivityType
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -1224,6 +1224,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
                     [userInfoManager setUserBalanceInfo:userGroupModel.mUserBalanceGroupInfo] ;
                     [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
+                    [userInfoManager setBankList:userGroupModel.mBankList] ;
                 }
             }
                 break ;
@@ -1362,15 +1363,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                
             }
                 break;
-            case ServiceRequestTypeV3Tabbar2ActivityType:
-            {
-               resultSendData =[[RH_DiscountActivityTypeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
+            case ServiceRequestTypeV3PromoActivityType:
+            {
+                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
+                
             case ServiceRequestTypeV3Tabbar2ActivityTypeList:
             {
-                 resultSendData =[[RH_DIscountActivityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                 resultSendData =[[RH_DiscountActivityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
 

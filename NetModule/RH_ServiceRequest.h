@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SystemMessageDelete   ,  //系统信息删除
     ServiceRequestTypeV3AddApplyDiscounts    ,  //发送消息
     ServiceRequestTypeV3AddApplyDiscountsVerify,  //发送消息验证
-    ServiceRequestTypeV3Tabbar2ActivityType,  //Tab2优惠界面 类型获取
+    ServiceRequestTypeV3PromoActivityType,  //Tab2优惠界面 类型获取
     ServiceRequestTypeV3Tabbar2ActivityTypeList,  //Tab2优惠界面 列表
     ServiceRequestTypeV3UserLoginOut           ,  //退出登录
     ServiceRequestTypeV3SiteMessageMyMessage   ,  //站点信息  我的消息

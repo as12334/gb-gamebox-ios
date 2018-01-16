@@ -18,6 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *nextOpentimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openActivityBtn;
 @property (weak, nonatomic) IBOutlet UIButton *openActivityFriestBtn;
+@property (weak, nonatomic) IBOutlet UILabel *activityTimesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gainTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gainDrawTimeLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (nonatomic,strong)NSString *getCurrentTime;
 @end
 @implementation RH_NormalActivithyView
 
@@ -26,6 +31,9 @@
     if (self = [super initWithCoder:aDecoder]) {
         self.userInteractionEnabled = YES;
         self.openActivityModel = [[RH_OpenActivityModel alloc]init];
+        [self.normalBackDropView setHidden: NO];
+        [self.activityRuleDropView setHidden:YES];
+        [self.openActivityView setHidden:YES];
     }
     return self;
 }
@@ -39,8 +47,39 @@
     if (![_activityModel isEqual:activityModel]){
         _activityModel = activityModel ;
        [self.nextOpentimeLabel setText:self.activityModel.mNextLotteryTime];
+        [self.activityTimesLabel setText:self.activityModel.mDrawTimes];
+        if ([self.activityModel.mDrawTimes isEqualToString:@"-1"]) {
+            [self.activityTimesLabel setText:@"活动已结束"];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
+        else if ([self.activityModel.mDrawTimes isEqualToString:@"-5"]){
+             [self.activityTimesLabel setText:@"红包已抢光"];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
+        else
+        {
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = YES;
+        }
+            
+        [self.gainTimeLabel setText:self.activityModel.mNextLotteryTime];
+        [self.gainDrawTimeLabel setText:self.activityModel.mDrawTimes];
+        if ([self.activityModel.mDrawTimes isEqualToString:@"-1"]) {
+            [self.gainDrawTimeLabel setText:@"活动已结束"];
+        }
+        else if ([self.activityModel.mDrawTimes isEqualToString:@"-5"]){
+            [self.gainDrawTimeLabel setText:@"红包已抢光"];
+        }
     }
-    
+}
+//获取当地时间
+- (NSString *)getCurrentTime {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    return dateTime;
 }
 -(void)setOpenModel:(RH_OpenActivityModel *)openModel
 {
@@ -48,7 +87,7 @@
     if (![_openModel.mGameNum isEqual:openModel.mGameNum]){
         _openModel = openModel ;
         [self.gainActivityLabel setText:self.openModel.mAward];
-        if ([self.openModel.mGameNum isEqualToString:@"60"]) {
+        if ([self.openModel.mGameNum isEqualToString:@"0"]) {
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityBtn.userInteractionEnabled=NO;
@@ -61,10 +100,27 @@
             self.openActivityBtn.userInteractionEnabled=YES;
             self.openActivityFriestBtn.userInteractionEnabled = YES;
         }
+        [self.nextOpentimeLabel setText:self.openModel.mNextLotteryTime];
+        [self.activityTimesLabel setText:self.openModel.mGameNum];
+        if ([self.openModel.mGameNum isEqualToString:@"-1"]) {
+            [self.activityTimesLabel setText:@"活动已结束"];
+        }
+        else if ([self.openModel.mGameNum isEqualToString:@"-5"]){
+            [self.activityTimesLabel setText:@"红包已抢光"];
+        }
+        [self.gainTimeLabel setText:self.openModel.mNextLotteryTime];
+        [self.gainDrawTimeLabel setText:self.openModel.mGameNum];
+        if ([self.openModel.mGameNum isEqualToString:@"-1"]) {
+            [self.gainDrawTimeLabel setText:@"活动已结束"];
+        }
+        else if ([self.openModel.mGameNum isEqualToString:@"-5"]){
+            [self.gainDrawTimeLabel setText:@"红包已抢光"];
+        }
     }
 }
 - (IBAction)gameRuleSeletcd:(id)sender {
     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-03"];
+    self.descriptionTextView.text = self.activityModel.mDescription;
     [self.normalBackDropView setHidden: YES];
     [self.activityRuleDropView setHidden:NO];
     [self.openActivityView setHidden:YES];
@@ -72,9 +128,9 @@
 }
 - (IBAction)closeClick:(id)sender {
     [self.delegate normalActivityViewCloseActivityClick:self];
-    self.backDropImageView.image = [UIImage imageNamed:@"hongbao-03"];
-    [self.normalBackDropView setHidden: YES];
-    [self.activityRuleDropView setHidden:NO];
+    self.backDropImageView.image = [UIImage imageNamed:@"hongbao-04"];
+    [self.normalBackDropView setHidden: NO];
+    [self.activityRuleDropView setHidden:YES];
     [self.openActivityView setHidden:YES];
     
 }

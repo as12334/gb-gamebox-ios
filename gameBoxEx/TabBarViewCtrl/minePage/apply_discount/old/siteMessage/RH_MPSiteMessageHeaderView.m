@@ -7,7 +7,7 @@
 //
 
 #import "RH_MPSiteMessageHeaderView.h"
-
+#import "coreLib.h"
 @implementation RH_MPSiteMessageHeaderView
 
 /*
@@ -17,5 +17,19 @@
     // Drawing code
 }
 */
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self.allChoseBtn setTitle:@"全选" forState:UIControlStateNormal];
+    [self.allChoseBtn setTitle:@"取消全选" forState:UIControlStateSelected];
+}
+- (IBAction)deleteChooseOnCell:(id)sender {
+    ifRespondsSelector(self.delegate, @selector(siteMessageHeaderViewDeleteCell:)){
+        [self.delegate siteMessageHeaderViewDeleteCell:self] ;
+    }
+}
+- (IBAction)allChoseBtnClick:(id)sender {
+    [self.delegate siteMessageHeaderViewAllChoseBtn:self];
+}
 
 @end

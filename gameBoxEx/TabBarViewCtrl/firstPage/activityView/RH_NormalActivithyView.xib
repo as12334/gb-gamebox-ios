@@ -56,6 +56,12 @@
                             <color key="textColor" red="1" green="0.75324919609999996" blue="0.012996784589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cby-dE-Twy">
+                            <rect key="frame" x="42" y="130" width="42" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWx-tu-EPb">
                             <rect key="frame" x="23" y="143" width="80" height="30"/>
                             <constraints>
@@ -69,6 +75,8 @@
                         </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="cby-dE-Twy" firstAttribute="centerX" secondItem="eu8-Gm-T3U" secondAttribute="centerX" id="5gC-SC-62W"/>
+                        <constraint firstItem="cby-dE-Twy" firstAttribute="top" secondItem="h4K-WG-zj5" secondAttribute="bottom" constant="4" id="9DL-Ow-UAm"/>
                         <constraint firstItem="Aie-ny-Jjc" firstAttribute="centerX" secondItem="eu8-Gm-T3U" secondAttribute="centerX" id="Hyw-ly-9rm"/>
                         <constraint firstItem="h4K-WG-zj5" firstAttribute="top" secondItem="Aie-ny-Jjc" secondAttribute="bottom" constant="10" id="KQD-sX-NQ9"/>
                         <constraint firstItem="h4K-WG-zj5" firstAttribute="centerX" secondItem="eu8-Gm-T3U" secondAttribute="centerX" id="Ljl-Zl-DD3"/>
@@ -122,6 +130,18 @@
                             <color key="textColor" red="0.59743361398963724" green="0.45001638948975431" blue="0.0077647159901053373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1v-O3-T1S">
+                            <rect key="frame" x="48" y="100" width="31" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="0.75324919609999996" blue="0.012996784589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ei3-eu-IlV">
+                            <rect key="frame" x="48" y="118.5" width="31" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="0.75324919609999996" blue="0.012996784589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yV-Oc-gG1">
                             <rect key="frame" x="43" y="55" width="40" height="40"/>
                             <constraints>
@@ -147,13 +167,17 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="oPM-9G-Pfi" firstAttribute="centerX" secondItem="2L7-mQ-4Mp" secondAttribute="centerX" id="2PG-8N-aLU"/>
+                        <constraint firstItem="i1v-O3-T1S" firstAttribute="centerX" secondItem="2L7-mQ-4Mp" secondAttribute="centerX" id="CNV-o0-IjY"/>
                         <constraint firstItem="ncN-g3-qS8" firstAttribute="top" secondItem="9yV-Oc-gG1" secondAttribute="bottom" constant="49" id="DQu-bw-Knw"/>
+                        <constraint firstItem="Ei3-eu-IlV" firstAttribute="top" secondItem="i1v-O3-T1S" secondAttribute="bottom" constant="4" id="FKK-PR-5Tc"/>
                         <constraint firstAttribute="width" constant="126" id="PU7-rp-PYP"/>
+                        <constraint firstItem="i1v-O3-T1S" firstAttribute="top" secondItem="9yV-Oc-gG1" secondAttribute="bottom" constant="5" id="TQq-MP-n79"/>
                         <constraint firstItem="ncN-g3-qS8" firstAttribute="centerX" secondItem="2L7-mQ-4Mp" secondAttribute="centerX" id="Ux4-Ne-J7l"/>
                         <constraint firstAttribute="height" constant="206" id="VmW-ao-xEh"/>
                         <constraint firstItem="9yV-Oc-gG1" firstAttribute="top" secondItem="oPM-9G-Pfi" secondAttribute="bottom" constant="12" id="bFF-TV-Pti"/>
                         <constraint firstItem="9yV-Oc-gG1" firstAttribute="centerX" secondItem="2L7-mQ-4Mp" secondAttribute="centerX" id="iXx-vB-xoC"/>
                         <constraint firstItem="oPM-9G-Pfi" firstAttribute="top" secondItem="2L7-mQ-4Mp" secondAttribute="top" constant="29" id="j5S-ez-m6h"/>
+                        <constraint firstItem="Ei3-eu-IlV" firstAttribute="centerX" secondItem="2L7-mQ-4Mp" secondAttribute="centerX" id="qpx-cs-3r6"/>
                     </constraints>
                 </view>
             </subviews>
@@ -176,8 +200,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="activityRuleDropView" destination="Wnb-RP-7FQ" id="klr-f1-SLX"/>
+                <outlet property="activityTimesLabel" destination="cby-dE-Twy" id="3SL-IF-Maa"/>
                 <outlet property="backDropImageView" destination="dok-zH-Bdy" id="2g6-vl-ZCy"/>
+                <outlet property="descriptionTextView" destination="L4a-hn-l52" id="HAJ-d9-5PJ"/>
                 <outlet property="gainActivityLabel" destination="oPM-9G-Pfi" id="Vtb-IM-mDD"/>
+                <outlet property="gainDrawTimeLabel" destination="Ei3-eu-IlV" id="BTm-ng-83O"/>
+                <outlet property="gainTimeLabel" destination="i1v-O3-T1S" id="OB2-tG-MNd"/>
                 <outlet property="nextOpentimeLabel" destination="h4K-WG-zj5" id="pHI-nj-ZkR"/>
                 <outlet property="normalBackDropView" destination="eu8-Gm-T3U" id="E6p-bt-a44"/>
                 <outlet property="openActivityBtn" destination="9yV-Oc-gG1" id="PGy-jY-MNU"/>

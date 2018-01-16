@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class RH_MPSiteMessageHeaderView;
+@protocol MPSiteMessageHeaderViewDelegate<NSObject>
+@optional
+-(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView*)view;
+-(void)siteMessageHeaderViewAllChoseBtn:(RH_MPSiteMessageHeaderView *)view;
+@end
 @interface RH_MPSiteMessageHeaderView : UIView
-
+@property(nonatomic,weak)id<MPSiteMessageHeaderViewDelegate>delegate;
+@property (weak, nonatomic) IBOutlet UIButton *allChoseBtn;
 @end

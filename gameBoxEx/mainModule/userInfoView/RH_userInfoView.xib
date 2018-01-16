@@ -28,6 +28,9 @@
                                 <constraint firstAttribute="height" constant="30" id="f94-kK-Hi3"/>
                             </constraints>
                             <state key="normal" title="一键回收"/>
+                            <connections>
+                                <action selector="btn_oneStepRecover:" destination="iN0-l3-epB" eventType="touchUpInside" id="LDT-Zj-wHV"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0E-hg-YqQ">
                             <rect key="frame" x="20" y="50" width="160" height="30"/>
@@ -35,6 +38,9 @@
                                 <constraint firstAttribute="height" constant="30" id="UOS-Pa-A3S"/>
                             </constraints>
                             <state key="normal" title="存款"/>
+                            <connections>
+                                <action selector="btn_Deposit:" destination="iN0-l3-epB" eventType="touchUpInside" id="DbT-f6-RpP"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

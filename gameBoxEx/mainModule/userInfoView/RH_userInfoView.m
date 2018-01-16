@@ -106,9 +106,18 @@
 }
 
 #pragma mark -  一键回收点击方法
--(void)retriveBtnClick{
-    
+-(IBAction)btn_oneStepRecover:(id)sender
+{
+    ifRespondsSelector(self.delegate, @selector(userInfoViewDidTouchOneStepRecoryButton:)){
+        [self.delegate userInfoViewDidTouchOneStepRecoryButton:self] ;
+    }
 }
 
+-(IBAction)btn_Deposit:(id)sender
+{
+    ifRespondsSelector(self.delegate, @selector(userInfoViewDidTouchOneStepDepositeButton:)){
+        [self.delegate userInfoViewDidTouchOneStepDepositeButton:self] ;
+    }
+}
 
 @end

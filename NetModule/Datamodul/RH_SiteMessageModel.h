@@ -16,7 +16,8 @@
 @property(nonatomic,strong,readonly)NSString *mTitle;
 @property(nonatomic,assign,readonly)BOOL mRead;
 @property(nonatomic,strong,readonly)NSString *mSearchId;
-
-
+//@property(nonatomic,strong,readonly)NSString *mMarkString;
+//---extend
+@property(nonatomic,assign)BOOL isSelected;
 
 @end
