@@ -372,6 +372,14 @@
 #define RH_GP_SENDMESSGAVERITY_DICTTYPE               @"dictType"
 #define RH_GP_SENDMESSGAVERITY_PARENTCODE             @"parentCode"
 
+#pragma mark - V3 我的消息详情  模型
+#define RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT    @"advisoryContent"
+#define RH_GP_MYMESSAGEDETAIL_ADVISORYTIME       @"advisoryTime"
+#define RH_GP_MYMESSAGEDETAIL_ADVISORYTITLE      @"advisoryTitle"
+#define RH_GP_MYMESSAGEDETAIL_REPLYTIME          @"replyTime"
+#define RH_GP_MYMESSAGEDETAIL_REPLYTITLE         @"replyTitle"
+#define RH_GP_MYMESSAGEDETAIL_QUESTIONTYPE       @"replyContent"
+#define RH_GP_MYMESSAGEDETAIL_REPLYCONTENT       @"questionType"
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -655,6 +663,11 @@
 #define RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER  @"paging.pageNumber"
 #define RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE    @"paging.pageSize"
 
+#pragma mark - V3 站点信息  我的消息详情
+#define RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL  @"mineOrigin/advisoryMessageDetail.html"
+//请求参数
+#define RH_SP_SITEMESSAGE_MYMESSAGEDETAIL_ID       @"id"
+
 #pragma mark - V3 站点信息 我的信息标记为已读
 
 #define RH_API_NAME_MYMESSAGEREDAYES   @"mineOrigin/getSelectAdvisoryMessageIds.html"
@@ -678,6 +691,22 @@
 
 #pragma mark - V3 退出登录
 #define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"
+
+#pragma mark -V3 获取取款用户信息
+#define RH_API_NAME_GETWITHDRAWUSERINFO  @"mineOrigin/getWithDraw.html"
+
+#pragma mark -V3 提交取款信息
+#define RH_API_NAME_SUBMITWITHDRAWINFO  @"mineOrigin/submitWithdraw.html"
+//请求参数
+#define RH_SP_SUBMITWITHDRAWINFO_NOBANK             @"noBank"
+#define RH_SP_SUBMITWITHDRAWINFO_NOBTC              @"noBtc"
+#define RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY      @"remittanceWay"
+#define RH_SP_SUBMITWITHDRAWINFO_WALLETBALANCE      @"walletBalance"
+#define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
+#define RH_SP_SUBMITWITHDRAWINFO_POUNDAGEHIDE       @"poundageHide"
+#define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWFEE        @"withdrawFee"
+#define RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW     @"actualWithdraw"
+#define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
 
 #endif /* RH_API_h */
 

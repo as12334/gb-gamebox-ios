@@ -28,6 +28,7 @@
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
 		79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */; };
+		79E223FF200E0271006B0450 /* RH_SiteMyMessageDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FE200E0271006B0450 /* RH_SiteMyMessageDetail.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
@@ -567,6 +568,8 @@
 		79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityTypeModel.m; sourceTree = "<group>"; };
 		79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SendMessageVerityModel.h; sourceTree = "<group>"; };
 		79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SendMessageVerityModel.m; sourceTree = "<group>"; };
+		79E223FD200E0271006B0450 /* RH_SiteMyMessageDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageDetail.h; sourceTree = "<group>"; };
+		79E223FE200E0271006B0450 /* RH_SiteMyMessageDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMyMessageDetail.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
@@ -2244,6 +2247,8 @@
 				79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */,
 				79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */,
 				79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */,
+				79E223FD200E0271006B0450 /* RH_SiteMyMessageDetail.h */,
+				79E223FE200E0271006B0450 /* RH_SiteMyMessageDetail.m */,
 				79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */,
 				79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */,
 			);
@@ -3655,6 +3660,7 @@
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
+				79E223FF200E0271006B0450 /* RH_SiteMyMessageDetail.m in Sources */,
 				A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,

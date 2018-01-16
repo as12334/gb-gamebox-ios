@@ -855,6 +855,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
     
 }
+#pragma mark - 站点信息  我的消息详情
+-(void)startV3SiteMessageMyMessageDetailWithID:(NSString *)mId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:mId forKey:RH_SP_SITEMESSAGE_MYMESSAGEDETAIL_ID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SiteMessageMyMessageDetail
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark - 站点信息 - 我的消息标记已读
 -(void)startV3LoadMyMessageReadYesWithIds:(NSString *)ids
 {
@@ -883,6 +898,64 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3SystemMessageDelete
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取取款接口
+-(void)startV3GetWithDraw
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETWITHDRAWUSERINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetWithDrawInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 提交取款信息
+/**
+ 提交取款信息
+ @param noBank 是否有银行卡  N
+ @param noBtc 是否有比特币   N
+ @param remittanceWay 银行卡类型（1：银行卡，2：比特币）  N
+ @param walletBalance 钱包金额  N
+ @param withdrawAmount 取款金额  Y
+ @param poundageHide 符号  N
+ @param withdrawFee 手续费  N
+ @param actualWithdraw 实际取款金额 Y
+ @param gbToken 防重验证  Y
+ */
+-(void)startV3SubmitWithdrawWithNoBank:(BOOL)noBank
+                                 noBtc:(BOOL)noBtc
+                         remittanceWay:(NSInteger)remittanceWay
+                         walletBalance:(float)walletBalance
+                        withdrawAmount:(float)withdrawAmount
+                          poundageHide:(NSString *)poundageHide
+                           withdrawFee:(float)withdrawFee
+                        actualWithdraw:(float)actualWithdraw
+                               gbToken:(NSString *)gbToken
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(noBank==YES?true:false) forKey:RH_SP_SUBMITWITHDRAWINFO_NOBANK];
+    [dict setValue:@(noBtc==YES?true:false) forKey:RH_SP_SUBMITWITHDRAWINFO_NOBTC];
+    [dict setObject:@(remittanceWay) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY];
+    [dict setObject:@(walletBalance) forKey:RH_SP_SUBMITWITHDRAWINFO_WALLETBALANCE];
+    [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
+    [dict setObject:poundageHide forKey:RH_SP_SUBMITWITHDRAWINFO_POUNDAGEHIDE];
+    [dict setObject:@(withdrawFee) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWFEE];
+    [dict setObject:@(actualWithdraw) forKey:RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW];
+    [dict setObject:gbToken forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SubmitWithdrawInfo
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark -
