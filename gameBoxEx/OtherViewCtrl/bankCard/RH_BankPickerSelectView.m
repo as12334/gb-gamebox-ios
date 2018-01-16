@@ -8,7 +8,7 @@
 
 #import "RH_BankPickerSelectView.h"
 #import "coreLib.h"
-
+#import "RH_UserInfoManager.h"
 @interface RH_BankPickerSelectView()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIPickerView *pickView;
@@ -16,6 +16,9 @@
 @end
 
 @implementation RH_BankPickerSelectView
+{
+    NSInteger selectedRow;
+}
 @synthesize pickView = _pickView;
 - (UIPickerView *)pickView {
     
@@ -67,7 +70,7 @@
 }
 - (void)confirm {
     ifRespondsSelector(self.delegate, @selector(bankPickerSelectViewDidTouchConfirmButton:WithSelectedBank:)){
-        [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:nil] ;
+        [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:BankList[selectedRow]] ;
     }
 }
 
@@ -77,15 +80,19 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return 0 ;
+    return BankList.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return BankList[row].mBankName;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    
+    selectedRow = row;
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 0 ;
+    return 1 ;
 }
 
 @end
