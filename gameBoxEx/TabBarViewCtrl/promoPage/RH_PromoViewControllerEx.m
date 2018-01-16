@@ -40,19 +40,19 @@
 
 -(CGFloat)topViewHeight
 {
-    return self.typeTopView.viewHeight;
+    return self.typeTopView.viewHeight ;
 }
 
 -(void)setupInfo
 {
     [self.topView addSubview:self.typeTopView] ;
     //分页视图
-    [self.contentView addSubview:self.pageView];
+//    [self.contentView addSubview:self.pageView];
     //注册复用
-    [self.pageView registerCellForPage:[RH_PromoContentPageCell class] andReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier]] ;
-    
-    //设置索引
-    self.pageView.dispalyPageIndex = self.typeTopView.selectedType;
+//    [self.pageView registerCellForPage:[RH_PromoContentPageCell class] andReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier]] ;
+//
+//    //设置索引
+//    self.pageView.dispalyPageIndex = self.typeTopView.selectedType;
 }
 
 -(void)updateView
@@ -93,6 +93,7 @@
         _typeTopView = [RH_PromoTypeHeaderView createInstance] ;
         _typeTopView.frame = self.topView.bounds ;
         _typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
+        _typeTopView.backgroundColor = [UIColor redColor] ;
     }
     
     return _typeTopView ;
@@ -145,6 +146,7 @@
         [self.typeTopView updateView:typeList] ;
         [self.contentLoadingIndicateView hiddenView] ;
         [self adjuestTopViewHeight] ;
+//        [self updateTopView] ;
     }
 }
 
