@@ -595,11 +595,11 @@
         NSLog(@"JSToOc :%@------ gotoGame",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
 
-        JSValue *gameJsVal;
-        for (JSValue *jsVal in args) {
-            gameJsVal = jsVal;
-//            NSLog(@"%@", jsVal.toString);
-        }
+//        JSValue *gameJsVal;
+//        for (JSValue *jsVal in args) {
+//            gameJsVal = jsVal;
+////            NSLog(@"%@", jsVal.toString);
+//        }
 
         if (args[0] != NULL) {
             JSValue *jsval = args[0] ;

@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3UserInfo        ,
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
+    ServiceRequestTypeV3GameLink        ,
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
     ServiceRequestTypeV3OpenActivity    ,//拆红包
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
@@ -59,8 +60,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SystemMessageDelete   ,  //系统信息删除
     ServiceRequestTypeV3AddApplyDiscounts    ,  //发送消息
     ServiceRequestTypeV3AddApplyDiscountsVerify,  //发送消息验证
-    ServiceRequestTypeV3PromoActivityType,  //Tab2优惠界面 类型获取
-    ServiceRequestTypeV3Tabbar2ActivityTypeList,  //Tab2优惠界面 列表
+    ServiceRequestTypeV3PromoActivityType,  //优惠界面 类型获取
+    ServiceRequestTypeV3ActivityDetailList,  //优惠界面 列表
     ServiceRequestTypeV3UserLoginOut           ,  //退出登录
     ServiceRequestTypeV3SiteMessageMyMessage   ,  //站点信息  我的消息
 };
@@ -295,7 +296,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadDiscountActivityType;
 
 #pragma mark - tabbar2 优惠活动主界面列表
--(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey;
+-(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
+                                       PageNumber:(NSInteger)pageNumber
+                                         pageSize:(NSInteger)pageSize;
 
 #pragma mark - 退出登录
 -(void)startV3UserLoginOut;
@@ -303,6 +306,12 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 站点信息  我的消息
 -(void)startV3SiteMessageMyMessageWithpageNumber:(NSInteger)pageNumber
                                         pageSize:(NSInteger)pageSize;
+
+#pragma mark - 获取games link
+-(void)startv3GetGamesLink:(NSInteger)apiID
+                 ApiTypeID:(NSInteger)apiTypeID
+                   GamesID:(NSString*)gamesID
+                 GamesCode:(NSString*)gamesCode ;
 #pragma mark -
 /**
  * 取消所有服务

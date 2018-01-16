@@ -52,8 +52,6 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-//    [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:1 pageSize:1];
-     [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:@"012e9ffd-07f8-429b-b733-404a087ac8c5"];
 }
 
 
@@ -256,12 +254,6 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
-    if (type == ServiceRequestTypeV3Tabbar2ActivityTypeList) {
-        
-    }
-   
-
-
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
