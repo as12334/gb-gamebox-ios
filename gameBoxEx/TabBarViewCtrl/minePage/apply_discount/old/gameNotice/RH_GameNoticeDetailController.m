@@ -95,7 +95,7 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3GAMENOTICEDETAIL){
+    if (type == ServiceRequestTypeV3GameNoticeDetail){
         RH_GameNoticeDetailModel *detailModel = ConvertToClassPointer(RH_GameNoticeDetailModel, data);
         [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
                             totalCount:detailModel?1:0] ;
@@ -104,7 +104,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3GAMENOTICEDETAIL){
+    if (type == ServiceRequestTypeV3GameNoticeDetail){
         [self loadDataFailWithError:error] ;
     }
 }

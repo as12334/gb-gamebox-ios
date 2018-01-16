@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初如化安全信息" detailText:@"请稍等"] ;
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初始化安全信息" detailText:@"请稍等"] ;
     [self.serviceRequest startV3UserInfo] ;
 }
 

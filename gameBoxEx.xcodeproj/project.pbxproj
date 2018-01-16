@@ -488,6 +488,7 @@
 		F6A2ADCA200B46B50077CB92 /* RH_GameNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */; };
 		F6A2ADCE200B46E50077CB92 /* RH_GameNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */; };
 		F6A2ADCF200B46E50077CB92 /* RH_GameNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */; };
+		F6A2ADD4200CC9690077CB92 /* RH_ActivityDateSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADD3200CC9690077CB92 /* RH_ActivityDateSingle.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -1342,6 +1343,8 @@
 		F6A2ADCB200B46E50077CB92 /* RH_GameNoticeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailCell.h; sourceTree = "<group>"; };
 		F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailCell.m; sourceTree = "<group>"; };
 		F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameNoticeDetailCell.xib; sourceTree = "<group>"; };
+		F6A2ADD2200CC9690077CB92 /* RH_ActivityDateSingle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ActivityDateSingle.h; sourceTree = "<group>"; };
+		F6A2ADD3200CC9690077CB92 /* RH_ActivityDateSingle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityDateSingle.m; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -2321,6 +2324,8 @@
 				A01CB48C1FF9C81800447130 /* RH_ActivithyView.h */,
 				A01CB4951FF9C81800447130 /* RH_ActivithyView.m */,
 				A01CB4941FF9C81800447130 /* RH_ActivithyView.xib */,
+				F6A2ADD2200CC9690077CB92 /* RH_ActivityDateSingle.h */,
+				F6A2ADD3200CC9690077CB92 /* RH_ActivityDateSingle.m */,
 			);
 			path = activityView;
 			sourceTree = "<group>";
@@ -3541,6 +3546,7 @@
 				A0109FDB1F8788FF004E6EF4 /* DNBrowserCell.m in Sources */,
 				A0109FDC1F8788FF004E6EF4 /* DNFullImageButton.m in Sources */,
 				A01EE2671F8878B30085717E /* SplashViewController.m in Sources */,
+				F6A2ADD4200CC9690077CB92 /* RH_ActivityDateSingle.m in Sources */,
 				A0109FDD1F8788FF004E6EF4 /* DNSendButton.m in Sources */,
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
 				B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */,

@@ -563,7 +563,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SYSTEMNOTICE
+                       serviceType:ServiceRequestTypeV3SystemNotice
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -578,7 +578,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SYSTEMNOTICEDETAIL
+                       serviceType:ServiceRequestTypeV3SystemNoticeDetail
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -604,7 +604,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3GAMENOTICE
+                       serviceType:ServiceRequestTypeV3GameNotice
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark -  游戏公告详情
@@ -619,7 +619,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3GAMENOTICEDETAIL
+                       serviceType:ServiceRequestTypeV3GameNoticeDetail
                          scopeType:ServiceScopeTypePublic];
     
 }
@@ -670,7 +670,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3ONESTEPRECOVERY
+                       serviceType:ServiceRequestTypeV3OneStepRecory
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - V3 添加/保存比特币
@@ -685,7 +685,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SAVEANDADDBTC
+                       serviceType:ServiceRequestTypeV3SaveAndAddBtc
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -702,7 +702,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SITEMESSAGE
+                       serviceType:ServiceRequestTypeV3SiteMessage
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -718,7 +718,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SITEMESSAGEDETAIL
+                       serviceType:ServiceRequestTypeV3SiteMessageDetail
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -734,7 +734,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SYSTEMMESSAGEYES
+                       serviceType:ServiceRequestTypeV3SystemMessageYes
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - 站点信息 - 系统消息删除
@@ -749,7 +749,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SYSTEMMESSAGEDELTE
+                       serviceType:ServiceRequestTypeV3SystemMessageDelete
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - 申请优惠
@@ -768,7 +768,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3ADDAPPLYDISCOUNTS
+                       serviceType:ServiceRequestTypeV3AddApplyDiscounts
                          scopeType:ServiceScopeTypePublic];
     
 }
@@ -1231,7 +1231,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break ;
                 
-            case ServiceRequestTypeV3SYSTEMNOTICE:
+            case ServiceRequestTypeV3SystemNotice:
             {
                 NSArray *tmpArray = [RH_SystemNoticeModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
                 NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
@@ -1242,34 +1242,34 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
-            case ServiceRequestTypeV3SYSTEMNOTICEDETAIL:
+            case ServiceRequestTypeV3SystemNoticeDetail:
             {
                 resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-            case ServiceRequestTypeV3GAMENOTICE:
+            case ServiceRequestTypeV3GameNotice:
             {
                 resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
             }
                 break;
-            case ServiceRequestTypeV3GAMENOTICEDETAIL:
+            case ServiceRequestTypeV3GameNoticeDetail:
             {
                 resultSendData = [[RH_GameNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-            case ServiceRequestTypeV3ONESTEPRECOVERY:
+            case ServiceRequestTypeV3OneStepRecory:
             {
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
             }
                 break;
                 
-            case ServiceRequestTypeV3SAVEANDADDBTC:
+            case ServiceRequestTypeV3SaveAndAddBtc:
             {
                 resultSendData = [[RH_AddBtcModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-            case ServiceRequestTypeV3SITEMESSAGE:
+            case ServiceRequestTypeV3SiteMessage:
             {
                 NSArray *tmpArray = [RH_SiteMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
                 NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]

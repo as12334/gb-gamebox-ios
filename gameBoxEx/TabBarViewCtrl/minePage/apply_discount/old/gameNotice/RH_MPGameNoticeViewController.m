@@ -254,17 +254,18 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3GAMENOTICE){
+    if (type == ServiceRequestTypeV3GameNotice){
         RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
         self.listView.modelArray = gameModel.mApiSelectModel;
         [self loadDataSuccessWithDatas:gameModel.mListModel
                             totalCount:gameModel.mPageTotal]  ;
+
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3GAMENOTICE){
+    if (type == ServiceRequestTypeV3GameNotice){
         [self loadDataFailWithError:error] ;
     }
 }

@@ -46,18 +46,18 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3AddBankCard,   //添加银行卡
     ServiceRequestTypeV3SafetyObtainVerifyCode ,
     ServiceRequestTypeV3PromoList,   //优惠 list
-    ServiceRequestTypeV3SYSTEMNOTICE           , //系统公告
-    ServiceRequestTypeV3SYSTEMNOTICEDETAIL     , //系统公告详情
-    ServiceRequestTypeV3GAMENOTICE           , //游戏公告
-    ServiceRequestTypeV3GAMENOTICEDETAIL     , //游戏公告详情
-    ServiceRequestTypeV3ONESTEPRECOVERY      , //一键回收
+    ServiceRequestTypeV3SystemNotice           , //系统公告
+    ServiceRequestTypeV3SystemNoticeDetail     , //系统公告详情
+    ServiceRequestTypeV3GameNotice           , //游戏公告
+    ServiceRequestTypeV3GameNoticeDetail     , //游戏公告详情
+    ServiceRequestTypeV3OneStepRecory      , //一键回收
     ServiceRequestTypeV3BankCardInfo        , //用户银行卡信息
-    ServiceRequestTypeV3SAVEANDADDBTC      ,  //添加/保存比特币
-    ServiceRequestTypeV3SITEMESSAGE       ,  //站点信息 系统信息
-    ServiceRequestTypeV3SITEMESSAGEDETAIL  ,  //站点信息 系统信息详情
-    ServiceRequestTypeV3SYSTEMMESSAGEYES     ,  //系统信息标记为已读
-    ServiceRequestTypeV3SYSTEMMESSAGEDELTE   ,  //系统信息删除
-    ServiceRequestTypeV3ADDAPPLYDISCOUNTS    ,  //添加申请优惠
+    ServiceRequestTypeV3SaveAndAddBtc      ,  //添加/保存比特币
+    ServiceRequestTypeV3SiteMessage       ,  //站点信息 系统信息
+    ServiceRequestTypeV3SiteMessageDetail  ,  //站点信息 系统信息详情
+    ServiceRequestTypeV3SystemMessageYes     ,  //系统信息标记为已读
+    ServiceRequestTypeV3SystemMessageDelete   ,  //系统信息删除
+    ServiceRequestTypeV3AddApplyDiscounts    ,  //添加申请优惠
 };
 
 
