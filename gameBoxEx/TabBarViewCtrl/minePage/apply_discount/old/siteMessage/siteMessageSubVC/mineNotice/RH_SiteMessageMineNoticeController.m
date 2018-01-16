@@ -40,7 +40,6 @@
         _headerView = [RH_MPSiteMessageHeaderView createInstance];
         _headerView.frame = CGRectMake(0, 100, self.view.frameWidth, 40);
         _headerView.delegate=self;
-        [_headerView.readConfigeBtn setHidden:YES];
     }
     return _headerView;
 }
@@ -139,6 +138,19 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+    [self startUpdateData] ;
+}
+-(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
+{
+    NSString *str = @"";
+    for (RH_SiteMyMessageModel *siteModel in self.deleteModelArray) {
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%d,",siteModel.mId]];
+    }
+    if([str length] > 0){
+        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+    }
+    [self.deleteModelArray removeAllObjects];
+    [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
     [self startUpdateData] ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
