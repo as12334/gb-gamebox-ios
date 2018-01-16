@@ -9,54 +9,54 @@
 #import "RH_BasicModel.h"
 
 @interface SuggestModel :RH_BasicModel
-@property (nonatomic , copy , readonly) NSString              * mModule;
-@property (nonatomic , copy , readonly) NSString              * mRemark;
+@property (nonatomic , strong , readonly) NSString              * mModule;
+@property (nonatomic , strong , readonly) NSString              * mRemark;
 @property (nonatomic , assign , readonly) BOOL                  mActive;
 @property (nonatomic , assign , readonly) NSInteger              mId;
-@property (nonatomic , copy , readonly) NSString              * mDictCode;
-@property (nonatomic , copy , readonly) NSString              * mTranslated;
+@property (nonatomic , strong , readonly) NSString              * mDictCode;
+@property (nonatomic , strong , readonly) NSString              * mTranslated;
 @property (nonatomic , assign , readonly) NSInteger              mOrderNum;
-@property (nonatomic , copy , readonly) NSString              * mDictType;
-@property (nonatomic , copy , readonly) NSString              * mParentCode;
+@property (nonatomic , strong , readonly) NSString              * mDictType;
+@property (nonatomic , strong , readonly) NSString              * mParentCode;
 
 @end
 
 @interface FinanceProblemModel :RH_BasicModel
-@property (nonatomic , copy , readonly) NSString              * mModule;
-@property (nonatomic , copy , readonly) NSString              * mRemark;
+@property (nonatomic , strong , readonly) NSString              * mModule;
+@property (nonatomic , strong , readonly) NSString              * mRemark;
 @property (nonatomic , assign , readonly) BOOL                  mActive;
 @property (nonatomic , assign , readonly) NSInteger              mId;
-@property (nonatomic , copy , readonly) NSString              * mDictCode;
-@property (nonatomic , copy , readonly) NSString              * mTranslated;
+@property (nonatomic , strong , readonly) NSString              * mDictCode;
+@property (nonatomic , strong , readonly) NSString              * mTranslated;
 @property (nonatomic , assign , readonly) NSInteger              mOrderNum;
-@property (nonatomic , copy , readonly) NSString              * mDictType;
-@property (nonatomic , copy , readonly) NSString              * mParentCode;
+@property (nonatomic , strong , readonly) NSString              * mDictType;
+@property (nonatomic , strong , readonly) NSString              * mParentCode;
 
 @end
 
 @interface OfferApplicationModel :RH_BasicModel
-@property (nonatomic , copy , readonly) NSString              * mModule;
-@property (nonatomic , copy , readonly) NSString              * mRemark;
+@property (nonatomic , strong , readonly) NSString              * mModule;
+@property (nonatomic , strong , readonly) NSString              * mRemark;
 @property (nonatomic , assign , readonly) BOOL                  mActive;
 @property (nonatomic , assign , readonly) NSInteger              mId;
-@property (nonatomic , copy , readonly) NSString              * mDictCode;
-@property (nonatomic , copy , readonly) NSString              * mTranslated;
+@property (nonatomic , strong , readonly) NSString              * mDictCode;
+@property (nonatomic , strong , readonly) NSString              * mTranslated;
 @property (nonatomic , assign , readonly) NSInteger              mOrderNum;
-@property (nonatomic , copy , readonly) NSString              * mDictType;
-@property (nonatomic , copy , readonly) NSString              * mParentCode;
+@property (nonatomic , strong , readonly) NSString              * mDictType;
+@property (nonatomic , strong , readonly) NSString              * mParentCode;
 
 @end
 
 @interface OtherProblemModel :RH_BasicModel
-@property (nonatomic , copy , readonly) NSString              * mModule;
-@property (nonatomic , copy , readonly) NSString              * mRemark;
+@property (nonatomic , strong , readonly) NSString              * mModule;
+@property (nonatomic , strong , readonly) NSString              * mRemark;
 @property (nonatomic , assign , readonly) BOOL                  mActive;
 @property (nonatomic , assign , readonly) NSInteger              mId;
-@property (nonatomic , copy , readonly) NSString              * mDictCode;
-@property (nonatomic , copy , readonly) NSString              * mTranslated;
+@property (nonatomic , strong , readonly) NSString              * mDictCode;
+@property (nonatomic , strong , readonly) NSString              * mTranslated;
 @property (nonatomic , assign , readonly) NSInteger              mOrderNum;
-@property (nonatomic , copy , readonly) NSString              * mDictType;
-@property (nonatomic , copy , readonly) NSString              * mParentCode;
+@property (nonatomic , strong , readonly) NSString              * mDictType;
+@property (nonatomic , strong , readonly) NSString              * mParentCode;
 
 @end
 
