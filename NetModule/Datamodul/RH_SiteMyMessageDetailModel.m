@@ -6,22 +6,13 @@
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_SiteMyMessageDetail.h"
+#import "RH_SiteMyMessageDetailModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
 
-@implementation RH_SiteMyMessageDetail
+@implementation RH_SiteMyMessageDetailModel
 -(id)initWithInfoDic:(NSDictionary *)info
 {
-    /*advisoryContent = "<null>";
-     advisoryTime = "<null>";
-     advisoryTitle = "<null>";
-     questionType = "<null>";
-     replyContent = "<null>";
-     replyTime = "<null>";
-     replyTitle = "<null>";
-     RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT
-     */
     if (self = [super initWithInfoDic:info])
     {
         _mAdvisoryContent = [info stringValueForKey:RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT];

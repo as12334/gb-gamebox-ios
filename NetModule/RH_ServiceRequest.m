@@ -37,6 +37,7 @@
 #import "RH_DiscountActivityTypeModel.h"
 #import "RH_DiscountActivityModel.h"
 #import "RH_SendMessageVerityModel.h"
+#import "RH_SiteMyMessageDetailModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -1526,6 +1527,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3AddApplyDiscountsVerify:
             {
                 resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3SiteMessageMyMessageDetail:
+            {
+                resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
             default:
