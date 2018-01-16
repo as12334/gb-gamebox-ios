@@ -354,6 +354,25 @@
 #define RH_GP_SYSTEMNOTICEDETAIL_LINK        @"link"
 #define RH_GP_SYSTEMNOTICEDETAIL_TITLE       @"title"
 
+#pragma mark - V3 发送消息验证接口 模型
+#define RH_GP_SENDMESSGAVERITY_ISOPENCAPTCHA          @"isOpenCaptcha"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_CAPTCHA_VALUE          @"captcha_value"
+#define RH_GP_SENDMESSGAVERITY_SUGGEST                @"suggest"
+#define RH_GP_SENDMESSGAVERITY_FINANCEPROBLEM         @"financeProblem"
+#define RH_GP_SENDMESSGAVERITY_OFFERAPPLICATION       @"offerApplication"
+#define RH_GP_SENDMESSGAVERITY_OTHERPROBLEM           @"otherProblem"
+#define RH_GP_SENDMESSGAVERITY_MODULE                 @"module"
+#define RH_GP_SENDMESSGAVERITY_REMARK                 @"remark"
+#define RH_GP_SENDMESSGAVERITY_ACTIVE                 @"active"
+#define RH_GP_SENDMESSGAVERITY_ID                     @"id"
+#define RH_GP_SENDMESSGAVERITY_DICTCODE               @"dictCode"
+#define RH_GP_SENDMESSGAVERITY_TRANSLATED             @"translated"
+#define RH_GP_SENDMESSGAVERITY_ORDERNUM               @"orderNum"
+#define RH_GP_SENDMESSGAVERITY_DICTTYPE               @"dictType"
+#define RH_GP_SENDMESSGAVERITY_PARENTCODE             @"parentCode"
+
+
 #pragma mark -
 #pragma mark - 回收接口
 //api的路径
@@ -628,12 +647,26 @@
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE      @"result.advisoryType"
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE     @"result.advisoryTitle"
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT   @"result.advisoryContent"
+#define RH_SP_ADDAPPLYDISCOUNTS_CODE                    @"code"
 
 #pragma mark - V3 站点信息  我的消息
 #define RH_API_NAME_SITEMESSAGE_MYMESSAGE   @"mineOrigin/advisoryMessage.html"
 //请求参数
 #define RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER  @"paging.pageNumber"
 #define RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE    @"paging.pageSize"
+
+#pragma mark - V3 站点信息 我的信息标记为已读
+
+#define RH_API_NAME_MYMESSAGEREDAYES   @"mineOrigin/getSelectAdvisoryMessageIds.html"
+//请求参数
+#define RH_SP_MYMESSAGEREDAYES_IDS   @"ids"
+
+
+#pragma mark - V3 站点信息 我的信息删除
+#define RH_API_NAME_MYMESSAGEDELETE   @"mineOrigin/deleteAdvisoryMessage.html"
+//请求参数
+#define RH_SP_MYMESSAGEDELETE_IDS   @"ids"
+
 
 #pragma mark - V3 Tabbar 优惠主页面 优惠活动类型
 #define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS  @"discountsOrigin/getActivityType.html"

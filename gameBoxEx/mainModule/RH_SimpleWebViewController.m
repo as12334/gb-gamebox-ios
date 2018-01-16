@@ -602,7 +602,8 @@
         }
 
         if (args[0] != NULL) {
-            self.appDelegate.customUrl = gameJsVal.toString;
+            JSValue *jsval = args[0] ;
+            self.appDelegate.customUrl = jsval.toString;
         }
         
         NSInteger apiTypeID  = -1 ;

@@ -8,8 +8,6 @@
 
 #import "RH_PageLoadContentPageCell.h"
 
-#define TopViewHeight               130.0f
-
 @interface RH_PromoContentPageCell : RH_PageLoadContentPageCell
 -(void)updateViewWithType:(id)type Context:(CLPageLoadDatasContext*)context ;
 @end
