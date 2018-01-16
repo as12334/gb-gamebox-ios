@@ -10,6 +10,10 @@
 @interface RH_DiscountActivityModel :RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mPhoto;
 @property(nonatomic,strong,readonly)NSString *mUrl;
+
+//----
+@property(nonatomic,strong,readonly) NSString *showPhoto ;
+@property(nonatomic,strong,readonly) NSString *showLink ;
 @end
 
 

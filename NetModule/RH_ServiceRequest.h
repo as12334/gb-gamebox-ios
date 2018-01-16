@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3UserInfo        ,
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
+    ServiceRequestTypeV3GameLink        ,
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
     ServiceRequestTypeV3OpenActivity    ,//拆红包
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
@@ -59,12 +60,15 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SystemMessageDelete   ,  //系统信息删除
     ServiceRequestTypeV3AddApplyDiscounts    ,  //发送消息
     ServiceRequestTypeV3AddApplyDiscountsVerify,  //发送消息验证
-    ServiceRequestTypeV3PromoActivityType,  //Tab2优惠界面 类型获取
-    ServiceRequestTypeV3Tabbar2ActivityTypeList,  //Tab2优惠界面 列表
+    ServiceRequestTypeV3PromoActivityType,  //优惠界面 类型获取
+    ServiceRequestTypeV3ActivityDetailList,  //优惠界面 列表
     ServiceRequestTypeV3UserLoginOut           ,  //退出登录
     ServiceRequestTypeV3SiteMessageMyMessage   ,  //站点信息  我的消息
-    ServiceRequestTypeV3MyMessageMyMessageReadYes   ,  //  我的消息 
-    ServiceRequestTypeV3MyMessageMyMessageDelete   ,  // 我的消息
+    ServiceRequestTypeV3SiteMessageMyMessageDetail,  //站点信息  我的消息详情
+    ServiceRequestTypeV3MyMessageMyMessageReadYes   ,  //  我的消息 已读
+    ServiceRequestTypeV3MyMessageMyMessageDelete   ,  // 我的消息  删除
+    ServiceRequestTypeV3GetWithDrawInfo   ,  // 取款信息接口
+    ServiceRequestTypeV3SubmitWithdrawInfo   ,  // 提交取款信息
 };
 
 
@@ -298,19 +302,65 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadDiscountActivityType;
 
 #pragma mark - tabbar2 优惠活动主界面列表
--(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey;
+-(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
+                                       PageNumber:(NSInteger)pageNumber
+                                         pageSize:(NSInteger)pageSize;
 
 #pragma mark - 退出登录
 -(void)startV3UserLoginOut;
 
+/**
+ 我的消息
+
+ @return return value description
+ */
 #pragma mark - 站点信息  我的消息
 -(void)startV3SiteMessageMyMessageWithpageNumber:(NSInteger)pageNumber
                                         pageSize:(NSInteger)pageSize;
 
+#pragma mark - 站点信息  我的消息详情
+
+/**
+ 我的消息详情
+ @param mId list ID
+ */
+-(void)startV3SiteMessageMyMessageDetailWithID:(NSString *)mId;
 #pragma mark - 站点信息 - 我的消息标记已读
 -(void)startV3LoadMyMessageReadYesWithIds:(NSString *)ids;
 #pragma mark - 站点信息 - 我的消息删除
 -(void)startV3LoadMyMessageDeleteWithIds:(NSString *)ids;
+
+#pragma mark - 获取取款接口
+-(void)startV3GetWithDraw;
+
+#pragma mark - 提交取款信息
+/**
+ 提交取款信息
+ @param noBank 是否有银行卡  N
+ @param noBtc 是否有比特币   N
+ @param remittanceWay 银行卡类型（1：银行卡，2：比特币）  N
+ @param walletBalance 钱包金额  N
+ @param withdrawAmount 取款金额  Y
+ @param poundageHide 符号  N
+ @param withdrawFee 手续费  N
+ @param actualWithdraw 实际取款金额 Y
+ @param gbToken 防重验证  Y
+ */
+-(void)startV3SubmitWithdrawWithNoBank:(BOOL)noBank
+                                 noBtc:(BOOL)noBtc
+                         remittanceWay:(NSInteger)remittanceWay
+                         walletBalance:(float)walletBalance
+                        withdrawAmount:(float)withdrawAmount
+                          poundageHide:(NSString *)poundageHide
+                           withdrawFee:(float)withdrawFee
+                        actualWithdraw:(float)actualWithdraw
+                               gbToken:(NSString *)gbToken;
+
+#pragma mark - 获取games link
+-(void)startv3GetGamesLink:(NSInteger)apiID
+                 ApiTypeID:(NSInteger)apiTypeID
+                   GamesID:(NSString*)gamesID
+                 GamesCode:(NSString*)gamesCode ;
 #pragma mark -
 /**
  * 取消所有服务

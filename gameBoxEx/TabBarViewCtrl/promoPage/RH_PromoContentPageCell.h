@@ -7,7 +7,8 @@
 //
 
 #import "RH_PageLoadContentPageCell.h"
+#import "RH_DiscountActivityTypeModel.h"
 
 @interface RH_PromoContentPageCell : RH_PageLoadContentPageCell
--(void)updateViewWithType:(id)type Context:(CLPageLoadDatasContext*)context ;
+-(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;
 @end

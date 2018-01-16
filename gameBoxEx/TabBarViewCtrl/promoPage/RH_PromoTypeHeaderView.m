@@ -17,7 +17,7 @@
 
 @implementation RH_PromoTypeHeaderView
 @synthesize collectionTypeView = _collectionTypeView ;
-@synthesize selectedType = _selectedType ;
+@synthesize selectedIndex = _selectedIndex ;
 @synthesize viewHeight = _viewHeight  ;
 
 -(void)awakeFromNib
@@ -26,8 +26,7 @@
     self.backgroundColor = [UIColor whiteColor] ;
     [self addSubview:self.collectionTypeView] ;
     [self.collectionTypeView reloadData] ;
-    _selectedType = 0 ;
-     [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedType inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+    _selectedIndex = 0 ;
     _viewHeight = 0.0f ;
 }
 
@@ -35,6 +34,7 @@
 {
     self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
     [self.collectionTypeView reloadData] ;
+    [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
 }
 
 -(CGFloat)viewHeight
@@ -57,6 +57,15 @@
     }
     
     return _viewHeight ;
+}
+
+-(RH_DiscountActivityTypeModel*)typeModelWithIndex:(NSInteger)index
+{
+    if (index>=0 && index <self.arrayTypeList.count){
+        return self.arrayTypeList[index] ;
+    }
+    
+    return nil ;
 }
 
 #pragma mark -
@@ -85,15 +94,17 @@
     return self.arrayTypeList.count ;
 }
 
--(NSInteger)selectedType
+-(NSInteger)selectedIndex
 {
-    return _selectedType ;
+    return _selectedIndex ;
 }
 
--(void)setSelectedType:(NSInteger)selectedType
+-(void)setSelectedIndex:(NSInteger)selectedIndex
 {
-    _selectedType = selectedType ;
-    [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedType inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+    if (_selectedIndex!=selectedIndex){
+        _selectedIndex = selectedIndex ;
+        [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+    }
 }
 
 -(CGSize)containSize
@@ -129,7 +140,11 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-     _selectedType = indexPath.item ;
+    [self setSelectedIndex:indexPath.item] ;
+    ifRespondsSelector(self.delegate, @selector(promoTypeHeaderViewDidChangedSelectedIndex:SelectedIndex:)){
+        [self.delegate promoTypeHeaderViewDidChangedSelectedIndex:self SelectedIndex:_selectedIndex] ;
+    }
+    
 //    if (self.pageLoadManager.currentDataCount){
 //        if (HasLogin)
 //        {

@@ -30,7 +30,7 @@
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
-@property (nonatomic,strong,readonly) UILabel *labDomain ;
+//@property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
@@ -50,7 +50,7 @@
 @end
 
 @implementation RH_FirstPageViewControllerEx
-@synthesize  labDomain = _labDomain                         ;
+//@synthesize  labDomain = _labDomain                         ;
 @synthesize dynamicLabCell = _dynamicLabCell                ;
 @synthesize homeCategoryCell = _homeCategoryCell            ;
 @synthesize homeChildCatetoryCell = _homeChildCatetoryCell  ;
@@ -70,15 +70,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }
 
--(BOOL)hasTopView
-{
-    return YES ;
-}
-
--(CGFloat)topViewHeight
-{
-    return 20.0f ;
-}
+//-(BOOL)hasTopView
+//{
+//    return YES ;
+//}
+//
+//-(CGFloat)topViewHeight
+//{
+//    return 20.0f ;
+//}
 
 - (void)dealloc
 {
@@ -93,24 +93,24 @@
     }
 }
 
-#pragma mark-
--(UILabel*)labDomain
-{
-    if (!_labDomain){
-        _labDomain = [[UILabel alloc] init] ;
-        if ([self.appDelegate.domain containsString:@"//"]){
-            NSArray *tmpArray = [self.appDelegate.domain componentsSeparatedByString:@"//"] ;
-            _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",tmpArray.count>1?tmpArray[1]:tmpArray[0]] ;
-        }else{
-            _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",self.appDelegate.domain] ;
-        }
-        _labDomain.font = [UIFont systemFontOfSize:12.0f] ;
-        _labDomain.textColor = [UIColor whiteColor] ;
-        _labDomain.translatesAutoresizingMaskIntoConstraints = NO ;
-    }
-    
-    return _labDomain ;
-}
+//#pragma mark-
+//-(UILabel*)labDomain
+//{
+//    if (!_labDomain){
+//        _labDomain = [[UILabel alloc] init] ;
+//        if ([self.appDelegate.domain containsString:@"//"]){
+//            NSArray *tmpArray = [self.appDelegate.domain componentsSeparatedByString:@"//"] ;
+//            _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",tmpArray.count>1?tmpArray[1]:tmpArray[0]] ;
+//        }else{
+//            _labDomain.text = [NSString stringWithFormat:@"易记域名:%@",self.appDelegate.domain] ;
+//        }
+//        _labDomain.font = [UIFont systemFontOfSize:12.0f] ;
+//        _labDomain.textColor = [UIColor whiteColor] ;
+//        _labDomain.translatesAutoresizingMaskIntoConstraints = NO ;
+//    }
+//
+//    return _labDomain ;
+//}
 
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -139,11 +139,11 @@
 #pragma mark-
 -(void)setupUI
 {
-    [self.topView addSubview:self.labDomain] ;
-    setCenterConstraint(self.labDomain, self.topView) ;
-    self.topView.backgroundColor = RH_NavigationBar_BackgroundColor ;
-    self.topView.borderMask = CLBorderMarkTop ;
-    self.topView.borderColor = colorWithRGB(204, 204, 204) ;
+//    [self.topView addSubview:self.labDomain] ;
+//    setCenterConstraint(self.labDomain, self.topView) ;
+//    self.topView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+//    self.topView.borderMask = CLBorderMarkTop ;
+//    self.topView.borderColor = colorWithRGB(204, 204, 204) ;
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
