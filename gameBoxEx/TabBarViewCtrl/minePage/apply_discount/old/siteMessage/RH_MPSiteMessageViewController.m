@@ -161,22 +161,22 @@
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         noticeCell.delegate = self;
         RH_SiteMessageModel *model = [self.modelArray objectAtIndex:indexPath.row];
-        noticeCell.selectedStatus = model.isSelected;
-        __weak typeof (self)weakSelf = self;
-        noticeCell.ChooseBtnBlock = ^(__weak UITableViewCell *tapCell,BOOL selected){
-            NSIndexPath *path = [weakSelf.contentTableView indexPathForCell:tapCell ];
-            RH_SiteMessageModel *siteModel = [weakSelf.modelArray objectAtIndex:path.row];
-            siteModel.isSelected = selected;
-            [weakSelf.deleteArray addObject:siteModel];
-            if (!selected) {
-                weakSelf.headerView.allChoseBtn.selected = selected;
-                [weakSelf.deleteArray removeObject:siteModel];
-            }
-//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:path.row inSection:1];
-            
-            [_indexpPathArray addObject:indexPath];
-            [weakSelf calculateWhetherFutureGenerations];
-        };
+//        noticeCell.selectedStatus = model.isSelected;
+//        __weak typeof (self)weakSelf = self;
+//        noticeCell.ChooseBtnBlock = ^(__weak UITableViewCell *tapCell,BOOL selected){
+//            NSIndexPath *path = [weakSelf.contentTableView indexPathForCell:tapCell ];
+//            RH_SiteMessageModel *siteModel = [weakSelf.modelArray objectAtIndex:path.row];
+//            siteModel.isSelected = selected;
+//            [weakSelf.deleteArray addObject:siteModel];
+//            if (!selected) {
+//                weakSelf.headerView.allChoseBtn.selected = selected;
+//                [weakSelf.deleteArray removeObject:siteModel];
+//            }
+////            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:path.row inSection:1];
+//
+//            [_indexpPathArray addObject:indexPath];
+//            [weakSelf calculateWhetherFutureGenerations];
+//        };
         
         return noticeCell ;
     }else{
@@ -212,7 +212,7 @@
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView *)view
 {
     for (RH_SiteMessageModel *model in self.modelArray) {
-        model.isSelected = 0;
+//        model.isSelected = 0;
     }
     [self.pageLoadManager removeDataAtIndexPaths:self.indexpPathArray];
     for (NSIndexPath *path in self.indexpPathArray) {
@@ -230,7 +230,7 @@
     self.headerView.allChoseBtn.selected = !self.headerView.allChoseBtn.selected;
     for (int i =0; i<self.modelArray.count; i++) {
         RH_SiteMessageModel *model = [self.modelArray objectAtIndex:i];
-        model.isSelected =self.headerView.allChoseBtn.selected;
+//        model.isSelected =self.headerView.allChoseBtn.selected;
     }
     [self.contentTableView reloadData];
 }
@@ -240,9 +240,9 @@
     NSInteger totalSelected = 0;
     for (int i = 0; i<self.modelArray.count; i++) {
         RH_SiteMessageModel *model = [self.modelArray objectAtIndex:i];
-        if (model.isSelected) {
-            totalSelected ++;
-        }
+//        if (model.isSelected) {
+//            totalSelected ++;
+//        }
     }
     if (totalSelected == self.modelArray.count) {
         self.headerView.allChoseBtn.selected  = YES;
@@ -310,7 +310,7 @@
                             totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]] ;
         for (id siteModel in [dictTmp objectForKey:@"list"]) {
             RH_SiteMessageModel *model  = ConvertToClassPointer(RH_SiteMessageModel, siteModel);
-            model.isSelected = 0;
+//            model.isSelected = 0;
             [self.modelArray addObject:model];
         }
         [self.contentTableView reloadData];

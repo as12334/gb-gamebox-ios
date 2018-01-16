@@ -27,6 +27,8 @@
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
+		79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */; };
+		79E223FF200E0271006B0450 /* RH_SiteMyMessageDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FE200E0271006B0450 /* RH_SiteMyMessageDetailModel.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
@@ -514,6 +516,7 @@
 		F6A2ADDB200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADDA200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m */; };
 		F6A2ADDE200D8DC60077CB92 /* RH_SiteMessageSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */; };
 		F6A2ADE1200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */; };
+		F6A2ADE7200D99300077CB92 /* RH_SiteSendMessagePullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -572,6 +575,10 @@
 		79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMyMessageModel.m; sourceTree = "<group>"; };
 		79E223F7200CC210006B0450 /* RH_DiscountActivityTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityTypeModel.h; sourceTree = "<group>"; };
 		79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityTypeModel.m; sourceTree = "<group>"; };
+		79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SendMessageVerityModel.h; sourceTree = "<group>"; };
+		79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SendMessageVerityModel.m; sourceTree = "<group>"; };
+		79E223FD200E0271006B0450 /* RH_SiteMyMessageDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageDetailModel.h; sourceTree = "<group>"; };
+		79E223FE200E0271006B0450 /* RH_SiteMyMessageDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMyMessageDetailModel.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
@@ -1415,6 +1422,8 @@
 		F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageSentViewController.m; sourceTree = "<group>"; };
 		F6A2ADDF200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteMessageViewControllerEX.h; sourceTree = "<group>"; };
 		F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewControllerEX.m; sourceTree = "<group>"; };
+		F6A2ADE5200D99300077CB92 /* RH_SiteSendMessagePullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteSendMessagePullDownView.h; sourceTree = "<group>"; };
+		F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSendMessagePullDownView.m; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -2264,6 +2273,10 @@
 				79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */,
 				79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */,
 				79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */,
+				79E223FD200E0271006B0450 /* RH_SiteMyMessageDetailModel.h */,
+				79E223FE200E0271006B0450 /* RH_SiteMyMessageDetailModel.m */,
+				79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */,
+				79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3177,9 +3190,6 @@
 			isa = PBXGroup;
 			children = (
 				F6A2ADD5200D8D130077CB92 /* siteMessageSubVC */,
-				F6A2AD72200850340077CB92 /* RH_MPSiteMessageHeaderView.h */,
-				F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */,
-				F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */,
 				F6A2ACA120044C590077CB92 /* RH_MPSiteMessageViewController.h */,
 				F6A2ACA220044C590077CB92 /* RH_MPSiteMessageViewController.m */,
 				F6A2ADDF200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.h */,
@@ -3194,6 +3204,9 @@
 				F6A2AC9B20044C590077CB92 /* RH_MPSiteSystemNoticeCell.h */,
 				F6A2AC9C20044C590077CB92 /* RH_MPSiteSystemNoticeCell.m */,
 				F6A2AC9D20044C590077CB92 /* RH_MPSiteSystemNoticeCell.xib */,
+				F6A2AD72200850340077CB92 /* RH_MPSiteMessageHeaderView.h */,
+				F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */,
+				F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3302,6 +3315,8 @@
 		F6A2ADE4200D93D40077CB92 /* sendMessage */ = {
 			isa = PBXGroup;
 			children = (
+				F6A2ADE5200D99300077CB92 /* RH_SiteSendMessagePullDownView.h */,
+				F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */,
 				F6A2AD772008884E0077CB92 /* RH_SiteSendMessageView.h */,
 				F6A2AD782008884E0077CB92 /* RH_SiteSendMessageView.m */,
 				F6A2AD7A2008885D0077CB92 /* RH_SiteSendMessageView.xib */,
@@ -3683,6 +3698,7 @@
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
+				79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */,
 				79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,
@@ -3702,6 +3718,7 @@
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
+				79E223FF200E0271006B0450 /* RH_SiteMyMessageDetailModel.m in Sources */,
 				A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
@@ -3789,6 +3806,7 @@
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
+				F6A2ADE7200D99300077CB92 /* RH_SiteSendMessagePullDownView.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,
 				A010A0011F8788FF004E6EF4 /* ScreenAdaptation.m in Sources */,
 				A0109F691F8787E4004E6EF4 /* CLAPPDelegate.m in Sources */,

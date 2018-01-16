@@ -27,4 +27,8 @@
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.masksToBounds = YES;
 }
+- (IBAction)favorableSelectedClick:(id)sender {
+    UIButton *btn  =sender;
+    self.block(btn.frame);
+}
 @end

@@ -8,8 +8,8 @@
 
 #import "CLTableViewCell.h"
 #import "RH_SiteMessageModel.h"
+typedef void (^chooseBtnBlock)(void);
 @class RH_MPSiteSystemNoticeCell;
-
 @protocol MPSiteSystemNoticeCellDelegate<NSObject>
 @optional
 -(void)chooseSiteSystemNoticeCellEditBtn:(UIButton *)button ;
@@ -17,6 +17,6 @@
 
 @interface RH_MPSiteSystemNoticeCell : CLTableViewCell
 @property(nonatomic,weak)id<MPSiteSystemNoticeCellDelegate>delegate;
-@property(nonatomic,assign)BOOL selectedStatus;
-@property(nonatomic,copy)void(^ChooseBtnBlock)(id,BOOL);
+@property(nonatomic,assign)NSNumber *statusNumber;
+@property(nonatomic,copy)chooseBtnBlock block;
 @end

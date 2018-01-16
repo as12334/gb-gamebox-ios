@@ -29,7 +29,7 @@
                                         <constraint firstAttribute="width" constant="20" id="aTm-ys-BDm"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="意见建议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhF-IA-ZrI">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠申请" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhF-IA-ZrI">
                                     <rect key="frame" x="266" y="14.5" width="41" height="12"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <nil key="textColor"/>
@@ -41,14 +41,24 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dB4-fV-qVu">
+                                    <rect key="frame" x="266" y="8" width="69" height="27"/>
+                                    <connections>
+                                        <action selector="favorableSelectedClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="wcD-ml-yFP"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="dB4-fV-qVu" firstAttribute="top" secondItem="rfz-yD-AhI" secondAttribute="top" constant="8" id="1ow-26-aWh"/>
                                 <constraint firstItem="Iqb-vs-xwG" firstAttribute="leading" secondItem="IhF-IA-ZrI" secondAttribute="trailing" constant="8" id="7j8-O4-SG4"/>
                                 <constraint firstItem="IhF-IA-ZrI" firstAttribute="centerY" secondItem="rfz-yD-AhI" secondAttribute="centerY" id="CMD-0I-FLp"/>
+                                <constraint firstAttribute="bottom" secondItem="dB4-fV-qVu" secondAttribute="bottom" constant="5" id="KfW-yx-JPs"/>
                                 <constraint firstAttribute="trailing" secondItem="Iqb-vs-xwG" secondAttribute="trailing" constant="8" id="TLm-y3-S11"/>
                                 <constraint firstItem="fNu-Wq-BG7" firstAttribute="centerY" secondItem="rfz-yD-AhI" secondAttribute="centerY" id="ZF4-bZ-L8y"/>
                                 <constraint firstItem="Iqb-vs-xwG" firstAttribute="centerY" secondItem="rfz-yD-AhI" secondAttribute="centerY" id="bGk-OC-8VZ"/>
+                                <constraint firstItem="Iqb-vs-xwG" firstAttribute="trailing" secondItem="dB4-fV-qVu" secondAttribute="trailing" id="lNx-cd-N5j"/>
+                                <constraint firstItem="IhF-IA-ZrI" firstAttribute="leading" secondItem="dB4-fV-qVu" secondAttribute="leading" id="su6-NN-9sF"/>
                                 <constraint firstAttribute="height" constant="40" id="ucs-Yw-0Bg"/>
                                 <constraint firstItem="fNu-Wq-BG7" firstAttribute="leading" secondItem="rfz-yD-AhI" secondAttribute="leading" constant="8" id="xvy-6H-aZ5"/>
                             </constraints>
@@ -165,6 +175,7 @@
             </constraints>
             <connections>
                 <outlet property="backDropView" destination="8Zc-2W-dIS" id="VfA-3A-G2Z"/>
+                <outlet property="typeLabel" destination="IhF-IA-ZrI" id="UOk-Yk-r46"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="68.5"/>
         </view>

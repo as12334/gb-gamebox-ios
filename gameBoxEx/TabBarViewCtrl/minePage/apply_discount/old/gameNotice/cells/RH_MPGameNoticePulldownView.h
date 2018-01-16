@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RH_ServiceRequest.h"
 #import "RH_GameNoticeModel.h"
 typedef void (^GameNoticePulldownViewBlock)(void);
 @interface RH_MPGameNoticePulldownView : UIView

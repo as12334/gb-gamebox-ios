@@ -9,9 +9,12 @@
 #import "RH_SiteMessageSystemNoticeController.h"
 #import "RH_MPSiteMessageHeaderView.h"
 #import "RH_MPSiteSystemNoticeCell.h"
+#import "RH_SiteMessageModel.h"
 #import "RH_API.h"
 @interface RH_SiteMessageSystemNoticeController ()<MPSiteMessageHeaderViewDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
+@property(nonatomic,strong)NSMutableArray *siteModelArray;
+@property(nonatomic,strong)NSMutableArray *deleteModelArray;
 @end
 
 @implementation RH_SiteMessageSystemNoticeController
@@ -24,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
+    self.siteModelArray = [NSMutableArray array];
+    self.deleteModelArray = [NSMutableArray array];
      [self setupUI];
 }
 #pragma mark tableView的上部分的选择模块
@@ -75,7 +79,22 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        RH_MPSiteSystemNoticeCell *noticeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
+       __weak RH_MPSiteSystemNoticeCell *noticeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
+        __weak RH_SiteMessageSystemNoticeController *weakSelf = self;
+        noticeCell.block = ^(){
+            RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
+            if ([siteModel.number isEqual:@0]) {
+                siteModel.number = @1;
+                [self.deleteModelArray addObject:siteModel];
+            }
+            else if ([siteModel.number isEqual:@1])
+            {
+                siteModel.number = @0;
+                [self.deleteModelArray removeObject:siteModel];
+            }
+            
+            [weakSelf.contentTableView reloadData];
+        };
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return noticeCell ;
     }else{
@@ -90,13 +109,39 @@
 {
     return self.headerView;
 }
-#pragma mark cell代理
-
+#pragma mark 全选，删除代理
+-(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
+{
+    for (int i =0; i<self.siteModelArray.count; i++) {
+        RH_SiteMessageModel *siteModel = self.siteModelArray[i];
+        if (choseMark==YES) {
+            siteModel.number = @1;
+            [self.deleteModelArray addObject:siteModel];
+        }
+        else if (choseMark==NO){
+            siteModel.number=@0;
+            [self.deleteModelArray removeAllObjects];
+        }
+    }
+    [self.contentTableView reloadData];
+}
+-(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView *)view
+{
+    NSString *str = @"";
+    for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%d,",siteModel.mId]];
+    }
+    if([str length] > 0){
+        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+    }
+    [self.deleteModelArray removeAllObjects];
+    [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+    [self startUpdateData] ;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    RH_GameNoticeDetailController *detailVC= [RH_GameNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
-    //    [self.navigationController pushViewController:detailVC animated:YES];
+    
 }
 #pragma mark 数据请求
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -151,10 +196,17 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3SiteMessage){
+        //刷新后将model数组清空
+        [self.siteModelArray removeAllObjects];
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]] ;
-       
+        //获取model
+        for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
+            RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);
+            siteModel.number = @0;
+            [self.siteModelArray addObject:siteModel];
+        }
       [self.contentTableView reloadData];
     }
 }

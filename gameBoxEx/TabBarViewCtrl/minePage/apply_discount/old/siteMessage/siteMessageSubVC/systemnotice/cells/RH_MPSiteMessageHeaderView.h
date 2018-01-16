@@ -11,7 +11,7 @@
 @protocol MPSiteMessageHeaderViewDelegate<NSObject>
 @optional
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView*)view;
--(void)siteMessageHeaderViewAllChoseBtn:(RH_MPSiteMessageHeaderView *)view;
+-(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark;
 @end
 @interface RH_MPSiteMessageHeaderView : UIView
 @property(nonatomic,weak)id<MPSiteMessageHeaderViewDelegate>delegate;

@@ -32,22 +32,21 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_normal"] forState:UIControlStateNormal];
-    [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_error"] forState:UIControlStateSelected];
 }
-
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
     self.titleLabel.text = model.mTitle;
     self.timeLabel.text = self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd");
+    if ([model.number isEqual:@0]) {
+        [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_normal"] forState:UIControlStateNormal];
+    }
+    else if ([model.number isEqual:@1]){
+        [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_error"] forState:UIControlStateNormal];
+    }
 }
 - (IBAction)chooseEditBtn:(id)sender {
-    self.editBtn.selected =!self.editBtn.selected;
-    if (self.ChooseBtnBlock) {
-        self.ChooseBtnBlock(self, self.editBtn.selected);
-    }
-    
+    self.block();
 }
 -(void)setSelectedStatus:(BOOL)selectedStatus
 {

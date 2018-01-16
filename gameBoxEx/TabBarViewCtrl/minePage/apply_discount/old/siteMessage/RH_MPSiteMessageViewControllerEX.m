@@ -71,19 +71,7 @@
         button.selected = !button.selected;
         button.backgroundColor = [UIColor blueColor];
         self.chooseBtn = button;
-        
     }
-//    if (button.tag==10) {
-//
-//    }
-//    else if (button.tag==11)
-//    {
-//
-//    }
-//    else if (button.tag == 12)
-//    {
-//
-//    }
     [self choosechildController:button];
 }
 //选择滑到哪一个控制器
