@@ -808,17 +808,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - tabbar2 优惠活动主界面列表
 -(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
+                                       PageNumber:(NSInteger)pageNumber
+                                         pageSize:(NSInteger)pageSize
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:mKey forKey:RH_SP_TABBAR2_GETACTIVITY_DATALIST_KEY];
     [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_TABBAR2_GETACTIVITY_DATALIST
+                        pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
+                    queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@"",
+                                     RH_SP_ACTIVITYDATALIST_PAGENUMBER:@(pageNumber),
+                                     RH_SP_ACTIVITYDATALIST_PAGESIZE:@(pageSize)
+                                     }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3Tabbar2ActivityTypeList
+                       serviceType:ServiceRequestTypeV3ActivityDetailList
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -901,6 +904,38 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+
+-(void)startv3GetGamesLink:(NSInteger)apiID
+                 ApiTypeID:(NSInteger)apiTypeID
+                   GamesID:(NSString*)gamesID
+                 GamesCode:(NSString*)gamesCode
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(apiID) forKey:RH_SP_GAMESLINK_APIID];
+    [dict setValue:@(apiTypeID) forKey:RH_SP_GAMESLINK_APITYPEID];
+    if (gamesID){
+        [dict setValue:gamesID forKey:RH_SP_GAMESLINK_GAMEID];
+    }
+    
+    if (gamesCode){
+        [dict setValue:gamesCode forKey:RH_SP_GAMESLINK_GAMECODE];
+    }
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GAMESLINK
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GameLink
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+
+
+
+
 #pragma mark - 获取取款接口
 -(void)startV3GetWithDraw
 {
@@ -958,6 +993,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SubmitWithdrawInfo
                          scopeType:ServiceScopeTypePublic];
 }
+
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1476,9 +1513,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break;
                 
-            case ServiceRequestTypeV3Tabbar2ActivityTypeList:
+            case ServiceRequestTypeV3ActivityDetailList:
             {
-                 resultSendData =[[RH_DiscountActivityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                NSArray *tmpArray = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:RH_GP_ACTIVITYDATALIST_TOTALNUMBER]   ;
+                resultSendData = @{RH_GP_ACTIVITYDATALIST_LIST:tmpArray?:@[],
+                                   RH_GP_ACTIVITYDATALIST_TOTALNUMBER:@(total)
+                                   } ;
             }
                 break;
             case ServiceRequestTypeV3AddApplyDiscountsVerify:

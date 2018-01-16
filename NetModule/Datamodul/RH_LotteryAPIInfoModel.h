@@ -21,7 +21,6 @@
 @property(nonatomic,strong,readonly) NSString  *mName ;
 @property(nonatomic,assign,readonly) NSInteger  mSiteID ;
 
-
 //extend
 @property(nonatomic,strong,readonly) NSString *showCover ;
 @property(nonatomic,strong,readonly) NSString *showGameLink ;

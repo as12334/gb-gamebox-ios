@@ -52,9 +52,7 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-//    [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:1 pageSize:1];
-     [self.serviceRequest startV3SiteMessageMyMessageDetailWithID:@"456554"];
-//    [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:1 pageSize:1];
+
 }
 
 
@@ -257,14 +255,6 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
-    if (type == ServiceRequestTypeV3SiteMessageMyMessageDetail) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString11);
-    }
-   
-
-
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

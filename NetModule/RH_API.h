@@ -685,9 +685,22 @@
 #define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS  @"discountsOrigin/getActivityType.html"
 
 #pragma mark - V3 Tabbar 优惠主页面 优惠活动类别
-#define RH_API_NAME_TABBAR2_GETACTIVITY_DATALIST        @"discountsOrigin/getActivityTypeList.html"
+#define RH_API_NAME_ACTIVITYDATALIST        @"discountsOrigin/getActivityTypeList.html"
 //请求参数
-#define RH_SP_TABBAR2_GETACTIVITY_DATALIST_KEY          @"key"
+#define RH_SP_ACTIVITYDATALIST_SEARCHKEY          @"search.activityClassifyKey"
+#define RH_SP_ACTIVITYDATALIST_PAGENUMBER         @"paging.pageNumber"
+#define RH_SP_ACTIVITYDATALIST_PAGESIZE           @"paging.pageSize"
+//返回参数
+#define RH_GP_ACTIVITYDATALIST_LIST                 @"list"
+#define RH_GP_ACTIVITYDATALIST_TOTALNUMBER           @"total"
+
+#pragma mark - V3 首页 获取游戏 link url
+#define RH_API_NAME_GAMESLINK                    @"origin/getGameLink.html"
+//请求参数
+#define RH_SP_GAMESLINK_APIID                   @"apiId"
+#define RH_SP_GAMESLINK_APITYPEID              @"apiTypeId"
+#define RH_SP_GAMESLINK_GAMEID                @"gameId"
+#define RH_SP_GAMESLINK_GAMECODE                @"gameCode"
 
 #pragma mark - V3 退出登录
 #define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"

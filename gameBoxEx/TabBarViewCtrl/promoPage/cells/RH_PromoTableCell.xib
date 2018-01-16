@@ -18,10 +18,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="115.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qzw-ds-Ofl">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qzw-ds-Ofl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="qzw-ds-Ofl" secondAttribute="trailing" id="QIp-iW-WTK"/>
                     <constraint firstItem="qzw-ds-Ofl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TPk-X4-eZn"/>
@@ -32,7 +34,7 @@
             <connections>
                 <outlet property="activeImageView" destination="qzw-ds-Ofl" id="XDz-b7-Cqo"/>
             </connections>
-            <point key="canvasLocation" x="-78" y="-134"/>
+            <point key="canvasLocation" x="-435" y="-465"/>
         </tableViewCell>
     </objects>
 </document>
