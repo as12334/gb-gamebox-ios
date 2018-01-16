@@ -11,6 +11,7 @@
 #import "RH_MPGameNoticeViewController.h"
 #import "RH_MPSystemNoticeViewController.h"
 #import "RH_MPSiteMessageViewController.h"
+#import "RH_MPSiteMessageViewControllerEX.h"
 #import "RH_SiteSendMessageView.h"
 @interface RH_MPApplyDiscountController ()
 @property(nonatomic,strong,readonly)UISegmentedControl *segmentedControl;
@@ -114,7 +115,7 @@
     [self addChildViewController:gameController];
     RH_MPSystemNoticeViewController *systemController = [[RH_MPSystemNoticeViewController alloc]init];
     [self addChildViewController:systemController];
-    RH_MPSiteMessageViewController *siteController = [[RH_MPSiteMessageViewController alloc]init];
+    RH_MPSiteMessageViewControllerEX *siteController = [[RH_MPSiteMessageViewControllerEX alloc]init];
     [self addChildViewController:siteController];
     NSInteger count = self.childViewControllers.count;
     self.contentScrollowView.contentSize = CGSizeMake(count*MainScreenW, 0);

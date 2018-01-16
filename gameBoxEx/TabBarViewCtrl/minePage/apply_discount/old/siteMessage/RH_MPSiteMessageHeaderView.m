@@ -29,7 +29,7 @@
     }
 }
 - (IBAction)allChoseBtnClick:(id)sender {
-    [self.delegate siteMessageHeaderViewAllChoseBtn:self];
+//    [self.delegate siteMessageHeaderViewAllChoseBtn:self];
 }
 
 @end
