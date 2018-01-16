@@ -42,6 +42,11 @@
         [self.delegate siteMessageHeaderViewDeleteCell:self] ;
     }
 }
+- (IBAction)markReadClick:(id)sender {
+    ifRespondsSelector(self.delegate, @selector(siteMessageHeaderViewReadBtn:)){
+        [self.delegate siteMessageHeaderViewReadBtn:self] ;
+    }
+}
 - (IBAction)allChoseBtnClick:(id)sender {
     if (self.choceMark==YES) {
         ifRespondsSelector(self.delegate, @selector(siteMessageHeaderViewAllChoseBtn:)){

@@ -12,8 +12,10 @@
 @optional
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView*)view;
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark;
+-(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view;
 @end
 @interface RH_MPSiteMessageHeaderView : UIView
 @property(nonatomic,weak)id<MPSiteMessageHeaderViewDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UIButton *allChoseBtn;
+@property (weak, nonatomic) IBOutlet UIButton *readConfigeBtn;
 @end
