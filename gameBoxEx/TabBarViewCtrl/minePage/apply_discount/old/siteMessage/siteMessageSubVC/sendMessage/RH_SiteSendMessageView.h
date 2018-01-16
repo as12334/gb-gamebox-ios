@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^SiteSendMessageViewBlock)(CGRect frame);
 @interface RH_SiteSendMessageView : UIView
-
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property(nonatomic,copy)SiteSendMessageViewBlock block;
 @end

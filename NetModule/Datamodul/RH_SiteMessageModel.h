@@ -18,6 +18,6 @@
 @property(nonatomic,strong,readonly)NSString *mSearchId;
 //@property(nonatomic,strong,readonly)NSString *mMarkString;
 //---extend
-@property(nonatomic,assign)BOOL isSelected;
+@property(nonatomic,strong)NSNumber *number;
 
 @end

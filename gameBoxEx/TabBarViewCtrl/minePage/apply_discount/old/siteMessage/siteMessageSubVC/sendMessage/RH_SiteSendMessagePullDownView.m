@@ -1,17 +1,17 @@
 //
-//  RH_MPGameNoticePulldownView.m
+//  RH_SiteSendMessagePullDownView.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/1/12.
+//  Created by lewis on 2018/1/16.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_MPGameNoticePulldownView.h"
+#import "RH_SiteSendMessagePullDownView.h"
 #import "coreLib.h"
-@interface RH_MPGameNoticePulldownView()<UITableViewDelegate,UITableViewDataSource>
+@interface RH_SiteSendMessagePullDownView()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tabelView;
 @end
-@implementation RH_MPGameNoticePulldownView
+@implementation RH_SiteSendMessagePullDownView
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -34,12 +34,12 @@
     return _tabelView;
 }
 #pragma mark set方法
--(void)setModelArray:(NSArray<ApiSelectModel *> *)modelArray
-{
-    if (![_modelArray isEqual: modelArray]) {
-        _modelArray = modelArray;
-    }
-}
+//-(void)setModelArray:(NSArray<ApiSelectModel *> *)modelArray
+//{
+//    if (![_modelArray isEqual: modelArray]) {
+//        _modelArray = modelArray;
+//    }
+//}
 #pragma mark-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -47,7 +47,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.modelArray.count;
+    return 10;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,15 +60,15 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-    cell.textLabel.text  = model.mApiName ;
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+//    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
+//    cell.textLabel.text  = model.mApiName ;
+//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-    self.gameTypeString = model.mApiName;
+//    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
+//    self.gameTypeString = model.mApiName;
     self.block();
 }
 @end

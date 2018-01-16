@@ -505,6 +505,7 @@
 		F6A2ADDB200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADDA200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m */; };
 		F6A2ADDE200D8DC60077CB92 /* RH_SiteMessageSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */; };
 		F6A2ADE1200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */; };
+		F6A2ADE7200D99300077CB92 /* RH_SiteSendMessagePullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
@@ -1390,6 +1391,8 @@
 		F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageSentViewController.m; sourceTree = "<group>"; };
 		F6A2ADDF200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteMessageViewControllerEX.h; sourceTree = "<group>"; };
 		F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewControllerEX.m; sourceTree = "<group>"; };
+		F6A2ADE5200D99300077CB92 /* RH_SiteSendMessagePullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteSendMessagePullDownView.h; sourceTree = "<group>"; };
+		F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSendMessagePullDownView.m; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -3116,9 +3119,6 @@
 			isa = PBXGroup;
 			children = (
 				F6A2ADD5200D8D130077CB92 /* siteMessageSubVC */,
-				F6A2AD72200850340077CB92 /* RH_MPSiteMessageHeaderView.h */,
-				F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */,
-				F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */,
 				F6A2ACA120044C590077CB92 /* RH_MPSiteMessageViewController.h */,
 				F6A2ACA220044C590077CB92 /* RH_MPSiteMessageViewController.m */,
 				F6A2ADDF200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.h */,
@@ -3133,6 +3133,9 @@
 				F6A2AC9B20044C590077CB92 /* RH_MPSiteSystemNoticeCell.h */,
 				F6A2AC9C20044C590077CB92 /* RH_MPSiteSystemNoticeCell.m */,
 				F6A2AC9D20044C590077CB92 /* RH_MPSiteSystemNoticeCell.xib */,
+				F6A2AD72200850340077CB92 /* RH_MPSiteMessageHeaderView.h */,
+				F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */,
+				F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3253,6 +3256,8 @@
 		F6A2ADE4200D93D40077CB92 /* sendMessage */ = {
 			isa = PBXGroup;
 			children = (
+				F6A2ADE5200D99300077CB92 /* RH_SiteSendMessagePullDownView.h */,
+				F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */,
 				F6A2AD772008884E0077CB92 /* RH_SiteSendMessageView.h */,
 				F6A2AD782008884E0077CB92 /* RH_SiteSendMessageView.m */,
 				F6A2AD7A2008885D0077CB92 /* RH_SiteSendMessageView.xib */,
@@ -3733,6 +3738,7 @@
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
+				F6A2ADE7200D99300077CB92 /* RH_SiteSendMessagePullDownView.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,
 				A010A0011F8788FF004E6EF4 /* ScreenAdaptation.m in Sources */,
 				A0109F691F8787E4004E6EF4 /* CLAPPDelegate.m in Sources */,
