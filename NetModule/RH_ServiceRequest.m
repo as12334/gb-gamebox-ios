@@ -36,6 +36,7 @@
 #import "RH_SiteMyMessageModel.h"
 #import "RH_DiscountActivityTypeModel.h"
 #import "RH_DiscountActivityModel.h"
+#import "RH_SendMessageVerityModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -773,11 +774,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
                                   advisoryTitle:(NSString *)advisoryTitle
                                 advisoryContent:(NSString *)advisoryContent
+                                           code:(NSString *)code
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:advisoryType forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE];
     [dict setValue:advisoryTitle forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE];
     [dict setValue:advisoryContent forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT];
+    [dict setObject:code forKey:RH_SP_ADDAPPLYDISCOUNTS_CODE];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
                      pathArguments:nil
@@ -851,6 +854,36 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SiteMessageMyMessage
                          scopeType:ServiceScopeTypePublic];
     
+}
+#pragma mark - 站点信息 - 我的消息标记已读
+-(void)startV3LoadMyMessageReadYesWithIds:(NSString *)ids
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_MYMESSAGEREDAYES_IDS];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_MYMESSAGEREDAYES
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SystemMessageDelete
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 站点信息 - 我的消息删除
+-(void)startV3LoadMyMessageDeleteWithIds:(NSString *)ids
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_MYMESSAGEDELETE_IDS];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_MYMESSAGEDELETE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SystemMessageDelete
+                         scopeType:ServiceScopeTypePublic];
 }
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -1375,10 +1408,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                  resultSendData =[[RH_DiscountActivityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-
+            case ServiceRequestTypeV3AddApplyDiscountsVerify:
+            {
+                resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
             default:
                 resultSendData = dataObject ;
-
                 break;
         }
 

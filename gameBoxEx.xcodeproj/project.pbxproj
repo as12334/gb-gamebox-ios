@@ -27,6 +27,7 @@
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
+		79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
@@ -564,6 +565,8 @@
 		79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMyMessageModel.m; sourceTree = "<group>"; };
 		79E223F7200CC210006B0450 /* RH_DiscountActivityTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityTypeModel.h; sourceTree = "<group>"; };
 		79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityTypeModel.m; sourceTree = "<group>"; };
+		79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SendMessageVerityModel.h; sourceTree = "<group>"; };
+		79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SendMessageVerityModel.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
@@ -2241,6 +2244,8 @@
 				79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */,
 				79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */,
 				79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */,
+				79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */,
+				79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3631,6 +3636,7 @@
 				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
+				79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */,
 				79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,

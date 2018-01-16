@@ -277,7 +277,7 @@ static char TOPVIEW ;
 
         self.topView.frame = frame ;
         [self.view addSubview:self.topView] ;
-        self.topView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin ;
+        self.topView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin ;
     }else{
         UIView *topView = objc_getAssociatedObject(self, &TOPVIEW) ;
         if (topView){

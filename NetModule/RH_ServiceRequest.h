@@ -63,6 +63,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3Tabbar2ActivityTypeList,  //Tab2优惠界面 列表
     ServiceRequestTypeV3UserLoginOut           ,  //退出登录
     ServiceRequestTypeV3SiteMessageMyMessage   ,  //站点信息  我的消息
+    ServiceRequestTypeV3MyMessageMyMessageReadYes   ,  //  我的消息 
+    ServiceRequestTypeV3MyMessageMyMessageDelete   ,  // 我的消息
 };
 
 
@@ -289,7 +291,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 发送消息
 -(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
                                   advisoryTitle:(NSString *)advisoryTitle
-                                advisoryContent:(NSString *)advisoryContent;
+                                advisoryContent:(NSString *)advisoryContent
+                                           code:(NSString *)code;
 
 #pragma mark - tabbar2 优惠活动主界面类型
 -(void)startV3LoadDiscountActivityType;
@@ -303,6 +306,11 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 站点信息  我的消息
 -(void)startV3SiteMessageMyMessageWithpageNumber:(NSInteger)pageNumber
                                         pageSize:(NSInteger)pageSize;
+
+#pragma mark - 站点信息 - 我的消息标记已读
+-(void)startV3LoadMyMessageReadYesWithIds:(NSString *)ids;
+#pragma mark - 站点信息 - 我的消息删除
+-(void)startV3LoadMyMessageDeleteWithIds:(NSString *)ids;
 #pragma mark -
 /**
  * 取消所有服务
