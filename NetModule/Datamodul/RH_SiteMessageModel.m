@@ -26,4 +26,8 @@
     return self;
 }
 
+-(NSInteger)ID
+{
+    return _mId ;
+}
 @end
