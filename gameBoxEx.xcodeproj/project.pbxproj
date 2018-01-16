@@ -442,6 +442,18 @@
 		B87A6B44200B751D00C9788F /* RH_WithdrawMoneyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B43200B751D00C9788F /* RH_WithdrawMoneyController.m */; };
 		B87A6B49200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */; };
 		B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */; };
+		B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B4D200D9D6C00C9788F /* RH_WithdrawCashController.m */; };
+		B87A6B50200DAB5B00C9788F /* RH_WithdrawCash.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */; };
+		B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B52200DAD4E00C9788F /* RH_WithdrawCashOneCell.m */; };
+		B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */; };
+		B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B58200DB01F00C9788F /* RH_WithdrawCashThreeCell.m */; };
+		B87A6B5B200DD38100C9788F /* RH_WithdrawCashBitCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */; };
+		B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */; };
+		B87A6B66200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B61200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.m */; };
+		B87A6B67200DDBA900C9788F /* PXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B62200DDBA900C9788F /* PXAlertView.m */; };
+		B87A6B68200DDBA900C9788F /* PXAlertView+Customization.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B64200DDBA900C9788F /* PXAlertView+Customization.m */; };
+		B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */; };
+		B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -482,9 +494,6 @@
 		F6A2AD582006EE7A0077CB92 /* button-03.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD542006EE790077CB92 /* button-03.png */; };
 		F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD552006EE790077CB92 /* button-can'topen.png */; };
 		F6A2AD5A2006EE7A0077CB92 /* button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD562006EE7A0077CB92 /* button-01.png */; };
-		F6A2AD5E2006FFEB0077CB92 /* RH_WithdrawDispositController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */; };
-		F6A2AD622007001E0077CB92 /* RH_WithdrawDispositCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */; };
-		F6A2AD632007001E0077CB92 /* RH_WithdrawDispositCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */; };
 		F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */; };
 		F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */; };
 		F6A2AD6C200793A90077CB92 /* RH_MPGameSeletedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */; };
@@ -1288,6 +1297,27 @@
 		B87A6B46200B7E1000C9788F /* RH_WithdrawMoneyLowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawMoneyLowCell.h; sourceTree = "<group>"; };
 		B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawMoneyLowCell.m; sourceTree = "<group>"; };
 		B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawMoneyLowCell.xib; sourceTree = "<group>"; };
+		B87A6B4C200D9D6C00C9788F /* RH_WithdrawCashController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashController.h; sourceTree = "<group>"; };
+		B87A6B4D200D9D6C00C9788F /* RH_WithdrawCashController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashController.m; sourceTree = "<group>"; };
+		B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_WithdrawCash.plist; sourceTree = "<group>"; };
+		B87A6B51200DAD4E00C9788F /* RH_WithdrawCashOneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashOneCell.h; sourceTree = "<group>"; };
+		B87A6B52200DAD4E00C9788F /* RH_WithdrawCashOneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashOneCell.m; sourceTree = "<group>"; };
+		B87A6B54200DAE7C00C9788F /* RH_WithdrawCashTwoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashTwoCell.h; sourceTree = "<group>"; };
+		B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashTwoCell.m; sourceTree = "<group>"; };
+		B87A6B57200DB01F00C9788F /* RH_WithdrawCashThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashThreeCell.h; sourceTree = "<group>"; };
+		B87A6B58200DB01F00C9788F /* RH_WithdrawCashThreeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashThreeCell.m; sourceTree = "<group>"; };
+		B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_WithdrawCashBitCoin.plist; sourceTree = "<group>"; };
+		B87A6B5C200DDA6300C9788F /* RH_WithdrawCashFourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashFourCell.h; sourceTree = "<group>"; };
+		B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashFourCell.m; sourceTree = "<group>"; };
+		B87A6B60200DDBA900C9788F /* PXAlertView+Customization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PXAlertView+Customization.h"; sourceTree = "<group>"; };
+		B87A6B61200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+PXAlertViewOverride.m"; sourceTree = "<group>"; };
+		B87A6B62200DDBA900C9788F /* PXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAlertView.m; sourceTree = "<group>"; };
+		B87A6B63200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+PXAlertViewOverride.h"; sourceTree = "<group>"; };
+		B87A6B64200DDBA900C9788F /* PXAlertView+Customization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PXAlertView+Customization.m"; sourceTree = "<group>"; };
+		B87A6B65200DDBA900C9788F /* PXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAlertView.h; sourceTree = "<group>"; };
+		B87A6B69200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawAddBitCoinAddressController.h; sourceTree = "<group>"; };
+		B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawAddBitCoinAddressController.m; sourceTree = "<group>"; };
+		B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawAddBitCoinAddressController.xib; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -1350,11 +1380,6 @@
 		F6A2AD542006EE790077CB92 /* button-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-03.png"; sourceTree = "<group>"; };
 		F6A2AD552006EE790077CB92 /* button-can'topen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-can'topen.png"; sourceTree = "<group>"; };
 		F6A2AD562006EE7A0077CB92 /* button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-01.png"; sourceTree = "<group>"; };
-		F6A2AD5C2006FFEB0077CB92 /* RH_WithdrawDispositController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawDispositController.h; sourceTree = "<group>"; };
-		F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawDispositController.m; sourceTree = "<group>"; };
-		F6A2AD5F2007001E0077CB92 /* RH_WithdrawDispositCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawDispositCell.h; sourceTree = "<group>"; };
-		F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawDispositCell.m; sourceTree = "<group>"; };
-		F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawDispositCell.xib; sourceTree = "<group>"; };
 		F6A2AD6420070D160077CB92 /* RH_CapitalPulldownListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalPulldownListView.h; sourceTree = "<group>"; };
 		F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalPulldownListView.m; sourceTree = "<group>"; };
 		F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTypeModel.m; sourceTree = "<group>"; };
@@ -2570,7 +2595,7 @@
 		A04E605A1F8DED6000098A65 /* minePage */ = {
 			isa = PBXGroup;
 			children = (
-				F6A2AD5B2006FF760077CB92 /* withdrawdisposit */,
+				B87A6B4B200D9CED00C9788F /* withdrawCash */,
 				F6A2AC8C20044C590077CB92 /* apply_discount */,
 				189C139C1FF9E99E00B14298 /* cell */,
 				189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */,
@@ -3042,7 +3067,6 @@
 		B87A6B41200B736700C9788F /* withdrawMoney */ = {
 			isa = PBXGroup;
 			children = (
-				B87A6B45200B7CC300C9788F /* cells */,
 				B87A6B42200B751D00C9788F /* RH_WithdrawMoneyController.h */,
 				B87A6B43200B751D00C9788F /* RH_WithdrawMoneyController.m */,
 			);
@@ -3055,8 +3079,45 @@
 				B87A6B46200B7E1000C9788F /* RH_WithdrawMoneyLowCell.h */,
 				B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */,
 				B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */,
+				B87A6B51200DAD4E00C9788F /* RH_WithdrawCashOneCell.h */,
+				B87A6B52200DAD4E00C9788F /* RH_WithdrawCashOneCell.m */,
+				B87A6B54200DAE7C00C9788F /* RH_WithdrawCashTwoCell.h */,
+				B87A6B57200DB01F00C9788F /* RH_WithdrawCashThreeCell.h */,
+				B87A6B58200DB01F00C9788F /* RH_WithdrawCashThreeCell.m */,
+				B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */,
+				B87A6B5C200DDA6300C9788F /* RH_WithdrawCashFourCell.h */,
+				B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */,
 			);
 			path = cells;
+			sourceTree = "<group>";
+		};
+		B87A6B4B200D9CED00C9788F /* withdrawCash */ = {
+			isa = PBXGroup;
+			children = (
+				B87A6B5F200DDBA900C9788F /* PXAlertView */,
+				B87A6B45200B7CC300C9788F /* cells */,
+				B87A6B4C200D9D6C00C9788F /* RH_WithdrawCashController.h */,
+				B87A6B4D200D9D6C00C9788F /* RH_WithdrawCashController.m */,
+				B87A6B69200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.h */,
+				B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */,
+				B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */,
+				B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */,
+				B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */,
+			);
+			path = withdrawCash;
+			sourceTree = "<group>";
+		};
+		B87A6B5F200DDBA900C9788F /* PXAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				B87A6B60200DDBA900C9788F /* PXAlertView+Customization.h */,
+				B87A6B61200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.m */,
+				B87A6B62200DDBA900C9788F /* PXAlertView.m */,
+				B87A6B63200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.h */,
+				B87A6B64200DDBA900C9788F /* PXAlertView+Customization.m */,
+				B87A6B65200DDBA900C9788F /* PXAlertView.h */,
+			);
+			path = PXAlertView;
 			sourceTree = "<group>";
 		};
 		F6A2AC8C20044C590077CB92 /* apply_discount */ = {
@@ -3209,18 +3270,6 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
-		F6A2AD5B2006FF760077CB92 /* withdrawdisposit */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2AD5C2006FFEB0077CB92 /* RH_WithdrawDispositController.h */,
-				F6A2AD5D2006FFEB0077CB92 /* RH_WithdrawDispositController.m */,
-				F6A2AD5F2007001E0077CB92 /* RH_WithdrawDispositCell.h */,
-				F6A2AD602007001E0077CB92 /* RH_WithdrawDispositCell.m */,
-				F6A2AD612007001E0077CB92 /* RH_WithdrawDispositCell.xib */,
-			);
-			path = withdrawdisposit;
-			sourceTree = "<group>";
-		};
 		F6A2ADD5200D8D130077CB92 /* siteMessageSubVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -3364,7 +3413,6 @@
 				F6A2ACB220044C5A0077CB92 /* RH_MPGameNoticeCell.xib in Resources */,
 				F6A2AD7B2008885D0077CB92 /* RH_SiteSendMessageView.xib in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
-				F6A2AD632007001E0077CB92 /* RH_WithdrawDispositCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
@@ -3373,9 +3421,11 @@
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
+				B87A6B5B200DD38100C9788F /* RH_WithdrawCashBitCoin.plist in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
 				A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */,
+				B87A6B50200DAB5B00C9788F /* RH_WithdrawCash.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
@@ -3439,6 +3489,7 @@
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
+				B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */,
 				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A0522A75200B41DB00A5A6E9 /* MineSafetyCenterOnlyCard.plist in Resources */,
@@ -3500,6 +3551,7 @@
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
+				B87A6B68200DDBA900C9788F /* PXAlertView+Customization.m in Sources */,
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
@@ -3534,6 +3586,7 @@
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
+				B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */,
 				A010A0961F879D57004E6EF4 /* CLViewControllerTransitioningDelegate.h in Sources */,
 				F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
@@ -3566,6 +3619,7 @@
 				797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */,
 				A010A0281F8795AC004E6EF4 /* RH_BasicModel.m in Sources */,
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
+				B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */,
 				189C13B01FF9E99F00B14298 /* RH_MineRecordStaticCell.m in Sources */,
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
 				A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */,
@@ -3612,6 +3666,7 @@
 				A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */,
 				A0109FB91F8788FF004E6EF4 /* UIImage+Representation.m in Sources */,
 				A0E367AD1F90617700758033 /* RH_PayViewController.m in Sources */,
+				B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
 				A0109FBB1F8788FF004E6EF4 /* UIImage+Tint.m in Sources */,
@@ -3626,6 +3681,7 @@
 				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
+				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
 				79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,
@@ -3661,7 +3717,6 @@
 				F6A2ACE12004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m in Sources */,
 				B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */,
 				A0109FD71F8788FF004E6EF4 /* UIView+DNImagePicker.m in Sources */,
-				F6A2AD5E2006FFEB0077CB92 /* RH_WithdrawDispositController.m in Sources */,
 				A0109FD81F8788FF004E6EF4 /* DNAlbumTableViewCell.m in Sources */,
 				A0109FD91F8788FF004E6EF4 /* DNAssetsViewCell.m in Sources */,
 				A0109FDA1F8788FF004E6EF4 /* DNBadgeLabel.m in Sources */,
@@ -3715,7 +3770,6 @@
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
-				F6A2AD622007001E0077CB92 /* RH_WithdrawDispositCell.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
@@ -3748,9 +3802,11 @@
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				F6A2ACBF20044C5A0077CB92 /* RH_MPSystemNoticeViewController.m in Sources */,
 				F6A2ADD8200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.m in Sources */,
+				B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */,
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
 				A0109F701F8787E4004E6EF4 /* CLContentView.m in Sources */,
 				F6A2ACB620044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.m in Sources */,
+				B87A6B67200DDBA900C9788F /* PXAlertView.m in Sources */,
 				A0109F711F8787E4004E6EF4 /* CLGradientView.m in Sources */,
 				A0109F721F8787E4004E6EF4 /* CLHeaderTitleView.m in Sources */,
 				A0109F731F8787E4004E6EF4 /* CLLabel.m in Sources */,
@@ -3778,6 +3834,7 @@
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
 				A0109F831F8787E4004E6EF4 /* CLArrayPageLoadController.m in Sources */,
+				B87A6B66200DDBA900C9788F /* UIAlertView+PXAlertViewOverride.m in Sources */,
 				A0109F841F8787E4004E6EF4 /* CLBasicPageLoadController.m in Sources */,
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
@@ -3805,6 +3862,7 @@
 				797F6795200B4D04009E3FAB /* RH_AddBtcModel.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
+				B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,

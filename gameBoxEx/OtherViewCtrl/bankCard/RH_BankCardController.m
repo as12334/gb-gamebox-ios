@@ -82,11 +82,11 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         
-        if (MineSettingInfo.mBankCard)
+        if (!MineSettingInfo.mBankCard)
         {
             _bankCardStatus = BankCardStatus_Exist ;
             [self.tableViewManagement reloadDataWithPlistName:@"BankCardExist"] ;
-//            [self.addButton setTitle:@"编辑" forState:UIControlStateNormal];
+            self.contentTableView.tableFooterView = nil;
             
         }else{
             self.contentTableView.tableFooterView = self.footerView ;
@@ -222,20 +222,18 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 {
     NSLog(@"%s", __func__);
     
-    [self.tableViewManagement reloadDataWithPlistName:@"BankCardNone"];
-    if (self.realNameCell.textField.text.length == 0 || self.bankLocationCell.textField.text.length == 0 || self.bankCardNumCell.textField.text.length == 0 || self.bankSelectedCell.detailTextLabel.text.length == 0) {
-        return ;
-    }
+    NSLog(@"%@", self.bankLocationCell);
+    NSLog(@"%@", self.bankCardNumCell);
+    NSLog(@"%@", self.bankSelectedCell);
+    NSLog(@"%@", self.realNameCell);
+    //    if (self.realNameCell.textField.text.length == 0 || self.bankLocationCell.textField.text.length == 0 || self.bankCardNumCell.textField.text.length == 0 || self.bankSelectedCell.detailTextLabel.text.length == 0) {
+//        return ;
+//    }
     
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在添加"];
     [self.serviceRequest startV3addBankCarkbankcardMasterName:self.realNameCell.textField.text bankName:self.bankSelectedCell.detailTextLabel.text bankcardNumber:self.bankCardNumCell.textField.text bankDeposit:self.bankLocationCell.textField.text];
     self.serviceRequest.delegate = self;
     
-    for (RH_ModifyPasswordCell *cell in self.contentTableView.visibleCells) {
-        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]) {
-            cell.textField.secureTextEntry = NO;
-        }
-    }
 }
 
 
