@@ -97,6 +97,11 @@
 #import "CLSelectionControl.h"
 #import "WHC_AutoLayout.h"
 
+#pragma mark-
+#import "UIAlertView+PXAlertViewOverride.h"
+#import "PXAlertView.h"
+#import "PXAlertView+Customization.h"
+
 #pragma Mark-pageview
 #import "CLPageView.h"
 #import "CLScrollContentPageCell.h"

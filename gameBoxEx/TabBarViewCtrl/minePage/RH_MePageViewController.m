@@ -12,9 +12,8 @@
 #import "RH_MineSettingsViewController.h"
 #import "RH_UserInfoManager.h"
 #import "RH_MineAccountCell.h"
-#import "RH_WithdrawDispositController.h"
 #import "RH_CustomViewController.h"
-
+#import "RH_WithdrawCashController.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -137,9 +136,9 @@
 
 -(void)mineAccountCellTouchWithDrawButton:(RH_MineAccountCell*)mineAccountCell
 {
-//    [self showViewController:[RH_WithdrawDispositController viewController] sender:self] ;
-    self.appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
-    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    [self showViewController:[RH_WithdrawCashController viewController] sender:self] ;
+//    self.appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
+//    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
 }
 
 #pragma mark-

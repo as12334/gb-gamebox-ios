@@ -27,6 +27,7 @@
 #import "RH_ActivityModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_NormalActivithyView.h"
+
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>

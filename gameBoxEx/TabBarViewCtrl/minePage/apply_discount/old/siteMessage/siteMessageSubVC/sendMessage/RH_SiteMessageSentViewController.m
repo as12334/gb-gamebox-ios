@@ -1,27 +1,26 @@
 //
-//  RH_WithdrawDispositController.m
+//  RH_SiteMessageSentViewController.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/1/11.
+//  Created by lewis on 2018/1/16.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_WithdrawDispositController.h"
-
-
-@interface RH_WithdrawDispositController ()
-
+#import "RH_SiteMessageSentViewController.h"
+#import "RH_SiteSendMessageView.h"
+@interface RH_SiteMessageSentViewController ()
+//@property(nonatomic,strong,readonly)
 @end
 
-@implementation RH_WithdrawDispositController
--(BOOL)isSubViewController
+@implementation RH_SiteMessageSentViewController
+-(void)viewWillAppear:(BOOL)animated
 {
-    return YES ;
+    self.navigationBar.hidden = YES;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor greenColor];
 }
 
 - (void)didReceiveMemoryWarning {
