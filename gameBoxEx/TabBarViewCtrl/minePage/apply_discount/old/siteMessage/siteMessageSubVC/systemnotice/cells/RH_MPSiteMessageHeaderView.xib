@@ -23,7 +23,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROj-8c-R6u">
-                    <rect key="frame" x="44" y="26" width="0.0" height="0.0"/>
+                    <rect key="frame" x="44" y="25" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -46,6 +46,9 @@
                         <constraint firstAttribute="width" constant="67" id="dgX-hp-hOE"/>
                     </constraints>
                     <state key="normal" title="标注已读"/>
+                    <connections>
+                        <action selector="markReadClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="LH5-ga-twW"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-Tr-z04">
                     <rect key="frame" x="16" y="10" width="51" height="30"/>
@@ -75,6 +78,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="allChoseBtn" destination="aXx-Tr-z04" id="cDw-Cc-HzI"/>
+                <outlet property="readConfigeBtn" destination="fAr-5o-gt7" id="uzQ-O7-E6v"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="69"/>
         </view>

@@ -1365,6 +1365,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+                case ServiceRequestTypeV3SystemMessageYes:
+            {
+                
+            }
+                break;
             case ServiceRequestTypeV3GameNoticeDetail:
             {
                 resultSendData = [[RH_GameNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1393,7 +1398,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessage:
             {
-               
+                resultSendData = [RH_SiteMyMessageModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject)arrayValueForKey:RH_GP_V3_DATA]];
             }
                 break;
                 

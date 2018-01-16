@@ -628,7 +628,7 @@
 
 #pragma mark - V3 站点信息 系统信息标记为已读
 
-#define RH_API_NAME_SITEMESSAGEREDAYES   @"mineOrigin/getSiteSysNoticeDetail.html"
+#define RH_API_NAME_SITEMESSAGEREDAYES   @"mineOrigin/setSiteSysNoticeStatus.html"
 //请求参数
 #define RH_SP_SITEMESSAGEREDAYES_IDS   @"ids"
 

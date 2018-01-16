@@ -109,7 +109,7 @@
 {
     return self.headerView;
 }
-#pragma mark 全选，删除代理
+#pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
 {
     for (int i =0; i<self.siteModelArray.count; i++) {
@@ -138,7 +138,19 @@
     [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
     [self startUpdateData] ;
 }
-
+-(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
+{
+    NSString *str = @"";
+    for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%d,",siteModel.mId]];
+    }
+    if([str length] > 0){
+        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+    }
+    [self.deleteModelArray removeAllObjects];
+    [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
+    [self startUpdateData] ;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
