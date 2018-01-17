@@ -10,7 +10,7 @@
 #import "coreLib.h"
 #import "PXAlertView+Customization.h"
 #import "RH_WithdrawAddBitCoinAddressController.h"
-@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate>
+@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) UIView  *footerView;
@@ -34,6 +34,10 @@
     // Do any additional setup after loading the view.
     self.title = @"取款";
     [self setupInfo];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.serviceRequest startV3GetWithDraw];
 }
 
 - (CLTableViewManagement *)tableViewManagement {
@@ -75,6 +79,7 @@
 }
 
 - (void)buttonConfirmHandle {
+    
     
 }
 
@@ -142,5 +147,14 @@
         }
     }
     return YES;
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+    NSLog(@"%s", __func__);
+}
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
+    if (type == ServiceRequestTypeV3GetWithDrawInfo) {
+        NSLog(@"%@", data);
+    }
 }
 @end

@@ -23,12 +23,12 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.borderView.backgroundColor = [UIColor clearColor] ;
     self.borderView.layer.cornerRadius = 3.0f ;
-    self.borderView.layer.borderColor = RH_Line_DefaultColor.CGColor ;
+    self.borderView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor ;
     self.borderView.layer.borderWidth = 1.0f  ;
     self.borderView.layer.masksToBounds = YES ;
     
     self.labDate.textColor = colorWithRGB(51, 51, 51) ;
-    self.labDate.font = [UIFont systemFontOfSize:14.0f] ;
+    self.labDate.font = [UIFont systemFontOfSize:12.0f] ;
     
     self.borderView.selectionOption = CLSelectionOptionHighlighted ;
     self.borderView.selectionColor = RH_Cell_DefaultHolderColor ;

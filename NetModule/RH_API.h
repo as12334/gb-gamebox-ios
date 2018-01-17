@@ -339,6 +339,7 @@
 #define RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTITLE      @"advisoryTitle"
 #define RH_GP_SITEMESSAGE_MYMESSAGE_ID                 @"id"
 #define RH_GP_SITEMESSAGE_MYMESSAGE_REPLYTITLE         @"replyTitle"
+#define RH_GP_SITEMESSAGE_MYMESSAGE_READ               @"read"
 
 #pragma mark - V3 优惠活动Tabbar2 活动模型
 #define RH_GP_DISCOUNTACTIVITY_ID                      @"id"
@@ -356,21 +357,11 @@
 
 #pragma mark - V3 发送消息验证接口 模型
 #define RH_GP_SENDMESSGAVERITY_ISOPENCAPTCHA          @"isOpenCaptcha"
-#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPELIST       @"advisoryTypeList"
 #define RH_GP_SENDMESSGAVERITY_CAPTCHA_VALUE          @"captcha_value"
-#define RH_GP_SENDMESSGAVERITY_SUGGEST                @"suggest"
-#define RH_GP_SENDMESSGAVERITY_FINANCEPROBLEM         @"financeProblem"
-#define RH_GP_SENDMESSGAVERITY_OFFERAPPLICATION       @"offerApplication"
-#define RH_GP_SENDMESSGAVERITY_OTHERPROBLEM           @"otherProblem"
-#define RH_GP_SENDMESSGAVERITY_MODULE                 @"module"
-#define RH_GP_SENDMESSGAVERITY_REMARK                 @"remark"
-#define RH_GP_SENDMESSGAVERITY_ACTIVE                 @"active"
-#define RH_GP_SENDMESSGAVERITY_ID                     @"id"
-#define RH_GP_SENDMESSGAVERITY_DICTCODE               @"dictCode"
-#define RH_GP_SENDMESSGAVERITY_TRANSLATED             @"translated"
-#define RH_GP_SENDMESSGAVERITY_ORDERNUM               @"orderNum"
-#define RH_GP_SENDMESSGAVERITY_DICTTYPE               @"dictType"
-#define RH_GP_SENDMESSGAVERITY_PARENTCODE             @"parentCode"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYNAME           @"advisoryName"
+
 
 #pragma mark - V3 我的消息详情  模型
 #define RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT    @"advisoryContent"
@@ -380,6 +371,38 @@
 #define RH_GP_MYMESSAGEDETAIL_REPLYTITLE         @"replyTitle"
 #define RH_GP_MYMESSAGEDETAIL_QUESTIONTYPE       @"replyContent"
 #define RH_GP_MYMESSAGEDETAIL_REPLYCONTENT       @"questionType"
+
+#pragma mark - V3 取款信息  模型
+#define RH_GP_WITHDRAW_ISCASH                    @"isCash"
+#define RH_GP_WITHDRAW_BANKCARDMAP               @"bankcardMap"
+#define RH_GP_WITHDRAW_ID                        @"id"
+#define RH_GP_WITHDRAW_BANKNAME                  @"bankName"
+#define RH_GP_WITHDRAW_USECOUNT                  @"useCount"
+#define RH_GP_WITHDRAW_USESTAUTS                 @"useStauts"
+#define RH_GP_WITHDRAW_BANKCARDMASTERNAME        @"bankcardMasterName"
+#define RH_GP_WITHDRAW_ISDEFAULT                 @"isDefault"
+#define RH_GP_WITHDRAW_USERID                    @"userId"
+#define RH_GP_WITHDRAW_CREATETIME                @"createTime"
+#define RH_GP_WITHDRAW_BANKDEPOSIT               @"bankDeposit"
+#define RH_GP_WITHDRAW_TYPE                      @"type"
+#define RH_GP_WITHDRAW_CUSTOMBANKNAME            @"customBankName"
+#define RH_GP_WITHDRAW_BANKCARDNUMBER            @"bankcardNumber"
+#define RH_GP_WITHDRAW_AUDITLOGURL               @"auditLogUrl"
+#define RH_GP_WITHDRAW_HASBANK                   @"hasBank"
+#define RH_GP_WITHDRAW_CURRENCYSIGN              @"currencySign"
+#define RH_GP_WITHDRAW_TOTALBALANCE              @"totalBalance"
+#define RH_GP_WITHDRAW_TOKEN                     @"token"
+#define RH_GP_WITHDRAW_ISBIT                     @"isBit"
+#define RH_GP_WITHDRAW_AUDITMAP                  @"auditMap"
+#define RH_GP_WITHDRAW_DEDUCTFAVORABLE           @"deductFavorable"
+#define RH_GP_WITHDRAW_COUNTERFEE                @"counterFee"
+#define RH_GP_WITHDRAW_WITHDRAWFEEMONEY          @"withdrawFeeMoney"
+#define RH_GP_WITHDRAW_ADMINISTRATIVEFEE         @"administrativeFee"
+#define RH_GP_WITHDRAW_ACTUALWITHDRAW            @"actualWithdraw"
+#define RH_GP_WITHDRAW_TRANSACTIONNO             @"transactionNo"
+#define RH_GP_WITHDRAW_RECORDLIST                @"recordList"
+#define RH_GP_WITHDRAW_WITHDRAWAMOUNT            @"withdrawAmount"
+
 
 #pragma mark -
 #pragma mark - 回收接口
