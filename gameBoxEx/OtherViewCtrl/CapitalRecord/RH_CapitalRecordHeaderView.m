@@ -36,7 +36,7 @@
     self.userInteractionEnabled = YES;
     self.btnQuickSelect.backgroundColor = colorWithRGB(27, 117, 217);
     [self.btnQuickSelect setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
-    self.btnQuickSelect.layer.cornerRadius = 4.0f ;
+    self.btnQuickSelect.layer.cornerRadius = 3.0f ;
     self.btnQuickSelect.layer.masksToBounds = YES ;
     [self.btnQuickSelect addTarget:self action:@selector(quickBtnClick) forControlEvents:UIControlEventTouchUpInside];
     

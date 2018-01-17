@@ -1539,6 +1539,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
+            case ServiceRequestTypeV3GetWithDrawInfo:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+            }
+                break;
                 case ServiceRequestTypeV3MyMessageMyMessageReadYes:
             {
                 
