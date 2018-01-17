@@ -9,7 +9,6 @@
 #import "RH_MPGameNoticePulldownView.h"
 #import "coreLib.h"
 @interface RH_MPGameNoticePulldownView()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView *tabelView;
 @end
 @implementation RH_MPGameNoticePulldownView
 -(instancetype)initWithFrame:(CGRect)frame
@@ -47,7 +46,13 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (_number==1) {
+        return 7;
+    }
+    else if (_number==2){
     return self.modelArray.count;
+    }
+    return 0;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,15 +65,27 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
+    if (_number==1) {
+        NSArray *array = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+        cell.textLabel.text = array[indexPath.row];
+    }
+    else if (_number==2){
     ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
     cell.textLabel.text  = model.mApiName ;
+    }
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-    self.gameTypeString = model.mApiName;
-    self.block();
+    if (_number==1) {
+        ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
+        self.gameTypeString = model.mApiName;
+        self.block(model.mApiId);
+    }
+    else if (_number==2){
+        
+    }
+    
 }
 @end

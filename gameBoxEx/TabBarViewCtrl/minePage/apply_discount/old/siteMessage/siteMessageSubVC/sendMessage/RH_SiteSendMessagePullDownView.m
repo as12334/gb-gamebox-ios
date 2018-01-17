@@ -9,7 +9,6 @@
 #import "RH_SiteSendMessagePullDownView.h"
 #import "coreLib.h"
 @interface RH_SiteSendMessagePullDownView()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView *tabelView;
 @end
 @implementation RH_SiteSendMessagePullDownView
 -(instancetype)initWithFrame:(CGRect)frame
@@ -34,12 +33,7 @@
     return _tabelView;
 }
 #pragma mark set方法
-//-(void)setModelArray:(NSArray<ApiSelectModel *> *)modelArray
-//{
-//    if (![_modelArray isEqual: modelArray]) {
-//        _modelArray = modelArray;
-//    }
-//}
+
 #pragma mark-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -60,15 +54,14 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-//    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-//    cell.textLabel.text  = model.mApiName ;
-//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    AdvisoryTypeModel *model = ConvertToClassPointer(AdvisoryTypeModel, self.verityModelArray[indexPath.item]);
+//    cell.textLabel.text = model.m
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-//    self.gameTypeString = model.mApiName;
+
     self.block();
 }
+
 @end

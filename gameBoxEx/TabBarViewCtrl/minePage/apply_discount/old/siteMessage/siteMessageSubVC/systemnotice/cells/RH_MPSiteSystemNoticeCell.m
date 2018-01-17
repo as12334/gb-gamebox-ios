@@ -49,7 +49,6 @@
     }
     else if (model.mRead==NO)
     {
-//        self.titleLabel.textColor = [UIColor blackColor];
         [self.titleLabel setTextColor:[UIColor blackColor]];
     }
 }

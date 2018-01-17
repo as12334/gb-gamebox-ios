@@ -552,8 +552,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 获取系统公告
--(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
-                                endTime:(NSDate *)endTime
+-(void)startV3LoadSystemNoticeStartTime:(NSString *)startTime
+                                endTime:(NSString *)endTime
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
@@ -589,8 +589,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark -  游戏公告
--(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
-                              endTime:(NSDate *)endTime
+-(void)startV3LoadGameNoticeStartTime:(NSString *)startTime
+                              endTime:(NSString *)endTime
                            pageNumber:(NSInteger)pageNumber
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId
@@ -1531,7 +1531,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3AddApplyDiscountsVerify:
             {
-                resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:@"advisoryType"]] ;
             }
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
@@ -1539,11 +1539,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-                case ServiceRequestTypeV3MyMessageMyMessageReadYes:
-            {
-                
-            }
-                break;
+          
             default:
                 resultSendData = dataObject ;
                 break;

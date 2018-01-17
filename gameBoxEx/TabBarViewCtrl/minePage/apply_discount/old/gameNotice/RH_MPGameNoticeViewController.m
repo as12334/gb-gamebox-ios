@@ -17,8 +17,9 @@
 @property (nonatomic,strong,readonly)RH_MPGameNoticeCell *gameNoticeCell;
 @property (nonatomic,strong,readonly)RH_MPGameNoticHeaderView *headerView;
 @property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
-@property (nonatomic,strong)NSDate *startDate;
+@property (nonatomic,strong)NSString *startDate;
 @property (nonatomic,strong)NSDate *endDate;
+@property (nonatomic,assign)NSInteger apiId;
 @end
 
 @implementation RH_MPGameNoticeViewController
@@ -52,13 +53,16 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
     self.needObserverTapGesture = YES ;
-     [self setupPageLoadManager] ;
+    [self setupPageLoadManager] ;
     
     self.topView.frame = CGRectMake(0, 0, self.view.frameWidth, 50);
     [self.topView addSubview:self.headerView];
     __block RH_MPGameNoticeViewController *weakSelf = self;
-    self.headerView.block = ^(CGRect frame){
-        [weakSelf selectedHeaderViewGameType:frame];
+    self.headerView.block = ^(int number, CGRect frame){
+        [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:2];
+    };
+    self.headerView.kuaixuanBlock = ^(int number, CGRect frame){
+        [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:1];
     };
 }
 #pragma  mark headerView
@@ -79,7 +83,8 @@
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
-                  weakSelf.startDate = returnDate;
+                  weakSelf.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  [weakSelf startUpdateData] ;
               }] ;
 }
 -(void)gameNoticHeaderViewEndDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
@@ -90,8 +95,8 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   weakSelf.endDate = returnDate;
+                  [weakSelf startUpdateData] ;
               }] ;
-     [self startUpdateData] ;
 }
 #pragma mark-
 #pragma mark-tableView
@@ -135,7 +140,7 @@
     if (!_listView) {
         _listView = [[RH_MPGameNoticePulldownView alloc]init];
         __block RH_MPGameNoticeViewController *weakSelf = self;
-        _listView.block = ^(){
+        _listView.block = ^(NSInteger apiId){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
                     CGRect framee = weakSelf.listView.frame;
@@ -145,13 +150,14 @@
                     [weakSelf.listView removeFromSuperview];
                 }];
                 weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
-                
             }
+            weakSelf.apiId = apiId;
+            [weakSelf startUpdateData] ;
         };
     }
     return _listView;
 }
--(void)selectedHeaderViewGameType:(CGRect )frame
+-(void)selectedHeaderViewGameType:(CGRect )frame andMarkNnmber:(int )number
 {
     if (!self.listView.superview) {
         frame.origin.y +=self.topView.frameY+self.topView.frameHeigh;
@@ -172,6 +178,14 @@
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
         }];
+    }
+    if (number==1) {
+        self.listView.number = number;
+        [self.listView.tabelView reloadData];
+    }
+    else if (number==2){
+        self.listView.number = number;
+        [self.listView.tabelView reloadData];
     }
 }
 #pragma mark- observer Touch gesture
@@ -233,11 +247,12 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
-                                                endTime:self.endDate
-                                             pageNumber:1
+    __weak RH_MPGameNoticeViewController *weakSelf = self;
+    [self.serviceRequest startV3LoadGameNoticeStartTime:weakSelf.startDate
+                                                endTime:weakSelf.endDate
+                                             pageNumber:page
                                                pageSize:pageSize
-                                                  apiId:0];
+                                                  apiId:weakSelf.apiId];
 }
 -(void)cancelLoadDataHandle
 {

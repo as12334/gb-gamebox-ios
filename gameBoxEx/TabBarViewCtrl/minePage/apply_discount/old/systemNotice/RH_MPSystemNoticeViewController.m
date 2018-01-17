@@ -18,8 +18,8 @@
 @property (nonatomic,strong,readonly)RH_MPSystemNoticHeaderView *headerView;
 @property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
 @property (nonatomic,strong)RH_SystemNoticeModel *systemModel;
-@property (nonatomic,strong)NSDate *startDate;
-@property (nonatomic,strong)NSDate *endDate;
+@property (nonatomic,strong)NSString *startDate;
+@property (nonatomic,strong)NSString *endDate;
 @end
 
 @implementation RH_MPSystemNoticeViewController
@@ -68,7 +68,8 @@
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
-                  weakSelf.startDate = returnDate;
+                  weakSelf.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                   [weakSelf startUpdateData] ;
               }] ;
 }
 -(void)gameSystemHeaderViewEndDateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
@@ -78,7 +79,8 @@
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
-                  weakSelf.endDate  = returnDate;
+                  weakSelf.endDate  = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                   [weakSelf startUpdateData] ;
               }] ;
     [self startUpdateData] ;
 }
@@ -167,15 +169,11 @@
     }
 }
 #pragma mark- 请求回调
-//-(NSUInteger)defaultPageSize
-//{
-//    
-//}
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-//    [self.serviceRequest startV3DepositListDetail:[NSString stringWithFormat:@"%d",self.systemModel.mId]] ;
-    [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate endTime:self.endDate pageNumber:page pageSize:pageSize];
+        __block RH_MPSystemNoticeViewController *weakSelf = self;
+    [self.serviceRequest startV3LoadSystemNoticeStartTime:weakSelf.startDate endTime:weakSelf.endDate pageNumber:page pageSize:pageSize];
 }
 -(void)cancelLoadDataHandle
 {

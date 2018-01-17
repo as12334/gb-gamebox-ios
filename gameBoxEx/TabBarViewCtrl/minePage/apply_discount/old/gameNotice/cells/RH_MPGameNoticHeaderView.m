@@ -24,7 +24,10 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        
+        self.startDateView.layer.cornerRadius = 5;
+        self.startDateView.layer.borderWidth = 1.f;
+        self.startDateView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.startDateView.layer.masksToBounds = YES;
         
     }
     return self;
@@ -83,16 +86,15 @@
         [self.endSeletedDateView updateUIWithDate:_endDate];
     }
 }
+- (IBAction)kuaiXuanSelected:(id)sender {
+    CGRect frame = self.kuaixuanBtn.frame;
+    frame.size.width +=100;
+    self.kuaixuanBlock(1,frame);
+}
 - (IBAction)gameTypeSelected:(id)sender {
     __block RH_MPGameNoticHeaderView *weakSelf = self;
-    if (sender==self.kuaixuanBtn) {
-        CGRect frame = self.kuaixuanBtn.frame;
-        frame.size.width +=100;
-        self.block(frame);
-    }
-    else if (sender==self.gameTypeControl){
-        self.block(weakSelf.gameTypeControl.frame);
-    }
+    self.block(2,weakSelf.gameTypeControl.frame);
+    
 }
 
 @end
