@@ -1407,9 +1407,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3UserSafeInfo:
             {
+                resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
+                RH_UserSafetyCodeModel *userSafetyCodeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, resultSendData) ;
+                if (userSafetyCodeModel){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:userSafetyCodeModel] ;
+                }
             }
                 break;
+                
             case ServiceRequestTypeV3UpdateSafePassword:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
