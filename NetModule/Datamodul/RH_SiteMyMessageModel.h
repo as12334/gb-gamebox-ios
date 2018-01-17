@@ -14,6 +14,7 @@
 @property(nonatomic,strong,readonly)NSString   *mAdvisoryTitle; //标题
 @property(nonatomic,assign,readonly)NSInteger  mId; //主键
 @property(nonatomic,strong,readonly)NSString   *mReplyTitle;  //回复标题
+@property(nonatomic,assign,readonly)BOOL       mIsRead;
 
 //---extend
 @property(nonatomic,strong)NSNumber *number;

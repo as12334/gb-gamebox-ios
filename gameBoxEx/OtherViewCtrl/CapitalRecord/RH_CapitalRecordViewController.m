@@ -52,7 +52,6 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-
 }
 
 
@@ -261,6 +260,9 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         [self loadDataFailWithError:error] ;
+    }
+    if (type == ServiceRequestTypeV3GetWithDrawInfo) {
+        NSLog(@"%ld  %@",(long)error.code,error.localizedDescription);
     }
 }
 

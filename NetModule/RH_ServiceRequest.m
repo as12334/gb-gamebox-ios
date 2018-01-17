@@ -38,6 +38,7 @@
 #import "RH_DiscountActivityModel.h"
 #import "RH_SendMessageVerityModel.h"
 #import "RH_SiteMyMessageDetailModel.h"
+#import "RH_WithDrawIModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -1304,6 +1305,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
+
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1313,7 +1315,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
         }
     }
-
+ 
+   
     if (error) {
         *error = tempError;
     }
@@ -1549,6 +1552,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+            case ServiceRequestTypeV3GetWithDrawInfo:
+            {
+               
+                resultSendData = [[RH_WithDrawIModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
             default:
                 resultSendData = dataObject ;
                 break;
@@ -1567,7 +1576,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break;
-                
+            
             default:
                 break;
         }
