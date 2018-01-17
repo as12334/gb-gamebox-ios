@@ -9,14 +9,14 @@
 #import "RH_MPSystemNoticeViewController.h"
 #import "RH_MPSystemNoticeCell.h"
 #import "RH_MPSystemNoticHeaderView.h"
-#import "RH_MPGameNoticePulldownView.h"
+#import "RH_SystemNoticeListView.h"
 #import "RH_SystemNoticeModel.h"
 #import "RH_API.h"
 #import "RH_MPSystemNoticeDetailController.h"
 @interface RH_MPSystemNoticeViewController ()<MPSystemNoticHeaderViewDelegate>
 @property (nonatomic,strong,readonly)RH_MPSystemNoticeCell *systemNoticeCell;
 @property (nonatomic,strong,readonly)RH_MPSystemNoticHeaderView *headerView;
-@property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
+@property (nonatomic,strong,readonly)RH_SystemNoticeListView *listView;
 @property (nonatomic,strong)RH_SystemNoticeModel *systemModel;
 @property (nonatomic,strong)NSString *startDate;
 @property (nonatomic,strong)NSString *endDate;
@@ -87,12 +87,59 @@
 #pragma mark-
 
 #pragma mark 点击headerview的游戏类型
--(RH_MPGameNoticePulldownView *)listView
+-(RH_SystemNoticeListView *)listView
 {
     if (!_listView) {
-        _listView = [[RH_MPGameNoticePulldownView alloc]init];
+        __block RH_MPSystemNoticeViewController *weakSelf = self;
+        _listView = [[RH_SystemNoticeListView alloc]init];
+        _listView.kuaixuanBlock = ^(NSInteger row){
+            if (weakSelf.listView.superview){
+                [UIView animateWithDuration:0.2f animations:^{
+                    CGRect framee = weakSelf.listView.frame;
+                    framee.size.height = 0;
+                    weakSelf.listView.frame = framee;
+                } completion:^(BOOL finished) {
+                    [weakSelf.listView removeFromSuperview];
+                }];
+            }
+            weakSelf.startDate = [weakSelf changedSinceTimeString:row];
+            [weakSelf startUpdateData] ;
+        };
     }
     return _listView;
+}
+#pragma mark 修改时间
+-(NSString *)changedSinceTimeString:(NSInteger)row
+{
+    NSDate *date = [[NSDate alloc]init];
+    switch (row) {
+        case 0:
+            date= [[NSDate date] dateWithMoveDay:0];
+            break;
+        case 1:
+            date= [[NSDate date] dateWithMoveDay:-1];
+            break;
+        case 2:
+            date= [[NSDate date] dateWithMoveDay:-7];
+            break;
+        case 3:
+            date= [[NSDate date] dateWithMoveDay:-14];
+            break;
+        case 4:
+            date= [[NSDate date] dateWithMoveDay:-30];
+            break;
+        case 5:
+            date= [[NSDate date] dateWithMoveDay:-7];
+            break;
+        case 6:
+            date= [[NSDate date] dateWithMoveDay:-30];
+            break;
+            
+        default:
+            break;
+    }
+    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+    return beforDate;
 }
 -(void)selectedHeaderViewGameType:(CGRect )frame
 {
@@ -116,7 +163,7 @@
             [self.listView removeFromSuperview];
         }];
     }
-    
+    [self.listView.tabelView reloadData];
 }
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer

@@ -20,6 +20,7 @@
         _mAdvisoryTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTITLE];
         _mId = [info integerValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ID];
         _mReplyTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_REPLYTITLE];
+        _mIsRead = [info boolValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_READ];
     }
     return self;
 }

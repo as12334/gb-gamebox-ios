@@ -38,6 +38,7 @@
 #import "RH_DiscountActivityModel.h"
 #import "RH_SendMessageVerityModel.h"
 #import "RH_SiteMyMessageDetailModel.h"
+#import "RH_WithDrawIModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -1290,7 +1291,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }else if (type == ServiceRequestTypeTestUrl){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
-        NSLog(@"%@",tmpResult) ;
     }else if (type == ServiceRequestTypeAPIRetrive){ //游戏 回收api
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1304,6 +1304,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
+    if (dataObject) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1313,7 +1317,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
         }
     }
-
+ 
+   
     if (error) {
         *error = tempError;
     }
@@ -1539,7 +1544,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-          
+                case ServiceRequestTypeV3MyMessageMyMessageReadYes:
+            {
+                
+            }
+                break;
+            case ServiceRequestTypeV3GetWithDrawInfo:
+            {
+                resultSendData =[RH_WithDrawIModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
             default:
                 resultSendData = dataObject ;
                 break;

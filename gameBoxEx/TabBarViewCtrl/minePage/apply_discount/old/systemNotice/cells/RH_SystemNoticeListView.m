@@ -1,16 +1,16 @@
 //
-//  RH_MPGameNoticePulldownView.m
+//  RH_SystemNoticeListView.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/1/12.
+//  Created by lewis on 2018/1/17.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_MPGameNoticePulldownView.h"
-#import "coreLib.h"
-@interface RH_MPGameNoticePulldownView()<UITableViewDelegate,UITableViewDataSource>
+#import "RH_SystemNoticeListView.h"
+@interface RH_SystemNoticeListView()<UITableViewDelegate,UITableViewDataSource>
 @end
-@implementation RH_MPGameNoticePulldownView
+@implementation RH_SystemNoticeListView
+
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -32,13 +32,6 @@
     }
     return _tabelView;
 }
-#pragma mark set方法
--(void)setModelArray:(NSArray<ApiSelectModel *> *)modelArray
-{
-    if (![_modelArray isEqual: modelArray]) {
-        _modelArray = modelArray;
-    }
-}
 #pragma mark-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -46,13 +39,9 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_number==1) {
-        return 7;
-    }
-    else if (_number==2){
-    return self.modelArray.count;
-    }
-    return 0;
+ 
+    return 7;
+    
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -65,27 +54,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    if (_number==1) {
-        NSArray *array = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
-        cell.textLabel.text = array[indexPath.row];
-    }
-    else if (_number==2){
-    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-    cell.textLabel.text  = model.mApiName ;
-    }
+    NSArray *array = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+    cell.textLabel.text = array[indexPath.row];
+   
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_number==2) {
-        ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-        self.gameTypeString = model.mApiName;
-        self.block(model.mApiId);
-    }
-    else if (_number==1){
-        self.kuaixuanBlock(indexPath.row);
-    }
-    
+    self.kuaixuanBlock(indexPath.row);
+
 }
+
 @end

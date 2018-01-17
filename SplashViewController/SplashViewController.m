@@ -351,7 +351,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if(alertView.firstOtherButtonIndex == buttonIndex){
                     NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
-                    NSLog(@"%@",downLoadIpaUrl);
                     if (openURL(downLoadIpaUrl)==false){
                         [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
                         [self splashViewComplete] ;
