@@ -222,6 +222,11 @@
             }
             [self.contentTableView reloadData];
         }
+        else
+        {
+            [self loadDataSuccessWithDatas:nil totalCount:0];
+            [self.contentTableView reloadData];
+        }
     }
 }
 

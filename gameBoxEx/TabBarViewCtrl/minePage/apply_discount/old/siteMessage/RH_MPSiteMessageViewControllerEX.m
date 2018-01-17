@@ -29,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    self.navigationBarItem.title = @"申请优惠";
 }
 -(void)setupUI
 {

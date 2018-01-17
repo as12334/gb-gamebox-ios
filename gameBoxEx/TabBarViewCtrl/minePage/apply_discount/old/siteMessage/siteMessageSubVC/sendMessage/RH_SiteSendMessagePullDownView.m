@@ -9,7 +9,6 @@
 #import "RH_SiteSendMessagePullDownView.h"
 #import "coreLib.h"
 @interface RH_SiteSendMessagePullDownView()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView *tabelView;
 @end
 @implementation RH_SiteSendMessagePullDownView
 -(instancetype)initWithFrame:(CGRect)frame
@@ -34,12 +33,11 @@
     return _tabelView;
 }
 #pragma mark set方法
-//-(void)setModelArray:(NSArray<ApiSelectModel *> *)modelArray
-//{
-//    if (![_modelArray isEqual: modelArray]) {
-//        _modelArray = modelArray;
-//    }
-//}
+-(void)setSendModel:(RH_SendMessageVerityModel *)sendModel
+{
+    _sendModel = sendModel;
+    
+}
 #pragma mark-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -47,7 +45,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.sendModel.mAdvisoryTypeListModel.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,15 +58,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-//    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-//    cell.textLabel.text  = model.mApiName ;
-//    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    AdvisoryTypeListModel *model = ConvertToClassPointer(AdvisoryTypeListModel, self.sendModel.mAdvisoryTypeListModel[indexPath.item]);
+    cell.textLabel.text = model.mAdvisoryName;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-//    self.gameTypeString = model.mApiName;
-    self.block();
+    AdvisoryTypeListModel *model = ConvertToClassPointer(AdvisoryTypeListModel, self.sendModel.mAdvisoryTypeListModel[indexPath.item]);
+    self.block(model.mAdvisoryType,model.mAdvisoryName);
 }
+
 @end

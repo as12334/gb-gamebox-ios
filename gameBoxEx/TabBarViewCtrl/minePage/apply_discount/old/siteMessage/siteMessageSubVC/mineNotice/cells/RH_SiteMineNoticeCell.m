@@ -42,6 +42,13 @@
     else if ([model.number isEqual:@1]){
         [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_error"] forState:UIControlStateNormal];
     }
+    if (model.mIsRead==YES) {
+        [self.titleLabel setTextColor:[UIColor redColor]];
+    }
+    else if (model.mIsRead==NO)
+    {
+        [self.titleLabel setTextColor:[UIColor blackColor]];
+    }
 }
 
 - (IBAction)choseEdinBtnClick:(id)sender {

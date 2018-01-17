@@ -10,7 +10,6 @@
 #import "coreLib.h"
 #import "RH_MPGameNoticeViewController.h"
 #import "RH_MPSystemNoticeViewController.h"
-#import "RH_MPSiteMessageViewController.h"
 #import "RH_MPSiteMessageViewControllerEX.h"
 #import "RH_SiteSendMessageView.h"
 @interface RH_MPApplyDiscountController ()
@@ -41,6 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    self.title = @"申请优惠";
 }
 -(void)setupUI
 {

@@ -9,14 +9,19 @@
 #import "RH_SiteMessageSentViewController.h"
 #import "RH_SiteSendMessageView.h"
 #import "RH_SiteSendMessagePullDownView.h"
-@interface RH_SiteMessageSentViewController ()
+#import "RH_ServiceRequest.h"
+#import "RH_SendMessageVerityModel.h"
+@interface RH_SiteMessageSentViewController ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
+@property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
+@property(nonatomic,copy)NSString  *typeStr;
 @end
 
 @implementation RH_SiteMessageSentViewController
 @synthesize sendView = _sendView;
 @synthesize listView = _listView;
+@synthesize serviceRequest = _serviceRequest;
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationBar.hidden = YES;
@@ -29,6 +34,14 @@
     }
     return _sendView;
 }
+-(RH_ServiceRequest *)serviceRequest
+{
+    if (!_serviceRequest) {
+        _serviceRequest  =[[RH_ServiceRequest alloc]init];
+        _serviceRequest.delegate = self;
+    }
+    return _serviceRequest;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,7 +50,12 @@
     self.sendView.block = ^(CGRect frame){
         [weakSelf selectedSendViewdiscountType:frame];
     };
+    self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
+        [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
+        [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+    };
     self.needObserverTapGesture = YES ;
+    [self.serviceRequest startV3AddApplyDiscountsVerify];
 }
 #pragma mark 下拉列表
 #pragma mark 点击headerview的游戏类型
@@ -46,7 +64,7 @@
     if (!_listView) {
         _listView = [[RH_SiteSendMessagePullDownView alloc]init];
         __block RH_SiteMessageSentViewController *weakSelf = self;
-        _listView.block = ^(){
+        _listView.block = ^(NSString *typeString,NSString *typeName){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
                     CGRect framee = weakSelf.listView.frame;
@@ -55,8 +73,8 @@
                 } completion:^(BOOL finished) {
                     [weakSelf.listView removeFromSuperview];
                 }];
-                weakSelf.sendView.typeLabel.text = weakSelf.listView.gameTypeString;
-                
+                weakSelf.sendView.typeLabel.text = typeName;
+                weakSelf.typeStr =typeString;
             }
         };
     }
@@ -104,19 +122,62 @@
         }];
     }
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark 数据请求
+
+#pragma mark-
+-(BOOL)showNotingIndicaterView
+{
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"您暂无相关数据记录"] ;
+    return YES ;
+    
+}
+#pragma mark-
+-(void)netStatusChangedHandle
+{
+    if (NetworkAvailable()){
+        [self startUpdateData] ;
+    }
+}
+//#pragma mark- 请求回调
+//-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+//{
+//    [self.serviceRequest startV3AddApplyDiscountsVerify];
+//}
+//-(void)cancelLoadDataHandle
+//{
+//    [self.serviceRequest cancleAllServices] ;
+//}
+//
+//#pragma mark-
+//- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+//{
+//    [self startUpdateData] ;
+//}
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeV3AddApplyDiscountsVerify){
+    
+        RH_SendMessageVerityModel *sendModel = ConvertToClassPointer(RH_SendMessageVerityModel, data);
+        self.listView.sendModel = sendModel;
+        self.sendView.sendModel = sendModel;
+    }
+    else if (type==ServiceRequestTypeV3AddApplyDiscounts)
+    {
+        
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeV3AddApplyDiscountsVerify){
+        [self loadDataFailWithError:error] ;
+    }
+    else if (type==ServiceRequestTypeV3AddApplyDiscounts)
+    {
+        
+    }
 }
-*/
 
 @end

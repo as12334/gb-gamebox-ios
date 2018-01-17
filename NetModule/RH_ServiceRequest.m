@@ -553,8 +553,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 获取系统公告
--(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
-                                endTime:(NSDate *)endTime
+-(void)startV3LoadSystemNoticeStartTime:(NSString *)startTime
+                                endTime:(NSString *)endTime
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
@@ -590,8 +590,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark -  游戏公告
--(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
-                              endTime:(NSDate *)endTime
+-(void)startV3LoadGameNoticeStartTime:(NSString *)startTime
+                              endTime:(NSString *)endTime
                            pageNumber:(NSInteger)pageNumber
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId
@@ -1291,7 +1291,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }else if (type == ServiceRequestTypeTestUrl){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
-        NSLog(@"%@",tmpResult) ;
     }else if (type == ServiceRequestTypeAPIRetrive){ //游戏 回收api
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1407,6 +1406,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeV3UserSafeInfo:
+            {
+                
+            }
+                break;
             case ServiceRequestTypeV3UpdateSafePassword:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1537,6 +1540,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
+                break;
+                case ServiceRequestTypeV3AddApplyDiscounts:
+            {
+                
+                
+            }
+                
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {

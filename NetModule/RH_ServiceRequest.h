@@ -227,8 +227,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  @param pageNumber 第几页
  @param pageSize 一页展示多少条默认20
  */
--(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
-                                endTime:(NSDate *)endTime
+-(void)startV3LoadSystemNoticeStartTime:(NSString *)startTime
+                                endTime:(NSString *)endTime
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize;
 
@@ -251,8 +251,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  @param pageSize 一页展示多少条默认20
  @param apiId 游戏类型
  */
--(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
-                              endTime:(NSDate *)endTime
+-(void)startV3LoadGameNoticeStartTime:(NSString *)startTime
+                              endTime:(NSString *)endTime
                            pageNumber:(NSInteger)pageNumber
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId;

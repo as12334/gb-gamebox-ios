@@ -142,7 +142,7 @@
 {
     NSString *str = @"";
     for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%d,",siteModel.mId]];
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
     }
     if([str length] > 0){
         str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
