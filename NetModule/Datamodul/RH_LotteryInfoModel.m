@@ -24,10 +24,10 @@
     if (self){
         _mApiID = [info integerValueForKey:RH_GP_LOTTERYINFO_APIID] ;
         _mApiTypeID = [info integerValueForKey:RH_GP_LOTTERYINFO_APITYPEID] ;
-        _mAutoPay = [info integerValueForKey:RH_GP_LOTTERYINFO_AUTOPAY] ;
+        _mAutoPay = [info boolValueForKey:RH_GP_LOTTERYINFO_AUTOPAY] ;
         _mCode = [info stringValueForKey:RH_GP_LOTTERYINFO_CODE] ;
         _mCover = [info stringValueForKey:RH_GP_LOTTERYIINFO_COVER] ;
-        _mGameID = [info integerValueForKey:RH_GP_LOTTERYINFO_GAMEID] ;
+        _mGameID = [info stringValueForKey:RH_GP_LOTTERYINFO_GAMEID] ;
         _mGameLink = [info stringValueForKey:RH_GP_LOTTERYINFO_GAMELINK] ;
         _mGameMsg = [info stringValueForKey:RH_GP_LOTTERYINFO_GAMEMSG] ;
         _mGameType = [info stringValueForKey:RH_GP_LOTTERYINFO_GAMETYPE];
@@ -55,11 +55,23 @@
 -(NSString *)showGameLink
 {
     if (!_showGameLink){
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+        if (!_mAutoPay && _mApiTypeID!=2){
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+        }
     }
     
     return _showGameLink ;
+}
+
+-(void)updateShowGameLink:(NSDictionary*)gameLinkDict
+{
+    _showGameLink = [gameLinkDict stringValueForKey:RH_GP_GAMESLINK_LINKURL] ;
+    _mGameMsg = [gameLinkDict stringValueForKey:RH_GP_GAMESLINK_MESSAGE]?:_mGameMsg ;
+    
+    if (_showGameLink.length==0 && _mGameMsg.length==0){
+        _mGameMsg = @"游戏正在维护中..." ;
+    }
 }
 
 @end

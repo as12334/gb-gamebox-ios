@@ -346,7 +346,6 @@
 		A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747E11FF886810068D0E4 /* RH_UserInfoGengeralCell.m */; };
 		A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747E21FF886810068D0E4 /* RH_userInfoView.m */; };
 		A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05747E81FF889EE0068D0E4 /* RH_userInfoView.xib */; };
-		A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05747EA1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m */; };
 		A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */; };
 		A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2B1FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m */; };
 		A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A058FF2E1FE8A6BC006EF279 /* CWLateralSlideAnimator.m */; };
@@ -1149,8 +1148,6 @@
 		A05747E11FF886810068D0E4 /* RH_UserInfoGengeralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoGengeralCell.m; sourceTree = "<group>"; };
 		A05747E21FF886810068D0E4 /* RH_userInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_userInfoView.m; sourceTree = "<group>"; };
 		A05747E81FF889EE0068D0E4 /* RH_userInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_userInfoView.xib; sourceTree = "<group>"; };
-		A05747EA1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_V3SimpleWebViewController.m; sourceTree = "<group>"; };
-		A05747EB1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_V3SimpleWebViewController.h; sourceTree = "<group>"; };
 		A058FF281FE8A6BC006EF279 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
 		A058FF291FE8A6BC006EF279 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		A058FF2A1FE8A6BC006EF279 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
@@ -2616,8 +2613,6 @@
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
-				A05747EB1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.h */,
-				A05747EA1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m */,
 				A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */,
 				A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */,
 			);
@@ -3347,12 +3342,12 @@
 			children = (
 				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
 				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
+				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
+				F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */,
 				F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */,
 				F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */,
 				F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */,
 				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
-				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
-				F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */,
 			);
 			path = gesturelLock;
 			sourceTree = "<group>";
@@ -3903,7 +3898,6 @@
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
 				F6A2ADCA200B46B50077CB92 /* RH_GameNoticeDetailController.m in Sources */,
-				A05747EC1FF8C1EC0068D0E4 /* RH_V3SimpleWebViewController.m in Sources */,
 				A0109F961F8787E4004E6EF4 /* CLScanImageView.m in Sources */,
 				A0109F971F8787E4004E6EF4 /* CLStaticCollectionView.m in Sources */,
 				A0109F981F8787E4004E6EF4 /* CLStaticCollectionViewCell.m in Sources */,

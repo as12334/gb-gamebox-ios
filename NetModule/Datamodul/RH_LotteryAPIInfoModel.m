@@ -51,7 +51,7 @@
 -(NSString *)showGameLink
 {
     if (!_showGameLink){
-        if (!_mAutoPay) { //非免转 ，gamelink 作为 h5 link
+        if (!_mAutoPay && _mGameLink.length) { //非免转 ，gamelink 作为 h5 link
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
         }
@@ -60,4 +60,14 @@
     return _showGameLink ;
 }
 
+
+-(void)updateShowGameLink:(NSDictionary*)gameLinkDict
+{
+    _showGameLink = [gameLinkDict stringValueForKey:RH_GP_GAMESLINK_LINKURL] ;
+    _mGameMsg = [gameLinkDict stringValueForKey:RH_GP_GAMESLINK_MESSAGE]?:_mGameMsg ;
+    
+    if (_showGameLink.length==0 && _mGameMsg.length==0){
+        _mGameMsg = @"游戏正在维护中..." ;
+    }
+}
 @end

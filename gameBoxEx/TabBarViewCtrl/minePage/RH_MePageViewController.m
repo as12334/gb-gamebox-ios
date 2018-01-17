@@ -116,6 +116,7 @@
     if (!self.appDelegate.isLogin){//未login
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
         [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
+        self.navigationBarItem.rightBarButtonItem = nil ;
     }else{
         if (MineSettingInfo==nil){
             if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3UserInfo]==FALSE){
@@ -125,6 +126,7 @@
         
         [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogin"] ;
+        self.navigationBarItem.rightBarButtonItem = self.barButtonSetting  ;
     }
 }
 

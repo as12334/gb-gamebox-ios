@@ -1465,6 +1465,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+                
             case ServiceRequestTypeV3SystemNoticeDetail:
             {
                 resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1539,11 +1540,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-                case ServiceRequestTypeV3MyMessageMyMessageReadYes:
+            
+            case ServiceRequestTypeV3MyMessageMyMessageReadYes:
             {
                 
             }
                 break;
+             
+            case ServiceRequestTypeV3GameLink:
+            {
+                resultSendData =[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserLoginOut:
+            {
+                [self.appDelegate updateLoginStatus:NO] ;
+            }
+                break ;
+                
             default:
                 resultSendData = dataObject ;
                 break;

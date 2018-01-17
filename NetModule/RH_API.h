@@ -701,6 +701,10 @@
 #define RH_SP_GAMESLINK_APITYPEID              @"apiTypeId"
 #define RH_SP_GAMESLINK_GAMEID                @"gameId"
 #define RH_SP_GAMESLINK_GAMECODE                @"gameCode"
+//返回参数
+#define RH_GP_GAMESLINK_LINKURL                 @"gameLink"
+#define RH_GP_GAMESLINK_MESSAGE                 @"gameMsg"
+
 
 #pragma mark - V3 退出登录
 #define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"

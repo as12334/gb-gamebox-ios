@@ -16,7 +16,6 @@
 #import "RH_HomeChildCategoryCell.h"
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomePageModel.h"
-#import "RH_V3SimpleWebViewController.h"
 #import "RH_ActivithyView.h"
 #import "RH_API.h"
 #import "RH_BasicAlertView.h"
@@ -252,35 +251,33 @@
                 [self showViewController:[RH_LotteryGameListViewController viewControllerWithContext:lotteryAPIInfoModel]
                                   sender:self] ;
                 return ;
-            }else if (lotteryAPIInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
+            }else if (lotteryAPIInfoModel.mAutoPay){//免转
+                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
                 return ;
-            }else if (lotteryAPIInfoModel.mGameMsg.length){
-                showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
-                return ;
-            }else if ([self.serviceRequest isRequesting]){
-                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
-                return ;
-            }else{
-                showAlertView(@"提示信息",@"游戏维护中") ;
-                return ;
+            }else{ //非免转 ---跳到额度转换里 自已转钱入游戏 。
+                if (lotteryAPIInfoModel.mGameLink.length){
+                    self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                    return ;
+                }else{
+                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    return ;
+                }
             }
         }else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]]){
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, cellItemModel) ;
-            if (lotteryInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+            if (lotteryInfoModel.mAutoPay){ //免转
+                [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                 return ;
-            }else if (lotteryInfoModel.mGameMsg.length){
-                showAlertView(@"提示信息",lotteryInfoModel.mGameMsg) ;
-                return ;
-            }else if ([self.serviceRequest isRequesting]){
-                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
-                return ;
-            }else{
-                showAlertView(@"提示信息",@"游戏维护中") ;
-                return ;
+            }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
+                if (lotteryInfoModel.mGameLink.length){
+                    self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                    return ;
+                }else{
+                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    return ;
+                }
             }
         }
     }else{
@@ -646,7 +643,10 @@
 #pragma mark- Banner Cells Delegate
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
-    [self showViewController:[RH_V3SimpleWebViewController viewControllerWithContext:bannerModel.contentURL] sender:self] ;
+    if (bannerModel.contentURL.length){
+        self.appDelegate.customUrl = bannerModel.contentURL ;
+        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    }
 }
 
 @end

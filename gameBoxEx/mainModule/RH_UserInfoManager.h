@@ -37,9 +37,12 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 -(void)setBankList:(NSArray<RH_BankInfoModel *> *)bankList ;
 
 ///----app 层 相关开关
-@property (nonatomic,assign,readonly) BOOL isScreenLock ;
-@property (nonatomic,strong,readonly) NSString *screenLockPassword ;
--(void)updateScreenLockFlag:(BOOL)lock ;
+@property (nonatomic,assign,readonly) BOOL isVoiceSwitch    ; //声音开关
+@property (nonatomic,assign,readonly) BOOL isScreenLock     ; //锁屏手势开关
+@property (nonatomic,strong,readonly) NSString *screenLockPassword ; //锁屏手势密码
+
+-(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;
+-(void)updateScreenLockFlag:(BOOL)lock      ;
 -(void)updateScreenLockPassword:(NSString*)lockPassrod ;
 
 @end

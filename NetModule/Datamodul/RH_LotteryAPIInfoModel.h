@@ -24,4 +24,6 @@
 //extend
 @property(nonatomic,strong,readonly) NSString *showCover ;
 @property(nonatomic,strong,readonly) NSString *showGameLink ;
+
+-(void)updateShowGameLink:(NSDictionary*)gameLinkDict ;
 @end

@@ -205,19 +205,11 @@
         if (HasLogin)
         {
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-            if (lotteryInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
-                return ;
-            }else if (lotteryInfoModel.mGameMsg.length){
-                showAlertView(@"提示信息",lotteryInfoModel.mGameMsg) ;
-                return ;
-            }else if ([self.serviceRequest isRequesting]){
-                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
+            if (lotteryInfoModel){
+                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                 return ;
             }else{
-                showAlertView(@"提示信息",@"游戏维护中") ;
-                return ;
+                showAlertView(@"数据异常", @"请联系后台") ;
             }
         }else{
             showAlertView(@"提示信息", @"您尚未登入") ;
