@@ -1304,10 +1304,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (dataObject) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:nil];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
+
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1409,6 +1406,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeV3UserSafeInfo:
+            {
+                
+            }
+                break;
             case ServiceRequestTypeV3UpdateSafePassword:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1536,8 +1537,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3AddApplyDiscountsVerify:
             {
-                resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:@"advisoryType"]] ;
+                resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
+                break;
+                case ServiceRequestTypeV3AddApplyDiscounts:
+            {
+                
+                
+            }
+                
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {

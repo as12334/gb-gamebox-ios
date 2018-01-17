@@ -63,7 +63,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.kuaixuanBlock(indexPath.row);
-
 }
 
 @end

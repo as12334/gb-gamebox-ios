@@ -15,6 +15,7 @@
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
+@property(nonatomic,copy)NSString  *typeStr;
 @end
 
 @implementation RH_SiteMessageSentViewController
@@ -49,6 +50,10 @@
     self.sendView.block = ^(CGRect frame){
         [weakSelf selectedSendViewdiscountType:frame];
     };
+    self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
+        [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
+        [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+    };
     self.needObserverTapGesture = YES ;
     [self.serviceRequest startV3AddApplyDiscountsVerify];
 }
@@ -59,7 +64,7 @@
     if (!_listView) {
         _listView = [[RH_SiteSendMessagePullDownView alloc]init];
         __block RH_SiteMessageSentViewController *weakSelf = self;
-        _listView.block = ^(){
+        _listView.block = ^(NSString *typeString,NSString *typeName){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
                     CGRect framee = weakSelf.listView.frame;
@@ -68,7 +73,8 @@
                 } completion:^(BOOL finished) {
                     [weakSelf.listView removeFromSuperview];
                 }];
-                weakSelf.sendView.typeLabel.text = weakSelf.listView.gameTypeString;
+                weakSelf.sendView.typeLabel.text = typeName;
+                weakSelf.typeStr =typeString;
             }
         };
     }
@@ -154,6 +160,12 @@
     if (type == ServiceRequestTypeV3AddApplyDiscountsVerify){
     
         RH_SendMessageVerityModel *sendModel = ConvertToClassPointer(RH_SendMessageVerityModel, data);
+        self.listView.sendModel = sendModel;
+        self.sendView.sendModel = sendModel;
+    }
+    else if (type==ServiceRequestTypeV3AddApplyDiscounts)
+    {
+        
     }
 }
 
@@ -161,6 +173,10 @@
 {
     if (type == ServiceRequestTypeV3AddApplyDiscountsVerify){
         [self loadDataFailWithError:error] ;
+    }
+    else if (type==ServiceRequestTypeV3AddApplyDiscounts)
+    {
+        
     }
 }
 

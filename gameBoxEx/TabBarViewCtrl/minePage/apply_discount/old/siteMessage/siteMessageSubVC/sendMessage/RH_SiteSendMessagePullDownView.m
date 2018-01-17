@@ -33,7 +33,11 @@
     return _tabelView;
 }
 #pragma mark set方法
-
+-(void)setSendModel:(RH_SendMessageVerityModel *)sendModel
+{
+    _sendModel = sendModel;
+    
+}
 #pragma mark-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -41,7 +45,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.sendModel.mAdvisoryTypeListModel.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -54,14 +58,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    AdvisoryTypeModel *model = ConvertToClassPointer(AdvisoryTypeModel, self.verityModelArray[indexPath.item]);
-//    cell.textLabel.text = model.m
+    AdvisoryTypeListModel *model = ConvertToClassPointer(AdvisoryTypeListModel, self.sendModel.mAdvisoryTypeListModel[indexPath.item]);
+    cell.textLabel.text = model.mAdvisoryName;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    self.block();
+    AdvisoryTypeListModel *model = ConvertToClassPointer(AdvisoryTypeListModel, self.sendModel.mAdvisoryTypeListModel[indexPath.item]);
+    self.block(model.mAdvisoryType,model.mAdvisoryName);
 }
 
 @end

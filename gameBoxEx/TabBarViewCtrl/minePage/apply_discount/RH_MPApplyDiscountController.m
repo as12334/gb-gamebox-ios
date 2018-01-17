@@ -40,6 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    self.title = @"申请优惠";
 }
 -(void)setupUI
 {

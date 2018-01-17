@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "RH_SendMessageVerityModel.h"
-typedef void (^SiteSendMessagePullDownViewBlock)(void);
+typedef void (^SiteSendMessagePullDownViewBlock)(NSString *typeString,NSString *typeName);
 @interface RH_SiteSendMessagePullDownView : UIView
 //@property(nonatomic,strong)NSArray<ApiSelectModel *> *modelArray;
 @property(nonatomic,strong)SiteSendMessagePullDownViewBlock block;
 @property (nonatomic,copy)NSString *gameTypeString;
 @property(nonatomic,strong)UITableView *tabelView;
-@property(nonatomic,strong)NSArray<AdvisoryTypeModel *>*verityModelArray;
+@property(nonatomic,strong)RH_SendMessageVerityModel *sendModel;
 @end

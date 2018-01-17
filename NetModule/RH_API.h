@@ -357,21 +357,11 @@
 
 #pragma mark - V3 发送消息验证接口 模型
 #define RH_GP_SENDMESSGAVERITY_ISOPENCAPTCHA          @"isOpenCaptcha"
-#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPELIST       @"advisoryTypeList"
 #define RH_GP_SENDMESSGAVERITY_CAPTCHA_VALUE          @"captcha_value"
-#define RH_GP_SENDMESSGAVERITY_SUGGEST                @"suggest"
-#define RH_GP_SENDMESSGAVERITY_FINANCEPROBLEM         @"financeProblem"
-#define RH_GP_SENDMESSGAVERITY_OFFERAPPLICATION       @"offerApplication"
-#define RH_GP_SENDMESSGAVERITY_OTHERPROBLEM           @"otherProblem"
-#define RH_GP_SENDMESSGAVERITY_MODULE                 @"module"
-#define RH_GP_SENDMESSGAVERITY_REMARK                 @"remark"
-#define RH_GP_SENDMESSGAVERITY_ACTIVE                 @"active"
-#define RH_GP_SENDMESSGAVERITY_ID                     @"id"
-#define RH_GP_SENDMESSGAVERITY_DICTCODE               @"dictCode"
-#define RH_GP_SENDMESSGAVERITY_TRANSLATED             @"translated"
-#define RH_GP_SENDMESSGAVERITY_ORDERNUM               @"orderNum"
-#define RH_GP_SENDMESSGAVERITY_DICTTYPE               @"dictType"
-#define RH_GP_SENDMESSGAVERITY_PARENTCODE             @"parentCode"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYNAME           @"advisoryName"
+
 
 #pragma mark - V3 我的消息详情  模型
 #define RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT    @"advisoryContent"

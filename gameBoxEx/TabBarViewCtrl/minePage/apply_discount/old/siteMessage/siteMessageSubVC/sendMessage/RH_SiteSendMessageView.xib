@@ -161,21 +161,50 @@
                         <constraint firstAttribute="height" constant="30" id="hnG-hy-TUG"/>
                     </constraints>
                     <state key="normal" title="提交"/>
+                    <connections>
+                        <action selector="submitClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="KX2-KL-Bcb"/>
+                    </connections>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teR-UK-fXh">
+                    <rect key="frame" x="124" y="291" width="126" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="126" id="Hjl-Ls-ByF"/>
+                        <constraint firstAttribute="height" constant="30" id="tkW-EE-jtz"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5Y-1Z-m3S">
+                    <rect key="frame" x="107" y="329" width="160" height="50"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="BJh-wr-31m"/>
+                        <constraint firstAttribute="width" constant="160" id="q3G-Ux-NOC"/>
+                    </constraints>
+                </webView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="teR-UK-fXh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9vX-mb-iQ8"/>
                 <constraint firstItem="nMf-WG-wjS" firstAttribute="top" secondItem="8Zc-2W-dIS" secondAttribute="bottom" constant="8" id="FGn-zV-E9b"/>
+                <constraint firstItem="Q5Y-1Z-m3S" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NGO-Cs-HPB"/>
                 <constraint firstItem="8Zc-2W-dIS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="PxJ-VI-VIC"/>
+                <constraint firstItem="teR-UK-fXh" firstAttribute="top" secondItem="nMf-WG-wjS" secondAttribute="bottom" constant="8" id="RYd-o3-fEK"/>
                 <constraint firstItem="8Zc-2W-dIS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="WhF-2U-PYE"/>
                 <constraint firstItem="nMf-WG-wjS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="60" id="XER-aM-QnJ"/>
                 <constraint firstAttribute="trailing" secondItem="8Zc-2W-dIS" secondAttribute="trailing" constant="16" id="ewv-zE-Vv1"/>
                 <constraint firstItem="HH7-nb-itJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-60" id="sZ5-UB-U1x"/>
                 <constraint firstItem="HH7-nb-itJ" firstAttribute="top" secondItem="8Zc-2W-dIS" secondAttribute="bottom" constant="8" id="vAT-g1-j1u"/>
+                <constraint firstItem="Q5Y-1Z-m3S" firstAttribute="top" secondItem="teR-UK-fXh" secondAttribute="bottom" constant="8" id="yeG-4h-mQS"/>
             </constraints>
             <connections>
                 <outlet property="backDropView" destination="8Zc-2W-dIS" id="VfA-3A-G2Z"/>
+                <outlet property="codeTextField" destination="teR-UK-fXh" id="LDf-CY-fM7"/>
+                <outlet property="contenTextView" destination="QaA-aU-GnB" id="FPN-BK-flO"/>
+                <outlet property="titelField" destination="e9u-DN-3Ta" id="XZp-5u-h72"/>
                 <outlet property="typeLabel" destination="IhF-IA-ZrI" id="UOk-Yk-r46"/>
+                <outlet property="webView" destination="Q5Y-1Z-m3S" id="F4m-1I-wOo"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="68.5"/>
         </view>

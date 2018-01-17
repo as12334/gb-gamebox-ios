@@ -52,7 +52,7 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-    [self.serviceRequest startV3GetWithDraw];
+
 }
 
 
@@ -255,6 +255,7 @@
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
     }
+
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

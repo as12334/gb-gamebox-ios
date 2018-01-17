@@ -133,8 +133,6 @@
         CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
     }
-    
-    //    return 40.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
