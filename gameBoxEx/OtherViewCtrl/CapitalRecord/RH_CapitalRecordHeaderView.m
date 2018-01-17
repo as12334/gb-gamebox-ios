@@ -61,7 +61,7 @@
     UIView *view_Line = [UIView new];
     [self addSubview:view_Line];
     view_Line.whc_TopSpaceToView(5, stackView).whc_LeftSpace(10).whc_RightSpace(0).whc_Height(1);
-    view_Line.backgroundColor = RH_Line_DefaultColor;
+    view_Line.backgroundColor = colorWithRGB(226, 226, 226);
     [self addSubview:self.serachBtn];
     self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
     self.serachBtn.layer.cornerRadius = 3.0f;
@@ -74,15 +74,14 @@
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
     view_Line2.whc_TopSpaceToView(10, self.typeButton).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
-    view_Line2.backgroundColor = RH_Line_DefaultColor;
+    view_Line2.backgroundColor = colorWithRGB(226, 226, 226);
     
     self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
    
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
     
-
 //    self.typeButton.backgroundColor = colorWithRGB(27, 117, 217);
-    [self.typeButton setBackgroundColor:colorWithRGB(27, 117, 217)];
+    [self.typeButton setBackgroundColor:colorWithRGB(226, 226, 226)];
     self.typeButton.layer.cornerRadius = 3.0f;
     self.typeButton.layer.masksToBounds = YES;
     [self.typeButton addTarget:self action:@selector(typeLabelPulldownList) forControlEvents:UIControlEventTouchUpInside];
@@ -90,8 +89,8 @@
     
     UIImageView *imageArrow = [[UIImageView alloc] init];
     [self addSubview:imageArrow];
-    imageArrow.image = ImageWithName(@"home_markcell_image");
-    imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(20).whc_Height(10);
+    imageArrow.image = ImageWithName(@"mine_page_arrowdwon");
+    imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(24).whc_Height(24);
 }
 
 #pragma mark --- 搜索按钮
