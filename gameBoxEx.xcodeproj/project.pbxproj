@@ -461,18 +461,6 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
-		F6A2ACB120044C5A0077CB92 /* RH_MPGameNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AC9220044C590077CB92 /* RH_MPGameNoticeCell.m */; };
-		F6A2ACB220044C5A0077CB92 /* RH_MPGameNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AC9320044C590077CB92 /* RH_MPGameNoticeCell.xib */; };
-		F6A2ACB320044C5A0077CB92 /* RH_MPGameNoticHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AC9520044C590077CB92 /* RH_MPGameNoticHeaderView.m */; };
-		F6A2ACB420044C5A0077CB92 /* RH_MPGameNoticHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AC9620044C590077CB92 /* RH_MPGameNoticHeaderView.xib */; };
-		F6A2ACB520044C5A0077CB92 /* RH_MPGameNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AC9820044C590077CB92 /* RH_MPGameNoticeViewController.m */; };
-		F6A2ACB620044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AC9C20044C590077CB92 /* RH_MPSiteSystemNoticeCell.m */; };
-		F6A2ACB720044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AC9D20044C590077CB92 /* RH_MPSiteSystemNoticeCell.xib */; };
-		F6A2ACBB20044C5A0077CB92 /* RH_MPSystemNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACA620044C590077CB92 /* RH_MPSystemNoticeCell.m */; };
-		F6A2ACBC20044C5A0077CB92 /* RH_MPSystemNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACA720044C590077CB92 /* RH_MPSystemNoticeCell.xib */; };
-		F6A2ACBD20044C5A0077CB92 /* RH_MPSystemNoticHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACA920044C590077CB92 /* RH_MPSystemNoticHeaderView.m */; };
-		F6A2ACBE20044C5A0077CB92 /* RH_MPSystemNoticHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACAA20044C590077CB92 /* RH_MPSystemNoticHeaderView.xib */; };
-		F6A2ACBF20044C5A0077CB92 /* RH_MPSystemNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACAC20044C590077CB92 /* RH_MPSystemNoticeViewController.m */; };
 		F6A2ACC020044C5A0077CB92 /* RH_MPApplyDiscountController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACAE20044C590077CB92 /* RH_MPApplyDiscountController.m */; };
 		F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */; };
 		F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */; };
@@ -497,33 +485,45 @@
 		F6A2AD5A2006EE7A0077CB92 /* button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD562006EE7A0077CB92 /* button-01.png */; };
 		F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */; };
 		F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */; };
-		F6A2AD6C200793A90077CB92 /* RH_MPGameSeletedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */; };
-		F6A2AD6E200793DB0077CB92 /* RH_MPGameSeletedDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD6D200793DB0077CB92 /* RH_MPGameSeletedDateView.xib */; };
-		F6A2AD712008425F0077CB92 /* RH_MPGameNoticePulldownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD702008425F0077CB92 /* RH_MPGameNoticePulldownView.m */; };
-		F6A2AD74200850340077CB92 /* RH_MPSiteMessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */; };
-		F6A2AD76200850420077CB92 /* RH_MPSiteMessageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */; };
-		F6A2AD792008884E0077CB92 /* RH_SiteSendMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2AD782008884E0077CB92 /* RH_SiteSendMessageView.m */; };
-		F6A2AD7B2008885D0077CB92 /* RH_SiteSendMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2AD7A2008885D0077CB92 /* RH_SiteSendMessageView.xib */; };
-		F6A2ADC3200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC1200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m */; };
-		F6A2ADC4200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ADC2200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib */; };
-		F6A2ADC7200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC6200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m */; };
-		F6A2ADCA200B46B50077CB92 /* RH_GameNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */; };
-		F6A2ADCE200B46E50077CB92 /* RH_GameNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */; };
-		F6A2ADCF200B46E50077CB92 /* RH_GameNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */; };
 		F6A2ADD4200CC9690077CB92 /* RH_ActivityDateSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADD3200CC9690077CB92 /* RH_ActivityDateSingle.m */; };
-		F6A2ADD8200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADD7200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.m */; };
-		F6A2ADDB200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADDA200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m */; };
-		F6A2ADDE200D8DC60077CB92 /* RH_SiteMessageSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */; };
-		F6A2ADE1200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */; };
-		F6A2ADE7200D99300077CB92 /* RH_SiteSendMessagePullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */; };
-		F6A2ADEC200DF9D30077CB92 /* RH_SiteMineNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADEA200DF9D30077CB92 /* RH_SiteMineNoticeCell.m */; };
-		F6A2ADED200DF9D30077CB92 /* RH_SiteMineNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ADEB200DF9D30077CB92 /* RH_SiteMineNoticeCell.xib */; };
-		F6A2ADF0200F395A0077CB92 /* RH_SystemNoticeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ADEF200F395A0077CB92 /* RH_SystemNoticeListView.m */; };
 		F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */ = {isa = PBXBuildFile; fileRef = F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */; };
 		F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */; };
 		F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */; };
 		F6E402052001BDC900C52B97 /* RH_GesturelLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */; };
 		F6E402082001F0B200C52B97 /* RH_GestureOpenLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */; };
+		F6FB637D200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB633D200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.m */; };
+		F6FB637E200F851300EEED4E /* RH_SiteMineNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6342200F851300EEED4E /* RH_SiteMineNoticeCell.m */; };
+		F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6343200F851300EEED4E /* RH_SiteMineNoticeCell.xib */; };
+		F6FB6380200F851300EEED4E /* RH_SiteMessageMineNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6345200F851300EEED4E /* RH_SiteMessageMineNoticeController.m */; };
+		F6FB6381200F851300EEED4E /* RH_SiteMessageSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6348200F851300EEED4E /* RH_SiteMessageSentViewController.m */; };
+		F6FB6382200F851300EEED4E /* RH_SiteSendMessagePullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB634A200F851300EEED4E /* RH_SiteSendMessagePullDownView.m */; };
+		F6FB6383200F851300EEED4E /* RH_SiteSendMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB634C200F851300EEED4E /* RH_SiteSendMessageView.m */; };
+		F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB634D200F851300EEED4E /* RH_SiteSendMessageView.xib */; };
+		F6FB6385200F851300EEED4E /* RH_MPSiteMessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6351200F851300EEED4E /* RH_MPSiteMessageHeaderView.m */; };
+		F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6352200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib */; };
+		F6FB6387200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6354200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m */; };
+		F6FB6388200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6355200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib */; };
+		F6FB6389200F851300EEED4E /* RH_SiteMessageSystemNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6357200F851300EEED4E /* RH_SiteMessageSystemNoticeController.m */; };
+		F6FB638A200F851300EEED4E /* RH_MPSystemNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB635B200F851300EEED4E /* RH_MPSystemNoticeCell.m */; };
+		F6FB638B200F851300EEED4E /* RH_MPSystemNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB635C200F851300EEED4E /* RH_MPSystemNoticeCell.xib */; };
+		F6FB638C200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB635E200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m */; };
+		F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB635F200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib */; };
+		F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6361200F851300EEED4E /* RH_MPSystemNoticHeaderView.m */; };
+		F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6362200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib */; };
+		F6FB6390200F851300EEED4E /* RH_SystemNoticeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6364200F851300EEED4E /* RH_SystemNoticeListView.m */; };
+		F6FB6391200F851300EEED4E /* RH_MPSystemNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6366200F851300EEED4E /* RH_MPSystemNoticeDetailController.m */; };
+		F6FB6392200F851300EEED4E /* RH_MPSystemNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6368200F851300EEED4E /* RH_MPSystemNoticeViewController.m */; };
+		F6FB6393200F851300EEED4E /* RH_GameNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB636C200F851300EEED4E /* RH_GameNoticeDetailCell.m */; };
+		F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB636D200F851300EEED4E /* RH_GameNoticeDetailCell.xib */; };
+		F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB636F200F851300EEED4E /* RH_MPGameNoticeCell.m */; };
+		F6FB6396200F851300EEED4E /* RH_MPGameNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6370200F851300EEED4E /* RH_MPGameNoticeCell.xib */; };
+		F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6372200F851300EEED4E /* RH_MPGameNoticePulldownView.m */; };
+		F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6374200F851300EEED4E /* RH_MPGameNoticHeaderView.m */; };
+		F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6375200F851300EEED4E /* RH_MPGameNoticHeaderView.xib */; };
+		F6FB639A200F851300EEED4E /* RH_MPGameSeletedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6377200F851300EEED4E /* RH_MPGameSeletedDateView.m */; };
+		F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6378200F851300EEED4E /* RH_MPGameSeletedDateView.xib */; };
+		F6FB639C200F851300EEED4E /* RH_GameNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB637A200F851300EEED4E /* RH_GameNoticeDetailController.m */; };
+		F6FB639D200F851300EEED4E /* RH_MPGameNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB637C200F851300EEED4E /* RH_MPGameNoticeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1336,25 +1336,6 @@
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
-		F6A2AC9120044C590077CB92 /* RH_MPGameNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticeCell.h; sourceTree = "<group>"; };
-		F6A2AC9220044C590077CB92 /* RH_MPGameNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticeCell.m; sourceTree = "<group>"; };
-		F6A2AC9320044C590077CB92 /* RH_MPGameNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPGameNoticeCell.xib; sourceTree = "<group>"; };
-		F6A2AC9420044C590077CB92 /* RH_MPGameNoticHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticHeaderView.h; sourceTree = "<group>"; };
-		F6A2AC9520044C590077CB92 /* RH_MPGameNoticHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticHeaderView.m; sourceTree = "<group>"; };
-		F6A2AC9620044C590077CB92 /* RH_MPGameNoticHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPGameNoticHeaderView.xib; sourceTree = "<group>"; };
-		F6A2AC9720044C590077CB92 /* RH_MPGameNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticeViewController.h; sourceTree = "<group>"; };
-		F6A2AC9820044C590077CB92 /* RH_MPGameNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticeViewController.m; sourceTree = "<group>"; };
-		F6A2AC9B20044C590077CB92 /* RH_MPSiteSystemNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteSystemNoticeCell.h; sourceTree = "<group>"; };
-		F6A2AC9C20044C590077CB92 /* RH_MPSiteSystemNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteSystemNoticeCell.m; sourceTree = "<group>"; };
-		F6A2AC9D20044C590077CB92 /* RH_MPSiteSystemNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSiteSystemNoticeCell.xib; sourceTree = "<group>"; };
-		F6A2ACA520044C590077CB92 /* RH_MPSystemNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeCell.h; sourceTree = "<group>"; };
-		F6A2ACA620044C590077CB92 /* RH_MPSystemNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeCell.m; sourceTree = "<group>"; };
-		F6A2ACA720044C590077CB92 /* RH_MPSystemNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSystemNoticeCell.xib; sourceTree = "<group>"; };
-		F6A2ACA820044C590077CB92 /* RH_MPSystemNoticHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticHeaderView.h; sourceTree = "<group>"; };
-		F6A2ACA920044C590077CB92 /* RH_MPSystemNoticHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticHeaderView.m; sourceTree = "<group>"; };
-		F6A2ACAA20044C590077CB92 /* RH_MPSystemNoticHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSystemNoticHeaderView.xib; sourceTree = "<group>"; };
-		F6A2ACAB20044C590077CB92 /* RH_MPSystemNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeViewController.h; sourceTree = "<group>"; };
-		F6A2ACAC20044C590077CB92 /* RH_MPSystemNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeViewController.m; sourceTree = "<group>"; };
 		F6A2ACAD20044C590077CB92 /* RH_MPApplyDiscountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPApplyDiscountController.h; sourceTree = "<group>"; };
 		F6A2ACAE20044C590077CB92 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6A2ACC2200457340077CB92 /* RH_BettingRecordDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailController.h; sourceTree = "<group>"; };
@@ -1391,44 +1372,8 @@
 		F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalPulldownListView.m; sourceTree = "<group>"; };
 		F6A2AD672007663D0077CB92 /* RH_CapitalTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTypeModel.m; sourceTree = "<group>"; };
 		F6A2AD682007663D0077CB92 /* RH_CapitalTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTypeModel.h; sourceTree = "<group>"; };
-		F6A2AD6A200793A90077CB92 /* RH_MPGameSeletedDateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPGameSeletedDateView.h; sourceTree = "<group>"; };
-		F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameSeletedDateView.m; sourceTree = "<group>"; };
-		F6A2AD6D200793DB0077CB92 /* RH_MPGameSeletedDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MPGameSeletedDateView.xib; sourceTree = "<group>"; };
-		F6A2AD6F2008425F0077CB92 /* RH_MPGameNoticePulldownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticePulldownView.h; sourceTree = "<group>"; };
-		F6A2AD702008425F0077CB92 /* RH_MPGameNoticePulldownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticePulldownView.m; sourceTree = "<group>"; };
-		F6A2AD72200850340077CB92 /* RH_MPSiteMessageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteMessageHeaderView.h; sourceTree = "<group>"; };
-		F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageHeaderView.m; sourceTree = "<group>"; };
-		F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MPSiteMessageHeaderView.xib; sourceTree = "<group>"; };
-		F6A2AD772008884E0077CB92 /* RH_SiteSendMessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteSendMessageView.h; sourceTree = "<group>"; };
-		F6A2AD782008884E0077CB92 /* RH_SiteSendMessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSendMessageView.m; sourceTree = "<group>"; };
-		F6A2AD7A2008885D0077CB92 /* RH_SiteSendMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteSendMessageView.xib; sourceTree = "<group>"; };
-		F6A2ADC0200B05060077CB92 /* RH_MPSystemNoticeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeDetailCell.h; sourceTree = "<group>"; };
-		F6A2ADC1200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeDetailCell.m; sourceTree = "<group>"; };
-		F6A2ADC2200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MPSystemNoticeDetailCell.xib; sourceTree = "<group>"; };
-		F6A2ADC5200B05C40077CB92 /* RH_MPSystemNoticeDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeDetailController.h; sourceTree = "<group>"; };
-		F6A2ADC6200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeDetailController.m; sourceTree = "<group>"; };
-		F6A2ADC8200B46B50077CB92 /* RH_GameNoticeDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailController.h; sourceTree = "<group>"; };
-		F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailController.m; sourceTree = "<group>"; };
-		F6A2ADCB200B46E50077CB92 /* RH_GameNoticeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailCell.h; sourceTree = "<group>"; };
-		F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailCell.m; sourceTree = "<group>"; };
-		F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameNoticeDetailCell.xib; sourceTree = "<group>"; };
 		F6A2ADD2200CC9690077CB92 /* RH_ActivityDateSingle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ActivityDateSingle.h; sourceTree = "<group>"; };
 		F6A2ADD3200CC9690077CB92 /* RH_ActivityDateSingle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityDateSingle.m; sourceTree = "<group>"; };
-		F6A2ADD6200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageSystemNoticeController.h; sourceTree = "<group>"; };
-		F6A2ADD7200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageSystemNoticeController.m; sourceTree = "<group>"; };
-		F6A2ADD9200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageMineNoticeController.h; sourceTree = "<group>"; };
-		F6A2ADDA200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageMineNoticeController.m; sourceTree = "<group>"; };
-		F6A2ADDC200D8DC60077CB92 /* RH_SiteMessageSentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageSentViewController.h; sourceTree = "<group>"; };
-		F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageSentViewController.m; sourceTree = "<group>"; };
-		F6A2ADDF200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteMessageViewControllerEX.h; sourceTree = "<group>"; };
-		F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewControllerEX.m; sourceTree = "<group>"; };
-		F6A2ADE5200D99300077CB92 /* RH_SiteSendMessagePullDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteSendMessagePullDownView.h; sourceTree = "<group>"; };
-		F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSendMessagePullDownView.m; sourceTree = "<group>"; };
-		F6A2ADE9200DF9D30077CB92 /* RH_SiteMineNoticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMineNoticeCell.h; sourceTree = "<group>"; };
-		F6A2ADEA200DF9D30077CB92 /* RH_SiteMineNoticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMineNoticeCell.m; sourceTree = "<group>"; };
-		F6A2ADEB200DF9D30077CB92 /* RH_SiteMineNoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteMineNoticeCell.xib; sourceTree = "<group>"; };
-		F6A2ADEE200F395A0077CB92 /* RH_SystemNoticeListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeListView.h; sourceTree = "<group>"; };
-		F6A2ADEF200F395A0077CB92 /* RH_SystemNoticeListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SystemNoticeListView.m; sourceTree = "<group>"; };
 		F6BD31801FFA0D9B000AC941 /* hongbao-02hover_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongbao-02hover_04.png"; sourceTree = "<group>"; };
 		F6E401771FFE42ED00C52B97 /* RH_MPApplyDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPApplyDiscountController.m; sourceTree = "<group>"; };
 		F6E4017D1FFE472500C52B97 /* RH_MPSiteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewController.m; sourceTree = "<group>"; };
@@ -1458,6 +1403,61 @@
 		F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GesturelLockView.m; sourceTree = "<group>"; };
 		F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureOpenLockView.h; sourceTree = "<group>"; };
 		F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GestureOpenLockView.m; sourceTree = "<group>"; };
+		F6FB633C200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteMessageViewControllerEX.h; sourceTree = "<group>"; };
+		F6FB633D200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageViewControllerEX.m; sourceTree = "<group>"; };
+		F6FB6341200F851300EEED4E /* RH_SiteMineNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SiteMineNoticeCell.h; sourceTree = "<group>"; };
+		F6FB6342200F851300EEED4E /* RH_SiteMineNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMineNoticeCell.m; sourceTree = "<group>"; };
+		F6FB6343200F851300EEED4E /* RH_SiteMineNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_SiteMineNoticeCell.xib; sourceTree = "<group>"; };
+		F6FB6344200F851300EEED4E /* RH_SiteMessageMineNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageMineNoticeController.h; sourceTree = "<group>"; };
+		F6FB6345200F851300EEED4E /* RH_SiteMessageMineNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageMineNoticeController.m; sourceTree = "<group>"; };
+		F6FB6347200F851300EEED4E /* RH_SiteMessageSentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageSentViewController.h; sourceTree = "<group>"; };
+		F6FB6348200F851300EEED4E /* RH_SiteMessageSentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageSentViewController.m; sourceTree = "<group>"; };
+		F6FB6349200F851300EEED4E /* RH_SiteSendMessagePullDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SiteSendMessagePullDownView.h; sourceTree = "<group>"; };
+		F6FB634A200F851300EEED4E /* RH_SiteSendMessagePullDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSendMessagePullDownView.m; sourceTree = "<group>"; };
+		F6FB634B200F851300EEED4E /* RH_SiteSendMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SiteSendMessageView.h; sourceTree = "<group>"; };
+		F6FB634C200F851300EEED4E /* RH_SiteSendMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSendMessageView.m; sourceTree = "<group>"; };
+		F6FB634D200F851300EEED4E /* RH_SiteSendMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_SiteSendMessageView.xib; sourceTree = "<group>"; };
+		F6FB6350200F851300EEED4E /* RH_MPSiteMessageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteMessageHeaderView.h; sourceTree = "<group>"; };
+		F6FB6351200F851300EEED4E /* RH_MPSiteMessageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteMessageHeaderView.m; sourceTree = "<group>"; };
+		F6FB6352200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSiteMessageHeaderView.xib; sourceTree = "<group>"; };
+		F6FB6353200F851300EEED4E /* RH_MPSiteSystemNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSiteSystemNoticeCell.h; sourceTree = "<group>"; };
+		F6FB6354200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSiteSystemNoticeCell.m; sourceTree = "<group>"; };
+		F6FB6355200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSiteSystemNoticeCell.xib; sourceTree = "<group>"; };
+		F6FB6356200F851300EEED4E /* RH_SiteMessageSystemNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageSystemNoticeController.h; sourceTree = "<group>"; };
+		F6FB6357200F851300EEED4E /* RH_SiteMessageSystemNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageSystemNoticeController.m; sourceTree = "<group>"; };
+		F6FB635A200F851300EEED4E /* RH_MPSystemNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeCell.h; sourceTree = "<group>"; };
+		F6FB635B200F851300EEED4E /* RH_MPSystemNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeCell.m; sourceTree = "<group>"; };
+		F6FB635C200F851300EEED4E /* RH_MPSystemNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSystemNoticeCell.xib; sourceTree = "<group>"; };
+		F6FB635D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeDetailCell.h; sourceTree = "<group>"; };
+		F6FB635E200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeDetailCell.m; sourceTree = "<group>"; };
+		F6FB635F200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSystemNoticeDetailCell.xib; sourceTree = "<group>"; };
+		F6FB6360200F851300EEED4E /* RH_MPSystemNoticHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticHeaderView.h; sourceTree = "<group>"; };
+		F6FB6361200F851300EEED4E /* RH_MPSystemNoticHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticHeaderView.m; sourceTree = "<group>"; };
+		F6FB6362200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPSystemNoticHeaderView.xib; sourceTree = "<group>"; };
+		F6FB6363200F851300EEED4E /* RH_SystemNoticeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeListView.h; sourceTree = "<group>"; };
+		F6FB6364200F851300EEED4E /* RH_SystemNoticeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SystemNoticeListView.m; sourceTree = "<group>"; };
+		F6FB6365200F851300EEED4E /* RH_MPSystemNoticeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeDetailController.h; sourceTree = "<group>"; };
+		F6FB6366200F851300EEED4E /* RH_MPSystemNoticeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeDetailController.m; sourceTree = "<group>"; };
+		F6FB6367200F851300EEED4E /* RH_MPSystemNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPSystemNoticeViewController.h; sourceTree = "<group>"; };
+		F6FB6368200F851300EEED4E /* RH_MPSystemNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPSystemNoticeViewController.m; sourceTree = "<group>"; };
+		F6FB636B200F851300EEED4E /* RH_GameNoticeDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailCell.h; sourceTree = "<group>"; };
+		F6FB636C200F851300EEED4E /* RH_GameNoticeDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailCell.m; sourceTree = "<group>"; };
+		F6FB636D200F851300EEED4E /* RH_GameNoticeDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_GameNoticeDetailCell.xib; sourceTree = "<group>"; };
+		F6FB636E200F851300EEED4E /* RH_MPGameNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticeCell.h; sourceTree = "<group>"; };
+		F6FB636F200F851300EEED4E /* RH_MPGameNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticeCell.m; sourceTree = "<group>"; };
+		F6FB6370200F851300EEED4E /* RH_MPGameNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPGameNoticeCell.xib; sourceTree = "<group>"; };
+		F6FB6371200F851300EEED4E /* RH_MPGameNoticePulldownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticePulldownView.h; sourceTree = "<group>"; };
+		F6FB6372200F851300EEED4E /* RH_MPGameNoticePulldownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticePulldownView.m; sourceTree = "<group>"; };
+		F6FB6373200F851300EEED4E /* RH_MPGameNoticHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticHeaderView.h; sourceTree = "<group>"; };
+		F6FB6374200F851300EEED4E /* RH_MPGameNoticHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticHeaderView.m; sourceTree = "<group>"; };
+		F6FB6375200F851300EEED4E /* RH_MPGameNoticHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPGameNoticHeaderView.xib; sourceTree = "<group>"; };
+		F6FB6376200F851300EEED4E /* RH_MPGameSeletedDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameSeletedDateView.h; sourceTree = "<group>"; };
+		F6FB6377200F851300EEED4E /* RH_MPGameSeletedDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameSeletedDateView.m; sourceTree = "<group>"; };
+		F6FB6378200F851300EEED4E /* RH_MPGameSeletedDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MPGameSeletedDateView.xib; sourceTree = "<group>"; };
+		F6FB6379200F851300EEED4E /* RH_GameNoticeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailController.h; sourceTree = "<group>"; };
+		F6FB637A200F851300EEED4E /* RH_GameNoticeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailController.m; sourceTree = "<group>"; };
+		F6FB637B200F851300EEED4E /* RH_MPGameNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MPGameNoticeViewController.h; sourceTree = "<group>"; };
+		F6FB637C200F851300EEED4E /* RH_MPGameNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MPGameNoticeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3141,107 +3141,13 @@
 		F6A2AC8C20044C590077CB92 /* apply_discount */ = {
 			isa = PBXGroup;
 			children = (
-				F6A2AC8E20044C590077CB92 /* old */,
+				F6FB6369200F851300EEED4E /* gameNotice */,
+				F6FB633B200F851300EEED4E /* siteMessage */,
+				F6FB6358200F851300EEED4E /* systemNotice */,
 				F6A2ACAD20044C590077CB92 /* RH_MPApplyDiscountController.h */,
 				F6A2ACAE20044C590077CB92 /* RH_MPApplyDiscountController.m */,
 			);
 			path = apply_discount;
-			sourceTree = "<group>";
-		};
-		F6A2AC8E20044C590077CB92 /* old */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2AC8F20044C590077CB92 /* gameNotice */,
-				F6A2AC9920044C590077CB92 /* siteMessage */,
-				F6A2ACA320044C590077CB92 /* systemNotice */,
-			);
-			path = old;
-			sourceTree = "<group>";
-		};
-		F6A2AC8F20044C590077CB92 /* gameNotice */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2AC9020044C590077CB92 /* cells */,
-				F6A2AC9720044C590077CB92 /* RH_MPGameNoticeViewController.h */,
-				F6A2AC9820044C590077CB92 /* RH_MPGameNoticeViewController.m */,
-				F6A2ADC8200B46B50077CB92 /* RH_GameNoticeDetailController.h */,
-				F6A2ADC9200B46B50077CB92 /* RH_GameNoticeDetailController.m */,
-			);
-			path = gameNotice;
-			sourceTree = "<group>";
-		};
-		F6A2AC9020044C590077CB92 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2AC9120044C590077CB92 /* RH_MPGameNoticeCell.h */,
-				F6A2AC9220044C590077CB92 /* RH_MPGameNoticeCell.m */,
-				F6A2AC9320044C590077CB92 /* RH_MPGameNoticeCell.xib */,
-				F6A2ADCB200B46E50077CB92 /* RH_GameNoticeDetailCell.h */,
-				F6A2ADCC200B46E50077CB92 /* RH_GameNoticeDetailCell.m */,
-				F6A2ADCD200B46E50077CB92 /* RH_GameNoticeDetailCell.xib */,
-				F6A2AC9420044C590077CB92 /* RH_MPGameNoticHeaderView.h */,
-				F6A2AC9520044C590077CB92 /* RH_MPGameNoticHeaderView.m */,
-				F6A2AC9620044C590077CB92 /* RH_MPGameNoticHeaderView.xib */,
-				F6A2AD6F2008425F0077CB92 /* RH_MPGameNoticePulldownView.h */,
-				F6A2AD702008425F0077CB92 /* RH_MPGameNoticePulldownView.m */,
-				F6A2AD6A200793A90077CB92 /* RH_MPGameSeletedDateView.h */,
-				F6A2AD6B200793A90077CB92 /* RH_MPGameSeletedDateView.m */,
-				F6A2AD6D200793DB0077CB92 /* RH_MPGameSeletedDateView.xib */,
-			);
-			path = cells;
-			sourceTree = "<group>";
-		};
-		F6A2AC9920044C590077CB92 /* siteMessage */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2ADD5200D8D130077CB92 /* siteMessageSubVC */,
-				F6A2ADDF200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.h */,
-				F6A2ADE0200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m */,
-			);
-			path = siteMessage;
-			sourceTree = "<group>";
-		};
-		F6A2AC9A20044C590077CB92 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2AC9B20044C590077CB92 /* RH_MPSiteSystemNoticeCell.h */,
-				F6A2AC9C20044C590077CB92 /* RH_MPSiteSystemNoticeCell.m */,
-				F6A2AC9D20044C590077CB92 /* RH_MPSiteSystemNoticeCell.xib */,
-				F6A2AD72200850340077CB92 /* RH_MPSiteMessageHeaderView.h */,
-				F6A2AD73200850340077CB92 /* RH_MPSiteMessageHeaderView.m */,
-				F6A2AD75200850420077CB92 /* RH_MPSiteMessageHeaderView.xib */,
-			);
-			path = cells;
-			sourceTree = "<group>";
-		};
-		F6A2ACA320044C590077CB92 /* systemNotice */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2ACA420044C590077CB92 /* cells */,
-				F6A2ACAB20044C590077CB92 /* RH_MPSystemNoticeViewController.h */,
-				F6A2ACAC20044C590077CB92 /* RH_MPSystemNoticeViewController.m */,
-				F6A2ADC5200B05C40077CB92 /* RH_MPSystemNoticeDetailController.h */,
-				F6A2ADC6200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m */,
-			);
-			path = systemNotice;
-			sourceTree = "<group>";
-		};
-		F6A2ACA420044C590077CB92 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2ACA520044C590077CB92 /* RH_MPSystemNoticeCell.h */,
-				F6A2ACA620044C590077CB92 /* RH_MPSystemNoticeCell.m */,
-				F6A2ACA720044C590077CB92 /* RH_MPSystemNoticeCell.xib */,
-				F6A2ACA820044C590077CB92 /* RH_MPSystemNoticHeaderView.h */,
-				F6A2ACA920044C590077CB92 /* RH_MPSystemNoticHeaderView.m */,
-				F6A2ACAA20044C590077CB92 /* RH_MPSystemNoticHeaderView.xib */,
-				F6A2ADEE200F395A0077CB92 /* RH_SystemNoticeListView.h */,
-				F6A2ADEF200F395A0077CB92 /* RH_SystemNoticeListView.m */,
-				F6A2ADC0200B05060077CB92 /* RH_MPSystemNoticeDetailCell.h */,
-				F6A2ADC1200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m */,
-				F6A2ADC2200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib */,
-			);
-			path = cells;
 			sourceTree = "<group>";
 		};
 		F6A2ACC1200456D10077CB92 /* bettingRecordDetail */ = {
@@ -3288,63 +3194,157 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
-		F6A2ADD5200D8D130077CB92 /* siteMessageSubVC */ = {
+		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
 			isa = PBXGroup;
 			children = (
-				F6A2ADE2200D93A80077CB92 /* systemnotice */,
-				F6A2ADE3200D93BD0077CB92 /* mineNotice */,
-				F6A2ADE4200D93D40077CB92 /* sendMessage */,
+				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
+				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
+				F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */,
+				F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */,
+				F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */,
+				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
+				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
+				F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */,
+			);
+			path = gesturelLock;
+			sourceTree = "<group>";
+		};
+		F6FB633B200F851300EEED4E /* siteMessage */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB633C200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.h */,
+				F6FB633D200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.m */,
+				F6FB633E200F851300EEED4E /* siteMessageSubVC */,
+			);
+			path = siteMessage;
+			sourceTree = "<group>";
+		};
+		F6FB633E200F851300EEED4E /* siteMessageSubVC */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB633F200F851300EEED4E /* mineNotice */,
+				F6FB6346200F851300EEED4E /* sendMessage */,
+				F6FB634E200F851300EEED4E /* systemnotice */,
 			);
 			path = siteMessageSubVC;
 			sourceTree = "<group>";
 		};
-		F6A2ADE2200D93A80077CB92 /* systemnotice */ = {
+		F6FB633F200F851300EEED4E /* mineNotice */ = {
 			isa = PBXGroup;
 			children = (
-				F6A2AC9A20044C590077CB92 /* cells */,
-				F6A2ADD6200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.h */,
-				F6A2ADD7200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.m */,
-			);
-			path = systemnotice;
-			sourceTree = "<group>";
-		};
-		F6A2ADE3200D93BD0077CB92 /* mineNotice */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2ADE8200DF9990077CB92 /* cells */,
-				F6A2ADD9200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.h */,
-				F6A2ADDA200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m */,
+				F6FB6340200F851300EEED4E /* cells */,
+				F6FB6344200F851300EEED4E /* RH_SiteMessageMineNoticeController.h */,
+				F6FB6345200F851300EEED4E /* RH_SiteMessageMineNoticeController.m */,
 			);
 			path = mineNotice;
 			sourceTree = "<group>";
 		};
-		F6A2ADE4200D93D40077CB92 /* sendMessage */ = {
+		F6FB6340200F851300EEED4E /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				F6A2ADE5200D99300077CB92 /* RH_SiteSendMessagePullDownView.h */,
-				F6A2ADE6200D99300077CB92 /* RH_SiteSendMessagePullDownView.m */,
-				F6A2AD772008884E0077CB92 /* RH_SiteSendMessageView.h */,
-				F6A2AD782008884E0077CB92 /* RH_SiteSendMessageView.m */,
-				F6A2AD7A2008885D0077CB92 /* RH_SiteSendMessageView.xib */,
-				F6A2ADDC200D8DC60077CB92 /* RH_SiteMessageSentViewController.h */,
-				F6A2ADDD200D8DC60077CB92 /* RH_SiteMessageSentViewController.m */,
-			);
-			path = sendMessage;
-			sourceTree = "<group>";
-		};
-		F6A2ADE8200DF9990077CB92 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				F6A2ADE9200DF9D30077CB92 /* RH_SiteMineNoticeCell.h */,
-				F6A2ADEA200DF9D30077CB92 /* RH_SiteMineNoticeCell.m */,
-				F6A2ADEB200DF9D30077CB92 /* RH_SiteMineNoticeCell.xib */,
+				F6FB6341200F851300EEED4E /* RH_SiteMineNoticeCell.h */,
+				F6FB6342200F851300EEED4E /* RH_SiteMineNoticeCell.m */,
+				F6FB6343200F851300EEED4E /* RH_SiteMineNoticeCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
 		};
-		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
+		F6FB6346200F851300EEED4E /* sendMessage */ = {
 			isa = PBXGroup;
 			children = (
+				F6FB6347200F851300EEED4E /* RH_SiteMessageSentViewController.h */,
+				F6FB6348200F851300EEED4E /* RH_SiteMessageSentViewController.m */,
+				F6FB6349200F851300EEED4E /* RH_SiteSendMessagePullDownView.h */,
+				F6FB634A200F851300EEED4E /* RH_SiteSendMessagePullDownView.m */,
+				F6FB634B200F851300EEED4E /* RH_SiteSendMessageView.h */,
+				F6FB634C200F851300EEED4E /* RH_SiteSendMessageView.m */,
+				F6FB634D200F851300EEED4E /* RH_SiteSendMessageView.xib */,
+			);
+			path = sendMessage;
+			sourceTree = "<group>";
+		};
+		F6FB634E200F851300EEED4E /* systemnotice */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB634F200F851300EEED4E /* cells */,
+				F6FB6356200F851300EEED4E /* RH_SiteMessageSystemNoticeController.h */,
+				F6FB6357200F851300EEED4E /* RH_SiteMessageSystemNoticeController.m */,
+			);
+			path = systemnotice;
+			sourceTree = "<group>";
+		};
+		F6FB634F200F851300EEED4E /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB6350200F851300EEED4E /* RH_MPSiteMessageHeaderView.h */,
+				F6FB6351200F851300EEED4E /* RH_MPSiteMessageHeaderView.m */,
+				F6FB6352200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib */,
+				F6FB6353200F851300EEED4E /* RH_MPSiteSystemNoticeCell.h */,
+				F6FB6354200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m */,
+				F6FB6355200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		F6FB6358200F851300EEED4E /* systemNotice */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB6359200F851300EEED4E /* cells */,
+				F6FB6365200F851300EEED4E /* RH_MPSystemNoticeDetailController.h */,
+				F6FB6366200F851300EEED4E /* RH_MPSystemNoticeDetailController.m */,
+				F6FB6367200F851300EEED4E /* RH_MPSystemNoticeViewController.h */,
+				F6FB6368200F851300EEED4E /* RH_MPSystemNoticeViewController.m */,
+			);
+			path = systemNotice;
+			sourceTree = "<group>";
+		};
+		F6FB6359200F851300EEED4E /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB635A200F851300EEED4E /* RH_MPSystemNoticeCell.h */,
+				F6FB635B200F851300EEED4E /* RH_MPSystemNoticeCell.m */,
+				F6FB635C200F851300EEED4E /* RH_MPSystemNoticeCell.xib */,
+				F6FB635D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.h */,
+				F6FB635E200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m */,
+				F6FB635F200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib */,
+				F6FB6360200F851300EEED4E /* RH_MPSystemNoticHeaderView.h */,
+				F6FB6361200F851300EEED4E /* RH_MPSystemNoticHeaderView.m */,
+				F6FB6362200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib */,
+				F6FB6363200F851300EEED4E /* RH_SystemNoticeListView.h */,
+				F6FB6364200F851300EEED4E /* RH_SystemNoticeListView.m */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		F6FB6369200F851300EEED4E /* gameNotice */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB636A200F851300EEED4E /* cells */,
+				F6FB6379200F851300EEED4E /* RH_GameNoticeDetailController.h */,
+				F6FB637A200F851300EEED4E /* RH_GameNoticeDetailController.m */,
+				F6FB637B200F851300EEED4E /* RH_MPGameNoticeViewController.h */,
+				F6FB637C200F851300EEED4E /* RH_MPGameNoticeViewController.m */,
+			);
+			path = gameNotice;
+			sourceTree = "<group>";
+		};
+		F6FB636A200F851300EEED4E /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB636B200F851300EEED4E /* RH_GameNoticeDetailCell.h */,
+				F6FB636C200F851300EEED4E /* RH_GameNoticeDetailCell.m */,
+				F6FB636D200F851300EEED4E /* RH_GameNoticeDetailCell.xib */,
+				F6FB636E200F851300EEED4E /* RH_MPGameNoticeCell.h */,
+				F6FB636F200F851300EEED4E /* RH_MPGameNoticeCell.m */,
+				F6FB6370200F851300EEED4E /* RH_MPGameNoticeCell.xib */,
+				F6FB6371200F851300EEED4E /* RH_MPGameNoticePulldownView.h */,
+				F6FB6372200F851300EEED4E /* RH_MPGameNoticePulldownView.m */,
+				F6FB6373200F851300EEED4E /* RH_MPGameNoticHeaderView.h */,
+				F6FB6374200F851300EEED4E /* RH_MPGameNoticHeaderView.m */,
+				F6FB6375200F851300EEED4E /* RH_MPGameNoticHeaderView.xib */,
+				F6FB6376200F851300EEED4E /* RH_MPGameSeletedDateView.h */,
+				F6FB6377200F851300EEED4E /* RH_MPGameSeletedDateView.m */,
+				F6FB6378200F851300EEED4E /* RH_MPGameSeletedDateView.xib */,
 				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
 				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
 				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
@@ -3354,7 +3354,7 @@
 				F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */,
 				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
 			);
-			path = gesturelLock;
+			path = cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3420,7 +3420,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E3680B1F945E3F00758033 /* RH_MainTabBarItems.plist in Resources */,
-				F6A2ACB720044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.xib in Resources */,
 				F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
 				F6A2AD582006EE7A0077CB92 /* button-03.png in Resources */,
@@ -3432,22 +3431,23 @@
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,
 				F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */,
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
+				F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */,
 				B87A6B3C200AFBDE00C9788F /* RH_BitCoin.plist in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				A0522A93200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
+				F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
 				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
 				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
-				F6A2ACB220044C5A0077CB92 /* RH_MPGameNoticeCell.xib in Resources */,
-				F6A2AD7B2008885D0077CB92 /* RH_SiteSendMessageView.xib in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
 				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
+				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
@@ -3455,23 +3455,24 @@
 				B87A6B5B200DD38100C9788F /* RH_WithdrawCashBitCoin.plist in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
+				F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */,
 				A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */,
 				B87A6B50200DAB5B00C9788F /* RH_WithdrawCash.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
+				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
-				F6A2ACBE20044C5A0077CB92 /* RH_MPSystemNoticHeaderView.xib in Resources */,
 				A0AE8AAE1FFCD57300836C1B /* RH_MineMoreNextCell.xib in Resources */,
-				F6A2ACB420044C5A0077CB92 /* RH_MPGameNoticHeaderView.xib in Resources */,
+				F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */,
 				B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */,
 				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
-				F6A2ACBC20044C5A0077CB92 /* RH_MPSystemNoticeCell.xib in Resources */,
+				F6FB6396200F851300EEED4E /* RH_MPGameNoticeCell.xib in Resources */,
 				A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */,
 				B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
@@ -3481,7 +3482,6 @@
 				F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */,
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
 				A001B3D71F8EF7CA00309EA4 /* tab_green_transfer@2x.png in Resources */,
-				F6A2AD76200850420077CB92 /* RH_MPSiteMessageHeaderView.xib in Resources */,
 				A0AE8AB41FFCD57300836C1B /* RH_MineMoreCells.plist in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
@@ -3489,7 +3489,6 @@
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				A0522A98200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib in Resources */,
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
-				F6A2ADCF200B46E50077CB92 /* RH_GameNoticeDetailCell.xib in Resources */,
 				A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
@@ -3503,6 +3502,7 @@
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
 				A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */,
 				A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */,
+				F6FB6388200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib in Resources */,
 				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
@@ -3514,23 +3514,24 @@
 				A001B3E01F8EF7CA00309EA4 /* tab_lottery_normal@2x.png in Resources */,
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
+				F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */,
 				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
+				F6FB638B200F851300EEED4E /* RH_MPSystemNoticeCell.xib in Resources */,
 				B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */,
 				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A0522A75200B41DB00A5A6E9 /* MineSafetyCenterOnlyCard.plist in Resources */,
-				F6A2ADC4200B05060077CB92 /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
 				B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */,
-				F6A2AD6E200793DB0077CB92 /* RH_MPGameSeletedDateView.xib in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
+				F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */,
 				A0522A76200B41DB00A5A6E9 /* MineSafetyCenterNone.plist in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
 				B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */,
@@ -3538,7 +3539,6 @@
 				B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */,
 				A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */,
 				189C13AD1FF9E99F00B14298 /* RH_MineAccountCell.xib in Resources */,
-				F6A2ADED200DF9D30077CB92 /* RH_SiteMineNoticeCell.xib in Resources */,
 				189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
 				A0522A592007350A00A5A6E9 /* ModifySafetyNoRealName.plist in Resources */,
@@ -3586,7 +3586,6 @@
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
-				F6A2ACB320044C5A0077CB92 /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
@@ -3620,6 +3619,7 @@
 				B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */,
 				A010A0961F879D57004E6EF4 /* CLViewControllerTransitioningDelegate.h in Sources */,
 				F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */,
+				F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
 				A010A0891F879B23004E6EF4 /* RH_BasicHelpView.m in Sources */,
 				A010A08A1F879B23004E6EF4 /* RH_BasicPageLoadViewController.m in Sources */,
@@ -3627,12 +3627,13 @@
 				A010A08C1F879B23004E6EF4 /* RH_BasicViewController.m in Sources */,
 				A010A08D1F879B23004E6EF4 /* RH_MainNavigationController.m in Sources */,
 				A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */,
+				F6FB638C200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m in Sources */,
+				F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */,
 				F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
-				F6A2ADCE200B46E50077CB92 /* RH_GameNoticeDetailCell.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */,
 				F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */,
@@ -3644,7 +3645,6 @@
 				A010A05E1F87999F004E6EF4 /* RH_ModelInfoCachePool.m in Sources */,
 				A010A05F1F87999F004E6EF4 /* RH_NavigationBarButton.m in Sources */,
 				A010A0601F87999F004E6EF4 /* RH_PageLoadContentPageCell.m in Sources */,
-				F6A2ADC7200B05C40077CB92 /* RH_MPSystemNoticeDetailController.m in Sources */,
 				A01CB49E1FF9D3CC00447130 /* CLSelectionControl.m in Sources */,
 				A058FF351FE8A6BC006EF279 /* CWDrawerTransition.m in Sources */,
 				A044437C200E3250004F942B /* UIAlertView+PXAlertViewOverride.m in Sources */,
@@ -3667,21 +3667,22 @@
 				A0B5A5781FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m in Sources */,
 				A0109FAA1F8788FF004E6EF4 /* NSObject+IntervalAnimation.m in Sources */,
 				A0109FAB1F8788FF004E6EF4 /* NSObject+ShowViewControllerDelegate.m in Sources */,
-				F6A2ADC3200B05060077CB92 /* RH_MPSystemNoticeDetailCell.m in Sources */,
 				A0109FAC1F8788FF004E6EF4 /* NSString+Base64.m in Sources */,
 				79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */,
+				F6FB6391200F851300EEED4E /* RH_MPSystemNoticeDetailController.m in Sources */,
 				797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */,
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
+				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
-				F6A2ADE1200D8DDF0077CB92 /* RH_MPSiteMessageViewControllerEX.m in Sources */,
 				A0109FB01F8788FF004E6EF4 /* UIActionSheet+Block.m in Sources */,
 				79FB815E1FFE091600325BF3 /* RH_CapitalStaticDataCell.m in Sources */,
 				A0109FB11F8788FF004E6EF4 /* UIAlertView+Block.m in Sources */,
 				B8107AB31FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m in Sources */,
 				A0522A7D200B6FD600A5A6E9 /* RH_BitCodeModel.m in Sources */,
 				A0109FB21F8788FF004E6EF4 /* UICollectionReusableView+ShowContent.m in Sources */,
+				F6FB6383200F851300EEED4E /* RH_SiteSendMessageView.m in Sources */,
 				A0109FB31F8788FF004E6EF4 /* UICollectionView+Register.m in Sources */,
 				A0109FB41F8788FF004E6EF4 /* UIColor+HexString.m in Sources */,
 				A0109FB51F8788FF004E6EF4 /* UIFont+CLCategory.m in Sources */,
@@ -3689,20 +3690,23 @@
 				A0AE8AB21FFCD57300836C1B /* RH_MineMoreNextCell.m in Sources */,
 				B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */,
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
+				F6FB6382200F851300EEED4E /* RH_SiteSendMessagePullDownView.m in Sources */,
 				A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */,
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
-				F6A2AD712008425F0077CB92 /* RH_MPGameNoticePulldownView.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
 				A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */,
 				A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */,
 				A0109FB91F8788FF004E6EF4 /* UIImage+Representation.m in Sources */,
+				F6FB6392200F851300EEED4E /* RH_MPSystemNoticeViewController.m in Sources */,
 				A0E367AD1F90617700758033 /* RH_PayViewController.m in Sources */,
 				B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
+				F6FB6380200F851300EEED4E /* RH_SiteMessageMineNoticeController.m in Sources */,
 				A0109FBB1F8788FF004E6EF4 /* UIImage+Tint.m in Sources */,
 				A0109FBC1F8788FF004E6EF4 /* UIImage+UPload.m in Sources */,
+				F6FB639A200F851300EEED4E /* RH_MPGameSeletedDateView.m in Sources */,
 				A01CB4B91FFB1BDC00447130 /* RH_MineInfoModel.m in Sources */,
 				A0109FBD1F8788FF004E6EF4 /* UILabel+CalculateShowSize.m in Sources */,
 				A0E368181F95FF5800758033 /* RH_GamesViewController.m in Sources */,
@@ -3723,11 +3727,12 @@
 				A0ADD31E1FEB613400B24B51 /* RH_DaynamicLabelCell.m in Sources */,
 				A0109FC71F8788FF004E6EF4 /* UIViewController+Instance.m in Sources */,
 				A0109FC81F8788FF004E6EF4 /* help.m in Sources */,
+				F6FB6387200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m in Sources */,
 				A0109FC91F8788FF004E6EF4 /* CLFormDataHTTPRequest.m in Sources */,
 				A0109FCA1F8788FF004E6EF4 /* CLHTTPRequest.m in Sources */,
 				A02142711FBD2968007E565E /* CLImageTitleStaticCollectionViewCell.m in Sources */,
+				F6FB6381200F851300EEED4E /* RH_SiteMessageSentViewController.m in Sources */,
 				A0109FCB1F8788FF004E6EF4 /* CLNetReachability.m in Sources */,
-				F6A2ACBD20044C5A0077CB92 /* RH_MPSystemNoticHeaderView.m in Sources */,
 				A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
 				B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */,
@@ -3740,6 +3745,7 @@
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
+				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
@@ -3760,13 +3766,10 @@
 				A01EE2671F8878B30085717E /* SplashViewController.m in Sources */,
 				F6A2ADD4200CC9690077CB92 /* RH_ActivityDateSingle.m in Sources */,
 				A0109FDD1F8788FF004E6EF4 /* DNSendButton.m in Sources */,
-				F6A2ADDE200D8DC60077CB92 /* RH_SiteMessageSentViewController.m in Sources */,
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
 				A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */,
 				B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */,
 				A010A0941F879BC9004E6EF4 /* RH_ImagePickerViewController.m in Sources */,
-				F6A2AD74200850340077CB92 /* RH_MPSiteMessageHeaderView.m in Sources */,
-				F6A2ACB520044C5A0077CB92 /* RH_MPGameNoticeViewController.m in Sources */,
 				A0109FDF1F8788FF004E6EF4 /* MBProgressHUD.m in Sources */,
 				F6E402082001F0B200C52B97 /* RH_GestureOpenLockView.m in Sources */,
 				F6A2AD482005AA8D0077CB92 /* RH_NormalActivithyView.m in Sources */,
@@ -3777,10 +3780,9 @@
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
-				F6A2AD6C200793A90077CB92 /* RH_MPGameSeletedDateView.m in Sources */,
 				A0109FE51F8788FF004E6EF4 /* NSObject+MJClass.m in Sources */,
+				F6FB6385200F851300EEED4E /* RH_MPSiteMessageHeaderView.m in Sources */,
 				B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */,
-				F6A2ADDB200D8DAB0077CB92 /* RH_SiteMessageMineNoticeController.m in Sources */,
 				A0109FE61F8788FF004E6EF4 /* NSObject+MJCoding.m in Sources */,
 				A0109FE71F8788FF004E6EF4 /* NSObject+MJKeyValue.m in Sources */,
 				B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */,
@@ -3789,7 +3791,6 @@
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
-				F6A2ADF0200F395A0077CB92 /* RH_SystemNoticeListView.m in Sources */,
 				189C13AE1FF9E99F00B14298 /* RH_MinePageBannarCell.m in Sources */,
 				A0109FEB1F8788FF004E6EF4 /* SAMKeychain.m in Sources */,
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
@@ -3800,6 +3801,7 @@
 				A0109FEE1F8788FF004E6EF4 /* NSData+ImageContentType.m in Sources */,
 				A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */,
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
+				F6FB638A200F851300EEED4E /* RH_MPSystemNoticeCell.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
@@ -3812,7 +3814,6 @@
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
-				F6A2ACBB20044C5A0077CB92 /* RH_MPSystemNoticeCell.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
 				A011816F1FFCAB21008F6D1E /* WHC_StackView.m in Sources */,
@@ -3820,15 +3821,12 @@
 				B87A6B182005EA8100C9788F /* RH_ModifyPasswordCodeCell.m in Sources */,
 				A0109FFB1F8788FF004E6EF4 /* UIImage+WebP.m in Sources */,
 				A0109FFC1F8788FF004E6EF4 /* UIImageView+HighlightedWebCache.m in Sources */,
-				F6A2AD792008884E0077CB92 /* RH_SiteSendMessageView.m in Sources */,
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
-				F6A2ADE7200D99300077CB92 /* RH_SiteSendMessagePullDownView.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,
 				A010A0011F8788FF004E6EF4 /* ScreenAdaptation.m in Sources */,
 				A0109F691F8787E4004E6EF4 /* CLAPPDelegate.m in Sources */,
-				F6A2ACB120044C5A0077CB92 /* RH_MPGameNoticeCell.m in Sources */,
 				A0109F6A1F8787E4004E6EF4 /* CLBadgeView.m in Sources */,
 				A0109F6B1F8787E4004E6EF4 /* CLBlurredView.m in Sources */,
 				B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */,
@@ -3838,12 +3836,9 @@
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
 				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
-				F6A2ACBF20044C5A0077CB92 /* RH_MPSystemNoticeViewController.m in Sources */,
-				F6A2ADD8200D8D820077CB92 /* RH_SiteMessageSystemNoticeController.m in Sources */,
 				B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */,
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
 				A0109F701F8787E4004E6EF4 /* CLContentView.m in Sources */,
-				F6A2ACB620044C5A0077CB92 /* RH_MPSiteSystemNoticeCell.m in Sources */,
 				A0109F711F8787E4004E6EF4 /* CLGradientView.m in Sources */,
 				A0109F721F8787E4004E6EF4 /* CLHeaderTitleView.m in Sources */,
 				A0109F731F8787E4004E6EF4 /* CLLabel.m in Sources */,
@@ -3875,15 +3870,18 @@
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
+				F6FB6390200F851300EEED4E /* RH_SystemNoticeListView.m in Sources */,
 				B87A6B292008907F00C9788F /* RH_BankCardController.m in Sources */,
 				79FB816B1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m in Sources */,
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
+				F6FB637D200F851300EEED4E /* RH_MPSiteMessageViewControllerEX.m in Sources */,
 				A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */,
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
+				F6FB639D200F851300EEED4E /* RH_MPGameNoticeViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
@@ -3895,6 +3893,7 @@
 				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
+				F6FB6393200F851300EEED4E /* RH_GameNoticeDetailCell.m in Sources */,
 				797F6795200B4D04009E3FAB /* RH_AddBtcModel.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
@@ -3910,9 +3909,11 @@
 				A0109F991F8787E4004E6EF4 /* CLStaticCollectionViewTitleCell.m in Sources */,
 				A0109F9A1F8787E4004E6EF4 /* CLContentTextInputView.m in Sources */,
 				A0109F9B1F8787E4004E6EF4 /* CLTextView.m in Sources */,
+				F6FB6389200F851300EEED4E /* RH_SiteMessageSystemNoticeController.m in Sources */,
 				A0109F9C1F8787E4004E6EF4 /* CLUserGuidePageManager.m in Sources */,
 				A0109F9D1F8787E4004E6EF4 /* CLUserGuideView.m in Sources */,
 				A0109F9E1F8787E4004E6EF4 /* CLBasicViewController.m in Sources */,
+				F6FB639C200F851300EEED4E /* RH_GameNoticeDetailController.m in Sources */,
 				A0109F9F1F8787E4004E6EF4 /* CLBasicViewControllerAnimatedTransitioning.m in Sources */,
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
@@ -3920,6 +3921,7 @@
 				A0B5A5751FFF6C1400E2CDD8 /* RH_LotteryGameListViewController.m in Sources */,
 				A07FE3701FEF453700D5DF71 /* CLSegmentedControl.m in Sources */,
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,
+				F6FB637E200F851300EEED4E /* RH_SiteMineNoticeCell.m in Sources */,
 				A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */,
 				F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */,
 				A0522A8D200C89A000A5A6E9 /* RH_PromoTableCell.m in Sources */,
@@ -3931,7 +3933,6 @@
 				B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */,
 				A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
-				F6A2ADEC200DF9D30077CB92 /* RH_SiteMineNoticeCell.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,
 				A0522A92200C922E00A5A6E9 /* RH_PromoTypeHeaderView.m in Sources */,
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
