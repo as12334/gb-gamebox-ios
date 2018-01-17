@@ -12,7 +12,9 @@
 #import "RH_MainTabBarController.h"
 #import "coreLib.h"
 #import "coreLib.h"
-
+#import "RH_UserInfoManager.h"
+#import "RH_GesturelLockController.h"
+#import "RH_MainNavigationController.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -187,6 +189,20 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [super applicationWillEnterForeground:application] ;
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if ([RH_UserInfoManager shareUserManager].isScreenLock && [RH_UserInfoManager shareUserManager].screenLockPassword.length){
+            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController) ;
+            if (tabBarController){
+//                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
+//                                                                      animated:YES
+//                                                                    completion:nil] ;
+                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
+            }
+//            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
+//            [openLockView show] ;
+        }
+    }
 }
 
 //进入后台

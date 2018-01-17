@@ -11,10 +11,10 @@
 @interface RH_LotteryInfoModel : RH_BasicModel
 @property(nonatomic,assign,readonly) NSInteger  mApiID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiTypeID ;
-@property(nonatomic,assign,readonly) NSInteger  mAutoPay ;
+@property(nonatomic,assign,readonly) BOOL  mAutoPay  ;
 @property(nonatomic,strong,readonly) NSString  *mCode ;
 @property(nonatomic,strong,readonly) NSString  *mCover ;
-@property(nonatomic,assign,readonly) NSInteger  mGameID ;
+@property(nonatomic,strong,readonly) NSString  *mGameID ;
 @property(nonatomic,strong,readonly) NSString  *mGameLink ;
 @property(nonatomic,strong,readonly) NSString  *mGameMsg ;
 @property(nonatomic,strong,readonly) NSString  *mGameType ;
@@ -28,5 +28,6 @@
 @property(nonatomic,strong,readonly) NSString *showCover ;
 @property(nonnull,strong,readonly) NSString *showGameLink ;
 
+-(void)updateShowGameLink:(NSDictionary*)gameLinkDict ;
 @end
 

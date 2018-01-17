@@ -101,7 +101,6 @@
         //CGRectMake(0, 114, MainScreenW, MainScreenH - 114);
         _contentScrollowView.delegate = self;
         _contentScrollowView.pagingEnabled = YES;
-        _contentScrollowView.backgroundColor = [UIColor yellowColor];
         _contentScrollowView.bounces = NO;
         _contentScrollowView.scrollEnabled = NO;
         _contentScrollowView.showsHorizontalScrollIndicator = NO;

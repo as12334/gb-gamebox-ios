@@ -13,7 +13,8 @@
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
 
-#define  key_screenlockFlag                             @"key_screenlockFlag"
+#define  key_voiceSwitchFlag                             @"key_voiceSwitchFlag"
+#define  key_screenlockFlag                              @"key_screenlockFlag"
 #define  key_screenlockPassword                          @"key_screenlockPassword"
 
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
@@ -90,6 +91,19 @@
 }
 
 #pragma mark -
+-(BOOL)isVoiceSwitch
+{
+    NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_voiceSwitchFlag expectType:[NSString class]] ;
+    return [bFlag boolValue] ;
+}
+
+-(void)updateVoickSwitchFlag:(BOOL)bSwitch
+{
+    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:bSwitch?@"1":@"0"
+                                                                            forKey:key_voiceSwitchFlag
+                                                                             async:YES] ;
+}
+
 -(BOOL)isScreenLock
 {
     NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockFlag expectType:[NSString class]] ;

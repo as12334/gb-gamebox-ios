@@ -79,11 +79,11 @@
     
     CGFloat widthRect = self.contentView.frame.size.width;
     self.dataLab.whc_LeftSpace(10).whc_TopSpace(5).whc_Width(80).whc_Height(30);
-    self.dataLab.textColor = colorWithRGB(153, 153, 153);
+    self.dataLab.textColor = colorWithRGB(51, 51, 51);
     self.dataLab.font = [UIFont systemFontOfSize:12.f];
     self.dataLab.text = @"2018-01-09";
     self.moneyTypeLab.whc_LeftSpace(screenSize().width > 375?0.45*widthRect:0.36*widthRect).whc_TopSpace(5).whc_Width(40).whc_Height(30);
-    self.moneyTypeLab.textColor = colorWithRGB(81, 214, 131);
+    self.moneyTypeLab.textColor = colorWithRGB(28, 217,135);
     self.moneyTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.moneyTypeLab.text = @"+100";
 self.timeoutTypeLab.whc_RightSpace(10).whc_TopSpace(5).whc_Width(40).whc_Height(30);

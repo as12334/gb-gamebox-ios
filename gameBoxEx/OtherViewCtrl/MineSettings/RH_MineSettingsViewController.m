@@ -8,6 +8,8 @@
 
 #import "RH_MineSettingsViewController.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_MineSettingsViewController () <CLTableViewManagementDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -53,6 +55,7 @@
 #pragma mark - 退出登录
 -(void)loginOut
 {
+    [self showProgressIndicatorViewWithAnimated:YES title:@"退出中..."] ;
     [self.serviceRequest startV3UserLoginOut];
 }
 
@@ -60,17 +63,20 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UserLoginOut){
-       
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+        }] ;
+        
+        [self backBarButtonItemHandle] ;
     }
-   
-    
-    
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3UserLoginOut){
-        [self loadDataFailWithError:error] ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"退出失败") ;
+        }] ;
     }
 }
 
@@ -87,4 +93,21 @@
     return  YES;
 }
 
+- (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *dict = [self.tableViewManagement cellExtraInfo:indexPath] ;
+    switch ([dict integerValueForKey:@"id"]) {
+        case 0: ////声音
+            return @([RH_UserInfoManager shareUserManager].isVoiceSwitch) ;
+            break;
+            
+        case 1: ////锁屏
+            return @([RH_UserInfoManager shareUserManager].isScreenLock) ;
+            break;
+        default:
+            break;
+    }
+
+    return nil ;
+}
 @end

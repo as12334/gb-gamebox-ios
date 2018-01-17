@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class RH_GestureOpenLockView ;
+
+@protocol GestureOpenLockViewDelegate
+@optional
+-(void)gestureOpenLockViewOpenLockSuccessful:(RH_GestureOpenLockView*)gestureOpenLockView ;
+@end
+
 @interface RH_GestureOpenLockView : UIView
+@property (nonatomic,weak) id<GestureOpenLockViewDelegate> delegate ;
 
 @end
