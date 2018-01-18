@@ -22,7 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.contentView.backgroundColor = colorWithRGB(238, 239, 240) ;
+    self.contentView.backgroundColor = [UIColor whiteColor] ;
     self.contentView.layer.cornerRadius = 6.0f ;
     self.contentView.layer.masksToBounds = YES ;
     
@@ -32,6 +32,8 @@
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor =  [UIColor blueColor] ;
     self.selectionColorAlpha = 0.3f ;
+    self.labTitle.whc_CenterY(38);
+    self.imgIcon.whc_Center(0, -15).whc_Width(58).whc_Height(58);
 }
 
 -(UIView *)showSelectionView

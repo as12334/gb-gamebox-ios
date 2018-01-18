@@ -30,7 +30,7 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
     self.labTitle.textColor =  RH_Label_DefaultTextColor ;
-    
+    self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
     self.borderView.borderColor = RH_Line_DefaultColor ;

@@ -34,7 +34,7 @@
 {
     [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor] ;
-    self.contentView.backgroundColor = [UIColor clearColor] ;
+    self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
@@ -57,7 +57,7 @@
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 5.f;
         flowLayout.minimumInteritemSpacing = 5.0f ;
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5.f, 5, 5.f);
         flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellWidth) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         

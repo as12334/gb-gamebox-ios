@@ -26,7 +26,7 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return 30.0f ;
+    return 32.0f ;
 }
 
 #pragma mark-
@@ -36,11 +36,13 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
-    self.labRemark.backgroundColor = colorWithRGB(59, 142, 238) ;
+    self.labRemark.backgroundColor = colorWithRGB(27, 117, 217) ;
     self.labRemark.textColor = [UIColor whiteColor] ;
-    self.labRemark.font = [UIFont systemFontOfSize:14.0f] ;
-    self.labRemark.layer.cornerRadius = 2.0f ;
+    self.labRemark.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labRemark.layer.cornerRadius = 4.0f ;
+    self.labRemark.clipsToBounds = YES;
     self.labRemark.text = @"公告" ;
+    self.labRemark.whc_TopSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(21);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
     
@@ -62,6 +64,8 @@
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
     _dynamicTimeInterval = strTmp.length * 0.5 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;
+    self.labScrollText.font = [UIFont systemFontOfSize:12];
+    self.labScrollText.textColor = colorWithRGB(51, 51, 51);
     self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
     self.labScrollText.frame = CGRectMake(self.scrollView.frameWidth,
                                           floorf((self.scrollView.frameHeigh-self.textSize.height)/2.0),

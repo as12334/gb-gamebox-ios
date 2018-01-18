@@ -326,6 +326,7 @@
                                          activithyViewHeigh
         ) ;
         _activityView.delegate = self ;
+//        _activityView.whc_RightSpace(15).whc_BottomSpace(150).whc_Width(100).whc_Height(100);
     }
     
     return _activityView ;
@@ -421,6 +422,7 @@
     
     self.activityView.alpha = 0.0 ;
     [self.view addSubview:self.activityView] ;
+    self.activityView.whc_RightSpace(15).whc_BottomSpace(50).whc_Width(100).whc_Height(100);
     [UIView animateWithDuration:1.0f animations:^{
         self.activityView.activityModel = activityModel ;
     } completion:^(BOOL finished) {
@@ -474,6 +476,7 @@
         
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
+            
         }else{
             [self activityViewHide] ;
         }

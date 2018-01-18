@@ -18,14 +18,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="88" height="94"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HI3-k4-E4P">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HI3-k4-E4P">
                         <rect key="frame" x="24" y="12" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="9nN-Kk-Z05"/>
-                            <constraint firstAttribute="height" constant="40" id="c3W-qL-bHQ"/>
-                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="af7-kk-kYL">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="af7-kk-kYL">
                         <rect key="frame" x="25" y="53" width="37.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
@@ -36,7 +32,6 @@
             <constraints>
                 <constraint firstItem="HI3-k4-E4P" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-15" id="5rC-dy-Tj7"/>
                 <constraint firstItem="af7-kk-kYL" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VE2-Qx-7ol"/>
-                <constraint firstItem="af7-kk-kYL" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="15" id="VxM-d2-6oJ"/>
                 <constraint firstItem="HI3-k4-E4P" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xVw-cb-AMi"/>
             </constraints>
             <size key="customSize" width="215" height="96"/>
