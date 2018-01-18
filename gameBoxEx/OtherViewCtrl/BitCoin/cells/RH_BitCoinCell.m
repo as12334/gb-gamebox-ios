@@ -10,6 +10,13 @@
 #import "coreLib.h"
 
 @implementation RH_BitCoinCell
+{
+    UILabel *label_Input;
+}
++ (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
+    
+    return 100;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -25,29 +32,37 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.textF = [[UITextField alloc] init];
-        [self.contentView addSubview:self.textF];
-        self.textF.whc_RightSpace(10).whc_TopSpace(5).whc_BottomSpace(5).whc_LeftSpace(100);
-        self.textF.font = [UIFont systemFontOfSize:14];
-        self.textF.textColor = colorWithRGB(153, 153, 153);
-        self.textF.borderStyle = UITextBorderStyleRoundedRect;
+        self.textV = [[UITextView alloc] init];
+        [self.contentView addSubview:self.textV];
+        self.textV.whc_RightSpace(10).whc_TopSpace(5).whc_BottomSpace(5).whc_LeftSpace(100);
+        self.textV.font = [UIFont systemFontOfSize:14];
+        self.textV.textColor = colorWithRGB(153, 153, 153);
+        self.textV.backgroundColor = colorWithRGB(239, 239, 239);
+        
+        label_Input = [[UILabel alloc] init];
+        [self.contentView addSubview:label_Input];
+        label_Input.whc_TopSpaceEqualView(self.textV).whc_LeftSpace(5).whc_RightSpaceToView(5, self.textV).whc_Height(30);
+        label_Input.textColor = RH_Label_DefaultTextColor;
+        label_Input.font = [UIFont systemFontOfSize:13];
+        label_Input.text = @"请输入:";
+        label_Input.textAlignment = NSTextAlignmentRight;
     }
     return self;
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     
-    self.textF.placeholder = info[@"detailTitle"];
+    
 }
 
 -(BOOL)isEditing
 {
-    return self.textF.isEditing ;
+    return self.textV.isFirstResponder ;
 }
 
 -(BOOL)endEditing:(BOOL)force
 {
-    return [self.textF resignFirstResponder] ;
+    return [self.textV resignFirstResponder] ;
 }
 
 @end
