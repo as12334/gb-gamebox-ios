@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 #pragma mark -textField Delegate
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ([self.bitCoinCell.textF isEqual:textField]){
+    if ([self.bitCoinCell.textV isEqual:textField]){
         _addBitCoinAddrInfo = [textField.text copy] ;
         return ;
     }

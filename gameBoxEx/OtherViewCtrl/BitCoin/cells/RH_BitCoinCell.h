@@ -10,6 +10,6 @@
 
 @interface RH_BitCoinCell : CLTableViewCell
 
-@property (nonatomic, strong) UITextField *textF;
+@property (nonatomic, strong) UITextView *textV;
 
 @end
