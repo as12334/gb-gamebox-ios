@@ -569,12 +569,12 @@
 #define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
 
 #pragma mark - V3 添加银行卡
-#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/addCard.html"
+#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/submitBankCard.html"
 //请求参数
-#define RH_SP_BANKCARDMASTERNAME  @"bankcardMasterName"
-#define RH_SP_BANKNAME        @"bankName"
-#define RH_SP_BANKCARDNUMBER   @"bankcardNumber"
-#define RH_SP_BANKDEPOSIT  @"bankDeposit"
+#define RH_SP_BANKCARDMASTERNAME        @"result.bankcardMasterName"
+#define RH_SP_BANKNAME                  @"result.bankName"
+#define RH_SP_BANKCARDNUMBER            @"result.bankcardNumber"
+#define RH_SP_BANKDEPOSIT               @"result.bankDeposit"
 
 //返回参数-无
 

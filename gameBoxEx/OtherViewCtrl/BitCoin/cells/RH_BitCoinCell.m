@@ -40,4 +40,14 @@
     self.textF.placeholder = info[@"detailTitle"];
 }
 
+-(BOOL)isEditing
+{
+    return self.textF.isEditing ;
+}
+
+-(BOOL)endEditing:(BOOL)force
+{
+    return [self.textF resignFirstResponder] ;
+}
+
 @end

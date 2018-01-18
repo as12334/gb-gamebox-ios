@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 };
 
 
-@interface RH_BankCardController ()<CLTableViewManagementDelegate,BankPickerSelectViewDelegate, RH_ServiceRequestDelegate>
+@interface RH_BankCardController ()<CLTableViewManagementDelegate,BankPickerSelectViewDelegate, RH_ServiceRequestDelegate,UITextFieldDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic,strong, readonly)  RH_ModifyPasswordCell *realNameCell ;
 @property (nonatomic,strong, readonly)  RH_BankCardCell *bankSelectedCell ;
@@ -50,10 +50,6 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 @synthesize addButton = _addButton ;
 @synthesize bankPickerSelectView = _bankPickerSelectView ;
 
-- (BOOL)isSubViewController {
-    return YES;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -73,7 +69,6 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 -(void)updateView
 {
-    NSLog(@"%s", __func__);
     if (MineSettingInfo==nil){
         _bankCardStatus = BankCardStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"BankCardInit"] ;
@@ -82,7 +77,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         
-        if (!MineSettingInfo.mBankCard)
+        if (MineSettingInfo.mBankCard)
         {
             _bankCardStatus = BankCardStatus_Exist ;
             [self.tableViewManagement reloadDataWithPlistName:@"BankCardExist"] ;
@@ -161,14 +156,29 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 -(void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView*)bankPickerSelectView WithSelectedBank:(id)bankModel
 {
-    RH_BankCardCell *cell = (RH_BankCardCell *)[self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    cell.detailTextLabel.text = ((RH_BankInfoModel *)bankModel).mBankName;
+    _addBankCardBankName = [((RH_BankInfoModel *)bankModel).mBankName copy] ;
+    [self.tableViewManagement reloadData] ;
     [self hideBankPickerSelectView];
 }
 
 -(void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView*)bankPickerSelectView
 {
-    
+    [self hideBankPickerSelectView];
+}
+
+
+#pragma mark -textField Delegate
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([self.realNameCell.textField isEqual:textField]){
+        _addBankCardRealName = [textField.text copy] ;
+        return ;
+    }else if ([self.bankCardNumCell.textField isEqual:textField]){
+        _addBankCardBankCardNumber = [textField.text copy] ;
+        return ;
+    }else if ([self.bankLocationCell.textField isEqual:textField]){
+        _addBankCardMasterBankName = [textField.text copy] ;
+    }
 }
 
 #pragma mark -
@@ -220,22 +230,34 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 - (void)addButtonHandle
 {
-    NSLog(@"%s", __func__);
+    [self tapGestureRecognizerHandle:nil] ;
     
-    NSLog(@"%@", self.bankLocationCell);
-    NSLog(@"%@", self.bankCardNumCell);
-    NSLog(@"%@", self.bankSelectedCell);
-    NSLog(@"%@", self.realNameCell);
-    //    if (self.realNameCell.textField.text.length == 0 || self.bankLocationCell.textField.text.length == 0 || self.bankCardNumCell.textField.text.length == 0 || self.bankSelectedCell.detailTextLabel.text.length == 0) {
-//        return ;
-//    }
+    if (_addBankCardRealName.length==0){
+        showAlertView(@"提示信息", @"银行卡姓名不能为空！") ;
+        return ;
+    }
+    
+    if (_addBankCardBankName.length==0){
+        showAlertView(@"提示信息", @"银行名不能为空！") ;
+        return ;
+    }
+    
+    if (_addBankCardBankCardNumber.length==0){
+        showAlertView(@"提示信息", @"银行卡号不能为空！") ;
+        return ;
+    }
+    
+    if (_addBankCardMasterBankName.length==0){
+        showAlertView(@"提示信息", @"开户行不能为空！") ;
+        return ;
+    }
     
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在添加"];
-    [self.serviceRequest startV3addBankCarkbankcardMasterName:self.realNameCell.textField.text bankName:self.bankSelectedCell.detailTextLabel.text bankcardNumber:self.bankCardNumCell.textField.text bankDeposit:self.bankLocationCell.textField.text];
-    self.serviceRequest.delegate = self;
-    
+    [self.serviceRequest startV3addBankCarkbankcardMasterName:_addBankCardRealName
+                                                     bankName:_addBankCardBankName
+                                               bankcardNumber:_addBankCardBankCardNumber
+                                                  bankDeposit:_addBankCardMasterBankName];
 }
-
 
 #pragma mark-
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -253,18 +275,26 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 #pragma mark - service request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     if (type == ServiceRequestTypeV3UserInfo){
+        [self.contentLoadingIndicateView hiddenView] ;
         [self setNeedUpdateView] ;
+    }else if (type == ServiceRequestTypeV3AddBankCard){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息",@"已成功添加银行卡") ;
+        }];
+        
+        NSLog(@"") ;
     }
-    NSLog(@"%@", data);
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3UserInfo){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }else if (type == ServiceRequestTypeV3AddBankCard){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"添加银行卡失败") ;
+        }];
     }
-    NSLog(@"%@", error);
 }
 
 #pragma mark-
@@ -301,6 +331,21 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     }
     
     return nil ;
+}
+
+-(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
+{
+    if (!MineSettingInfo.mBankCard){//新增银行卡情况
+        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]){
+            RH_ModifyPasswordCell *modifyCell = ConvertToClassPointer(RH_ModifyPasswordCell, cell) ;
+            modifyCell.textField.delegate = self ;
+        }
+    }else{
+        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]){
+            RH_ModifyPasswordCell *modifyCell = ConvertToClassPointer(RH_ModifyPasswordCell, cell) ;
+            modifyCell.textField.delegate = nil ;
+        }
+    }
 }
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath

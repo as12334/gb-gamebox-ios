@@ -10,8 +10,15 @@
 #import "coreLib.h"
 #import "PXAlertView+Customization.h"
 #import "RH_WithdrawAddBitCoinAddressController.h"
-@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
+typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
+    WithdrawCashStatus_Init                        ,
+    WithdrawCashStatus_NotEnoughCash                        ,
+    BitCoinStatus_EnoughCash                   ,
+};
+
+
+@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) UIView  *footerView;
 @property (nonatomic, strong) UIButton *button_Submit;
@@ -22,6 +29,7 @@
 {
     UISegmentedControl *mainSegmentControl;
 }
+
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
 
