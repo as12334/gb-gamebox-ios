@@ -362,6 +362,11 @@
 #define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
 #define RH_GP_SENDMESSGAVERITY_ADVISORYNAME           @"advisoryName"
 
+#pragma mark -V3 发送消息返回参数
+#define RH_GP_SENDMESSAGESUCCEED_MSG               @"msg"
+#define RH_GP_SENDMESSAGESUCCEED_STATE             @"statue"
+#define RH_GP_SENDMESSAGESUCCEED_TOKEN             @"token"
+
 
 #pragma mark - V3 我的消息详情  模型
 #define RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT    @"advisoryContent"

@@ -26,6 +26,7 @@
     if (self = [super initWithCoder:aDecoder]) {
         [self.webView setHidden:YES];
         [self.codeTextField setHidden:YES];
+        
     }
     return self;
 }
@@ -35,6 +36,10 @@
     self.backDropView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.masksToBounds = YES;
+    self.contenTextView.layer.cornerRadius = 5.f;
+    self.contenTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.contenTextView.layer.borderWidth = 1.f;
+    self.contenTextView.layer.masksToBounds = YES;
 }
 -(void)setSendModel:(RH_SendMessageVerityModel *)sendModel
 {

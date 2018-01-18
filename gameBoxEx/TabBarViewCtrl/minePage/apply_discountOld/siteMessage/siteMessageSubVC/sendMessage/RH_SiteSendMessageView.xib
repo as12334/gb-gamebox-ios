@@ -78,14 +78,14 @@
                                 <constraint firstAttribute="height" constant="1" id="1EX-1W-qn3"/>
                             </constraints>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="输入内容" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QaA-aU-GnB">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QaA-aU-GnB">
                             <rect key="frame" x="8" y="90" width="327" height="125"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="125" id="L7U-oe-Xmh"/>
                             </constraints>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="9"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZrK-Ez-DAX">

@@ -7,7 +7,6 @@
 //
 
 #import "RH_BasicPageLoadViewController.h"
-
 @interface RH_SiteMessageSentViewController : RH_BasicPageLoadViewController
 
 @end

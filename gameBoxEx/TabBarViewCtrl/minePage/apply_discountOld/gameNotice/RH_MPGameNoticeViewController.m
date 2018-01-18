@@ -11,6 +11,7 @@
 #import "RH_MPGameNoticHeaderView.h"
 #import "RH_MPGameNoticePulldownView.h"
 #import "RH_API.h"
+#import "coreLib.h"
 #import "RH_GameNoticeModel.h"
 #import "RH_GameNoticeDetailController.h"
 @interface RH_MPGameNoticeViewController ()<MPGameNoticHeaderViewDelegate>

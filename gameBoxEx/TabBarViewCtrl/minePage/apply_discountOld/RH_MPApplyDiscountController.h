@@ -7,7 +7,7 @@
 //
 
 #import "RH_BasicSubViewController.h"
-
-@interface RH_MPApplyDiscountController : RH_BasicSubViewController
+#import "RH_BasicPageLoadViewController.h"
+@interface RH_MPApplyDiscountController : RH_BasicPageLoadViewController
 
 @end
