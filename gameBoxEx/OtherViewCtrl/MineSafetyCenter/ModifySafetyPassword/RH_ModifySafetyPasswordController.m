@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
-     self.contentTableView.tableFooterView = self.footerView ;
+    self.contentTableView.tableFooterView = self.footerView ;
     
     UIView *view_Footer = [[UIView alloc] init];
     view_Footer.frame = CGRectMake(0, 0, screenSize().width, 150);

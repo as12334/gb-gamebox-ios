@@ -12,11 +12,10 @@
 #import "RH_WithdrawAddBitCoinAddressController.h"
 
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
-    WithdrawCashStatus_Init                        ,
-    WithdrawCashStatus_NotEnoughCash                        ,
-    BitCoinStatus_EnoughCash                   ,
+    WithdrawCashStatus_Init                 ,
+    WithdrawCashStatus_NotEnoughCash        ,
+    BitCoinStatus_EnoughCash                ,
 };
-
 
 @interface RH_WithdrawCashController ()<CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -32,10 +31,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
-
-- (BOOL)isSubViewController {
-    return YES;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -41,5 +41,19 @@
     return self ;
 }
 
+-(void)updateBankCard:(RH_BankCardModel*)bankCardInfo
+{
+    if (bankCardInfo){
+        _mBankCard = bankCardInfo ;
+    }
+}
+
+-(void)updateBitCode:(RH_BitCodeModel*)bitCodeInfo
+{
+    if (bitCodeInfo){
+        _mBitCode = bitCodeInfo ;
+    }
+}
+
 
 @end

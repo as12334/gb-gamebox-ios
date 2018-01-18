@@ -90,6 +90,18 @@
     return appDelegate.isLogin ;
 }
 
+#pragma mark- 通过bank code 取bank name
+-(NSString*)bankNameWithCode:(NSString*)bankCode
+{
+    for (RH_BankInfoModel *bankInfo in _bankList) {
+        if ([bankInfo.mBankCode isEqualToString:bankCode]){
+            return bankInfo.mBankName ;
+        }
+    }
+    
+    return nil ;
+}
+
 #pragma mark -
 -(BOOL)isVoiceSwitch
 {

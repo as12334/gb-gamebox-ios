@@ -44,5 +44,5 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;
 -(void)updateScreenLockFlag:(BOOL)lock      ;
 -(void)updateScreenLockPassword:(NSString*)lockPassrod ;
-
+-(NSString*)bankNameWithCode:(NSString*)bankCode ;
 @end

@@ -283,7 +283,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
             showSuccessMessage(self.view, @"提示信息",@"已成功添加银行卡") ;
         }];
         
-        NSLog(@"") ;
+        [self setNeedUpdateView] ;
     }
 }
 

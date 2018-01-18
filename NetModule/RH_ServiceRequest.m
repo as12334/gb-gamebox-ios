@@ -1289,8 +1289,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
         
     }else if (type == ServiceRequestTypeTestUrl){
-        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
-        NSString *tmpResult = [tmpData mj_JSONString] ;
+//        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+//        NSString *tmpResult = [tmpData mj_JSONString] ;
     }else if (type == ServiceRequestTypeAPIRetrive){ //游戏 回收api
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1304,7 +1304,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-
+    
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1315,7 +1315,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
     }
  
-   
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
+        (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
+        if (response.statusCode==302){
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",nil);
+        }
+    }
+    
     if (error) {
         *error = tempError;
     }
@@ -1584,6 +1590,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_WithDrawIModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
+            
+           case ServiceRequestTypeV3AddBankCard:
+            {
+                resultSendData = [[RH_BankCardModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager.mineSettingInfo updateBankCard:ConvertToClassPointer(RH_BankCardModel, resultSendData)] ;
+                }
+                
+            }
+                break ;
                 
             default:
                 resultSendData = dataObject ;

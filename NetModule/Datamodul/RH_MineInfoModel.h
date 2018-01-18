@@ -29,5 +29,8 @@
 @property(nonatomic,strong,readonly) RH_BitCodeModel *mBitCode  ;
 @property(nonatomic,strong,readonly) NSString  *mRealName ;
 
+-(void)updateBankCard:(RH_BankCardModel*)bankCardInfo ;
+-(void)updateBitCode:(RH_BitCodeModel*)bitCodeInfo ;
+
 @end
 
