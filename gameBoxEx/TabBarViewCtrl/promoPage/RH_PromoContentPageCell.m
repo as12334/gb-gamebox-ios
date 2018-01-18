@@ -25,7 +25,7 @@
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     self.typeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, typeModel) ;
-    
+
     if (self.contentTableView == nil) {
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStyleGrouped];
         self.contentTableView.delegate = self   ;
@@ -36,12 +36,12 @@
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        
+
         [self.contentTableView registerCellWithClass:[RH_PromoTableCell class]] ;
         self.contentScrollView = self.contentTableView;
-        
+
         [self setupPageLoadManagerWithdatasContext:context] ;
-        
+
     }else {
         [self updateWithContext:context];
     }

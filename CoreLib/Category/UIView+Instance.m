@@ -26,7 +26,6 @@
 {
     nibNameOrNil = validAdaptationNibName(nibNameOrNil ?: NSStringFromClass([self class]),bundleOrNil);
     if (nibNameOrNil.length) {
-        
         NSArray * objects = [[UINib nibWithNibName:nibNameOrNil bundle:bundleOrNil] instantiateWithOwner:nil options:nil];
         for (id object in objects) {
             if ([self isSubclassOfClass:[object class]]) {

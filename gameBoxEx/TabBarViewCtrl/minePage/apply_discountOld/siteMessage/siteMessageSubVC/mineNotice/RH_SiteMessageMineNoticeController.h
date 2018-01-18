@@ -7,7 +7,6 @@
 //
 
 #import "RH_BasicPageLoadViewController.h"
-
 @interface RH_SiteMessageMineNoticeController : RH_BasicPageLoadViewController
 
 @end

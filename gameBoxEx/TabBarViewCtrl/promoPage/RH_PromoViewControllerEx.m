@@ -58,15 +58,6 @@
     self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
 }
 
-//-(void)updateView
-//{
-//    if (self.appDelegate.isLogin){
-//        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
-//    }else{
-//        self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
-//    }
-//}
-
 #pragma mark -
 -(NSMutableDictionary *)dictPageCellDataContext
 {
@@ -76,14 +67,6 @@
     
     return _dictPageCellDataContext ;
 }
-
-//#pragma mark-
-//-(void)handleNotification:(NSNotification*)nt
-//{
-//    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
-//        [self setNeedUpdateView] ;
-//    }
-//}
 
 #pragma mark - type header View
 -(RH_PromoTypeHeaderView *)typeTopView
@@ -123,9 +106,7 @@
 - (UICollectionViewCell *)pageView:(CLPageView *)pageView cellForPageAtIndex:(NSUInteger)pageIndex
 {
     RH_PromoContentPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
-
     [cell updateViewWithType:[self.typeTopView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
-    
     return cell;
 }
 

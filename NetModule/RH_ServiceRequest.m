@@ -1550,8 +1550,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
                 case ServiceRequestTypeV3AddApplyDiscounts:
             {
-                
-                
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
             }
                 
                 break;

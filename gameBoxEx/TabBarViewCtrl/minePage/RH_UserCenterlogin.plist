@@ -141,7 +141,7 @@
 							<key>image</key>
 							<string>mine_page_sharefriends</string>
 							<key>targetKey</key>
-							<string>RH_LotteryGameListViewController</string>
+							<string>RH_ApplyDiscountViewController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>

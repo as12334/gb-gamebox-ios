@@ -165,7 +165,9 @@
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
-        
+        //发送成功弹出提示框
+        UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"消息提交成功" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
     }
 }
 
@@ -176,7 +178,9 @@
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
-        
+        [self loadDataFailWithError:error] ;
+        UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"验证码输入错误" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
     }
 }
 

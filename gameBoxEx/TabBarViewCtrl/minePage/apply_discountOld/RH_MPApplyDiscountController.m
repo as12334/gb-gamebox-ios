@@ -26,15 +26,6 @@
 {
     return YES;
 }
--(BOOL)hasTopView
-{
-    return YES;
-}
-
--(CGFloat)topViewHeight
-{
-    return 100;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,10 +35,8 @@
 }
 -(void)setupUI
 {
-    [self.topView addSubview:self.segmentedControl];
-    setCenterConstraint(self.segmentedControl, self.topView) ;
+    [self.contentView addSubview:self.segmentedControl];
     [self addChildCustomViewController];
-    
     [self.contentView addSubview:self.contentScrollowView];
     UIViewController *VC= self.childViewControllers[0];
     if (VC.view.superview) {
@@ -60,7 +49,7 @@
 {
     if (!_sendMessageView) {
         _sendMessageView = [RH_SiteSendMessageView createInstance];
-        _sendMessageView.frame = self.view.frame;
+        _sendMessageView.frame = self.contentView.frame;
     }
     return _sendMessageView;
 }
@@ -70,8 +59,7 @@
     if (!_segmentedControl) {
         NSArray *itemArray = @[@"游戏公告",@"系统公告",@"站点信息"];
         _segmentedControl = [[UISegmentedControl alloc]initWithItems:itemArray];
-        _segmentedControl.frame = CGRectMake(0,0, 200, 30);
-        _segmentedControl.translatesAutoresizingMaskIntoConstraints = NO ;
+        _segmentedControl.frame = CGRectMake((MainScreenW-200)/2,NavigationBarHeight+50, 200, 30);
         //默认下标
         _segmentedControl.selectedSegmentIndex = 0;
         [_segmentedControl addTarget:self action:@selector(choosechildController:) forControlEvents:UIControlEventValueChanged];
