@@ -11,7 +11,8 @@
 #import "coreLib.h"
 #import "RH_ApplyDiscountPageCell.h"
 #import "RH_ApplyDiscountSystemPageCell.h"
-@interface RH_ApplyDiscountViewController ()<CLPageViewDelegate,CLPageViewDatasource,discountTypeHeaderViewDelegate>
+#import "RH_ApplyDiscountSitePageCell.h"
+@interface RH_ApplyDiscountViewController ()<CLPageViewDelegate,CLPageViewDatasource,discountTypeHeaderViewDelegate,ApplyDiscountPageCellDelegate,ApplyDiscountSystemPageCellDelegate>
 @property(nonatomic,strong,readonly)RH_ApplyDiscountHeaderView *headerView;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; 
@@ -52,6 +53,7 @@
     //注册复用
     [self.pageView registerCellForPage:[RH_ApplyDiscountPageCell class] andReuseIdentifier:[RH_ApplyDiscountPageCell defaultReuseIdentifier]] ;
      [self.pageView registerCellForPage:[RH_ApplyDiscountSystemPageCell class] andReuseIdentifier:[RH_ApplyDiscountSystemPageCell defaultReuseIdentifier]] ;
+    [self.pageView registerCellForPage:[RH_ApplyDiscountSitePageCell class] andReuseIdentifier:[RH_ApplyDiscountSitePageCell defaultReuseIdentifier]];
     //设置索引
     self.pageView.dispalyPageIndex =  0 ;//self.headerView.segmentedControl.selectedSegmentIndex;
 }
@@ -96,15 +98,66 @@
     if (pageIndex ==0) {
         RH_ApplyDiscountPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+        cell.delegate = self;
         return cell;
     }
     else if (pageIndex==1){
         RH_ApplyDiscountSystemPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSystemPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+        cell.delegate=self;
+        return cell;
+    }
+    else if (pageIndex ==2)
+    {
+        RH_ApplyDiscountSitePageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSitePageCell defaultReuseIdentifier] forPageIndex:pageIndex];
+        [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+//        cell.delegate=self;
         return cell;
     }
     return nil;
     
+}
+#pragma mark cell的代理
+-(void)applyDiscountPageCellStartDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView*)view DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置开始日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  view.startDate = returnDate ;
+                  cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  [cell startUpdateData];
+              }] ;
+}
+-(void)applyDiscountPageCellEndDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置结束日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  view.endDate = returnDate ;
+                  cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  [cell startUpdateData];
+              }] ;
+}
+#pragma mark --
+-(void)applyDiscountSystemStartDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置开始日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  view.startDate = returnDate ;
+                  cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  [cell startUpdateData];
+              }] ;
+}
+-(void)applyDiscountSystemEndDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
+{
+    [self showCalendarView:@"设置结束日期"
+            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+              comfirmBlock:^(NSDate *returnDate) {
+                  view.endDate = returnDate ;
+                  cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  [cell startUpdateData];
+              }] ;
 }
 
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex

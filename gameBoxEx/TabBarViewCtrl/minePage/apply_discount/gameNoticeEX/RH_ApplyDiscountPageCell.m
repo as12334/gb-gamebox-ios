@@ -21,14 +21,13 @@
 #import "RH_MPSiteSystemNoticeCell.h"
 #import "RH_MPGameNoticHeaderView.h"
 #import "RH_MPGameNoticePulldownView.h"
+#import "RH_GameNoticeDetailController.h"
 @interface RH_ApplyDiscountPageCell()<RH_ServiceRequestDelegate,MPGameNoticHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 //@property (nonatomic,strong) RH_DiscountActivityTypeModel *typeModel ;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property (nonatomic,strong,readonly)RH_MPGameNoticHeaderView *headerView;
 @property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
-@property (nonatomic,strong)NSString *startDate;
-@property (nonatomic,strong)NSDate *endDate;
 @property (nonatomic,assign)NSInteger apiId;
 @end
 
@@ -110,8 +109,8 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadGameNoticeStartTime:@"2017-01-01"
-                                                endTime:@""
+    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
+                                                endTime:self.endDate
                                              pageNumber:page
                                                pageSize:pageSize
                                                   apiId:self.apiId];
@@ -203,6 +202,8 @@
     };
     return self.headerView;
 }
+
+
 #pragma mark headerView
 -(RH_MPGameNoticHeaderView *)headerView
 {
@@ -285,26 +286,20 @@
 #pragma mark - CapitalRecordHeaderViewDelegate
 -(void)gameNoticHeaderViewStartDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    __block RH_ApplyDiscountPageCell *weakSelf = self;
-//    [self showCalendarView:@"设置开始日期"
-//            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-//              comfirmBlock:^(NSDate *returnDate) {
-//                  view.startDate = returnDate ;
-//                  weakSelf.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [weakSelf startUpdateData] ;
-//              }] ;
-
+   
+    ifRespondsSelector(self.delegate, @selector(applyDiscountPageCellStartDateSelected:dateSelected:DefaultDate:)){
+        [self.delegate applyDiscountPageCellStartDateSelected:self dateSelected:view DefaultDate:defaultDate];
+    }
 }
 -(void)gameNoticHeaderViewEndDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    __block RH_ApplyDiscountPageCell *weakSelf = self;
-//    [self showCalendarView:@"设置结止日期"
-//            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-//              comfirmBlock:^(NSDate *returnDate) {
-//                  view.endDate = returnDate ;
-//                  weakSelf.endDate = returnDate;
-//                  [weakSelf startUpdateData] ;
-//              }] ;
+    ifRespondsSelector(self.delegate, @selector(applyDiscountPageCellEndDateSelected:dateSelected:DefaultDate:)){
+        [self.delegate applyDiscountPageCellEndDateSelected:self dateSelected:view DefaultDate:defaultDate];
+    }
+}
+-(void)cellStartUpdata
+{
+     [self startUpdateData] ;
 }
 #pragma mark 修改时间
 -(NSString *)changedSinceTimeString:(NSInteger)row
@@ -342,19 +337,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        if (HasLogin)
-        {
-            RH_DiscountActivityModel *discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            if (appDelegate){
-                appDelegate.customUrl = discountActivityModel.showLink ;
-                [self showViewController:[RH_CustomViewController viewController]] ;
-            }
-            
-        }else{
-            showAlertView(@"提示信息", @"您尚未登入") ;
-        }
-        
+        RH_GameNoticeDetailController *detailVC= [RH_GameNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        [self showViewController:detailVC];
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;
     }
 }
