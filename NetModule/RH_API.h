@@ -643,9 +643,10 @@
 //请求参数  无
 
 #pragma mark - V3 添加比特币
-#define RH_API_NAME_ADDBTC   @"mineOrigin/addBtc.html"
+#define RH_API_NAME_ADDBTC   @"mineOrigin/submitBtc.html"
 //请求参数
 #define RH_SP_ADDBTC_BANKCARDNUMBER   @"bankcardNumber"
+//返回bit 模型
 
 #pragma mark - V3 站点信息 系统信息列表
 #define RH_API_NAME_SITEMESSAGE   @"mineOrigin/getSiteSysNotice.html"

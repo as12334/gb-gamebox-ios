@@ -293,7 +293,11 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UserSafeInfo){
+        if (data==nil){
+            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"获取安全初始化信息失败"];
+        }else{
         [self setNeedUpdateView] ;
+        }
     }else if (type == ServiceRequestTypeV3SetRealName){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [UserSafetyInfo updateHasRealName:YES] ;

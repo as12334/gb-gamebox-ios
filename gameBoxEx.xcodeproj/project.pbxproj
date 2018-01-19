@@ -21,7 +21,6 @@
 		797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678B200890DF009E3FAB /* RH_SystemNoticeDetailModel.m */; };
 		797F678F2008A25E009E3FAB /* RH_GameNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678E2008A25E009E3FAB /* RH_GameNoticeModel.m */; };
 		797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */; };
-		797F6795200B4D04009E3FAB /* RH_AddBtcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F6794200B4D04009E3FAB /* RH_AddBtcModel.m */; };
 		797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */; };
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawIModel.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
@@ -571,8 +570,6 @@
 		797F678E2008A25E009E3FAB /* RH_GameNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeModel.m; sourceTree = "<group>"; };
 		797F67902008A272009E3FAB /* RH_GameNoticeDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameNoticeDetailModel.h; sourceTree = "<group>"; };
 		797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailModel.m; sourceTree = "<group>"; };
-		797F6793200B4D04009E3FAB /* RH_AddBtcModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AddBtcModel.h; sourceTree = "<group>"; };
-		797F6794200B4D04009E3FAB /* RH_AddBtcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AddBtcModel.m; sourceTree = "<group>"; };
 		797F6796200B789B009E3FAB /* RH_SiteMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageModel.h; sourceTree = "<group>"; };
 		797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageModel.m; sourceTree = "<group>"; };
 		79A9C95A200EFD9700E8FFFC /* RH_WithDrawIModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawIModel.h; sourceTree = "<group>"; };
@@ -2283,8 +2280,6 @@
 				797F678E2008A25E009E3FAB /* RH_GameNoticeModel.m */,
 				797F67902008A272009E3FAB /* RH_GameNoticeDetailModel.h */,
 				797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */,
-				797F6793200B4D04009E3FAB /* RH_AddBtcModel.h */,
-				797F6794200B4D04009E3FAB /* RH_AddBtcModel.m */,
 				797F6796200B789B009E3FAB /* RH_SiteMessageModel.h */,
 				797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */,
 				79E223F7200CC210006B0450 /* RH_DiscountActivityTypeModel.h */,
@@ -3948,7 +3943,6 @@
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				F6FB6393200F851300EEED4E /* RH_GameNoticeDetailCell.m in Sources */,
-				797F6795200B4D04009E3FAB /* RH_AddBtcModel.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
 				B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */,

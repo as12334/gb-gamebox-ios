@@ -44,15 +44,14 @@
         label_Input.whc_TopSpaceEqualView(self.textV).whc_LeftSpace(5).whc_RightSpaceToView(5, self.textV).whc_Height(30);
         label_Input.textColor = RH_Label_DefaultTextColor;
         label_Input.font = [UIFont systemFontOfSize:13];
-        label_Input.text = @"请输入:";
+        label_Input.text = @"Bit地址:";
         label_Input.textAlignment = NSTextAlignmentRight;
     }
     return self;
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
-    
-    
+    self.textV.text = ConvertToClassPointer(NSString, context) ;
 }
 
 -(BOOL)isEditing

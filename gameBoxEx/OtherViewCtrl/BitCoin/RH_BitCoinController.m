@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
     BitCoinStatus_Exist                   ,
 };
 
-@interface RH_BitCoinController ()<CLTableViewManagementDelegate>
+@interface RH_BitCoinController ()<CLTableViewManagementDelegate,UITextViewDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic,strong,readonly) RH_BitCoinCell *bitCoinCell ;
 ////---
@@ -27,8 +27,7 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 
 @implementation RH_BitCoinController
 {
-    BitCoinStatus _bitCoinStatus ;
-    
+    BitCoinStatus _bitCoinStatus ;    
     NSString *_addBitCoinAddrInfo ;
 }
 @synthesize tableViewManagement = _tableViewManagement;
@@ -73,9 +72,11 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
             _bitCoinStatus = BitCoinStatus_None ;
             [self.tableViewManagement reloadDataWithPlistName:@"BitCoinNone"] ;
             [self.addButton setTitle:@"添加" forState:UIControlStateNormal];
-            
         }
     }
+    
+    ///
+    self.bitCoinCell.textV.editable = MineSettingInfo.mBitCode?NO:YES ;
 }
 
 -(RH_BitCoinCell *)bitCoinCell
@@ -83,11 +84,11 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
     return ConvertToClassPointer(RH_BitCoinCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]) ;
 }
 
-#pragma mark -textField Delegate
--(void)textFieldDidEndEditing:(UITextField *)textField
+#pragma mark -textView Delegate
+- (void)textViewDidEndEditing:(UITextView *)textView
 {
-    if ([self.bitCoinCell.textV isEqual:textField]){
-        _addBitCoinAddrInfo = [textField.text copy] ;
+    if ([self.bitCoinCell.textV isEqual:textView]){
+        _addBitCoinAddrInfo = [textView.text copy] ;
         return ;
     }
 }
@@ -138,11 +139,8 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         return ;
     }
     
-//    [self showProgressIndicatorViewWithAnimated:YES title:@"正在添加"];
-//    [self.serviceRequest startV3addBankCarkbankcardMasterName:_addBankCardRealName
-//                                                     bankName:_addBankCardBankName
-//                                               bankcardNumber:_addBankCardBankCardNumber
-//                                                  bankDeposit:_addBankCardMasterBankName];
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在添加"];
+    [self.serviceRequest startV3AddBtcWithNumber:_addBitCoinAddrInfo];
 }
 
 #pragma mark-
@@ -164,21 +162,21 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
     if (type == ServiceRequestTypeV3UserInfo){
         [self.contentLoadingIndicateView hiddenView] ;
         [self setNeedUpdateView] ;
-    }else if (type == ServiceRequestTypeV3AddBankCard){
+    }else if (type == ServiceRequestTypeV3AddBitCoin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息",@"已成功添加银行卡") ;
+            showSuccessMessage(self.view, @"提示信息",@"已成功添加Bit币") ;
         }];
         
-        NSLog(@"") ;
+        [self setNeedUpdateView] ;
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3UserInfo){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
-    }else if (type == ServiceRequestTypeV3AddBankCard){
+    }else if (type == ServiceRequestTypeV3AddBitCoin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"添加银行卡失败") ;
+            showErrorMessage(self.view, error, @"添加Bit币失败") ;
         }];
     }
 }
@@ -196,11 +194,11 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_bitCoinStatus == BitCoinStatus_Exist){
-        if (indexPath.item == 0){ //真实姓名
+        if (indexPath.item == 0){ //bit address.
             return MineSettingInfo.mBitCode.mBtcNumber ;
         }
     }else if (_bitCoinStatus == BitCoinStatus_None){
-        if (indexPath.item == 0){ //真实姓名
+        if (indexPath.item == 0){ //
             return _addBitCoinAddrInfo?:@"" ;
         }
     }
@@ -210,16 +208,16 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 
 -(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
 {
-    if (!MineSettingInfo.mBitCode){//新增比特币情况
-//        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]){
-//            RH_ModifyPasswordCell *modifyCell = ConvertToClassPointer(RH_ModifyPasswordCell, cell) ;
-//            modifyCell.textField.delegate = self ;
-//        }
-    }else{
-//        if ([cell isKindOfClass:[RH_ModifyPasswordCell class]]){
-//            RH_ModifyPasswordCell *modifyCell = ConvertToClassPointer(RH_ModifyPasswordCell, cell) ;
-//            modifyCell.textField.delegate = nil ;
-//        }
+    if (_bitCoinStatus == BitCoinStatus_Exist){
+        if ([cell isKindOfClass:[RH_BitCoinCell class]]){
+            RH_BitCoinCell *bitCoinCell = ConvertToClassPointer(RH_BitCoinCell, cell) ;
+            bitCoinCell.textV.delegate = nil ;
+        }
+    }else if (_bitCoinStatus == BitCoinStatus_None){
+        if ([cell isKindOfClass:[RH_BitCoinCell class]]){
+            RH_BitCoinCell *bitCoinCell = ConvertToClassPointer(RH_BitCoinCell, cell) ;
+            bitCoinCell.textV.delegate = self ;
+        }
     }
 }
 

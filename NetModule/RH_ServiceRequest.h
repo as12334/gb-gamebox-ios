@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GameNoticeDetail     , //游戏公告详情
     ServiceRequestTypeV3OneStepRecory      , //一键回收
     ServiceRequestTypeV3BankCardInfo        , //用户银行卡信息
-    ServiceRequestTypeV3SaveAndAddBtc      ,  //添加/保存比特币
+    ServiceRequestTypeV3AddBitCoin      ,  //添加/保存比特币
     ServiceRequestTypeV3SiteMessage       ,  //站点信息 系统信息
     ServiceRequestTypeV3SiteMessageDetail  ,  //站点信息 系统信息详情
     ServiceRequestTypeV3SystemMessageYes     ,  //系统信息标记为已读
@@ -275,8 +275,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 //请求参数  无
 -(void)startV3OneStepRecovery;
 
-#pragma mark - V3 添加/保存比特币
--(void)startV3SaveAndAddBtcWithBankcardNumber:(NSString *)bankcardNumber;
+#pragma mark - V3 添加比特币
+-(void)startV3AddBtcWithNumber:(NSString *)bitNumber;
 
 #pragma mark - 站点信息 - 系统消息
 -(void)startV3LoadSystemMessageWithpageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;

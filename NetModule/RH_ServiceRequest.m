@@ -31,7 +31,7 @@
 #import "RH_UserGroupInfoModel.h"
 #import "RH_GameNoticeModel.h"
 #import "RH_GameNoticeDetailModel.h"
-#import "RH_AddBtcModel.h"
+#import "RH_BitCodeModel.h"
 #import "RH_SiteMessageModel.h"
 #import "RH_SiteMyMessageModel.h"
 #import "RH_DiscountActivityTypeModel.h"
@@ -681,18 +681,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - V3 添加/保存比特币
--(void)startV3SaveAndAddBtcWithBankcardNumber:(NSString *)bankcardNumber
+-(void)startV3AddBtcWithNumber:(NSString *)bitNumber
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:bankcardNumber forKey:RH_SP_ADDBTC_BANKCARDNUMBER];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:dict
+                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:bitNumber?:@""}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SaveAndAddBtc
+                       serviceType:ServiceRequestTypeV3AddBitCoin
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -1512,9 +1510,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break;
                 
-            case ServiceRequestTypeV3SaveAndAddBtc:
+            case ServiceRequestTypeV3AddBitCoin:
             {
-                resultSendData = [[RH_AddBtcModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                resultSendData = [[RH_BitCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager.mineSettingInfo updateBitCode:ConvertToClassPointer(RH_BitCodeModel, resultSendData)] ;
+                }
             }
                 break;
             case ServiceRequestTypeV3SiteMessage:
