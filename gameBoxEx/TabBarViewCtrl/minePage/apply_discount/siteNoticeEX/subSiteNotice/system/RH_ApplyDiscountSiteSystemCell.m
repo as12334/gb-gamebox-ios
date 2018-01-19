@@ -1,67 +1,64 @@
 //
-//  RH_SiteMessageSystemNoticeController.m
+//  RH_ApplyDiscountSiteSystemCell.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/1/16.
+//  Created by lewis on 2018/1/19.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_SiteMessageSystemNoticeController.h"
+#import "RH_ApplyDiscountSiteSystemCell.h"
 #import "RH_MPSiteMessageHeaderView.h"
 #import "RH_MPSiteSystemNoticeCell.h"
 #import "RH_SiteMessageModel.h"
 #import "RH_API.h"
-@interface RH_SiteMessageSystemNoticeController ()<MPSiteMessageHeaderViewDelegate>
+#import "RH_LoadingIndicateTableViewCell.h"
+@interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
+@property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @end
 
-@implementation RH_SiteMessageSystemNoticeController
+@implementation RH_ApplyDiscountSiteSystemCell
 @synthesize headerView = _headerView;
--(void)viewWillAppear:(BOOL)animated
-{
-    self.navigationBar.hidden = YES;
-   
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.siteModelArray = [NSMutableArray array];
-    self.deleteModelArray = [NSMutableArray array];
-     [self setupUI];
-}
+@synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
 #pragma mark tableView的上部分的选择模块
 -(RH_MPSiteMessageHeaderView *)headerView
 {
     if (!_headerView) {
         _headerView = [RH_MPSiteMessageHeaderView createInstance];
-        _headerView.frame = CGRectMake(0, 100, self.view.frameWidth, 40);
+        _headerView.frame = CGRectMake(0, 100, self.frameWidth, 40);
         _headerView.delegate=self;
     }
     return _headerView;
 }
--(void)setupUI{
-    
-    self.contentView.frame = CGRectMake(0,0, self.view.frameWidth, self.contentView.frameHeigh);
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
-    self.contentTableView.frame = CGRectMake(0,0, self.view.frameWidth, self.contentView.frameHeigh);
-    self.contentTableView.delegate = self ;
-    self.contentTableView.dataSource = self ;
-    //    self.contentTableView.editing = YES;
-    [self.contentTableView registerCellWithClass:[RH_MPSiteSystemNoticeCell class]] ;
-    self.contentTableView.contentInset = UIEdgeInsetsMake(0, 0,0, 0);
-    [self.contentView addSubview:self.contentTableView] ;
-    [self.contentTableView reloadData] ;
-    [self setupPageLoadManager] ;
-}
-#pragma mark-
-#pragma mark-tableView
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1 ;
+-(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
+{    
+    if (self.contentTableView == nil) {
+        self.siteModelArray = [NSMutableArray array];
+        self.deleteModelArray = [NSMutableArray array];
+        self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
+        self.contentTableView.delegate = self   ;
+        self.contentTableView.dataSource = self ;
+        self.contentTableView.sectionFooterHeight = 10.0f;
+        self.contentTableView.sectionHeaderHeight = 10.0f ;
+        self.contentTableView.backgroundColor = [UIColor clearColor];
+        self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
+        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
+        //        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+        [self.contentTableView registerCellWithClass:[RH_MPSiteSystemNoticeCell class]] ;
+        self.contentScrollView = self.contentTableView;
+        CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
+        [self setupPageLoadManagerWithdatasContext:context1] ;
+        
+        
+    }else {
+        [self updateWithContext:context];
+    }
 }
 
+#pragma mark-tableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return MAX(1, self.pageLoadManager.currentDataCount) ;
@@ -79,8 +76,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-       __weak RH_MPSiteSystemNoticeCell *noticeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
-        __weak RH_SiteMessageSystemNoticeController *weakSelf = self;
+        __weak RH_MPSiteSystemNoticeCell *noticeCell = [tableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
+        __weak RH_ApplyDiscountSiteSystemCell *weakSelf = self;
         noticeCell.block = ^(){
             RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
             if ([siteModel.number isEqual:@0]) {
@@ -155,6 +152,16 @@
 {
     
 }
+-(RH_LoadingIndicateTableViewCell*)loadingIndicateTableViewCell
+{
+    if (!_loadingIndicateTableViewCell){
+        _loadingIndicateTableViewCell = [[RH_LoadingIndicateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        _loadingIndicateTableViewCell.backgroundColor = [UIColor whiteColor];
+        _loadingIndicateTableViewCell.loadingIndicateView.delegate = self;
+    }
+    
+    return _loadingIndicateTableViewCell ;
+}
 #pragma mark 数据请求
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
@@ -165,7 +172,7 @@
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
     return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
-                                                          pageLoadControllerClass:nil
+                                                          pageLoadControllerClass:[CLArrayPageLoadController class]
                                                                          pageSize:[self defaultPageSize]
                                                                      startSection:0
                                                                          startRow:0
@@ -212,14 +219,14 @@
         [self.siteModelArray removeAllObjects];
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
-                            totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]] ;
+                            totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]completedBlock:nil] ;
         //获取model
         for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
             RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);
             siteModel.number = @0;
             [self.siteModelArray addObject:siteModel];
         }
-      [self.contentTableView reloadData];
+        [self.contentTableView reloadData];
     }
 }
 
@@ -229,6 +236,5 @@
         [self loadDataFailWithError:error] ;
     }
 }
-
 
 @end

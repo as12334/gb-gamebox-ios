@@ -1,36 +1,56 @@
 //
-//  RH_SiteMessageSentViewController.m
+//  RH_ApplyDiscountSiteGameCell.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/1/16.
+//  Created by lewis on 2018/1/19.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_SiteMessageSentViewController.h"
+#import "RH_ApplyDiscountSiteSendCell.h"
 #import "RH_SiteSendMessageView.h"
 #import "RH_SiteSendMessagePullDownView.h"
 #import "RH_ServiceRequest.h"
 #import "RH_SendMessageVerityModel.h"
-@interface RH_SiteMessageSentViewController ()<RH_ServiceRequestDelegate>
+@interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,copy)NSString  *typeStr;
 @end
 
-@implementation RH_SiteMessageSentViewController
+@implementation RH_ApplyDiscountSiteSendCell
 @synthesize sendView = _sendView;
 @synthesize listView = _listView;
 @synthesize serviceRequest = _serviceRequest;
--(void)viewWillAppear:(BOOL)animated
+
+-(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-    self.navigationBar.hidden = YES;
+    if (self.contentTableView == nil) {
+        [self addSubview:self.sendView];
+        __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
+        self.sendView.block = ^(CGRect frame){
+            [weakSelf selectedSendViewdiscountType:frame];
+        };
+        self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
+            [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
+            [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+        };
+        [self.serviceRequest startV3AddApplyDiscountsVerify];
+        
+
+        CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
+        [self setupPageLoadManagerWithdatasContext:context1] ;
+        
+    }else {
+        [self updateWithContext:context];
+    }
 }
+
 -(RH_SiteSendMessageView *)sendView
 {
     if (!_sendView) {
         _sendView = [RH_SiteSendMessageView createInstance];
-        _sendView.frame = CGRectMake(0,0, self.view.frameWidth, self.view.frameHeigh);
+        _sendView.frame = CGRectMake(0,0, self.frameWidth, self.frameHeigh);
     }
     return _sendView;
 }
@@ -42,28 +62,13 @@
     }
     return _serviceRequest;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self.view addSubview:self.sendView];
-    __block RH_SiteMessageSentViewController *weakSelf = self;
-    self.sendView.block = ^(CGRect frame){
-        [weakSelf selectedSendViewdiscountType:frame];
-    };
-    self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
-        [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
-        [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
-    };
-    self.needObserverTapGesture = YES ;
-    [self.serviceRequest startV3AddApplyDiscountsVerify];
-}
 #pragma mark 下拉列表
 #pragma mark 点击headerview的游戏类型
 -(RH_SiteSendMessagePullDownView *)listView
 {
     if (!_listView) {
         _listView = [[RH_SiteSendMessagePullDownView alloc]init];
-        __block RH_SiteMessageSentViewController *weakSelf = self;
+        __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
         _listView.block = ^(NSString *typeString,NSString *typeName){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
@@ -104,7 +109,7 @@
         frame.origin.y +=frame.size.width;
         frame.size.width+=20;
         self.listView.frame = frame;
-        [self.view addSubview:self.listView];
+        [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
             CGRect framee = self.listView.frame;
             framee.size.height = 200;
@@ -140,25 +145,10 @@
         [self startUpdateData] ;
     }
 }
-//#pragma mark- 请求回调
-//-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
-//{
-//    [self.serviceRequest startV3AddApplyDiscountsVerify];
-//}
-//-(void)cancelLoadDataHandle
-//{
-//    [self.serviceRequest cancleAllServices] ;
-//}
-//
-//#pragma mark-
-//- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
-//{
-//    [self startUpdateData] ;
-//}
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3AddApplyDiscountsVerify){
-    
+        
         RH_SendMessageVerityModel *sendModel = ConvertToClassPointer(RH_SendMessageVerityModel, data);
         self.listView.sendModel = sendModel;
         self.sendView.sendModel = sendModel;
