@@ -154,6 +154,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     NSLog(@"%s", __func__);
+    NSLog(@"%@", error);
+    if (error.code == 102) {
+        [self.tableViewManagement reloadDataWithPlistName:@"RH_WithdrawCashLow"];
+        mainSegmentControl.hidden = YES;
+        self.contentTableView.tableFooterView = nil;
+    }
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     if (type == ServiceRequestTypeV3GetWithDrawInfo) {

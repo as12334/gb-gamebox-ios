@@ -457,6 +457,7 @@
 		B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */; };
 		B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */; };
 		B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */; };
+		B87A6BBA2011897700C9788F /* RH_WithdrawCashLow.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6BB92011897700C9788F /* RH_WithdrawCashLow.plist */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -1333,6 +1334,7 @@
 		B87A6B69200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawAddBitCoinAddressController.h; sourceTree = "<group>"; };
 		B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawAddBitCoinAddressController.m; sourceTree = "<group>"; };
 		B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawAddBitCoinAddressController.xib; sourceTree = "<group>"; };
+		B87A6BB92011897700C9788F /* RH_WithdrawCashLow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_WithdrawCashLow.plist; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -3141,6 +3143,7 @@
 				B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */,
 				B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */,
 				B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */,
+				B87A6BB92011897700C9788F /* RH_WithdrawCashLow.plist */,
 				B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
@@ -3528,6 +3531,7 @@
 				F6FB63AB2010386F00EEED4E /* RH_ApplyDiscountHeaderView.xib in Resources */,
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
+				B87A6BBA2011897700C9788F /* RH_WithdrawCashLow.plist in Resources */,
 				A001B3D61F8EF7CA00309EA4 /* tab_green_service@2x.png in Resources */,
 				F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */,
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
