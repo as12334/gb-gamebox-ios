@@ -28,6 +28,7 @@
 @synthesize userSafetyInfo = _userSafetyInfo ;
 @synthesize mineSettingInfo = _mineSettingInfo ;
 @synthesize bankList = _bankList ;
+@synthesize userWithDrawInfo = _userWithDrawInfo ;
 
 +(instancetype)shareUserManager
 {
@@ -88,6 +89,16 @@
 {
     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     return appDelegate.isLogin ;
+}
+
+-(RH_WithDrawModel *)userWithDrawInfo
+{
+    return _userWithDrawInfo ;
+}
+
+-(void)setUserWithDrawInfo:(RH_WithDrawModel *)userWithDrawInfo
+{
+    _userWithDrawInfo = userWithDrawInfo ;
 }
 
 #pragma mark- 通过bank code 取bank name

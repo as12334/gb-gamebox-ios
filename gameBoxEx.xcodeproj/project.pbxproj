@@ -22,7 +22,7 @@
 		797F678F2008A25E009E3FAB /* RH_GameNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678E2008A25E009E3FAB /* RH_GameNoticeModel.m */; };
 		797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */; };
 		797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */; };
-		79A9C95C200EFD9700E8FFFC /* RH_WithDrawIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawIModel.m */; };
+		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
@@ -359,6 +359,7 @@
 		A06E0F582010801B00EF275A /* BitCoinNone.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F552010801A00EF275A /* BitCoinNone.plist */; };
 		A06E0F592010801B00EF275A /* BitCoinExist.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F562010801B00EF275A /* BitCoinExist.plist */; };
 		A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F572010801B00EF275A /* BitCoinInit.plist */; };
+		A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */; };
 		A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEB71FEBA0690006FAE4 /* RH_HomeCategoryCell.m */; };
 		A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07DCEB81FEBA0690006FAE4 /* RH_HomeCategoryCell.xib */; };
 		A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEBC1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m */; };
@@ -448,14 +449,15 @@
 		B87A6B49200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B47200B7E1000C9788F /* RH_WithdrawMoneyLowCell.m */; };
 		B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */; };
 		B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B4D200D9D6C00C9788F /* RH_WithdrawCashController.m */; };
-		B87A6B50200DAB5B00C9788F /* RH_WithdrawCash.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */; };
+		B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B4F200DAB5B00C9788F /* WithdrawCash.plist */; };
 		B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B52200DAD4E00C9788F /* RH_WithdrawCashOneCell.m */; };
 		B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */; };
 		B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B58200DB01F00C9788F /* RH_WithdrawCashThreeCell.m */; };
-		B87A6B5B200DD38100C9788F /* RH_WithdrawCashBitCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */; };
+		B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */; };
 		B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */; };
 		B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */; };
 		B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */; };
+		B87A6BBA2011897700C9788F /* WithdrawCashLow.plist in Resources */ = {isa = PBXBuildFile; fileRef = B87A6BB92011897700C9788F /* WithdrawCashLow.plist */; };
 		B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */; };
 		B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */; };
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
@@ -572,8 +574,8 @@
 		797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailModel.m; sourceTree = "<group>"; };
 		797F6796200B789B009E3FAB /* RH_SiteMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageModel.h; sourceTree = "<group>"; };
 		797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageModel.m; sourceTree = "<group>"; };
-		79A9C95A200EFD9700E8FFFC /* RH_WithDrawIModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawIModel.h; sourceTree = "<group>"; };
-		79A9C95B200EFD9700E8FFFC /* RH_WithDrawIModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithDrawIModel.m; sourceTree = "<group>"; };
+		79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawModel.h; sourceTree = "<group>"; };
+		79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithDrawModel.m; sourceTree = "<group>"; };
 		79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoModel.h; sourceTree = "<group>"; };
 		79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoModel.m; sourceTree = "<group>"; };
 		79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetailModel.h; sourceTree = "<group>"; };
@@ -1177,6 +1179,7 @@
 		A06E0F552010801A00EF275A /* BitCoinNone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitCoinNone.plist; sourceTree = "<group>"; };
 		A06E0F562010801B00EF275A /* BitCoinExist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitCoinExist.plist; sourceTree = "<group>"; };
 		A06E0F572010801B00EF275A /* BitCoinInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitCoinInit.plist; sourceTree = "<group>"; };
+		A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawInit.plist; sourceTree = "<group>"; };
 		A07DCEB61FEBA0690006FAE4 /* RH_HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomeCategoryCell.h; sourceTree = "<group>"; };
 		A07DCEB71FEBA0690006FAE4 /* RH_HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeCategoryCell.m; sourceTree = "<group>"; };
 		A07DCEB81FEBA0690006FAE4 /* RH_HomeCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeCategoryCell.xib; sourceTree = "<group>"; };
@@ -1317,19 +1320,20 @@
 		B87A6B48200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawMoneyLowCell.xib; sourceTree = "<group>"; };
 		B87A6B4C200D9D6C00C9788F /* RH_WithdrawCashController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashController.h; sourceTree = "<group>"; };
 		B87A6B4D200D9D6C00C9788F /* RH_WithdrawCashController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashController.m; sourceTree = "<group>"; };
-		B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_WithdrawCash.plist; sourceTree = "<group>"; };
+		B87A6B4F200DAB5B00C9788F /* WithdrawCash.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WithdrawCash.plist; sourceTree = "<group>"; };
 		B87A6B51200DAD4E00C9788F /* RH_WithdrawCashOneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashOneCell.h; sourceTree = "<group>"; };
 		B87A6B52200DAD4E00C9788F /* RH_WithdrawCashOneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashOneCell.m; sourceTree = "<group>"; };
 		B87A6B54200DAE7C00C9788F /* RH_WithdrawCashTwoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashTwoCell.h; sourceTree = "<group>"; };
 		B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashTwoCell.m; sourceTree = "<group>"; };
 		B87A6B57200DB01F00C9788F /* RH_WithdrawCashThreeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashThreeCell.h; sourceTree = "<group>"; };
 		B87A6B58200DB01F00C9788F /* RH_WithdrawCashThreeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashThreeCell.m; sourceTree = "<group>"; };
-		B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_WithdrawCashBitCoin.plist; sourceTree = "<group>"; };
+		B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawCashBitCoin.plist; sourceTree = "<group>"; };
 		B87A6B5C200DDA6300C9788F /* RH_WithdrawCashFourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawCashFourCell.h; sourceTree = "<group>"; };
 		B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawCashFourCell.m; sourceTree = "<group>"; };
 		B87A6B69200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawAddBitCoinAddressController.h; sourceTree = "<group>"; };
 		B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawAddBitCoinAddressController.m; sourceTree = "<group>"; };
 		B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawAddBitCoinAddressController.xib; sourceTree = "<group>"; };
+		B87A6BB92011897700C9788F /* WithdrawCashLow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawCashLow.plist; sourceTree = "<group>"; };
 		B8F0E4FE2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifySafetyPasswordController.h; sourceTree = "<group>"; };
 		B8F0E4FF2001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifySafetyPasswordController.m; sourceTree = "<group>"; };
 		B8F0E5012001BD3E00A3AC94 /* ModifySafetyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifySafetyPassword.plist; sourceTree = "<group>"; };
@@ -2292,8 +2296,8 @@
 				79E223FE200E0271006B0450 /* RH_SiteMyMessageDetailModel.m */,
 				79E223FA200D9BF0006B0450 /* RH_SendMessageVerityModel.h */,
 				79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */,
-				79A9C95A200EFD9700E8FFFC /* RH_WithDrawIModel.h */,
-				79A9C95B200EFD9700E8FFFC /* RH_WithDrawIModel.m */,
+				79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */,
+				79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3135,8 +3139,10 @@
 				B87A6B69200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.h */,
 				B87A6B6A200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m */,
 				B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */,
-				B87A6B4F200DAB5B00C9788F /* RH_WithdrawCash.plist */,
-				B87A6B5A200DD38100C9788F /* RH_WithdrawCashBitCoin.plist */,
+				A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */,
+				B87A6BB92011897700C9788F /* WithdrawCashLow.plist */,
+				B87A6B4F200DAB5B00C9788F /* WithdrawCash.plist */,
+				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
 			sourceTree = "<group>";
@@ -3495,12 +3501,12 @@
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
-				B87A6B5B200DD38100C9788F /* RH_WithdrawCashBitCoin.plist in Resources */,
+				B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
 				F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */,
 				A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */,
-				B87A6B50200DAB5B00C9788F /* RH_WithdrawCash.plist in Resources */,
+				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
@@ -3512,6 +3518,7 @@
 				F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */,
 				B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
+				A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */,
 				A06E0F592010801B00EF275A /* BitCoinExist.plist in Resources */,
 				F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */,
 				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
@@ -3523,6 +3530,7 @@
 				F6FB63AB2010386F00EEED4E /* RH_ApplyDiscountHeaderView.xib in Resources */,
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
+				B87A6BBA2011897700C9788F /* WithdrawCashLow.plist in Resources */,
 				A001B3D61F8EF7CA00309EA4 /* tab_green_service@2x.png in Resources */,
 				F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */,
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
@@ -3858,7 +3866,7 @@
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
-				79A9C95C200EFD9700E8FFFC /* RH_WithDrawIModel.m in Sources */,
+				79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,

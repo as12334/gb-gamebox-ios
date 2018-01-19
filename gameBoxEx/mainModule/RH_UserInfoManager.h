@@ -11,6 +11,7 @@
 #import "RH_UserSafetyCodeModel.h"
 #import "RH_MineInfoModel.h"
 #import "RH_BankInfoModel.h"
+#import "RH_WithDrawModel.h"
 
 #define  RHNT_UserInfoManagerBalanceChangedNotification           @"UserInfoManagerBalanceChangedNotification"
 #define  RHNT_UserInfoManagerMineGroupChangedNotification         @"UserInfoManagerMineGroupChangedNotification"
@@ -20,6 +21,7 @@
 #define UserSafetyInfo              [RH_UserInfoManager shareUserManager].userSafetyInfo
 #define MineSettingInfo             [RH_UserInfoManager shareUserManager].mineSettingInfo
 #define BankList                    [RH_UserInfoManager shareUserManager].bankList
+#define UserWithDrawInfo            [RH_UserInfoManager shareUserManager].userWithDrawInfo
 
 typedef void(^AutoLoginCompletation)(BOOL result) ;
 
@@ -29,12 +31,14 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property(nonatomic,strong,readonly) RH_UserSafetyCodeModel *userSafetyInfo ;
 @property(nonatomic,strong,readonly) RH_MineInfoModel *mineSettingInfo ;
 @property(nonatomic,strong,readonly) NSArray<RH_BankInfoModel*> *bankList ;
+@property(nonatomic,strong,readonly) RH_WithDrawModel *userWithDrawInfo ;
 
 -(BOOL)hasLogin ;
 -(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo ;
 -(void)setUserSafetyInfo:(RH_UserSafetyCodeModel *)userSafetyInfo ;
 -(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo ;
 -(void)setBankList:(NSArray<RH_BankInfoModel *> *)bankList ;
+-(void)setUserWithDrawInfo:(RH_WithDrawModel *)userWithDrawInfo ;
 
 ///----app 层 相关开关
 @property (nonatomic,assign,readonly) BOOL isVoiceSwitch    ; //声音开关

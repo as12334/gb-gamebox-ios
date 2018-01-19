@@ -8,6 +8,8 @@
 
 #import "RH_WithdrawCashOneCell.h"
 #import "coreLib.h"
+#import "RH_WithDrawModel.h"
+
 @implementation RH_WithdrawCashOneCell
 
 - (void)awakeFromNib {
@@ -37,6 +39,12 @@
         self.selectionColor = RH_Cell_DefaultHolderColor;
     }
     return self;
+}
+
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    BankcardMapModel *bankcardModel = ConvertToClassPointer(BankcardMapModel, context) ;
+    
 }
 
 @end

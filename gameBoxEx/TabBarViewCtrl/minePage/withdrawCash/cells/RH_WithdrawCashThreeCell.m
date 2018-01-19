@@ -40,5 +40,10 @@
     return self;
 }
 
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    self.textLabel.text = info.myTitle ;
+    self.detailTextLabel.text = ConvertToClassPointer(NSString, context) ;
+}
 
 @end

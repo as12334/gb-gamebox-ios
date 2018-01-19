@@ -38,7 +38,7 @@
 #import "RH_DiscountActivityModel.h"
 #import "RH_SendMessageVerityModel.h"
 #import "RH_SiteMyMessageDetailModel.h"
-#import "RH_WithDrawIModel.h"
+#import "RH_WithDrawModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -1589,7 +1589,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3GetWithDrawInfo:
             {
-                resultSendData = [[RH_WithDrawIModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                resultSendData = [[RH_WithDrawModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
             

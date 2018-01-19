@@ -1,5 +1,5 @@
 //
-//  RH_WithDrawIModel.h
+//  RH_WithDrawModel.h
 //  gameBoxEx
 //
 //  Created by Richard on 2018/1/17.
@@ -7,6 +7,7 @@
 //
 
 #import "RH_BasicModel.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface BankcardMapModel :RH_BasicModel
 @property (nonatomic , assign , readonly) NSInteger              mId;
@@ -27,29 +28,26 @@
 @end
 
 @interface AuditMapModel :RH_BasicModel
-@property (nonatomic , assign , readonly) float                  mDeductFavorable;
-@property (nonatomic , strong , readonly) NSString              * mCounterFee;
-@property (nonatomic , assign , readonly) NSInteger              mWithdrawFeeMoney;
-@property (nonatomic , assign , readonly) NSInteger              mAdministrativeFee;
+@property (nonatomic , assign , readonly) CGFloat              mDeductFavorable; //优惠
+@property (nonatomic , assign , readonly) CGFloat              mCounterFee; //手续费
+@property (nonatomic , assign , readonly) CGFloat              mWithdrawFeeMoney;
+@property (nonatomic , assign , readonly) CGFloat              mAdministrativeFee; //行政费
 @property (nonatomic , assign , readonly) float                 mActualWithdraw;
 @property (nonatomic , strong , readonly) NSString              * mTransactionNo;
 @property (nonatomic , assign , readonly) BOOL                  mRecordList;
-@property (nonatomic , assign , readonly) NSInteger             mWithdrawAmount;
+@property (nonatomic , assign , readonly) CGFloat             mWithdrawAmount; //最终可取
 
 @end
 
-@interface RH_WithDrawIModel :RH_BasicModel
-@property (nonatomic , assign , readonly) BOOL                               mIsCash;
-@property (nonatomic , strong , readonly) NSArray<BankcardMapModel *>        * mBankcardMapModel;
-@property (nonatomic , strong , readonly) NSString                            * mAuditLogUrl;
-@property (nonatomic , assign , readonly) BOOL                                mHasBank;
-@property (nonatomic , strong , readonly) NSString                           * mCurrencySign;
-@property (nonatomic , assign , readonly) NSInteger                           mTotalBalance;
-@property (nonatomic , strong , readonly) NSString                           * mToken;
-@property (nonatomic , assign , readonly) BOOL                                mIsBit;
-@property (nonatomic , strong , readonly) NSArray<AuditMapModel *>           * mAuditMapModel;
-
-
-
+@interface RH_WithDrawModel :RH_BasicModel
+@property (nonatomic , strong , readonly) NSString             *mAuditLogUrl;
+@property (nonatomic , strong , readonly) AuditMapModel        *mAuditMap;
+@property (nonatomic , strong , readonly) NSDictionary          *mBankcardMap;
+@property (nonatomic , strong , readonly) NSString              *mCurrencySign;
+@property (nonatomic , assign , readonly) BOOL                   mHasBank;
+@property (nonatomic , assign , readonly) BOOL                   mIsBit;
+@property (nonatomic , assign , readonly) BOOL                   mIsCash;
+@property (nonatomic , strong , readonly) NSString               * mToken;
+@property (nonatomic , assign , readonly) CGFloat                mTotalBalance;
 
 @end

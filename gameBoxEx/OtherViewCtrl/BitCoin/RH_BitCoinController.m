@@ -181,7 +181,6 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
     }
 }
 
-
 #pragma mark-
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
