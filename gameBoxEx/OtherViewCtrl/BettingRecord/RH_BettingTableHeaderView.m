@@ -13,7 +13,7 @@
 
 @interface _BettingHeaderCellModel:NSObject
 @property(nonatomic,strong,readonly) NSString *mName        ;
-@property(nonatomic,strong,readonly) NSString *mDescript        ;
+@property(nonatomic,strong) NSString *mDescript        ;
 -(instancetype)initWithName:(NSString*)name Descript:(NSString*)desc ;
 
 @end
@@ -54,7 +54,7 @@
                             [[_BettingHeaderCellModel alloc] initWithName:@"投注时间" Descript:nil],
                             [[_BettingHeaderCellModel alloc] initWithName:@"投注额" Descript:@"¥0.00"],
                             [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:@"¥0.00"],
-                            [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:nil],
+                            [[_BettingHeaderCellModel alloc] initWithName:@"状态" Descript:nil],
                             ] ;
         
         self.backgroundColor = colorWithRGB(225, 226, 227)  ;
@@ -67,6 +67,18 @@
     }
     
     return self ;
+}
+
+-(void)updateUIInfoWithTotalNumber:(NSInteger)totalNumber SigleAmount:(CGFloat)single ProfitAmount:(CGFloat)profitAmount
+{
+    _BettingHeaderCellModel *headerCell1 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[0]) ;
+    _BettingHeaderCellModel *headerCell2 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[2]) ;
+    _BettingHeaderCellModel *headerCell3 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[3]) ;
+    
+    headerCell1.mDescript = [NSString stringWithFormat:@"总共%ld笔",totalNumber] ;
+    headerCell2.mDescript = [NSString stringWithFormat:@"￥%0.02f",single] ;
+    headerCell3.mDescript = [NSString stringWithFormat:@"￥%0.02f",profitAmount] ;
+    [self.headerStaticView reloadData] ;
 }
 
 #pragma mark-

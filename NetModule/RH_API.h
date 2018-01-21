@@ -499,6 +499,10 @@
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
 #define RH_GP_BETTINGLIST_TOTALSINGLEAMOUN                  @"singleAmount"
 #define RH_GP_BETTINGLIST_TOTALPROFIT                       @"profit"
+#define RH_GP_BETTINGLIST_STATISTICSDATA                   @"statisticsData"
+#define RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE          @"effective"
+#define RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT            @"profit"
+
 
 #pragma mark -v3    投注记录明细
 //api路径
@@ -521,6 +525,11 @@
 #define RH_GP_DEPOSITLIST_TRANSFERSUM            @"transferSum"
 #define RH_GP_DEPOSITLIST_WITHDRAWSUM            @"withdrawSum"
 #define RH_GP_DEPOSITLIST_TOTALCOUNT            @"totalCount"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP            @"sumPlayerMap"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_FAVORABLE            @"favorable"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_REKEBACK            @"rakeback"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_RECHARGE            @"recharge"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_WITHDRAW            @"withdraw"
 
 /**
     资金记录下拉列表

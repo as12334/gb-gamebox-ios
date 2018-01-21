@@ -14,6 +14,8 @@
 #import "RH_API.h"
 #import "coreLib.h"
 #import "RH_BettingRecordDetailController.h"
+#import "RH_BettingInfoModel.h"
+#import "RH_CustomViewController.h"
 
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
@@ -200,8 +202,12 @@
 {
     if (type == ServiceRequestTypeV3BettingList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+        [self.bettingTableHeaderView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]
+                                                     SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]
+                                                    ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]] ;
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_BETTINGLIST_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]] ;
+        
     }
 }
 
@@ -249,8 +255,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
+#if 0
         [self showViewController:[RH_BettingRecordDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]]
                           sender:self] ;
+#else
+        RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
+        NSString *url = [NSString stringWithFormat:@"/fund/betting/gameRecordDetail.html?searchId=%ld",bettingInfoModel.mID] ;
+        self.appDelegate.customUrl = url ;
+        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+#endif
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO] ;

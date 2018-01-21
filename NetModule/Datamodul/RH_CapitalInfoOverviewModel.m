@@ -25,6 +25,7 @@
         _mWithdrawSum = [info floatValueForKey:RH_GP_DEPOSITLIST_WITHDRAWSUM] ;
         _mTotalCount = [info integerValueForKey:RH_GP_DEPOSITLIST_TOTALCOUNT] ;
         _mList = [RH_CapitalInfoModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_DEPOSITLIST_LIST]] ;
+        _mSumPlayerMap = [info dictionaryValueForKey:@"sumPlayerMap"] ;
     }
     
     return self;

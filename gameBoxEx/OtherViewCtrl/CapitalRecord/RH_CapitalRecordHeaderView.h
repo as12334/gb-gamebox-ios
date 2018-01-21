@@ -22,4 +22,6 @@ typedef void (^typeLabelPullDownSelectedBlock)(CGRect frame);
 @property (nonatomic,strong) NSDate *endDate ;
 @property (nonatomic,copy)typeLabelPullDownSelectedBlock block;
 @property (weak, nonatomic) IBOutlet UIButton *typeButton;;
+
+-(void)updateUIInfoWithDraw:(CGFloat)drawSum TransferSum:(CGFloat)transferSum ;
 @end

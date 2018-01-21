@@ -1397,8 +1397,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 NSInteger total = [[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
                                      dictionaryValueForKey:@"statisticsData"]  integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT]   ;
                 
+                NSDictionary *statisticsDataDict = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] ;
                 resultSendData = @{RH_GP_BETTINGLIST_LIST:tmpArray?:@[],
-                                   RH_GP_BETTINGLIST_TOTALCOUNT:@(total)
+                                   RH_GP_BETTINGLIST_TOTALCOUNT:@(total),
+                                   RH_GP_BETTINGLIST_STATISTICSDATA:statisticsDataDict?:@{}
                                    } ;
             }
                 break ;

@@ -141,6 +141,13 @@
     }
 }
 
+#pragma mark -
+-(void)updateUIInfoWithDraw:(CGFloat)drawSum TransferSum:(CGFloat)transferSum
+{
+    self.withdrawalLab.text = [NSString stringWithFormat:@"取款处理中 :%0.2f",drawSum] ;
+    self.transferLab.text = [NSString stringWithFormat:@"转帐处理中 :%0.2f",transferSum] ;
+}
+
 #pragma mark ---
 -(void)setStartDate:(NSDate *)startDate
 {

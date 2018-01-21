@@ -15,7 +15,7 @@
 @property (nonatomic,assign,readonly) CGFloat mTransferSum ;
 @property (nonatomic,assign,readonly) NSInteger mTotalCount ;
 @property (nonatomic,strong,readonly) NSArray<RH_CapitalInfoModel*> *mList ;
-
+@property (nonatomic,strong,readonly) NSDictionary *mSumPlayerMap ;
 
 //extend
 @property (nonatomic,strong,readonly) NSString *showWithDrawSum ;
