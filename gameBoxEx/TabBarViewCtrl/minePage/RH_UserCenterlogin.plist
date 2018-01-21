@@ -152,6 +152,8 @@
 							<string>mine_page_applypreferential</string>
 							<key>code</key>
 							<string>gameNotice</string>
+							<key>targetKey</key>
+							<string>RH_ForgetPasswordController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>

@@ -7,12 +7,8 @@
 //
 
 #import "CLTableViewCell.h"
-@class RH_MineRecordTableViewCell;
-@protocol MineRecordTableViewCellDelegate<NSObject>
--(void)clickStaticCellAndPushOtherController:(UIViewController *)controller;
-@end
+
 @interface RH_MineRecordTableViewCell : CLTableViewCell
 @property(nonatomic,assign)NSInteger numberSection;
 @property(nonatomic,assign)NSInteger numberItems;
-@property(nonatomic,weak)id<MineRecordTableViewCellDelegate>delegate;
 @end
