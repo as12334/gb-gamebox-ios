@@ -14,7 +14,9 @@
 #import "RH_MineAccountCell.h"
 #import "RH_CustomViewController.h"
 #import "RH_WithdrawCashController.h"
-@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate>
+#import "RH_MinePageLoginoutBannarCell.h"
+#import "RH_LoginViewControllerEx.h"
+@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,LoginViewControllerExDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
@@ -115,7 +117,7 @@
 {
     if (!self.appDelegate.isLogin){//未login
         [self.tableViewManagement reloadDataWithPlistName:@"RH_UserCenterlogout"] ;
-        [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
+//        [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
         self.navigationBarItem.rightBarButtonItem = nil ;
     }else{
         if (MineSettingInfo==nil){
@@ -158,12 +160,20 @@
 
 -(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
 {
+   
     RH_MineAccountCell *mineAccountCell = ConvertToClassPointer(RH_MineAccountCell, cell) ;
     if (mineAccountCell){
         mineAccountCell.delegate = self ;
     }
+    RH_MinePageLoginoutBannarCell *loginoutCell = ConvertToClassPointer(RH_MinePageLoginoutBannarCell, cell);
+    __weak RH_MePageViewController *weakSelf = self;
+    RH_LoginViewControllerEx *loginVC = [[RH_LoginViewControllerEx alloc]init];
+    if (loginoutCell) {
+        loginoutCell.block = ^(){
+            [weakSelf.navigationController pushViewController:loginVC animated:YES];
+                    };
+    }
 }
-
 -(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath
 {
     return MainScreenH - StatusBarHeight - NavigationBarHeight - TabBarHeight ;

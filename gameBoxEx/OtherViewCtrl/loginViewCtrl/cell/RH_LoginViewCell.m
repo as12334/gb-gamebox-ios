@@ -49,27 +49,27 @@
     [self.userPwdView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSFontAttributeName : self.userPwdView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
     [self.verifyCodeView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:@{NSFontAttributeName : self.verifyCodeView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
     
-    self.userNameView.layer.cornerRadius = floorf(self.userNameView.frameHeigh/2.0) ;
+    self.userNameView.layer.cornerRadius = 5.f ;
     self.userNameView.layer.borderColor = [UIColor grayColor].CGColor ;
     self.userNameView.layer.borderWidth = PixelToPoint(1.0f) ;
-    self.userPwdView.layer.cornerRadius = floorf(self.userPwdView.frameHeigh/2.0) ;
+    self.userPwdView.layer.cornerRadius = 5.f ;
     self.userPwdView.layer.borderColor = [UIColor grayColor].CGColor ;
     self.userPwdView.layer.borderWidth = PixelToPoint(1.0f) ;
-    self.verifyCodeView.layer.cornerRadius = floorf(self.verifyCodeView.frameHeigh/2.0) ;
+    self.verifyCodeView.layer.cornerRadius = 5.f ;
     self.verifyCodeView.layer.borderColor = [UIColor grayColor].CGColor ;
     self.verifyCodeView.layer.borderWidth = PixelToPoint(1.0f) ;
     
     [self.btnLogin setBackgroundColor:ColorWithNumberRGB(0xFF1766bb) forState:UIControlStateNormal] ;
     [self.btnLogin setBackgroundColor:ColorWithNumberRGBA(0x333333, 0.3f) forState:UIControlStateHighlighted] ;
     [self.btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
-    self.btnLogin.layer.cornerRadius = floorf(self.btnLogin.frameHeigh/2.0) ;
+    self.btnLogin.layer.cornerRadius = 5.f;
     
     [self.btnCreateUser setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal] ;
     [self.btnCreateUser setBackgroundColor:ColorWithNumberRGBA(0x333333, 0.3f) forState:UIControlStateHighlighted] ;
     [self.btnCreateUser setTitleColor:ColorWithNumberRGB(0xFF1766bb) forState:UIControlStateNormal] ;
     self.btnCreateUser.layer.borderColor = ColorWithNumberRGB(0xFF1766bb).CGColor ;
     self.btnCreateUser.layer.borderWidth = PixelToPoint(1.0f) ;
-    self.btnCreateUser.layer.cornerRadius = floorf(self.btnCreateUser.frameHeigh/2.0) ;
+    self.btnCreateUser.layer.cornerRadius = 5.f;
     
     self.activityIndicatorView.hidesWhenStopped = YES ;
     

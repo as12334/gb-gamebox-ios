@@ -68,7 +68,6 @@
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
     [self.contentTableView registerCellWithClass:[RH_LoginViewCell class]] ;
-
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }
