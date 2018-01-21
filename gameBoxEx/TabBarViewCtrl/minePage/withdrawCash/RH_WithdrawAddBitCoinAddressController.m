@@ -41,10 +41,26 @@
     self.button_Reset.layer.cornerRadius = 5;
     self.button_Reset.clipsToBounds = YES;
     [self.button_Reset setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
-    [self.button_Reset setTitle:@"" forState:UIControlStateNormal];
+    [self.button_Reset setTitle:@"重置" forState:UIControlStateNormal];
+    [self.button_Reset setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.button_Submit setBackgroundColor:colorWithRGB(27, 117, 217)];
     self.button_Submit.layer.cornerRadius = 5;
     self.button_Submit.clipsToBounds = YES;
+    [self.button_Submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.button_Submit setTitle:@"提交" forState:UIControlStateNormal];
+    
+}
+
+- (void)buttonResetHandler {
+//    ifRespondsSelector(self.delegate, @selector(withdrawAddBitCoinAddressResetButtonClicked:)) {
+//        [self.delegate withdrawAddBitCoinAddressResetButtonClicked:self.button_Reset];
+//    }
+}
+
+- (void)buttonSubmitHandler {
+//    ifRespondsSelector(self.delegate, @selector(withdrawAddBitCoinAddressSubmitButtonClicked:)) {
+//        [self.delegate withdrawAddBitCoinAddressResetButtonClicked:self.button_Submit];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

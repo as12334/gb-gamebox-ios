@@ -44,7 +44,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     BankcardMapModel *bankcardModel = ConvertToClassPointer(BankcardMapModel, context) ;
-    
+    self.textLabel.text = bankcardModel.mBankName;
 }
 
 @end
