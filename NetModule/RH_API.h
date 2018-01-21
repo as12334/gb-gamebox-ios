@@ -218,7 +218,7 @@
 #define RH_GP_MINEINFO_USERNAME                                @"username"
 #define RH_GP_MINEINFO_WALLETBALANCE                           @"walletBalance"
 #define RH_GP_MINEINFO_WITHDRAWAMOUNT                          @"withdrawAmount"
-#define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
+#define RH_GP_MINEINFO_LOGINTIME                               @"lastLoginTime"
 #define RH_GP_MINEINFO_ISBIT                                   @"isBit"
 #define RH_GP_MINEINFO_ISCASH                                  @"isCash"
 #define RH_GP_MINEINFO_BANKCARD                                @"bankcard"

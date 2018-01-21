@@ -29,7 +29,7 @@
                             </constraints>
                             <state key="normal" title="一键回收"/>
                             <connections>
-                                <action selector="btn_oneStepRecover:" destination="iN0-l3-epB" eventType="touchUpInside" id="LDT-Zj-wHV"/>
+                                <action selector="btn_oneStepRecover:" destination="iN0-l3-epB" eventType="touchUpInside" id="SmZ-QW-8Rn"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0E-hg-YqQ">

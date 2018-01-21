@@ -73,6 +73,7 @@
 -(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo
 {
     _mineSettingInfo = mineSettingInfo ;
+    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
 }
 
 -(NSArray<RH_BankInfoModel *> *)bankList

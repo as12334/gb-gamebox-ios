@@ -172,6 +172,7 @@
                     };
     }
 }
+
 -(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath
 {
     return MainScreenH - StatusBarHeight - NavigationBarHeight - TabBarHeight ;
