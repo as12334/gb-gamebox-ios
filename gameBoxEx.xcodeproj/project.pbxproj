@@ -2990,9 +2990,9 @@
 		A0E782751FFE5C12007BFBF3 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				A0E782761FFE5C12007BFBF3 /* RH_DomainTableCell.xib */,
-				A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */,
 				A0E782781FFE5C12007BFBF3 /* RH_DomainTableCell.h */,
+				A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */,
+				A0E782761FFE5C12007BFBF3 /* RH_DomainTableCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";

@@ -195,10 +195,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoL-cU-pbz">
-                        <rect key="frame" x="354" y="394" width="77" height="30"/>
+                        <rect key="frame" x="354" y="402" width="77" height="30"/>
                         <state key="normal" title="忘记密码？">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="forgetPasswordClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Osw-EX-MQ4"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ea-P3-nvW" customClass="CLButton">
                         <rect key="frame" x="30" y="432" width="401" height="40"/>
@@ -236,18 +239,18 @@
                     <constraint firstItem="0Ea-P3-nvW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Uw9-g3-EfK"/>
                     <constraint firstItem="1z2-y7-dFC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="VHf-s0-kJs"/>
                     <constraint firstItem="YoL-cU-pbz" firstAttribute="trailing" secondItem="0Ea-P3-nvW" secondAttribute="trailing" id="VJF-un-WPy"/>
-                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="bottom" constant="53" id="bMk-3n-IGK"/>
                     <constraint firstItem="z2o-DN-z2K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="bxP-dB-Udb"/>
                     <constraint firstItem="z2o-DN-z2K" firstAttribute="top" secondItem="0Ea-P3-nvW" secondAttribute="bottom" constant="30" id="c45-gD-Crk"/>
                     <constraint firstItem="uA6-Ep-fti" firstAttribute="trailing" secondItem="4iR-Y2-kVC" secondAttribute="trailing" id="gEd-Qf-prF"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="ktC-Ss-SIJ" secondAttribute="bottom" constant="41" id="kPF-Bv-w3z"/>
-                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="YoL-cU-pbz" secondAttribute="bottom" constant="8" id="kvP-aL-BVG"/>
+                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="YoL-cU-pbz" secondAttribute="bottom" id="kvP-aL-BVG"/>
                     <constraint firstAttribute="trailing" secondItem="0Ea-P3-nvW" secondAttribute="trailing" constant="30" id="mKQ-tZ-XeU"/>
                     <constraint firstItem="aYC-hQ-CtH" firstAttribute="trailing" secondItem="ktC-Ss-SIJ" secondAttribute="trailing" id="nAD-NO-g4e"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="njs-XF-uGa"/>
                     <constraint firstItem="uze-dM-Gi9" firstAttribute="top" secondItem="4iR-Y2-kVC" secondAttribute="bottom" constant="41" id="qg0-Ve-gxt"/>
                     <constraint firstAttribute="trailing" secondItem="z2o-DN-z2K" secondAttribute="trailing" constant="30" id="tpn-Cg-58W"/>
                     <constraint firstAttribute="trailing" secondItem="ktC-Ss-SIJ" secondAttribute="trailing" constant="30" id="uFO-kw-A0k"/>
+                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="4iR-Y2-kVC" secondAttribute="bottom" constant="134" id="wbn-5L-nyq"/>
                     <constraint firstAttribute="trailing" secondItem="uze-dM-Gi9" secondAttribute="trailing" constant="30" id="wuc-OP-TdJ"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="leading" secondItem="yZW-Kx-yPS" secondAttribute="leading" id="zHd-qq-uSc"/>
                 </constraints>
@@ -257,10 +260,16 @@
                 <outlet property="activityIndicatorView" destination="ajo-Rr-qR6" id="oAV-H5-h8f"/>
                 <outlet property="btnCreateUser" destination="z2o-DN-z2K" id="2oT-cq-yNB"/>
                 <outlet property="btnLogin" destination="0Ea-P3-nvW" id="xOc-Lq-vcm"/>
+                <outlet property="forgetPasswordBtn" destination="YoL-cU-pbz" id="XCa-XN-9ju"/>
                 <outlet property="imgVerifyCode" destination="nOF-NX-Jy1" id="0KI-dh-uXc"/>
                 <outlet property="labVerifyCode" destination="KDw-9Y-fT5" id="MXW-Ub-y3G"/>
+                <outlet property="loginTopLayoutConst" destination="wbn-5L-nyq" id="KgJ-sB-Tg8"/>
+                <outlet property="passwordNotice" destination="uA6-Ep-fti" id="lJI-Z1-lB3"/>
+                <outlet property="passwordTextfield" destination="wRv-rX-JKy" id="de3-19-gsS"/>
                 <outlet property="userNameView" destination="ktC-Ss-SIJ" id="6bE-7D-v7c"/>
                 <outlet property="userPwdView" destination="4iR-Y2-kVC" id="UeY-w8-Hhn"/>
+                <outlet property="usernameNotice" destination="aYC-hQ-CtH" id="ckU-wz-uEU"/>
+                <outlet property="usernameTextfield" destination="Nrj-z8-2wh" id="gGE-Rw-18E"/>
                 <outlet property="verifyCodeView" destination="uze-dM-Gi9" id="glX-bJ-rhE"/>
             </connections>
             <point key="canvasLocation" x="-578.5" y="-112.5"/>

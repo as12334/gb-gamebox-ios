@@ -12,7 +12,7 @@
 #import "RH_ServiceRequest.h"
 #import "RH_APPDelegate.h"
 
-@interface RH_LoginViewCell()<UITextFieldDelegate,RH_ServiceRequestDelegate>
+@interface RH_LoginViewCell()<UITextFieldDelegate,RH_ServiceRequestDelegate,UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet RH_CommonInputContainerView *userNameView;
 @property (strong, nonatomic) IBOutlet RH_CommonInputContainerView *userPwdView;
 @property (strong, nonatomic) IBOutlet RH_CommonInputContainerView *verifyCodeView;
@@ -20,11 +20,16 @@
 @property (strong, nonatomic) IBOutlet CLButton *btnCreateUser;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *loginTopLayoutConst ;
 
+@property (weak, nonatomic) IBOutlet UILabel *passwordNotice;
 
 @property (nonatomic,strong,readonly) RH_ServiceRequest *serviceRequest ;
 @property (nonatomic,strong) IBOutlet UIActivityIndicatorView *activityIndicatorView ;
 @property (nonatomic,strong) IBOutlet UILabel *labVerifyCode ;
 @property (nonatomic,strong) IBOutlet UIImageView *imgVerifyCode ;
+@property (weak, nonatomic) IBOutlet UILabel *usernameNotice;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
 
 @end
 
@@ -32,10 +37,8 @@
 @synthesize serviceRequest = _serviceRequest ;
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
-{
-    BOOL isNeedVerCode = [context boolValue] ;
-   
-    return isNeedVerCode?380.0f:260.0f ;
+{   
+    return MainScreenH;
 }
 
 - (void)awakeFromNib {
@@ -73,22 +76,39 @@
     
     self.activityIndicatorView.hidesWhenStopped = YES ;
     
+    [self.usernameNotice setHidden:YES];
+    [self.passwordNotice setHidden:YES];
+    [self.forgetPasswordBtn setHidden:YES];
+    
+    _usernameTextfield.returnKeyType = UIReturnKeyDone;
+    _usernameTextfield.delegate=self;
+    _passwordTextfield.returnKeyType = UIReturnKeyDone;
+    _passwordTextfield.delegate = self;
+    
+    
     //初始化用户
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userNameView.textField.text = [defaults stringForKey:@"account"] ;
+    
+    
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     BOOL isNeedVerCode = [context boolValue] ;
     self.verifyCodeView.hidden = !isNeedVerCode ;
-    self.loginTopLayoutConst.constant = isNeedVerCode?100.0f :30.0f ;
+    self.loginTopLayoutConst.constant = isNeedVerCode?110.0f :40.0f ;
     
     if (isNeedVerCode){
         [self startVerifyCode] ;
     }
 }
-
+#pragma  mark 点击确定按钮关闭键盘
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder]; 
+    return YES;
+}
 #pragma mark-
 -(void)startVerifyCode
 {
@@ -202,5 +222,11 @@
     }
     
     return [super endEditing:force] ;
+}
+- (IBAction)forgetPasswordClick:(id)sender {
+     [self endEditing:YES] ;
+    ifRespondsSelector(self.delegate, @selector(loginViewCellTouchForgetPasswordButton:)){
+        [self.delegate loginViewCellTouchForgetPasswordButton:self] ;
+    }
 }
 @end

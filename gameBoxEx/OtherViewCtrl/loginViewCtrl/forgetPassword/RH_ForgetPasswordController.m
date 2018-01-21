@@ -14,36 +14,19 @@
 
 @implementation RH_ForgetPasswordController
 @synthesize passwordView = _passwordView;
--(BOOL)isSubViewController
-{
-    return YES;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view addSubview:self.passwordView];
+    self.title = @"找回密码";
+    [self.contentView addSubview:self.passwordView];
 }
 -(RH_ForgetPasswordView *)passwordView
 {
     if (!_passwordView) {
         _passwordView = [RH_ForgetPasswordView createInstance];
-        _passwordView.frame = self.view.bounds;
+        _passwordView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, MainScreenH-StatusBarHeight-NavigationBarHeight);
     }
     return _passwordView;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

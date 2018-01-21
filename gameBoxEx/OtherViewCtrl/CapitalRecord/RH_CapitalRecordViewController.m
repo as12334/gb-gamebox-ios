@@ -250,9 +250,7 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         RH_CapitalInfoOverviewModel *capitalInfoOverModel = ConvertToClassPointer(RH_CapitalInfoOverviewModel, data) ;
-        
-        [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
-                            totalCount:capitalInfoOverModel.mTotalCount] ;
+        [self loadDataSuccessWithDatas:capitalInfoOverModel.mList totalCount:capitalInfoOverModel.mTotalCount] ;
     }
 }
 
