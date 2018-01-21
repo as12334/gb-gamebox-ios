@@ -18,6 +18,9 @@
 @end
 
 @implementation RH_LoginViewControllerEx
+{
+    CGFloat _contenViewFrameY;
+}
 @synthesize loginViewCell = _loginViewCell ;
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
@@ -204,7 +207,7 @@
 -(void)keyboardFrameWillChange
 {
     [UIView animateWithDuration:self.keyboardAnimationDuration animations:^{
-        if (self.keyboardEndFrame.size.height>0) {
+        if (self.keyboardEndFrame.size.height>0&&self.contentView.frameY>=0) {
             CGRect frame = self.contentView.frame;
             frame.origin.y -=self.keyboardEndFrame.size.height/2;
             self.contentView.frame = frame;
