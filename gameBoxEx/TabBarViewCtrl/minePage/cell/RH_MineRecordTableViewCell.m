@@ -100,6 +100,9 @@
         }else if ([code isEqualToString:@"btc"]){
             appDelegate.customUrl = @"/bankCard/page/addBtc.html" ;
             [self showViewController:[RH_CustomViewController viewController]] ;
+        }else if ([code isEqualToString:@"withdraw"]){
+             appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
         }
         
 //        if (code.length){
