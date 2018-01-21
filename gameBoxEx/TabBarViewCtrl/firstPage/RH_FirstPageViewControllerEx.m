@@ -112,6 +112,19 @@
 //    return _labDomain ;
 //}
 
+#pragma mark - rhAlertView
+-(RH_BasicAlertView *)rhAlertView
+{
+    if (!_rhAlertView){
+        _rhAlertView = [RH_BasicAlertView createInstance] ;
+        self.rhAlertView.alpha = 0.f;
+        
+    }
+    
+    return _rhAlertView ;
+}
+
+
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -124,16 +137,16 @@
         [self userInfoButtonItemHandle] ;
     }
     
-    if (self.rhAlertView.superview){
-        [UIView animateWithDuration:0.5 animations:^{
-            self.rhAlertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-        } completion:^(BOOL finished) {
-            if (finished) {
-                [self.rhAlertView removeFromSuperview];
-                self.rhAlertView = nil;
-            }
-        }];
-    }
+//    if (self.rhAlertView.superview){
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.rhAlertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+//        } completion:^(BOOL finished) {
+//            if (finished) {
+//                [self.rhAlertView removeFromSuperview];
+////                self.rhAlertView = nil;
+//            }
+//        }];
+//    }
 }
 
 #pragma mark-
@@ -626,20 +639,20 @@
 {
     if (indexPath.section==1){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-        if (self.rhAlertView == nil) {
-            self.rhAlertView = [[RH_BasicAlertView alloc] init];
-            [self.view addSubview:self.rhAlertView];
-            self.rhAlertView.whc_Center(0, 0).whc_Width(screenSize().width/3*2).whc_Height(200);
-            self.rhAlertView.layer.cornerRadius = 20;
-            self.rhAlertView.clipsToBounds = YES;
-            self.rhAlertView.transform = CGAffineTransformMakeScale(0, 0);
-            self.rhAlertView.alpha = 0.f;
-            [UIView animateWithDuration:0.5 animations:^{
-                self.rhAlertView.alpha = 1.0;
-                self.rhAlertView.transform = CGAffineTransformIdentity;
+        if (self.rhAlertView.superview == nil) {
+            self.rhAlertView = [RH_BasicAlertView createInstance];
+            self.rhAlertView.alpha = 0;
+            [self.contentView addSubview:self.rhAlertView];
+            self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+
+            [UIView animateWithDuration:0.3 animations:^{
+                self.rhAlertView.alpha = 1;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
+                }
             }];
         }
-        [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
     }
 }
 
