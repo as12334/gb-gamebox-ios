@@ -47,7 +47,13 @@
 {
     if (!_showAvatalURL){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showAvatalURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAvatalUrl] ;
+        if (_mAvatalUrl.length){
+            if ([[_mAvatalUrl substringToIndex:1] isEqualToString:@"/"]){
+                _showAvatalURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mAvatalUrl] ;
+            }else{
+                _showAvatalURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAvatalUrl] ;
+            }
+        }
     }
     
     return _showAvatalURL ;

@@ -325,7 +325,8 @@
 -(void)userInfoViewDidTouchOneStepRecoryButton:(RH_userInfoView*)userInfoView
 {
     [self userInfoButtonItemHandle] ;
-    [self.serviceRequest startV3OneStepRecovery] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
+    [self.serviceRequest startV3OneStepRecovery]  ;
 }
 
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView
