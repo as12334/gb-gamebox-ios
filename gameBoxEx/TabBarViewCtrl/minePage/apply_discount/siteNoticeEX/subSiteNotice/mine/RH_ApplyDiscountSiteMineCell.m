@@ -97,7 +97,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50.f;
+    return 40.f;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -222,13 +222,12 @@
                 [self loadDataSuccessWithDatas:array totalCount:i completedBlock:nil];
                 [self.siteModelArray addObject:myModel];
             }
-            [self.contentTableView reloadData];
         }
         else
         {
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
-            [self.contentTableView reloadData];
         }
+        [self.contentTableView reloadData];
     }
 }
 

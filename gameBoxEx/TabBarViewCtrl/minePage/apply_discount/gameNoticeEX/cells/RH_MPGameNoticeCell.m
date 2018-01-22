@@ -12,7 +12,10 @@
 
 @interface RH_MPGameNoticeCell()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *gamenameLabel;
 @end
 @implementation RH_MPGameNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -28,16 +31,32 @@
 //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
     return 60+size.height;
 }
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        self.backgroundColor = colorWithRGB(242, 242, 242);
+    }
+    return self;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.backDropView.layer.cornerRadius = 3.f;
+    self.backDropView.layer.borderWidth = 1.f;
+    self.backDropView.layer.borderColor =colorWithRGB(226, 226, 226).CGColor;
+    self.backDropView.layer.masksToBounds = YES;
+    self.timeLabel.textColor = colorWithRGB(200, 200, 200);
+    self.gamenameLabel.textColor = colorWithRGB(200, 200, 200);
+    self.titleLabel.textColor = colorWithRGB(51, 51, 51);
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     ListModel *model = ConvertToClassPointer(ListModel,context);
     self.titleLabel.text = model.mContext;
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd");
-//    self.timeLabel.text = model.mApiId;
+    self.gamenameLabel.text = model.mGameName;
+    
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -14,28 +14,8 @@
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RH_ApplyDiscountHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HtY-q1-svh">
-                    <rect key="frame" x="84.5" y="11.5" width="206" height="29"/>
-                    <segments>
-                        <segment title="游戏公告"/>
-                        <segment title="系统公告"/>
-                        <segment title="站点信息"/>
-                    </segments>
-                    <connections>
-                        <action selector="segmentSelectedClick:" destination="iN0-l3-epB" eventType="valueChanged" id="hdB-Nq-lcz"/>
-                    </connections>
-                </segmentedControl>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="HtY-q1-svh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Pxq-rp-kmO"/>
-                <constraint firstItem="HtY-q1-svh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jM3-KV-dmC"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="segmentedControl" destination="HtY-q1-svh" id="HSp-xE-wtW"/>
-            </connections>
             <point key="canvasLocation" x="78.5" y="60"/>
         </view>
     </objects>

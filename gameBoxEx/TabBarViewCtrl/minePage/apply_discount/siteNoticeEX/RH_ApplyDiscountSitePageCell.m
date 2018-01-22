@@ -54,18 +54,26 @@
             btn.backgroundColor = [UIColor lightGrayColor];
             [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
             btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
+            UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:btn.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+            CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+            maskLayer.frame = btn.bounds;
+            maskLayer.path = maskPath.CGPath;
+            btn.layer.mask = maskLayer;
             btn.tag  = i;
             [btn addTarget:self action:@selector(selectedChooseBtn:) forControlEvents:UIControlEventTouchUpInside];
-            [btn setBackgroundColor:[UIColor lightGrayColor]];
+            [btn setBackgroundColor:colorWithRGB(200, 200, 200)];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             if (i==0) {
-                btn.backgroundColor = [UIColor blueColor];
+                btn.backgroundColor = colorWithRGB(23, 102, 187);
                 btn.selected = YES;
                 self.chooseBtn = btn;
             }
             [self addSubview:btn];
         }
+        CLBorderView *borderView = [[CLBorderView alloc]initWithFrame:CGRectMake(10,40, self.frameWidth-20, 1)];
+        borderView.backgroundColor  = colorWithRGB(23, 102, 187);
+        [self addSubview:borderView];
     }else {
         [self updateWithContext:context];
     }
@@ -76,9 +84,9 @@
 {
     if (!button.isSelected) {
         self.chooseBtn.selected = !self.chooseBtn.selected;
-        self.chooseBtn.backgroundColor = [UIColor lightGrayColor];
+        self.chooseBtn.backgroundColor = colorWithRGB(200, 200, 200);
         button.selected = !button.selected;
-        button.backgroundColor = [UIColor blueColor];
+        button.backgroundColor = colorWithRGB(23, 102, 187);
         self.chooseBtn = button;
         self.pageView.dispalyPageIndex = button.tag;
     }
