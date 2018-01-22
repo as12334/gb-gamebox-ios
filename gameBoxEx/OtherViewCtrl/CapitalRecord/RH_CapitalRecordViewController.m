@@ -194,7 +194,12 @@
 #pragma mark --- 搜索按钮点击
 -(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
 {
-    NSLog(@"搜索");
+    [self startUpdateData] ;
+}
+#pragma mark --快选按钮点击
+-(void)capitalRecordHeaderViewTouchQuickSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
+{
+    [self startUpdateData] ;
 }
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -226,11 +231,9 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    NSDate *startDate = [[NSDate date] dateWithMoveDay:-300] ;
-    NSDate *endDate = [NSDate date] ;
-    [self.serviceRequest startV3DepositList:dateStringWithFormatter(startDate, @"yyyy-MM-dd")
-                                    EndDate:dateStringWithFormatter(endDate, @"yyyy-MM-dd")
-                                 SearchType:nil
+    [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
+                                    EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
+                                 SearchType:self.listView.typeString
                                  PageNumber:page
                                    PageSize:pageSize] ;
 }
