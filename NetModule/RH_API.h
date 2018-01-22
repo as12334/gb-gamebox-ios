@@ -748,19 +748,13 @@
 #define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"
 
 #pragma mark -V3 获取取款用户信息
-#define RH_API_NAME_GETWITHDRAWUSERINFO  @"mineOrigin/getWithDraw.html"
+#define RH_API_NAME_GETWITHDRAWUSERINFO  @"withdrawOrigin/getWithDraw.html"
 
 #pragma mark -V3 提交取款信息
-#define RH_API_NAME_SUBMITWITHDRAWINFO  @"mineOrigin/submitWithdraw.html"
+#define RH_API_NAME_SUBMITWITHDRAWINFO  @"withdrawOrigin/submitWithdraw.html"
+
 //请求参数
-#define RH_SP_SUBMITWITHDRAWINFO_NOBANK             @"noBank"
-#define RH_SP_SUBMITWITHDRAWINFO_NOBTC              @"noBtc"
-#define RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY      @"remittanceWay"
-#define RH_SP_SUBMITWITHDRAWINFO_WALLETBALANCE      @"walletBalance"
 #define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
-#define RH_SP_SUBMITWITHDRAWINFO_POUNDAGEHIDE       @"poundageHide"
-#define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWFEE        @"withdrawFee"
-#define RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW     @"actualWithdraw"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
 
 #endif /* RH_API_h */

@@ -92,7 +92,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
     [self showViewController:[RH_CustomViewController viewController] sender:nil];
-    
 }
 
 - (void)buttonConfirmHandle {
@@ -105,15 +104,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         showMessage(self.view, @"", @"输入金额错误");
         return;
     }
-    [self.serviceRequest startV3SubmitWithdrawWithNoBank:UserWithDrawInfo.mHasBank
-                                                   noBtc:0
-                                           remittanceWay:0
-                                           walletBalance:0
-                                          withdrawAmount:self.cashCell.textField.text.floatValue
-                                            poundageHide:@"¥"
-                                             withdrawFee:0.0
-                                          actualWithdraw:0.0
-                                                 gbToken:self.withDrawModel.mToken];
+    
+    [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
+                                             gbToken:self.withDrawModel.mToken] ;
 }
 
 - (void)setupInfo {

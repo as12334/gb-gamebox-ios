@@ -22,6 +22,7 @@
 
 @implementation RH_PromoContentPageCell
 @synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
+
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     self.typeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, typeModel) ;
@@ -145,7 +146,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        return [RH_PromoTableCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        return [RH_PromoTableCell heightForCellWithInfo:nil tableView:tableView
+                                                context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     }else{
         return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
     }

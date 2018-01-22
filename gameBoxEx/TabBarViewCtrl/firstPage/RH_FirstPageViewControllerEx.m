@@ -540,6 +540,10 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showAlertView(@"自动login失败", @"提示信息");
         }] ;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"数据回收失败") ;
+        }] ;
     }
 }
 

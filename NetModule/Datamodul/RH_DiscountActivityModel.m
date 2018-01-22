@@ -14,6 +14,7 @@
 @implementation RH_DiscountActivityModel
 @synthesize showLink = _showLink ;
 @synthesize showPhoto = _showPhoto ;
+@synthesize showImageSize = _showImageSize ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -24,6 +25,7 @@
     }
     return self;
 }
+
 
 ///----
 -(NSString *)showPhoto
@@ -44,6 +46,21 @@
     }
     
     return _showLink ;
+}
+
+-(CGSize)showImageSize
+{
+    if (CGSizeEqualToSize(CGSizeZero, _showImageSize)){
+        _showImageSize = CGSizeMake(426.0f,282.0f) ;
+    }
+    
+    return _showImageSize ;
+}
+
+-(void)updateImageSize:(CGSize)size
+{
+    _showImageSize = size ;
+    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DiscountActivityImageSizeChanged object:self] ;
 }
 
 @end

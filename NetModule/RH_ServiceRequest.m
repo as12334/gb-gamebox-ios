@@ -953,36 +953,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 提交取款信息
 /**
  提交取款信息
- @param noBank 是否有银行卡  N
- @param noBtc 是否有比特币   N
- @param remittanceWay 银行卡类型（1：银行卡，2：比特币）  N
- @param walletBalance 钱包金额  N
  @param withdrawAmount 取款金额  Y
- @param poundageHide 符号  N
- @param withdrawFee 手续费  N
- @param actualWithdraw 实际取款金额 Y
  @param gbToken 防重验证  Y
  */
--(void)startV3SubmitWithdrawWithNoBank:(BOOL)noBank
-                                 noBtc:(BOOL)noBtc
-                         remittanceWay:(NSInteger)remittanceWay
-                         walletBalance:(float)walletBalance
-                        withdrawAmount:(float)withdrawAmount
-                          poundageHide:(NSString *)poundageHide
-                           withdrawFee:(float)withdrawFee
-                        actualWithdraw:(float)actualWithdraw
-                               gbToken:(NSString *)gbToken
+-(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                           gbToken:(NSString *)gbToken
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:@(noBank==YES?true:false) forKey:RH_SP_SUBMITWITHDRAWINFO_NOBANK];
-    [dict setValue:@(noBtc==YES?true:false) forKey:RH_SP_SUBMITWITHDRAWINFO_NOBTC];
-    [dict setObject:@(remittanceWay) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY];
-    [dict setObject:@(walletBalance) forKey:RH_SP_SUBMITWITHDRAWINFO_WALLETBALANCE];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
-    [dict setObject:poundageHide forKey:RH_SP_SUBMITWITHDRAWINFO_POUNDAGEHIDE];
-    [dict setObject:@(withdrawFee) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWFEE];
-    [dict setObject:@(actualWithdraw) forKey:RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW];
-    [dict setObject:gbToken forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
+    [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil

@@ -18,6 +18,11 @@
 @implementation RH_PromoTableCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
+    RH_DiscountActivityModel *discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, context) ;
+    if (discountActivityModel){
+        return floor((discountActivityModel.showImageSize.height/discountActivityModel.showImageSize.width)*tableView.frameWidth) ;
+    }
+    
     return floor((282.0/426.0)*tableView.frameWidth)  ;
 }
 
@@ -37,7 +42,12 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, context) ;
-    [self.activeImageView sd_setImageWithURL:[NSURL URLWithString:self.discountActivityModel.showPhoto]] ;
+    [self.activeImageView sd_setImageWithURL:[NSURL URLWithString:self.discountActivityModel.showPhoto]
+                                   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                       if (image){
+                                           [self.discountActivityModel updateImageSize:image.size] ;
+                                       }
+                                   }] ;
 }
 
 @end
