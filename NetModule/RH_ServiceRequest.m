@@ -31,13 +31,14 @@
 #import "RH_UserGroupInfoModel.h"
 #import "RH_GameNoticeModel.h"
 #import "RH_GameNoticeDetailModel.h"
-#import "RH_AddBtcModel.h"
+#import "RH_BitCodeModel.h"
 #import "RH_SiteMessageModel.h"
 #import "RH_SiteMyMessageModel.h"
 #import "RH_DiscountActivityTypeModel.h"
 #import "RH_DiscountActivityModel.h"
 #import "RH_SendMessageVerityModel.h"
 #import "RH_SiteMyMessageDetailModel.h"
+#import "RH_WithDrawModel.h"
 
 //----------------------------------------------------------
 //访问权限
@@ -552,8 +553,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 获取系统公告
--(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
-                                endTime:(NSDate *)endTime
+-(void)startV3LoadSystemNoticeStartTime:(NSString *)startTime
+                                endTime:(NSString *)endTime
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
@@ -589,8 +590,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark -  游戏公告
--(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
-                              endTime:(NSDate *)endTime
+-(void)startV3LoadGameNoticeStartTime:(NSString *)startTime
+                              endTime:(NSString *)endTime
                            pageNumber:(NSInteger)pageNumber
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId
@@ -680,18 +681,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - V3 添加/保存比特币
--(void)startV3SaveAndAddBtcWithBankcardNumber:(NSString *)bankcardNumber
+-(void)startV3AddBtcWithNumber:(NSString *)bitNumber
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:bankcardNumber forKey:RH_SP_ADDBTC_BANKCARDNUMBER];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:dict
+                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:bitNumber?:@""}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SaveAndAddBtc
+                       serviceType:ServiceRequestTypeV3AddBitCoin
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -1288,9 +1287,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
         
     }else if (type == ServiceRequestTypeTestUrl){
-        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
-        NSString *tmpResult = [tmpData mj_JSONString] ;
-        NSLog(@"%@",tmpResult) ;
+//        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+//        NSString *tmpResult = [tmpData mj_JSONString] ;
     }else if (type == ServiceRequestTypeAPIRetrive){ //游戏 回收api
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1304,6 +1302,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
+    
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1313,7 +1312,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
         }
     }
-
+ 
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
+        (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
+        if (response.statusCode==302){
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",nil);
+        }
+    }
+    
     if (error) {
         *error = tempError;
     }
@@ -1391,8 +1397,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 NSInteger total = [[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
                                      dictionaryValueForKey:@"statisticsData"]  integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT]   ;
                 
+                NSDictionary *statisticsDataDict = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] ;
                 resultSendData = @{RH_GP_BETTINGLIST_LIST:tmpArray?:@[],
-                                   RH_GP_BETTINGLIST_TOTALCOUNT:@(total)
+                                   RH_GP_BETTINGLIST_TOTALCOUNT:@(total),
+                                   RH_GP_BETTINGLIST_STATISTICSDATA:statisticsDataDict?:@{}
                                    } ;
             }
                 break ;
@@ -1404,6 +1412,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeV3UserSafeInfo:
+            {
+                resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                RH_UserSafetyCodeModel *userSafetyCodeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, resultSendData) ;
+                if (userSafetyCodeModel){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:userSafetyCodeModel] ;
+                }
+            }
+                break;
+                
             case ServiceRequestTypeV3UpdateSafePassword:
             {
                 resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1465,6 +1484,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+                
             case ServiceRequestTypeV3SystemNoticeDetail:
             {
                 resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1486,17 +1506,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_GameNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
+                
             case ServiceRequestTypeV3OneStepRecory:
             {
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
             }
                 break;
                 
-            case ServiceRequestTypeV3SaveAndAddBtc:
+            case ServiceRequestTypeV3AddBitCoin:
             {
-                resultSendData = [[RH_AddBtcModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                resultSendData = [[RH_BitCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager.mineSettingInfo updateBitCode:ConvertToClassPointer(RH_BitCodeModel, resultSendData)] ;
+                }
             }
                 break;
+                
             case ServiceRequestTypeV3SiteMessage:
             {
                 NSArray *tmpArray = [RH_SiteMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
@@ -1534,16 +1561,54 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
+                case ServiceRequestTypeV3AddApplyDiscounts:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                
+                break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {
                 resultSendData =[RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
-                case ServiceRequestTypeV3MyMessageMyMessageReadYes:
+            
+            case ServiceRequestTypeV3MyMessageMyMessageReadYes:
             {
                 
             }
                 break;
+             
+            case ServiceRequestTypeV3GameLink:
+            {
+                resultSendData =[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserLoginOut:
+            {
+                [self.appDelegate updateLoginStatus:NO] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3GetWithDrawInfo:
+            {
+                resultSendData = [[RH_WithDrawModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            
+           case ServiceRequestTypeV3AddBankCard:
+            {
+                resultSendData = [[RH_BankCardModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager.mineSettingInfo updateBankCard:ConvertToClassPointer(RH_BankCardModel, resultSendData)] ;
+                }
+                
+            }
+                break ;
+                
             default:
                 resultSendData = dataObject ;
                 break;
@@ -1562,7 +1627,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break;
-                
+            
             default:
                 break;
         }

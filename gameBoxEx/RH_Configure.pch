@@ -98,7 +98,6 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
-
 #elif _7cxt //百发彩票
 
 #define CODE    @"7cxt"

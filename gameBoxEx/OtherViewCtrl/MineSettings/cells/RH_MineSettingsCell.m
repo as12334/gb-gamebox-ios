@@ -8,27 +8,14 @@
 
 #import "RH_MineSettingsCell.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_MineSettingsCell()
-
 @property (nonatomic, strong) UISwitch *rightSwitch;
-
+@property (nonatomic,strong) NSDictionary *cellDict ;
 @end
 
 @implementation RH_MineSettingsCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (UISwitch *)rightSwitch {
-    if (_rightSwitch == nil) {
-        _rightSwitch = [[UISwitch alloc] init];
-        
-    }
-    return _rightSwitch;
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -49,9 +36,38 @@
     return self;
 }
 
-- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
-    
+- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    self.cellDict = info ;
     self.textLabel.text = info[@"title"];
+    self.rightSwitch.on = [context boolValue] ;
+}
+
+#pragma mark -
+- (UISwitch *)rightSwitch {
+    if (_rightSwitch == nil) {
+        _rightSwitch = [[UISwitch alloc] init];
+        [_rightSwitch addTarget:self action:@selector(rightSwitchHandle)
+               forControlEvents:UIControlEventValueChanged] ;
+        
+    }
+    return _rightSwitch;
+}
+
+-(void)rightSwitchHandle
+{
+    switch ([self.cellDict integerValueForKey:@"id"]) {
+        case 0: ////声音
+            [[RH_UserInfoManager shareUserManager] updateVoickSwitchFlag:self.rightSwitch.isOn] ;
+            break;
+            
+        case 1: ////锁屏
+            [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:self.rightSwitch.isOn] ;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

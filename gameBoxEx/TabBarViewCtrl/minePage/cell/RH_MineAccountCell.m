@@ -44,12 +44,12 @@
 
 -(IBAction)btn_recharge:(id)sender //充值
 {
-//    RH_LinkInfoModel *linkInfoModel = [MineGroupInfo getLinkInfoWithCode:@"deposit"] ;
-//    if (linkInfoModel){
-//        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-//        appDelegate.customUrl = linkInfoModel.targetLink ;
-//        [self showViewController:[RH_CustomViewController viewController]] ;
-//    }
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    if (!appDelegate.isLogin){
+        showAlertView(@"提示信息", @"该操作需要用户登入");
+        return  ;
+    }
+    
     ifRespondsSelector(self.delegate, @selector(mineAccountCellTouchRchargeButton:)){
         [self.delegate mineAccountCellTouchRchargeButton:self] ;
     }
@@ -57,6 +57,12 @@
 
 -(IBAction)btn_withDraw:(id)sender ////提现
 {
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    if (!appDelegate.isLogin){
+        showAlertView(@"提示信息", @"该操作需要用户登入");
+        return  ;
+    }
+    
     ifRespondsSelector(self.delegate, @selector(mineAccountCellTouchWithDrawButton:)){
         [self.delegate mineAccountCellTouchWithDrawButton:self] ;
     }

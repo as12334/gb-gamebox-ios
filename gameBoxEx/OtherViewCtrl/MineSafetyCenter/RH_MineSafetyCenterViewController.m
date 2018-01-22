@@ -148,31 +148,15 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     return self.loadingIndicateTableViewCell ;
 }
 
-- (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
-
-   
-    if (indexPath.row ==0) {
-        RH_ModifyPasswordController *vc = [[RH_ModifyPasswordController alloc]init];
-        [self showViewController:vc sender:nil];
-    }
-    if (indexPath.row == 1) {
-        RH_ModifySafetyPasswordController *vc = [[RH_ModifySafetyPasswordController alloc] init];
-        [self showViewController:vc sender:nil];
+- (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSDictionary *dictInfo = [self.tableViewManagement cellExtraInfo:indexPath] ;
+    UIViewController *targetViewCtrl = [dictInfo targetViewController] ;
+    if (targetViewCtrl){
+        [self showViewController:targetViewCtrl sender:self] ;
     }
     
-
-    if (indexPath.item ==2) {
-        NSDictionary *cellInfo = [tableViewManagement cellExtraInfo:indexPath] ;
-        UIViewController *targetViewCtrl = [cellInfo targetViewController] ;
-        if (targetViewCtrl){
-            [self showViewController:targetViewCtrl sender:self] ;
-        }
-    }
-
-    if (indexPath.row == 3) {
-        RH_BankCardController *vc = [[RH_BankCardController alloc] init];
-        [self showViewController:vc sender:nil];
-    }
     return YES;
 }
 @end

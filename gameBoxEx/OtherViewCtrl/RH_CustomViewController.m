@@ -12,6 +12,7 @@
 #import "RH_MainNavigationController.h"
 #import "RH_FirstPageViewController.h"
 #import "RH_MainTabBarController.h"
+#import "RH_LotteryInfoModel.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
@@ -35,22 +36,39 @@
 {
     [super viewDidLoad] ;
     self.navigationItem.titleView = nil ;
-    [self setupURL] ;
-    [self.contentView addSubview:self.gameBgImage];
-    [self.contentView bringSubviewToFront:self.gameBgImage] ;
+    [self.view addSubview:self.gameBgImage];
+    [self.view bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
     [self.gameBgImage setUserInteractionEnabled:YES];//开启图片控件的用户交互
     [self.gameBgImage addGestureRecognizer:pan];
-    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.contentView, -0.0f) ;
-    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.contentView, -60.0f) ;
+    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.view, -0.0f) ;
+    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
+    
+    if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
+        RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
+        if (lotteryInfoModel.showGameLink){ //已获取的请求链接
+            self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+            [self setupURL] ;
+        }else{
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+            [self.serviceRequest startv3GetGamesLink:lotteryInfoModel.mApiID
+                                           ApiTypeID:lotteryInfoModel.mApiTypeID
+                                             GamesID:lotteryInfoModel.mGameID
+                                           GamesCode:lotteryInfoModel.mCode] ;
+        }
+    }else{
+        [self setupURL] ;
+    }
 }
+
+
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {
     CGPoint point=[pan translationInView:self.view];
-    NSLog(@"%f,%f",point.x,point.y);
+//    NSLog(@"%f,%f",point.x,point.y);
     pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
-    [pan setTranslation:CGPointMake(0, 0) inView:self.contentView];
+    [pan setTranslation:CGPointMake(0, 0) inView:self.view];
 }
 
 -(void)setupURL
@@ -140,6 +158,13 @@
     return NO ;
 }
 
+#pragma mark -
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView {
+    if (self.webURL.absoluteString.length){
+        [self reloadWebView];
+    }
+}
+
 #pragma mark-
 -(void)setupJSCallBackOC:(JSContext *)jsContext
 {
@@ -219,6 +244,58 @@
         }) ;
         
     };
+}
+
+#pragma mark- service request
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+        if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+            [self.appDelegate updateLoginStatus:true] ;
+            [self performSelectorOnMainThread:@selector(reloadWebView) withObject:nil waitUntilDone:YES] ;
+        }else{
+            [self.appDelegate updateLoginStatus:false] ;
+        }
+    }else if (type==ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if ([data boolValue]){
+                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                [self.appDelegate updateLoginStatus:true] ;
+                [self backBarButtonItemHandle] ;
+            }else{
+                showAlertView(@"试玩登入失败", @"提示信息");
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }] ;
+    }else if (type==ServiceRequestTypeV3GameLink){
+        [self.contentLoadingIndicateView hiddenView] ;
+        NSDictionary *gameLinkDict = ConvertToClassPointer(NSDictionary, data) ;
+        RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
+        [lotteryInfoModel updateShowGameLink:gameLinkDict] ;
+        NSString *gameLink = lotteryInfoModel.showGameLink ;
+        NSString *gameMessage = lotteryInfoModel.mGameMsg ;
+        if (gameLink.length){
+            self.appDelegate.customUrl = gameLink ;
+            [self setupURL] ;
+        }else{
+            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:gameMessage detailText:@"温馨提示"] ;
+        }
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self.appDelegate updateLoginStatus:false] ;
+    }else if (type==ServiceRequestTypeDemoLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"提示信息");
+            [self.appDelegate updateLoginStatus:false] ;
+        }] ;
+    }else if (type==ServiceRequestTypeV3GameLink){
+        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
 }
 
 #pragma mark-

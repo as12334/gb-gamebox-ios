@@ -218,7 +218,7 @@
 #define RH_GP_MINEINFO_USERNAME                                @"username"
 #define RH_GP_MINEINFO_WALLETBALANCE                           @"walletBalance"
 #define RH_GP_MINEINFO_WITHDRAWAMOUNT                          @"withdrawAmount"
-#define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
+#define RH_GP_MINEINFO_LOGINTIME                               @"lastLoginTime"
 #define RH_GP_MINEINFO_ISBIT                                   @"isBit"
 #define RH_GP_MINEINFO_ISCASH                                  @"isCash"
 #define RH_GP_MINEINFO_BANKCARD                                @"bankcard"
@@ -339,6 +339,7 @@
 #define RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTITLE      @"advisoryTitle"
 #define RH_GP_SITEMESSAGE_MYMESSAGE_ID                 @"id"
 #define RH_GP_SITEMESSAGE_MYMESSAGE_REPLYTITLE         @"replyTitle"
+#define RH_GP_SITEMESSAGE_MYMESSAGE_READ               @"read"
 
 #pragma mark - V3 优惠活动Tabbar2 活动模型
 #define RH_GP_DISCOUNTACTIVITY_ID                      @"id"
@@ -356,21 +357,16 @@
 
 #pragma mark - V3 发送消息验证接口 模型
 #define RH_GP_SENDMESSGAVERITY_ISOPENCAPTCHA          @"isOpenCaptcha"
-#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPELIST       @"advisoryTypeList"
 #define RH_GP_SENDMESSGAVERITY_CAPTCHA_VALUE          @"captcha_value"
-#define RH_GP_SENDMESSGAVERITY_SUGGEST                @"suggest"
-#define RH_GP_SENDMESSGAVERITY_FINANCEPROBLEM         @"financeProblem"
-#define RH_GP_SENDMESSGAVERITY_OFFERAPPLICATION       @"offerApplication"
-#define RH_GP_SENDMESSGAVERITY_OTHERPROBLEM           @"otherProblem"
-#define RH_GP_SENDMESSGAVERITY_MODULE                 @"module"
-#define RH_GP_SENDMESSGAVERITY_REMARK                 @"remark"
-#define RH_GP_SENDMESSGAVERITY_ACTIVE                 @"active"
-#define RH_GP_SENDMESSGAVERITY_ID                     @"id"
-#define RH_GP_SENDMESSGAVERITY_DICTCODE               @"dictCode"
-#define RH_GP_SENDMESSGAVERITY_TRANSLATED             @"translated"
-#define RH_GP_SENDMESSGAVERITY_ORDERNUM               @"orderNum"
-#define RH_GP_SENDMESSGAVERITY_DICTTYPE               @"dictType"
-#define RH_GP_SENDMESSGAVERITY_PARENTCODE             @"parentCode"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYTYPE           @"advisoryType"
+#define RH_GP_SENDMESSGAVERITY_ADVISORYNAME           @"advisoryName"
+
+#pragma mark -V3 发送消息返回参数
+#define RH_GP_SENDMESSAGESUCCEED_MSG               @"msg"
+#define RH_GP_SENDMESSAGESUCCEED_STATE             @"statue"
+#define RH_GP_SENDMESSAGESUCCEED_TOKEN             @"token"
+
 
 #pragma mark - V3 我的消息详情  模型
 #define RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT    @"advisoryContent"
@@ -380,6 +376,38 @@
 #define RH_GP_MYMESSAGEDETAIL_REPLYTITLE         @"replyTitle"
 #define RH_GP_MYMESSAGEDETAIL_QUESTIONTYPE       @"replyContent"
 #define RH_GP_MYMESSAGEDETAIL_REPLYCONTENT       @"questionType"
+
+#pragma mark - V3 取款信息  模型
+#define RH_GP_WITHDRAW_AUDITLOGURL                    @"auditLogUrl"
+#define RH_GP_WITHDRAW_AUDITMAP                       @"auditMap"
+#define RH_GP_WITHDRAW_BANKCARDMAP                    @"bankcardMap"
+#define RH_GP_WITHDRAW_CURRENCYSIGN                    @"currencySign"
+#define RH_GP_WITHDRAW_HASBANK                    @"hasBank"
+#define RH_GP_WITHDRAW_ISBIT                    @"isBit"
+#define RH_GP_WITHDRAW_ISCASH                    @"isCash"
+#define RH_GP_WITHDRAW_TOKEN                    @"token"
+#define RH_GP_WITHDRAW_TOTALBALANCE                    @"totalBalance"
+
+#pragma mark - V3 取款信息-AuditMap模型
+#define RH_GP_WITHDRAWAUDITMAP_ACTUALWITHDRAW                @"actualWithdraw"
+#define RH_GP_WITHDRAWAUDITMAP_ADMINISTRATIVEFEE             @"administrativeFee"
+#define RH_GP_WITHDRAWAUDITMAP_COUNTERFEE                    @"counterFee"
+#define RH_GP_WITHDRAWAUDITMAP_DEDUCTFAVORABLE               @"deductFavorable"
+#define RH_GP_WITHDRAWAUDITMAP_RECORDLIST                    @"recordList"
+#define RH_GP_WITHDRAWAUDITMAP_TRANSACTIONNO                 @"transactionNo"
+#define RH_GP_WITHDRAWAUDITMAP_WITHDRAWAMOUNT                @"withdrawAmount"
+#define RH_GP_WITHDRAWAUDITMAP_WITHDRAWFEEM                  @"withdrawFeeMoney"
+
+#pragma mark - V3 取款信息-Bankcard模型
+#define RH_GP_WITHDRAWBANKCARD_ID               @"id"
+#define RH_GP_WITHDRAWBANKCARD_BANKDEPOSIT               @"bankDeposit"
+#define RH_GP_WITHDRAWBANKCARD_BANKNAME                   @"bankName"
+#define RH_GP_WITHDRAWBANKCARD_BANKCARDMASTERNAME                  @"bankcardMasterName"
+#define RH_GP_WITHDRAWBANKCARD_BANKCARDNUMBER                   @"bankcardNumber"
+#define RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME                   @"customBankName"
+#define RH_GP_WITHDRAWBANKCARD_TYPE                             @"type"
+#define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
+
 
 #pragma mark -
 #pragma mark - 回收接口
@@ -471,6 +499,10 @@
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
 #define RH_GP_BETTINGLIST_TOTALSINGLEAMOUN                  @"singleAmount"
 #define RH_GP_BETTINGLIST_TOTALPROFIT                       @"profit"
+#define RH_GP_BETTINGLIST_STATISTICSDATA                   @"statisticsData"
+#define RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE          @"effective"
+#define RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT            @"profit"
+
 
 #pragma mark -v3    投注记录明细
 //api路径
@@ -493,6 +525,11 @@
 #define RH_GP_DEPOSITLIST_TRANSFERSUM            @"transferSum"
 #define RH_GP_DEPOSITLIST_WITHDRAWSUM            @"withdrawSum"
 #define RH_GP_DEPOSITLIST_TOTALCOUNT            @"totalCount"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP            @"sumPlayerMap"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_FAVORABLE            @"favorable"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_REKEBACK            @"rakeback"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_RECHARGE            @"recharge"
+#define RH_GP_DEPOSITLIST_SUMPLAYERMAP_WITHDRAW            @"withdraw"
 
 /**
     资金记录下拉列表
@@ -546,12 +583,12 @@
 #define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
 
 #pragma mark - V3 添加银行卡
-#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/addCard.html"
+#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/submitBankCard.html"
 //请求参数
-#define RH_SP_BANKCARDMASTERNAME  @"bankcardMasterName"
-#define RH_SP_BANKNAME        @"bankName"
-#define RH_SP_BANKCARDNUMBER   @"bankcardNumber"
-#define RH_SP_BANKDEPOSIT  @"bankDeposit"
+#define RH_SP_BANKCARDMASTERNAME        @"result.bankcardMasterName"
+#define RH_SP_BANKNAME                  @"result.bankName"
+#define RH_SP_BANKCARDNUMBER            @"result.bankcardNumber"
+#define RH_SP_BANKDEPOSIT               @"result.bankDeposit"
 
 //返回参数-无
 
@@ -615,9 +652,10 @@
 //请求参数  无
 
 #pragma mark - V3 添加比特币
-#define RH_API_NAME_ADDBTC   @"mineOrigin/addBtc.html"
+#define RH_API_NAME_ADDBTC   @"mineOrigin/submitBtc.html"
 //请求参数
 #define RH_SP_ADDBTC_BANKCARDNUMBER   @"bankcardNumber"
+//返回bit 模型
 
 #pragma mark - V3 站点信息 系统信息列表
 #define RH_API_NAME_SITEMESSAGE   @"mineOrigin/getSiteSysNotice.html"
@@ -701,6 +739,10 @@
 #define RH_SP_GAMESLINK_APITYPEID              @"apiTypeId"
 #define RH_SP_GAMESLINK_GAMEID                @"gameId"
 #define RH_SP_GAMESLINK_GAMECODE                @"gameCode"
+//返回参数
+#define RH_GP_GAMESLINK_LINKURL                 @"gameLink"
+#define RH_GP_GAMESLINK_MESSAGE                 @"gameMsg"
+
 
 #pragma mark - V3 退出登录
 #define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"

@@ -11,7 +11,7 @@
 #import "coreLib.h"
 #import "RH_HomePageModel.h"
 
-#define HomeCategoryCellHeight                    80.0f
+#define HomeCategoryCellHeight                    60.0f
 #define HomeCategoryCellWidth                     floorf((MainScreenW-20)/5.0)
 
 @interface RH_HomeCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>

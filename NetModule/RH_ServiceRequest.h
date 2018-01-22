@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GameNoticeDetail     , //游戏公告详情
     ServiceRequestTypeV3OneStepRecory      , //一键回收
     ServiceRequestTypeV3BankCardInfo        , //用户银行卡信息
-    ServiceRequestTypeV3SaveAndAddBtc      ,  //添加/保存比特币
+    ServiceRequestTypeV3AddBitCoin      ,  //添加/保存比特币
     ServiceRequestTypeV3SiteMessage       ,  //站点信息 系统信息
     ServiceRequestTypeV3SiteMessageDetail  ,  //站点信息 系统信息详情
     ServiceRequestTypeV3SystemMessageYes     ,  //系统信息标记为已读
@@ -227,8 +227,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  @param pageNumber 第几页
  @param pageSize 一页展示多少条默认20
  */
--(void)startV3LoadSystemNoticeStartTime:(NSDate *)startTime
-                                endTime:(NSDate *)endTime
+-(void)startV3LoadSystemNoticeStartTime:(NSString *)startTime
+                                endTime:(NSString *)endTime
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize;
 
@@ -251,8 +251,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  @param pageSize 一页展示多少条默认20
  @param apiId 游戏类型
  */
--(void)startV3LoadGameNoticeStartTime:(NSDate *)startTime
-                              endTime:(NSDate *)endTime
+-(void)startV3LoadGameNoticeStartTime:(NSString *)startTime
+                              endTime:(NSString *)endTime
                            pageNumber:(NSInteger)pageNumber
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId;
@@ -275,8 +275,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 //请求参数  无
 -(void)startV3OneStepRecovery;
 
-#pragma mark - V3 添加/保存比特币
--(void)startV3SaveAndAddBtcWithBankcardNumber:(NSString *)bankcardNumber;
+#pragma mark - V3 添加比特币
+-(void)startV3AddBtcWithNumber:(NSString *)bitNumber;
 
 #pragma mark - 站点信息 - 系统消息
 -(void)startV3LoadSystemMessageWithpageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;

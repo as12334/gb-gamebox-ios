@@ -13,7 +13,8 @@
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
 
-#define  key_screenlockFlag                             @"key_screenlockFlag"
+#define  key_voiceSwitchFlag                             @"key_voiceSwitchFlag"
+#define  key_screenlockFlag                              @"key_screenlockFlag"
 #define  key_screenlockPassword                          @"key_screenlockPassword"
 
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
@@ -27,6 +28,7 @@
 @synthesize userSafetyInfo = _userSafetyInfo ;
 @synthesize mineSettingInfo = _mineSettingInfo ;
 @synthesize bankList = _bankList ;
+@synthesize userWithDrawInfo = _userWithDrawInfo ;
 
 +(instancetype)shareUserManager
 {
@@ -71,6 +73,7 @@
 -(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo
 {
     _mineSettingInfo = mineSettingInfo ;
+    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
 }
 
 -(NSArray<RH_BankInfoModel *> *)bankList
@@ -89,7 +92,42 @@
     return appDelegate.isLogin ;
 }
 
+-(RH_WithDrawModel *)userWithDrawInfo
+{
+    return _userWithDrawInfo ;
+}
+
+-(void)setUserWithDrawInfo:(RH_WithDrawModel *)userWithDrawInfo
+{
+    _userWithDrawInfo = userWithDrawInfo ;
+}
+
+#pragma mark- 通过bank code 取bank name
+-(NSString*)bankNameWithCode:(NSString*)bankCode
+{
+    for (RH_BankInfoModel *bankInfo in _bankList) {
+        if ([bankInfo.mBankCode isEqualToString:bankCode]){
+            return bankInfo.mBankName ;
+        }
+    }
+    
+    return nil ;
+}
+
 #pragma mark -
+-(BOOL)isVoiceSwitch
+{
+    NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_voiceSwitchFlag expectType:[NSString class]] ;
+    return [bFlag boolValue] ;
+}
+
+-(void)updateVoickSwitchFlag:(BOOL)bSwitch
+{
+    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:bSwitch?@"1":@"0"
+                                                                            forKey:key_voiceSwitchFlag
+                                                                             async:YES] ;
+}
+
 -(BOOL)isScreenLock
 {
     NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockFlag expectType:[NSString class]] ;

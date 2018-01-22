@@ -10,4 +10,5 @@
 #import "CLBorderView.h"
 
 @interface RH_BettingTableHeaderView : CLBorderView
+-(void)updateUIInfoWithTotalNumber:(NSInteger)totalNumber SigleAmount:(CGFloat)single ProfitAmount:(CGFloat)profitAmount ;
 @end

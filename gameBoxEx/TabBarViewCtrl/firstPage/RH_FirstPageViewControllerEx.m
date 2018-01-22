@@ -16,7 +16,6 @@
 #import "RH_HomeChildCategoryCell.h"
 #import "RH_HomeCategoryItemsCell.h"
 #import "RH_HomePageModel.h"
-#import "RH_V3SimpleWebViewController.h"
 #import "RH_ActivithyView.h"
 #import "RH_API.h"
 #import "RH_BasicAlertView.h"
@@ -113,6 +112,19 @@
 //    return _labDomain ;
 //}
 
+#pragma mark - rhAlertView
+-(RH_BasicAlertView *)rhAlertView
+{
+    if (!_rhAlertView){
+        _rhAlertView = [RH_BasicAlertView createInstance] ;
+        self.rhAlertView.alpha = 0.f;
+        
+    }
+    
+    return _rhAlertView ;
+}
+
+
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -125,16 +137,16 @@
         [self userInfoButtonItemHandle] ;
     }
     
-    if (self.rhAlertView.superview){
-        [UIView animateWithDuration:0.5 animations:^{
-            self.rhAlertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-        } completion:^(BOOL finished) {
-            if (finished) {
-                [self.rhAlertView removeFromSuperview];
-                self.rhAlertView = nil;
-            }
-        }];
-    }
+//    if (self.rhAlertView.superview){
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.rhAlertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+//        } completion:^(BOOL finished) {
+//            if (finished) {
+//                [self.rhAlertView removeFromSuperview];
+////                self.rhAlertView = nil;
+//            }
+//        }];
+//    }
 }
 
 #pragma mark-
@@ -252,35 +264,33 @@
                 [self showViewController:[RH_LotteryGameListViewController viewControllerWithContext:lotteryAPIInfoModel]
                                   sender:self] ;
                 return ;
-            }else if (lotteryAPIInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
+            }else if (lotteryAPIInfoModel.mAutoPay){//免转
+                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
                 return ;
-            }else if (lotteryAPIInfoModel.mGameMsg.length){
-                showAlertView(@"提示信息",lotteryAPIInfoModel.mGameMsg) ;
-                return ;
-            }else if ([self.serviceRequest isRequesting]){
-                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
-                return ;
-            }else{
-                showAlertView(@"提示信息",@"游戏维护中") ;
-                return ;
+            }else{ //非免转 ---跳到额度转换里 自已转钱入游戏 。
+                if (lotteryAPIInfoModel.mGameLink.length){
+                    self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                    return ;
+                }else{
+                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    return ;
+                }
             }
         }else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]]){
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, cellItemModel) ;
-            if (lotteryInfoModel.mGameLink.length){
-                self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+            if (lotteryInfoModel.mAutoPay){ //免转
+                [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                 return ;
-            }else if (lotteryInfoModel.mGameMsg.length){
-                showAlertView(@"提示信息",lotteryInfoModel.mGameMsg) ;
-                return ;
-            }else if ([self.serviceRequest isRequesting]){
-                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
-                return ;
-            }else{
-                showAlertView(@"提示信息",@"游戏维护中") ;
-                return ;
+            }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
+                if (lotteryInfoModel.mGameLink.length){
+                    self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                    return ;
+                }else{
+                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    return ;
+                }
             }
         }
     }else{
@@ -329,6 +339,7 @@
                                          activithyViewHeigh
         ) ;
         _activityView.delegate = self ;
+//        _activityView.whc_RightSpace(15).whc_BottomSpace(150).whc_Width(100).whc_Height(100);
     }
     
     return _activityView ;
@@ -424,6 +435,7 @@
     
     self.activityView.alpha = 0.0 ;
     [self.view addSubview:self.activityView] ;
+    self.activityView.whc_RightSpace(15).whc_BottomSpace(50).whc_Width(100).whc_Height(100);
     [UIView animateWithDuration:1.0f animations:^{
         self.activityView.activityModel = activityModel ;
     } completion:^(BOOL finished) {
@@ -477,6 +489,7 @@
         
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
+            
         }else{
             [self activityViewHide] ;
         }
@@ -508,6 +521,10 @@
     else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+        }] ;
     }
 }
 
@@ -626,27 +643,30 @@
 {
     if (indexPath.section==1){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-        if (self.rhAlertView == nil) {
-            self.rhAlertView = [[RH_BasicAlertView alloc] init];
-            [self.view addSubview:self.rhAlertView];
-            self.rhAlertView.whc_Center(0, 0).whc_Width(screenSize().width/3*2).whc_Height(200);
-            self.rhAlertView.layer.cornerRadius = 20;
-            self.rhAlertView.clipsToBounds = YES;
-            self.rhAlertView.transform = CGAffineTransformMakeScale(0, 0);
-            self.rhAlertView.alpha = 0.f;
-            [UIView animateWithDuration:0.5 animations:^{
-                self.rhAlertView.alpha = 1.0;
-                self.rhAlertView.transform = CGAffineTransformIdentity;
+        if (self.rhAlertView.superview == nil) {
+            self.rhAlertView = [RH_BasicAlertView createInstance];
+            self.rhAlertView.alpha = 0;
+            [self.contentView addSubview:self.rhAlertView];
+            self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+
+            [UIView animateWithDuration:0.3 animations:^{
+                self.rhAlertView.alpha = 1;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
+                }
             }];
         }
-        [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
     }
 }
 
 #pragma mark- Banner Cells Delegate
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
-    [self showViewController:[RH_V3SimpleWebViewController viewControllerWithContext:bannerModel.contentURL] sender:self] ;
+    if (bannerModel.contentURL.length){
+        self.appDelegate.customUrl = bannerModel.contentURL ;
+        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    }
 }
 
 @end

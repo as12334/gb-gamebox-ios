@@ -26,6 +26,15 @@
     // Do any additional setup after loading the view.
     [self setupUI];
     self.title = @"设置解锁密码";
+    //设置界面指示图片
+    UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake((MainScreenW-100)/2, 80, 100, 100)];
+    imgV.image = [UIImage imageNamed:@"gesturelLock_error"];
+    [self.view addSubview:imgV];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-150)/2, 190, 150, 20)];
+    label.text = @"请滑动设置新密码";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
     isFirst = YES;
 }
 -(void)setupUI{

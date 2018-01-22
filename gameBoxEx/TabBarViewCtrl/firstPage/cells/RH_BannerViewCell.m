@@ -23,7 +23,7 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return floorf(280.0*tableView.frameWidth/750.0) ;
+    return 140;
 }
 
 - (void)awakeFromNib

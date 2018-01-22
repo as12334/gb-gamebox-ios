@@ -8,6 +8,13 @@
 
 #import "CLTableViewCell.h"
 
+@class RH_WithdrawMoneyLowCell ;
+@protocol WithdrawMoneyLowCellDelegate
+@optional
+-(void)withdrawMoneyLowCellDidTouchQuickButton:(RH_WithdrawMoneyLowCell*)withdrawLowCell ;
+@end
+
 @interface RH_WithdrawMoneyLowCell : CLTableViewCell
+@property(nonatomic,weak) id<WithdrawMoneyLowCellDelegate> delegate ;
 
 @end

@@ -14,6 +14,8 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalRecordDetailsController.h"
 #import "RH_CapitalPulldownListView.h"
+#import "RH_API.h"
+
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
@@ -52,7 +54,6 @@
     [super viewDidLoad];
     self.title =@"资金记录";
     [self setupUI] ;
-
 }
 
 
@@ -251,6 +252,13 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         RH_CapitalInfoOverviewModel *capitalInfoOverModel = ConvertToClassPointer(RH_CapitalInfoOverviewModel, data) ;
+        [self.capitalRecordHeaderView updateUIInfoWithDraw:capitalInfoOverModel.mWithdrawSum
+                                               TransferSum:capitalInfoOverModel.mTransferSum] ;
+        
+        [self.capitalBottomView updateUIInfoWithRechargeSum:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_RECHARGE]
+                                                WithDrawSum:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_WITHDRAW]
+                                               FavorableSum:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_FAVORABLE]
+                                                   Rakeback:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_REKEBACK]] ;
         
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;

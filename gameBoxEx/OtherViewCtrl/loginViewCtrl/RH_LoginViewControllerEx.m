@@ -11,13 +11,15 @@
 #import "RH_APPDelegate.h"
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
-
+#import "RH_ForgetPasswordController.h"
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
+@property (nonatomic,assign)CGRect frame;
 @end
 
 @implementation RH_LoginViewControllerEx
+
 @synthesize loginViewCell = _loginViewCell ;
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
@@ -52,14 +54,13 @@
     
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = self.backButtonItem ;
     self.title = @"登入" ;
-    
     self.needObserverTapGesture = YES ;
+    self.needObserverKeyboard = YES ;
     [self setupUI] ;
 }
 
@@ -68,7 +69,6 @@
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
     [self.contentTableView registerCellWithClass:[RH_LoginViewCell class]] ;
-
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }
@@ -100,7 +100,12 @@
 
     [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
 }
-
+-(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
+{
+    RH_ForgetPasswordController *passwordVC = [[RH_ForgetPasswordController alloc]init];
+    [self.navigationController pushViewController:passwordVC animated:YES];
+//    [self showViewController:[RH_ForgetPasswordController viewControllerWithContext:self] sender:self];
+}
 #pragma mark-
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -197,6 +202,30 @@
     //支持哪些转屏方向
     return UIInterfaceOrientationMaskPortrait;
 }
-
-
+#pragma mark 点击textfield的代理
+-(void)loginViewCellSelectedEachTextfield:(CGRect)frame
+{
+    _frame = frame;
+    [self keyboardFrameWillChange];
+}
+#pragma mark 键盘高度
+  
+-(void)keyboardFrameWillChange
+{
+    [UIView animateWithDuration:self.keyboardAnimationDuration animations:^{
+        if (self.keyboardEndFrame.size.height>0) {
+            CGRect originalFrame = self.contentView.frame;
+            originalFrame.origin.y =0;
+            self.contentView.frame = originalFrame;
+            CGRect frame = self.contentView.frame;
+            frame.origin.y -=self.frame.origin.y-100;
+            self.contentView.frame = frame;
+        }
+        else if (self.keyboardEndFrame.size.height<=0){
+            CGRect frame = self.contentView.frame;
+            frame.origin.y =self.view.frameY;
+            self.contentView.frame = frame;
+        }
+    }];
+}
 @end

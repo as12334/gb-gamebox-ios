@@ -58,6 +58,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
+    self.contentTableView.tableFooterView = self.footerView ;
     
     UIView *view_Footer = [[UIView alloc] init];
     view_Footer.frame = CGRectMake(0, 0, screenSize().width, 150);
@@ -79,8 +80,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         return ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
-        self.contentTableView.tableFooterView = self.footerView ;
-        
+
         if (UserSafetyInfo.mHasRealName==FALSE){
             _modifySafetyStatus = ModifySafetyStatus_SetRealName ;
             showAlertView(@"用户姓名未设置", @"请先设置姓名") ;
@@ -236,21 +236,25 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         if (realName.length<1){
             showMessage(self.view, nil, @"请输入真实姓名");
             [self.userNameCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (oldPassword.length<1){
             showMessage(self.view, nil, @"请输入旧密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (newPassword.length<1){
             showMessage(self.view, nil, @"请输入新密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (confirmPassword.length<1){
             showMessage(self.view, nil, @"请重新输入新密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (![newPassword isEqualToString:confirmPassword]) {
@@ -289,7 +293,11 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UserSafeInfo){
+        if (data==nil){
+            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"获取安全初始化信息失败"];
+        }else{
         [self setNeedUpdateView] ;
+        }
     }else if (type == ServiceRequestTypeV3SetRealName){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [UserSafetyInfo updateHasRealName:YES] ;

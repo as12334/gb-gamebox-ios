@@ -15,6 +15,7 @@
 @end ;
 
 @implementation RH_MineInfoModel
+@synthesize showAvatalURL = _showAvatalURL ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -34,11 +35,42 @@
         _mIsBit = [info boolValueForKey:RH_GP_MINEINFO_ISBIT] ;
         _mIsCash = [info boolValueForKey:RH_GP_MINEINFO_ISCASH] ;
         _mBankCard = [[RH_BankCardModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BANKCARD]] ;
-        _mBtcCode = [[RH_BitCodeModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BTCCODE]] ;
+        _mBitCode = [[RH_BitCodeModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BTCCODE]] ;
         _mRealName = [info stringValueForKey:RH_GP_MINEINFO_REALNAME] ;
     }
     
     return self ;
+}
+
+
+-(NSString *)showAvatalURL
+{
+    if (!_showAvatalURL){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (_mAvatalUrl.length){
+            if ([[_mAvatalUrl substringToIndex:1] isEqualToString:@"/"]){
+                _showAvatalURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mAvatalUrl] ;
+            }else{
+                _showAvatalURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAvatalUrl] ;
+            }
+        }
+    }
+    
+    return _showAvatalURL ;
+}
+
+-(void)updateBankCard:(RH_BankCardModel*)bankCardInfo
+{
+    if (bankCardInfo){
+        _mBankCard = bankCardInfo ;
+    }
+}
+
+-(void)updateBitCode:(RH_BitCodeModel*)bitCodeInfo
+{
+    if (bitCodeInfo){
+        _mBitCode = bitCodeInfo ;
+    }
 }
 
 

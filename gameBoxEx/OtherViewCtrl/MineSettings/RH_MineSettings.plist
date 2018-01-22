@@ -8,8 +8,8 @@
 			<key>rowsInfo</key>
 			<array>
 				<dict>
-					<key>targetKey</key>
-					<string></string>
+					<key>id</key>
+					<string>0</string>
 					<key>cellClass</key>
 					<string>RH_MineSettingsCell</string>
 					<key>title</key>
@@ -18,6 +18,8 @@
 				<dict>
 					<key>cellClass</key>
 					<string>RH_MineSettingsCell</string>
+					<key>id</key>
+					<string>1</string>
 					<key>title</key>
 					<string>锁屏手势</string>
 				</dict>

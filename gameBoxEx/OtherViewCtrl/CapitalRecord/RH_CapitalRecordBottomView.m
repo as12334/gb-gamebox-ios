@@ -10,8 +10,6 @@
 #import "coreLib.h"
 #import "CLStaticCollectionViewTitleCell.h"
 @interface RH_CapitalRecordBottomView()<CLStaticCollectionViewDataSource>
-
-
 @property (weak, nonatomic) IBOutlet UILabel *labSummer;
 @property (weak, nonatomic) IBOutlet CLStaticCollectionView *summerStaticView;
 
@@ -19,7 +17,10 @@
 
 @implementation RH_CapitalRecordBottomView
 {
-    NSArray *_statusFooterList ;
+    CGFloat _rechargeSummer ;
+    CGFloat _withdrawSummer ;
+    CGFloat _favorableSummer ;
+    CGFloat _rakebackSummer ;
 }
 -(void)awakeFromNib
 {
@@ -35,6 +36,19 @@
     self.summerStaticView.allowSelection = NO ;
     self.summerStaticView.allowCellSeparationLine = NO ;
     self.summerStaticView.allowSectionSeparationLine = NO ;
+    [self.summerStaticView reloadData] ;
+}
+
+#pragma mark-
+-(void)updateUIInfoWithRechargeSum:(CGFloat)rechargeSum
+                       WithDrawSum:(CGFloat)withDrawSum
+                      FavorableSum:(CGFloat)favorableSum
+                          Rakeback:(CGFloat)rakeBackSum
+{
+    _rechargeSummer = rechargeSum ;
+    _withdrawSummer = withDrawSum ;
+    _favorableSummer = favorableSum ;
+    _rakebackSummer = rakeBackSum ;
     [self.summerStaticView reloadData] ;
 }
 
@@ -63,16 +77,16 @@
     NSInteger index = indexPath.section*2 + indexPath.item ;
     switch (index) {
         case 0:
-            titleCell.labTitle.text = @"充值额度:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat:@"充值额度:%.02f",_rechargeSummer] ;
             break;
         case 1:
-            titleCell.labTitle.text = @"提现总额:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat:@"提现总额:%.02f",_withdrawSummer] ;
             break;
         case 2:
-            titleCell.labTitle.text = @"优惠总额:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat:@"优惠总额:%.02f",_favorableSummer] ;
             break;
         case 3:
-            titleCell.labTitle.text = @"反水总额:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat:@"反水总额:%.02f",_rakebackSummer] ;
             break;
             
         default:

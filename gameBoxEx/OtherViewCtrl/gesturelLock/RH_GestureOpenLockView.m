@@ -18,55 +18,22 @@
 
 @interface RH_GestureOpenLockView()
 @property(nonatomic,strong)MBProgressHUD *hud;
-@property(nonatomic,strong,readonly)UIWindow *subwindow;
-@property(nonatomic,strong,readonly)UILabel *titleLab;
+//@property(nonatomic,strong,readonly)UIWindow *subwindow;
 @end
 
 @implementation RH_GestureOpenLockView
 {
    BOOL _boolMark;
 }
-
-@synthesize subwindow = _subwindow;
-@synthesize titleLab = _titleLab;
+//@synthesize subwindow = _subwindow;
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.frame = self.subwindow.bounds;
-        [self.subwindow addSubview:self];
         self.userInteractionEnabled = YES;
-        self.subwindow.userInteractionEnabled = YES;
-        [self.subwindow setHidden:NO];
-        [self.subwindow addSubview:self.titleLab];
         [self createUI];
     }
     return self;
-}
-
--(UIWindow *)subwindow
-{
-    if(!_subwindow){
-        _subwindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _subwindow.windowLevel = UIWindowLevelStatusBar + 1;
-        _subwindow.backgroundColor = [UIColor whiteColor];
-    }
-    return _subwindow;
-}
-
-//添加一个uilabel
--(UILabel *)titleLab
-{
-    if (!_titleLab) {
-        _titleLab = [[UILabel alloc]initWithFrame:CGRectMake((self.frameWidth-150)/2, 64, 150, 30)];
-        _titleLab.text = @"重新设置密码";
-        _titleLab.textColor = [UIColor whiteColor];
-        _titleLab.font = [UIFont systemFontOfSize:16.0f];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(popView)];
-        _titleLab.userInteractionEnabled = YES;
-        [_titleLab addGestureRecognizer:tap];
-    }
-    return _titleLab;
 }
 
 -(void)createUI{
@@ -77,26 +44,29 @@
     lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
     lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
-    [self.subwindow addSubview:lockView];
+    [self addSubview:lockView];
     
     //解锁手势完成之后判断密码是否正确
     _hud = [[MBProgressHUD alloc]init];
     lockView.sendReaultData = ^(NSString *resultPwd){
         //        从本地获取保存的密码
-        NSString *savePwd = [[NSUserDefaults standardUserDefaults]objectForKey:@"passWord"];
+        NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;
         if ([savePwd isEqualToString:resultPwd]) {//密码相同，解锁成功
             _hud.labelText = @"解锁成功";
-            [self.subwindow addSubview:_hud];
+            [self addSubview:_hud];
             _hud.mode = MBProgressHUDModeText;
             _hud.labelColor = [UIColor blueColor];
             _boolMark =YES;
             [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1];
             [_hud show:YES];
+            ifRespondsSelector(self.delegate, @selector(gestureOpenLockViewOpenLockSuccessful:)){
+                [self.delegate gestureOpenLockViewOpenLockSuccessful:self] ;
+            }
             return YES;
         }else{
             
             _hud.labelText = @"解锁失败";
-            [self.subwindow addSubview:_hud];
+            [self addSubview:_hud];
             _hud.mode = MBProgressHUDModeText;
             _hud.labelColor = [UIColor redColor];
             _boolMark =NO;
@@ -111,9 +81,9 @@
 -(void)hideProgressHUD
 {
     if (_boolMark == YES) {
-        for (UIView *subView in [self.subwindow subviews]) {
+        for (UIView *subView in [self subviews]) {
             [subView removeFromSuperview];
-            [self.subwindow setHidden:YES];
+            [self setHidden:YES];
             [self removeFromSuperview];
         }
     }
@@ -124,15 +94,40 @@
     [_hud hide:YES];
 }
 
--(void)popView{
-    for (UIView *subView in [self.subwindow subviews]) {
-        [subView removeFromSuperview];
-        [self.subwindow setHidden:YES];
-        [self removeFromSuperview];
-    }
-    
-    RH_LockSetPWDController *vc = [[RH_LockSetPWDController alloc]init];
-    [self showViewController:vc];
-    
-}
+
+
+//#pragma mark-
+//-(UIWindow *)subwindow
+//{
+//    if(!_subwindow){
+//        _subwindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        _subwindow.windowLevel = UIWindowLevelNormal + 1;
+//        _subwindow.backgroundColor = [UIColor whiteColor];
+//    }
+//    return _subwindow;
+//}
+//
+//- (void)show
+//{
+//    self.frame = self.subwindow.bounds;
+//    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//
+//    //显示时建立引用循环
+//    [self.subwindow addSubview:self];
+//    [self.subwindow setHidden:NO];
+//}
+//
+//- (void)hidden
+//{
+//    if (_subwindow) {
+//
+//        //隐藏
+//        [UIView animateWithDuration:0.3f animations:^{
+//            _subwindow.alpha = 0.f;
+//        } completion:^(BOOL finished){
+//            [_subwindow setHidden:YES];
+//            [self removeFromSuperview];
+//        }];
+//    }
+//}
 @end
