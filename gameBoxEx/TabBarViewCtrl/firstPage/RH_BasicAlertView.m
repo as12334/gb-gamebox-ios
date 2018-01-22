@@ -41,8 +41,9 @@
     if (_pageIndicator == nil) {
         _pageIndicator = [[UIPageControl alloc] init];
         _pageIndicator.tintColor = [UIColor grayColor];
-        _pageIndicator.pageIndicatorTintColor = [UIColor blackColor];
-        _pageIndicator.currentPageIndicatorTintColor = [UIColor grayColor];
+        _pageIndicator.layer.borderColor = colorWithRGB(204, 204, 204).CGColor;
+        _pageIndicator.pageIndicatorTintColor = [UIColor grayColor];
+        _pageIndicator.currentPageIndicatorTintColor = colorWithRGB(204, 204, 204);
     }
     return _pageIndicator;
 }
@@ -53,23 +54,25 @@
         contentView = [UIView new];
         [self addSubview:contentView];
         contentView.whc_Center(0, 0).whc_Width(screenSize().width/3*2).whc_Height(200);
-        contentView.backgroundColor = RH_View_DefaultBackgroundColor;
+        contentView.backgroundColor = colorWithRGB(255, 255, 255);
         contentView.transform = CGAffineTransformMakeScale(0, 0);
         [contentView addSubview:self.scrollView];
+        self.scrollView.backgroundColor = colorWithRGB(255, 255, 255);
         [contentView addSubview:self.pageIndicator];
         self.scrollView.whc_TopSpace(20).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(20);
         self.scrollView.delegate = self;
+        self.scrollView.showsHorizontalScrollIndicator = NO;
         self.pageIndicator.whc_CenterX(0).whc_Width(100).whc_Height(10).whc_TopSpaceToView(5, self.scrollView);
         self.pageIndicator.currentPage = 0;
         contentView.layer.cornerRadius = 20;
         contentView.clipsToBounds = YES;
         self.backgroundColor = ColorWithRGBA(134, 134, 134, 0.3);
         self.cancelButton = [[UIButton alloc] init];
+        [self.cancelButton setImage:ImageWithName(@"home_announce_close") forState:UIControlStateNormal];
         [self addSubview:self.cancelButton];
-        self.cancelButton.whc_TopSpaceToView(20, contentView).whc_CenterX(0).whc_Width(70).whc_Height(70);
+        self.cancelButton.whc_TopSpaceToView(5, contentView).whc_CenterX(0).whc_Width(70).whc_Height(70);
         self.cancelButton.layer.cornerRadius = 35;
         self.clipsToBounds = YES;
-        self.cancelButton.backgroundColor = [UIColor purpleColor];
         self.cancelButton.alpha = 0;
         [self.cancelButton addTarget:self action:@selector(cancelButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -99,10 +102,13 @@
     for (int i = 0; i < content.count; i++) {
         RH_AnnouncementModel *model = content[i];
         UITextView *textView = [[UITextView alloc] init];
-        textView.backgroundColor = colorWithRGB(151, 151, 151);
+        textView.backgroundColor = colorWithRGB(255, 255, 255);
         textView.frame = CGRectMake(i * self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         [self.scrollView addSubview:textView];
+        textView.textColor = colorWithRGB(51, 51, 51);
+        textView.font = [UIFont systemFontOfSize:14.f];
         textView.text = model.mContent;
+        
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * content.count, 0);
     }
     

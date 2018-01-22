@@ -76,7 +76,7 @@
                                            [self.discountActivityModel updateImageSize:image.size] ;
                                        }
                                    }] ;
-    self.labTitle.text = @"测试标签" ;
+    self.labTitle.text = self.discountActivityModel.showName;
 }
 
 
