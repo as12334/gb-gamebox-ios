@@ -9,12 +9,11 @@
 #import "RH_SiteSendMessageView.h"
 #import "coreLib.h"
 #import "RH_API.h"
-@interface RH_SiteSendMessageView()
+@interface RH_SiteSendMessageView()<UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UITextField *titelField;
 @property (weak, nonatomic) IBOutlet UITextView *contenTextView;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *codeImageView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *confimBtn;
 
@@ -26,15 +25,24 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        [self.webView setHidden:YES];
-        [self.codeTextField setHidden:YES];
-        
+
     }
     return self;
 }
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    [self.webView setHidden:YES];
+    [self.codeTextField setHidden:YES];
+    self.titelField.returnKeyType = UIReturnKeyDone;
+    self.titelField.delegate = self;
+    self.contenTextView.returnKeyType = UIReturnKeyDone;
+    self.contenTextView.delegate = self;
+    self.contenTextView.text = @"请输入内容";
+    self.codeTextField.returnKeyType = UIReturnKeyDone;
+    self.codeTextField.delegate = self;
+    
+    
     self.backDropView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.masksToBounds = YES;
@@ -63,7 +71,6 @@
     else if (sendModel.mIsOpenCaptcha==YES){
         [self.codeTextField setHidden:NO];
         [self.webView setHidden:NO];
-//        [self.codeImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://test01.ampinplayopt0matrix.com",sendModel.mCaptcha_value]]];
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://test01.ampinplayopt0matrix.com",sendModel.mCaptcha_value]];//创建URL
         NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
         [self.webView loadRequest:request];//加载
@@ -76,5 +83,23 @@
 }
 - (IBAction)submitClick:(id)sender {
     self.submitBlock(self.titelField.text, self.contenTextView.text,self.codeTextField.text);
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.titelField resignFirstResponder] ;
+    [self.codeTextField resignFirstResponder] ;
+    return YES;
+}
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.contenTextView.text = nil;
+    return YES;
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [self.contenTextView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 @end

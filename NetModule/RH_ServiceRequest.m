@@ -1288,6 +1288,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
     }
+//    else if (type==ServiceRequestTypeV3AddApplyDiscounts){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+//        return YES ;
+//    }
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1554,9 +1562,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
                 case ServiceRequestTypeV3AddApplyDiscounts:
             {
-                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
-            }
                 
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+                
+            }
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {
