@@ -27,7 +27,7 @@
         self.detailTextLabel.textColor = colorWithRGB(153, 153, 153);
         self.detailTextLabel.font = [UIFont systemFontOfSize:14];
         self.textLabel.textColor = colorWithRGB(51, 51, 51);
-        self.textLabel.font = [UIFont systemFontOfSize:14];
+        self.textLabel.font = [UIFont systemFontOfSize:12];
         self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
         self.separatorLineWidth = 1.0f;
         self.separatorLineColor = colorWithRGB(242, 242, 242);

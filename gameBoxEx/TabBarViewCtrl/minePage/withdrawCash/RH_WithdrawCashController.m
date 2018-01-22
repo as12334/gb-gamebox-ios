@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         
         self.button_Submit = [UIButton new];
         [_footerView addSubview:self.button_Submit];
-        self.button_Submit.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(50).whc_Height(44);
+        self.button_Submit.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(40).whc_Height(40);
         self.button_Submit.layer.cornerRadius = 5;
         self.button_Submit.clipsToBounds = YES;
         [self.button_Submit setTitle:@"确认提交" forState:UIControlStateNormal];

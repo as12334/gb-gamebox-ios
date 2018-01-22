@@ -40,7 +40,7 @@
     self.contentTableView.tableFooterView = view_Footer;
     self.button = [[UIButton alloc] init];
     [view_Footer addSubview:self.button];
-    self.button.whc_TopSpace(30).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(45);
+    self.button.whc_TopSpace(33).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(45);
     [self.button setBackgroundColor:colorWithRGB(27, 117, 217)];
     self.button.layer.cornerRadius = 5.0f;
     self.button.clipsToBounds = YES;
