@@ -82,15 +82,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OqK-oV-Sat">
+                                <rect key="frame" x="10" y="3" width="301" height="1"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="RqX-Wb-xd0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YT9-mz-Yhq" firstAttribute="leading" secondItem="JUE-fD-W1P" secondAttribute="leading" constant="8" id="4kb-qB-FcA"/>
                             <constraint firstItem="aao-tV-Ipb" firstAttribute="centerY" secondItem="JUE-fD-W1P" secondAttribute="centerY" id="C9f-7w-eCc"/>
                             <constraint firstAttribute="trailing" secondItem="aao-tV-Ipb" secondAttribute="trailing" constant="8" id="FDW-93-cQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="OqK-oV-Sat" secondAttribute="trailing" id="GoE-i2-TNO"/>
+                            <constraint firstAttribute="trailing" secondItem="OqK-oV-Sat" secondAttribute="trailing" id="KRP-v6-fFf"/>
                             <constraint firstAttribute="height" constant="44" id="LRu-hg-n1q"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="XOB-tq-Wpk"/>
                             <constraint firstItem="YT9-mz-Yhq" firstAttribute="centerY" secondItem="JUE-fD-W1P" secondAttribute="centerY" id="pte-R7-nxJ"/>
+                            <constraint firstItem="OqK-oV-Sat" firstAttribute="top" secondItem="JUE-fD-W1P" secondAttribute="top" constant="3" id="rK3-6f-6DV"/>
+                            <constraint firstItem="OqK-oV-Sat" firstAttribute="leading" secondItem="JUE-fD-W1P" secondAttribute="leading" constant="10" id="vJC-36-VER"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -110,6 +121,7 @@
                 <outlet property="labTBalanceValue" destination="aVp-fd-xyk" id="Vzn-h4-k7t"/>
                 <outlet property="labTWallet" destination="e5N-yd-Str" id="WaE-a9-4zB"/>
                 <outlet property="labTWalletValue" destination="aao-tV-Ipb" id="bSY-d3-Vlt"/>
+                <outlet property="line1" destination="OqK-oV-Sat" id="2VM-J8-6Sl"/>
                 <outlet property="tBalanceView" destination="YRb-ZJ-2e0" id="2bQ-Sr-0Du"/>
                 <outlet property="walletBGView" destination="YT9-mz-Yhq" id="NOf-MK-0Ue"/>
             </connections>
