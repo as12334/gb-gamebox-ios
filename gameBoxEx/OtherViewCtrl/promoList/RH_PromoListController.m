@@ -30,7 +30,7 @@
 - (void)setupInfo
 {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
-    self.contentTableView.sectionHeaderHeight = 10.0f ;
+    self.contentTableView.sectionHeaderHeight = 9.0f ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     [self.contentTableView registerCellWithClass:[RH_PreferentialListCell class]] ;
     [self.contentView addSubview:self.contentTableView];

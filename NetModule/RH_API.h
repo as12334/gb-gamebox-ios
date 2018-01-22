@@ -218,7 +218,7 @@
 #define RH_GP_MINEINFO_USERNAME                                @"username"
 #define RH_GP_MINEINFO_WALLETBALANCE                           @"walletBalance"
 #define RH_GP_MINEINFO_WITHDRAWAMOUNT                          @"withdrawAmount"
-#define RH_GP_MINEINFO_LOGINTIME                               @"loginTime"
+#define RH_GP_MINEINFO_LOGINTIME                               @"lastLoginTime"
 #define RH_GP_MINEINFO_ISBIT                                   @"isBit"
 #define RH_GP_MINEINFO_ISCASH                                  @"isCash"
 #define RH_GP_MINEINFO_BANKCARD                                @"bankcard"
@@ -583,7 +583,7 @@
 #define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
 
 #pragma mark - V3 添加银行卡
-#define RH_API_NAME_ADDBANKCARD             @"mineOrigin/submitBankCard.html"
+#define RH_API_NAME_ADDBANKCARD             @"userInfoOrigin/submitBankCard.html"
 //请求参数
 #define RH_SP_BANKCARDMASTERNAME        @"result.bankcardMasterName"
 #define RH_SP_BANKNAME                  @"result.bankName"
@@ -652,7 +652,7 @@
 //请求参数  无
 
 #pragma mark - V3 添加比特币
-#define RH_API_NAME_ADDBTC   @"mineOrigin/submitBtc.html"
+#define RH_API_NAME_ADDBTC   @"userInfoOrigin/submitBtc.html"
 //请求参数
 #define RH_SP_ADDBTC_BANKCARDNUMBER   @"bankcardNumber"
 //返回bit 模型
@@ -685,7 +685,7 @@
 #define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
 #pragma mark - V3 站点消息  发送消息验证
-#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY  @"mineOrigin/goAddNoticeSite.html"
+#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY  @"mineOrigin/getNoticeSiteType.html"
 
 #pragma mark - V3 站点消息  发送消息
 #define RH_API_NAME_ADDAPPLYDISCOUNTS   @"mineOrigin/addNoticeSite.html"
@@ -748,20 +748,21 @@
 #define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"
 
 #pragma mark -V3 获取取款用户信息
-#define RH_API_NAME_GETWITHDRAWUSERINFO  @"mineOrigin/getWithDraw.html"
+#define RH_API_NAME_GETWITHDRAWUSERINFO  @"withdrawOrigin/getWithDraw.html"
 
 #pragma mark -V3 提交取款信息
-#define RH_API_NAME_SUBMITWITHDRAWINFO  @"mineOrigin/submitWithdraw.html"
+#define RH_API_NAME_SUBMITWITHDRAWINFO  @"withdrawOrigin/submitWithdraw.html"
+
 //请求参数
-#define RH_SP_SUBMITWITHDRAWINFO_NOBANK             @"noBank"
-#define RH_SP_SUBMITWITHDRAWINFO_NOBTC              @"noBtc"
-#define RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY      @"remittanceWay"
-#define RH_SP_SUBMITWITHDRAWINFO_WALLETBALANCE      @"walletBalance"
 #define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
-#define RH_SP_SUBMITWITHDRAWINFO_POUNDAGEHIDE       @"poundageHide"
-#define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWFEE        @"withdrawFee"
-#define RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW     @"actualWithdraw"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
+
+#pragma mark -V3 获取游戏分类
+#define RH_API_NAME_LOADGAMETYPE   @"origin/getGameTag.html"
+//返回参数
+#define RH_GP_LOADGAMETYPE_KEY                  @"key"
+#define RH_GP_LOADGAMETYPE_VALUE                @"value"
+
 
 #endif /* RH_API_h */
 

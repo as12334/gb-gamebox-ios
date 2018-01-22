@@ -23,26 +23,13 @@
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     if (self.contentTableView == nil) {
-        self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
-        self.contentTableView.delegate = self   ;
-        self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
-        self.contentTableView.backgroundColor = [UIColor clearColor];
-        self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        //        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         [self.pageView registerCellForPage:[RH_ApplyDiscountSiteSystemCell class] andReuseIdentifier:[RH_ApplyDiscountSiteSystemCell defaultReuseIdentifier]];
        [self.pageView registerCellForPage:[RH_ApplyDiscountSiteMineCell class] andReuseIdentifier:[RH_ApplyDiscountSiteMineCell defaultReuseIdentifier]];
         [self.pageView registerCellForPage:[RH_ApplyDiscountSiteSendCell class] andReuseIdentifier:[RH_ApplyDiscountSiteSendCell defaultReuseIdentifier]];
-        
-        self.contentScrollView = self.contentTableView;
-        CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
-        [self setupPageLoadManagerWithdatasContext:context1] ;
 
         //分页视图
         [self.contentView addSubview:self.pageView];
+        self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
         //设置索引
         self.pageView.dispalyPageIndex =  0 ;
         
@@ -124,7 +111,6 @@
     {
         RH_ApplyDiscountSiteSystemCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSiteSystemCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
-//                cell.delegate=self;
         return cell;
     }
     else if (pageIndex==1){

@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3MyMessageMyMessageDelete   ,  // 我的消息  删除
     ServiceRequestTypeV3GetWithDrawInfo   ,  // 取款信息接口
     ServiceRequestTypeV3SubmitWithdrawInfo   ,  // 提交取款信息
+    ServiceRequestTypeV3LoadGameType,          //获取游戏分类
 };
 
 
@@ -334,33 +335,16 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3GetWithDraw;
 
 #pragma mark - 提交取款信息
-/**
- 提交取款信息
- @param noBank 是否有银行卡  N
- @param noBtc 是否有比特币   N
- @param remittanceWay 银行卡类型（1：银行卡，2：比特币）  N
- @param walletBalance 钱包金额  N
- @param withdrawAmount 取款金额  Y
- @param poundageHide 符号  N
- @param withdrawFee 手续费  N
- @param actualWithdraw 实际取款金额 Y
- @param gbToken 防重验证  Y
- */
--(void)startV3SubmitWithdrawWithNoBank:(BOOL)noBank
-                                 noBtc:(BOOL)noBtc
-                         remittanceWay:(NSInteger)remittanceWay
-                         walletBalance:(float)walletBalance
-                        withdrawAmount:(float)withdrawAmount
-                          poundageHide:(NSString *)poundageHide
-                           withdrawFee:(float)withdrawFee
-                        actualWithdraw:(float)actualWithdraw
-                               gbToken:(NSString *)gbToken;
+-(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                           gbToken:(NSString *)gbToken ;
 
 #pragma mark - 获取games link
 -(void)startv3GetGamesLink:(NSInteger)apiID
                  ApiTypeID:(NSInteger)apiTypeID
                    GamesID:(NSString*)gamesID
                  GamesCode:(NSString*)gamesCode ;
+#pragma mark - 获取游戏分类
+-(void)startV3LoadGameType;
 #pragma mark -
 /**
  * 取消所有服务

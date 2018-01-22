@@ -132,6 +132,7 @@
                                        PageNumber:page
                                          PageSize:pageSize
                                        SearchName:_searchString] ;
+    [self.serviceRequest startV3LoadGameType];
 }
 
 -(void)cancelLoadDataHandle
@@ -154,12 +155,18 @@
                             totalCount:[dictTmp integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]] ;
 
     }
+    if (type == ServiceRequestTypeV3LoadGameType) {
+       
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3APIGameList){
         [self loadDataFailWithError:error] ;
+    }
+    if (type == ServiceRequestTypeV3LoadGameType) {
+        
     }
 }
 

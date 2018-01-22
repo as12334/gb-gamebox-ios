@@ -117,7 +117,7 @@
 							<key>image</key>
 							<string>mine_page_messagecenter</string>
 							<key>targetKey</key>
-							<string>RH_MPApplyDiscountController</string>
+							<string>RH_ApplyDiscountViewController</string>
 						</dict>
 					</array>
 				</dict>
@@ -141,7 +141,7 @@
 							<key>image</key>
 							<string>mine_page_sharefriends</string>
 							<key>targetKey</key>
-							<string>RH_ApplyDiscountViewController</string>
+							<string></string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -153,7 +153,7 @@
 							<key>code</key>
 							<string>gameNotice</string>
 							<key>targetKey</key>
-							<string>RH_ForgetPasswordController</string>
+							<string>RH_ApplyDiscountViewController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>

@@ -38,7 +38,6 @@
     self.btnRetrive.layer.cornerRadius = 5.0f ;
     [self.btnRetrive setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
     [self.btnRetrive.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;
-    [self.btnRetrive addTarget:self action:@selector(retriveBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.btnSave.backgroundColor = colorWithRGB(14, 195, 146) ;
     self.btnSave.layer.cornerRadius = 5.0f ;

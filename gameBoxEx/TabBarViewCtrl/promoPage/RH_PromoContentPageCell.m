@@ -15,13 +15,14 @@
 #import "RH_CustomViewController.h"
 #import "RH_UserInfoManager.h"
 
-@interface RH_PromoContentPageCell()
+@interface RH_PromoContentPageCell()<PromoTableCellDelegate>
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property (nonatomic,strong) RH_DiscountActivityTypeModel *typeModel ;
 @end
 
 @implementation RH_PromoContentPageCell
 @synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
+
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     self.typeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, typeModel) ;
@@ -81,6 +82,15 @@
     [self.loadingIndicateView showNothingWithImage:nil title:@"当前无优惠活动"
                                         detailText:@"点击重试"] ;
     return YES ;
+}
+
+#pragma mark -
+-(void)promoTableCellImageSizeChangedNotification:(RH_PromoTableCell*)promoTableViewCell
+{
+    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:promoTableViewCell] ;
+    if (indexPath){
+        [self.contentTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone] ;
+    }
 }
 
 #pragma mark-
@@ -145,7 +155,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        return [RH_PromoTableCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        return [RH_PromoTableCell heightForCellWithInfo:nil tableView:tableView
+                                                context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     }else{
         return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
     }
@@ -156,6 +167,7 @@
     if (self.pageLoadManager.currentDataCount){
         RH_PromoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_PromoTableCell defaultReuseIdentifier]] ;
         [cell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        cell.delegate = self ;
         return cell ;
     }else{
         return self.loadingIndicateTableViewCell ;

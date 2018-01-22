@@ -29,6 +29,10 @@
 @property(nonatomic,strong,readonly) RH_BitCodeModel *mBitCode  ;
 @property(nonatomic,strong,readonly) NSString  *mRealName ;
 
+
+//extend
+@property (nonatomic,strong,readonly) NSString *showAvatalURL ;
+
 -(void)updateBankCard:(RH_BankCardModel*)bankCardInfo ;
 -(void)updateBitCode:(RH_BitCodeModel*)bitCodeInfo ;
 

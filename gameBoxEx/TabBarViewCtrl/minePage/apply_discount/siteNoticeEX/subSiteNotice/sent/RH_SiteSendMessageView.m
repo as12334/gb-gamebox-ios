@@ -9,7 +9,7 @@
 #import "RH_SiteSendMessageView.h"
 #import "coreLib.h"
 #import "RH_API.h"
-@interface RH_SiteSendMessageView()
+@interface RH_SiteSendMessageView()<UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UITextField *titelField;
 @property (weak, nonatomic) IBOutlet UITextView *contenTextView;
@@ -25,8 +25,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-      
-        
+
     }
     return self;
 }
@@ -35,6 +34,14 @@
     [super awakeFromNib];
     [self.webView setHidden:YES];
     [self.codeTextField setHidden:YES];
+    self.titelField.returnKeyType = UIReturnKeyDone;
+    self.titelField.delegate = self;
+    self.contenTextView.returnKeyType = UIReturnKeyDone;
+    self.contenTextView.delegate = self;
+    self.contenTextView.text = @"请输入内容";
+    self.codeTextField.returnKeyType = UIReturnKeyDone;
+    self.codeTextField.delegate = self;
+    
     
     self.backDropView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.backDropView.layer.borderWidth = 1.f;
@@ -76,5 +83,23 @@
 }
 - (IBAction)submitClick:(id)sender {
     self.submitBlock(self.titelField.text, self.contenTextView.text,self.codeTextField.text);
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.titelField resignFirstResponder] ;
+    [self.codeTextField resignFirstResponder] ;
+    return YES;
+}
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.contenTextView.text = nil;
+    return YES;
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [self.contenTextView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 @end

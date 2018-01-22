@@ -25,7 +25,7 @@
     self.titleLab.textColor = colorWithRGB(51, 51, 51);
     self.explainLab.textColor = colorWithRGB(153, 153, 153);
     self.titleLab.font = [UIFont systemFontOfSize:14];
-    self.explainLab.font = [UIFont systemFontOfSize:11];
+    self.explainLab.font = [UIFont systemFontOfSize:11]; 
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

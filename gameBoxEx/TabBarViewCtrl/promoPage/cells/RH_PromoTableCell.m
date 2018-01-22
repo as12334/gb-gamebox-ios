@@ -7,18 +7,24 @@
 //
 
 #import "RH_PromoTableCell.h"
-#import "RH_DiscountActivityModel.h"
 
 @interface RH_PromoTableCell()
 @property (nonatomic,weak) IBOutlet UIImageView *activeImageView ;
 @property (nonatomic,strong) RH_DiscountActivityModel *discountActivityModel ;
+@property (nonatomic,weak) IBOutlet UILabel *labTitle ;
+
 @end
 
 
 @implementation RH_PromoTableCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return floor((282.0/426.0)*tableView.frameWidth)  ;
+    RH_DiscountActivityModel *discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, context) ;
+    if (discountActivityModel){
+        return floor((discountActivityModel.showImageSize.height/discountActivityModel.showImageSize.width)*tableView.frameWidth) + 60 ;
+    }
+    
+    return 0.0f  ;
 }
 
 - (void)awakeFromNib {
@@ -27,6 +33,16 @@
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
     self.selectionColorAlpha = 0.5f ;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:RHNT_DiscountActivityImageSizeChanged
+                                               object:nil] ;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
 -(UIView *)showSelectionView
@@ -37,7 +53,25 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, context) ;
-    [self.activeImageView sd_setImageWithURL:[NSURL URLWithString:self.discountActivityModel.showPhoto]] ;
+    [self.activeImageView sd_setImageWithURL:[NSURL URLWithString:self.discountActivityModel.showPhoto]
+                                   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                       if (image){
+                                           [self.discountActivityModel updateImageSize:image.size] ;
+                                       }
+                                   }] ;
 }
 
+
+#pragma mark-
+-(void)handleNotification:(NSNotification*)nf
+{
+    if ([nf.name isEqualToString:RHNT_DiscountActivityImageSizeChanged]){
+        RH_DiscountActivityModel *discountModel = ConvertToClassPointer(RH_DiscountActivityModel, nf.object) ;
+        if (discountModel == self.discountActivityModel){
+            ifRespondsSelector(self.delegate, @selector(promoTableCellImageSizeChangedNotification:)){
+                [self.delegate promoTableCellImageSizeChangedNotification:self] ;
+            }
+        }
+    }
+}
 @end

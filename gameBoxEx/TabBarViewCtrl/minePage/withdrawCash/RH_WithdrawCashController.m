@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         
         self.button_Submit = [UIButton new];
         [_footerView addSubview:self.button_Submit];
-        self.button_Submit.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(50).whc_Height(44);
+        self.button_Submit.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(40).whc_Height(40);
         self.button_Submit.layer.cornerRadius = 5;
         self.button_Submit.clipsToBounds = YES;
         [self.button_Submit setTitle:@"确认提交" forState:UIControlStateNormal];
@@ -92,7 +92,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
     [self showViewController:[RH_CustomViewController viewController] sender:nil];
-    
 }
 
 - (void)buttonConfirmHandle {
@@ -105,15 +104,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         showMessage(self.view, @"", @"输入金额错误");
         return;
     }
-    [self.serviceRequest startV3SubmitWithdrawWithNoBank:UserWithDrawInfo.mHasBank
-                                                   noBtc:0
-                                           remittanceWay:0
-                                           walletBalance:0
-                                          withdrawAmount:self.cashCell.textField.text.floatValue
-                                            poundageHide:@"¥"
-                                             withdrawFee:0.0
-                                          actualWithdraw:0.0
-                                                 gbToken:self.withDrawModel.mToken];
+    
+    [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
+                                             gbToken:self.withDrawModel.mToken] ;
 }
 
 - (void)setupInfo {

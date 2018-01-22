@@ -51,15 +51,40 @@
     [self.label_TotalMoney setTextColor:colorWithRGB(27, 117, 217)];
     [self.label_leftMoney setTextColor:colorWithRGB(11, 186, 135)];
     [self.label_LeftMoneyText setTextColor:colorWithRGB(51, 51, 51)];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:RHNT_UserInfoManagerMineGroupChangedNotification
+                                               object:nil] ;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    [self updateCell] ;
+}
+
+#pragma mark-
+-(void)handleNotification:(NSNotification*)nf
+{
+    if ([nf.name isEqualToString:RHNT_UserInfoManagerMineGroupChangedNotification]){
+        [self setNeedUpdateCell] ;
+    }
+}
+
+-(void)updateCell
 {
     self.label_UserNickName.text = MineSettingInfo.mUserName ;
     self.label_TotalMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mTotalAssets];
     self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mWithdrawAmount];
     self.label_TimeLast.text = MineSettingInfo.mLoginTime ;
-
+    [self.imageUserAvator sd_setImageWithURL:[NSURL URLWithString:MineSettingInfo.showAvatalURL]
+                            placeholderImage:ImageWithName(@"mine_page_useravator")] ;
 }
 
 @end

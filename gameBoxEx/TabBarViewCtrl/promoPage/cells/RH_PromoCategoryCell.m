@@ -29,19 +29,18 @@
     // Initialization code
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
-    self.labTitle.textColor =  colorWithRGB(60, 60, 60) ;
+    self.labTitle.textColor =  colorWithRGB(50, 51, 51) ;
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
     self.borderView.layer.cornerRadius = 5.0f ;
-    self.borderView.backgroundColor = colorWithRGB(227, 227, 226) ;
-    self.labTitle.textColor = colorWithRGB(60, 60, 60) ;
+    self.borderView.backgroundColor = colorWithRGB(255, 255, 255) ;
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
-    self.borderView.backgroundColor = selected?colorWithRGB(68, 172, 190):colorWithRGB(227, 227, 226) ;
-    self.labTitle.textColor = selected?colorWithRGB(255, 255, 255):colorWithRGB(60, 60, 60) ;
+    self.borderView.backgroundColor = selected?colorWithRGB(49, 126, 194):colorWithRGB(255, 255, 255) ;
+    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
 }
 
 -(void)setSelected:(BOOL)selected
