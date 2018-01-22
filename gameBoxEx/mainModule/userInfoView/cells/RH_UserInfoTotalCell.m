@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIView  *walletBGView    ;
 @property (weak, nonatomic) IBOutlet UILabel  *labTWallet  ;
 @property (weak, nonatomic) IBOutlet UILabel  *labTWalletValue ;
-@property (weak, nonatomic) IBOutlet UIView *line1;
 
 @end
 @implementation RH_UserInfoTotalCell
@@ -34,18 +33,18 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.borderMask = CLBorderMarkBottom ;
-    self.tBalanceView.borderColor = colorWithRGB(242, 242, 242) ;
-    self.tBalanceView.borderLineInset = UIEdgeInsetsMake(0, 15, 0, 0) ;
+    self.tBalanceView.borderColor = colorWithRGB(204, 204, 204) ;
+    self.tBalanceView.borderLineInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
     
     self.tWalletView.backgroundColor = [UIColor clearColor] ;
     self.tWalletView.borderMask = CLBorderMarkBottom ;
-    self.tWalletView.borderColor = colorWithRGB(242, 242, 242)  ;
+    self.tWalletView.borderColor = colorWithRGB(204, 204, 204)  ;
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
     self.balanceBGView.backgroundColor = colorWithRGB(27, 117, 217) ;
     self.balanceBGView.layer.cornerRadius = 5.0f ;
     self.balanceBGView.layer.masksToBounds = YES ;
-    
+
     
     self.labTBalance.textColor = [UIColor whiteColor] ;
     self.labTBalance.font = [UIFont systemFontOfSize:12.0f] ;
@@ -68,9 +67,9 @@
     self.labTBalanceValue.text = @"" ;
     self.labTWallet.text = @"钱包"    ;  //
     self.labTWalletValue.text = @""  ;   //
-    
-    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
-    self.separatorLineColor = colorWithRGB(204, 204, 204) ;
+
+//    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
+//    self.separatorLineColor = colorWithRGB(204, 204, 204) ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

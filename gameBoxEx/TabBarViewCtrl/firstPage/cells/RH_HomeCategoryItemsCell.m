@@ -34,8 +34,8 @@
 {
     [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor] ;
-    self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
-    
+    self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
+   
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
@@ -69,6 +69,7 @@
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         _collectionView.backgroundColor = [UIColor clearColor];
+        
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
