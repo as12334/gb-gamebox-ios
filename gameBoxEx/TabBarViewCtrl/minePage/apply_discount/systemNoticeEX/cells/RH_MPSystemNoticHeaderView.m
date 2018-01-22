@@ -18,11 +18,30 @@
 @implementation RH_MPSystemNoticHeaderView
 @synthesize startSeletedDateView = _startSeletedDateView;
 @synthesize endSeletedDateView = _endSeletedDateView;
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        self.backgroundColor = colorWithRGB(242, 242, 242);
+    }
+    return self;
+}
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     [self.startDateView addSubview:self.startSeletedDateView];
     [self.endDateView addSubview:self.endSeletedDateView];
+    self.startDateView.layer.cornerRadius = 3.f;
+    self.startDateView.layer.borderWidth = 1.f;
+    self.startDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.startDateView.layer.masksToBounds = YES;
+    self.endDateView.layer.cornerRadius = 3.f;
+    self.endDateView.layer.borderWidth = 1.f;
+    self.endDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.endDateView.layer.masksToBounds = YES;
+    self.kuaixuanBtn.layer.cornerRadius = 3.f;
+    self.kuaixuanBtn.backgroundColor = colorWithRGB(27, 117, 217);
+    [self.kuaixuanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.kuaixuanBtn.layer.masksToBounds = YES;
 }
 -(RH_MPGameSeletedDateView *)startSeletedDateView
 {
@@ -75,7 +94,6 @@
 - (IBAction)kuaixuanSelected:(id)sender {
 //    __block RH_MPSystemNoticHeaderView *weakSelf = self;
     CGRect frame = self.kuaixuanBtn.frame;
-    frame.size.width +=100;
     self.block(frame);
 }
 

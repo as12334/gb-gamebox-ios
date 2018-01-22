@@ -19,7 +19,7 @@
 @property (nonatomic,assign,readonly) NSInteger allTypes ;
 @property (nonatomic,assign) NSInteger selectedIndex ;
 @property (nonatomic,assign,readonly) CGFloat viewHeight ;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (strong, nonatomic)UISegmentedControl *segmentedControl;
 -(void)updateView:(NSArray*)typeList ;
 -(RH_DiscountActivityTypeModel*)typeModelWithIndex:(NSInteger)index ;
 @end

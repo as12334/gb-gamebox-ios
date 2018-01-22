@@ -47,11 +47,10 @@
         self.contentTableView.dataSource = self ;
         self.contentTableView.sectionFooterHeight = 10.0f;
         self.contentTableView.sectionHeaderHeight = 10.0f ;
-        self.contentTableView.backgroundColor = [UIColor clearColor];
+        self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242);
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-//        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         [self.contentTableView registerCellWithClass:[RH_MPGameNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];

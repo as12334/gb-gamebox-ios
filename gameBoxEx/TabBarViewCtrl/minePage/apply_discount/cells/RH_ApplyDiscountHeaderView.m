@@ -21,7 +21,14 @@
 {
     if (self=[super initWithCoder:aDecoder]) {
         NSArray *itemArray = @[@"游戏公告",@"系统公告",@"站点信息"];
-//        [self.segmentedControl initWithItems:itemArray];
+        //初始化UISegmentedControl
+        self.segmentedControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+        //设置frame
+        [self.segmentedControl setFrame:CGRectMake((MainScreenW-200)/2,15/2, 200, 35)];
+        [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];
+        self.segmentedControl.tintColor = colorWithRGB(23, 102, 187);
+        //添加到视图
+        [self addSubview:self.segmentedControl];
     }
     return self;
 }
@@ -31,7 +38,6 @@
     self.backgroundColor = [UIColor whiteColor] ;
     _selectedIndex = 0 ;
     _viewHeight = 0.0f ;
-    
 }
 
 -(void)updateView:(NSArray*)typeList
@@ -66,7 +72,7 @@
 //        self.segmentedControl.selectedSegmentIndex = _selectedIndex;
     }
 }
-- (IBAction)segmentSelectedClick:(id)sender {
+- (void)segmentSelectedClick:(id)sender {
     [self setSelectedIndex:self.segmentedControl.selectedSegmentIndex] ;
     ifRespondsSelector(self.delegate, @selector(DiscountTypeHeaderViewDidChangedSelectedIndex:SelectedIndex:)){
         [self.delegate DiscountTypeHeaderViewDidChangedSelectedIndex:self SelectedIndex:self.segmentedControl.selectedSegmentIndex] ;
