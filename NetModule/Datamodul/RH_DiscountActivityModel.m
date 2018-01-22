@@ -15,6 +15,7 @@
 @synthesize showLink = _showLink ;
 @synthesize showPhoto = _showPhoto ;
 @synthesize showImageSize = _showImageSize ;
+@synthesize showName = _showName;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -22,6 +23,8 @@
     {
         _mPhoto = [info stringValueForKey:RH_GP_DISCOUNTACTIVITY_PHOTO];
         _mUrl = [info stringValueForKey:RH_GP_DISCOUNTACTIVITY_URL];
+        _mId = [info integerValueForKey:RH_GP_DISCOUNTACTIVITY_ID];
+        _mName = [info stringValueForKey:RH_GP_DISCOUNTACTIVITY_NAME];
     }
     return self;
 }
@@ -36,6 +39,14 @@
     }
     
     return _showPhoto ;
+}
+
+-(NSString *)showName
+{
+    if (!_showName) {
+        _showName = [NSString stringWithFormat:@"%@",_mName] ;
+    }
+    return _showName;
 }
 
 -(NSString *)showLink

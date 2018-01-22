@@ -72,6 +72,11 @@
                     <constraint firstAttribute="trailing" secondItem="yKL-n7-hVA" secondAttribute="trailing" id="jKC-Pv-I8B"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="LookDetail" destination="2As-aN-ae5" id="d2P-TV-6ko"/>
+                <outlet property="activeImageView" destination="2Km-Gt-a2e" id="8jn-dg-Rxi"/>
+                <outlet property="labTitle" destination="cWH-k8-gyq" id="raO-iI-XXM"/>
+            </connections>
             <point key="canvasLocation" x="-577" y="-584"/>
         </tableViewCell>
     </objects>

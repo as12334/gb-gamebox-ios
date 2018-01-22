@@ -38,7 +38,7 @@
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
     self.labRemark.backgroundColor = colorWithRGB(27, 117, 217) ;
     self.labRemark.textColor = [UIColor whiteColor] ;
-    self.labRemark.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labRemark.font = [UIFont systemFontOfSize:14.0f] ;
     self.labRemark.layer.cornerRadius = 4.0f ;
     self.labRemark.clipsToBounds = YES;
     self.labRemark.text = @"公告" ;
@@ -64,7 +64,7 @@
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
     _dynamicTimeInterval = strTmp.length * 0.5 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;
-    self.labScrollText.font = [UIFont systemFontOfSize:12];
+    self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);
     self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
     self.labScrollText.frame = CGRectMake(self.scrollView.frameWidth,

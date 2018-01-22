@@ -347,6 +347,7 @@
 #define RH_GP_DISCOUNTACTIVITY_ACTIVITYTYPENAME        @"activityTypeName"
 #define RH_GP_DISCOUNTACTIVITY_URL                     @"url"
 #define RH_GP_DISCOUNTACTIVITY_PHOTO                   @"photo"
+#define RH_GP_DISCOUNTACTIVITY_NAME                    @"name"
 
 #pragma mark - V3 系统公告详情 模型
 #define RH_GP_SYSTEMNOTICEDETAIL_ID          @"id"

@@ -12,6 +12,7 @@
 @property (nonatomic,weak) IBOutlet UIImageView *activeImageView ;
 @property (nonatomic,strong) RH_DiscountActivityModel *discountActivityModel ;
 @property (nonatomic,weak) IBOutlet UILabel *labTitle ;
+@property (weak, nonatomic) IBOutlet UIButton *LookDetail;
 
 @end
 
@@ -33,6 +34,10 @@
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
     self.selectionColorAlpha = 0.5f ;
+    self.labTitle.textColor = colorWithRGB(50, 51, 51);
+    self.labTitle.font = [UIFont systemFontOfSize:14.f];
+    [self.LookDetail setTitleColor:colorWithRGB(49, 126, 194) forState:UIControlStateNormal];
+    self.LookDetail.titleLabel.font = [UIFont systemFontOfSize:14.f];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
@@ -59,6 +64,7 @@
                                            [self.discountActivityModel updateImageSize:image.size] ;
                                        }
                                    }] ;
+    self.labTitle.text = self.discountActivityModel.showName;
 }
 
 
