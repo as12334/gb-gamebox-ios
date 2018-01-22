@@ -53,7 +53,7 @@
     if (self) {
         contentView = [UIView new];
         [self addSubview:contentView];
-        contentView.whc_Center(0, 0).whc_Width(screenSize().width/3*2).whc_Height(200);
+        contentView.whc_Center(0, 0).whc_Width(screenSize().width*3/4).whc_Height(345/266*screenSize().width);
         contentView.backgroundColor = colorWithRGB(255, 255, 255);
         contentView.transform = CGAffineTransformMakeScale(0, 0);
         [contentView addSubview:self.scrollView];
@@ -64,7 +64,7 @@
         self.scrollView.showsHorizontalScrollIndicator = NO;
         self.pageIndicator.whc_CenterX(0).whc_Width(100).whc_Height(10).whc_TopSpaceToView(5, self.scrollView);
         self.pageIndicator.currentPage = 0;
-        contentView.layer.cornerRadius = 20;
+        contentView.layer.cornerRadius = 10;
         contentView.clipsToBounds = YES;
         self.backgroundColor = ColorWithRGBA(134, 134, 134, 0.3);
         self.cancelButton = [[UIButton alloc] init];
@@ -106,6 +106,7 @@
         textView.frame = CGRectMake(i * self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         [self.scrollView addSubview:textView];
         textView.textColor = colorWithRGB(51, 51, 51);
+        textView.editable = NO;
         textView.font = [UIFont systemFontOfSize:14.f];
         textView.text = model.mContent;
         
