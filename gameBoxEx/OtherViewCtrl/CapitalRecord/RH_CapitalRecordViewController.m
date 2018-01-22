@@ -185,7 +185,7 @@
 }
 -(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
-    [self showCalendarView:@"设置结止日期"
+    [self showCalendarView:@"设置截止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.endDate = returnDate ;

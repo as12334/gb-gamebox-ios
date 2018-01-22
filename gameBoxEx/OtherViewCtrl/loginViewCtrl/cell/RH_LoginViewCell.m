@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
+@property (weak, nonatomic) IBOutlet UILabel *codeLab;
 
 @end
 
@@ -86,8 +87,13 @@
     _usernameTextfield.delegate=self;
     _passwordTextfield.returnKeyType = UIReturnKeyDone;
     _passwordTextfield.delegate = self;
-    
+    //设置头像
     self.headImage.image = ImageWithName(@"login_touxiang");
+    
+    //设置验证码标签
+    self.codeLab.textColor = colorWithRGB(102, 102, 102);
+    self.codeLab.font = [UIFont systemFontOfSize:14.f];
+    self.codeLab.hidden = YES;
     //初始化用户
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userNameView.textField.text = [defaults stringForKey:@"account"] ;
@@ -99,6 +105,7 @@
 {
     BOOL isNeedVerCode = [context boolValue] ;
     self.verifyCodeView.hidden = !isNeedVerCode ;
+    self.codeLab.hidden = !isNeedVerCode;
     self.loginTopLayoutConst.constant = isNeedVerCode?110.0f :40.0f ;
     
     if (isNeedVerCode){

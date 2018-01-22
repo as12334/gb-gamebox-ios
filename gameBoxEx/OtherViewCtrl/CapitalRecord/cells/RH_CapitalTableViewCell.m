@@ -86,7 +86,7 @@
     self.moneyTypeLab.textColor = colorWithRGB(28, 217,135);
     self.moneyTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.moneyTypeLab.text = @"+100";
-self.timeoutTypeLab.whc_RightSpace(10).whc_TopSpace(5).whc_Width(40).whc_Height(30);
+    self.timeoutTypeLab.whc_RightSpace(10).whc_TopSpace(5).whc_Width(40).whc_Height(30);
     
     self.timeoutTypeLab.textColor = colorWithRGB(244, 158, 46);
     self.timeoutTypeLab.font = [UIFont systemFontOfSize:12.f];
