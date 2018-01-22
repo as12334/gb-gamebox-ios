@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *titelField;
 @property (weak, nonatomic) IBOutlet UITextView *contenTextView;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *codeImageView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *confimBtn;
 
@@ -26,8 +25,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        [self.webView setHidden:YES];
-        [self.codeTextField setHidden:YES];
+      
         
     }
     return self;
@@ -35,6 +33,9 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    [self.webView setHidden:YES];
+    [self.codeTextField setHidden:YES];
+    
     self.backDropView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.masksToBounds = YES;
@@ -63,7 +64,6 @@
     else if (sendModel.mIsOpenCaptcha==YES){
         [self.codeTextField setHidden:NO];
         [self.webView setHidden:NO];
-//        [self.codeImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://test01.ampinplayopt0matrix.com",sendModel.mCaptcha_value]]];
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://test01.ampinplayopt0matrix.com",sendModel.mCaptcha_value]];//创建URL
         NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
         [self.webView loadRequest:request];//加载
