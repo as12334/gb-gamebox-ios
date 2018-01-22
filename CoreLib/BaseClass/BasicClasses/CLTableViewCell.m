@@ -360,7 +360,7 @@
 - (void)setNeedUpdateCell
 {
     if (self.window) {
-        [self updateCell];
+        [self performSelectorOnMainThread:@selector(updateCell) withObject:self waitUntilDone:NO] ;
     }else {
         _needUpdateCellWhenShowInWindow = YES;
     }
@@ -384,7 +384,7 @@
 {
     if (_needUpdateCellWhenShowInWindow) {
         _needUpdateCellWhenShowInWindow = NO;
-        [self updateCell];
+        [self performSelectorOnMainThread:@selector(updateCell) withObject:self waitUntilDone:NO] ;
     }
 }
 

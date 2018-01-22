@@ -8,6 +8,13 @@
 
 #import "RH_BasicPageLoadViewController.h"
 
+//@protocol RH_WithdrawAddBitCoinAddressDelegate
+//@optional
+//- (void)withdrawAddBitCoinAddressResetButtonClicked:(UIButton *)sender;
+//- (void)withdrawAddBitCoinAddressSubmitButtonClicked:(UIButton *)sender;
+//@end
+
 @interface RH_WithdrawAddBitCoinAddressController : RH_BasicPageLoadViewController
 
+//@property (nonatomic, weak) id <RH_WithdrawAddBitCoinAddressDelegate> delegate;
 @end

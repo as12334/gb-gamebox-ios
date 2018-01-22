@@ -14,6 +14,8 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalRecordDetailsController.h"
 #import "RH_CapitalPulldownListView.h"
+#import "RH_API.h"
+
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
@@ -250,6 +252,13 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         RH_CapitalInfoOverviewModel *capitalInfoOverModel = ConvertToClassPointer(RH_CapitalInfoOverviewModel, data) ;
+        [self.capitalRecordHeaderView updateUIInfoWithDraw:capitalInfoOverModel.mWithdrawSum
+                                               TransferSum:capitalInfoOverModel.mTransferSum] ;
+        
+        [self.capitalBottomView updateUIInfoWithRechargeSum:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_RECHARGE]
+                                                WithDrawSum:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_WITHDRAW]
+                                               FavorableSum:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_FAVORABLE]
+                                                   Rakeback:[capitalInfoOverModel.mSumPlayerMap floatValueForKey:RH_GP_DEPOSITLIST_SUMPLAYERMAP_REKEBACK]] ;
         
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
@@ -260,9 +269,6 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         [self loadDataFailWithError:error] ;
-    }
-    if (type == ServiceRequestTypeV3GetWithDrawInfo) {
-        NSLog(@"%ld  %@",(long)error.code,error.localizedDescription);
     }
 }
 

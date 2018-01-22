@@ -258,7 +258,6 @@
 		A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A010A0811F879ACE004E6EF4 /* RH_SimpleWebViewController.m */; };
 		A010A0941F879BC9004E6EF4 /* RH_ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A010A0921F879BC9004E6EF4 /* RH_ImagePickerViewController.m */; };
 		A010A0961F879D57004E6EF4 /* CLViewControllerTransitioningDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = A0109E991F87852F004E6EF4 /* CLViewControllerTransitioningDelegate.h */; };
-		A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */ = {isa = PBXBuildFile; fileRef = A011811A1FFB763A008F6D1E /* RH_UserCenterlogout.plist */; };
 		A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */ = {isa = PBXBuildFile; fileRef = A011811D1FFB763A008F6D1E /* RH_UserCenterlogin.plist */; };
 		A01181531FFC6BE4008F6D1E /* RH_BettingRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181421FFC6BE4008F6D1E /* RH_BettingRecordViewController.m */; };
 		A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01181471FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib */; };
@@ -434,6 +433,9 @@
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
 		B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */; };
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
+		B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */; };
+		B851139F20146CA300042ADE /* RH_WithdrawHasOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */; };
+		B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */; };
 		B87A6B182005EA8100C9788F /* RH_ModifyPasswordCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */; };
 		B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */; };
 		B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PromoListController.m */; };
@@ -528,6 +530,12 @@
 		F6FB63C4201196E200EEED4E /* RH_ApplyDiscountSiteSendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB63C3201196E200EEED4E /* RH_ApplyDiscountSiteSendCell.m */; };
 		F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB63C62011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m */; };
 		F6FB63CA2011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB63C92011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m */; };
+		F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB640B20142BF600EEED4E /* RH_ForgetPasswordController.m */; };
+		F6FB640F20142C2800EEED4E /* RH_ForgetPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB640E20142C2800EEED4E /* RH_ForgetPasswordView.m */; };
+		F6FB641120142C3400EEED4E /* RH_ForgetPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB641020142C3400EEED4E /* RH_ForgetPasswordView.xib */; };
+		F6FB6415201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB6413201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m */; };
+		F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB6414201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib */; };
+		F6FB64182014323600EEED4E /* RH_UserCenterlogout.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6FB64172014323600EEED4E /* RH_UserCenterlogout.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -975,7 +983,6 @@
 		A010A0811F879ACE004E6EF4 /* RH_SimpleWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SimpleWebViewController.m; sourceTree = "<group>"; };
 		A010A0921F879BC9004E6EF4 /* RH_ImagePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ImagePickerViewController.m; sourceTree = "<group>"; };
 		A010A0931F879BC9004E6EF4 /* RH_ImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ImagePickerViewController.h; sourceTree = "<group>"; };
-		A011811A1FFB763A008F6D1E /* RH_UserCenterlogout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_UserCenterlogout.plist; sourceTree = "<group>"; };
 		A011811D1FFB763A008F6D1E /* RH_UserCenterlogin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_UserCenterlogin.plist; sourceTree = "<group>"; };
 		A01181421FFC6BE4008F6D1E /* RH_BettingRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordViewController.m; sourceTree = "<group>"; };
 		A01181441FFC6BE4008F6D1E /* RH_BettingSelectedDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BettingSelectedDateView.h; sourceTree = "<group>"; };
@@ -1292,6 +1299,10 @@
 		B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_MineSettings.plist; sourceTree = "<group>"; };
 		B832D0531FFE321000B403B0 /* RH_MineSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsCell.h; sourceTree = "<group>"; };
 		B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSettingsCell.m; sourceTree = "<group>"; };
+		B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawCashHasOrder.plist; sourceTree = "<group>"; };
+		B851139C20146CA300042ADE /* RH_WithdrawHasOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawHasOrderCell.h; sourceTree = "<group>"; };
+		B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawHasOrderCell.m; sourceTree = "<group>"; };
+		B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawHasOrderCell.xib; sourceTree = "<group>"; };
 		B87A6B152005EA8100C9788F /* RH_ModifyPasswordCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCodeCell.h; sourceTree = "<group>"; };
 		B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCodeCell.m; sourceTree = "<group>"; };
 		B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ModifyPasswordCodeCell.xib; sourceTree = "<group>"; };
@@ -1465,6 +1476,15 @@
 		F6FB63C62011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ApplyDiscountSiteSystemCell.m; sourceTree = "<group>"; };
 		F6FB63C82011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ApplyDiscountSiteMineCell.h; sourceTree = "<group>"; };
 		F6FB63C92011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ApplyDiscountSiteMineCell.m; sourceTree = "<group>"; };
+		F6FB640A20142BF600EEED4E /* RH_ForgetPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ForgetPasswordController.h; sourceTree = "<group>"; };
+		F6FB640B20142BF600EEED4E /* RH_ForgetPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ForgetPasswordController.m; sourceTree = "<group>"; };
+		F6FB640D20142C2800EEED4E /* RH_ForgetPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ForgetPasswordView.h; sourceTree = "<group>"; };
+		F6FB640E20142C2800EEED4E /* RH_ForgetPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ForgetPasswordView.m; sourceTree = "<group>"; };
+		F6FB641020142C3400EEED4E /* RH_ForgetPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ForgetPasswordView.xib; sourceTree = "<group>"; };
+		F6FB6412201430A800EEED4E /* RH_MinePageLoginoutBannarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MinePageLoginoutBannarCell.h; sourceTree = "<group>"; };
+		F6FB6413201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MinePageLoginoutBannarCell.m; sourceTree = "<group>"; };
+		F6FB6414201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MinePageLoginoutBannarCell.xib; sourceTree = "<group>"; };
+		F6FB64172014323600EEED4E /* RH_UserCenterlogout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_UserCenterlogout.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1492,6 +1512,9 @@
 				189C13A01FF9E99E00B14298 /* RH_MinePageBannarCell.h */,
 				189C13A11FF9E99E00B14298 /* RH_MinePageBannarCell.m */,
 				189C13A21FF9E99E00B14298 /* RH_MinePageBannarCell.xib */,
+				F6FB6412201430A800EEED4E /* RH_MinePageLoginoutBannarCell.h */,
+				F6FB6413201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m */,
+				F6FB6414201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib */,
 				189C13A31FF9E99E00B14298 /* RH_MineRecordStaticCell.h */,
 				189C13A41FF9E99E00B14298 /* RH_MineRecordStaticCell.m */,
 				189C13A51FF9E99E00B14298 /* RH_MineRecordStaticCell.xib */,
@@ -2637,7 +2660,7 @@
 				189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */,
 				189C139B1FF9E99E00B14298 /* RH_MePageViewController.m */,
 				A011811D1FFB763A008F6D1E /* RH_UserCenterlogin.plist */,
-				A011811A1FFB763A008F6D1E /* RH_UserCenterlogout.plist */,
+				F6FB64172014323600EEED4E /* RH_UserCenterlogout.plist */,
 				A04E605B1F8DED6000098A65 /* RH_MinePageViewController.h */,
 				A04E605C1F8DED6000098A65 /* RH_MinePageViewController.m */,
 			);
@@ -2758,6 +2781,7 @@
 		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				F6FB640920142BB000EEED4E /* forgetPassword */,
 				A06B64A71FD6910700323C12 /* cell */,
 				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
 				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
@@ -2974,8 +2998,8 @@
 			isa = PBXGroup;
 			children = (
 				A0E782761FFE5C12007BFBF3 /* RH_DomainTableCell.xib */,
-				A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */,
 				A0E782781FFE5C12007BFBF3 /* RH_DomainTableCell.h */,
+				A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -3111,11 +3135,14 @@
 				B87A6B51200DAD4E00C9788F /* RH_WithdrawCashOneCell.h */,
 				B87A6B52200DAD4E00C9788F /* RH_WithdrawCashOneCell.m */,
 				B87A6B54200DAE7C00C9788F /* RH_WithdrawCashTwoCell.h */,
+				B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */,
 				B87A6B57200DB01F00C9788F /* RH_WithdrawCashThreeCell.h */,
 				B87A6B58200DB01F00C9788F /* RH_WithdrawCashThreeCell.m */,
-				B87A6B55200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m */,
 				B87A6B5C200DDA6300C9788F /* RH_WithdrawCashFourCell.h */,
 				B87A6B5D200DDA6300C9788F /* RH_WithdrawCashFourCell.m */,
+				B851139C20146CA300042ADE /* RH_WithdrawHasOrderCell.h */,
+				B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */,
+				B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3131,6 +3158,7 @@
 				B87A6B6B200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib */,
 				A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */,
 				B87A6BB92011897700C9788F /* WithdrawCashLow.plist */,
+				B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */,
 				B87A6B4F200DAB5B00C9788F /* WithdrawCash.plist */,
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
@@ -3359,6 +3387,18 @@
 			path = mine;
 			sourceTree = "<group>";
 		};
+		F6FB640920142BB000EEED4E /* forgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB640A20142BF600EEED4E /* RH_ForgetPasswordController.h */,
+				F6FB640B20142BF600EEED4E /* RH_ForgetPasswordController.m */,
+				F6FB640D20142C2800EEED4E /* RH_ForgetPasswordView.h */,
+				F6FB640E20142C2800EEED4E /* RH_ForgetPasswordView.m */,
+				F6FB641020142C3400EEED4E /* RH_ForgetPasswordView.xib */,
+			);
+			path = forgetPassword;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3435,6 +3475,7 @@
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
 				F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
+				F6FB64182014323600EEED4E /* RH_UserCenterlogout.plist in Resources */,
 				A0522A93200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
@@ -3445,6 +3486,7 @@
 				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
 				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
+				F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
@@ -3458,7 +3500,6 @@
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
 				F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */,
-				A011811F1FFB763B008F6D1E /* RH_UserCenterlogout.plist in Resources */,
 				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
@@ -3469,6 +3510,7 @@
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
 				A0AE8AAE1FFCD57300836C1B /* RH_MineMoreNextCell.xib in Resources */,
 				F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */,
+				F6FB641120142C3400EEED4E /* RH_ForgetPasswordView.xib in Resources */,
 				B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */,
@@ -3496,6 +3538,7 @@
 				A0522A98200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib in Resources */,
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */,
+				B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */,
 				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
@@ -3527,6 +3570,7 @@
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
+				B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */,
 				F6FB638B200F851300EEED4E /* RH_MPSystemNoticeCell.xib in Resources */,
 				B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */,
 				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
@@ -3701,6 +3745,7 @@
 				B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */,
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
 				F6FB6382200F851300EEED4E /* RH_SiteSendMessagePullDownView.m in Sources */,
+				B851139F20146CA300042ADE /* RH_WithdrawHasOrderCell.m in Sources */,
 				A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */,
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
@@ -3817,6 +3862,7 @@
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
+				F6FB640F20142C2800EEED4E /* RH_ForgetPasswordView.m in Sources */,
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
@@ -3933,7 +3979,9 @@
 				189C13AB1FF9E99F00B14298 /* RH_MePageViewController.m in Sources */,
 				A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */,
 				A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */,
+				F6FB6415201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
+				F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */,
 				A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */,
 				B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */,
 				A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */,

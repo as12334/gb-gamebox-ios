@@ -152,6 +152,8 @@
 							<string>mine_page_applypreferential</string>
 							<key>code</key>
 							<string>gameNotice</string>
+							<key>targetKey</key>
+							<string>RH_ForgetPasswordController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -182,6 +184,16 @@
 							<string>mine_page_look_more</string>
 							<key>title</key>
 							<string>bit币 h5</string>
+						</dict>
+						<dict>
+							<key>code</key>
+							<string>withdraw</string>
+							<key>image</key>
+							<string>mine_page_look_more</string>
+							<key>title</key>
+							<string>提现 H5</string>
+							<key>detailTitle</key>
+							<string>提现</string>
 						</dict>
 					</array>
 				</dict>

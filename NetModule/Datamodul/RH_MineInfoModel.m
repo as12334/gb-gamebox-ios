@@ -15,6 +15,7 @@
 @end ;
 
 @implementation RH_MineInfoModel
+@synthesize showAvatalURL = _showAvatalURL ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -39,6 +40,17 @@
     }
     
     return self ;
+}
+
+
+-(NSString *)showAvatalURL
+{
+    if (!_showAvatalURL){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        _showAvatalURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAvatalUrl] ;
+    }
+    
+    return _showAvatalURL ;
 }
 
 -(void)updateBankCard:(RH_BankCardModel*)bankCardInfo

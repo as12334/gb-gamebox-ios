@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface RH_CapitalRecordBottomView : UIView
-
+-(void)updateUIInfoWithRechargeSum:(CGFloat)rechargeSum
+                       WithDrawSum:(CGFloat)withDrawSum
+                      FavorableSum:(CGFloat)favorableSum
+                          Rakeback:(CGFloat)rakeBackSum ;
 @end
