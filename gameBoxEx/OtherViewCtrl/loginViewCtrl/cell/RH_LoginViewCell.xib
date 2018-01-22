@@ -28,11 +28,14 @@
                                     <constraint firstAttribute="height" constant="26" id="pDN-oc-ufl"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nrj-z8-2wh">
+                            <textField opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nrj-z8-2wh">
                                 <rect key="frame" x="46" y="5" width="347" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <action selector="clickEachTextfield:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="LJB-4m-37X"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,11 +66,14 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="jhV-Ib-sD1"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wRv-rX-JKy">
+                            <textField opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wRv-rX-JKy">
                                 <rect key="frame" x="46" y="5" width="347" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="clickEachTextfield:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="lKK-Db-bkK"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,11 +102,14 @@
                                     <constraint firstAttribute="width" constant="26" id="k4l-Zz-LnJ"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-Cq-Auz">
+                            <textField opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-Cq-Auz">
                                 <rect key="frame" x="46" y="5" width="259" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="clickEachTextfield:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="2OG-Lt-mTU"/>
+                                </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nOF-NX-Jy1">
                                 <rect key="frame" x="313" y="5" width="80" height="30"/>
@@ -271,6 +280,7 @@
                 <outlet property="usernameNotice" destination="aYC-hQ-CtH" id="ckU-wz-uEU"/>
                 <outlet property="usernameTextfield" destination="Nrj-z8-2wh" id="gGE-Rw-18E"/>
                 <outlet property="verifyCodeView" destination="uze-dM-Gi9" id="glX-bJ-rhE"/>
+                <outlet property="verifyTextfield" destination="GFx-Cq-Auz" id="Fs6-7s-Kxe"/>
             </connections>
             <point key="canvasLocation" x="-578.5" y="-112.5"/>
         </tableViewCell>

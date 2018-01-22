@@ -15,12 +15,11 @@
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
+@property (nonatomic,assign)CGRect frame;
 @end
 
 @implementation RH_LoginViewControllerEx
-{
-    CGFloat _contenViewFrameY;
-}
+
 @synthesize loginViewCell = _loginViewCell ;
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
@@ -203,13 +202,23 @@
     //支持哪些转屏方向
     return UIInterfaceOrientationMaskPortrait;
 }
+#pragma mark 点击textfield的代理
+-(void)loginViewCellSelectedEachTextfield:(CGRect)frame
+{
+    _frame = frame;
+    [self keyboardFrameWillChange];
+}
 #pragma mark 键盘高度
+  
 -(void)keyboardFrameWillChange
 {
     [UIView animateWithDuration:self.keyboardAnimationDuration animations:^{
-        if (self.keyboardEndFrame.size.height>0&&self.contentView.frameY>=0) {
+        if (self.keyboardEndFrame.size.height>0) {
+            CGRect originalFrame = self.contentView.frame;
+            originalFrame.origin.y =0;
+            self.contentView.frame = originalFrame;
             CGRect frame = self.contentView.frame;
-            frame.origin.y -=self.keyboardEndFrame.size.height/2;
+            frame.origin.y -=self.frame.origin.y-100;
             self.contentView.frame = frame;
         }
         else if (self.keyboardEndFrame.size.height<=0){
@@ -219,5 +228,4 @@
         }
     }];
 }
-
 @end
