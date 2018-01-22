@@ -13,6 +13,7 @@
 -(void)loginViewCellTouchLoginButton:(RH_LoginViewCell*)loginViewCell ;
 -(void)loginViewCellTouchCreateButton:(RH_LoginViewCell*)loginViewCell ;
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell*)loginViewCell ;
+-(void)loginViewCellSelectedEachTextfield:(CGRect)frame;
 @end
 @interface RH_LoginViewCell : CLTableViewCell
 @property(nonatomic,weak) id<LoginViewCellDelegate>  delegate ;
