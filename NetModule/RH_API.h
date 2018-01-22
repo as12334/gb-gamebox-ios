@@ -754,5 +754,12 @@
 #define RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW     @"actualWithdraw"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
 
+#pragma mark -V3 获取游戏分类
+#define RH_API_NAME_LOADGAMETYPE   @"origin/getGameTag.html"
+//返回参数
+#define RH_GP_LOADGAMETYPE_KEY                  @"key"
+#define RH_GP_LOADGAMETYPE_VALUE                @"value"
+
+
 #endif /* RH_API_h */
 

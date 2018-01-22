@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3MyMessageMyMessageDelete   ,  // 我的消息  删除
     ServiceRequestTypeV3GetWithDrawInfo   ,  // 取款信息接口
     ServiceRequestTypeV3SubmitWithdrawInfo   ,  // 提交取款信息
+    ServiceRequestTypeV3LoadGameType,          //获取游戏分类
 };
 
 
@@ -361,6 +362,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                  ApiTypeID:(NSInteger)apiTypeID
                    GamesID:(NSString*)gamesID
                  GamesCode:(NSString*)gamesCode ;
+#pragma mark - 获取游戏分类
+-(void)startV3LoadGameType;
 #pragma mark -
 /**
  * 取消所有服务

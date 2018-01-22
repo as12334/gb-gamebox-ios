@@ -993,7 +993,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SubmitWithdrawInfo
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark - 获取游戏分类
+-(void)startV3LoadGameType
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_LOADGAMETYPE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3LoadGameType
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -1604,6 +1616,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break ;
+            case ServiceRequestTypeV3LoadGameType:
+            {
+                  resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+            }
+                break;
                 
             default:
                 resultSendData = dataObject ;
