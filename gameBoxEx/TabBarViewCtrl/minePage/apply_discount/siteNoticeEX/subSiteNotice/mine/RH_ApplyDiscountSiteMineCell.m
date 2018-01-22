@@ -87,7 +87,7 @@
                 [self.deleteModelArray removeObject:siteModel];
             }
             
-            [weakSelf.contentTableView reloadData];
+//            [weakSelf.contentTableView reloadData];
         };
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return noticeCell ;
@@ -117,13 +117,13 @@
             [self.deleteModelArray removeAllObjects];
         }
     }
-    [self.contentTableView reloadData];
+//    [self.contentTableView reloadData];
 }
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView *)view
 {
     NSString *str = @"";
     for (RH_SiteMyMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%d,",siteModel.mId]];
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",siteModel.mId]];
     }
     if([str length] > 0){
         str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
@@ -149,6 +149,8 @@
 {
     
 }
+
+#pragma mark -
 -(RH_LoadingIndicateTableViewCell*)loadingIndicateTableViewCell
 {
     if (!_loadingIndicateTableViewCell){
@@ -159,13 +161,13 @@
     
     return _loadingIndicateTableViewCell ;
 }
-#pragma mark 数据请求
--(RH_LoadingIndicateView*)contentLoadingIndicateView
+
+-(RH_LoadingIndicateView*)loadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
 }
 
-
+#pragma mark 数据请求
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
     return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
@@ -219,15 +221,14 @@
             for (int i = 0; i<array.count; i++) {
                 RH_SiteMyMessageModel *myModel = ConvertToClassPointer(RH_SiteMyMessageModel, array[i]);
                 myModel.number = @0;
-                [self loadDataSuccessWithDatas:array totalCount:i completedBlock:nil];
                 [self.siteModelArray addObject:myModel];
             }
-        }
-        else
+            
+            [self loadDataSuccessWithDatas:array totalCount:array.count completedBlock:nil] ;
+        }else
         {
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
-        [self.contentTableView reloadData];
     }
 }
 

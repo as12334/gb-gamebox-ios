@@ -7,11 +7,17 @@
 //
 
 #import "RH_PromoTableCell.h"
+#import "RH_UserInfoManager.h"
+#import "RH_APPDelegate.h"
+#import "RH_CustomViewController.h"
 
 @interface RH_PromoTableCell()
+@property (nonatomic,weak) IBOutlet CLBorderView *borderView ;
+@property (nonatomic,weak) IBOutlet UIView *bottomView ;
 @property (nonatomic,weak) IBOutlet UIImageView *activeImageView ;
 @property (nonatomic,strong) RH_DiscountActivityModel *discountActivityModel ;
 @property (nonatomic,weak) IBOutlet UILabel *labTitle ;
+@property (nonatomic,weak) IBOutlet CLButton *btnDetail ;
 
 @end
 
@@ -30,9 +36,20 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.borderView.backgroundColor = [UIColor whiteColor] ;
+    self.bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
+    self.borderView.layer.cornerRadius = 4.0f ;
+    self.borderView.borderMask = CLBorderMarkAll ;
+    self.borderView.borderColor = colorWithRGB(226, 226, 226) ;
+    self.borderView.borderWidth = PixelToPoint(1.0f) ;
+    
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
     self.selectionColorAlpha = 0.5f ;
+    self.labTitle.textColor = colorWithRGB(50, 51, 51) ;
+    self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
+    [self.btnDetail setTitleColor:colorWithRGB(49, 126, 194) forState:UIControlStateNormal] ;
+    [self.btnDetail setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted] ;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
@@ -59,6 +76,7 @@
                                            [self.discountActivityModel updateImageSize:image.size] ;
                                        }
                                    }] ;
+    self.labTitle.text = @"测试标签" ;
 }
 
 
@@ -72,6 +90,21 @@
                 [self.delegate promoTableCellImageSizeChangedNotification:self] ;
             }
         }
+    }
+}
+
+-(IBAction)btn_enterDetail:(id)sender
+{
+    if (HasLogin)
+    {
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (appDelegate){
+            appDelegate.customUrl = self.discountActivityModel.showLink ;
+            [self showViewController:[RH_CustomViewController viewController]] ;
+        }
+        
+    }else{
+        showAlertView(@"提示信息", @"您尚未登入") ;
     }
 }
 @end

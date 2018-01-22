@@ -434,7 +434,7 @@
 
 #pragma mark- v3 用户信息 接口
 //api的路径
-#define RH_API_NAME_USERINFO                        @"mineOrigin/getUserInfo.html"
+#define RH_API_NAME_USERINFO                        @"userInfoOrigin/getUserInfo.html"
 //请求参数 无
 
 #pragma mark- v3 我的 接口
