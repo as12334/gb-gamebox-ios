@@ -15,7 +15,7 @@
 #import "RH_CustomViewController.h"
 #import "RH_UserInfoManager.h"
 
-@interface RH_PromoContentPageCell()
+@interface RH_PromoContentPageCell()<PromoTableCellDelegate>
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property (nonatomic,strong) RH_DiscountActivityTypeModel *typeModel ;
 @end
@@ -82,6 +82,15 @@
     [self.loadingIndicateView showNothingWithImage:nil title:@"当前无优惠活动"
                                         detailText:@"点击重试"] ;
     return YES ;
+}
+
+#pragma mark -
+-(void)promoTableCellImageSizeChangedNotification:(RH_PromoTableCell*)promoTableViewCell
+{
+    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:promoTableViewCell] ;
+    if (indexPath){
+        [self.contentTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone] ;
+    }
 }
 
 #pragma mark-
@@ -158,6 +167,7 @@
     if (self.pageLoadManager.currentDataCount){
         RH_PromoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_PromoTableCell defaultReuseIdentifier]] ;
         [cell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        cell.delegate = self ;
         return cell ;
     }else{
         return self.loadingIndicateTableViewCell ;

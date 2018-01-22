@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "coreLib.h"
+#import "RH_DiscountActivityModel.h"
+
+@class RH_PromoTableCell ;
+@protocol PromoTableCellDelegate
+-(void)promoTableCellImageSizeChangedNotification:(RH_PromoTableCell*)promoTableViewCell  ;
+@end
 
 @interface RH_PromoTableCell : CLTableViewCell
+@property (nonatomic,weak) id<PromoTableCellDelegate> delegate ;
 
 @end

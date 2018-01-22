@@ -33,7 +33,7 @@ NSString * const HTTPRequestResultErrorDomin = @"HTTPRequestResultErrorDomin";
 {
     return ERROR_CREATE(HTTPRequestResultErrorDomin,
                         RH_API_ERRORCODE_NO_JSON_ERROR,
-                        NSLocalizedString(@"ls_return_data_error",nil),nil);
+                        @"错误数据-非json格式数据",nil);
 }
 
 + (NSError *)unknownResultError {
