@@ -74,14 +74,12 @@
                 
         }
             break;
-        
         case 2: //已发放
         case 4:
         {
             
         }
             break;
-            
         default: //未通过
         {
             
