@@ -21,7 +21,7 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    NSLog(@"%s", __func__);
+    
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     if (self) {
         self.detailTextLabel.textColor = colorWithRGB(153, 153, 153);
@@ -30,13 +30,13 @@
         self.textLabel.font = [UIFont systemFontOfSize:14];
         self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
         self.separatorLineWidth = 1.0f;
-        self.separatorLineColor = colorWithRGB(242, 242, 242);
+        self.separatorLineColor = colorWithRGB(226, 226, 226);
         self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
-        self.backgroundColor = colorWithRGB(255, 255, 255);
+        self.backgroundColor = colorWithRGB(242, 242, 242);
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
-
+        
     }
     return self;
 }
