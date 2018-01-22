@@ -12,7 +12,7 @@
 #import "RH_ServiceRequest.h"
 #import "RH_APPDelegate.h"
 
-@interface RH_LoginViewCell()<UITextFieldDelegate,RH_ServiceRequestDelegate,UITextFieldDelegate>
+@interface RH_LoginViewCell()<UITextFieldDelegate,RH_ServiceRequestDelegate>
 @property (strong, nonatomic) IBOutlet RH_CommonInputContainerView *userNameView;
 @property (strong, nonatomic) IBOutlet RH_CommonInputContainerView *userPwdView;
 @property (strong, nonatomic) IBOutlet RH_CommonInputContainerView *verifyCodeView;
@@ -30,8 +30,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
+
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *codeLab;
+@property (weak, nonatomic) IBOutlet UITextField *verifyTextfield;
+
 
 @end
 
@@ -46,9 +49,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
+
     self.userNameView.type = RH_CommonInputContainerViewTypeLine;
     self.userNameView.textField.delegate = self ;
+    self.userPwdView.textField.delegate = self;
+    self.verifyCodeView.textField.delegate = self;
     
     [self.userNameView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入用户名" attributes:@{NSFontAttributeName : self.userNameView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
     [self.userPwdView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSFontAttributeName : self.userPwdView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
@@ -87,6 +94,7 @@
     _usernameTextfield.delegate=self;
     _passwordTextfield.returnKeyType = UIReturnKeyDone;
     _passwordTextfield.delegate = self;
+
     //设置头像
     self.headImage.image = ImageWithName(@"login_touxiang");
     
@@ -94,6 +102,10 @@
     self.codeLab.textColor = colorWithRGB(102, 102, 102);
     self.codeLab.font = [UIFont systemFontOfSize:14.f];
     self.codeLab.hidden = YES;
+
+    _verifyTextfield.returnKeyType = UIReturnKeyDone;
+    _verifyTextfield.delegate = self;
+    
     //初始化用户
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userNameView.textField.text = [defaults stringForKey:@"account"] ;
@@ -236,6 +248,24 @@
      [self endEditing:YES] ;
     ifRespondsSelector(self.delegate, @selector(loginViewCellTouchForgetPasswordButton:)){
         [self.delegate loginViewCellTouchForgetPasswordButton:self] ;
+    }
+}
+- (IBAction)clickEachTextfield:(id)sender {
+    UITextField *textfield = sender;
+    if (textfield.tag==10) {
+        ifRespondsSelector(self.delegate, @selector(loginViewCellSelectedEachTextfield:)){
+            [self.delegate loginViewCellSelectedEachTextfield:self.userNameView.frame] ;
+        }
+    }
+    else if (textfield.tag==11) {
+        ifRespondsSelector(self.delegate, @selector(loginViewCellSelectedEachTextfield:)){
+            [self.delegate loginViewCellSelectedEachTextfield:self.userPwdView.frame] ;
+        }
+    }
+    else if (textfield.tag==12) {
+        ifRespondsSelector(self.delegate, @selector(loginViewCellSelectedEachTextfield:)){
+            [self.delegate loginViewCellSelectedEachTextfield:self.verifyCodeView.frame] ;
+        }
     }
 }
 @end

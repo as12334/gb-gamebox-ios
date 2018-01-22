@@ -521,6 +521,10 @@
     else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+        }] ;
     }
 }
 
