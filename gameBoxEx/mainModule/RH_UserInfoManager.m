@@ -13,6 +13,7 @@
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
 
+#define  key_languageOption                             @"appLanguage"
 #define  key_voiceSwitchFlag                             @"key_voiceSwitchFlag"
 #define  key_screenlockFlag                              @"key_screenlockFlag"
 #define  key_screenlockPassword                          @"key_screenlockPassword"
@@ -115,6 +116,22 @@
 }
 
 #pragma mark -
+-(CLLanguageOption)languageOption
+{
+    NSString *language = [[NSUserDefaults standardUserDefaults] objectForKey:key_languageOption];
+    if (language){
+        return language.integerValue ;
+    }
+    
+    return CLLanguageOptionZHhant ;
+}
+
+-(void)updatelanguageOption:(CLLanguageOption)languageOption
+{
+    NSString *value = [NSString stringWithFormat:@"%ld",languageOption] ;
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key_languageOption] ;
+}
+
 -(BOOL)isVoiceSwitch
 {
     NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_voiceSwitchFlag expectType:[NSString class]] ;

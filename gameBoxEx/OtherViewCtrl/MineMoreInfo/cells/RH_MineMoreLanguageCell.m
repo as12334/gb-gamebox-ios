@@ -8,6 +8,8 @@
 
 #import "RH_MineMoreLanguageCell.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_MineMoreLanguageCell()
 @property (weak, nonatomic) IBOutlet UIImageView *languageImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
@@ -33,6 +35,29 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.titleLab.text = info.myTitle ;
+    
+    CLLanguageOption language =  [RH_UserInfoManager shareUserManager].languageOption ;
+    NSString *languageImage = nil ;
+    switch (language) {
+        case CLLanguageOptionZHhant:
+        case CLLanguageOptionZHhans:
+        {
+            languageImage = @"language_zh" ;
+        }
+            break;
+        
+        case CLLanguageOptionEnglish:
+        {
+            languageImage = @"language_en" ;
+        }
+            break;
+            
+        default:
+            languageImage = @"language_zh" ;
+            break;
+    } ;
+    
+    self.languageImageView.image = ImageWithName(languageImage) ;
 }
 
 

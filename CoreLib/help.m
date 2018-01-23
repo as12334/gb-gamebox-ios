@@ -965,4 +965,31 @@ NSString *getIPAddress(BOOL preferIPv4)
     return address ? address : @"0.0.0.0";
 }
 
+NSString *getLocalizedString(CLLanguageOption languageOption,NSString* key)
+{
+    NSString *keyPath = nil ;
+    switch (languageOption) {
+        case CLLanguageOptionZHhans:
+            keyPath = @"zh-Hans" ;
+            break;
+        
+        case CLLanguageOptionZHhant:
+            keyPath = @"zh-Hant" ;
+            break;
+        
+        case CLLanguageOptionEnglish:
+            keyPath = @"en" ;
+            break;
+        
+        case CLLanguageOptionJapanese:
+            keyPath = @"ja" ;
+            break;
+            
+        default:
+            keyPath = @"zh-Hant" ;
+            break;
+    }
+    
+    return [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:keyPath ofType:@"lproj"]] localizedStringForKey:(key) value:nil table:@"language"] ;
+}
 

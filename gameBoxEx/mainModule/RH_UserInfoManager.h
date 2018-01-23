@@ -12,6 +12,7 @@
 #import "RH_MineInfoModel.h"
 #import "RH_BankInfoModel.h"
 #import "RH_WithDrawModel.h"
+#import "coreLib.h"
 
 #define  RHNT_UserInfoManagerBalanceChangedNotification           @"UserInfoManagerBalanceChangedNotification"
 #define  RHNT_UserInfoManagerMineGroupChangedNotification         @"UserInfoManagerMineGroupChangedNotification"
@@ -41,10 +42,12 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 -(void)setUserWithDrawInfo:(RH_WithDrawModel *)userWithDrawInfo ;
 
 ///----app 层 相关开关
+@property (nonatomic,assign,readonly) CLLanguageOption languageOption ;
 @property (nonatomic,assign,readonly) BOOL isVoiceSwitch    ; //声音开关
 @property (nonatomic,assign,readonly) BOOL isScreenLock     ; //锁屏手势开关
 @property (nonatomic,strong,readonly) NSString *screenLockPassword ; //锁屏手势密码
 
+-(void)updatelanguageOption:(CLLanguageOption)languageOption ;
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;
 -(void)updateScreenLockFlag:(BOOL)lock      ;
 -(void)updateScreenLockPassword:(NSString*)lockPassrod ;
