@@ -953,36 +953,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 提交取款信息
 /**
  提交取款信息
- @param noBank 是否有银行卡  N
- @param noBtc 是否有比特币   N
- @param remittanceWay 银行卡类型（1：银行卡，2：比特币）  N
- @param walletBalance 钱包金额  N
  @param withdrawAmount 取款金额  Y
- @param poundageHide 符号  N
- @param withdrawFee 手续费  N
- @param actualWithdraw 实际取款金额 Y
  @param gbToken 防重验证  Y
  */
--(void)startV3SubmitWithdrawWithNoBank:(BOOL)noBank
-                                 noBtc:(BOOL)noBtc
-                         remittanceWay:(NSInteger)remittanceWay
-                         walletBalance:(float)walletBalance
-                        withdrawAmount:(float)withdrawAmount
-                          poundageHide:(NSString *)poundageHide
-                           withdrawFee:(float)withdrawFee
-                        actualWithdraw:(float)actualWithdraw
-                               gbToken:(NSString *)gbToken
+-(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                           gbToken:(NSString *)gbToken
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:@(noBank==YES?true:false) forKey:RH_SP_SUBMITWITHDRAWINFO_NOBANK];
-    [dict setValue:@(noBtc==YES?true:false) forKey:RH_SP_SUBMITWITHDRAWINFO_NOBTC];
-    [dict setObject:@(remittanceWay) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY];
-    [dict setObject:@(walletBalance) forKey:RH_SP_SUBMITWITHDRAWINFO_WALLETBALANCE];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
-    [dict setObject:poundageHide forKey:RH_SP_SUBMITWITHDRAWINFO_POUNDAGEHIDE];
-    [dict setObject:@(withdrawFee) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWFEE];
-    [dict setObject:@(actualWithdraw) forKey:RH_SP_SUBMITWITHDRAWINFO_ACTUALWITHDRAW];
-    [dict setObject:gbToken forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
+    [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
@@ -993,7 +972,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SubmitWithdrawInfo
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark - 获取游戏分类
+-(void)startV3LoadGameType
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_LOADGAMETYPE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3LoadGameType
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -1297,6 +1288,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
     }
+//    else if (type==ServiceRequestTypeV3AddApplyDiscounts){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+//        return YES ;
+//    }
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1563,9 +1562,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
                 case ServiceRequestTypeV3AddApplyDiscounts:
             {
-                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
-            }
                 
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+                
+            }
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {
@@ -1608,6 +1608,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break ;
+            case ServiceRequestTypeV3LoadGameType:
+            {
+                  resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+            }
+                break;
                 
             default:
                 resultSendData = dataObject ;

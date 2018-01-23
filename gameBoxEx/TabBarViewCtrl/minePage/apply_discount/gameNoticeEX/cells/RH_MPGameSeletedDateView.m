@@ -18,7 +18,7 @@
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor] ;
     self.dateLabel.textColor = colorWithRGB(51, 51, 51) ;
-    self.dateLabel.font = [UIFont systemFontOfSize:14.0f] ;
+    self.dateLabel.font = [UIFont systemFontOfSize:10.0f] ;
     self.dateLabel.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
 }
 

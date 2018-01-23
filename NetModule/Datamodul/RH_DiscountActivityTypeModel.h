@@ -12,4 +12,5 @@
 @property(nonatomic,assign,readonly)NSInteger mID;
 @property(nonatomic,strong,readonly)NSString *mActivityKey;
 @property(nonatomic,strong,readonly)NSString *mActivityTypeName;
+
 @end

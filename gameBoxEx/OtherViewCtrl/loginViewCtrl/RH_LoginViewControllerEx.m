@@ -58,7 +58,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = self.backButtonItem ;
-    self.title = @"登入" ;
+    self.title = @"登录" ;
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;

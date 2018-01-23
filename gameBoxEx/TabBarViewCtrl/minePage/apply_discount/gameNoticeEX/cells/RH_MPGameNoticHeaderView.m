@@ -24,11 +24,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        self.startDateView.layer.cornerRadius = 5;
-        self.startDateView.layer.borderWidth = 1.f;
-        self.startDateView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        self.startDateView.layer.masksToBounds = YES;
-        
+        self.backgroundColor = colorWithRGB(242, 242, 242);
     }
     return self;
 }
@@ -37,6 +33,18 @@
     [super awakeFromNib];
     [self.startDateView addSubview:self.startSeletedDateView];
     [self.ennDateView addSubview:self.endSeletedDateView];
+    self.startDateView.layer.cornerRadius = 3.f;
+    self.startDateView.layer.borderWidth = 1.f;
+    self.startDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.startDateView.layer.masksToBounds = YES;
+    self.ennDateView.layer.cornerRadius = 3.f;
+    self.ennDateView.layer.borderWidth = 1.f;
+    self.ennDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.ennDateView.layer.masksToBounds = YES;
+    self.gameTypeControl.layer.cornerRadius = 3.f;
+    self.gameTypeControl.layer.borderWidth = 1.f;
+    self.gameTypeControl.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.gameTypeControl.layer.masksToBounds = YES;
 }
 -(RH_MPGameSeletedDateView *)startSeletedDateView
 {

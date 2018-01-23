@@ -44,11 +44,11 @@
     self.typeTopView.selectedIndex = 0 ;
     
     //分页视图
-    self.pageView.frame = CGRectMake(0,
+    self.pageView.frame = CGRectMake(10,
                                      self.typeTopView.frameY + self.typeTopView.frameHeigh + 10,
-                                     MainScreenW,
+                                     MainScreenW-20,
                                      MainScreenH - (self.typeTopView.frameY + self.typeTopView.frameHeigh + 10 + TabBarHeight)) ;
-    self.pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin ;
+    self.pageView.autoresizingMask =UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin| UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin ;
     [self.contentView addSubview:self.pageView];
     
     //注册复用

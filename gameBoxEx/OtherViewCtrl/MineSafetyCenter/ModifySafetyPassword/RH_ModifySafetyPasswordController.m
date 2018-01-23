@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     self.contentTableView.tableFooterView = view_Footer;
     
     [view_Footer addSubview:self.modifyButton];
-    self.modifyButton.whc_Center(0, 0).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(44);
+    self.modifyButton.whc_TopSpace(12).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(40);
     self.label_Notice = [UILabel new];
     [view_Footer addSubview:self.label_Notice];
     self.label_Notice.whc_LeftSpace(20).whc_TopSpace(0).whc_Width(screenSize().width/2).whc_Height(30);
@@ -154,7 +154,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     if (!_footerView){
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 80)] ;
         [_footerView addSubview:self.modifyButton];
-        self.modifyButton.whc_Center(0, 0).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(44);
+        self.modifyButton.whc_TopSpace(12).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(40);
     }
     
     return _footerView ;
@@ -167,6 +167,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         _modifyButton.backgroundColor = colorWithRGB(27, 117, 217);
         _modifyButton.layer.cornerRadius = 5;
         _modifyButton.clipsToBounds = YES;
+        [_modifyButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [_modifyButton setTitle:@"修改" forState:UIControlStateNormal];
         [_modifyButton addTarget:self action:@selector(modifyButtonHandle) forControlEvents:UIControlEventTouchUpInside] ;
     }

@@ -7,13 +7,22 @@
 //
 
 #import "RH_BasicModel.h"
+#import <CoreGraphics/CoreGraphics.h>
+
+#define RHNT_DiscountActivityImageSizeChanged               @"DiscountActivityImageSizeChanged"
+
 @interface RH_DiscountActivityModel :RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mPhoto;
 @property(nonatomic,strong,readonly)NSString *mUrl;
+@property(nonatomic,strong,readonly)NSString *mName;
+@property(nonatomic,assign,readonly)NSInteger mId;
 
 //----
 @property(nonatomic,strong,readonly) NSString *showPhoto ;
 @property(nonatomic,strong,readonly) NSString *showLink ;
+@property(nonatomic,strong,readonly) NSString *showName ;
+@property(nonatomic,assign,readonly) CGSize showImageSize ;
+-(void)updateImageSize:(CGSize)size ;
 @end
 
 

@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *readMarkImageView;
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
+@property (weak, nonatomic) IBOutlet UIView *backDropView;
 @end
 @implementation RH_MPSiteSystemNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -27,22 +29,38 @@
     CGSize size = [model.mTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     return 40+size.height;
 }
-
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        self.backgroundColor = colorWithRGB(242, 242, 242);
+    }
+    return self;
+}
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    self.readMarkImageView.layer.cornerRadius = 6;
+    self.readMarkImageView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.readMarkImageView.layer.masksToBounds = YES;
+    self.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    self.titleLabel.textColor = colorWithRGB(51, 51, 51);
+    self.timeLabel.textColor = colorWithRGB(153, 153, 153);
     
+    self.backDropView.layer.cornerRadius = 4.f;
+    self.backDropView.layer.borderColor = colorWithRGB(226, 226,226).CGColor;
+    self.backDropView.layer.borderWidth=1.f;
+    self.backDropView.layer.masksToBounds = YES;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
-    self.titleLabel.text = model.mTitle;
+    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mTitle];
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd");
     if ([model.number isEqual:@0]) {
-        [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_normal"] forState:UIControlStateNormal];
+        self.readMarkImageView.image = nil;
     }
     else if ([model.number isEqual:@1]){
-        [self.editBtn setBackgroundImage:[UIImage imageNamed:@"gesturelLock_error"] forState:UIControlStateNormal];
+        self.readMarkImageView.image = [UIImage imageNamed:@"choose"];
     }
     if (model.mRead==YES) {
         [self.titleLabel setTextColor:[UIColor redColor]];

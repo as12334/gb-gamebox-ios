@@ -25,13 +25,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="取款处理中：￥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-Pd-VRi">
-                    <rect key="frame" x="10" y="110" width="112" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="转账处理中：￥0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqu-bl-yr3">
                     <rect key="frame" x="279" y="110" width="112" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -39,17 +32,18 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMc-cW-KS4">
-                    <rect key="frame" x="357" y="8" width="44" height="29"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMc-cW-KS4">
+                    <rect key="frame" x="346" y="6" width="44" height="29"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="6kK-NO-AzP"/>
-                        <constraint firstAttribute="height" constant="27" id="lHs-Fo-JdW"/>
+                        <constraint firstAttribute="width" constant="44" id="5Ql-ce-p9E"/>
+                        <constraint firstAttribute="height" constant="29" id="GL9-mb-4Cq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="快选"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-ec-myH">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-ec-myH">
                     <rect key="frame" x="359" y="66" width="31" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="搜索"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQB-0a-BLm">
@@ -63,12 +57,10 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="vMc-cW-KS4" secondAttribute="trailing" constant="3" id="Ajy-ub-fkz"/>
-                <constraint firstItem="vMc-cW-KS4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="FUX-x4-YgZ"/>
+                <constraint firstItem="vMc-cW-KS4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="72L-6a-j6R"/>
                 <constraint firstItem="to1-P7-fwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="UCP-r4-z1p"/>
                 <constraint firstItem="to1-P7-fwu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Ugk-iw-XiD"/>
-                <constraint firstItem="DG3-ec-myH" firstAttribute="top" secondItem="vMc-cW-KS4" secondAttribute="bottom" constant="31" id="j7k-GH-RYc"/>
-                <constraint firstItem="vMc-cW-KS4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="klx-GV-uMU"/>
+                <constraint firstAttribute="trailing" secondItem="vMc-cW-KS4" secondAttribute="trailing" constant="10" id="vtM-gz-RoQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -78,7 +70,6 @@
                 <outlet property="serachBtn" destination="DG3-ec-myH" id="Wj9-no-HZC"/>
                 <outlet property="transferLab" destination="Rqu-bl-yr3" id="IBd-GL-y9g"/>
                 <outlet property="typeButton" destination="yQB-0a-BLm" id="uXq-oH-Nmk"/>
-                <outlet property="withdrawalLab" destination="KnV-Pd-VRi" id="0Hr-Z1-Duu"/>
             </connections>
             <point key="canvasLocation" x="-2096" y="-751"/>
         </view>

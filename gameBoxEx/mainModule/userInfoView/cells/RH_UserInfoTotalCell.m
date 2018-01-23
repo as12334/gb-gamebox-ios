@@ -33,36 +33,43 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.borderMask = CLBorderMarkBottom ;
-    self.tBalanceView.borderColor = colorWithRGB(242, 242, 242) ;
-    self.tBalanceView.borderLineInset = UIEdgeInsetsMake(0, 15, 0, 0) ;
+    self.tBalanceView.borderColor = colorWithRGB(204, 204, 204) ;
+    self.tBalanceView.borderLineInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
     
     self.tWalletView.backgroundColor = [UIColor clearColor] ;
     self.tWalletView.borderMask = CLBorderMarkBottom ;
-    self.tWalletView.borderColor = colorWithRGB(242, 242, 242)  ;
+    self.tWalletView.borderColor = colorWithRGB(204, 204, 204)  ;
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
-    self.balanceBGView.backgroundColor = colorWithRGB(153, 153, 153) ;
+    self.balanceBGView.backgroundColor = colorWithRGB(27, 117, 217) ;
     self.balanceBGView.layer.cornerRadius = 5.0f ;
     self.balanceBGView.layer.masksToBounds = YES ;
-    self.labTBalance.textColor = [UIColor whiteColor] ;
-    self.labTBalance.font = [UIFont systemFontOfSize:15.0f] ;
+
     
-    self.walletBGView.backgroundColor = colorWithRGB(153, 153, 153) ;
+    self.labTBalance.textColor = [UIColor whiteColor] ;
+    self.labTBalance.font = [UIFont systemFontOfSize:12.0f] ;
+    
+    self.labTBalanceValue.font = [UIFont systemFontOfSize:12.f];
+    self.labTBalanceValue.textColor = colorWithRGB(27, 117, 217);
+    
+    self.walletBGView.backgroundColor = colorWithRGB(14, 195, 146) ;
     self.walletBGView.layer.cornerRadius = 5.0f ;
     self.walletBGView.layer.masksToBounds = YES ;
     self.labTWallet.textColor = [UIColor whiteColor] ;
-    self.labTWallet.font = [UIFont systemFontOfSize:19.0f] ;
+    self.labTWallet.font = [UIFont systemFontOfSize:12.0f] ;
     
-    self.labTBalanceValue.textColor = colorWithRGB(51, 51, 51) ;
+    self.labTBalanceValue.textColor = colorWithRGB(27, 117, 217) ;
     self.labTBalanceValue.font = [UIFont systemFontOfSize:15.0f] ;
-    self.labTWalletValue.textColor = colorWithRGB(51, 51, 51) ;
-    self.labTWalletValue.font = [UIFont systemFontOfSize:15.0f] ;
+    self.labTWalletValue.textColor = colorWithRGB(14, 195, 146) ;
+    self.labTWalletValue.font = [UIFont systemFontOfSize:12.0f] ;
     
-    self.labTBalance.text = @"总资产" ;
+    self.labTBalance.text = @"总资产" ;   //
     self.labTBalanceValue.text = @"" ;
-    self.labTWallet.text = @"钱包"    ;
-    self.labTWalletValue.text = @""  ;
-    
+    self.labTWallet.text = @"钱包"    ;  //
+    self.labTWalletValue.text = @""  ;   //
+
+//    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
+//    self.separatorLineColor = colorWithRGB(204, 204, 204) ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

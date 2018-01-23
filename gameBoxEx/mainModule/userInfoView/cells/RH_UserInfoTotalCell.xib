@@ -111,9 +111,10 @@
                 <outlet property="labTWallet" destination="e5N-yd-Str" id="WaE-a9-4zB"/>
                 <outlet property="labTWalletValue" destination="aao-tV-Ipb" id="bSY-d3-Vlt"/>
                 <outlet property="tBalanceView" destination="YRb-ZJ-2e0" id="2bQ-Sr-0Du"/>
+                <outlet property="tWalletView" destination="JUE-fD-W1P" id="4mr-wW-PMf"/>
                 <outlet property="walletBGView" destination="YT9-mz-Yhq" id="NOf-MK-0Ue"/>
             </connections>
-            <point key="canvasLocation" x="-40.5" y="-23"/>
+            <point key="canvasLocation" x="-313" y="-225"/>
         </tableViewCell>
     </objects>
 </document>

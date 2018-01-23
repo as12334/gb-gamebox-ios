@@ -25,7 +25,6 @@
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-    if (self.contentTableView == nil) {
         [self addSubview:self.sendView];
         __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
         self.sendView.block = ^(CGRect frame){
@@ -36,16 +35,23 @@
             [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
         };
         [self.serviceRequest startV3AddApplyDiscountsVerify];
-        
-
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        
-    }else {
-        [self updateWithContext:context];
-    }
+        [self.loadingIndicateView hiddenView] ;
 }
 
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        //增加监听，当键盘出现或改变时收出消息
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)name:UIKeyboardWillShowNotification
+                                                   object:nil];
+        //增加监听，当键退出时收出消息
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    }
+    return self;
+}
 -(RH_SiteSendMessageView *)sendView
 {
     if (!_sendView) {
@@ -54,6 +60,7 @@
     }
     return _sendView;
 }
+
 -(RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest) {
@@ -85,6 +92,8 @@
     }
     return _listView;
 }
+
+
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -106,7 +115,7 @@
 -(void)selectedSendViewdiscountType:(CGRect )frame
 {
     if (!self.listView.superview) {
-        frame.origin.y +=frame.size.width;
+        frame.origin.y +=frame.size.height;
         frame.size.width+=20;
         self.listView.frame = frame;
         [self addSubview:self.listView];
@@ -138,12 +147,20 @@
     return YES ;
     
 }
+-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+{
+    [self loadDataSuccessWithDatas:@[] totalCount:0 completedBlock:nil] ;
+}
 #pragma mark-
 -(void)netStatusChangedHandle
 {
     if (NetworkAvailable()){
         [self startUpdateData] ;
     }
+}
+-(void)cancelLoadDataHandle
+{
+    [self.serviceRequest cancleAllServices] ;
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
@@ -158,6 +175,7 @@
         //发送成功弹出提示框
         UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"消息提交成功" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
         [alertView show];
+
     }
 }
 
@@ -169,9 +187,25 @@
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
         [self loadDataFailWithError:error] ;
-        UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"验证码输入错误" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
-        [alertView show];
+        showErrorMessage(nil, error, @"发送失败");
+    }
+}
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    if (self.contentView.frameY>=0) {
+        [UIView animateWithDuration:0.5f animations:^{
+            CGRect frame = self.frame;
+            frame.origin.y -=50;
+            self.frame = frame;
+        }];
     }
 }
 
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification{
+    CGRect frame = self.frame;
+    frame.origin.y =0;
+    self.frame = frame;
+}
 @end

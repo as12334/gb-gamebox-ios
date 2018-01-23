@@ -83,13 +83,11 @@
     NSArray * tabBarItems = ConvertToClassPointer(NSArray, tabBarSites[SITE_TYPE]);
 
     NSMutableArray * viewControllers = [NSMutableArray arrayWithCapacity:tabBarItems.count];
-
     for (NSDictionary * tabBarItem in tabBarItems) {
         NSString * viewControllerClassName = [tabBarItem objectForKey:@"viewControllerClass"];
         Class viewControllerClass = NSClassFromString(viewControllerClassName);
 
         if ([viewControllerClass isSubclassOfClass:[UIViewController class]]) {
-
             RH_MainNavigationController * navigationController =
             [[RH_MainNavigationController alloc] initWithRootViewController:[viewControllerClass viewController]];
 

@@ -134,7 +134,7 @@
 
 -(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
-    [self showCalendarView:@"设置结止日期"
+    [self showCalendarView:@"设置截止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.endDate = returnDate ;
