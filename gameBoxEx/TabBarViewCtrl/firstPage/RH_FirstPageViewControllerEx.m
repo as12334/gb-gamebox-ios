@@ -40,7 +40,6 @@
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
-@property (nonatomic,strong)MBProgressHUD *hud;
 @property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
@@ -134,9 +133,6 @@
 //    self.topView.backgroundColor = RH_NavigationBar_BackgroundColor ;
 //    self.topView.borderMask = CLBorderMarkTop ;
 //    self.topView.borderColor = colorWithRGB(204, 204, 204) ;
-    
-    
-    
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
@@ -338,15 +334,11 @@
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
     if (self.openActivityModel.mToken==nil) {
         [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
-//        [self showProgressIndicatorViewWithAnimated:YES title:@""];
-//        [self.hud show:YES];
         [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     else
     {
         [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.openActivityModel.mToken];
-//        [self showProgressIndicatorViewWithAnimated:YES title:@""];
-//        [self.hud show:YES];
         [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     
@@ -362,7 +354,6 @@
     
     if (self.appDelegate.isLogin&&NetworkAvailable()){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-//        [self showProgressIndicatorViewWithAnimated:YES title:@""] ;
         [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
         [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
         //在window上加一个遮罩层
@@ -498,14 +489,11 @@
     else if (type == ServiceRequestTypeV3ActivityStatus){
         self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
         self.normalActivityView.activityModel = self.activityModel;
-//        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
-        [self.hud hide:YES];
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
-//        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         
     }else if (type == ServiceRequestTypeV3OneStepRecory){
