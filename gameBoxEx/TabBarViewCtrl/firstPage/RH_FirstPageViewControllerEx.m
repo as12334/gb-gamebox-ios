@@ -68,6 +68,7 @@
     self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+    
 }
 
 //-(BOOL)hasTopView
@@ -232,6 +233,7 @@
 {
     if (!_homeChildCatetoryCell){
         _homeChildCatetoryCell = [RH_HomeChildCategoryCell createInstance] ;
+
         _homeChildCatetoryCell.delegate = self ;
     }
     return _homeChildCatetoryCell ;
