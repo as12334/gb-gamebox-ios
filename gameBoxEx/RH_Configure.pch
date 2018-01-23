@@ -1494,6 +1494,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _nnop //五环娱乐
+
+#define CODE    @"nnop"
+#define S        @"3d44d26c22d07d9af491e63437b2df59"
+#define SID        @"351"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _j1ms //威尼斯人娱乐城
 
 #define CODE    @"j1ms"
