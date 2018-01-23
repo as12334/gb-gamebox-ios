@@ -8,7 +8,7 @@
 
 #import "RH_LoadingIndicateView.h"
 #import "coreLib.h"
-
+#import "RH_ErrorCode.h"
 
 @implementation RH_LoadingIndicateView
 
@@ -58,9 +58,15 @@
 
 - (void)showDefaultLoadingErrorStatus:(NSError*)error
 {
-    [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
-                                    title:[NSString stringWithFormat:@"[%d]%@",error.code,error.localizedDescription]
-                               detailText:@"点击页面重试"];
+    if (error.code==RH_API_ERRORCODE_NO_JSON_ERROR){
+        [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                        title:[NSString stringWithFormat:@"%@",error.localizedDescription]
+                                   detailText:@"点击页面重试"];
+    }else{
+        [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                        title:[NSString stringWithFormat:@"[%ld]%@",error.code,error.localizedDescription]
+                                   detailText:@"点击页面重试"];
+    }
 }
 
 - (void)showNoNetworkStatus

@@ -32,8 +32,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     
     //初始化 优惠类别信息
-    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等..."] ;
-    [self.serviceRequest startV3LoadDiscountActivityType] ;
+    [self loadingIndicateViewDidTap:nil] ;
 }
 
 -(void)setupInfo
@@ -83,6 +82,14 @@
 {
     self.pageView.dispalyPageIndex = selectedIndex ;
 }
+
+#pragma mark -
+-(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等..."] ;
+    [self.serviceRequest startV3LoadDiscountActivityType] ;
+}
+
 
 #pragma mark -pageView
 -(CLPageView*)pageView

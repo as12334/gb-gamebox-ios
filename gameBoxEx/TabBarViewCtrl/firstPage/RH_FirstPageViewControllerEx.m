@@ -515,12 +515,10 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
-    }
-    else if (type == ServiceRequestTypeV3ActivityStatus){
+    }else if (type == ServiceRequestTypeV3ActivityStatus){
         self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
         self.normalActivityView.activityModel = self.activityModel;
-    }
-    else if (type == ServiceRequestTypeV3OpenActivity){
+    }else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
@@ -635,8 +633,13 @@
             [self.homeChildCatetoryCell updateCellWithInfo:nil context:self.selectedCategoryModel.mSiteApis] ;
             return self.homeChildCatetoryCell  ;
         }else if (indexPath.section==4){
-            [self.homeCategoryItemsCell updateCellWithInfo:nil context:self.currentCategoryItemsList] ;
-            return self.homeCategoryItemsCell  ;
+            if (self.currentCategoryItemsList.count){
+                [self.homeCategoryItemsCell updateCellWithInfo:nil context:self.currentCategoryItemsList] ;
+                return self.homeCategoryItemsCell  ;
+            }else{
+                [self.loadingIndicateTableViewCell.loadingIndicateView showSearchEmptyStatus] ;
+                return self.loadingIndicateTableViewCell ;
+            }
         }
     }else{
         return self.loadingIndicateTableViewCell ;

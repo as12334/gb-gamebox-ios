@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, CLIndicaterViewStatus) {
 //----------------------------------------------------------
 
 @interface CLPageLoadContentPageCell : CLScrollContentPageCell <CLPageLoadManagerForTableAndCollectionViewDataSource >
-
+@property (nonatomic,strong,readonly) NSError *lastLoadingError ;
 
 #pragma mark - 管理器初始化
 //-------------------------------------------------

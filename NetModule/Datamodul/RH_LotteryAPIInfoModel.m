@@ -47,7 +47,6 @@
     return _showCover ;
 }
 
-
 -(NSString *)showGameLink
 {
     if (!_showGameLink){
