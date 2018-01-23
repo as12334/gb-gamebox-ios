@@ -1,22 +1,22 @@
 //
-//  RH_PromoCategoryCell.m
+//  RH_GameCategoryCell.m
 //  gameBoxEx
 //
 //  Created by luis on 2017/12/21.
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
-#import "RH_PromoCategoryCell.h"
+#import "RH_GameCategoryCell.h"
 #import "coreLib.h"
 #import "RH_DiscountActivityTypeModel.h"
 
-@interface RH_PromoCategoryCell()<CLMaskViewDataSource>
+@interface RH_GameCategoryCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
-@property (nonatomic,strong) RH_DiscountActivityTypeModel *activityTypeModel ;
+@property (nonatomic,strong) NSDictionary *gamelistTypeModel ;
 @end
 
-@implementation RH_PromoCategoryCell
+@implementation RH_GameCategoryCell
 +(CGSize)sizeForViewWithInfo:(NSDictionary *)info containerViewSize:(CGSize)containerViewSize context:(id)context
 {
     RH_DiscountActivityTypeModel *discountType = ConvertToClassPointer(RH_DiscountActivityTypeModel, context) ;
@@ -54,11 +54,8 @@
 
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.activityTypeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, context) ;
-    self.labTitle.text = self.activityTypeModel.mActivityTypeName ;
-    if (self.labTitle.text.length == 0) {
-        self.labTitle.text = context[@"value"];
-    }
+    self.gamelistTypeModel = info ;
+    self.labTitle.text = [self.gamelistTypeModel stringValueForKey:@"value"] ;
 }
 
 @end
