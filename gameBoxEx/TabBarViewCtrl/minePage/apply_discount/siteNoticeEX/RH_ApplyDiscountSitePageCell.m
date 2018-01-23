@@ -26,7 +26,7 @@
         [self.pageView registerCellForPage:[RH_ApplyDiscountSiteSystemCell class] andReuseIdentifier:[RH_ApplyDiscountSiteSystemCell defaultReuseIdentifier]];
        [self.pageView registerCellForPage:[RH_ApplyDiscountSiteMineCell class] andReuseIdentifier:[RH_ApplyDiscountSiteMineCell defaultReuseIdentifier]];
         [self.pageView registerCellForPage:[RH_ApplyDiscountSiteSendCell class] andReuseIdentifier:[RH_ApplyDiscountSiteSendCell defaultReuseIdentifier]];
-
+        self.backgroundColor = colorWithRGB(242, 242, 242);
         //分页视图
         [self.contentView addSubview:self.pageView];
         self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
@@ -131,7 +131,9 @@
 
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
-    //    self.headerView.selectedIndex = pageIndex ;
+    
+    UIButton *btn  = [self viewWithTag:pageIndex];
+    [self selectedChooseBtn:btn];
 }
 
 - (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex

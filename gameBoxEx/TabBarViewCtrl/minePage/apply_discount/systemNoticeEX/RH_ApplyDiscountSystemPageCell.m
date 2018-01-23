@@ -30,8 +30,7 @@
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-    //    self.typeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, typeModel) ;
-    
+   
     if (self.contentTableView == nil) {
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;

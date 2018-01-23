@@ -167,11 +167,11 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5Y-1Z-m3S">
-                    <rect key="frame" x="107" y="322" width="160" height="50"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="130" y="322" width="114" height="37"/>
+                    <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="BJh-wr-31m"/>
-                        <constraint firstAttribute="width" constant="160" id="q3G-Ux-NOC"/>
+                        <constraint firstAttribute="height" constant="37" id="BJh-wr-31m"/>
+                        <constraint firstAttribute="width" constant="114" id="q3G-Ux-NOC"/>
                     </constraints>
                 </webView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMf-WG-wjS">

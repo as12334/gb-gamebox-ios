@@ -130,7 +130,6 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
-    [self startUpdateData] ;
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
@@ -143,7 +142,6 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
-    [self startUpdateData] ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -229,6 +227,14 @@
         {
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
+    }
+    else if (type==ServiceRequestTypeV3MyMessageMyMessageDelete) {
+        [self startUpdateData] ;
+        self.headerView.statusMark = YES;
+    }
+    else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
+        [self startUpdateData];
+        self.headerView.statusMark = YES;
     }
 }
 
