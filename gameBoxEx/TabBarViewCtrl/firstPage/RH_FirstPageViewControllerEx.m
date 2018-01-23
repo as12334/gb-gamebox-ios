@@ -35,13 +35,12 @@
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
 @property (nonatomic,strong,readonly) RH_HomeChildCategoryCell *homeChildCatetoryCell  ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
-
 @property (nonatomic, strong) RH_BasicAlertView *rhAlertView ;
 @property (nonatomic,strong)  RH_ActivityModel *activityModel;
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
-
+@property (nonatomic,strong)MBProgressHUD *hud;
 @property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
@@ -69,17 +68,6 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }
-
-//-(BOOL)hasTopView
-//{
-//    return YES ;
-//}
-//
-//-(CGFloat)topViewHeight
-//{
-//    return 20.0f ;
-//}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
@@ -136,17 +124,6 @@
     if (self.userInfoView.superview){
         [self userInfoButtonItemHandle] ;
     }
-    
-//    if (self.rhAlertView.superview){
-//        [UIView animateWithDuration:0.5 animations:^{
-//            self.rhAlertView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-//        } completion:^(BOOL finished) {
-//            if (finished) {
-//                [self.rhAlertView removeFromSuperview];
-////                self.rhAlertView = nil;
-//            }
-//        }];
-//    }
 }
 
 #pragma mark-
@@ -157,6 +134,8 @@
 //    self.topView.backgroundColor = RH_NavigationBar_BackgroundColor ;
 //    self.topView.borderMask = CLBorderMarkTop ;
 //    self.topView.borderColor = colorWithRGB(204, 204, 204) ;
+    
+    
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
@@ -310,7 +289,6 @@
 -(RH_LotteryCategoryModel *)selectedCategoryModel
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-    [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
     if (homePageModel){
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
@@ -339,7 +317,6 @@
                                          activithyViewHeigh
         ) ;
         _activityView.delegate = self ;
-//        _activityView.whc_RightSpace(15).whc_BottomSpace(150).whc_Width(100).whc_Height(100);
     }
     
     return _activityView ;
@@ -361,10 +338,16 @@
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
     if (self.openActivityModel.mToken==nil) {
         [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
+//        [self showProgressIndicatorViewWithAnimated:YES title:@""];
+//        [self.hud show:YES];
+        [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     else
     {
         [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.openActivityModel.mToken];
+//        [self showProgressIndicatorViewWithAnimated:YES title:@""];
+//        [self.hud show:YES];
+        [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     
 }
@@ -376,11 +359,12 @@
 
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
-    if (self.appDelegate.isLogin){
-        if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3ActivityStatus]){
-            return ;
-        }
-        if (self.activityModel){
+    
+    if (self.appDelegate.isLogin&&NetworkAvailable()){
+        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+//        [self showProgressIndicatorViewWithAnimated:YES title:@""] ;
+        [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
         //在window上加一个遮罩层
             UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
             bigView.backgroundColor = [UIColor grayColor];
@@ -412,15 +396,12 @@
                 [imageView removeFromSuperview];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.normalActivityView];
             }];
-        }else{
-            [self showProgressIndicatorViewWithAnimated:YES title:@"正在加载，请稍后打开红包"];
-            // 2. 等待0.5秒中, 然后再清空
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
-            });
-        }
-    }else{
+    }
+    else if(!self.appDelegate.isLogin){
         showAlertView(@"您尚未登入", @"不能参与活动") ;
+    }
+    else if (NetNotReachability()){
+        showAlertView(@"无网络", @"无网络打不开红包") ;
     }
 }
 
@@ -517,10 +498,16 @@
     else if (type == ServiceRequestTypeV3ActivityStatus){
         self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
         self.normalActivityView.activityModel = self.activityModel;
+//        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+        [self.hud hide:YES];
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
+//        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
@@ -542,8 +529,16 @@
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"数据回收失败") ;
+            showErrorMessage(nil, error, @"数据回收失败") ;
         }] ;
+    }
+    else if (type==ServiceRequestTypeV3ActivityStatus){
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        showErrorMessage(nil, error, @"红包获取失败") ;
+    }
+    else if (type==ServiceRequestTypeV3OpenActivity){
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        showErrorMessage(nil, error, @"红包获取失败") ;
     }
 }
 
