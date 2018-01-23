@@ -162,7 +162,7 @@
 
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
-//    self.headerView.selectedIndex = pageIndex ;
+    self.headerView.segmentedControl.selectedSegmentIndex = pageIndex;
 }
 
 - (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex

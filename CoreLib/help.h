@@ -53,6 +53,14 @@ typedef NS_OPTIONS(NSInteger,CLScanImageDisplayState) {
 };
 //----------------------------------------------------------
 
+typedef NS_ENUM(NSUInteger, CLLanguageOption){
+    CLLanguageOptionZHhans = 0,
+    CLLanguageOptionZHhant ,
+    CLLanguageOptionEnglish ,
+    CLLanguageOptionJapanese
+} ;
+
+
 //----------尺寸相关--------------
 //----------------------------------------------------------
 
@@ -269,5 +277,5 @@ void gotoAppStore(NSString * appID) ;
 BOOL openURL(NSString * url);
 BOOL isIgnoreHTTPS(NSString *domain) ;
 NSString *getIPAddress(BOOL preferIPv4) ;
-
+NSString *getLocalizedString(CLLanguageOption languageOption,NSString* key) ;
 #endif /* help_h */

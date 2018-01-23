@@ -24,8 +24,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_china_icon" translatesAutoresizingMaskIntoConstraints="NO" id="lYd-pG-llZ">
-                        <rect key="frame" x="280" y="7" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="language_zh" translatesAutoresizingMaskIntoConstraints="NO" id="lYd-pG-llZ">
+                        <rect key="frame" x="280" y="12" width="30" height="20"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -43,6 +43,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="more_china_icon" width="30" height="30"/>
+        <image name="language_zh" width="30" height="20"/>
     </resources>
 </document>

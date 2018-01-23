@@ -46,6 +46,9 @@
                                     <constraint firstAttribute="height" constant="30" id="Jot-TY-cOW"/>
                                     <constraint firstAttribute="width" constant="30" id="wTG-DF-G8n"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="choseEdinBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="INO-C3-Jah"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

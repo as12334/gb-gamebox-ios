@@ -21,7 +21,7 @@
 {
     if (self = [super initWithCoder:aDecoder]) {
         self.choceMark=YES;
-       
+        self.backgroundColor = colorWithRGB(242, 242, 242);
     }
     return self;
 }
@@ -61,6 +61,20 @@
         self.allSelectedImageView.image = nil;
     }
 }
+-(void)setStatusMark:(BOOL)statusMark
+{
+    _statusMark = statusMark;
+    self.choceMark = _statusMark;
+    if (self.choceMark==YES) {
+        [self.allChoseBtn setTitle:@"全选" forState:UIControlStateNormal];
+        self.allSelectedImageView.image = nil;
+        
+    }
+    else if (self.choceMark ==NO){
+        [self.allChoseBtn setTitle:@"取消全选" forState:UIControlStateNormal];
+        self.allSelectedImageView.image = [UIImage imageNamed:@"choose"];
+    }
+}
 - (IBAction)deleteChooseOnCell:(id)sender {
     ifRespondsSelector(self.delegate, @selector(siteMessageHeaderViewDeleteCell:)){
         [self.delegate siteMessageHeaderViewDeleteCell:self] ;
@@ -84,7 +98,7 @@
         ifRespondsSelector(self.delegate, @selector(siteMessageHeaderViewAllChoseBtn:)){
             [self.delegate siteMessageHeaderViewAllChoseBtn:self.choceMark];
         }
-         [self.allChoseBtn setTitle:@"全选" forState:UIControlStateNormal];
+        [self.allChoseBtn setTitle:@"全选" forState:UIControlStateNormal];
         self.allSelectedImageView.image = nil;
         self.choceMark=YES;
     }
