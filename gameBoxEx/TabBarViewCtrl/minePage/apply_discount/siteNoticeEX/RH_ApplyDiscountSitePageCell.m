@@ -32,7 +32,6 @@
         self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
         //设置索引
         self.pageView.dispalyPageIndex =  0 ;
-        
         //加上三个按钮
         NSArray *btnTitleArray = @[@"系统消息",@"我的消息",@"发送消息"];
         for (int i = 0; i<3; i++) {
@@ -46,7 +45,7 @@
             maskLayer.frame = btn.bounds;
             maskLayer.path = maskPath.CGPath;
             btn.layer.mask = maskLayer;
-            btn.tag  = i;
+            btn.tag  = i+10;
             [btn addTarget:self action:@selector(selectedChooseBtn:) forControlEvents:UIControlEventTouchUpInside];
             [btn setBackgroundColor:colorWithRGB(200, 200, 200)];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -55,6 +54,7 @@
                 btn.backgroundColor = colorWithRGB(23, 102, 187);
                 btn.selected = YES;
                 self.chooseBtn = btn;
+                
             }
             [self addSubview:btn];
         }
@@ -75,7 +75,7 @@
         button.selected = !button.selected;
         button.backgroundColor = colorWithRGB(23, 102, 187);
         self.chooseBtn = button;
-        self.pageView.dispalyPageIndex = button.tag;
+        self.pageView.dispalyPageIndex = button.tag-10;
     }
     
 }
@@ -132,7 +132,7 @@
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
     
-    UIButton *btn  = [self viewWithTag:pageIndex];
+    UIButton *btn  = [self viewWithTag:pageIndex+10];
     [self selectedChooseBtn:btn];
 }
 
