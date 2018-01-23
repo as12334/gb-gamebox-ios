@@ -36,6 +36,8 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
+        self.label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)];
+        [self addSubview:self.label];
         
     }
     return self;
@@ -44,6 +46,7 @@
 {
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
