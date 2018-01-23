@@ -8,11 +8,14 @@
 
 #import "RH_MineSafetyCenterHeaderView.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_MineSafetyCenterHeaderView()
 
 @property (nonatomic, strong, readonly) UIImageView *image_Back;
 @property (nonatomic, strong, readonly) CAGradientLayer *gradientLayer;
 @property (nonatomic, strong, readonly) UILabel *label;
+
 
 @end
 
@@ -49,7 +52,8 @@
 - (UILabel *)label {
     if (_label == nil) {
         _label = [[UILabel alloc] init];
-        _label.text = @"亲爱的BIGBOSS0055,\n您的账号信息正在享受全面的安全防护";
+        NSString *userName =  MineSettingInfo.mUserName ;
+        _label.text = [NSString stringWithFormat:@"亲爱的%@,\n您的账号信息正在享受全面的安全防护",userName];
         _label.textColor = colorWithRGB(255, 255, 255);
         _label.textAlignment = NSTextAlignmentCenter;
         _label.font = [UIFont systemFontOfSize:14];
