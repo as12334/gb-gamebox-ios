@@ -54,7 +54,6 @@
         [self updateWithContext:context];
     }
 }
-
 #pragma mark-tableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -87,7 +86,6 @@
                 [self.deleteModelArray removeObject:siteModel];
             }
             
-//            [weakSelf.contentTableView reloadData];
         };
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return noticeCell ;

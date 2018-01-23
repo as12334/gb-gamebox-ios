@@ -32,6 +32,8 @@
     [self.view addSubview:imgV];
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-150)/2, 190, 150, 20)];
     label.text = @"请滑动设置新密码";
+    label.font = [UIFont systemFontOfSize:14.f];
+    label.textColor = colorWithRGB(27, 117, 217);
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
     

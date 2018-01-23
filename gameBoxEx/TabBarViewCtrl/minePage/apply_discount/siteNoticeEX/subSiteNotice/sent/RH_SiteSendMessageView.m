@@ -41,6 +41,7 @@
     self.contenTextView.text = @"请输入内容";
     self.codeTextField.returnKeyType = UIReturnKeyDone;
     self.codeTextField.delegate = self;
+    [self.codeTextField addTarget:self action:@selector(selectedCodeTextfield) forControlEvents:UIControlEventEditingDidBegin];
     
     
     self.backDropView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
@@ -101,5 +102,11 @@
         return NO;
     }
     return YES;
+}
+-(void)selectedCodeTextfield
+{
+    ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFram:)){
+        [self.delegate selectedCodeTextFieldAndChangedKeyboardFram:self.codeTextField.frame];
+    }
 }
 @end

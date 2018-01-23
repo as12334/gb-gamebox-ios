@@ -11,14 +11,16 @@
 #import "RH_SiteSendMessagePullDownView.h"
 #import "RH_ServiceRequest.h"
 #import "RH_SendMessageVerityModel.h"
-@interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate>
+@interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate,RH_SiteSendMessageViewDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,copy)NSString  *typeStr;
 @end
-
 @implementation RH_ApplyDiscountSiteSendCell
+{
+    BOOL  keyboardMark;
+}
 @synthesize sendView = _sendView;
 @synthesize listView = _listView;
 @synthesize serviceRequest = _serviceRequest;
@@ -57,6 +59,7 @@
     if (!_sendView) {
         _sendView = [RH_SiteSendMessageView createInstance];
         _sendView.frame = CGRectMake(0,0, self.frameWidth, self.frameHeigh);
+        _sendView.delegate = self;
     }
     return _sendView;
 }
@@ -190,16 +193,29 @@
         showErrorMessage(nil, error, @"发送失败");
     }
 }
+-(void)selectedCodeTextFieldAndChangedKeyboardFram:(CGRect)frame
+{
+    //获取键盘的高度
+    keyboardMark = YES;
+}
 //当键盘出现或改变时调用
 - (void)keyboardWillShow:(NSNotification *)aNotification
 {
-    if (self.contentView.frameY>=0) {
+    if (self.contentView.frameY>=0&&keyboardMark==NO) {
         [UIView animateWithDuration:0.5f animations:^{
             CGRect frame = self.frame;
             frame.origin.y -=50;
             self.frame = frame;
         }];
     }
+    else if(keyboardMark==YES){
+        [UIView animateWithDuration:0.5f animations:^{
+            CGRect frame = self.frame;
+            frame.origin.y -=150;
+            self.frame = frame;
+        }];
+    }
+        
 }
 
 //当键退出时调用
@@ -207,5 +223,6 @@
     CGRect frame = self.frame;
     frame.origin.y =0;
     self.frame = frame;
+    keyboardMark =NO;
 }
 @end

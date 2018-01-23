@@ -15,6 +15,7 @@
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong)UIButton *chooseBtn;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
+@property(nonatomic,strong)NSMutableArray *btnArray;
 @end
 
 @implementation RH_ApplyDiscountSitePageCell
@@ -32,6 +33,7 @@
         self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
         //设置索引
         self.pageView.dispalyPageIndex =  0 ;
+        self.btnArray = [NSMutableArray array];
         //加上三个按钮
         NSArray *btnTitleArray = @[@"系统消息",@"我的消息",@"发送消息"];
         for (int i = 0; i<3; i++) {
@@ -56,6 +58,7 @@
                 self.chooseBtn = btn;
                 
             }
+            [_btnArray addObject:btn];
             [self addSubview:btn];
         }
         CLBorderView *borderView = [[CLBorderView alloc]initWithFrame:CGRectMake(10,40, self.frameWidth-20, 1)];
@@ -131,9 +134,13 @@
 
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
-    
-    UIButton *btn  = [self viewWithTag:pageIndex+10];
-    [self selectedChooseBtn:btn];
+    for (UIButton *btn in self.btnArray) {
+        btn.selected = NO;
+        btn.backgroundColor =colorWithRGB(200, 200, 200);
+    }
+    ((UIButton *)self.btnArray[pageIndex]).selected = YES;
+    self.chooseBtn =((UIButton *)self.btnArray[pageIndex]);
+    ((UIButton *)self.btnArray[pageIndex]).backgroundColor =colorWithRGB(23, 102, 187);
 }
 
 - (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex
