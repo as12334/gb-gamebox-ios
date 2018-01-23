@@ -133,7 +133,6 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
-    [self startUpdateData] ;
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
@@ -146,7 +145,6 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
-    [self startUpdateData] ;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -218,15 +216,29 @@
         //刷新后将model数组清空
         [self.siteModelArray removeAllObjects];
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
-                            totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]completedBlock:nil] ;
-        //获取model
-        for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
-            RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);
-            siteModel.number = @0;
-            [self.siteModelArray addObject:siteModel];
+        if (data!=nil) {
+            [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
+                                totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]completedBlock:nil] ;
+            //获取model
+            for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
+                RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);
+                siteModel.number = @0;
+                [self.siteModelArray addObject:siteModel];
+            }
+        }
+        else
+        {
+            [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
         [self.contentTableView reloadData];
+    }
+    else if (type==ServiceRequestTypeV3SystemMessageDelete) {
+        [self startUpdateData];
+        self.headerView.statusMark =YES;
+    }
+    else if (type == ServiceRequestTypeV3SystemMessageYes){
+        [self startUpdateData];
+        self.headerView.statusMark =YES;
     }
 }
 

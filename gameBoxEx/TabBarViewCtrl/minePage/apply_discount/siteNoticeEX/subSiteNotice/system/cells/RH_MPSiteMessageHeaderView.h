@@ -18,4 +18,5 @@
 @property(nonatomic,weak)id<MPSiteMessageHeaderViewDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UIButton *allChoseBtn;
 @property (weak, nonatomic) IBOutlet UIButton *readConfigeBtn;
+@property (nonatomic,assign)BOOL statusMark;
 @end
