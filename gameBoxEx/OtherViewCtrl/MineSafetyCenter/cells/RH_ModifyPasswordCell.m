@@ -46,7 +46,7 @@
 - (UITextField *)textField {
     if (_textField == nil) {
         _textField = [[UITextField alloc] init];
-        _textField.borderStyle = UITextBorderStyleRoundedRect;
+        _textField.borderStyle = UITextBorderStyleNone;
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.textColor = colorWithRGB(153, 153, 153);
         _textField.secureTextEntry = YES;

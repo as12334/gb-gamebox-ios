@@ -56,6 +56,10 @@
     [self.allChoseBtn setTitle:@"取消全选" forState:UIControlStateNormal];
         self.allSelectedImageView.image = [UIImage imageNamed:@"choose"];
     }
+    else if (self.choceMark!=NO&&self.choceMark!=YES){
+        [self.allChoseBtn setTitle:@"全选" forState:UIControlStateNormal];
+        self.allSelectedImageView.image = nil;
+    }
 }
 - (IBAction)deleteChooseOnCell:(id)sender {
     ifRespondsSelector(self.delegate, @selector(siteMessageHeaderViewDeleteCell:)){
