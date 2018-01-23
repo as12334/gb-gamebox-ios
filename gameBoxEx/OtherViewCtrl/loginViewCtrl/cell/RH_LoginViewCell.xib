@@ -234,10 +234,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXh-r2-8gI">
-                        <rect key="frame" x="30" y="330" width="71.5" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="SC9-7k-8Z9"/>
-                        </constraints>
+                        <rect key="frame" x="30" y="334" width="71.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -245,6 +242,7 @@
                 </subviews>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstItem="OXh-r2-8gI" firstAttribute="leading" secondItem="uze-dM-Gi9" secondAttribute="leading" id="1Fu-9G-qcY"/>
                     <constraint firstItem="ktC-Ss-SIJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="4Ez-oH-qy5"/>
                     <constraint firstAttribute="trailing" secondItem="4iR-Y2-kVC" secondAttribute="trailing" constant="30" id="634-Eh-Vh9"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="uA6-Ep-fti" secondAttribute="bottom" constant="8" id="6qg-rS-UJz"/>

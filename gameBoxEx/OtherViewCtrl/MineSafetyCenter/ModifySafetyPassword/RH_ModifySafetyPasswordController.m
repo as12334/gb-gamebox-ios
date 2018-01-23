@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }else{
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_UpdatePermissionPasswordUsedCode:ModifySafetyStatus_UpdatePermissionPassword ;
             [self.tableViewManagement reloadDataWithPlistName:UserSafetyInfo.mIsOpenCaptch?@"ModifySafetyPasswordUsedCode":@"ModifySafetyPassword"] ;
-            [self.modifyButton setTitle:@"修改安全密码" forState:UIControlStateNormal] ;
+            [self.modifyButton setTitle:@"确定" forState:UIControlStateNormal] ;
             return ;
         }
     }
