@@ -116,7 +116,7 @@
         _modifyButton.backgroundColor = colorWithRGB(27, 117, 217);
         _modifyButton.layer.cornerRadius = 5;
         _modifyButton.clipsToBounds = YES ;
-        [_modifyButton setTitle:@"修改" forState:UIControlStateNormal];
+        [_modifyButton setTitle:@"确定" forState:UIControlStateNormal];
         [_modifyButton addTarget:self action:@selector(modifyButtonHandle) forControlEvents:UIControlEventTouchUpInside];
     }
     

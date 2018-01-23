@@ -38,7 +38,7 @@
     self.label_Title.whc_TopSpace(15).whc_LeftSpaceEqualViewOffset(self.image_Right, 20).whc_Height(20).whc_Width(200);
     self.label_Bottom.whc_BottomSpace(15).whc_LeftSpaceEqualView(self.label_Title).whc_Height(15).whc_Width(120);
     self.label_Time.whc_BottomSpace(15).whc_CenterX(0).whc_Height(20).whc_Width(200);
-    self.label_RightMoney.whc_TopSpace(10).whc_RightSpace(20).whc_Width(100).whc_Height(30);
+    self.label_RightMoney.whc_TopSpace(10).whc_RightSpace(10).whc_Width(100).whc_Height(30);
     self.label_Grant.whc_CenterToView(CGPointMake(0, 30), self.label_RightMoney);
     
     self.label_Title.textColor = colorWithRGB(68, 68, 68);
@@ -52,6 +52,7 @@
     self.label_RightMoney.textAlignment = NSTextAlignmentCenter;
     self.label_Grant.font = [UIFont systemFontOfSize:14];
     self.label_Grant.textColor = colorWithRGB(255, 255, 255);
+    self.label_Grant.textAlignment = NSTextAlignmentCenter;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -71,10 +72,14 @@
             break ;
         case 1: //待审核
         {
-                
+            self.image_Right.image = ImageWithName(@"mine_preferentialbackorange");
         }
             break;
         case 2: //已发放
+        {
+            self.image_Right.image = ImageWithName(@"mine_preferentialbackgreen");
+        }
+            break;
         case 4:
         {
             
@@ -82,7 +87,7 @@
             break;
         default: //未通过
         {
-            
+            self.image_Right.image = ImageWithName(@"mine_preferentialbackgray");
         }
             break;
     }

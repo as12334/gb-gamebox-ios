@@ -8,6 +8,8 @@
 
 #import "RH_MineSafetyCenterCell.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+
 @implementation RH_MineSafetyCenterCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {

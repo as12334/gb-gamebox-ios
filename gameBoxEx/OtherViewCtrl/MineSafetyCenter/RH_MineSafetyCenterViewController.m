@@ -15,7 +15,8 @@
 #import "RH_GesturelLockController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
-
+#import "RH_UserGroupInfoModel.h"
+#import "RH_BankInfoModel.h"
 typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     SafetyCenterStatus_Init                        ,
     SafetyCenterStatus_None                        ,
@@ -50,6 +51,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     [self setupInfo];
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
+    [self.serviceRequest startV3UserInfo] ;
 }
 
 
@@ -118,7 +120,8 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UserInfo){
-        [self setNeedUpdateView] ;
+        RH_UserGroupInfoModel *infoModel = ConvertToClassPointer(RH_UserGroupInfoModel, data);
+        NSArray *bankModelArray = ConvertToClassPointer(NSArray, infoModel.mBankList);
     }
 }
 
@@ -145,6 +148,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 
 -(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     return self.loadingIndicateTableViewCell ;
 }
 
