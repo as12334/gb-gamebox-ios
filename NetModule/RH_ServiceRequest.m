@@ -324,6 +324,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      PageNumber:(NSInteger)pageNumber
                        PageSize:(NSInteger)pageSize
                      SearchName:(NSString*)searchName
+                          TagID:(NSString*)tagID;
 {
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:@(apiID) forKey:RH_SP_APIGAMELIST_APIID] ;
@@ -332,6 +333,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dictTmp setValue:@(pageSize) forKey:RH_SP_APIGAMELIST_PAGESIZE] ;
     if (searchName.length){
         [dictTmp setValue:searchName forKey:RH_SP_APIGAMELIST_NAME] ;
+    }
+    
+    if (tagID.length){
+        [dictTmp setValue:tagID forKey:RH_SP_APIGAMELIST_TAGID] ;
     }
     
     [self _startServiceWithAPIName:self.appDelegate.domain

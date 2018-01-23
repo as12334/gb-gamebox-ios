@@ -483,6 +483,7 @@
 #define RH_SP_APIGAMELIST_PAGENUMBER                     @"paging.pageNumber"
 #define RH_SP_APIGAMELIST_PAGESIZE                       @"paging.pageSize"
 #define RH_SP_APIGAMELIST_NAME                           @"search.name"
+#define RH_SP_APIGAMELIST_TAGID                           @"tagId"
 //返回参数
 #define RH_GP_APIGAMELIST_LIST                           @"casinoGames"
 #define RH_GP_APIGAMELIST_TOTALCOUNT                           @"totalCount"
