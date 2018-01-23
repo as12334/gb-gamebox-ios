@@ -22,7 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.contentView.backgroundColor = [UIColor whiteColor] ;
+    self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
     self.contentView.layer.cornerRadius = 6.0f ;
     self.contentView.layer.masksToBounds = YES ;
     

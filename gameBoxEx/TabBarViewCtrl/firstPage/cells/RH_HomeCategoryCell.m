@@ -36,8 +36,8 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     _selectedIndex = 0 ;
-    
-    self.collectionBGView.backgroundColor = [UIColor whiteColor] ;
+
+    self.collectionBGView.backgroundColor = colorWithRGB(247, 247, 247) ;
     self.collectionBGView.borderMask = CLBorderMarkTop ;
     self.collectionBGView.borderColor = RH_Line_DefaultColor ;
     self.collectionBGView.borderWidth = 1.0f ;
