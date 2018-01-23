@@ -59,7 +59,7 @@
 							<key>detailTitle</key>
 							<string>查看所参与的游戏记录</string>
 							<key>targetKey</key>
-							<string>RH_GamesRecordViewController</string>
+							<string>RH_BettingRecordViewController</string>
 							<key>targetContext</key>
 							<integer>0</integer>
 						</dict>
@@ -68,8 +68,8 @@
 							<string>进行资金回收和转入</string>
 							<key>title</key>
 							<string>额度转换</string>
-							<key>targetKey</key>
-							<string>RH_MineSecurityCenterController</string>
+							<key>code</key>
+							<string>transfer</string>
 							<key>image</key>
 							<string>mine_page_quotaswitch</string>
 						</dict>
@@ -80,20 +80,20 @@
 							<string>资金记录</string>
 							<key>image</key>
 							<string>mine_page_fundsrecords</string>
-							<key>targetKey</key>
-							<string>RH_GamesRecordViewController</string>
 							<key>targetContext</key>
 							<integer>1</integer>
+							<key>targetKey</key>
+							<string>RH_CapitalRecordViewController</string>
 						</dict>
 						<dict>
+							<key>targetKey</key>
+							<string>RH_MineSafetyCenterViewController</string>
 							<key>detailTitle</key>
 							<string>保护您的账户安全</string>
 							<key>title</key>
 							<string>安全中心</string>
 							<key>image</key>
 							<string>mine_page_securitycenter</string>
-							<key>targetKey</key>
-							<string>RH_GamesRecordViewController</string>
 							<key>targetContext</key>
 							<integer>2</integer>
 						</dict>
@@ -104,6 +104,10 @@
 							<string>优惠记录</string>
 							<key>image</key>
 							<string>mine_page_preferentialrecords</string>
+							<key>code</key>
+							<string>myPromo</string>
+							<key>targetKey</key>
+							<string>RH_PromoListController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -113,7 +117,7 @@
 							<key>image</key>
 							<string>mine_page_messagecenter</string>
 							<key>targetKey</key>
-							<string>RH_MineDailyCashController</string>
+							<string>RH_ApplyDiscountViewController</string>
 						</dict>
 					</array>
 				</dict>
@@ -137,7 +141,7 @@
 							<key>image</key>
 							<string>mine_page_sharefriends</string>
 							<key>targetKey</key>
-							<string>RH_MineMessageCenterController</string>
+							<string></string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
@@ -146,18 +150,50 @@
 							<string>申请优惠</string>
 							<key>image</key>
 							<string>mine_page_applypreferential</string>
+							<key>code</key>
+							<string>gameNotice</string>
 							<key>targetKey</key>
-							<string>RH_MineIdeaAndFeedBackController</string>
+							<string>RH_ApplyDiscountViewController</string>
 						</dict>
 						<dict>
 							<key>detailTitle</key>
 							<string>建议反馈</string>
 							<key>targetKey</key>
-							<string></string>
+							<string>RH_MineMoreInfoViewController</string>
 							<key>image</key>
 							<string>mine_page_look_more</string>
 							<key>title</key>
 							<string>查看更多</string>
+						</dict>
+						<dict>
+							<key>detailTitle</key>
+							<string>建议反馈</string>
+							<key>code</key>
+							<string>bankCard</string>
+							<key>image</key>
+							<string>mine_page_look_more</string>
+							<key>title</key>
+							<string>银行卡 h5</string>
+						</dict>
+						<dict>
+							<key>detailTitle</key>
+							<string>建议反馈</string>
+							<key>code</key>
+							<string>btc</string>
+							<key>image</key>
+							<string>mine_page_look_more</string>
+							<key>title</key>
+							<string>bit币 h5</string>
+						</dict>
+						<dict>
+							<key>code</key>
+							<string>withdraw</string>
+							<key>image</key>
+							<string>mine_page_look_more</string>
+							<key>title</key>
+							<string>提现 H5</string>
+							<key>detailTitle</key>
+							<string>提现</string>
 						</dict>
 					</array>
 				</dict>
