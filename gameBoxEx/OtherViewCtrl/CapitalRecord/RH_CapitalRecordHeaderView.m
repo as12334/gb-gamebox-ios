@@ -71,6 +71,12 @@
     [self.serachBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.serachBtn.whc_RightSpace(10).whc_TopSpaceToView(10, view_Line).whc_Height(35).whc_Width(screenSize().width/2-20);
     
+    
+    self.typeButton.backgroundColor = colorWithRGB(255, 255, 255);
+    [self.typeButton setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
+    self.typeButton.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    self.typeButton.titleEdgeInsets = UIEdgeInsetsMake(0, -screenSize().width/3.0, 0, 0);
+    
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
     view_Line2.whc_TopSpaceToView(10, self.typeButton).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
@@ -78,10 +84,7 @@
     
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
     self.transferLab.textAlignment = NSTextAlignmentLeft;
-   
-//    self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(10).whc_Height(30).whc_Width(screenSize().width/2);
     
-//    self.typeButton.backgroundColor = colorWithRGB(27, 117, 217);
     [self.typeButton setBackgroundColor:colorWithRGB(226, 226, 226)];
     self.typeButton.layer.cornerRadius = 3.0f;
     self.typeButton.layer.masksToBounds = YES;

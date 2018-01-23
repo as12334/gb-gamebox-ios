@@ -49,8 +49,12 @@
                     <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="BIE-AX-hFc"/>
                     <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HJ5-Bd-SLy"/>
                     <constraint firstItem="FYA-QN-l5z" firstAttribute="leading" secondItem="Otx-Qr-Acz" secondAttribute="trailing" constant="8" id="HN8-oh-Jl6"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JZb-6N-zdf"/>
                     <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Q4y-XP-ZY3"/>
+                    <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="XXV-5A-uIW"/>
                     <constraint firstItem="Otx-Qr-Acz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dUN-Cg-8Fx"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ry2-XY-A3x"/>
+                    <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="vUN-3k-yDI"/>
                 </constraints>
             </tableViewCellContentView>
         </tableViewCell>

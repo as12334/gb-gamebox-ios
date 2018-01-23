@@ -8,6 +8,7 @@
 
 #import "CLTableViewCell.h"
 typedef void (^MinePageLoginoutBannarBlock)(void);
+
 @interface RH_MinePageLoginoutBannarCell : CLTableViewCell
 @property(nonatomic,copy)MinePageLoginoutBannarBlock block;
 @end
