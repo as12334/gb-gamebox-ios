@@ -1,76 +1,74 @@
 //
-//  RH_LotteryGameListViewController.m
+//  RH_GameListContentPageCell.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/1/5.
+//  Created by Lenny on 2018/1/23.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_LotteryGameListViewController.h"
-#import "RH_LotteryGameListTopView.h"
+#import "RH_GameListContentPageCell.h"
 #import "RH_GameListCollectionViewCell.h"
-#import "RH_LotteryAPIInfoModel.h"
-#import "RH_GamesViewController.h"
-#import "RH_UserInfoManager.h"
+#import "RH_LoadingIndicaterCollectionViewCell.h"
 #import "RH_API.h"
+#import "RH_UserInfoManager.h"
+#import "RH_LotteryInfoModel.h"
+#import "RH_GamesViewController.h"
+#import "coreLib.h"
 
-@interface RH_LotteryGameListViewController ()<GameListChooseGameSearchDelegate>
-@property(nonatomic,strong,readonly)RH_LotteryGameListTopView *searchView;
+@interface RH_GameListContentPageCell()
+@property (nonatomic,strong) RH_LotteryAPIInfoModel *lotteryInfoModel ;
+@property (nonatomic,strong) NSDictionary *typeModel ;
+@property (nonatomic,strong,readonly) RH_LoadingIndicaterCollectionViewCell *loadingIndicateCollectionViewCell ;
 @end
 
-@implementation RH_LotteryGameListViewController
-{
-    RH_LotteryAPIInfoModel *_lotteryApiModel ;
-    NSString *_searchString;
-}
-@synthesize searchView = _searchView;
 
--(void)setupViewContext:(id)context
-{
-    _lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
-}
 
--(BOOL)hasTopView
-{
-    return YES;
-}
--(CGFloat)topViewHeight
-{
-    return 35;
-}
--(BOOL)isSubViewController
-{
-    return YES;
-}
+@implementation RH_GameListContentPageCell
+@synthesize loadingIndicateCollectionViewCell = _loadingIndicateCollectionViewCell ;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self setupUI];
-    self.title = _lotteryApiModel.mName ;
-    self.needObserverTapGesture = YES ;
-}
-
--(void)setupUI{
-    [self.topView addSubview:self.searchView];
-    UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 10.f;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.f, 10.0f, 10.0f);
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.itemSize = CGSizeMake((MainScreenW -50)/4,(MainScreenW-50)/4*7/5);
+-(void)updateViewWithType:(NSDictionary*)typeModel
+             APIInfoModel:(RH_LotteryAPIInfoModel*)lotteryApiInfo
+                  Context:(CLPageLoadDatasContext*)context
+{
+    self.lotteryInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, lotteryApiInfo) ;
+    self.typeModel = ConvertToClassPointer(NSDictionary, typeModel) ;
     
-    //该方法也可以设置itemSize
-//    layout.itemSize =CGSizeMake(110, 150);
-    self.contentCollectionView = [self createCollectionViewWithLayout:flowLayout updateControl:YES loadControl:YES];
-    self.contentCollectionView.delegate=self;
-    self.contentCollectionView.dataSource=self;
-    [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
-    [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
+    if (self.contentCollectionView == nil) {
+        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.minimumLineSpacing = 10.f;
+        flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.f, 10.0f, 10.0f);
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        flowLayout.itemSize = CGSizeMake((MainScreenW -50)/4,(MainScreenW-50)/4*7/5);
+        
+        //该方法也可以设置itemSize
+        //    layout.itemSize =CGSizeMake(110, 150);
+        self.contentCollectionView = [[UICollectionView alloc] initWithFrame:self.myContentView.bounds collectionViewLayout:flowLayout] ;
+        self.contentCollectionView.delegate=self;
+        self.contentCollectionView.dataSource=self;
+        [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
+        [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
+        self.contentCollectionView.backgroundColor = [UIColor whiteColor];
+        self.contentScrollView = self.contentCollectionView;
+        [self setupPageLoadManagerWithdatasContext:context] ;
+        
+    }else {
+        [self updateWithContext:context];
+    }
+}
+
+
+#pragma mark- RH_LoadingIndicaterCollectionViewCell
+-(RH_LoadingIndicaterCollectionViewCell*)loadingIndicateCollectionViewCell
+{
+    if (!_loadingIndicateCollectionViewCell) {
+        _loadingIndicateCollectionViewCell = [self.contentCollectionView dequeueReusableCellWithReuseIdentifier:[RH_LoadingIndicaterCollectionViewCell defaultReuseIdentifier] forIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]  ;
+        _loadingIndicateCollectionViewCell.backgroundColor = [UIColor clearColor];
+        _loadingIndicateCollectionViewCell.contentInset = UIEdgeInsetsMake(5.f, 0.f, 5.f, 0.f);
+        _loadingIndicateCollectionViewCell.loadingIndicateView.backgroundColor = [UIColor whiteColor];
+        _loadingIndicateCollectionViewCell.loadingIndicateView.delegate = self;
+    }
     
-    [self.contentView addSubview:self.contentCollectionView] ;
-    [self.contentCollectionView reloadData] ;
-    
-    [self setupPageLoadManager] ;
+    return _loadingIndicateCollectionViewCell;
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -89,28 +87,6 @@
                                                                    segmentedCount:1] ;
 }
 
-#pragma mark-
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    return self.searchView.isEdit ;
-}
-
--(void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer
-{
-    [self.searchView endEditing:YES] ;
-}
-
-#pragma mark searchView
--(RH_LotteryGameListTopView *)searchView
-{
-    if (!_searchView) {
-        _searchView = [RH_LotteryGameListTopView createInstance];
-        _searchView.frame = CGRectMake(0, 0, self.topView.frameWidth, 35);
-        _searchView.searchDelegate=self;
-    }
-    return _searchView;
-}
-
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {
@@ -127,12 +103,12 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
-                                        ApiTypeID:_lotteryApiModel.mApiTypeID
+    [self.serviceRequest startV3GameListWithApiID:self.lotteryInfoModel.mApiID
+                                        ApiTypeID:self.lotteryInfoModel.mApiTypeID
                                        PageNumber:page
                                          PageSize:pageSize
-                                       SearchName:_searchString TagID:nil] ;
-    [self.serviceRequest startV3LoadGameType];
+                                       SearchName:nil
+                                            TagID:[self.typeModel stringValueForKey:@"value"]] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -152,12 +128,14 @@
     
     if (type == ServiceRequestTypeV3APIGameList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+        
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_APIGAMELIST_LIST]
-                            totalCount:[dictTmp integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]] ;
-
+                            totalCount:[dictTmp integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]
+                        completedBlock:nil];
+        
     }
     if (type == ServiceRequestTypeV3LoadGameType) {
-       NSLog(@"z%@", data);
+        NSLog(@"z%@", data);
     }
 }
 
@@ -203,7 +181,7 @@
     if (self.pageLoadManager.currentDataCount){
         return [RH_GameListCollectionViewCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:nil] ;
     }else{
-        return CGSizeMake(MainScreenW, MainScreenH - StatusBarHeight - NavigationBarHeight - [self topViewHeight])  ;
+        return self.bounds.size  ;
     }
 }
 
@@ -214,7 +192,7 @@
         {
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
             if (lotteryInfoModel){
-                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+//                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                 return ;
             }else{
                 showAlertView(@"数据异常", @"请联系后台") ;
@@ -224,30 +202,5 @@
         }
     }
 }
-#pragma mark 搜索的代理
--(void)gameListChooseGameSearch:(NSString *)searchGameString
-{
-    _searchString = searchGameString;
-    [self startUpdateData];
-}
-
-////设置每个item的UIEdgeInsets
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    return UIEdgeInsetsMake(10, 10, 10, 10);
-//}
-//
-////设置每个item水平间距
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-//{
-//    return 10;
-//}
-//
-//
-////设置每个item垂直间距
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-//{
-//    return 15;
-//}
 
 @end
