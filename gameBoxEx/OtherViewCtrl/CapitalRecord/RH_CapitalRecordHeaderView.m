@@ -71,6 +71,11 @@
     [self.serachBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.serachBtn.whc_RightSpace(10).whc_TopSpaceToView(10, view_Line).whc_Height(35).whc_Width(screenSize().width/2-20);
     
+    
+    self.typeButton.backgroundColor = colorWithRGB(255, 255, 255);
+    [self.typeButton setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
+    self.typeButton.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
     view_Line2.whc_TopSpaceToView(10, self.typeButton).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
