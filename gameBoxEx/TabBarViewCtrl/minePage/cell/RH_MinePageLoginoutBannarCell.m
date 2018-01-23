@@ -7,8 +7,14 @@
 //
 
 #import "RH_MinePageLoginoutBannarCell.h"
+#import "coreLib.h"
 
 @implementation RH_MinePageLoginoutBannarCell
+
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    return 124.0f ;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

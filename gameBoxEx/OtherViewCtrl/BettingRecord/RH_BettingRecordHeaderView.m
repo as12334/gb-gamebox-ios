@@ -28,6 +28,7 @@
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor whiteColor] ;
     
+    
     self.labTitle.textColor = colorWithRGB(51, 51, 51) ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
     self.labTitle.adjustsFontSizeToFitWidth = YES;

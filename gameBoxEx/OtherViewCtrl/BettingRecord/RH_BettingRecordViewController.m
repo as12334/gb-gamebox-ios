@@ -68,7 +68,7 @@
 //    [self.bottomView addSubview:self.bettingBottomView] ;
     self.bottomView.borderMask = CLBorderMarkTop ;
     self.bottomView.borderColor = RH_Line_DefaultColor ;
-    
+
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
@@ -81,8 +81,10 @@
     [self.contentTableView registerCellWithClass:[RH_BettingRecordCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     
-    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
+    self.contentTableView.backgroundColor = [UIColor whiteColor];
     [self setupPageLoadManager] ;
+    
+    
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView

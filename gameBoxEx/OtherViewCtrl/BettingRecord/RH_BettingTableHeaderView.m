@@ -62,6 +62,8 @@
         self.borderWidth = PixelToPoint(1.0) ;
         self.borderColor = [UIColor whiteColor] ;
         
+     
+        
         [self addSubview:self.headerStaticView] ;
         [self.headerStaticView reloadData] ;
     }
