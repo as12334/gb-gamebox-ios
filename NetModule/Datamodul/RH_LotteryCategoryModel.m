@@ -36,8 +36,14 @@
 -(BOOL)isExistSubCategory
 {
     if (self.mSiteApis.count){
-        RH_LotteryAPIInfoModel *lotteryApiModel = self.mSiteApis[0] ;
-        return lotteryApiModel.mGameItems.count?YES:NO ;
+//        RH_LotteryAPIInfoModel *lotteryApiModel = self.mSiteApis[0] ;
+//        return lotteryApiModel.mGameItems.count?YES:NO ;
+        NSInteger gameItems = 0 ;
+        for (RH_LotteryAPIInfoModel *lotteryApiModel in self.mSiteApis) {
+            gameItems += lotteryApiModel.mGameItems.count ;
+        }
+        
+        return gameItems?YES:NO ;
     }
     
     return NO ;

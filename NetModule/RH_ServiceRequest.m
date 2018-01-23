@@ -1636,6 +1636,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             default:
                 break;
         }
+        
+        //处理重要的 error 信息
+        if (tempError.code==600){//session 过期
+            [self.appDelegate updateLoginStatus:NO] ;
+            showAlertView(@"提示信息", @"session已过期,请重新登入") ;
+        }
     }
 
     return YES;

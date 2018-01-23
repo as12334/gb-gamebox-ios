@@ -467,7 +467,7 @@
     }else {
         showErrorMessage(self.window, error, @"获取数据失败");
     }
-
+    _lastLoadingError = error ;
     [self.pageLoadManager loadDataFail];
 
     //通知

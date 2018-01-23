@@ -92,7 +92,13 @@
             break;
 
         case CLIndicaterViewStatusError:
-            [[self pageLoadingIndicateView] showDefaultLoadingErrorStatus];
+        {
+            if (self.lastLoadingError){
+                [[self pageLoadingIndicateView] showDefaultLoadingErrorStatus:self.lastLoadingError];
+            }else{
+                [[self pageLoadingIndicateView] showDefaultLoadingErrorStatus];
+            }
+        }
             break;
 
         case CLIndicaterViewStatusNoNet:
