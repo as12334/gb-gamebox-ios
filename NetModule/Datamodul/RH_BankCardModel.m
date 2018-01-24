@@ -22,7 +22,7 @@
         [info stringValueForKey:@"realName"]?:[info stringValueForKey:@"realNme"];
         
         _mBankDeposit = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKDEPOSIT] ;
-        
+        _mbankUrl = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKURL];
     }
     return self;
 }

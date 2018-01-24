@@ -38,9 +38,22 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)];
-        [self addSubview:self.label];
+       
+        self.bankNameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frameWidth/4.0, 0, self.frameWidth/4.3, 40)];
         
+        /*此标签等后台返回图片就用上面的imageview*/
+        self.bankCradLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frameWidth/4, 0, (self.frameWidth)/4.3, 40)];
+        self.bankCradLabel.textColor = colorWithRGB(51, 51, 51);
+        self.bankCradLabel.font = [UIFont systemFontOfSize:12.f];
+        self.bankCradLabel.textAlignment = NSTextAlignmentRight;
+        [self addSubview:self.bankCradLabel];
+        
+        
+        self.bankNamelabel = [[UILabel alloc] initWithFrame:CGRectMake((self.frameWidth)/2.0, 0, (self.frameWidth)/5, 40)];
+        self.bankNamelabel.textColor = colorWithRGB(23, 102, 187);
+        self.bankNamelabel.font = [UIFont systemFontOfSize:12.f];
+        self.bankNamelabel.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:self.bankNamelabel];
     }
     return self;
 }
@@ -48,8 +61,15 @@
 {
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
+    
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
-//    self.label.text = bankModel.mBankDeposit;
+    if (!bankModel) {
+        return;
+    }
+    [self.bankNameImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.mbankUrl]]];
+    self.bankCradLabel.text = [NSString stringWithFormat:@"%@",bankModel.mBankCode];
+    self.bankNamelabel.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

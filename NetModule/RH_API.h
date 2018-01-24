@@ -304,6 +304,7 @@
 #define RH_GP_BANKCARDINFO_BANKCARDMASTERNAME                       @"bankcardMasterName"
 #define RH_GP_BANKCARDINFO_BANKCARDNUMBER                           @"bankcardNumber"
 #define RH_GP_BANKCARDINFO_BANKDEPOSIT                              @"bankDeposit"
+#define RH_GP_BANKCARDINFO_BANKURL                                  @"bankUrl"
 
 #pragma mark - V3 bit币 信息模型
 #define RH_GP_BITCODEINFO_BTCNUM                                   @"btcNum"
