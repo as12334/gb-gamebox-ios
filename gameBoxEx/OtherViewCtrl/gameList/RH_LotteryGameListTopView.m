@@ -8,6 +8,7 @@
 
 #import "RH_LotteryGameListTopView.h"
 #import "coreLib.h"
+
 @interface RH_LotteryGameListTopView()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 

@@ -359,6 +359,7 @@
 		A06E0F592010801B00EF275A /* BitCoinExist.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F562010801B00EF275A /* BitCoinExist.plist */; };
 		A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F572010801B00EF275A /* BitCoinInit.plist */; };
 		A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */; };
+		A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06E0F6120181BD600EF275A /* RH_GameListViewController.m */; };
 		A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEB71FEBA0690006FAE4 /* RH_HomeCategoryCell.m */; };
 		A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07DCEB81FEBA0690006FAE4 /* RH_HomeCategoryCell.xib */; };
 		A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEBC1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m */; };
@@ -433,7 +434,6 @@
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
 		B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */; };
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
-		B84F946120170A17003E40BC /* RH_GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F946020170A17003E40BC /* RH_GameListViewController.m */; };
 		B84F94642017319F003E40BC /* RH_GameListContentPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */; };
 		B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F946620174F01003E40BC /* RH_GameListHeaderView.m */; };
 		B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F9469201754A8003E40BC /* RH_GameCategoryCell.m */; };
@@ -1189,6 +1189,8 @@
 		A06E0F562010801B00EF275A /* BitCoinExist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitCoinExist.plist; sourceTree = "<group>"; };
 		A06E0F572010801B00EF275A /* BitCoinInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BitCoinInit.plist; sourceTree = "<group>"; };
 		A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawInit.plist; sourceTree = "<group>"; };
+		A06E0F6020181BD500EF275A /* RH_GameListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameListViewController.h; sourceTree = "<group>"; };
+		A06E0F6120181BD600EF275A /* RH_GameListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameListViewController.m; sourceTree = "<group>"; };
 		A07DCEB61FEBA0690006FAE4 /* RH_HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomeCategoryCell.h; sourceTree = "<group>"; };
 		A07DCEB71FEBA0690006FAE4 /* RH_HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeCategoryCell.m; sourceTree = "<group>"; };
 		A07DCEB81FEBA0690006FAE4 /* RH_HomeCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeCategoryCell.xib; sourceTree = "<group>"; };
@@ -1304,8 +1306,6 @@
 		B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_MineSettings.plist; sourceTree = "<group>"; };
 		B832D0531FFE321000B403B0 /* RH_MineSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsCell.h; sourceTree = "<group>"; };
 		B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSettingsCell.m; sourceTree = "<group>"; };
-		B84F945F20170A17003E40BC /* RH_GameListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListViewController.h; sourceTree = "<group>"; };
-		B84F946020170A17003E40BC /* RH_GameListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListViewController.m; sourceTree = "<group>"; };
 		B84F94622017319F003E40BC /* RH_GameListContentPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListContentPageCell.h; sourceTree = "<group>"; };
 		B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListContentPageCell.m; sourceTree = "<group>"; };
 		B84F946520174F01003E40BC /* RH_GameListHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListHeaderView.h; sourceTree = "<group>"; };
@@ -2548,8 +2548,6 @@
 				A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */,
 				B8107AAD1FFCC83C0086DDC3 /* RH_BasicAlertView.h */,
 				B8107AAE1FFCC83C0086DDC3 /* RH_BasicAlertView.m */,
-				B84F945F20170A17003E40BC /* RH_GameListViewController.h */,
-				B84F946020170A17003E40BC /* RH_GameListViewController.m */,
 			);
 			path = firstPage;
 			sourceTree = "<group>";
@@ -2886,8 +2884,6 @@
 			isa = PBXGroup;
 			children = (
 				A0B5A5661FFF6C1300E2CDD8 /* cells */,
-				B84F94622017319F003E40BC /* RH_GameListContentPageCell.h */,
-				B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */,
 				B84F946520174F01003E40BC /* RH_GameListHeaderView.h */,
 				B84F946620174F01003E40BC /* RH_GameListHeaderView.m */,
 				B84F9468201754A8003E40BC /* RH_GameCategoryCell.h */,
@@ -2896,6 +2892,10 @@
 				A0B5A56B1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.h */,
 				A0B5A56E1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.m */,
 				A0B5A56D1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.xib */,
+				B84F94622017319F003E40BC /* RH_GameListContentPageCell.h */,
+				B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */,
+				A06E0F6020181BD500EF275A /* RH_GameListViewController.h */,
+				A06E0F6120181BD600EF275A /* RH_GameListViewController.m */,
 				A0B5A56C1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.h */,
 				A0B5A56F1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.m */,
 			);
@@ -3663,6 +3663,7 @@
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
+				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */,
@@ -3893,7 +3894,6 @@
 				79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */,
-				B84F946120170A17003E40BC /* RH_GameListViewController.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				F6FB63BD201192B800EEED4E /* RH_ApplyDiscountSitePageCell.m in Sources */,

@@ -18,7 +18,6 @@
 @property (nonatomic, strong,readonly) CLPageView            *pageView;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; //存储 pagecell data content ;
 
-
 @end
 
 @implementation RH_GameListViewController
@@ -35,43 +34,11 @@
     _lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
 }
 
-- (BOOL)isSubViewController {
-    return YES;
-}
-
-#pragma mark - typeTopView
-- (RH_GameListHeaderView *)typeTopView {
-    if (_typeTopView == nil) {
-        _typeTopView = [RH_GameListHeaderView createInstance];
-        _typeTopView.delegate = self;
-    }
-    return _typeTopView;
-}
-
-
- -(void)gameListHeaderViewDidChangedSelectedIndex:(RH_GameListHeaderView*)gameListHeaderView SelectedIndex:(NSInteger)selectedIndex
-{
-    self.pageView.dispalyPageIndex = selectedIndex;
-}
-
-#pragma mark searchView
--(RH_LotteryGameListTopView *)searchView
-{
-    if (!_searchView) {
-        _searchView = [RH_LotteryGameListTopView createInstance];
-        _searchView.frame = CGRectMake(0, 0, self.topView.frameWidth, 35);
-        _searchView.searchDelegate=self;
-    }
-    return _searchView;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.title = @"列表";
-    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等"];
-    [self.serviceRequest startV3LoadGameType];
+    [self loadingIndicateViewDidTap:nil] ;
 }
 
 - (void)setupInfo {
@@ -96,6 +63,39 @@
     //设置索引
     self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
     
+}
+
+#pragma mark - typeTopView
+- (RH_GameListHeaderView *)typeTopView {
+    if (_typeTopView == nil) {
+        _typeTopView = [RH_GameListHeaderView createInstance];
+        _typeTopView.delegate = self;
+    }
+    return _typeTopView;
+}
+
+
+-(void)gameListHeaderViewDidChangedSelectedIndex:(RH_GameListHeaderView*)gameListHeaderView SelectedIndex:(NSInteger)selectedIndex
+{
+    self.pageView.dispalyPageIndex = selectedIndex;
+}
+
+#pragma mark searchView
+-(RH_LotteryGameListTopView *)searchView
+{
+    if (!_searchView) {
+        _searchView = [RH_LotteryGameListTopView createInstance];
+        _searchView.frame = CGRectMake(0, 0, self.topView.frameWidth, 35);
+        _searchView.searchDelegate=self;
+    }
+    return _searchView;
+}
+
+#pragma mark - CLLoadingIndicateView
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等"];
+    [self.serviceRequest startV3LoadGameType];
 }
 
 #pragma mark -pageView
