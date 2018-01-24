@@ -84,7 +84,6 @@
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
 }
 
-
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
     return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
