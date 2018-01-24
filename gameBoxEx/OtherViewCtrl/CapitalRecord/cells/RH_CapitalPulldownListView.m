@@ -15,7 +15,7 @@
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong)UITableView *tabelView;
 @property(nonatomic,strong)RH_CapitalTypeModel *typeModel;
-@property(nonatomic,strong)NSMutableArray *typeNameArray;
+
 @property(nonatomic,strong,readonly)MBProgressHUD *HUD ;
 
 @end
@@ -27,6 +27,9 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.typeNameArray =[NSMutableArray array];
+        self.typeIdArray = [NSMutableArray array];
+        [self.typeIdArray addObject:@"all"];
+        [self.typeNameArray addObject:@"所有"];
         [self.serviceRequest startV3DepositPulldownList];
         self.layer.cornerRadius = 10.f;
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -67,7 +70,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.typeNameArray.count;
+    return self.typeNameArray.count ;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -87,12 +90,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.typeString = self.typeNameArray[indexPath.item];
+
     self.block();
 }
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-  
     [self.serviceRequest startV3DepositPulldownList] ;
     
 }
@@ -108,6 +111,7 @@
         for (RH_CapitalTypeModel *tymodel in data) {
             self.typeModel = tymodel;
             [self.typeNameArray addObject:self.typeModel.mTypeName];
+            [self.typeIdArray addObject:self.typeModel.mTypeId];
         }
         [self.tabelView reloadData];
         [self.HUD hide:YES];
