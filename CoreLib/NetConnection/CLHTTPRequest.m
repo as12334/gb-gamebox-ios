@@ -293,7 +293,6 @@ isStart = NO;                                   \
 
 - (NSURLRequest *)urlRequest
 {
-    //lazy init
     if (!_urlRequest) {
 
         //        HttpRequestDebugLog(@"URL = %@",_requestURL);

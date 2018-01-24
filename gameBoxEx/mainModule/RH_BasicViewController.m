@@ -232,7 +232,7 @@
         NSString *account = [defaults stringForKey:@"account"] ;
         NSString *password = [defaults stringForKey:@"password"] ;
         
-        [self showProgressIndicatorViewWithAnimated:YES title:@"自动login..."] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"自动登入..."] ;
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
             [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
         }else{

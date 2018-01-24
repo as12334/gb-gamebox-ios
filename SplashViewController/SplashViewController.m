@@ -415,6 +415,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
             [self.checkDomainServices addObject:tmpServiceRequest] ;
             
+            tmpServiceRequest.timeOutInterval = 10.0f ;
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
             [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
         }
