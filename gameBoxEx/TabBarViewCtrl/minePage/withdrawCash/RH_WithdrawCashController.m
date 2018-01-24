@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
+    
 }
 #pragma mark - CashCell
 - (RH_WithdrawCashTwoCell *)cashCell {
