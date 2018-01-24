@@ -39,9 +39,7 @@
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
-    NSLog(@"%s", __func__);
-    NSLog(@"%@", info);
-    NSLog(@"%@", context);
+    
     self.textLabel.text = context[@"title"];
     self.detailTextLabel.text = context[@"detailTitle"];
     
