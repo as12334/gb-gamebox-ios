@@ -79,7 +79,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
     return self;
 }
-
 @end
 
 //------------------------------------------------------------------
