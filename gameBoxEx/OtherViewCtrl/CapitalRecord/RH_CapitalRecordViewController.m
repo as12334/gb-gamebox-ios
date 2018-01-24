@@ -231,18 +231,20 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+    NSString *typeIdstr;
     if ([self.listView.typeNameArray containsObject:self.listView.typeString]) {
         NSInteger index = [self.listView.typeNameArray indexOfObject:self.listView.typeString];
-        NSString *typeIdstr = self.listView.typeIdArray[index];
+       typeIdstr = self.listView.typeIdArray[index];
         if ([typeIdstr isEqualToString:@"all"]) {
             typeIdstr = nil;
         }
-        [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
-                                        EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
-                                     SearchType:typeIdstr
-                                     PageNumber:page
-                                       PageSize:pageSize] ;
+       
     }
+    [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
+                                    EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
+                                 SearchType:typeIdstr
+                                 PageNumber:page
+                                   PageSize:pageSize] ;
     
    
    

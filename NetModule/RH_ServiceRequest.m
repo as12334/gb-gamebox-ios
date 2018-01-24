@@ -378,9 +378,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dictTmp setValue:endDate?:@"" forKey:RH_SP_DEPOSITLIST_ENDDATE] ;
     [dictTmp setValue:@(pageNumber) forKey:RH_SP_DEPOSITLIST_PAGENUMBER] ;
     [dictTmp setValue:@(pageSize) forKey:RH_SP_DEPOSITLIST_PAGESIZE] ;
-    if (type.length){
-        [dictTmp setValue:startDate?:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
-    }
+//    if (type.length){
+//        [dictTmp setValue:startDate?:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
+//    }
+    [dictTmp setValue:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
     
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLIST
