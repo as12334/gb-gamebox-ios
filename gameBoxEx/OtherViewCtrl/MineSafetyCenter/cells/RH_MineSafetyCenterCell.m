@@ -9,7 +9,7 @@
 #import "RH_MineSafetyCenterCell.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
-
+#import "RH_BankCardModel.h"
 @implementation RH_MineSafetyCenterCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
@@ -38,6 +38,8 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)];
+        [self addSubview:self.label];
         
     }
     return self;
@@ -46,6 +48,8 @@
 {
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
+    RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
+//    self.label.text = bankModel.mBankDeposit;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -22,7 +22,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CustomViewController.h"
 #import "RH_GamesViewController.h"
-#import "RH_LotteryGameListViewController.h"
+#import "RH_GameListViewController.h"
 #import "RH_ActivityModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_NormalActivithyView.h"
