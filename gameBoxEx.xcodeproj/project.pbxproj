@@ -391,7 +391,6 @@
 		A0B5A5721FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A5691FFF6C1300E2CDD8 /* RH_GameListCollectionViewCell.m */; };
 		A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0B5A56D1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.xib */; };
 		A0B5A5741FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A56E1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.m */; };
-		A0B5A5751FFF6C1400E2CDD8 /* RH_LotteryGameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A56F1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.m */; };
 		A0B5A5781FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A5761FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m */; };
 		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
 		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
@@ -1239,10 +1238,8 @@
 		A0B5A5691FFF6C1300E2CDD8 /* RH_GameListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameListCollectionViewCell.m; sourceTree = "<group>"; };
 		A0B5A56A1FFF6C1300E2CDD8 /* RH_GameListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameListCollectionViewCell.h; sourceTree = "<group>"; };
 		A0B5A56B1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryGameListTopView.h; sourceTree = "<group>"; };
-		A0B5A56C1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LotteryGameListViewController.h; sourceTree = "<group>"; };
 		A0B5A56D1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_LotteryGameListTopView.xib; sourceTree = "<group>"; };
 		A0B5A56E1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryGameListTopView.m; sourceTree = "<group>"; };
-		A0B5A56F1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryGameListViewController.m; sourceTree = "<group>"; };
 		A0B5A5761FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoadingIndicaterCollectionViewCell.m; sourceTree = "<group>"; };
 		A0B5A5771FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoadingIndicaterCollectionViewCell.h; sourceTree = "<group>"; };
 		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
@@ -2896,8 +2893,6 @@
 				B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */,
 				A06E0F6020181BD500EF275A /* RH_GameListViewController.h */,
 				A06E0F6120181BD600EF275A /* RH_GameListViewController.m */,
-				A0B5A56C1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.h */,
-				A0B5A56F1FFF6C1300E2CDD8 /* RH_LotteryGameListViewController.m */,
 			);
 			path = gameList;
 			sourceTree = "<group>";
@@ -3997,7 +3992,6 @@
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
 				F6E402052001BDC900C52B97 /* RH_GesturelLockView.m in Sources */,
-				A0B5A5751FFF6C1400E2CDD8 /* RH_LotteryGameListViewController.m in Sources */,
 				A07FE3701FEF453700D5DF71 /* CLSegmentedControl.m in Sources */,
 				A0109FA21F8787E4004E6EF4 /* CLPushPopAnimatedTransitioning.m in Sources */,
 				F6FB637E200F851300EEED4E /* RH_SiteMineNoticeCell.m in Sources */,

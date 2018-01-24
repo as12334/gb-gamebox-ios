@@ -14,7 +14,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_API.h"
 
-@interface RH_LotteryGameListViewController ()<GameListChooseGameSearchDelegate>
+@interface RH_LotteryGameListViewController ()<LotteryGameListTopViewDelegate>
 @property(nonatomic,strong,readonly)RH_LotteryGameListTopView *searchView;
 @end
 
@@ -106,7 +106,7 @@
     if (!_searchView) {
         _searchView = [RH_LotteryGameListTopView createInstance];
         _searchView.frame = CGRectMake(0, 0, self.topView.frameWidth, 35);
-        _searchView.searchDelegate=self;
+        _searchView.delegate=self;
     }
     return _searchView;
 }

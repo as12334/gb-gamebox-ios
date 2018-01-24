@@ -12,7 +12,7 @@
 #import "RH_GameListContentPageCell.h"
 #import "RH_LotteryAPIInfoModel.h"
 
-@interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, GameListChooseGameSearchDelegate>
+@interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) RH_GameListHeaderView *typeTopView;
 @property (nonatomic, strong,readonly) CLPageView            *pageView;
@@ -86,9 +86,15 @@
     if (!_searchView) {
         _searchView = [RH_LotteryGameListTopView createInstance];
         _searchView.frame = CGRectMake(0, 0, self.topView.frameWidth, 35);
-        _searchView.searchDelegate=self;
+        _searchView.delegate=self;
     }
     return _searchView;
+}
+
+-(void)lotteryGameListTopViewDidReturn:(RH_LotteryGameListTopView*)lotteryGameListTopView
+{
+    [self.pageView reloadPages:YES] ;
+    [self.view endEditing:YES];
 }
 
 #pragma mark - CLLoadingIndicateView
@@ -122,8 +128,9 @@
 {
     RH_GameListContentPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_GameListContentPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
     [cell updateViewWithType:[self.typeTopView typeModelWithIndex:pageIndex]
-                APIInfoModel:_lotteryApiModel
-                     Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+                  SearchName:self.searchView.searchInfo
+                APIInfoModel:_lotteryApiModel Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+    
     return cell;
 }
 

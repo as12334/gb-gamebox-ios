@@ -9,7 +9,7 @@
 #import "RH_LotteryGameListTopView.h"
 #import "coreLib.h"
 
-@interface RH_LotteryGameListTopView()
+@interface RH_LotteryGameListTopView()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
@@ -28,7 +28,7 @@
     self.textField.layer.borderWidth = 1.0f;
     self.textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,10, self.textField.frame.size.height)];
     self.textField.leftViewMode = UITextFieldViewModeAlways;
-    
+    self.textField.delegate = self;
 }
 
 -(BOOL)isEdit
@@ -41,9 +41,21 @@
     [self.textField resignFirstResponder] ;
     return YES ;
 }
+
+#pragma mark-
+-(NSString *)searchInfo
+{
+    return self.textField.text.length?[self.textField.text copy]:nil ;
+}
+
 - (IBAction)searchGame:(id)sender {
-    ifRespondsSelector(self.searchDelegate, @selector(gameListChooseGameSearch:)){
-        [self.searchDelegate gameListChooseGameSearch:self.textField.text] ;
+    ifRespondsSelector(self.delegate, @selector(lotteryGameListTopViewDidReturn:)){
+        [self.delegate lotteryGameListTopViewDidReturn:self] ;
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 @end
