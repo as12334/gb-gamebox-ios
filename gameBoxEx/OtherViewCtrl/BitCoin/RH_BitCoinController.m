@@ -89,6 +89,7 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 {
     if ([self.bitCoinCell.textV isEqual:textView]){
         _addBitCoinAddrInfo = [textView.text copy] ;
+        
         return ;
     }
 }
