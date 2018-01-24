@@ -86,7 +86,7 @@
             titleCell.labTitle.text = [NSString stringWithFormat:@"优惠总额:%.02f",_favorableSummer] ;
             break;
         case 3:
-            titleCell.labTitle.text = [NSString stringWithFormat:@"反水总额:%.02f",_rakebackSummer] ;
+            titleCell.labTitle.text = [NSString stringWithFormat:@"返水总额:%.02f",_rakebackSummer] ;
             break;
             
         default:

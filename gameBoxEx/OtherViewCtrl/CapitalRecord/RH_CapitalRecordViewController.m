@@ -78,6 +78,7 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
+    self.contentTableView.frame = CGRectMake(0, self.contentTableView.frame.origin.y + 10, self.contentTableView.frame.size.width, self.contentTableView.frame.size.height -10);
     [self setupPageLoadManager] ;
     self.needObserverTapGesture = YES ;
 }
