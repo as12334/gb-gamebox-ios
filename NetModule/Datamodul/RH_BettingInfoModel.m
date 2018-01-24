@@ -34,6 +34,7 @@
         _mTerminal = [info stringValueForKey:RH_GP_BETTING_TERMINAL] ;
         _mProfitAmount = [info floatValueForKey:RH_GP_BETTING_PROFITAMOUNT] ;
         _mOrderState = [info stringValueForKey:RH_GP_BETTING_ORDERSTATE] ;
+        _mSingleAmount = [info floatValueForKey:RH_GP_BETTING_SINGLEAMOUNT];
     }
     
     return self ;

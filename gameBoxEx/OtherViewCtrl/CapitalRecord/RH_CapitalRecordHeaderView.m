@@ -98,6 +98,7 @@
     [self addSubview:imageArrow];
     imageArrow.image = ImageWithName(@"mine_page_arrowdwon");
     imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(24).whc_Height(24);
+
 }
 
 #pragma mark --- 搜索按钮

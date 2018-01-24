@@ -22,6 +22,8 @@
 		797F678F2008A25E009E3FAB /* RH_GameNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678E2008A25E009E3FAB /* RH_GameNoticeModel.m */; };
 		797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */; };
 		797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */; };
+		79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */; };
+		79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */; };
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
@@ -583,6 +585,9 @@
 		797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailModel.m; sourceTree = "<group>"; };
 		797F6796200B789B009E3FAB /* RH_SiteMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageModel.h; sourceTree = "<group>"; };
 		797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageModel.m; sourceTree = "<group>"; };
+		79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineSafetyCenterBankCell.m; sourceTree = "<group>"; };
+		79A5CC38201871AE0044435E /* RH_MineSafetyCenterBankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterBankCell.h; sourceTree = "<group>"; };
+		79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineSafetyCenterBankCell.xib; sourceTree = "<group>"; };
 		79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawModel.h; sourceTree = "<group>"; };
 		79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithDrawModel.m; sourceTree = "<group>"; };
 		79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoModel.h; sourceTree = "<group>"; };
@@ -3022,6 +3027,9 @@
 				A0522A6320078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib */,
 				B8107AB71FFDCB780086DDC3 /* RH_MineSafetyCenterCell.h */,
 				B8107AB81FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m */,
+				79A5CC38201871AE0044435E /* RH_MineSafetyCenterBankCell.h */,
+				79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */,
+				79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */,
 				B8107ABA1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.h */,
 				B8107ABB1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m */,
 			);
@@ -3468,6 +3476,7 @@
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
 				F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */,
+				79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */,
 				A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
 				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
@@ -3825,6 +3834,7 @@
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
+				79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */,
 				A0109FE51F8788FF004E6EF4 /* NSObject+MJClass.m in Sources */,
 				F6FB6385200F851300EEED4E /* RH_MPSiteMessageHeaderView.m in Sources */,
 				B8F0E5002001B96B00A3AC94 /* RH_ModifySafetyPasswordController.m in Sources */,

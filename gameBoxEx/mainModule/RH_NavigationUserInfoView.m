@@ -41,7 +41,7 @@
 {
     RH_UserBalanceGroupModel *userBalanceGroupModel = UserBalanceInfo ;
     self.labUserName.text = userBalanceGroupModel.mUserName ;
-    self.labBalance.text = [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mBalance] ;
+    self.labBalance.text = [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mAssets] ;
 }
 
 #pragma mark-

@@ -11,5 +11,7 @@
 @interface RH_MineSafetyCenterCell : CLTableViewCell
 
 @property (nonatomic, strong, readonly) UITextField *textField;
-@property (nonatomic,strong)UILabel *label;
+@property (nonatomic,strong)UILabel *bankNamelabel;
+@property (nonatomic,strong)UIImageView *bankNameImageView;
+@property (nonatomic,strong)UILabel *bankCradLabel;
 @end

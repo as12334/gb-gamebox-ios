@@ -50,7 +50,7 @@
 					<key>targetKey</key>
 					<string>RH_BankCardController</string>
 					<key>cellClass</key>
-					<string>RH_MineSafetyCenterCell</string>
+					<string>RH_MineSafetyCenterBankCell</string>
 					<key>title</key>
 					<string>银行卡</string>
 				</dict>
