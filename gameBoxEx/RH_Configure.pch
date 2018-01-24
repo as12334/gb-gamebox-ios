@@ -1486,6 +1486,30 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _g2mj //新博娱乐
+
+#define CODE    @"g2mj"
+#define S        @"ab86858b4cc1186ec020667039657aa8"
+#define SID        @"350"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _nnop //五环娱乐
+
+#define CODE    @"nnop"
+#define S        @"3d44d26c22d07d9af491e63437b2df59"
+#define SID        @"351"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _j1ms //威尼斯人娱乐城
+
+#define CODE    @"j1ms"
+#define S        @"3e049b600c7956be0bc97266e2132f5c"
+#define SID        @"352"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

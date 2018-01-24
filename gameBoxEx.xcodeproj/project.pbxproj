@@ -433,6 +433,11 @@
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
 		B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */; };
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
+		B84F946120170A17003E40BC /* RH_GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F946020170A17003E40BC /* RH_GameListViewController.m */; };
+		B84F94642017319F003E40BC /* RH_GameListContentPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */; };
+		B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F946620174F01003E40BC /* RH_GameListHeaderView.m */; };
+		B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B84F9469201754A8003E40BC /* RH_GameCategoryCell.m */; };
+		B84F946C201754A9003E40BC /* RH_GameCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B84F946A201754A8003E40BC /* RH_GameCategoryCell.xib */; };
 		B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */; };
 		B851139F20146CA300042ADE /* RH_WithdrawHasOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */; };
 		B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */; };
@@ -1299,6 +1304,15 @@
 		B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_MineSettings.plist; sourceTree = "<group>"; };
 		B832D0531FFE321000B403B0 /* RH_MineSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsCell.h; sourceTree = "<group>"; };
 		B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSettingsCell.m; sourceTree = "<group>"; };
+		B84F945F20170A17003E40BC /* RH_GameListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListViewController.h; sourceTree = "<group>"; };
+		B84F946020170A17003E40BC /* RH_GameListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListViewController.m; sourceTree = "<group>"; };
+		B84F94622017319F003E40BC /* RH_GameListContentPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListContentPageCell.h; sourceTree = "<group>"; };
+		B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListContentPageCell.m; sourceTree = "<group>"; };
+		B84F946520174F01003E40BC /* RH_GameListHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListHeaderView.h; sourceTree = "<group>"; };
+		B84F946620174F01003E40BC /* RH_GameListHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListHeaderView.m; sourceTree = "<group>"; };
+		B84F9468201754A8003E40BC /* RH_GameCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameCategoryCell.h; sourceTree = "<group>"; };
+		B84F9469201754A8003E40BC /* RH_GameCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameCategoryCell.m; sourceTree = "<group>"; };
+		B84F946A201754A8003E40BC /* RH_GameCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_GameCategoryCell.xib; sourceTree = "<group>"; };
 		B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawCashHasOrder.plist; sourceTree = "<group>"; };
 		B851139C20146CA300042ADE /* RH_WithdrawHasOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawHasOrderCell.h; sourceTree = "<group>"; };
 		B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawHasOrderCell.m; sourceTree = "<group>"; };
@@ -2534,6 +2548,8 @@
 				A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */,
 				B8107AAD1FFCC83C0086DDC3 /* RH_BasicAlertView.h */,
 				B8107AAE1FFCC83C0086DDC3 /* RH_BasicAlertView.m */,
+				B84F945F20170A17003E40BC /* RH_GameListViewController.h */,
+				B84F946020170A17003E40BC /* RH_GameListViewController.m */,
 			);
 			path = firstPage;
 			sourceTree = "<group>";
@@ -2870,6 +2886,13 @@
 			isa = PBXGroup;
 			children = (
 				A0B5A5661FFF6C1300E2CDD8 /* cells */,
+				B84F94622017319F003E40BC /* RH_GameListContentPageCell.h */,
+				B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */,
+				B84F946520174F01003E40BC /* RH_GameListHeaderView.h */,
+				B84F946620174F01003E40BC /* RH_GameListHeaderView.m */,
+				B84F9468201754A8003E40BC /* RH_GameCategoryCell.h */,
+				B84F9469201754A8003E40BC /* RH_GameCategoryCell.m */,
+				B84F946A201754A8003E40BC /* RH_GameCategoryCell.xib */,
 				A0B5A56B1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.h */,
 				A0B5A56E1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.m */,
 				A0B5A56D1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.xib */,
@@ -3607,6 +3630,7 @@
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
 				A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */,
 				A0522A5B2007358200A5A6E9 /* ModifySafetyNoPermission.plist in Resources */,
+				B84F946C201754A9003E40BC /* RH_GameCategoryCell.xib in Resources */,
 				A0B5A5711FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.xib in Resources */,
 				B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */,
 				F6A2AD3B2005A84A0077CB92 /* close.png in Resources */,
@@ -3646,6 +3670,7 @@
 				A0522A622007818600A5A6E9 /* RH_BankCardModel.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
+				B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
 				A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */,
 				A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */,
@@ -3659,6 +3684,7 @@
 				A001B3F61F8F073B00309EA4 /* RH_CustomServicePageViewController.m in Sources */,
 				A001B3F21F8EFF4200309EA4 /* RH_TransferViewController.m in Sources */,
 				A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */,
+				B84F94642017319F003E40BC /* RH_GameListContentPageCell.m in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
 				A0522A85200C84C400A5A6E9 /* RH_PromoViewControllerEx.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
@@ -3867,6 +3893,7 @@
 				79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
 				797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */,
+				B84F946120170A17003E40BC /* RH_GameListViewController.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				F6FB63BD201192B800EEED4E /* RH_ApplyDiscountSitePageCell.m in Sources */,
@@ -3922,6 +3949,7 @@
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
 				A0109F831F8787E4004E6EF4 /* CLArrayPageLoadController.m in Sources */,
+				B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */,
 				A0109F841F8787E4004E6EF4 /* CLBasicPageLoadController.m in Sources */,
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
@@ -4065,7 +4093,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_bldz=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_zrax=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -4076,7 +4104,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid116;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid271;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -4084,8 +4112,8 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "电子777娱乐";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-116";
+				APP_DISPLAY_NAME = VIPBET;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-350";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
@@ -4100,7 +4128,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid116;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid271;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

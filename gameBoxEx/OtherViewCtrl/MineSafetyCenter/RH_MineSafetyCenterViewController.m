@@ -15,7 +15,11 @@
 #import "RH_GesturelLockController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
-
+#import "RH_UserGroupInfoModel.h"
+#import "RH_BankInfoModel.h"
+#import "RH_MineInfoModel.h"
+#import "RH_MineSafetyCenterCell.h"
+#import "RH_BankCardModel.h"
 typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     SafetyCenterStatus_Init                        ,
     SafetyCenterStatus_None                        ,
@@ -29,6 +33,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) RH_MineSafetyCenterHeaderView *headerView;
+@property (nonatomic,strong)RH_MineInfoModel *mineInfoModel;
 @end
 
 @implementation RH_MineSafetyCenterViewController
@@ -50,6 +55,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     [self setupInfo];
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
+    [self.serviceRequest startV3UserInfo] ;
 }
 
 
@@ -118,7 +124,9 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UserInfo){
-        [self setNeedUpdateView] ;
+        RH_UserGroupInfoModel *infoModel = ConvertToClassPointer(RH_UserGroupInfoModel, data);
+       self.mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, infoModel.mUserSetting);
+        [self.tableViewManagement reloadData];
     }
 }
 
@@ -156,7 +164,16 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     if (targetViewCtrl){
         [self showViewController:targetViewCtrl sender:self] ;
     }
-    
     return YES;
+}
+
+- (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
+{
+//    RH_MineSafetyCenterCell *centerCell = ConvertToClassPointer(RH_MineSafetyCenterCell, cell) ;
+    if (indexPath.row==3) {
+        RH_BankCardModel *carModel = ConvertToClassPointer(RH_BankCardModel, self.mineInfoModel.mBankCard);
+        return carModel ;
+    }
+    return nil ;
 }
 @end
