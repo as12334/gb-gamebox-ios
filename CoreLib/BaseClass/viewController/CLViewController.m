@@ -81,7 +81,7 @@
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         if (self.isHiddenTabBar && GreaterThanIOS10System){
             //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
-            if (CGRectEqualToRect(self.view.frame, MainScreenBounds)==false){
+            if (CGSizeEqualToSize(self.view.frame.size, MainScreenBounds.size)==FALSE){
                 self.view.frame = MainScreenBounds ;
             }
         }
