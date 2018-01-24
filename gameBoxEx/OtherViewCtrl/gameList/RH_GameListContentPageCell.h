@@ -11,6 +11,8 @@
 
 @interface RH_GameListContentPageCell : RH_PageLoadContentPageCell
 -(void)updateViewWithType:(NSDictionary*)typeModel
+               SearchName:(NSString*)searchName
              APIInfoModel:(RH_LotteryAPIInfoModel*)lotteryApiInfo
                   Context:(CLPageLoadDatasContext*)context ;
+
 @end

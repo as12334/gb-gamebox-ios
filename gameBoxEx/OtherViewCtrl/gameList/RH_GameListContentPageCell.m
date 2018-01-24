@@ -18,6 +18,7 @@
 @interface RH_GameListContentPageCell()
 @property (nonatomic,strong) RH_LotteryAPIInfoModel *lotteryInfoModel ;
 @property (nonatomic,strong) NSDictionary *typeModel ;
+@property (nonatomic,strong) NSString *searchName;
 @property (nonatomic,strong,readonly) RH_LoadingIndicaterCollectionViewCell *loadingIndicateCollectionViewCell ;
 @end
 
@@ -27,11 +28,13 @@
 @synthesize loadingIndicateCollectionViewCell = _loadingIndicateCollectionViewCell ;
 
 -(void)updateViewWithType:(NSDictionary*)typeModel
+               SearchName:(NSString*)searchName
              APIInfoModel:(RH_LotteryAPIInfoModel*)lotteryApiInfo
                   Context:(CLPageLoadDatasContext*)context
 {
     self.lotteryInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, lotteryApiInfo) ;
     self.typeModel = ConvertToClassPointer(NSDictionary, typeModel) ;
+    self.searchName = searchName ;
     
     if (self.contentCollectionView == nil) {
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -107,7 +110,7 @@
                                         ApiTypeID:self.lotteryInfoModel.mApiTypeID
                                        PageNumber:page
                                          PageSize:pageSize
-                                       SearchName:nil
+                                       SearchName:self.searchName
                                             TagID:[self.typeModel stringValueForKey:@"value"]] ;
 }
 

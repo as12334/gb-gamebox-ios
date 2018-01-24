@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RH_LotteryGameListTopView.h"
 @class RH_LotteryGameListTopView;
-@protocol GameListChooseGameSearchDelegate<NSObject>
+@protocol LotteryGameListTopViewDelegate<NSObject>
 @optional
--(void)gameListChooseGameSearch:(NSString *)searchGameString;
+-(void)lotteryGameListTopViewDidReturn:(RH_LotteryGameListTopView*)lotteryGameListTopView ;
 @end
 @interface RH_LotteryGameListTopView : UIView
-@property(nonatomic,weak)id<GameListChooseGameSearchDelegate>searchDelegate;
+@property(nonatomic,weak)id<LotteryGameListTopViewDelegate>delegate ;
+
+@property(nonatomic,strong,readonly) NSString *searchInfo ;
 -(BOOL)isEdit ;
 @end
