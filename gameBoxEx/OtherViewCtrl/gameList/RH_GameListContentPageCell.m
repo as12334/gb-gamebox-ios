@@ -11,7 +11,6 @@
 #import "RH_LoadingIndicaterCollectionViewCell.h"
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
-#import "RH_LotteryInfoModel.h"
 #import "RH_GamesViewController.h"
 #import "coreLib.h"
 
@@ -111,7 +110,7 @@
                                        PageNumber:page
                                          PageSize:pageSize
                                        SearchName:self.searchName
-                                            TagID:[self.typeModel stringValueForKey:@"value"]] ;
+                                            TagID:[self.typeModel stringValueForKey:@"key"]] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -194,11 +193,8 @@
         if (HasLogin)
         {
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-            if (lotteryInfoModel){
-//                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
-                return ;
-            }else{
-                showAlertView(@"数据异常", @"请联系后台") ;
+            ifRespondsSelector(self.delegate, @selector(gameListContentPageCellDidTouchCell:CellModel:)){
+                [self.delegate gameListContentPageCellDidTouchCell:self CellModel:lotteryInfoModel] ;
             }
         }else{
             showAlertView(@"提示信息", @"您尚未登入") ;

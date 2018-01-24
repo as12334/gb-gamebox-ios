@@ -654,13 +654,13 @@
 //请求参数  无
 
 #pragma mark - V3 添加比特币
-#define RH_API_NAME_ADDBTC   @"userInfoOrigin/submitBtc.html"
+#define RH_API_NAME_ADDBTC                  @"userInfoOrigin/submitBtc.html"
 //请求参数
-#define RH_SP_ADDBTC_BANKCARDNUMBER   @"bankcardNumber"
+#define RH_SP_ADDBTC_BANKCARDNUMBER          @"bankcardNumber"
 //返回bit 模型
 
 #pragma mark - V3 站点信息 系统信息列表
-#define RH_API_NAME_SITEMESSAGE   @"mineOrigin/getSiteSysNotice.html"
+#define RH_API_NAME_SITEMESSAGE              @"mineOrigin/getSiteSysNotice.html"
 //请求参数
 #define RH_SP_SITEMESSAGE_PAGINGPAGENUMBER   @"paging.pageNumber"
 #define RH_SP_SITEMESSAGE_PAGINGPAGESIZE   @"paging.pageNumber"
@@ -669,7 +669,7 @@
 
 
 #pragma mark - V3 站点信息 系统信息列表详情
-#define RH_API_NAME_SITEMESSAGEDETAIL   @"mineOrigin/getSiteSysNoticeDetail.html"
+#define RH_API_NAME_SITEMESSAGEDETAIL               @"mineOrigin/getSiteSysNoticeDetail.html"
 //请求参数
 #define RH_SP_SITEMESSAGEDETAIL_SEARCHID   @"searchId"
 
@@ -687,10 +687,10 @@
 #define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
 #pragma mark - V3 站点消息  发送消息验证
-#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY  @"mineOrigin/getNoticeSiteType.html"
+#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY     @"mineOrigin/getNoticeSiteType.html"
 
 #pragma mark - V3 站点消息  发送消息
-#define RH_API_NAME_ADDAPPLYDISCOUNTS   @"mineOrigin/addNoticeSite.html"
+#define RH_API_NAME_ADDAPPLYDISCOUNTS           @"mineOrigin/addNoticeSite.html"
 //请求参数
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE      @"result.advisoryType"
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE     @"result.advisoryTitle"
@@ -710,7 +710,7 @@
 
 #pragma mark - V3 站点信息 我的信息标记为已读
 
-#define RH_API_NAME_MYMESSAGEREDAYES   @"mineOrigin/getSelectAdvisoryMessageIds.html"
+#define RH_API_NAME_MYMESSAGEREDAYES     @"mineOrigin/getSelectAdvisoryMessageIds.html"
 //请求参数
 #define RH_SP_MYMESSAGEREDAYES_IDS   @"ids"
 
@@ -722,7 +722,7 @@
 
 
 #pragma mark - V3 Tabbar 优惠主页面 优惠活动类型
-#define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS  @"discountsOrigin/getActivityType.html"
+#define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS   @"discountsOrigin/getActivityType.html"
 
 #pragma mark - V3 Tabbar 优惠主页面 优惠活动类别
 #define RH_API_NAME_ACTIVITYDATALIST        @"discountsOrigin/getActivityTypeList.html"
@@ -745,22 +745,21 @@
 #define RH_GP_GAMESLINK_LINKURL                 @"gameLink"
 #define RH_GP_GAMESLINK_MESSAGE                 @"gameMsg"
 
-
 #pragma mark - V3 退出登录
-#define RH_API_NAME_LOGINOUT @"mineOrigin/logout.html"
+#define RH_API_NAME_LOGINOUT                @"mineOrigin/logout.html"
 
 #pragma mark -V3 获取取款用户信息
-#define RH_API_NAME_GETWITHDRAWUSERINFO  @"withdrawOrigin/getWithDraw.html"
+#define RH_API_NAME_GETWITHDRAWUSERINFO         @"withdrawOrigin/getWithDraw.html"
 
 #pragma mark -V3 提交取款信息
-#define RH_API_NAME_SUBMITWITHDRAWINFO  @"withdrawOrigin/submitWithdraw.html"
+#define RH_API_NAME_SUBMITWITHDRAWINFO          @"withdrawOrigin/submitWithdraw.html"
 
 //请求参数
 #define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
 
 #pragma mark -V3 获取游戏分类
-#define RH_API_NAME_LOADGAMETYPE   @"origin/getGameTag.html"
+#define RH_API_NAME_LOADGAMETYPE                @"origin/getGameTag.html"
 //返回参数
 #define RH_GP_LOADGAMETYPE_KEY                  @"key"
 #define RH_GP_LOADGAMETYPE_VALUE                @"value"
