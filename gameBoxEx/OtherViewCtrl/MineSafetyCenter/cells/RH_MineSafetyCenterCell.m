@@ -38,7 +38,7 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
-        self.label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)];
+        self.label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)]; 
         [self addSubview:self.label];
         
     }
