@@ -77,8 +77,7 @@
     self.contentTableView.sectionHeaderHeight = 0.0f ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
-    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
-    self.contentTableView.frame = CGRectMake(0, self.contentTableView.frame.origin.y + 10, self.contentTableView.frame.size.width, self.contentTableView.frame.size.height -10);
+    self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242) ;
     [self setupPageLoadManager] ;
     self.needObserverTapGesture = YES ;
 }
@@ -232,11 +231,21 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
-                                    EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
-                                 SearchType:self.listView.typeString
-                                 PageNumber:page
-                                   PageSize:pageSize] ;
+    if ([self.listView.typeNameArray containsObject:self.listView.typeString]) {
+        NSInteger index = [self.listView.typeNameArray indexOfObject:self.listView.typeString];
+        NSString *typeIdstr = self.listView.typeIdArray[index];
+        if ([typeIdstr isEqualToString:@"all"]) {
+            typeIdstr = nil;
+        }
+        [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
+                                        EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
+                                     SearchType:typeIdstr
+                                     PageNumber:page
+                                       PageSize:pageSize] ;
+    }
+    
+   
+   
 }
 
 -(void)cancelLoadDataHandle

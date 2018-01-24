@@ -82,8 +82,15 @@
     view_Line2.whc_TopSpaceToView(10, self.typeButton).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
     view_Line2.backgroundColor = colorWithRGB(226, 226, 226);
     
-    self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
+    self.withdrawalLab.textColor = colorWithRGB(51, 51, 51);
+    self.withdrawalLab.font = [UIFont systemFontOfSize:12.f];
+    self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
+    
+    self.transferLab.textColor = colorWithRGB(51, 51, 51);
+    self.transferLab.font = [UIFont systemFontOfSize:12.f];
     self.transferLab.textAlignment = NSTextAlignmentLeft;
+    self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
+    self.transferLab.textAlignment = NSTextAlignmentRight;
     
     [self.typeButton setBackgroundColor:colorWithRGB(226, 226, 226)];
     self.typeButton.layer.cornerRadius = 3.0f;
@@ -156,6 +163,7 @@
 -(void)updateUIInfoWithDraw:(CGFloat)drawSum TransferSum:(CGFloat)transferSum
 {
     self.transferLab.text = [NSString stringWithFormat:@"转帐处理中 :%0.2f",transferSum] ;
+    self.withdrawalLab.text = [NSString stringWithFormat:@"取款处理中 :%0.2f",drawSum];
 }
 
 #pragma mark ---
