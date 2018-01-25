@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
     ServiceRequestTypeAPIRetrive        , //api 回收接口
+    ServiceRequestTypeCollectAPPError   , //check domain 失败 上传数据接口
     
     //V3接口
     ServiceRequestTypeV3HomeInfo        ,
@@ -141,6 +142,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startGetCustomService ;
 
 -(void)startAPIRetrive:(NSInteger)apiID ;
+
+-(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict ;
 
 -(void)startTestUrl:(NSString*)testURL ;
 

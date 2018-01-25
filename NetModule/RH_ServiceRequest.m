@@ -253,6 +253,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
+{
+    [self _startServiceWithAPIName:RH_API_MAIN_URL
+                        pathFormat:RH_API_NAME_COLLECTAPPERROR
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:errorDict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeCollectAPPError
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startTestUrl:(NSString*)testURL
 {
     [self _startServiceWithAPIName:testURL
