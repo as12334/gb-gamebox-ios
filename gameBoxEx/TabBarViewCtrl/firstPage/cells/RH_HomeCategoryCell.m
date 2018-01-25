@@ -11,8 +11,8 @@
 #import "coreLib.h"
 #import "RH_HomePageModel.h"
 
-#define HomeCategoryCellHeight                    60.0f
-#define HomeCategoryCellWidth                     floorf((MainScreenW-20)/5.0)
+#define HomeCategoryCellHeight                    floorf((MainScreenW-20)/5.0)
+#define HomeCategoryCellWidth                       70.0f
 
 @interface RH_HomeCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) RH_HomePageModel *homePageModel ;
@@ -39,7 +39,7 @@
 
     self.collectionBGView.backgroundColor = colorWithRGB(247, 247, 247) ;
     self.collectionBGView.borderMask = CLBorderMarkTop ;
-    self.collectionBGView.borderColor = RH_Line_DefaultColor ;
+    self.collectionBGView.borderColor = colorWithRGB(226, 226, 226) ;
     self.collectionBGView.borderWidth = 1.0f ;
     [self configureCollection:self.collectionView] ;
 }
