@@ -38,7 +38,7 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
-        self.label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)]; 
+        self.label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frameWidth, 40)];
         [self addSubview:self.label];
         
     }
@@ -49,7 +49,7 @@
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
-    self.label.text = bankModel.mBankDeposit;
+//    self.label.text = bankModel.mBankDeposit;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

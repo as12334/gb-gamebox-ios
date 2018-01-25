@@ -31,13 +31,16 @@
 {
     return 50;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"申请优惠";
+//    self.title = @"申请优惠";
+    
     //初始化 优惠类别信息
 //    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等..."] ;
 //    [self.serviceRequest startV3LoadDiscountActivityType] ;
+    
     [self createUI];
 }
 -(void)createUI{
@@ -90,7 +93,7 @@
 }
 - (NSUInteger)numberOfPagesInPageView:(CLPageView *)pageView
 {
-    return self.headerView.allTypes  ;
+    return 3  ;
 }
 
 - (UICollectionViewCell *)pageView:(CLPageView *)pageView cellForPageAtIndex:(NSUInteger)pageIndex

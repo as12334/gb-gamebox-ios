@@ -7,7 +7,8 @@
 //
 
 #import "RH_BasicPageLoadViewController.h"
+#import "RH_BasicSubViewController.h"
 
-@interface RH_GameListViewController : RH_BasicPageLoadViewController
+@interface RH_GameListViewController : RH_BasicSubViewController
 
 @end

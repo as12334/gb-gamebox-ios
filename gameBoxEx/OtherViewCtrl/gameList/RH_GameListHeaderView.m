@@ -86,7 +86,7 @@
 {
     if (_selectedIndex!=selectedIndex){
         _selectedIndex = selectedIndex ;
-        [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+        [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally] ;
     }
 }
 

@@ -28,9 +28,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"资金记录详情";
-    if ([self.infoModel.mTransactionType isEqualToString:@"deposit"]) {
+//    if ([self.infoModel.mTransactionType isEqualToString:@"transfers"]) {
         [self createUI:[RH_CapitalRecordDetailsCell class]];
-    }
+//    }
     
 }
 -(void)createUI:(id)cell{
@@ -133,7 +133,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount&&[self.infoModel.mTransactionType isEqualToString:@"deposit"]){
+    if (self.pageLoadManager.currentDataCount){
     RH_CapitalRecordDetailsCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalRecordDetailsCell defaultReuseIdentifier]] ;
     [bettingRecordCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     return bettingRecordCell ;

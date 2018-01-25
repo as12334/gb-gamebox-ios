@@ -22,7 +22,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CustomViewController.h"
 #import "RH_GamesViewController.h"
-#import "RH_LotteryGameListViewController.h"
+#import "RH_GameListViewController.h"
 #import "RH_ActivityModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_NormalActivithyView.h"
@@ -514,7 +514,7 @@
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showAlertView(@"自动login失败", @"提示信息");
+            showAlertView(@"自动登入失败", @"提示信息");
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

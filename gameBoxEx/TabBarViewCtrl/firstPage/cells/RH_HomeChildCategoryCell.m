@@ -11,7 +11,7 @@
 #import "coreLib.h"
 #import "RH_LotteryAPIInfoModel.h"
 
-#define HomeChildCategoryCellHeight                    30.0f
+#define HomeChildCategoryCellHeight                    40.0f
 #define HomeChildCategoryCellWidth                     floorf((MainScreenW-20)/3.0)
 
 @interface RH_HomeChildCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>
