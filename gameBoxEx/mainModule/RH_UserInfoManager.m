@@ -107,7 +107,7 @@
 -(NSString*)bankNameWithCode:(NSString*)bankCode
 {
     for (RH_BankInfoModel *bankInfo in _bankList) {
-        if ([bankInfo.mBankCode isEqualToString:bankCode]){
+        if ([bankInfo.mBankName isEqualToString:bankCode]){
             return bankInfo.mBankName ;
         }
     }

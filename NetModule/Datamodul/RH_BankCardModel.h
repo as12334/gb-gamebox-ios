@@ -16,6 +16,8 @@
 @property (nonatomic,strong,readonly) NSString *mBankDeposit ; //开户行
 @property (nonatomic,strong,readonly) NSString *mbankUrl ; //开户行图片链接
 
+////
+@property(nonatomic,strong,readonly) NSString *showBankURL ;
 @end
 
 

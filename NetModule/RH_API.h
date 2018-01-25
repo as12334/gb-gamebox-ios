@@ -401,11 +401,11 @@
 #define RH_GP_WITHDRAWAUDITMAP_WITHDRAWFEEM                  @"withdrawFeeMoney"
 
 #pragma mark - V3 取款信息-Bankcard模型
-#define RH_GP_WITHDRAWBANKCARD_ID               @"id"
-#define RH_GP_WITHDRAWBANKCARD_BANKDEPOSIT               @"bankDeposit"
-#define RH_GP_WITHDRAWBANKCARD_BANKNAME                   @"bankName"
-#define RH_GP_WITHDRAWBANKCARD_BANKCARDMASTERNAME                  @"bankcardMasterName"
-#define RH_GP_WITHDRAWBANKCARD_BANKCARDNUMBER                   @"bankcardNumber"
+#define RH_GP_WITHDRAWBANKCARD_ID                           @"id"
+#define RH_GP_WITHDRAWBANKCARD_BANKDEPOSIT                  @"bankDeposit"
+#define RH_GP_WITHDRAWBANKCARD_BANKNAME                     @"bankName"
+#define RH_GP_WITHDRAWBANKCARD_BANKCARDMASTERNAME           @"bankcardMasterName"
+#define RH_GP_WITHDRAWBANKCARD_BANKCARDNUMBER               @"bankcardNumber"
 #define RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME                   @"customBankName"
 #define RH_GP_WITHDRAWBANKCARD_TYPE                             @"type"
 #define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
@@ -417,6 +417,18 @@
 #define RH_API_NAME_APIRETRIVE                        @"transfer/auto/recovery.html"
 //请求参数
 #define RH_SP_APIRETRIVE_APIID                        @"search.apiId"
+
+#pragma mark - 域名 check失败，上传接口
+//api的路径
+#define RH_API_NAME_COLLECTAPPERROR                        @"boss/facade/collectAppError"
+//请求参数
+#define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
+#define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
+#define RH_SP_COLLECTAPPERROR_LASTLOGINTIME                @"lastLoginTime"
+#define RH_SP_COLLECTAPPERROR_DOMAIN                       @"domain"
+#define RH_SP_COLLECTAPPERROR_IP                          @"ip"
+#define RH_SP_COLLECTAPPERROR_ERRORMESSAGE                @"errorMessage"
+#define RH_SP_COLLECTAPPERROR_CODE                        @"code"
 
 
 #pragma mark - V3

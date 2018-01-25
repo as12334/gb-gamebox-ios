@@ -28,19 +28,31 @@
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectionOption = CLSelectionOptionHighlighted;
     self.selectionColor = RH_Cell_DefaultHolderColor;
+    
+    self.noBankLabel.font = [UIFont systemFontOfSize:14.f];
+    self.noBankLabel.textColor = colorWithRGB(23, 102, 187);
+    
     self.bankImage.whc_LeftSpaceToView(0, self.leftBankTitle).whc_TopSpace(12).whc_Width(100).whc_Height(20);
     self.bankCardNumber.whc_LeftSpaceToView(5, self.bankImage).whc_CenterY(0).whc_Width(60).whc_TopSpace(12);
+    self.noBankLabel.whc_LeftSpaceToView(0, self.leftBankTitle).whc_TopSpace(12).whc_Width(100).whc_Height(20);
+
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
-    if (!bankModel) {
-        return;
+    if (bankModel.mBankCardNumber) {
+        [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.showBankURL]]];
+        self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
+        self.noBankLabel.hidden = YES;
+    }else
+    {
+        self.bankImage.hidden = YES;
+        self.bankCardNumber.hidden = YES;
+        self.noBankLabel.text = @"(未绑定银行卡)";
     }
-    [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.mbankUrl]]];
-    self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
+   
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

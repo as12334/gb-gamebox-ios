@@ -10,9 +10,12 @@
 #import "RH_API.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
+#import "RH_APPDelegate.h"
 
 @implementation RH_BankCardModel
 @synthesize mBankName = _mBankName ;
+@synthesize showBankURL = _showBankURL ;
+
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
@@ -36,6 +39,22 @@
     return _mBankName ;
 }
 
+
+-(NSString *)showBankURL
+{
+    if (!_showBankURL){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (_mbankUrl.length){
+            if ([[_mbankUrl substringToIndex:1] isEqualToString:@"/"]){
+                _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mbankUrl] ;
+            }else {
+                _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mbankUrl] ;
+            }
+        }
+    }
+    
+    return _showBankURL ;
+}
 @end
 
 
