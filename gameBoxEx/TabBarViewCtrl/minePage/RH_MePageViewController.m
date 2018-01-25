@@ -211,12 +211,10 @@
         if ([dictInfo[@"title"] isEqualToString:@"消息中心"]) {
             RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
             [discountVC setTitle:@"消息中心"];
-            return ;
         }else if ([dictInfo[@"title"] isEqualToString:@"申请优惠"]){
             RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
             [discountVC setTitle:@"申请优惠"];
             discountVC.selectedIndex = 2;
-            return ;
         }
         
         if (viewCtrl){
