@@ -425,7 +425,7 @@
 //===========================================================
 #pragma mark- v3 首页入口
 //api的路径
-#define RH_API_NAME_HOMEINFO                        @"origin/mainIndex.html"
+#define RH_API_NAME_HOMEINFO                        @"mobile-api/origin/mainIndex.html"
 //请求参数 无
 
 //返回参数
@@ -436,12 +436,12 @@
 
 #pragma mark- v3 用户信息 接口
 //api的路径
-#define RH_API_NAME_USERINFO                        @"userInfoOrigin/getUserInfo.html"
+#define RH_API_NAME_USERINFO                        @"mobile-api/userInfoOrigin/getUserInfo.html"
 //请求参数 无
 
 #pragma mark- v3 我的 接口
 //api的路径
-#define RH_API_NAME_MINEGROUPINFO                        @"mineOrigin/getLink.html"
+#define RH_API_NAME_MINEGROUPINFO                        @"mobile-api/mineOrigin/getLink.html"
 //请求参数 无
 //返回参数
 #define RH_GP_MINEGROUPINFO_ISBIT                          @"isBit"
@@ -451,7 +451,7 @@
 
 #pragma mark - V3  浮动图抢红包次数
 //api的路径
-#define RH_API_NAME_ACTIVITYSTATUS                        @"origin/countDrawTimes.html"
+#define RH_API_NAME_ACTIVITYSTATUS                        @"mobile-api/activityOrigin/countDrawTimes.html"
 //请求参数
 #define RH_SP_ACTIVITYSTATUS_MESSAGEID                    @"activityMessageId"
 //返回参数
@@ -464,7 +464,7 @@
 /**
  api的路径
  */
-#define RH_API_NAME_OPENACTIVITY                        @"origin/getPacket.html"
+#define RH_API_NAME_OPENACTIVITY                        @"mobile-api/activityOrigin/getPacket.html"
 //请求参数
 #define RH_SP_OPENACTIVITY_MESSAGEID                    @"activityMessageId"
 #define RH_SP_OPENACTIVITY_TOKEN                        @"gb.token"
@@ -477,7 +477,7 @@
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径
-#define RH_API_NAME_APIGAMELIST                        @"origin/getCasinoGame.html"
+#define RH_API_NAME_APIGAMELIST                        @"mobile-api/origin/getCasinoGame.html"
 //请求参数 无
 #define RH_SP_APIGAMELIST_APIID                          @"search.apiId"
 #define RH_SP_APIGAMELIST_APITYPEID                      @"search.apiTypeId"
@@ -491,7 +491,7 @@
 
 #pragma mark -v3 投注记录 清单
 //api的路径
-#define RH_API_NAME_BETTINGLIST                        @"mineOrigin/getBettingList.html"
+#define RH_API_NAME_BETTINGLIST                        @"mobile-api/mineOrigin/getBettingList.html"
 //请求参数 无
 #define RH_SP_BETTINGLIST_STARTDATE                          @"search.beginBetTime"
 #define RH_SP_BETTINGLIST_ENDDATE                            @"search.endBetTime"
@@ -509,14 +509,14 @@
 
 #pragma mark -v3    投注记录明细
 //api路径
-#define RH_API_NAME_BETTINGDETAILS                     @"mineOrigin/getBettingDetails.html"
+#define RH_API_NAME_BETTINGDETAILS                     @"mobile-api/mineOrigin/getBettingDetails.html"
 //请求参数
 #define RH_SP_BETTINGDETAILS_LISTID                     @"id"
 //返回参数
 
 #pragma mark -V3 资金记录 清单
 //api的路径
-#define RH_API_NAME_DEPOSITLIST                        @"mineOrigin/getFundRecord.html"
+#define RH_API_NAME_DEPOSITLIST                        @"mobile-api/mineOrigin/getFundRecord.html"
 //请求参数
 #define RH_SP_DEPOSITLIST_STARTDATE                     @"search.beginCreateTime"
 #define RH_SP_DEPOSITLIST_ENDDATE                       @"search.endCreateTime"
@@ -539,29 +539,29 @@
  */
 #pragma mark 资金记录下拉列表
 //api路径
-#define RH_API_NAME_DEPOSITPULLDOWNLIST                 @"mineOrigin/getTransactionType.html"
+#define RH_API_NAME_DEPOSITPULLDOWNLIST                 @"mobile-api/mineOrigin/getTransactionType.html"
 //请求参数
 //返回参数
 
 /**资金详情*/
 #pragma mark -V3  资金记录详情
 //api路径
-#define RH_API_NAME_DEPOSITLISTDETAILS               @"mineOrigin/getFundRecordDetails.html"
+#define RH_API_NAME_DEPOSITLISTDETAILS               @"mobile-api/mineOrigin/getFundRecordDetails.html"
 //请求参数
 #define RH_SP_DEPOSITLISTDETAILS_SEARCHID            @"searchId"
 
 
 #pragma mark -V3 用户安全码初始化信息
 //api的路径
-#define RH_API_NAME_USERSAFEINFO                        @"mineOrigin/initSafePassword.html"
+#define RH_API_NAME_USERSAFEINFO                        @"mobile-api/mineOrigin/initSafePassword.html"
 //请求参数 无
 #pragma mark -V3 设置真实姓名
 //API的路径
-#define RH_API_NAME_SETREALNAME                         @"mineOrigin/setRealName.html"
+#define RH_API_NAME_SETREALNAME                         @"mobile-api/mineOrigin/setRealName.html"
 //请求参数
 #pragma mark -V3 修改安全密码接口
 //api路径
-#define RH_API_NAME_UPDATESAFEPASSWORD                    @"mineOrigin/updateSafePassword.html"
+#define RH_API_NAME_UPDATESAFEPASSWORD                    @"mobile-api/mineOrigin/updateSafePassword.html"
 //请求参数
 #define RH_SP_UPDATESAFEPASSWORD_REALNAME                     @"realName"
 #define RH_SP_UPDATESAFEPASSWORD_ORIGINPWD                     @"originPwd"
@@ -575,7 +575,7 @@
 
 
 #pragma mark - V3 修改用户密码
-#define RH_API_NAME_MINEMODIFYPASSWORD                   @"mineOrigin/updateLoginPassword.html"
+#define RH_API_NAME_MINEMODIFYPASSWORD                   @"mobile-api/mineOrigin/updateLoginPassword.html"
 //请求参数
 #define RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD                     @"password"
 #define RH_SP_MINEMODIFYPASSWORD_NEWPASSWORD                     @"newPassword"
@@ -586,7 +586,7 @@
 #define RH_GP_MINEMODIFYPASSWORD_REMAINTIMES                @"remainTimes"
 
 #pragma mark - V3 添加银行卡
-#define RH_API_NAME_ADDBANKCARD             @"userInfoOrigin/submitBankCard.html"
+#define RH_API_NAME_ADDBANKCARD             @"mobile-api/userInfoOrigin/submitBankCard.html"
 //请求参数
 #define RH_SP_BANKCARDMASTERNAME        @"result.bankcardMasterName"
 #define RH_SP_BANKNAME                  @"result.bankName"
@@ -596,11 +596,11 @@
 //返回参数-无
 
 #pragma mark - V3 获取安全密码验证码
-#define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
+#define RH_API_NAME_SAFETYCAPCHA             @"mobile-api/captcha/securityPwd.html"
 //请求参数 -无
 
 #pragma mark - V3 优惠记录列表
-#define RH_API_NAME_PROMOLIST             @"mineOrigin/getMyPromo.html"
+#define RH_API_NAME_PROMOLIST             @"mobile-api/mineOrigin/getMyPromo.html"
 //请求参数
 #define RH_SP_PROMOLIST_PAGESIZE                     @"paging.pageSize"
 #define RH_SP_PROMOLIST_PAGENUMBER                     @"paging.pageNumber"
@@ -609,7 +609,7 @@
 #define RH_GP_PROMOLIST_TOTALCOUNT        @"totalCount"
 
 #pragma mark - V3 系统公告
-#define RH_API_NAME_SYSTEMNOTICE        @"mineOrigin/getSysNotice.html"
+#define RH_API_NAME_SYSTEMNOTICE        @"mobile-api/mineOrigin/getSysNotice.html"
 //请求参数
 #define RH_SP_SYSTEMNOTICE_STARTTIME    @"search.startTime"
 #define RH_SP_SYSTEMNOTICE_ENDTIME      @"search.endTime"
@@ -621,13 +621,13 @@
 #define RH_GP_SYSTEMNOTICE_TOTALNUM    @"pageTotal"
 
 #pragma mark - V3 系统公告详情
-#define RH_API_NAME_SYSTEMNOTICEDETAIL       @"mineOrigin/getSysNoticeDetail.html"
+#define RH_API_NAME_SYSTEMNOTICEDETAIL       @"mobile-api/mineOrigin/getSysNoticeDetail.html"
 //请求参数
 #define RH_SP_SYSTEMNOTICEDETAIL_SEARCHID    @"searchId"
 
 
 #pragma mark - V3 游戏公告
-#define RH_API_NAME_GAMENOTICE           @"mineOrigin/getGameNotice.html"
+#define RH_API_NAME_GAMENOTICE           @"mobile-api/mineOrigin/getGameNotice.html"
 //请求参数
 #define RH_SP_GAMENOTICE_STARTTIME    @"search.startTime"
 #define RH_SP_GAMENOTICE_ENDTIME      @"search.endTime"
@@ -642,7 +642,7 @@
 
 
 #pragma mark - V3 游戏公告详情
-#define RH_API_NAME_GAMENOTICEDETAIL           @"mineOrigin/getGameNoticeDetail.html"
+#define RH_API_NAME_GAMENOTICEDETAIL           @"mobile-api/mineOrigin/getGameNoticeDetail.html"
 //请求参数
 #define RH_SP_GAMENOTICEDETAIL_SEARCHID    @"searchId"
 
@@ -651,17 +651,17 @@
 
 
 #pragma mark - V3 一键回收
-#define RH_API_NAME_ONESTEPRECOVERY          @"mineOrigin/recovery.html"
+#define RH_API_NAME_ONESTEPRECOVERY          @"mobile-api/mineOrigin/recovery.html"
 //请求参数  无
 
 #pragma mark - V3 添加比特币
-#define RH_API_NAME_ADDBTC                  @"userInfoOrigin/submitBtc.html"
+#define RH_API_NAME_ADDBTC                  @"mobile-api/userInfoOrigin/submitBtc.html"
 //请求参数
 #define RH_SP_ADDBTC_BANKCARDNUMBER          @"bankcardNumber"
 //返回bit 模型
 
 #pragma mark - V3 站点信息 系统信息列表
-#define RH_API_NAME_SITEMESSAGE              @"mineOrigin/getSiteSysNotice.html"
+#define RH_API_NAME_SITEMESSAGE              @"mobile-api/mineOrigin/getSiteSysNotice.html"
 //请求参数
 #define RH_SP_SITEMESSAGE_PAGINGPAGENUMBER   @"paging.pageNumber"
 #define RH_SP_SITEMESSAGE_PAGINGPAGESIZE   @"paging.pageNumber"
@@ -670,20 +670,20 @@
 
 
 #pragma mark - V3 站点信息 系统信息列表详情
-#define RH_API_NAME_SITEMESSAGEDETAIL               @"mineOrigin/getSiteSysNoticeDetail.html"
+#define RH_API_NAME_SITEMESSAGEDETAIL               @"mobile-api/mineOrigin/getSiteSysNoticeDetail.html"
 //请求参数
 #define RH_SP_SITEMESSAGEDETAIL_SEARCHID   @"searchId"
 
 
 #pragma mark - V3 站点信息 系统信息标记为已读
 
-#define RH_API_NAME_SITEMESSAGEREDAYES   @"mineOrigin/setSiteSysNoticeStatus.html"
+#define RH_API_NAME_SITEMESSAGEREDAYES   @"mobile-api/mineOrigin/setSiteSysNoticeStatus.html"
 //请求参数
 #define RH_SP_SITEMESSAGEREDAYES_IDS   @"ids"
 
 
 #pragma mark - V3 站点信息 系统信息删除
-#define RH_API_NAME_SITEMESSAGEDELETE   @"mineOrigin/deleteSiteSysNotice.html"
+#define RH_API_NAME_SITEMESSAGEDELETE   @"mobile-api/mineOrigin/deleteSiteSysNotice.html"
 //请求参数
 #define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
@@ -691,7 +691,7 @@
 #define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY     @"mineOrigin/getNoticeSiteType.html"
 
 #pragma mark - V3 站点消息  发送消息
-#define RH_API_NAME_ADDAPPLYDISCOUNTS           @"mineOrigin/addNoticeSite.html"
+#define RH_API_NAME_ADDAPPLYDISCOUNTS           @"mobile-api/mineOrigin/addNoticeSite.html"
 //请求参数
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE      @"result.advisoryType"
 #define RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE     @"result.advisoryTitle"
@@ -699,34 +699,34 @@
 #define RH_SP_ADDAPPLYDISCOUNTS_CODE                    @"code"
 
 #pragma mark - V3 站点信息  我的消息
-#define RH_API_NAME_SITEMESSAGE_MYMESSAGE   @"mineOrigin/advisoryMessage.html"
+#define RH_API_NAME_SITEMESSAGE_MYMESSAGE   @"mobile-api/mineOrigin/advisoryMessage.html"
 //请求参数
 #define RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER  @"paging.pageNumber"
 #define RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE    @"paging.pageSize"
 
 #pragma mark - V3 站点信息  我的消息详情
-#define RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL  @"mineOrigin/advisoryMessageDetail.html"
+#define RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL  @"mobile-api/mineOrigin/advisoryMessageDetail.html"
 //请求参数
 #define RH_SP_SITEMESSAGE_MYMESSAGEDETAIL_ID       @"id"
 
 #pragma mark - V3 站点信息 我的信息标记为已读
 
-#define RH_API_NAME_MYMESSAGEREDAYES     @"mineOrigin/getSelectAdvisoryMessageIds.html"
+#define RH_API_NAME_MYMESSAGEREDAYES     @"mobile-api/mineOrigin/getSelectAdvisoryMessageIds.html"
 //请求参数
 #define RH_SP_MYMESSAGEREDAYES_IDS   @"ids"
 
 
 #pragma mark - V3 站点信息 我的信息删除
-#define RH_API_NAME_MYMESSAGEDELETE   @"mineOrigin/deleteAdvisoryMessage.html"
+#define RH_API_NAME_MYMESSAGEDELETE   @"mobile-api/mineOrigin/deleteAdvisoryMessage.html"
 //请求参数
 #define RH_SP_MYMESSAGEDELETE_IDS   @"ids"
 
 
 #pragma mark - V3 Tabbar 优惠主页面 优惠活动类型
-#define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS   @"discountsOrigin/getActivityType.html"
+#define RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS   @"mobile-api/discountsOrigin/getActivityType.html"
 
 #pragma mark - V3 Tabbar 优惠主页面 优惠活动类别
-#define RH_API_NAME_ACTIVITYDATALIST        @"discountsOrigin/getActivityTypeList.html"
+#define RH_API_NAME_ACTIVITYDATALIST        @"mobile-api/discountsOrigin/getActivityTypeList.html"
 //请求参数
 #define RH_SP_ACTIVITYDATALIST_SEARCHKEY          @"search.activityClassifyKey"
 #define RH_SP_ACTIVITYDATALIST_PAGENUMBER         @"paging.pageNumber"
@@ -736,7 +736,7 @@
 #define RH_GP_ACTIVITYDATALIST_TOTALNUMBER           @"total"
 
 #pragma mark - V3 首页 获取游戏 link url
-#define RH_API_NAME_GAMESLINK                    @"origin/getGameLink.html"
+#define RH_API_NAME_GAMESLINK                    @"mobile-api/origin/getGameLink.html"
 //请求参数
 #define RH_SP_GAMESLINK_APIID                   @"apiId"
 #define RH_SP_GAMESLINK_APITYPEID              @"apiTypeId"
@@ -747,20 +747,20 @@
 #define RH_GP_GAMESLINK_MESSAGE                 @"gameMsg"
 
 #pragma mark - V3 退出登录
-#define RH_API_NAME_LOGINOUT                @"mineOrigin/logout.html"
+#define RH_API_NAME_LOGINOUT                @"mobile-api/mineOrigin/logout.html"
 
 #pragma mark -V3 获取取款用户信息
-#define RH_API_NAME_GETWITHDRAWUSERINFO         @"withdrawOrigin/getWithDraw.html"
+#define RH_API_NAME_GETWITHDRAWUSERINFO         @"mobile-api/withdrawOrigin/getWithDraw.html"
 
 #pragma mark -V3 提交取款信息
-#define RH_API_NAME_SUBMITWITHDRAWINFO          @"withdrawOrigin/submitWithdraw.html"
+#define RH_API_NAME_SUBMITWITHDRAWINFO          @"mobile-api/withdrawOrigin/submitWithdraw.html"
 
 //请求参数
 #define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
 
 #pragma mark -V3 获取游戏分类
-#define RH_API_NAME_LOADGAMETYPE                @"origin/getGameTag.html"
+#define RH_API_NAME_LOADGAMETYPE                @"mobile-api/origin/getGameTag.html"
 //返回参数
 #define RH_GP_LOADGAMETYPE_KEY                  @"key"
 #define RH_GP_LOADGAMETYPE_VALUE                @"value"

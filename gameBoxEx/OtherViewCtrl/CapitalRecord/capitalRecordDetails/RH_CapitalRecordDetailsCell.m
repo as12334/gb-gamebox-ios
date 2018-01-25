@@ -9,36 +9,69 @@
 #import "RH_CapitalRecordDetailsCell.h"
 #import "coreLib.h"
 #import "RH_CapitalDetailModel.h"
+@interface RH_CapitalRecordDetailsCell()
+@property (weak, nonatomic) IBOutlet CLBorderView *lineView;
+@property (weak, nonatomic) IBOutlet UIView *personInfoView;
+@property (weak, nonatomic) IBOutlet CLBorderView *headerLineView;
+@end
+
 @implementation RH_CapitalRecordDetailsCell
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    return MainScreenH-StatusBarHeight-NavigationBarHeight;
+}
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self= [super initWithCoder:aDecoder]) {
+        self.backgroundColor = colorWithRGB(242, 242, 242);
+    }
+    return self;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.personInfoView.layer.cornerRadius = 10.f;
+    self.personInfoView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.personInfoView.layer.borderWidth = 1.f;
+    self.backgroundColor = colorWithRGB(255, 255, 255);
+    self.headerLineView.backgroundColor = colorWithRGB(226, 226, 226);
+    self.lineView.backgroundColor = colorWithRGB(226, 226, 226);
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_CapitalDetailModel *detailModel = ConvertToClassPointer(RH_CapitalDetailModel, context);
-    for (int i = 10; i<16; i++) {
-        UILabel *lab = [self viewWithTag:i];
+    for (int i=10; i<19; i++) {
+        UILabel *label = [self viewWithTag:i];
         switch (i) {
             case 10:
-                lab.text = detailModel.mTransactionNo;
+                label.text = detailModel.mTransactionNo;
                 break;
             case 11:
-                lab.text = [NSString stringWithFormat:@"%d",detailModel.mCreateTime];
+                label.text = [NSString stringWithFormat:@"%ld",detailModel.mCreateTime];
                 break;
             case 12:
-                lab.text =detailModel.showTransactionMoney;
+                label.text = detailModel.mTransactionWayName;
                 break;
             case 13:
-                lab.text = nil;
+                label.text = detailModel.mStatusName;
                 break;
             case 14:
-                lab.text = nil;
+                label.text = detailModel.mRealName;
                 break;
             case 15:
-                lab.text =detailModel.mStatusName;
+                label.text = detailModel.mDeductFavorable;
                 break;
+            case 16:
+                label.text = detailModel.mPoundage;
+                break;
+            case 17:
+                label.text = detailModel.mRechargeTotalAmount;
+                break;
+            case 18:
+                label.text = detailModel.mStatus;
+                break;
+                
             default:
                 break;
         }
