@@ -56,7 +56,6 @@
                 btn.backgroundColor = colorWithRGB(23, 102, 187);
                 btn.selected = YES;
                 self.chooseBtn = btn;
-                
             }
             [_btnArray addObject:btn];
             [self addSubview:btn];

@@ -11,6 +11,7 @@
 #import "RH_SiteSendMessagePullDownView.h"
 #import "RH_ServiceRequest.h"
 #import "RH_SendMessageVerityModel.h"
+#import "MBProgressHUD.h"
 @interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate,RH_SiteSendMessageViewDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
@@ -43,6 +44,7 @@
         [UIView animateWithDuration:0.5 animations:^{
             weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
         }];
+        [MBProgressHUD showHUDAddedTo:self animated:YES];
     };
     [self.serviceRequest startV3AddApplyDiscountsVerify];
     CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
@@ -192,10 +194,10 @@
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
+        [MBProgressHUD hideHUDForView:self animated:YES];
         //发送成功弹出提示框
         UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"消息提交成功" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
         [alertView show];
-
     }
 }
 
@@ -206,6 +208,7 @@
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
+        [MBProgressHUD hideHUDForView:self animated:YES];
         [self loadDataFailWithError:error] ;
         showErrorMessage(nil, error, @"发送失败");
     }
