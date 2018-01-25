@@ -16,6 +16,7 @@
 #import "RH_WithdrawCashController.h"
 #import "RH_MinePageLoginoutBannarCell.h"
 #import "RH_LoginViewControllerEx.h"
+#import "RH_ApplyDiscountViewController.h"
 
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;

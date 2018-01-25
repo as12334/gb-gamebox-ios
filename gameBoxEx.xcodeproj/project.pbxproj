@@ -471,6 +471,8 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */; };
+		F681D2522019762A00A7C449 /* RH_CapitalRecordBlackLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */; };
 		F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */; };
 		F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */; };
 		F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACC7200457980077CB92 /* RH_BettingRecordDetailCell.xib */; };
@@ -1367,6 +1369,10 @@
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
+		F681D24D2019729000A7C449 /* RH_CapitalRecordNameLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordNameLabel.h; sourceTree = "<group>"; };
+		F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordNameLabel.m; sourceTree = "<group>"; };
+		F681D2502019762A00A7C449 /* RH_CapitalRecordBlackLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordBlackLabel.h; sourceTree = "<group>"; };
+		F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordBlackLabel.m; sourceTree = "<group>"; };
 		F6A2ACC2200457340077CB92 /* RH_BettingRecordDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailController.h; sourceTree = "<group>"; };
 		F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordDetailController.m; sourceTree = "<group>"; };
 		F6A2ACC5200457980077CB92 /* RH_BettingRecordDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailCell.h; sourceTree = "<group>"; };
@@ -3181,6 +3187,10 @@
 				F6A2ACCE200495940077CB92 /* RH_CapitalRecordDetailsCell.h */,
 				F6A2ACCF200495940077CB92 /* RH_CapitalRecordDetailsCell.m */,
 				F6A2ACD0200495940077CB92 /* RH_CapitalRecordDetailsCell.xib */,
+				F681D24D2019729000A7C449 /* RH_CapitalRecordNameLabel.h */,
+				F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */,
+				F681D2502019762A00A7C449 /* RH_CapitalRecordBlackLabel.h */,
+				F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */,
 			);
 			path = capitalRecordDetails;
 			sourceTree = "<group>";
@@ -3635,6 +3645,7 @@
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
+				F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
@@ -3868,6 +3879,7 @@
 				A058FF391FE8B466006EF279 /* RH_FirstPageViewControllerEx.m in Sources */,
 				79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */,
 				A0109FF61F8788FF004E6EF4 /* SDWebImageManager.m in Sources */,
+				F681D2522019762A00A7C449 /* RH_CapitalRecordBlackLabel.m in Sources */,
 				797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
