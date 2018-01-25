@@ -12,6 +12,7 @@
 #import "RH_GameListContentPageCell.h"
 #import "RH_LotteryAPIInfoModel.h"
 #import "RH_CustomViewController.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
@@ -120,8 +121,13 @@
 
 -(void)gameListContentPageCellDidTouchCell:(RH_GameListContentPageCell*)gameListContentPageCell CellModel:(RH_LotteryInfoModel*)lotteryInfoModel
 {
-    [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
-    return ;
+    if (HasLogin)
+    {
+        [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+        return ;
+    }else{
+        [self loginButtonItemHandle] ;
+    }
 }
 
 - (NSUInteger)numberOfPagesInPageView:(CLPageView *)pageView

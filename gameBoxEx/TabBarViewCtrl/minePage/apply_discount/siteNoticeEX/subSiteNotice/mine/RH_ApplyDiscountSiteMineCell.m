@@ -12,6 +12,7 @@
 #import "RH_SiteMyMessageModel.h"
 #import "RH_API.h"
 #import "RH_LoadingIndicateTableViewCell.h"
+
 @interface RH_ApplyDiscountSiteMineCell ()<MPSiteMessageHeaderViewDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
@@ -22,6 +23,7 @@
 @implementation RH_ApplyDiscountSiteMineCell
 @synthesize headerView = _headerView;
 @synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
+
 #pragma mark tableView的上部分的选择模块
 -(RH_MPSiteMessageHeaderView *)headerView
 {
@@ -32,6 +34,7 @@
     }
     return _headerView;
 }
+
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     if (self.contentTableView == nil) {
@@ -50,9 +53,17 @@
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
+        //通知
+        //监听通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedMineMessage) name:@"noti1" object:nil];
+
+    
     }else {
         [self updateWithContext:context];
     }
+}
+- (void)changedMineMessage{
+    [self startUpdateData];
 }
 #pragma mark-tableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -85,7 +96,7 @@
                 siteModel.number = @0;
                 [self.deleteModelArray removeObject:siteModel];
             }
-            
+            [weakSelf.contentTableView reloadData];
         };
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return noticeCell ;
@@ -115,7 +126,7 @@
             [self.deleteModelArray removeAllObjects];
         }
     }
-//    [self.contentTableView reloadData];
+    [self.contentTableView reloadData];
 }
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView *)view
 {
@@ -140,6 +151,7 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -234,6 +246,8 @@
         [self startUpdateData];
         self.headerView.statusMark = YES;
     }
+    //请求刷新后移除通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

@@ -45,7 +45,7 @@
 //===========================================================
 //    界面属性定义
 //===========================================================
-#define   RH_NavigationBar_BackgroundColor              colorWithRGB(51, 120, 211)
+#define   RH_NavigationBar_BackgroundColor              colorWithRGB(27, 117, 250)
 #define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
 
@@ -90,6 +90,7 @@
 //#define TEST_DOMAIN         @"test02.ccenter.test.so"
 //@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN           @"192.168.0.92"
 //#define TEST_DOMAIN         @"msite2.gbboss.com"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 #define CODE    @"rf80"

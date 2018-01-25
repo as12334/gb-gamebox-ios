@@ -41,9 +41,7 @@
     self.contenTextView.text = @"请输入内容";
     self.codeTextField.returnKeyType = UIReturnKeyDone;
     self.codeTextField.delegate = self;
-    [self.codeTextField addTarget:self action:@selector(selectedCodeTextfield) forControlEvents:UIControlEventEditingDidBegin];
-    
-    
+
     self.backDropView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.masksToBounds = YES;
@@ -83,9 +81,19 @@
     self.block(btn.frame);
 }
 - (IBAction)submitClick:(id)sender {
+    
     self.submitBlock(self.titelField.text, self.contenTextView.text,self.codeTextField.text);
+    [self.titelField resignFirstResponder] ;
+    [self.codeTextField resignFirstResponder] ;
+    [self.contenTextView resignFirstResponder];
+    //注册通知
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"noti1" object:nil];
+ 
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFrame:)){
+        [self.delegate selectedCodeTextFieldAndChangedKeyboardFrame:CGRectMake(0, 0, 0, 0)];
+    }
     [self.titelField resignFirstResponder] ;
     [self.codeTextField resignFirstResponder] ;
     return YES;
@@ -103,10 +111,9 @@
     }
     return YES;
 }
--(void)selectedCodeTextfield
-{
-    ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFram:)){
-        [self.delegate selectedCodeTextFieldAndChangedKeyboardFram:self.codeTextField.frame];
+- (IBAction)selectedCodeTextField:(id)sender {
+    ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFrame:)){
+        [self.delegate selectedCodeTextFieldAndChangedKeyboardFrame:self.codeTextField.frame];
     }
 }
 @end

@@ -13,6 +13,7 @@
 @class RH_PromoTableCell ;
 @protocol PromoTableCellDelegate
 -(void)promoTableCellImageSizeChangedNotification:(RH_PromoTableCell*)promoTableViewCell  ;
+-(void)promoTableCellTouchEnterDetail:(RH_PromoTableCell*)promoTableViewCell CellModel:(RH_DiscountActivityModel*)discountActivityModel ;
 @end
 
 @interface RH_PromoTableCell : CLTableViewCell

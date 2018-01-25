@@ -11,8 +11,10 @@
 #import "RH_PromoContentPageCell.h"
 #import "coreLib.h"
 #import "RH_DiscountActivityTypeModel.h"
+#import "RH_UserInfoManager.h"
+#import "RH_CustomViewController.h"
 
-@interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource,PromoTypeHeaderViewDelegate>
+@interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource,PromoTypeHeaderViewDelegate,PromoContentPageCellDelegate>
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; //存储 pagecell data content ;
@@ -90,6 +92,20 @@
     [self.serviceRequest startV3LoadDiscountActivityType] ;
 }
 
+#pragma mark- RH_PromoContentPageCell delegate
+-(void)promoContentPageCellDidTouchCell:(RH_PromoContentPageCell*)promoContentPageCell CellModel:(RH_DiscountActivityModel *)discountActivityModel
+{
+    if (HasLogin)
+    {
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (appDelegate){
+            appDelegate.customUrl = discountActivityModel.showLink ;
+            [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        }
+    }else{
+        [self loginButtonItemHandle] ;
+    }
+}
 
 #pragma mark -pageView
 -(CLPageView*)pageView
@@ -113,6 +129,8 @@
 - (UICollectionViewCell *)pageView:(CLPageView *)pageView cellForPageAtIndex:(NSUInteger)pageIndex
 {
     RH_PromoContentPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
+    cell.delegate = self ;
+    
     [cell updateViewWithType:[self.typeTopView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
     return cell;
 }

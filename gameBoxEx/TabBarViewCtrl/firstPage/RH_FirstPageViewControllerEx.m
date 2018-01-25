@@ -61,6 +61,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+    
     [self setNeedUpdateView] ;
     [self setupUI] ;
     self.needObserverTapGesture = YES ;
@@ -279,7 +280,8 @@
                 return ;
             }
         }
-        showAlertView(@"提示信息", @"您尚未登入") ;
+        //进入登入界面
+        [self loginButtonItemHandle] ;
     }
 }
 
@@ -391,7 +393,8 @@
             }];
     }
     else if(!self.appDelegate.isLogin){
-        showAlertView(@"您尚未登入", @"不能参与活动") ;
+        //进入登入界面
+        [self loginButtonItemHandle] ;
     }
     else if (NetNotReachability()){
         showAlertView(@"无网络", @"无网络打不开红包") ;
