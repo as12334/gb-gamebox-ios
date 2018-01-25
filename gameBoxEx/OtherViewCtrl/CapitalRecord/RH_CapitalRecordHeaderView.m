@@ -13,8 +13,6 @@
 
 @interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labDateTitle;
-/**快选*/
-@property (weak, nonatomic) IBOutlet UIButton *btnQuickSelect;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *startCapitalDateCell ;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *endCapitalDateCell ;
 @property (weak, nonatomic) IBOutlet UIButton *serachBtn; //搜索
@@ -117,9 +115,8 @@
 
 -(void)quickBtnClick{
     NSLog(@"快选");
-    ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewTouchQuickSearchButton:)){
-        [self.delegate capitalRecordHeaderViewTouchQuickSearchButton:self] ;
-    }
+    __block RH_CapitalRecordHeaderView *weakSelf = self;
+    self.quickSelectBlock(weakSelf.btnQuickSelect.frame);
 }
 
 

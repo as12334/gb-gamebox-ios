@@ -8,6 +8,9 @@
 
 #import "RH_BankCardCell.h"
 #import "coreLib.h"
+#import "RH_UserInfoManager.h"
+#import "RH_BankCardModel.h"
+
 @implementation RH_BankCardCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -48,7 +51,16 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.textLabel.text = info.myTitle ;
+    RH_MineInfoModel *infoModel = [RH_UserInfoManager shareUserManager].mineSettingInfo;
+    RH_BankCardModel *bankModek = infoModel.mBankCard;
+    NSLog(@"%@",bankModek.mBankCode);
+    
+    
+ 
+   
     self.detailTextLabel.text = ConvertToClassPointer(NSString, context) ;
 }
+
+
 
 @end

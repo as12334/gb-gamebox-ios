@@ -246,7 +246,7 @@
 
 
 #pragma mark - V3 投注详情 模型
-#define RH_GP_BETTINGDETAIL_APIID                                @"apiId"
+#define RH_GP_BETTINGDETAIL_APIID                                 @"apiId"
 #define RH_GP_BETTINGDETAIL_APINAME                              @"apiName"
 #define RH_GP_BETTINGDETAIL_APITYPEID                            @"apiTypeId"
 #define RH_GP_BETTINGDETAIL_BETDETAIL                            @"betDetail"

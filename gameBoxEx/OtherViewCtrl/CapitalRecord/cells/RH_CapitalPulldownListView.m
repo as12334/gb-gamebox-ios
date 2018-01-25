@@ -15,7 +15,6 @@
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong)UITableView *tabelView;
 @property(nonatomic,strong)RH_CapitalTypeModel *typeModel;
-
 @property(nonatomic,strong,readonly)MBProgressHUD *HUD ;
 
 @end
@@ -90,7 +89,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.typeString = self.typeNameArray[indexPath.item];
-
     self.block();
 }
 #pragma mark- 请求回调

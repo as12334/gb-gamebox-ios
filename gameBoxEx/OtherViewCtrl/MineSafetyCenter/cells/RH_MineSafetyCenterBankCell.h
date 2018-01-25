@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *bankImage;
 @property (weak, nonatomic) IBOutlet UILabel *leftBankTitle;
+@property (weak, nonatomic) IBOutlet UILabel *noBankLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *bankCardNumber;
 
