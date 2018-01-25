@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     NSString *_addBankCardBankName ;
     NSString *_addBankCardBankCardNumber ;
     NSString *_addBankCardMasterBankName ;
-    
+    NSString *_addBankCardBankCode ;
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView ;
@@ -157,6 +157,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 -(void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView*)bankPickerSelectView WithSelectedBank:(id)bankModel
 {
     _addBankCardBankName = [((RH_BankInfoModel *)bankModel).mBankName copy] ;
+    _addBankCardBankCode = [((RH_BankCardModel *)bankModel).mBankCode copy] ;
     [self.tableViewManagement reloadData] ;
     [self hideBankPickerSelectView];
 }
@@ -254,7 +255,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在添加"];
     [self.serviceRequest startV3addBankCarkbankcardMasterName:_addBankCardRealName
-                                                     bankName:_addBankCardBankName
+                                                     bankName:_addBankCardBankCode
                                                bankcardNumber:_addBankCardBankCardNumber
                                                   bankDeposit:_addBankCardMasterBankName];
 }

@@ -82,7 +82,7 @@
             break;
         case 4:
         {
-            
+            self.image_Right.image = ImageWithName(@"mine_preferentialbackgray");
         }
             break;
         default: //未通过
