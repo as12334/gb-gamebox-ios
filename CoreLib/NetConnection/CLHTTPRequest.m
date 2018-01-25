@@ -213,15 +213,44 @@
                 queryArgumentStr = [queryArgumentStrArrary componentsJoinedByString:@"&"];
             }
         }
-
-        //设置查询路径
-        if (queryArgumentStr) {
-            url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+        
+        //生成body data
+        NSMutableData *mutBodyData = [[NSMutableData alloc] init] ;
+        if (bodyData.length){
+            [mutBodyData appendData:bodyData] ;
         }
-
+        
+        switch (_type) {
+            case HTTPRequestTypeGet:
+            {
+                //设置查询路径
+                if (queryArgumentStr) {
+                    url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+                }
+            }
+                break;
+                
+            case HTTPRequestTypePost:
+            case HTTPRequestTypePut:
+            case HTTPRequestTypeDelete:
+            {
+                if (queryArguments.count) {
+                    [mutBodyData appendData:[CLHTTPRequest _dataWithBodyArguments:queryArguments]] ;
+                }
+            }
+                
+            default:
+                break;
+        }
+        
+        
+//        //设置查询路径
+//        if (queryArgumentStr) {
+//            url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+//        }
         _requestURL      = url;
         _headerArguments = headerArguments;
-        _bodyData        = bodyData;//type != HTTPRequestTypeGet ? bodyData : nil;
+        _bodyData        = mutBodyData ;//type != HTTPRequestTypeGet ? bodyData : nil;
         _type            = type;
 
     }
