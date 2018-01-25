@@ -45,7 +45,7 @@
     self.labRemark.whc_TopSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(21);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
-    
+    self.contentView.backgroundColor = [UIColor whiteColor];
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = 1.0f ;
@@ -120,8 +120,8 @@
 -(UIView *)scrollView
 {
     if (!_scrollView){
-        _scrollView = [[UIView alloc] initWithFrame:CGRectMake(50,0,self.contentView.frame.size.width,30)];
-        _scrollView.backgroundColor = RH_View_DefaultBackgroundColor ;
+        _scrollView = [[UIView alloc] initWithFrame:CGRectMake(60,0,self.contentView.frame.size.width,30)];
+        _scrollView.backgroundColor = [UIColor clearColor] ;
         _scrollView.layer.masksToBounds = YES ;
     }
     
