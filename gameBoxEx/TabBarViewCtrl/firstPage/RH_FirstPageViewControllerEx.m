@@ -61,6 +61,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+    
     [self setNeedUpdateView] ;
     [self setupUI] ;
     self.needObserverTapGesture = YES ;
