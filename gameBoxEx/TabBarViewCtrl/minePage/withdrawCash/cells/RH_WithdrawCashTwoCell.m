@@ -8,6 +8,9 @@
 
 #import "RH_WithdrawCashTwoCell.h"
 #import "coreLib.h"
+
+@interface RH_WithdrawCashTwoCell() <UITextFieldDelegate>
+@end
 @implementation RH_WithdrawCashTwoCell
 
 - (void)awakeFromNib {
@@ -25,6 +28,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.textField.secureTextEntry = NO;
+        self.textField.delegate = self;
+        self.textField.returnKeyType = UIReturnKeyDone;
         self.detailTextLabel.textColor = colorWithRGB(153, 153, 153);
         self.detailTextLabel.font = [UIFont systemFontOfSize:14];
         self.textLabel.textColor = colorWithRGB(51, 51, 51);
@@ -41,6 +46,11 @@
         self.selectionColor = RH_Cell_DefaultHolderColor;
     }
     return self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

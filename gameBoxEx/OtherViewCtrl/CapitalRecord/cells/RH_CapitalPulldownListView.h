@@ -15,4 +15,7 @@ typedef void (^CapitalPulldownListViewBlock)(void);
 @interface RH_CapitalPulldownListView : UIView
 @property (nonatomic,copy)CapitalPulldownListViewBlock block;
 @property (nonatomic,copy)NSString *typeString;
+@property (nonatomic,copy)NSString *typeIdString;
+@property(nonatomic,strong)NSMutableArray *typeNameArray;
+@property(nonatomic,strong)NSMutableArray *typeIdArray;
 @end

@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
+    
 }
 #pragma mark - CashCell
 - (RH_WithdrawCashTwoCell *)cashCell {
@@ -140,9 +141,15 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 }
 
 - (void)segmentControlValueDidChange:(UISegmentedControl *)segmentControl {
+    
     _withdrawCashStatus = segmentControl.selectedSegmentIndex?WithdrawCashStatus_EnterBitCoin:WithdrawCashStatus_EnterCash ;
     [self setNeedUpdateView] ;
     if (segmentControl.selectedSegmentIndex == 1) {
+        
+        if (MineSettingInfo.mBitCode.mBtcNumber) {
+            //有比特币，无需提示
+            return ;
+        }
         PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"没有绑定比特币地址" cancelTitle:@"取消" otherTitles:@[@"立即添加"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (cancelled) {
                 //
@@ -162,7 +169,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 #pragma mark- updateView
 -(void)updateView
 {
-    NSLog(@"%s", __func__);
+    
     if (_withdrawCashStatus==WithdrawCashStatus_Init){
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawInit"] ;
         [self loadingIndicateViewDidTap:nil] ;
@@ -234,6 +241,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     if (_withdrawCashStatus == WithdrawCashStatus_EnterBitCoin) {
         if (indexPath.section == 0) {
+            
+            if (MineSettingInfo.mBitCode.mBtcNumber) {
+                //有比特币地址
+                return YES;
+            }
             PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"没有绑定比特币地址" cancelTitle:@"取消" otherTitles:@[@"立即添加"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
                 if (cancelled) {
                     //
@@ -258,7 +270,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
             return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;
         }else if (_withdrawCashStatus==WithdrawCashStatus_EnterBitCoin) {
-            return [self.withDrawModel.mBankcardMap objectForKey:@"2"] ;
+//            return [self.withDrawModel.mBankcardMap objectForKey:@"2"] ;
+            return @{
+                     @"title":@"比特币地址",
+                     @"detailTitle":MineSettingInfo.mBitCode.mBtcNumber
+                         };
         }
     }else if (indexPath.section==2){
         switch (indexPath.item) {

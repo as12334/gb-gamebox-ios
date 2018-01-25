@@ -11,8 +11,9 @@
 #import "RH_LotteryGameListTopView.h"
 #import "RH_GameListContentPageCell.h"
 #import "RH_LotteryAPIInfoModel.h"
+#import "RH_CustomViewController.h"
 
-@interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate>
+@interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) RH_GameListHeaderView *typeTopView;
 @property (nonatomic, strong,readonly) CLPageView            *pageView;
@@ -74,7 +75,6 @@
     return _typeTopView;
 }
 
-
 -(void)gameListHeaderViewDidChangedSelectedIndex:(RH_GameListHeaderView*)gameListHeaderView SelectedIndex:(NSInteger)selectedIndex
 {
     self.pageView.dispalyPageIndex = selectedIndex;
@@ -118,6 +118,12 @@
     return _pageView ;
 }
 
+-(void)gameListContentPageCellDidTouchCell:(RH_GameListContentPageCell*)gameListContentPageCell CellModel:(RH_LotteryInfoModel*)lotteryInfoModel
+{
+    [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+    return ;
+}
+
 - (NSUInteger)numberOfPagesInPageView:(CLPageView *)pageView
 {
     return self.typeTopView.allTypes  ;
@@ -127,6 +133,7 @@
 - (UICollectionViewCell *)pageView:(CLPageView *)pageView cellForPageAtIndex:(NSUInteger)pageIndex
 {
     RH_GameListContentPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_GameListContentPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
+    cell.delegate = self ;
     [cell updateViewWithType:[self.typeTopView typeModelWithIndex:pageIndex]
                   SearchName:self.searchView.searchInfo
                 APIInfoModel:_lotteryApiModel Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;

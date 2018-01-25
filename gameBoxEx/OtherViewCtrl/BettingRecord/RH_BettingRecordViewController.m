@@ -28,7 +28,6 @@
 @synthesize bettingTableHeaderView = _bettingTableHeaderView     ;
 //@synthesize bettingBottomView = _bettingBottomView               ;
 
-
 -(BOOL)isSubViewController
 {
     return YES ;
@@ -56,11 +55,6 @@
     return NO ;
 }
 
-//-(CGFloat)bottomViewHeight
-//{
-//    return 50.0f ;
-//}
-
 #pragma mark-
 -(void)setupUI
 {
@@ -83,15 +77,12 @@
     
     self.contentTableView.backgroundColor = [UIColor whiteColor];
     [self setupPageLoadManager] ;
-    
-    
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
 }
-
 
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
@@ -170,7 +161,6 @@
 //
 //    return _bettingBottomView ;
 //}
-
 
 #pragma mark-
 -(void)netStatusChangedHandle

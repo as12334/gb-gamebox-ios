@@ -14,6 +14,7 @@
 @property (nonatomic,strong,readonly) NSString *mBankCardMasterName; //卡姓名
 @property (nonatomic,strong,readonly) NSString *mBankCardNumber ;
 @property (nonatomic,strong,readonly) NSString *mBankDeposit ; //开户行
+@property (nonatomic,strong,readonly) NSString *mbankUrl ; //开户行图片链接
 
 @end
 

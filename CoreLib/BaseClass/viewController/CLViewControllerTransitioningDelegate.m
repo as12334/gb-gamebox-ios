@@ -148,7 +148,6 @@
         [presentedViewController startInteractiveDismiss];
 
     }else {
-
         CGPoint locationPoint = [panGestureRecognizer locationInView:_interactivePresentingViewController.view];
         CGPoint translation   = [panGestureRecognizer translationInView:_interactivePresentingViewController.view];
 

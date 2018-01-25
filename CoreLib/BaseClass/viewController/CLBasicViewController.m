@@ -277,7 +277,7 @@ static char TOPVIEW ;
 
         self.topView.frame = frame ;
         [self.view addSubview:self.topView] ;
-        self.topView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin ;
+        self.topView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin ;
     }else{
         UIView *topView = objc_getAssociatedObject(self, &TOPVIEW) ;
         if (topView){
@@ -324,7 +324,7 @@ static char BOTTOMVIEW ;
 
         self.bottomView.frame = frame ;
         [self.view addSubview:self.bottomView] ;
-        self.bottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
+        self.bottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
     }else{
         UIView *bottomView = objc_getAssociatedObject(self, &BOTTOMVIEW) ;
         if (bottomView){

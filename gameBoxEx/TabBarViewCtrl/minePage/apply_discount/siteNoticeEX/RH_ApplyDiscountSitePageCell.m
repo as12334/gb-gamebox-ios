@@ -21,7 +21,7 @@
 @implementation RH_ApplyDiscountSitePageCell
 @synthesize pageView = _pageView ;
 @synthesize dictPageCellDataContext = _dictPageCellDataContext ;
--(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
+-(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context andSelectedIndex:(NSInteger)selectedIndex
 {
     if (self.contentTableView == nil) {
         [self.pageView registerCellForPage:[RH_ApplyDiscountSiteSystemCell class] andReuseIdentifier:[RH_ApplyDiscountSiteSystemCell defaultReuseIdentifier]];
@@ -32,7 +32,7 @@
         [self.contentView addSubview:self.pageView];
         self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
         //设置索引
-        self.pageView.dispalyPageIndex =  0 ;
+        self.pageView.dispalyPageIndex = selectedIndex ;
         self.btnArray = [NSMutableArray array];
         //加上三个按钮
         NSArray *btnTitleArray = @[@"系统消息",@"我的消息",@"发送消息"];
@@ -52,7 +52,7 @@
             [btn setBackgroundColor:colorWithRGB(200, 200, 200)];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-            if (i==0) {
+            if (i==selectedIndex) {
                 btn.backgroundColor = colorWithRGB(23, 102, 187);
                 btn.selected = YES;
                 self.chooseBtn = btn;
@@ -124,7 +124,7 @@
     }
     else if (pageIndex==2){
         RH_ApplyDiscountSiteSendCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSiteSendCell defaultReuseIdentifier] forPageIndex:pageIndex];
-        [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+        [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex] ] ;
         //                cell.delegate=self;
         return cell;
     }
