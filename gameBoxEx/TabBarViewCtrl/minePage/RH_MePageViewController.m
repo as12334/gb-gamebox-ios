@@ -16,6 +16,8 @@
 #import "RH_WithdrawCashController.h"
 #import "RH_MinePageLoginoutBannarCell.h"
 #import "RH_LoginViewControllerEx.h"
+#import "RH_ApplyDiscountViewController.h"
+
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -135,12 +137,24 @@
 #pragma mark -mineAcceount delegate
 -(void)mineAccountCellTouchRchargeButton:(RH_MineAccountCell*)mineAccountCell
 {
-    self.tabBarController.selectedIndex = 0 ;
+    if (HasLogin)
+    {
+        self.tabBarController.selectedIndex = 0  ;
+    }else{
+        [self loginButtonItemHandle] ;
+    }
+    
 }
 
 -(void)mineAccountCellTouchWithDrawButton:(RH_MineAccountCell*)mineAccountCell
 {
-    [self showViewController:[RH_WithdrawCashController viewController] sender:self] ;
+    if (HasLogin)
+    {
+        [self showViewController:[RH_WithdrawCashController viewController] sender:self] ;
+    }else{
+        [self loginButtonItemHandle] ;
+    }
+
 //    self.appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
 //    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
 }

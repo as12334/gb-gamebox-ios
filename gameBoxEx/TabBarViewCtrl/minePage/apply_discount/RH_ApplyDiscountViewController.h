@@ -10,5 +10,5 @@
 #import "RH_BasicSubViewController.h"
 
 @interface RH_ApplyDiscountViewController : RH_BasicSubViewController
-
+@property (nonatomic,assign)NSInteger selectedIndex;
 @end

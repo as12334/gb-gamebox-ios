@@ -20,8 +20,8 @@ typedef void(^quickBtnOpenBlock)(CGRect frame);
 
 @interface RH_CapitalRecordHeaderView : UIView
 @property (nonatomic,weak) id<CapitalRecordHeaderViewDelegate> delegate ;
-@property (nonatomic,strong) NSString *startDate ;
-@property (nonatomic,strong) NSString *endDate ;
+@property (nonatomic,strong) NSDate *startDate ;
+@property (nonatomic,strong) NSDate *endDate ;
 @property (nonatomic,copy)typeLabelPullDownSelectedBlock block;
 @property (weak, nonatomic) IBOutlet UIButton *typeButton;
 /**快选*/

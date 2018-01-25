@@ -36,10 +36,9 @@
 {
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor whiteColor] ;
-    _selectedIndex = 0 ;
+//    _selectedIndex = 0 ;
     _viewHeight = 0.0f ;
 }
-
 -(void)updateView:(NSArray*)typeList
 {
 //    self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;

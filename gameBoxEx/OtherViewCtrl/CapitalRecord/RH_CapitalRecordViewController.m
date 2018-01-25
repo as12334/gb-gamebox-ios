@@ -171,9 +171,10 @@
 
 -(RH_CapitalQuickSelectView *)quickSelectView
 {
+    __block RH_CapitalRecordViewController *weakSelf = self;
     if (!_quickSelectView) {
         _quickSelectView = [[RH_CapitalQuickSelectView alloc] init];
-        __block RH_CapitalRecordViewController *weakSelf = self;
+        
         _quickSelectView.quickSelectBlock = ^(NSInteger selectRow) {
             if (weakSelf.quickSelectView.superview) {
                 [UIView animateWithDuration:0.2 animations:^{
@@ -184,11 +185,12 @@
                 } completion:^(BOOL finished) {
                     [weakSelf.quickSelectView removeFromSuperview];
                 }];
-//                _capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
-//                [weakSelf startUpdateData] ;
-                _capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
+               
+
             }
-           
+            weakSelf.capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
+//            _capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
+            [weakSelf startUpdateData] ;
         };
     }
     return _quickSelectView;
@@ -222,9 +224,52 @@
     }
     
 }
--(void)changedSinceTimeString:(NSInteger)row
+-(NSDate *)changedSinceTimeString:(NSInteger)row
 {
-    
+    NSDate *date = [[NSDate alloc]init];
+    switch (row) {
+        case 0:
+            // 今天
+            date= [[NSDate date] dateWithMoveDay:0];
+            _capitalRecordHeaderView.endDate = date;
+            break;
+        case 1:
+            // 昨天
+            date= [[NSDate date] dateWithMoveDay:-1];
+            _capitalRecordHeaderView.endDate = date;
+            
+            break;
+        case 2:
+            //本周
+            date= [[NSDate date] dateWithMoveDay:-7];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            break;
+        case 3:
+            // 上周
+            date= [[NSDate date] dateWithMoveDay:-14];
+           _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            break;
+        case 4:
+            // 本月
+            date= [[NSDate date] dateWithMoveDay:-30];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
+            break;
+        case 5:
+            //最近七天
+            date= [[NSDate date] dateWithMoveDay:-7];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            break;
+        case 6:
+            // 最近三十天
+            date= [[NSDate date] dateWithMoveDay:-30];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
+            break;
+            
+        default:
+            break;
+    }
+    _capitalRecordHeaderView.startDate = date;
+    return date;
 }
 
 #pragma mark-sort bottom view

@@ -93,6 +93,13 @@
     }
 }
 
+-(void)promoTableCellTouchEnterDetail:(RH_PromoTableCell *)promoTableViewCell CellModel:(RH_DiscountActivityModel *)discountActivityModel
+{
+    ifRespondsSelector(self.delegate, @selector(promoContentPageCellDidTouchCell:CellModel:)){
+        [self.delegate promoContentPageCellDidTouchCell:self CellModel:discountActivityModel] ;
+    }
+}
+
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
@@ -177,18 +184,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        if (HasLogin)
-        {
-            RH_DiscountActivityModel *discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-            
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            if (appDelegate){
-                appDelegate.customUrl = discountActivityModel.showLink ;
-                [self showViewController:[RH_CustomViewController viewController]] ;
-            }
-            
-        }else{
-            showAlertView(@"提示信息", @"您尚未登入") ;
+        RH_DiscountActivityModel *discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
+        ifRespondsSelector(self.delegate, @selector(promoContentPageCellDidTouchCell:CellModel:)){
+            [self.delegate promoContentPageCellDidTouchCell:self CellModel:discountActivityModel] ;
         }
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;

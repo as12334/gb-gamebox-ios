@@ -144,28 +144,5 @@
     ifRespondsSelector(self.delegate, @selector(promoTypeHeaderViewDidChangedSelectedIndex:SelectedIndex:)){
         [self.delegate promoTypeHeaderViewDidChangedSelectedIndex:self SelectedIndex:_selectedIndex] ;
     }
-    
-//    if (self.pageLoadManager.currentDataCount){
-//        if (HasLogin)
-//        {
-//            RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-//            if (lotteryInfoModel.mGameLink.length){
-//                self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-//                [self showViewController:[RH_GamesViewController viewController] sender:self] ;
-//                return ;
-//            }else if (lotteryInfoModel.mGameMsg.length){
-//                showAlertView(@"提示信息",lotteryInfoModel.mGameMsg) ;
-//                return ;
-//            }else if ([self.serviceRequest isRequesting]){
-//                showAlertView(@"提示信息",@"数据处理中,请稍等...") ;
-//                return ;
-//            }else{
-//                showAlertView(@"提示信息",@"游戏维护中") ;
-//                return ;
-//            }
-//        }else{
-//            showAlertView(@"提示信息", @"您尚未登入") ;
-//        }
-//    }
 }
 @end

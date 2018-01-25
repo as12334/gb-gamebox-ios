@@ -31,13 +31,16 @@
 {
     return 50;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"申请优惠";
+//    self.title = @"申请优惠";
+    
     //初始化 优惠类别信息
 //    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等..."] ;
 //    [self.serviceRequest startV3LoadDiscountActivityType] ;
+    
     [self createUI];
 }
 -(void)createUI{
@@ -55,7 +58,7 @@
      [self.pageView registerCellForPage:[RH_ApplyDiscountSystemPageCell class] andReuseIdentifier:[RH_ApplyDiscountSystemPageCell defaultReuseIdentifier]] ;
     [self.pageView registerCellForPage:[RH_ApplyDiscountSitePageCell class] andReuseIdentifier:[RH_ApplyDiscountSitePageCell defaultReuseIdentifier]];
     //设置索引
-    self.pageView.dispalyPageIndex =  0 ;//self.headerView.segmentedControl.selectedSegmentIndex;
+    self.pageView.dispalyPageIndex =  _selectedIndex ;//self.headerView.segmentedControl.selectedSegmentIndex;
 }
 #pragma mark --- 头视图
 -(RH_ApplyDiscountHeaderView *)headerView
@@ -63,6 +66,7 @@
     if (!_headerView) {
         _headerView = [RH_ApplyDiscountHeaderView createInstance];
         _headerView.delegate= self;
+        _headerView.selectedIndex = self.selectedIndex;
         
     }
     return _headerView;
@@ -90,7 +94,7 @@
 }
 - (NSUInteger)numberOfPagesInPageView:(CLPageView *)pageView
 {
-    return self.headerView.allTypes  ;
+    return 3  ;
 }
 
 - (UICollectionViewCell *)pageView:(CLPageView *)pageView cellForPageAtIndex:(NSUInteger)pageIndex
@@ -110,8 +114,7 @@
     else if (pageIndex ==2)
     {
         RH_ApplyDiscountSitePageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSitePageCell defaultReuseIdentifier] forPageIndex:pageIndex];
-        [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
-//        cell.delegate=self;
+        [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex] andSelectedIndex:_selectedIndex] ;
         return cell;
     }
     return nil;

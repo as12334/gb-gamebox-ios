@@ -12,7 +12,7 @@
 #import "RH_MainTabBarController.h"
 #import "RH_UserInfoManager.h"
 #import "RH_CustomViewController.h"
-
+#import "RH_ApplyDiscountViewController.h"
 #define cellHeight                  50.0f
 #define lineCellCount                2
 
@@ -88,7 +88,15 @@
     NSInteger index = indexPath.section * lineCellCount + indexPath.item ;
     NSDictionary *dict = ConvertToClassPointer(NSDictionary, [self.rowsList objectAtIndex:index]) ;
     UIViewController *viewCtrl = [dict targetViewControllerWithContext:[dict targetContext]] ;
-    
+    if ([dict[@"title"] isEqualToString:@"消息中心"]) {
+        RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
+        [discountVC setTitle:@"消息中心"];
+    }
+    else if ([dict[@"title"] isEqualToString:@"申请优惠"]){
+        RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
+        [discountVC setTitle:@"申请优惠"];
+        discountVC.selectedIndex = 2;
+    }
     if (viewCtrl){
         [self showViewController:viewCtrl] ;
     }else{

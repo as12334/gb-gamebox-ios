@@ -164,23 +164,11 @@
 }
 
 #pragma mark ---
-//-(void)setStartDate:(NSDate *)startDate
-//{
-//    if (![_startDate isEqualToDate:startDate]){
-//        _startDate = startDate;
-//        [self.startCapitalDateCell updateUIWithDate:_startDate];
-//    }
-//}
-
--(void)setStartDate:(NSString *)startDate
+-(void)setStartDate:(NSDate *)startDate
 {
-    if (![_startDate isEqualToString:startDate]) {
+    if (![_startDate isEqualToDate:startDate]){
         _startDate = startDate;
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:sss"];
-        //获取当前时间
-        NSDate *dateNow = [NSDate date];
-        NSLog(@"%@",[formatter stringFromDate:dateNow]);  
+        [self.startCapitalDateCell updateUIWithDate:_startDate];
     }
 }
 

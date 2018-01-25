@@ -95,16 +95,8 @@
 
 -(IBAction)btn_enterDetail:(id)sender
 {
-    if (HasLogin)
-    {
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        if (appDelegate){
-            appDelegate.customUrl = self.discountActivityModel.showLink ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }
-        
-    }else{
-        showAlertView(@"提示信息", @"您尚未登入") ;
+    ifRespondsSelector(self.delegate, @selector(promoTableCellTouchEnterDetail:CellModel:)){
+        [self.delegate promoTableCellTouchEnterDetail:self CellModel:self.discountActivityModel] ;
     }
 }
 @end

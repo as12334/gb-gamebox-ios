@@ -688,7 +688,7 @@
 #define RH_SP_SITEMESSAGEDELETE_IDS   @"ids"
 
 #pragma mark - V3 站点消息  发送消息验证
-#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY     @"mineOrigin/getNoticeSiteType.html"
+#define RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY     @"mobile-api/mineOrigin/getNoticeSiteType.html"
 
 #pragma mark - V3 站点消息  发送消息
 #define RH_API_NAME_ADDAPPLYDISCOUNTS           @"mobile-api/mineOrigin/addNoticeSite.html"
