@@ -13,8 +13,6 @@
 
 @interface RH_CapitalRecordHeaderView()<CapitalRecordHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labDateTitle;
-/**快选*/
-@property (weak, nonatomic) IBOutlet UIButton *btnQuickSelect;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *startCapitalDateCell ;
 @property (nonatomic,strong,readonly) RH_CapitalStaticDataCell *endCapitalDateCell ;
 @property (weak, nonatomic) IBOutlet UIButton *serachBtn; //搜索
@@ -117,9 +115,8 @@
 
 -(void)quickBtnClick{
     NSLog(@"快选");
-    ifRespondsSelector(self.delegate, @selector(capitalRecordHeaderViewTouchQuickSearchButton:)){
-        [self.delegate capitalRecordHeaderViewTouchQuickSearchButton:self] ;
-    }
+    __block RH_CapitalRecordHeaderView *weakSelf = self;
+    self.quickSelectBlock(weakSelf.btnQuickSelect.frame);
 }
 
 
@@ -167,11 +164,23 @@
 }
 
 #pragma mark ---
--(void)setStartDate:(NSDate *)startDate
+//-(void)setStartDate:(NSDate *)startDate
+//{
+//    if (![_startDate isEqualToDate:startDate]){
+//        _startDate = startDate;
+//        [self.startCapitalDateCell updateUIWithDate:_startDate];
+//    }
+//}
+
+-(void)setStartDate:(NSString *)startDate
 {
-    if (![_startDate isEqualToDate:startDate]){
+    if (![_startDate isEqualToString:startDate]) {
         _startDate = startDate;
-        [self.startCapitalDateCell updateUIWithDate:_startDate];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:sss"];
+        //获取当前时间
+        NSDate *dateNow = [NSDate date];
+        NSLog(@"%@",[formatter stringFromDate:dateNow]);  
     }
 }
 
