@@ -13,6 +13,7 @@
 #import "RH_FirstPageViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_LotteryInfoModel.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
@@ -220,6 +221,9 @@
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
+        
+        [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
+                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-mm-dd HH:mm:ss")] ;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.appDelegate updateLoginStatus:jsStatus.toBool] ;

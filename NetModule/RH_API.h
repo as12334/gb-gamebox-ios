@@ -92,6 +92,7 @@
 #define RH_GP_SYSTEMNOTICE_LINK                             @"link"
 #define RH_GP_SYSTEMNOTICE_MINDATE                          @"minDate"
 #define RH_GP_SYSTEMNOTICE_MAXDATE                          @"maxDate"
+#define RH_GP_SYSTEMNOTICE_SEARCHID                         @"searchId"
 
 #pragma mark -游戏公告模型
 #define RH_GP_GAMENOTICE_ID             @"id"

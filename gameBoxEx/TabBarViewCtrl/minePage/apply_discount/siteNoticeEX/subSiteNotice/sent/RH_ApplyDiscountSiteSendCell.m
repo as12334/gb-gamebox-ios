@@ -15,31 +15,39 @@
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
+@property(nonatomic,strong,readonly)UIScrollView *scrollView;
 @property(nonatomic,copy)NSString  *typeStr;
 @end
 @implementation RH_ApplyDiscountSiteSendCell
 {
     BOOL  keyboardMark;
+    int   _keyboardHeight;
 }
 @synthesize sendView = _sendView;
 @synthesize listView = _listView;
 @synthesize serviceRequest = _serviceRequest;
+@synthesize scrollView = _scrollView;
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-        [self addSubview:self.sendView];
-        __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
-        self.sendView.block = ^(CGRect frame){
-            [weakSelf selectedSendViewdiscountType:frame];
-        };
-        self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
-            [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
-            [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
-        };
-        [self.serviceRequest startV3AddApplyDiscountsVerify];
-        CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
-        [self setupPageLoadManagerWithdatasContext:context1] ;
-        [self.loadingIndicateView hiddenView] ;
+    
+    [self addSubview:self.scrollView];
+    [self.scrollView addSubview:self.sendView];
+    __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
+    self.sendView.block = ^(CGRect frame){
+        [weakSelf selectedSendViewdiscountType:frame];
+    };
+    self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
+        [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
+        [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+        [UIView animateWithDuration:0.5 animations:^{
+            weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
+        }];
+    };
+    [self.serviceRequest startV3AddApplyDiscountsVerify];
+    CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
+    [self setupPageLoadManagerWithdatasContext:context1] ;
+    [self.loadingIndicateView hiddenView] ;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -53,6 +61,15 @@
                                                    object:nil];
     }
     return self;
+}
+-(UIScrollView *)scrollView
+{
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
+        _scrollView.contentSize = CGSizeMake(0, 1000);
+        _scrollView.showsVerticalScrollIndicator = NO;
+    }
+    return _scrollView;
 }
 -(RH_SiteSendMessageView *)sendView
 {
@@ -193,36 +210,22 @@
         showErrorMessage(nil, error, @"发送失败");
     }
 }
--(void)selectedCodeTextFieldAndChangedKeyboardFram:(CGRect)frame
+-(void)selectedCodeTextFieldAndChangedKeyboardFrame:(CGRect)frame
 {
-    //获取键盘的高度
-    keyboardMark = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, 150);
+    }];
 }
-//当键盘出现或改变时调用
 - (void)keyboardWillShow:(NSNotification *)aNotification
 {
-    if (self.contentView.frameY>=0&&keyboardMark==NO) {
-        [UIView animateWithDuration:0.5f animations:^{
-            CGRect frame = self.frame;
-            frame.origin.y -=50;
-            self.frame = frame;
-        }];
-    }
-    else if(keyboardMark==YES){
-        [UIView animateWithDuration:0.5f animations:^{
-            CGRect frame = self.frame;
-            frame.origin.y -=150;
-            self.frame = frame;
-        }];
-    }
-        
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    _keyboardHeight = keyboardRect.size.height;
 }
-
-//当键退出时调用
-- (void)keyboardWillHide:(NSNotification *)aNotification{
-    CGRect frame = self.frame;
-    frame.origin.y =0;
-    self.frame = frame;
-    keyboardMark =NO;
+-(void)keyboardWillHide:(NSNotification *)aNotification
+{
+    self.scrollView.contentOffset = CGPointMake(0, 0);
 }
 @end

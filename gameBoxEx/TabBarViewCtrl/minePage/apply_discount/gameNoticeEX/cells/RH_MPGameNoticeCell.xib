@@ -42,13 +42,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="db2-Rm-Iah" firstAttribute="top" secondItem="Z2W-wi-8zY" secondAttribute="top" constant="21" id="7iD-zi-3Od"/>
                             <constraint firstAttribute="bottom" secondItem="XY4-di-6du" secondAttribute="bottom" constant="10" id="G7o-2W-Ex5"/>
                             <constraint firstItem="db2-Rm-Iah" firstAttribute="leading" secondItem="Z2W-wi-8zY" secondAttribute="leading" constant="41" id="GUI-UD-iJJ"/>
                             <constraint firstAttribute="trailing" secondItem="db2-Rm-Iah" secondAttribute="trailing" constant="40" id="SVK-E3-IJb"/>
                             <constraint firstAttribute="bottom" secondItem="L8B-j8-2Ba" secondAttribute="bottom" constant="10" id="dz4-6g-9Ll"/>
                             <constraint firstAttribute="trailing" secondItem="L8B-j8-2Ba" secondAttribute="trailing" constant="8" id="fpt-4d-HyE"/>
                             <constraint firstItem="L8B-j8-2Ba" firstAttribute="leading" secondItem="XY4-di-6du" secondAttribute="trailing" constant="8" id="h53-BH-0QW"/>
-                            <constraint firstItem="db2-Rm-Iah" firstAttribute="top" secondItem="Z2W-wi-8zY" secondAttribute="top" constant="21" id="kxm-aP-VD0"/>
                         </constraints>
                     </view>
                 </subviews>

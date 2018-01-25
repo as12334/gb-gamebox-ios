@@ -58,6 +58,11 @@
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityFriestBtn.userInteractionEnabled = NO;
         }
+        else if ([self.activityModel.mDrawTimes isEqualToString:@"0"]){
+            [self.activityTimesLabel setText:@"红包已抢光"];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
         else
         {
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];

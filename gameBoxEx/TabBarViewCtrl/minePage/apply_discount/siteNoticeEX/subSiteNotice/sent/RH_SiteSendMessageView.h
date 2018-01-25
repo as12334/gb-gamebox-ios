@@ -12,7 +12,7 @@ typedef void (^SiteSendMessageViewBlock)(CGRect frame);
 typedef void (^SiteSendMessageViewSubmitBlock)(NSString *titelStr,NSString *contenStr,NSString *codeStr);
 @protocol RH_SiteSendMessageViewDelegate<NSObject>
 @optional
--(void)selectedCodeTextFieldAndChangedKeyboardFram:(CGRect )frame;
+-(void)selectedCodeTextFieldAndChangedKeyboardFrame:(CGRect )frame;
 @end
 @interface RH_SiteSendMessageView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;

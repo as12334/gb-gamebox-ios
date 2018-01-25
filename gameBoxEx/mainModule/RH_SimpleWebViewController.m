@@ -19,6 +19,8 @@
 #import "CLTabBarController.h"
 #import "MacroDef.h"
 #import "RH_API.h"
+#import "RH_UserInfoManager.h"
+
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
@@ -724,6 +726,9 @@
         [defaults setObject:jsAccount.toString forKey:@"account"];
         [defaults setObject:jsPassword.toString forKey:@"password"];
         [defaults synchronize];
+        
+        [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
+                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-mm-dd HH:mm:ss")] ;
         
         [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
         dispatch_async(dispatch_get_main_queue(), ^{

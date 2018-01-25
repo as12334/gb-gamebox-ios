@@ -8,7 +8,15 @@
 
 #import "CLTableViewCell.h"
 
+@class RH_MineRecordTableViewCell ;
+@protocol MineRecordTableViewCellProtocol
+@optional
+-(void)mineRecordTableViewCellDidTouchCell:(RH_MineRecordTableViewCell*)mineRecordTableCell CellInfo:(NSDictionary*)dictInfo ;
+@end
+
 @interface RH_MineRecordTableViewCell : CLTableViewCell
+@property (nonatomic,weak) id<MineRecordTableViewCellProtocol> delegate ;
+
 @property(nonatomic,assign)NSInteger numberSection;
 @property(nonatomic,assign)NSInteger numberItems;
 @end
