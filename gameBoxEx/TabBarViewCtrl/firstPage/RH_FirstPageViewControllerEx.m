@@ -408,8 +408,7 @@
     if (self.activityView.superview) return ;
     
     self.activityView.alpha = 0.0 ;
-    [self.view addSubview:self.activityView] ;
-    self.activityView.whc_RightSpace(15).whc_BottomSpace(50).whc_Width(100).whc_Height(100);
+    [self.view addSubview:self.activityView] ; self.activityView.whc_RightSpace(15).whc_BottomSpace(50).whc_Width(100).whc_Height(100);
     [UIView animateWithDuration:1.0f animations:^{
         self.activityView.activityModel = activityModel ;
     } completion:^(BOOL finished) {
@@ -524,6 +523,7 @@
     else if (type==ServiceRequestTypeV3ActivityStatus){
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         showErrorMessage(nil, error, @"红包获取失败") ;
+        [self.shadeView removeFromSuperview];
     }
     else if (type==ServiceRequestTypeV3OpenActivity){
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
