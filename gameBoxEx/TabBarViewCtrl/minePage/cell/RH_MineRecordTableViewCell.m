@@ -79,45 +79,8 @@
 
 - (BOOL)staticCollectionView:(CLStaticCollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    if (!appDelegate.isLogin){
-        showAlertView(@"提示信息", @"该操作需要用户登入");
-        return  NO ;
-    }
-    
-    NSInteger index = indexPath.section * lineCellCount + indexPath.item ;
-    NSDictionary *dict = ConvertToClassPointer(NSDictionary, [self.rowsList objectAtIndex:index]) ;
-    UIViewController *viewCtrl = [dict targetViewControllerWithContext:[dict targetContext]] ;
-    if ([dict[@"title"] isEqualToString:@"消息中心"]) {
-        RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
-        [discountVC setTitle:@"消息中心"];
-    }
-    else if ([dict[@"title"] isEqualToString:@"申请优惠"]){
-        RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
-        [discountVC setTitle:@"申请优惠"];
-        discountVC.selectedIndex = 2;
-    }
-    if (viewCtrl){
-        [self showViewController:viewCtrl] ;
-    }else{
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        NSString *code = [dict stringValueForKey:@"code"] ;
-        if ([code isEqualToString:@"transfer"]){
-            appDelegate.customUrl = @"/transfer/index.html" ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }else if ([code isEqualToString:@"gameNotice"]){
-            appDelegate.customUrl = @"/message/gameNotice.html?isSendMessage=true" ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }else if ([code isEqualToString:@"bankCard"]){
-            appDelegate.customUrl = @"/bankCard/page/addCard.html" ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }else if ([code isEqualToString:@"btc"]){
-            appDelegate.customUrl = @"/bankCard/page/addBtc.html" ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }else if ([code isEqualToString:@"withdraw"]){
-             appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
-            [self showViewController:[RH_CustomViewController viewController]] ;
-        }
+    ifRespondsSelector(self.delegate, @selector(mineRecordTableViewCellDidTouchCell:CellInfo:)){
+        [self.delegate mineRecordTableViewCellDidTouchCell:self CellInfo:nil] ;
     }
     
     return NO ;

@@ -33,7 +33,6 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) RH_MineSafetyCenterHeaderView *headerView;
-@property (nonatomic,strong)RH_MineInfoModel *mineInfoModel;
 @end
 
 @implementation RH_MineSafetyCenterViewController
@@ -124,9 +123,10 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UserInfo){
-        RH_UserGroupInfoModel *infoModel = ConvertToClassPointer(RH_UserGroupInfoModel, data);
-       self.mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, infoModel.mUserSetting);
-        [self.tableViewManagement reloadData];
+//        RH_UserGroupInfoModel *infoModel = ConvertToClassPointer(RH_UserGroupInfoModel, data);
+//       self.mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, infoModel.mUserSetting);
+//        [self.tableViewManagement reloadData];
+        [self setNeedUpdateView] ;
     }
 }
 
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 {
 //    RH_MineSafetyCenterCell *centerCell = ConvertToClassPointer(RH_MineSafetyCenterCell, cell) ;
     if (indexPath.row==3) {
-        RH_BankCardModel *carModel = ConvertToClassPointer(RH_BankCardModel, self.mineInfoModel.mBankCard);
+        RH_BankCardModel *carModel = ConvertToClassPointer(RH_BankCardModel, MineSettingInfo.mBankCard);
         return carModel ;
     }
     return nil ;

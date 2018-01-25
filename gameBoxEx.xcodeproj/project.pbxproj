@@ -24,6 +24,7 @@
 		797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */; };
 		79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */; };
 		79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */; };
+		79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */; };
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
@@ -574,7 +575,6 @@
 		189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineRecordTableViewCell.m; sourceTree = "<group>"; };
 		189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineRecordTableViewCell.xib; sourceTree = "<group>"; };
 		189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MePageViewController.h; sourceTree = "<group>"; };
-		797252E72004687100A73F05 /* dropdownMenu_cornerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownMenu_cornerIcon.png; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
 		797F678720085DA5009E3FAB /* RH_SystemNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeModel.h; sourceTree = "<group>"; };
@@ -590,6 +590,8 @@
 		79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineSafetyCenterBankCell.m; sourceTree = "<group>"; };
 		79A5CC38201871AE0044435E /* RH_MineSafetyCenterBankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterBankCell.h; sourceTree = "<group>"; };
 		79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineSafetyCenterBankCell.xib; sourceTree = "<group>"; };
+		79A5CC3C201978930044435E /* RH_CapitalQuickSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalQuickSelectView.h; sourceTree = "<group>"; };
+		79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalQuickSelectView.m; sourceTree = "<group>"; };
 		79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawModel.h; sourceTree = "<group>"; };
 		79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithDrawModel.m; sourceTree = "<group>"; };
 		79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoModel.h; sourceTree = "<group>"; };
@@ -1552,9 +1554,10 @@
 		79FB814D1FFDD70C00325BF3 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				797252E72004687100A73F05 /* dropdownMenu_cornerIcon.png */,
 				F6A2AD6420070D160077CB92 /* RH_CapitalPulldownListView.h */,
 				F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */,
+				79A5CC3C201978930044435E /* RH_CapitalQuickSelectView.h */,
+				79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */,
 				79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */,
 				79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */,
 				79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */,
@@ -3861,6 +3864,7 @@
 				A0109FEB1F8788FF004E6EF4 /* SAMKeychain.m in Sources */,
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
 				A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */,
+				79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */,
 				A0109FED1F8788FF004E6EF4 /* MKAnnotationView+WebCache.m in Sources */,
 				797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */,
 				A01181721FFCAB21008F6D1E /* CALayer+WHC_Frame.m in Sources */,

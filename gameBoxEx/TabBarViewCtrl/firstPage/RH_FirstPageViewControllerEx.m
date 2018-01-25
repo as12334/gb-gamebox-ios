@@ -107,9 +107,7 @@
     if (!_rhAlertView){
         _rhAlertView = [RH_BasicAlertView createInstance] ;
         self.rhAlertView.alpha = 0.f;
-        
     }
-    
     return _rhAlertView ;
 }
 
@@ -349,6 +347,7 @@
 }
 -(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view
 {
+    
     [self.shadeView removeFromSuperview];
     [self.normalActivityView removeFromSuperview];
 }
@@ -411,7 +410,10 @@
     if (self.activityView.superview) return ;
     
     self.activityView.alpha = 0.0 ;
+    [self.view addSubview:self.activityView] ;
+    self.activityView.whc_RightSpace(15).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
     [self.view addSubview:self.activityView] ; self.activityView.whc_RightSpace(15).whc_BottomSpace(50).whc_Width(100).whc_Height(100);
+    
     [UIView animateWithDuration:1.0f animations:^{
         self.activityView.activityModel = activityModel ;
     } completion:^(BOOL finished) {

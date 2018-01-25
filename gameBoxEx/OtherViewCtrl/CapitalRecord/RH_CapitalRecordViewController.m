@@ -14,18 +14,21 @@
 #import "RH_CapitalInfoOverviewModel.h"
 #import "RH_CapitalRecordDetailsController.h"
 #import "RH_CapitalPulldownListView.h"
+#import "RH_CapitalQuickSelectView.h"
 #import "RH_API.h"
 
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
 @property (nonatomic,strong,readonly) RH_CapitalPulldownListView *listView;
+@property (nonatomic,strong,readonly)RH_CapitalQuickSelectView *quickSelectView;
 @end
 
 @implementation RH_CapitalRecordViewController
 @synthesize capitalRecordHeaderView = _capitalRecordHeaderView ;
 @synthesize capitalBottomView = _capitalBottomView               ;
 @synthesize listView =_listView;
+@synthesize quickSelectView = _quickSelectView;
 -(BOOL)isSubViewController
 {
     return YES ;
@@ -64,6 +67,9 @@
     __block RH_CapitalRecordViewController *weakSelf = self;
     self.capitalRecordHeaderView.block = ^(CGRect frame){
         [weakSelf pullDownAndCloseListView:frame];
+    };
+    self.capitalRecordHeaderView.quickSelectBlock = ^(CGRect frame) {
+        [weakSelf openAndCloseSelectViewWithFarme:frame];
     };
     self.capitalRecordHeaderView.userInteractionEnabled = YES;
     [self.bottomView addSubview:self.capitalBottomView] ;
@@ -163,6 +169,109 @@
     
 }
 
+-(RH_CapitalQuickSelectView *)quickSelectView
+{
+    __block RH_CapitalRecordViewController *weakSelf = self;
+    if (!_quickSelectView) {
+        _quickSelectView = [[RH_CapitalQuickSelectView alloc] init];
+        
+        _quickSelectView.quickSelectBlock = ^(NSInteger selectRow) {
+            if (weakSelf.quickSelectView.superview) {
+                [UIView animateWithDuration:0.2 animations:^{
+                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 200, 0);
+//                    CGRect frame = weakSelf.quickSelectView.frame;
+                    frame.size.height = 0;
+                    weakSelf.quickSelectView.frame = frame;
+                } completion:^(BOOL finished) {
+                    [weakSelf.quickSelectView removeFromSuperview];
+                }];
+               
+
+            }
+            weakSelf.capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
+//            _capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
+            [weakSelf startUpdateData] ;
+        };
+    }
+    return _quickSelectView;
+}
+
+#pragma mark - 时间选择下拉
+-(void)openAndCloseSelectViewWithFarme:(CGRect)frame
+{
+     __block RH_CapitalRecordViewController *weakSelf = self;
+    if (!self.quickSelectView.superview) {
+        frame.origin.y +=heighStatusBar+NavigationBarHeight+frame.size.height;
+        self.quickSelectView.frame = frame;
+        [self.view addSubview:self.quickSelectView];
+        [UIView animateWithDuration:.2f animations:^{
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 80, weakSelf.quickSelectView.frame.origin.y, 150, 0);
+//            CGRect framee = self.quickSelectView.frame;
+            frame.size.height = 200;
+            self.quickSelectView.frame = frame;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:.2f animations:^{
+//            CGRect framee = self.quickSelectView.frame;
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 150, 0);
+            frame.size.height = 0;
+            self.quickSelectView.frame = frame;
+        } completion:^(BOOL finished) {
+            [self.quickSelectView removeFromSuperview];
+        }];
+    }
+    
+}
+-(NSDate *)changedSinceTimeString:(NSInteger)row
+{
+    NSDate *date = [[NSDate alloc]init];
+    switch (row) {
+        case 0:
+            // 今天
+            date= [[NSDate date] dateWithMoveDay:0];
+            _capitalRecordHeaderView.endDate = date;
+            break;
+        case 1:
+            // 昨天
+            date= [[NSDate date] dateWithMoveDay:-1];
+            _capitalRecordHeaderView.endDate = date;
+            
+            break;
+        case 2:
+            //本周
+            date= [[NSDate date] dateWithMoveDay:-7];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            break;
+        case 3:
+            // 上周
+            date= [[NSDate date] dateWithMoveDay:-14];
+           _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            break;
+        case 4:
+            // 本月
+            date= [[NSDate date] dateWithMoveDay:-30];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
+            break;
+        case 5:
+            //最近七天
+            date= [[NSDate date] dateWithMoveDay:-7];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            break;
+        case 6:
+            // 最近三十天
+            date= [[NSDate date] dateWithMoveDay:-30];
+            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
+            break;
+            
+        default:
+            break;
+    }
+    _capitalRecordHeaderView.startDate = date;
+    return date;
+}
+
 #pragma mark-sort bottom view
 -(RH_CapitalRecordBottomView *)capitalBottomView
 {
@@ -196,11 +305,7 @@
 {
     [self startUpdateData] ;
 }
-#pragma mark --快选按钮点击
--(void)capitalRecordHeaderViewTouchQuickSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
-{
-    [self startUpdateData] ;
-}
+
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {

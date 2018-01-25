@@ -12,6 +12,8 @@
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
 #import "RH_ForgetPasswordController.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
@@ -155,7 +157,10 @@
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
                 [defaults synchronize];
                 [appDelegate updateLoginStatus:YES] ;
-
+                
+                [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName
+                                                                         LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-mm-dd HH:mm:ss")] ;
+                
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }

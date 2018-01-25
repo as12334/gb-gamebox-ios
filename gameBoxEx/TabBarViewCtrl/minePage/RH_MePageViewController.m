@@ -17,8 +17,9 @@
 #import "RH_MinePageLoginoutBannarCell.h"
 #import "RH_LoginViewControllerEx.h"
 #import "RH_ApplyDiscountViewController.h"
+#import "RH_MineRecordTableViewCell.h"
 
-@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate>
+@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
@@ -185,6 +186,11 @@
             [weakSelf loginButtonItemHandle] ;
                     };
     }
+    
+    RH_MineRecordTableViewCell *mineRecordTableCell = ConvertToClassPointer(RH_MineRecordTableViewCell, cell) ;
+    if (mineRecordTableCell){
+        mineRecordTableCell.delegate = self ;
+    }
 }
 
 -(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath
@@ -195,6 +201,54 @@
 -(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.loadingIndicateTableViewCell ;
+}
+
+#pragma mark - RH_MineRecordTableViewCell delegate
+-(void)mineRecordTableViewCellDidTouchCell:(RH_MineRecordTableViewCell*)mineRecordTableCell CellInfo:(NSDictionary*)dictInfo
+{
+    if (self.appDelegate.isLogin){
+        UIViewController *viewCtrl = [dictInfo targetViewControllerWithContext:[dictInfo targetContext]] ;
+        if ([dictInfo[@"title"] isEqualToString:@"消息中心"]) {
+            RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
+            [discountVC setTitle:@"消息中心"];
+            return ;
+        }else if ([dictInfo[@"title"] isEqualToString:@"申请优惠"]){
+            RH_ApplyDiscountViewController *discountVC = ConvertToClassPointer(RH_ApplyDiscountViewController, viewCtrl);
+            [discountVC setTitle:@"申请优惠"];
+            discountVC.selectedIndex = 2;
+            return ;
+        }
+        
+        if (viewCtrl){
+            [self showViewController:viewCtrl sender:self] ;
+            return ;
+        }else{
+            NSString *code = [dictInfo stringValueForKey:@"code"] ;
+            if ([code isEqualToString:@"transfer"]){
+                self.appDelegate.customUrl = @"/transfer/index.html" ;
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                return ;
+            }else if ([code isEqualToString:@"gameNotice"]){
+                self.appDelegate.customUrl = @"/message/gameNotice.html?isSendMessage=true" ;
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                return ;
+            }else if ([code isEqualToString:@"bankCard"]){
+                self.appDelegate.customUrl = @"/bankCard/page/addCard.html" ;
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                return ;
+            }else if ([code isEqualToString:@"btc"]){
+                self.appDelegate.customUrl = @"/bankCard/page/addBtc.html" ;
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                return ;
+            }else if ([code isEqualToString:@"withdraw"]){
+                self.appDelegate.customUrl = @"/wallet/withdraw/index.html" ;
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                return ;
+            }
+        }
+    }else{
+        [self loginButtonItemHandle] ;
+    }
 }
 
 #pragma mark-

@@ -253,6 +253,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
+{
+    [self _startServiceWithAPIName:RH_API_MAIN_URL
+                        pathFormat:RH_API_NAME_COLLECTAPPERROR
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:errorDict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeCollectAPPError
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startTestUrl:(NSString*)testURL
 {
     [self _startServiceWithAPIName:testURL
@@ -1248,6 +1261,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
         }else{
             *error = [NSError resultDataNoJSONError] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
+                NSString *errorCode = [NSString stringWithFormat:@"%d",response.statusCode] ;
+                NSString *errorMessage = [response.description copy] ;
+                [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
+                                                                                        RH_SP_COLLECTAPPERROR_CODE:errorCode,
+                                                                                        RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
+                                                                                        }] ;
+            });
+            
+            
         }
         return YES ;
     }else if (type == ServiceRequestTypeGetCustomService){
@@ -1655,11 +1679,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 - (void)httpRequest:(id<CLHTTPRequestProtocol>)request response:(NSHTTPURLResponse *)response didFailedRequestWithError:(NSError *)error
 {
     RH_ServiceRequestContext * context = [request context];
-
+    
+    //此处收集域名 check fail 信息
+    if (context.serivceType==ServiceRequestTypeDomainCheck){
+        NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *errorCode = [NSString stringWithFormat:@"%d",error.code] ;
+            NSString *errorMessage = [error.localizedDescription copy] ;
+            [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
+                                                                                    RH_SP_COLLECTAPPERROR_CODE:errorCode,
+                                                                                    RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
+                                                                                    }] ;
+        });
+    }
+    
     //移除标记
     [self.httpRequests removeObjectForKey:@(context.serivceType)];
     [self.requestingMarks removeObjectForKey:@(context.serivceType)];
-
+    
     //发送通知
     [self _sendFailMsgWithError:error
                     serviceType:context.serivceType
