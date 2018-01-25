@@ -190,14 +190,9 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        if (HasLogin)
-        {
-            RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-            ifRespondsSelector(self.delegate, @selector(gameListContentPageCellDidTouchCell:CellModel:)){
-                [self.delegate gameListContentPageCellDidTouchCell:self CellModel:lotteryInfoModel] ;
-            }
-        }else{
-            showAlertView(@"提示信息", @"您尚未登入") ;
+        RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
+        ifRespondsSelector(self.delegate, @selector(gameListContentPageCellDidTouchCell:CellModel:)){
+            [self.delegate gameListContentPageCellDidTouchCell:self CellModel:lotteryInfoModel] ;
         }
     }
 }
