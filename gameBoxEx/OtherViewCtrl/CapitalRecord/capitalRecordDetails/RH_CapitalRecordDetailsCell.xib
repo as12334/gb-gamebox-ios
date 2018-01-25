@@ -238,11 +238,21 @@
                             <constraint firstAttribute="height" constant="1" id="quy-vf-SaF"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2F-6O-vtc" customClass="CLBorderView">
+                        <rect key="frame" x="0.0" y="175" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="Jgv-i0-5ex"/>
+                            <constraint firstAttribute="height" constant="1" id="XfF-cP-Pjr"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="ccf-2N-UJ3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1BE-sZ-3jv"/>
+                    <constraint firstItem="s2F-6O-vtc" firstAttribute="top" secondItem="ccf-2N-UJ3" secondAttribute="bottom" id="2dO-HG-tJd"/>
                     <constraint firstItem="A3I-xW-Nla" firstAttribute="top" secondItem="4Kl-ED-rE7" secondAttribute="bottom" constant="1" id="ARr-T1-wbl"/>
+                    <constraint firstAttribute="trailing" secondItem="s2F-6O-vtc" secondAttribute="trailing" id="CJ5-Ds-bSX"/>
                     <constraint firstAttribute="trailing" secondItem="Yxg-wB-5Fy" secondAttribute="trailing" constant="13" id="FeZ-FF-vlf"/>
                     <constraint firstItem="BJ8-dq-EcV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JLN-o8-EOo"/>
                     <constraint firstItem="Yxg-wB-5Fy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="N1d-nH-2Ub"/>
@@ -251,6 +261,7 @@
                     <constraint firstItem="A3I-xW-Nla" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PMJ-gD-Xyg"/>
                     <constraint firstItem="A3I-xW-Nla" firstAttribute="top" secondItem="4Kl-ED-rE7" secondAttribute="bottom" constant="1" id="PgL-L3-aUb"/>
                     <constraint firstItem="ccf-2N-UJ3" firstAttribute="top" secondItem="A3I-xW-Nla" secondAttribute="bottom" constant="1" id="Upf-ti-xsj"/>
+                    <constraint firstItem="s2F-6O-vtc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Wkj-fY-3Au"/>
                     <constraint firstAttribute="trailing" secondItem="ccf-2N-UJ3" secondAttribute="trailing" id="YDx-mc-nlE"/>
                     <constraint firstItem="BJ8-dq-EcV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="fgv-Ae-2k4"/>
                     <constraint firstItem="NYF-uE-7NX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mN6-nP-w3Y"/>
@@ -264,6 +275,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bankImageView" destination="Hik-8N-oYz" id="cfO-Ft-J6n"/>
+                <outlet property="bottomLineView" destination="s2F-6O-vtc" id="rww-CJ-WGs"/>
                 <outlet property="headerLineView" destination="NYF-uE-7NX" id="eXH-xb-xmz"/>
                 <outlet property="lineView" destination="UGV-Tz-6Wr" id="NEt-je-pWa"/>
                 <outlet property="personInfoView" destination="Yxg-wB-5Fy" id="yL1-zd-nzJ"/>

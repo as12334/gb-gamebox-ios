@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"系统消息";
     [self setupUI];
 }
 -(void)setupUI{
@@ -83,7 +84,7 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
 
-    [self.serviceRequest startV3LoadSystemNoticeDetailSearchId:self.systemModel.mID];
+    [self.serviceRequest startV3LoadSystemNoticeDetailSearchId:self.systemModel.mSearchId];
 }
 -(void)cancelLoadDataHandle
 {
