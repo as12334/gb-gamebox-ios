@@ -43,7 +43,7 @@
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        return UIStatusBarStyleDefault ;
+        return UIStatusBarStyleLightContent ;
     }
     return UIStatusBarStyleLightContent ;
 }
