@@ -178,7 +178,7 @@
         _quickSelectView.quickSelectBlock = ^(NSInteger selectRow) {
             if (weakSelf.quickSelectView.superview) {
                 [UIView animateWithDuration:0.2 animations:^{
-                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 200, 0);
+                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x -70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
 //                    CGRect frame = weakSelf.quickSelectView.frame;
                     frame.size.height = 0;
                     weakSelf.quickSelectView.frame = frame;
@@ -205,8 +205,7 @@
         self.quickSelectView.frame = frame;
         [self.view addSubview:self.quickSelectView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 80, weakSelf.quickSelectView.frame.origin.y, 150, 0);
-//            CGRect framee = self.quickSelectView.frame;
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
             frame.size.height = 200;
             self.quickSelectView.frame = frame;
         }];
@@ -214,8 +213,7 @@
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-//            CGRect framee = self.quickSelectView.frame;
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 150, 0);
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 120, 0);
             frame.size.height = 0;
             self.quickSelectView.frame = frame;
         } completion:^(BOOL finished) {
@@ -345,6 +343,7 @@
         }
        
     }
+
     [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
                                     EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
                                  SearchType:typeIdstr
