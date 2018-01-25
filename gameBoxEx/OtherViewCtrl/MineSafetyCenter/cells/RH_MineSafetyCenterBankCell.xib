@@ -34,7 +34,7 @@
                         <color key="textColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x8g-rq-TTK">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x8g-rq-TTK">
                         <rect key="frame" x="77" y="12" width="123" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -68,7 +68,7 @@
                 <outlet property="leftBankTitle" destination="10J-hV-Bg9" id="fyA-t6-sTT"/>
                 <outlet property="noBankLabel" destination="HSG-tY-rlw" id="Ih8-fA-tRc"/>
             </connections>
-            <point key="canvasLocation" x="-55.5" y="17"/>
+            <point key="canvasLocation" x="-315" y="-94"/>
         </tableViewCell>
     </objects>
 </document>
