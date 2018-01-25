@@ -33,6 +33,7 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property(nonatomic,strong,readonly) RH_MineInfoModel *mineSettingInfo ;
 @property(nonatomic,strong,readonly) NSArray<RH_BankInfoModel*> *bankList ;
 @property(nonatomic,strong,readonly) RH_WithDrawModel *userWithDrawInfo ;
+@property(nonatomic,strong,readonly) NSMutableArray *domainCheckErrorList ;
 
 -(BOOL)hasLogin ;
 -(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo ;
@@ -46,10 +47,16 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property (nonatomic,assign,readonly) BOOL isVoiceSwitch    ; //声音开关
 @property (nonatomic,assign,readonly) BOOL isScreenLock     ; //锁屏手势开关
 @property (nonatomic,strong,readonly) NSString *screenLockPassword ; //锁屏手势密码
+//记录最后一次登入的用户名，及时间
+@property(nonatomic,strong,readonly) NSString *loginUserName    ;
+@property(nonatomic,strong,readonly) NSString *loginTime        ;
 
 -(void)updatelanguageOption:(CLLanguageOption)languageOption ;
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;
 -(void)updateScreenLockFlag:(BOOL)lock      ;
 -(void)updateScreenLockPassword:(NSString*)lockPassrod ;
 -(NSString*)bankNameWithCode:(NSString*)bankCode ;
+
+-(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ;
+
 @end

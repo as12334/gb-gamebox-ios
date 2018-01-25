@@ -17,6 +17,8 @@
 #define  key_voiceSwitchFlag                             @"key_voiceSwitchFlag"
 #define  key_screenlockFlag                              @"key_screenlockFlag"
 #define  key_screenlockPassword                          @"key_screenlockPassword"
+#define  key_lastLoginUserName                           @"key_lastLoginUserName"
+#define  key_lastLoginTime                              @"key_lastLoginTime"
 
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly) RH_ServiceRequest * serviceRequest;
@@ -30,6 +32,7 @@
 @synthesize mineSettingInfo = _mineSettingInfo ;
 @synthesize bankList = _bankList ;
 @synthesize userWithDrawInfo = _userWithDrawInfo ;
+@synthesize domainCheckErrorList = _domainCheckErrorList ;
 
 +(instancetype)shareUserManager
 {
@@ -103,6 +106,15 @@
     _userWithDrawInfo = userWithDrawInfo ;
 }
 
+-(NSMutableArray *)domainCheckErrorList
+{
+    if (!_domainCheckErrorList){
+        _domainCheckErrorList = [[NSMutableArray alloc] init] ;
+    }
+    
+    return _domainCheckErrorList ;
+}
+
 #pragma mark- 通过bank code 取bank name
 -(NSString*)bankNameWithCode:(NSString*)bankCode
 {
@@ -173,6 +185,26 @@
                                                                                 forKey:key_screenlockPassword
                                                                                  async:YES] ;
     }
+}
+
+#pragma mark -
+-(NSString *)loginUserName
+{
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults stringForKey:key_lastLoginUserName] ;
+}
+
+-(NSString *)loginTime
+{
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults stringForKey:key_lastLoginTime] ;
+}
+
+-(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime
+{
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:userName?:@""  forKey:key_lastLoginUserName];
+    [userDefaults setObject:loginTime?:@""  forKey:key_lastLoginTime];
 }
 
 #pragma mark-
