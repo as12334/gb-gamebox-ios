@@ -73,6 +73,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 
 -(void)updateView
 {
+    
     if (UserSafetyInfo==nil){
         _modifySafetyStatus = ModifySafetyStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyInitInfo"] ;
@@ -85,17 +86,23 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             _modifySafetyStatus = ModifySafetyStatus_SetRealName ;
             showAlertView(@"用户姓名未设置", @"请先设置姓名") ;
             [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyNoRealName"] ;
+            RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            cell.textField.secureTextEntry = NO;
             [self.modifyButton setTitle:@"设置用户真实姓名" forState:UIControlStateNormal] ;
             return ;
         }else if (UserSafetyInfo.mHasPersimmionPwd==FALSE){
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_SetPermissionPasswordUsedCode:ModifySafetyStatus_SetPermissionPassword ;
             [self.tableViewManagement reloadDataWithPlistName:UserSafetyInfo.mIsOpenCaptch?@"ModifySafetyNoPermissionUsedCode":@"ModifySafetyNoPermission"] ;
             [self.modifyButton setTitle:@"设置安全密码" forState:UIControlStateNormal] ;
+            RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            cell.textField.secureTextEntry = NO;
             return ;
         }else{
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_UpdatePermissionPasswordUsedCode:ModifySafetyStatus_UpdatePermissionPassword ;
             [self.tableViewManagement reloadDataWithPlistName:UserSafetyInfo.mIsOpenCaptch?@"ModifySafetyPasswordUsedCode":@"ModifySafetyPassword"] ;
             [self.modifyButton setTitle:@"确定" forState:UIControlStateNormal] ;
+            RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            cell.textField.secureTextEntry = NO;
             return ;
         }
     }
@@ -182,6 +189,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         if (realName.length<1){
             showMessage(self.view, nil, @"请输入真实姓名");
             [self.userNameCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
@@ -195,16 +203,19 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         if (realName.length<1){
             showMessage(self.view, nil, @"请输入真实姓名");
             [self.userNameCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (newPassword.length<1){
             showMessage(self.view, nil, @"请输入新密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (confirmPassword.length<1){
             showMessage(self.view, nil, @"请重新输入新密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return ;
         }
         
         if (![newPassword isEqualToString:confirmPassword]) {
