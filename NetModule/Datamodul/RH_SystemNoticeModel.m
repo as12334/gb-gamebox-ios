@@ -22,6 +22,7 @@
         _mPageTotal = [info integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM];
         _mMinDate = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SYSTEMNOTICE_MINDATE]/1000.0] ;
         _mMaxDate = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SYSTEMNOTICE_MAXDATE]/1000.0] ;
+        _mSearchId = [info stringValueForKey:RH_GP_SYSTEMNOTICE_SEARCHID];
     }
     return self;
 }

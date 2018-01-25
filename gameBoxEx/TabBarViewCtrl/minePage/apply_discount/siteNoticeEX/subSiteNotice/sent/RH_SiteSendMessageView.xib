@@ -165,6 +165,9 @@
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="selectedCodeTextField:" destination="iN0-l3-epB" eventType="editingDidBegin" id="yPX-bg-C3X"/>
+                    </connections>
                 </textField>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5Y-1Z-m3S">
                     <rect key="frame" x="130" y="322" width="114" height="37"/>
