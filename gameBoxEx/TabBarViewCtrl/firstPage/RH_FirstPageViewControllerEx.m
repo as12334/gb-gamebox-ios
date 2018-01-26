@@ -27,6 +27,7 @@
 #import "RH_OpenActivityModel.h"
 #import "RH_NormalActivithyView.h"
 #import "RH_GameListViewController.h"
+#import "RH_ActivityStatusModel.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
@@ -467,6 +468,7 @@
         
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
+            self.normalActivityView.activityModel = homePageModel.mActivityInfo;
             
         }else{
             [self activityViewHide] ;
@@ -492,8 +494,9 @@
             }
         }] ;
     }else if (type == ServiceRequestTypeV3ActivityStatus){
-        self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
-        self.normalActivityView.activityModel = self.activityModel;
+        RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
+        self.normalActivityView.statusModel = statusModel;
+        
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
