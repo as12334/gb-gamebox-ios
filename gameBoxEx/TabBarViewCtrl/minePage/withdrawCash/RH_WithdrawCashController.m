@@ -17,6 +17,7 @@
 #import "RH_WithdrawCashTwoCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_BitCoinController.h"
+#import "RH_BankCardController.h"
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0  ,
     WithdrawCashStatus_NotEnoughCash      ,
@@ -97,6 +98,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonConfirmHandle {
     
+    if (self.withDrawModel.mHasBank == NO) {
+        showMessage(self.view, @"", @"没有银行卡")   ;
+        return;
+    }
     if (self.cashCell.textField.text.length == 0 ) {
         showMessage(self.view, @"", @"请输入取款金额");
         return;
@@ -169,7 +174,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 #pragma mark- updateView
 -(void)updateView
 {
-    
+    if (self.withDrawModel.mHasBank == NO) {
+        [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
+    }
     if (_withdrawCashStatus==WithdrawCashStatus_Init){
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawInit"] ;
         [self loadingIndicateViewDidTap:nil] ;
