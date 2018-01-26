@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="123.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_accountback" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-Yz-1ss">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_accountback" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-Yz-1ss">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_useravator" translatesAutoresizingMaskIntoConstraints="NO" id="Otx-Qr-Acz">
@@ -57,6 +57,9 @@
                     <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="vUN-3k-yDI"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="headImageView" destination="Otx-Qr-Acz" id="Qji-tn-IYz"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>
