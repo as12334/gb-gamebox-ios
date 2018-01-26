@@ -23,11 +23,12 @@
     RH_SiteMyMessageModel *model = ConvertToClassPointer(RH_SiteMyMessageModel,context);
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0,tableView.frameWidth-16, 0)];
     label.text = model.mAdvisoryTitle;
+    label.font = [UIFont systemFontOfSize:12.f];
     NSDictionary *attrs = @{NSFontAttributeName : label.font};
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [model.mAdvisoryTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    return 40+size.height;
+    return 60+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
