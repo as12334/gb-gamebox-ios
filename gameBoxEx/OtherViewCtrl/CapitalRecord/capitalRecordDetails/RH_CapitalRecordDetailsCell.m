@@ -47,7 +47,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_BankCardModel *cardModel = ConvertToClassPointer(RH_BankCardModel, MineSettingInfo.mBankCard);
-    [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.mbankUrl]];
+    [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.showBankURL]];
     RH_CapitalDetailModel *detailModel = ConvertToClassPointer(RH_CapitalDetailModel, context);
     for (int i=10; i<19; i++) {
         UILabel *label = [self viewWithTag:i];

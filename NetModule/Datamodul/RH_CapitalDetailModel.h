@@ -10,7 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 @interface RH_CapitalDetailModel : RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mAdministrativeFee;
-@property(nonatomic,assign,readonly)NSInteger mCreateTime;
+@property(nonatomic,strong,readonly)NSDate   *mCreateTime;
 @property(nonatomic,strong,readonly)NSString *mDeductFavorable;
 @property(nonatomic,strong,readonly)NSString *mFailureReason;
 @property(nonatomic,strong,readonly)NSString *mFundType;

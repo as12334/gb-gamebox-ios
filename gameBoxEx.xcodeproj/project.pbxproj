@@ -474,6 +474,12 @@
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
 		F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */; };
 		F681D2522019762A00A7C449 /* RH_CapitalRecordBlackLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */; };
+		F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D254201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m */; };
+		F681D259201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D257201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m */; };
+		F681D25A201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F681D258201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib */; };
+		F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D25C201ACD6E00A7C449 /* RH_SiteSystemDetailController.m */; };
+		F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */; };
+		F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */; };
 		F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */; };
 		F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */; };
 		F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACC7200457980077CB92 /* RH_BettingRecordDetailCell.xib */; };
@@ -1375,6 +1381,16 @@
 		F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordNameLabel.m; sourceTree = "<group>"; };
 		F681D2502019762A00A7C449 /* RH_CapitalRecordBlackLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordBlackLabel.h; sourceTree = "<group>"; };
 		F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordBlackLabel.m; sourceTree = "<group>"; };
+		F681D253201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMineNoticeDetailController.h; sourceTree = "<group>"; };
+		F681D254201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMineNoticeDetailController.m; sourceTree = "<group>"; };
+		F681D256201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMineNoticeDetailCell.h; sourceTree = "<group>"; };
+		F681D257201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMineNoticeDetailCell.m; sourceTree = "<group>"; };
+		F681D258201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteMineNoticeDetailCell.xib; sourceTree = "<group>"; };
+		F681D25B201ACD6E00A7C449 /* RH_SiteSystemDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteSystemDetailController.h; sourceTree = "<group>"; };
+		F681D25C201ACD6E00A7C449 /* RH_SiteSystemDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSystemDetailController.m; sourceTree = "<group>"; };
+		F681D25E201ACDB200A7C449 /* RH_SiteSystemDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteSystemDetailCell.h; sourceTree = "<group>"; };
+		F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteSystemDetailCell.m; sourceTree = "<group>"; };
+		F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteSystemDetailCell.xib; sourceTree = "<group>"; };
 		F6A2ACC2200457340077CB92 /* RH_BettingRecordDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailController.h; sourceTree = "<group>"; };
 		F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordDetailController.m; sourceTree = "<group>"; };
 		F6A2ACC5200457980077CB92 /* RH_BettingRecordDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailCell.h; sourceTree = "<group>"; };
@@ -3239,6 +3255,9 @@
 				F6FB6341200F851300EEED4E /* RH_SiteMineNoticeCell.h */,
 				F6FB6342200F851300EEED4E /* RH_SiteMineNoticeCell.m */,
 				F6FB6343200F851300EEED4E /* RH_SiteMineNoticeCell.xib */,
+				F681D256201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.h */,
+				F681D257201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m */,
+				F681D258201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3252,6 +3271,9 @@
 				F6FB6353200F851300EEED4E /* RH_MPSiteSystemNoticeCell.h */,
 				F6FB6354200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m */,
 				F6FB6355200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib */,
+				F681D25E201ACDB200A7C449 /* RH_SiteSystemDetailCell.h */,
+				F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */,
+				F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3382,6 +3404,8 @@
 				F6FB634F200F851300EEED4E /* cells */,
 				F6FB63C52011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.h */,
 				F6FB63C62011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m */,
+				F681D25B201ACD6E00A7C449 /* RH_SiteSystemDetailController.h */,
+				F681D25C201ACD6E00A7C449 /* RH_SiteSystemDetailController.m */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -3392,6 +3416,8 @@
 				F6FB6340200F851300EEED4E /* cells */,
 				F6FB63C82011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.h */,
 				F6FB63C92011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m */,
+				F681D253201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.h */,
+				F681D254201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -3491,6 +3517,7 @@
 				F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */,
 				79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */,
 				A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */,
+				F681D25A201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
 				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
 				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
@@ -3499,6 +3526,7 @@
 				F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
+				F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
 				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
 				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
@@ -3700,6 +3728,8 @@
 				F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */,
 				F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
+				F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */,
+				F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */,
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
@@ -3969,6 +3999,7 @@
 				F6FB6393200F851300EEED4E /* RH_GameNoticeDetailCell.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
+				F681D259201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m in Sources */,
 				B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
@@ -3998,6 +4029,7 @@
 				A07FE3731FEF791E00D5DF71 /* RH_NavigationUserInfoView.m in Sources */,
 				A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */,
 				F6FB6415201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m in Sources */,
+				F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */,
 				A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */,
