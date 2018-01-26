@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonConfirmHandle {
     
-    if (self.withDrawModel.mHasBank == NO) {
+    if (self.withDrawModel.mBankcardMap[@"1"] == NO) {
         showMessage(self.view, @"", @"没有银行卡")   ;
         return;
     }
