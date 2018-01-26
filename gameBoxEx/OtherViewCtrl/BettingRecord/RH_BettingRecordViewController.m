@@ -252,7 +252,7 @@
                           sender:self] ;
 #else
         RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-        NSString *url = [NSString stringWithFormat:@"/fund/betting/gameRecordDetail.html?searchId=%ld",bettingInfoModel.mID] ;
+        NSString *url = [NSString stringWithFormat:@"/fund/betting/gameRecordDetail.html?search.id=%ld",bettingInfoModel.mID] ;
         self.appDelegate.customUrl = url ;
         [self showViewController:[RH_CustomViewController viewController] sender:self] ;
 #endif

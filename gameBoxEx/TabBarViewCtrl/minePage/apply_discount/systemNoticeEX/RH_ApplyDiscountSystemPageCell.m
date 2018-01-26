@@ -123,6 +123,7 @@
 {
     if (type==ServiceRequestTypeV3SystemNotice )
     {
+        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

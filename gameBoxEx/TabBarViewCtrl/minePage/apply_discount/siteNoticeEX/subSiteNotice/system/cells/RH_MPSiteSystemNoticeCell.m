@@ -23,6 +23,7 @@
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel,context);
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0,tableView.frameWidth-16, 0)];
     label.text = model.mTitle;
+    label.font = [UIFont systemFontOfSize:12.f];
     NSDictionary *attrs = @{NSFontAttributeName : label.font};
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;

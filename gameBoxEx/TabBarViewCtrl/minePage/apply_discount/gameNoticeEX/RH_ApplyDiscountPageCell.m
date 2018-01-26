@@ -139,6 +139,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice )
     {
+        showErrorMessage(nil, error,nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

@@ -106,6 +106,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3GameNoticeDetail){
+         showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

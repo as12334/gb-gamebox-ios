@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"系统消息";
+    self.title = @"系统公告";
     [self setupUI];
 }
 -(void)setupUI{
@@ -111,6 +111,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3SystemNoticeDetail){
+        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }
