@@ -12,7 +12,7 @@
 #import "RH_SiteMyMessageModel.h"
 #import "RH_API.h"
 #import "RH_LoadingIndicateTableViewCell.h"
-
+#import "RH_SiteMineNoticeDetailController.h"
 @interface RH_ApplyDiscountSiteMineCell ()<MPSiteMessageHeaderViewDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
@@ -155,7 +155,11 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.pageLoadManager.currentDataCount){
+        RH_SiteMineNoticeDetailController *detailVC= [RH_SiteMineNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        [self showViewController:detailVC];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES] ;
+    }
 }
 
 #pragma mark -
@@ -246,13 +250,20 @@
         [self startUpdateData];
         self.headerView.statusMark = YES;
     }
-    //请求刷新后移除通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3SiteMessageMyMessage){
+         showErrorMessage(nil, error, nil) ;
+        [self loadDataFailWithError:error] ;
+    }
+    else if (type==ServiceRequestTypeV3MyMessageMyMessageDelete) {
+        showErrorMessage(nil, error, nil) ;
+        [self loadDataFailWithError:error] ;
+    }
+    else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
+        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

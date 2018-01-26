@@ -47,7 +47,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_BankCardModel *cardModel = ConvertToClassPointer(RH_BankCardModel, MineSettingInfo.mBankCard);
-    [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.mbankUrl]];
+    [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.showBankURL]];
     RH_CapitalDetailModel *detailModel = ConvertToClassPointer(RH_CapitalDetailModel, context);
     for (int i=10; i<19; i++) {
         UILabel *label = [self viewWithTag:i];
@@ -56,7 +56,7 @@
                 label.text = detailModel.mTransactionNo;
                 break;
             case 11:
-                label.text = [NSString stringWithFormat:@"%ld",detailModel.mCreateTime];
+                label.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd");
                 break;
             case 12:
                 label.text = detailModel.mTransactionWayName;
@@ -77,7 +77,7 @@
                 label.text = detailModel.mRechargeTotalAmount;
                 break;
             case 18:
-                label.text = detailModel.mStatus;
+                label.text = detailModel.mStatusName;
                 break;
                 
             default:

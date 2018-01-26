@@ -9,6 +9,7 @@
 #import "RH_SiteSendMessageView.h"
 #import "coreLib.h"
 #import "RH_API.h"
+#import "MBProgressHUD.h"
 @interface RH_SiteSendMessageView()<UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UITextField *titelField;
@@ -82,12 +83,13 @@
 }
 - (IBAction)submitClick:(id)sender {
     
-    self.submitBlock(self.titelField.text, self.contenTextView.text,self.codeTextField.text);
+    self.submitBlock([self.titelField.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]], self.contenTextView.text,self.codeTextField.text);
     [self.titelField resignFirstResponder] ;
     [self.codeTextField resignFirstResponder] ;
     [self.contenTextView resignFirstResponder];
     //注册通知
    [[NSNotificationCenter defaultCenter] postNotificationName:@"noti1" object:nil];
+    
  
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

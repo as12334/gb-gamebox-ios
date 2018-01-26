@@ -16,7 +16,7 @@
 {
     if (self = [super initWithInfoDic:info]) {
         _mAdministrativeFee = [info stringValueForKey:RH_GP_CAPITALDETAIL_ADMINISTRATIVEFEE];
-        _mCreateTime = [info integerValueForKey:RH_GP_CAPITALDETAIL_CREATETIME];
+        _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_CAPITALDETAIL_CREATETIME]/1000.0] ;
         _mDeductFavorable = [info stringValueForKey:RH_GP_CAPITALDETAIL_DEDUCTFAVORABLE];
         _mFailureReason = [info stringValueForKey:RH_GP_CAPITALDETAIL_FAILUREREASON];
         _mFundType = [info stringValueForKey:RH_GP_CAPITALDETAIL_FUNDTYPE];

@@ -41,4 +41,7 @@
     }
 }
 
+- (IBAction)removeFromeSuperView:(id)sender {
+    [self removeFromSuperview];
+}
 @end

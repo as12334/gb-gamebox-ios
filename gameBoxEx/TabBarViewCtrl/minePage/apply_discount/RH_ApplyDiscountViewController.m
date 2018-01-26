@@ -71,6 +71,11 @@
     }
     return _headerView;
 }
+#pragma mark 离开此控制器，移除通知
+-(void)viewWillDisappear:(BOOL)animated
+{
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 #pragma mark 分页视图
 -(CLPageView *)pageView
 {

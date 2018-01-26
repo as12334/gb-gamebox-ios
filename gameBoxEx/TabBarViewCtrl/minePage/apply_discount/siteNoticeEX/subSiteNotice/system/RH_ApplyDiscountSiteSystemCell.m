@@ -12,6 +12,7 @@
 #import "RH_SiteMessageModel.h"
 #import "RH_API.h"
 #import "RH_LoadingIndicateTableViewCell.h"
+#import "RH_SiteSystemDetailController.h"
 @interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
@@ -145,10 +146,15 @@
     }
     [self.deleteModelArray removeAllObjects];
     [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.pageLoadManager.currentDataCount){
+        RH_SiteSystemDetailController *detailVC= [RH_SiteSystemDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        [self showViewController:detailVC];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES] ;
+    }
 }
 -(RH_LoadingIndicateTableViewCell*)loadingIndicateTableViewCell
 {
@@ -245,6 +251,15 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3SiteMessage){
+        showErrorMessage(nil, error, nil) ;
+        [self loadDataFailWithError:error] ;
+    }
+    else if (type==ServiceRequestTypeV3SystemMessageDelete) {
+        showErrorMessage(nil, error, nil) ;
+        [self loadDataFailWithError:error] ;
+    }
+    else if (type == ServiceRequestTypeV3SystemMessageYes){
+        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

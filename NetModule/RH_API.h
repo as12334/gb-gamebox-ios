@@ -412,6 +412,16 @@
 #define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
 
 
+#pragma mark - V3 站点信息-系统消息详情-SiteMsgSysMsg模型
+#define RH_GP_SITEMSGSYSMSG_CONTENT         @"content"
+#define RH_GP_SITEMSGSYSMSG_ID              @"id"
+#define RH_GP_SITEMSGSYSMSG_LINK            @"link"
+#define RH_GP_SITEMSGSYSMSG_PUBLISHTIME     @"publishTime"
+#define RH_GP_SITEMSGSYSMSG_READ            @"read"
+#define RH_GP_SITEMSGSYSMSG_SEARCHID        @"searchId"
+#define RH_GP_SITEMSGSYSMSG_TITLE           @"title"
+
+
 #pragma mark -
 #pragma mark - 回收接口
 //api的路径
@@ -586,7 +596,6 @@
 #define RH_GP_UPDATESAFEPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
 #define RH_GP_UPDATESAFEPASSWORD_REMAINTIMES                @"remainTimes"
 
-
 #pragma mark - V3 修改用户密码
 #define RH_API_NAME_MINEMODIFYPASSWORD                   @"mobile-api/mineOrigin/updateLoginPassword.html"
 //请求参数
@@ -670,7 +679,7 @@
 #pragma mark - V3 添加比特币
 #define RH_API_NAME_ADDBTC                  @"mobile-api/userInfoOrigin/submitBtc.html"
 //请求参数
-#define RH_SP_ADDBTC_BANKCARDNUMBER          @"bankcardNumber"
+#define RH_SP_ADDBTC_BANKCARDNUMBER          @"result.bankcardNumber"
 //返回bit 模型
 
 #pragma mark - V3 站点信息 系统信息列表
