@@ -10,7 +10,7 @@
 
 @interface RH_CapitalInfoModel : RH_BasicModel
 @property(nonatomic,assign,readonly)NSInteger mId;
-@property(nonatomic,strong,readonly)NSDate *mCreateTime;
+@property(nonatomic,strong,readonly)NSString *mCreateTime;
 @property(nonatomic,strong,readonly)NSString *mTransactionMoney;
 @property(nonatomic,strong,readonly)NSString *mTransactionType;
 @property(nonatomic,strong,readonly)NSString *mTransaction_typeName;
