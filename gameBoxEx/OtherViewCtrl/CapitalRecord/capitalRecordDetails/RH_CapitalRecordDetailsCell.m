@@ -56,7 +56,7 @@
                 label.text = detailModel.mTransactionNo;
                 break;
             case 11:
-                label.text = [NSString stringWithFormat:@"%ld",detailModel.mCreateTime];
+                label.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd");
                 break;
             case 12:
                 label.text = detailModel.mTransactionWayName;
@@ -77,7 +77,7 @@
                 label.text = detailModel.mRechargeTotalAmount;
                 break;
             case 18:
-                label.text = detailModel.mStatus;
+                label.text = detailModel.mStatusName;
                 break;
                 
             default:

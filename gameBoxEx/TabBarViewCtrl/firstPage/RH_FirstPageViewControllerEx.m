@@ -468,6 +468,7 @@
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
             
+            
         }else{
             [self activityViewHide] ;
         }
@@ -492,8 +493,7 @@
             }
         }] ;
     }else if (type == ServiceRequestTypeV3ActivityStatus){
-        self.activityModel = ConvertToClassPointer(RH_ActivityModel, data);
-        self.normalActivityView.activityModel = self.activityModel;
+        
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
