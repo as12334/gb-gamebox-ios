@@ -273,7 +273,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 //            return [self.withDrawModel.mBankcardMap objectForKey:@"2"] ;
             return @{
                      @"title":@"比特币地址",
-                     @"detailTitle":MineSettingInfo.mBitCode.mBtcNumber
+                     @"detailTitle":MineSettingInfo.mBitCode.mBtcNumber?:@""
                          };
         }
     }else if (indexPath.section==2){
