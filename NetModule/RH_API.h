@@ -596,7 +596,6 @@
 #define RH_GP_UPDATESAFEPASSWORD_ISOPENCAPTCHA              @"isOpenCaptcha"
 #define RH_GP_UPDATESAFEPASSWORD_REMAINTIMES                @"remainTimes"
 
-
 #pragma mark - V3 修改用户密码
 #define RH_API_NAME_MINEMODIFYPASSWORD                   @"mobile-api/mineOrigin/updateLoginPassword.html"
 //请求参数

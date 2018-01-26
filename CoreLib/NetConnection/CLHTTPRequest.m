@@ -176,7 +176,8 @@
              type:(HTTPRequestType)type
 {
     if (self = [super init]) {
-
+        _type = type ;
+        
         //扩展路径
         if (path.length) { //移除头尾的/符
             if (url.length){

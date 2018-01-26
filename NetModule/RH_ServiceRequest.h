@@ -99,6 +99,12 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
                 serviceType:(ServiceRequestType)type
     didFailRequestWithError:(NSError *)error;
 
+
+//增加 特别 error code 的处理回调
+- (void)     serviceRequest:(RH_ServiceRequest *)serviceRequest
+                serviceType:(ServiceRequestType)type
+             SpecifiedError:(NSError *)error;
+
 @end
 
 //------------------------------------------------------------------

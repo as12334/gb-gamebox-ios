@@ -370,6 +370,16 @@
     return _serviceRequest ;
 }
 
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type SpecifiedError:(NSError *)error
+{
+    if (error.code==600 || error.code==1){
+        showMessage(nil, error.code==600?@"session过期":@"该帐号已在另一设备登录", @"请重新登入...");
+        [self.appDelegate updateLoginStatus:NO] ;
+        [self loginButtonItemHandle] ;
+    }
+}
+
+#pragma mark -
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     if (!_contentLoadingIndicateView){

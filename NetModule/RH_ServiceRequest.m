@@ -1665,12 +1665,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             default:
                 break;
         }
-        
-        //处理重要的 error 信息
-        if (tempError.code==600){//session 过期
-            [self.appDelegate updateLoginStatus:NO] ;
-            showAlertView(@"提示信息", @"session已过期,请重新登入") ;
-        }
     }
 
     return YES;
@@ -1684,7 +1678,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (context.serivceType==ServiceRequestTypeDomainCheck){
         NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *errorCode = [NSString stringWithFormat:@"%d",error.code] ;
+            NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
             NSString *errorMessage = [error.localizedDescription copy] ;
             [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
                                                                                     RH_SP_COLLECTAPPERROR_CODE:errorCode,
@@ -1717,7 +1711,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (self.failBlock) {
         self.failBlock(self, serviceType, error);
     }
-
+    
+    //特点  error 信息，统一处理 。
+    if (error.code==600 || error.code==1)
+    {
+        //session 过期 ,用户未登录
+        ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
+            [self.delegate serviceRequest:self serviceType:serviceType SpecifiedError:error] ;
+        }
+    }
+    
+    
     //移除上下文
     [self removeContextForType:serviceType];
 }
