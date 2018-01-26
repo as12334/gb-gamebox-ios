@@ -679,7 +679,7 @@
 #pragma mark - V3 添加比特币
 #define RH_API_NAME_ADDBTC                  @"mobile-api/userInfoOrigin/submitBtc.html"
 //请求参数
-#define RH_SP_ADDBTC_BANKCARDNUMBER          @"bankcardNumber"
+#define RH_SP_ADDBTC_BANKCARDNUMBER          @"result.bankcardNumber"
 //返回bit 模型
 
 #pragma mark - V3 站点信息 系统信息列表

@@ -317,7 +317,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         }else if (indexPath.item == 2){ //卡号
             return MineSettingInfo.mBankCard.mBankCardNumber ;
         }else if (indexPath.item == 3){ //开户行
-            return MineSettingInfo.mBankCard.mBankCardMasterName ;
+            return MineSettingInfo.mBankCard.mBankDeposit ;
         }
     }else if (_bankCardStatus == BankCardStatus_None){
         if (indexPath.item == 0){ //真实姓名
