@@ -391,41 +391,45 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             
             if (totalFail>=_urlArray.count){
                 [self.contentLoadingIndicateView hiddenView] ;
-                //上传错误信息
-                NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
-                [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
-                [dictError setValue:self.labIPAddr.text?:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
-                if ([RH_UserInfoManager shareUserManager].loginUserName.length){
-                    [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
-                                 forKey:RH_SP_COLLECTAPPERROR_USERNAME] ;
-                    [dictError setValue:[RH_UserInfoManager shareUserManager].loginTime
-                                 forKey:RH_SP_COLLECTAPPERROR_LASTLOGINTIME] ;
-                }
-                NSMutableString *domainList = [[NSMutableString alloc] init] ;
-                NSMutableString *errorCodeList = [[NSMutableString alloc] init] ;
-                NSMutableString *errorMessageList = [[NSMutableString alloc] init] ;
-                for (NSDictionary *dictTmp in [RH_UserInfoManager shareUserManager].domainCheckErrorList) {
-                    if (domainList.length){
-                        [domainList appendString:@";"] ;
-                    }
-                    
-                    if (errorCodeList.length){
-                        [errorCodeList appendString:@";"] ;
-                    }
-                    
-                    if (errorMessageList.length){
-                        [errorMessageList appendString:@";"] ;
-                    }
-                    
-                    [domainList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_DOMAIN]] ;
-                    [errorCodeList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_CODE]] ;
-                    [errorMessageList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE]] ;
-                }
                 
-                [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
-                [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
-                [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
-                [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
+                if (![SITE_TYPE isEqualToString:@"integratedv3oc"])
+                {
+                    //上传错误信息
+                    NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
+                    [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
+                    [dictError setValue:self.labIPAddr.text?:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
+                    if ([RH_UserInfoManager shareUserManager].loginUserName.length){
+                        [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
+                                     forKey:RH_SP_COLLECTAPPERROR_USERNAME] ;
+                        [dictError setValue:[RH_UserInfoManager shareUserManager].loginTime
+                                     forKey:RH_SP_COLLECTAPPERROR_LASTLOGINTIME] ;
+                    }
+                    NSMutableString *domainList = [[NSMutableString alloc] init] ;
+                    NSMutableString *errorCodeList = [[NSMutableString alloc] init] ;
+                    NSMutableString *errorMessageList = [[NSMutableString alloc] init] ;
+                    for (NSDictionary *dictTmp in [RH_UserInfoManager shareUserManager].domainCheckErrorList) {
+                        if (domainList.length){
+                            [domainList appendString:@";"] ;
+                        }
+                        
+                        if (errorCodeList.length){
+                            [errorCodeList appendString:@";"] ;
+                        }
+                        
+                        if (errorMessageList.length){
+                            [errorMessageList appendString:@";"] ;
+                        }
+                        
+                        [domainList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_DOMAIN]] ;
+                        [errorCodeList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_CODE]] ;
+                        [errorMessageList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE]] ;
+                    }
+                    
+                    [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
+                    [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
+                    [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
+                    [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
+                }
                 
                 showAlertView(@"系统提示", @"没有检测到可用的主域名!");
             }
