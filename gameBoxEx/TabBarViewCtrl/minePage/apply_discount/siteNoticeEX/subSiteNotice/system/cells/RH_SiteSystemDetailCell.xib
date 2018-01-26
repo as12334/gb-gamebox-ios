@@ -53,6 +53,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Cde-s3-QEh" secondAttribute="bottom" constant="9" id="4xs-D3-y5x"/>
                     <constraint firstItem="Cde-s3-QEh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="Pvh-GD-Sya"/>
@@ -60,6 +61,13 @@
                     <constraint firstItem="Cde-s3-QEh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="usV-Ze-Ze5"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="backDropView" destination="Cde-s3-QEh" id="7LR-Ab-4Xq"/>
+                <outlet property="contextLabel" destination="pFH-Nu-cuF" id="mCN-NS-KjT"/>
+                <outlet property="timeLabel" destination="aga-Ip-Vgw" id="aeH-9P-NOM"/>
+                <outlet property="titleLabel" destination="cRM-gm-pXE" id="qNX-5U-9PF"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

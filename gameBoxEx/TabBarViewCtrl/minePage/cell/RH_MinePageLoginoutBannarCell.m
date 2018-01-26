@@ -9,6 +9,12 @@
 #import "RH_MinePageLoginoutBannarCell.h"
 #import "coreLib.h"
 
+@interface RH_MinePageLoginoutBannarCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+
+@end
+
+
 @implementation RH_MinePageLoginoutBannarCell
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -19,8 +25,17 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.headImageView.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *panGuset = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headImageViewClick)];
+    [self.headImageView addGestureRecognizer:panGuset];
 }
 - (IBAction)loginClick:(id)sender {
+    self.block();
+}
+
+-(void)headImageViewClick
+{
     self.block();
 }
 

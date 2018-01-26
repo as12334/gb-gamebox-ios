@@ -83,7 +83,13 @@
 {
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"退出失败") ;
+            if (error.code==1){
+                [self.appDelegate updateLoginStatus:NO] ;
+                showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+                [self backBarButtonItemHandle] ;
+            }else{
+                showErrorMessage(self.view, error, @"退出失败") ;
+            }
         }] ;
     }
 }

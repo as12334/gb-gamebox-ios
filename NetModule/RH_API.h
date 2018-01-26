@@ -412,6 +412,16 @@
 #define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
 
 
+#pragma mark - V3 站点信息-系统消息详情-SiteMsgSysMsg模型
+#define RH_GP_SITEMSGSYSMSG_CONTENT         @"content"
+#define RH_GP_SITEMSGSYSMSG_ID              @"id"
+#define RH_GP_SITEMSGSYSMSG_LINK            @"link"
+#define RH_GP_SITEMSGSYSMSG_PUBLISHTIME     @"publishTime"
+#define RH_GP_SITEMSGSYSMSG_READ            @"read"
+#define RH_GP_SITEMSGSYSMSG_SEARCHID        @"searchId"
+#define RH_GP_SITEMSGSYSMSG_TITLE           @"title"
+
+
 #pragma mark -
 #pragma mark - 回收接口
 //api的路径

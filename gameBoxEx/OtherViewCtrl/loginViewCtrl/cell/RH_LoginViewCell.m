@@ -60,6 +60,7 @@
     [self.userNameView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入用户名" attributes:@{NSFontAttributeName : self.userNameView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
     [self.userPwdView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSFontAttributeName : self.userPwdView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
     [self.verifyCodeView.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入验证码" attributes:@{NSFontAttributeName : self.verifyCodeView.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]];
+    self.verifyCodeView.textField.secureTextEntry = NO;
     
     self.userNameView.layer.cornerRadius = 2.f ;
     self.userNameView.layer.borderColor = [UIColor grayColor].CGColor ;

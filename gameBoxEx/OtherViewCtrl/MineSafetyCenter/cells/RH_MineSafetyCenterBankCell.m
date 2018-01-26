@@ -44,7 +44,8 @@
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
     if (bankModel.mBankCardNumber) {
         [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.showBankURL]]];
-        self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
+//        self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
+        self.bankCardNumber.text =  [NSString stringWithFormat:@"%@",bankModel.mBankCardNumber ];
         self.noBankLabel.hidden = YES;
     }else
     {

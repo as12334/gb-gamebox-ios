@@ -39,7 +39,8 @@
 #import "RH_SendMessageVerityModel.h"
 #import "RH_SiteMyMessageDetailModel.h"
 #import "RH_WithDrawModel.h"
-
+#import "RH_SiteMsgSysMsgModel.h"
+#import "RH_ActivityStatusModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -705,7 +706,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:bitNumber?:@""}
+                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:(bitNumber?:@"")}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3AddBitCoin
@@ -1464,7 +1465,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 case ServiceRequestTypeV3ActivityStatus:
             {
-                resultSendData = [[RH_ActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+                resultSendData = [[RH_ActivityStatusModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
             }
                 break;
                 case ServiceRequestTypeV3OpenActivity:
@@ -1607,7 +1608,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
-             
+             case ServiceRequestTypeV3SiteMessageDetail:
+            {
+                resultSendData =[[RH_SiteMsgSysMsgModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
             case ServiceRequestTypeV3GameLink:
             {
                 resultSendData =[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;

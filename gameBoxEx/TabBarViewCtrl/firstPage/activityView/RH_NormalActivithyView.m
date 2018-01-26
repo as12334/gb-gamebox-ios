@@ -14,13 +14,18 @@
 @property (weak, nonatomic) IBOutlet UIView *activityRuleDropView;
 @property (weak, nonatomic) IBOutlet UIView *openActivityView;
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
-@property (weak, nonatomic) IBOutlet UILabel *gainActivityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextOpentimeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *openActivityBtn;
+//normalActivity
 @property (weak, nonatomic) IBOutlet UIButton *openActivityFriestBtn;
+@property (weak, nonatomic) IBOutlet UILabel *nextOpentimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityTimesLabel;
+
+//openActivity
+@property (weak, nonatomic) IBOutlet UILabel *gainActivityLabel;
+@property (weak, nonatomic) IBOutlet UIButton *openActivityBtn;
 @property (weak, nonatomic) IBOutlet UILabel *gainTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gainDrawTimeLabel;
+
+
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (nonatomic,strong)NSString *getCurrentTime;
 @end
@@ -40,8 +45,38 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    [self.descriptionTextView setEditable:NO];
     
 }
+-(void)setStatusModel:(RH_ActivityStatusModel *)statusModel
+{
+    if (![_statusModel isEqual:statusModel]) {
+        _statusModel = statusModel;
+        [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
+        [self.activityTimesLabel setText:self.statusModel.mDrawTimes];
+        if ([self.statusModel.mDrawTimes isEqualToString:@"-1"]) {
+            [self.activityTimesLabel setText:@"活动已结束"];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
+        else if ([self.statusModel.mDrawTimes isEqualToString:@"-5"]){
+            [self.activityTimesLabel setText:@"红包已抢光"];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
+        else if ([self.statusModel.mDrawTimes isEqualToString:@"0"]){
+            [self.activityTimesLabel setText:@"红包已抢光"];
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = NO;
+        }
+        else
+        {
+            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
+            self.openActivityFriestBtn.userInteractionEnabled = YES;
+        }
+    }
+}
+
 -(void)setActivityModel:(RH_ActivityModel *)activityModel
 {
     if (![_activityModel isEqual:activityModel]){

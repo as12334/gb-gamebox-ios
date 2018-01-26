@@ -9,6 +9,7 @@
 #import "RH_SiteSystemDetailController.h"
 #import "RH_SiteSystemDetailCell.h"
 #import "RH_SiteMessageModel.h"
+#import "RH_SiteMsgSysMsgModel.h"
 @interface RH_SiteSystemDetailController ()
 
 @property (nonatomic,strong)RH_SiteMessageModel *messageModel;
@@ -27,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我的消息详情";
+    self.title = @"系统消息详情";
     [self setupUI];
 }
 -(void)setupUI{
@@ -95,9 +96,9 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3SiteMessageDetail){
-//        RH_SiteMyMessageDetailModel *detailModel = ConvertToClassPointer(RH_SiteMyMessageDetailModel, data);
-//        [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
-//                            totalCount:detailModel?1:0] ;
+        RH_SiteMsgSysMsgModel *detailModel = ConvertToClassPointer(RH_SiteMsgSysMsgModel, data);
+        [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
+                            totalCount:detailModel?1:0] ;
     }
 }
 
