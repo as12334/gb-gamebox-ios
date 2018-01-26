@@ -431,7 +431,7 @@
 
 #pragma mark - 域名 check失败，上传接口
 //api的路径
-#define RH_API_NAME_COLLECTAPPERROR                        @"boss/facade/collectAppError"
+#define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppError.html"
 //请求参数
 #define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
 #define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
