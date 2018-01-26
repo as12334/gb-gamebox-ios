@@ -174,9 +174,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 #pragma mark- updateView
 -(void)updateView
 {
-    if (self.withDrawModel.mHasBank == NO) {
-        [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
-    }
     if (_withdrawCashStatus==WithdrawCashStatus_Init){
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawInit"] ;
         [self loadingIndicateViewDidTap:nil] ;
@@ -186,6 +183,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashHasOrder"];
     }else {
         [self.contentLoadingIndicateView hiddenView] ;
+        
+        if (self.withDrawModel.mBankcardMap[@"1"] == nil) {
+            [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
+        }
         
         if (_withdrawCashStatus==WithdrawCashStatus_NotEnoughCash){
             [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashLow"] ;
@@ -335,6 +336,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     {
         [self.contentLoadingIndicateView hiddenView] ;
         self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
+        
         if (self.withDrawModel){
             _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
             [self setNeedUpdateView];

@@ -410,7 +410,7 @@
 #define RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME                   @"customBankName"
 #define RH_GP_WITHDRAWBANKCARD_TYPE                             @"type"
 #define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
-
+#define RH_GP_WITHDRAWBANKCARD_BANKURL                         @"bankUrl"
 
 #pragma mark - V3 站点信息-系统消息详情-SiteMsgSysMsg模型
 #define RH_GP_SITEMSGSYSMSG_CONTENT         @"content"

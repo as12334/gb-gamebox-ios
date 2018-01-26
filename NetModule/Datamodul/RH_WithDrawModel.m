@@ -9,8 +9,10 @@
 #import "RH_WithDrawModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
+#import "RH_APPDelegate.h"
 
 @implementation BankcardMapModel
+@synthesize showBankURL =_showBankURL;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info])
@@ -27,9 +29,27 @@
          _mType = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_TYPE];
          _mCustomBankName = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME];
          _mBankcardNumber = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_BANKCARDNUMBER];
+        _mBankUrl = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_BANKURL];
     }
     return self;
 }
+
+-(NSString *)showBankURL
+{
+    if (!_showBankURL){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (_mBankUrl.length){
+            if ([[_mBankUrl substringToIndex:1] isEqualToString:@"/"]){
+                _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mBankUrl] ;
+            }else {
+                _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mBankUrl] ;
+            }
+        }
+    }
+    
+    return _showBankURL ;
+}
+
 +(NSMutableArray *)dataArrayWithInfoDict:(NSDictionary *)infoDict
 {
     NSMutableArray *tmpArray = [NSMutableArray array] ;
