@@ -28,6 +28,7 @@
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
+		79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
 		79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */; };
@@ -604,6 +605,8 @@
 		79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoModel.m; sourceTree = "<group>"; };
 		79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetailModel.h; sourceTree = "<group>"; };
 		79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetailModel.m; sourceTree = "<group>"; };
+		79D6E6D0201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgSysMsgModel.h; sourceTree = "<group>"; };
+		79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgSysMsgModel.m; sourceTree = "<group>"; };
 		79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageModel.h; sourceTree = "<group>"; };
 		79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMyMessageModel.m; sourceTree = "<group>"; };
 		79E223F7200CC210006B0450 /* RH_DiscountActivityTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityTypeModel.h; sourceTree = "<group>"; };
@@ -2338,6 +2341,8 @@
 				79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */,
 				79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */,
 				79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */,
+				79D6E6D0201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.h */,
+				79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3816,6 +3821,7 @@
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
+				79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */,
 				79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */,
 				79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,

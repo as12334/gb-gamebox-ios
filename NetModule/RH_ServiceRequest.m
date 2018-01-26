@@ -705,7 +705,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:bitNumber?:@""}
+                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:(bitNumber?:@"")}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3AddBitCoin

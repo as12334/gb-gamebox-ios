@@ -29,6 +29,7 @@
     // Do any additional setup after loading the view.
     self.title = @"我的消息详情";
     [self setupUI];
+    [self.serviceRequest startV3LoadSystemMessageDetailWithSearchId:@"de40d1d84f994d604e27503fd11c36ff"];
 }
 -(void)setupUI{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
