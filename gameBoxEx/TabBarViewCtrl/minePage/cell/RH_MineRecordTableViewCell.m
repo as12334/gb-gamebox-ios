@@ -80,7 +80,7 @@
 - (BOOL)staticCollectionView:(CLStaticCollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ifRespondsSelector(self.delegate, @selector(mineRecordTableViewCellDidTouchCell:CellInfo:)){
-        [self.delegate mineRecordTableViewCellDidTouchCell:self CellInfo:nil] ;
+        [self.delegate mineRecordTableViewCellDidTouchCell:self CellInfo:self.rowsList[indexPath.section*lineCellCount + indexPath.item]] ;
     }
     
     return NO ;
