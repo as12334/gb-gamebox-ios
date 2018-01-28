@@ -18,6 +18,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_BitCoinController.h"
 #import "RH_BankCardController.h"
+
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0  ,
     WithdrawCashStatus_NotEnoughCash      ,
