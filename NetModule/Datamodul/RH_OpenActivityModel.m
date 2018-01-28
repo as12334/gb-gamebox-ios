@@ -19,6 +19,9 @@
         _mGameNum = [info stringValueForKey:RH_GP_OPENACTIVITY_GAMENUM] ;
         _mNextLotteryTime = [info stringValueForKey:RH_GP_OPENACTIVITY_NEXTLOTTERYTIME];
         _mToken = [info stringValueForKey:RH_GP_OPENACTIVITY_TOKEN];
+        _mApplyId = [info stringValueForKey:RH_GP_OPENACTIVITY_APPLYID];
+        _mRecordId = [info stringValueForKey:RH_GP_OPENACTIVITY_RECORDID];
+        _mId = [info stringValueForKey:RH_GP_OPENACTIVITY_ID];
     }
     return self ;
 }
