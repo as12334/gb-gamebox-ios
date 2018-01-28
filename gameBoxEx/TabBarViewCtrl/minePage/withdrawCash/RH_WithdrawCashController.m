@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonConfirmHandle {
     
-    if (self.withDrawModel.mBankcardMap[@"1"] == NO) {
+    if (self.withDrawModel.mBankcardMap[@"1"] == nil) {
         showMessage(self.view, @"", @"没有银行卡")   ;
         return;
     }
@@ -174,9 +174,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 #pragma mark- updateView
 -(void)updateView
 {
-    if (self.withDrawModel.mHasBank == NO) {
-        [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
-    }
+    
     if (_withdrawCashStatus==WithdrawCashStatus_Init){
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawInit"] ;
         [self loadingIndicateViewDidTap:nil] ;
@@ -184,6 +182,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     }else if (_withdrawCashStatus == WithdrawCashStatus_HasOrder) {
         [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashHasOrder"];
+        self.mainSegmentControl.hidden = YES;
+        self.contentTableView.tableFooterView =  nil;
     }else {
         [self.contentLoadingIndicateView hiddenView] ;
         
@@ -343,7 +343,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
-        showMessage(self.contentView, @"", @"提交取款信息成功");
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+        if (dict.count == 0) {
+            _withdrawCashStatus = WithdrawCashStatus_HasOrder;
+            [self setNeedUpdateView];
+            return ;
+        }
+        showMessage(self.contentView, @"", dict[@"msg"]);
+//        _withdrawCashStatus = WithdrawCashStatus_Init;
         [self setNeedUpdateView];
     }
 }
