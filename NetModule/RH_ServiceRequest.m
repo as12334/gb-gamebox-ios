@@ -1005,6 +1005,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 取款验证安全密码
+-(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:originPwd forKey:RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyPasswordAutuentification
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1317,7 +1333,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
+    }else if (type == ServiceRequestTypeCollectAPPError){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
     }
+    
 //    else if (type==ServiceRequestTypeV3AddApplyDiscounts){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1645,6 +1669,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3LoadGameType:
             {
                   resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+            }
+                break;
+            case ServiceRequestTypeV3SafetyPasswordAutuentification:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
             }
                 break;
                 

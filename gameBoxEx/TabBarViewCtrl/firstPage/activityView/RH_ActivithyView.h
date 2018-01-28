@@ -17,6 +17,7 @@
 @protocol ActivithyViewDelegate
 @optional
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView ;
+-(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView;
 @end
 
 @interface RH_ActivithyView : CLSelectionControl
