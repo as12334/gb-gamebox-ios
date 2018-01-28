@@ -410,7 +410,7 @@
 #define RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME                   @"customBankName"
 #define RH_GP_WITHDRAWBANKCARD_TYPE                             @"type"
 #define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
-
+#define RH_GP_WITHDRAWBANKCARD_BANKURL                         @"bankUrl"
 
 #pragma mark - V3 站点信息-系统消息详情-SiteMsgSysMsg模型
 #define RH_GP_SITEMSGSYSMSG_CONTENT         @"content"
@@ -431,7 +431,7 @@
 
 #pragma mark - 域名 check失败，上传接口
 //api的路径
-#define RH_API_NAME_COLLECTAPPERROR                        @"boss/facade/collectAppError"
+#define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppError.html"
 //请求参数
 #define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
 #define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
@@ -496,7 +496,9 @@
 #define RH_GP_OPENACTIVITY_GAMENUM                      @"gameNum"
 #define RH_GP_OPENACTIVITY_NEXTLOTTERYTIME              @"nextLotteryTime"
 #define RH_GP_OPENACTIVITY_TOKEN                        @"token"
-
+#define RH_GP_OPENACTIVITY_ID                           @"id"
+#define RH_GP_OPENACTIVITY_APPLYID                      @"applyId"
+#define RH_GP_OPENACTIVITY_RECORDID                     @"recordId"
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径

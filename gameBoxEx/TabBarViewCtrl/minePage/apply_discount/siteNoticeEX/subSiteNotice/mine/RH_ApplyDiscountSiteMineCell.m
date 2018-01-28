@@ -183,7 +183,7 @@
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
     return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
-                                                          pageLoadControllerClass:[CLArrayPageLoadController class]
+                                                          pageLoadControllerClass:nil
                                                                          pageSize:[self defaultPageSize]
                                                                      startSection:0
                                                                          startRow:0

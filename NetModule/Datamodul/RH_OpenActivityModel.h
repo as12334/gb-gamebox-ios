@@ -13,4 +13,7 @@
 @property(nonatomic,strong,readonly) NSString  *mToken;
 @property(nonatomic,strong,readonly) NSString  *mAward;
 @property(nonatomic,strong,readonly) NSString  *mGameNum;
+@property(nonatomic,strong,readonly) NSString  *mApplyId;
+@property(nonatomic,strong,readonly) NSString  *mRecordId;
+@property(nonatomic,strong,readonly) NSString  *mId;
 @end

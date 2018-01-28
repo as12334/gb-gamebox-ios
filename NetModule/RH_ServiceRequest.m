@@ -1317,7 +1317,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
+    }else if (type == ServiceRequestTypeCollectAPPError){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
     }
+    
 //    else if (type==ServiceRequestTypeV3AddApplyDiscounts){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
