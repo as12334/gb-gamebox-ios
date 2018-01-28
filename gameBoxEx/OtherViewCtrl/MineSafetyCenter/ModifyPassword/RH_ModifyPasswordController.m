@@ -9,6 +9,7 @@
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
 #import "RH_ModifyPasswordCodeCell.h"
+#import "RH_ModifyPasswordSpecialCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
 
@@ -19,7 +20,7 @@
 
 //--
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *currentPasswordCell ;
-@property (nonatomic,strong,readonly) RH_ModifyPasswordCell *newSettingPasswordCell    ;
+@property (nonatomic,strong,readonly) RH_ModifyPasswordSpecialCell *newSettingPasswordCell    ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *confirmSettingPasswordCell ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCodeCell *passwordCodeCell ;
 
@@ -49,9 +50,9 @@
     return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
 }
 
--(RH_ModifyPasswordCell *)newSettingPasswordCell
+-(RH_ModifyPasswordSpecialCell *)newSettingPasswordCell
 {
-    return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]) ;
+    return ConvertToClassPointer(RH_ModifyPasswordSpecialCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]) ;
 }
 
 -(RH_ModifyPasswordCell *)confirmSettingPasswordCell
