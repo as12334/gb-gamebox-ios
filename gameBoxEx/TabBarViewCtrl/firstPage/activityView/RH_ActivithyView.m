@@ -42,6 +42,8 @@
 }
 
 - (IBAction)removeFromeSuperView:(id)sender {
-    [self removeFromSuperview];
+    ifRespondsSelector(self.delegate, @selector(activityViewDidTouchCloseActivityView:)){
+        [self.delegate activityViewDidTouchCloseActivityView:self] ;
+    }
 }
 @end

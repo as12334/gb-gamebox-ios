@@ -47,11 +47,10 @@
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
 @property (nonatomic,strong)UIView *shadeView;
 @property (nonatomic,strong)MBProgressHUD *hud;
-@property (nonatomic, strong) UIActivityIndicatorView * activityIndicator;
-
 @end
 
 @implementation RH_FirstPageViewControllerEx
+
 //@synthesize  labDomain = _labDomain                         ;
 @synthesize dynamicLabCell = _dynamicLabCell                ;
 @synthesize homeCategoryCell = _homeCategoryCell            ;
@@ -71,7 +70,8 @@
     self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhiteLarge)];
+    _hud = [[MBProgressHUD alloc]initWithView:[UIApplication sharedApplication].keyWindow];
+    _hud.removeFromSuperViewOnHide = YES;
 }
 - (void)dealloc
 {
@@ -359,12 +359,16 @@
 {
      RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
     [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.statusModel.mToken];
+    [_hud show:YES];
+    [[UIApplication sharedApplication].keyWindow addSubview:_hud];
 }
 #pragma mark 拆红包代理
 -(void)normalActivithyViewOpenActivityClick:(RH_NormalActivithyView *)view
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
     [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.openActivityModel.mToken];
+    [_hud show:YES];
+    [[UIApplication sharedApplication].keyWindow addSubview:_hud];
 }
 -(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view
 {
@@ -372,49 +376,20 @@
     [self.shadeView removeFromSuperview];
     [self.normalActivityView removeFromSuperview];
 }
-
+#pragma mark 点击小图标关闭按钮
+-(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
+{
+    
+}
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
     
     if (self.appDelegate.isLogin&&NetworkAvailable()){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
         [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
-        //在window上加一个遮罩层
-            UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
-            bigView.backgroundColor = [UIColor grayColor];
-            bigView.alpha = 0.8;
-            [[UIApplication sharedApplication].keyWindow addSubview:bigView];
-            _shadeView = bigView;
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
-            imageView.image = activityView.imgView.image;
-            [[UIApplication sharedApplication].keyWindow addSubview:imageView];
-        [[UIApplication sharedApplication].keyWindow addSubview:self.activityIndicator];
-        //设置小菊花的frame
-        self.activityIndicator.frame= CGRectMake(0, 0, 100, 100);
-        self.activityIndicator.center = [UIApplication sharedApplication].keyWindow.center;
-        [self.activityIndicator startAnimating];
-            //红包动画
-            [UIView animateWithDuration:1.f animations:^{
-                imageView.center = self.view.center;
-                imageView.alpha = 0;
-                CGRect frame = imageView.frame;
-                frame.size.width +=100;
-                frame.size.height +=100;
-                imageView.frame=frame;
-                CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-                //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
-                animation.fromValue = [NSNumber numberWithFloat:0.f];
-                animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
-                animation.duration  = 1;
-                animation.speed = 2;
-                animation.autoreverses = NO;
-                animation.fillMode =kCAFillModeForwards;
-                animation.repeatCount = MAXFLOAT; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
-                [imageView.layer addAnimation:animation forKey:nil];
-            } completion:^(BOOL finished) {
-                [imageView removeFromSuperview];
-                [[UIApplication sharedApplication].keyWindow addSubview:self.normalActivityView];
-            }];
+        
+        [_hud show:YES];
+        [[UIApplication sharedApplication].keyWindow addSubview:_hud];
     }
     else if(!self.appDelegate.isLogin){
         //进入登入界面
@@ -424,7 +399,42 @@
         showAlertView(@"无网络", @"无网络打不开红包") ;
     }
 }
-
+//点击红包小图标加载红包动画
+-(void)touchActivityViewAndOpentheActivity
+{
+    //在window上加一个遮罩层
+    UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
+    bigView.backgroundColor = [UIColor grayColor];
+    bigView.alpha = 0.8;
+    bigView.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication].keyWindow addSubview:bigView];
+    _shadeView = bigView;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
+    imageView.image = self.activityView.imgView.image;
+    [[UIApplication sharedApplication].keyWindow addSubview:imageView];
+    //红包动画
+    [UIView animateWithDuration:1.f animations:^{
+        imageView.center = self.view.center;
+        imageView.alpha = 0;
+        CGRect frame = imageView.frame;
+        frame.size.width +=100;
+        frame.size.height +=100;
+        imageView.frame=frame;
+        CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
+        animation.fromValue = [NSNumber numberWithFloat:0.f];
+        animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
+        animation.duration  = 1;
+        animation.speed = 2;
+        animation.autoreverses = NO;
+        animation.fillMode =kCAFillModeForwards;
+        animation.repeatCount = MAXFLOAT; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
+        [imageView.layer addAnimation:animation forKey:nil];
+    } completion:^(BOOL finished) {
+        [imageView removeFromSuperview];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.normalActivityView];
+    }];
+}
 -(void)activithyViewDidTouchCancel:(RH_ActivithyView*)activityView
 {
     [self activityViewHide] ;
@@ -455,7 +465,11 @@
         }] ;
     }
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.normalActivityView removeFromSuperview];
+    [self.shadeView removeFromSuperview];
+}
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {
@@ -494,6 +508,7 @@
             self.normalActivityView.activityModel = homePageModel.mActivityInfo;
         }else{
             [self activityViewHide] ;
+           
         }
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
@@ -519,12 +534,13 @@
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;
         self.statusModel = statusModel;
-
+        [self touchActivityViewAndOpentheActivity];
+        [self.hud hide:YES];
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
-        
+        [self.hud hide: YES];
         
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
@@ -553,9 +569,12 @@
     else if (type==ServiceRequestTypeV3ActivityStatus){
         showErrorMessage(nil, error, @"红包获取失败") ;
         [self.shadeView removeFromSuperview];
+        [self.hud hide: YES];
     }
     else if (type==ServiceRequestTypeV3OpenActivity){
         showErrorMessage(nil, error, @"红包获取失败") ;
+        [self.shadeView removeFromSuperview];
+        [self.hud hide: YES];
     }
 }
 

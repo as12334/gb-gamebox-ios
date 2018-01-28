@@ -56,7 +56,7 @@
 }
 -(void)setStatusModel:(RH_ActivityStatusModel *)statusModel
 {
-    if (![_statusModel isEqual:statusModel]) {
+//    if (![_statusModel isEqual:statusModel]) {
         _statusModel = statusModel;
         [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
         [self.activityTimesLabel setText:self.statusModel.mDrawTimes];
@@ -80,68 +80,76 @@
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
             self.openActivityFriestBtn.userInteractionEnabled = YES;
         }
-    }
+//    }
 }
 -(void)setOpenModel:(RH_OpenActivityModel *)openModel
 {
         _openModel = openModel;
         [self.gainTimeLabel setText:self.openModel.mNextLotteryTime];
-        [self.gainDrawTimeLabel setText:self.openModel.mGameNum];
+        [self.gainActivityLabel setText:self.openModel.mGameNum];
         if ([self.openModel.mGameNum isEqualToString:@"-1"]) {
+            self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             [self.gainActivityLabel setText:@"已抽完"];
-            [self.activityTimesLabel setText:nil];
-            [self.nextOpentimeLabel setText:nil];
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.gainDrawTimeLabel setText:nil];
+            [self.gainTimeLabel setText:nil];
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = NO;
         }
         else if ([self.openModel.mGameNum isEqualToString:@"0"]) {
+            self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             [self.gainActivityLabel setText:@"已结束"];
-            [self.activityTimesLabel setText:nil];
-            [self.nextOpentimeLabel setText:nil];
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.gainDrawTimeLabel setText:nil];
+            [self.gainTimeLabel setText:nil];
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = NO;
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-2"]) {
+            self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             [self.gainActivityLabel setText:@"抽奖异常"];
-            [self.activityTimesLabel setText:nil];
-            [self.nextOpentimeLabel setText:nil];
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.gainDrawTimeLabel setText:nil];
+            [self.gainTimeLabel setText:nil];
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = NO;
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-3"]) {
+            self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             [self.gainActivityLabel setText:@"红包活动结束"];
-            [self.activityTimesLabel setText:nil];
-            [self.nextOpentimeLabel setText:nil];
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.gainDrawTimeLabel setText:nil];
+            [self.gainTimeLabel setText:nil];
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = NO;
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-4"]) {
+            self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             [self.gainActivityLabel setText:@"条件不满足"];
-            [self.activityTimesLabel setText:nil];
-            [self.nextOpentimeLabel setText:nil];
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.gainDrawTimeLabel setText:nil];
+            [self.gainTimeLabel setText:nil];
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = NO;
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-5"]) {
+            self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             [self.gainActivityLabel setText:@"已抢完"];
-            [self.activityTimesLabel setText:nil];
-            [self.nextOpentimeLabel setText:nil];
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.gainDrawTimeLabel setText:nil];
+            [self.gainTimeLabel setText:nil];
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = NO;
         }
         
         else
         {
-            if ([self.gainActivityLabel.text isEqualToString:@"0"]) {
+            if ([self.openModel.mAward isEqualToString:@"0"]) {
                 self.gainActivityLabel.text = @"未中奖";
+                 self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             }
             else{
                 self.gainActivityLabel.text = self.openModel.mAward;
+                self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
             }
-            self.activityTimesLabel.text = self.openModel.mGameNum;
-            self.nextOpentimeLabel.text = self.openModel.mNextLotteryTime;
-            [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
-            self.openActivityFriestBtn.userInteractionEnabled = YES;
+            self.gainDrawTimeLabel.text = self.openModel.mGameNum;
+            self.gainTimeLabel.text = self.openModel.mNextLotteryTime;
+            [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
+            self.openActivityBtn.userInteractionEnabled = YES;
         }
 }
 - (IBAction)gameRuleSeletcd:(id)sender {
@@ -189,7 +197,7 @@
     [self.normalBackDropView setHidden: YES];
     [self.activityRuleDropView setHidden:YES];
     [self.openActivityView setHidden:NO];
-     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
+//     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
     ifRespondsSelector(self.delegate, @selector(normalActivityViewFirstOpenActivityClick:)){
         [self.delegate normalActivityViewFirstOpenActivityClick:self] ;
     }
@@ -199,8 +207,7 @@
     ifRespondsSelector(self.delegate, @selector(normalActivithyViewOpenActivityClick:)){
         [self.delegate normalActivithyViewOpenActivityClick:self] ;
     }
-    [self.delegate normalActivithyViewOpenActivityClick:self];
-     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
+//     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
     [self.normalBackDropView setHidden: YES];
     [self.activityRuleDropView setHidden:YES];
     [self.openActivityView setHidden:NO];
