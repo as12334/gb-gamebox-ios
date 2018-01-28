@@ -80,7 +80,7 @@
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 50+NavigationBarHeight+StatusBarHeight, MainScreenW, MainScreenH-50)];
+        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 50+NavigationBarHeight+StatusBarHeight, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
