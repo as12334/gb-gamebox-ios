@@ -1271,10 +1271,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                         RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
                                                                                         }] ;
             });
-            
-            
         }
         return YES ;
+        
     }else if (type == ServiceRequestTypeGetCustomService){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
@@ -1726,7 +1725,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     //特点  error 信息，统一处理 。
-    if (error.code==600 || error.code==1)
+    if ((error.code==600 || error.code==1) && serviceType!=ServiceRequestTypeV3UserLoginOut)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){

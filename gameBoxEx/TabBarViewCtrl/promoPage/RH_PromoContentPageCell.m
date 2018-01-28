@@ -135,7 +135,6 @@
     }
 }
 
-
 #pragma mark-
 -(RH_LoadingIndicateTableViewCell*)loadingIndicateTableViewCell
 {
