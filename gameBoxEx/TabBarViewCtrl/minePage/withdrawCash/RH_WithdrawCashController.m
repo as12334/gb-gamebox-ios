@@ -349,7 +349,19 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self setNeedUpdateView];
             return ;
         }
-        showMessage(self.contentView, @"", dict[@"msg"]);
+        PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"取款提交成功" cancelTitle:@"确定" otherTitles:@[@"取款记录"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (cancelled) {
+                //
+            }else {
+                // tianjia
+//                [self showViewController:[RH_BitCoinController viewControllerWithContext:nil] sender:nil];
+            }
+        }];
+        [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
+        [alert setTitleColor:colorWithRGB(51, 51, 51)];
+        [alert setMessageColor:colorWithRGB(51, 51, 51)];
+        [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
+//        showMessage(self.contentView, @"", dict[@"msg"]);
 //        _withdrawCashStatus = WithdrawCashStatus_Init;
         [self setNeedUpdateView];
     }
