@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      0
+#define IS_TEST_SERVER_ENV                      1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1507,6 +1507,14 @@
 #define CODE    @"j1ms"
 #define S        @"3e049b600c7956be0bc97266e2132f5c"
 #define SID        @"352"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _dllb //金沙娱乐场
+
+#define CODE    @"dllb"
+#define S        @"7ffa67b40eea93a97805d59970d76b94"
+#define SID        @"355"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
