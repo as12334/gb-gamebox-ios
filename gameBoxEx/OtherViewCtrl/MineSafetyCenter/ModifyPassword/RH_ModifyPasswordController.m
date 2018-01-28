@@ -12,12 +12,12 @@
 #import "RH_ModifyPasswordSpecialCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
-
+#import "RH_StaticAlertView.h"
 @interface RH_ModifyPasswordController () <CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong,readonly) UIButton *modifyButton;
-
+@property (nonatomic, strong) RH_StaticAlertView *rhAlertView;
 //--
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *currentPasswordCell ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordSpecialCell *newSettingPasswordCell    ;
@@ -126,6 +126,8 @@
 
 - (void)modifyButtonHandle
 {
+    
+    
     NSString *currentPwd = self.currentPasswordCell.textField.text;
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
@@ -172,7 +174,19 @@
 {
     if (type == ServiceRequestTypeV3UpdateLoginPassword){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"密码修改成功", @"提示信息") ;
+            if (self.rhAlertView.superview == nil) {
+                self.rhAlertView = [[RH_StaticAlertView alloc] init];
+                self.rhAlertView.alpha = 0;
+                [self.contentView addSubview:self.rhAlertView];
+                self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.rhAlertView.alpha = 1;
+                } completion:^(BOOL finished) {
+                    if (finished) {
+                        [self.rhAlertView showContentView];
+                    }
+                }];
+            }
         }] ;
         
         [self backBarButtonItemHandle] ;
