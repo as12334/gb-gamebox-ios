@@ -36,7 +36,7 @@
         _mProfitAmount = [info floatValueForKey:RH_GP_BETTING_PROFITAMOUNT] ;
         _mOrderState = [info stringValueForKey:RH_GP_BETTING_ORDERSTATE] ;
         _mSingleAmount = [info floatValueForKey:RH_GP_BETTING_SINGLEAMOUNT];
-        _mURL = [info stringValueForKey:@"url"] ;
+        _mURL = [info stringValueForKey:RH_GP_BETTING_URL] ;
     }
     
     return self ;

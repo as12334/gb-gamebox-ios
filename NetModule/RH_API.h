@@ -237,6 +237,7 @@
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
 #define RH_GP_BETTING_PROFITAMOUNT                      @"profitAmount"
 #define RH_GP_BETTING_ORDERSTATE                        @"orderState"
+#define RH_GP_BETTING_URL                               @"url"
 
 #pragma mark - V3 用户安全码 初始化信息模型
 #define RH_GP_USERSAFETY_HASREALNAME                          @"hasRealName"
