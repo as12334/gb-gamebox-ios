@@ -71,10 +71,15 @@
     }
 }
 
+-(NSUInteger)defaultPageSize
+{
+    return 300 ;
+}
+
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3PromoList:page PageSize:pageSize] ;
+    [self.serviceRequest startV3PromoList:page+1 PageSize:pageSize] ;
 }
 
 -(void)cancelLoadDataHandle

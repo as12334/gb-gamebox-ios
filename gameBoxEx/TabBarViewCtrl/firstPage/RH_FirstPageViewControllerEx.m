@@ -50,7 +50,6 @@
 @end
 
 @implementation RH_FirstPageViewControllerEx
-
 //@synthesize  labDomain = _labDomain                         ;
 @synthesize dynamicLabCell = _dynamicLabCell                ;
 @synthesize homeCategoryCell = _homeCategoryCell            ;
@@ -380,7 +379,7 @@
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
 {
-    
+    [self.activityView removeFromSuperview];
 }
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {

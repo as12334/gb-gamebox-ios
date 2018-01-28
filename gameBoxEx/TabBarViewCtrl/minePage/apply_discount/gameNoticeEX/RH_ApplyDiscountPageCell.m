@@ -110,7 +110,7 @@
 {
     [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
                                                 endTime:self.endDate
-                                             pageNumber:page
+                                             pageNumber:page+1
                                                pageSize:pageSize
                                                   apiId:self.apiId];
 }

@@ -1588,7 +1588,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessage:
             {
-                resultSendData = [RH_SiteMyMessageModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject)arrayValueForKey:RH_GP_V3_DATA]];
+                NSArray *tmpArray = [RH_SiteMyMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:@"dataList"]];
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:@"total"]   ;
+                resultSendData = @{@"dataList":tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
             }
                 break;
                 
