@@ -46,6 +46,7 @@
 @interface CLBasicViewController (TopView)
 @property(nonatomic,strong,readonly) CLBorderView *topView ;
 -(BOOL)hasTopView ;
+-(BOOL)topViewIncludeStatusBar ;
 -(CGFloat)topViewHeight ;
 -(void)updateTopView ;
 @end

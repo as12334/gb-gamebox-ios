@@ -1317,7 +1317,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
+    }else if (type == ServiceRequestTypeCollectAPPError){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
     }
+    
 //    else if (type==ServiceRequestTypeV3AddApplyDiscounts){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1565,7 +1573,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessage:
             {
-                resultSendData = [RH_SiteMyMessageModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject)arrayValueForKey:RH_GP_V3_DATA]];
+                NSArray *tmpArray = [RH_SiteMyMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:@"dataList"]];
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:@"total"]   ;
+                resultSendData = @{@"dataList":tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
             }
                 break;
                 

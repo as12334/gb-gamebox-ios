@@ -105,7 +105,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_CapitalInfoModel *capitalInfoModel = ConvertToClassPointer(RH_CapitalInfoModel, context);
-    self.dataLab.text = capitalInfoModel.mCreateTime;
+    self.dataLab.text = dateStringWithFormatter(capitalInfoModel.mCreateTime, @"yyyy-MM-dd") ;
     self.moneyTypeLab.text = capitalInfoModel.mTransactionMoney;
     self.depositTypeLab.text = capitalInfoModel.mTransaction_typeName;
     self.timeoutTypeLab.text = capitalInfoModel.mStatusName;

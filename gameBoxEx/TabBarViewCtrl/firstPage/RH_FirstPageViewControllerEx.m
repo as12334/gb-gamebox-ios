@@ -58,11 +58,11 @@
 @synthesize activityView = _activityView                    ;
 @synthesize normalActivityView= _normalActivityView         ;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+//    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+    [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
     [self setupUI] ;
@@ -75,6 +75,26 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+-(BOOL)hasNavigationBar
+{
+    return NO ;
+}
+
+-(BOOL)hasTopView
+{
+    return YES ;
+}
+
+-(BOOL)topViewIncludeStatusBar
+{
+    return YES ;
+}
+
+-(CGFloat)topViewHeight
+{
+    return self.mainNavigationView.frameHeigh ;
 }
 
 #pragma mark-

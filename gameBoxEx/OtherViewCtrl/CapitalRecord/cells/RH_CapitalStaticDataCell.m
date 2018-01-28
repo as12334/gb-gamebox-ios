@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *labDate;
 
+
+
 @end
 
 
@@ -32,7 +34,10 @@
     
     self.labDate.textColor = colorWithRGB(51, 51, 51) ;
     self.labDate.font = [UIFont systemFontOfSize:14.0f] ;
-    self.labDate.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
+   
+    self.labDate.text = dateStringWithFormatter([ NSDate date], @"yyyy-MM-dd") ;
+  
+    
 }
 
 #pragma mark-

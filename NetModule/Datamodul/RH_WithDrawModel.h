@@ -22,6 +22,9 @@
 @property (nonatomic , strong , readonly) NSString              * mType;
 @property (nonatomic , strong , readonly) NSString              * mCustomBankName;
 @property (nonatomic , strong , readonly) NSString              * mBankcardNumber;
+@property (nonatomic , strong , readonly) NSString              *mBankUrl;
+@property (nonatomic , strong , readonly) NSString              *showBankURL;
+
 
 +(NSMutableArray *)dataArrayWithInfoDict:(NSDictionary *)infoDict ;
 

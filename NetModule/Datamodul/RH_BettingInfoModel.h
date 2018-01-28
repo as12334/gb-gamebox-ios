@@ -10,7 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface RH_BettingInfoModel : RH_BasicModel
-@property(nonatomic,assign,readonly) NSInteger  mID ;
+@property(nonatomic,strong,readonly) NSString  *mID ;
 @property(nonatomic,assign,readonly) NSInteger  mApiID ;
 @property(nonatomic,strong,readonly) NSString*  mApiName ;
 @property(nonatomic,assign,readonly) NSInteger  mGameID ;
@@ -20,6 +20,7 @@
 @property(nonatomic,assign,readonly) CGFloat    mSingleAmount ;
 @property(nonatomic,assign,readonly) CGFloat    mProfitAmount ;
 @property(nonatomic,strong,readonly) NSString*  mOrderState ;
+@property(nonatomic,strong,readonly) NSString*  mURL ;
 
 
 //extend
@@ -28,5 +29,6 @@
 @property (nonatomic,strong,readonly) NSString *showStatus ;
 @property (nonatomic,strong,readonly) NSString *showSingleAmount ;
 @property (nonatomic,strong,readonly) NSString *showProfitAmount ;
+@property (nonatomic,strong,readonly) NSString *showDetailUrl;
 
 @end
