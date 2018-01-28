@@ -9,6 +9,7 @@
 #import "RH_WithdrawCashOneCell.h"
 #import "coreLib.h"
 #import "RH_WithDrawModel.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_WithdrawCashOneCell ()
 @property(nonatomic,strong) UIImageView *bankIconImageView ;
@@ -86,7 +87,6 @@
     [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
     self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
     self.bankCardLab.text = bankcardModel.mBankcardNumber;
-    
 }
 
 @end

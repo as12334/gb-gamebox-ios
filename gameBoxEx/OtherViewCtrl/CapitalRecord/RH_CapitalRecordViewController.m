@@ -248,14 +248,7 @@
             // 本月
             date= [[NSDate date] dateWithMoveDay:-30];
             _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
-//            NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-//            fmt.dateFormat = @"yyyy-MM-dd";
-//            NSDate *minDate = [fmt dateFromString:@"2018-1-20"];
             [self strToNSDate];
-            //获取系统当前时间
-//            NSDate *currentDate = [NSDate date];
-//            //用于格式化NSDate对象
-            
             break;
         case 5:
             //最近七天
@@ -291,13 +284,11 @@
 - (NSDate *)dateFromString:(NSString *)string
 {
     NSString *tempStr = [string substringToIndex:7];
-    //需要转换的字符串
-//    NSString *dateString = @"2015-06-26 08:08:08";
     //设置转换格式
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     [formatter setDateFormat:@"yyyy-MM-01"];
     //NSString转NSDate
-    NSDate *date=[formatter dateFromString:string];
+    NSDate *date=[formatter dateFromString:tempStr];
     return date;
 }
 #pragma mark-sort bottom view
@@ -376,7 +367,7 @@
     [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
                                     EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
                                  SearchType:typeIdstr
-                                 PageNumber:page
+                                 PageNumber:page+1
                                    PageSize:pageSize] ;
 }
 

@@ -63,6 +63,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+    [self.serviceRequest startGetCustomService] ;
     [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
