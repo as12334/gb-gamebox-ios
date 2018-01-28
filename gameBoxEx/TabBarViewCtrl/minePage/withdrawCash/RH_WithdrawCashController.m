@@ -5,7 +5,7 @@
 //  Created by Lenny on 2018/1/16.
 //  Copyright © 2018年 luis. All rights reserved.
 //
-
+#import "RH_CapitalRecordViewController.h"
 #import "RH_WithdrawCashController.h"
 #import "coreLib.h"
 #import "PXAlertView+Customization.h"
@@ -338,12 +338,26 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     {
         [self.contentLoadingIndicateView hiddenView] ;
         self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-        
-        if (self.withDrawModel){
+        if (self.withDrawModel.mBankcardMap[@"1"]){
             _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
             [self setNeedUpdateView];
         }else{
-            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示信息" detailText:@"获取信息错误"] ;
+//            _withdrawCashStatus = WithdrawCashStatus_Init;
+//            [self setNeedUpdateView];
+            PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"未绑定银行卡" cancelTitle:@"确定" otherTitles:@[@"绑定银行卡"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                if (cancelled) {
+                    //
+                }else {
+                    //  绑定银行卡
+                    [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
+                }
+            }];
+            [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
+            [alert setTitleColor:colorWithRGB(51, 51, 51)];
+            [alert setMessageColor:colorWithRGB(51, 51, 51)];
+            [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
+            [alert setCancelButtonTextColor:colorWithRGB(51, 51, 51)];
+            [alert setOtherButtonTextColor:colorWithRGB(91, 91, 91)];
         }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
@@ -353,7 +367,19 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self setNeedUpdateView];
             return ;
         }
-        showMessage(self.contentView, @"", dict[@"msg"]);
+        PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"取款提交成功" cancelTitle:@"确定" otherTitles:@[@"取款记录"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (cancelled) {
+                //
+            }else {
+                //  取款记录
+                [self showViewController:[RH_CapitalRecordViewController viewControllerWithContext:nil] sender:nil];
+            }
+        }];
+        [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
+        [alert setTitleColor:colorWithRGB(51, 51, 51)];
+        [alert setMessageColor:colorWithRGB(51, 51, 51)];
+        [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
+//        showMessage(self.contentView, @"", dict[@"msg"]);
 //        _withdrawCashStatus = WithdrawCashStatus_Init;
         [self setNeedUpdateView];
     }
