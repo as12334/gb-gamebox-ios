@@ -41,7 +41,7 @@
                             </constraints>
                             <state key="normal" backgroundImage="button-01.png"/>
                             <connections>
-                                <action selector="openActivityBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="ibR-cd-FOB"/>
+                                <action selector="firstOpenActivityClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="vlR-2T-pI2"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下次拆红包开始时间为" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aie-ny-Jjc">
@@ -70,7 +70,7 @@
                             </constraints>
                             <state key="normal" backgroundImage="button-02.png"/>
                             <connections>
-                                <action selector="gameRuleSeletcd:" destination="iN0-l3-epB" eventType="touchUpInside" id="EkY-4k-usP"/>
+                                <action selector="firstOpenRuleSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="evi-O2-xH9"/>
                             </connections>
                         </button>
                     </subviews>

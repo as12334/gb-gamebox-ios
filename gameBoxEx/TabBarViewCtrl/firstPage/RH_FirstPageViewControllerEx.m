@@ -43,8 +43,11 @@
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
 @property (nonatomic,strong,readonly) RH_ActivithyView *activityView ;
 @property (nonatomic,strong)RH_OpenActivityModel *openActivityModel;
+@property (nonatomic,strong)RH_ActivityStatusModel *statusModel;
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
 @property (nonatomic,strong)UIView *shadeView;
+@property (nonatomic,strong)MBProgressHUD *hud;
+@property (nonatomic, strong) UIActivityIndicatorView * activityIndicator;
 
 @end
 
@@ -57,22 +60,42 @@
 @synthesize activityView = _activityView                    ;
 @synthesize normalActivityView= _normalActivityView         ;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+//    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
+    [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
     [self setupUI] ;
     self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    
+    self.activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhiteLarge)];
 }
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+-(BOOL)hasNavigationBar
+{
+    return NO ;
+}
+
+-(BOOL)hasTopView
+{
+    return YES ;
+}
+
+-(BOOL)topViewIncludeStatusBar
+{
+    return YES ;
+}
+
+-(CGFloat)topViewHeight
+{
+    return self.mainNavigationView.frameHeigh ;
 }
 
 #pragma mark-
@@ -331,20 +354,17 @@
     }
     return _normalActivityView;
 }
+#pragma mark 第一次拆红包代理
+-(void)normalActivityViewFirstOpenActivityClick:(RH_NormalActivithyView *)view
+{
+     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+    [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.statusModel.mToken];
+}
 #pragma mark 拆红包代理
 -(void)normalActivithyViewOpenActivityClick:(RH_NormalActivithyView *)view
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-    if (self.openActivityModel.mToken==nil) {
-        [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.activityModel.mToken];
-        [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-    }
-    else
-    {
-        [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.openActivityModel.mToken];
-        [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-    }
-    
+    [self.serviceRequest startV3OpenActivity:homePageModel.mActivityInfo.mActivityID andGBtoken:self.openActivityModel.mToken];
 }
 -(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view
 {
@@ -358,7 +378,6 @@
     
     if (self.appDelegate.isLogin&&NetworkAvailable()){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-        [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
         [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
         //在window上加一个遮罩层
             UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
@@ -369,6 +388,11 @@
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
             imageView.image = activityView.imgView.image;
             [[UIApplication sharedApplication].keyWindow addSubview:imageView];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.activityIndicator];
+        //设置小菊花的frame
+        self.activityIndicator.frame= CGRectMake(0, 0, 100, 100);
+        self.activityIndicator.center = [UIApplication sharedApplication].keyWindow.center;
+        [self.activityIndicator startAnimating];
             //红包动画
             [UIView animateWithDuration:1.f animations:^{
                 imageView.center = self.view.center;
@@ -465,11 +489,9 @@
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, data) ;
         [self loadDataSuccessWithDatas:homePageModel?@[homePageModel]:nil
                             totalCount:homePageModel?1:1] ;
-        
         if (homePageModel.mActivityInfo){
             [self activityViewShowWith:homePageModel.mActivityInfo] ;
             self.normalActivityView.activityModel = homePageModel.mActivityInfo;
-            
         }else{
             [self activityViewHide] ;
         }
@@ -496,13 +518,13 @@
     }else if (type == ServiceRequestTypeV3ActivityStatus){
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;
-        
-        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        self.statusModel = statusModel;
+
     }
     else if (type == ServiceRequestTypeV3OpenActivity){
         self.openActivityModel = ConvertToClassPointer(RH_OpenActivityModel, data);
         self.normalActivityView.openModel = self.openActivityModel;
-        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
         
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
@@ -529,12 +551,10 @@
         }] ;
     }
     else if (type==ServiceRequestTypeV3ActivityStatus){
-        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         showErrorMessage(nil, error, @"红包获取失败") ;
         [self.shadeView removeFromSuperview];
     }
     else if (type==ServiceRequestTypeV3OpenActivity){
-        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
         showErrorMessage(nil, error, @"红包获取失败") ;
     }
 }

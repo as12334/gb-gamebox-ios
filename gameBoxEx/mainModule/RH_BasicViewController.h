@@ -15,6 +15,7 @@
 #import "RH_ErrorCode.h"
 #import "RH_APPDelegate.h"
 #import "RH_userInfoView.h"
+#import "RH_NavigationBarView.h"
 
 typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 
@@ -47,8 +48,9 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *logoButtonItem        ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *userInfoButtonItem    ;
 @property (nonatomic,strong,readonly) RH_userInfoView *userInfoView ;
+@property (nonatomic,strong,readonly) RH_NavigationBarView *mainNavigationView ;
 
--(void)mainMenuButtonItemHandle ;
+//-(void)mainMenuButtonItemHandle ;
 
 -(CGPoint)contentLoadingIndicateViewAdditionalOffset ;
 -(void)configureContentLoadingIndicateView:(RH_LoadingIndicateView*)contentLoadingIndicateView ;

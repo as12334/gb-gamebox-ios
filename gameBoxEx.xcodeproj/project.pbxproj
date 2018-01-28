@@ -379,6 +379,8 @@
 		A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07FE37E1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m */; };
 		A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */; };
 		A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */; };
+		A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A093D4A0201D642000B89820 /* RH_NavigationBarView.m */; };
+		A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A093D4A1201D642000B89820 /* RH_NavigationBarView.xib */; };
 		A0ADD31E1FEB613400B24B51 /* RH_DaynamicLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ADD31A1FEB613400B24B51 /* RH_DaynamicLabelCell.m */; };
 		A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD31B1FEB613400B24B51 /* RH_DaynamicLabelCell.xib */; };
 		A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0ADD31C1FEB613400B24B51 /* RH_BannerViewCell.xib */; };
@@ -1233,6 +1235,9 @@
 		A07FE37F1FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_NaviUserInfoTableCell.xib; sourceTree = "<group>"; };
 		A08578521FB9BE9C00E002B1 /* CLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNavigationBar.h; sourceTree = "<group>"; };
 		A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNavigationBar.m; sourceTree = "<group>"; };
+		A093D49F201D642000B89820 /* RH_NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_NavigationBarView.h; sourceTree = "<group>"; };
+		A093D4A0201D642000B89820 /* RH_NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_NavigationBarView.m; sourceTree = "<group>"; };
+		A093D4A1201D642000B89820 /* RH_NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_NavigationBarView.xib; sourceTree = "<group>"; };
 		A0ADD3181FEB613400B24B51 /* RH_DaynamicLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_DaynamicLabelCell.h; sourceTree = "<group>"; };
 		A0ADD3191FEB613400B24B51 /* RH_BannerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BannerViewCell.h; sourceTree = "<group>"; };
 		A0ADD31A1FEB613400B24B51 /* RH_DaynamicLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_DaynamicLabelCell.m; sourceTree = "<group>"; };
@@ -2391,6 +2396,7 @@
 		A010A0631F879ACE004E6EF4 /* mainModule */ = {
 			isa = PBXGroup;
 			children = (
+				A093D49E201D642000B89820 /* navigatiionBarView */,
 				A05747D91FF886810068D0E4 /* userInfoView */,
 				A07FE37C1FEFA16600D5DF71 /* cells */,
 				A010A06F1F879ACE004E6EF4 /* RH_BasicHelpView.h */,
@@ -2834,6 +2840,16 @@
 				A08578531FB9BE9C00E002B1 /* CLNavigationBar.m */,
 			);
 			path = UINavigationBar;
+			sourceTree = "<group>";
+		};
+		A093D49E201D642000B89820 /* navigatiionBarView */ = {
+			isa = PBXGroup;
+			children = (
+				A093D49F201D642000B89820 /* RH_NavigationBarView.h */,
+				A093D4A0201D642000B89820 /* RH_NavigationBarView.m */,
+				A093D4A1201D642000B89820 /* RH_NavigationBarView.xib */,
+			);
+			path = navigatiionBarView;
 			sourceTree = "<group>";
 		};
 		A0ADD3171FEB60BA00B24B51 /* cells */ = {
@@ -3614,6 +3630,7 @@
 				F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */,
 				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
+				A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */,
 				A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
@@ -3784,6 +3801,7 @@
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
+				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
 				A0109FB01F8788FF004E6EF4 /* UIActionSheet+Block.m in Sources */,
 				79FB815E1FFE091600325BF3 /* RH_CapitalStaticDataCell.m in Sources */,
@@ -4151,7 +4169,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

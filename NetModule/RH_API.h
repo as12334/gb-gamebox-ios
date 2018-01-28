@@ -496,7 +496,9 @@
 #define RH_GP_OPENACTIVITY_GAMENUM                      @"gameNum"
 #define RH_GP_OPENACTIVITY_NEXTLOTTERYTIME              @"nextLotteryTime"
 #define RH_GP_OPENACTIVITY_TOKEN                        @"token"
-
+#define RH_GP_OPENACTIVITY_ID                           @"id"
+#define RH_GP_OPENACTIVITY_APPLYID                      @"applyId"
+#define RH_GP_OPENACTIVITY_RECORDID                     @"recordId"
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径

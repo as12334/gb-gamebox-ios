@@ -15,20 +15,22 @@
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
 
-@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate>
+
+@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate,RH_NavigationBarViewDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
 @end
 
 @implementation RH_BasicViewController
-@synthesize serviceRequest = _serviceRequest                ;
-@synthesize backButtonItem = _backButtonItem                ;
-@synthesize loginButtonItem = _loginButtonItem              ;
-@synthesize tryLoginButtonItem = _tryLoginButtonItem        ;
-@synthesize signButtonItem  = _signButtonItem               ;
-@synthesize logoButtonItem  = _logoButtonItem               ;
-@synthesize userInfoButtonItem = _userInfoButtonItem        ;
-@synthesize navigationUserInfoView = _navigationUserInfoView ;
+@synthesize serviceRequest = _serviceRequest                  ;
+@synthesize backButtonItem = _backButtonItem                  ;
+@synthesize loginButtonItem = _loginButtonItem                ;
+@synthesize tryLoginButtonItem = _tryLoginButtonItem          ;
+@synthesize signButtonItem  = _signButtonItem                 ;
+@synthesize logoButtonItem  = _logoButtonItem                 ;
+@synthesize userInfoButtonItem = _userInfoButtonItem          ;
+@synthesize navigationUserInfoView = _navigationUserInfoView  ;
 @synthesize userInfoView = _userInfoView                      ;
+@synthesize mainNavigationView = _mainNavigationView          ;
 
 -(BOOL)hasNavigationBar
 {
@@ -60,7 +62,7 @@
             [navigationBar insertSubview:backgroundView atIndex:0] ;
             backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
         }
-        
+
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
                                               NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
     }else{
@@ -101,6 +103,7 @@
     }else{
         self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
     }
+    
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
 }
@@ -112,7 +115,11 @@
 
 -(void)setTitle:(NSString *)title
 {
-    self.navigationBarItem.title = title ;
+    if (_mainNavigationView.superview){
+        [self.mainNavigationView updateTitle:title];
+    }else{
+        self.navigationBarItem.title = title ;
+    }
 }
 
 -(void)dealloc
@@ -161,6 +168,34 @@
 ////                        animationType:CWDrawerAnimationTypeDefault
 ////                        configuration:nil] ;
 //}
+
+#pragma mark-
+-(RH_NavigationBarView *)mainNavigationView
+{
+    if (!_mainNavigationView){
+        _mainNavigationView = [RH_NavigationBarView createInstance] ;
+        _mainNavigationView.frame = CGRectMake(0, 0, self.view.boundWidth, heighNavigationBar+StatusBarHeight) ;
+        _mainNavigationView.delegate = self ;
+    }
+    
+    return _mainNavigationView ;
+}
+
+-(void)navigationBarViewDidTouchLoginButton:(RH_NavigationBarView*)navigationBarView
+{
+    [self loginButtonItemHandle] ;
+}
+
+-(void)navigationBarViewDidTouchSignButton:(RH_NavigationBarView*)navigationBarView
+{
+    [self signButtonItemHandle] ;
+}
+
+-(void)navigationBarViewDidTouchUserInfoButton:(RH_NavigationBarView*)navigationBarView
+{
+    [self userInfoButtonItemHandle] ;
+}
+
 
 #pragma mark-
 -(UIBarButtonItem *)tryLoginButtonItem

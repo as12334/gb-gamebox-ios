@@ -12,6 +12,7 @@
 #import "RH_ActivityStatusModel.h"
 @class RH_NormalActivithyView;
 @protocol RH_NormalActivithyViewDelegate<NSObject>
+-(void)normalActivityViewFirstOpenActivityClick:(RH_NormalActivithyView *)view;
 -(void)normalActivithyViewOpenActivityClick:(RH_NormalActivithyView *)view;
 -(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view;
 @end
