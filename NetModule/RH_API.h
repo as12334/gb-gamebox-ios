@@ -237,6 +237,7 @@
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
 #define RH_GP_BETTING_PROFITAMOUNT                      @"profitAmount"
 #define RH_GP_BETTING_ORDERSTATE                        @"orderState"
+#define RH_GP_BETTING_URL                               @"url"
 
 #pragma mark - V3 用户安全码 初始化信息模型
 #define RH_GP_USERSAFETY_HASREALNAME                          @"hasRealName"
@@ -244,7 +245,6 @@
 #define RH_GP_USERSAFETY_ISOPENCAPTCHA                        @"isOpenCaptcha"
 #define RH_GP_USERSAFETY_REMINDTIMES                          @"remindTimes"
 #define RH_GP_USERSAFETY_LOCKTIME                             @"lockTime"
-
 
 #pragma mark - V3 投注详情 模型
 #define RH_GP_BETTINGDETAIL_APIID                                 @"apiId"
@@ -431,7 +431,7 @@
 
 #pragma mark - 域名 check失败，上传接口
 //api的路径
-#define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppError.html"
+#define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppDomainError.html"
 //请求参数
 #define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
 #define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
@@ -788,6 +788,11 @@
 //返回参数
 #define RH_GP_LOADGAMETYPE_KEY                  @"key"
 #define RH_GP_LOADGAMETYPE_VALUE                @"value"
+
+#pragma mark -V3 取款安全密码验证
+#define RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH                   @"mobile-api/mineOrigin/checkSafePassword.htmll"
+// 请求参数
+#define RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD           @"originPwd"
 
 
 #endif /* RH_API_h */

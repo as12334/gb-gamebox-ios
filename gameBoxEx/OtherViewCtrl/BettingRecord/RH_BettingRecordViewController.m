@@ -174,7 +174,9 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3BettingList:dateStringWithFormatter(self.bettingRecordHeaderView.startDate, @"yyyy-MM-dd")
-                                    EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd") PageNumber:page PageSize:pageSize] ;
+                                    EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd")
+                                 PageNumber:page+1
+                                   PageSize:pageSize] ;
 }
 
 -(void)cancelLoadDataHandle

@@ -1005,6 +1005,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 取款验证安全密码
+-(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:originPwd forKey:RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyPasswordAutuentification
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1271,10 +1287,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                         RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
                                                                                         }] ;
             });
-            
-            
         }
         return YES ;
+        
     }else if (type == ServiceRequestTypeGetCustomService){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         NSString *tmpResult = [tmpData mj_JSONString] ;
@@ -1573,7 +1588,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessage:
             {
-                resultSendData = [RH_SiteMyMessageModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject)arrayValueForKey:RH_GP_V3_DATA]];
+                NSArray *tmpArray = [RH_SiteMyMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:@"dataList"]];
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:@"total"]   ;
+                resultSendData = @{@"dataList":tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
             }
                 break;
                 
@@ -1655,6 +1675,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                   resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
             }
                 break;
+            case ServiceRequestTypeV3SafetyPasswordAutuentification:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+            }
+                break;
                 
             default:
                 resultSendData = dataObject ;
@@ -1726,7 +1751,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     //特点  error 信息，统一处理 。
-    if (error.code==600 || error.code==1)
+    if ((error.code==600 || error.code==1) && serviceType!=ServiceRequestTypeV3UserLoginOut)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
