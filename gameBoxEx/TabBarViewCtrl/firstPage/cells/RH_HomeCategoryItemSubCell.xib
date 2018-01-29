@@ -32,7 +32,7 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="HI3-k4-E4P" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-15" id="5rC-dy-Tj7"/>
+                <constraint firstItem="HI3-k4-E4P" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-13" id="5rC-dy-Tj7"/>
                 <constraint firstItem="af7-kk-kYL" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VE2-Qx-7ol"/>
                 <constraint firstItem="HI3-k4-E4P" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xVw-cb-AMi"/>
             </constraints>

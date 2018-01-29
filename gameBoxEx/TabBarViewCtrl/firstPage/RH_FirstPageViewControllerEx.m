@@ -644,7 +644,7 @@
             return 0.0f ;
         }
     }else{
-        return MainScreenH - StatusBarHeight  - NavigationBarHeight - TabBarHeight - [self topViewHeight] ;
+        return MainScreenH  - TabBarHeight - [self topViewHeight] ;
     }
     return 0.0f ;
 }

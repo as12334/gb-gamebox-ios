@@ -32,7 +32,7 @@
     self.selectionColor =  [UIColor blueColor] ;
     self.selectionColorAlpha = 0.3f ;
 //    self.labTitle.whc_CenterY(38);
-    self.imgIcon.whc_Center(0, -15).whc_Width(58).whc_Height(58);
+    self.imgIcon.whc_Center(0, -13).whc_Width(58).whc_Height(58);
     self.labTitle.whc_TopSpaceToView(10, self.imgIcon);
 }
 

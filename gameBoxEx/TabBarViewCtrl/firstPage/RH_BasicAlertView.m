@@ -30,6 +30,8 @@
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        [_tableView registerCellWithClass:[CLTableViewCell class]] ;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone ;
     }
     return _tableView;
 }
@@ -139,9 +141,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    CLTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[CLTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         RH_AnnouncementModel *model = contents[indexPath.row];
         cell.textLabel.text = model.mContent;
         cell.textLabel.numberOfLines = 0;
@@ -152,6 +154,8 @@
         [cell.contentView addSubview:imageB];
         imageB.image = ImageWithName(@"line-notic");
         imageB.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
+        
+        cell.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     }
     return cell;
 }
