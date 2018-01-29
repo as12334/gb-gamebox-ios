@@ -467,8 +467,10 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated] ;
     [self.normalActivityView removeFromSuperview];
     [self.shadeView removeFromSuperview];
+    [self.hud hide:YES];
 }
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
