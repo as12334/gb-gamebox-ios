@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrl-ae-mdi" customClass="CLBorderView">
-                        <rect key="frame" x="0.0" y="0.0" width="60" height="75"/>
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HI3-k4-E4P">
                                 <rect key="frame" x="15" y="7.5" width="30" height="30"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="af7-kk-kYL">
-                                <rect key="frame" x="11" y="43.5" width="37.5" height="18"/>
+                                <rect key="frame" x="11" y="46" width="37.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,9 +53,9 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="rrl-ae-mdi" secondAttribute="trailing" id="2w9-FH-VuE"/>
                 <constraint firstItem="rrl-ae-mdi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OPv-fe-wvv"/>
+                <constraint firstAttribute="bottom" secondItem="rrl-ae-mdi" secondAttribute="bottom" id="WWK-p0-jID"/>
                 <constraint firstItem="ah3-QH-VI7" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="b5c-qp-iVe"/>
                 <constraint firstItem="rrl-ae-mdi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dUV-ZY-NLf"/>
-                <constraint firstItem="ah3-QH-VI7" firstAttribute="top" secondItem="rrl-ae-mdi" secondAttribute="bottom" constant="-1" id="pSp-jh-97G"/>
                 <constraint firstAttribute="bottom" secondItem="ah3-QH-VI7" secondAttribute="bottom" id="woL-aW-9h0"/>
             </constraints>
             <size key="customSize" width="187" height="104"/>
