@@ -55,7 +55,7 @@
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 0.f;
     flowLayout.minimumInteritemSpacing = 0.f;
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 10.f, 0.0f, 10.f);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 0.0f, 0.f);
     flowLayout.itemSize = CGSizeMake(HomeChildCategoryCellWidth, HomeChildCategoryCellHeight) ;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     

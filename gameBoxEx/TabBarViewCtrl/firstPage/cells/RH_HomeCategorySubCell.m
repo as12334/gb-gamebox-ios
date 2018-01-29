@@ -15,7 +15,7 @@
 @property (nonatomic,strong) IBOutlet UIImageView *imgIcon ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
 @property (nonatomic,strong) RH_LotteryCategoryModel *lotteryCategoryModel ;
-
+@property (nonatomic, strong) UIImageView *imageB;
 //向下指示图
 @property (nonatomic,strong) IBOutlet UIImageView *indicatorImgView ;
 
@@ -28,21 +28,35 @@
     // Initialization code
     
     self.contentView.backgroundColor = [UIColor clearColor] ;
-    self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
+    self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  RH_Label_DefaultTextColor ;
     self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
     self.borderView.borderColor = RH_Line_DefaultColor ;
     self.indicatorImgView.hidden = YES ;
+    self.borderView.whc_TopSpace(0);
+    
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
     self.indicatorImgView.hidden = !selected ;
-    self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
-    self.borderView.backgroundColor = selected?[UIColor whiteColor]:[UIColor clearColor] ;
+//    self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
+//    self.borderView.backgroundColor = selected?[UIColor whiteColor]:[UIColor clearColor] ;
+    if (selected) {
+        if (self.imageB.superview == nil) {
+            self.imageB = [UIImageView new];
+        }
+        [self.borderView insertSubview:self.imageB atIndex:0];
+        self.imageB.image = ImageWithName(@"nav-hover-bg");
+        self.imageB.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        
+    }else {
+        [self.imageB removeFromSuperview];
+        self.imageB.image = nil;
+    }
 }
 
 -(void)setSelected:(BOOL)selected
