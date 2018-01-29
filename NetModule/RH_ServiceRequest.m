@@ -1677,7 +1677,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3SafetyPasswordAutuentification:
             {
-                resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
             }
                 break;
                 
