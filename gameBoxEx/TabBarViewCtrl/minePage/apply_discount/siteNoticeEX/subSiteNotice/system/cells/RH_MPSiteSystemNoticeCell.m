@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *readMarkImageView;
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
+@property (weak, nonatomic) IBOutlet UIImageView *readMark;
 @end
 @implementation RH_MPSiteSystemNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -65,11 +66,14 @@
     }
     if (model.mRead==YES) {
         [self.titleLabel setTextColor:[UIColor redColor]];
+        self.readMark.image = [UIImage imageNamed:@""];
     }
     else if (model.mRead==NO)
     {
         [self.titleLabel setTextColor:[UIColor blackColor]];
+        self.readMark.image = [UIImage imageNamed:@"mearkRead"];
     }
+    
 }
 - (IBAction)chooseEditBtn:(id)sender {
     self.block();

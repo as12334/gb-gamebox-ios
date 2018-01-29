@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *readImageView;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
+@property (weak, nonatomic) IBOutlet UIImageView *markNewImageView;
+
 @end
 @implementation RH_SiteMineNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -65,10 +67,12 @@
     }
     if (model.mIsRead==YES) {
         [self.titleLabel setTextColor:[UIColor redColor]];
+        self.markNewImageView.image = [UIImage imageNamed:@""];
     }
     else if (model.mIsRead==NO)
     {
         [self.titleLabel setTextColor:[UIColor blackColor]];
+        self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
     }
 }
 

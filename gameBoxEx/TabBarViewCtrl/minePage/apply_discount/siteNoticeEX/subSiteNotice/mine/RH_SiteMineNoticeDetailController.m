@@ -97,10 +97,20 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
+    NSMutableArray *array = [NSMutableArray array];
     if (type == ServiceRequestTypeV3SiteMessageMyMessageDetail){
-        RH_SiteMyMessageDetailModel *detailModel = ConvertToClassPointer(RH_SiteMyMessageDetailModel, data);
-        [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
-                            totalCount:detailModel?1:0] ;
+        for (RH_SiteMyMessageDetailModel *model in data) {
+            RH_SiteMyMessageDetailModel *detailModel = ConvertToClassPointer(RH_SiteMyMessageDetailModel, model);
+            [array addObject:detailModel];
+            for (RH_SiteMyMessageDetailListModel *lModel in detailModel.listModel) {
+                RH_SiteMyMessageDetailListModel *listModel = ConvertToClassPointer(RH_SiteMyMessageDetailListModel, lModel);
+                [array addObject:listModel];
+            }
+            
+        }
+        NSArray *modelArray = [array copy];
+        [self loadDataSuccessWithDatas:data?modelArray:@[]
+                            totalCount:data?1:0] ;
     }
 }
 

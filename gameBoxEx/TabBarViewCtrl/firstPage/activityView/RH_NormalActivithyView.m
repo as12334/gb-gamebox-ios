@@ -135,16 +135,15 @@
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityBtn.userInteractionEnabled = NO;
         }
-        
         else
         {
             if ([self.openModel.mAward isEqualToString:@"0"]) {
-                self.gainActivityLabel.text = @"未中奖";
                  self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
+                self.gainActivityLabel.text = @"未中奖";
             }
             else{
-                self.gainActivityLabel.text = [NSString stringWithFormat:@"获得%@圆",self.openModel.mAward] ;
                 self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
+                self.gainActivityLabel.text = [NSString stringWithFormat:@"获得%@圆",self.openModel.mAward] ;
             }
             self.gainDrawTimeLabel.text = self.openModel.mGameNum;
             self.gainTimeLabel.text = self.openModel.mNextLotteryTime;

@@ -1341,14 +1341,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
     }
     
-//    else if (type==ServiceRequestTypeV3AddApplyDiscounts){
-//        NSError * tempError = nil;
-//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-//                                                                                      error:&tempError] : @{};
-//        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
-//        return YES ;
-//    }
+    else if (type==ServiceRequestTypeV3SystemMessageYes){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+        return YES ;
+    }
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1550,6 +1550,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
                 case ServiceRequestTypeV3SystemMessageYes:
             {
+              
                 
             }
                 break;
@@ -1627,7 +1628,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3SiteMessageMyMessageDetail:
             {
-                resultSendData =[[RH_SiteMyMessageDetailModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                resultSendData = [RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject)arrayValueForKey:RH_GP_V3_DATA]];
             }
                 break;
             
