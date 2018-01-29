@@ -222,9 +222,10 @@
         //刷新后将model数组清空
         [self.siteModelArray removeAllObjects];
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
+        NSInteger totalInter = [dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM];
         if (data!=nil) {
             [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
-                                totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]completedBlock:nil] ;
+                                totalCount:totalInter completedBlock:nil] ;
             //获取model
             for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
                 RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);

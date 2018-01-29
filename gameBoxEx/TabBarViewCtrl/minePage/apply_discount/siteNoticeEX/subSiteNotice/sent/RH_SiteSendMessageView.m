@@ -83,14 +83,16 @@
 }
 - (IBAction)submitClick:(id)sender {
     
-    self.submitBlock([self.titelField.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]], self.contenTextView.text,self.codeTextField.text);
+    self.submitBlock(self.titelField.text, self.contenTextView.text,self.codeTextField.text);
     [self.titelField resignFirstResponder] ;
     [self.codeTextField resignFirstResponder] ;
     [self.contenTextView resignFirstResponder];
     //注册通知
    [[NSNotificationCenter defaultCenter] postNotificationName:@"noti1" object:nil];
-    
- 
+}
+- (IBAction)cancelBtnClick:(id)sender {
+    self.titelField.text = @"";
+    self.contenTextView.text = @"";
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFrame:)){

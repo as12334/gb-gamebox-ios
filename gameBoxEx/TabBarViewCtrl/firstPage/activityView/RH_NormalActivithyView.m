@@ -143,7 +143,7 @@
                  self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
             }
             else{
-                self.gainActivityLabel.text = self.openModel.mAward;
+                self.gainActivityLabel.text = [NSString stringWithFormat:@"获得%@圆",self.openModel.mAward] ;
                 self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
             }
             self.gainDrawTimeLabel.text = self.openModel.mGameNum;

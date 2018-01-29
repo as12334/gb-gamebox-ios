@@ -55,7 +55,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMyMessageModel *model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
-    self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",model.mAdvisoryTitle]stringByRemovingPercentEncoding];
+    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mAdvisoryTitle];
     self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd");
     if ([model.number isEqual:@0]) {
         self.readImageView.image =nil;
