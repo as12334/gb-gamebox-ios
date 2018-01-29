@@ -11,7 +11,7 @@
 #import "coreLib.h"
 #import "RH_HomePageModel.h"
 
-#define HomeCategoryCellHeight                    floorf((MainScreenW-20)/5.0)
+#define HomeCategoryCellHeight                    60
 #define HomeCategoryCellWidth                       70.0f
 
 @interface RH_HomeCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -26,22 +26,34 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return  HomeCategoryCellHeight;
+    return  HomeCategoryCellHeight + 8;
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor] ;
-    self.contentView.backgroundColor = [UIColor clearColor] ;
+    self.contentView.backgroundColor = [UIColor whiteColor] ;
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     _selectedIndex = 0 ;
-
-    self.collectionBGView.backgroundColor = colorWithRGB(247, 247, 247) ;
-    self.collectionBGView.borderMask = CLBorderMarkTop ;
-    self.collectionBGView.borderColor = colorWithRGB(226, 226, 226) ;
-    self.collectionBGView.borderWidth = 1.0f ;
+    self.collectionView.whc_TopSpace(-6);
+    
+//    self.collectionBGView.backgroundColor = colorWithRGB(247, 247, 247) ;
+//    self.collectionBGView.borderMask = CLBorderMarkTop ;
+//    self.collectionBGView.borderColor = colorWithRGB(226, 226, 226) ;
+//    self.collectionBGView.borderWidth = 1.0f ;
+//    self.collectionBGView.borderInset = UIEdgeInsetsMake(0, 0, 10, 0);
+    
+    UIImageView *imageB = [UIImageView new];
+    [self insertSubview:imageB atIndex:0];
+    imageB.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+    imageB.image = ImageWithName(@"NAV-BG");
     [self configureCollection:self.collectionView] ;
+    
+//    UIView *line = [UIView new];
+//
+//    line.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(64).whc_Height(1);
+//    line.backgroundColor = colorWithRGB(226, 226, 226);
 }
 
 #pragma mark -
@@ -62,7 +74,7 @@
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 0.f;
     flowLayout.minimumInteritemSpacing = 0.f;
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 10.f, 0.0f, 10.f);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 10.f, 0.0f, 0.f);
     flowLayout.itemSize = CGSizeMake(HomeCategoryCellWidth, HomeCategoryCellHeight) ;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
@@ -92,6 +104,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    for (RH_HomeCategorySubCell *item in collectionView.visibleCells) {
+        [item setSelected:NO];
+    }
+//    RH_HomeCategorySubCell *item = [collectionView cellForItemAtIndexPath:indexPath];
+//    [item setSelected:YES];
     _selectedIndex = indexPath.item ;
     ifRespondsSelector(self.delegate, @selector(homeCategoryCellDidChangedSelectedIndex:)){
         [self.delegate homeCategoryCellDidChangedSelectedIndex:self] ;

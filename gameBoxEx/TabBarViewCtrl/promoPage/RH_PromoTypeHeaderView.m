@@ -34,6 +34,10 @@
 {
     self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
     [self.collectionTypeView reloadData] ;
+    if (_selectedIndex>=self.arrayTypeList.count){
+        _selectedIndex = 0 ;
+    }
+    
     [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
 }
 

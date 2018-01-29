@@ -25,7 +25,7 @@
     // Initialization code
     
     self.contentView.backgroundColor = [UIColor clearColor] ;
-    self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
+    self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  RH_Label_DefaultTextColor ;
     
     self.selectionOption = CLSelectionOptionNone ;

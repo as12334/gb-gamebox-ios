@@ -134,16 +134,6 @@
 					<key>rowsInfo</key>
 					<array>
 						<dict>
-							<key>title</key>
-							<string>分享朋友</string>
-							<key>detailTitle</key>
-							<string>查看历史消息内容</string>
-							<key>image</key>
-							<string>mine_page_sharefriends</string>
-							<key>targetKey</key>
-							<string></string>
-						</dict>
-						<dict>
 							<key>detailTitle</key>
 							<string>发送优惠申请优惠</string>
 							<key>title</key>
@@ -162,6 +152,8 @@
 							<string>RH_MineMoreInfoViewController</string>
 							<key>image</key>
 							<string>mine_page_look_more</string>
+							<key>freeLogin</key>
+							<true/>
 							<key>title</key>
 							<string>查看更多</string>
 						</dict>
