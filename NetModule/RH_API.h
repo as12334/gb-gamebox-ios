@@ -93,6 +93,7 @@
 #define RH_GP_SYSTEMNOTICE_MINDATE                          @"minDate"
 #define RH_GP_SYSTEMNOTICE_MAXDATE                          @"maxDate"
 #define RH_GP_SYSTEMNOTICE_SEARCHID                         @"searchId"
+#define RH_GP_SYSTEMNOTICE_READ                             @"read"
 
 #pragma mark -游戏公告模型
 #define RH_GP_GAMENOTICE_ID             @"id"
@@ -689,7 +690,7 @@
 #define RH_API_NAME_SITEMESSAGE              @"mobile-api/mineOrigin/getSiteSysNotice.html"
 //请求参数
 #define RH_SP_SITEMESSAGE_PAGINGPAGENUMBER   @"paging.pageNumber"
-#define RH_SP_SITEMESSAGE_PAGINGPAGESIZE   @"paging.pageNumber"
+#define RH_SP_SITEMESSAGE_PAGINGPAGESIZE   @"paging.pageSize"
 //返回参数
 #define RH_GP_SITEMESSAGE_PAGETOTALNUM   @"pageTotal"
 

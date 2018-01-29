@@ -22,7 +22,7 @@
                         <rect key="frame" x="8" y="6" width="303" height="68"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypv-I6-LzN">
-                                <rect key="frame" x="20" y="8" width="263" height="0.0"/>
+                                <rect key="frame" x="20" y="8" width="243" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,17 +50,26 @@
                                     <action selector="choseEdinBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="INO-C3-Jah"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mr6-QX-zWh">
+                                <rect key="frame" x="283" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="H3m-S4-BGK"/>
+                                    <constraint firstAttribute="height" constant="20" id="fNY-FI-hmT"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ypv-I6-LzN" firstAttribute="leading" secondItem="MGM-Ue-1BB" secondAttribute="trailing" constant="3" id="0JG-Z5-9YD"/>
                             <constraint firstItem="ypv-I6-LzN" firstAttribute="top" secondItem="g3u-8b-aKO" secondAttribute="top" constant="8" id="0Jr-Dx-5c2"/>
+                            <constraint firstItem="Mr6-QX-zWh" firstAttribute="top" secondItem="g3u-8b-aKO" secondAttribute="top" id="5Lz-Yo-8Vu"/>
                             <constraint firstItem="MGM-Ue-1BB" firstAttribute="leading" secondItem="g3u-8b-aKO" secondAttribute="leading" constant="5" id="9aB-gu-zXA"/>
-                            <constraint firstAttribute="trailing" secondItem="ypv-I6-LzN" secondAttribute="trailing" constant="20" id="Il7-4G-Th5"/>
+                            <constraint firstAttribute="trailing" secondItem="ypv-I6-LzN" secondAttribute="trailing" constant="40" id="Il7-4G-Th5"/>
                             <constraint firstAttribute="trailing" secondItem="x8d-Zs-vSb" secondAttribute="trailing" constant="8" id="f9P-iJ-ni3"/>
                             <constraint firstItem="CUZ-lW-4Kj" firstAttribute="leading" secondItem="g3u-8b-aKO" secondAttribute="leading" constant="5" id="kN8-LI-d4U"/>
                             <constraint firstItem="MGM-Ue-1BB" firstAttribute="top" secondItem="g3u-8b-aKO" secondAttribute="top" constant="5" id="qpb-8D-FmM"/>
                             <constraint firstAttribute="bottom" secondItem="x8d-Zs-vSb" secondAttribute="bottom" constant="10" id="rZH-FR-OGE"/>
+                            <constraint firstAttribute="trailing" secondItem="Mr6-QX-zWh" secondAttribute="trailing" id="vf4-um-b4W"/>
                             <constraint firstItem="CUZ-lW-4Kj" firstAttribute="top" secondItem="g3u-8b-aKO" secondAttribute="top" constant="5" id="zCh-R2-yAG"/>
                         </constraints>
                     </view>
@@ -75,6 +84,7 @@
             <connections>
                 <outlet property="backDropView" destination="g3u-8b-aKO" id="z5Y-dp-ZxT"/>
                 <outlet property="editBtn" destination="CUZ-lW-4Kj" id="h1U-L0-pgV"/>
+                <outlet property="markNewImageView" destination="Mr6-QX-zWh" id="mkp-RQ-RKA"/>
                 <outlet property="readImageView" destination="MGM-Ue-1BB" id="bBT-sV-vIi"/>
                 <outlet property="timeLabel" destination="x8d-Zs-vSb" id="0h6-qC-nR1"/>
                 <outlet property="titleLabel" destination="ypv-I6-LzN" id="ZIT-Za-zD2"/>

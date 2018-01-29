@@ -184,6 +184,9 @@
                         <constraint firstAttribute="height" constant="40" id="wEV-WG-43n"/>
                     </constraints>
                     <state key="normal" title="取消"/>
+                    <connections>
+                        <action selector="cancelBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IHl-Vf-oxx"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

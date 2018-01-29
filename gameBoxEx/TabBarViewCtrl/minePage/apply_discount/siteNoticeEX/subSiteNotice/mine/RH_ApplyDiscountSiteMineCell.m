@@ -208,6 +208,10 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+    if (page==0) {
+        //刷新后将model数组清空
+        [self.siteModelArray removeAllObjects];
+    }
     [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:page+1 pageSize:pageSize];
 }
 -(void)cancelLoadDataHandle
@@ -226,8 +230,6 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3SiteMessageMyMessage){
-        //刷新后将model数组清空
-        [self.siteModelArray removeAllObjects];
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data)  ;
         if ([dictTmp arrayValueForKey:@"dataList"].count>0) {
             for (int i = 0; i<[dictTmp arrayValueForKey:@"dataList"].count; i++) {
@@ -266,7 +268,7 @@
         [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
-        showErrorMessage(nil, error, nil) ;
+//        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }
