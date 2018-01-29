@@ -50,10 +50,16 @@
 {
     self = [super initWithFrame:frame] ;
     if (self){
-        _typeHeaderList = @[[[_BettingHeaderCellModel alloc] initWithName:@"游戏名称" Descript:@"总共0笔"],
+//        _typeHeaderList = @[[[_BettingHeaderCellModel alloc] initWithName:@"游戏名称" Descript:@"总共0笔"],
+//                            [[_BettingHeaderCellModel alloc] initWithName:@"投注时间" Descript:nil],
+//                            [[_BettingHeaderCellModel alloc] initWithName:@"投注额" Descript:@"¥0.00"],
+//                            [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:@"¥0.00"],
+//                            [[_BettingHeaderCellModel alloc] initWithName:@"状态" Descript:nil],
+//                            ] ;
+        _typeHeaderList = @[[[_BettingHeaderCellModel alloc] initWithName:@"游戏名称" Descript:nil],
                             [[_BettingHeaderCellModel alloc] initWithName:@"投注时间" Descript:nil],
-                            [[_BettingHeaderCellModel alloc] initWithName:@"投注额" Descript:@"¥0.00"],
-                            [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:@"¥0.00"],
+                            [[_BettingHeaderCellModel alloc] initWithName:@"投注额" Descript:nil],
+                            [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:nil],
                             [[_BettingHeaderCellModel alloc] initWithName:@"状态" Descript:nil],
                             ] ;
         
@@ -73,15 +79,18 @@
 
 -(void)updateUIInfoWithTotalNumber:(NSInteger)totalNumber SigleAmount:(CGFloat)single ProfitAmount:(CGFloat)profitAmount
 {
-    _BettingHeaderCellModel *headerCell1 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[0]) ;
-    _BettingHeaderCellModel *headerCell2 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[2]) ;
-    _BettingHeaderCellModel *headerCell3 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[3]) ;
     
-    headerCell1.mDescript = [NSString stringWithFormat:@"总共%ld笔",totalNumber] ;
-    headerCell2.mDescript = [NSString stringWithFormat:@"￥%0.02f",single] ;
-    headerCell3.mDescript = [NSString stringWithFormat:@"￥%0.02f",profitAmount] ;
+//    _BettingHeaderCellModel *headerCell1 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[0]) ;
+//    _BettingHeaderCellModel *headerCell2 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[2]) ;
+//    _BettingHeaderCellModel *headerCell3 = ConvertToClassPointer(_BettingHeaderCellModel, _typeHeaderList[3]) ;
+    
+//    headerCell1.mDescript = [NSString stringWithFormat:@"总共%ld笔",totalNumber] ;
+//    headerCell2.mDescript = [NSString stringWithFormat:@"￥%0.02f",single] ;
+//    headerCell3.mDescript = [NSString stringWithFormat:@"￥%0.02f",profitAmount] ;
     [self.headerStaticView reloadData] ;
 }
+
+
 
 #pragma mark-
 -(CLStaticCollectionView *)headerStaticView

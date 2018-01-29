@@ -20,13 +20,13 @@
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
-//@property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
+@property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
 @end
 
 @implementation RH_BettingRecordViewController
 @synthesize bettingRecordHeaderView = _bettingRecordHeaderView ;
 @synthesize bettingTableHeaderView = _bettingTableHeaderView     ;
-//@synthesize bettingBottomView = _bettingBottomView               ;
+@synthesize bettingBottomView = _bettingBottomView               ;
 
 -(BOOL)isSubViewController
 {
@@ -52,14 +52,18 @@
 
 -(BOOL)hasBottomView
 {
-    return NO ;
+    return YES ;
+}
+-(CGFloat)bottomViewHeight
+{
+    return 50.f ;
 }
 
 #pragma mark-
 -(void)setupUI
 {
     [self.topView addSubview:self.bettingRecordHeaderView] ;
-//    [self.bottomView addSubview:self.bettingBottomView] ;
+    [self.bottomView addSubview:self.bettingBottomView] ;
     self.bottomView.borderMask = CLBorderMarkTop ;
     self.bottomView.borderColor = RH_Line_DefaultColor ;
 
@@ -77,6 +81,7 @@
     
     self.contentTableView.backgroundColor = [UIColor whiteColor];
     [self setupPageLoadManager] ;
+
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -143,24 +148,24 @@
 -(RH_BettingTableHeaderView *)bettingTableHeaderView
 {
     if (!_bettingTableHeaderView){
-        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 50.0f)] ;
+        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 25.0f)] ;
         _bettingTableHeaderView.backgroundColor = colorWithRGB(240, 240, 240) ;
     }
     
     return _bettingTableHeaderView ;
 }
 
-//#pragma mark-sort bottom view
-//-(RH_BettingRecordBottomView*)bettingBottomView
-//{
-//    if (!_bettingBottomView){
-//        _bettingBottomView = [RH_BettingRecordBottomView createInstance] ;
-//        _bettingBottomView.frame = self.bottomView.bounds ;
-//        _bettingBottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
-//    }
-//
-//    return _bettingBottomView ;
-//}
+#pragma mark-sort bottom view
+-(RH_BettingRecordBottomView*)bettingBottomView
+{
+    if (!_bettingBottomView){
+        _bettingBottomView = [RH_BettingRecordBottomView createInstance] ;
+        _bettingBottomView.frame = self.bottomView.bounds ;
+        _bettingBottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight ;
+    }
+
+    return _bettingBottomView ;
+}
 
 #pragma mark-
 -(void)netStatusChangedHandle
@@ -196,9 +201,11 @@
 {
     if (type == ServiceRequestTypeV3BettingList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        [self.bettingTableHeaderView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]
-                                                     SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]
-                                                    ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]] ;
+//        [self.bettingTableHeaderView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]
+//                                                     SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]
+//                                                    ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]] ;
+        [self.bettingBottomView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0] SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_TOTALSINGLE] ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]
+                                                  effective:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]];
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_BETTINGLIST_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]] ;
         

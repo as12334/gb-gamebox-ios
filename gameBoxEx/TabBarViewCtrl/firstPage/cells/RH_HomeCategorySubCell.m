@@ -16,6 +16,7 @@
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
 @property (nonatomic,strong) RH_LotteryCategoryModel *lotteryCategoryModel ;
 @property (nonatomic, strong) UIImageView *imageB;
+@property (nonatomic,strong) UIView *lineView;
 //向下指示图
 @property (nonatomic,strong) IBOutlet UIImageView *indicatorImgView ;
 
@@ -43,8 +44,6 @@
 {
     [super setSelected:selected animated:animated] ;
     self.indicatorImgView.hidden = !selected ;
-//    self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
-//    self.borderView.backgroundColor = selected?[UIColor whiteColor]:[UIColor clearColor] ;
     if (selected) {
         if (self.imageB.superview == nil) {
             self.imageB = [UIImageView new];
@@ -53,9 +52,24 @@
         self.imageB.image = ImageWithName(@"nav-hover-bg");
         self.imageB.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
         
+        
+        if (self.lineView.superview==nil){
+            self.lineView = [[UIView alloc] init] ;
+        }
+        [self.borderView insertSubview:self.lineView belowSubview:self.indicatorImgView] ;
+        
+        self.lineView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1) ;
+        self.lineView.backgroundColor = colorWithRGB(226, 226, 226);
+        
+        self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
+        
     }else {
         [self.imageB removeFromSuperview];
         self.imageB.image = nil;
+        
+        [self.lineView removeFromSuperview] ;
+        self.lineView = nil ;
+        self.labTitle.textColor = RH_Label_DefaultTextColor ;
     }
 }
 
