@@ -29,6 +29,7 @@
 @synthesize capitalBottomView = _capitalBottomView               ;
 @synthesize listView =_listView;
 @synthesize quickSelectView = _quickSelectView;
+
 -(BOOL)isSubViewController
 {
     return YES ;
@@ -86,6 +87,7 @@
     self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242) ;
     [self setupPageLoadManager] ;
     self.needObserverTapGesture = YES ;
+    
 }
 
 
@@ -179,17 +181,13 @@
             if (weakSelf.quickSelectView.superview) {
                 [UIView animateWithDuration:0.2 animations:^{
                     CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x -70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
-//                    CGRect frame = weakSelf.quickSelectView.frame;
                     frame.size.height = 0;
                     weakSelf.quickSelectView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.quickSelectView removeFromSuperview];
                 }];
-               
-
             }
             weakSelf.capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
-//            _capitalRecordHeaderView.startDate = [weakSelf changedSinceTimeString:selectRow];
             [weakSelf startUpdateData] ;
         };
     }
@@ -220,7 +218,6 @@
             [self.quickSelectView removeFromSuperview];
         }];
     }
-    
 }
 -(NSDate *)changedSinceTimeString:(NSInteger)row
 {
@@ -251,6 +248,7 @@
             // 本月
             date= [[NSDate date] dateWithMoveDay:-30];
             _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
+            [self strToNSDate];
             break;
         case 5:
             //最近七天
@@ -270,6 +268,29 @@
     return date;
 }
 
+-(void)strToNSDate
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //            //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //            //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    [self dateFromString:currentDateString];
+}
+
+
+//NSString转NSDate
+- (NSDate *)dateFromString:(NSString *)string
+{
+    NSString *tempStr = [string substringToIndex:7];
+    //设置转换格式
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-01"];
+    //NSString转NSDate
+    NSDate *date=[formatter dateFromString:tempStr];
+    return date;
+}
 #pragma mark-sort bottom view
 -(RH_CapitalRecordBottomView *)capitalBottomView
 {
@@ -343,15 +364,11 @@
         }
        
     }
-
     [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
                                     EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
                                  SearchType:typeIdstr
-                                 PageNumber:page
+                                 PageNumber:page+1
                                    PageSize:pageSize] ;
-    
-   
-   
 }
 
 -(void)cancelLoadDataHandle

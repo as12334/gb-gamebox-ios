@@ -18,6 +18,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_BitCoinController.h"
 #import "RH_BankCardController.h"
+
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0  ,
     WithdrawCashStatus_NotEnoughCash      ,
@@ -174,7 +175,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 #pragma mark- updateView
 -(void)updateView
 {
-    
     if (_withdrawCashStatus==WithdrawCashStatus_Init){
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawInit"] ;
         [self loadingIndicateViewDidTap:nil] ;
@@ -186,6 +186,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         self.contentTableView.tableFooterView =  nil;
     }else {
         [self.contentLoadingIndicateView hiddenView] ;
+        
+        if (self.withDrawModel.mBankcardMap[@"1"] == nil) {
+            [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
+        }
         
         if (_withdrawCashStatus==WithdrawCashStatus_NotEnoughCash){
             [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashLow"] ;

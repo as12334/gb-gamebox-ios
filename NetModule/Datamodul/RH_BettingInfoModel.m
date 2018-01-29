@@ -20,12 +20,13 @@
 @synthesize showBettingDate = _showBettingDate ;
 @synthesize showSingleAmount = _showSingleAmount ;
 @synthesize showProfitAmount = _showProfitAmount ;
+@synthesize showDetailUrl = _showDetailUrl;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     self = [super initWithInfoDic:info] ;
     if (self){
-        _mID = [info integerValueForKey:RH_GP_BETTING_ID] ;
+        _mID = [info stringValueForKey:RH_GP_BETTING_ID] ;
         _mApiID = [info integerValueForKey:RH_GP_BETTING_APIID] ;
         _mApiName = [info stringValueForKey:RH_GP_BETTING_APINAME] ;
         _mGameID = [info integerValueForKey:RH_GP_BETTING_GAMEID] ;
@@ -35,6 +36,7 @@
         _mProfitAmount = [info floatValueForKey:RH_GP_BETTING_PROFITAMOUNT] ;
         _mOrderState = [info stringValueForKey:RH_GP_BETTING_ORDERSTATE] ;
         _mSingleAmount = [info floatValueForKey:RH_GP_BETTING_SINGLEAMOUNT];
+        _mURL = [info stringValueForKey:RH_GP_BETTING_URL] ;
     }
     
     return self ;
@@ -93,6 +95,22 @@
     }
 
     return _showProfitAmount ;
+}
+
+-(NSString *)showDetailUrl
+{
+    if (!_showDetailUrl){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (_mURL.length){
+            if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
+                _showDetailUrl = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mURL] ;
+            }else {
+                _showDetailUrl = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mURL] ;
+            }
+        }
+    }
+    return _showDetailUrl ;
+    
 }
 
 @end

@@ -9,11 +9,12 @@
 #import "RH_WithdrawCashOneCell.h"
 #import "coreLib.h"
 #import "RH_WithDrawModel.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_WithdrawCashOneCell ()
 @property(nonatomic,strong) UIImageView *bankIconImageView ;
 @property(nonatomic,strong) UILabel *bankUserNameLb ;
-@property(nonatomic,strong)UILabel *bankCardLab ;
+@property(nonatomic,strong) UILabel *bankCardLab ;
 
 @end
 
@@ -67,7 +68,8 @@
         [self.contentView addSubview:self.bankUserNameLb];
         [self.contentView addSubview:self.bankCardLab];
         self.bankIconImageView.whc_LeftSpace(10).whc_WidthAuto().whc_Height(30).whc_CenterY(0);
-       
+        self.bankUserNameLb.whc_LeftSpaceToView(5, self.bankIconImageView).whc_CenterY(0).whc_WidthAuto();
+        self.bankCardLab.whc_LeftSpaceToView(5, self.bankUserNameLb).whc_CenterY(0).whc_WidthAuto();
         self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
         self.separatorLineWidth = 1.0f;
         self.separatorLineColor = colorWithRGB(242, 242, 242);
@@ -82,8 +84,9 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     BankcardMapModel *bankcardModel = ConvertToClassPointer(BankcardMapModel, context) ;
-    self.textLabel.text = bankcardModel.mBankName;
-//    self.
+    [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
+    self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
+    self.bankCardLab.text = bankcardModel.mBankcardNumber;
 }
 
 @end

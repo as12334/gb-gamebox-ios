@@ -183,7 +183,7 @@
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
     return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
-                                                          pageLoadControllerClass:[CLArrayPageLoadController class]
+                                                          pageLoadControllerClass:nil
                                                                          pageSize:[self defaultPageSize]
                                                                      startSection:0
                                                                          startRow:0
@@ -208,7 +208,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:page pageSize:pageSize];
+    [self.serviceRequest startV3SiteMessageMyMessageWithpageNumber:page+1 pageSize:pageSize];
 }
 -(void)cancelLoadDataHandle
 {
@@ -228,15 +228,18 @@
     if (type == ServiceRequestTypeV3SiteMessageMyMessage){
         //刷新后将model数组清空
         [self.siteModelArray removeAllObjects];
-        NSArray *array = ConvertToClassPointer(NSArray, data);
-        if (array.count>0) {
-            for (int i = 0; i<array.count; i++) {
-                RH_SiteMyMessageModel *myModel = ConvertToClassPointer(RH_SiteMyMessageModel, array[i]);
+        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data)  ;
+        if ([dictTmp arrayValueForKey:@"dataList"].count>0) {
+            for (int i = 0; i<[dictTmp arrayValueForKey:@"dataList"].count; i++) {
+                RH_SiteMyMessageModel *myModel = ConvertToClassPointer(RH_SiteMyMessageModel, [dictTmp arrayValueForKey:@"dataList"][i]);
                 myModel.number = @0;
                 [self.siteModelArray addObject:myModel];
             }
+            NSUInteger totalNumber = [dictTmp[@"pageTotal"] integerValue] ;
             
-            [self loadDataSuccessWithDatas:array totalCount:array.count completedBlock:nil] ;
+            [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:@"dataList"]
+                                totalCount:totalNumber
+                            completedBlock:nil];
         }else
         {
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];

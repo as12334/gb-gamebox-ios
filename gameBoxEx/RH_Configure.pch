@@ -1510,6 +1510,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _dllb //金沙娱乐场
+
+#define CODE    @"dllb"
+#define S        @"7ffa67b40eea93a97805d59970d76b94"
+#define SID        @"355"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #else //超博娱乐
 
 #define CODE   @"8l6r"

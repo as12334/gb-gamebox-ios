@@ -237,6 +237,7 @@
 #define RH_GP_BETTING_SINGLEAMOUNT                      @"singleAmount"
 #define RH_GP_BETTING_PROFITAMOUNT                      @"profitAmount"
 #define RH_GP_BETTING_ORDERSTATE                        @"orderState"
+#define RH_GP_BETTING_URL                               @"url"
 
 #pragma mark - V3 用户安全码 初始化信息模型
 #define RH_GP_USERSAFETY_HASREALNAME                          @"hasRealName"
@@ -244,7 +245,6 @@
 #define RH_GP_USERSAFETY_ISOPENCAPTCHA                        @"isOpenCaptcha"
 #define RH_GP_USERSAFETY_REMINDTIMES                          @"remindTimes"
 #define RH_GP_USERSAFETY_LOCKTIME                             @"lockTime"
-
 
 #pragma mark - V3 投注详情 模型
 #define RH_GP_BETTINGDETAIL_APIID                                 @"apiId"
@@ -410,7 +410,7 @@
 #define RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME                   @"customBankName"
 #define RH_GP_WITHDRAWBANKCARD_TYPE                             @"type"
 #define RH_GP_WITHDRAWBANKCARD_USECOUNT                         @"useCount"
-
+#define RH_GP_WITHDRAWBANKCARD_BANKURL                         @"bankUrl"
 
 #pragma mark - V3 站点信息-系统消息详情-SiteMsgSysMsg模型
 #define RH_GP_SITEMSGSYSMSG_CONTENT         @"content"
@@ -431,7 +431,7 @@
 
 #pragma mark - 域名 check失败，上传接口
 //api的路径
-#define RH_API_NAME_COLLECTAPPERROR                        @"boss/facade/collectAppError"
+#define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppDomainError.html"
 //请求参数
 #define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
 #define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
@@ -496,7 +496,9 @@
 #define RH_GP_OPENACTIVITY_GAMENUM                      @"gameNum"
 #define RH_GP_OPENACTIVITY_NEXTLOTTERYTIME              @"nextLotteryTime"
 #define RH_GP_OPENACTIVITY_TOKEN                        @"token"
-
+#define RH_GP_OPENACTIVITY_ID                           @"id"
+#define RH_GP_OPENACTIVITY_APPLYID                      @"applyId"
+#define RH_GP_OPENACTIVITY_RECORDID                     @"recordId"
 
 #pragma mark - V3 电子游戏清单 接口
 //api的路径
@@ -786,6 +788,11 @@
 //返回参数
 #define RH_GP_LOADGAMETYPE_KEY                  @"key"
 #define RH_GP_LOADGAMETYPE_VALUE                @"value"
+
+#pragma mark -V3 取款安全密码验证
+#define RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH                   @"mobile-api/mineOrigin/checkSafePassword.htmll"
+// 请求参数
+#define RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD           @"originPwd"
 
 
 #endif /* RH_API_h */

@@ -100,7 +100,7 @@
 
 -(BOOL)showNotingIndicaterView
 {
-    [self.loadingIndicateView showNothingWithImage:nil title:@"当前无优惠活动"
+    [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
                                         detailText:@"点击重试"] ;
     return YES ;
 }
@@ -110,7 +110,7 @@
 {
     [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
                                                 endTime:self.endDate
-                                             pageNumber:page
+                                             pageNumber:page+1
                                                pageSize:pageSize
                                                   apiId:self.apiId];
 }

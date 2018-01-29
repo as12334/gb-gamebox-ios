@@ -19,10 +19,10 @@
                     <rect key="frame" x="0.0" y="40" width="50" height="86"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oih-Vc-Ost">
-                    <rect key="frame" x="0.0" y="14" width="25" height="25"/>
+                    <rect key="frame" x="0.0" y="7" width="25" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="25" id="5Du-sd-csl"/>
-                        <constraint firstAttribute="height" constant="25" id="YFk-dI-Mc3"/>
+                        <constraint firstAttribute="width" constant="25" id="F3p-4y-sd0"/>
+                        <constraint firstAttribute="height" constant="25" id="kVF-yd-IR8"/>
                     </constraints>
                     <state key="normal" backgroundImage="home_cancel_icon"/>
                     <connections>
@@ -32,12 +32,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="lrJ-n0-mJG" firstAttribute="top" secondItem="oih-Vc-Ost" secondAttribute="bottom" constant="8" id="0IQ-zB-36H"/>
+                <constraint firstItem="oih-Vc-Ost" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Kol-k6-w0h"/>
                 <constraint firstAttribute="trailing" secondItem="lrJ-n0-mJG" secondAttribute="trailing" id="MYa-mD-kuk"/>
                 <constraint firstAttribute="bottom" secondItem="lrJ-n0-mJG" secondAttribute="bottom" id="N13-4s-Stt"/>
-                <constraint firstItem="oih-Vc-Ost" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="aaX-YV-2P4"/>
                 <constraint firstItem="lrJ-n0-mJG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hqb-TQ-nlF"/>
                 <constraint firstItem="lrJ-n0-mJG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="ttI-1B-JDq"/>
-                <constraint firstAttribute="trailing" secondItem="oih-Vc-Ost" secondAttribute="trailing" constant="25" id="zPN-g0-f8r"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

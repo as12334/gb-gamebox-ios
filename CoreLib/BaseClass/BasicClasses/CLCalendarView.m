@@ -86,6 +86,11 @@
     setEdgeConstraint(self.labTitle, NSLayoutAttributeLeft, self, 15.0f) ;
 
     [self addSubview:self.datePicker];
+
+    
+    
+   
+    
     setRelatedCommonAttrConstraint(self.datePicker, NSLayoutAttributeCenterX, self,1.f,0.f);
 
     [self addSubview:self.confirmButton];
@@ -185,8 +190,13 @@
 //                                                                       200*BXScreenH/736)];
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0,40,BXScreenW,
                                                                     self.boundHeigh - 40.0f)];
-
         _datePicker.datePickerMode = UIDatePickerModeDate;
+//        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+//        fmt.dateFormat = @"yyyy-MM-dd";
+//        NSDate *minDate = [fmt dateFromString:@"2018-1-20"];
+//        //设置日期最小值
+//        _datePicker.minimumDate = minDate;
+        
 //        [_datePicker addTarget:self action:@selector(datePickerChangedHandle:) forControlEvents: UIControlEventValueChanged];
     }
 
