@@ -41,7 +41,7 @@
                             <constraint firstItem="af7-kk-kYL" firstAttribute="centerX" secondItem="rrl-ae-mdi" secondAttribute="centerX" id="sGP-rO-DNU"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_markcell_image" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-QH-VI7">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-QH-VI7">
                         <rect key="frame" x="24" y="74" width="13" height="6"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="6" id="JJi-06-lYT"/>
@@ -69,6 +69,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="home_markcell_image" width="13" height="6"/>
+        <image name="up-icon" width="13" height="6"/>
     </resources>
 </document>

@@ -26,14 +26,14 @@
     self.contentView.layer.cornerRadius = 6.0f ;
     self.contentView.layer.masksToBounds = YES ;
     
-    self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
+    self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  RH_Label_DefaultTextColor ;
-    
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor =  [UIColor blueColor] ;
     self.selectionColorAlpha = 0.3f ;
-    self.labTitle.whc_CenterY(38);
+//    self.labTitle.whc_CenterY(38);
     self.imgIcon.whc_Center(0, -15).whc_Width(58).whc_Height(58);
+    self.labTitle.whc_TopSpaceToView(10, self.imgIcon);
 }
 
 -(UIView *)showSelectionView

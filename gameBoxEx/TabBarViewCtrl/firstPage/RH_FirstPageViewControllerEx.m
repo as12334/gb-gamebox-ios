@@ -446,7 +446,7 @@
     
     self.activityView.alpha = 0.0 ;
     [self.view addSubview:self.activityView] ;
-    self.activityView.whc_RightSpace(15).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
+    self.activityView.whc_RightSpace(5).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
     
     [UIView animateWithDuration:1.0f animations:^{
         self.activityView.activityModel = activityModel ;

@@ -164,10 +164,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                 [self showViewController:[RH_BitCoinController viewControllerWithContext:nil] sender:nil];
             }
         }];
-        [alert setBackgroundColor:colorWithRGB(234, 234, 234)];
-        [alert setTitleColor:colorWithRGB(153, 153, 153)];
-        [alert setMessageColor:colorWithRGB(153, 153, 153)];
+        [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
+        [alert setTitleColor:colorWithRGB(51, 51, 51)];
+        [alert setMessageColor:colorWithRGB(51, 51, 51)];
         [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
+        [alert setCancelButtonTextColor:colorWithRGB(51, 51, 51)];
+        [alert setOtherButtonTextColor:colorWithRGB(91, 91, 91)];
     }
 }
 
@@ -337,9 +339,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 {
     if (type == ServiceRequestTypeV3GetWithDrawInfo)
     {
+        NSLog(@"data:%@", data);
         [self.contentLoadingIndicateView hiddenView] ;
         self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-        if (self.withDrawModel.mBankcardMap[@"1"]){
+        NSLog(@"%@", self.withDrawModel.mBankcardMap[@"1"]);
+        if (self.withDrawModel.mBankcardMap[@"1"][@""]){
             _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
             [self setNeedUpdateView];
         }else{
