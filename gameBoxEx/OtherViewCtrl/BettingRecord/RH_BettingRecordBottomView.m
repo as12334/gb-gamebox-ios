@@ -23,6 +23,26 @@
 @implementation RH_BettingRecordBottomView
 {
     NSArray *_statusFooterList ;
+    NSInteger _totalNumber;
+    CGFloat _single;
+    CGFloat _profitAmount;
+    CGFloat _effective;
+    
+}
+
+/**
+ @param totalNumber 笔数
+ @param single 投注总额
+ @param profitAmount 派彩奖金
+ @param effective 有效投注
+ */
+-(void)updateUIInfoWithTotalNumber:(NSInteger)totalNumber SigleAmount:(CGFloat)single ProfitAmount:(CGFloat)profitAmount effective:(CGFloat)effective
+{
+    _totalNumber = totalNumber ;
+    _single = single ;
+    _profitAmount = profitAmount ;
+    _effective = effective ;
+    [self.summerStaticView reloadData];
 }
 
 -(void)awakeFromNib
@@ -67,16 +87,16 @@
     NSInteger index = indexPath.section*2 + indexPath.item ;
     switch (index) {
         case 0:
-            titleCell.labTitle.text = @"账户余额:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat: @"投注总额:%.2f", _single];
             break;
         case 1:
-            titleCell.labTitle.text = @"中将金额:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat: @"派彩奖金:%.2f", _profitAmount];
             break;
         case 2:
-            titleCell.labTitle.text = @"投注总额:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat: @"有效投注:%.2f", _effective];
             break;
         case 3:
-            titleCell.labTitle.text = @"盈  亏:0.00";
+            titleCell.labTitle.text = [NSString stringWithFormat:@"投注笔数:%ld笔",_totalNumber];
             break;
             
         default:
@@ -85,5 +105,7 @@
     
     return titleCell ;
 }
+
+
 
 @end

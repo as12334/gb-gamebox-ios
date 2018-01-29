@@ -85,7 +85,7 @@
             [self.navigationBarView addSubview:self.userInfoBtnView] ;
         }
         
-        self.userInfoBtnView.whc_RightSpace(10).whc_CenterY(0).whc_Width(60).whc_Height(40) ;
+        self.userInfoBtnView.whc_RightSpace(10).whc_CenterY(0).whc_Width(75).whc_Height(40) ;
     }else{
         if (_loginButton.superview==nil){
             [self.navigationBarView addSubview:self.loginButton] ;
@@ -162,7 +162,7 @@
         _userInfoBtnView = [RH_NavigationUserInfoView createInstance] ;
         [_userInfoBtnView.buttonCover addTarget:self
                                                 action:@selector(_userInfoBtnViewHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _userInfoBtnView.frame = CGRectMake(0, 0, 60.0f, 40.0f) ;
+        _userInfoBtnView.frame = CGRectMake(0, 0, 75.0f, 40.0f) ;
     }
     
     return _userInfoBtnView ;
