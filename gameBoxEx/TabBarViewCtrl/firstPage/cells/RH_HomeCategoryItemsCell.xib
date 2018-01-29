@@ -20,7 +20,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="-1220" y="-974"/>
+            <point key="canvasLocation" x="-882" y="-918"/>
         </tableViewCell>
     </objects>
 </document>

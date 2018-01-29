@@ -379,7 +379,7 @@
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
 {
-    [self.activityView removeFromSuperview];
+    [self activityViewHide] ;
 }
 -(void)activithyViewDidTouchActivityView:(RH_ActivithyView*)activityView
 {
@@ -446,8 +446,7 @@
     
     self.activityView.alpha = 0.0 ;
     [self.view addSubview:self.activityView] ;
-    self.activityView.whc_RightSpace(15).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
-    [self.view addSubview:self.activityView] ; self.activityView.whc_RightSpace(15).whc_BottomSpace(50).whc_Width(100).whc_Height(100);
+    self.activityView.whc_RightSpace(5).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
     
     [UIView animateWithDuration:1.0f animations:^{
         self.activityView.activityModel = activityModel ;
@@ -459,17 +458,22 @@
 -(void)activityViewHide{
     if (self.activityView.superview){
         [UIView animateWithDuration:1.0f animations:^{
-            [self.activityView removeFromSuperview] ;
-        } completion:^(BOOL finished) {
             self.activityView.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [self.activityView removeFromSuperview] ;
+            [self.activityView whc_ResetConstraints] ;
         }] ;
     }
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated] ;
     [self.normalActivityView removeFromSuperview];
     [self.shadeView removeFromSuperview];
+    [self.hud hide:YES];
 }
+
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {

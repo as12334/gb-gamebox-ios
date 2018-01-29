@@ -39,24 +39,35 @@
 
 -(void)setupInfo
 {
-    self.typeTopView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, self.typeTopView.viewHeight) ;
-    self.typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
-    [self.view addSubview:self.typeTopView] ;
-    self.typeTopView.selectedIndex = 0 ;
+//    self.typeTopView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, self.typeTopView.viewHeight) ;
+//    self.typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
+//    [self.view addSubview:self.typeTopView] ;
+//    self.typeTopView.selectedIndex = 0 ;
+//
+//    //分页视图
+//    self.pageView.frame = CGRectMake(10,
+//                                     self.typeTopView.frameY + self.typeTopView.frameHeigh + 10,
+//                                     MainScreenW-20,
+//                                     MainScreenH - (self.typeTopView.frameY + self.typeTopView.frameHeigh + 10 + TabBarHeight)) ;
+//    self.pageView.autoresizingMask =UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin| UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin ;
+//    [self.contentView addSubview:self.pageView];
     
-    //分页视图
-    self.pageView.frame = CGRectMake(10,
-                                     self.typeTopView.frameY + self.typeTopView.frameHeigh + 10,
-                                     MainScreenW-20,
-                                     MainScreenH - (self.typeTopView.frameY + self.typeTopView.frameHeigh + 10 + TabBarHeight)) ;
-    self.pageView.autoresizingMask =UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin| UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin ;
-    [self.contentView addSubview:self.pageView];
+    [self.view addSubview:self.typeTopView] ;
+    [self.contentView addSubview:self.pageView] ;
+    [self updateLayout] ;
+    self.typeTopView.selectedIndex = 0 ;
     
     //注册复用
     [self.pageView registerCellForPage:[RH_PromoContentPageCell class] andReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier]] ;
 
     //设置索引
     self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
+}
+
+-(void)updateLayout
+{
+    self.typeTopView.whc_TopSpace(StatusBarHeight+NavigationBarHeight).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(self.typeTopView.viewHeight) ;
+    self.pageView.whc_TopSpace(StatusBarHeight + NavigationBarHeight + self.typeTopView.viewHeight +10).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(TabBarHeight) ;
 }
 
 #pragma mark -
@@ -180,18 +191,40 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3PromoActivityType){
-        NSArray *typeList = ConvertToClassPointer(NSArray , data) ;
-        [self.typeTopView updateView:typeList] ;
-        [self.contentLoadingIndicateView hiddenView] ;
-        [self setupInfo] ;
+        if (_typeTopView.allTypes==0){
+            NSArray *typeList = ConvertToClassPointer(NSArray , data) ;
+            [self.typeTopView updateView:typeList] ;
+            [self.contentLoadingIndicateView hiddenView] ;
+            [self setupInfo] ;
+        }else{
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                NSArray *typeList = ConvertToClassPointer(NSArray , data) ;
+                [self.typeTopView updateView:typeList] ;
+            }] ;
+        }
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3PromoActivityType){
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+        if (_typeTopView.allTypes==0){
+            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+        }else{
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showErrorMessage(self.view, error, @"更新失败") ;
+            }] ;
+        }
     }
 }
 
+#pragma mark -
+-(void)tryRefreshData
+{
+    if (_typeTopView.allTypes>0){
+        //已存在数据情况 ，更新优惠标签 。
+        [self showProgressIndicatorViewWithAnimated:YES title:@"信息更新中"] ;
+        [self.serviceRequest startV3LoadDiscountActivityType] ;
+    }
+}
 @end

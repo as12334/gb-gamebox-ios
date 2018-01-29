@@ -73,7 +73,9 @@
 
 -(NSUInteger)defaultPageSize
 {
-    return 300 ;
+    CGFloat contentHeigh =  self.contentTableView.frameHeigh - self.contentTableView.contentInset.top - self.contentTableView.contentInset.bottom ;
+    CGFloat cellHeigh = [RH_PreferentialListCell heightForCellWithInfo:nil tableView:nil context:nil] ;
+    return floorf(contentHeigh/cellHeigh) ;
 }
 
 #pragma mark- 请求回调

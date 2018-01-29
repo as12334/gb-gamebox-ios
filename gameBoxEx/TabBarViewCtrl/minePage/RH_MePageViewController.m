@@ -85,12 +85,19 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
+#if 0
         UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
         [button setBackgroundImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+#else
+        _barButtonSetting = [[UIBarButtonItem alloc] initWithTitle:@"退出"
+                                                             style:UIBarButtonItemStylePlain
+                                                            target:self
+                                                            action:@selector(_barButtonSettingHandle)] ;
+#endif
     }
     
     return _barButtonSetting ;
@@ -98,7 +105,19 @@
 
 -(void)_barButtonSettingHandle
 {
+#if 0
     [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
+#else
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"点击取消");
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showProgressIndicatorViewWithAnimated:YES title:@"退出中..."] ;
+        [self.serviceRequest startV3UserLoginOut];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+#endif
 }
 
 
@@ -245,7 +264,16 @@
             }
         }
     }else{
+        if ([dictInfo boolValueForKey:@"freeLogin"]){
+            UIViewController *viewCtrl = [dictInfo targetViewControllerWithContext:[dictInfo targetContext]] ;
+            if (viewCtrl){
+                [self showViewController:viewCtrl sender:self] ;
+                return ;
+            }
+        }
+        
         [self loginButtonItemHandle] ;
+        
     }
 }
 
@@ -261,6 +289,10 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
+    }else if (type == ServiceRequestTypeV3UserLoginOut){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+        }] ;
     }
 }
 
@@ -269,6 +301,15 @@
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showAlertView(@"自动登录失败", @"提示信息");
+        }] ;
+    }else if (type == ServiceRequestTypeV3UserLoginOut){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if (error.code==1){
+                [self.appDelegate updateLoginStatus:NO] ;
+                showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+            }else{
+                showErrorMessage(self.view, error, @"退出失败") ;
+            }
         }] ;
     }
 }
