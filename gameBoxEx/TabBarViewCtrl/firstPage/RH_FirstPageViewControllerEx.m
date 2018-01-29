@@ -302,7 +302,7 @@
                 return ;
             }
         }
-        //进入登入界面
+        //进入登录界面
         [self loginButtonItemHandle] ;
     }
 }
@@ -392,7 +392,7 @@
         [[UIApplication sharedApplication].keyWindow addSubview:_hud];
     }
     else if(!self.appDelegate.isLogin){
-        //进入登入界面
+        //进入登录界面
         [self loginButtonItemHandle] ;
     }
     else if (NetNotReachability()){
@@ -513,11 +513,11 @@
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if ([data boolValue]){
-                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                showSuccessMessage(self.view, @"试玩登录成功", nil) ;
                 [self.appDelegate updateLoginStatus:true] ;
                 
             }else{
-                showAlertView(@"试玩登入失败", @"提示信息");
+                showAlertView(@"试玩登录失败", @"提示信息");
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
@@ -555,11 +555,11 @@
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showAlertView(@"试玩登入失败", @"提示信息");
+            showAlertView(@"试玩登录失败", @"提示信息");
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showAlertView(@"自动登入失败", @"提示信息");
+            showAlertView(@"自动登录失败", @"提示信息");
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

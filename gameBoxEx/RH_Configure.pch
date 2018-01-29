@@ -1518,14 +1518,6 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#else //超博娱乐
-
-#define CODE   @"8l6r"
-#define S   @"6bf3b743e414045e5123fc317fb9b535"
-#define SID   @"71"
-#define THEME   @"default.skin"
-#define SITE_TYPE @"INTEGRATED"
-
 #endif
 
 #endif /* RH_Configure_h */

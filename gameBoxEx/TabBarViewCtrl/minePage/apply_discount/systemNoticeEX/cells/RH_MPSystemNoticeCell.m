@@ -55,7 +55,7 @@
 {
     RH_SystemNoticeModel *systemModel = ConvertToClassPointer(RH_SystemNoticeModel, context);
     self.noticeLabel.text = systemModel.mContent;
-    self.timeLabel.text = dateStringWithFormatter(systemModel.mPublishTime, @"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(systemModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
 //    self.gamenameLabel.text = systemModel.m;
 }
 

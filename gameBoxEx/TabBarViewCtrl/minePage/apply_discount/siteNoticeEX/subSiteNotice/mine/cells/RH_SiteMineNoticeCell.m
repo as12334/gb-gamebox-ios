@@ -56,7 +56,7 @@
 {
     RH_SiteMyMessageModel *model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
     self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",model.mAdvisoryTitle]stringByRemovingPercentEncoding];
-    self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd hh:mm:ss");
     if ([model.number isEqual:@0]) {
         self.readImageView.image =nil;
     }

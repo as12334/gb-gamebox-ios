@@ -56,7 +56,7 @@
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
     self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mTitle];
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
     if ([model.number isEqual:@0]) {
         self.readMarkImageView.image = nil;
     }

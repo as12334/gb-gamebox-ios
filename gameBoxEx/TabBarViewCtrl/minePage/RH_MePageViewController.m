@@ -268,7 +268,7 @@
 {
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showAlertView(@"自动登入失败", @"提示信息");
+            showAlertView(@"自动登录失败", @"提示信息");
         }] ;
     }
 }
