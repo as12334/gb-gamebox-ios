@@ -594,7 +594,8 @@
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
         switch (section) {
             case 0: //bannel
-                return homePageModel.mBannerList.count?1:0 ;
+//                return homePageModel.mBannerList.count?1:0 ;
+                return 1 ;
                 break;
             
             case 1: //announcement

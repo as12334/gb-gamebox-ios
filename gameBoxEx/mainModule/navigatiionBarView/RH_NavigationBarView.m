@@ -79,16 +79,19 @@
         //已login
         if (_loginButton.superview){
             [_loginButton removeFromSuperview] ;
+            [_loginButton whc_ResetConstraints];
         }
         
         if (_signButton.superview){
             [_signButton removeFromSuperview] ;
+            [_signButton whc_ResetConstraints];
         }
         
         if (_userInfoBtnView.superview==nil){
             [self.navigationBarView addSubview:self.userInfoBtnView] ;
         }
         
+        [self.userInfoBtnView whc_ResetConstraints] ;
         self.userInfoBtnView.whc_RightSpace(10).whc_CenterY(0).whc_Width(75).whc_Height(40) ;
     }else{
         if (_loginButton.superview==nil){
@@ -103,6 +106,8 @@
             [_userInfoBtnView removeFromSuperview] ;
         }
         
+        [self.signButton whc_ResetConstraints] ;
+        [self.loginButton whc_ResetConstraints] ;
         self.signButton.whc_RightSpace(10).whc_CenterY(0).whc_Width(40).whc_Height(27) ;
         self.loginButton.whc_RightSpaceToView(10, self.signButton).whc_CenterY(0).whc_Width(40).whc_Height(27) ;
     }
