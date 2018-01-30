@@ -11,10 +11,8 @@
 #import "RH_UserInfoManager.h"
 
 @interface RH_MinePageBannarCell()
-@property (nonatomic,strong) IBOutlet UIImageView *imgICON ;
-
-//login status info
-@property (strong, nonatomic,readonly)  UIImageView *imageUserAvator;
+@property (nonatomic,strong) IBOutlet UIView *imgUserBG ;
+@property (strong, nonatomic) IBOutlet  UIImageView *imageUserAvator;
 
 @property (strong, nonatomic) IBOutlet UILabel *label_UserNickName;
 @property (strong, nonatomic) IBOutlet UILabel *label_TimeTitle;
@@ -45,16 +43,15 @@
     [self.contentView insertSubview:imageBackView atIndex:0];
     imageBackView.image = ImageWithName(@"mine_page_accountback");
     
-    UIView *view_imageB = [UIView new];
-    [self.contentView insertSubview:view_imageB atIndex:1];
-    view_imageB.whc_LeftSpace(10).whc_CenterY(0).whc_Width(68).whc_Height(68);
-    view_imageB.layer.cornerRadius = 34;
-    view_imageB.clipsToBounds = YES;
-    view_imageB.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
-    self.imageUserAvator.backgroundColor = [UIColor redColor];
+    
+    self.imgUserBG.whc_LeftSpace(10).whc_CenterY(0).whc_Width(68).whc_Height(68);
+    self.imgUserBG.layer.cornerRadius = 34;
+    self.imgUserBG.clipsToBounds = YES;
+    self.imgUserBG.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
     self.imageUserAvator.image = ImageWithName(@"touxiang");
-    [view_imageB addSubview:self.imageUserAvator];
-//    self.imageUserAvator.whc_Center(0, 0).whc_Width(50).whc_Height(50);
+    self.imageUserAvator.whc_Center(0, 0).whc_Width(50).whc_Height(50);
+    self.imageUserAvator.layer.cornerRadius = 25.0f ;
+    self.imageUserAvator.layer.masksToBounds = YES ;
     
     [self.label_UserNickName setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TimeTitle setTextColor:colorWithRGB(102, 102, 102)];
@@ -62,8 +59,7 @@
     [self.label_TotalMoneyText setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TotalMoney setTextColor:colorWithRGB(27, 117, 217)];
     [self.label_leftMoney setTextColor:colorWithRGB(11, 186, 135)];
-    [self.label_LeftMoneyText setTextColor:colorWithRGB(51, 51, 51)];
-    
+    [self.label_LeftMoneyText setTextColor:colorWithRGB(51, 51, 51)];    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
@@ -82,17 +78,6 @@
     
 }
 
-
-#pragma mark-
--(UIImageView *)imageUserAvator
-{
-    if (!_imageUserAvator){
-        _imageUserAvator = [[UIImageView alloc] initWithImage:ImageWithName(@"touxiang")] ;
-    }
-    
-    return _imageUserAvator ;
-}
-
 #pragma mark-
 -(void)handleNotification:(NSNotification*)nf
 {
@@ -107,8 +92,8 @@
     self.label_TotalMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mTotalAssets];
     self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mWalletBalance];
     self.label_TimeLast.text = MineSettingInfo.mLoginTime ;
-    [self.imageUserAvator sd_setImageWithURL:[NSURL URLWithString:MineSettingInfo.showAvatalURL]
-                            placeholderImage:ImageWithName(@"mine_page_useravator")] ;
+//    [self.imageUserAvator sd_setImageWithURL:[NSURL URLWithString:MineSettingInfo.showAvatalURL]
+//                            placeholderImage:ImageWithName(@"mine_page_useravator")] ;
 }
 
 @end
