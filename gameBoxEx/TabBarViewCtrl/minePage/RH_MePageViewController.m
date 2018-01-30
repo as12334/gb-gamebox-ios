@@ -78,7 +78,7 @@
 
 -(void)_barButtonCustomHandle
 {
-//    [self showViewController:[RH_MineCustomerServicesController viewController] sender:self] ;
+     [self.tabBarController setSelectedIndex:3];
 }
 
 #pragma mark-
@@ -125,8 +125,9 @@
 -(void)setupUI
 {
     [self.navigationBar setBarTintColor:colorWithRGB(27, 117, 217)];
+    self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
     if (self.appDelegate.isLogin) {
-        self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
+        
         self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
     }
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;

@@ -136,10 +136,15 @@
         showMessage(self.view, @"错误", @"请输入密码");
         return;
     }
+    if (newPwd.length < 6 || newPwd2.length < 6) {
+        showMessage(self.view, @"提示", @"密码至少六位");
+        return;
+    }
     if (![newPwd isEqualToString:newPwd2]) {
         showMessage(self.view, nil, @"两次输入的密码不一样！");
         return;
     }
+    
     
     if (self.passwordCodeCell){//需要输入验证码
         if (self.passwordCodeCell.passwordCode.length<1){
