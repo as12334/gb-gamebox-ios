@@ -1343,15 +1343,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-    
-    else if (type==ServiceRequestTypeV3SystemMessageYes){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
-        return YES ;
-    }
+//    
+//    else if (type==ServiceRequestTypeV3SystemMessageYes){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+//        return YES ;
+//    }
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data

@@ -126,7 +126,10 @@
     if (type==ServiceRequestTypeV3GameNotice)
     {
         RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
-        self.listView.modelArray = gameModel.mApiSelectModel;
+        for (ApiSelectModel *selectModel in gameModel.mApiSelectModel) {
+            [self.listView.modelArray addObject:selectModel.mApiName];
+            [self.listView.modelIdArray addObject:[NSString stringWithFormat:@"%ld",selectModel.mApiId]];
+        }
         [self loadDataSuccessWithDatas:gameModel.mListModel
                             totalCount:gameModel.mPageTotal
                         completedBlock:nil];
@@ -217,7 +220,8 @@
 -(void)selectedHeaderViewGameType:(CGRect )frame andMarkNnmber:(int )number
 {
     if (!self.listView.superview) {
-        frame.origin.y +=self.contentTableView.frameY+50;
+        frame.origin.y +=self.contentTableView.frameY+frame.size.height;
+        frame.size.width+=50;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
@@ -251,7 +255,10 @@
     if (!_listView) {
         _listView = [[RH_MPGameNoticePulldownView alloc]init];
         __block RH_ApplyDiscountPageCell *weakSelf = self;
-        
+        _listView.modelArray = [NSMutableArray array];
+        [_listView.modelArray addObject:@"所有游戏"];
+        _listView.modelIdArray = [NSMutableArray array];
+        [_listView.modelIdArray addObject:@""];
         _listView.block = ^(NSInteger apiId){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
