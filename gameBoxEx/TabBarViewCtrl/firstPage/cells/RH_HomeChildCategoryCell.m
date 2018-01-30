@@ -33,7 +33,7 @@
     self.contentView.backgroundColor = [UIColor whiteColor] ;
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     _selectedIndex = 0 ;
-    
+    self.collectionView.backgroundColor = [UIColor clearColor];
     [self configureCollection:self.collectionView] ;
 }
 
