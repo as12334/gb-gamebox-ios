@@ -11,18 +11,16 @@
 #import "RH_UserInfoManager.h"
 
 @interface RH_MinePageBannarCell()
-@property (nonatomic,strong) IBOutlet UIImageView *imgICON ;
+@property (nonatomic,strong) IBOutlet UIView *imgUserBG ;  // 头像的背景
+@property (strong, nonatomic) IBOutlet  UIImageView *imageUserAvator;
 
-//login status info
-@property (strong, nonatomic,readonly)  UIImageView *imageUserAvator;
-
-@property (strong, nonatomic) IBOutlet UILabel *label_UserNickName;
-@property (strong, nonatomic) IBOutlet UILabel *label_TimeTitle;
-@property (strong, nonatomic) IBOutlet UILabel *label_TimeLast;
-@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoney;
-@property (strong, nonatomic) IBOutlet UILabel *label_leftMoney;
-@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoneyText;
-@property (strong, nonatomic) IBOutlet UILabel *label_LeftMoneyText;
+@property (strong, nonatomic) IBOutlet UILabel *label_UserNickName; //昵称
+@property (strong, nonatomic) IBOutlet UILabel *label_TimeTitle; // 上次登录时间标题
+@property (strong, nonatomic) IBOutlet UILabel *label_TimeLast; //上次登录时间显示
+@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoney;  // 总资产显示的金额
+@property (strong, nonatomic) IBOutlet UILabel *label_leftMoney;  // 钱包显示的金额
+@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoneyText; // 总资产
+@property (strong, nonatomic) IBOutlet UILabel *label_LeftMoneyText;  // 钱包余额
 
 
 @end
@@ -45,16 +43,19 @@
     [self.contentView insertSubview:imageBackView atIndex:0];
     imageBackView.image = ImageWithName(@"mine_page_accountback");
     
-    UIView *view_imageB = [UIView new];
-    [self.contentView insertSubview:view_imageB atIndex:1];
-    view_imageB.whc_LeftSpace(10).whc_CenterY(0).whc_Width(68).whc_Height(68);
-    view_imageB.layer.cornerRadius = 34;
-    view_imageB.clipsToBounds = YES;
-    view_imageB.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
-    self.imageUserAvator.backgroundColor = [UIColor redColor];
+    
+    self.imgUserBG.whc_LeftSpace(10).whc_CenterY(0).whc_Width(68).whc_Height(68);
+    self.imgUserBG.layer.cornerRadius = 34;
+    self.imgUserBG.clipsToBounds = YES;
+    self.imgUserBG.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
     self.imageUserAvator.image = ImageWithName(@"touxiang");
-    [view_imageB addSubview:self.imageUserAvator];
-//    self.imageUserAvator.whc_Center(0, 0).whc_Width(50).whc_Height(50);
+    self.imageUserAvator.whc_Center(0, 0).whc_Width(54).whc_Height(54);
+    self.imageUserAvator.layer.cornerRadius = 25.0f ;
+    self.imageUserAvator.layer.masksToBounds = YES ;
+    
+    self.label_UserNickName.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpace(32).whc_HeightAuto().whc_Width(100);
+    self.label_TimeTitle.whc_TopSpaceToView(10, self.label_UserNickName).whc_LeftSpaceToView(12, self.imgUserBG).whc_HeightAuto().whc_Width(100);
+    self.label_TimeLast.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpaceToView(5, self.label_TimeTitle).whc_HeightAuto().whc_WidthAuto();
     
     [self.label_UserNickName setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TimeTitle setTextColor:colorWithRGB(102, 102, 102)];
@@ -82,17 +83,6 @@
     
 }
 
-
-#pragma mark-
--(UIImageView *)imageUserAvator
-{
-    if (!_imageUserAvator){
-        _imageUserAvator = [[UIImageView alloc] initWithImage:ImageWithName(@"touxiang")] ;
-    }
-    
-    return _imageUserAvator ;
-}
-
 #pragma mark-
 -(void)handleNotification:(NSNotification*)nf
 {
@@ -107,8 +97,8 @@
     self.label_TotalMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mTotalAssets];
     self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mWalletBalance];
     self.label_TimeLast.text = MineSettingInfo.mLoginTime ;
-    [self.imageUserAvator sd_setImageWithURL:[NSURL URLWithString:MineSettingInfo.showAvatalURL]
-                            placeholderImage:ImageWithName(@"mine_page_useravator")] ;
+//    [self.imageUserAvator sd_setImageWithURL:[NSURL URLWithString:MineSettingInfo.showAvatalURL]
+//                            placeholderImage:ImageWithName(@"mine_page_useravator")] ;
 }
 
 @end

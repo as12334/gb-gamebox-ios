@@ -19,9 +19,15 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *image_Topup;
 @property (strong, nonatomic) IBOutlet UIImageView *image_Withdraw;
+@property (weak, nonatomic) IBOutlet UILabel *withdrawDealLab;  //  显示有提现处理的lab
 
 @end
 @implementation RH_MineAccountCell
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    
+    return 50;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -37,8 +43,6 @@
     [self.contentView addSubview:centerLine];
     centerLine.whc_Center(0, 0).whc_Width(1).whc_Height(25);
     centerLine.backgroundColor = colorWithRGB(242, 242, 242);
-
-    
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {

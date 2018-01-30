@@ -70,6 +70,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Sx-jU-ieZ">
+                        <rect key="frame" x="16" y="32" width="71" height="68"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3j-pd-nmL">
+                                <rect key="frame" x="0.0" y="8" width="63" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4Hk-Yo-iri" secondAttribute="trailing" constant="21" id="10H-yg-Yxv"/>
@@ -98,6 +109,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imageUserAvator" destination="M3j-pd-nmL" id="IQx-Ww-DX7"/>
+                <outlet property="imgUserBG" destination="3Sx-jU-ieZ" id="GKB-Tt-Ikb"/>
                 <outlet property="labAccoutInfo" destination="flw-Rs-j00" id="sCQ-N2-mIg"/>
                 <outlet property="label_LeftMoneyText" destination="NQz-11-vPV" id="OLl-PC-Oce"/>
                 <outlet property="label_TimeLast" destination="B4V-pb-au1" id="JyB-xR-7E5"/>
@@ -107,7 +120,7 @@
                 <outlet property="label_UserNickName" destination="flw-Rs-j00" id="DPD-Yb-TN2"/>
                 <outlet property="label_leftMoney" destination="4Hk-Yo-iri" id="fTh-AG-bBB"/>
             </connections>
-            <point key="canvasLocation" x="-99" y="-200"/>
+            <point key="canvasLocation" x="-36" y="-316"/>
         </tableViewCell>
     </objects>
     <resources>

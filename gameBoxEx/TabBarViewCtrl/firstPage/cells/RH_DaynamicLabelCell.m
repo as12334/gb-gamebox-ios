@@ -47,7 +47,7 @@
     [self.contentView addSubview:self.scrollView] ;
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
-    self.separatorLineColor = RH_Line_DefaultColor ;
+    self.separatorLineColor = colorWithRGB(226, 226, 226) ;
     self.separatorLineWidth = 1.0f ;
     
     self.selectionOption = CLSelectionOptionHighlighted ;
