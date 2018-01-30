@@ -86,10 +86,14 @@
 {
         _openModel = openModel;
         [self.gainTimeLabel setText:self.openModel.mNextLotteryTime];
-        [self.gainActivityLabel setText:self.openModel.mGameNum];
+        [self.gainActivityLabel setText:@" "];
         if ([self.openModel.mGameNum isEqualToString:@"-1"]) {
             self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
-            [self.gainActivityLabel setText:@"已抽完"];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // do something
+                [self.gainActivityLabel setText:@"已抽完"];
+            });
             [self.gainDrawTimeLabel setText:nil];
             [self.gainTimeLabel setText:nil];
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
@@ -97,7 +101,12 @@
         }
         else if ([self.openModel.mGameNum isEqualToString:@"0"]) {
             self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
-            [self.gainActivityLabel setText:@"已结束"];
+            
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // do something
+                [self.gainActivityLabel setText:@"已结束"];
+            });
             [self.gainDrawTimeLabel setText:nil];
             [self.gainTimeLabel setText:nil];
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
@@ -105,7 +114,12 @@
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-2"]) {
             self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
-            [self.gainActivityLabel setText:@"抽奖异常"];
+            
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // do something
+                [self.gainActivityLabel setText:@"抽奖异常"];
+            });
             [self.gainDrawTimeLabel setText:nil];
             [self.gainTimeLabel setText:nil];
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
@@ -113,7 +127,12 @@
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-3"]) {
             self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
-            [self.gainActivityLabel setText:@"红包活动结束"];
+            
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // do something
+                [self.gainActivityLabel setText:@"红包活动结束"];
+            });
             [self.gainDrawTimeLabel setText:nil];
             [self.gainTimeLabel setText:nil];
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
@@ -121,7 +140,12 @@
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-4"]) {
             self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
-            [self.gainActivityLabel setText:@"条件不满足"];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // do something
+                [self.gainActivityLabel setText:@"条件不满足"];
+            });
+            
             [self.gainDrawTimeLabel setText:nil];
             [self.gainTimeLabel setText:nil];
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
@@ -129,22 +153,35 @@
         }
         else if ([self.openModel.mGameNum isEqualToString:@"-5"]) {
             self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
-            [self.gainActivityLabel setText:@"已抢完"];
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // do something
+                [self.gainActivityLabel setText:@"已抢完"];
+            });
             [self.gainDrawTimeLabel setText:nil];
             [self.gainTimeLabel setText:nil];
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityBtn.userInteractionEnabled = NO;
         }
-        
         else
         {
             if ([self.openModel.mAward isEqualToString:@"0"]) {
-                self.gainActivityLabel.text = @"未中奖";
                  self.backDropImageView.image = [UIImage imageNamed:@"hongbao-01"];
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    // do something
+                    self.gainActivityLabel.text = @"未中奖";
+                });
+                
             }
             else{
-                self.gainActivityLabel.text = self.openModel.mAward;
                 self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    // do something
+                    self.gainActivityLabel.text = [NSString stringWithFormat:@"获得%@圆",self.openModel.mAward] ;
+                });
+                
             }
             self.gainDrawTimeLabel.text = self.openModel.mGameNum;
             self.gainTimeLabel.text = self.openModel.mNextLotteryTime;
@@ -163,6 +200,8 @@
 }
 - (IBAction)closeClick:(id)sender {
     [self.delegate normalActivityViewCloseActivityClick:self];
+    //防止再次点开红包后label会预留上次的数据
+    self.gainActivityLabel.text = @" ";
     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-04"];
     [self.normalBackDropView setHidden: NO];
     [self.activityRuleDropView setHidden:YES];

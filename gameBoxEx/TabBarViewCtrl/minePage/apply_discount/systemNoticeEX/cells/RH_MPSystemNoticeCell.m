@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gamenameLabel;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
+@property (weak, nonatomic) IBOutlet UIImageView *mearkImageView;
 
 @end
 @implementation RH_MPSystemNoticeCell
@@ -57,6 +58,13 @@
     self.noticeLabel.text = systemModel.mContent;
     self.timeLabel.text = dateStringWithFormatter(systemModel.mPublishTime, @"yyyy-MM-dd");
 //    self.gamenameLabel.text = systemModel.m;
+    if (systemModel.mReadmark==0) {
+        self.mearkImageView.image = [UIImage imageNamed:@""];
+    }
+    else if (systemModel.mReadmark ==1)
+    {
+        self.mearkImageView.image = [UIImage imageNamed:@"mearkRead"];
+    }
 }
 
 

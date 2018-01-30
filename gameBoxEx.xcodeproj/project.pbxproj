@@ -412,6 +412,7 @@
 		A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */; };
 		A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */; };
 		A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */; };
+		A0C914FE201F541600EA71E6 /* default_banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0C914FD201F541600EA71E6 /* default_banner.jpg */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
 		A0E367951F8F463900758033 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0E367901F8F433700758033 /* Localizable.strings */; };
 		A0E3679E1F8F91D700758033 /* RH_BasicModel.h in Sources */ = {isa = PBXBuildFile; fileRef = A010A0041F878B67004E6EF4 /* RH_BasicModel.h */; };
@@ -1285,6 +1286,7 @@
 		A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_TestViewController.m; sourceTree = "<group>"; };
 		A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomTabBar.h; sourceTree = "<group>"; };
 		A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomTabBar.m; sourceTree = "<group>"; };
+		A0C914FD201F541600EA71E6 /* default_banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_banner.jpg; sourceTree = "<group>"; };
 		A0D3CABA1FA312E3002CC1A8 /* RH_UpdatedVersionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_UpdatedVersionModel.h; sourceTree = "<group>"; };
 		A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_UpdatedVersionModel.m; sourceTree = "<group>"; };
 		A0E3678C1F8F3F2000758033 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DNImagePicker.strings"; sourceTree = "<group>"; };
@@ -2569,6 +2571,7 @@
 		A04E60231F8DAFF000098A65 /* firstPage */ = {
 			isa = PBXGroup;
 			children = (
+				A0C914FD201F541600EA71E6 /* default_banner.jpg */,
 				A01CB48B1FF9C81800447130 /* activityView */,
 				A0ADD3171FEB60BA00B24B51 /* cells */,
 				A04E60241F8DAFF000098A65 /* RH_FirstPageViewController.h */,
@@ -3640,6 +3643,7 @@
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
+				A0C914FE201F541600EA71E6 /* default_banner.jpg in Resources */,
 				B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */,
 				F6FB638B200F851300EEED4E /* RH_MPSystemNoticeCell.xib in Resources */,
 				B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */,

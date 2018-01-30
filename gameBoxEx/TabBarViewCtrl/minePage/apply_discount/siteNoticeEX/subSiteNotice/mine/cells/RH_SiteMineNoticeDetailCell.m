@@ -40,9 +40,18 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMyMessageDetailModel *model = ConvertToClassPointer(RH_SiteMyMessageDetailModel,context);
-    self.timeLabel.text = dateStringWithFormatter(model.mReplyTime, @"yyyy-MM-dd");
-    self.titleLabel.text = model.mAdvisoryTitle;
-    self.contextLabel.text = model.mAdvisoryContent;
+    RH_SiteMyMessageDetailListModel *listModel = ConvertToClassPointer(RH_SiteMyMessageDetailListModel, context);
+    if (model) {
+        self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime, @"yyyy-MM-dd");
+        self.titleLabel.text = model.mAdvisoryTitle;
+        self.contextLabel.text = model.mAdvisoryContent;
+    }
+    else
+    {
+        self.timeLabel.text = dateStringWithFormatter(listModel.mReplyTime, @"yyyy-MM-dd");
+        self.titleLabel.text = listModel.mReplyTitle;
+        self.contextLabel.text = listModel.mReplyContent;
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
