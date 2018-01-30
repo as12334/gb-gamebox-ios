@@ -42,7 +42,7 @@
         if (titleStr.length<4) {
             showMessage(weakSelf,@"发送失败", @"标题在4个字以上");
         }
-        else if (contentStr.length<10&&contentStr.length>2000){
+        else if (contentStr.length<10||contentStr.length>2000){
             showMessage(weakSelf, @"发送失败",@"内容在10个字以上2000字以内");
         }
         else{

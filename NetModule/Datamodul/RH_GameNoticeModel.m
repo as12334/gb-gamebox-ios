@@ -50,7 +50,7 @@
         _mMinDate = [info integerValueForKey:RH_GP_GAMENOTICE_MINDATE];
         _mMaxDate = [info integerValueForKey:RH_GP_GAMENOTICE_MAXDATE];
         _mListModel = [ListModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_GAMENOTICE_LIST]] ;
-          _mApiSelectModel = [ApiSelectModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_GAMENOTICE_APISELECT]] ;
+        _mApiSelectModel = [ApiSelectModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_GAMENOTICE_APISELECT]] ;
         _mPageTotal = [info integerValueForKey:RH_GP_GAMENOTICE_PAGETOTAL];
         
     }

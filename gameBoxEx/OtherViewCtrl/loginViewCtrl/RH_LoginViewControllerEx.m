@@ -88,7 +88,7 @@
 
 -(void)loginViewCellTouchLoginButton:(RH_LoginViewCell*)loginViewCell
 {
-    [self showProgressIndicatorViewWithAnimated:YES title:@"正在登入..."];
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在登录..."];
     [self.serviceRequest startLoginWithUserName:self.loginViewCell.userName
                                   Password:self.loginViewCell.userPassword
                                 VerifyCode:self.loginViewCell.verifyCode] ;
@@ -149,9 +149,9 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             NSDictionary *result = ConvertToClassPointer(NSDictionary, data) ;
             if ([result boolValueForKey:@"success"]){
-                showMessage(self.view, @"登入成功", nil);
+                showMessage(self.view, @"登录成功", nil);
 
-                //登入成功后，记录用户名，密码，以便自动登入
+                //登录成功后，记录用户名，密码，以便自动登录
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
@@ -166,7 +166,7 @@
                 }
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
-                showMessage(self.view, @"登入失败", nil);
+                showMessage(self.view, @"登录失败", nil);
                 [appDelegate updateLoginStatus:NO] ;
                 [self.contentTableView reloadData] ;
             }

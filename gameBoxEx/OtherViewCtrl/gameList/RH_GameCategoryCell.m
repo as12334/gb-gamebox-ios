@@ -56,7 +56,6 @@
     [self setSelected:selected animated:NO] ;
 }
 
-
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
     self.gamelistTypeModel = info ;

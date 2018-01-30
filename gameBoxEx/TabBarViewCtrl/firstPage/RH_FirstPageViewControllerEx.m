@@ -72,6 +72,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     _hud = [[MBProgressHUD alloc]initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
+    
+    [self autoLogin] ;
 }
 - (void)dealloc
 {
@@ -97,6 +99,20 @@
 {
     return self.mainNavigationView.frameHeigh ;
 }
+
+#pragma mark - autoLogin
+- (void) autoLogin{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *account = [defaults objectForKey:@"account"];
+    NSString *password = [defaults objectForKey:@"password"];
+    
+    if(account.length==0 || password.length ==0){
+        return;
+    }
+    
+    [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+    return ;
+};
 
 #pragma mark-
 -(void)handleNotification:(NSNotification*)nt
@@ -313,7 +329,7 @@
                 return ;
             }
         }
-        //进入登入界面
+        //进入登录界面
         [self loginButtonItemHandle] ;
     }
 }
@@ -403,7 +419,7 @@
         [[UIApplication sharedApplication].keyWindow addSubview:_hud];
     }
     else if(!self.appDelegate.isLogin){
-        //进入登入界面
+        //进入登录界面
         [self loginButtonItemHandle] ;
     }
     else if (NetNotReachability()){
@@ -528,23 +544,32 @@
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if ([data boolValue]){
-                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                showSuccessMessage(self.view, @"试玩登录成功", nil) ;
                 [self.appDelegate updateLoginStatus:true] ;
                 
             }else{
-                showAlertView(@"试玩登入失败", @"提示信息");
+                showAlertView(@"试玩登录失败", @"提示信息");
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
-        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        if (self.progressIndicatorView.superview){
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+                if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                    [self.appDelegate updateLoginStatus:true] ;
+                }else{
+                    [self.appDelegate updateLoginStatus:false] ;
+                }
+            }] ;
+        }else{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
                 [self.appDelegate updateLoginStatus:true] ;
             }else{
                 [self.appDelegate updateLoginStatus:false] ;
             }
-        }] ;
+        }
     }else if (type == ServiceRequestTypeV3ActivityStatus){
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;
@@ -570,11 +595,11 @@
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showAlertView(@"试玩登入失败", @"提示信息");
+            showAlertView(@"试玩登录失败", @"提示信息");
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showAlertView(@"自动登入失败", @"提示信息");
+            showAlertView(@"自动登录失败", @"提示信息");
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

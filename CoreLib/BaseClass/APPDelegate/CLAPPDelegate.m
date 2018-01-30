@@ -366,9 +366,9 @@
         }else if(alertView.firstOtherButtonIndex == buttonIndex){
             result = CLAppScoreAlertViewResultGoto;
         }
-
+        
         [self scoreAlertViewCompletedShowWithResult:result];
-
+        
     }
                                                             title:@"给我们评价"
                                                           message:[self scoreAlertViewContentText]
