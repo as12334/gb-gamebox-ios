@@ -27,9 +27,9 @@
     self.titleLab.font = [UIFont systemFontOfSize:14];
     self.explainLab.font = [UIFont systemFontOfSize:11];
     
-    self.cellImageView.whc_TopSpace(15);
-    self.titleLab.whc_TopSpaceEqualView(self.cellImageView);
-//    self.explainLab.whc_TopSpaceToView(10, self.titleLab);
+    self.cellImageView.whc_TopSpace(15).whc_LeftSpace(22);
+    self.titleLab.whc_TopSpaceEqualView(self.cellImageView).whc_LeftSpaceToView(17, self.cellImageView);
+    self.explainLab.whc_TopSpaceToView(5, self.titleLab).whc_LeftSpaceEqualView(self.titleLab);
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

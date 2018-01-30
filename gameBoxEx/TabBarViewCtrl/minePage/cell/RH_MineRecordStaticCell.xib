@@ -19,8 +19,9 @@
                     <rect key="frame" x="27" y="17" width="36" height="36"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看所参与的游戏记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyF-bl-Y7o">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="查看所参与的游戏记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyF-bl-Y7o">
                     <rect key="frame" x="71" y="37.5" width="92" height="11"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     <nil key="highlightedColor"/>
@@ -36,10 +37,8 @@
             <constraints>
                 <constraint firstItem="9im-fs-rBD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="H21-Oa-O8i"/>
                 <constraint firstItem="9im-fs-rBD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Oms-Pk-njD"/>
-                <constraint firstItem="pyF-bl-Y7o" firstAttribute="leading" secondItem="9im-fs-rBD" secondAttribute="trailing" constant="8" id="PjB-5g-Spj"/>
                 <constraint firstItem="UmX-4G-jrP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-8" id="QNR-wq-jhO"/>
                 <constraint firstItem="UmX-4G-jrP" firstAttribute="leading" secondItem="9im-fs-rBD" secondAttribute="trailing" constant="8" id="a2d-Cz-Zmm"/>
-                <constraint firstItem="pyF-bl-Y7o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="8" id="gdJ-x8-Gag"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
