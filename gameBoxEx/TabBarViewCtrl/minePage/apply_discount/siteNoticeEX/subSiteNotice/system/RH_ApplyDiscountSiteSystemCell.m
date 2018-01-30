@@ -267,7 +267,7 @@
         [self loadDataFailWithError:error] ;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
-//        showErrorMessage(nil, error, nil) ;
+        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }
