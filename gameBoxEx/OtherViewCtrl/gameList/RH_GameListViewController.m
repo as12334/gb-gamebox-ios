@@ -39,17 +39,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"列表";
+    self.title = @"AG电子";
     [self loadingIndicateViewDidTap:nil] ;
 }
 
 - (void)setupInfo {
     
     [self.contentView addSubview:self.searchView];
-    self.searchView.whc_TopSpace(69).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(35);
+    self.searchView.whc_TopSpace(64).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(55);
 //    self.typeTopView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, 40.0);
     self.typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
     [self.contentView addSubview:self.typeTopView];
+    self.typeTopView.backgroundColor = [UIColor whiteColor];
     self.typeTopView.selectedIndex = 0;
     self.typeTopView.whc_TopSpaceToView(0, self.searchView).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(40);
     

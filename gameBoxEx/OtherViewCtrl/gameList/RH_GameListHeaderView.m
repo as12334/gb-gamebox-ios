@@ -12,6 +12,9 @@
 
 @interface RH_GameListHeaderView()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong,readonly) UICollectionView *collectionTypeView ;
+//选择指示器
+@property(nonatomic,strong,readonly) CALayer * selectionIndicater;
+
 @property (nonatomic,strong) NSArray *arrayTypeList ;
 @end
 
@@ -19,7 +22,7 @@
 
 @synthesize collectionTypeView = _collectionTypeView ;
 @synthesize selectedIndex = _selectedIndex ;
-
+@synthesize selectionIndicater = _selectionIndicater;
 
 -(instancetype)init
 {
@@ -37,7 +40,10 @@
 {
     self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
     [self.collectionTypeView reloadData] ;
-    [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone] ;
+    [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]
+                                          animated:YES
+                                    scrollPosition:UICollectionViewScrollPositionCenteredHorizontally] ;
+    
 }
 
 -(NSDictionary *)typeModelWithIndex:(NSInteger)index
@@ -48,6 +54,49 @@
     
     return nil ;
 }
+
+#pragma mark -
+-(void)layoutSubviews
+{
+    [super layoutSubviews] ;
+    if (_selectionIndicater==nil){
+        [self _updateSelectionIndicater:NO] ;
+    }
+}
+
+- (CALayer *)selectionIndicater
+{
+    if (!_selectionIndicater) {
+        _selectionIndicater = [[CALayer alloc] init];
+        _selectionIndicater.backgroundColor = colorWithRGB(51, 51, 51).CGColor;
+        [self.collectionTypeView.layer addSublayer:_selectionIndicater];
+    }
+    
+    return _selectionIndicater;
+}
+
+- (void)_updateSelectionIndicater:(BOOL)animated
+{
+    NSIndexPath * indexPathForSelectedItem = [self.collectionTypeView.indexPathsForSelectedItems firstObject];
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:!indexPathForSelectedItem || !animated];
+    [CATransaction setAnimationDuration:0.5];
+    
+    if (indexPathForSelectedItem == nil) {
+        self.selectionIndicater.frame = CGRectZero;
+    }else {
+        
+        //获取选中的cell的位置
+        CGRect cellFrame = [self.collectionTypeView layoutAttributesForItemAtIndexPath:indexPathForSelectedItem].frame;
+        
+        //设置选择指示器位置
+        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 2.f, CGRectGetWidth(cellFrame), 2.f);
+    }
+    
+    [CATransaction commit];
+}
+
 
 #pragma mark -
 -(UICollectionView *)collectionTypeView
@@ -86,7 +135,9 @@
 {
     if (_selectedIndex!=selectedIndex){
         _selectedIndex = selectedIndex ;
-        [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally] ;
+        [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]
+                                              animated:YES
+                                        scrollPosition:UICollectionViewScrollPositionCenteredHorizontally] ;
     }
 }
 
@@ -124,6 +175,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self setSelectedIndex:indexPath.item] ;
+    [self _updateSelectionIndicater:YES] ;
     ifRespondsSelector(self.delegate, @selector(gameListHeaderViewDidChangedSelectedIndex:SelectedIndex:)){
         [self.delegate gameListHeaderViewDidChangedSelectedIndex:self SelectedIndex:_selectedIndex] ;
     }

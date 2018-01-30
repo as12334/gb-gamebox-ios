@@ -9,6 +9,7 @@
 #import "RH_MPGameNoticePulldownView.h"
 #import "coreLib.h"
 @interface RH_MPGameNoticePulldownView()<UITableViewDelegate,UITableViewDataSource>
+
 @end
 @implementation RH_MPGameNoticePulldownView
 -(instancetype)initWithFrame:(CGRect)frame
@@ -33,12 +34,13 @@
     return _tabelView;
 }
 #pragma mark set方法
--(void)setModelArray:(NSArray<ApiSelectModel *> *)modelArray
+-(void)setModelArray:(NSMutableArray *)modelArray
 {
     if (![_modelArray isEqual: modelArray]) {
         _modelArray = modelArray;
     }
 }
+
 #pragma mark-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -70,8 +72,8 @@
         cell.textLabel.text = array[indexPath.row];
     }
     else if (_number==2){
-    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-    cell.textLabel.text  = model.mApiName ;
+        cell.textLabel.text  = self.modelArray[indexPath.item];
+        cell.textLabel.font = [UIFont systemFontOfSize:10.f];
     }
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
@@ -79,9 +81,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_number==2) {
-        ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-        self.gameTypeString = model.mApiName;
-        self.block(model.mApiId);
+        __block RH_MPGameNoticePulldownView *weaSelf = self;
+        self.gameTypeString = self.modelArray[indexPath.item];
+        self.block([weaSelf.modelIdArray[indexPath.item] integerValue]);
     }
     else if (_number==1){
         self.kuaixuanBlock(indexPath.row);

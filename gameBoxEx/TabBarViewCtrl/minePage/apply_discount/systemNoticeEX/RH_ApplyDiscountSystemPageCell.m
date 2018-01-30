@@ -289,7 +289,7 @@
         default:
             break;
     }
-    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd ");
     return beforDate;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

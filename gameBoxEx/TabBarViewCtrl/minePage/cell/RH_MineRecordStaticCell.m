@@ -25,7 +25,11 @@
     self.titleLab.textColor = colorWithRGB(51, 51, 51);
     self.explainLab.textColor = colorWithRGB(153, 153, 153);
     self.titleLab.font = [UIFont systemFontOfSize:14];
-    self.explainLab.font = [UIFont systemFontOfSize:11]; 
+    self.explainLab.font = [UIFont systemFontOfSize:11];
+    
+    self.cellImageView.whc_TopSpace(15).whc_LeftSpace(22);
+    self.titleLab.whc_TopSpaceEqualView(self.cellImageView).whc_LeftSpaceToView(17, self.cellImageView);
+    self.explainLab.whc_TopSpaceToView(5, self.titleLab).whc_LeftSpaceEqualView(self.titleLab);
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

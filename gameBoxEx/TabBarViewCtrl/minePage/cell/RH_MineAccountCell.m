@@ -32,6 +32,13 @@
     self.withDrawControl.selectionOption = CLSelectionOptionHighlighted ;
     self.withDrawControl.selectionColor = [UIColor lightGrayColor] ;
     self.withDrawControl.selectionColorAlpha = 0.3f ;
+    
+    UIView *centerLine = [UIView new];
+    [self.contentView addSubview:centerLine];
+    centerLine.whc_Center(0, 0).whc_Width(1).whc_Height(25);
+    centerLine.backgroundColor = colorWithRGB(242, 242, 242);
+
+    
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {

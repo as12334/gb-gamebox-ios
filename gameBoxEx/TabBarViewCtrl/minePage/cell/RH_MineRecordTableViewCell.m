@@ -13,7 +13,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CustomViewController.h"
 #import "RH_ApplyDiscountViewController.h"
-#define cellHeight                  50.0f
+#define cellHeight                  65.0f
 #define lineCellCount                2
 
 @interface RH_MineRecordTableViewCell()<CLStaticCollectionViewDelegate,CLStaticCollectionViewDataSource>

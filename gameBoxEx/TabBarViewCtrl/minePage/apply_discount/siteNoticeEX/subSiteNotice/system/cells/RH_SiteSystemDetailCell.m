@@ -41,7 +41,7 @@
     RH_SiteMsgSysMsgModel *model = ConvertToClassPointer(RH_SiteMsgSysMsgModel,context);
     self.titleLabel.text = model.mTitle;
     self.contextLabel.text = model.mContent;
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
     
 }
 - (void)awakeFromNib {

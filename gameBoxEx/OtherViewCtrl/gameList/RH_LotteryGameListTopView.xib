@@ -12,45 +12,42 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RH_LotteryGameListTopView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入游戏名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o4Y-Hg-yXF">
-                    <rect key="frame" x="24" y="2" width="267" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaR-OY-PY6">
-                    <rect key="frame" x="291" y="2" width="60" height="30"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="aNu-t9-mB8"/>
-                        <constraint firstAttribute="height" constant="30" id="r7y-IA-vac"/>
-                    </constraints>
-                    <state key="normal" title="搜索">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="searchGame:" destination="iN0-l3-epB" eventType="touchUpInside" id="6wC-j6-DdK"/>
-                    </connections>
-                </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihQ-49-fpq">
+                    <rect key="frame" x="27" y="27" width="240" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入游戏名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o4Y-Hg-yXF">
+                            <rect key="frame" x="0.0" y="8" width="90" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaR-OY-PY6">
+                            <rect key="frame" x="143" y="1" width="60" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="搜索">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="searchGame:" destination="iN0-l3-epB" eventType="touchUpInside" id="6wC-j6-DdK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="MaR-OY-PY6" secondAttribute="trailing" constant="24" id="2iF-fd-9j3"/>
-                <constraint firstItem="MaR-OY-PY6" firstAttribute="leading" secondItem="o4Y-Hg-yXF" secondAttribute="trailing" id="9Rj-Ch-05e"/>
-                <constraint firstAttribute="bottom" secondItem="o4Y-Hg-yXF" secondAttribute="bottom" constant="3" id="DCW-vu-f7k"/>
-                <constraint firstItem="o4Y-Hg-yXF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="XiA-rw-IVu"/>
-                <constraint firstAttribute="bottom" secondItem="MaR-OY-PY6" secondAttribute="bottom" constant="3" id="icY-H7-9SU"/>
-                <constraint firstItem="o4Y-Hg-yXF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="j1S-gc-76o"/>
-                <constraint firstItem="MaR-OY-PY6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="u4t-kz-Ojk"/>
-                <constraint firstItem="MaR-OY-PY6" firstAttribute="leading" secondItem="o4Y-Hg-yXF" secondAttribute="trailing" id="vIj-jG-e10"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="button" destination="MaR-OY-PY6" id="mh1-tt-tIn"/>
+                <outlet property="contentView" destination="ihQ-49-fpq" id="aa4-Hm-Nmu"/>
                 <outlet property="textField" destination="o4Y-Hg-yXF" id="KFN-Zs-Bne"/>
             </connections>
-            <point key="canvasLocation" x="32.5" y="61.5"/>
+            <point key="canvasLocation" x="-49.5" y="-210.5"/>
         </view>
     </objects>
 </document>

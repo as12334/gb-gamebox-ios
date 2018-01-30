@@ -358,7 +358,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dictTmp
                      bodyArguments:nil
-                          httpType:HTTPRequestTypePost
+                          httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeV3APIGameList
                          scopeType:ServiceScopeTypePublic];
 }
@@ -977,10 +977,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  */
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
                            gbToken:(NSString *)gbToken
+                          CardType:(int)cardType  //（1：银行卡，2：比特币）
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
     [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
+    [dict setObject:@(cardType) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY] ;
+    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
@@ -1340,15 +1343,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-    
-    else if (type==ServiceRequestTypeV3SystemMessageYes){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
-        return YES ;
-    }
+//    
+//    else if (type==ServiceRequestTypeV3SystemMessageYes){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+//        return YES ;
+//    }
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data

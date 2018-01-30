@@ -125,7 +125,7 @@
                     }
                 }else{
                     //push login viewController
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登入界面
+                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登录界面
                         RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
                         loginViewCtrlEx.delegate = self ;
                         [self showViewController:loginViewCtrlEx sender:self] ;
@@ -780,7 +780,7 @@
 
 #pragma mark- demoEnter -
 - (void)demoEnter{
-    [self showProgressIndicatorViewWithAnimated:YES title:@"试玩登入中"];
+    [self showProgressIndicatorViewWithAnimated:YES title:@"试玩登录中"];
     [self.serviceRequest startDemoLogin] ;
     return ;
 }
@@ -897,11 +897,11 @@
     }else if (type==ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if ([data boolValue]){
-                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                showSuccessMessage(self.view, @"试玩登录成功", nil) ;
                 [self.appDelegate updateLoginStatus:true] ;
                 [self backBarButtonItemHandle] ;
             }else{
-                showAlertView(@"试玩登入失败", @"提示信息");
+                showAlertView(@"试玩登录失败", @"提示信息");
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;

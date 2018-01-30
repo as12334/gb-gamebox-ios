@@ -784,6 +784,7 @@
 //请求参数
 #define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
+#define RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY       @"remittanceWay"
 
 #pragma mark -V3 获取游戏分类
 #define RH_API_NAME_LOADGAMETYPE                @"mobile-api/origin/getGameTag.html"
