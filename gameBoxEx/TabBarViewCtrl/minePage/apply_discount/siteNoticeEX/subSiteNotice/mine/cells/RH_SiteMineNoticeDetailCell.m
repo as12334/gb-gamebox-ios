@@ -42,13 +42,13 @@
     RH_SiteMyMessageDetailModel *model = ConvertToClassPointer(RH_SiteMyMessageDetailModel,context);
     RH_SiteMyMessageDetailListModel *listModel = ConvertToClassPointer(RH_SiteMyMessageDetailListModel, context);
     if (model) {
-        self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime, @"yyyy-MM-dd");
+        self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime, @"yyyy-MM-dd hh:mm:ss");
         self.titleLabel.text = model.mAdvisoryTitle;
         self.contextLabel.text = model.mAdvisoryContent;
     }
     else
     {
-        self.timeLabel.text = dateStringWithFormatter(listModel.mReplyTime, @"yyyy-MM-dd");
+        self.timeLabel.text = dateStringWithFormatter(listModel.mReplyTime, @"yyyy-MM-dd hh:mm:ss");
         self.titleLabel.text = listModel.mReplyTitle;
         self.contextLabel.text = listModel.mReplyContent;
     }
