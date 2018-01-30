@@ -72,6 +72,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     _hud = [[MBProgressHUD alloc]initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
+    
+    [self autoLogin] ;
 }
 - (void)dealloc
 {
@@ -97,6 +99,20 @@
 {
     return self.mainNavigationView.frameHeigh ;
 }
+
+#pragma mark - autoLogin
+- (void) autoLogin{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *account = [defaults objectForKey:@"account"];
+    NSString *password = [defaults objectForKey:@"password"];
+    
+    if(account.length==0 || password.length ==0){
+        return;
+    }
+    
+    [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+    return ;
+};
 
 #pragma mark-
 -(void)handleNotification:(NSNotification*)nt
@@ -526,14 +542,23 @@
             }
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
-        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        if (self.progressIndicatorView.superview){
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+                if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                    [self.appDelegate updateLoginStatus:true] ;
+                }else{
+                    [self.appDelegate updateLoginStatus:false] ;
+                }
+            }] ;
+        }else{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
                 [self.appDelegate updateLoginStatus:true] ;
             }else{
                 [self.appDelegate updateLoginStatus:false] ;
             }
-        }] ;
+        }
     }else if (type == ServiceRequestTypeV3ActivityStatus){
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;

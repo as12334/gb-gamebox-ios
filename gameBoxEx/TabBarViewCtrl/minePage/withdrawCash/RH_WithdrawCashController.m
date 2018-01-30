@@ -18,13 +18,14 @@
 #import "RH_UserInfoManager.h"
 #import "RH_BitCoinController.h"
 #import "RH_BankCardController.h"
+#import "RH_ModifySafetyPasswordController.h"
 
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
-    WithdrawCashStatus_Init              = 0  ,
-    WithdrawCashStatus_NotEnoughCash      ,
-    WithdrawCashStatus_EnterCash               ,
-    WithdrawCashStatus_EnterBitCoin            ,
-    WithdrawCashStatus_HasOrder             ,
+    WithdrawCashStatus_Init              = 0    ,
+    WithdrawCashStatus_NotEnoughCash            ,
+    WithdrawCashStatus_EnterCash                ,
+    WithdrawCashStatus_EnterBitCoin             ,
+    WithdrawCashStatus_HasOrder                 ,
 };
 
 @interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate>
@@ -112,8 +113,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         return;
     }
     
-    [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
-                                             gbToken:self.withDrawModel.mToken] ;
+//    [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
+//                                             gbToken:self.withDrawModel.mToken
+//                                            CardType:<#(int)#>] ;
 }
 
 - (void)setupInfo {
@@ -397,15 +399,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             //已有订单在处理。。。
             _withdrawCashStatus = WithdrawCashStatus_HasOrder;
             [self setNeedUpdateView];
-        }
-        if (error.code == 102) { //金额不足
+        }else if (error.code == 102) { //金额不足
             _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
             [self setNeedUpdateView] ;
         }else{
             [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
         }
-    }
-    if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
+    }else if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
         NSLog(@"%@", error);
         showMessage(self.contentView, error.localizedDescription, error.userInfo[@"msg"]);
     }

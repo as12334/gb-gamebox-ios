@@ -348,7 +348,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 提交取款信息
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
-                           gbToken:(NSString *)gbToken ;
+                           gbToken:(NSString *)gbToken
+                          CardType:(int)cardType ;
 
 #pragma mark - 获取games link
 -(void)startv3GetGamesLink:(NSInteger)apiID

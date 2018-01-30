@@ -977,10 +977,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  */
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
                            gbToken:(NSString *)gbToken
+                          CardType:(int)cardType  //（1：银行卡，2：比特币）
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
     [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
+    [dict setObject:@(cardType) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY] ;
+    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
