@@ -14,7 +14,7 @@
 @property (nonatomic,strong) IBOutlet UIImageView *imgICON ;
 
 //login status info
-@property (strong, nonatomic) IBOutlet UIImageView *imageUserAvator;
+@property (strong, nonatomic,readonly)  UIImageView *imageUserAvator;
 
 @property (strong, nonatomic) IBOutlet UILabel *label_UserNickName;
 @property (strong, nonatomic) IBOutlet UILabel *label_TimeTitle;
@@ -29,6 +29,8 @@
 
 
 @implementation RH_MinePageBannarCell
+@synthesize imageUserAvator = _imageUserAvator ;
+
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     
@@ -43,7 +45,17 @@
     [self.contentView insertSubview:imageBackView atIndex:0];
     imageBackView.image = ImageWithName(@"mine_page_accountback");
     
-    [self.imageUserAvator setImage:ImageWithName(@"mine_page_useravator")];
+    UIView *view_imageB = [UIView new];
+    [self.contentView insertSubview:view_imageB atIndex:1];
+    view_imageB.whc_LeftSpace(10).whc_CenterY(0).whc_Width(68).whc_Height(68);
+    view_imageB.layer.cornerRadius = 34;
+    view_imageB.clipsToBounds = YES;
+    view_imageB.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
+    self.imageUserAvator.backgroundColor = [UIColor redColor];
+    self.imageUserAvator.image = ImageWithName(@"touxiang");
+    [view_imageB addSubview:self.imageUserAvator];
+//    self.imageUserAvator.whc_Center(0, 0).whc_Width(50).whc_Height(50);
+    
     [self.label_UserNickName setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TimeTitle setTextColor:colorWithRGB(102, 102, 102)];
     [self.label_TimeLast setTextColor:colorWithRGB(102, 102, 102)];
@@ -67,6 +79,17 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     [self updateCell] ;
+    
+}
+
+
+#pragma mark-
+-(UIImageView *)imageUserAvator
+{
+    if (!_imageUserAvator){
+        _imageUserAvator = [[UIImageView alloc] initWithImage:ImageWithName(@"touxiang")] ;
+        _imageUserAvator
+    }
     
 }
 
