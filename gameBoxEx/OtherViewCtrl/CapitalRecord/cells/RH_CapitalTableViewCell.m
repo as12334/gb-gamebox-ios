@@ -77,22 +77,21 @@
     [self.contentView addSubview:self.depositTypeLab];
     [self.contentView addSubview:self.timeoutTypeLab];
     
-    CGFloat widthRect = self.contentView.frame.size.width;
-    self.dataLab.whc_LeftSpace(10).whc_TopSpace(5).whc_Width(80).whc_Height(30);
+    self.dataLab.whc_LeftSpace(0).whc_TopSpace(5).whc_Width(screenSize().width/4.0).whc_Height(30);
     self.dataLab.textColor = colorWithRGB(51, 51, 51);
     self.dataLab.font = [UIFont systemFontOfSize:12.f];
     self.dataLab.text = @"2018-01-09";
-    self.moneyTypeLab.whc_LeftSpace(screenSize().width > 375?0.45*widthRect:0.36*widthRect).whc_TopSpace(5).whc_Width(40).whc_Height(30);
+    self.moneyTypeLab.whc_LeftSpaceToView(0, self.dataLab).whc_TopSpace(5).whc_Width(screenSize().width/4.0).whc_Height(30);
     self.moneyTypeLab.textColor = colorWithRGB(28, 217,135);
     self.moneyTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.moneyTypeLab.text = @"+100";
-    self.timeoutTypeLab.whc_RightSpace(10).whc_TopSpace(5).whc_Width(40).whc_Height(30);
+    self.timeoutTypeLab.whc_LeftSpaceToView(0, self.moneyTypeLab).whc_TopSpace(5).whc_Width(screenSize().width/4.0).whc_Height(30);
     
     self.timeoutTypeLab.textColor = colorWithRGB(244, 158, 46);
     self.timeoutTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.timeoutTypeLab.text = @"超时";
 
-    self.depositTypeLab.whc_RightSpace(screenSize().width > 375?0.35*widthRect:0.28*widthRect).whc_TopSpace(5).whc_Width(40).whc_Height(30);
+    self.depositTypeLab.whc_LeftSpaceToView(0, self.timeoutTypeLab).whc_TopSpace(5).whc_Width(screenSize().width/4.0).whc_Height(30);
     self.depositTypeLab.textColor = colorWithRGB(51, 51, 51);
     self.depositTypeLab.font = [UIFont systemFontOfSize:12.f];
     self.depositTypeLab.text = @"存款";

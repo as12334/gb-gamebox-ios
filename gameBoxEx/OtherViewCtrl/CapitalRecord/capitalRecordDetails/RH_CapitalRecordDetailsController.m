@@ -78,7 +78,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3DepositListDetail:[NSString stringWithFormat:@"%d",self.infoModel.mId]] ;
+    [self.serviceRequest startV3DepositListDetail:[NSString stringWithFormat:@"%ld",(long)self.infoModel.mId]] ;
 }
 -(void)cancelLoadDataHandle
 {
@@ -136,7 +136,8 @@
 {
     if (self.pageLoadManager.currentDataCount){
     RH_CapitalRecordDetailsCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalRecordDetailsCell defaultReuseIdentifier]] ;
-    [bettingRecordCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        [bettingRecordCell updateCellWithInfo:@{@"RH_CapitalInfoModel":_infoModel?:@""}
+                                      context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     return bettingRecordCell ;
         }else{
             return self.loadingIndicateTableViewCell ;

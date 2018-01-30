@@ -275,6 +275,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="BottomView" destination="Yxg-wB-5Fy" id="Uik-LV-pA0"/>
                 <outlet property="bankImageView" destination="Hik-8N-oYz" id="cfO-Ft-J6n"/>
                 <outlet property="bottomLineView" destination="s2F-6O-vtc" id="rww-CJ-WGs"/>
                 <outlet property="headerLineView" destination="NYF-uE-7NX" id="eXH-xb-xmz"/>

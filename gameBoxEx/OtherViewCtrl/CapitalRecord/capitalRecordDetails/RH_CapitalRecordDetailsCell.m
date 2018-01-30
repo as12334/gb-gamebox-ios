@@ -12,11 +12,13 @@
 #import "RH_UserInfoManager.h"
 #import "RH_BankCardModel.h"
 #import "UIImageView+WebCache.h"
+#import "RH_CapitalInfoModel.h"
 @interface RH_CapitalRecordDetailsCell()
 @property (weak, nonatomic) IBOutlet CLBorderView *lineView;
 @property (weak, nonatomic) IBOutlet UIView *personInfoView;
 @property (weak, nonatomic) IBOutlet CLBorderView *headerLineView;
 @property (weak, nonatomic) IBOutlet CLBorderView *bottomLineView;
+@property (weak, nonatomic) IBOutlet UIView *BottomView;
 @property (weak, nonatomic) IBOutlet UIImageView *bankImageView;
 @end
 
@@ -49,6 +51,14 @@
     RH_BankCardModel *cardModel = ConvertToClassPointer(RH_BankCardModel, MineSettingInfo.mBankCard);
     [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.showBankURL]];
     RH_CapitalDetailModel *detailModel = ConvertToClassPointer(RH_CapitalDetailModel, context);
+    RH_CapitalInfoModel *infoModel = ConvertToClassPointer(RH_CapitalInfoModel, [info objectForKey:@"RH_CapitalInfoModel"]);
+//    NSLog(@"%@",infoModel.mTransaction_typeName);
+    if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]) {
+        _BottomView.hidden = NO;
+    }else
+    {
+        _BottomView.hidden = YES;
+    }
     for (int i=10; i<19; i++) {
         UILabel *label = [self viewWithTag:i];
         switch (i) {
@@ -56,7 +66,7 @@
                 label.text = detailModel.mTransactionNo;
                 break;
             case 11:
-                label.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd");
+                label.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
                 break;
             case 12:
                 label.text = detailModel.mTransactionWayName;

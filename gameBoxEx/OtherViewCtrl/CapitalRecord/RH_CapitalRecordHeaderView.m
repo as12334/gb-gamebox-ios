@@ -103,7 +103,21 @@
     [self addSubview:imageArrow];
     imageArrow.image = ImageWithName(@"mine_page_arrowdwon");
     imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(24).whc_Height(24);
-
+    NSArray *titleArr = @[@"交易时间",@"交易金额",@"交易类型",@"交易状态"];
+    for (int i = 0; i<4; i++) {
+        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4.0*i, self.withdrawalLab.whc_maxY +10, (screenSize().width)/4.0, 30)];
+        lab.text = titleArr[i];
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.font = [UIFont systemFontOfSize:12.f];
+        lab.backgroundColor = colorWithRGB(225, 226, 227)  ;
+        lab.textColor = colorWithRGB(51, 51, 51);
+        [self addSubview:lab];
+    }
+    for (int i = 0; i<3; i++) {
+        UILabel *linLab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4*(i+1), self.withdrawalLab.whc_maxY +10, PixelToPoint(1.0) , 30)];
+        linLab.backgroundColor = [UIColor whiteColor];
+        [self addSubview:linLab];
+    }
 }
 
 #pragma mark --- 搜索按钮
