@@ -345,7 +345,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.contentLoadingIndicateView hiddenView] ;
         self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
         NSLog(@"%@", self.withDrawModel.mBankcardMap[@"1"]);
-        if (self.withDrawModel.mBankcardMap[@"1"][@""]){
+        if (self.withDrawModel.mBankcardMap[@"1"]){
             _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
             [self setNeedUpdateView];
         }else{

@@ -111,7 +111,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userNameView.textField.text = [defaults stringForKey:@"account"] ;
     
-    
+   
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
