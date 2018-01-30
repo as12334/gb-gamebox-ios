@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_APPDelegate.h"
+
 @implementation RH_CapitalDetailModel
 @synthesize  showTransactionMoney = _showTransactionMoney;
 -(id)initWithInfoDic:(NSDictionary *)info

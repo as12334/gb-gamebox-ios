@@ -50,12 +50,6 @@
 {
     self = [super initWithFrame:frame] ;
     if (self){
-//        _typeHeaderList = @[[[_BettingHeaderCellModel alloc] initWithName:@"游戏名称" Descript:@"总共0笔"],
-//                            [[_BettingHeaderCellModel alloc] initWithName:@"投注时间" Descript:nil],
-//                            [[_BettingHeaderCellModel alloc] initWithName:@"投注额" Descript:@"¥0.00"],
-//                            [[_BettingHeaderCellModel alloc] initWithName:@"派彩" Descript:@"¥0.00"],
-//                            [[_BettingHeaderCellModel alloc] initWithName:@"状态" Descript:nil],
-//                            ] ;
         _typeHeaderList = @[[[_BettingHeaderCellModel alloc] initWithName:@"游戏名称" Descript:nil],
                             [[_BettingHeaderCellModel alloc] initWithName:@"投注时间" Descript:nil],
                             [[_BettingHeaderCellModel alloc] initWithName:@"投注额" Descript:nil],

@@ -1446,8 +1446,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3BettingList:
             {
                 NSArray *tmpArray = [RH_BettingInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_BETTINGLIST_LIST]] ;
-                NSInteger total = [[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
-                                     dictionaryValueForKey:@"statisticsData"]  integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT]   ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT]   ;
                 
                 NSDictionary *statisticsDataDict = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] ;
                 resultSendData = @{RH_GP_BETTINGLIST_LIST:tmpArray?:@[],

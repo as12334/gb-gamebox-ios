@@ -83,6 +83,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     cell.textLabel.text  =  self.typeNameArray[indexPath.item];
+    cell.textLabel.font = [UIFont systemFontOfSize:14.f];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }

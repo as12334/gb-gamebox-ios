@@ -525,7 +525,7 @@
 #define RH_SP_BETTINGLIST_PAGESIZE                           @"paging.pageSize"
 //返回参数
 #define RH_GP_BETTINGLIST_LIST                              @"list"
-#define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalamount"
+#define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalSize"
 #define RH_GP_BETTINGLIST_TOTALSINGLEAMOUN                  @"singleAmount"
 #define RH_GP_BETTINGLIST_TOTALPROFIT                       @"profit"
 #define RH_GP_BETTINGLIST_STATISTICSDATA                   @"statisticsData"
