@@ -48,6 +48,7 @@
 @property (nonatomic , strong , readonly) NSDictionary          *mBankcardMap;
 @property (nonatomic , strong , readonly) NSString              *mCurrencySign;
 @property (nonatomic , assign , readonly) BOOL                   mHasBank;
+@property (nonatomic , assign , readonly) BOOL                   mIsSafePassword;
 @property (nonatomic , assign , readonly) BOOL                   mIsBit;
 @property (nonatomic , assign , readonly) BOOL                   mIsCash;
 @property (nonatomic , strong , readonly) NSString               * mToken;

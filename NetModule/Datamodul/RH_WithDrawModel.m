@@ -90,6 +90,7 @@
         _mToken = [info stringValueForKey:RH_GP_WITHDRAW_TOKEN] ;
         _mIsCash = [info boolValueForKey:RH_GP_WITHDRAW_ISCASH] ;
         _mHasBank = [info boolValueForKey:RH_GP_WITHDRAW_HASBANK] ;
+        _mIsSafePassword = [info boolValueForKey:@"isSafePassword"] ;
         _mAuditMap = [[AuditMapModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_WITHDRAW_AUDITMAP]] ;
         _mAuditLogUrl = [info stringValueForKey:RH_GP_WITHDRAW_AUDITLOGURL] ;
         NSDictionary *tmpDict  = [info dictionaryValueForKey:RH_GP_WITHDRAW_BANKCARDMAP] ;
