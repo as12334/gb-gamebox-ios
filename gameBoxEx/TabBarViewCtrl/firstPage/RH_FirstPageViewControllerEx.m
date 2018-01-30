@@ -690,7 +690,7 @@
         if (self.rhAlertView.superview == nil) {
             self.rhAlertView = [RH_BasicAlertView createInstance];
             self.rhAlertView.alpha = 0;
-            [self.contentView addSubview:self.rhAlertView];
+            [self.view.window addSubview:self.rhAlertView];
             self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
 
             [UIView animateWithDuration:0.3 animations:^{
