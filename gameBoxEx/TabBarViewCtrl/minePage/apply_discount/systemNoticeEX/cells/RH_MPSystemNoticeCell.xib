@@ -39,6 +39,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dR1-Gx-iR2">
+                                <rect key="frame" x="279" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="g5H-KE-TYW"/>
+                                    <constraint firstAttribute="width" constant="25" id="wfr-YV-sb0"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -46,7 +53,9 @@
                             <constraint firstAttribute="bottom" secondItem="vqY-C1-Trv" secondAttribute="bottom" constant="10" id="NTb-yH-dBr"/>
                             <constraint firstItem="Zkf-2P-lwm" firstAttribute="leading" secondItem="vqY-C1-Trv" secondAttribute="trailing" constant="16" id="OBO-NV-0Wl"/>
                             <constraint firstAttribute="trailing" secondItem="Zkf-2P-lwm" secondAttribute="trailing" constant="8" id="STp-s9-QlJ"/>
+                            <constraint firstAttribute="trailing" secondItem="dR1-Gx-iR2" secondAttribute="trailing" id="bIG-Wk-u2v"/>
                             <constraint firstItem="P82-Y2-Fwm" firstAttribute="leading" secondItem="Cku-fm-cf2" secondAttribute="leading" constant="41" id="bwh-GY-GEt"/>
+                            <constraint firstItem="dR1-Gx-iR2" firstAttribute="top" secondItem="Cku-fm-cf2" secondAttribute="top" id="jSh-EX-BxY"/>
                             <constraint firstAttribute="bottom" secondItem="Zkf-2P-lwm" secondAttribute="bottom" constant="10" id="mhY-DS-Gzq"/>
                             <constraint firstAttribute="trailing" secondItem="P82-Y2-Fwm" secondAttribute="trailing" constant="40" id="oY2-mL-QrW"/>
                         </constraints>
@@ -62,6 +71,7 @@
             <connections>
                 <outlet property="backDropView" destination="Cku-fm-cf2" id="n8C-Fo-NFQ"/>
                 <outlet property="gamenameLabel" destination="vqY-C1-Trv" id="Sgo-pK-0dl"/>
+                <outlet property="mearkImageView" destination="dR1-Gx-iR2" id="wYU-Ji-tgu"/>
                 <outlet property="noticeLabel" destination="P82-Y2-Fwm" id="sav-ea-e4x"/>
                 <outlet property="timeLabel" destination="Zkf-2P-lwm" id="cIU-aF-63D"/>
             </connections>

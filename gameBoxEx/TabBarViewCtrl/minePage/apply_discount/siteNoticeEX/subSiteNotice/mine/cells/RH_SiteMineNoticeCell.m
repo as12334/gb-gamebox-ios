@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *readImageView;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
+@property (weak, nonatomic) IBOutlet UIImageView *markNewImageView;
+
 @end
 @implementation RH_SiteMineNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -55,8 +57,13 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMyMessageModel *model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
+
     self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",model.mAdvisoryTitle]stringByRemovingPercentEncoding];
     self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd hh:mm:ss");
+
+    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mAdvisoryTitle];
+    self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd");
+
     if ([model.number isEqual:@0]) {
         self.readImageView.image =nil;
     }
@@ -65,10 +72,12 @@
     }
     if (model.mIsRead==YES) {
         [self.titleLabel setTextColor:[UIColor redColor]];
+        self.markNewImageView.image = [UIImage imageNamed:@""];
     }
     else if (model.mIsRead==NO)
     {
         [self.titleLabel setTextColor:[UIColor blackColor]];
+        self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
     }
 }
 

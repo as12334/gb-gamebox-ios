@@ -17,5 +17,6 @@
 @property(nonatomic,strong,readonly)NSDate *mMinDate;
 @property(nonatomic,strong,readonly)NSDate *mMaxDate;
 @property(nonatomic,strong,readonly)NSString *mSearchId;
+@property(nonatomic,assign,readonly)NSInteger mReadmark;
 
 @end
