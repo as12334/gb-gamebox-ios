@@ -11,6 +11,10 @@
 
 @interface RH_MinePageLoginoutBannarCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UIButton *loginAndRegiest;
+@property (weak, nonatomic) IBOutlet UIView *headIconBgView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *headIconImageView;
 
 @end
 
@@ -26,9 +30,21 @@
     [super awakeFromNib];
     // Initialization code
     self.headImageView.userInteractionEnabled = YES;
+    self.headIconBgView.userInteractionEnabled = YES;
+    self.headIconImageView.userInteractionEnabled = YES;
+    self.headIconBgView.whc_LeftSpace(10).whc_CenterY(0).whc_Width(68).whc_Height(68);
+    self.headIconBgView.layer.cornerRadius = 34;
+    self.headIconBgView.clipsToBounds = YES;
+    self.headIconBgView.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
+    self.headIconImageView.image = ImageWithName(@"touxiang");
+    self.headIconImageView.whc_Center(0, 0).whc_Width(54).whc_Height(54);
+    self.headIconImageView.layer.cornerRadius = 25.0f ;
+    self.headIconImageView.layer.masksToBounds = YES ;
+    
+    self.loginAndRegiest.whc_CenterY(0).whc_LeftSpaceToView(15, self.headIconBgView).whc_WidthAuto().whc_HeightAuto();
     
     UITapGestureRecognizer *panGuset = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headImageViewClick)];
-    [self.headImageView addGestureRecognizer:panGuset];
+    [self.headIconImageView addGestureRecognizer:panGuset];
 }
 - (IBAction)loginClick:(id)sender {
     self.block();

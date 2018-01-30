@@ -1548,8 +1548,8 @@
 			isa = PBXGroup;
 			children = (
 				189C139D1FF9E99E00B14298 /* RH_MineAccountCell.h */,
-				189C139F1FF9E99E00B14298 /* RH_MineAccountCell.xib */,
 				189C139E1FF9E99E00B14298 /* RH_MineAccountCell.m */,
+				189C139F1FF9E99E00B14298 /* RH_MineAccountCell.xib */,
 				189C13A01FF9E99E00B14298 /* RH_MinePageBannarCell.h */,
 				189C13A11FF9E99E00B14298 /* RH_MinePageBannarCell.m */,
 				189C13A21FF9E99E00B14298 /* RH_MinePageBannarCell.xib */,

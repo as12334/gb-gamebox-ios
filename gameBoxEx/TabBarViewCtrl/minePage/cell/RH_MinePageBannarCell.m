@@ -11,16 +11,16 @@
 #import "RH_UserInfoManager.h"
 
 @interface RH_MinePageBannarCell()
-@property (nonatomic,strong) IBOutlet UIView *imgUserBG ;
+@property (nonatomic,strong) IBOutlet UIView *imgUserBG ;  // 头像的背景
 @property (strong, nonatomic) IBOutlet  UIImageView *imageUserAvator;
 
-@property (strong, nonatomic) IBOutlet UILabel *label_UserNickName;
-@property (strong, nonatomic) IBOutlet UILabel *label_TimeTitle;
-@property (strong, nonatomic) IBOutlet UILabel *label_TimeLast;
-@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoney;
-@property (strong, nonatomic) IBOutlet UILabel *label_leftMoney;
-@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoneyText;
-@property (strong, nonatomic) IBOutlet UILabel *label_LeftMoneyText;
+@property (strong, nonatomic) IBOutlet UILabel *label_UserNickName; //昵称
+@property (strong, nonatomic) IBOutlet UILabel *label_TimeTitle; // 上次登录时间标题
+@property (strong, nonatomic) IBOutlet UILabel *label_TimeLast; //上次登录时间显示
+@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoney;  // 总资产显示的金额
+@property (strong, nonatomic) IBOutlet UILabel *label_leftMoney;  // 钱包显示的金额
+@property (strong, nonatomic) IBOutlet UILabel *label_TotalMoneyText; // 总资产
+@property (strong, nonatomic) IBOutlet UILabel *label_LeftMoneyText;  // 钱包余额
 
 
 @end
@@ -49,9 +49,13 @@
     self.imgUserBG.clipsToBounds = YES;
     self.imgUserBG.backgroundColor = ColorWithRGBA(255, 255, 255, 0.5);
     self.imageUserAvator.image = ImageWithName(@"touxiang");
-    self.imageUserAvator.whc_Center(0, 0).whc_Width(50).whc_Height(50);
+    self.imageUserAvator.whc_Center(0, 0).whc_Width(54).whc_Height(54);
     self.imageUserAvator.layer.cornerRadius = 25.0f ;
     self.imageUserAvator.layer.masksToBounds = YES ;
+    
+    self.label_UserNickName.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpace(32).whc_HeightAuto().whc_Width(100);
+    self.label_TimeTitle.whc_TopSpaceToView(10, self.label_UserNickName).whc_LeftSpaceToView(12, self.imgUserBG).whc_HeightAuto().whc_Width(100);
+    self.label_TimeLast.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpaceToView(5, self.label_TimeTitle).whc_HeightAuto().whc_WidthAuto();
     
     [self.label_UserNickName setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TimeTitle setTextColor:colorWithRGB(102, 102, 102)];
