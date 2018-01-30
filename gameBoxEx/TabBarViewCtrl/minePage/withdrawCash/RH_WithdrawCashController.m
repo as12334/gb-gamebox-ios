@@ -113,9 +113,32 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         return;
     }
     
-//    [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
-//                                             gbToken:self.withDrawModel.mToken
-//                                            CardType:<#(int)#>] ;
+    //检测是否有设置安全密码
+    if (self.withDrawModel.mIsSafePassword==false){
+        showAlertView(@"安全提示", @"请设置安全密码") ;
+        [self showViewController:[RH_ModifySafetyPasswordController viewController] sender:self] ;
+        return ;
+    }
+    
+    //安全密码提示框
+    UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex==1){//确认
+            NSString *safetyPass =  [alertView textFieldAtIndex:0].text ;
+            if (safetyPass.length){
+                [self showProgressIndicatorViewWithAnimated:YES title:@"验证安全密码..."];
+//                [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
+//                                                         gbToken:self.withDrawModel.mToken
+//                                                        CardType:<#(int)#>] ;
+            }
+        }
+        
+    }
+                                                       title:nil
+                                                     message:@"请输入安全密码"
+                                             cancelButtonName:@"取消"
+                                            otherButtonTitles:@"确认", nil] ;
+    alert.alertViewStyle = UIAlertViewStyleSecureTextInput ;
+    [alert show];
 }
 
 - (void)setupInfo {
@@ -190,10 +213,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         self.contentTableView.tableFooterView =  nil;
     }else {
         [self.contentLoadingIndicateView hiddenView] ;
-        
-        if (self.withDrawModel.mBankcardMap[@"1"] == nil) {
-            [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
-        }
         
         if (_withdrawCashStatus==WithdrawCashStatus_NotEnoughCash){
             [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashLow"] ;
@@ -341,31 +360,32 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 {
     if (type == ServiceRequestTypeV3GetWithDrawInfo)
     {
-        NSLog(@"data:%@", data);
         [self.contentLoadingIndicateView hiddenView] ;
         self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-        NSLog(@"%@", self.withDrawModel.mBankcardMap[@"1"]);
-        if (self.withDrawModel.mBankcardMap[@"1"][@""]){
-            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
-            [self setNeedUpdateView];
-        }else{
-//            _withdrawCashStatus = WithdrawCashStatus_Init;
+        _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+        [self setNeedUpdateView] ;
+//        NSLog(@"%@", self.withDrawModel.mBankcardMap[@"1"]);
+//        if (self.withDrawModel.mBankcardMap[@"1"][@""]){
+//            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
 //            [self setNeedUpdateView];
-            PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"未绑定银行卡" cancelTitle:@"确定" otherTitles:@[@"绑定银行卡"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                if (cancelled) {
-                    //
-                }else {
-                    //  绑定银行卡
-                    [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
-                }
-            }];
-            [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
-            [alert setTitleColor:colorWithRGB(51, 51, 51)];
-            [alert setMessageColor:colorWithRGB(51, 51, 51)];
-            [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
-            [alert setCancelButtonTextColor:colorWithRGB(51, 51, 51)];
-            [alert setOtherButtonTextColor:colorWithRGB(91, 91, 91)];
-        }
+//        }else{
+////            _withdrawCashStatus = WithdrawCashStatus_Init;
+////            [self setNeedUpdateView];
+//            PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"未绑定银行卡" cancelTitle:@"确定" otherTitles:@[@"绑定银行卡"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
+//                if (cancelled) {
+//                    //
+//                }else {
+//                    //  绑定银行卡
+//                    [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
+//                }
+//            }];
+//            [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
+//            [alert setTitleColor:colorWithRGB(51, 51, 51)];
+//            [alert setMessageColor:colorWithRGB(51, 51, 51)];
+//            [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
+//            [alert setCancelButtonTextColor:colorWithRGB(51, 51, 51)];
+//            [alert setOtherButtonTextColor:colorWithRGB(91, 91, 91)];
+//        }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);

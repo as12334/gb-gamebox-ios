@@ -8,6 +8,8 @@
 
 #import "RH_BasicPageLoadViewController.h"
 
+#define RHNT_AlreadySucfullSettingSafetyPassword            @"RHNT_AlreadySucfullSettingSafetyPassword"
+
 @interface RH_ModifySafetyPasswordController : RH_BasicPageLoadViewController
 
 @end

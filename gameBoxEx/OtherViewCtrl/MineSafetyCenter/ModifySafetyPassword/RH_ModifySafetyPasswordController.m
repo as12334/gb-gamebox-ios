@@ -315,6 +315,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         [UserSafetyInfo updateHasRealName:YES] ;
         [self setNeedUpdateView] ;
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySucfullSettingSafetyPassword object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"已设定安全密码":@"已更新安全密码", nil);
             [self backBarButtonItemHandle] ;
