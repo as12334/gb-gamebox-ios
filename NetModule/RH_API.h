@@ -531,6 +531,7 @@
 #define RH_GP_BETTINGLIST_STATISTICSDATA                   @"statisticsData"
 #define RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE          @"effective"
 #define RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT            @"profit"
+#define RH_GP_BETTINGLIST_TOTALSINGLE                      @"single"
 
 
 #pragma mark -v3    投注记录明细
@@ -791,7 +792,7 @@
 #define RH_GP_LOADGAMETYPE_VALUE                @"value"
 
 #pragma mark -V3 取款安全密码验证
-#define RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH                   @"mobile-api/mineOrigin/checkSafePassword.htmll"
+#define RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH                   @"mobile-api/mineOrigin/checkSafePassword.html"
 // 请求参数
 #define RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD           @"originPwd"
 

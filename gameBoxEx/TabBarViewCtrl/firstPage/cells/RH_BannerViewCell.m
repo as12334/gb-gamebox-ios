@@ -23,7 +23,7 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return 140;
+    return floorf((280.0/750.0)*tableView.frameWidth);
 }
 
 - (void)awakeFromNib
@@ -77,7 +77,7 @@
 
 - (NSInteger)numberOfCellsInPageView:(KIPageView *)pageView
 {
-    return self.bannerModels.count;
+    return self.bannerModels.count?:1;
 }
 
 
@@ -99,6 +99,9 @@
     if (self.bannerModels.count > index) {
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
         [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]] ;
+    }else{
+        UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
+        [imageView setImage:ImageWithName(@"default_banner")] ;
     }
     
     return cell;
@@ -113,7 +116,7 @@
 {
     id<RH_ShowBannerDetailDelegate> delegate = self.delegate;
     ifRespondsSelector(delegate, @selector(object:wantToShowBannerDetail:)){
-        [delegate object:self wantToShowBannerDetail:self.bannerModels[index]];
+        [delegate object:self wantToShowBannerDetail:self.bannerModels.count?self.bannerModels[index]:nil];
     }
 }
 

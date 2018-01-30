@@ -70,8 +70,9 @@
         cell.textLabel.text = array[indexPath.row];
     }
     else if (_number==2){
-    ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
-    cell.textLabel.text  = model.mApiName ;
+        ApiSelectModel *model = ConvertToClassPointer(ApiSelectModel, self.modelArray[indexPath.item]);
+        cell.textLabel.text  = model.mApiName ;
+        cell.textLabel.font = [UIFont systemFontOfSize:10.f];
     }
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;

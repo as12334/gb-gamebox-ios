@@ -48,6 +48,10 @@
     
     [self updateView] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+    UIView *line = [UIView new];
+    [self addSubview:line];
+    line.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
+    line.backgroundColor = colorWithRGB(107, 172, 244);
 }
 
 -(void)dealloc
@@ -75,17 +79,20 @@
         //已login
         if (_loginButton.superview){
             [_loginButton removeFromSuperview] ;
+            [_loginButton whc_ResetConstraints];
         }
         
         if (_signButton.superview){
             [_signButton removeFromSuperview] ;
+            [_signButton whc_ResetConstraints];
         }
         
         if (_userInfoBtnView.superview==nil){
             [self.navigationBarView addSubview:self.userInfoBtnView] ;
         }
         
-        self.userInfoBtnView.whc_RightSpace(10).whc_CenterY(0).whc_Width(60).whc_Height(40) ;
+        [self.userInfoBtnView whc_ResetConstraints] ;
+        self.userInfoBtnView.whc_RightSpace(10).whc_CenterY(0).whc_Width(75).whc_Height(40) ;
     }else{
         if (_loginButton.superview==nil){
             [self.navigationBarView addSubview:self.loginButton] ;
@@ -99,8 +106,10 @@
             [_userInfoBtnView removeFromSuperview] ;
         }
         
-        self.signButton.whc_RightSpace(10).whc_CenterY(0).whc_Width(40).whc_Height(30) ;
-        self.loginButton.whc_RightSpaceToView(10, self.signButton).whc_CenterY(0).whc_Width(40).whc_Height(30) ;
+        [self.signButton whc_ResetConstraints] ;
+        [self.loginButton whc_ResetConstraints] ;
+        self.signButton.whc_RightSpace(10).whc_CenterY(0).whc_Width(40).whc_Height(27) ;
+        self.loginButton.whc_RightSpaceToView(10, self.signButton).whc_CenterY(0).whc_Width(40).whc_Height(27) ;
     }
 }
 
@@ -109,8 +118,8 @@
 {
     if (!_loginButton){
         _loginButton = [CLButton buttonWithType:UIButtonTypeSystem];
-        _loginButton.frame = CGRectMake(0, 0, 40,30);
-        [_loginButton setBackgroundColor:colorWithRGB(240, 175, 1) forState:UIControlStateNormal];
+        _loginButton.frame = CGRectMake(0, 0, 40,27);
+        [_loginButton setBackgroundColor:colorWithRGB(29, 194, 142) forState:UIControlStateNormal];
         [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal] ;
         [_loginButton addTarget:self action:@selector(_loginButtonHandle) forControlEvents:UIControlEventTouchUpInside] ;
@@ -134,7 +143,7 @@
 {
     if (!_signButton){
         _signButton = [CLButton buttonWithType:UIButtonTypeSystem];
-        _signButton.frame = CGRectMake(0, 0, 40,30);
+        _signButton.frame = CGRectMake(0, 0, 40,27);
         [_signButton setBackgroundColor:colorWithRGB(240, 175, 1) forState:UIControlStateNormal];
         [_signButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
         [_signButton setTitle:@"注册" forState:UIControlStateNormal] ;
@@ -162,7 +171,7 @@
         _userInfoBtnView = [RH_NavigationUserInfoView createInstance] ;
         [_userInfoBtnView.buttonCover addTarget:self
                                                 action:@selector(_userInfoBtnViewHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _userInfoBtnView.frame = CGRectMake(0, 0, 60.0f, 40.0f) ;
+        _userInfoBtnView.frame = CGRectMake(0, 0, 75.0f, 40.0f) ;
     }
     
     return _userInfoBtnView ;

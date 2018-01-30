@@ -217,7 +217,8 @@
 -(void)selectedHeaderViewGameType:(CGRect )frame andMarkNnmber:(int )number
 {
     if (!self.listView.superview) {
-        frame.origin.y +=self.contentTableView.frameY+50;
+        frame.origin.y +=self.contentTableView.frameY+frame.size.height;
+        frame.size.width+=50;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{

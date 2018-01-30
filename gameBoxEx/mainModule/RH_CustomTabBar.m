@@ -60,9 +60,9 @@
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             _midBackLayer = [CALayer new];
-            _midBackLayer.frame = CGRectMake(CGRectGetMinX(frame) - 30 + frame.size.width/2, CGRectGetMinY(frame), 60, 50);
+            _midBackLayer.frame = CGRectMake(CGRectGetMinX(frame) - 25 + frame.size.width/2, CGRectGetMinY(frame) + 5, 50, 50);
             _midBackLayer.backgroundColor = RH_TabBar_BackgroundColor.CGColor ;
-            _midBackLayer.cornerRadius = 30;
+            _midBackLayer.cornerRadius = 25;
             [midView.superview.layer insertSublayer:_midBackLayer below:midView.layer];
         });
     }

@@ -35,16 +35,6 @@
 					<string>修改安全密码</string>
 				</dict>
 				<dict>
-					<key>cellClass</key>
-					<string>RH_MineSafetyCenterCell</string>
-					<key>title</key>
-					<string>锁屏手势</string>
-					<key>detailTitle</key>
-					<string>设置</string>
-					<key>targetKey</key>
-					<string>RH_LockSetPWDController</string>
-				</dict>
-				<dict>
 					<key>detailTitle</key>
 					<string>设置</string>
 					<key>targetKey</key>

@@ -9,24 +9,33 @@
 #import "RH_BasicAlertView.h"
 #import "coreLib.h"
 #import "RH_AnnouncementModel.h"
-@interface RH_BasicAlertView() <UIScrollViewDelegate>
+@interface RH_BasicAlertView() <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UIPageControl *pageIndicator;
+//@property (nonatomic, strong) UIPageControl *pageIndicator;
 @property (nonatomic, strong) UIButton      *cancelButton;
+@property (nonatomic, strong) UITableView *tableView;
+
 @end
 
 @implementation RH_BasicAlertView
 {
     UIView *contentView;
+    NSArray *contents;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+@synthesize tableView = _tableView;
+
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView registerCellWithClass:[CLTableViewCell class]] ;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone ;
+    }
+    return _tableView;
 }
-*/
+
 - (UIScrollView *)scrollView {
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] init];
@@ -37,36 +46,28 @@
     return _scrollView;
 }
 
-- (UIPageControl *)pageIndicator {
-    if (_pageIndicator == nil) {
-        _pageIndicator = [[UIPageControl alloc] init];
-        _pageIndicator.tintColor = [UIColor grayColor];
-        _pageIndicator.layer.borderColor = colorWithRGB(204, 204, 204).CGColor;
-        _pageIndicator.pageIndicatorTintColor = [UIColor grayColor];
-        _pageIndicator.currentPageIndicatorTintColor = colorWithRGB(204, 204, 204);
-    }
-    return _pageIndicator;
-}
+
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         contentView = [UIView new];
         [self addSubview:contentView];
-        contentView.whc_Center(0, 0).whc_Width(screenSize().width*3/4).whc_Height(345/266*screenSize().width);
-        contentView.backgroundColor = colorWithRGB(255, 255, 255);
+        contentView.whc_Center(0, 0).whc_Width(310).whc_Height(426);
+        contentView.backgroundColor = colorWithRGB(242, 242, 242);
         contentView.transform = CGAffineTransformMakeScale(0, 0);
-        [contentView addSubview:self.scrollView];
-        self.scrollView.backgroundColor = colorWithRGB(255, 255, 255);
-        [contentView addSubview:self.pageIndicator];
-        self.scrollView.whc_TopSpace(20).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(20);
-        self.scrollView.delegate = self;
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-        self.pageIndicator.whc_CenterX(0).whc_Width(100).whc_Height(10).whc_TopSpaceToView(5, self.scrollView);
-        self.pageIndicator.currentPage = 0;
+
         contentView.layer.cornerRadius = 10;
         contentView.clipsToBounds = YES;
         self.backgroundColor = ColorWithRGBA(134, 134, 134, 0.3);
+        
+        UILabel *label = [UILabel new];
+        [contentView addSubview:label];
+        label.whc_CenterX(0).whc_TopSpace(15).whc_LeftSpace(30).whc_RightSpace(30);
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:17];
+        label.textColor = colorWithRGB(51, 51, 51);
+        label.text = @"公告";
         self.cancelButton = [[UIButton alloc] init];
         [self.cancelButton setImage:ImageWithName(@"home_announce_close") forState:UIControlStateNormal];
         [self addSubview:self.cancelButton];
@@ -98,30 +99,66 @@
     if (content.count == 0) {
         return;
     }
-    self.pageIndicator.numberOfPages = content.count;
-    for (int i = 0; i < content.count; i++) {
-        RH_AnnouncementModel *model = content[i];
-        UITextView *textView = [[UITextView alloc] init];
-        textView.backgroundColor = colorWithRGB(255, 255, 255);
-        textView.frame = CGRectMake(i * self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-        [self.scrollView addSubview:textView];
-        textView.textColor = colorWithRGB(51, 51, 51);
-        textView.editable = NO;
-        textView.font = [UIFont systemFontOfSize:14.f];
-        textView.text = model.mContent;
-        
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * content.count, 0);
-    }
-    
+    contents = [NSArray array];
+    contents = content;
+//    for (int i = 0; i < content.count; i++) {
+//        RH_AnnouncementModel *model = content[i];
+//        UITextView *textView = [[UITextView alloc] init];
+//        textView.backgroundColor = colorWithRGB(255, 255, 255);
+//        textView.frame = CGRectMake(i * self.scrollView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+//        [self.scrollView addSubview:textView];
+//        textView.textColor = colorWithRGB(51, 51, 51);
+//        textView.editable = NO;
+//        textView.font = [UIFont systemFontOfSize:14.f];
+//        textView.text = model.mContent;
+//
+//        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * content.count, 0);
+//    }
+    [contentView addSubview:self.tableView];
+    self.tableView.whc_TopSpace(39).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(15);
+    self.tableView.tableFooterView = [UIView new];
     [UIView animateWithDuration:0.3 animations:^{
         contentView.transform = CGAffineTransformIdentity;
         self.cancelButton.alpha = 1;
     }];
 }
-#pragma mark - scrollview
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-    int index = (scrollView.contentOffset.x + 5) / scrollView.bounds.size.width;
-    self.pageIndicator.currentPage = index;
+
+#pragma mark uitableViewdelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [UITableViewCell whc_CellHeightForIndexPath:indexPath tableView:tableView];
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return contents.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CLTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[CLTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        RH_AnnouncementModel *model = contents[indexPath.row];
+        cell.textLabel.text = model.mContent;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.textColor = colorWithRGB(102, 102, 102);
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        
+        UIImageView *imageB = [UIImageView new];
+        [cell.contentView addSubview:imageB];
+        imageB.image = ImageWithName(@"line-notic");
+        imageB.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
+        
+        cell.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
+    }
+    return cell;
+}
+
+
 @end
