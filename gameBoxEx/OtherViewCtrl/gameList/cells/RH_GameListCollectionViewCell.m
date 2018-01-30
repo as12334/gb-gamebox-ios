@@ -30,6 +30,8 @@
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
     self.selectionColorAlpha = 0.3f ;
+    self.labName.font = [UIFont systemFontOfSize:14];
+    self.imageView.whc_Width(75).whc_Height(75);
 }
 
 -(UIView *)showSelectionView

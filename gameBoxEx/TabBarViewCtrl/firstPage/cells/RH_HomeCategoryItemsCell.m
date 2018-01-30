@@ -27,7 +27,7 @@
     NSInteger number = array.count ;
     NSInteger lines = MAX(number%3?(number/3)+1:(number/3) ,3);
     
-    return HomeCategoryItemsCellWidth * lines + (lines-1)*5 + 30.0f ;
+    return HomeCategoryItemsCellWidth * lines + (lines-1)*5 - 25.0f ;
 }
 
 - (void)awakeFromNib

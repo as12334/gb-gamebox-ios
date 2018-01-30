@@ -38,7 +38,7 @@
                 <outlet property="button_Save" destination="cGi-G6-yU3" id="Hzm-3p-P1t"/>
                 <outlet property="label_Notice" destination="vGB-Mh-dWu" id="yez-rp-joT"/>
             </connections>
-            <point key="canvasLocation" x="-86" y="-3.5"/>
+            <point key="canvasLocation" x="-45" y="-8"/>
         </tableViewCell>
     </objects>
 </document>

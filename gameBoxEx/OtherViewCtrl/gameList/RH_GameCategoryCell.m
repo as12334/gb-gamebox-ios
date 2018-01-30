@@ -25,10 +25,12 @@
         size = caculaterLabelTextDrawSize(context[@"value"], [UIFont systemFontOfSize:12], containerViewSize.width);
     }
     return CGSizeMake(size.width + 20 ,30) ;
+    
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     // Initialization code
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
@@ -42,8 +44,11 @@
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
-    self.borderView.backgroundColor = selected?colorWithRGB(49, 126, 194):colorWithRGB(255, 255, 255) ;
-    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
+//    if (selected){
+//        self.sep
+//    }
+//    self.borderView.backgroundColor = selected?colorWithRGB(49, 126, 194):colorWithRGB(255, 255, 255) ;
+//    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
 }
 
 -(void)setSelected:(BOOL)selected

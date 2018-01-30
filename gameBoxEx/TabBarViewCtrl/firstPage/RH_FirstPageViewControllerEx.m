@@ -187,6 +187,17 @@
     [self.contentView addSubview:self.contentTableView] ;
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
     [self setupPageLoadManager] ;
+    
+    UIView *foot_View = [UIView new];
+    foot_View.frame = CGRectMake(0, 0, screenSize().width, 100);
+    UILabel *label = [UILabel new];
+    [foot_View addSubview:label];
+    label.whc_TopSpace(15).whc_CenterX(0).whc_Height(30).whc_LeftSpace(30).whc_RightSpace(30);
+    label.font = [UIFont systemFontOfSize:9];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = colorWithRGB(51, 51, 51);
+    label.text = @"COPYRIGHT © 2004-2017";
+    self.contentTableView.tableFooterView = foot_View;
 }
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -716,7 +727,7 @@
         if (self.rhAlertView.superview == nil) {
             self.rhAlertView = [RH_BasicAlertView createInstance];
             self.rhAlertView.alpha = 0;
-            [self.contentView addSubview:self.rhAlertView];
+            [self.view.window addSubview:self.rhAlertView];
             self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
 
             [UIView animateWithDuration:0.3 animations:^{
