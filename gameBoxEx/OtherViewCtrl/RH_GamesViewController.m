@@ -243,11 +243,11 @@
     }else if (type==ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if ([data boolValue]){
-                showSuccessMessage(self.view, @"试玩登入成功", nil) ;
+                showSuccessMessage(self.view, @"试玩登录成功", nil) ;
                 [self.appDelegate updateLoginStatus:true] ;
                 [self backBarButtonItemHandle] ;
             }else{
-                showAlertView(@"试玩登入失败", @"提示信息");
+                showAlertView(@"试玩登录失败", @"提示信息");
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;

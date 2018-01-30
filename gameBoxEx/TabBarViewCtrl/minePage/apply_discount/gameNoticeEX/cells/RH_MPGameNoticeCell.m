@@ -54,7 +54,7 @@
 {
     ListModel *model = ConvertToClassPointer(ListModel,context);
     self.titleLabel.text = model.mContext;
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
     self.gamenameLabel.text = model.mGameName;
     
     

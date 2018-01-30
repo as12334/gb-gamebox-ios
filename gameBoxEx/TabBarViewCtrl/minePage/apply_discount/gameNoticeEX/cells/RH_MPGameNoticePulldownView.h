@@ -11,7 +11,8 @@
 typedef void (^GameNoticePulldownViewBlock)(NSInteger apiId);
 typedef void (^GameNoticePulldownKuaixuanBlock)(NSInteger row);
 @interface RH_MPGameNoticePulldownView : UIView
-@property(nonatomic,strong)NSArray<ApiSelectModel *> *modelArray;
+@property(nonatomic,strong)NSMutableArray *modelArray;
+@property(nonatomic,strong)NSMutableArray *modelIdArray;
 @property(nonatomic,copy)GameNoticePulldownViewBlock block;
 @property(nonatomic,copy)GameNoticePulldownKuaixuanBlock kuaixuanBlock;
 @property (nonatomic,copy)NSString *gameTypeString;

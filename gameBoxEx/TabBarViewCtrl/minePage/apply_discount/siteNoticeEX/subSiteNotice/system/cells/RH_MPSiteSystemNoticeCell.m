@@ -29,7 +29,7 @@
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [model.mTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    return 40+size.height;
+    return 65+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -57,7 +57,7 @@
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
     self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mTitle];
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
     if ([model.number isEqual:@0]) {
         self.readMarkImageView.image = nil;
     }

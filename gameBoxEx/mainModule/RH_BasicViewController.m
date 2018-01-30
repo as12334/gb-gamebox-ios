@@ -267,7 +267,7 @@
         NSString *account = [defaults stringForKey:@"account"] ;
         NSString *password = [defaults stringForKey:@"password"] ;
         
-        [self showProgressIndicatorViewWithAnimated:YES title:@"自动登入..."] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"自动登录..."] ;
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
             [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
         }else{
@@ -408,7 +408,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type SpecifiedError:(NSError *)error
 {
     if (error.code==600 || error.code==1){
-        showMessage(nil, error.code==600?@"session过期":@"该帐号已在另一设备登录", @"请重新登入...");
+        showMessage(nil, error.code==600?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
         [self.appDelegate updateLoginStatus:NO] ;
         [self loginButtonItemHandle] ;
     }
