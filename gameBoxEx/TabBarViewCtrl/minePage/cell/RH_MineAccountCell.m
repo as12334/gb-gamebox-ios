@@ -32,6 +32,8 @@
     self.withDrawControl.selectionOption = CLSelectionOptionHighlighted ;
     self.withDrawControl.selectionColor = [UIColor lightGrayColor] ;
     self.withDrawControl.selectionColorAlpha = 0.3f ;
+    
+    
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
