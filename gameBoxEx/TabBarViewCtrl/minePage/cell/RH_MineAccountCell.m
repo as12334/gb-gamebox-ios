@@ -37,8 +37,7 @@
     [self.contentView addSubview:centerLine];
     centerLine.whc_Center(0, 0).whc_Width(1).whc_Height(25);
     centerLine.backgroundColor = colorWithRGB(242, 242, 242);
-    
-//    self.image_Topup.whc_Width(30).whc_Height(30).whc_LeftSpace(57).whc_TopSpace(10);
+
     
 }
 
