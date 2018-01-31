@@ -48,7 +48,7 @@
     stackView.whc_HSpace = 20;
     stackView.whc_VSpace = 0;
     stackView.whc_Orientation = Horizontal;
-    
+    stackView.whc_Edge = UIEdgeInsetsMake(0, 10, 0, 10);
     [stackView addSubview:self.startBettingDateCell];
     [stackView addSubview:self.endBettingDateCell];
     

@@ -42,7 +42,7 @@
                 <outlet property="labSummer" destination="kxr-ii-3NV" id="kDG-jI-FDt"/>
                 <outlet property="summerStaticView" destination="vLy-UM-EHw" id="WCM-eK-RO5"/>
             </connections>
-            <point key="canvasLocation" x="-428.5" y="-816.5"/>
+            <point key="canvasLocation" x="-414" y="-737"/>
         </view>
     </objects>
 </document>

@@ -25,10 +25,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbi-vQ-juB">
-                    <rect key="frame" x="343" y="16" width="40" height="30"/>
+                    <rect key="frame" x="324" y="16" width="60" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="bft-7W-4aH"/>
-                        <constraint firstAttribute="width" constant="40" id="kHK-x2-cUf"/>
+                        <constraint firstAttribute="width" constant="60" id="kHK-x2-cUf"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="搜索"/>
@@ -41,7 +41,7 @@
             <constraints>
                 <constraint firstItem="Zbi-vQ-juB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1qa-i3-Lsg"/>
                 <constraint firstItem="E9s-eU-aW5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2Wu-DB-qaP"/>
-                <constraint firstAttribute="trailing" secondItem="Zbi-vQ-juB" secondAttribute="trailing" constant="8" id="g7i-Il-jR8"/>
+                <constraint firstAttribute="trailing" secondItem="Zbi-vQ-juB" secondAttribute="trailing" constant="7" id="g7i-Il-jR8"/>
                 <constraint firstItem="E9s-eU-aW5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="y2I-tH-QY3"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -51,7 +51,7 @@
                 <outlet property="btnSearch" destination="Zbi-vQ-juB" id="zsF-Xe-oNr"/>
                 <outlet property="labTitle" destination="E9s-eU-aW5" id="vpn-Cc-cwn"/>
             </connections>
-            <point key="canvasLocation" x="-855.5" y="-895"/>
+            <point key="canvasLocation" x="-1003" y="-889"/>
         </view>
     </objects>
 </document>

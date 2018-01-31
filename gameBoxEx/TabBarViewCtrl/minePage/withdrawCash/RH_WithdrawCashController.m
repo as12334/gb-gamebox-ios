@@ -19,7 +19,7 @@
 #import "RH_BitCoinController.h"
 #import "RH_BankCardController.h"
 #import "RH_ModifySafetyPasswordController.h"
-
+#import "RH_WithdrawCashThreeCell.h"
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0    ,
     WithdrawCashStatus_NotEnoughCash            ,
@@ -147,10 +147,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
     self.contentTableView.tableFooterView = [self footerView];
-    
+    self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
     [self.contentView addSubview:self.mainSegmentControl];
-    self.mainSegmentControl.whc_TopSpace(74).whc_CenterX(0).whc_Width(180).whc_Height(35);
-    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(130);
+    self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
+    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
     
     self.mainSegmentControl.hidden = YES;
     self.contentTableView.tableFooterView = nil;
@@ -268,6 +268,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     if ([cell isKindOfClass:[RH_WithdrawMoneyLowCell class]]){
         RH_WithdrawMoneyLowCell *withDrawLowCell = ConvertToClassPointer(RH_WithdrawMoneyLowCell, cell) ;
         withDrawLowCell.delegate  = self ;
+    }
+    if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
+        RH_WithdrawCashThreeCell *three = ConvertToClassPointer(RH_WithdrawCashThreeCell, cell);
+        three.separatorInset = UIEdgeInsetsMake(0, 0, 00, 0);
     }
 }
 

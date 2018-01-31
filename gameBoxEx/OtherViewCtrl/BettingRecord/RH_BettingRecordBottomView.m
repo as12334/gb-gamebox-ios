@@ -50,7 +50,7 @@
     [super awakeFromNib] ;
     
     self.backgroundColor = colorWithRGB(229, 237, 247) ;
-    self.labSummer.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labSummer.font = [UIFont systemFontOfSize:14.0f] ;
     self.labSummer.textColor = colorWithRGB(99, 99, 99);
     self.labSummer.text = @"合计:" ;
     
@@ -80,7 +80,7 @@
         titleCell = [CLStaticCollectionViewTitleCell createInstance]  ;
         [titleCell setupReuseIdentifier:[CLStaticCollectionViewTitleCell defaultReuseIdentifier]] ;
         titleCell.backgroundColor = [UIColor clearColor];
-        titleCell.titleFont = [UIFont systemFontOfSize:11.0f] ;
+        titleCell.titleFont = [UIFont systemFontOfSize:14.0f] ;
         titleCell.titleColor = colorWithRGB(85, 85, 85);
     }
     
