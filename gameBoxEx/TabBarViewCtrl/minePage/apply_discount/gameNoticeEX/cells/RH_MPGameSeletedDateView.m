@@ -9,7 +9,7 @@
 #import "RH_MPGameSeletedDateView.h"
 #import "coreLib.h"
 @interface RH_MPGameSeletedDateView()
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 
 @end
 @implementation RH_MPGameSeletedDateView

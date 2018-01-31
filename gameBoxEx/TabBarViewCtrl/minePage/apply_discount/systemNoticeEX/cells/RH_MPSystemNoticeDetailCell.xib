@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="10" width="327" height="69.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-01-07 11:55:26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTZ-o5-dIf">
-                                <rect key="frame" x="201" y="10" width="110" height="13.5"/>
+                                <rect key="frame" x="202" y="10" width="110" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发发发" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gV-vp-6YX">
-                                <rect key="frame" x="16" y="40" width="295" height="15"/>
+                                <rect key="frame" x="15" y="38.5" width="297" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,14 +43,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8gV-vp-6YX" secondAttribute="trailing" constant="16" id="1na-M8-L6v"/>
+                            <constraint firstAttribute="trailing" secondItem="8gV-vp-6YX" secondAttribute="trailing" constant="15" id="1na-M8-L6v"/>
                             <constraint firstItem="8jc-P1-asa" firstAttribute="leading" secondItem="nnx-B3-Mfb" secondAttribute="leading" id="BLp-UM-zas"/>
                             <constraint firstItem="tTZ-o5-dIf" firstAttribute="top" secondItem="nnx-B3-Mfb" secondAttribute="top" constant="10" id="Eid-xT-SdA"/>
                             <constraint firstAttribute="bottom" secondItem="8jc-P1-asa" secondAttribute="bottom" id="KCw-e6-1W1"/>
-                            <constraint firstItem="8gV-vp-6YX" firstAttribute="top" secondItem="tTZ-o5-dIf" secondAttribute="bottom" constant="16.5" id="OS5-xP-Ghb"/>
-                            <constraint firstItem="8gV-vp-6YX" firstAttribute="leading" secondItem="nnx-B3-Mfb" secondAttribute="leading" constant="16" id="SpZ-gI-nCI"/>
+                            <constraint firstItem="8gV-vp-6YX" firstAttribute="top" secondItem="tTZ-o5-dIf" secondAttribute="bottom" constant="15" id="OS5-xP-Ghb"/>
+                            <constraint firstItem="8gV-vp-6YX" firstAttribute="leading" secondItem="nnx-B3-Mfb" secondAttribute="leading" constant="15" id="SpZ-gI-nCI"/>
                             <constraint firstAttribute="trailing" secondItem="8jc-P1-asa" secondAttribute="trailing" id="fF8-8K-JqO"/>
-                            <constraint firstAttribute="trailing" secondItem="tTZ-o5-dIf" secondAttribute="trailing" constant="16" id="pbl-5H-bB3"/>
+                            <constraint firstAttribute="trailing" secondItem="tTZ-o5-dIf" secondAttribute="trailing" constant="15" id="pbl-5H-bB3"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrd-Vy-TgA">

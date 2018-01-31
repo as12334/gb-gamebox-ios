@@ -29,7 +29,7 @@
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [model.mTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    return 65+size.height;
+    return 90+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -56,7 +56,33 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
-    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mTitle];
+//    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mTitle];
+    
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@.0f
+                          };
+    if (model.mTitle&&model.mTitle.length <20) {
+        NSString *contentStr = [NSString stringWithFormat:@"%@",model.mTitle];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }
+    else if (model.mTitle&&model.mTitle.length >40) {
+        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[model.mTitle substringToIndex:40]];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }else
+    {
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",model.mTitle] attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
     if ([model.number isEqual:@0]) {
         self.readMarkImageView.image = nil;
@@ -65,12 +91,12 @@
         self.readMarkImageView.image = [UIImage imageNamed:@"choose"];
     }
     if (model.mRead==YES) {
-        [self.titleLabel setTextColor:[UIColor redColor]];
+        [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
         self.readMark.image = [UIImage imageNamed:@""];
     }
     else if (model.mRead==NO)
     {
-        [self.titleLabel setTextColor:[UIColor blackColor]];
+        [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.readMark.image = [UIImage imageNamed:@"mearkRead"];
     }
     

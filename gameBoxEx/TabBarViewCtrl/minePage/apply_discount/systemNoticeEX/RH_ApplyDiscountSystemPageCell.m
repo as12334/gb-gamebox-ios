@@ -46,7 +46,6 @@
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        
     }else {
         [self updateWithContext:context];
     }
@@ -202,17 +201,16 @@
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 200;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 200);
+            self.listView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
             CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 0);
+            self.listView.frame = frame;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
         }];
@@ -227,9 +225,8 @@
         _listView.kuaixuanBlock = ^(NSInteger row){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
-                    framee.size.height = 0;
-                    weakSelf.listView.frame = framee;
+                    CGRect frame = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y +2, weakSelf.listView.frame.size.width*1.5, 0);
+                    weakSelf.listView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.listView removeFromSuperview];
                 }];

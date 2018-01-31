@@ -10,7 +10,7 @@
 #import "RH_MPGameSeletedDateView.h"
 #import "coreLib.h"
 @interface RH_MPGameNoticHeaderView()
-@property (nonatomic,strong,readonly) RH_MPGameSeletedDateView *startSeletedDateView ;
+@property (nonatomic,strong) RH_MPGameSeletedDateView *startSeletedDateView ;
 @property (weak, nonatomic) IBOutlet UIView *startDateView;
 @property (weak, nonatomic) IBOutlet UIView *ennDateView;
 @property (nonatomic,strong,readonly) RH_MPGameSeletedDateView *endSeletedDateView ;
@@ -42,6 +42,7 @@
     [self.ennDateView addSubview:self.endSeletedDateView];
     self.startDateView.layer.cornerRadius = 3.f;
     self.startDateView.layer.borderWidth = 1.f;
+   
     self.startDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.startDateView.layer.masksToBounds = YES;
     self.ennDateView.layer.cornerRadius = 3.f;
@@ -52,6 +53,13 @@
     self.gameTypeControl.layer.borderWidth = 1.f;
     self.gameTypeControl.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.gameTypeControl.layer.masksToBounds = YES;
+    self.gameTypeLabel.textColor = colorWithRGB(153, 153, 153);
+    
+    self.startSeletedDateView.dateLabel.textColor =  colorWithRGB(153, 153, 153);
+    self.startSeletedDateView.dateLabel.font = [UIFont systemFontOfSize:12.f];
+    self.endSeletedDateView.dateLabel.textColor =  colorWithRGB(153, 153, 153);
+    self.endSeletedDateView.dateLabel.font = [UIFont systemFontOfSize:12.f];
+    
 }
 -(RH_MPGameSeletedDateView *)startSeletedDateView
 {

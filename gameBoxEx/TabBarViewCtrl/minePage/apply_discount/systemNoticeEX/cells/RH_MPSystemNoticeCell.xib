@@ -19,22 +19,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cku-fm-cf2">
-                        <rect key="frame" x="8" y="8" width="304" height="98"/>
+                        <rect key="frame" x="8" y="10" width="304" height="104.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发发" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P82-Y2-Fwm">
-                                <rect key="frame" x="41" y="21" width="223" height="14"/>
+                                <rect key="frame" x="30" y="21" width="254" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-01-01 01:01:01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkf-2P-lwm">
-                                <rect key="frame" x="206" y="77" width="90" height="11"/>
+                                <rect key="frame" x="194" y="83.5" width="90" height="11"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqY-C1-Trv">
-                                <rect key="frame" x="166" y="77" width="24" height="11"/>
+                                <rect key="frame" x="154" y="83.5" width="24" height="11"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -52,20 +52,20 @@
                             <constraint firstItem="P82-Y2-Fwm" firstAttribute="top" secondItem="Cku-fm-cf2" secondAttribute="top" constant="21" id="CX9-1t-f9O"/>
                             <constraint firstAttribute="bottom" secondItem="vqY-C1-Trv" secondAttribute="bottom" constant="10" id="NTb-yH-dBr"/>
                             <constraint firstItem="Zkf-2P-lwm" firstAttribute="leading" secondItem="vqY-C1-Trv" secondAttribute="trailing" constant="16" id="OBO-NV-0Wl"/>
-                            <constraint firstAttribute="trailing" secondItem="Zkf-2P-lwm" secondAttribute="trailing" constant="8" id="STp-s9-QlJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Zkf-2P-lwm" secondAttribute="trailing" constant="20" id="STp-s9-QlJ"/>
                             <constraint firstAttribute="trailing" secondItem="dR1-Gx-iR2" secondAttribute="trailing" id="bIG-Wk-u2v"/>
-                            <constraint firstItem="P82-Y2-Fwm" firstAttribute="leading" secondItem="Cku-fm-cf2" secondAttribute="leading" constant="41" id="bwh-GY-GEt"/>
+                            <constraint firstItem="P82-Y2-Fwm" firstAttribute="leading" secondItem="Cku-fm-cf2" secondAttribute="leading" constant="30" id="bwh-GY-GEt"/>
                             <constraint firstItem="dR1-Gx-iR2" firstAttribute="top" secondItem="Cku-fm-cf2" secondAttribute="top" id="jSh-EX-BxY"/>
                             <constraint firstAttribute="bottom" secondItem="Zkf-2P-lwm" secondAttribute="bottom" constant="10" id="mhY-DS-Gzq"/>
-                            <constraint firstAttribute="trailing" secondItem="P82-Y2-Fwm" secondAttribute="trailing" constant="40" id="oY2-mL-QrW"/>
+                            <constraint firstAttribute="trailing" secondItem="P82-Y2-Fwm" secondAttribute="trailing" constant="20" id="oY2-mL-QrW"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Cku-fm-cf2" secondAttribute="bottom" constant="8.5" id="FIj-Kj-svy"/>
+                    <constraint firstAttribute="bottom" secondItem="Cku-fm-cf2" secondAttribute="bottom" id="FIj-Kj-svy"/>
                     <constraint firstAttribute="trailing" secondItem="Cku-fm-cf2" secondAttribute="trailing" constant="8" id="K9P-es-JEp"/>
                     <constraint firstItem="Cku-fm-cf2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="YYp-bX-LtV"/>
-                    <constraint firstItem="Cku-fm-cf2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="bV2-Uv-fVy"/>
+                    <constraint firstItem="Cku-fm-cf2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="bV2-Uv-fVy"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

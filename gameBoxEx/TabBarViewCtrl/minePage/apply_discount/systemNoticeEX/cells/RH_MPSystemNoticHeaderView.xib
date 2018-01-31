@@ -16,17 +16,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-og-ORj">
-                    <rect key="frame" x="16" y="14" width="100" height="23"/>
+                    <rect key="frame" x="16" y="10.5" width="100" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="Gdl-zN-xYe"/>
-                        <constraint firstAttribute="height" constant="23" id="xgx-F2-Q7S"/>
+                        <constraint firstAttribute="height" constant="30" id="xgx-F2-Q7S"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-Zh-vUs">
-                    <rect key="frame" x="129" y="14" width="100" height="23"/>
+                    <rect key="frame" x="129" y="10.5" width="100" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="1wT-0z-oBe"/>
-                        <constraint firstAttribute="height" constant="23" id="dOG-OU-bbw"/>
+                        <constraint firstAttribute="height" constant="30" id="dOG-OU-bbw"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2w-3A-XrD">
@@ -40,10 +40,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRi-HB-1cd">
-                    <rect key="frame" x="238" y="14" width="70" height="23"/>
+                    <rect key="frame" x="238" y="10.5" width="70" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="3RY-Tp-6bp"/>
-                        <constraint firstAttribute="height" constant="23" id="bQf-Ip-dDT"/>
+                        <constraint firstAttribute="height" constant="30" id="bQf-Ip-dDT"/>
                     </constraints>
                     <state key="normal" title="快选"/>
                     <connections>

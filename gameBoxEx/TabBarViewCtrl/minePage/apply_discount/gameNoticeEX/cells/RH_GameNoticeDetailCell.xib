@@ -22,13 +22,13 @@
                         <rect key="frame" x="0.0" y="10" width="327" height="69.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-01-07 11:55:26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qu4-tr-Q1N">
-                                <rect key="frame" x="201" y="10" width="110" height="13.5"/>
+                                <rect key="frame" x="202" y="10" width="110" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发发发" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biC-6l-uNc">
-                                <rect key="frame" x="16" y="40" width="295" height="15"/>
+                                <rect key="frame" x="15" y="38.5" width="297" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,13 +44,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="biC-6l-uNc" secondAttribute="trailing" constant="16" id="8kK-Wy-9gd"/>
+                            <constraint firstAttribute="trailing" secondItem="biC-6l-uNc" secondAttribute="trailing" constant="15" id="8kK-Wy-9gd"/>
                             <constraint firstItem="0U9-qy-xGL" firstAttribute="leading" secondItem="COU-lt-KVR" secondAttribute="leading" id="9T7-yP-Nw5"/>
                             <constraint firstItem="qu4-tr-Q1N" firstAttribute="top" secondItem="COU-lt-KVR" secondAttribute="top" constant="10" id="Afu-uZ-t2X"/>
-                            <constraint firstAttribute="trailing" secondItem="qu4-tr-Q1N" secondAttribute="trailing" constant="16" id="FNE-oa-LUH"/>
+                            <constraint firstAttribute="trailing" secondItem="qu4-tr-Q1N" secondAttribute="trailing" constant="15" id="FNE-oa-LUH"/>
                             <constraint firstAttribute="bottom" secondItem="0U9-qy-xGL" secondAttribute="bottom" constant="-0.5" id="Kcx-PM-fLo"/>
-                            <constraint firstItem="biC-6l-uNc" firstAttribute="leading" secondItem="COU-lt-KVR" secondAttribute="leading" constant="16" id="LNX-ag-mfi"/>
-                            <constraint firstItem="biC-6l-uNc" firstAttribute="top" secondItem="qu4-tr-Q1N" secondAttribute="bottom" constant="16.5" id="YTx-la-YBh"/>
+                            <constraint firstItem="biC-6l-uNc" firstAttribute="leading" secondItem="COU-lt-KVR" secondAttribute="leading" constant="15" id="LNX-ag-mfi"/>
+                            <constraint firstItem="biC-6l-uNc" firstAttribute="top" secondItem="qu4-tr-Q1N" secondAttribute="bottom" constant="15" id="YTx-la-YBh"/>
                             <constraint firstAttribute="trailing" secondItem="0U9-qy-xGL" secondAttribute="trailing" id="eHF-ok-urv"/>
                         </constraints>
                     </view>

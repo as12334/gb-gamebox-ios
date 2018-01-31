@@ -38,12 +38,36 @@
     self.topLine.backgroundColor = colorWithRGB(226, 226, 226);
     self.bottomLine.backgroundColor = colorWithRGB(226, 226, 226);
     self.timeLabel.textColor = colorWithRGB(153, 153, 153);
-    self.titelLabel.textColor = colorWithRGB(68, 68, 68);
+    self.titelLabel.textColor = colorWithRGB(102, 102, 102);
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SystemNoticeDetailModel *detailModel = ConvertToClassPointer(RH_SystemNoticeDetailModel, context);
-    self.titelLabel.text = detailModel.mContent;
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@.0f
+                          };
+    if (detailModel.mContent&&detailModel.mContent.length <20) {
+        NSString *contentStr = [NSString stringWithFormat:@"%@",detailModel.mContent];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titelLabel.attributedText = attributeStr;
+    }
+    else if (detailModel.mContent&&detailModel.mContent.length >40) {
+        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[detailModel.mContent substringToIndex:40]];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titelLabel.attributedText = attributeStr;
+    }else
+    {
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",detailModel.mContent] attributes:dic];
+        self.titelLabel.attributedText = attributeStr;
+    }
     self.timeLabel.text = dateStringWithFormatter(detailModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
     
 }

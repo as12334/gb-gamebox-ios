@@ -42,7 +42,7 @@
     self.borderView.layer.cornerRadius = 4.f ;
     self.borderView.layer.masksToBounds = YES ;
 
-    self.contentView.backgroundColor = [UIColor whiteColor] ;
+    self.contentView.backgroundColor = [UIColor clearColor] ;
     self.bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
