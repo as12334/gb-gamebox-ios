@@ -13,6 +13,7 @@
 #import "RH_LotteryInfoModel.h"
 
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-30)/3.0)
+#define HomeCategoryItemsCellHeight                     102.0f
 
 @interface RH_HomeCategoryItemsCell()<UICollectionViewDelegate,UICollectionViewDataSource>;
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
@@ -27,7 +28,7 @@
     NSInteger number = array.count ;
     NSInteger lines = MAX(number%3?(number/3)+1:(number/3) ,3);
     
-    return HomeCategoryItemsCellWidth * lines + (lines-1)*5 - 25.0f ;
+    return HomeCategoryItemsCellHeight * lines + (lines-1)*5 - 25.0f ;
 }
 
 - (void)awakeFromNib
@@ -58,7 +59,7 @@
         flowLayout.minimumLineSpacing = 5.f;
         flowLayout.minimumInteritemSpacing = 5.0f ;
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
-        flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, 102) ;
+        flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,
