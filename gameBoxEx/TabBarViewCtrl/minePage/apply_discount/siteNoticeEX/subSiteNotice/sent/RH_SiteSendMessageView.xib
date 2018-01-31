@@ -152,6 +152,7 @@
                         <constraint firstAttribute="width" constant="125" id="eEe-3w-cp7"/>
                         <constraint firstAttribute="height" constant="40" id="hnG-hy-TUG"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="提交"/>
                     <connections>
                         <action selector="submitClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="KX2-KL-Bcb"/>
@@ -184,6 +185,7 @@
                         <constraint firstAttribute="width" constant="125" id="9dG-IA-yci"/>
                         <constraint firstAttribute="height" constant="40" id="wEV-WG-43n"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="取消"/>
                     <connections>
                         <action selector="cancelBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IHl-Vf-oxx"/>
@@ -213,6 +215,8 @@
                 <outlet property="confimBtn" destination="HH7-nb-itJ" id="OCn-PG-sW0"/>
                 <outlet property="contenTextView" destination="QaA-aU-GnB" id="FPN-BK-flO"/>
                 <outlet property="titelField" destination="e9u-DN-3Ta" id="XZp-5u-h72"/>
+                <outlet property="titleLba" destination="rX2-I6-PwJ" id="Fwl-Zs-x3m"/>
+                <outlet property="typeLab" destination="fNu-Wq-BG7" id="xqp-0C-kdM"/>
                 <outlet property="typeLabel" destination="IhF-IA-ZrI" id="UOk-Yk-r46"/>
                 <outlet property="webView" destination="Q5Y-1Z-m3S" id="F4m-1I-wOo"/>
             </connections>
