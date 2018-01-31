@@ -28,12 +28,17 @@
         self.textLabel.font = [UIFont systemFontOfSize:12];
         self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
         self.separatorLineWidth = 1.0f;
-        self.separatorLineColor = colorWithRGB(242, 242, 242);
-        self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
+        self.separatorLineColor = colorWithRGB(226, 226, 226);
+        self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
         self.backgroundColor = colorWithRGB(255, 255, 255);
         
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
+        
+        UIView *line = [UIView new];
+        [self.contentView addSubview:line];
+        line.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+        line.backgroundColor = colorWithRGB(226, 226, 226);
     }
     return self;
 }

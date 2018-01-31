@@ -22,8 +22,9 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.labTitle.textColor = colorWithRGB(51, 51, 51)  ;
     self.labDesc.textColor = colorWithRGB(23, 102, 187) ;
-    self.labTitle.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
     self.labDesc.font = [UIFont systemFontOfSize:9.0f] ;
+    self.labTitle.whc_CenterY(0);
 }
 
 #pragma mark-
