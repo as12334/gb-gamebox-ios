@@ -63,8 +63,7 @@
     [self.label_TotalMoneyText setTextColor:colorWithRGB(51, 51, 51)];
     [self.label_TotalMoney setTextColor:colorWithRGB(27, 117, 217)];
     [self.label_leftMoney setTextColor:colorWithRGB(11, 186, 135)];
-    [self.label_LeftMoneyText setTextColor:colorWithRGB(51, 51, 51)];
-    
+    [self.label_LeftMoneyText setTextColor:colorWithRGB(51, 51, 51)];    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)

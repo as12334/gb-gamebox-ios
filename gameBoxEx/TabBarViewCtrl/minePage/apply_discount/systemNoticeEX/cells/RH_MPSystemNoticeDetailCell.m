@@ -44,7 +44,7 @@
 {
     RH_SystemNoticeDetailModel *detailModel = ConvertToClassPointer(RH_SystemNoticeDetailModel, context);
     self.titelLabel.text = detailModel.mContent;
-    self.timeLabel.text = dateStringWithFormatter(detailModel.mPublishTime, @"yyyy-MM-dd ");
+    self.timeLabel.text = dateStringWithFormatter(detailModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

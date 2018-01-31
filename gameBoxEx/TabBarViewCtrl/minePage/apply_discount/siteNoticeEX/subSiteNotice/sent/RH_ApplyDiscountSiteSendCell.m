@@ -39,7 +39,10 @@
         [weakSelf selectedSendViewdiscountType:frame];
     };
     self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
-        if (titleStr.length<4) {
+        if (weakSelf.typeStr==nil) {
+            showMessage(weakSelf,@"发送失败", @"请选择问题类型");
+        }
+        else if (titleStr.length<4) {
             showMessage(weakSelf,@"发送失败", @"标题在4个字以上");
         }
         else if (contentStr.length<10||contentStr.length>2000){

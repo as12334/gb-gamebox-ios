@@ -23,13 +23,13 @@
 @end
 @implementation RH_SiteSendMessageView
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-    if (self = [super initWithCoder:aDecoder]) {
-
-    }
-    return self;
-}
+//-(instancetype)initWithCoder:(NSCoder *)aDecoder
+//{
+//    if (self = [super initWithCoder:aDecoder]) {
+//
+//    }
+//    return self;
+//}
 -(void)awakeFromNib
 {
     [super awakeFromNib];

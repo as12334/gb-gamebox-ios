@@ -44,7 +44,7 @@
 {
     RH_GameNoticeDetailModel *detaileModel = ConvertToClassPointer(RH_GameNoticeDetailModel, context);
     self.titleLabel.text = detaileModel.mContext;
-    self.timeLabel.text = dateStringWithFormatter(detaileModel.mPublishTime, @"yyyy-MM-dd");
+    self.timeLabel.text = dateStringWithFormatter(detaileModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
