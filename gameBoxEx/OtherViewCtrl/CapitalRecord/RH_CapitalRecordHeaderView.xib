@@ -16,12 +16,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创建日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="to1-P7-fwu">
-                    <rect key="frame" x="10" y="6" width="64" height="30"/>
+                    <rect key="frame" x="10" y="15" width="73" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2JN-RC-I85"/>
-                        <constraint firstAttribute="width" constant="64" id="6hb-Mj-tXM"/>
+                        <constraint firstAttribute="width" constant="73" id="6hb-Mj-tXM"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -33,7 +33,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMc-cW-KS4">
-                    <rect key="frame" x="346" y="6" width="44" height="29"/>
+                    <rect key="frame" x="346" y="15" width="44" height="29"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="5Ql-ce-p9E"/>
                         <constraint firstAttribute="height" constant="29" id="GL9-mb-4Cq"/>
@@ -64,8 +64,8 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="vMc-cW-KS4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="72L-6a-j6R"/>
-                <constraint firstItem="to1-P7-fwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="UCP-r4-z1p"/>
+                <constraint firstItem="vMc-cW-KS4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="72L-6a-j6R"/>
+                <constraint firstItem="to1-P7-fwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="UCP-r4-z1p"/>
                 <constraint firstItem="to1-P7-fwu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Ugk-iw-XiD"/>
                 <constraint firstAttribute="trailing" secondItem="vMc-cW-KS4" secondAttribute="trailing" constant="10" id="vtM-gz-RoQ"/>
             </constraints>
@@ -76,10 +76,10 @@
                 <outlet property="labDateTitle" destination="to1-P7-fwu" id="Ui8-ka-vWM"/>
                 <outlet property="serachBtn" destination="DG3-ec-myH" id="Wj9-no-HZC"/>
                 <outlet property="transferLab" destination="Rqu-bl-yr3" id="IBd-GL-y9g"/>
-                <outlet property="typeButton" destination="yQB-0a-BLm" id="uXq-oH-Nmk"/>
+                <outlet property="typeButton" destination="yQB-0a-BLm" id="q3n-Ul-dYG"/>
                 <outlet property="withdrawalLab" destination="1Ym-ag-Gu7" id="37M-br-KNV"/>
             </connections>
-            <point key="canvasLocation" x="-2096" y="-751"/>
+            <point key="canvasLocation" x="-2139" y="-756"/>
         </view>
     </objects>
 </document>

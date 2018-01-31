@@ -38,10 +38,10 @@
         NSArray *btnTitleArray = @[@"系统消息",@"我的消息",@"发送消息"];
         for (int i = 0; i<3; i++) {
             UIButton *btn  =[UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(10+70*i, 10, 60, 30);
+            btn.frame = CGRectMake(10+80*i, 10, 70, 30);
             btn.backgroundColor = [UIColor lightGrayColor];
             [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
-            btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
+            btn.titleLabel.font = [UIFont systemFontOfSize:14.f];
             UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:btn.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
             CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
             maskLayer.frame = btn.bounds;
