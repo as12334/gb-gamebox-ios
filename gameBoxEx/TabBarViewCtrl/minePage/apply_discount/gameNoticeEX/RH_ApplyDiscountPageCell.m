@@ -212,7 +212,7 @@
 {
     if (!_headerView) {
         _headerView = [RH_MPGameNoticHeaderView createInstance];
-        _headerView.frame  = CGRectMake(0, 0, self.frameWidth, 50);
+        _headerView.frame  = CGRectMake(0, 0, self.frameWidth, 55);
         _headerView.delegate=self;
     }
     return _headerView;

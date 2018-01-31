@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_APPDelegate.h"
+#import "RH_ModifySafetyPasswordController.h"
 
 @implementation BankcardMapModel
 @synthesize showBankURL =_showBankURL;
@@ -105,10 +106,24 @@
         _mBankcardMap = dictMutable ;
         _mCurrencySign = [info stringValueForKey:RH_GP_WITHDRAW_CURRENCYSIGN];
         _mTotalBalance = [info integerValueForKey:RH_GP_WITHDRAW_TOTALBALANCE];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleNotification:)
+                                                     name:RHNT_AlreadySucfullSettingSafetyPassword
+                                                   object:nil]   ;
     }
     return self;
 }
 
-
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:RHNT_AlreadySucfullSettingSafetyPassword]){
+        _mIsSafePassword = YES ;
+     }
+}
 
 @end

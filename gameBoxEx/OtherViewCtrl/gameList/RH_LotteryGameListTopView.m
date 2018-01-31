@@ -26,11 +26,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-//    UIView *contentView = [UIView new];
-//    [self addSubview:contentView];
     self.contentView.whc_TopSpace(12).whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(5);
-//    [contentView addSubview:self.textField];
-//    [contentView addSubview:self.button];
     self.button.whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Width(60);
     self.textField.whc_TopSpace(0).whc_BottomSpace(0).whc_LeftSpace(0).whc_RightSpaceToView(0, self.button);
     self.textField.layer.borderColor = [[UIColor lightGrayColor]CGColor];
@@ -38,8 +34,9 @@
     self.textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,10, self.textField.frame.size.height)];
     self.textField.leftViewMode = UITextFieldViewModeAlways;
     self.textField.delegate = self;
+    self.textField.textColor = colorWithRGB(204, 204, 204);
     self.contentView.layer.borderWidth = 1.0f ;
-    self.contentView.layer.borderColor = [UIColor redColor].CGColor ;
+    self.contentView.layer.borderColor = colorWithRGB(204, 204, 204).CGColor ;
     self.contentView.layer.cornerRadius = 5;
     self.contentView.layer.masksToBounds = YES ;
 //    contentView.clipsToBounds = YES;

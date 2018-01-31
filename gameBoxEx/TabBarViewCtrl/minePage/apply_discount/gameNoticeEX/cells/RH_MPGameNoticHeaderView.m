@@ -21,6 +21,13 @@
 @implementation RH_MPGameNoticHeaderView
 @synthesize startSeletedDateView = _startSeletedDateView;
 @synthesize endSeletedDateView = _endSeletedDateView;
+
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    
+    return 55;
+}
+
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {

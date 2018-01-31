@@ -378,8 +378,8 @@
 #define RH_GP_MYMESSAGEDETAIL_ADVISORYTITLE      @"advisoryTitle"
 #define RH_GP_MYMESSAGEDETAIL_REPLYTIME          @"replyTime"
 #define RH_GP_MYMESSAGEDETAIL_REPLYTITLE         @"replyTitle"
-#define RH_GP_MYMESSAGEDETAIL_QUESTIONTYPE       @"replyContent"
-#define RH_GP_MYMESSAGEDETAIL_REPLYCONTENT       @"questionType"
+#define RH_GP_MYMESSAGEDETAIL_REPLYCONTENT       @"replyContent"
+#define RH_GP_MYMESSAGEDETAIL_QUESTIONTYPE        @"questionType"
 
 #pragma mark - V3 取款信息  模型
 #define RH_GP_WITHDRAW_AUDITLOGURL                    @"auditLogUrl"
