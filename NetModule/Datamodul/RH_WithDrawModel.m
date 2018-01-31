@@ -25,7 +25,7 @@
         _mBankcardMasterName = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_BANKCARDMASTERNAME];
         _mIsDefault = [info boolValueForKey:@"isDefault"];
          _mUserId = [info boolValueForKey:@"userId"];
-         _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:@"createTime"]/1000.0];
+         _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:@"createTime"]/1000.0];
          _mBankDeposit = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_BANKDEPOSIT];
          _mType = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_TYPE];
          _mCustomBankName = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME];
