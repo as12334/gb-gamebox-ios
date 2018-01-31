@@ -106,6 +106,8 @@
         _mBankcardMap = dictMutable ;
         _mCurrencySign = [info stringValueForKey:RH_GP_WITHDRAW_CURRENCYSIGN];
         _mTotalBalance = [info integerValueForKey:RH_GP_WITHDRAW_TOTALBALANCE];
+        _mWithdrawMinNum = [[info dictionaryValueForKey:@"rank"] floatValueForKey:@"withdrawMinNum"] ;
+        _mWithdrawMaxNum = [[info dictionaryValueForKey:@"rank"] floatValueForKey:@"withdrawMaxNum"] ;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleNotification:)

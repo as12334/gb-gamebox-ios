@@ -36,10 +36,16 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 @implementation RH_ModifySafetyPasswordController
 {
     ModifySafetyStatus _modifySafetyStatus  ;
+    NSString *_titleStr ;
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView ;
 @synthesize modifyButton = _modifyButton ;
+
+-(void)setupViewContext:(id)context
+{
+    _titleStr = ConvertToClassPointer(NSString, context) ;
+}
 
 - (BOOL)isSubViewController {
     return YES;
@@ -47,7 +53,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"修改安全密码";
+    self.title = _titleStr?:@"修改安全密码";
     [self setupInfo];
     [self setNeedUpdateView] ;
     
