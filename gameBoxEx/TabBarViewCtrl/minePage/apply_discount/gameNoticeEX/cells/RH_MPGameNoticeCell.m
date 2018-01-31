@@ -30,7 +30,7 @@
     CGSize size = [model.mContext boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     // ceilf()向上取整函数, 只要大于1就取整数2. floor()向下取整函数, 只要小于2就取整数1.
 //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
-    return 75+size.height;
+    return 85+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -51,15 +51,38 @@
    
     self.gamenameLabel.textColor = colorWithRGB(153, 153, 153);
     self.gamenameLabel.font = [UIFont systemFontOfSize:9.f];
-    
-//    self.titleLabel.backgroundColor = [UIColor redColor];
+
     self.titleLabel.textColor = colorWithRGB(51, 51, 51);
-    self.titleLabel.font = [UIFont systemFontOfSize:9.f];
+    self.titleLabel.font = [UIFont systemFontOfSize:12.f];
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     ListModel *model = ConvertToClassPointer(ListModel,context);
-    self.titleLabel.text = model.mContext;
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@0.f
+                          };
+    if (model.mContext&&model.mContext.length <20) {
+        NSString *contentStr = [NSString stringWithFormat:@"%@",model.mContext];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }
+    else if (model.mContext&&model.mContext.length >40) {
+        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[model.mContext substringToIndex:40]];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }else
+    {
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",model.mContext] attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
     self.gamenameLabel.text = model.mGameName;
     

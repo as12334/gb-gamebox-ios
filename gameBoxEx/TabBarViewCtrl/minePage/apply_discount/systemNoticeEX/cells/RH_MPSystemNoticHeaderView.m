@@ -42,6 +42,10 @@
     self.kuaixuanBtn.backgroundColor = colorWithRGB(27, 117, 217);
     [self.kuaixuanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.kuaixuanBtn.layer.masksToBounds = YES;
+    self.startSeletedDateView.dateLabel.textColor = colorWithRGB(153, 153, 153);
+    self.startSeletedDateView.dateLabel.font = [UIFont systemFontOfSize:12.f];
+    self.endSeletedDateView.dateLabel.textColor = colorWithRGB(153, 153, 153);
+    self.endSeletedDateView.dateLabel.font = [UIFont systemFontOfSize:12.f];
 }
 -(RH_MPGameSeletedDateView *)startSeletedDateView
 {

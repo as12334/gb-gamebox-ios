@@ -30,7 +30,7 @@
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [model.mAdvisoryTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    return 60+size.height;
+    return 90+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -71,12 +71,12 @@
         self.readImageView.image = [UIImage imageNamed:@"choose"];
     }
     if (model.mIsRead==YES) {
-        [self.titleLabel setTextColor:[UIColor redColor]];
+        [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
         self.markNewImageView.image = [UIImage imageNamed:@""];
     }
     else if (model.mIsRead==NO)
     {
-        [self.titleLabel setTextColor:[UIColor blackColor]];
+        [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
     }
 }

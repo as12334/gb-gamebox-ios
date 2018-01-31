@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "coreLib.h"
 @interface RH_MPGameSeletedDateView : CLSelectionControl
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 -(void)addTarget:(id)object Selector:(SEL)selector  ;
 -(void)updateUIWithDate:(NSDate*)date ;
 @end

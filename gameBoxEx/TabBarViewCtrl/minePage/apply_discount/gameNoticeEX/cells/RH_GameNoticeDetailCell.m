@@ -22,7 +22,7 @@
     [super awakeFromNib];
     // Initialization code
     self.timeLabel.textColor = colorWithRGB(153, 153, 153);
-    self.titleLabel.textColor = colorWithRGB(51, 51, 51);
+    self.titleLabel.textColor = colorWithRGB(102, 102, 102);
     self.topLine.backgroundColor = colorWithRGB(226, 226, 226);
     self.bottomLine.backgroundColor = colorWithRGB(226, 226, 226);
 }
@@ -43,7 +43,31 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_GameNoticeDetailModel *detaileModel = ConvertToClassPointer(RH_GameNoticeDetailModel, context);
-    self.titleLabel.text = detaileModel.mContext;
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@0.f
+                          };
+    if (detaileModel.mContext&&detaileModel.mContext.length <20) {
+        NSString *contentStr = [NSString stringWithFormat:@"%@",detaileModel.mContext];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }
+    else if (detaileModel.mContext&&detaileModel.mContext.length >40) {
+        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[detaileModel.mContext substringToIndex:40]];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }else
+    {
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",detaileModel.mContext] attributes:dic];
+        self.titleLabel.attributedText = attributeStr;
+    }
     self.timeLabel.text = dateStringWithFormatter(detaileModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

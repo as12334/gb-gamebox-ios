@@ -30,7 +30,7 @@
     CGSize size = [model.mContent boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     // ceilf()向上取整函数, 只要大于1就取整数2. floor()向下取整函数, 只要小于2就取整数1.
     //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
-    return 75+size.height;
+    return 85+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -46,16 +46,39 @@
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.borderColor =colorWithRGB(226, 226, 226).CGColor;
     self.backDropView.layer.masksToBounds = YES;
-    self.timeLabel.textColor = colorWithRGB(200, 200, 200);
-    self.gamenameLabel.textColor = colorWithRGB(200, 200, 200);
+    self.timeLabel.textColor = colorWithRGB(153, 153, 153);
+//    self.gamenameLabel.textColor = colorWithRGB(200, 200, 200);
     [self.gamenameLabel setHidden:YES];
     self.noticeLabel.textColor = colorWithRGB(51, 51, 51);
-
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SystemNoticeModel *systemModel = ConvertToClassPointer(RH_SystemNoticeModel, context);
-    self.noticeLabel.text = systemModel.mContent;
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@0.f
+                          };
+    if (systemModel.mContent&&systemModel.mContent.length <20) {
+        NSString *contentStr = [NSString stringWithFormat:@"%@",systemModel.mContent];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.noticeLabel.attributedText = attributeStr;
+    }
+    else if (systemModel.mContent&&systemModel.mContent.length >40) {
+        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[systemModel.mContent substringToIndex:40]];
+         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+        self.noticeLabel.attributedText = attributeStr;
+    }else
+    {
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",systemModel.mContent] attributes:dic];
+        self.noticeLabel.attributedText = attributeStr;
+    }
     self.timeLabel.text = dateStringWithFormatter(systemModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
 //    self.gamenameLabel.text = systemModel.m;
     if (systemModel.mReadmark==0) {

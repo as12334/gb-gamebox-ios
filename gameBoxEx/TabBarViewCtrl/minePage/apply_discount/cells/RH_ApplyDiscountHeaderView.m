@@ -25,6 +25,10 @@
         self.segmentedControl = [[UISegmentedControl alloc]initWithItems:itemArray];
 //        self.segmentedControl.layer.cornerRadius = 6.f;
 //        self.segmentedControl.clipsToBounds = YES;
+        self.segmentedControl.layer.borderWidth=1;
+        self.segmentedControl.layer.borderColor= colorWithRGB(23, 102, 187).CGColor;
+        self.segmentedControl.layer.masksToBounds=YES;
+        self.segmentedControl.layer.cornerRadius=6;
         //设置frame
         [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2,15, 288, 33)];
         [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];

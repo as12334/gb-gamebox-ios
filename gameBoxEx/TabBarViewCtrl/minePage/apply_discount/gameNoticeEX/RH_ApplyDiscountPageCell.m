@@ -221,20 +221,18 @@
 {
     if (!self.listView.superview) {
         frame.origin.y +=self.contentTableView.frameY+frame.size.height;
-        frame.size.width+=50;
+        frame.size.width+=100;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 200;
+            CGRect framee = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, 100, 200);
             self.listView.frame = framee;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
+            CGRect framee = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y+2, 100, 0);
             self.listView.frame = framee;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
@@ -257,12 +255,13 @@
         __block RH_ApplyDiscountPageCell *weakSelf = self;
         _listView.modelArray = [NSMutableArray array];
         [_listView.modelArray addObject:@"所有游戏"];
+        _listView.backgroundColor = [UIColor redColor];
         _listView.modelIdArray = [NSMutableArray array];
         [_listView.modelIdArray addObject:@""];
         _listView.block = ^(NSInteger apiId){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
+                    CGRect framee = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y +2, 100, 0);
                     framee.size.height = 0;
                     weakSelf.listView.frame = framee;
                 } completion:^(BOOL finished) {
@@ -276,7 +275,7 @@
         _listView.kuaixuanBlock = ^(NSInteger row){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
+                    CGRect framee = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y + 2, 100, 0);
                     framee.size.height = 0;
                     weakSelf.listView.frame = framee;
                 } completion:^(BOOL finished) {
