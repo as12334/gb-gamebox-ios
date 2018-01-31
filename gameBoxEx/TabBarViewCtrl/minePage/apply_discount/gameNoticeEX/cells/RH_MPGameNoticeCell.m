@@ -46,9 +46,15 @@
     self.backDropView.layer.borderWidth = 1.f;
     self.backDropView.layer.borderColor =colorWithRGB(226, 226, 226).CGColor;
     self.backDropView.layer.masksToBounds = YES;
-    self.timeLabel.textColor = colorWithRGB(200, 200, 200);
-    self.gamenameLabel.textColor = colorWithRGB(200, 200, 200);
+    self.timeLabel.textColor = colorWithRGB(153, 153, 153);
+    self.timeLabel.font = [UIFont systemFontOfSize:9.f];
+   
+    self.gamenameLabel.textColor = colorWithRGB(153, 153, 153);
+    self.gamenameLabel.font = [UIFont systemFontOfSize:9.f];
+    
+//    self.titleLabel.backgroundColor = [UIColor redColor];
     self.titleLabel.textColor = colorWithRGB(51, 51, 51);
+    self.titleLabel.font = [UIFont systemFontOfSize:9.f];
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {

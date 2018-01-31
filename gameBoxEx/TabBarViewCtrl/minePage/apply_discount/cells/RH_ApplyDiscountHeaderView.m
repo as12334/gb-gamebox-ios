@@ -23,10 +23,20 @@
         NSArray *itemArray = @[@"游戏公告",@"系统公告",@"站点信息"];
         //初始化UISegmentedControl
         self.segmentedControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+//        self.segmentedControl.layer.cornerRadius = 6.f;
+//        self.segmentedControl.clipsToBounds = YES;
         //设置frame
-        [self.segmentedControl setFrame:CGRectMake((MainScreenW-200)/2,15/2, 200, 35)];
+        [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2,15, 288, 33)];
         [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];
         self.segmentedControl.tintColor = colorWithRGB(23, 102, 187);
+        UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.segmentedControl setTitleTextAttributes:attributes
+                                   forState:UIControlStateNormal];
+        UIColor *noSelectTitleColor = colorWithRGB(93, 95, 103);
+        NSDictionary *colorAttr = [NSDictionary dictionaryWithObject:noSelectTitleColor forKey:NSForegroundColorAttributeName];
+        [self.segmentedControl setTitleTextAttributes:colorAttr forState:UIControlStateNormal];
         //添加到视图
         [self addSubview:self.segmentedControl];
     }

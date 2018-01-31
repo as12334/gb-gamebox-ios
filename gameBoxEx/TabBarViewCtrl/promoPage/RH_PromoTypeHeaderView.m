@@ -23,7 +23,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    self.backgroundColor = colorWithRGB(242, 242, 242) ;
+    self.backgroundColor = colorWithRGB(234, 234, 234) ;
     [self addSubview:self.collectionTypeView] ;
     [self.collectionTypeView reloadData] ;
     _selectedIndex = 0 ;

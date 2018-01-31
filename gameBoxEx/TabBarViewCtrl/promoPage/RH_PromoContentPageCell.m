@@ -174,6 +174,7 @@
         RH_PromoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_PromoTableCell defaultReuseIdentifier]] ;
         [cell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         cell.delegate = self ;
+        cell.backgroundColor = [UIColor clearColor];
         return cell ;
     }else{
         return self.loadingIndicateTableViewCell ;

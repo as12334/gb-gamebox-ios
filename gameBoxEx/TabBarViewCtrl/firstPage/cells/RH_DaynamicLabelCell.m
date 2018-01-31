@@ -62,7 +62,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
-    _dynamicTimeInterval = strTmp.length * 0.5 ;// 一个字符 0.5
+    _dynamicTimeInterval = strTmp.length * 0.6 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);

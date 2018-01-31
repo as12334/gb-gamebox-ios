@@ -44,7 +44,7 @@
     [self createUI];
 }
 -(void)createUI{
-    self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 50);
+    self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 63);
     [self.topView addSubview:self.headerView];
     
     NSArray *typeList =@[[UIColor redColor],[UIColor yellowColor],[UIColor blueColor]];
@@ -80,7 +80,7 @@
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 50+NavigationBarHeight+StatusBarHeight, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 63+NavigationBarHeight+StatusBarHeight, MainScreenW, MainScreenH-63-NavigationBarHeight-StatusBarHeight)];
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
