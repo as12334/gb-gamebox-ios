@@ -41,7 +41,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return 180.0f ;
+    return 200.0f ;
 }
 
 -(BOOL)hasBottomView

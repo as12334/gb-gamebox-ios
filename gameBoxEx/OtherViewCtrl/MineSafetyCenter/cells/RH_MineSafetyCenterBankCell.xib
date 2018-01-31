@@ -68,7 +68,7 @@
                 <outlet property="leftBankTitle" destination="10J-hV-Bg9" id="fyA-t6-sTT"/>
                 <outlet property="noBankLabel" destination="HSG-tY-rlw" id="Ih8-fA-tRc"/>
             </connections>
-            <point key="canvasLocation" x="-315" y="-94"/>
+            <point key="canvasLocation" x="-90" y="-24"/>
         </tableViewCell>
     </objects>
 </document>

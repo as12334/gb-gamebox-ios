@@ -13,7 +13,7 @@
 @implementation RH_MineSafetyCenterCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
-    return 44;
+    return 40;
 }
 
 - (void)awakeFromNib {
