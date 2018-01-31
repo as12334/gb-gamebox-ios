@@ -84,9 +84,17 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     BankcardMapModel *bankcardModel = ConvertToClassPointer(BankcardMapModel, context) ;
-    [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
-    self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
-    self.bankCardLab.text = bankcardModel.mBankcardNumber;
+    if (bankcardModel.mBankcardNumber.length){
+        self.bankCardLab.textColor = colorWithRGB(68, 68, 68);
+        [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
+        self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
+        self.bankCardLab.text = bankcardModel.mBankcardNumber;
+    }else{
+        self.bankCardLab.textColor = colorWithRGB(27, 117, 217);
+        self.bankIconImageView.image = nil ;
+        self.bankUserNameLb.text = nil ;
+        self.bankCardLab.text = @"请先绑定银行卡" ;
+    }
 }
 
 @end

@@ -976,6 +976,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  @param gbToken 防重验证  Y
  */
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                         SafetyPwd:(NSString *)safetyPassword
                            gbToken:(NSString *)gbToken
                           CardType:(int)cardType  //（1：银行卡，2：比特币）
 {

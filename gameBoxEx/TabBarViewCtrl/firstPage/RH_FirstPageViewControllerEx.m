@@ -73,7 +73,7 @@
     _hud = [[MBProgressHUD alloc]initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
     
-//    [self autoLogin] ;
+    [self autoLogin] ;
 }
 - (void)dealloc
 {
