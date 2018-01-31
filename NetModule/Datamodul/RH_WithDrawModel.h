@@ -54,5 +54,8 @@
 @property (nonatomic , strong , readonly) NSString               * mToken;
 @property (nonatomic , assign , readonly) CGFloat                mTotalBalance;
 
+@property (nonatomic, assign,readonly) CGFloat mWithdrawMinNum ;
+@property (nonatomic, assign,readonly) CGFloat mWithdrawMaxNum ;
+
 -(void)updateToken:(NSString *)tokenStr ;
 @end

@@ -49,8 +49,8 @@
             btn.layer.mask = maskLayer;
             btn.tag  = i+10;
             [btn addTarget:self action:@selector(selectedChooseBtn:) forControlEvents:UIControlEventTouchUpInside];
-            [btn setBackgroundColor:colorWithRGB(200, 200, 200)];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [btn setBackgroundColor:colorWithRGB(226, 226, 226)];
+            [btn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             if (i==selectedIndex) {
                 btn.backgroundColor = colorWithRGB(23, 102, 187);
@@ -73,7 +73,7 @@
 {
     if (!button.isSelected) {
         self.chooseBtn.selected = !self.chooseBtn.selected;
-        self.chooseBtn.backgroundColor = colorWithRGB(200, 200, 200);
+        self.chooseBtn.backgroundColor = colorWithRGB(226, 226, 226);
         button.selected = !button.selected;
         button.backgroundColor = colorWithRGB(23, 102, 187);
         self.chooseBtn = button;
@@ -90,6 +90,7 @@
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
         _pageView.pageMargin = 5.0f;
+        
     }
     return _pageView;
 }

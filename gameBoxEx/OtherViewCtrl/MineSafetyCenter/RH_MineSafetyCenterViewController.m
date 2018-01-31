@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (RH_MineSafetyCenterHeaderView *)headerView {
     if (_headerView == nil) {
         _headerView = [[RH_MineSafetyCenterHeaderView alloc] init];
-        _headerView.frame = CGRectMake(0, 0, screenSize().width, 260);
+        _headerView.frame = CGRectMake(0, 0, screenSize().width, 301);
     }
     return _headerView;
 }
@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     UIEdgeInsets edgeInset = self.contentTableView.contentInset ;
-    edgeInset.top -= (GreaterThanIOS11System?0:heighStatusBar) +heighNavigationBar ;
+    edgeInset.top -= heighStatusBar +heighNavigationBar ;
     self.contentTableView.contentInset = edgeInset ;
     self.contentTableView.scrollIndicatorInsets = edgeInset ;
     

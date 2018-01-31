@@ -26,6 +26,8 @@
     self.labBalance.textColor = RH_NavigationBar_ForegroundColor ;
     self.labBalance.font = [UIFont systemFontOfSize:10.0f] ;
     
+    self.labUserName.text = @"";
+    self.labBalance.text = @"" ;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotificatin:)
                                                  name:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
@@ -40,8 +42,10 @@
 -(void)updateUI
 {
     RH_UserBalanceGroupModel *userBalanceGroupModel = UserBalanceInfo ;
-    self.labUserName.text = userBalanceGroupModel.mUserName ;
-    self.labBalance.text = [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mAssets] ;
+    if (userBalanceGroupModel){
+        self.labUserName.text = userBalanceGroupModel.mUserName ;
+        self.labBalance.text = [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mAssets] ;
+    }
 }
 
 #pragma mark-

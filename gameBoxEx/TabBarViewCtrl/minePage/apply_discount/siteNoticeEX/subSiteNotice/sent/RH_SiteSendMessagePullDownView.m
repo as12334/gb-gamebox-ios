@@ -14,8 +14,8 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.layer.cornerRadius = 10.f;
-        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.cornerRadius = 4.f;
+        self.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
         self.layer.borderWidth = 1.f;
         self.layer.masksToBounds = YES;
         [self addSubview:self.tabelView];
@@ -29,6 +29,9 @@
         _tabelView.delegate = self;
         _tabelView.dataSource = self;
         _tabelView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine ;
+        _tabelView.separatorColor = colorWithRGB(242 , 242, 242) ;
+        _tabelView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 5) ;
     }
     return _tabelView;
 }
@@ -61,7 +64,8 @@
     AdvisoryTypeListModel *model = ConvertToClassPointer(AdvisoryTypeListModel, self.sendModel.mAdvisoryTypeListModel[indexPath.item]);
     cell.textLabel.text = model.mAdvisoryName;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.textLabel.font = [UIFont systemFontOfSize:10.f];
+    cell.textLabel.font = [UIFont systemFontOfSize:12.f];
+    cell.textLabel.textColor = colorWithRGB(153, 153, 153);
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

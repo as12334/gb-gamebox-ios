@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *confimBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
+@property (weak, nonatomic) IBOutlet UILabel *typeLab;
+@property (weak, nonatomic) IBOutlet UILabel *titleLba;
 
 @end
 @implementation RH_SiteSendMessageView
@@ -52,14 +54,17 @@
     self.contenTextView.clipsToBounds = YES;
     self.confimBtn.layer.cornerRadius = 3.f;
     self.confimBtn.backgroundColor = colorWithRGB(23, 102, 187);
-    self.confimBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    self.confimBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [self.confimBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.confimBtn.layer.masksToBounds = YES;
     self.cancelBtn.layer.cornerRadius = 3.f;
     self.cancelBtn.backgroundColor = colorWithRGB(23, 102, 187);
-    self.cancelBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    self.cancelBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [self.cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.cancelBtn.layer.masksToBounds = YES;
+    
+    self.typeLab.textColor = colorWithRGB(51, 51, 51);
+    self.titleLba.textColor = colorWithRGB(51, 51, 51);
 }
 -(void)setSendModel:(RH_SendMessageVerityModel *)sendModel
 {

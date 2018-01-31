@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonConfirmHandle {
     
-    CGFloat amountValue = [self.cashCell.textField.text floatValue] ;
+    CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
     
     if (self.mainSegmentControl.selectedSegmentIndex==0){
         if ([self _checkShowBankCardInfo:YES]) {
@@ -151,15 +151,17 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         showMessage(self.view, @"", @"请输入取款金额");
         return;
     }
-    if (amountValue <= 0) {
-        showMessage(self.view, @"", @"输入金额错误");
+    if (amountValue <self.withDrawModel.mWithdrawMinNum ||
+        amountValue >self.withDrawModel.mWithdrawMaxNum) {
+        showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%8.2f-%8.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
         return;
     }
+    
     
     //检测是否有设置安全密码
     if (self.withDrawModel.mIsSafePassword==false){
         showAlertView(@"安全提示", @"请设置安全密码") ;
-        [self showViewController:[RH_ModifySafetyPasswordController viewController] sender:self] ;
+        [self showViewController:[RH_ModifySafetyPasswordController viewControllerWithContext:@"设置安全密码"] sender:self] ;
         return ;
     }
     
@@ -426,26 +428,21 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         
-        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
-        if (dict.count == 0) {
-            _withdrawCashStatus = WithdrawCashStatus_HasOrder;
-            [self setNeedUpdateView];
-            return ;
-        }
-        
-        PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"取款提交成功" cancelTitle:@"确定" otherTitles:@[@"取款记录"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (cancelled) {
-                //
-            }else {
-                //  取款记录
+        //提交成功
+        UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex==1){
                 [self showViewController:[RH_CapitalRecordViewController viewControllerWithContext:nil] sender:nil];
+                _withdrawCashStatus = WithdrawCashStatus_HasOrder ;
+                 [self setNeedUpdateView];
+            }else{
+                [self backBarButtonItemHandle] ;
             }
-        }];
-        [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
-        [alert setTitleColor:colorWithRGB(51, 51, 51)];
-        [alert setMessageColor:colorWithRGB(51, 51, 51)];
-        [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
-        [self setNeedUpdateView];
+        } title:@"提示信息"
+                                                             message:@"取款提交成功"
+                                                    cancelButtonName:@"好的"
+                                                   otherButtonTitles:@"资金记录", nil] ;
+        
+        [alertView show] ;
     }
 }
 
