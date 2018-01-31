@@ -33,7 +33,9 @@
 {
     
     [self addSubview:self.scrollView];
+    
     [self.scrollView addSubview:self.sendView];
+    \
     __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
     self.sendView.block = ^(CGRect frame){
         [weakSelf selectedSendViewdiscountType:frame];
