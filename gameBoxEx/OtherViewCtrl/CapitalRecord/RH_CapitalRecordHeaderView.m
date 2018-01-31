@@ -37,17 +37,20 @@
     self.btnQuickSelect.layer.cornerRadius = 3.0f ;
     self.btnQuickSelect.layer.masksToBounds = YES ;
     [self.btnQuickSelect addTarget:self action:@selector(quickBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnQuickSelect.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    self.labDateTitle.whc_LeftSpace(10).whc_TopSpace(15);
     
     WHC_StackView *stackView = [[WHC_StackView alloc] init];
+    
     [self addSubview:stackView];
-    stackView.whc_LeftSpaceToView(0, self.labDateTitle).whc_TopSpace(0).whc_RightSpaceToView(5, self.btnQuickSelect).whc_Height(44);
+    stackView.whc_LeftSpaceToView(0, self.labDateTitle).whc_TopSpaceEqualView(self.labDateTitle).whc_RightSpaceToView(5, self.btnQuickSelect).whc_HeightEqualView(self.btnQuickSelect);
     stackView.whc_Column = 2;
     stackView.whc_HSpace = 20;
     stackView.whc_VSpace = 0;
     stackView.whc_Orientation = Horizontal;
     [stackView addSubview:self.startCapitalDateCell];
     [stackView addSubview:self.endCapitalDateCell];
-    
+    stackView.whc_Edge = UIEdgeInsetsMake(0, 0, 0, 0);
     [stackView whc_StartLayout];
     
     UILabel *label_ = [[UILabel alloc] init];
@@ -58,34 +61,34 @@
     
     UIView *view_Line = [UIView new];
     [self addSubview:view_Line];
-    view_Line.whc_TopSpaceToView(5, stackView).whc_LeftSpace(10).whc_RightSpace(0).whc_Height(1);
+    view_Line.whc_TopSpaceToView(15, stackView).whc_LeftSpace(10).whc_RightSpace(0).whc_Height(1);
     view_Line.backgroundColor = colorWithRGB(226, 226, 226);
-    [self addSubview:self.serachBtn];
+
     self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
     self.serachBtn.layer.cornerRadius = 3.0f;
     self.serachBtn.layer.masksToBounds = YES;
-    self.serachBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.serachBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.serachBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.serachBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    self.serachBtn.whc_RightSpace(10).whc_TopSpaceToView(10, view_Line).whc_Height(35).whc_Width(screenSize().width/2-20);
-    
+    self.serachBtn.whc_RightSpace(10).whc_TopSpaceToView(15, view_Line).whc_Height(35).whc_Width(screenSize().width/2-20);
     
     self.typeButton.backgroundColor = colorWithRGB(255, 255, 255);
     [self.typeButton setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
-    self.typeButton.titleLabel.font = [UIFont systemFontOfSize:12.f];
+    self.typeButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
     self.typeButton.titleEdgeInsets = UIEdgeInsetsMake(0, -screenSize().width/3.0, 0, 0);
-    
+    self.typeButton.whc_TopSpaceToView(15, view_Line).whc_LeftSpace(10).whc_Height(35).whc_Width(screenSize().width/2-20);
+    self.typeButton.backgroundColor = [UIColor redColor];
     UIView *view_Line2 = [UIView new];
     [self addSubview:view_Line2];
-    view_Line2.whc_TopSpaceToView(10, self.typeButton).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+    view_Line2.whc_TopSpaceToView(15, self.serachBtn).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
     view_Line2.backgroundColor = colorWithRGB(226, 226, 226);
     
     self.withdrawalLab.textColor = colorWithRGB(51, 51, 51);
-    self.withdrawalLab.font = [UIFont systemFontOfSize:12.f];
+    self.withdrawalLab.font = [UIFont systemFontOfSize:14.f];
     self.withdrawalLab.whc_TopSpaceToView(5, view_Line2).whc_LeftSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
     
     self.transferLab.textColor = colorWithRGB(51, 51, 51);
-    self.transferLab.font = [UIFont systemFontOfSize:12.f];
+    self.transferLab.font = [UIFont systemFontOfSize:14.f];
     self.transferLab.textAlignment = NSTextAlignmentLeft;
     self.transferLab.whc_TopSpaceToView(5, view_Line2).whc_RightSpace(20).whc_Height(30).whc_Width(screenSize().width/2);
     self.transferLab.textAlignment = NSTextAlignmentRight;
@@ -94,7 +97,6 @@
     self.typeButton.layer.cornerRadius = 3.0f;
     self.typeButton.layer.masksToBounds = YES;
     [self.typeButton addTarget:self action:@selector(typeLabelPulldownList) forControlEvents:UIControlEventTouchUpInside];
-    self.typeButton.whc_TopSpaceToView(10, view_Line).whc_LeftSpace(10).whc_Height(35).whc_Width(screenSize().width/2-20);
     
     _startDate = [NSDate date] ;
     _endDate = [NSDate date]  ;
@@ -103,18 +105,19 @@
     [self addSubview:imageArrow];
     imageArrow.image = ImageWithName(@"mine_page_arrowdwon");
     imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(24).whc_Height(24);
+    
     NSArray *titleArr = @[@"交易时间",@"交易金额",@"交易类型",@"交易状态"];
     for (int i = 0; i<4; i++) {
-        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4.0*i, self.withdrawalLab.whc_maxY +10, (screenSize().width)/4.0, 30)];
+        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4.0*i, self.withdrawalLab.whc_maxY +40, (screenSize().width)/4.0, 30)];
         lab.text = titleArr[i];
         lab.textAlignment = NSTextAlignmentCenter;
-        lab.font = [UIFont systemFontOfSize:12.f];
+        lab.font = [UIFont systemFontOfSize:14.f];
         lab.backgroundColor = colorWithRGB(225, 226, 227)  ;
         lab.textColor = colorWithRGB(51, 51, 51);
         [self addSubview:lab];
     }
     for (int i = 0; i<3; i++) {
-        UILabel *linLab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4*(i+1), self.withdrawalLab.whc_maxY +10, PixelToPoint(1.0) , 30)];
+        UILabel *linLab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4*(i+1), self.withdrawalLab.whc_maxY +40, PixelToPoint(1.0) , 30)];
         linLab.backgroundColor = [UIColor whiteColor];
         [self addSubview:linLab];
     }

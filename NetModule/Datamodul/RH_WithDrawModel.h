@@ -54,4 +54,5 @@
 @property (nonatomic , strong , readonly) NSString               * mToken;
 @property (nonatomic , assign , readonly) CGFloat                mTotalBalance;
 
+-(void)updateToken:(NSString *)tokenStr ;
 @end

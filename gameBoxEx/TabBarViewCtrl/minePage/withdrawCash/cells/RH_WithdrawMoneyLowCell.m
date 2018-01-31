@@ -27,7 +27,7 @@
     // Initialization code
     self.label_Notice.whc_Center(0, 20).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(60);
     self.button_Save.whc_TopSpaceToView(20, self.label_Notice).whc_CenterX(0).whc_Width(100).whc_Height(44);
-    self.label_Notice.text = @"取款金额最少为50.00元\n您当前钱包余额不足，您可以先把游戏里的钱\n转到钱包.";
+    self.label_Notice.text = @"取款金额至少为100.00元\n您当前钱包余额不足!";
     self.label_Notice.textColor = RH_Label_DefaultTextColor;
     self.button_Save.layer.cornerRadius = 5.0;
     self.clipsToBounds = YES;

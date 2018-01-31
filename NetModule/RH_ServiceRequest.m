@@ -976,6 +976,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  @param gbToken 防重验证  Y
  */
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                         SafetyPwd:(NSString *)safetyPassword
                            gbToken:(NSString *)gbToken
                           CardType:(int)cardType  //（1：银行卡，2：比特币）
 {
@@ -983,7 +984,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
     [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
     [dict setObject:@(cardType) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY] ;
-    
+    [dict setValue:safetyPassword?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_ORIGINPWD] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
@@ -1754,14 +1755,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     //特点  error 信息，统一处理 。
-    if ((error.code==600 || error.code==1) && serviceType!=ServiceRequestTypeV3UserLoginOut)
+    if ((error.code==600 || error.code==1) &&
+        serviceType!=ServiceRequestTypeV3UserLoginOut &&
+        serviceType!=ServiceRequestTypeV3HomeInfo)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
             [self.delegate serviceRequest:self serviceType:serviceType SpecifiedError:error] ;
         }
     }
-    
     
     //移除上下文
     [self removeContextForType:serviceType];

@@ -19,6 +19,8 @@
 #import "RH_BitCoinController.h"
 #import "RH_BankCardController.h"
 #import "RH_ModifySafetyPasswordController.h"
+#import "RH_BankCardController.h"
+#import "RH_WithdrawCashThreeCell.h"
 
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0    ,
@@ -56,7 +58,40 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     [self setNeedUpdateView] ;
     [self setupInfo] ;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+- (void)setupInfo {
+    
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
+    [self.contentView addSubview:self.contentTableView];
+    [self.tableViewManagement reloadData];
+    self.contentTableView.tableFooterView = [self footerView];
+    self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
+    [self.contentView addSubview:self.mainSegmentControl];
+    self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
+    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+    
+    self.mainSegmentControl.hidden = YES;
+    self.contentTableView.tableFooterView = nil;
+}
+
+#pragma mark- handleNotification
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:RHNT_AlreadySuccessAddBankCardInfo] ||
+        [nt.name isEqualToString:RHNT_AlreadySuccessfulAddBitCoinInfo]){
+        [self showProgressIndicatorViewWithAnimated:YES title:@"数据更新中..."];
+        [self.serviceRequest startV3GetWithDraw] ;
+    }
+}
+
 #pragma mark - CashCell
 - (RH_WithdrawCashTwoCell *)cashCell {
     if (_cashCell == nil) {
@@ -100,15 +135,23 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonConfirmHandle {
     
-    if (self.withDrawModel.mBankcardMap[@"1"] == nil) {
-        showMessage(self.view, @"", @"没有银行卡")   ;
-        return;
+    CGFloat amountValue = [self.cashCell.textField.text floatValue] ;
+    
+    if (self.mainSegmentControl.selectedSegmentIndex==0){
+        if ([self _checkShowBankCardInfo:YES]) {
+            return ;
+        }
+    }else{
+        if ([self _checkShowBitCoinInfo:YES]) {
+            return ;
+        }
     }
+    
     if (self.cashCell.textField.text.length == 0 ) {
         showMessage(self.view, @"", @"请输入取款金额");
         return;
     }
-    if (self.cashCell.textField.text.integerValue < 0) {
+    if (amountValue <= 0) {
         showMessage(self.view, @"", @"输入金额错误");
         return;
     }
@@ -125,10 +168,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         if (buttonIndex==1){//确认
             NSString *safetyPass =  [alertView textFieldAtIndex:0].text ;
             if (safetyPass.length){
-                [self showProgressIndicatorViewWithAnimated:YES title:@"验证安全密码..."];
-//                [self.serviceRequest startV3SubmitWithdrawAmount:self.cashCell.textField.text.floatValue
-//                                                         gbToken:self.withDrawModel.mToken
-//                                                        CardType:<#(int)#>] ;
+                [self showProgressIndicatorViewWithAnimated:YES title:@"提交中..."];
+                //（1：银行卡，2：比特币）
+                [self.serviceRequest startV3SubmitWithdrawAmount:amountValue
+                                                       SafetyPwd:safetyPass
+                                                         gbToken:self.withDrawModel.mToken
+                                                        CardType:self.mainSegmentControl.selectedSegmentIndex+1] ;
+                
             }
         }
         
@@ -139,21 +185,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                             otherButtonTitles:@"确认", nil] ;
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput ;
     [alert show];
-}
-
-- (void)setupInfo {
-    
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
-    [self.contentView addSubview:self.contentTableView];
-    [self.tableViewManagement reloadData];
-    self.contentTableView.tableFooterView = [self footerView];
-    
-    [self.contentView addSubview:self.mainSegmentControl];
-    self.mainSegmentControl.whc_TopSpace(74).whc_CenterX(0).whc_Width(180).whc_Height(35);
-    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(130);
-    
-    self.mainSegmentControl.hidden = YES;
-    self.contentTableView.tableFooterView = nil;
 }
 
 #pragma mark - mainSegmentControl
@@ -175,27 +206,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     _withdrawCashStatus = segmentControl.selectedSegmentIndex?WithdrawCashStatus_EnterBitCoin:WithdrawCashStatus_EnterCash ;
     [self setNeedUpdateView] ;
-    if (segmentControl.selectedSegmentIndex == 1) {
-        
-        if (MineSettingInfo.mBitCode.mBtcNumber) {
-            //有比特币，无需提示
-            return ;
-        }
-        PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"没有绑定比特币地址" cancelTitle:@"取消" otherTitles:@[@"立即添加"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (cancelled) {
-                //
-            }else {
-                // tianjia
-                [self showViewController:[RH_BitCoinController viewControllerWithContext:nil] sender:nil];
-            }
-        }];
-        [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
-        [alert setTitleColor:colorWithRGB(51, 51, 51)];
-        [alert setMessageColor:colorWithRGB(51, 51, 51)];
-        [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
-        [alert setCancelButtonTextColor:colorWithRGB(51, 51, 51)];
-        [alert setOtherButtonTextColor:colorWithRGB(91, 91, 91)];
-    }
 }
 
 
@@ -225,13 +235,59 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             
             if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
                 [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCash"] ;
+                [self _checkShowBankCardInfo:YES] ;
                 return ;
             }else{
                 [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashBitCoin"] ;
+                [self _checkShowBitCoinInfo:YES] ;
                 return ;
             }
         }
     }
+}
+
+-(BOOL)_checkShowBankCardInfo:(BOOL)showAlert
+{
+    BankcardMapModel * bankCardModel = ConvertToClassPointer(BankcardMapModel,[self.withDrawModel.mBankcardMap objectForKey:@"1"]) ;
+    if (bankCardModel.mBankcardNumber.length==0){
+        if (showAlert){
+            UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex==1){
+                    [self showViewController:[RH_BankCardController viewControllerWithContext:@"绑定银行卡"] sender:self] ;
+                }
+            } title:@"请先绑定银行卡"
+                                                             message:nil cancelButtonName:@"取消" otherButtonTitles:@"立即绑定", nil] ;
+            [alert show] ;
+        }else{
+            [self showViewController:[RH_BankCardController viewControllerWithContext:@"绑定银行卡"] sender:self] ;
+        }
+        
+        return YES ;
+    }
+    
+    return NO ;
+}
+
+-(BOOL)_checkShowBitCoinInfo:(BOOL)showAlert
+{
+    BankcardMapModel * bankCardModel = ConvertToClassPointer(BankcardMapModel,[self.withDrawModel.mBankcardMap objectForKey:@"2"]) ;
+    if (bankCardModel.mBankcardNumber.length==0){
+        if (showAlert){
+            UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex==1){
+                    [self showViewController:[RH_BitCoinController viewControllerWithContext:@"绑定比特币地址"] sender:self] ;
+                }
+            } title:@"请先绑定比特币地址"
+                                                             message:nil cancelButtonName:@"取消" otherButtonTitles:@"立即绑定", nil] ;
+            [alert show] ;
+        }else{
+            [self showViewController:[RH_BitCoinController viewControllerWithContext:@"绑定比特币地址"] sender:self] ;
+        }
+        
+        return YES ;
+    }
+    
+    return NO ;
 }
 
 #pragma mark- contentLoadingIndicateView
@@ -269,29 +325,21 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         RH_WithdrawMoneyLowCell *withDrawLowCell = ConvertToClassPointer(RH_WithdrawMoneyLowCell, cell) ;
         withDrawLowCell.delegate  = self ;
     }
+    if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
+        RH_WithdrawCashThreeCell *three = ConvertToClassPointer(RH_WithdrawCashThreeCell, cell);
+        three.separatorInset = UIEdgeInsetsMake(0, 0, 00, 0);
+    }
 }
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
     
     if (_withdrawCashStatus == WithdrawCashStatus_EnterBitCoin) {
         if (indexPath.section == 0) {
-            
-            if (MineSettingInfo.mBitCode.mBtcNumber) {
-                //有比特币地址
-                return YES;
-            }
-            PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"没有绑定比特币地址" cancelTitle:@"取消" otherTitles:@[@"立即添加"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                if (cancelled) {
-                    //
-                }else {
-                    // tianjia
-                    [self showViewController:[RH_BitCoinController viewControllerWithContext:nil] sender:nil];
-                }
-            }];
-            [alert setBackgroundColor:colorWithRGB(234, 234, 234)];
-            [alert setTitleColor:colorWithRGB(153, 153, 153)];
-            [alert setMessageColor:colorWithRGB(153, 153, 153)];
-            [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
+            [self _checkShowBitCoinInfo:NO] ;
+        }
+    }else if (_withdrawCashStatus == WithdrawCashStatus_EnterCash){
+        if (indexPath.section == 0) {
+            [self _checkShowBankCardInfo:NO] ;
         }
     }
     
@@ -304,11 +352,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
             return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;
         }else if (_withdrawCashStatus==WithdrawCashStatus_EnterBitCoin) {
-//            return [self.withDrawModel.mBankcardMap objectForKey:@"2"] ;
-            return @{
-                     @"title":@"比特币地址",
-                     @"detailTitle":MineSettingInfo.mBitCode.mBtcNumber?:@""
+            if (MineSettingInfo.mBitCode.mBtcNumber){
+                return @{@"title":@"比特币地址",
+                         @"detailTitle":MineSettingInfo.mBitCode.mBtcNumber?:@""
+                             };
+            }else{
+                return @{@"title":@"请先绑定比特币地址",
                          };
+            }
         }
     }else if (indexPath.section==2){
         switch (indexPath.item) {
@@ -360,40 +411,28 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 {
     if (type == ServiceRequestTypeV3GetWithDrawInfo)
     {
-        [self.contentLoadingIndicateView hiddenView] ;
-        self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-        _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
-        [self setNeedUpdateView] ;
-//        NSLog(@"%@", self.withDrawModel.mBankcardMap[@"1"]);
-//        if (self.withDrawModel.mBankcardMap[@"1"][@""]){
-//            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
-//            [self setNeedUpdateView];
-//        }else{
-////            _withdrawCashStatus = WithdrawCashStatus_Init;
-////            [self setNeedUpdateView];
-//            PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"未绑定银行卡" cancelTitle:@"确定" otherTitles:@[@"绑定银行卡"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
-//                if (cancelled) {
-//                    //
-//                }else {
-//                    //  绑定银行卡
-//                    [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
-//                }
-//            }];
-//            [alert setBackgroundColor:colorWithRGB(255, 255, 255)];
-//            [alert setTitleColor:colorWithRGB(51, 51, 51)];
-//            [alert setMessageColor:colorWithRGB(51, 51, 51)];
-//            [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
-//            [alert setCancelButtonTextColor:colorWithRGB(51, 51, 51)];
-//            [alert setOtherButtonTextColor:colorWithRGB(91, 91, 91)];
-//        }
+        if (self.progressIndicatorView.superview){ //通知更新信息
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
+                [self setNeedUpdateView] ;
+            }] ;
+        }else{
+            [self.contentLoadingIndicateView hiddenView] ;
+            self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
+            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+            [self setNeedUpdateView] ;
+        }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+        
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         if (dict.count == 0) {
             _withdrawCashStatus = WithdrawCashStatus_HasOrder;
             [self setNeedUpdateView];
             return ;
         }
+        
         PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"取款提交成功" cancelTitle:@"确定" otherTitles:@[@"取款记录"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (cancelled) {
                 //
@@ -406,8 +445,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [alert setTitleColor:colorWithRGB(51, 51, 51)];
         [alert setMessageColor:colorWithRGB(51, 51, 51)];
         [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
-//        showMessage(self.contentView, @"", dict[@"msg"]);
-//        _withdrawCashStatus = WithdrawCashStatus_Init;
         [self setNeedUpdateView];
     }
 }
@@ -426,8 +463,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
         }
     }else if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
-        NSLog(@"%@", error);
-        showMessage(self.contentView, error.localizedDescription, error.userInfo[@"msg"]);
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showMessage(self.contentView, error.localizedDescription, error.userInfo[@"msg"]);
+        }] ;
+        
+        NSDictionary *userInfo = error.userInfo ;
+        NSString *token = [userInfo stringValueForKey:@"token"] ;
+        [self.withDrawModel updateToken:token] ;
     }
 }
 

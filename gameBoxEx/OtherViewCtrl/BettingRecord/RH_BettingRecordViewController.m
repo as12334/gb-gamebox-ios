@@ -148,7 +148,7 @@
 -(RH_BettingTableHeaderView *)bettingTableHeaderView
 {
     if (!_bettingTableHeaderView){
-        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 25.0f)] ;
+        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 40.0f)] ;
         _bettingTableHeaderView.backgroundColor = colorWithRGB(240, 240, 240) ;
     }
     

@@ -72,11 +72,16 @@
         self.bankCardLab.whc_LeftSpaceToView(5, self.bankUserNameLb).whc_CenterY(0).whc_WidthAuto();
         self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
         self.separatorLineWidth = 1.0f;
-        self.separatorLineColor = colorWithRGB(242, 242, 242);
-        self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
+        self.separatorLineColor = colorWithRGB(226, 226, 226);
+        self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
         self.backgroundColor = colorWithRGB(255, 255, 255);
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
+        
+        UIView *line = [UIView new];
+        [self.contentView addSubview:line];
+        line.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
+        line.backgroundColor = colorWithRGB(226, 226, 226);
     }
     return self;
 }
@@ -84,9 +89,17 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     BankcardMapModel *bankcardModel = ConvertToClassPointer(BankcardMapModel, context) ;
-    [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
-    self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
-    self.bankCardLab.text = bankcardModel.mBankcardNumber;
+    if (bankcardModel.mBankcardNumber.length){
+        self.bankCardLab.textColor = colorWithRGB(68, 68, 68);
+        [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
+        self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
+        self.bankCardLab.text = bankcardModel.mBankcardNumber;
+    }else{
+        self.bankCardLab.textColor = colorWithRGB(27, 117, 217);
+        self.bankIconImageView.image = nil ;
+        self.bankUserNameLb.text = nil ;
+        self.bankCardLab.text = @"请先绑定银行卡" ;
+    }
 }
 
 @end
