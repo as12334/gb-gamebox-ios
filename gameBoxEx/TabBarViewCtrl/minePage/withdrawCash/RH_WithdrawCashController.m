@@ -58,7 +58,40 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     [self setNeedUpdateView] ;
     [self setupInfo] ;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+- (void)setupInfo {
+    
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
+    [self.contentView addSubview:self.contentTableView];
+    [self.tableViewManagement reloadData];
+    self.contentTableView.tableFooterView = [self footerView];
+    self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
+    [self.contentView addSubview:self.mainSegmentControl];
+    self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
+    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+    
+    self.mainSegmentControl.hidden = YES;
+    self.contentTableView.tableFooterView = nil;
+}
+
+#pragma mark- handleNotification
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:RHNT_AlreadySuccessAddBankCardInfo] ||
+        [nt.name isEqualToString:RHNT_AlreadySuccessfulAddBitCoinInfo]){
+        [self showProgressIndicatorViewWithAnimated:YES title:@"数据更新中..."];
+        [self.serviceRequest startV3GetWithDraw] ;
+    }
+}
+
 #pragma mark - CashCell
 - (RH_WithdrawCashTwoCell *)cashCell {
     if (_cashCell == nil) {
@@ -152,21 +185,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                             otherButtonTitles:@"确认", nil] ;
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput ;
     [alert show];
-}
-
-- (void)setupInfo {
-    
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
-    [self.contentView addSubview:self.contentTableView];
-    [self.tableViewManagement reloadData];
-    self.contentTableView.tableFooterView = [self footerView];
-    self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
-    [self.contentView addSubview:self.mainSegmentControl];
-    self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
-    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
-    
-    self.mainSegmentControl.hidden = YES;
-    self.contentTableView.tableFooterView = nil;
 }
 
 #pragma mark - mainSegmentControl
@@ -393,18 +411,28 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 {
     if (type == ServiceRequestTypeV3GetWithDrawInfo)
     {
-        [self.contentLoadingIndicateView hiddenView] ;
-        self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-        _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
-        [self setNeedUpdateView] ;
+        if (self.progressIndicatorView.superview){ //通知更新信息
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
+                [self setNeedUpdateView] ;
+            }] ;
+        }else{
+            [self.contentLoadingIndicateView hiddenView] ;
+            self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
+            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+            [self setNeedUpdateView] ;
+        }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+        
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         if (dict.count == 0) {
             _withdrawCashStatus = WithdrawCashStatus_HasOrder;
             [self setNeedUpdateView];
             return ;
         }
+        
         PXAlertView *alert = [PXAlertView showAlertWithTitle:@"提示" message:@"取款提交成功" cancelTitle:@"确定" otherTitles:@[@"取款记录"] completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (cancelled) {
                 //
@@ -417,8 +445,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [alert setTitleColor:colorWithRGB(51, 51, 51)];
         [alert setMessageColor:colorWithRGB(51, 51, 51)];
         [alert setOtherButtonBackgroundColor:colorWithRGB(27, 117, 217)];
-//        showMessage(self.contentView, @"", dict[@"msg"]);
-//        _withdrawCashStatus = WithdrawCashStatus_Init;
         [self setNeedUpdateView];
     }
 }
@@ -437,8 +463,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
         }
     }else if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
-        NSLog(@"%@", error);
-        showMessage(self.contentView, error.localizedDescription, error.userInfo[@"msg"]);
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showMessage(self.contentView, error.localizedDescription, error.userInfo[@"msg"]);
+        }] ;
+        
+        NSDictionary *userInfo = error.userInfo ;
+        NSString *token = [userInfo stringValueForKey:@"token"] ;
+        [self.withDrawModel updateToken:token] ;
     }
 }
 

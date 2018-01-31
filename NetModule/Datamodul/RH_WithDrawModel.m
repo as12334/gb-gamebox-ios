@@ -126,4 +126,10 @@
      }
 }
 
+-(void)updateToken:(NSString *)tokenStr
+{
+    if (tokenStr.length){
+        _mToken  = tokenStr ;
+    }
+}
 @end

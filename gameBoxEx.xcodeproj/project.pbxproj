@@ -278,6 +278,8 @@
 		A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181661FFCAB20008F6D1E /* UIView+WHC_Frame.m */; };
 		A01181721FFCAB21008F6D1E /* CALayer+WHC_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A01181691FFCAB20008F6D1E /* CALayer+WHC_Frame.m */; };
 		A01181731FFCAB21008F6D1E /* UIView+WHC_AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A011816C1FFCAB20008F6D1E /* UIView+WHC_AutoLayout.m */; };
+		A01460DE2021AAFD008928D1 /* RH_SafetyNaviBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01460DB2021AAFC008928D1 /* RH_SafetyNaviBarView.xib */; };
+		A01460DF2021AAFD008928D1 /* RH_SafetyNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01460DD2021AAFC008928D1 /* RH_SafetyNaviBarView.m */; };
 		A01CB48A1FF9C09F00447130 /* RH_ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4891FF9C09F00447130 /* RH_ActivityModel.m */; };
 		A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01CB4941FF9C81800447130 /* RH_ActivithyView.xib */; };
 		A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4951FF9C81800447130 /* RH_ActivithyView.m */; };
@@ -1039,6 +1041,9 @@
 		A011816C1FFCAB20008F6D1E /* UIView+WHC_AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WHC_AutoLayout.m"; sourceTree = "<group>"; };
 		A011816D1FFCAB20008F6D1E /* UIView+WHC_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WHC_Frame.h"; sourceTree = "<group>"; };
 		A011816E1FFCAB20008F6D1E /* CALayer+WHC_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+WHC_Frame.h"; sourceTree = "<group>"; };
+		A01460DB2021AAFC008928D1 /* RH_SafetyNaviBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_SafetyNaviBarView.xib; sourceTree = "<group>"; };
+		A01460DC2021AAFC008928D1 /* RH_SafetyNaviBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_SafetyNaviBarView.h; sourceTree = "<group>"; };
+		A01460DD2021AAFC008928D1 /* RH_SafetyNaviBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_SafetyNaviBarView.m; sourceTree = "<group>"; };
 		A01CB4881FF9C09F00447130 /* RH_ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ActivityModel.h; sourceTree = "<group>"; };
 		A01CB4891FF9C09F00447130 /* RH_ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityModel.m; sourceTree = "<group>"; };
 		A01CB48C1FF9C81800447130 /* RH_ActivithyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ActivithyView.h; sourceTree = "<group>"; };
@@ -2488,6 +2493,16 @@
 			path = WHC_AutoLayoutKit;
 			sourceTree = "<group>";
 		};
+		A01460DA2021AAFC008928D1 /* safetyNaviBarView */ = {
+			isa = PBXGroup;
+			children = (
+				A01460DC2021AAFC008928D1 /* RH_SafetyNaviBarView.h */,
+				A01460DD2021AAFC008928D1 /* RH_SafetyNaviBarView.m */,
+				A01460DB2021AAFC008928D1 /* RH_SafetyNaviBarView.xib */,
+			);
+			path = safetyNaviBarView;
+			sourceTree = "<group>";
+		};
 		A01CB48B1FF9C81800447130 /* activityView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3058,6 +3073,7 @@
 				B8107AB41FFDBAF80086DDC3 /* cells */,
 				A0522A55200706F500A5A6E9 /* ModifySafetyPassword */,
 				A0522A532007069B00A5A6E9 /* ModifyPassword */,
+				A01460DA2021AAFC008928D1 /* safetyNaviBarView */,
 				A0522A73200B41DB00A5A6E9 /* MineSafetyCenterInit.plist */,
 				A0522A72200B41DA00A5A6E9 /* MineSafetyCenterNone.plist */,
 				A0522A74200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist */,
@@ -3657,6 +3673,7 @@
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
 				F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */,
 				A0522A76200B41DB00A5A6E9 /* MineSafetyCenterNone.plist in Resources */,
+				A01460DE2021AAFD008928D1 /* RH_SafetyNaviBarView.xib in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
 				B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
@@ -3992,6 +4009,7 @@
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */,
+				A01460DF2021AAFD008928D1 /* RH_SafetyNaviBarView.m in Sources */,
 				A0109F791F8787E4004E6EF4 /* CLTextField.m in Sources */,
 				A0522A82200C5B8100A5A6E9 /* RH_BankInfoModel.m in Sources */,
 				797F678F2008A25E009E3FAB /* RH_GameNoticeModel.m in Sources */,

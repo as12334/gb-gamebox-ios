@@ -164,6 +164,7 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         [self.contentLoadingIndicateView hiddenView] ;
         [self setNeedUpdateView] ;
     }else if (type == ServiceRequestTypeV3AddBitCoin){
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息",@"已成功添加Bit币") ;
         }];
