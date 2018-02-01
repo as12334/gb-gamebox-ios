@@ -22,7 +22,7 @@
         _mCheckState = [info integerValueForKey:RH_GP_PROMOINFO_CHECKSTATE] ;
         _mActivityName = [info stringValueForKey:RH_GP_PROMOINFO_ACTIVITYNAME] ;
         _mActivityVersion = [info stringValueForKey:RH_GP_PROMOINFO_ACTIVITYVERSION] ;
-        _mPreferentialAudit = [info boolValueForKey:RH_GP_PROMOINFO_PREFERENTIALAUDIT] ;
+        _mPreferentialAudit = [info floatValueForKey:RH_GP_PROMOINFO_PREFERENTIALAUDIT] ;
         _mPreferentialAuditName = [info stringValueForKey:RH_GP_PROMOINFO_PREFERENTIALAUDITNAME] ;
         _mPreferentialValue = [info floatValueForKey:RH_GP_PROMOINFO_PREFERENTIALVALUE] ;
         _mCheckStateName = [info stringValueForKey:RH_GP_PROMOINFO_CHECKSTATENAME] ;
