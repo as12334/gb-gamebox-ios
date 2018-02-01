@@ -83,6 +83,7 @@
 @end
 
 @implementation RH_WithDrawModel
+@synthesize withDrawFeeDict = _withDrawFeeDict ;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info])
@@ -134,4 +135,14 @@
         _mToken  = tokenStr ;
     }
 }
+
+-(NSMutableDictionary *)withDrawFeeDict
+{
+    if (!_withDrawFeeDict){
+        _withDrawFeeDict = [[NSMutableDictionary alloc] init] ;
+    }
+    
+    return _withDrawFeeDict ;
+}
+
 @end

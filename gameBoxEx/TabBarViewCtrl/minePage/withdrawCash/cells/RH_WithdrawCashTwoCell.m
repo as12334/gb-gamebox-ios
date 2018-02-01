@@ -64,6 +64,10 @@
 #pragma mark-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    
+    ifRespondsSelector(self.delegate, @selector(withdrawCashTwoCellDidTouchDONE:)){
+        [self.delegate withdrawCashTwoCellDidTouchDONE:self] ;
+    }
     return YES;
 }
 
