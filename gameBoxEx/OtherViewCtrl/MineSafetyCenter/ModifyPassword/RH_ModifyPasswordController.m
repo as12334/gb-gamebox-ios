@@ -211,6 +211,9 @@
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
             self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
         }
+        //在这里判断状态码， 如果冻结，就直接退出APP
+        //TODO
+        
     }
 }
 
