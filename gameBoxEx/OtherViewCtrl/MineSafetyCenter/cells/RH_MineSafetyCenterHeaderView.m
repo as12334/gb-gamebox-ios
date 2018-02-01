@@ -35,6 +35,7 @@
     if (_image_Back == nil) {
         _image_Back = [[UIImageView alloc] init];
 //        _image_Back.image = ImageWithName(@"mine_page_safetycenter");
+        _image_Back.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _image_Back;
 }

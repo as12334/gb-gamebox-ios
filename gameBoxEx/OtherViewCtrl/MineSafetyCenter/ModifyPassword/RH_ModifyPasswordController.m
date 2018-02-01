@@ -194,7 +194,7 @@
             }
         }] ;
         
-        [self backBarButtonItemHandle] ;
+//        [self backBarButtonItemHandle] ;
     }
 }
 
@@ -204,13 +204,13 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(self.view, error, @"修改密码失败");
         }] ;
-        
+        NSLog(@"%@", error);
         NSDictionary *userInfo = error.userInfo ;
         if ([userInfo boolValueForKey:RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA]){
             [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
         }
         
-        self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
+        self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
     }
 }
 

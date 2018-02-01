@@ -69,6 +69,7 @@
         [self.contentView addSubview:self.textField];
         self.textField.whc_TopSpace(1).whc_RightSpace(20).whc_Height(39).whc_Width(screenSize().width/5*3);
         self.textField.delegate = self;
+        [self.textField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventAllEvents];
         UIView *view_Back = [[UIView alloc]init];
         [self.contentView addSubview:view_Back];
         view_Back.whc_TopSpace(41).whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(0);
@@ -109,16 +110,9 @@
     self.textField.placeholder = info[@"detailTitle"];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"%s", __func__);
-}
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"%s", __func__);
-}
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+- (void)textFieldValueChange:(UITextField *)textFiled {
     NSString *textRange = [self.textField.text copy];
     NSString *regexS = @"[a-zA-Z][0-9]|[0-9][a-zA-Z]";
     NSString *regexS2 = @"[!@#$%^&*_]";
@@ -134,16 +128,18 @@
             NSLog(@"%@", result2);
             if (result2.count > 0) {
                 label_Three.backgroundColor = colorWithRGB(27, 117, 217);
+                return ;
             }
-            return YES;
+            label_Three.backgroundColor = RH_Image_DefaultBackgroundColor;
+            return ;
         }
-        return YES;
+        label_Two.backgroundColor = RH_Image_DefaultBackgroundColor;
+        return ;
     }
     label_One.backgroundColor = RH_Image_DefaultBackgroundColor;
     label_Two.backgroundColor = RH_Image_DefaultBackgroundColor;
-    label_Three.backgroundColor = RH_Image_DefaultBackgroundColor;
+
     
-    return YES;
 }
 
 @end
