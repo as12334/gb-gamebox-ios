@@ -166,7 +166,7 @@
                 }
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
-                showMessage(self.view, @"登录失败", nil);
+                showMessage(self.view, @"用户名或密码错误", nil);
                 [appDelegate updateLoginStatus:NO] ;
                 [self.contentTableView reloadData] ;
             }
