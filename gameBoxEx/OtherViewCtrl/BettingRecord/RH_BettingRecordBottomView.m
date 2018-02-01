@@ -96,7 +96,7 @@
             titleCell.labTitle.text = [NSString stringWithFormat: @"有效投注:%.2f", _effective];
             break;
         case 3:
-            titleCell.labTitle.text = [NSString stringWithFormat: @"投注笔数:%ld笔", _totalNumber];
+            titleCell.labTitle.text = [NSString stringWithFormat: @"投注注数:%ld笔", _totalNumber];
             break;
             
         default:

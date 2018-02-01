@@ -106,7 +106,7 @@
     imageArrow.image = ImageWithName(@"mine_page_arrowdwon");
     imageArrow.whc_RightSpaceEqualViewOffset(self.typeButton, 5).whc_CenterYToView(0, self.typeButton).whc_Width(24).whc_Height(24);
     
-    NSArray *titleArr = @[@"交易时间",@"交易金额",@"交易类型",@"交易状态"];
+    NSArray *titleArr = @[@"时间",@"金额",@"状态",@"类型"];
     for (int i = 0; i<4; i++) {
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(screenSize().width/4.0*i, self.withdrawalLab.whc_maxY +40, (screenSize().width)/4.0, 30)];
         lab.text = titleArr[i];
