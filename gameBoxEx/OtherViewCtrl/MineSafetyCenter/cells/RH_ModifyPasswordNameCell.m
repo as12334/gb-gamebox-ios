@@ -1,18 +1,17 @@
 //
-//  RH_ModifyPasswordCell.m
+//  RH_ModifyPasswordNameCell.m
 //  gameBoxEx
 //
-//  Created by Lenny on 2018/1/7.
+//  Created by Lenny on 2018/2/1.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_ModifyPasswordCell.h"
+#import "RH_ModifyPasswordNameCell.h"
 #import "coreLib.h"
-@interface RH_ModifyPasswordCell() <UITextFieldDelegate>
+@interface RH_ModifyPasswordNameCell() <UITextFieldDelegate>
 
 @end
-
-@implementation RH_ModifyPasswordCell
+@implementation RH_ModifyPasswordNameCell
 @synthesize textField = _textField;
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -21,7 +20,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -83,7 +82,8 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    return [self validateNumber:string];
+//    return [self validateNumber:string];
+    return YES;
 }
 
 - (BOOL)validateNumber:(NSString*)number {

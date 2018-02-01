@@ -248,8 +248,8 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         return ;
     }
     
-    if (_addBankCardBankCardNumber.length==0){
-        showAlertView(@"提示信息", @"银行卡号不能为空！") ;
+    if (_addBankCardBankCardNumber.length < 10 || _addBankCardBankCardNumber.length > 25){
+        showAlertView(@"提示信息", @"银行卡号不正确！") ;
         return ;
     }
     

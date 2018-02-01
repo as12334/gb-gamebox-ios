@@ -1,18 +1,19 @@
 //
-//  RH_ModifyPasswordCell.m
+//  RH_BankCardNumberCell.m
 //  gameBoxEx
 //
-//  Created by Lenny on 2018/1/7.
+//  Created by Lenny on 2018/2/1.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_ModifyPasswordCell.h"
+#import "RH_BankCardNumberCell.h"
 #import "coreLib.h"
-@interface RH_ModifyPasswordCell() <UITextFieldDelegate>
+
+@interface RH_BankCardNumberCell() <UITextFieldDelegate>
 
 @end
 
-@implementation RH_ModifyPasswordCell
+@implementation RH_BankCardNumberCell
 @synthesize textField = _textField;
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -21,7 +22,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -88,7 +89,7 @@
 
 - (BOOL)validateNumber:(NSString*)number {
     BOOL res = YES;
-    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     int i = 0;
     while (i < number.length) {
         NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
