@@ -120,6 +120,23 @@
     }
     return YES;
 }
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    return (action == @selector(copy:))||(action == @selector(cut:));
+}
+
+- (void)copy:(UIMenuController *)menu
+{
+    if ([self.contenTextView.text isEqualToString:@""]) {
+        return;
+    }
+}
+- (void)cut:(UIMenuController *)menu
+{
+    if ([self.contenTextView.text isEqualToString:@""]) {
+        return;
+    }
+}
 - (IBAction)selectedCodeTextField:(id)sender {
     ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFrame:)){
         [self.delegate selectedCodeTextFieldAndChangedKeyboardFrame:self.codeTextField.frame];
