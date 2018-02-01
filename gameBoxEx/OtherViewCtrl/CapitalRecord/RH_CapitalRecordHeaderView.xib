@@ -79,7 +79,7 @@
                 <outlet property="typeButton" destination="yQB-0a-BLm" id="q3n-Ul-dYG"/>
                 <outlet property="withdrawalLab" destination="1Ym-ag-Gu7" id="37M-br-KNV"/>
             </connections>
-            <point key="canvasLocation" x="-2139" y="-756"/>
+            <point key="canvasLocation" x="-2008" y="-761"/>
         </view>
     </objects>
 </document>

@@ -129,9 +129,8 @@
         [self.delegate capitalRecordHeaderViewTouchSearchButton:self] ;
     }
 }
-
+#pragma mark --- 快选
 -(void)quickBtnClick{
-    NSLog(@"快选");
     __block RH_CapitalRecordHeaderView *weakSelf = self;
     self.quickSelectBlock(weakSelf.btnQuickSelect.frame);
 }

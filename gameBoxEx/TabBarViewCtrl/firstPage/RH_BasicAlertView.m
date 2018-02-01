@@ -81,7 +81,7 @@
 }
 
 - (void)cancelButtonDidTap:(UIButton *)button {
-    
+     
     [UIView animateWithDuration:0.3 animations:^{
         contentView.transform = CGAffineTransformMakeScale(0.1, 0.1);
         contentView.alpha = 0.1;
@@ -146,7 +146,7 @@
         cell = [[CLTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         RH_AnnouncementModel *model = contents[indexPath.row];
         cell.textLabel.text = model.mContent;
-        cell.textLabel.numberOfLines = 0;
+//        cell.textLabel.numberOfLines = 0;
         cell.textLabel.textColor = colorWithRGB(102, 102, 102);
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         
