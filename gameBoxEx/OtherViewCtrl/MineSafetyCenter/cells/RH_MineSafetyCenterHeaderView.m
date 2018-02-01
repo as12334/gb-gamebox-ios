@@ -59,12 +59,12 @@
         
         _label.font = [UIFont systemFontOfSize:14];
         _label.numberOfLines = 0;
-        NSDictionary *dic = @{NSKernAttributeName:@1.f,
+        NSDictionary *dic = @{NSKernAttributeName:@0.f,
                               
                               };
         NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_label.text attributes:dic];
         NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        [paragraphStyle setLineSpacing:10];//行间距
+        [paragraphStyle setLineSpacing:6];//行间距
         [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_label.text length])];
         [_label setAttributedText:attributedString];
         _label.textAlignment = NSTextAlignmentCenter;
@@ -79,7 +79,7 @@
         self.image_Back.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
         _image_Back.image = ImageWithName(@"safe-bg");
         [self addSubview:self.label];
-        self.label.whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(10).whc_Height(80);
+        self.label.whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(10).whc_Height(60);
     }
     return self;
 }
