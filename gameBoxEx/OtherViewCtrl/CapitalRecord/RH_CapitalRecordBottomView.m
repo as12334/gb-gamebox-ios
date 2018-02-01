@@ -77,7 +77,7 @@
     NSInteger index = indexPath.section*2 + indexPath.item ;
     switch (index) {
         case 0:
-            titleCell.labTitle.text = [NSString stringWithFormat:@"充值额度:%.02f",_rechargeSummer] ;
+            titleCell.labTitle.text = [NSString stringWithFormat:@"充值总额:%.02f",_rechargeSummer] ;
             break;
         case 1:
             titleCell.labTitle.text = [NSString stringWithFormat:@"提现总额:%.02f",_withdrawSummer] ;

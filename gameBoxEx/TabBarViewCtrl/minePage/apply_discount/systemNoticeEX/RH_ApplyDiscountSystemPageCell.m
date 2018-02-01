@@ -260,35 +260,161 @@
 -(NSString *)changedSinceTimeString:(NSInteger)row
 {
     NSDate *date = [[NSDate alloc]init];
+    //获取本周的日期
+    NSArray *currentWeekarr = [self getWeekTimeOfCurrentWeekDay];
+    NSArray *lastWeekArr = [self getWeekTimeOfLastWeekDay];
     switch (row) {
         case 0:
+            //今天
             date= [[NSDate date] dateWithMoveDay:0];
+            _headerView.endDate = date;
             break;
         case 1:
+            //昨天
             date= [[NSDate date] dateWithMoveDay:-1];
+            _headerView.endDate = date;
             break;
         case 2:
-            date= [[NSDate date] dateWithMoveDay:-7];
+            //本周
+            date = currentWeekarr[0];
+            _headerView.endDate = currentWeekarr[1];
             break;
         case 3:
-            date= [[NSDate date] dateWithMoveDay:-14];
+            //上周
+            date = lastWeekArr[0];
+            _headerView.endDate = lastWeekArr[1];
             break;
         case 4:
-            date= [[NSDate date] dateWithMoveDay:-30];
+            //本月
+            date= [self dateFromDateFirstDay];
+            _headerView.endDate = [self getMonthEndDate];
             break;
         case 5:
+            //最近7天
             date= [[NSDate date] dateWithMoveDay:-7];
+            _headerView.endDate = [date  dateWithMoveDay:+7];
             break;
         case 6:
+            //最近三十天
             date= [[NSDate date] dateWithMoveDay:-30];
+            _headerView.endDate = [date  dateWithMoveDay:+30];
             break;
             
         default:
             break;
     }
+    _headerView.startDate = date;
     NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd ");
     return beforDate;
 }
+
+#pragma mark - 获取当前月1号
+- (NSDate *)dateFromDateFirstDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *str1 =  [currentDateString substringWithRange:NSMakeRange(7, 3)];
+    NSString *str2 = [currentDateString stringByReplacingOccurrencesOfString:str1 withString:@"-01"];
+    //设置转换格式
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    formatter.dateFormat = @"yyyy-MM-dd";
+    //NSString转NSDate
+    NSDate *date = [formatter dateFromString:str2] ;
+    return date;
+}
+
+#pragma mark -  获取当前周的周一周日的时间
+- (NSArray *)getWeekTimeOfCurrentWeekDay
+{
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:nowDate];
+    // 获取今天是周几
+    NSInteger weekDay = [comp weekday];
+    // 获取几天是几号
+    NSInteger day = [comp day];
+    // 计算当前日期和本周的星期一和星期天相差天数
+    long firstDiff,lastDiff;
+    //    weekDay = 1;
+    if (weekDay == 1)
+    {
+        firstDiff = -6;
+        lastDiff = 0;
+    }
+    else
+    {
+        firstDiff = [calendar firstWeekday] - weekDay + 1;
+        lastDiff = 8 - weekDay;
+    }
+    // 在当前日期(去掉时分秒)基础上加上差的天数
+    [comp setDay:day + firstDiff];
+    NSDate *firstDayOfWeek = [calendar dateFromComponents:comp];
+    [comp setDay:day + lastDiff];
+    NSDate *lastDayOfWeek = [calendar dateFromComponents:comp];
+    NSArray *dateArr = @[firstDayOfWeek,lastDayOfWeek];
+    return dateArr;
+}
+
+#pragma mark -  获取上一周的周一周日的时间
+- (NSArray *)getWeekTimeOfLastWeekDay
+{
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:nowDate];
+    // 获取今天是周几
+    NSInteger weekDay = [comp weekday];
+    // 获取几天是几号
+    NSInteger day = [comp day];
+    NSInteger lastDay = day - 7;
+    // 计算当前日期和本周的星期一和星期天相差天数
+    long firstDiff,lastDiff;
+    //    weekDay = 1;
+    if (weekDay == 1)
+    {
+        firstDiff = -6;
+        lastDiff = 0;
+    }
+    else
+    {
+        firstDiff = [calendar firstWeekday] - weekDay +1;
+        lastDiff = 8 - weekDay;
+    }
+    // 在当前日期(去掉时分秒)基础上加上差的天数
+    [comp setDay:lastDay + firstDiff];
+    NSDate *firstDayOfWeek = [calendar dateFromComponents:comp];
+    [comp setDay:lastDay + lastDiff];
+    NSDate *lastDayOfWeek = [calendar dateFromComponents:comp];
+    NSArray *dateArr = @[firstDayOfWeek,lastDayOfWeek];
+    // 22 28
+    return dateArr;
+}
+
+#pragma mark - 获取本月最后一天
+- (NSDate *)getMonthEndDate
+{
+    NSDate *newDate=[NSDate date];
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    [calendar setFirstWeekday:2];//设定周一为周首日
+    BOOL ok = [calendar rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:newDate];
+    //分别修改为 NSCalendarUnitMonth NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }else {
+        return nil;
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"YYYY-MM-dd"];
+    return endDate;
+}
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
