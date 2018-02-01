@@ -49,13 +49,41 @@
         [self.contentView addSubview:line];
         line.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1);
         line.backgroundColor = colorWithRGB(226, 226, 226);
+        
+        [self.textField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"请输入整数金额"
+                                                                                 attributes:@{NSFontAttributeName : self.textField.font, NSForegroundColorAttributeName : ColorWithNumberRGB(0xcacaca)}]] ;
     }
     return self;
 }
 
+- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
+    self.textLabel.text = info[@"title"];
+    
+}
+
+#pragma mark-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [self validateNumber:string];
+}
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
 }
 
 @end

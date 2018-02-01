@@ -35,7 +35,7 @@
 #pragma mark -
 -(BOOL)isExistSubCategory
 {
-    if (self.mSiteApis.count){
+    if (self.mSiteApis.count>1){
 //        RH_LotteryAPIInfoModel *lotteryApiModel = self.mSiteApis[0] ;
 //        return lotteryApiModel.mGameItems.count?YES:NO ;
         NSInteger gameItems = 0 ;
