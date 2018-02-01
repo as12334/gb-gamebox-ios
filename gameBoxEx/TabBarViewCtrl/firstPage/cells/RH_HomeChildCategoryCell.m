@@ -17,10 +17,17 @@
 @interface RH_HomeChildCategoryCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) NSArray  *subCategoryList ;
 @property (nonatomic,strong) IBOutlet UICollectionView *collectionView ;
+@property (nonatomic,strong) IBOutlet UIView *lineView ;
+
+//选择指示器
+@property(nonatomic,strong,readonly) CALayer * selectionIndicater;
 @end
 
 @implementation RH_HomeChildCategoryCell
 @synthesize collectionView = _collectionView ;
+@synthesize selectionIndicater = _selectionIndicater;
+@synthesize selectedIndex = _selectedIndex ;
+
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     return  HomeChildCategoryCellHeight;
@@ -35,6 +42,9 @@
     _selectedIndex = 0 ;
     self.collectionView.backgroundColor = [UIColor clearColor];
     [self configureCollection:self.collectionView] ;
+    
+    self.lineView.backgroundColor = colorWithRGB(226, 226, 226) ;
+    self.lineView.whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0).whc_Height(1) ;
 }
 
 #pragma mark -
@@ -47,6 +57,57 @@
     }
     
     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft] ;
+}
+
+#pragma mark-
+-(NSInteger)selectedIndex
+{
+    [self _updateSelectionIndicater:YES] ;
+    return _selectedIndex ;
+}
+
+#pragma mark -
+-(void)layoutSubviews
+{
+    [super layoutSubviews] ;
+    if (_selectionIndicater==nil){
+        [self _updateSelectionIndicater:NO] ;
+    }else {
+        [self _updateSelectionIndicater:YES];
+    }
+}
+
+- (CALayer *)selectionIndicater
+{
+    if (!_selectionIndicater) {
+        _selectionIndicater = [[CALayer alloc] init];
+        _selectionIndicater.backgroundColor = colorWithRGB(27, 117, 217).CGColor;
+        [self.collectionView.layer addSublayer:_selectionIndicater];
+    }
+    
+    return _selectionIndicater;
+}
+
+- (void)_updateSelectionIndicater:(BOOL)animated
+{
+    NSIndexPath * indexPathForSelectedItem = [self.collectionView.indexPathsForSelectedItems firstObject];
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:!indexPathForSelectedItem || !animated];
+    [CATransaction setAnimationDuration:0.5];
+    
+    if (indexPathForSelectedItem == nil) {
+        self.selectionIndicater.frame = CGRectZero;
+    }else {
+        
+        //获取选中的cell的位置
+        CGRect cellFrame = [self.collectionView layoutAttributesForItemAtIndexPath:indexPathForSelectedItem].frame;
+//        NSLog(@"%f,%f,%f,%f",cellFrame.origin.x,cellFrame.origin.y,cellFrame.size.height,cellFrame.size.width) ;
+        //设置选择指示器位置
+        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 2.f, CGRectGetWidth(cellFrame), 2.f);
+    }
+    
+    [CATransaction commit];
 }
 
 #pragma mark-
@@ -87,6 +148,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectedIndex = indexPath.item ;
+    [self _updateSelectionIndicater:YES] ;
     ifRespondsSelector(self.delegate, @selector(homeChildCategoryCellDidChangedSelectedIndex:)){
         [self.delegate homeChildCategoryCellDidChangedSelectedIndex:self] ;
     }

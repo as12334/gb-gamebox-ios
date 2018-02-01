@@ -71,8 +71,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GetWithDrawInfo   ,  // 取款信息接口
     ServiceRequestTypeV3SubmitWithdrawInfo   ,  // 提交取款信息
     ServiceRequestTypeV3LoadGameType,          //获取游戏分类
-    ServiceRequestTypeV3SafetyPasswordAutuentification    //取款安全密码验证
-    
+    ServiceRequestTypeV3SafetyPasswordAutuentification ,   //取款安全密码验证
+    ServiceRequestTypeWithDrawFee , //取款手续费计算
 };
 
 
@@ -362,6 +362,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 取款验证安全密码
 -(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd;
+
+#pragma mark - 获取手续费信息得到最终取款金额
+-(void)startV3WithDrawFeeWithAmount:(CGFloat)amount ;
+
 #pragma mark -
 /**
  * 取消所有服务

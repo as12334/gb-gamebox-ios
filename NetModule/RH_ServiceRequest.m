@@ -1025,6 +1025,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 获取手续费信息得到最终取款金额
+-(void)startV3WithDrawFeeWithAmount:(CGFloat)amount
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:[NSString stringWithFormat:@"%.2f",amount] forKey:RH_SP_WITHDRWAFEE_AMOUNT];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_WITHDRWAFEE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeWithDrawFee
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1684,6 +1700,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                  resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
             }
                 break;
+            
+            case ServiceRequestTypeWithDrawFee:
+            {
+                
+            }
+                break ;
                 
             default:
                 resultSendData = dataObject ;

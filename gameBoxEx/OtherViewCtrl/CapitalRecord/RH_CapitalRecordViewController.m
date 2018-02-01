@@ -34,6 +34,7 @@
 {
     return YES ;
 }
+
 -(BOOL)hasTopView
 {
     return TRUE ;
