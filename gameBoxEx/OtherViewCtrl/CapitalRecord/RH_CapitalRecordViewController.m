@@ -135,9 +135,8 @@
         _listView.block = ^(){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
-                    framee.size.height = 0;
-                    weakSelf.listView.frame = framee;
+                    CGRect frame = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y +2, weakSelf.listView.frame.size.width, 0) ;
+                    weakSelf.listView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.listView removeFromSuperview];
                 }];
@@ -154,17 +153,15 @@
         self.listView.frame = frame;
         [self.view addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 200;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width, 200) ;
+            self.listView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width, 0) ;
+            self.listView.frame = frame;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
         }];
@@ -181,8 +178,7 @@
         _quickSelectView.quickSelectBlock = ^(NSInteger selectRow) {
             if (weakSelf.quickSelectView.superview) {
                 [UIView animateWithDuration:0.2 animations:^{
-                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x -70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
-                    frame.size.height = 0;
+                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x -70, weakSelf.quickSelectView.frame.origin.y + 2 , 120, 0);
                     weakSelf.quickSelectView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.quickSelectView removeFromSuperview];
@@ -204,16 +200,14 @@
         self.quickSelectView.frame = frame;
         [self.view addSubview:self.quickSelectView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
-            frame.size.height = 200;
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y +2, 120, 200);
             self.quickSelectView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 120, 0);
-            frame.size.height = 0;
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y +2, 120, 0);
             self.quickSelectView.frame = frame;
         } completion:^(BOOL finished) {
             [self.quickSelectView removeFromSuperview];
