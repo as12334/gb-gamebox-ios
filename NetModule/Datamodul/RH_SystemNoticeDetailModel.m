@@ -17,7 +17,7 @@
         _mID = [info stringValueForKey:RH_GP_SYSTEMNOTICEDETAIL_ID];
         _mContent = [info stringValueForKey:RH_GP_SYSTEMNOTICEDETAIL_CONTENT];
         _mLink = [info stringValueForKey:RH_GP_SYSTEMNOTICEDETAIL_LINK];
-        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME]/1000.0] ;
+        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_SYSTEMNOTICEDETAIL_PUBLISHTIME]/1000.0] ;
         _mTitle = [info stringValueForKey:RH_GP_SYSTEMNOTICEDETAIL_TITLE];
     }
     return self;

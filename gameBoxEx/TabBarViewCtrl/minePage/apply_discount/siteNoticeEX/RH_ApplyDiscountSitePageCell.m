@@ -50,7 +50,7 @@
             btn.tag  = i+10;
             [btn addTarget:self action:@selector(selectedChooseBtn:) forControlEvents:UIControlEventTouchUpInside];
             [btn setBackgroundColor:colorWithRGB(226, 226, 226)];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [btn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             if (i==selectedIndex) {
                 btn.backgroundColor = colorWithRGB(23, 102, 187);
