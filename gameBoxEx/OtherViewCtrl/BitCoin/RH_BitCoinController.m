@@ -29,16 +29,23 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 {
     BitCoinStatus _bitCoinStatus ;    
     NSString *_addBitCoinAddrInfo ;
+    
+    NSString *_inputTitleContent ; //control 上下文信息
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView ;
 @synthesize addButton = _addButton ;
 
+-(void)setupViewContext:(id)context
+{
+    _inputTitleContent = ConvertToClassPointer(NSString, context) ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的比特币地址";
+    self.title = _inputTitleContent?:@"我的比特币地址";
     [self setupInfo];
     self.needObserverTapGesture = YES ;
     [self setNeedUpdateView] ;
@@ -168,6 +175,11 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息",@"已成功添加Bit币") ;
         }];
+        
+        if (_inputTitleContent.length){
+            [self backBarButtonItemHandle] ;
+            return ;
+        }
         
         [self setNeedUpdateView] ;
     }

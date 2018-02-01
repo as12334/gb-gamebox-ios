@@ -43,6 +43,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 @implementation RH_WithdrawCashController
 {
     WithdrawCashStatus _withdrawCashStatus ;
+    
+    //记录两种类型的--
+    CGFloat _bankWithdrawAmount     ; //记录银行卡 取款金额
+    CGFloat _bitCoinWithdrawAmount  ; //记录比特币 取款金额
 }
 
 @synthesize tableViewManagement = _tableViewManagement;
@@ -58,8 +62,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     [self setNeedUpdateView] ;
     [self setupInfo] ;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
+                                                 name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:nil] ;
 }
 
 - (void)dealloc
@@ -73,11 +81,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     [self.tableViewManagement reloadData];
     self.contentTableView.tableFooterView = [self footerView];
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
-    [self.contentView addSubview:self.mainSegmentControl];
-    self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
-    self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
-    
-    self.mainSegmentControl.hidden = YES;
     self.contentTableView.tableFooterView = nil;
 }
 
@@ -88,6 +91,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [nt.name isEqualToString:RHNT_AlreadySuccessfulAddBitCoinInfo]){
         [self showProgressIndicatorViewWithAnimated:YES title:@"数据更新中..."];
         [self.serviceRequest startV3GetWithDraw] ;
+    }else if ([nt.name isEqualToString:UITextFieldTextDidChangeNotification]){
+        UITextField *textF = ConvertToClassPointer(UITextField, nt.object) ;
+        if (textF){
+            if (self.mainSegmentControl.selectedSegmentIndex){
+                _bitCoinWithdrawAmount = [textF.text floatValue] ;
+            }else
+            {
+                _bankWithdrawAmount = [textF.text floatValue] ;
+            }
+        }
     }
 }
 
@@ -150,12 +163,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         showMessage(self.view, @"", @"请输入取款金额");
         return;
     }
+    
     if (amountValue <self.withDrawModel.mWithdrawMinNum ||
         amountValue >self.withDrawModel.mWithdrawMaxNum) {
         showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%8.2f-%8.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
         return;
     }
-    
     
     //检测是否有设置安全密码
     if (self.withDrawModel.mIsSafePassword==false){
@@ -220,18 +233,36 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     }else if (_withdrawCashStatus == WithdrawCashStatus_HasOrder) {
         [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashHasOrder"];
-        self.mainSegmentControl.hidden = YES;
         self.contentTableView.tableFooterView =  nil;
+        
+        if (_mainSegmentControl.superview){
+            [_mainSegmentControl removeFromSuperview] ;
+            _mainSegmentControl = nil ;
+            [self.contentTableView  whc_ResetConstraints] ;
+            self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+        }
     }else {
         [self.contentLoadingIndicateView hiddenView] ;
-        
         if (_withdrawCashStatus==WithdrawCashStatus_NotEnoughCash){
             [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashLow"] ;
-            self.mainSegmentControl.hidden = YES;
             self.contentTableView.tableFooterView = nil;
+            
+            if (_mainSegmentControl.superview){
+                [_mainSegmentControl removeFromSuperview] ;
+                _mainSegmentControl = nil ;
+                [self.contentTableView  whc_ResetConstraints] ;
+                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+            }
+            
             return ;
         }else {
-            self.mainSegmentControl.hidden = NO;
+            
+            if (_mainSegmentControl.superview==nil){
+                [self.contentView addSubview:self.mainSegmentControl];
+                self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
+                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+            }
+            
             self.contentTableView.tableFooterView = self.footerView;
             
             if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
@@ -362,12 +393,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                          };
             }
         }
+    }else if (indexPath.section==1){
+        id value =  self.mainSegmentControl.selectedSegmentIndex?@(_bitCoinWithdrawAmount):@(_bankWithdrawAmount) ;
+        return value ;
     }else if (indexPath.section==2){
         switch (indexPath.item) {
             case 0: //手续费
             {
-                return self.withDrawModel.mAuditMap.mCounterFee==0.00?@"免手续费":
-                [NSString stringWithFormat:@"%.02f",self.withDrawModel.mAuditMap.mCounterFee] ;
+                return [NSString stringWithFormat:@"%.02f",self.withDrawModel.mAuditMap.mCounterFee] ;
             }
                 break;
             
@@ -420,28 +453,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }else{
             [self.contentLoadingIndicateView hiddenView] ;
             self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-            BankcardMapModel *bankCard = self.withDrawModel.mBankcardMap[@"1"];
-            if (bankCard) {
-                _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
-                [self setNeedUpdateView] ;
-            }else {
-                // 没有银行卡，在这里提示添加银行卡
-                // TODO
-                UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    if (buttonIndex==1){
-                        [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
-                        _withdrawCashStatus = WithdrawCashStatus_HasOrder ;
-                        [self setNeedUpdateView];
-                    }else{
-                        [self backBarButtonItemHandle] ;
-                    }
-                } title:@"提示信息"
-                                                                     message:@"没有银行卡"
-                                                            cancelButtonName:@"好的"
-                                                           otherButtonTitles:@"去添加", nil] ;
-                
-                [alertView show] ;
-            }
+            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+            [self setNeedUpdateView] ;
         }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {

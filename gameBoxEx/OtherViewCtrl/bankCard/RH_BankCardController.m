@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 {
     BankCardStatus _bankCardStatus ;
     
+    NSString *_contextTitle ;
     //添加银行卡所需信息
     NSString *_addBankCardRealName ;
     NSString *_addBankCardBankName ;
@@ -50,15 +51,19 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 @synthesize addButton = _addButton ;
 @synthesize bankPickerSelectView = _bankPickerSelectView ;
 
+-(void)setupViewContext:(id)context
+{
+    _contextTitle = ConvertToClassPointer(NSString, context) ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我的银行卡";
+    self.title = _contextTitle?:@"我的银行卡";
     [self setupInfo];
     self.needObserverTapGesture = YES ;
     [self setNeedUpdateView] ;
 }
-
 
 - (void)setupInfo {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
@@ -285,6 +290,11 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
             showSuccessMessage(self.view, @"提示信息",@"已成功添加银行卡") ;
         }];
         
+        if (_contextTitle.length){
+            [self backBarButtonItemHandle] ;
+            return ;
+        }
+        
         [self setNeedUpdateView] ;
     }
 }
@@ -294,7 +304,8 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }else if (type == ServiceRequestTypeV3AddBankCard){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error.localizedDescription, @"添加银行卡失败") ;
+//            showErrorMessage(self.view, error.localizedDescription, @"添加银行卡失败") ;
+            showErrorMessage(self.view, error,  @"添加银行卡失败") ;
         }];
     }
 }

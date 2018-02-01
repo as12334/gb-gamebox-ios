@@ -58,7 +58,7 @@
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     self.textLabel.text = info[@"title"];
-    
+    self.textField.text = ([context floatValue]>0?[NSString stringWithFormat:@"%8.0f",[context floatValue]]:@"") ;
 }
 
 #pragma mark-
@@ -70,6 +70,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     return [self validateNumber:string];
 }
+
 - (BOOL)validateNumber:(NSString*)number {
     BOOL res = YES;
     NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
