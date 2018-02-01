@@ -25,10 +25,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAe-Rn-uOq">
-                            <rect key="frame" x="11" y="18" width="16" height="22"/>
+                            <rect key="frame" x="0.0" y="8" width="44" height="43"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="1Da-PZ-2Bn"/>
-                                <constraint firstAttribute="height" constant="22" id="av4-pY-oJc"/>
+                                <constraint firstAttribute="width" constant="44" id="1Da-PZ-2Bn"/>
+                                <constraint firstAttribute="height" constant="43" id="av4-pY-oJc"/>
                             </constraints>
                             <state key="normal" image="ic_back"/>
                             <connections>
@@ -39,7 +39,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="SXr-Bi-vsQ" firstAttribute="centerX" secondItem="i9B-ia-BAA" secondAttribute="centerX" id="1jn-lj-APc"/>
-                        <constraint firstItem="cAe-Rn-uOq" firstAttribute="leading" secondItem="i9B-ia-BAA" secondAttribute="leading" constant="11" id="INp-P5-8tF"/>
+                        <constraint firstItem="cAe-Rn-uOq" firstAttribute="leading" secondItem="i9B-ia-BAA" secondAttribute="leading" id="INp-P5-8tF"/>
                         <constraint firstItem="SXr-Bi-vsQ" firstAttribute="centerY" secondItem="i9B-ia-BAA" secondAttribute="centerY" id="LQD-kN-f3G"/>
                         <constraint firstItem="SXr-Bi-vsQ" firstAttribute="centerX" secondItem="i9B-ia-BAA" secondAttribute="centerX" id="jBT-dV-B7G"/>
                         <constraint firstItem="SXr-Bi-vsQ" firstAttribute="centerY" secondItem="i9B-ia-BAA" secondAttribute="centerY" id="kDv-Ua-X96"/>
@@ -62,7 +62,7 @@
                 <outlet property="labTitle" destination="SXr-Bi-vsQ" id="Edk-tZ-2jK"/>
                 <outlet property="safetyNaviBarView" destination="i9B-ia-BAA" id="3Gg-uB-wRX"/>
             </connections>
-            <point key="canvasLocation" x="-1360" y="-1230"/>
+            <point key="canvasLocation" x="-1564" y="-1276.5"/>
         </view>
     </objects>
     <resources>

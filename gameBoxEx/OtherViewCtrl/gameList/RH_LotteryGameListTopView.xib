@@ -47,7 +47,7 @@
                 <outlet property="contentView" destination="ihQ-49-fpq" id="aa4-Hm-Nmu"/>
                 <outlet property="textField" destination="o4Y-Hg-yXF" id="KFN-Zs-Bne"/>
             </connections>
-            <point key="canvasLocation" x="-49.5" y="-210.5"/>
+            <point key="canvasLocation" x="-293" y="-224"/>
         </view>
     </objects>
 </document>

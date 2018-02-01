@@ -1518,6 +1518,24 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _opmi //永利娱乐城
+
+#define CODE    @"opmi"
+#define S        @"eed63a75cb98f902830477f5cba04f31"
+#define SID        @"357"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _n5gl //澳门威尼斯人
+
+#define CODE    @"n5gl"
+#define S        @"c57b52e0aeaf5563980d277c3c05c7d1"
+#define SID        @"358"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */

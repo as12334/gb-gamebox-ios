@@ -37,7 +37,7 @@
 			<array>
 				<dict>
 					<key>detailTitle</key>
-					<string>免手续费</string>
+					<string>0.00</string>
 					<key>cellClass</key>
 					<string>RH_WithdrawCashThreeCell</string>
 					<key>title</key>

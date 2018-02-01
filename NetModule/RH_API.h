@@ -799,6 +799,10 @@
 // 请求参数
 #define RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD           @"originPwd"
 
+#pragma mark - V3 获取手续费信息得到最终取款金额
+#define RH_API_NAME_WITHDRWAFEE                   @"mobile-api/withdrawOrigin/withdrawFee.html"
+//请求参数
+#define RH_SP_WITHDRWAFEE_AMOUNT                  @"withdrawAmount"
 
 #endif /* RH_API_h */
 

@@ -451,6 +451,8 @@
 		B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */; };
 		B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */; };
 		B860F92A201DB699000EE66A /* RH_StaticAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F929201DB699000EE66A /* RH_StaticAlertView.m */; };
+		B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */; };
+		B879E07A20231806007B3D45 /* RH_BankCardNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07920231806007B3D45 /* RH_BankCardNumberCell.m */; };
 		B87A6B182005EA8100C9788F /* RH_ModifyPasswordCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */; };
 		B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */; };
 		B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PromoListController.m */; };
@@ -1350,6 +1352,10 @@
 		B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordSpecialCell.m; sourceTree = "<group>"; };
 		B860F928201DB699000EE66A /* RH_StaticAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_StaticAlertView.h; sourceTree = "<group>"; };
 		B860F929201DB699000EE66A /* RH_StaticAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_StaticAlertView.m; sourceTree = "<group>"; };
+		B879E07520231544007B3D45 /* RH_ModifyPasswordNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordNameCell.h; sourceTree = "<group>"; };
+		B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordNameCell.m; sourceTree = "<group>"; };
+		B879E07820231806007B3D45 /* RH_BankCardNumberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardNumberCell.h; sourceTree = "<group>"; };
+		B879E07920231806007B3D45 /* RH_BankCardNumberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardNumberCell.m; sourceTree = "<group>"; };
 		B87A6B152005EA8100C9788F /* RH_ModifyPasswordCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCodeCell.h; sourceTree = "<group>"; };
 		B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCodeCell.m; sourceTree = "<group>"; };
 		B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ModifyPasswordCodeCell.xib; sourceTree = "<group>"; };
@@ -3095,6 +3101,8 @@
 				B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */,
 				B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */,
 				B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */,
+				B879E07520231544007B3D45 /* RH_ModifyPasswordNameCell.h */,
+				B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */,
 				B860F924201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.h */,
 				B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */,
 				A0522A6520078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.h */,
@@ -3171,6 +3179,8 @@
 			children = (
 				B87A6B2D20089CE500C9788F /* RH_BankCardCell.h */,
 				B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */,
+				B879E07820231806007B3D45 /* RH_BankCardNumberCell.h */,
+				B879E07920231806007B3D45 /* RH_BankCardNumberCell.m */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3724,6 +3734,7 @@
 				B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */,
 				A07DCEC61FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m in Sources */,
 				A0ADD3291FEB627F00B24B51 /* KIPageViewCell.m in Sources */,
+				B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */,
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
@@ -4098,6 +4109,7 @@
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
 				A0AE8AB31FFCD57300836C1B /* RH_MineMoreLanguageCell.m in Sources */,
 				B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */,
+				B879E07A20231806007B3D45 /* RH_BankCardNumberCell.m in Sources */,
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
 				A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */,
 				B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */,
@@ -4173,7 +4185,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_vxcb=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_ywo4=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -4184,7 +4196,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid231;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid806;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -4192,12 +4204,12 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "新濠国际";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-231";
+				APP_DISPLAY_NAME = "万濠彩票";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-806";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -4208,7 +4220,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid231;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid806;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

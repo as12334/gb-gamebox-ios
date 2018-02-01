@@ -34,11 +34,11 @@
 
 }
 
--(void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated] ;
-    self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
-}
+//-(void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated] ;
+//    self.borderView.borderMask = selected?CLBorderMarkBottom:CLBorderMarkNone ;
+//}
 
 -(void)setSelected:(BOOL)selected
 {

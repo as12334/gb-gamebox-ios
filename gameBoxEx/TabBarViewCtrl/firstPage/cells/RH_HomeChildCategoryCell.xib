@@ -18,6 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BF4-as-efV">
+                        <rect key="frame" x="23" y="42" width="240" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uhg-gV-Hfd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,8 +45,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="collectionView" destination="uhg-gV-Hfd" id="XEm-jk-P4a"/>
+                <outlet property="lineView" destination="BF4-as-efV" id="Cfh-lC-GjJ"/>
             </connections>
-            <point key="canvasLocation" x="-1134" y="-1137.5"/>
+            <point key="canvasLocation" x="-1231" y="-1315.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -10,7 +10,7 @@
 #import "RH_ServiceRequest.h"
 #import "coreLib.h"
 
-@interface RH_ModifySafetyPwdCodeCell ()<RH_ServiceRequestDelegate>
+@interface RH_ModifySafetyPwdCodeCell ()<RH_ServiceRequestDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *loginVerifyCodeImage;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
@@ -29,6 +29,7 @@
     
     self.label_indicator.text = @"" ;
     [self.indicator setHidden:YES];
+    self.textField.delegate = self;
 }
 
 -(BOOL)isEditing
@@ -60,6 +61,25 @@
     return [self.textField becomeFirstResponder] ;
 }
 
+#pragma mark -TextfieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [self validateNumber:string];
+}
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
 #pragma mark-
 -(IBAction)btn_obtainVerifyCode:(id)sender
 {

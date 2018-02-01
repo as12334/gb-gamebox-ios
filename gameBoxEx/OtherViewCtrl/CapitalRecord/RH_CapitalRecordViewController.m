@@ -34,6 +34,7 @@
 {
     return YES ;
 }
+
 -(BOOL)hasTopView
 {
     return TRUE ;
@@ -127,6 +128,7 @@
     }
     return _capitalRecordHeaderView ;
 }
+#pragma mark-类型选择
 -(RH_CapitalPulldownListView *)listView
 {
     if (!_listView) {
@@ -191,7 +193,7 @@
     return _quickSelectView;
 }
 
-#pragma mark - 时间选择下拉
+#pragma mark - 快选时间选择下拉
 -(void)openAndCloseSelectViewWithFarme:(CGRect)frame
 {
      __block RH_CapitalRecordViewController *weakSelf = self;
