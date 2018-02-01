@@ -51,10 +51,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0cp-uj-EtO">
-                                <rect key="frame" x="283" y="0.0" width="20" height="20"/>
+                                <rect key="frame" x="263" y="0.0" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Jge-yA-99b"/>
-                                    <constraint firstAttribute="width" constant="20" id="aMT-hd-Sch"/>
+                                    <constraint firstAttribute="height" constant="40" id="Jge-yA-99b"/>
+                                    <constraint firstAttribute="width" constant="40" id="aMT-hd-Sch"/>
                                 </constraints>
                             </imageView>
                         </subviews>
