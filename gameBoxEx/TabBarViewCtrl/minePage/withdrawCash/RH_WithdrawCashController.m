@@ -420,8 +420,28 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }else{
             [self.contentLoadingIndicateView hiddenView] ;
             self.withDrawModel = ConvertToClassPointer(RH_WithDrawModel, data) ;
-            _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
-            [self setNeedUpdateView] ;
+            BankcardMapModel *bankCard = self.withDrawModel.mBankcardMap[@"1"];
+            if (bankCard) {
+                _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+                [self setNeedUpdateView] ;
+            }else {
+                // 没有银行卡，在这里提示添加银行卡
+                // TODO
+                UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex==1){
+                        [self showViewController:[RH_BankCardController viewControllerWithContext:nil] sender:nil];
+                        _withdrawCashStatus = WithdrawCashStatus_HasOrder ;
+                        [self setNeedUpdateView];
+                    }else{
+                        [self backBarButtonItemHandle] ;
+                    }
+                } title:@"提示信息"
+                                                                     message:@"没有银行卡"
+                                                            cancelButtonName:@"好的"
+                                                           otherButtonTitles:@"去添加", nil] ;
+                
+                [alertView show] ;
+            }
         }
     }
     if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {

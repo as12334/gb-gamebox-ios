@@ -19,16 +19,30 @@
 @implementation RH_WithdrawMoneyLowCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
-    return 300;
+    return screenSize().height;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.label_Notice.whc_Center(0, 20).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(60);
+    UIImageView *imageC = [UIImageView new];
+    [self.contentView addSubview:imageC];
+    imageC.whc_TopSpace(48).whc_CenterX(0).whc_Width(118).whc_Height(118);
+    imageC.image = ImageWithName(@"icon-text");
+    
+    self.label_Notice.whc_TopSpaceToView(12, imageC).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(60);
     self.button_Save.whc_TopSpaceToView(20, self.label_Notice).whc_CenterX(0).whc_Width(100).whc_Height(44);
     self.label_Notice.text = @"取款金额至少为100.00元\n您当前钱包余额不足!";
     self.label_Notice.textColor = RH_Label_DefaultTextColor;
+    NSDictionary *dic = @{NSKernAttributeName:@1.f,
+                          
+                          };
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:self.label_Notice.text attributes:dic];
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:10];//行间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.label_Notice.text length])];
+    [self.label_Notice setAttributedText:attributedString];
+    self.label_Notice.textAlignment = NSTextAlignmentCenter;
     self.button_Save.layer.cornerRadius = 5.0;
     self.clipsToBounds = YES;
     [self.button_Save addTarget:self action:@selector(buttonDidClick) forControlEvents:UIControlEventTouchUpInside];
