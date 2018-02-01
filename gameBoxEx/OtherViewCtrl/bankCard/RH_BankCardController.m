@@ -294,7 +294,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }else if (type == ServiceRequestTypeV3AddBankCard){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"添加银行卡失败") ;
+            showErrorMessage(self.view, error.localizedDescription, @"添加银行卡失败") ;
         }];
     }
 }

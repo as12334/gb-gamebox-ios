@@ -246,8 +246,6 @@
             break;
         case 3:
             // 上周
-//            date= [[NSDate date] dateWithMoveDay:-14];
-//           _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
             date = lastWeekArr[0];
             _capitalRecordHeaderView.endDate = lastWeekArr[1];
             break;
