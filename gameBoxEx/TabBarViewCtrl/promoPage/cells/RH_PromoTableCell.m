@@ -41,6 +41,7 @@
     self.borderView.layer.cornerRadius = 4.f ;
     self.borderView.layer.masksToBounds = YES ;
 
+    self.borderView.backgroundColor = [UIColor whiteColor];
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
     self.selectionOption = CLSelectionOptionHighlighted ;

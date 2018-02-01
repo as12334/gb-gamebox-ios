@@ -82,6 +82,7 @@
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
+    
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242) ;
@@ -244,8 +245,6 @@
             break;
         case 3:
             // 上周
-//            date= [[NSDate date] dateWithMoveDay:-14];
-//           _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
             date = lastWeekArr[0];
             _capitalRecordHeaderView.endDate = lastWeekArr[1];
             break;

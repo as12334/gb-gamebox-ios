@@ -25,7 +25,7 @@
         _mApiTypeId = [info integerValueForKey:RH_GP_BETTINGDETAIL_APITYPEID];
         _mBetDetail = [info stringValueForKey:RH_GP_BETTINGDETAIL_BETDETAIL];
         _mBetId = [info integerValueForKey:RH_GP_BETTINGDETAIL_BETID];
-        _mBetTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_BETTINGDETAIL_BETTIME]/1000.0] ;
+        _mBetTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_BETTINGDETAIL_BETTIME]/1000.0] ;
         _mBetTypeName = [info stringValueForKey:RH_GP_BETTINGDETAIL_BETTYPENAME];
         _mContributionAmount = [info stringValueForKey:RH_GP_BETTINGDETAIL_CONTRIBUTIONAMOUNT];
         _mEffectiveTradeAmount = [info stringValueForKey:RH_GP_BETTINGDETAIL_EFFECTIVETRADEAMOUNT];

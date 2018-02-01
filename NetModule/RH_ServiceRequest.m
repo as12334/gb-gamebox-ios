@@ -1565,7 +1565,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3OneStepRecory:
             {
-                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
             }
                 break;
                 

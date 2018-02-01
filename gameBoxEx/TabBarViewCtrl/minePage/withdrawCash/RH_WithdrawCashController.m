@@ -68,7 +68,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 }
 
 - (void)setupInfo {
-    
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];

@@ -27,7 +27,7 @@
         _mIsTask = [info integerValueForKey:RH_GP_ANNOUNCEMENT_ISTASK] ;
         _mContent = [info stringValueForKey:RH_GP_ANNOUNCEMENT_CONTENT] ;
         _mDisplay = [info integerValueForKey:RH_GP_ANNOUNCEMENT_DISPLAY] ;
-        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_ANNOUNCEMENT_PUBLISHTIME]/1000.0] ;
+        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_ANNOUNCEMENT_PUBLISHTIME]/1000.0] ;
         _mAnnouncementType = [info integerValueForKey:RH_GP_ANNOUNCEMENT_TYPE] ;
     }
     

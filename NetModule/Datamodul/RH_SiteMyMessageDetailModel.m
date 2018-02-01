@@ -16,7 +16,7 @@
     if (self = [super initWithInfoDic:info])
     {
         _mAdvisoryContent = [info stringValueForKey:RH_GP_MYMESSAGEDETAIL_ADVISORYCONTENT];
-        _mAdvisoryTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_MYMESSAGEDETAIL_ADVISORYTIME]/1000.0];
+        _mAdvisoryTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_MYMESSAGEDETAIL_ADVISORYTIME]/1000.0];
         _mAdvisoryTitle = [info stringValueForKey:RH_GP_MYMESSAGEDETAIL_ADVISORYTITLE];
         _mQuestionType = [info stringValueForKey:RH_GP_MYMESSAGEDETAIL_QUESTIONTYPE];
         _listModel = [RH_SiteMyMessageDetailListModel dataArrayWithInfoArray:[info arrayValueForKey:@"replyList"] ];
@@ -30,7 +30,7 @@
 {
     if (self = [super initWithInfoDic:info]) {
         _mReplyContent = [info stringValueForKey:RH_GP_MYMESSAGEDETAIL_REPLYCONTENT];
-        _mReplyTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_MYMESSAGEDETAIL_REPLYTIME]/1000.0];
+        _mReplyTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_MYMESSAGEDETAIL_REPLYTIME]/1000.0];
         _mReplyTitle = [info stringValueForKey:RH_GP_MYMESSAGEDETAIL_REPLYTITLE];
     }
     return self;

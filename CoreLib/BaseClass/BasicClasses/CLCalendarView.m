@@ -106,20 +106,31 @@
 //    setSizeConstraint(self.cancelButton, NSLayoutAttributeHeight, 30.0f );
 }
 
-#pragma mark-
+//#pragma mark-
+//-(void)setDefaultDate:(NSString *)defaultDate
+//{
+//    if (_defaultDate!=defaultDate){
+//        _defaultDate = defaultDate ;
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
+//        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
+//        NSDate *date = [dateFormatter dateFromString:defaultDate] ;
+//        if (date){
+//            [self.datePicker setDate:date animated:NO] ;
+//        }
+//    }
+//}
+#pragma mark-  修改默认时间
 -(void)setDefaultDate:(NSString *)defaultDate
 {
     if (_defaultDate!=defaultDate){
-        _defaultDate = defaultDate ;
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
+         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
-        NSDate *date = [dateFormatter dateFromString:defaultDate] ;
+        NSDate *date = [dateFormatter dateFromString:[dateFormatter stringFromDate:[NSDate date]]] ;
         if (date){
             [self.datePicker setDate:date animated:NO] ;
         }
     }
 }
-
 -(UILabel*)labTitle
 {
     if (!_labTitle){
