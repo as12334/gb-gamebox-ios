@@ -25,6 +25,7 @@
     self.separatorLineColor = colorWithRGB(226, 226, 226);
     self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0) ;
     self.backgroundColor = colorWithRGB(242, 242, 242);
+    self.contentView.backgroundColor = colorWithRGB(242, 242, 242); 
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectionOption = CLSelectionOptionHighlighted;
     self.selectionColor = RH_Cell_DefaultHolderColor;
