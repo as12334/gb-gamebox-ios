@@ -9,6 +9,8 @@
 #import "RH_BitCoinCell.h"
 #import "coreLib.h"
 
+@interface RH_BitCoinCell() <UITextViewDelegate>
+@end
 @implementation RH_BitCoinCell
 {
     UILabel *label_Input;
@@ -38,7 +40,7 @@
         self.textV.font = [UIFont systemFontOfSize:14];
         self.textV.textColor = colorWithRGB(153, 153, 153);
         self.textV.backgroundColor = colorWithRGB(239, 239, 239);
-        
+        self.textV.delegate = self;
         label_Input = [[UILabel alloc] init];
         [self.contentView addSubview:label_Input];
         label_Input.whc_TopSpaceEqualView(self.textV).whc_LeftSpace(5).whc_RightSpaceToView(5, self.textV).whc_Height(30);
@@ -63,5 +65,24 @@
 {
     return [self.textV resignFirstResponder] ;
 }
+#pragma mark TextViewDelegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    return [self validateNumber:text];
+}
 
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
 @end
