@@ -202,6 +202,24 @@
                 [self.typeTopView updateView:typeList] ;
             }] ;
         }
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        if (self.progressIndicatorView.superview){
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+                if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                    [self.appDelegate updateLoginStatus:true] ;
+                }else{
+                    [self.appDelegate updateLoginStatus:false] ;
+                }
+            }] ;
+        }else{
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+            if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                [self.appDelegate updateLoginStatus:true] ;
+            }else{
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }
     }
 }
 
@@ -215,6 +233,10 @@
                 showErrorMessage(self.view, error, @"更新失败") ;
             }] ;
         }
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"自动登录失败", @"提示信息");
+        }] ;
     }
 }
 

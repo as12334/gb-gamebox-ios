@@ -24,9 +24,11 @@
 
 //v3原生接口公共规范
 #define RH_SP_COMMON_V3_OSTYPE                              @"terminal"
-#define RH_SP_COMMON_V3_VERSION                             @"version"
 #define RH_SP_COMMON_V3_THEME                               @"theme"
 #define RH_SP_COMMON_V3_RESOLUTION                          @"resolution"
+#define RH_SP_COMMON_V3_VERSION                             @"version"
+#define RH_SP_COMMON_V3_ISNATIVE                            @"is_native"
+#define RH_SP_COMMON_V3_LOCALE                              @"locale"
 #define RH_SP_COMMON_V3_VERSION_VALUE                       @"3.0"
 
 //===========================================================
