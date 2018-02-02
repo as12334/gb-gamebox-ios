@@ -43,9 +43,9 @@
 #define RH_GP_MESSAGE               @"message"
 
 //v3原生通用返回参数定义
-#define RH_GP_V3_ERROR               @"error"   //错误数量
+#define RH_GP_V3_ERROR               @"code"   //错误数量
 #define RH_GP_V3_CODE                @"code"    //状态码
-#define RH_GP_V3_MESSAGE             @"msg"             //消息框
+#define RH_GP_V3_MESSAGE             @"message"             //消息框
 #define RH_GP_V3_VERSION             @"version"         //版本信息
 #define RH_GP_V3_DATA                @"data"
 

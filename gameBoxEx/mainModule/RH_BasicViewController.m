@@ -327,7 +327,7 @@
 //                          forControlEvents:UIControlEventTouchUpInside] ;
         [_navigationUserInfoView.buttonCover addTarget:self
                                                 action:@selector(userInfoButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _navigationUserInfoView.frame = CGRectMake(0, 0, 60.0f +_navigationUserInfoView.labBalance.frame.size.width, 40.0f) ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 60.f, 40.0f) ;
     }
     
     return _navigationUserInfoView ;
