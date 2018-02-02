@@ -51,7 +51,7 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-//    self.bannerModels = ConvertToClassPointer(NSArray, context) ;
+    self.bannerModels = ConvertToClassPointer(NSArray, context) ;
     if (self.bannerModels==nil){
         self.pageControl.numberOfPages = 1;
         
