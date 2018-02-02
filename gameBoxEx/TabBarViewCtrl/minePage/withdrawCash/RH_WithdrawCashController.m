@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_HasOrder                 ,
 };
 
-@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate>
+@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate,WithdrawCashTwoCellDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic,strong,readonly) UISegmentedControl *mainSegmentControl ;
 @property (nonatomic, strong, readonly) UIView  *footerView;
@@ -112,6 +112,27 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     return _cashCell;
 }
 
+-(void)withdrawCashTwoCellDidTouchDONE:(RH_WithdrawCashTwoCell*)withdrawCashCell
+{
+    if (self.cashCell.textField.text.length){
+        CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
+        
+        if (amountValue <self.withDrawModel.mWithdrawMinNum ||
+            amountValue >self.withDrawModel.mWithdrawMaxNum) {
+            showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%8.2f-%8.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
+            return;
+        }
+        
+        AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
+        if (auditMap==nil){
+            //计算费率信息
+            [self showProgressIndicatorViewWithAnimated:YES title:@"计算费率..."];
+            [self.serviceRequest startV3WithDrawFeeWithAmount:amountValue] ;
+            return ;
+        }
+    }
+}
+
 #pragma mark - footerView
 - (UIView *)footerView {
     
@@ -169,6 +190,15 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%8.2f-%8.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
         return;
     }
+    
+    AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
+    if (auditMap==nil){
+        //计算费率信息
+        [self showProgressIndicatorViewWithAnimated:YES title:@"计算费率..."];
+        [self.serviceRequest startV3WithDrawFeeWithAmount:amountValue] ;
+        return ;
+    }
+    
     
     //检测是否有设置安全密码
     if (self.withDrawModel.mIsSafePassword==false){
@@ -356,10 +386,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     if ([cell isKindOfClass:[RH_WithdrawMoneyLowCell class]]){
         RH_WithdrawMoneyLowCell *withDrawLowCell = ConvertToClassPointer(RH_WithdrawMoneyLowCell, cell) ;
         withDrawLowCell.delegate  = self ;
-    }
-    if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
+    }else if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
         RH_WithdrawCashThreeCell *three = ConvertToClassPointer(RH_WithdrawCashThreeCell, cell);
         three.separatorInset = UIEdgeInsetsMake(0, 0, 00, 0);
+    }else if ([cell isKindOfClass:[RH_WithdrawCashTwoCell class]]) {
+        RH_WithdrawCashTwoCell *withDrawCell = ConvertToClassPointer(RH_WithdrawCashTwoCell, cell);
+        withDrawCell.delegate = self ;
     }
 }
 
@@ -377,6 +409,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     return YES;
 }
+
 
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -397,28 +430,37 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         id value =  self.mainSegmentControl.selectedSegmentIndex?@(_bitCoinWithdrawAmount):@(_bankWithdrawAmount) ;
         return value ;
     }else if (indexPath.section==2){
+        AuditMapModel *auditMap = nil ;
+        if (self.withDrawModel.withDrawFeeDict.count){
+            auditMap= [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim?:@""] ;
+        }
+        
+        if (auditMap==nil){
+            auditMap = self.withDrawModel.mAuditMap ;
+        }
+        
         switch (indexPath.item) {
             case 0: //手续费
             {
-                return [NSString stringWithFormat:@"%.02f",self.withDrawModel.mAuditMap.mCounterFee] ;
+                return [NSString stringWithFormat:@"%.02f",auditMap.mCounterFee] ;
             }
                 break;
             
             case 1: ////行政费
             {
-                return [NSString stringWithFormat:@"%.02f",self.withDrawModel.mAuditMap.mAdministrativeFee] ;
+                return [NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee] ;
             }
                 break;
             
             case 2: //扣除优惠
             {
-                return [NSString stringWithFormat:@"%.02f",self.withDrawModel.mAuditMap.mDeductFavorable] ;
+                return [NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable] ;
             }
                 break;
             
             case 3: //最终可取
             {
-                return [NSString stringWithFormat:@"%.02f",self.withDrawModel.mAuditMap.mWithdrawAmount] ;
+                return [NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw] ;
             }
                 break;
                 
@@ -456,8 +498,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
             [self setNeedUpdateView] ;
         }
-    }
-    if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
+    }else if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         
         //提交成功
@@ -475,6 +516,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                                    otherButtonTitles:@"资金记录", nil] ;
         
         [alertView show] ;
+    }else if (type == ServiceRequestTypeWithDrawFee){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+        
+        if (data){
+            [self.withDrawModel.withDrawFeeDict setObject:data forKey:self.cashCell.textField.text.trim?:@""] ;
+            [self setNeedUpdateView] ;
+        }
     }
 }
 
@@ -499,6 +547,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         NSDictionary *userInfo = error.userInfo ;
         NSString *token = [userInfo stringValueForKey:@"token"] ;
         [self.withDrawModel updateToken:token] ;
+    }else if (type == ServiceRequestTypeWithDrawFee){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"费率计算失败") ;
+        }] ;
     }
 }
 

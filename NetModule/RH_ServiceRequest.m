@@ -1703,7 +1703,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             
             case ServiceRequestTypeWithDrawFee:
             {
-                
+                resultSendData = [[AuditMapModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
                 

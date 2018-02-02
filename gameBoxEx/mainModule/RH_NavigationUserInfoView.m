@@ -8,10 +8,13 @@
 
 #import "RH_NavigationUserInfoView.h"
 #import "RH_UserInfoManager.h"
+#import "coreLib.h"
 
 @interface RH_NavigationUserInfoView ()
 @property (nonatomic,strong) IBOutlet UILabel *labUserName ;
-@property (nonatomic,strong) IBOutlet UILabel *labBalance  ;
+@property (weak, nonatomic) IBOutlet UIImageView *moreImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
+
 @property (nonatomic,strong) IBOutlet UIButton *btnCover ;
 @end
 
@@ -21,6 +24,11 @@
 {
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor clearColor] ;
+    self.moreImageView.whc_RightSpace(0).whc_CenterY(0).whc_Width(3).whc_Height(17);
+    self.labUserName.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpace(10).whc_Width(20).whc_Height(10);
+    
+    
+    
     self.labUserName.textColor = RH_NavigationBar_ForegroundColor ;
     self.labUserName.font = [UIFont systemFontOfSize:10.0f] ;
     self.labBalance.textColor = RH_NavigationBar_ForegroundColor ;
@@ -44,7 +52,10 @@
     RH_UserBalanceGroupModel *userBalanceGroupModel = UserBalanceInfo ;
     if (userBalanceGroupModel){
         self.labUserName.text = userBalanceGroupModel.mUserName ;
-        self.labBalance.text = [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mAssets] ;
+        NSInteger strLength = userBalanceGroupModel.mAssets.length ;
+        self.labBalance.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_Width(strLength*7).whc_Height(15);
+        self.leftImageView.whc_RightSpaceToView(2, self.labBalance).whc_TopSpaceToView(4, self.labUserName).whc_Width(6).whc_Height(6);
+        self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mAssets] ;
     }
 }
 

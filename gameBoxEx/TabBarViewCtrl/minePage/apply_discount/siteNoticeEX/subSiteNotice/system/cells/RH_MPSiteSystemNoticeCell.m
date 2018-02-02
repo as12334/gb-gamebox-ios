@@ -56,8 +56,6 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
-//    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mTitle];
-    
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
     paraStyle.alignment = NSTextAlignmentLeft;

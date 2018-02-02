@@ -56,6 +56,7 @@
 
 @property (nonatomic, assign,readonly) CGFloat mWithdrawMinNum ;
 @property (nonatomic, assign,readonly) CGFloat mWithdrawMaxNum ;
+@property (nonatomic,strong,readonly) NSMutableDictionary *withDrawFeeDict ;
 
 -(void)updateToken:(NSString *)tokenStr ;
 @end
