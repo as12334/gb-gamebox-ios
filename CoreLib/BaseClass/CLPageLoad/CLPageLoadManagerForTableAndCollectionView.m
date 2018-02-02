@@ -464,9 +464,9 @@
 {
     [self cancleLoadData];
 
-    if (self.autoAddRefreshControl && showRefreshControl) {
-        [self.topRefreshControl beginRefreshing_e:scrollToTop];
-    }
+//    if (self.autoAddRefreshControl && showRefreshControl) {
+//        [self.topRefreshControl beginRefreshing_e:scrollToTop];
+//    }
     _bottomLoadControl.hidden = YES;
 
     [self.pageLoadController startLoadDataForUpdate];
