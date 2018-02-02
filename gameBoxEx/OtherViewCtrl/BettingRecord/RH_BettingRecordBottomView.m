@@ -82,6 +82,7 @@
         titleCell.backgroundColor = [UIColor clearColor];
         titleCell.titleFont = [UIFont systemFontOfSize:14.0f] ;
         titleCell.titleColor = colorWithRGB(85, 85, 85);
+        titleCell.labTitle.textAlignment = NSTextAlignmentLeft ;
     }
     
     NSInteger index = indexPath.section*2 + indexPath.item ;

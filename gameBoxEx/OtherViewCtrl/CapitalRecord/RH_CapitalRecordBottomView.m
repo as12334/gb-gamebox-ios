@@ -70,6 +70,7 @@
         titleCell = [CLStaticCollectionViewTitleCell createInstance]  ;
         [titleCell setupReuseIdentifier:[CLStaticCollectionViewTitleCell defaultReuseIdentifier]] ;
         titleCell.backgroundColor = [UIColor clearColor];
+        titleCell.labTitle.textAlignment = NSTextAlignmentLeft;
         titleCell.titleFont = [UIFont systemFontOfSize:14.0f] ;
         titleCell.titleColor = colorWithRGB(85, 85, 85);
     }
