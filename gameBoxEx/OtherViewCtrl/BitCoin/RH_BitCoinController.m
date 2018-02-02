@@ -100,6 +100,25 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         return ;
     }
 }
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    return [self validateNumber:text];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
 
 #pragma mark -
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -141,9 +160,12 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 - (void)addButtonHandle
 {
     [self tapGestureRecognizerHandle:nil] ;
-    
-    if (_addBitCoinAddrInfo.length==0){
-        showAlertView(@"提示信息", @"Bit币地址不能为空！") ;
+    if (_addBitCoinAddrInfo.length == 0) {
+        showAlertView(@"提示信息", @"请输入比特币地址");
+        return ;
+    }
+    if (_addBitCoinAddrInfo.length < 26 || _addBitCoinAddrInfo.length > 34){
+        showAlertView(@"提示信息", @"Bit币地址长度不正确！") ;
         return ;
     }
     

@@ -24,9 +24,11 @@
 
 //v3原生接口公共规范
 #define RH_SP_COMMON_V3_OSTYPE                              @"terminal"
-#define RH_SP_COMMON_V3_VERSION                             @"version"
 #define RH_SP_COMMON_V3_THEME                               @"theme"
 #define RH_SP_COMMON_V3_RESOLUTION                          @"resolution"
+#define RH_SP_COMMON_V3_VERSION                             @"version"
+#define RH_SP_COMMON_V3_ISNATIVE                            @"is_native"
+#define RH_SP_COMMON_V3_LOCALE                              @"locale"
 #define RH_SP_COMMON_V3_VERSION_VALUE                       @"3.0"
 
 //===========================================================
@@ -41,9 +43,9 @@
 #define RH_GP_MESSAGE               @"message"
 
 //v3原生通用返回参数定义
-#define RH_GP_V3_ERROR               @"error"   //错误数量
+#define RH_GP_V3_ERROR               @"code"   //错误数量
 #define RH_GP_V3_CODE                @"code"    //状态码
-#define RH_GP_V3_MESSAGE             @"msg"             //消息框
+#define RH_GP_V3_MESSAGE             @"message"             //消息框
 #define RH_GP_V3_VERSION             @"version"         //版本信息
 #define RH_GP_V3_DATA                @"data"
 

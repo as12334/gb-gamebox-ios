@@ -171,7 +171,7 @@
         _userInfoBtnView = [RH_NavigationUserInfoView createInstance] ;
         [_userInfoBtnView.buttonCover addTarget:self
                                                 action:@selector(_userInfoBtnViewHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _userInfoBtnView.frame = CGRectMake(0, 0, 60.0f, 40.0f) ;
+        _userInfoBtnView.frame = CGRectMake(0, 0, _userInfoBtnView.labBalance.frame.size.width + 20, 40.0f) ;
     }
     
     return _userInfoBtnView ;

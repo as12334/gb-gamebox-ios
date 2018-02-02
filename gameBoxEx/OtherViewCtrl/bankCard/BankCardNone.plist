@@ -37,7 +37,7 @@
 					<key>title</key>
 					<string>开户行</string>
 					<key>cellClass</key>
-					<string>RH_ModifyPasswordCell</string>
+					<string>RH_ModifyPasswordNameCell</string>
 				</dict>
 			</array>
 		</dict>
