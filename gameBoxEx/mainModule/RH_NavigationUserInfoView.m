@@ -24,8 +24,8 @@
 {
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor clearColor] ;
-    self.moreImageView.whc_RightSpace(0).whc_CenterY(0).whc_Width(3).whc_Height(17);
-    self.labUserName.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpace(10).whc_Width(20).whc_Height(10);
+    self.moreImageView.whc_RightSpace(0).whc_CenterY(0).whc_Width(3).whc_Height(20);
+    self.labUserName.whc_RightSpaceToView(0, self.moreImageView).whc_CenterY(-5).whc_Width(20).whc_Height(8);
     
     
     

@@ -12,6 +12,8 @@
 #import "RH_ApplyDiscountPageCell.h"
 #import "RH_ApplyDiscountSystemPageCell.h"
 #import "RH_ApplyDiscountSitePageCell.h"
+#import "RH_SiteMessageModel.h"
+
 @interface RH_ApplyDiscountViewController ()<CLPageViewDelegate,CLPageViewDatasource,discountTypeHeaderViewDelegate,ApplyDiscountPageCellDelegate,ApplyDiscountSystemPageCellDelegate>
 @property(nonatomic,strong,readonly)RH_ApplyDiscountHeaderView *headerView;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
@@ -31,7 +33,6 @@
 {
     return 50;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -179,6 +180,7 @@
 }
 
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
+
 }
 
 -(void)DiscountTypeHeaderViewDidChangedSelectedIndex:(RH_ApplyDiscountHeaderView*)discuntTypeHeaderView SelectedIndex:(NSInteger)selectedIndex

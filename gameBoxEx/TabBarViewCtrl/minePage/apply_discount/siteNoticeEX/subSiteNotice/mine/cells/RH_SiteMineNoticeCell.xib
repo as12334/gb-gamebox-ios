@@ -51,10 +51,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mr6-QX-zWh">
-                                <rect key="frame" x="283" y="0.0" width="20" height="20"/>
+                                <rect key="frame" x="263" y="0.0" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="H3m-S4-BGK"/>
-                                    <constraint firstAttribute="height" constant="20" id="fNY-FI-hmT"/>
+                                    <constraint firstAttribute="width" constant="40" id="H3m-S4-BGK"/>
+                                    <constraint firstAttribute="height" constant="40" id="fNY-FI-hmT"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -89,7 +89,7 @@
                 <outlet property="timeLabel" destination="x8d-Zs-vSb" id="0h6-qC-nR1"/>
                 <outlet property="titleLabel" destination="ypv-I6-LzN" id="ZIT-Za-zD2"/>
             </connections>
-            <point key="canvasLocation" x="-55" y="112"/>
+            <point key="canvasLocation" x="-318" y="73"/>
         </tableViewCell>
     </objects>
 </document>

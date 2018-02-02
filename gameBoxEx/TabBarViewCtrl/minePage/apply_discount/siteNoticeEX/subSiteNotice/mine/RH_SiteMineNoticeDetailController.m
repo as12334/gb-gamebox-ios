@@ -111,6 +111,7 @@
         NSArray *modelArray = [array copy];
         [self loadDataSuccessWithDatas:data?modelArray:@[]
                             totalCount:data?1:0] ;
+        [self.detailModel updataReadStatus:YES];
     }
 }
 

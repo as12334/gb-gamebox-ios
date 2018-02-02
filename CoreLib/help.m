@@ -788,7 +788,7 @@ NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
     static NSDateFormatter * dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        //        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+//        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     }
 
     dateFormatter.dateFormat = dateFormat;

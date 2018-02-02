@@ -9,6 +9,8 @@
 #import "RH_SiteMineNoticeCell.h"
 #import "RH_SiteMyMessageModel.h"
 #import "coreLib.h"
+
+#define RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage @"ChangeNotificationSiteMineMessage"
 @interface RH_SiteMineNoticeCell()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
@@ -79,6 +81,13 @@
         [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
     }
+    [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        RH_SiteMyMessageModel *model1 = note.object;
+        if (model1.mIsRead == YES) {
+            [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
+            self.markNewImageView.image = [UIImage imageNamed:@""];
+        }
+    }];
 }
 
 - (IBAction)choseEdinBtnClick:(id)sender {
