@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RH_StaticAlertViewDelegate
+@optional
+- (void)didStaticAlertViewCancelButtonClicked;
+@end
 @interface RH_StaticAlertView : UIView
+@property (nonatomic, strong) id <RH_StaticAlertViewDelegate> delegate;
 - (void)showContentView;
 @end

@@ -48,7 +48,7 @@
         _textField.borderStyle = UITextBorderStyleNone;
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.textColor = colorWithRGB(153, 153, 153);
-        _textField.secureTextEntry = YES;
+        _textField.secureTextEntry = NO;
         _textField.delegate = self;
     }
     return _textField;

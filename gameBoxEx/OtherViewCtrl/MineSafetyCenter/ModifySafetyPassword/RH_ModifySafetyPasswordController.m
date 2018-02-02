@@ -5,7 +5,7 @@
 //  Created by Lenny on 2018/1/7.
 //  Copyright © 2018年 luis. All rights reserved.
 //
-
+#import "RH_ModifyPasswordNameCell.h"
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
 #import "RH_UserInfoManager.h"
@@ -132,7 +132,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 #pragma mark -
 -(RH_ModifyPasswordCell *)userNameCell
 {
-    return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
+    return ConvertToClassPointer(RH_ModifyPasswordNameCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
 }
 
 -(RH_ModifyPasswordCell *)userPermissionCell
