@@ -70,6 +70,7 @@
     return [self validateNumber:text];
 }
 
+
 - (BOOL)validateNumber:(NSString*)number {
     BOOL res = YES;
     NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"];
