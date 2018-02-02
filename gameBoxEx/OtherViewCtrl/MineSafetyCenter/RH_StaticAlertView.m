@@ -73,6 +73,9 @@
     } completion:^(BOOL finished) {
         if (finished) {
             [self removeFromSuperview];
+            ifRespondsSelector(self.delegate, @selector(didStaticAlertViewCancelButtonClicked)) {
+                [self.delegate didStaticAlertViewCancelButtonClicked];
+            }
         }
     }];
 }

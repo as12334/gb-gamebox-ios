@@ -13,7 +13,7 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_StaticAlertView.h"
-@interface RH_ModifyPasswordController () <CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
+@interface RH_ModifyPasswordController () <CLTableViewManagementDelegate, RH_ServiceRequestDelegate, RH_StaticAlertViewDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong,readonly) UIButton *modifyButton;
@@ -127,7 +127,7 @@
 - (void)modifyButtonHandle
 {
     
-    
+    [self.view endEditing:YES];
     NSString *currentPwd = self.currentPasswordCell.textField.text;
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
@@ -173,7 +173,11 @@
     
     return _label_Notice ;
 }
-
+#pragma mark -StaticAlertViewDelegate
+- (void)didStaticAlertViewCancelButtonClicked {
+    
+    [self backBarButtonItemHandle] ;
+}
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
@@ -182,6 +186,7 @@
             if (self.rhAlertView.superview == nil) {
                 self.rhAlertView = [[RH_StaticAlertView alloc] init];
                 self.rhAlertView.alpha = 0;
+                self.rhAlertView.delegate = self;
                 [self.contentView addSubview:self.rhAlertView];
                 self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
                 [UIView animateWithDuration:0.3 animations:^{
@@ -193,8 +198,6 @@
                 }];
             }
         }] ;
-        
-//        [self backBarButtonItemHandle] ;
     }
 }
 
