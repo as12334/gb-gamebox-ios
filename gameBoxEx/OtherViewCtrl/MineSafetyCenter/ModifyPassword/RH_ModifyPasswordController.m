@@ -132,12 +132,18 @@
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
     
+    
+    
     if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0) {
         showMessage(self.view, @"错误", @"请输入密码");
         return;
     }
     if (newPwd.length < 6 || newPwd2.length < 6) {
         showMessage(self.view, @"提示", @"密码至少六位");
+        return;
+    }
+    if ([self isPureInt:newPwd] || [self isPureInt:newPwd2]) {
+        showMessage(self.view, @"提示", @"密码过于简单");
         return;
     }
     if (![newPwd isEqualToString:newPwd2]) {
@@ -161,6 +167,18 @@
     }
 
 }
+
+- (BOOL)isPureInt:(NSString *)string{
+    
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    
+    int val;
+    
+    return [scan scanInt:&val] && [scan isAtEnd];
+    
+}
+
+
 
 -(UILabel *)label_Notice
 {
