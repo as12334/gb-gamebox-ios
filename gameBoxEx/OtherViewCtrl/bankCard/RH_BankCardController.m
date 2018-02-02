@@ -240,7 +240,6 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     [self tapGestureRecognizerHandle:nil] ;
     
     _addBankCardRealName = self.realNameCell.textField.text;
-    _addBankCardBankName = self.bankSelectedCell.detailTextLabel.text;
     _addBankCardBankCardNumber = self.bankCardNumCell.textField.text;
     _addBankCardMasterBankName = self.bankLocationCell.textField.text;
     
@@ -255,7 +254,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     }
     
     if (_addBankCardBankCardNumber.length < 10 || _addBankCardBankCardNumber.length > 25){
-        showAlertView(@"提示信息", @"银行卡号不正确！") ;
+        showAlertView(@"提示信息", @"银行卡号不正确(10-25位)！") ;
         return ;
     }
     

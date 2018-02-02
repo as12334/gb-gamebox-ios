@@ -27,6 +27,7 @@
     image_View = [[UIImageView alloc] init];
     [self.contentView addSubview:image_View];
     image_View.whc_Center(0, -50).whc_Width(80).whc_Height(80);
+    image_View.image = ImageWithName(@"icon-text");
     label_Notice = [[UILabel alloc] init];
     [self.contentView addSubview:label_Notice];
     label_Notice.whc_TopSpaceToView(20, image_View).whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(10);
