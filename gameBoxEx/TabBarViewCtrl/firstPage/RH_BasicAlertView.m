@@ -140,13 +140,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSUInteger textRow;
     CLTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[CLTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         RH_AnnouncementModel *model = contents[indexPath.row];
         cell.textLabel.text = model.mContent;
-//        cell.textLabel.numberOfLines = 0;
+        
+        CGRect rect = [cell.textLabel.text boundingRectWithSize:CGSizeMake(300, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+        [cell.textLabel sizeToFit];
+        CGSize textSize = [cell.textLabel.text sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+        
+         textRow = (NSUInteger)(rect.size.height / textSize.height);
+        
+        cell.textLabel.numberOfLines = 20;
         cell.textLabel.textColor = colorWithRGB(102, 102, 102);
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         
