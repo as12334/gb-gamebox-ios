@@ -112,6 +112,8 @@
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
 {
+//    return;
+    
     for (int i =0; i<self.siteModelArray.count; i++) {
         RH_SiteMessageModel *siteModel = self.siteModelArray[i];
         if (choseMark==YES) {
@@ -129,7 +131,7 @@
 {
     NSString *str = @"";
     for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%d,",siteModel.mId]];
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
     }
     if([str length] > 0){
         str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
@@ -242,6 +244,8 @@
         }
         else
         {
+            //没有系统消息的通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"nositeSysMessageData_notofication" object:@[@1]];
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
         [self.contentTableView reloadData];
