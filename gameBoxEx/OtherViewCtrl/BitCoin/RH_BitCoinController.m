@@ -165,7 +165,7 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         return ;
     }
     if (_addBitCoinAddrInfo.length < 26 || _addBitCoinAddrInfo.length > 34){
-        showAlertView(@"提示信息", @"Bit币地址长度不正确！") ;
+        showAlertView(@"提示信息", @"Bit币地址长度应在26-34范围内！") ;
         return ;
     }
     

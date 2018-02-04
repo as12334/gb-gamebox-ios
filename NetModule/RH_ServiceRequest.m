@@ -213,6 +213,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startGetSecurePasswordVerifyCode {
+    
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_VERIFYCODE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startDemoLogin
 {
     [self _startServiceWithAPIName:self.appDelegate.domain

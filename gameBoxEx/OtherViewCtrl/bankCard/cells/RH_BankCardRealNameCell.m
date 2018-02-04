@@ -80,7 +80,7 @@
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
-    if (MineSettingInfo.mRealName) {
+    if (MineSettingInfo.mRealName.length > 0) {
         self.textField.placeholder = ConvertToClassPointer(NSString, context) ;
         self.textField.userInteractionEnabled = NO;
     }
