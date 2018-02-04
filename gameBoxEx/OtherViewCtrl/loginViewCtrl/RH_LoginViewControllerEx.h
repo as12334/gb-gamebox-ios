@@ -10,7 +10,7 @@
 
 @class  RH_LoginViewControllerEx ;
 @protocol LoginViewControllerExDelegate <NSObject>
--(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx*)loginViewContrller ;
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx*)loginViewContrller BackToFirstPage:(BOOL)bFirstPage;
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx*)loginViewContrller ;
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx*)loginViewContrller SignFlag:(BOOL)bFlag;
 @end

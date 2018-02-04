@@ -21,7 +21,9 @@
 @end
 
 @implementation RH_LoginViewControllerEx
-
+{
+    BOOL _backToFirstPage ;
+}
 @synthesize loginViewCell = _loginViewCell ;
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
@@ -54,6 +56,11 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
     
+}
+
+-(void)setupViewContext:(id)context
+{
+    _backToFirstPage = [context boolValue] ;
 }
 
 - (void)viewDidLoad {
@@ -190,8 +197,8 @@
 {
     [self.loginViewCell endEditing:YES] ;
 
-    ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:)){
-        [self.delegate loginViewViewControllerExTouchBack:self];
+    ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:BackToFirstPage:)){
+        [self.delegate loginViewViewControllerExTouchBack:self BackToFirstPage:_backToFirstPage];
     }
 }
 

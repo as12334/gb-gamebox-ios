@@ -73,6 +73,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3LoadGameType,          //获取游戏分类
     ServiceRequestTypeV3SafetyPasswordAutuentification ,   //取款安全密码验证
     ServiceRequestTypeWithDrawFee , //取款手续费计算
+    ServiceRequestTypeTimeZoneInfo , //获取站点时区
 };
 
 
@@ -365,6 +366,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 获取手续费信息得到最终取款金额
 -(void)startV3WithDrawFeeWithAmount:(CGFloat)amount ;
+
+#pragma mark - 获取站点时区
+-(void)startV3SiteTimezone ;
 
 #pragma mark -
 /**

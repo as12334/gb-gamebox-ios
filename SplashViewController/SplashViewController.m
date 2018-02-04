@@ -114,6 +114,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText2;
 @property (nonatomic,strong) IBOutlet UILabel *labIPAddr ;
+@property (nonatomic,strong) IBOutlet UILabel *labMark ;
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
 @property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
 @property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
@@ -142,7 +143,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     self.needObserveNetStatusChanged = YES ;
     [self netStatusChangedHandle] ;
-    
+    self.labMark.text = dateStringWithFormatter([NSDate date], @"hhmmss") ;
     [self initView] ;
 }
 
@@ -397,6 +398,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     //上传错误信息
                     NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
                     [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
+                    [dictError setValue:self.labMark.text forKey:RH_SP_COLLECTAPPERROR_MARK] ;
                     [dictError setValue:self.labIPAddr.text?:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
                     if ([RH_UserInfoManager shareUserManager].loginUserName.length){
                         [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName

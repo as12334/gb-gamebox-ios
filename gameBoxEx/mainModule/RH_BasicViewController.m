@@ -264,9 +264,18 @@
     [self showViewController:loginViewControllerEx sender:self] ;
 }
 
--(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller BackToFirstPage:(BOOL)bFirstPage
 {
     [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+    
+    if (bFirstPage){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+        }else{
+            self.myTabBarController.selectedIndex = 0 ;
+        }
+    }
 }
 
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller

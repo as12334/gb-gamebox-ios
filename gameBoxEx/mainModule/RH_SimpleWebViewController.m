@@ -115,33 +115,40 @@
             [self.webView stopLoading] ;
             [self _setContentShowState:RH_WebViewContentShowStateNone] ;
 
-            UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex==alertView.cancelButtonIndex){//返回首页
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                        [self.navigationController popToRootViewControllerAnimated:NO];
-                        self.myTabBarController.selectedIndex = 2 ;
+            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                //push login viewController
+                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
+                loginViewCtrlEx.delegate = self ;
+                [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
+            }else{
+                UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex==alertView.cancelButtonIndex){//返回首页
+                        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                            [self.navigationController popToRootViewControllerAnimated:NO];
+                            self.myTabBarController.selectedIndex = 2 ;
+                        }else{
+                            self.myTabBarController.selectedIndex = 0 ;
+                        }
                     }else{
-                        self.myTabBarController.selectedIndex = 0 ;
+                        //push login viewController
+                        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登录界面
+                            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
+                            loginViewCtrlEx.delegate = self ;
+                            [self showViewController:loginViewCtrlEx sender:self] ;
+                        }else{
+                            //H5登录接口
+                            RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                            loginViewCtrl.delegate = self ;
+                            [self showViewController:loginViewCtrl sender:self] ;
+                        }
                     }
-                }else{
-                    //push login viewController
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登录界面
-                        RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
-                        loginViewCtrlEx.delegate = self ;
-                        [self showViewController:loginViewCtrlEx sender:self] ;
-                    }else{
-                        //H5登录接口
-                        RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
-                        loginViewCtrl.delegate = self ;
-                        [self showViewController:loginViewCtrl sender:self] ;
-                    }
-                }
-            } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
-                                                                 message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
-                                                        cancelButtonName:NSLocalizedString(@"ALERT_LOGIN_BTN_BACKFIRST", nil)
-                                                       otherButtonTitles:NSLocalizedString(@"ALERT_LOGIN_BTN_CONFIRMLOGIN", nil), nil] ;
+                } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
+                                                                     message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
+                                                            cancelButtonName:NSLocalizedString(@"ALERT_LOGIN_BTN_BACKFIRST", nil)
+                                                           otherButtonTitles:NSLocalizedString(@"ALERT_LOGIN_BTN_CONFIRMLOGIN", nil), nil] ;
 
-            [alertView show] ;
+                [alertView show] ;
+            }
         }
     }
 }
@@ -216,20 +223,43 @@
 }
 
 #pragma mark-
--(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller BackToFirstPage:(BOOL)bFirstPage
 {
-    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+    if (loginViewContrller.presentingViewController){
+        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
+    if (bFirstPage){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+        }else{
+            self.myTabBarController.selectedIndex = 0 ;
+        }
+    }
 }
 
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
 {
-    [self.navigationController popViewControllerAnimated:YES] ;
+    if (loginViewContrller.presentingViewController){
+        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
     [self reloadWebView] ;
 }
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
-    [self.navigationController popViewControllerAnimated:YES] ;
+    if (loginViewContrller.presentingViewController){
+        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
     [self reloadWebView] ;
     
     if (bFlag==false){
