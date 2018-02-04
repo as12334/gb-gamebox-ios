@@ -366,6 +366,14 @@
 		A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F572010801B00EF275A /* BitCoinInit.plist */; };
 		A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */; };
 		A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06E0F6120181BD600EF275A /* RH_GameListViewController.m */; };
+		A07AF4BA2026D96B00D6D559 /* tab_v3_home_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B22026D96B00D6D559 /* tab_v3_home_selected_red@2x.png */; };
+		A07AF4BB2026D96B00D6D559 /* tab_v3_service_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B32026D96B00D6D559 /* tab_v3_service_selected_red@2x.png */; };
+		A07AF4BC2026D96B00D6D559 /* tab_v3_home_selected_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B42026D96B00D6D559 /* tab_v3_home_selected_red@3x.png */; };
+		A07AF4BD2026D96B00D6D559 /* tab_v3_service_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B52026D96B00D6D559 /* tab_v3_service_selected@3x.png */; };
+		A07AF4BE2026D96B00D6D559 /* tab_v3_my_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B62026D96B00D6D559 /* tab_v3_my_selected_red@2x.png */; };
+		A07AF4BF2026D96B00D6D559 /* tab_v3_my_selected_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B72026D96B00D6D559 /* tab_v3_my_selected_red@3x.png */; };
+		A07AF4C02026D96B00D6D559 /* tab_v3_promo_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B82026D96B00D6D559 /* tab_v3_promo_selected_red@2x.png */; };
+		A07AF4C12026D96B00D6D559 /* tab_v3_promo_selected_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4B92026D96B00D6D559 /* tab_v3_promo_selected_red@3x.png */; };
 		A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEB71FEBA0690006FAE4 /* RH_HomeCategoryCell.m */; };
 		A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A07DCEB81FEBA0690006FAE4 /* RH_HomeCategoryCell.xib */; };
 		A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A07DCEBC1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m */; };
@@ -400,16 +408,6 @@
 		A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0B5A56D1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.xib */; };
 		A0B5A5741FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A56E1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.m */; };
 		A0B5A5781FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A5761FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m */; };
-		A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */; };
-		A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */; };
-		A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */; };
-		A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B11FBB039F00A44B37 /* tab_v3_deposit@2x.png */; };
-		A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B41FBB05AB00A44B37 /* tab_v3_promo_selected@2x.png */; };
-		A0B609B71FBB05AC00A44B37 /* tab_v3_promo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B51FBB05AB00A44B37 /* tab_v3_promo@2x.png */; };
-		A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B81FBB065400A44B37 /* tab_v3_service@2x.png */; };
-		A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609B91FBB065400A44B37 /* tab_v3_service_selected@2x.png */; };
-		A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609BC1FBB071000A44B37 /* tab_v3_my_selected@2x.png */; };
-		A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */; };
 		A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */; };
 		A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */; };
 		A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */; };
@@ -1220,6 +1218,14 @@
 		A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawInit.plist; sourceTree = "<group>"; };
 		A06E0F6020181BD500EF275A /* RH_GameListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameListViewController.h; sourceTree = "<group>"; };
 		A06E0F6120181BD600EF275A /* RH_GameListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameListViewController.m; sourceTree = "<group>"; };
+		A07AF4B22026D96B00D6D559 /* tab_v3_home_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@2x.png"; sourceTree = "<group>"; };
+		A07AF4B32026D96B00D6D559 /* tab_v3_service_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected_red@2x.png"; sourceTree = "<group>"; };
+		A07AF4B42026D96B00D6D559 /* tab_v3_home_selected_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@3x.png"; sourceTree = "<group>"; };
+		A07AF4B52026D96B00D6D559 /* tab_v3_service_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected@3x.png"; sourceTree = "<group>"; };
+		A07AF4B62026D96B00D6D559 /* tab_v3_my_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_red@2x.png"; sourceTree = "<group>"; };
+		A07AF4B72026D96B00D6D559 /* tab_v3_my_selected_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_red@3x.png"; sourceTree = "<group>"; };
+		A07AF4B82026D96B00D6D559 /* tab_v3_promo_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected_red@2x.png"; sourceTree = "<group>"; };
+		A07AF4B92026D96B00D6D559 /* tab_v3_promo_selected_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected_red@3x.png"; sourceTree = "<group>"; };
 		A07DCEB61FEBA0690006FAE4 /* RH_HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_HomeCategoryCell.h; sourceTree = "<group>"; };
 		A07DCEB71FEBA0690006FAE4 /* RH_HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_HomeCategoryCell.m; sourceTree = "<group>"; };
 		A07DCEB81FEBA0690006FAE4 /* RH_HomeCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_HomeCategoryCell.xib; sourceTree = "<group>"; };
@@ -1275,16 +1281,6 @@
 		A0B5A56E1FFF6C1300E2CDD8 /* RH_LotteryGameListTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LotteryGameListTopView.m; sourceTree = "<group>"; };
 		A0B5A5761FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LoadingIndicaterCollectionViewCell.m; sourceTree = "<group>"; };
 		A0B5A5771FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_LoadingIndicaterCollectionViewCell.h; sourceTree = "<group>"; };
-		A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
-		A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
-		A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected@2x.png"; sourceTree = "<group>"; };
-		A0B609B11FBB039F00A44B37 /* tab_v3_deposit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit@2x.png"; sourceTree = "<group>"; };
-		A0B609B41FBB05AB00A44B37 /* tab_v3_promo_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected@2x.png"; sourceTree = "<group>"; };
-		A0B609B51FBB05AB00A44B37 /* tab_v3_promo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo@2x.png"; sourceTree = "<group>"; };
-		A0B609B81FBB065400A44B37 /* tab_v3_service@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service@2x.png"; sourceTree = "<group>"; };
-		A0B609B91FBB065400A44B37 /* tab_v3_service_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected@2x.png"; sourceTree = "<group>"; };
-		A0B609BC1FBB071000A44B37 /* tab_v3_my_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected@2x.png"; sourceTree = "<group>"; };
-		A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my@2x.png"; sourceTree = "<group>"; };
 		A0B609C11FBB096B00A44B37 /* RH_PromoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_PromoViewController.h; sourceTree = "<group>"; };
 		A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoViewController.m; sourceTree = "<group>"; };
 		A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoOverviewModel.m; sourceTree = "<group>"; };
@@ -2608,7 +2604,7 @@
 		A04E60261F8DAFF000098A65 /* tabImages */ = {
 			isa = PBXGroup;
 			children = (
-				A0C894EA1FBAE252002F743F /* v3 */,
+				A07AF4972026D62600D6D559 /* v3 */,
 				A04E60271F8DAFF000098A65 /* blue */,
 				A04E602D1F8DAFF000098A65 /* default */,
 				A04E60331F8DAFF000098A65 /* green */,
@@ -2835,6 +2831,29 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		A07AF4972026D62600D6D559 /* v3 */ = {
+			isa = PBXGroup;
+			children = (
+				A07AF4B12026D96B00D6D559 /* tabbar */,
+			);
+			path = v3;
+			sourceTree = "<group>";
+		};
+		A07AF4B12026D96B00D6D559 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				A07AF4B22026D96B00D6D559 /* tab_v3_home_selected_red@2x.png */,
+				A07AF4B32026D96B00D6D559 /* tab_v3_service_selected_red@2x.png */,
+				A07AF4B42026D96B00D6D559 /* tab_v3_home_selected_red@3x.png */,
+				A07AF4B52026D96B00D6D559 /* tab_v3_service_selected@3x.png */,
+				A07AF4B62026D96B00D6D559 /* tab_v3_my_selected_red@2x.png */,
+				A07AF4B72026D96B00D6D559 /* tab_v3_my_selected_red@3x.png */,
+				A07AF4B82026D96B00D6D559 /* tab_v3_promo_selected_red@2x.png */,
+				A07AF4B92026D96B00D6D559 /* tab_v3_promo_selected_red@3x.png */,
+			);
+			path = tabbar;
+			sourceTree = "<group>";
+		};
 		A07FE37C1FEFA16600D5DF71 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -2985,23 +3004,6 @@
 				A0522A84200C84C400A5A6E9 /* RH_PromoViewControllerEx.m */,
 			);
 			path = promoPage;
-			sourceTree = "<group>";
-		};
-		A0C894EA1FBAE252002F743F /* v3 */ = {
-			isa = PBXGroup;
-			children = (
-				A0B609BC1FBB071000A44B37 /* tab_v3_my_selected@2x.png */,
-				A0B609BD1FBB071000A44B37 /* tab_v3_my@2x.png */,
-				A0B609B91FBB065400A44B37 /* tab_v3_service_selected@2x.png */,
-				A0B609B81FBB065400A44B37 /* tab_v3_service@2x.png */,
-				A0B609B41FBB05AB00A44B37 /* tab_v3_promo_selected@2x.png */,
-				A0B609B51FBB05AB00A44B37 /* tab_v3_promo@2x.png */,
-				A0B609B01FBB039F00A44B37 /* tab_v3_deposit_selected@2x.png */,
-				A0B609B11FBB039F00A44B37 /* tab_v3_deposit@2x.png */,
-				A0B609A91FBAF56C00A44B37 /* tab_v3_home@2x.png */,
-				A0B609A81FBAF56B00A44B37 /* tab_v3_home_selected@2x.png */,
-			);
-			path = v3;
 			sourceTree = "<group>";
 		};
 		A0E3678F1F8F433700758033 /* Supporting File */ = {
@@ -3572,6 +3574,7 @@
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				F6FB64182014323600EEED4E /* RH_UserCenterlogout.plist in Resources */,
 				A0522A93200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib in Resources */,
+				A07AF4BE2026D96B00D6D559 /* tab_v3_my_selected_red@2x.png in Resources */,
 				A0ADD31F1FEB613400B24B51 /* RH_DaynamicLabelCell.xib in Resources */,
 				F6A2AD3F2005A84A0077CB92 /* hongbao-03.png in Resources */,
 				F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */,
@@ -3580,8 +3583,6 @@
 				F681D25A201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
 				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
-				A0B609BE1FBB071000A44B37 /* tab_v3_my_selected@2x.png in Resources */,
-				A0B609AA1FBAF56C00A44B37 /* tab_v3_home_selected@2x.png in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
 				F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
@@ -3592,7 +3593,6 @@
 				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
-				A0B609BF1FBB071000A44B37 /* tab_v3_my@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
 				B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
@@ -3600,7 +3600,6 @@
 				F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */,
 				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
-				A0B609B61FBB05AC00A44B37 /* tab_v3_promo_selected@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
 				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
@@ -3617,13 +3616,14 @@
 				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
 				F6FB6396200F851300EEED4E /* RH_MPGameNoticeCell.xib in Resources */,
-				A0B609B21FBB03A000A44B37 /* tab_v3_deposit_selected@2x.png in Resources */,
 				B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
+				A07AF4BF2026D96B00D6D559 /* tab_v3_my_selected_red@3x.png in Resources */,
 				F6FB63AB2010386F00EEED4E /* RH_ApplyDiscountHeaderView.xib in Resources */,
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
 				B87A6BBA2011897700C9788F /* WithdrawCashLow.plist in Resources */,
+				A07AF4BB2026D96B00D6D559 /* tab_v3_service_selected_red@2x.png in Resources */,
 				A001B3D61F8EF7CA00309EA4 /* tab_green_service@2x.png in Resources */,
 				F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */,
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
@@ -3637,14 +3637,15 @@
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */,
 				B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */,
-				A0B609AB1FBAF56C00A44B37 /* tab_v3_home@2x.png in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
 				79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */,
 				A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
+				A07AF4BC2026D96B00D6D559 /* tab_v3_home_selected_red@3x.png in Resources */,
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
 				F6A2AD412005A84A0077CB92 /* hongbao-04.png in Resources */,
+				A07AF4C12026D96B00D6D559 /* tab_v3_promo_selected_red@3x.png in Resources */,
 				A001B3DC1F8EF7CA00309EA4 /* tab_lottery_deposit@2x.png in Resources */,
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
 				A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */,
@@ -3653,9 +3654,9 @@
 				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
-				A0B609BB1FBB065400A44B37 /* tab_v3_service_selected@2x.png in Resources */,
 				A001B3DF1F8EF7CA00309EA4 /* tab_lottery_mine@2x.png in Resources */,
 				F6A2AD452005A84A0077CB92 /* hongbao-01.png in Resources */,
+				A07AF4BD2026D96B00D6D559 /* tab_v3_service_selected@3x.png in Resources */,
 				A05747E31FF886810068D0E4 /* RH_UserInfoGengeralCell.xib in Resources */,
 				F6A2AD5A2006EE7A0077CB92 /* button-01.png in Resources */,
 				A001B3E01F8EF7CA00309EA4 /* tab_lottery_normal@2x.png in Resources */,
@@ -3664,8 +3665,8 @@
 				F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */,
 				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
+				A07AF4BA2026D96B00D6D559 /* tab_v3_home_selected_red@2x.png in Resources */,
 				A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */,
-				A0B609B31FBB03A000A44B37 /* tab_v3_deposit@2x.png in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
@@ -3684,6 +3685,7 @@
 				F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */,
 				A0522A76200B41DB00A5A6E9 /* MineSafetyCenterNone.plist in Resources */,
 				A01460DE2021AAFD008928D1 /* RH_SafetyNaviBarView.xib in Resources */,
+				A07AF4C02026D96B00D6D559 /* tab_v3_promo_selected_red@2x.png in Resources */,
 				F6A2ACD2200495940077CB92 /* RH_CapitalRecordDetailsCell.xib in Resources */,
 				B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */,
 				A001B3E81F8EF7CA00309EA4 /* tab_pink_transfer@2x.png in Resources */,
@@ -3699,14 +3701,12 @@
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
 				A0522A7F200B768700A5A6E9 /* BankCardInit.plist in Resources */,
 				A001B3EC1F8EF7CA00309EA4 /* tab_service@2x.png in Resources */,
-				A0B609B71FBB05AC00A44B37 /* tab_v3_promo@2x.png in Resources */,
 				A001B3ED1F8EF7CA00309EA4 /* tab_transfer@2x.png in Resources */,
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
 				A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */,
 				A0522A78200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
-				A0B609BA1FBB065400A44B37 /* tab_v3_service@2x.png in Resources */,
 				A0522A5B2007358200A5A6E9 /* ModifySafetyNoPermission.plist in Resources */,
 				B84F946C201754A9003E40BC /* RH_GameCategoryCell.xib in Resources */,
 				A0B5A5711FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.xib in Resources */,

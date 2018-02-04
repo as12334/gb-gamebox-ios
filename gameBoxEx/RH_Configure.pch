@@ -45,7 +45,11 @@
 //===========================================================
 //    界面属性定义
 //===========================================================
-#define   RH_NavigationBar_BackgroundColor              colorWithRGB(27, 117, 217)
+#define   RH_NavigationBar_BackgroundColor                      colorWithRGB(27, 117, 217)
+#define   RH_NavigationBar_BackgroundColor_Red                  colorWithRGB(242, 32, 95)
+#define   RH_NavigationBar_BackgroundColor_Green                colorWithRGB(4, 109, 79)
+#define   RH_NavigationBar_BackgroundColor_Black                colorWithRGB(21, 21, 21)
+
 #define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
 
@@ -72,10 +76,11 @@
 //    ignore  https crt domain list
 //===========================================================
 #define  RH_IgnoreHTTPS_LIST                 @[@"hongtubet",@"bdo888"]
-
 //===========================================================
 //    站点配制
 //===========================================================
+
+#define THEMEV3             @"red"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境
 
