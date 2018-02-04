@@ -1510,11 +1510,28 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _wqck //bet365
+
+#define CODE    @"wqck"
+#define S        @"54e87151f9fc49e18e19292fbf4c68d1"
+#define SID        @"353"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+
 #elif _dllb //金沙娱乐场
 
 #define CODE    @"dllb"
 #define S        @"7ffa67b40eea93a97805d59970d76b94"
 #define SID        @"355"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wbzt //澳门美高梅
+
+#define CODE    @"wbzt"
+#define S        @"dcf3bec6f41a870e00212e7cc99606a7"
+#define SID        @"356"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

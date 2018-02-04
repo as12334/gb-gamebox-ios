@@ -194,7 +194,7 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无相关数据记录"] ;
+                                        detailText:@"您暂无我的消息数据记录"] ;
     return YES ;
     
 }

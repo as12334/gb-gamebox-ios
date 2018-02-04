@@ -12,6 +12,7 @@
 #import "RH_ServiceRequest.h"
 #import "RH_SendMessageVerityModel.h"
 #import "MBProgressHUD.h"
+#define NSNotiCenterSubmitSuccessNT  @"NSNotiCenterSubmitSuccess"
 @interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate,RH_SiteSendMessageViewDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
@@ -66,9 +67,12 @@
             [UIView animateWithDuration:0.5 animations:^{
                 weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
             }];
+//            weakSelf.submitSuccessBlock(@"",@"");
+           
             [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
         }
     };
+    
     [self.serviceRequest startV3AddApplyDiscountsVerify];
     CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
     [self setupPageLoadManagerWithdatasContext:context1] ;
@@ -188,7 +192,7 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无相关数据记录"] ;
+                                        detailText:@"您暂无发送消息数据记录"] ;
     return YES ;
     
 }
@@ -222,6 +226,7 @@
         //发送成功弹出提示框
         UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"消息提交成功" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
         [alertView show];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotiCenterSubmitSuccessNT object:nil];
     }
 }
 

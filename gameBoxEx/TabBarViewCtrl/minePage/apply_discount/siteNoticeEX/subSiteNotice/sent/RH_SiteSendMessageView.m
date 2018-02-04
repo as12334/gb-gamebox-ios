@@ -10,6 +10,10 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "MBProgressHUD.h"
+#import "RH_ApplyDiscountSiteSendCell.h"
+#define NSNotiCenterSubmitSuccessNT  @"NSNotiCenterSubmitSuccess"
+
+
 @interface RH_SiteSendMessageView()<UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UITextField *titelField;
@@ -22,8 +26,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLab;
 @property (weak, nonatomic) IBOutlet UILabel *titleLba;
 
+@property (nonatomic, strong, readonly) RH_ApplyDiscountSiteSendCell *applyDiscountSiteSendCell;
+
 @end
 @implementation RH_SiteSendMessageView
+@synthesize applyDiscountSiteSendCell = _applyDiscountSiteSendCell;
 
 //-(instancetype)initWithCoder:(NSCoder *)aDecoder
 //{
@@ -92,9 +99,33 @@
     [self.titelField resignFirstResponder] ;
     [self.codeTextField resignFirstResponder] ;
     [self.contenTextView resignFirstResponder];
+    __weak typeof(self) weakSelf = self;
+    weakSelf.applyDiscountSiteSendCell.submitSuccessBlock = ^(NSString *titelStr, NSString *contenStr) {
+        self.titelField.text = titelStr;
+        self.contenTextView.text = contenStr;
+    };
     //注册通知
    [[NSNotificationCenter defaultCenter] postNotificationName:@"noti1" object:nil];
+    //信息发送成功将文本置为空
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSNotiCenterSubmitSuccessNT object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        self.titelField.text = @"";
+        self.contenTextView.text = @"";
+    }];
 }
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSNotiCenterSubmitSuccessNT object:nil];
+}
+-(RH_ApplyDiscountSiteSendCell *)applyDiscountSiteSendCell
+{
+    if (!_applyDiscountSiteSendCell) {
+        _applyDiscountSiteSendCell = [RH_ApplyDiscountSiteSendCell createInstance];
+        _applyDiscountSiteSendCell.frame = CGRectMake(0,0, self.frameWidth, self.frameHeigh);
+    }
+    return _applyDiscountSiteSendCell;
+}
+
 - (IBAction)cancelBtnClick:(id)sender {
     self.titelField.text = @"";
     self.contenTextView.text = @"";
