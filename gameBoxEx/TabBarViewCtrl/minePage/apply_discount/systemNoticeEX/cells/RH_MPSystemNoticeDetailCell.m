@@ -58,15 +58,10 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //字体大小
-    
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '90%'"];
-    
     //字体颜色
-    
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= 'gray'"];
-    
     //页面背景色
-    
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#ffffff'"];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
