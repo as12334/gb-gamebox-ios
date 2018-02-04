@@ -39,7 +39,16 @@
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
-    self.borderView.backgroundColor = selected?colorWithRGB(49, 126, 194):colorWithRGB(255, 255, 255) ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Green:colorWithRGB(255, 255, 255) ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Red:colorWithRGB(255, 255, 255) ;
+        
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Black:colorWithRGB(255, 255, 255) ;
+    }else{
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor:colorWithRGB(255, 255, 255) ;
+    }
     self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
 }
 

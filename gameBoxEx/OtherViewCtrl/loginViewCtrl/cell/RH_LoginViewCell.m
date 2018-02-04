@@ -72,15 +72,34 @@
     self.verifyCodeView.layer.borderColor = [UIColor grayColor].CGColor ;
     self.verifyCodeView.layer.borderWidth = PixelToPoint(1.0f) ;
     
-    [self.btnLogin setBackgroundColor:colorWithRGB(23, 102, 187) forState:UIControlStateNormal];
+    //设置头像 shaole头像
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.headImage.image = ImageWithName(@"login_touxiang_green");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Green.CGColor ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.headImage.image = ImageWithName(@"login_touxiang_red");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.headImage.image = ImageWithName(@"login_touxiang_black");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor ;
+    }else{
+        self.headImage.image = ImageWithName(@"login_touxiang_default");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor ;
+    }
     [self.btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
     self.btnLogin.layer.cornerRadius = 2.f;
     self.btnLogin.titleLabel.font = [UIFont systemFontOfSize:14.f];
     
     [self.btnCreateUser setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal] ;
     [self.btnCreateUser setBackgroundColor:ColorWithNumberRGBA(0x333333, 0.3f) forState:UIControlStateHighlighted] ;
-    [self.btnCreateUser setTitleColor:colorWithRGB(68, 93, 194) forState:UIControlStateNormal] ;
-    self.btnCreateUser.layer.borderColor = colorWithRGB(68, 93, 194).CGColor ;
     self.btnCreateUser.layer.borderWidth = PixelToPoint(2.0f) ;
     self.btnCreateUser.layer.cornerRadius = 2.f;
     self.btnCreateUser.titleLabel.font = [UIFont systemFontOfSize:14.f];
@@ -96,8 +115,7 @@
     _passwordTextfield.returnKeyType = UIReturnKeyDone;
     _passwordTextfield.delegate = self;
 
-    //设置头像
-    self.headImage.image = ImageWithName(@"login_touxiang");
+    
     
     //设置验证码标签
     self.codeLab.textColor = colorWithRGB(102, 102, 102);

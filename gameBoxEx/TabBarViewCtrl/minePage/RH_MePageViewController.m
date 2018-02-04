@@ -124,7 +124,16 @@
 #pragma mark-
 -(void)setupUI
 {
-    [self.navigationBar setBarTintColor:colorWithRGB(27, 117, 217)];
+    if ([THEMEV3 isEqualToString:@"green"]){
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Green];
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Red];
+        
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Black];
+    }else{
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
+    }
     self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
     if (self.appDelegate.isLogin) {
         

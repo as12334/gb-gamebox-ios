@@ -16,6 +16,14 @@
 		189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A51FF9E99E00B14298 /* RH_MineRecordStaticCell.xib */; };
 		189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */; };
 		189C13B31FF9E99F00B14298 /* RH_MineRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */; };
+		22C2E1442026F84E008C0C06 /* home_announce_close_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1422026F84E008C0C06 /* home_announce_close_red@2x.png */; };
+		22C2E1452026F84E008C0C06 /* home_announce_close_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1432026F84E008C0C06 /* home_announce_close_red@3x.png */; };
+		22C2E1482026F8AF008C0C06 /* home_announce_close_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */; };
+		22C2E1492026F8AF008C0C06 /* home_announce_close_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */; };
+		22C2E14C2026F93B008C0C06 /* home_announce_close_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */; };
+		22C2E14D2026F93B008C0C06 /* home_announce_close_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14B2026F93B008C0C06 /* home_announce_close_default@2x.png */; };
+		22C2E151202705D9008C0C06 /* login_touxiang_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14F202705D9008C0C06 /* login_touxiang_default@3x.png */; };
+		22C2E152202705D9008C0C06 /* login_touxiang_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
 		797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678B200890DF009E3FAB /* RH_SystemNoticeDetailModel.m */; };
@@ -607,6 +615,14 @@
 		189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineRecordTableViewCell.m; sourceTree = "<group>"; };
 		189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineRecordTableViewCell.xib; sourceTree = "<group>"; };
 		189C13A91FF9E99E00B14298 /* RH_MePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MePageViewController.h; sourceTree = "<group>"; };
+		22C2E1422026F84E008C0C06 /* home_announce_close_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_red@2x.png"; sourceTree = "<group>"; };
+		22C2E1432026F84E008C0C06 /* home_announce_close_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_red@3x.png"; sourceTree = "<group>"; };
+		22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@2x.png"; sourceTree = "<group>"; };
+		22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@3x.png"; sourceTree = "<group>"; };
+		22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_default@3x.png"; sourceTree = "<group>"; };
+		22C2E14B2026F93B008C0C06 /* home_announce_close_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_default@2x.png"; sourceTree = "<group>"; };
+		22C2E14F202705D9008C0C06 /* login_touxiang_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_default@3x.png"; sourceTree = "<group>"; };
+		22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_default@2x.png"; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
 		797F678720085DA5009E3FAB /* RH_SystemNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeModel.h; sourceTree = "<group>"; };
@@ -1609,6 +1625,28 @@
 				189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		22C2E1412026F7FD008C0C06 /* home_announce_close */ = {
+			isa = PBXGroup;
+			children = (
+				22C2E14B2026F93B008C0C06 /* home_announce_close_default@2x.png */,
+				22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */,
+				22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */,
+				22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */,
+				22C2E1422026F84E008C0C06 /* home_announce_close_red@2x.png */,
+				22C2E1432026F84E008C0C06 /* home_announce_close_red@3x.png */,
+			);
+			path = home_announce_close;
+			sourceTree = "<group>";
+		};
+		22C2E14E2027057C008C0C06 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */,
+				22C2E14F202705D9008C0C06 /* login_touxiang_default@3x.png */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
@@ -2872,6 +2910,8 @@
 		A07AF4C22026DBE400D6D559 /* v3Skins */ = {
 			isa = PBXGroup;
 			children = (
+				22C2E14E2027057C008C0C06 /* login */,
+				22C2E1412026F7FD008C0C06 /* home_announce_close */,
 				A07AF4C32026DBE400D6D559 /* tabbar */,
 			);
 			path = v3Skins;
@@ -3653,6 +3693,7 @@
 				A07AF4EE2026DBE400D6D559 /* tab_v3_deposit_selected@2x.png in Resources */,
 				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
+				22C2E1442026F84E008C0C06 /* home_announce_close_red@2x.png in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
 				B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */,
@@ -3666,6 +3707,7 @@
 				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A07AF4E22026DBE400D6D559 /* tab_v3_service@2x.png in Resources */,
+				22C2E152202705D9008C0C06 /* login_touxiang_default@2x.png in Resources */,
 				A07AF4DB2026DBE400D6D559 /* tab_v3_home_selected_red@2x.png in Resources */,
 				A07AF4E12026DBE400D6D559 /* tab_v3_service_selected@3x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
@@ -3687,10 +3729,12 @@
 				A07AF4E92026DBE400D6D559 /* tab_v3_promo_selected_red@2x.png in Resources */,
 				A07AF4E52026DBE400D6D559 /* tab_v3_my_selected_red@2x.png in Resources */,
 				F6FB6396200F851300EEED4E /* RH_MPGameNoticeCell.xib in Resources */,
+				22C2E14D2026F93B008C0C06 /* home_announce_close_default@2x.png in Resources */,
 				A07AF4EB2026DBE400D6D559 /* tab_v3_my_selected@2x.png in Resources */,
 				B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
 				F6FB63AB2010386F00EEED4E /* RH_ApplyDiscountHeaderView.xib in Resources */,
+				22C2E14C2026F93B008C0C06 /* home_announce_close_default@3x.png in Resources */,
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
 				B87A6BBA2011897700C9788F /* WithdrawCashLow.plist in Resources */,
@@ -3711,6 +3755,7 @@
 				B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
+				22C2E1482026F8AF008C0C06 /* home_announce_close_green@2x.png in Resources */,
 				79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */,
 				A07AF4DF2026DBE400D6D559 /* tab_v3_deposit@2x.png in Resources */,
 				A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */,
@@ -3739,6 +3784,7 @@
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */,
 				A0E53DC61F987D1400CE69E4 /* RH_IMMessageTableCell.xib in Resources */,
+				22C2E1492026F8AF008C0C06 /* home_announce_close_green@3x.png in Resources */,
 				A07DCEBF1FEBA4170006FAE4 /* RH_HomeCategorySubCell.xib in Resources */,
 				189C13AF1FF9E99F00B14298 /* RH_MinePageBannarCell.xib in Resources */,
 				A0C914FE201F541600EA71E6 /* default_banner.jpg in Resources */,
@@ -3750,6 +3796,7 @@
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A0522A75200B41DB00A5A6E9 /* MineSafetyCenterOnlyCard.plist in Resources */,
 				A07AF4E62026DBE400D6D559 /* tab_v3_promo@2x.png in Resources */,
+				22C2E1452026F84E008C0C06 /* home_announce_close_red@3x.png in Resources */,
 				A001B3E51F8EF7CA00309EA4 /* tab_pink_home@2x.png in Resources */,
 				A001B3E61F8EF7CA00309EA4 /* tab_pink_mine@2x.png in Resources */,
 				B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */,
@@ -3764,6 +3811,7 @@
 				B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */,
 				A07AF4E02026DBE400D6D559 /* tab_v3_service_selected@2x.png in Resources */,
 				A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */,
+				22C2E151202705D9008C0C06 /* login_touxiang_default@3x.png in Resources */,
 				189C13AD1FF9E99F00B14298 /* RH_MineAccountCell.xib in Resources */,
 				189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */,
 				A07AF4EC2026DBE400D6D559 /* tab_v3_my@2x.png in Resources */,
@@ -4280,7 +4328,7 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "bet365";
+				APP_DISPLAY_NAME = bet365;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-353";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
