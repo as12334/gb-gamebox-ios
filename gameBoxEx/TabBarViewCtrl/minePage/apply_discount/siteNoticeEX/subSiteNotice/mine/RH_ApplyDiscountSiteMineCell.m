@@ -115,6 +115,7 @@
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
 {
+    return;
     for (int i =0; i<self.siteModelArray.count; i++) {
         RH_SiteMyMessageModel *siteModel = self.siteModelArray[i];
         if (choseMark==YES) {
@@ -244,6 +245,8 @@
                             completedBlock:nil];
         }else
         {
+            //无消息关闭全选按钮的点击事件
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"noMyMessagedata_Notification" object:@[@2]];
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
     }

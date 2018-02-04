@@ -80,7 +80,7 @@
 //    站点配制
 //===========================================================
 
-#define THEMEV3             @"red"   //green,red,black,default .
+#define THEMEV3             @"default"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境
 
@@ -92,7 +92,7 @@
 
 #elif _rf80 //TEST01[21]
 
-//#define TEST_DOMAIN         @"test02.ccenter.test.so"
+//#define TEST_DOMAIN         @"test01.ccenter.test.so"
 //@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN         @"192.168.0.92"

@@ -50,6 +50,7 @@
 //    self.gamenameLabel.textColor = colorWithRGB(200, 200, 200);
     [self.gamenameLabel setHidden:YES];
     self.noticeLabel.textColor = colorWithRGB(51, 51, 51);
+    self.noticeLabel.font = [UIFont systemFontOfSize:12.f];
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {

@@ -59,6 +59,13 @@
     {
         _BottomView.hidden = YES;
     }
+    NSString *strState;
+    if([detailModel.mStatusName isEqualToString:@"失败"]){
+        strState = detailModel.mFailureReason;
+    }else
+    {
+        strState = @"";
+    }
     for (int i=10; i<19; i++) {
         UILabel *label = [self viewWithTag:i];
         switch (i) {
@@ -72,7 +79,7 @@
                 label.text = detailModel.mTransactionWayName;
                 break;
             case 13:
-                label.text = detailModel.mStatusName;
+                label.text = strState;
                 break;
             case 14:
                 label.text = detailModel.mRealName;

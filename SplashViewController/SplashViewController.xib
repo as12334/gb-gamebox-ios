@@ -15,6 +15,7 @@
                 <outlet property="bottomText2" destination="cWo-Z3-yZJ" id="GY8-o7-96Z"/>
                 <outlet property="domainTableView" destination="n3i-VU-N6c" id="Ujg-8S-g53"/>
                 <outlet property="labIPAddr" destination="4at-Ki-d3M" id="D3Q-2s-1g7"/>
+                <outlet property="labMark" destination="REU-g1-HNZ" id="3vc-tg-6ZJ"/>
                 <outlet property="splashLogo" destination="fV5-jP-Idu" id="PI2-2W-JvQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -46,8 +47,14 @@
                     <rect key="frame" x="10" y="80" width="355" height="219"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REU-g1-HNZ">
+                    <rect key="frame" x="187" y="602" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-Ki-d3M">
-                    <rect key="frame" x="187.5" y="607" width="0.0" height="0.0"/>
+                    <rect key="frame" x="188" y="607" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -60,10 +67,12 @@
                 <constraint firstItem="n3i-VU-N6c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="7yV-6v-Gz6"/>
                 <constraint firstItem="5tr-Ll-PYS" firstAttribute="top" secondItem="4at-Ki-d3M" secondAttribute="bottom" constant="8" id="89p-Yr-UTK"/>
                 <constraint firstItem="5tr-Ll-PYS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="J7x-ra-oqM"/>
+                <constraint firstItem="REU-g1-HNZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YAX-Yh-ELM"/>
                 <constraint firstItem="fV5-jP-Idu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="60" id="ZCS-vg-P8j"/>
                 <constraint firstItem="n3i-VU-N6c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="a80-V4-81Z"/>
                 <constraint firstItem="cWo-Z3-yZJ" firstAttribute="top" secondItem="5tr-Ll-PYS" secondAttribute="bottom" constant="11" id="cG6-Py-z8W"/>
                 <constraint firstItem="jaX-og-6WG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cul-53-BhS"/>
+                <constraint firstItem="4at-Ki-d3M" firstAttribute="top" secondItem="REU-g1-HNZ" secondAttribute="bottom" constant="5" id="iQf-nu-Hc9"/>
                 <constraint firstItem="jaX-og-6WG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lwD-N8-KgB"/>
                 <constraint firstAttribute="trailing" secondItem="n3i-VU-N6c" secondAttribute="trailing" constant="10" id="pw3-cE-5WI"/>
                 <constraint firstAttribute="trailing" secondItem="jaX-og-6WG" secondAttribute="trailing" id="qKb-5g-y7v"/>

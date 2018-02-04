@@ -436,6 +436,7 @@
 //api的路径
 #define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppDomainError.html"
 //请求参数
+#define RH_SP_COLLECTAPPERROR_MARK                       @"mark"
 #define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
 #define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
 #define RH_SP_COLLECTAPPERROR_LASTLOGINTIME                @"lastLoginTime"
@@ -805,6 +806,9 @@
 #define RH_API_NAME_WITHDRWAFEE                   @"mobile-api/withdrawOrigin/withdrawFee.html"
 //请求参数
 #define RH_SP_WITHDRWAFEE_AMOUNT                  @"withdrawAmount"
+
+#pragma mark - V3 获取站点时区接口
+#define RH_API_NAME_TIMEZONEINFO                   @"mobile-api/origin/getTimeZone.html"
 
 #endif /* RH_API_h */
 

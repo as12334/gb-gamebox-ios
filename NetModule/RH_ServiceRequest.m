@@ -213,6 +213,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startGetSecurePasswordVerifyCode {
+    
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_VERIFYCODE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startDemoLogin
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -1041,6 +1058,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 获取站点时区
+-(void)startV3SiteTimezone
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_TIMEZONEINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeTimeZoneInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1700,6 +1731,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeWithDrawFee:
             {
                 resultSendData = [[AuditMapModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+           
+            case ServiceRequestTypeTimeZoneInfo:
+            {
+                NSLog(@"") ;
             }
                 break ;
                 

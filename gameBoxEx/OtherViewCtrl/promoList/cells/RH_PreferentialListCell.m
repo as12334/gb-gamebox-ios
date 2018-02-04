@@ -64,7 +64,7 @@
          self.label_Bottom.text = [NSString stringWithFormat:@"%@",self.promoInfoModel.mPreferentialAuditName];
     }else
     {
-        self.label_Bottom.text = [NSString stringWithFormat:@"%.1f%@",self.promoInfoModel.mPreferentialAudit,self.promoInfoModel.mPreferentialAuditName];
+        self.label_Bottom.text = [NSString stringWithFormat:@"%.2f%@",self.promoInfoModel.mPreferentialAudit,self.promoInfoModel.mPreferentialAuditName];
     }
     
     self.label_Time.text = self.promoInfoModel.showApplyTime ;
