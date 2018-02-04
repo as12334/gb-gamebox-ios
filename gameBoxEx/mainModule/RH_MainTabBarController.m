@@ -156,7 +156,41 @@
             mine.selectedImage = [[UIImage imageNamed:@"tab_default_mine"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = [UIColor colorWithRed:0.09 green:0.40 blue:0.73 alpha:1.0];
         }
-    } else if ([@"lottery" isEqualToString:SITE_TYPE]) {
+    }else if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        UITabBarItem *saveMoneyItem = [self.tabBar.items objectAtIndex:0];
+        UITabBarItem *promoItem = [self.tabBar.items objectAtIndex:1];
+        UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:2];
+        UITabBarItem *serviceItem = [self.tabBar.items objectAtIndex:3];
+        UITabBarItem *mineItem = [self.tabBar.items objectAtIndex:4];
+        
+        if ([THEMEV3 isEqualToString:@"green"]){
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        }else{
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        }
+        
+    }else if ([@"lottery" isEqualToString:SITE_TYPE]) {
         transfer.image = [[UIImage imageNamed:@"tab_withdraw"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         deposit.image = [[UIImage imageNamed:@"tab_lottery_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         transfer.image = [[UIImage imageNamed:@"tab_hall_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

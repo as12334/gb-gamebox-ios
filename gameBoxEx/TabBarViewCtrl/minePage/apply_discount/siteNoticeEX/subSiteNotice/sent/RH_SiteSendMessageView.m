@@ -79,10 +79,16 @@
     if (sendModel.mIsOpenCaptcha==NO) {
         [self.webView setHidden:YES];
         [self.codeTextField setHidden:YES];
+        self.backDropView.frame = CGRectMake(10, 0, screenSize().width-20, 225);
+        self.confimBtn.frame = CGRectMake(40, CGRectGetMaxY(self.backDropView.frame)+15, (screenSize().width-160)/2.0, 40);
+        self.cancelBtn.frame = CGRectMake(CGRectGetMaxX(self.confimBtn.frame)+55, CGRectGetMaxY(self.backDropView.frame)+15, (screenSize().width-160)/2.0, 40);
     }
     else if (sendModel.mIsOpenCaptcha==YES){
         [self.codeTextField setHidden:NO];
         [self.webView setHidden:NO];
+        self.backDropView.frame = CGRectMake(10, 0, screenSize().width-20, 265);
+        self.confimBtn.frame = CGRectMake(40, CGRectGetMaxY(self.backDropView.frame)+15, (screenSize().width-160)/2.0, 40);
+        self.cancelBtn.frame = CGRectMake(CGRectGetMaxX(self.confimBtn.frame)+55, CGRectGetMaxY(self.backDropView.frame)+15, (screenSize().width-160)/2.0, 40);
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://test01.ampinplayopt0matrix.com",sendModel.mCaptcha_value]];//创建URL
         NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
         [self.webView loadRequest:request];//加载

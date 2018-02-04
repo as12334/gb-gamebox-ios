@@ -208,7 +208,6 @@
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
             CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 0);
             self.listView.frame = frame;
         } completion:^(BOOL finished) {

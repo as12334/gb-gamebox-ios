@@ -11,7 +11,7 @@
 					<key>title</key>
 					<string>真实姓名</string>
 					<key>cellClass</key>
-					<string>RH_ModifyPasswordNameCell</string>
+					<string>RH_BankCardRealNameCell</string>
 					<key>detailTitle</key>
 					<string>银行卡户名与真实姓名须一致</string>
 				</dict>
@@ -37,7 +37,7 @@
 					<key>title</key>
 					<string>开户行</string>
 					<key>cellClass</key>
-					<string>RH_ModifyPasswordNameCell</string>
+					<string>RH_BankCardLocationCell</string>
 				</dict>
 			</array>
 		</dict>

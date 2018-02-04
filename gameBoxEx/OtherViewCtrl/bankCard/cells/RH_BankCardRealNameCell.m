@@ -1,19 +1,19 @@
 //
-//  RH_ModifyPasswordNameCell.m
+//  RH_BankCardRealNameCell.m
 //  gameBoxEx
 //
-//  Created by Lenny on 2018/2/1.
+//  Created by Lenny on 2018/2/4.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_ModifyPasswordNameCell.h"
+#import "RH_BankCardRealNameCell.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
 
-@interface RH_ModifyPasswordNameCell() <UITextFieldDelegate>
+@interface RH_BankCardRealNameCell() <UITextFieldDelegate>
 
 @end
-@implementation RH_ModifyPasswordNameCell
+@implementation RH_BankCardRealNameCell
 @synthesize textField = _textField;
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -80,11 +80,14 @@
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
-    
+    if (MineSettingInfo.mRealName) {
+        self.textField.placeholder = ConvertToClassPointer(NSString, context) ;
+        self.textField.userInteractionEnabled = NO;
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-//    return [self validateNumber:string];
+    //    return [self validateNumber:string];
     return YES;
 }
 

@@ -12,7 +12,8 @@
 #import "RH_ModifyPasswordCell.h"
 #import "RH_BankCardCell.h"
 #import "RH_BankPickerSelectView.h"
-#import "RH_ModifyPasswordNameCell.h"
+#import "RH_BankCardRealNameCell.h"
+#import "RH_BankCardLocationCell.h"
 typedef NS_ENUM(NSInteger,BankCardStatus ) {
     BankCardStatus_Init                        ,
     BankCardStatus_None                        ,
@@ -22,10 +23,10 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 @interface RH_BankCardController ()<CLTableViewManagementDelegate,BankPickerSelectViewDelegate, RH_ServiceRequestDelegate,UITextFieldDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
-@property (nonatomic,strong, readonly)  RH_ModifyPasswordNameCell *realNameCell ;
+@property (nonatomic,strong, readonly)  RH_BankCardRealNameCell *realNameCell ;
 @property (nonatomic,strong, readonly)  RH_BankCardCell *bankSelectedCell ;
 @property (nonatomic,strong, readonly)  RH_BankCardNumberCell *bankCardNumCell ;
-@property (nonatomic,strong, readonly)  RH_ModifyPasswordNameCell *bankLocationCell ;
+@property (nonatomic,strong, readonly)  RH_BankCardLocationCell *bankLocationCell ;
 
 @property (nonatomic,strong, readonly)  RH_BankPickerSelectView *bankPickerSelectView ;
 
@@ -189,9 +190,9 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 //}
 
 #pragma mark -
--(RH_ModifyPasswordNameCell *)realNameCell
+-(RH_BankCardRealNameCell *)realNameCell
 {
-    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordNameCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]):nil ;
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_BankCardRealNameCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]):nil ;
 }
 
 -(RH_BankCardCell *)bankSelectedCell
@@ -204,9 +205,9 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_BankCardNumberCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]]):nil ;
 }
 
--(RH_ModifyPasswordNameCell *)bankLocationCell
+-(RH_BankCardLocationCell *)bankLocationCell
 {
-    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_ModifyPasswordNameCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]]):nil ;
+    return _bankCardStatus==BankCardStatus_None?ConvertToClassPointer(RH_BankCardLocationCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]]):nil ;
 }
 
 #pragma mark - footerView
@@ -337,7 +338,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         }
     }else if (_bankCardStatus == BankCardStatus_None){
         if (indexPath.item == 0){ //真实姓名
-            return _addBankCardRealName?:@"" ;
+            return MineSettingInfo.mRealName?:@"" ;
         }else if (indexPath.item == 1){ //选择银行
             return _addBankCardBankName?:@"请选择银行" ;
         }else if (indexPath.item == 2){ //卡号
@@ -352,6 +353,12 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 -(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
 {
+    if (_bankCardStatus == BankCardStatus_None) {
+        
+        if (MineSettingInfo.mRealName.length > 0) {
+            self.realNameCell.textField.enabled = NO;
+        }
+    }
 //    if (!MineSettingInfo.mBankCard){//新增银行卡情况
 //        if ([cell isKindOfClass:[RH_ModifyPasswordNameCell class]]){
 //            RH_ModifyPasswordNameCell *modifyCell = ConvertToClassPointer(RH_ModifyPasswordNameCell, cell) ;

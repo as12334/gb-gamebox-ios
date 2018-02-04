@@ -35,7 +35,16 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    self.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }else{
+        self.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    }
+    
     self.labTitle.font = RH_NavigationBar_TitleFontSize ;
     self.labTitle.textColor = RH_NavigationBar_ForegroundColor ;
 

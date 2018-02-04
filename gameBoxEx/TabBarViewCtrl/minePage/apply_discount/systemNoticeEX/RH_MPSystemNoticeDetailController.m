@@ -36,6 +36,7 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
+    self.contentTableView.scrollEnabled = NO;
     [self.contentTableView registerCellWithClass:[RH_MPSystemNoticeDetailCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
