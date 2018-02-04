@@ -39,7 +39,16 @@
     self.endDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.endDateView.layer.masksToBounds = YES;
     self.kuaixuanBtn.layer.cornerRadius = 3.f;
-    self.kuaixuanBtn.backgroundColor = colorWithRGB(27, 117, 217);
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
+    
     [self.kuaixuanBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.kuaixuanBtn.layer.masksToBounds = YES;
     self.startSeletedDateView.dateLabel.textColor = colorWithRGB(153, 153, 153);

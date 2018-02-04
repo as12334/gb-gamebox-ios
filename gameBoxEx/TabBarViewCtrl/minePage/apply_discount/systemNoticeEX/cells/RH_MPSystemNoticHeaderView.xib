@@ -69,7 +69,7 @@
                 <outlet property="kuaixuanBtn" destination="ZRi-HB-1cd" id="56a-5V-aNY"/>
                 <outlet property="startDateView" destination="1KE-og-ORj" id="Lk7-GD-IGy"/>
             </connections>
-            <point key="canvasLocation" x="24.5" y="52"/>
+            <point key="canvasLocation" x="-128" y="52"/>
         </view>
     </objects>
 </document>
