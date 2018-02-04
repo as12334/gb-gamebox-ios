@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeUserAutoLogin     ,
     ServiceRequestTypeDemoLogin         ,
     ServiceRequestTypeObtainVerifyCode     ,
+    ServiceRequestTypeObtainSecurePasswordVerifyCode    ,
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
     ServiceRequestTypeAPIRetrive        , //api 回收接口
@@ -144,6 +145,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password;
 
 -(void)startGetVerifyCode ;
+
+-(void)startGetSecurePasswordVerifyCode;
 
 -(void)startDemoLogin;
 

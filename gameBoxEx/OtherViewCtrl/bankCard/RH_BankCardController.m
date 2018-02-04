@@ -294,6 +294,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息",@"已成功添加银行卡") ;
+            [self.serviceRequest startV3UserInfo] ;
         }];
         
         if (_contextTitle.length){
@@ -302,6 +303,8 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         }
         
         [self setNeedUpdateView] ;
+    }else if (type == ServiceRequestTypeV3UserInfo) {
+        [self setNeedUpdateView];
     }
 }
 

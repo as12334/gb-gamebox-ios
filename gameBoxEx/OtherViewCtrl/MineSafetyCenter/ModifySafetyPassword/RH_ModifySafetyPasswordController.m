@@ -10,7 +10,7 @@
 #import "RH_ModifyPasswordCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_ModifySafetyPwdCodeCell.h"
-
+#import "RH_ModifyPasswordCodeCell.h"
 typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     ModifySafetyStatus_Init                         ,
     ModifySafetyStatus_SetRealName                  ,
@@ -149,13 +149,13 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 {
     return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
 }
--(RH_ModifySafetyPwdCodeCell *)userPasswordCodeCell
+-(RH_ModifyPasswordCodeCell *)userPasswordCodeCell
 {
     if (_modifySafetyStatus == ModifySafetyStatus_SetPermissionPasswordUsedCode){
-        return ConvertToClassPointer(RH_ModifySafetyPwdCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
+        return ConvertToClassPointer(RH_ModifyPasswordCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
     }else if (_modifySafetyStatus == ModifySafetyStatus_UpdatePermissionPasswordUsedCode)
     {
-        return ConvertToClassPointer(RH_ModifySafetyPwdCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]) ;
+        return ConvertToClassPointer(RH_ModifyPasswordCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]) ;
     }
     
     return nil ;
@@ -246,7 +246,56 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
                                                         verifyCode:self.userPasswordCodeCell.passwordCode] ;
         
         return ;
-    }else{
+    }else if (_modifySafetyStatus == ModifySafetyStatus_UpdatePermissionPasswordUsedCode) {
+        NSString *realName = [self.userNameCell.textField.text copy] ;
+        NSString *oldPassword = [self.userPermissionCell.textField.text copy] ;
+        NSString *newPassword = [self.userNewPermissionCell.textField.text copy] ;
+        NSString *confirmPassword = [self.userConfirmPermissionCell.textField.text copy] ;
+        NSString *verifyCode = [self.userPasswordCodeCell.passwordCode copy];
+        if (realName.length<1){
+            showMessage(self.view, nil, @"请输入真实姓名");
+            [self.userNameCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (oldPassword.length<1){
+            showMessage(self.view, nil, @"请输入旧密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (newPassword.length<1){
+            showMessage(self.view, nil, @"请输入新密码");
+            [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (confirmPassword.length<1){
+            showMessage(self.view, nil, @"请重新输入新密码");
+            [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (![newPassword isEqualToString:confirmPassword]) {
+            showMessage(self.view, nil, @"两次输入密码不一样！");
+            [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return;
+        }
+        if (verifyCode.length < 1) {
+            showMessage(self.view, nil, @"请输入验证码！");
+            return ;
+        }
+        [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
+        [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
+                                                    originPassword:oldPassword
+                                                       newPassword:newPassword
+                                                   confirmPassword:confirmPassword
+                                                        verifyCode:self.userPasswordCodeCell.passwordCode] ;
+        
+        return ;
+    }
+    
+    else{
         NSString *realName = [self.userNameCell.textField.text copy] ;
         NSString *oldPassword = [self.userPermissionCell.textField.text copy] ;
         NSString *newPassword = [self.userNewPermissionCell.textField.text copy] ;
