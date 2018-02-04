@@ -132,12 +132,18 @@
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
     
+    
+    
     if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0) {
         showMessage(self.view, @"错误", @"请输入密码");
         return;
     }
     if (newPwd.length < 6 || newPwd2.length < 6) {
         showMessage(self.view, @"提示", @"密码至少六位");
+        return;
+    }
+    if ([self isPureInt:newPwd] || [self isPureInt:newPwd2]) {
+        showMessage(self.view, @"提示", @"密码过于简单");
         return;
     }
     if (![newPwd isEqualToString:newPwd2]) {
@@ -161,6 +167,18 @@
     }
 
 }
+
+- (BOOL)isPureInt:(NSString *)string{
+    
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    
+    int val;
+    
+    return [scan scanInt:&val] && [scan isAtEnd];
+    
+}
+
+
 
 -(UILabel *)label_Notice
 {
@@ -214,9 +232,21 @@
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
             self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
         }
+        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 6 || [userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 0) {
+            self.label_Notice.hidden = YES;
+        }
         //在这里判断状态码， 如果冻结，就直接退出APP
         //TODO
-        
+        if (error.code == 606) {
+            UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                exit(0);
+            } title:@"您已被强制踢出！"
+                                                             message:nil cancelButtonName:@"确定" otherButtonTitles:nil, nil] ;
+            [alert show] ;
+        }
+//        if (error.code == 1) {
+//            showErrorMessage(self.view, error, @"");
+//        }
     }
 }
 

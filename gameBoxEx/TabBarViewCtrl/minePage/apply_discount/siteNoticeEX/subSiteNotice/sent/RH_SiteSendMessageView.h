@@ -10,6 +10,8 @@
 #import "RH_SendMessageVerityModel.h"
 typedef void (^SiteSendMessageViewBlock)(CGRect frame);
 typedef void (^SiteSendMessageViewSubmitBlock)(NSString *titelStr,NSString *contenStr,NSString *codeStr);
+//typedef void (^SiteSendMessageViewSubmitSuccessBlock)(NSString *titelStr,NSString *contenStr);
+
 @protocol RH_SiteSendMessageViewDelegate<NSObject>
 @optional
 -(void)selectedCodeTextFieldAndChangedKeyboardFrame:(CGRect )frame;
@@ -18,6 +20,7 @@ typedef void (^SiteSendMessageViewSubmitBlock)(NSString *titelStr,NSString *cont
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property(nonatomic,copy)SiteSendMessageViewBlock block;
 @property(nonatomic,copy)SiteSendMessageViewSubmitBlock submitBlock;
+//@property (nonatomic, copy) SiteSendMessageViewSubmitSuccessBlock submitSuccessBlock;
 @property(nonatomic,strong)RH_SendMessageVerityModel *sendModel;
 @property(nonatomic,weak)id<RH_SiteSendMessageViewDelegate>delegate;
 @end

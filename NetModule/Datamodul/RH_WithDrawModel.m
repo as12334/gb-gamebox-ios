@@ -115,6 +115,7 @@
                                                      name:RHNT_AlreadySucfullSettingSafetyPassword
                                                    object:nil]   ;
     }
+    
     return self;
 }
 

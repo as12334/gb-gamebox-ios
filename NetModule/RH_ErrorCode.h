@@ -27,5 +27,11 @@
 
 
 
+#pragma mark -  界面处理的 特别 code
+#define RH_API_ERRORCODE_SESSION_EXPIRED                      600   //session 过期
+#define RH_API_ERRORCODE_USER_LOGOUT                          1001     //您还没有登录
+
+#define RH_API_ERRORCODE_WITHDRAW_HASORDER                     1100   //提现 已存在取款订单
+#define RH_API_ERRORCODE_WITHDRAW_NO_MONEY                     1102   //提现 取款金额最少为x元
 
 #endif /* RH_ErrorCode_h */

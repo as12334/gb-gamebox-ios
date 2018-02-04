@@ -119,17 +119,19 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         
         if (amountValue <self.withDrawModel.mWithdrawMinNum ||
             amountValue >self.withDrawModel.mWithdrawMaxNum) {
-            showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%8.2f-%8.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
+            showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%.2f-%.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
             return;
         }
         
         AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
         if (auditMap==nil){
             //计算费率信息
-            [self showProgressIndicatorViewWithAnimated:YES title:@"计算费率..."];
+            [self showProgressIndicatorViewWithAnimated:YES title:@"计算费用..."];
             [self.serviceRequest startV3WithDrawFeeWithAmount:amountValue] ;
             return ;
         }
+        
+        [self setNeedUpdateView] ;
     }
 }
 
@@ -167,9 +169,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 }
 
 - (void)buttonConfirmHandle {
-    
     CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
-    
     if (self.mainSegmentControl.selectedSegmentIndex==0){
         if ([self _checkShowBankCardInfo:YES]) {
             return ;
@@ -187,18 +187,29 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     if (amountValue <self.withDrawModel.mWithdrawMinNum ||
         amountValue >self.withDrawModel.mWithdrawMaxNum) {
-        showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%8.2f-%8.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
+        showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%.2f-%.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
         return;
     }
     
     AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
     if (auditMap==nil){
         //计算费率信息
-        [self showProgressIndicatorViewWithAnimated:YES title:@"计算费率..."];
+        [self showProgressIndicatorViewWithAnimated:YES title:@"计算费用..."];
         [self.serviceRequest startV3WithDrawFeeWithAmount:amountValue] ;
         return ;
     }
     
+    //检测最终可取 金额是否大于 0
+    if (auditMap.mActualWithdraw<=0){
+        showMessage(self.view, @"提示信息",@"实际取款金额应大于零");
+        return ;
+    }
+    
+    //检测取款余额是否大于钱包余额
+    if (amountValue>MineSettingInfo.mWalletBalance){
+        showMessage(self.view, @"提示信息",@"取款金额应小于钱包余额!");
+        return ;
+    }
     
     //检测是否有设置安全密码
     if (self.withDrawModel.mIsSafePassword==false){
@@ -417,9 +428,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
             return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;
         }else if (_withdrawCashStatus==WithdrawCashStatus_EnterBitCoin) {
-            if (MineSettingInfo.mBitCode.mBtcNumber){
+            BankcardMapModel *bankCardModel = ConvertToClassPointer(BankcardMapModel,[self.withDrawModel.mBankcardMap objectForKey:@"2"]) ;
+            if (bankCardModel.mBankcardNumber.length){
                 return @{@"title":@"比特币地址",
-                         @"detailTitle":MineSettingInfo.mBitCode.mBtcNumber?:@""
+                         @"detailTitle":bankCardModel.mBankcardNumber?:@""
                              };
             }else{
                 return @{@"title":@"请先绑定比特币地址",
@@ -529,11 +541,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3GetWithDrawInfo){
-        if (error.code == 100) {
+        if (error.code == RH_API_ERRORCODE_WITHDRAW_HASORDER) {
             //已有订单在处理。。。
             _withdrawCashStatus = WithdrawCashStatus_HasOrder;
             [self setNeedUpdateView];
-        }else if (error.code == 102) { //金额不足
+        }else if (error.code == RH_API_ERRORCODE_WITHDRAW_NO_MONEY) { //金额不足
             _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
             [self setNeedUpdateView] ;
         }else{
