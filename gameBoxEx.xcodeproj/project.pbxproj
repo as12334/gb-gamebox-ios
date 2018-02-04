@@ -24,6 +24,11 @@
 		22C2E14D2026F93B008C0C06 /* home_announce_close_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14B2026F93B008C0C06 /* home_announce_close_default@2x.png */; };
 		22C2E151202705D9008C0C06 /* login_touxiang_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14F202705D9008C0C06 /* login_touxiang_default@3x.png */; };
 		22C2E152202705D9008C0C06 /* login_touxiang_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */; };
+		22C2E15520271F5C008C0C06 /* login_touxiang_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15320271F5B008C0C06 /* login_touxiang_green@2x.png */; };
+		22C2E15620271F5C008C0C06 /* login_touxiang_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15420271F5B008C0C06 /* login_touxiang_green@3x.png */; };
+		22C2E15A202720B9008C0C06 /* tab_v3_home_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */; };
+		22C2E15D20272116008C0C06 /* login_touxiang_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */; };
+		22C2E15E20272116008C0C06 /* login_touxiang_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
 		797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678B200890DF009E3FAB /* RH_SystemNoticeDetailModel.m */; };
@@ -374,11 +379,8 @@
 		A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F572010801B00EF275A /* BitCoinInit.plist */; };
 		A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */; };
 		A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06E0F6120181BD600EF275A /* RH_GameListViewController.m */; };
-		A07AF4DA2026DBE400D6D559 /* tab_v3_home_selected@2x的副本.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4C42026DBE400D6D559 /* tab_v3_home_selected@2x的副本.png */; };
-		A07AF4DB2026DBE400D6D559 /* tab_v3_home_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4C52026DBE400D6D559 /* tab_v3_home_selected_red@2x.png */; };
 		A07AF4DC2026DBE400D6D559 /* tab_v3_service_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4C62026DBE400D6D559 /* tab_v3_service_selected_red@2x.png */; };
 		A07AF4DD2026DBE400D6D559 /* tab_v3_home_selected_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4C72026DBE400D6D559 /* tab_v3_home_selected_red@3x.png */; };
-		A07AF4DE2026DBE400D6D559 /* tab_v3_home_selected@3x的副本.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4C82026DBE400D6D559 /* tab_v3_home_selected@3x的副本.png */; };
 		A07AF4DF2026DBE400D6D559 /* tab_v3_deposit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4C92026DBE400D6D559 /* tab_v3_deposit@2x.png */; };
 		A07AF4E02026DBE400D6D559 /* tab_v3_service_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4CA2026DBE400D6D559 /* tab_v3_service_selected@2x.png */; };
 		A07AF4E12026DBE400D6D559 /* tab_v3_service_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4CB2026DBE400D6D559 /* tab_v3_service_selected@3x.png */; };
@@ -623,6 +625,11 @@
 		22C2E14B2026F93B008C0C06 /* home_announce_close_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_default@2x.png"; sourceTree = "<group>"; };
 		22C2E14F202705D9008C0C06 /* login_touxiang_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_default@3x.png"; sourceTree = "<group>"; };
 		22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_default@2x.png"; sourceTree = "<group>"; };
+		22C2E15320271F5B008C0C06 /* login_touxiang_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_green@2x.png"; sourceTree = "<group>"; };
+		22C2E15420271F5B008C0C06 /* login_touxiang_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_green@3x.png"; sourceTree = "<group>"; };
+		22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@2x.png"; sourceTree = "<group>"; };
+		22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_red@3x.png"; sourceTree = "<group>"; };
+		22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_red@2x.png"; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
 		797F678720085DA5009E3FAB /* RH_SystemNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeModel.h; sourceTree = "<group>"; };
@@ -1252,11 +1259,8 @@
 		A06E0F5B20119F6D00EF275A /* WithdrawInit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WithdrawInit.plist; sourceTree = "<group>"; };
 		A06E0F6020181BD500EF275A /* RH_GameListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_GameListViewController.h; sourceTree = "<group>"; };
 		A06E0F6120181BD600EF275A /* RH_GameListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_GameListViewController.m; sourceTree = "<group>"; };
-		A07AF4C42026DBE400D6D559 /* tab_v3_home_selected@2x的副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x的副本.png"; sourceTree = "<group>"; };
-		A07AF4C52026DBE400D6D559 /* tab_v3_home_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@2x.png"; sourceTree = "<group>"; };
 		A07AF4C62026DBE400D6D559 /* tab_v3_service_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected_red@2x.png"; sourceTree = "<group>"; };
 		A07AF4C72026DBE400D6D559 /* tab_v3_home_selected_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@3x.png"; sourceTree = "<group>"; };
-		A07AF4C82026DBE400D6D559 /* tab_v3_home_selected@3x的副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@3x的副本.png"; sourceTree = "<group>"; };
 		A07AF4C92026DBE400D6D559 /* tab_v3_deposit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit@2x.png"; sourceTree = "<group>"; };
 		A07AF4CA2026DBE400D6D559 /* tab_v3_service_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected@2x.png"; sourceTree = "<group>"; };
 		A07AF4CB2026DBE400D6D559 /* tab_v3_service_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected@3x.png"; sourceTree = "<group>"; };
@@ -1643,8 +1647,12 @@
 		22C2E14E2027057C008C0C06 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */,
+				22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */,
 				22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */,
 				22C2E14F202705D9008C0C06 /* login_touxiang_default@3x.png */,
+				22C2E15320271F5B008C0C06 /* login_touxiang_green@2x.png */,
+				22C2E15420271F5B008C0C06 /* login_touxiang_green@3x.png */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -2921,12 +2929,10 @@
 			isa = PBXGroup;
 			children = (
 				A07AF4F02026DFF400D6D559 /* tab_v3_deposit_selected_red@2x.png */,
+				22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */,
 				A07AF4F12026DFF500D6D559 /* tab_v3_deposit_selected_red@3x.png */,
-				A07AF4C42026DBE400D6D559 /* tab_v3_home_selected@2x的副本.png */,
-				A07AF4C52026DBE400D6D559 /* tab_v3_home_selected_red@2x.png */,
 				A07AF4C62026DBE400D6D559 /* tab_v3_service_selected_red@2x.png */,
 				A07AF4C72026DBE400D6D559 /* tab_v3_home_selected_red@3x.png */,
-				A07AF4C82026DBE400D6D559 /* tab_v3_home_selected@3x的副本.png */,
 				A07AF4C92026DBE400D6D559 /* tab_v3_deposit@2x.png */,
 				A07AF4CA2026DBE400D6D559 /* tab_v3_service_selected@2x.png */,
 				A07AF4CB2026DBE400D6D559 /* tab_v3_service_selected@3x.png */,
@@ -3681,6 +3687,7 @@
 				F681D25A201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib in Resources */,
 				A0522A57200731A700A5A6E9 /* ModifySafetyInitInfo.plist in Resources */,
 				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
+				22C2E15620271F5C008C0C06 /* login_touxiang_green@3x.png in Resources */,
 				A07AF4ED2026DBE400D6D559 /* tab_blue_mid@2x.png in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
 				F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */,
@@ -3691,6 +3698,7 @@
 				A07AF4DC2026DBE400D6D559 /* tab_v3_service_selected_red@2x.png in Resources */,
 				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
 				A07AF4EE2026DBE400D6D559 /* tab_v3_deposit_selected@2x.png in Resources */,
+				22C2E15D20272116008C0C06 /* login_touxiang_red@3x.png in Resources */,
 				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				22C2E1442026F84E008C0C06 /* home_announce_close_red@2x.png in Resources */,
@@ -3708,7 +3716,6 @@
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A07AF4E22026DBE400D6D559 /* tab_v3_service@2x.png in Resources */,
 				22C2E152202705D9008C0C06 /* login_touxiang_default@2x.png in Resources */,
-				A07AF4DB2026DBE400D6D559 /* tab_v3_home_selected_red@2x.png in Resources */,
 				A07AF4E12026DBE400D6D559 /* tab_v3_service_selected@3x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
@@ -3722,7 +3729,6 @@
 				A07AF4E72026DBE400D6D559 /* tab_v3_home@2x.png in Resources */,
 				A07AF4F22026DFF500D6D559 /* tab_v3_deposit_selected_red@2x.png in Resources */,
 				A06E0F592010801B00EF275A /* BitCoinExist.plist in Resources */,
-				A07AF4DA2026DBE400D6D559 /* tab_v3_home_selected@2x的副本.png in Resources */,
 				F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */,
 				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
@@ -3735,6 +3741,7 @@
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
 				F6FB63AB2010386F00EEED4E /* RH_ApplyDiscountHeaderView.xib in Resources */,
 				22C2E14C2026F93B008C0C06 /* home_announce_close_default@3x.png in Resources */,
+				22C2E15E20272116008C0C06 /* login_touxiang_red@2x.png in Resources */,
 				A001B3D51F8EF7CA00309EA4 /* tab_green_mine@2x.png in Resources */,
 				A0ADD3201FEB613400B24B51 /* RH_BannerViewCell.xib in Resources */,
 				B87A6BBA2011897700C9788F /* WithdrawCashLow.plist in Resources */,
@@ -3747,6 +3754,7 @@
 				A001B3D91F8EF7CA00309EA4 /* tab_bet_selected@2x.png in Resources */,
 				A07AF4DD2026DBE400D6D559 /* tab_v3_home_selected_red@3x.png in Resources */,
 				A05747E41FF886810068D0E4 /* RH_UserInfoTotalCell.xib in Resources */,
+				22C2E15520271F5C008C0C06 /* login_touxiang_green@2x.png in Resources */,
 				A05747C41FF635E00068D0E4 /* RH_HomeChildCategoryCell.xib in Resources */,
 				A0522A98200C9F1100A5A6E9 /* RH_PromoCategoryCell.xib in Resources */,
 				A07AF4EA2026DBE400D6D559 /* tab_v3_home_selected@2x.png in Resources */,
@@ -3792,7 +3800,7 @@
 				F6FB638B200F851300EEED4E /* RH_MPSystemNoticeCell.xib in Resources */,
 				B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */,
 				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
-				A07AF4DE2026DBE400D6D559 /* tab_v3_home_selected@3x的副本.png in Resources */,
+				22C2E15A202720B9008C0C06 /* tab_v3_home_selected_red@2x.png in Resources */,
 				A001B3E41F8EF7CA00309EA4 /* tab_pink_deposit@2x.png in Resources */,
 				A0522A75200B41DB00A5A6E9 /* MineSafetyCenterOnlyCard.plist in Resources */,
 				A07AF4E62026DBE400D6D559 /* tab_v3_promo@2x.png in Resources */,
