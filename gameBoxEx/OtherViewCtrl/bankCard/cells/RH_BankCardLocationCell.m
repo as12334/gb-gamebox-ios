@@ -1,19 +1,19 @@
 //
-//  RH_ModifyPasswordNameCell.m
+//  RH_BankCardLocationCell.m
 //  gameBoxEx
 //
-//  Created by Lenny on 2018/2/1.
+//  Created by Lenny on 2018/2/4.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_ModifyPasswordNameCell.h"
+#import "RH_BankCardLocationCell.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
 
-@interface RH_ModifyPasswordNameCell() <UITextFieldDelegate>
+@interface RH_BankCardLocationCell() <UITextFieldDelegate>
 
 @end
-@implementation RH_ModifyPasswordNameCell
+@implementation RH_BankCardLocationCell
 @synthesize textField = _textField;
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -84,7 +84,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-//    return [self validateNumber:string];
+    //    return [self validateNumber:string];
     return YES;
 }
 

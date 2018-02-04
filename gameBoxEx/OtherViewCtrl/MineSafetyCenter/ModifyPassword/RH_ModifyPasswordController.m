@@ -239,9 +239,12 @@
         //TODO
         if (error.code == 606) {
             UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                exit(0);
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self.appDelegate updateLoginStatus:false];
             } title:@"您已被强制踢出！"
-                                                             message:nil cancelButtonName:@"确定" otherButtonTitles:nil, nil] ;
+            message:nil
+            cancelButtonName:@"确定"
+            otherButtonTitles:nil, nil] ;
             [alert show] ;
         }
 //        if (error.code == 1) {
