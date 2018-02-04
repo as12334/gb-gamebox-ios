@@ -99,6 +99,7 @@
         RH_SiteMsgSysMsgModel *detailModel = ConvertToClassPointer(RH_SiteMsgSysMsgModel, data);
         [self loadDataSuccessWithDatas:detailModel?@[detailModel]:@[]
                             totalCount:detailModel?1:0] ;
+        [self.messageModel updataReadStatus:YES];
     }
 }
 

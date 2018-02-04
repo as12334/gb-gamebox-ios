@@ -24,4 +24,12 @@
     }
     return self;
 }
+
+-(void)updataReadStatus:(BOOL)bflag
+{
+    if (_mIsRead != bflag) {
+        _mIsRead = bflag  ;
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:self] ;
+    }
+}
 @end

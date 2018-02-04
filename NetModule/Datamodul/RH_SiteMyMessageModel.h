@@ -7,7 +7,7 @@
 //
 
 #import "RH_BasicModel.h"
-
+#define RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage @"ChangeNotificationSiteMineMessage"
 @interface RH_SiteMyMessageModel : RH_BasicModel
 @property(nonatomic,strong,readonly)NSString   *mAdvisoryContent; //内容
 @property(nonatomic,strong,readonly)NSDate     *mAdvisoryTime;  //时间
@@ -18,4 +18,5 @@
 
 //---extend
 @property(nonatomic,strong)NSNumber *number;
+-(void)updataReadStatus:(BOOL)bflag ;
 @end
