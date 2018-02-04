@@ -31,7 +31,15 @@
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
         navigationBar.barStyle = UIBarStyleDefault ;
         if (GreaterThanIOS11System){
-            navigationBar.barTintColor = RH_NavigationBar_BackgroundColor;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
         }else
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;

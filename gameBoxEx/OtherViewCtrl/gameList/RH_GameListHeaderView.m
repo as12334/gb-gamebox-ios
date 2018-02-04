@@ -72,7 +72,19 @@
 {
     if (!_selectionIndicater) {
         _selectionIndicater = [[CALayer alloc] init];
-        _selectionIndicater.backgroundColor = colorWithRGB(27, 117, 217).CGColor;
+        
+        if ([THEMEV3 isEqualToString:@"green"]){
+            _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Green.CGColor;
+           
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
+            
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+             _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        }else{
+             _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor.CGColor;
+        }
+
         [self.collectionTypeView.layer addSublayer:_selectionIndicater];
     }
     
@@ -88,7 +100,17 @@
     }
     NSIndexPath *index = self.collectionTypeView.indexPathsForSelectedItems.firstObject;
     RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:index]);
-    [cell setTitleLabelTextColor:colorWithRGB(27, 117, 217)];
+    if ([THEMEV3 isEqualToString:@"green"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Green];
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Red];
+        
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Black];
+    }else{
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor];
+    }
+    
     
     [CATransaction begin];
     [CATransaction setDisableActions:!indexPathForSelectedItem || !animated];

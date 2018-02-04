@@ -36,7 +36,16 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
-    self.labRemark.backgroundColor = colorWithRGB(27, 117, 217) ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }else{
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    }
+    
     self.labRemark.textColor = [UIColor whiteColor] ;
     self.labRemark.font = [UIFont systemFontOfSize:14.0f] ;
     self.labRemark.layer.cornerRadius = 4.0f ;
