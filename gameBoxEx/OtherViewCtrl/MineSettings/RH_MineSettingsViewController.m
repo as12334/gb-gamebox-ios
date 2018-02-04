@@ -83,7 +83,7 @@
 {
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            if (error.code==1){
+            if (error.code==RH_API_ERRORCODE_USER_LOGOUT){
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
                 [self backBarButtonItemHandle] ;
