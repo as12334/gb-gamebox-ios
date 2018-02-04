@@ -9,6 +9,7 @@
 #import "RH_MPSiteSystemNoticeCell.h"
 #import "coreLib.h"
 #import "RH_SiteMessageModel.h"
+#define RHNT_AlreadyReadStatusChangeNotification @"AlreadyReadStatusChangeNotification"
 @interface RH_MPSiteSystemNoticeCell()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -55,6 +56,7 @@
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
@@ -97,10 +99,21 @@
         [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.readMark.image = [UIImage imageNamed:@"mearkRead"];
     }
-    
+    [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        RH_SiteMessageModel *model1 = note.object;
+        if (model1.mRead == YES) {
+            [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
+            self.readMark.image = [UIImage imageNamed:@""];
+        }
+    }];
 }
 - (IBAction)chooseEditBtn:(id)sender {
     self.block();
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RHNT_AlreadyReadStatusChangeNotification object:nil];
 }
 
 @end

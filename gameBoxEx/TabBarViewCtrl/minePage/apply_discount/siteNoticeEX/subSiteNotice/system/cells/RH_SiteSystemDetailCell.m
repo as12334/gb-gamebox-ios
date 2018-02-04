@@ -85,6 +85,7 @@
 //    self.contextLabel.text = model.mContent;
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
     
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

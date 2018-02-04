@@ -1773,7 +1773,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     //特点  error 信息，统一处理 。
-    if ((error.code==600 || error.code==1) &&
+    if ((error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
         serviceType!=ServiceRequestTypeV3UserLoginOut &&
         serviceType!=ServiceRequestTypeV3HomeInfo)
     {

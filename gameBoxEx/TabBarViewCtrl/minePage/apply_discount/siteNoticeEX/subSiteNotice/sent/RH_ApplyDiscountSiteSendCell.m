@@ -19,7 +19,9 @@
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong,readonly)UIScrollView *scrollView;
 @property(nonatomic,copy)NSString  *typeStr;
+@property(nonatomic,strong)RH_SendMessageVerityModel *sendMessageVerityModel;
 @end
+
 @implementation RH_ApplyDiscountSiteSendCell
 {
     BOOL  keyboardMark;
@@ -32,11 +34,8 @@
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-    
     [self addSubview:self.scrollView];
-    
     [self.scrollView addSubview:self.sendView];
-    
     __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
     self.sendView.block = ^(CGRect frame){
         [weakSelf selectedSendViewdiscountType:frame];
@@ -50,7 +49,18 @@
         }
         else if (contentStr.length<10||contentStr.length>2000){
             showMessage(weakSelf, @"发送失败",@"内容在10个字以上2000字以内");
+        }else if (self.sendMessageVerityModel.mIsOpenCaptcha == YES)
+        {
+           if([codeStr isEqualToString:@""])
+            {
+                showMessage(weakSelf,@"发送失败", @"请输入验证码");
+            }
+            else if (codeStr.length != 4)
+            {
+                showMessage(weakSelf,@"发送失败", @"请输入正确格式的验证码");
+            }
         }
+        
         else{
             [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
             [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
@@ -208,6 +218,7 @@
         RH_SendMessageVerityModel *sendModel = ConvertToClassPointer(RH_SendMessageVerityModel, data);
         self.listView.sendModel = sendModel;
         self.sendView.sendModel = sendModel;
+        self.sendMessageVerityModel = sendModel;
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {

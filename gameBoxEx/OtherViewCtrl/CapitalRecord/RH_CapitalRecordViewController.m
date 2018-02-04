@@ -16,6 +16,7 @@
 #import "RH_CapitalPulldownListView.h"
 #import "RH_CapitalQuickSelectView.h"
 #import "RH_API.h"
+#import "RH_NavigationUserInfoView.h"
 
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
@@ -29,6 +30,7 @@
 @synthesize capitalBottomView = _capitalBottomView               ;
 @synthesize listView =_listView;
 @synthesize quickSelectView = _quickSelectView;
+
 
 -(BOOL)isSubViewController
 {
@@ -58,9 +60,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title =@"资金记录";
+    [self setNeedUpdateView];
     [self setupUI] ;
 }
 
+-(void)updateView
+{
+    if (self.appDelegate.isLogin){
+        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
+        [self startUpdateData] ;
+        
+    }else{
+        self.navigationBarItem.rightBarButtonItems = @[] ;
+    }
+}
 
 #pragma mark-
 -(void)setupUI

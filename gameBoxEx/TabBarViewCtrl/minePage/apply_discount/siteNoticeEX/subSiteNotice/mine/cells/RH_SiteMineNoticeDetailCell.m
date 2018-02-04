@@ -69,4 +69,15 @@
     // Configure the view for the selected state
 }
 
+-(NSString *)changeDateReturnStrFromDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:date];
+    return currentDateString;
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import "RH_BasicModel.h"
 
+#define RHNT_AlreadyReadStatusChangeNotification @"AlreadyReadStatusChangeNotification"
+
 @interface RH_SiteMessageModel : RH_BasicModel
 @property(nonatomic,assign,readonly)NSInteger mId;
 @property(nonatomic,strong,readonly)NSString *mContent;
@@ -19,5 +21,7 @@
 //@property(nonatomic,strong,readonly)NSString *mMarkString;
 //---extend
 @property(nonatomic,strong)NSNumber *number;
+
+-(void)updataReadStatus:(BOOL)bflag ;
 
 @end
