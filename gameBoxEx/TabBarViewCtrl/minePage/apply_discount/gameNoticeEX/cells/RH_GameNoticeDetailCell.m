@@ -38,7 +38,7 @@
     CGSize size = [detaileModel.mContext boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     // ceilf()向上取整函数, 只要大于1就取整数2. floor()向下取整函数, 只要小于2就取整数1.
     //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
-    return 60+size.height;
+    return 80+size.height;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -54,20 +54,9 @@
     paraStyle.tailIndent = 0;
     NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@0.f
                           };
-    if (detaileModel.mContext&&detaileModel.mContext.length <20) {
-        NSString *contentStr = [NSString stringWithFormat:@"%@",detaileModel.mContext];
+    NSString *contentStr = [NSString stringWithFormat:@"%@",detaileModel.mContext];
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
-        self.titleLabel.attributedText = attributeStr;
-    }
-    else if (detaileModel.mContext&&detaileModel.mContext.length >40) {
-        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[detaileModel.mContext substringToIndex:40]];
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
-        self.titleLabel.attributedText = attributeStr;
-    }else
-    {
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",detaileModel.mContext] attributes:dic];
-        self.titleLabel.attributedText = attributeStr;
-    }
+    self.titleLabel.attributedText = attributeStr;
     self.timeLabel.text = dateStringWithFormatter(detaileModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
