@@ -285,6 +285,10 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             showMessage(self.view, nil, @"请输入验证码！");
             return ;
         }
+        if ([oldPassword isEqualToString:newPassword]) {
+            showMessage(self.view, nil, @"新密码不能和旧密码一样！");
+            return ;
+        }
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
         [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
                                                     originPassword:oldPassword
