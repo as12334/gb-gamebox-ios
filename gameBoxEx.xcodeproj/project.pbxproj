@@ -453,6 +453,8 @@
 		B860F92A201DB699000EE66A /* RH_StaticAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F929201DB699000EE66A /* RH_StaticAlertView.m */; };
 		B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */; };
 		B879E07A20231806007B3D45 /* RH_BankCardNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07920231806007B3D45 /* RH_BankCardNumberCell.m */; };
+		B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07D2026BC22007B3D45 /* RH_BankCardRealNameCell.m */; };
+		B879E0812026D9C0007B3D45 /* RH_BankCardLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E0802026D9C0007B3D45 /* RH_BankCardLocationCell.m */; };
 		B87A6B182005EA8100C9788F /* RH_ModifyPasswordCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */; };
 		B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */; };
 		B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87A6B1C2006405100C9788F /* RH_PromoListController.m */; };
@@ -1356,6 +1358,10 @@
 		B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordNameCell.m; sourceTree = "<group>"; };
 		B879E07820231806007B3D45 /* RH_BankCardNumberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardNumberCell.h; sourceTree = "<group>"; };
 		B879E07920231806007B3D45 /* RH_BankCardNumberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardNumberCell.m; sourceTree = "<group>"; };
+		B879E07C2026BC22007B3D45 /* RH_BankCardRealNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardRealNameCell.h; sourceTree = "<group>"; };
+		B879E07D2026BC22007B3D45 /* RH_BankCardRealNameCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardRealNameCell.m; sourceTree = "<group>"; };
+		B879E07F2026D9C0007B3D45 /* RH_BankCardLocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BankCardLocationCell.h; sourceTree = "<group>"; };
+		B879E0802026D9C0007B3D45 /* RH_BankCardLocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BankCardLocationCell.m; sourceTree = "<group>"; };
 		B87A6B152005EA8100C9788F /* RH_ModifyPasswordCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCodeCell.h; sourceTree = "<group>"; };
 		B87A6B162005EA8100C9788F /* RH_ModifyPasswordCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCodeCell.m; sourceTree = "<group>"; };
 		B87A6B172005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ModifyPasswordCodeCell.xib; sourceTree = "<group>"; };
@@ -3177,6 +3183,10 @@
 		B87A6B2C2008949200C9788F /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				B879E07F2026D9C0007B3D45 /* RH_BankCardLocationCell.h */,
+				B879E0802026D9C0007B3D45 /* RH_BankCardLocationCell.m */,
+				B879E07C2026BC22007B3D45 /* RH_BankCardRealNameCell.h */,
+				B879E07D2026BC22007B3D45 /* RH_BankCardRealNameCell.m */,
 				B87A6B2D20089CE500C9788F /* RH_BankCardCell.h */,
 				B87A6B2E20089CE500C9788F /* RH_BankCardCell.m */,
 				B879E07820231806007B3D45 /* RH_BankCardNumberCell.h */,
@@ -3795,6 +3805,7 @@
 				F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */,
 				F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */,
 				A010A0901F879B23004E6EF4 /* RH_SimpleWebViewController.m in Sources */,
+				B879E0812026D9C0007B3D45 /* RH_BankCardLocationCell.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
@@ -3913,6 +3924,7 @@
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
+				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
 				A0109FD31F8788FF004E6EF4 /* DNImagePickerController.m in Sources */,
 				A0109FD41F8788FF004E6EF4 /* DNPhotoBrowser.m in Sources */,
 				A0109FD51F8788FF004E6EF4 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
@@ -4210,7 +4222,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wlf6=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

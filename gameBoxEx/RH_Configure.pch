@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      0
+#define IS_TEST_SERVER_ENV                      1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -87,7 +87,7 @@
 
 #elif _rf80 //TEST01[21]
 
-//#define TEST_DOMAIN         @"test01.ccenter.test.so"
+//#define TEST_DOMAIN         @"test02.ccenter.test.so"
 //@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
