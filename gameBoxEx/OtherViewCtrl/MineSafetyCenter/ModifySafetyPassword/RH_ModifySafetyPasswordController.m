@@ -177,7 +177,16 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 {
     if (!_modifyButton){
         _modifyButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
-        _modifyButton.backgroundColor = colorWithRGB(27, 117, 217);
+        if ([THEMEV3 isEqualToString:@"green"]){
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor;
+        }
+        
         _modifyButton.layer.cornerRadius = 5;
         _modifyButton.clipsToBounds = YES;
         [_modifyButton.titleLabel setFont:[UIFont systemFontOfSize:14]];

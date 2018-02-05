@@ -32,7 +32,16 @@
     self.labTitle.textColor = colorWithRGB(51, 51, 51) ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f] ;
     self.labTitle.adjustsFontSizeToFitWidth = YES;
-    self.btnSearch.backgroundColor = colorWithRGB(44, 103, 182) ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor;
+    }
+    
     [self.btnSearch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
     self.btnSearch.layer.cornerRadius = 4.0f ;
     self.btnSearch.layer.masksToBounds = YES ;

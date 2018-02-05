@@ -26,13 +26,26 @@
 //        self.segmentedControl.layer.cornerRadius = 6.f;
 //        self.segmentedControl.clipsToBounds = YES;
         self.segmentedControl.layer.borderWidth=1;
-        self.segmentedControl.layer.borderColor= colorWithRGB(23, 102, 187).CGColor;
+        if ([THEMEV3 isEqualToString:@"green"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Green.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Red.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Black.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor;
+        }
+        
         self.segmentedControl.layer.masksToBounds=YES;
         self.segmentedControl.layer.cornerRadius=6;
         //设置frame
         [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2,15, 288, 33)];
         [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];
-        self.segmentedControl.tintColor = colorWithRGB(23, 102, 187);
+        
         UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                                forKey:NSFontAttributeName];

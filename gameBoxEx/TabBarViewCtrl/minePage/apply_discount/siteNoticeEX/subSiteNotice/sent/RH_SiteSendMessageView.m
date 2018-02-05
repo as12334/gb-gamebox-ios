@@ -60,12 +60,24 @@
     self.contenTextView.layer.borderWidth = 1.f;
     self.contenTextView.clipsToBounds = YES;
     self.confimBtn.layer.cornerRadius = 3.f;
-    self.confimBtn.backgroundColor = colorWithRGB(23, 102, 187);
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
+    
     self.confimBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [self.confimBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.confimBtn.layer.masksToBounds = YES;
     self.cancelBtn.layer.cornerRadius = 3.f;
-    self.cancelBtn.backgroundColor = colorWithRGB(23, 102, 187);
     self.cancelBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [self.cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.cancelBtn.layer.masksToBounds = YES;
