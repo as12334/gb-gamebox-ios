@@ -244,6 +244,9 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     _addBankCardBankCardNumber = self.bankCardNumCell.textField.text;
     _addBankCardMasterBankName = self.bankLocationCell.textField.text;
     
+    if (MineSettingInfo.mRealName.length > 0) {
+        _addBankCardRealName = MineSettingInfo.mRealName;
+    }
     if (_addBankCardRealName.length==0){
         showAlertView(@"提示信息", @"银行卡姓名不能为空！") ;
         return ;
