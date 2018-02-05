@@ -853,6 +853,11 @@
             NSLog(@"JSToOc :%@------ gotoPromoRecordPage",NSStringFromClass([self class])) ;
             [self showViewController:[RH_PromoListController viewController] sender:self] ;
         };
+        
+        jsContext[@"gotoLoginPage"] = ^(){/*** 跳到login界面 ）*/
+            NSLog(@"JSToOc :%@------ gotoLoginPage",NSStringFromClass([self class])) ;
+            [self showViewController:[RH_LoginViewControllerEx viewController] sender:self] ;
+        };
     }
 }
 
