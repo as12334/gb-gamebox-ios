@@ -44,7 +44,19 @@
         label_Notice.textAlignment = NSTextAlignmentCenter;
         
         self.cancelButton = [[UIButton alloc] init];
-        [self.cancelButton setImage:ImageWithName(@"home_announce_close") forState:UIControlStateNormal];
+        if ([THEMEV3 isEqualToString:@"green"]){
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_green") forState:UIControlStateNormal];
+            
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_red") forState:UIControlStateNormal];
+            
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_black") forState:UIControlStateNormal];
+            
+        }else{
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
+        }
+        
         [self addSubview:self.cancelButton];
         self.cancelButton.whc_TopSpaceToView(5, contentView).whc_CenterX(0).whc_Width(70).whc_Height(70);
         self.cancelButton.layer.cornerRadius = 35;
