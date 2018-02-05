@@ -246,7 +246,7 @@
         }
         //在这里判断状态码， 如果冻结，就直接退出APP
         //TODO
-        if (error.code == 606) {
+        if (error.code == RH_API_ERRORCODE_SESSION_TAKEOUT) {
             UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 [self.appDelegate updateLoginStatus:false];
@@ -256,9 +256,14 @@
             otherButtonTitles:nil, nil] ;
             [alert show] ;
         }
-//        if (error.code == 1) {
-//            showErrorMessage(self.view, error, @"");
-//        }
+        if (error.code == RH_API_ERRORCODE_USER_LOGOUT) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.appDelegate updateLoginStatus:false];
+        }
+        if (error.code == RH_API_ERRORCODE_SESSION_EXPIRED) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.appDelegate updateLoginStatus:false];
+        }
     }
 }
 
