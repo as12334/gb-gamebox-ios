@@ -28,6 +28,7 @@
 #import "RH_NormalActivithyView.h"
 #import "RH_GameListViewController.h"
 #import "RH_ActivityStatusModel.h"
+
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
