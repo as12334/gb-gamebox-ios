@@ -25,13 +25,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UILabel *typeLab;
 @property (weak, nonatomic) IBOutlet UILabel *titleLba;
+@property (nonatomic, strong) UILabel *placeHolderLabel;
 
 @property (nonatomic, strong, readonly) RH_ApplyDiscountSiteSendCell *applyDiscountSiteSendCell;
 
 @end
 @implementation RH_SiteSendMessageView
-@synthesize applyDiscountSiteSendCell = _applyDiscountSiteSendCell;
 
+@synthesize applyDiscountSiteSendCell = _applyDiscountSiteSendCell;
+@synthesize placeHolderLabel = _placeHolderLabel;
 //-(instancetype)initWithCoder:(NSCoder *)aDecoder
 //{
 //    if (self = [super initWithCoder:aDecoder]) {
@@ -39,6 +41,8 @@
 //    }
 //    return self;
 //}
+
+
 -(void)awakeFromNib
 {
     [super awakeFromNib];
@@ -48,7 +52,7 @@
     self.titelField.delegate = self;
     self.contenTextView.returnKeyType = UIReturnKeyDone;
     self.contenTextView.delegate = self;
-    self.contenTextView.text = @"请输入内容";
+//    self.contenTextView.text = @"请输入内容";
     self.codeTextField.returnKeyType = UIReturnKeyDone;
     self.codeTextField.delegate = self;
 
@@ -59,6 +63,13 @@
     self.contenTextView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.contenTextView.layer.borderWidth = 1.f;
     self.contenTextView.clipsToBounds = YES;
+    _placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5,300, 20)];
+    
+    _placeHolderLabel.textAlignment = NSTextAlignmentLeft;
+    _placeHolderLabel.font = [UIFont systemFontOfSize:14];
+    _placeHolderLabel.textColor = [UIColor grayColor];
+    _placeHolderLabel.text = @"请输入内容";
+    [self.contenTextView addSubview:_placeHolderLabel];
     self.confimBtn.layer.cornerRadius = 3.f;
     if ([THEMEV3 isEqualToString:@"green"]){
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
@@ -117,11 +128,7 @@
     [self.titelField resignFirstResponder] ;
     [self.codeTextField resignFirstResponder] ;
     [self.contenTextView resignFirstResponder];
-    __weak typeof(self) weakSelf = self;
-    weakSelf.applyDiscountSiteSendCell.submitSuccessBlock = ^(NSString *titelStr, NSString *contenStr) {
-        self.titelField.text = titelStr;
-        self.contenTextView.text = contenStr;
-    };
+    
     //注册通知
    [[NSNotificationCenter defaultCenter] postNotificationName:@"noti1" object:nil];
     //信息发送成功将文本置为空
@@ -156,13 +163,22 @@
     [self.codeTextField resignFirstResponder] ;
     return YES;
 }
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    self.contenTextView.text = nil;
-    return YES;
-}
+//-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+//{
+//    self.contenTextView.text = nil;
+//    return YES;
+//}
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    if (![text isEqualToString:@""])
+    {
+        _placeHolderLabel.text = @"";
+    }
+    //range.location == 0 && range.length == 1 表示输入的是第一个字符
+    if ([text isEqualToString:@""] && range.location == 0 && range.length == 1)
+    {
+        _placeHolderLabel.text = @"请输入内容";
+    }
     if ([text isEqualToString:@"\n"]) {
         [self.contenTextView resignFirstResponder];
         return NO;

@@ -67,7 +67,6 @@
             [UIView animateWithDuration:0.5 animations:^{
                 weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
             }];
-//            weakSelf.submitSuccessBlock(@"",@"");
            
             [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
         }
@@ -192,7 +191,7 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无发送消息数据记录"] ;
+                                        detailText:@"您暂无发送消息记录"] ;
     return YES ;
     
 }
