@@ -89,7 +89,7 @@
     [self.indicator startAnimating] ;
     self.label_indicator.text = @"正在获取验证码" ;
     
-    [self.serviceRequest startV3GetSafetyVerifyCode] ;
+    [self.serviceRequest startGetVerifyCode] ;
 }
 
 -(RH_ServiceRequest *)serviceRequest
@@ -104,7 +104,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3SafetyObtainVerifyCode){
+    if (type == ServiceRequestTypeObtainVerifyCode){
         NSLog(@"%s", __func__);
         NSLog(@"%@", data);
         [self.indicator stopAnimating];
