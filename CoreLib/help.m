@@ -14,6 +14,7 @@
 #import <mach/mach.h>
 #import "SAMKeychain.h"
 #import "sys/utsname.h"
+#import "RH_UserInfoManager.h"
 
 #pragma mark -
 NSString * const defaultReuseDef = @"defaultReuseDef";
@@ -790,11 +791,27 @@ NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     }
-
+    
+    if ([RH_UserInfoManager shareUserManager].timeZone){
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[RH_UserInfoManager shareUserManager].timeZone]] ;
+    }
+    
     dateFormatter.dateFormat = dateFormat;
     return [dateFormatter stringFromDate:date];
 }
 
+NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone)
+{
+    if (date == nil || dateFormat.length == 0) {
+        return nil;
+    }
+    
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:timezone]] ;
+    
+    dateFormatter.dateFormat = dateFormat;
+    return [dateFormatter stringFromDate:date];
+}
 
 #pragma mark-
 NSArray * indexPathsFromRange(NSInteger section,NSRange range) {

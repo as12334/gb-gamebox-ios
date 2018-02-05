@@ -58,6 +58,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
 }
 
+-(void)updateTimeZone:(NSString*)timeZone
+{
+    if (timeZone.length){
+        NSString *timeStr = [timeZone stringByReplacingOccurrencesOfString:@":" withString:@""] ;
+        _timeZone = timeStr ;
+    }
+}
 #pragma mark -
 -(RH_UserSafetyCodeModel *)userSafetyInfo
 {

@@ -114,7 +114,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 -(void)withdrawCashTwoCellDidTouchDONE:(RH_WithdrawCashTwoCell*)withdrawCashCell
 {
-    if (self.cashCell.textField.text.length){
+    if (self.cashCell.textField.text.trim.length){
         CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
         
         if (amountValue <self.withDrawModel.mWithdrawMinNum ||
@@ -132,6 +132,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }
         
         [self setNeedUpdateView] ;
+    }else{
+        showMessage(self.view, @"", @"请输入取款金额");
+        [self setNeedUpdateView] ;
+        return;
     }
 }
 
@@ -180,7 +184,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }
     }
     
-    if (self.cashCell.textField.text.length == 0 ) {
+    if (self.cashCell.textField.text.trim.length == 0 ) {
         showMessage(self.view, @"", @"请输入取款金额");
         return;
     }
@@ -454,25 +458,26 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         switch (indexPath.item) {
             case 0: //手续费
             {
-                return [NSString stringWithFormat:@"%.02f",auditMap.mCounterFee] ;
+                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mCounterFee]:@"" ;
+                    
             }
                 break;
             
             case 1: ////行政费
             {
-                return [NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee] ;
+                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee]:@"" ;
             }
                 break;
             
             case 2: //扣除优惠
             {
-                return [NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable] ;
+                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable]:@"" ;
             }
                 break;
             
             case 3: //最终可取
             {
-                return [NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw] ;
+                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw]:@"" ;
             }
                 break;
                 

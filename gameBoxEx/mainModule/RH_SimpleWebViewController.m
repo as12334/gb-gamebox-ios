@@ -806,6 +806,34 @@
     jsContext[@"demoEnter"] = ^() {
         [self performSelectorOnMainThread:@selector(demoEnter) withObject:self waitUntilDone:NO] ;
     };
+    
+#pragma mark -  V3 JS Function
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        jsContext[@"notifyAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
+            NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
+//            NSArray *args = [JSContext currentArguments];
+        };
+        
+        jsContext[@"refreshPage"] = ^(){/*** 刷新当前页面*/
+            NSLog(@"JSToOc :%@------ refreshPage",NSStringFromClass([self class])) ;
+        };
+        
+        jsContext[@"goBackPage"] = ^(){/*** 如果有上一级页面，就返回上一级 如果没有上一级页面，就不返回，而是提示用户*/
+            NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
+        };
+        
+        jsContext[@"gotoDepositPage"] = ^(){/*** 跳入存款页面*/
+            NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
+        };
+        
+        jsContext[@"gotoCapitalRecordPage"] = ^(){/*** 跳到资金记录页面*/
+            NSLog(@"JSToOc :%@------ gotoCapitalRecordPage",NSStringFromClass([self class])) ;
+        };
+        
+        jsContext[@"startNewWebView"] = ^(){/*** 打开新的webview（打开一个新的弹窗，并且根据传入的url进行加载）*/
+            NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
+        };
+    }
 }
 
 #pragma mark- demoEnter -
