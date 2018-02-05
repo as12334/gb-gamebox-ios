@@ -27,11 +27,6 @@
 @synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
 #pragma mark tableView的上部分的选择模块
 
--(void)awakeFromNib
-{
-    [super awakeFromNib];
-}
-
 -(RH_MPSiteMessageHeaderView *)headerView
 {
     if (!_headerView) {

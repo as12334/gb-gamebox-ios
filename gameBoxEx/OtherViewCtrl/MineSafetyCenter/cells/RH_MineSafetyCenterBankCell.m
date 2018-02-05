@@ -31,7 +31,15 @@
     self.selectionColor = RH_Cell_DefaultHolderColor;
     
     self.noBankLabel.font = [UIFont systemFontOfSize:14.f];
-    self.noBankLabel.textColor = colorWithRGB(23, 102, 187);
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.noBankLabel.textColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.noBankLabel.textColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.noBankLabel.textColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.noBankLabel.textColor = RH_NavigationBar_BackgroundColor;
+    }
     
     self.bankImage.whc_LeftSpaceToView(0, self.leftBankTitle).whc_CenterY(0).whc_WidthAuto().whc_Height(30);
     self.bankCardNumber.whc_LeftSpaceToView(5, self.bankImage).whc_CenterY(0).whc_Width(60).whc_TopSpace(12);

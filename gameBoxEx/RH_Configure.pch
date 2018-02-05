@@ -1519,7 +1519,7 @@
 #define CODE    @"wqck"
 #define S        @"54e87151f9fc49e18e19292fbf4c68d1"
 #define SID        @"353"
-#define THEME    @"default.skin"
+#define THEME    @"green.skin"
 #define SITE_TYPE    @"integrated"
 
 
