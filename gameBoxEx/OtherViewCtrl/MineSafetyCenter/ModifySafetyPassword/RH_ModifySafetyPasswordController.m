@@ -130,7 +130,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 }
 
 #pragma mark -
--(RH_ModifyPasswordCell *)userNameCell
+-(RH_ModifyPasswordNameCell *)userNameCell
 {
     return ConvertToClassPointer(RH_ModifyPasswordNameCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
 }
@@ -376,7 +376,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         if (data==nil){
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"获取安全初始化信息失败"];
         }else{
-        [self setNeedUpdateView] ;
+            [self setNeedUpdateView] ;
         }
     }else if (type == ServiceRequestTypeV3SetRealName){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
@@ -387,7 +387,10 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"已设定安全密码":@"已更新安全密码", nil);
             [self backBarButtonItemHandle] ;
+            [serviceRequest startV3UserSafetyInfo];
         }] ;
+    }else if (type == ServiceRequestTypeV3UserSafeInfo) {
+        [self backBarButtonItemHandle];
     }
 }
 
