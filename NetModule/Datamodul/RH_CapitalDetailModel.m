@@ -35,6 +35,11 @@
         _mTransactionWay = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONWAY];
         _mTransactionWayName = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME];
         _mUsername = [info stringValueForKey:RH_GP_CAPITALDETAIL_USERNAME];
+        _mTransferInto = [info stringValueForKey:@"transferInto"];
+        _mTransferOut = [info stringValueForKey:@"transferOut"];
+        _mRechargeAmount = [info stringValueForKey:@"rechargeAmount"];
+        _mWithdrawMoney = [info stringValueForKey:@"withdrawMoney"];
+        _mBankCodeName = [info stringValueForKey:@"bankCodeName"];
     }
     return self;
 }
@@ -49,5 +54,9 @@
     }
     
     return _showTransactionMoney ;
+}
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
 }
 @end
