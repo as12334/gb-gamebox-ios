@@ -112,7 +112,6 @@
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
 {
-//    return;
     
     for (int i =0; i<self.siteModelArray.count; i++) {
         RH_SiteMessageModel *siteModel = self.siteModelArray[i];
@@ -241,11 +240,11 @@
                 siteModel.number = @0;
                 [self.siteModelArray addObject:siteModel];
             }
+            self.headerView.allChoseBtn.userInteractionEnabled = YES;
         }
         else
         {
-            //没有系统消息的通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"nositeSysMessageData_notofication" object:@[@1]];
+            self.headerView.allChoseBtn.userInteractionEnabled = NO;
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
         [self.contentTableView reloadData];

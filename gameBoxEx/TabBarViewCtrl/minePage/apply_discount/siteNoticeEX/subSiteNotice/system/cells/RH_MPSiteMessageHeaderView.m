@@ -59,16 +59,7 @@
         [self.allChoseBtn setTitle:@"全选" forState:UIControlStateNormal];
         self.allSelectedImageView.image = nil;
     }
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"noMyMessagedata_Notification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        NSArray *arr = note.object;
-        if ([arr containsObject: @2]) {
-             self.allChoseBtn.userInteractionEnabled = NO;
-        }else
-        {
-            self.allChoseBtn.userInteractionEnabled = YES;
-        }
-       
-    }];    
+    
 }
 -(void)setStatusMark:(BOOL)statusMark
 {
@@ -112,8 +103,5 @@
         self.choceMark=YES;
     }
 }
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"noMyMessagedata_Notification"  object:nil];
-}
+
 @end
