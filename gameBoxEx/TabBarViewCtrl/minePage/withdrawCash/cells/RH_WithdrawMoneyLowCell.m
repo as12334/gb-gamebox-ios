@@ -44,6 +44,15 @@
     [self.label_Notice setAttributedText:attributedString];
     self.label_Notice.textAlignment = NSTextAlignmentCenter;
     self.button_Save.layer.cornerRadius = 5.0;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
     self.clipsToBounds = YES;
     [self.button_Save addTarget:self action:@selector(buttonDidClick) forControlEvents:UIControlEventTouchUpInside];
 }
