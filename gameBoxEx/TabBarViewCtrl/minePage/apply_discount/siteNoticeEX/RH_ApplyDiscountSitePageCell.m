@@ -53,7 +53,15 @@
             [btn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             if (i==selectedIndex) {
-                btn.backgroundColor = colorWithRGB(23, 102, 187);
+                if ([THEMEV3 isEqualToString:@"green"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+                }else if ([THEMEV3 isEqualToString:@"red"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+                }else if ([THEMEV3 isEqualToString:@"black"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+                }else{
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor;
+                }
                 btn.selected = YES;
                 self.chooseBtn = btn;
             }
@@ -75,7 +83,17 @@
         self.chooseBtn.selected = !self.chooseBtn.selected;
         self.chooseBtn.backgroundColor = colorWithRGB(226, 226, 226);
         button.selected = !button.selected;
-        button.backgroundColor = colorWithRGB(23, 102, 187);
+        if ([THEMEV3 isEqualToString:@"green"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            button.backgroundColor = RH_NavigationBar_BackgroundColor;
+        }
+
+//        button.backgroundColor = colorWithRGB(23, 102, 187);
         self.chooseBtn = button;
         self.pageView.dispalyPageIndex = button.tag-10;
     }

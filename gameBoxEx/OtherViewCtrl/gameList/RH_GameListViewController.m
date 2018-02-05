@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"AG电子";
+    self.title = _lotteryApiModel.mName?:@"列表" ;
     [self loadingIndicateViewDidTap:nil] ;
 }
 
