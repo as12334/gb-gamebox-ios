@@ -28,6 +28,9 @@
 @property(nonatomic,strong,readonly)NSString *mTransactionWay;
 @property(nonatomic,strong,readonly)NSString *mTransactionWayName;
 @property(nonatomic,strong,readonly)NSString *mUsername;
+@property(nonatomic,strong,readonly)NSString *mTransferInto;
+@property(nonatomic,strong,readonly)NSString *mTransferOut;
+
 
 //extend
 @property(nonatomic,strong,readonly)NSString *showTransactionMoney;

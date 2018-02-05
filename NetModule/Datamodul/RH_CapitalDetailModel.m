@@ -35,6 +35,8 @@
         _mTransactionWay = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONWAY];
         _mTransactionWayName = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME];
         _mUsername = [info stringValueForKey:RH_GP_CAPITALDETAIL_USERNAME];
+        _mTransferInto = [info stringValueForKey:@"transferInto"];
+        _mTransferOut = [info stringValueForKey:@"transferOut"];
     }
     return self;
 }
