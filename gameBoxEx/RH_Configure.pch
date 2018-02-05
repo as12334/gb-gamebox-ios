@@ -1555,6 +1555,13 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _vyx1 //大大彩票
+
+#define CODE    @"vyx1"
+#define S        @"a52956857d670202ac6828b28c6daeb6"
+#define SID        @"360"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 
 #endif

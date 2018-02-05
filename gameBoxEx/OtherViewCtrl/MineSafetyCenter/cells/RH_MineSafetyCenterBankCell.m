@@ -47,6 +47,15 @@
         [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.showBankURL]]];
         if (bankModel.mBankCardNumber.length >9) {
             self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
+            if ([THEMEV3 isEqualToString:@"green"]){
+                self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor_Green;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor_Red;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor_Black;
+            }else{
+                self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor;
+            }
         }else
         {
             self.bankCardNumber.text =  [NSString stringWithFormat:@"%@",bankModel.mBankCardNumber ];

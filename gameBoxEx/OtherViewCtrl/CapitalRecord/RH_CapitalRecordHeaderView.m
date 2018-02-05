@@ -32,7 +32,7 @@
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor whiteColor] ;
     self.userInteractionEnabled = YES;
-    self.btnQuickSelect.backgroundColor = colorWithRGB(27, 117, 217);
+    
     [self.btnQuickSelect setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
     self.btnQuickSelect.layer.cornerRadius = 3.0f ;
     self.btnQuickSelect.layer.masksToBounds = YES ;
@@ -64,7 +64,19 @@
     view_Line.whc_TopSpaceToView(15, stackView).whc_LeftSpace(10).whc_RightSpace(0).whc_Height(1);
     view_Line.backgroundColor = colorWithRGB(226, 226, 226);
 
-    self.serachBtn.backgroundColor = colorWithRGB(27, 117, 217);
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
     self.serachBtn.layer.cornerRadius = 3.0f;
     self.serachBtn.layer.masksToBounds = YES;
     self.serachBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];

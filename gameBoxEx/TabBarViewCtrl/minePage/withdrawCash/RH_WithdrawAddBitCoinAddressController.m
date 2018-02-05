@@ -37,7 +37,19 @@
     
     self.button_Reset.whc_TopSpaceToView(20, self.textF).whc_LeftSpaceEqualView(self.textF).whc_Height(44).whc_WidthEqualViewRatio(self.textF, 0.45);
     self.button_Submit.whc_TopSpaceToView(20, self.textF).whc_RightSpaceEqualView(self.textF).whc_Height(44).whc_WidthEqualViewRatio(self.textF, 0.45);
-    [self.button_Reset setBackgroundColor:colorWithRGB(27, 117, 217)];
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor;
+        self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
     self.button_Reset.layer.cornerRadius = 5;
     self.button_Reset.clipsToBounds = YES;
     [self.button_Reset setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
