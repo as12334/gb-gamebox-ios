@@ -542,7 +542,6 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     return backgroundView ;
 }
 
-
 -(void)_calendarBackgroupViewTapGestureHandle
 {
     [self hideCalendarViewWithAnimated:YES] ;
