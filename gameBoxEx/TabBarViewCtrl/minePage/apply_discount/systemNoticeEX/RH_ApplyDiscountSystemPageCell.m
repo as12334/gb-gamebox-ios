@@ -388,7 +388,6 @@
     [comp setDay:lastDay + lastDiff];
     NSDate *lastDayOfWeek = [calendar dateFromComponents:comp];
     NSArray *dateArr = @[firstDayOfWeek,lastDayOfWeek];
-    // 22 28
     return dateArr;
 }
 

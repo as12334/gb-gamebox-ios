@@ -125,8 +125,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                   MinDate:nil
-                   MaxDate:nil
+                   MinDate:[[NSDate date] dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.startDate = returnDate ;
               }] ;
@@ -136,8 +136,8 @@
 {
     [self showCalendarView:@"设置截止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                   MinDate:nil
-                   MaxDate:nil
+                   MinDate:[[NSDate date] dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.endDate = returnDate ;
               }] ;

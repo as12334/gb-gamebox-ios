@@ -58,7 +58,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    NSArray *array = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+    NSArray *array = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近7天",@"最近30天"];
     cell.textLabel.text = array[indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     cell.textLabel.textColor = colorWithRGB(153, 153, 153);
