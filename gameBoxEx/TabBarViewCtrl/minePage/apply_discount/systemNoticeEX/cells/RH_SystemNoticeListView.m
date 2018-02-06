@@ -62,7 +62,6 @@
     cell.textLabel.text = array[indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     cell.textLabel.textColor = colorWithRGB(153, 153, 153);
-   
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
