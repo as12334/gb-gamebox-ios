@@ -43,6 +43,7 @@
 //    [self.serviceRequest startV3LoadDiscountActivityType] ;
     
     [self createUI];
+    self.minDate = nil;
 }
 -(void)createUI{
     self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 63);

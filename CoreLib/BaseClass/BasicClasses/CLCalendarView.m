@@ -131,6 +131,14 @@
         }
     }
 }
+
+-(void)setMinDate:(NSDate *)minDate
+{
+    if (_minDate != minDate) {
+        self.datePicker.minimumDate = minDate ;
+    }
+}
+
 -(UILabel*)labTitle
 {
     if (!_labTitle){

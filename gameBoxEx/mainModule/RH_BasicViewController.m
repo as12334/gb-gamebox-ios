@@ -560,6 +560,7 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
 
     CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr] ;
     [self hideCalendarViewWithAnimated:NO] ;
+    shareCalendarView.minDate = _minDate;
 
     _calendarCompleteBlock = completeBlock ;
     shareCalendarView.delegate = self ;
@@ -589,6 +590,7 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
                      } completion:^(BOOL finished) {
                          [self.view bringSubviewToFront:self.calendarBackgroundView] ;
                      }] ;
+    
 }
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated
