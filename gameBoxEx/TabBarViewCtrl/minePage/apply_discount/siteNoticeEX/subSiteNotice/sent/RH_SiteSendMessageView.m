@@ -135,6 +135,7 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:NSNotiCenterSubmitSuccessNT object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.titelField.text = @"";
         self.contenTextView.text = @"";
+        self.codeTextField.text = @"";
     }];
 }
 
@@ -154,6 +155,7 @@
 - (IBAction)cancelBtnClick:(id)sender {
     self.titelField.text = @"";
     self.contenTextView.text = @"";
+    self.codeTextField.text = @"";
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFrame:)){
@@ -207,4 +209,6 @@
         [self.delegate selectedCodeTextFieldAndChangedKeyboardFrame:self.codeTextField.frame];
     }
 }
+
+
 @end

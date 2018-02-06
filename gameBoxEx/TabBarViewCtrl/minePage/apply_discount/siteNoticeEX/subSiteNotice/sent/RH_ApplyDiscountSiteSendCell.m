@@ -22,6 +22,7 @@
 @property(nonatomic,strong)RH_SendMessageVerityModel *sendMessageVerityModel;
 @end
 
+
 @implementation RH_ApplyDiscountSiteSendCell
 {
     BOOL  keyboardMark;
@@ -34,6 +35,7 @@
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
+    [self.serviceRequest startV3AddApplyDiscountsVerify];
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.sendView];
     __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
@@ -58,24 +60,29 @@
             else if (codeStr.length != 4)
             {
                 showMessage(weakSelf,@"发送失败", @"请输入正确格式的验证码");
+            }else
+            {
+                [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
+                [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+                [UIView animateWithDuration:0.5 animations:^{
+                    weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
+                }];
+                [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
             }
         }
-        
         else{
             [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
             [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
             [UIView animateWithDuration:0.5 animations:^{
                 weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
             }];
-           
             [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
         }
     };
-    
-    [self.serviceRequest startV3AddApplyDiscountsVerify];
     CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
     [self setupPageLoadManagerWithdatasContext:context1] ;
     [self.loadingIndicateView hiddenView] ;
+  
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
