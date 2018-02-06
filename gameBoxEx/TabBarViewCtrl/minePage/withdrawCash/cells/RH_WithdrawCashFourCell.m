@@ -46,6 +46,15 @@
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     
     self.textLabel.text = context[@"title"];
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.textLabel.textColor = RH_NavigationBar_BackgroundColor;
+    }
     self.detailTextLabel.text = context[@"detailTitle"];
     
 }

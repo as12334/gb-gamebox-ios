@@ -62,7 +62,6 @@
     self.title =@"资金记录";
     [self setNeedUpdateView];
     [self setupUI] ;
-    self.minDate = [[NSDate date] dateWithMoveDay:-7];
 }
 
 -(void)updateView
@@ -386,6 +385,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.startDate = returnDate ;
               }] ;
@@ -394,6 +395,8 @@
 {
     [self showCalendarView:@"设置截止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.endDate = returnDate ;
               }] ;

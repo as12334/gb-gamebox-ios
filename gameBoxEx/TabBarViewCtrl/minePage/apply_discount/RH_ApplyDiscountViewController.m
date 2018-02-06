@@ -43,7 +43,6 @@
 //    [self.serviceRequest startV3LoadDiscountActivityType] ;
     
     [self createUI];
-    self.minDate = nil;
 }
 -(void)createUI{
     self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 63);
@@ -132,6 +131,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
@@ -142,6 +143,8 @@
 {
     [self showCalendarView:@"设置结束日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
@@ -153,6 +156,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
@@ -163,6 +168,8 @@
 {
     [self showCalendarView:@"设置结束日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");

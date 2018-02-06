@@ -153,19 +153,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         self.button_Submit.clipsToBounds = YES;
         [self.button_Submit setTitle:@"确认提交" forState:UIControlStateNormal];
         [self.button_Submit addTarget:self action:@selector(buttonConfirmHandle) forControlEvents:UIControlEventTouchUpInside];
-        if ([THEMEV3 isEqualToString:@"green"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
-        }else if ([THEMEV3 isEqualToString:@"red"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
-        }else if ([THEMEV3 isEqualToString:@"black"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
-        }else{
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
-        }
         self.button_Check = [UIButton new];
         [_footerView addSubview:self.button_Check];
         self.button_Check.whc_TopSpace(10).whc_RightSpace(5).whc_Height(20).whc_Width(70);
@@ -263,7 +250,24 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 {
     if (!_mainSegmentControl){
         _mainSegmentControl = [[UISegmentedControl alloc] init] ;
-        _mainSegmentControl.tintColor = colorWithRGB(27, 117, 217);
+        if ([THEMEV3 isEqualToString:@"green"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Green;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
+            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Red;
+            
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Black;
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        }else{
+            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor;
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
+        }
         [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
         [_mainSegmentControl insertSegmentWithTitle:@"比特币账户" atIndex:1 animated:YES];
         _mainSegmentControl.selectedSegmentIndex = 0;

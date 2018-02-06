@@ -226,6 +226,15 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 {
     if (!_addButton){
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
+        if ([THEMEV3 isEqualToString:@"green"]){
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor;
+        }
         _addButton.backgroundColor = colorWithRGB(27, 117, 217);
         _addButton.layer.cornerRadius = 5;
         _addButton.clipsToBounds = YES;

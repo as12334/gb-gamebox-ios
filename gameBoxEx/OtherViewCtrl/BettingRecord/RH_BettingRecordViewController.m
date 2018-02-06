@@ -38,7 +38,6 @@
     // Do any additional setup after loading the view.
     self.title =@"投注记录";
     [self setupUI] ;
-    self.minDate = [[NSDate date] dateWithMoveDay:-30];
 }
 
 -(BOOL)hasTopView
@@ -126,6 +125,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.startDate = returnDate ;
               }] ;
@@ -135,6 +136,8 @@
 {
     [self showCalendarView:@"设置截止日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                   MinDate:nil
+                   MaxDate:nil
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.endDate = returnDate ;
               }] ;

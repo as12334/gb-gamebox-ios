@@ -34,7 +34,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
     id _observeForSavaData ;
     NSMutableSet           * _needSavaDataKeys;
 }
-@property(nonatomic,strong)NSDate *minDate;
+
 @property(nonatomic,readonly,strong) RH_ServiceRequest *serviceRequest ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateView *contentLoadingIndicateView ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
@@ -67,6 +67,8 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @interface RH_BasicViewController (ShowCalendar)<CLCalendarViewDelegate>
 -(void)showCalendarView:(NSString*)title
          initDateString:(NSString*)dateStr
+                MinDate:(NSDate*)minDate
+                MaxDate:(NSDate*)maxDate
            comfirmBlock:(CalendaCompleteBlock)completeBlock;
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated ;

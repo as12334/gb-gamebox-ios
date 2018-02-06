@@ -18,9 +18,10 @@
 @end
 
 @interface CLCalendarView : CLBorderView
-@property(nonatomic,strong)NSDate *minDate;
 +(CLCalendarView*)shareCalendarView:(NSString*)title
-                        defaultDate:(NSString*)defaultDate  ;//yyyy-MM-dd HH:mm
+                        defaultDate:(NSString*)defaultDate  //yyyy-MM-dd HH:mm
+                            MinDate:(NSDate*)minDate
+                            MaxDate:(NSDate*)maxDate ;
 
 @property(nonatomic,weak) id<CLCalendarViewDelegate> delegate ;
 @end

@@ -22,6 +22,8 @@
 @property(nonatomic,readonly,strong) UIDatePicker *datePicker  ;
 @property(nonatomic,readonly,strong) UIButton *confirmButton ;
 @property(nonatomic,readonly,strong) UIButton *cancelButton ;
+@property(nonatomic,strong) NSDate *minDate ;
+@property(nonatomic,strong) NSDate *maxDate ;
 
 @property(nonatomic,strong) NSString *defaultDate       ;
 
@@ -36,6 +38,7 @@
 @synthesize cancelButton = _cancelButton                ;
 
 +(CLCalendarView*)shareCalendarView:(NSString*)title defaultDate:(NSString*)defaultDate
+                            MinDate:(NSDate*)minDate MaxDate:(NSDate*)maxDate
 {
     static CLCalendarView* _shareCalendarView = nil;
 
@@ -51,6 +54,8 @@
                                                                               350*BXScreenH/736)] ;
 
         _shareCalendarView.backgroundColor = colorWithRGB(245, 245, 245);
+        _shareCalendarView.minDate = minDate ;
+        _shareCalendarView.maxDate = maxDate ;
     });
 
     _shareCalendarView.labTitle.text = title?:@"日期设置" ;
@@ -132,12 +137,6 @@
     }
 }
 
--(void)setMinDate:(NSDate *)minDate
-{
-    if (_minDate != minDate) {
-        self.datePicker.minimumDate = minDate ;
-    }
-}
 
 -(UILabel*)labTitle
 {
@@ -214,7 +213,8 @@
 //        fmt.dateFormat = @"yyyy-MM-dd";
 //        NSDate *minDate = [fmt dateFromString:@"2018-1-20"];
 //        //设置日期最小值
-//        _datePicker.minimumDate = minDate;
+        _datePicker.minimumDate = self.minDate;
+        _datePicker.maximumDate = self.maxDate ;
         
 //        [_datePicker addTarget:self action:@selector(datePickerChangedHandle:) forControlEvents: UIControlEventValueChanged];
     }
