@@ -124,23 +124,23 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        if (self.pageLoadManager.currentDataCount){
-            return [RH_CapitalRecordDetailsCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-        }else{
-            CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
-            return height ;
-        }
+    if (self.pageLoadManager.currentDataCount){
+        return [RH_CapitalRecordDetailsCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+    }else{
+        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+        return height ;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-    RH_CapitalRecordDetailsCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalRecordDetailsCell defaultReuseIdentifier]] ;
-        [bettingRecordCell updateCellWithInfo:@{@"RH_CapitalInfoModel":_infoModel?:@""}
-                                      context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
-    return bettingRecordCell ;
-        }else{
-            return self.loadingIndicateTableViewCell ;
-        }
+        RH_CapitalRecordDetailsCell *bettingRecordCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_CapitalRecordDetailsCell defaultReuseIdentifier]] ;
+            [bettingRecordCell updateCellWithInfo:@{@"RH_CapitalInfoModel":_infoModel?:@""}
+                                          context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        return bettingRecordCell ;
+    }else{
+        return self.loadingIndicateTableViewCell ;
+    }
 }
 @end

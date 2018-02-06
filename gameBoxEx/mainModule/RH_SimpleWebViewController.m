@@ -20,7 +20,8 @@
 #import "MacroDef.h"
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
-
+#import "RH_CapitalRecordViewController.h"
+#import "RH_PromoListController.h"
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
@@ -806,6 +807,58 @@
     jsContext[@"demoEnter"] = ^() {
         [self performSelectorOnMainThread:@selector(demoEnter) withObject:self waitUntilDone:NO] ;
     };
+    
+#pragma mark -  V3 JS Function
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        jsContext[@"notifyAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
+            NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
+            [self.serviceRequest startV3UserInfo] ;
+        };
+        
+        jsContext[@"refreshPage"] = ^(){/*** 刷新当前页面*/
+            NSLog(@"JSToOc :%@------ refreshPage",NSStringFromClass([self class])) ;
+            [self performSelectorOnMainThread:@selector(reloadWebView) withObject:self waitUntilDone:YES] ;
+        };
+        
+        jsContext[@"goBackPage"] = ^(){/*** 如果有上一级页面，就返回上一级 如果没有上一级页面，就不返回，而是提示用户*/
+            NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
+            [self backButtonItemHandle:self] ;
+        };
+        
+        jsContext[@"gotoDepositPage"] = ^(){/*** 跳入存款页面*/
+            NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 0 ;
+        };
+        
+        jsContext[@"gotoCapitalRecordPage"] = ^(){/*** 跳到资金记录页面*/
+            NSLog(@"JSToOc :%@------ gotoCapitalRecordPage",NSStringFromClass([self class])) ;
+            [self showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
+        };
+        
+        jsContext[@"startNewWebView"] = ^(){/*** 打开新的webview（打开一个新的弹窗，并且根据传入的url进行加载）*/
+            NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            JSValue *customUrl;
+            if (args.count==0) {
+                return  ;
+            }
+            
+            customUrl = args[0] ;
+            self.appDelegate.customUrl = customUrl.toString;
+            [self showViewController:[RH_CustomViewController viewController] sender:self];
+        };
+        
+        jsContext[@"gotoPromoRecordPage"] = ^(){/*** 跳到我的优惠记录界面 ）*/
+            NSLog(@"JSToOc :%@------ gotoPromoRecordPage",NSStringFromClass([self class])) ;
+            [self showViewController:[RH_PromoListController viewController] sender:self] ;
+        };
+        
+        jsContext[@"gotoLoginPage"] = ^(){/*** 跳到login界面 ）*/
+            NSLog(@"JSToOc :%@------ gotoLoginPage",NSStringFromClass([self class])) ;
+            [self showViewController:[RH_LoginViewControllerEx viewController] sender:self] ;
+        };
+    }
 }
 
 #pragma mark- demoEnter -

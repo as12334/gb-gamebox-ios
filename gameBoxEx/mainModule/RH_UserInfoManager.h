@@ -34,6 +34,7 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property(nonatomic,strong,readonly) NSArray<RH_BankInfoModel*> *bankList ;
 @property(nonatomic,strong,readonly) RH_WithDrawModel *userWithDrawInfo ;
 @property(nonatomic,strong,readonly) NSMutableArray *domainCheckErrorList ;
+@property(nonatomic,strong,readonly) NSString *timeZone ;
 
 -(BOOL)hasLogin ;
 -(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo ;
@@ -56,6 +57,7 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 -(void)updateScreenLockFlag:(BOOL)lock      ;
 -(void)updateScreenLockPassword:(NSString*)lockPassrod ;
 -(NSString*)bankNameWithCode:(NSString*)bankCode ;
+-(void)updateTimeZone:(NSString*)timeZone ;
 
 -(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ;
 

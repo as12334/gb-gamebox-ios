@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UIImageView *readMark;
+@property(nonatomic,assign)NSInteger mReadId;
 @end
 @implementation RH_MPSiteSystemNoticeCell
+
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel,context);
@@ -99,9 +101,11 @@
         [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.readMark.image = [UIImage imageNamed:@"mearkRead"];
     }
+    self.mReadId = model.mId;
     [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         RH_SiteMessageModel *model1 = note.object;
-        if (model1.mRead == YES) {
+        if (model1.mRead == YES && self.mReadId == model1.mId) {
+            
             [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
             self.readMark.image = [UIImage imageNamed:@""];
         }

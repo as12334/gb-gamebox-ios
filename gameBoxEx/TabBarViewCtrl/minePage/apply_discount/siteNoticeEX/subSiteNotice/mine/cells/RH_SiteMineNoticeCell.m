@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *readImageView;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UIImageView *markNewImageView;
+@property(nonatomic,assign)NSInteger mReadId;
 
 @end
 @implementation RH_SiteMineNoticeCell
@@ -81,9 +82,10 @@
         [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
     }
+    self.mReadId = model.mId;
     [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         RH_SiteMyMessageModel *model1 = note.object;
-        if (model1.mIsRead == YES) {
+        if (model1.mIsRead == YES && self.mReadId == model1.mId) {
             [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
             self.markNewImageView.image = [UIImage imageNamed:@""];
         }

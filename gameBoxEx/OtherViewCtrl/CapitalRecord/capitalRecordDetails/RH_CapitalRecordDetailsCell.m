@@ -17,9 +17,64 @@
 @property (weak, nonatomic) IBOutlet CLBorderView *lineView;
 @property (weak, nonatomic) IBOutlet UIView *personInfoView;
 @property (weak, nonatomic) IBOutlet CLBorderView *headerLineView;
-@property (weak, nonatomic) IBOutlet CLBorderView *bottomLineView;
 @property (weak, nonatomic) IBOutlet UIView *BottomView;
 @property (weak, nonatomic) IBOutlet UIImageView *bankImageView;
+
+@property (weak, nonatomic) IBOutlet UIView *FirstView;
+@property (weak, nonatomic) IBOutlet UILabel *FirstTitleLab;  //第一个标题
+@property (weak, nonatomic) IBOutlet UILabel *subFirstTitleLab;  //第一个子标题
+
+@property (weak, nonatomic) IBOutlet UIView *SecondView;
+@property (weak, nonatomic) IBOutlet UILabel *SecondTitleLab;  //第二个标题
+@property (weak, nonatomic) IBOutlet UILabel *subSecondTitleLab;  //第二个子标题
+
+@property (weak, nonatomic) IBOutlet UIView *thirdView;
+@property (weak, nonatomic) IBOutlet UILabel *thirdTitleLab;  //第三个标题
+@property (weak, nonatomic) IBOutlet UILabel *subThirdTitleLab;  //第三个子标题
+
+@property (weak, nonatomic) IBOutlet UIView *FourthView;
+@property (weak, nonatomic) IBOutlet UILabel *FourthTitleLab;  //第四个标题
+@property (weak, nonatomic) IBOutlet UILabel *subFourthTitleLab;  //第四个子标题
+
+@property (weak, nonatomic) IBOutlet UIView *FivethView;
+@property (weak, nonatomic) IBOutlet UILabel *FivethTitleLab;  //第五个标题
+@property (weak, nonatomic) IBOutlet UILabel *subFivethTitleLab;  //第五个子标题
+
+@property (weak, nonatomic) IBOutlet UIView *SixthView;
+@property (weak, nonatomic) IBOutlet UILabel *SixthTitleLab;  //第六个标题
+@property (weak, nonatomic) IBOutlet UILabel *subSixthTitleLab;  //第六个子标题
+
+/*有银行卡信息的Bottomview*/
+/*右边lab*/
+//姓名
+@property (weak, nonatomic) IBOutlet UILabel *realNameLab;
+// 折扣优惠
+@property (weak, nonatomic) IBOutlet UILabel *youhuiLab;
+//手续费
+@property (weak, nonatomic) IBOutlet UILabel *shouxuFeiLab;
+//实际到账
+@property (weak, nonatomic) IBOutlet UILabel *shijiMoney;
+//状态
+@property (weak, nonatomic) IBOutlet UILabel *zhuangtaiLab;
+/*左边lab*/
+@property (weak, nonatomic) IBOutlet UILabel *xingmingLab;
+
+@property (weak, nonatomic) IBOutlet UILabel *zhekouyouhuiLeftLab;
+@property (weak, nonatomic) IBOutlet UILabel *shouxufeiLeftLab;
+@property (weak, nonatomic) IBOutlet UILabel *shijidaozhangLeftLab;
+
+@property (weak, nonatomic) IBOutlet UILabel *zhuangtaiLeftLab;
+
+
+/*存款为其它的BottomView2*/
+@property (weak, nonatomic) IBOutlet UIView *BottomView2;
+@property (weak, nonatomic) IBOutlet UILabel *rechargeMoney;  //存款金额
+@property (weak, nonatomic) IBOutlet UILabel *serviceChargeMoney; // 手续费
+@property (weak, nonatomic) IBOutlet UILabel *inMyAccountMoney; //  实际到账
+@property (weak, nonatomic) IBOutlet UILabel *isSuccState;  //  状态
+
+@property (weak, nonatomic) IBOutlet UILabel *typeTitleLab; //类型
+
 @end
 
 @implementation RH_CapitalRecordDetailsCell
@@ -41,10 +96,16 @@
     self.personInfoView.layer.cornerRadius = 10.f;
     self.personInfoView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.personInfoView.layer.borderWidth = 1.f;
+    
+    self.BottomView2.layer.cornerRadius = 10.f;
+    self.BottomView2.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.BottomView2.layer.borderWidth = 1.f;
+    
     self.backgroundColor = colorWithRGB(255, 255, 255);
     self.headerLineView.backgroundColor = colorWithRGB(226, 226, 226);
     self.lineView.backgroundColor = colorWithRGB(226, 226, 226);
-    self.bottomLineView.backgroundColor =colorWithRGB(226, 226, 226);
+    _BottomView2.hidden = YES;
+    _BottomView.hidden = YES;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -52,55 +113,87 @@
     [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.showBankURL]];
     RH_CapitalDetailModel *detailModel = ConvertToClassPointer(RH_CapitalDetailModel, context);
     RH_CapitalInfoModel *infoModel = ConvertToClassPointer(RH_CapitalInfoModel, [info objectForKey:@"RH_CapitalInfoModel"]);
-//    NSLog(@"%@",infoModel.mTransaction_typeName);
-    if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]) {
-        _BottomView.hidden = NO;
-    }else
+    if ([infoModel.mTransaction_typeName isEqualToString:@"转账"] ||[infoModel.mTransaction_typeName isEqualToString:@"transfers"])
     {
-        _BottomView.hidden = YES;
+        self.thirdTitleLab.text = @"金额";
+        self.FourthTitleLab.text = @"转出";
+        self.FivethTitleLab.text = @"转入";
+        self.SixthTitleLab.text = @"状态";
+        self.subFirstTitleLab.text = detailModel.mTransactionNo;
+        self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subThirdTitleLab.text = detailModel.showTransactionMoney;
+        self.subFourthTitleLab.text = detailModel.mTransferOut;
+        self.subFivethTitleLab.text = detailModel.mTransferInto;
+        self.subSixthTitleLab.text = detailModel.mStatusName;
+        
     }
-    NSString *strState;
-    if([detailModel.mStatusName isEqualToString:@"失败"]){
-        strState = detailModel.mFailureReason;
-    }else
-    {
-        strState = @"";
+    if ([infoModel.mTransaction_typeName isEqualToString:@"返水"]|| [infoModel.mTransaction_typeName isEqualToString:@"推荐"]||[infoModel.mTransaction_typeName isEqualToString:@"优惠"]) {
+        self.thirdTitleLab.text = @"描述";
+        self.FourthTitleLab.text = @"金额";
+        self.FivethTitleLab.text = @"状态";
+        self.SixthView.hidden = YES;
+        self.subFirstTitleLab.text = detailModel.mTransactionNo;
+        self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subThirdTitleLab.text = detailModel.mTransactionWayName;
+        self.subFourthTitleLab.text = [NSString stringWithFormat:@"%@", infoModel.mTransactionMoney];
+        self.subFivethTitleLab.text = detailModel.mStatusName;
+
     }
-    for (int i=10; i<19; i++) {
-        UILabel *label = [self viewWithTag:i];
-        switch (i) {
-            case 10:
-                label.text = detailModel.mTransactionNo;
-                break;
-            case 11:
-                label.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
-                break;
-            case 12:
-                label.text = detailModel.mTransactionWayName;
-                break;
-            case 13:
-                label.text = strState;
-                break;
-            case 14:
-                label.text = detailModel.mRealName;
-                break;
-            case 15:
-                label.text = detailModel.mDeductFavorable;
-                break;
-            case 16:
-                label.text = detailModel.mPoundage;
-                break;
-            case 17:
-                label.text = detailModel.mRechargeTotalAmount;
-                break;
-            case 18:
-                label.text = detailModel.mStatusName;
-                break;
-                
-            default:
-                break;
+    if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]  ) {
+        self.thirdTitleLab.text = @"描述";
+        self.subFirstTitleLab.text = detailModel.mTransactionNo;
+        self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subThirdTitleLab.text = detailModel.mTransactionWayName;
+        self.FourthView.hidden = YES;
+        self.FivethView.hidden = YES;
+        self.SixthView.hidden = YES;
+        if (cardModel.mbankUrl) {
+            //有银行卡信息
+            self.BottomView2.hidden = YES;
+            self.BottomView.hidden = NO;
+            _BottomView.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
+            [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.showBankURL]];
+            self.realNameLab.text = detailModel.mRealName;
+            self.youhuiLab.text = detailModel.mDeductFavorable;
+            self.shouxuFeiLab.text = detailModel.mPoundage;
+            self.shijiMoney.text = detailModel.mRechargeTotalAmount;
+            self.zhuangtaiLab.text = detailModel.mStatusName;
+        }else
+        {
+            //无银行卡信息
+            self.rechargeMoney.text = detailModel.mRechargeAmount;
+            self.serviceChargeMoney.text = detailModel.mPoundage;
+            self.inMyAccountMoney.text = detailModel.mRechargeTotalAmount;
+            self.isSuccState.text = detailModel.mStatusName;
+            self.typeTitleLab.text = detailModel.mBankCodeName?:@"其它";
+            _BottomView.hidden = YES;
+            _BottomView2.hidden = NO;
+            _BottomView2.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
         }
     }
+    if ([infoModel.mTransaction_typeName isEqualToString:@"取款"]) {
+        self.thirdTitleLab.text = @"描述";
+        self.subFirstTitleLab.text = detailModel.mTransactionNo;
+        self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subThirdTitleLab.text = detailModel.mTransactionWayName;
+        self.FourthView.hidden = YES;
+        self.FivethView.hidden = YES;
+        self.SixthView.hidden = YES;
+        _BottomView.hidden = NO;
+        self.xingmingLab.text = @"姓名:";
+        self.zhekouyouhuiLeftLab.text = @"取款金额:";
+        self.shouxufeiLeftLab.text = @"手续费:";
+        self.shijidaozhangLeftLab.text = @"实际到账:";
+        self.zhuangtaiLeftLab.text = @"状态:";
+        _BottomView2.hidden = YES;
+        _BottomView.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
+        self.realNameLab.text = detailModel.mRealName;
+        self.youhuiLab.text=detailModel.mWithdrawMoney;
+        self.shouxuFeiLab.text = detailModel.mPoundage;
+        self.shijiMoney.text =detailModel.mRechargeTotalAmount;
+        self.zhuangtaiLab.text = detailModel.mStatusName;
+    }
+
 }
 
 @end

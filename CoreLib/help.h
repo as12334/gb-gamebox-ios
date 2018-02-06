@@ -262,6 +262,7 @@ BOOL isPhoneNumber(NSString *mobileNum) ;
 BOOL isEmailAddress(NSString * email) ;
 BOOL isInteger(NSString * integerStr) ;
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat) ;
+NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone) ;
 
 #pragma mark-
 NSArray * indexPathsFromRange(NSInteger section,NSRange range) ;

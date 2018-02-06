@@ -1737,7 +1737,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            
             case ServiceRequestTypeTimeZoneInfo:
             {
-                NSLog(@"") ;
+                resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) stringValueForKey:RH_GP_V3_DATA] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager updateTimeZone:resultSendData] ;
+                }
             }
                 break ;
                 
@@ -1760,6 +1765,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break;
             
+            case ServiceRequestTypeTimeZoneInfo:
+            {
+                //重新请求
+                [self startV3SiteTimezone] ;
+            }
+                break ;
+                
             default:
                 break;
         }

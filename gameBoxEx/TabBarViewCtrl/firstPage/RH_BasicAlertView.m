@@ -9,6 +9,7 @@
 #import "RH_BasicAlertView.h"
 #import "coreLib.h"
 #import "RH_AnnouncementModel.h"
+#import "RH_BasicAlertViewCell.h"
 @interface RH_BasicAlertView() <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -127,6 +128,8 @@
 //    }
     [contentView addSubview:self.tableView];
     self.tableView.whc_TopSpace(39).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(15);
+    self.tableView.estimatedRowHeight = 56;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
     [UIView animateWithDuration:0.3 animations:^{
         contentView.transform = CGAffineTransformIdentity;
@@ -140,9 +143,6 @@
     return 10;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UITableViewCell whc_CellHeightForIndexPath:indexPath tableView:tableView];
-}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -151,22 +151,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger textRow;
-    CLTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    RH_BasicAlertViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
-        cell = [[CLTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[RH_BasicAlertViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         RH_AnnouncementModel *model = contents[indexPath.row];
-        cell.textLabel.text = model.mContent;
-        
-        CGRect rect = [cell.textLabel.text boundingRectWithSize:CGSizeMake(300, 100) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
-        [cell.textLabel sizeToFit];
-        CGSize textSize = [cell.textLabel.text sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-        
-         textRow = (NSUInteger)(rect.size.height / textSize.height);
-        
-        cell.textLabel.numberOfLines = 20;
-        cell.textLabel.textColor = colorWithRGB(102, 102, 102);
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.contentLabel.text = model.mContent;
         
         UIImageView *imageB = [UIImageView new];
         [cell.contentView addSubview:imageB];

@@ -201,9 +201,6 @@
 {
     if (type == ServiceRequestTypeV3BettingList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-//        [self.bettingTableHeaderView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]
-//                                                     SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]
-//                                                    ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]] ;
         [self.bettingBottomView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0] SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_TOTALSINGLE] ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]
                                                   effective:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]];
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_BETTINGLIST_LIST]

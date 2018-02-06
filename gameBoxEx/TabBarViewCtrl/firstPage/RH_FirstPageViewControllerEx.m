@@ -28,6 +28,7 @@
 #import "RH_NormalActivithyView.h"
 #import "RH_GameListViewController.h"
 #import "RH_ActivityStatusModel.h"
+
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
@@ -198,7 +199,7 @@
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
-    label.text = @"COPYRIGHT © 2004-2017";
+    label.text = @"COPYRIGHT © 2004-2018";
     self.contentTableView.tableFooterView = foot_View;
 }
 
@@ -226,9 +227,11 @@
         
     }else{
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
+        if (self.userInfoView.superview){
+            [self userInfoButtonItemHandle] ;
+        }
     }
 }
-
 
 #pragma mark-
 -(RH_DaynamicLabelCell *)dynamicLabCell

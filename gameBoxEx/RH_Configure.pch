@@ -80,7 +80,7 @@
 //    站点配制
 //===========================================================
 
-#define THEMEV3             @"red"   //green,red,black,default .
+#define THEMEV3             @"default"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境
 #define CODE    @"8l6r"
