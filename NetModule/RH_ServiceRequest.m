@@ -1133,10 +1133,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
-        [queryArgs setValue:@"white" forKey:RH_SP_COMMON_V3_THEME] ;//white,black,blue,red
         [queryArgs setValue:@"True" forKey:RH_SP_COMMON_V3_ISNATIVE] ;
         [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
         [queryArgs setValue:@"zh_CN" forKey:RH_SP_COMMON_V3_LOCALE] ;//zh_CN,zh_TW,en_US,ja_JP
+        
+        ////white,black,blue,red
+        if ([THEMEV3 isEqualToString:@"green"]){
+            [queryArgs setValue:@"white" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            [queryArgs setValue:@"red" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            [queryArgs setValue:@"black" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else{
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }
         
         CLScreenSizeType screenType = mainScreenType();
         switch (screenType) {
