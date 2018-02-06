@@ -135,7 +135,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
     
-    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
+    {
 #ifdef TEST_DOMAIN
         _urlArray = @[TEST_DOMAIN] ;
 #endif
