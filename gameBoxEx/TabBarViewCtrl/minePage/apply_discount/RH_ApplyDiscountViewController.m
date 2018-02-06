@@ -131,8 +131,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                   MinDate:nil
-                   MaxDate:nil
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
@@ -143,8 +143,8 @@
 {
     [self showCalendarView:@"设置结束日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                   MinDate:nil
-                   MaxDate:nil
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
@@ -156,8 +156,8 @@
 {
     [self showCalendarView:@"设置开始日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                   MinDate:nil
-                   MaxDate:nil
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
@@ -168,8 +168,8 @@
 {
     [self showCalendarView:@"设置结束日期"
             initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                   MinDate:nil
-                   MaxDate:nil
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
