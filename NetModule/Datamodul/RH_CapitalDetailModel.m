@@ -13,6 +13,7 @@
 
 @implementation RH_CapitalDetailModel
 @synthesize  showTransactionMoney = _showTransactionMoney;
+@synthesize showBankURL = _showBankURL ;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
@@ -35,11 +36,15 @@
         _mTransactionWay = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONWAY];
         _mTransactionWayName = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME];
         _mUsername = [info stringValueForKey:RH_GP_CAPITALDETAIL_USERNAME];
-        _mTransferInto = [info stringValueForKey:@"transferInto"];
-        _mTransferOut = [info stringValueForKey:@"transferOut"];
-        _mRechargeAmount = [info stringValueForKey:@"rechargeAmount"];
-        _mWithdrawMoney = [info stringValueForKey:@"withdrawMoney"];
-        _mBankCodeName = [info stringValueForKey:@"bankCodeName"];
+        _mTransferInto = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSFERINTO];
+        _mTransferOut = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSFEROUT];
+        _mRechargeAmount = [info stringValueForKey:RH_GP_CAPITALDETAIL_RECHARGEAMOUNT];
+        _mWithdrawMoney = [info stringValueForKey:RH_GP_CAPITALDETAIL_WITHDRAWMONEY];
+        _mBankCodeName = [info stringValueForKey:RH_GP_CAPITALDETAIL_BANKCODENAME];
+        _mBankUrl = [info stringValueForKey:RH_GP_CAPITALDETAIL_BANKURL];
+        _mTxId = [info stringValueForKey:RH_GP_CAPITALDETAIL_TXID];
+        _mBitcoinAdress = [info stringValueForKey:RH_GP_CAPITALDETAIL_BITCOINADRESS];
+        _mReturnTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_CAPITALDETAIL_RETURNTIME]/1000.0] ;
     }
     return self;
 }
@@ -55,8 +60,19 @@
     
     return _showTransactionMoney ;
 }
--(void)setValue:(id)value forUndefinedKey:(NSString *)key
+-(NSString *)showBankURL
 {
+    if (!_showBankURL){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if (_mBankUrl.length){
+            if ([[_mBankUrl substringToIndex:1] isEqualToString:@"/"]){
+                _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mBankUrl] ;
+            }else {
+                _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mBankUrl] ;
+            }
+        }
+    }
     
+    return _showBankURL ;
 }
 @end
