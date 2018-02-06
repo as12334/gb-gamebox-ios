@@ -21,7 +21,8 @@
         self.layer.borderWidth = 1.f;
         self.layer.masksToBounds = YES;
         [self addSubview:self.mainTabelView];
-        _dataArr = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+//        _dataArr = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+        _dataArr = @[@"今天",@"昨天",@"本周",@"最近七天"];
     }
     return self;
 }

@@ -18,6 +18,7 @@
 @end
 
 @interface CLCalendarView : CLBorderView
+@property(nonatomic,strong)NSDate *minDate;
 +(CLCalendarView*)shareCalendarView:(NSString*)title
                         defaultDate:(NSString*)defaultDate  ;//yyyy-MM-dd HH:mm
 

@@ -38,6 +38,7 @@
     // Do any additional setup after loading the view.
     self.title =@"投注记录";
     [self setupUI] ;
+    self.minDate = [[NSDate date] dateWithMoveDay:-30];
 }
 
 -(BOOL)hasTopView

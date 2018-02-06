@@ -34,7 +34,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
     id _observeForSavaData ;
     NSMutableSet           * _needSavaDataKeys;
 }
-
+@property(nonatomic,strong)NSDate *minDate;
 @property(nonatomic,readonly,strong) RH_ServiceRequest *serviceRequest ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateView *contentLoadingIndicateView ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;

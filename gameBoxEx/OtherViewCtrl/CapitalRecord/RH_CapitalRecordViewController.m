@@ -62,6 +62,7 @@
     self.title =@"资金记录";
     [self setNeedUpdateView];
     [self setupUI] ;
+    self.minDate = [[NSDate date] dateWithMoveDay:-7];
 }
 
 -(void)updateView
@@ -234,7 +235,6 @@
     NSDate *date = [[NSDate alloc]init];
     //获取本周的日期
     NSArray *currentWeekarr = [self getWeekTimeOfCurrentWeekDay];
-    NSArray *lastWeekArr = [self getWeekTimeOfLastWeekDay];
     switch (row) {
         case 0:
             // 今天
@@ -245,7 +245,6 @@
             // 昨天
             date= [[NSDate date] dateWithMoveDay:-1];
             _capitalRecordHeaderView.endDate = date;
-            
             break;
         case 2:
             //本周
@@ -253,26 +252,10 @@
             _capitalRecordHeaderView.endDate = currentWeekarr[1];
             break;
         case 3:
-            // 上周
-            date = lastWeekArr[0];
-            _capitalRecordHeaderView.endDate = lastWeekArr[1];
-            break;
-        case 4:
-            // 本月
-            date= [self dateFromDateFirstDay];
-            _capitalRecordHeaderView.endDate = [self getMonthEndDate];
-            break;
-        case 5:
             //最近七天
             date= [[NSDate date] dateWithMoveDay:-7];
             _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
             break;
-        case 6:
-            // 最近三十天
-            date= [[NSDate date] dateWithMoveDay:-30];
-            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
-            break;
-            
         default:
             break;
     }

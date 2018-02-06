@@ -15,7 +15,7 @@
 
 @interface RH_SendMessageVerityModel :RH_BasicModel
 @property (nonatomic , strong ,readonly)NSArray<AdvisoryTypeListModel *>  * mAdvisoryTypeListModel;
-@property (nonatomic , assign ,readonly) BOOL                     mIsOpenCaptcha;  //是否开启验证
+@property (nonatomic , assign) BOOL                     mIsOpenCaptcha;  //是否开启验证
 @property (nonatomic , strong ,readonly)NSString                 *mCaptcha_value;  //验证码链接
 
 @end
