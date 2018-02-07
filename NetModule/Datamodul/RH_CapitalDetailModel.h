@@ -103,6 +103,11 @@
  */
 @property(nonatomic,strong,readonly)NSString *mBankUrl;
 
+
+/**
+ 银行类型
+ */
+@property(nonatomic,strong,readonly)NSString *mBankCode;
 /**
  txId
  */

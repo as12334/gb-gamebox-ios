@@ -38,7 +38,7 @@
     CGSize size = [detaileModel.mContext boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     // ceilf()向上取整函数, 只要大于1就取整数2. floor()向下取整函数, 只要小于2就取整数1.
     //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
-    return 80+size.height;
+    return 90+size.height>screenSize().height?screenSize().height:90+size.height;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {

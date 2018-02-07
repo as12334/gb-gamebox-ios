@@ -311,6 +311,8 @@
 #define RH_GP_CAPITALDETAIL_TXID                                 @"txId"
 #define RH_GP_CAPITALDETAIL_BITCOINADRESS                        @"bitcoinAdress"
 #define RH_GP_CAPITALDETAIL_RETURNTIME                           @"returnTime"
+#define RH_GP_CAPITALDETAIL_BANKCODE                             @"bankCode"
+
 
 #pragma mark - V3 银行卡 信息模型
 #define RH_GP_BANKCARDINFO_BANKNAME                                 @"bankName"
@@ -535,6 +537,8 @@
 #define RH_SP_BETTINGLIST_ENDDATE                            @"search.endBetTime"
 #define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.currentIndex"
 #define RH_SP_BETTINGLIST_PAGESIZE                           @"paging.pageSize"
+#define RH_SP_BETTINGLIST_ISSHOWSTATISTICS                   @"isShowStatistics"
+
 //返回参数
 #define RH_GP_BETTINGLIST_LIST                              @"list"
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalSize"

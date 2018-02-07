@@ -382,14 +382,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
-                 PageSize:(NSInteger)pageSize
+                 PageSize:(NSInteger)pageSize withIsStatistics:(BOOL)isShowStatistics
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
-                                     RH_SP_BETTINGLIST_ENDDATE:endDate?:@""
+                                     RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
+                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics)
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost

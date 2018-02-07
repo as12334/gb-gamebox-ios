@@ -480,6 +480,10 @@
         
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+        }] ;
     }
 }
 
@@ -487,6 +491,10 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(nil, error, @"数据回收失败") ;
+        }] ;
     }
 }
 

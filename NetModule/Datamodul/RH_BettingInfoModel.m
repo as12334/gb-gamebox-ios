@@ -31,7 +31,7 @@
         _mApiName = [info stringValueForKey:RH_GP_BETTING_APINAME] ;
         _mGameID = [info integerValueForKey:RH_GP_BETTING_GAMEID] ;
         _mGameName = [info stringValueForKey:RH_GP_BETTING_GAMENAME] ;
-        _mBettime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_BETTING_BETTIME]/1000.0] ;
+        _mBettime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_BETTING_BETTIME]/1000.0] ;
         _mTerminal = [info stringValueForKey:RH_GP_BETTING_TERMINAL] ;
         _mProfitAmount = [info floatValueForKey:RH_GP_BETTING_PROFITAMOUNT] ;
         _mOrderState = [info stringValueForKey:RH_GP_BETTING_ORDERSTATE] ;

@@ -18,7 +18,7 @@
 {
     if (self = [super initWithInfoDic:info]) {
         _mAdministrativeFee = [info stringValueForKey:RH_GP_CAPITALDETAIL_ADMINISTRATIVEFEE];
-        _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_CAPITALDETAIL_CREATETIME]/1000.0] ;
+        _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_CAPITALDETAIL_CREATETIME]/1000.0] ;
         _mDeductFavorable = [info stringValueForKey:RH_GP_CAPITALDETAIL_DEDUCTFAVORABLE];
         _mFailureReason = [info stringValueForKey:RH_GP_CAPITALDETAIL_FAILUREREASON];
         _mFundType = [info stringValueForKey:RH_GP_CAPITALDETAIL_FUNDTYPE];
@@ -44,7 +44,8 @@
         _mBankUrl = [info stringValueForKey:RH_GP_CAPITALDETAIL_BANKURL];
         _mTxId = [info stringValueForKey:RH_GP_CAPITALDETAIL_TXID];
         _mBitcoinAdress = [info stringValueForKey:RH_GP_CAPITALDETAIL_BITCOINADRESS];
-        _mReturnTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_CAPITALDETAIL_RETURNTIME]/1000.0] ;
+        _mReturnTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_CAPITALDETAIL_RETURNTIME]/1000.0] ;
+        _mBankCode = [info stringValueForKey:RH_GP_CAPITALDETAIL_BANKCODE] ;
     }
     return self;
 }

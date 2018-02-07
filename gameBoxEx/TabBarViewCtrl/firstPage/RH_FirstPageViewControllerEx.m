@@ -410,6 +410,7 @@
     
     [self.shadeView removeFromSuperview];
     [self.normalActivityView removeFromSuperview];
+    self.activityView.userInteractionEnabled = YES;
 }
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
@@ -425,6 +426,7 @@
         
         [_hud show:YES];
         [[UIApplication sharedApplication].keyWindow addSubview:_hud];
+         activityView.userInteractionEnabled = NO;
     }
     else if(!self.appDelegate.isLogin){
         //进入登录界面
@@ -433,6 +435,7 @@
     else if (NetNotReachability()){
         showAlertView(@"无网络", @"无网络打不开红包") ;
     }
+   
 }
 //点击红包小图标加载红包动画
 -(void)touchActivityViewAndOpentheActivity
@@ -501,12 +504,13 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated
+-(void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated] ;
+    [super viewDidDisappear:animated] ;
     [self.normalActivityView removeFromSuperview];
     [self.shadeView removeFromSuperview];
     [self.hud hide:YES];
+    self.activityView.userInteractionEnabled = YES;
 }
 
 #pragma mark- netStatusChangedHandle

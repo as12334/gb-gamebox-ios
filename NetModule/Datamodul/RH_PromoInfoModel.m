@@ -18,7 +18,7 @@
     {
         _mID = [info integerValueForKey:RH_GP_PROMOINFO_ID] ;
         _mUserID = [info integerValueForKey:RH_GP_PROMOINFO_USERID] ;
-        _mApplyTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_PROMOINFO_APPLYTIME]/1000.0] ;
+        _mApplyTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_PROMOINFO_APPLYTIME]/1000.0] ;
         _mCheckState = [info integerValueForKey:RH_GP_PROMOINFO_CHECKSTATE] ;
         _mActivityName = [info stringValueForKey:RH_GP_PROMOINFO_ACTIVITYNAME] ;
         _mActivityVersion = [info stringValueForKey:RH_GP_PROMOINFO_ACTIVITYVERSION] ;

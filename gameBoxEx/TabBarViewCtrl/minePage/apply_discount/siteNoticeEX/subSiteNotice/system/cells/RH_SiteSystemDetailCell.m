@@ -34,7 +34,7 @@
     CGSize maxSize_1 = CGSizeMake(label_1.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size_1 = [model.mContent boundingRectWithSize:maxSize_1 options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs_1 context:nil].size;
-    return 120+size.height+size_1.height;
+    return 120+size.height+size_1.height>screenSize().height?screenSize().height:120+size.height+size_1.height;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -51,41 +51,16 @@
     paraStyle.tailIndent = 0;
     NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@.0f
                           };
-    if (model.mTitle&&model.mTitle.length <20) {
-        NSString *contentStr = [NSString stringWithFormat:@"%@",model.mTitle];
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
-        self.titleLabel.attributedText = attributeStr;
-    }
-    else if (model.mTitle&&model.mTitle.length >40) {
-        NSString *contentStr = [NSString stringWithFormat:@"%@...",[model.mTitle substringToIndex:40]];
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
-        self.titleLabel.attributedText = attributeStr;
-    }else
-    {
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",model.mTitle] attributes:dic];
-        self.titleLabel.attributedText = attributeStr;
-    }
+
+    NSString *contentStrTitle = [NSString stringWithFormat:@"%@",model.mTitle];
+    NSAttributedString *attributeStrTitle = [[NSAttributedString alloc] initWithString:contentStrTitle attributes:dic];
+    self.titleLabel.attributedText = attributeStrTitle;
+
+    NSString *contentStr = [NSString stringWithFormat:@"%@",model.mContent];
+    NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+    self.contextLabel.attributedText = attributeStr;
     
-    if (model.mContent&&model.mContent.length <20) {
-        NSString *contentStr = [NSString stringWithFormat:@"%@",model.mContent];
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
-        self.contextLabel.attributedText = attributeStr;
-    }
-    else if (model.mTitle&&model.mTitle.length >40) {
-        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[model.mContent substringToIndex:40]];
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
-        self.contextLabel.attributedText = attributeStr;
-    }else
-    {
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",model.mContent] attributes:dic];
-        self.contextLabel.attributedText = attributeStr;
-    }
-    
-//    self.titleLabel.text = model.mTitle;
-//    self.contextLabel.text = model.mContent;
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
-    
-    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

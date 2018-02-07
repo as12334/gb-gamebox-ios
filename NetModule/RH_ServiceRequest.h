@@ -184,7 +184,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 投注记录
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
-                 PageSize:(NSInteger)pageSize ;
+                 PageSize:(NSInteger)pageSize
+                withIsStatistics:(BOOL)isShowStatistics;
 #pragma mark - 资金记录
 -(void)startV3DepositList:(NSString*)startDate
                   EndDate:(NSString*)endDate
