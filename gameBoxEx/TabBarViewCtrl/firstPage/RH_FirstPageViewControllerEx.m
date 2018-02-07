@@ -71,7 +71,7 @@
     self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    _hud = [[MBProgressHUD alloc]initWithView:[UIApplication sharedApplication].keyWindow];
+    _hud = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
     
     [self.serviceRequest startV3SiteTimezone] ;
@@ -441,7 +441,7 @@
 -(void)touchActivityViewAndOpentheActivity
 {
     //在window上加一个遮罩层
-    UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
+    UIView *bigView = [[UIView alloc]initWithFrame:MainScreenBounds];
     bigView.backgroundColor = [UIColor grayColor];
     bigView.alpha = 0.8;
     bigView.userInteractionEnabled = NO;
