@@ -156,6 +156,12 @@
 {
     if (self.pageLoadManager.currentDataCount){
         RH_SiteSystemDetailController *detailVC= [RH_SiteSystemDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        for (int i = 0; i < [self.pageLoadManager allDatas].count; i ++) {
+            RH_SiteMessageModel *model = [self.pageLoadManager allDatas][i];
+            NSLog(@"mTitle=%@",model.mTitle);
+            NSLog(@"mPublishTime=%@",model.mPublishTime);
+        }
+       
         [self showViewController:detailVC];
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;
     }
