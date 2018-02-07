@@ -16,7 +16,7 @@
     if (self = [super initWithInfoDic:info])
     {
         _mAdvisoryContent = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYCONTENT];
-        _mAdvisoryTime = [NSDate dateWithTimeIntervalSince1970:[info floatValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTIME]/1000.0];
+        _mAdvisoryTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTIME]/1000.0];
         _mAdvisoryTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTITLE];
         _mId = [info integerValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ID];
         _mReplyTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_REPLYTITLE];

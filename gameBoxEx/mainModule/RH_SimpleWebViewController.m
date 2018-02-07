@@ -759,7 +759,7 @@
         [defaults synchronize];
         
         [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
-                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-mm-dd HH:mm:ss")] ;
+                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
         
         [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
         dispatch_async(dispatch_get_main_queue(), ^{

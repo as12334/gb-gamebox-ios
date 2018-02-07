@@ -154,7 +154,7 @@
 
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]  ||[infoModel.mTransaction_typeName isEqualToString:@"deposit"] ) {
-        if ([detailModel.mBankCodeName isEqualToString:@"比特币"])
+        if ([detailModel.mBankCodeName isEqualToString:@"比特币"] || [detailModel.mBankCode isEqualToString:@"bitcoin"])
         {
             //比特币存款
             self.bankRightImage.hidden = YES;
