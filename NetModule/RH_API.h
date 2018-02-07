@@ -305,6 +305,7 @@
 
 #pragma mark - V3 银行卡 信息模型
 #define RH_GP_BANKCARDINFO_BANKNAME                                 @"bankName"
+#define RH_GP_BANKCARDINFO_BANKCODE                                 @"bankNameCode"
 #define RH_GP_BANKCARDINFO_BANKCARDMASTERNAME                       @"bankcardMasterName"
 #define RH_GP_BANKCARDINFO_BANKCARDNUMBER                           @"bankcardNumber"
 #define RH_GP_BANKCARDINFO_BANKDEPOSIT                              @"bankDeposit"

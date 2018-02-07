@@ -19,7 +19,8 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mBankCode = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKNAME] ;
+        _mBankCode = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKCODE] ;
+        _mBankName = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKNAME] ;
         _mBankCardNumber = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKCARDNUMBER] ;
         _mBankCardMasterName = [info stringValueForKey:RH_GP_BANKCARDINFO_BANKCARDMASTERNAME]?:
         [info stringValueForKey:@"realName"]?:[info stringValueForKey:@"realNme"];

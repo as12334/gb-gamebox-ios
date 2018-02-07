@@ -145,7 +145,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     if (_footerView == nil) {
         _footerView = [UIView new];
         _footerView.frame = CGRectMake(0, 0, screenSize().width, 150);
-        
+        self.button_Check = [UIButton new];
         self.button_Submit = [UIButton new];
         [_footerView addSubview:self.button_Submit];
         self.button_Submit.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(40).whc_Height(40);
@@ -166,7 +166,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
         }
-        self.button_Check = [UIButton new];
+        
         [_footerView addSubview:self.button_Check];
         self.button_Check.whc_TopSpace(10).whc_RightSpace(5).whc_Height(20).whc_Width(70);
         [self.button_Check setTitle:@"查看稽核" forState:UIControlStateNormal];
