@@ -26,6 +26,11 @@
         
     }
     
+//    //--TEST
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:1517831332754/1000.0] ;
+//    NSString *strTmp = dateStringWithFormatterWithTimezone(date, @"yyyy-MM-dd HH:mm:ss", @"GMT+0800");
+//    NSLog(@"%@",strTmp) ;
+//    //---END TEST
     return self ;
 }
 
