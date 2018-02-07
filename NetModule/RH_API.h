@@ -302,6 +302,15 @@
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAY                       @"transactionWay"
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME                   @"transactionWayName"
 #define RH_GP_CAPITALDETAIL_USERNAME                             @"userName"
+#define RH_GP_CAPITALDETAIL_TRANSFERINTO                         @"transferInto"
+#define RH_GP_CAPITALDETAIL_TRANSFEROUT                          @"transferOut"
+#define RH_GP_CAPITALDETAIL_RECHARGEAMOUNT                       @"rechargeAmount"
+#define RH_GP_CAPITALDETAIL_WITHDRAWMONEY                        @"withdrawMoney"
+#define RH_GP_CAPITALDETAIL_BANKCODENAME                         @"bankCodeName"
+#define RH_GP_CAPITALDETAIL_BANKURL                              @"bankUrl"
+#define RH_GP_CAPITALDETAIL_TXID                                 @"txId"
+#define RH_GP_CAPITALDETAIL_BITCOINADRESS                        @"bitcoinAdress"
+#define RH_GP_CAPITALDETAIL_RETURNTIME                           @"returnTime"
 
 #pragma mark - V3 银行卡 信息模型
 #define RH_GP_BANKCARDINFO_BANKNAME                                 @"bankName"

@@ -542,7 +542,6 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     return backgroundView ;
 }
 
-
 -(void)_calendarBackgroupViewTapGestureHandle
 {
     [self hideCalendarViewWithAnimated:YES] ;
@@ -550,6 +549,8 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
 
 -(void)showCalendarView:(NSString*)title
          initDateString:(NSString*)dateStr
+                MinDate:(NSDate*)minDate
+                MaxDate:(NSDate*)maxDate
            comfirmBlock:(CalendaCompleteBlock)completeBlock;
 {
     if (!dateStr.length){
@@ -558,7 +559,9 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
         dateStr = [dateFormatter stringFromDate:[NSDate date]] ;
     }
 
-    CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr] ;
+    CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr
+                                                                  MinDate:minDate
+                                                                  MaxDate:maxDate] ;
     [self hideCalendarViewWithAnimated:NO] ;
 
     _calendarCompleteBlock = completeBlock ;
@@ -589,6 +592,7 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
                      } completion:^(BOOL finished) {
                          [self.view bringSubviewToFront:self.calendarBackgroundView] ;
                      }] ;
+    
 }
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated

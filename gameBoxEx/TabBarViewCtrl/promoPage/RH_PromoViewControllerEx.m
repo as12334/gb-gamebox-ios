@@ -106,15 +106,10 @@
 #pragma mark- RH_PromoContentPageCell delegate
 -(void)promoContentPageCellDidTouchCell:(RH_PromoContentPageCell*)promoContentPageCell CellModel:(RH_DiscountActivityModel *)discountActivityModel
 {
-    if (HasLogin)
-    {
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        if (appDelegate){
-            appDelegate.customUrl = discountActivityModel.showLink ;
-            [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-        }
-    }else{
-        [self loginButtonItemHandle] ;
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    if (appDelegate){
+        appDelegate.customUrl = discountActivityModel.showLink ;
+        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
     }
 }
 

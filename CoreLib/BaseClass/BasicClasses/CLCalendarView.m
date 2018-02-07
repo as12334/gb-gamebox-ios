@@ -22,6 +22,8 @@
 @property(nonatomic,readonly,strong) UIDatePicker *datePicker  ;
 @property(nonatomic,readonly,strong) UIButton *confirmButton ;
 @property(nonatomic,readonly,strong) UIButton *cancelButton ;
+@property(nonatomic,strong) NSDate *minDate ;
+@property(nonatomic,strong) NSDate *maxDate ;
 
 @property(nonatomic,strong) NSString *defaultDate       ;
 
@@ -36,6 +38,7 @@
 @synthesize cancelButton = _cancelButton                ;
 
 +(CLCalendarView*)shareCalendarView:(NSString*)title defaultDate:(NSString*)defaultDate
+                            MinDate:(NSDate*)minDate MaxDate:(NSDate*)maxDate
 {
     static CLCalendarView* _shareCalendarView = nil;
 
@@ -55,6 +58,8 @@
 
     _shareCalendarView.labTitle.text = title?:@"日期设置" ;
     _shareCalendarView.defaultDate = defaultDate ;
+    _shareCalendarView.minDate = minDate ;
+    _shareCalendarView.maxDate = maxDate ;
     return _shareCalendarView;
 }
 
@@ -87,10 +92,6 @@
 
     [self addSubview:self.datePicker];
 
-    
-    
-   
-    
     setRelatedCommonAttrConstraint(self.datePicker, NSLayoutAttributeCenterX, self,1.f,0.f);
 
     [self addSubview:self.confirmButton];
@@ -131,6 +132,20 @@
         }
     }
 }
+#pragma mark-  设置最小日期
+-(void)setMinDate:(NSDate *)minDate
+{
+    _minDate = minDate;
+    self.datePicker.minimumDate = _minDate;
+}
+
+#pragma mark-  设置最大日期
+-(void)setMaxDate:(NSDate *)maxDate
+{
+    _maxDate = maxDate;
+    self.datePicker.maximumDate = _maxDate;
+}
+
 -(UILabel*)labTitle
 {
     if (!_labTitle){
@@ -206,7 +221,8 @@
 //        fmt.dateFormat = @"yyyy-MM-dd";
 //        NSDate *minDate = [fmt dateFromString:@"2018-1-20"];
 //        //设置日期最小值
-//        _datePicker.minimumDate = minDate;
+//        _datePicker.minimumDate = self.minDate;
+//        _datePicker.maximumDate = self.maxDate ;
         
 //        [_datePicker addTarget:self action:@selector(datePickerChangedHandle:) forControlEvents: UIControlEventValueChanged];
     }

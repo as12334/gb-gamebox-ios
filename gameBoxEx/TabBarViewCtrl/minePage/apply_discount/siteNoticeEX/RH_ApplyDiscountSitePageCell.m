@@ -97,7 +97,6 @@
         self.chooseBtn = button;
         self.pageView.dispalyPageIndex = button.tag-10;
     }
-    
 }
 #pragma mark 分页视图
 -(CLPageView *)pageView
@@ -213,6 +212,12 @@
             [self.dictPageCellDataContext removeObjectForKey:key];
         }
     }
-    
 }
+
+#pragma mark -
+-(void)paste:(id)sender
+{
+    //解决 在粘贴为空时，系统转发出的的消息 
+}
+
 @end

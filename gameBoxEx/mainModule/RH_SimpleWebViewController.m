@@ -858,6 +858,11 @@
             NSLog(@"JSToOc :%@------ gotoLoginPage",NSStringFromClass([self class])) ;
             [self showViewController:[RH_LoginViewControllerEx viewController] sender:self] ;
         };
+        
+        //nativeAutoLogin
+        jsContext[@"nativeAutoLogin"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
+            NSLog(@"JSToOc :%@------ nativeAutoLogin",NSStringFromClass([self class])) ;
+        };
     }
 }
 

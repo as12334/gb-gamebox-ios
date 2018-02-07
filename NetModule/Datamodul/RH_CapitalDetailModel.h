@@ -98,7 +98,26 @@
  */
 @property(nonatomic,strong,readonly)NSString *mBankCodeName;
 
+/**
+ 银行卡url
+ */
+@property(nonatomic,strong,readonly)NSString *mBankUrl;
 
+/**
+ txId
+ */
+@property(nonatomic,strong,readonly)NSString *mTxId;
+
+/**
+ 比特币地址
+ */
+@property(nonatomic,strong,readonly)NSString *mBitcoinAdress;
+/**
+  比特币交易时间
+ */
+@property(nonatomic,strong,readonly)NSDate *mReturnTime;
 //extend
 @property(nonatomic,strong,readonly)NSString *showTransactionMoney;
+@property(nonatomic,strong,readonly)NSString *showBankURL;
+
 @end

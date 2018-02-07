@@ -67,6 +67,8 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @interface RH_BasicViewController (ShowCalendar)<CLCalendarViewDelegate>
 -(void)showCalendarView:(NSString*)title
          initDateString:(NSString*)dateStr
+                MinDate:(NSDate*)minDate
+                MaxDate:(NSDate*)maxDate
            comfirmBlock:(CalendaCompleteBlock)completeBlock;
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated ;
