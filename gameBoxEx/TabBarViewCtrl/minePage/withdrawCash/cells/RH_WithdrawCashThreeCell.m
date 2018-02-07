@@ -44,7 +44,6 @@
 {
     self.textLabel.text = info.myTitle ;
     self.detailTextLabel.text = ConvertToClassPointer(NSString, context) ;
-//    self.detailTextLabel.text = ConvertToClassPointer(NSString, context) ;
 }
 
 @end

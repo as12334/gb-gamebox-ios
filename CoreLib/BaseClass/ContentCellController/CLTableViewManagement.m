@@ -127,7 +127,7 @@
 {
     NSDictionary *sectionInfo = ConvertToClassPointer(NSDictionary, [self.sectionsInfo objectAtIndex:section]) ;
     
-    NSMutableDictionary *tmpSectionInfo = [NSMutableDictionary dictionary] ;
+    NSMutableDictionary *tmpSectionInfo = [[NSMutableDictionary alloc] init] ;
     if (self.cellsExtraInfo){
         [tmpSectionInfo addEntriesFromDictionary:self.cellsExtraInfo] ;
     }
@@ -169,12 +169,12 @@
     if ([[self _sectionInfoInSection:section] isPixelUnit]){
         tmp = PixelToPoint(tmp) ;
     }
-    
+
     return (tableView.style==UITableViewStylePlain?MAX(0,tmp):MAX(0.1, tmp));
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+
     CGFloat tmp = [[self _sectionInfoInSection:section] sectionFooterHeight:tableView.sectionFooterHeight] ;
     return (tableView.style==UITableViewStylePlain?MAX(0,tmp):MAX(0.1, tmp)) ;
 }

@@ -317,7 +317,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             
             return ;
         }else {
-            
             if (_mainSegmentControl.superview==nil){
                 [self.contentView addSubview:self.mainSegmentControl];
                 self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
@@ -426,6 +425,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     }
 }
 
+
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
     
     if (_withdrawCashStatus == WithdrawCashStatus_EnterBitCoin) {
@@ -444,61 +444,65 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0){
-        if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
-            return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;
-        }else if (_withdrawCashStatus==WithdrawCashStatus_EnterBitCoin) {
-            BankcardMapModel *bankCardModel = ConvertToClassPointer(BankcardMapModel,[self.withDrawModel.mBankcardMap objectForKey:@"2"]) ;
-            if (bankCardModel.mBankcardNumber.length){
-                return @{@"title":@"比特币地址",
-                         @"detailTitle":bankCardModel.mBankcardNumber?:@""
+    if (_withdrawCashStatus == WithdrawCashStatus_EnterCash || _withdrawCashStatus ==  WithdrawCashStatus_EnterBitCoin){
+    
+        if (indexPath.section==0){
+            if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
+                return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;
+            }else if (_withdrawCashStatus==WithdrawCashStatus_EnterBitCoin) {
+                BankcardMapModel *bankCardModel = ConvertToClassPointer(BankcardMapModel,[self.withDrawModel.mBankcardMap objectForKey:@"2"]) ;
+                if (bankCardModel.mBankcardNumber.length){
+                    return @{@"title":@"比特币地址",
+                             @"detailTitle":bankCardModel.mBankcardNumber?:@""
+                                 };
+                }else{
+                    return @{@"title":@"请先绑定比特币地址",
                              };
-            }else{
-                return @{@"title":@"请先绑定比特币地址",
-                         };
+                }
             }
-        }
-    }else if (indexPath.section==1){
-        id value =  self.mainSegmentControl.selectedSegmentIndex?@(_bitCoinWithdrawAmount):@(_bankWithdrawAmount) ;
-        return value ;
-    }else if (indexPath.section==2){
-        AuditMapModel *auditMap = nil ;
-        if (self.withDrawModel.withDrawFeeDict.count){
-            auditMap= [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim?:@""] ;
-        }
-        
-        if (auditMap==nil){
-            auditMap = self.withDrawModel.mAuditMap ;
-        }
-        
-        switch (indexPath.item) {
-            case 0: //手续费
-            {
-                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mCounterFee]:@"" ;
-                    
+        }else if (indexPath.section==1){
+            id value =  self.mainSegmentControl.selectedSegmentIndex?@(_bitCoinWithdrawAmount):@(_bankWithdrawAmount) ;
+            return value ;
+        }else if (indexPath.section==2){
+            AuditMapModel *auditMap = nil ;
+            if (self.withDrawModel.withDrawFeeDict.count){
+                auditMap= [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim?:@""] ;
             }
-                break;
             
-            case 1: ////行政费
-            {
-                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee]:@"" ;
+            if (auditMap==nil){
+                auditMap = self.withDrawModel.mAuditMap ;
             }
-                break;
             
-            case 2: //扣除优惠
-            {
-                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable]:@"" ;
+            switch (indexPath.item) {
+                case 0: //手续费
+                {
+                    //self.cashCell.textField.text.trim.length>0
+                    return ((self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mCounterFee]:@"") ;
+
+                }
+                    break;
+
+                case 1: ////行政费
+                {
+                    return (self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee]:@"" ;
+                }
+                    break;
+
+                case 2: //扣除优惠
+                {
+                    return (self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable]:@"" ;
+                }
+                    break;
+
+                case 3: //最终可取
+                {
+                    return (self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw]:@"" ;
+                }
+                    break;
+
+                default:
+                    break;
             }
-                break;
-            
-            case 3: //最终可取
-            {
-                return self.cashCell.textField.text.trim.length>0?[NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw]:@"" ;
-            }
-                break;
-                
-            default:
-                break;
         }
     }
     
