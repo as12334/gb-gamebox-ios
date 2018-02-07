@@ -145,7 +145,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     if (_footerView == nil) {
         _footerView = [UIView new];
         _footerView.frame = CGRectMake(0, 0, screenSize().width, 150);
-        
+        self.button_Check = [UIButton new];
         self.button_Submit = [UIButton new];
         [_footerView addSubview:self.button_Submit];
         self.button_Submit.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(40).whc_Height(40);
@@ -154,6 +154,20 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.button_Submit setTitle:@"确认提交" forState:UIControlStateNormal];
         [self.button_Submit addTarget:self action:@selector(buttonConfirmHandle) forControlEvents:UIControlEventTouchUpInside];
         self.button_Check = [UIButton new];
+        if ([THEMEV3 isEqualToString:@"green"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        }else{
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
+        }
+        
         [_footerView addSubview:self.button_Check];
         self.button_Check.whc_TopSpace(10).whc_RightSpace(5).whc_Height(20).whc_Width(70);
         [self.button_Check setTitle:@"查看稽核" forState:UIControlStateNormal];
@@ -445,7 +459,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_withdrawCashStatus == WithdrawCashStatus_EnterCash || _withdrawCashStatus ==  WithdrawCashStatus_EnterBitCoin){
-    
         if (indexPath.section==0){
             if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
                 return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;

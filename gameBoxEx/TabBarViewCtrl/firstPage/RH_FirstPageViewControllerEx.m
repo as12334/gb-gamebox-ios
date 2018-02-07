@@ -743,6 +743,7 @@
             } completion:^(BOOL finished) {
                 if (finished) {
                     [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
+                    
                 }
             }];
         }
