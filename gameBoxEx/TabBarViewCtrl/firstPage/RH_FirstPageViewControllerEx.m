@@ -444,8 +444,7 @@
     UIView *bigView = [[UIView alloc]initWithFrame:MainScreenBounds];
     bigView.backgroundColor = [UIColor grayColor];
     bigView.alpha = 0.8;
-    bigView.userInteractionEnabled = NO;
-    [[UIApplication sharedApplication].keyWindow addSubview:bigView];
+    [self.view.window addSubview:bigView];
     _shadeView = bigView;
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
     imageView.image = self.activityView.imgView.image;
