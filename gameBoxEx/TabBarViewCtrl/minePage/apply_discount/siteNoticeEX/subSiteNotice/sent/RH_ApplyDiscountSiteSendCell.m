@@ -42,6 +42,7 @@
     self.sendView.block = ^(CGRect frame){
         [weakSelf selectedSendViewdiscountType:frame];
     };
+    
     self.sendView.submitBlock = ^(NSString *titleStr,NSString *contentStr,NSString *codeStr){
         if (weakSelf.typeStr==nil) {
             showMessage(weakSelf,@"发送失败", @"请选择问题类型");
