@@ -206,12 +206,15 @@
                 <outlet property="gainActivityLabel" destination="oPM-9G-Pfi" id="Vtb-IM-mDD"/>
                 <outlet property="gainDrawTimeLabel" destination="Ei3-eu-IlV" id="BTm-ng-83O"/>
                 <outlet property="gainTimeLabel" destination="i1v-O3-T1S" id="OB2-tG-MNd"/>
+                <outlet property="game1RuleBtn" destination="KWx-tu-EPb" id="KRU-TJ-h4k"/>
+                <outlet property="gameRuleBtn" destination="ncN-g3-qS8" id="H3p-G7-XgQ"/>
                 <outlet property="nextOpentimeLabel" destination="h4K-WG-zj5" id="pHI-nj-ZkR"/>
                 <outlet property="normalBackDropView" destination="eu8-Gm-T3U" id="E6p-bt-a44"/>
                 <outlet property="openActivityBtn" destination="9yV-Oc-gG1" id="PGy-jY-MNU"/>
                 <outlet property="openActivityFriestBtn" destination="y1e-fn-3cO" id="mO9-fA-bCs"/>
                 <outlet property="openActivityView" destination="2L7-mQ-4Mp" id="qdD-h6-ctD"/>
             </connections>
+            <point key="canvasLocation" x="-491" y="-17"/>
         </view>
     </objects>
     <resources>
