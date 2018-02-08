@@ -390,7 +390,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
                                      RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
-                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics)
+                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
+                                     RH_SP_BETTINGLIST_PAGENUMBER:@(pageNumber),
+                                     RH_SP_BETTINGLIST_PAGESIZE:@(pageSize)
+                        
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -640,6 +643,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
     if (apiId>0){
         [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    if (startDate > endDate) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
     }
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICE
@@ -1432,6 +1442,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
     if (error) {
         *error = tempError;
+    }
+    if (dataObject) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",jsonString11);
     }
 
     //结果成功，开始处理数据

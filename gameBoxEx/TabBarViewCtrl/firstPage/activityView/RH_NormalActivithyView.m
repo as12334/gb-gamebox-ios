@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *openActivityBtn;
 @property (weak, nonatomic) IBOutlet UILabel *gainTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gainDrawTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *gameRuleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *game1RuleBtn;
 
 @property(nonatomic,strong)NSNumber *markRuleNumber;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
@@ -40,6 +42,7 @@
         [self.normalBackDropView setHidden: NO];
         [self.activityRuleDropView setHidden:YES];
         [self.openActivityView setHidden:YES];
+
     }
     return self;
 }
@@ -47,6 +50,9 @@
 {
     [super awakeFromNib];
     [self.descriptionTextView setEditable:NO];
+    //移除游戏规则按钮
+    [self.gameRuleBtn removeFromSuperview];
+    [self.game1RuleBtn removeFromSuperview];
     
 }
 -(void)setActivityModel:(RH_ActivityModel *)activityModel

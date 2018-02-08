@@ -410,7 +410,6 @@
     
     [self.shadeView removeFromSuperview];
     [self.normalActivityView removeFromSuperview];
-    self.activityView.userInteractionEnabled = YES;
 }
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
@@ -426,7 +425,6 @@
         
         [_hud show:YES];
         [[UIApplication sharedApplication].keyWindow addSubview:_hud];
-         activityView.userInteractionEnabled = NO;
     }
     else if(!self.appDelegate.isLogin){
         //进入登录界面
@@ -480,7 +478,6 @@
 -(void)activityViewShowWith:(RH_ActivityModel*)activityModel
 {
     if (self.activityView.superview) return ;
-    
     self.activityView.alpha = 0.0 ;
     [self.view addSubview:self.activityView] ;
     self.activityView.whc_RightSpace(5).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
@@ -501,15 +498,6 @@
             [self.activityView whc_ResetConstraints] ;
         }] ;
     }
-}
-
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated] ;
-    [self.normalActivityView removeFromSuperview];
-    [self.shadeView removeFromSuperview];
-    [self.hud hide:YES];
-    self.activityView.userInteractionEnabled = YES;
 }
 
 #pragma mark- netStatusChangedHandle

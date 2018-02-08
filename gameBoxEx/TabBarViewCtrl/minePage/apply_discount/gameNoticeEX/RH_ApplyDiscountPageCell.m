@@ -108,11 +108,16 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
-                                                endTime:self.endDate
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate?self.startDate:strDate
+                                                endTime:self.endDate?self.endDate:strDate
                                              pageNumber:page+1
                                                pageSize:pageSize
                                                   apiId:self.apiId];
+   
 }
 
 -(void)cancelLoadDataHandle

@@ -536,7 +536,7 @@
 //请求参数 无
 #define RH_SP_BETTINGLIST_STARTDATE                          @"search.beginBetTime"
 #define RH_SP_BETTINGLIST_ENDDATE                            @"search.endBetTime"
-#define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.currentIndex"
+#define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.pageNumber"
 #define RH_SP_BETTINGLIST_PAGESIZE                           @"paging.pageSize"
 #define RH_SP_BETTINGLIST_ISSHOWSTATISTICS                   @"isShowStatistics"
 
