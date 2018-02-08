@@ -379,11 +379,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3APIGameList
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark -投注列表
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize withIsStatistics:(BOOL)isShowStatistics
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate1 = [dateFormatter dateFromString:startDate];
+    NSDate *endDate1 = [dateFormatter dateFromString:endDate];
+    if (startDate1 > endDate1) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
@@ -400,13 +407,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3BettingList
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark -- 资金记录
 -(void)startV3DepositList:(NSString*)startDate
                   EndDate:(NSString*)endDate
                SearchType:(NSString*)type
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate1 = [dateFormatter dateFromString:startDate];
+    NSDate *endDate1 = [dateFormatter dateFromString:endDate];
+    if (startDate1 > endDate1) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:startDate?:@"" forKey:RH_SP_DEPOSITLIST_STARTDATE] ;
     [dictTmp setValue:endDate?:@"" forKey:RH_SP_DEPOSITLIST_ENDDATE] ;
@@ -598,6 +612,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    if (startDate > endDate) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:startTime?:@"" forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
     [dict setValue:endTime?:@"" forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
@@ -1443,12 +1464,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (error) {
         *error = tempError;
     }
-    if (dataObject) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString11);
-    }
-
     //结果成功，开始处理数据
     if (tempError == nil) {
 

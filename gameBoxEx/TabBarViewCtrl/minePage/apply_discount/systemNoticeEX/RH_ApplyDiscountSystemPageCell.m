@@ -98,7 +98,11 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-     [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate endTime:self.endDate pageNumber:page+1 pageSize:pageSize];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate?self.startDate:strDate endTime:self.endDate?self.endDate:strDate pageNumber:page+1 pageSize:pageSize];
 }
 
 -(void)cancelLoadDataHandle
