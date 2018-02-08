@@ -83,7 +83,7 @@
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",model.mContext] attributes:dic];
         self.titleLabel.attributedText = attributeStr;
     }
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd HH:mm:ss");
     self.gamenameLabel.text = model.mGameName;
     
     

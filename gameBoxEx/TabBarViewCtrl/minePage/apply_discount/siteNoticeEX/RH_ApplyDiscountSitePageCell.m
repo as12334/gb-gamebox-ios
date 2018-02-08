@@ -30,7 +30,8 @@
         self.backgroundColor = colorWithRGB(242, 242, 242);
         //分页视图
         [self.contentView addSubview:self.pageView];
-        self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
+//        self.pageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleWidth ;
+        self.pageView.whc_TopSpace(50).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0) ;
         //设置索引
         self.pageView.dispalyPageIndex = selectedIndex ;
         self.btnArray = [NSMutableArray array];

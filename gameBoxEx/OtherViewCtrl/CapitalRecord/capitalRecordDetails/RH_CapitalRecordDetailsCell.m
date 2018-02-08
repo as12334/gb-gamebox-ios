@@ -146,7 +146,7 @@
             self.subFourthTitleLab.text = [NSString stringWithFormat:@"%@", detailModel.mDeductFavorable];
         }else
         {
-            self.subFourthTitleLab.text = [NSString stringWithFormat:@"%f", detailModel.mTransactionMoney] ;
+            self.subFourthTitleLab.text = [NSString stringWithFormat:@"%.2f", detailModel.mTransactionMoney] ;
         }
         self.subThirdTitleLab.text = detailModel.mTransactionWayName;
         

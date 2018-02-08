@@ -46,13 +46,15 @@
     self.timeLabel.textColor = colorWithRGB(153, 153, 153);
     self.titleWebView.backgroundColor = [UIColor whiteColor] ;
     self.titleWebView.delegate = self;
+    //隐藏webview底部的黑线
+    self.titleWebView.opaque = NO;
 
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SystemNoticeDetailModel *detailModel = ConvertToClassPointer(RH_SystemNoticeDetailModel, context);
     [self.titleWebView loadHTMLString:detailModel.mContent baseURL:nil];
-    self.timeLabel.text = dateStringWithFormatter(detailModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
+    self.timeLabel.text = dateStringWithFormatter(detailModel.mPublishTime, @"yyyy-MM-dd HH:mm:ss");
     
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView

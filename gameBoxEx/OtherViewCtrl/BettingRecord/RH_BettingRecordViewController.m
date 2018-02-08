@@ -21,12 +21,14 @@
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
+@property(nonatomic,assign)BOOL isFirstLoad;
 @end
 
 @implementation RH_BettingRecordViewController
 @synthesize bettingRecordHeaderView = _bettingRecordHeaderView ;
 @synthesize bettingTableHeaderView = _bettingTableHeaderView     ;
 @synthesize bettingBottomView = _bettingBottomView               ;
+
 
 -(BOOL)isSubViewController
 {
@@ -38,6 +40,7 @@
     // Do any additional setup after loading the view.
     self.title =@"投注记录";
     [self setupUI] ;
+    self.isFirstLoad = NO;
 }
 
 -(BOOL)hasTopView
@@ -186,6 +189,7 @@
                                     EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd")
                                  PageNumber:page+1
                                    PageSize:pageSize withIsStatistics:page+1==1?true:false] ;
+    self.isFirstLoad = page+1==1?true:false;
 }
 
 -(void)cancelLoadDataHandle
@@ -205,8 +209,10 @@
 {
     if (type == ServiceRequestTypeV3BettingList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        [self.bettingBottomView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0] SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_TOTALSINGLE] ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]
-                                                  effective:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]];
+        if (self.isFirstLoad) {
+            [self.bettingBottomView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0] SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_TOTALSINGLE] ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]
+                                                      effective:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]];
+        }
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_BETTINGLIST_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]] ;
         

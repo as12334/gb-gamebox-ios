@@ -144,7 +144,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     self.needObserveNetStatusChanged = YES ;
     [self netStatusChangedHandle] ;
-    self.labMark.text = dateStringWithFormatter([NSDate date], @"hhmmss") ;
+    self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
 }
 

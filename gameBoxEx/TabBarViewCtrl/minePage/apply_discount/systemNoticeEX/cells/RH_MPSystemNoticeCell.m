@@ -80,7 +80,7 @@
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",systemModel.mContent] attributes:dic];
         self.noticeLabel.attributedText = attributeStr;
     }
-    self.timeLabel.text = dateStringWithFormatter(systemModel.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
+    self.timeLabel.text = dateStringWithFormatter(systemModel.mPublishTime, @"yyyy-MM-dd HH:mm:ss");
 //    self.gamenameLabel.text = systemModel.m;
     if (systemModel.mReadmark==0) {
         self.mearkImageView.image = [UIImage imageNamed:@""];

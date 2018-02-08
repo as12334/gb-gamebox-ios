@@ -56,8 +56,6 @@
         //通知
         //监听通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedMineMessage) name:@"noti1" object:nil];
-
-    
     }else {
         [self updateWithContext:context];
     }
@@ -75,11 +73,10 @@
     if (self.pageLoadManager.currentDataCount){
         return [RH_SiteMineNoticeCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     }else{
-        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+        CGFloat height = tableView.boundHeigh -  tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
     }
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
@@ -170,7 +167,6 @@
         _loadingIndicateTableViewCell.backgroundColor = [UIColor whiteColor];
         _loadingIndicateTableViewCell.loadingIndicateView.delegate = self;
     }
-    
     return _loadingIndicateTableViewCell ;
 }
 
@@ -270,7 +266,6 @@
         [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
-//        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

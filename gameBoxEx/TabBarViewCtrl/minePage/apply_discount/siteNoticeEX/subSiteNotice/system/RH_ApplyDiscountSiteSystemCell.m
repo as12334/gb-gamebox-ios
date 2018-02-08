@@ -55,8 +55,7 @@
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        
-        
+        self.contentTableView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
     }else {
         [self updateWithContext:context];
     }
@@ -72,7 +71,7 @@
     if (self.pageLoadManager.currentDataCount){
         return [RH_MPSiteSystemNoticeCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     }else{
-        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
+        CGFloat height =  tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
     }
 }
@@ -156,16 +155,11 @@
 {
     if (self.pageLoadManager.currentDataCount){
         RH_SiteSystemDetailController *detailVC= [RH_SiteSystemDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
-        for (int i = 0; i < [self.pageLoadManager allDatas].count; i ++) {
-            RH_SiteMessageModel *model = [self.pageLoadManager allDatas][i];
-            NSLog(@"mTitle=%@",model.mTitle);
-            NSLog(@"mPublishTime=%@",model.mPublishTime);
-        }
-       
         [self showViewController:detailVC];
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;
     }
 }
+
 -(RH_LoadingIndicateTableViewCell*)loadingIndicateTableViewCell
 {
     if (!_loadingIndicateTableViewCell){
@@ -212,7 +206,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    if (page==0) {
+    if (page==1) {
         [self.siteModelArray removeAllObjects];
     }
     [self.serviceRequest startV3LoadSystemMessageWithpageNumber:page+1 pageSize:pageSize];

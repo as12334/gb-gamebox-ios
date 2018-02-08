@@ -55,12 +55,10 @@
     NSString *contentStrTitle = [NSString stringWithFormat:@"%@",model.mTitle];
     NSAttributedString *attributeStrTitle = [[NSAttributedString alloc] initWithString:contentStrTitle attributes:dic];
     self.titleLabel.attributedText = attributeStrTitle;
-
     NSString *contentStr = [NSString stringWithFormat:@"%@",model.mContent];
     NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
     self.contextLabel.attributedText = attributeStr;
-    
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd HH:mm:ss");
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -19,17 +19,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COU-lt-KVR">
-                        <rect key="frame" x="0.0" y="10" width="327" height="69.5"/>
+                        <rect key="frame" x="0.0" y="10" width="327" height="70"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-01-07 11:55:26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qu4-tr-Q1N">
-                                <rect key="frame" x="202" y="10" width="110" height="13.5"/>
+                                <rect key="frame" x="202" y="10" width="110" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发发发" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biC-6l-uNc">
-                                <rect key="frame" x="15" y="38.5" width="297" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,17 +35,22 @@
                                     <constraint firstAttribute="height" constant="1" id="xpx-wr-1z3"/>
                                 </constraints>
                             </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAO-Ir-Nit">
+                                <rect key="frame" x="15" y="39" width="297" height="24"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="biC-6l-uNc" secondAttribute="trailing" constant="15" id="8kK-Wy-9gd"/>
+                            <constraint firstAttribute="trailing" secondItem="BAO-Ir-Nit" secondAttribute="trailing" constant="15" id="3uP-r2-ZcO"/>
                             <constraint firstItem="0U9-qy-xGL" firstAttribute="leading" secondItem="COU-lt-KVR" secondAttribute="leading" id="9T7-yP-Nw5"/>
                             <constraint firstItem="qu4-tr-Q1N" firstAttribute="top" secondItem="COU-lt-KVR" secondAttribute="top" constant="10" id="Afu-uZ-t2X"/>
+                            <constraint firstItem="0U9-qy-xGL" firstAttribute="top" secondItem="BAO-Ir-Nit" secondAttribute="bottom" constant="6" id="Ca4-93-kNS"/>
                             <constraint firstAttribute="trailing" secondItem="qu4-tr-Q1N" secondAttribute="trailing" constant="15" id="FNE-oa-LUH"/>
                             <constraint firstAttribute="bottom" secondItem="0U9-qy-xGL" secondAttribute="bottom" constant="-0.5" id="Kcx-PM-fLo"/>
-                            <constraint firstItem="biC-6l-uNc" firstAttribute="leading" secondItem="COU-lt-KVR" secondAttribute="leading" constant="15" id="LNX-ag-mfi"/>
-                            <constraint firstItem="biC-6l-uNc" firstAttribute="top" secondItem="qu4-tr-Q1N" secondAttribute="bottom" constant="15" id="YTx-la-YBh"/>
                             <constraint firstAttribute="trailing" secondItem="0U9-qy-xGL" secondAttribute="trailing" id="eHF-ok-urv"/>
+                            <constraint firstItem="BAO-Ir-Nit" firstAttribute="top" secondItem="qu4-tr-Q1N" secondAttribute="bottom" constant="15" id="qAu-Rf-I6H"/>
+                            <constraint firstItem="BAO-Ir-Nit" firstAttribute="leading" secondItem="COU-lt-KVR" secondAttribute="leading" constant="15" id="xtd-CN-c4Z"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzs-dC-tMY">
@@ -78,7 +77,7 @@
             <connections>
                 <outlet property="bottomLine" destination="0U9-qy-xGL" id="cV2-B1-UOG"/>
                 <outlet property="timeLabel" destination="qu4-tr-Q1N" id="FTe-K2-mmz"/>
-                <outlet property="titleLabel" destination="biC-6l-uNc" id="5cQ-F2-6NH"/>
+                <outlet property="titleWebView" destination="BAO-Ir-Nit" id="7Rl-Yk-aLu"/>
                 <outlet property="topLine" destination="fzs-dC-tMY" id="K1y-Lb-gM3"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="89"/>

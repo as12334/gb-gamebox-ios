@@ -85,7 +85,7 @@
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",model.mTitle] attributes:dic];
         self.titleLabel.attributedText = attributeStr;
     }
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd hh:mm:ss");
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd HH:mm:ss");
     if ([model.number isEqual:@0]) {
         self.readMarkImageView.image = nil;
     }
