@@ -35,7 +35,7 @@
     CGSize maxSize_1 = CGSizeMake(label_1.frameWidth, MAXFLOAT);
     label_1.numberOfLines=0;
     CGSize size_1 = [model.mAdvisoryTitle boundingRectWithSize:maxSize_1 options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs_1 context:nil].size;
-    return 130+size.height+size_1.height>screenSize().height?screenSize().height:130+size.height+size_1.height;
+    return 130+size.height+size_1.height<screenSize().height?90+size.height+size_1.height:200+size.height+size_1.height;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {

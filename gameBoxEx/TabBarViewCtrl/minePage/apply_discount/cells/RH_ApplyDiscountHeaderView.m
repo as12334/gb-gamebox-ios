@@ -25,6 +25,7 @@
         self.segmentedControl = [[UISegmentedControl alloc]initWithItems:itemArray];
 //        self.segmentedControl.layer.cornerRadius = 6.f;
 //        self.segmentedControl.clipsToBounds = YES;
+        
         self.segmentedControl.layer.borderWidth=1;
         if ([THEMEV3 isEqualToString:@"green"]){
             self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Green.CGColor;
@@ -45,7 +46,12 @@
         //设置frame
         [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2,15, 288, 33)];
         [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];
-        
+//        UILabel *lab1 = [[UILabel alloc] init];
+//        [lab1 setFrame:CGRectMake(288/3.0-10, 0, 10, 10)];
+//        lab1.backgroundColor = [UIColor redColor] ;
+//        [self.segmentedControl addSubview:lab1];
+//        UILabel *lab2 = [[UILabel alloc] init];
+//        UILabel *lab3 = [[UILabel alloc] init];
         UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                                forKey:NSFontAttributeName];
