@@ -117,7 +117,6 @@
 - (IBAction)gameTypeSelected:(id)sender {
     __block RH_MPGameNoticHeaderView *weakSelf = self;
     self.block(2,weakSelf.gameTypeControl.frame);
-    
 }
 
 @end

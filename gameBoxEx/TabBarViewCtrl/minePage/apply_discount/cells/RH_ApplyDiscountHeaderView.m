@@ -10,7 +10,7 @@
 
 #import "coreLib.h"
 
-@interface RH_ApplyDiscountHeaderView()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface RH_ApplyDiscountHeaderView()<UICollectionViewDelegate>
 @property (nonatomic,strong) NSArray *arrayTypeList ;
 
 @end
@@ -44,14 +44,10 @@
         self.segmentedControl.layer.masksToBounds=YES;
         self.segmentedControl.layer.cornerRadius=6;
         //设置frame
-        [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2,15, 288, 33)];
+        [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2.0,15, 288, 33)];
         [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];
-//        UILabel *lab1 = [[UILabel alloc] init];
-//        [lab1 setFrame:CGRectMake(288/3.0-10, 0, 10, 10)];
-//        lab1.backgroundColor = [UIColor redColor] ;
-//        [self.segmentedControl addSubview:lab1];
-//        UILabel *lab2 = [[UILabel alloc] init];
-//        UILabel *lab3 = [[UILabel alloc] init];
+    
+      
         UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                                forKey:NSFontAttributeName];
@@ -62,6 +58,28 @@
         [self.segmentedControl setTitleTextAttributes:colorAttr forState:UIControlStateNormal];
         //添加到视图
         [self addSubview:self.segmentedControl];
+        for (int i = 0; i<3; i++)
+        {
+            UILabel *lab1 = [[UILabel alloc] init];
+            [lab1 setFrame:CGRectMake((MainScreenW-288)/2.0+(288/3.0)*(i+1)-10, 10, 18, 18)];
+            lab1.backgroundColor = [UIColor redColor] ;
+            lab1.layer.cornerRadius = 10;
+            lab1.layer.masksToBounds = YES;
+            lab1.text = @"99+";
+            lab1.textColor = [UIColor whiteColor] ;
+            lab1.font = [UIFont systemFontOfSize:10.f];
+            lab1.textAlignment = NSTextAlignmentCenter;
+            lab1.hidden = YES;
+            [self addSubview:lab1];
+            if (i==0) {
+                lab1.hidden = NO;
+            }else if (i==1){
+                
+            }else
+            {
+                
+            }
+        }
     }
     return self;
 }
