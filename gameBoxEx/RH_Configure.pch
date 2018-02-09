@@ -1570,6 +1570,13 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _feas //澳门威尼斯人
+
+#define CODE    @"feas"
+#define S        @"fd7b632187397070a9110e6baacec702"
+#define SID        @"366"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 #endif
 
