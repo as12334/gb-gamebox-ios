@@ -1570,11 +1570,27 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _r4pf //胜益国际娱乐
+
+#define CODE    @"r4pf"
+#define S        @"b83cd9f681d8110048b9a90021e1c7e3"
+#define SID        @"363"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _feas //澳门威尼斯人
 
 #define CODE    @"feas"
 #define S        @"fd7b632187397070a9110e6baacec702"
 #define SID        @"366"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _xc95 //豪爵娱乐城
+
+#define CODE    @"xc95"
+#define S        @"443110d6d974f61ab6ce1f23f27af7b5"
+#define SID        @"367"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
