@@ -384,13 +384,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize withIsStatistics:(BOOL)isShowStatistics
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *startDate1 = [dateFormatter dateFromString:startDate];
-    NSDate *endDate1 = [dateFormatter dateFromString:endDate];
-    if (startDate1 > endDate1) {
-        showAlertView(@"提示", @"时间选择有误,请重试选择");
-    }
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
@@ -414,13 +407,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *startDate1 = [dateFormatter dateFromString:startDate];
-    NSDate *endDate1 = [dateFormatter dateFromString:endDate];
-    if (startDate1 > endDate1) {
-        showAlertView(@"提示", @"时间选择有误,请重试选择");
-    }
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:startDate?:@"" forKey:RH_SP_DEPOSITLIST_STARTDATE] ;
     [dictTmp setValue:endDate?:@"" forKey:RH_SP_DEPOSITLIST_ENDDATE] ;
