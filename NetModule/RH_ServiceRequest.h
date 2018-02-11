@@ -75,6 +75,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SafetyPasswordAutuentification ,   //取款安全密码验证
     ServiceRequestTypeWithDrawFee , //取款手续费计算
     ServiceRequestTypeTimeZoneInfo , //获取站点时区
+    ServiceRequestTypeSiteMessageUnReadCount , //获取站点信息-未读消息的条数
+    
 };
 
 
@@ -373,6 +375,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 获取站点时区
 -(void)startV3SiteTimezone ;
+
+#pragma mark - 获取站点消息-系统消息&&我的消息 未读条数
+-(void)startV3LoadMessageCenterSiteMessageUnReadCount ;
 
 #pragma mark -
 /**

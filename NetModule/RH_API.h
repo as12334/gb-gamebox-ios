@@ -824,5 +824,8 @@
 #pragma mark - V3 获取站点时区接口
 #define RH_API_NAME_TIMEZONEINFO                   @"mobile-api/origin/getTimeZone.html"
 
+#pragma mark -- V3 获取消息中心-站点信息未读消息条数
+#define RH_API_NAME_SITEMESSAGUNREADCOUNT        @"mobile-api/mineOrigin/getUnReadCount.html" 
+
 #endif /* RH_API_h */
 

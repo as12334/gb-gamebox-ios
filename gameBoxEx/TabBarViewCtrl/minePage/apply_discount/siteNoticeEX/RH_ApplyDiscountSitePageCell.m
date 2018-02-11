@@ -12,6 +12,8 @@
 #import "RH_ApplyDiscountSiteMineCell.h"
 #import "RH_ApplyDiscountSiteSendCell.h"
 #import "RH_SiteMessageModel.h"
+#import "RH_SiteMsgUnReadCountModel.h"
+
 @interface RH_ApplyDiscountSitePageCell ()<CLPageViewDelegate,CLPageViewDatasource>
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong)UIButton *chooseBtn;
@@ -70,11 +72,10 @@
             [_btnArray addObject:btn];
             [self addSubview:btn];
         }
-        UILabel *sysBadgeLab = [[UILabel alloc] initWithFrame:CGRectMake(70, 0, 18, 18)];
+        UILabel *sysBadgeLab = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 15, 15)];
         sysBadgeLab.backgroundColor = [UIColor redColor] ;
-        sysBadgeLab.layer.cornerRadius = 10;
+        sysBadgeLab.layer.cornerRadius = 7.5;
         sysBadgeLab.layer.masksToBounds = YES;
-//        sysBadgeLab.text = @"99+";
         sysBadgeLab.textColor = [UIColor whiteColor] ;
         sysBadgeLab.font = [UIFont systemFontOfSize:8.f];
         sysBadgeLab.textAlignment = NSTextAlignmentCenter;
@@ -82,29 +83,41 @@
         [self addSubview:sysBadgeLab];
         _sysBadge =sysBadgeLab;
         [[NSNotificationCenter defaultCenter] addObserverForName:@"isHaveNoReadSiteSysMessage_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-            RH_SiteMessageModel *model1 = note.object;
+            RH_SiteMsgUnReadCountModel *model1 = note.object;
             NSLog(@"%@",note) ;
-            if (model1.mRead == NO) {
-                sysBadgeLab.hidden = NO;
+            if (model1.sysMsgUnreadCount &&[model1.sysMsgUnreadCount integerValue] > 0) {
+                _sysBadge.hidden = NO ;
+                _sysBadge.text = model1.sysMsgUnreadCount ;
             }else
             {
-                sysBadgeLab.hidden = YES;
+                _sysBadge.hidden = YES ;
             }
         }];
         
         UILabel *mineBadgeLab = [[UILabel alloc] init];
-        [mineBadgeLab setFrame:CGRectMake(10+80+60, 0, 18, 18)];
+        [mineBadgeLab setFrame:CGRectMake(10+80+60, 5, 15, 15)];
         mineBadgeLab.backgroundColor = [UIColor redColor] ;
-        mineBadgeLab.layer.cornerRadius = 10;
+        mineBadgeLab.layer.cornerRadius = 7.5;
         mineBadgeLab.layer.masksToBounds = YES;
-        mineBadgeLab.text = @"99+";
         mineBadgeLab.textColor = [UIColor whiteColor] ;
         mineBadgeLab.font = [UIFont systemFontOfSize:8.f];
         mineBadgeLab.textAlignment = NSTextAlignmentCenter;
         mineBadgeLab.hidden = YES;
         [self addSubview:mineBadgeLab];
         [[NSNotificationCenter defaultCenter] addObserverForName:@"isHaveNoReadSiteMineMessage_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-            NSLog(@"%@",note) ;
+            RH_SiteMsgUnReadCountModel *model1 = note.object;
+            if (model1.mineMsgUnreadCount && [model1.mineMsgUnreadCount integerValue] > 0) {
+                mineBadgeLab.hidden = NO ;
+                if ([model1.mineMsgUnreadCount integerValue]> 99) {
+                    mineBadgeLab.text  = @"99+";
+                }else
+                {
+                     mineBadgeLab.text = model1.mineMsgUnreadCount ;
+                }
+            }else
+            {
+                mineBadgeLab.hidden = YES;
+            }
         }];
 
         
@@ -263,9 +276,8 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"isHaveNoReadSiteSysMessage_NT" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"isHaveNoReadSiteMineMessage_NT" object:nil];
-    
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"isHaveNoReadSiteSysMessage_NT" object:nil];
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"isHaveNoReadSiteMineMessage_NT" object:nil];
 }
 
 @end

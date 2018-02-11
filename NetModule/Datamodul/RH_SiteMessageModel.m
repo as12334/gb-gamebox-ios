@@ -31,14 +31,6 @@
     return _mId ;
 }
 
--(void)isShowRedBadge:(BOOL)flag
-{
-    if (_mRead != flag) {
-        flag = _mRead;
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"isHaveNoReadSiteSysMessage_NT" object:self];
-    }
-}
-
 -(void)updataReadStatus:(BOOL)bflag
 {
     if (_mRead != bflag) {

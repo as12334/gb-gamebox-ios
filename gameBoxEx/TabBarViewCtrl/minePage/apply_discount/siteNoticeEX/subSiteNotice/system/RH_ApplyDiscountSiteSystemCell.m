@@ -13,6 +13,7 @@
 #import "RH_API.h"
 #import "RH_LoadingIndicateTableViewCell.h"
 #import "RH_SiteSystemDetailController.h"
+#import "RH_SiteMsgUnReadCountModel.h"
 
 #import "RH_ApplyDiscountSitePageCell.h"
 @interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate>
@@ -21,6 +22,7 @@
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property(nonatomic,strong)RH_ApplyDiscountSitePageCell *applyDiscountSitePageCell;
+@property(nonatomic,strong)RH_SiteMsgUnReadCountModel *unReadModel ;
 //标记第几页
 @property(nonatomic,assign)NSInteger pageNumber;
 @end
@@ -29,6 +31,7 @@
 @synthesize headerView = _headerView;
 @synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
 #pragma mark tableView的上部分的选择模块
+
 
 -(RH_MPSiteMessageHeaderView *)headerView
 {
@@ -225,6 +228,7 @@
         [self.siteModelArray removeAllObjects];
     }
     [self.serviceRequest startV3LoadSystemMessageWithpageNumber:page+1 pageSize:pageSize];
+    [self.serviceRequest startV3LoadMessageCenterSiteMessageUnReadCount] ;
 }
 -(void)cancelLoadDataHandle
 {
@@ -272,6 +276,9 @@
     else if (type == ServiceRequestTypeV3SystemMessageYes){
         [self startUpdateData];
         self.headerView.statusMark =YES;
+    }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
+    {
+       
     }
 }
 
@@ -286,6 +293,10 @@
         [self loadDataFailWithError:error] ;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
+        showErrorMessage(nil, error, nil) ;
+        [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
+    {
         showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }

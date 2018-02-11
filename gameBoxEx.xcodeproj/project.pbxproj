@@ -47,6 +47,7 @@
 		22C2E15A202720B9008C0C06 /* tab_v3_home_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */; };
 		22C2E15D20272116008C0C06 /* login_touxiang_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */; };
 		22C2E15E20272116008C0C06 /* login_touxiang_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */; };
+		795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
 		797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678B200890DF009E3FAB /* RH_SystemNoticeDetailModel.m */; };
@@ -667,6 +668,8 @@
 		22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@2x.png"; sourceTree = "<group>"; };
 		22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_red@3x.png"; sourceTree = "<group>"; };
 		22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_red@2x.png"; sourceTree = "<group>"; };
+		795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgUnReadCountModel.h; sourceTree = "<group>"; };
+		795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgUnReadCountModel.m; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
 		797F678720085DA5009E3FAB /* RH_SystemNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeModel.h; sourceTree = "<group>"; };
@@ -2542,6 +2545,8 @@
 				79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */,
 				F681D263201B0EA600A7C449 /* RH_ActivityStatusModel.h */,
 				F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */,
+				795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */,
+				795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -4071,6 +4076,7 @@
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
+				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
 				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
 				A0109FB01F8788FF004E6EF4 /* UIActionSheet+Block.m in Sources */,
@@ -4444,7 +4450,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
