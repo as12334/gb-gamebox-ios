@@ -25,6 +25,7 @@
     return self;
 }
 
+
 -(void)updataReadStatus:(BOOL)bflag
 {
     if (_mIsRead != bflag) {

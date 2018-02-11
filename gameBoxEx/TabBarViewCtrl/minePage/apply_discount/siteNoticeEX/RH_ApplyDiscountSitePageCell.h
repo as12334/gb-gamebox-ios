@@ -11,4 +11,5 @@
 
 @interface RH_ApplyDiscountSitePageCell : CLScrollContentPageCell
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context andSelectedIndex:(NSInteger)selectedIndex;
+@property(nonatomic,strong) UILabel *sysBadge;
 @end

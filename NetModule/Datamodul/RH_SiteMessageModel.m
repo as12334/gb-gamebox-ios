@@ -22,13 +22,21 @@
         _mTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_TITLE];
         _mRead = [info boolValueForKey:RH_GP_SITEMESSAGE_READ];
         _mSearchId = [info stringValueForKey:RH_GP_SITEMESSAGE_SEARCHID];
-       
+        
     }
     return self;
 }
 -(NSInteger)ID
 {
     return _mId ;
+}
+
+-(void)isShowRedBadge:(BOOL)flag
+{
+    if (_mRead != flag) {
+        flag = _mRead;
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"isHaveNoReadSiteSysMessage_NT" object:self];
+    }
 }
 
 -(void)updataReadStatus:(BOOL)bflag

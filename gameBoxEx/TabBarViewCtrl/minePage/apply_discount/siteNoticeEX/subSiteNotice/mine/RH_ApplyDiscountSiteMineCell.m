@@ -127,27 +127,39 @@
 }
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView *)view
 {
-    NSString *str = @"";
-    for (RH_SiteMyMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",siteModel.mId]];
+    if (self.deleteModelArray.count>0) {
+        NSString *str = @"";
+        for (RH_SiteMyMessageModel *siteModel in self.deleteModelArray) {
+            str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",siteModel.mId]];
+        }
+        if([str length] > 0){
+            str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+        }
+        [self.deleteModelArray removeAllObjects];
+        [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
+    }else
+    {
+        showAlertView(@"提示", @"请选择你要删除的消息");
     }
-    if([str length] > 0){
-        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
-    }
-    [self.deleteModelArray removeAllObjects];
-    [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
+    
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
-    NSString *str = @"";
-    for (RH_SiteMyMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
+    if (self.deleteModelArray.count > 0) {
+        NSString *str = @"";
+        for (RH_SiteMyMessageModel *siteModel in self.deleteModelArray) {
+            str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
+        }
+        if([str length] > 0){
+            str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+        }
+        [self.deleteModelArray removeAllObjects];
+        [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
+    }else
+    {
+       showAlertView(@"提示", @"请标记你要删除的消息");
     }
-    if([str length] > 0){
-        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
-    }
-    [self.deleteModelArray removeAllObjects];
-    [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
+   
 
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

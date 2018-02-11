@@ -13,11 +13,14 @@
 #import "RH_API.h"
 #import "RH_LoadingIndicateTableViewCell.h"
 #import "RH_SiteSystemDetailController.h"
+
+#import "RH_ApplyDiscountSitePageCell.h"
 @interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
+@property(nonatomic,strong)RH_ApplyDiscountSitePageCell *applyDiscountSitePageCell;
 //标记第几页
 @property(nonatomic,assign)NSInteger pageNumber;
 @end
@@ -128,27 +131,39 @@
 }
 -(void)siteMessageHeaderViewDeleteCell:(RH_MPSiteMessageHeaderView *)view
 {
-    NSString *str = @"";
-    for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
+    if (self.deleteModelArray.count > 0) {
+        NSString *str = @"";
+        for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
+            str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
+        }
+        if([str length] > 0){
+            str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+        }
+        [self.deleteModelArray removeAllObjects];
+        [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+    }else
+    {
+        showAlertView(@"提示", @"请标记你要删除的消息");
     }
-    if([str length] > 0){
-        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
-    }
-    [self.deleteModelArray removeAllObjects];
-    [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+   
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
-    NSString *str = @"";
-    for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
+    if (self.deleteModelArray.count > 0) {
+        NSString *str = @"";
+        for (RH_SiteMessageModel *siteModel in self.deleteModelArray) {
+            str = [str stringByAppendingString:[NSString stringWithFormat:@"%ld,",(long)siteModel.mId]];
+        }
+        if([str length] > 0){
+            str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
+        }
+        [self.deleteModelArray removeAllObjects];
+        [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
+    }else
+    {
+        showAlertView(@"提示", @"请标记你要标记为已读的消息");
     }
-    if([str length] > 0){
-        str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
-    }
-    [self.deleteModelArray removeAllObjects];
-    [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
+  
 
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

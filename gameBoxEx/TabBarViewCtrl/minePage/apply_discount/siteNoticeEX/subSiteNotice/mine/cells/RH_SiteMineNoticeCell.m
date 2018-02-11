@@ -86,7 +86,7 @@
             [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
             self.markNewImageView.image = [UIImage imageNamed:@""];
         }
-    }];
+    }];    
 }
 
 - (IBAction)choseEdinBtnClick:(id)sender {

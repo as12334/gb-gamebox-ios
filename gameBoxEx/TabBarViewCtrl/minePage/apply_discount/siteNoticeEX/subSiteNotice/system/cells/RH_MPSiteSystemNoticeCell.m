@@ -110,6 +110,7 @@
             self.readMark.image = [UIImage imageNamed:@""];
         }
     }];
+    [model isShowRedBadge:YES] ;
 }
 - (IBAction)chooseEditBtn:(id)sender {
     self.block();

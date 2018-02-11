@@ -24,7 +24,7 @@
 #import "RH_PromoListController.h"
 
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
+@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -565,7 +565,6 @@
     jsContext[@"goBack"] = ^() {
         NSLog(@"JSToOc :%@------ goBack",NSStringFromClass([self class])) ;
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self] ;
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (index>=1 && index !=NSNotFound){
                 [self backBarButtonItemHandle] ;
@@ -863,7 +862,89 @@
         jsContext[@"nativeAutoLogin"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
             NSLog(@"JSToOc :%@------ nativeAutoLogin",NSStringFromClass([self class])) ;
         };
+        //分享图片保存
+        jsContext[@"saveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
+            NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            JSValue *customUrl;
+            if (args.count==0) {
+                return  ;
+            }
+            
+            customUrl = args[0] ;
+            self.appDelegate.customUrl = customUrl.toString;
+            
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pic.eastlady.cn/uploads/tp/201704/9999/ee5e5b3adb.jpg"]];
+            UIImage *myImage = [UIImage imageWithData:data];
+            [self saveImageToPhotos:myImage];
+          
+        };
     }
+}
+- (void)saveImageToPhotos:(UIImage*)savedImage
+
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        }];
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+        
+    }else{
+        msg = @"保存图片成功!请到相册里查看" ;
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        /* 照片是否可以编辑 */
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        /* 根据照片来源确定AlertAction */
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        /* 判断相册是否可以访问 */
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+//            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"立即前往" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                [[self topMostController] presentViewController:picker animated:YES completion:^{
+//
+//                }];
+//            }];
+//
+//            [alert addAction:action1];
+//        }
+//        UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//
+//
+//        }];
+//        [alert addAction:cancel];
+//
+//        [self presentViewController:alert animated:YES completion:^{
+//
+//        }];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行分享！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        
+        }
+       
+    }
+}
+
+- (UIViewController*) topMostController {
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
 }
 
 #pragma mark- demoEnter -

@@ -23,5 +23,6 @@
 @property(nonatomic,strong)NSNumber *number;
 
 -(void)updataReadStatus:(BOOL)bflag ;
+-(void)isShowRedBadge:(BOOL)flag;
 
 @end
