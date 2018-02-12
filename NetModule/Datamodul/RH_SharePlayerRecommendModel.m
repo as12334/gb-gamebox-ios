@@ -15,8 +15,8 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mCount = [info integerValueForKey:RH_GP_SHAREPLAYERRECOMMEND_COUNT] ;
-        _mUser = [info integerValueForKey:RH_GP_SHAREPLAYERRECOMMEND_USER] ;
+        _mCount = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_COUNT] ;
+        _mUser = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_USER] ;
     }
     return self;
 }

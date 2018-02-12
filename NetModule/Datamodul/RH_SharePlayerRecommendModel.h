@@ -10,9 +10,9 @@
 @interface RH_RemmendModel : RH_BasicModel
 
 //获取奖励次数
-@property(nonatomic,assign,readonly)NSInteger  mCount ;
+@property(nonatomic,strong,readonly)NSString  *mCount ;
 //分享好有数量
-@property(nonatomic,assign,readonly)NSInteger  mUser ;
+@property(nonatomic,strong,readonly)NSString  *mUser ;
 @end
 
 @interface RH_SharePlayerRecommendModel : RH_BasicModel
