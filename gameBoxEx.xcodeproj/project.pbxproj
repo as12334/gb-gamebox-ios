@@ -64,6 +64,8 @@
 		79BB2D9C203130B0000CDE6B /* RH_ShareNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2D9B203130B0000CDE6B /* RH_ShareNavBarView.m */; };
 		79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BB2D9D203130CE000CDE6B /* RH_ShareNavBarView.xib */; };
 		79BB2DA12031699E000CDE6B /* RH_SharePlayerRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */; };
+		79BB2DA420318A7D000CDE6B /* RH_ShareCountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DA320318A7D000CDE6B /* RH_ShareCountTableViewCell.m */; };
+		79BB2DA62031AE7C000CDE6B /* SharePlayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BB2DA52031AE7C000CDE6B /* SharePlayer.plist */; };
 		79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
@@ -704,6 +706,9 @@
 		79BB2D9D203130CE000CDE6B /* RH_ShareNavBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ShareNavBarView.xib; sourceTree = "<group>"; };
 		79BB2D9F2031699E000CDE6B /* RH_SharePlayerRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SharePlayerRecommendModel.h; sourceTree = "<group>"; };
 		79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SharePlayerRecommendModel.m; sourceTree = "<group>"; };
+		79BB2DA220318A7D000CDE6B /* RH_ShareCountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ShareCountTableViewCell.h; sourceTree = "<group>"; };
+		79BB2DA320318A7D000CDE6B /* RH_ShareCountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShareCountTableViewCell.m; sourceTree = "<group>"; };
+		79BB2DA52031AE7C000CDE6B /* SharePlayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SharePlayer.plist; sourceTree = "<group>"; };
 		79D6E6D0201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgSysMsgModel.h; sourceTree = "<group>"; };
 		79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgSysMsgModel.m; sourceTree = "<group>"; };
 		79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageModel.h; sourceTree = "<group>"; };
@@ -1770,6 +1775,7 @@
 				79BB2D9520312F24000CDE6B /* cells */,
 				79BB2D9620312F4B000CDE6B /* RH_ShareViewController.h */,
 				79BB2D9720312F4B000CDE6B /* RH_ShareViewController.m */,
+				79BB2DA52031AE7C000CDE6B /* SharePlayer.plist */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -1777,6 +1783,8 @@
 		79BB2D9520312F24000CDE6B /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				79BB2DA220318A7D000CDE6B /* RH_ShareCountTableViewCell.h */,
+				79BB2DA320318A7D000CDE6B /* RH_ShareCountTableViewCell.m */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -3942,6 +3950,7 @@
 				A0C914FE201F541600EA71E6 /* default_banner.jpg in Resources */,
 				B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */,
 				F6FB638B200F851300EEED4E /* RH_MPSystemNoticeCell.xib in Resources */,
+				79BB2DA62031AE7C000CDE6B /* SharePlayer.plist in Resources */,
 				B87A6B6D200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.xib in Resources */,
 				A0522A6620078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.xib in Resources */,
 				22C2E15A202720B9008C0C06 /* tab_v3_home_selected_red@2x.png in Resources */,
@@ -4177,6 +4186,7 @@
 				A0109FC91F8788FF004E6EF4 /* CLFormDataHTTPRequest.m in Sources */,
 				A0109FCA1F8788FF004E6EF4 /* CLHTTPRequest.m in Sources */,
 				A02142711FBD2968007E565E /* CLImageTitleStaticCollectionViewCell.m in Sources */,
+				79BB2DA420318A7D000CDE6B /* RH_ShareCountTableViewCell.m in Sources */,
 				A0109FCB1F8788FF004E6EF4 /* CLNetReachability.m in Sources */,
 				A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,

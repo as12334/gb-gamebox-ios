@@ -9,9 +9,10 @@
 #import "RH_ShareViewController.h"
 #import "coreLib.h"
 #import "RH_ShareNavBarView.h"
+#import "RH_ShareCountTableViewCell.h"
 
 
-@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate>
+@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,CLTableViewManagementDelegate>
 @property(nonatomic,  strong, readonly)RH_ShareNavBarView *shareNavView ;
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @end
@@ -30,7 +31,7 @@
 
 -(BOOL)hasTopView
 {
-    return YES ;
+    return NO ;
 }
 
 -(BOOL)topViewIncludeStatusBar
@@ -53,7 +54,13 @@
 
 #pragma mark-
 - (void)setupInfo {
-    [self.topView addSubview:self.shareNavView] ;
+    
+    UIImageView *bgImage = [[UIImageView alloc] init];
+    [self.contentView addSubview:bgImage];
+    bgImage.image = ImageWithName(@"share_bg") ;
+    bgImage.whc_LeftSpaceToView(0, self.view).whc_TopSpaceEqualViewOffset(self.view, 0).whc_BottomSpaceToView(0, self.view).whc_RightSpaceToView(0, self.view);
+    
+    [bgImage addSubview:self.shareNavView];
     self.shareNavView.whc_LeftSpace(0).whc_TopSpace(20).whc_BottomSpace(0).whc_RightSpace(0) ;
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
@@ -61,14 +68,14 @@
     edgeInset.top -= heighStatusBar +heighNavigationBar ;
     self.contentTableView.contentInset = edgeInset ;
     self.contentTableView.scrollIndicatorInsets = edgeInset ;
-    UIImageView *bgImage = [[UIImageView alloc] init];
-    self.contentTableView.backgroundView = bgImage ;
-    bgImage.image = ImageWithName(@"share_bg");
-//    bgImage.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(0).whc_BottomSpace(0) ;
+
    
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
+
 }
+
+
 #pragma mark -
 -(RH_ShareNavBarView *)shareNavView
 {
@@ -83,7 +90,7 @@
 {
     [self backBarButtonItemHandle] ;
 }
-#pragma mark -设置界面
+#pragma mark -设置按钮
 -(void)shareNaviBarViewDidTouchSettingButton:(RH_ShareNavBarView *)shareNaviBarView
 {
     
@@ -92,9 +99,6 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3SharePlayerRecommend){
-        //        RH_UserGroupInfoModel *infoModel = ConvertToClassPointer(RH_UserGroupInfoModel, data);
-        //       self.mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, infoModel.mUserSetting);
-        //        [self.tableViewManagement reloadData];
         [self setNeedUpdateView] ;
     }
 }
@@ -104,6 +108,30 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }
+
+#pragma mark-
+- (CLTableViewManagement *)tableViewManagement {
+    if (_tableViewManagement == nil) {
+        _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"SharePlayer" bundle:nil];
+        _tableViewManagement.delegate = self;
+    }
+    return _tableViewManagement;
+}
+
+-(CGFloat)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellHeightAtIndexPath:(NSIndexPath *)indexPath
+{
+    return MainScreenH - StatusBarHeight - NavigationBarHeight ;
+}
+
+-(UITableViewCell*)tableViewManagement:(CLTableViewManagement *)tableViewManagement customCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.loadingIndicateTableViewCell ;
+}
+
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
