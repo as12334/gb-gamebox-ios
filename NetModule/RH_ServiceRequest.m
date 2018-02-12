@@ -17,7 +17,6 @@
 #import "RH_UserInfoManager.h"
 ///-------DATA MODULE--------------------//
 #import "RH_HomePageModel.h"
-#import "RH_UserBalanceGroupModel.h"
 #import "RH_BettingInfoModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_BettingDetailModel.h"
@@ -1528,7 +1527,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 RH_UserGroupInfoModel *userGroupModel = ConvertToClassPointer(RH_UserGroupInfoModel, resultSendData) ;
                 if (userGroupModel){
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
-                    [userInfoManager setUserBalanceInfo:userGroupModel.mUserBalanceGroupInfo] ;
                     [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
                     [userInfoManager setBankList:userGroupModel.mBankList] ;
                 }

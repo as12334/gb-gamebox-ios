@@ -8,7 +8,7 @@
 
 #import "RH_UserInfoTotalCell.h"
 #import "coreLib.h"
-#import "RH_UserBalanceGroupModel.h"
+#import "RH_MineInfoModel.h"
 
 @interface RH_UserInfoTotalCell()
 @property (weak, nonatomic) IBOutlet CLBorderView  *tBalanceView  ;
@@ -74,10 +74,10 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_UserBalanceGroupModel *userBalanceGroupModel = ConvertToClassPointer(RH_UserBalanceGroupModel, context) ;
-    if (userBalanceGroupModel){
-        self.labTBalanceValue.text = userBalanceGroupModel.mAssets ;
-        self.labTWalletValue.text = userBalanceGroupModel.mBalance ;
+    RH_MineInfoModel *mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, context) ;
+    if (mineInfoModel){
+        self.labTBalanceValue.text = mineInfoModel.showTotalAssets ;
+        self.labTWalletValue.text = mineInfoModel.showWalletBalance ;
     }
 }
 

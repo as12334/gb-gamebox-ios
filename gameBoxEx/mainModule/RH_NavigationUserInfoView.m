@@ -9,6 +9,7 @@
 #import "RH_NavigationUserInfoView.h"
 #import "RH_UserInfoManager.h"
 #import "coreLib.h"
+#import "RH_MineInfoModel.h"
 
 @interface RH_NavigationUserInfoView ()
 @property (nonatomic,strong) IBOutlet UILabel *labUserName ;
@@ -38,7 +39,7 @@
     self.labBalance.text = @"" ;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotificatin:)
-                                                 name:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
+                                                 name:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
     [self updateUI] ;
 }
 
@@ -49,13 +50,13 @@
 
 -(void)updateUI
 {
-    RH_UserBalanceGroupModel *userBalanceGroupModel = UserBalanceInfo ;
-    if (userBalanceGroupModel){
-        self.labUserName.text = userBalanceGroupModel.mUserName ;
-        NSInteger strLength = userBalanceGroupModel.mAssets.length ;
+    RH_MineInfoModel *userInfoModel = MineSettingInfo ;
+    if (userInfoModel){
+        self.labUserName.text = userInfoModel.mUserName ;
+        NSInteger strLength = userInfoModel.showTotalAssets.length ;
         self.labBalance.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_Width(strLength*7).whc_Height(15);
         self.leftImageView.whc_RightSpaceToView(2, self.labBalance).whc_TopSpaceToView(4, self.labUserName).whc_Width(6).whc_Height(6);
-        self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userBalanceGroupModel.mCurrSign,userBalanceGroupModel.mAssets] ;
+        self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userInfoModel.mCurrency,userInfoModel.showTotalAssets] ;
     }
 }
 
@@ -68,7 +69,7 @@
 #pragma mark-
 -(void)handleNotificatin:(NSNotification*)nt
 {
-    if ([nt.name isEqualToString:RHNT_UserInfoManagerBalanceChangedNotification]){
+    if ([nt.name isEqualToString:RHNT_UserInfoManagerMineGroupChangedNotification]){
         [self performSelectorOnMainThread:@selector(updateUI) withObject:self waitUntilDone:NO] ;
     }
 }

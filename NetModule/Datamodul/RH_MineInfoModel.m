@@ -16,6 +16,8 @@
 
 @implementation RH_MineInfoModel
 @synthesize showAvatalURL = _showAvatalURL ;
+@synthesize showTotalAssets = _showTotalAssets ;
+@synthesize showWalletBalance = _showWalletBalance ;
 
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -37,6 +39,7 @@
         _mBankCard = [[RH_BankCardModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BANKCARD]] ;
         _mBitCode = [[RH_BitCodeModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BTCCODE]] ;
         _mRealName = [info stringValueForKey:RH_GP_MINEINFO_REALNAME] ;
+        _mApisBalanceList = [RH_UserApiBalanceModel dataArrayWithInfoArray:[info arrayValueForKey:@"apis"]] ;
     }
     
     return self ;
@@ -73,5 +76,22 @@
     }
 }
 
+#pragma mark-
+-(NSString *)showTotalAssets
+{
+    if (!_showTotalAssets){
+        _showTotalAssets = [NSString stringWithFormat:@"%.02f",_mTotalAssets] ;
+    }
+    
+    return _showTotalAssets ;
+}
+
+-(NSString *)showWalletBalance
+{
+    if (!_showWalletBalance){
+        _showWalletBalance = [NSString stringWithFormat:@"%.02f",_mWalletBalance] ;
+    }
+    return _showWalletBalance ;
+}
 
 @end

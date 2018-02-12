@@ -322,7 +322,6 @@
 		A01CB49E1FF9D3CC00447130 /* CLSelectionControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB49C1FF9D3CC00447130 /* CLSelectionControl.m */; };
 		A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4A81FFA116A00447130 /* RH_BasicMainViewController.m */; };
 		A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */; };
-		A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */; };
 		A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */; };
 		A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */; };
 		A01CB4B91FFB1BDC00447130 /* RH_MineInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A01CB4B71FFB1BDC00447130 /* RH_MineInfoModel.m */; };
@@ -1147,8 +1146,6 @@
 		A01CB4A91FFA116A00447130 /* RH_BasicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_BasicMainViewController.h; sourceTree = "<group>"; };
 		A01CB4AB1FFA131B00447130 /* RH_UserApiBalanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserApiBalanceModel.h; sourceTree = "<group>"; };
 		A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserApiBalanceModel.m; sourceTree = "<group>"; };
-		A01CB4AE1FFA160200447130 /* RH_UserBalanceGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserBalanceGroupModel.h; sourceTree = "<group>"; };
-		A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserBalanceGroupModel.m; sourceTree = "<group>"; };
 		A01CB4B11FFA1B8A00447130 /* RH_UserInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_UserInfoManager.m; sourceTree = "<group>"; };
 		A01CB4B21FFA1B8A00447130 /* RH_UserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_UserInfoManager.h; sourceTree = "<group>"; };
 		A01CB4B41FFA60D300447130 /* RH_LinkInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_LinkInfoModel.m; sourceTree = "<group>"; };
@@ -2548,8 +2545,6 @@
 				A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */,
 				A01CB4AB1FFA131B00447130 /* RH_UserApiBalanceModel.h */,
 				A01CB4AC1FFA131C00447130 /* RH_UserApiBalanceModel.m */,
-				A01CB4AE1FFA160200447130 /* RH_UserBalanceGroupModel.h */,
-				A01CB4AF1FFA160200447130 /* RH_UserBalanceGroupModel.m */,
 				A039BDA5200389710080D56F /* RH_UserSafetyCodeModel.h */,
 				A039BDA4200389710080D56F /* RH_UserSafetyCodeModel.m */,
 				A01CB4881FF9C09F00447130 /* RH_ActivityModel.h */,
@@ -4386,7 +4381,6 @@
 				F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */,
-				A01CB4B01FFA160200447130 /* RH_UserBalanceGroupModel.m in Sources */,
 				B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */,
 				A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
