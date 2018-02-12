@@ -7,8 +7,8 @@
 //
 
 #import "RH_ApplyDiscountHeaderView.h"
-
 #import "coreLib.h"
+#import "RH_SiteMsgUnReadCountModel.h"
 
 @interface RH_ApplyDiscountHeaderView()<UICollectionViewDelegate>
 @property (nonatomic,strong) NSArray *arrayTypeList ;
@@ -58,28 +58,31 @@
         [self.segmentedControl setTitleTextAttributes:colorAttr forState:UIControlStateNormal];
         //添加到视图
         [self addSubview:self.segmentedControl];
-        for (int i = 0; i<3; i++)
-        {
-            UILabel *lab1 = [[UILabel alloc] init];
-            [lab1 setFrame:CGRectMake((MainScreenW-288)/2.0+(288/3.0)*(i+1)-10, 10, 18, 18)];
-            lab1.backgroundColor = [UIColor redColor] ;
-            lab1.layer.cornerRadius = 10;
-            lab1.layer.masksToBounds = YES;
-            lab1.text = @"99+";
-            lab1.textColor = [UIColor whiteColor] ;
-            lab1.font = [UIFont systemFontOfSize:10.f];
-            lab1.textAlignment = NSTextAlignmentCenter;
-            lab1.hidden = YES;
-            [self addSubview:lab1];
-            if (i==0) {
-                lab1.hidden = NO;
-            }else if (i==1){
-                
+        UILabel *badgeLab = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.segmentedControl.frame) -10, 10, 18, 18)];
+        badgeLab.backgroundColor = [UIColor redColor] ;
+        badgeLab.layer.cornerRadius = 9;
+        badgeLab.layer.masksToBounds = YES;
+        badgeLab.textColor = [UIColor whiteColor] ;
+        badgeLab.font = [UIFont systemFontOfSize:8.f];
+        badgeLab.textAlignment = NSTextAlignmentCenter;
+        badgeLab.hidden = YES;
+        [self addSubview:badgeLab];
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"UnReadSiteMsgCount_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+            RH_SiteMsgUnReadCountModel *model = note.object ;
+            if (model.siteMsgUnReadCount && model.siteMsgUnReadCount >0) {
+                badgeLab.hidden = NO ;
+                if (model.siteMsgUnReadCount > 99) {
+                    badgeLab.text = @"99+" ;
+                }else
+                {
+                     badgeLab.text = [NSString stringWithFormat:@"%ld",model.siteMsgUnReadCount] ;
+                }
             }else
             {
-                
+                badgeLab.hidden = YES ;
             }
-        }
+        }];
+        
     }
     return self;
 }
@@ -128,4 +131,10 @@
         [self.delegate DiscountTypeHeaderViewDidChangedSelectedIndex:self SelectedIndex:self.segmentedControl.selectedSegmentIndex] ;
     }
 }
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UnReadSiteMsgCount_NT" object:nil];
+}
+
 @end

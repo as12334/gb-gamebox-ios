@@ -66,7 +66,7 @@
 /**
  转账金额
  */
-@property(nonatomic,assign,readonly)CGFloat   mTransactionMoney;
+@property(nonatomic,strong,readonly)NSString *mTransactionMoney;
 
 /**
  交易号
@@ -122,7 +122,6 @@
  */
 @property(nonatomic,strong,readonly)NSDate *mReturnTime;
 //extend
-@property(nonatomic,strong,readonly)NSString *showTransactionMoney;
 @property(nonatomic,strong,readonly)NSString *showBankURL;
 
 @end

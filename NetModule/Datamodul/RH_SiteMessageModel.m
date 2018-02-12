@@ -22,7 +22,7 @@
         _mTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_TITLE];
         _mRead = [info boolValueForKey:RH_GP_SITEMESSAGE_READ];
         _mSearchId = [info stringValueForKey:RH_GP_SITEMESSAGE_SEARCHID];
-       
+        
     }
     return self;
 }

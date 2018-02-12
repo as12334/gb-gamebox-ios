@@ -203,7 +203,9 @@
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RH_GameCategoryCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:self.arrayTypeList[indexPath.item]] ;
+    return [RH_GameCategoryCell sizeForViewWithInfo:ConvertToClassPointer(NSDictionary, self.arrayTypeList[indexPath.item])
+                                  containerViewSize:collectionView.bounds.size
+                                            context:nil] ;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

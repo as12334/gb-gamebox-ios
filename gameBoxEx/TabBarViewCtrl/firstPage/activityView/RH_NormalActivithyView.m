@@ -42,7 +42,6 @@
         [self.normalBackDropView setHidden: NO];
         [self.activityRuleDropView setHidden:YES];
         [self.openActivityView setHidden:YES];
-
     }
     return self;
 }
@@ -53,8 +52,19 @@
     //移除游戏规则按钮
     [self.gameRuleBtn removeFromSuperview];
     [self.game1RuleBtn removeFromSuperview];
+//    UIButton *btn = [UIButton new];
+//    [self.openActivityView addSubview:btn];
+//    [btn setImage:ImageWithName(@"button-03") forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    btn.whc_CenterX(0).whc_BottomSpace(20).whc_Width(60).whc_Height(30);
     
 }
+#pragma mark -确定按钮点击
+//-(void)sureBtnClick
+//{
+//    [self.normalBackDropView setHidden: NO];
+//    [self.openActivityView setHidden:YES];
+//}
 -(void)setActivityModel:(RH_ActivityModel *)activityModel
 {
     _activityModel = activityModel;
@@ -65,7 +75,8 @@
 //    if (![_statusModel isEqual:statusModel]) {
         _statusModel = statusModel;
         [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
-        [self.activityTimesLabel setText:self.statusModel.mDrawTimes];
+        [self.activityTimesLabel setText:[NSString stringWithFormat:@"你还有%@次抽奖机会",self.statusModel.mDrawTimes]];
+        self.activityTimesLabel.textColor = [UIColor whiteColor] ;
         if ([self.statusModel.mDrawTimes isEqualToString:@"-1"]) {
             [self.activityTimesLabel setText:@"活动已结束"];
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
@@ -178,7 +189,6 @@
                     // do something
                     self.gainActivityLabel.text = @"未中奖";
                 });
-                
             }
             else{
                 self.backDropImageView.image = [UIImage imageNamed:@"hongbao-02"];
@@ -189,7 +199,8 @@
                 });
                 
             }
-            self.gainDrawTimeLabel.text = self.openModel.mGameNum;
+            self.gainDrawTimeLabel.text =[NSString stringWithFormat:@"你还有%@次抽奖机会",self.openModel.mGameNum];
+             self.gainDrawTimeLabel.textColor = [UIColor whiteColor] ;
             self.gainTimeLabel.text = self.openModel.mNextLotteryTime;
             [self.openActivityBtn setBackgroundImage:[UIImage imageNamed:@"button-01"] forState:UIControlStateNormal];
             self.openActivityBtn.userInteractionEnabled = YES;

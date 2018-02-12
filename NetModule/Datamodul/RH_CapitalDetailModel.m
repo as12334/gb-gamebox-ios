@@ -12,7 +12,6 @@
 #import "RH_APPDelegate.h"
 
 @implementation RH_CapitalDetailModel
-@synthesize  showTransactionMoney = _showTransactionMoney;
 @synthesize showBankURL = _showBankURL ;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -29,7 +28,7 @@
         _mRechargeAddress = [info stringValueForKey:RH_GP_CAPITALDETAIL_RECHARGEADDRESS];
         _mRechargeTotalAmount = [info stringValueForKey:RH_GP_CAPITALDETAIL_RECHARGETOTALAMOUNT];
         _mStatus = [info stringValueForKey:RH_GP_CAPITALDETAIL_STATUS];
-        _mTransactionMoney = [info floatValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONMONEY];
+        _mTransactionMoney = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONMONEY];
         _mStatusName = [info stringValueForKey:RH_GP_CAPITALDETAIL_STATUSNAME];
         _mTransactionNo = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONNO];
         _mTransactionType = [info stringValueForKey:RH_GP_CAPITALDETAIL_TRANSACTIONTYPE];
@@ -49,18 +48,7 @@
     }
     return self;
 }
--(NSString *)showTransactionMoney
-{
-    if (!_showTransactionMoney){
-        if (_mTransactionMoney==0){
-            _showTransactionMoney = @"--" ;
-        }else{
-            _showTransactionMoney = [NSString stringWithFormat:@"%.02f",_mTransactionMoney] ;
-        }
-    }
-    
-    return _showTransactionMoney ;
-}
+
 -(NSString *)showBankURL
 {
     if (!_showBankURL){

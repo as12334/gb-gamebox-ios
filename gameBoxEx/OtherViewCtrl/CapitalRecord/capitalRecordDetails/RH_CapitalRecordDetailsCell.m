@@ -50,10 +50,12 @@
 
 /*有银行卡信息的Bottomview*/
 /*右边lab*/
-//姓名
+//姓名  第一行
 @property (weak, nonatomic) IBOutlet UILabel *realNameLab;
-// 折扣优惠
+// 折扣优惠 第二行
 @property (weak, nonatomic) IBOutlet UILabel *youhuiLab;
+//  第三行
+@property (weak, nonatomic) IBOutlet UILabel *thirdRightLab;
 //手续费
 @property (weak, nonatomic) IBOutlet UILabel *shouxuFeiLab;
 //实际到账
@@ -65,6 +67,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *xingmingLab;
 
 @property (weak, nonatomic) IBOutlet UILabel *zhekouyouhuiLeftLab;
+//左边第三
+@property (weak, nonatomic) IBOutlet UILabel *thirdLeftLab;
+
 @property (weak, nonatomic) IBOutlet UILabel *shouxufeiLeftLab;
 @property (weak, nonatomic) IBOutlet UILabel *shijidaozhangLeftLab;
 
@@ -129,11 +134,10 @@
         self.SixthTitleLab.text = @"状态";
         self.subFirstTitleLab.text = detailModel.mTransactionNo;
         self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
-        self.subThirdTitleLab.text = detailModel.showTransactionMoney;
+        self.subThirdTitleLab.text = detailModel.mTransactionMoney;
         self.subFourthTitleLab.text = detailModel.mTransferOut;
         self.subFivethTitleLab.text = detailModel.mTransferInto;
         self.subSixthTitleLab.text = detailModel.mStatusName;
-        
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"返水"]|| [infoModel.mTransaction_typeName isEqualToString:@"推荐"]||[infoModel.mTransaction_typeName isEqualToString:@"优惠"]) {
         self.thirdTitleLab.text = @"描述";
@@ -146,12 +150,10 @@
             self.subFourthTitleLab.text = [NSString stringWithFormat:@"%@", detailModel.mDeductFavorable];
         }else
         {
-            self.subFourthTitleLab.text = [NSString stringWithFormat:@"%.2f", detailModel.mTransactionMoney] ;
+            self.subFourthTitleLab.text =  detailModel.mTransactionMoney;
         }
         self.subThirdTitleLab.text = detailModel.mTransactionWayName;
-        
         self.subFivethTitleLab.text = detailModel.mStatusName;
-
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]  ||[infoModel.mTransaction_typeName isEqualToString:@"deposit"] ) {
         if ([detailModel.mBankCodeName isEqualToString:@"比特币"] || [detailModel.mBankCode isEqualToString:@"bitcoin"])
@@ -178,8 +180,10 @@
             self.realNameLab.text = detailModel.mRealName;
             self.zhekouyouhuiLeftLab.text = @"比特币:";
             self.youhuiLab.text = detailModel.mRechargeAmount;
-            self.shouxuFeiLab.text = @"状态:";
-            self.shouxuFeiLab.text = detailModel.mStatusName;
+            self.thirdLeftLab.text = @"状态:";
+            self.thirdRightLab.text = detailModel.mStatusName;
+            self.shouxuFeiLab.hidden = YES;
+            self.shouxufeiLeftLab.hidden = YES;
             self.shijidaozhangLeftLab.hidden = YES;
             self.zhuangtaiLeftLab.hidden = YES;
             self.shijiMoney.hidden = YES;
@@ -193,22 +197,31 @@
             self.FourthView.hidden = YES;
             self.FivethView.hidden = YES;
             self.SixthView.hidden = YES;
+            self.zhuangtaiLab.hidden = YES;
+            self.zhuangtaiLeftLab.hidden = YES;
+            self.thirdLeftLab.text = @"手续费:";
+            self.thirdRightLab.text = detailModel.mPoundage ;
+            self.shouxufeiLeftLab.text = @"实际到账:";
+             self.shouxuFeiLab.text =detailModel.mRechargeTotalAmount;
+            self.shijidaozhangLeftLab.text = @"状态:";
+            self.shijiMoney.text = detailModel.mStatusName ;
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
             self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
             self.subThirdTitleLab.text = detailModel.mTransactionWayName;
             [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
             self.realNameLab.text = detailModel.mRealName;
             self.youhuiLab.text = detailModel.mRechargeAmount;
-            self.shouxuFeiLab.text = detailModel.mPoundage;
-            self.shijiMoney.text =detailModel.mRechargeTotalAmount;
-            self.zhuangtaiLab.text = detailModel.mStatusName;
-
         }
         else  // 普通存款
         {
             self.BottomView2.hidden = NO;
             self.BottomView.hidden = YES;
             self.typeTitleLab.text = detailModel.mBankCodeName;
+            self.rechargeMoney.text = detailModel.mRechargeAmount ;
+            self.serviceChargeMoney.text = detailModel.mPoundage ;
+            self.inMyAccountMoney.text = detailModel.mRechargeTotalAmount ;
+            self.isSuccState.text = detailModel.mStatusName ;
+            
              _BottomView2.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
             self.thirdTitleLab.text = @"描述";
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
@@ -221,6 +234,7 @@
         
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"取款"]) {
+        [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
         self.thirdTitleLab.text = @"描述";
         self.subFirstTitleLab.text = detailModel.mTransactionNo;
         self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
@@ -231,13 +245,15 @@
         _BottomView.hidden = NO;
         self.xingmingLab.text = @"姓名:";
         self.zhekouyouhuiLeftLab.text = @"取款金额:";
+        self.thirdLeftLab.text = @"折扣优惠:";
         self.shouxufeiLeftLab.text = @"手续费:";
         self.shijidaozhangLeftLab.text = @"实际到账:";
         self.zhuangtaiLeftLab.text = @"状态:";
         _BottomView2.hidden = YES;
         _BottomView.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
         self.realNameLab.text = detailModel.mRealName;
-        self.youhuiLab.text=[NSString stringWithFormat:@"%.f",detailModel.mTransactionMoney];
+        self.youhuiLab.text= [NSString stringWithFormat:@"%@",detailModel.mWithdrawMoney] ;
+        self.thirdRightLab.text = detailModel.mDeductFavorable ;
         self.shouxuFeiLab.text = detailModel.mPoundage;
         self.shijiMoney.text =detailModel.mRechargeTotalAmount;
         self.zhuangtaiLab.text = detailModel.mStatusName;

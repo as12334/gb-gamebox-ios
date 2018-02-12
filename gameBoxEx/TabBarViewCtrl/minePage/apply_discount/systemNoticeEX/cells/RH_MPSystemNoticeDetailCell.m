@@ -25,14 +25,16 @@
     RH_SystemNoticeDetailModel *detaileModel = ConvertToClassPointer(RH_SystemNoticeDetailModel, context);
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0,tableView.frameWidth-16, 0)];
     label.text = detaileModel.mContent;
-    label.font = [UIFont systemFontOfSize:12.f];
+    label.font = [UIFont systemFontOfSize:20.f];
     NSDictionary *attrs = @{NSFontAttributeName : label.font};
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [detaileModel.mContent boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     // ceilf()向上取整函数, 只要大于1就取整数2. floor()向下取整函数, 只要小于2就取整数1.
     //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
-    return size.height+90>screenSize().height?screenSize().height:size.height+90;
+    return size.height+40.f ;
+
+
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -60,7 +62,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //字体大小
-    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '90%'"];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '70%'"];
     //字体颜色
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= 'gray'"];
     //页面背景色

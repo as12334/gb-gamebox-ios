@@ -136,18 +136,12 @@
                         completedBlock:nil];
         
     }
-    if (type == ServiceRequestTypeV3LoadGameType) {
-        NSLog(@"z%@", data);
-    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3APIGameList){
         [self loadDataFailWithError:error] ;
-    }
-    if (type == ServiceRequestTypeV3LoadGameType) {
-        
     }
 }
 
