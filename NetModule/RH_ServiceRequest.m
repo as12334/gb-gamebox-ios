@@ -42,6 +42,7 @@
 #import "RH_SiteMsgSysMsgModel.h"
 #import "RH_ActivityStatusModel.h"
 #import "RH_SiteMsgUnReadCountModel.h"
+#import "RH_SharePlayerRecommendModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1105,6 +1106,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 分享接口
+-(void)startV3LoadSharePlayerRecommend
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SharePlayerRecommend
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1790,6 +1805,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 case ServiceRequestTypeSiteMessageUnReadCount:
             {
                 resultSendData = [[RH_SiteMsgUnReadCountModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                case ServiceRequestTypeV3SharePlayerRecommend:   //分享
+            {
+              resultSendData = [[RH_SharePlayerRecommendModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 
             default:

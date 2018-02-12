@@ -8,7 +8,6 @@
 
 #import "RH_GameCategoryCell.h"
 #import "coreLib.h"
-#import "RH_DiscountActivityTypeModel.h"
 
 @interface RH_GameCategoryCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
@@ -19,13 +18,8 @@
 @implementation RH_GameCategoryCell
 +(CGSize)sizeForViewWithInfo:(NSDictionary *)info containerViewSize:(CGSize)containerViewSize context:(id)context
 {
-    RH_DiscountActivityTypeModel *discountType = ConvertToClassPointer(RH_DiscountActivityTypeModel, context) ;
-    CGSize size = caculaterLabelTextDrawSize(discountType.mActivityTypeName, [UIFont systemFontOfSize:12.0f], containerViewSize.width) ;
-    if (size.width == 0) {
-        size = caculaterLabelTextDrawSize(context[@"value"], [UIFont systemFontOfSize:12], containerViewSize.width);
-    }
+    CGSize size = caculaterLabelTextDrawSize([info stringValueForKey:@"value"], [UIFont systemFontOfSize:12.0f], containerViewSize.width) ;
     return CGSizeMake(size.width + 20 ,40) ;
-    
 }
 
 - (void)setTitleLabelTextColor:(UIColor *)color {

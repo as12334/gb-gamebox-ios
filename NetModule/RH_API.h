@@ -825,7 +825,21 @@
 #define RH_API_NAME_TIMEZONEINFO                   @"mobile-api/origin/getTimeZone.html"
 
 #pragma mark -- V3 获取消息中心-站点信息未读消息条数
-#define RH_API_NAME_SITEMESSAGUNREADCOUNT        @"mobile-api/mineOrigin/getUnReadCount.html" 
+#define RH_API_NAME_SITEMESSAGUNREADCOUNT        @"mobile-api/mineOrigin/getUnReadCount.html"
+
+#pragma mark -- V3 分享
+#define RH_API_NAME_SHAREPLAYERRECOMMEND          @"mobile-api/mineOrigin/getUserPlayerRecommend.html"
+
+//返回参数
+#define RH_GP_SHAREPLAYERRECOMMEND_REWARD              @"reward"
+#define RH_GP_SHAREPLAYERRECOMMEND_SIGN                @"sign"
+#define RH_GP_SHAREPLAYERRECOMMEND_RECOMMEND           @"recommend"
+#define RH_GP_SHAREPLAYERRECOMMEND_COUNT               @"count"
+#define RH_GP_SHAREPLAYERRECOMMEND_USER                @"user"
+#define RH_GP_SHAREPLAYERRECOMMEND_CODE                @"code"
+#define RH_GP_SHAREPLAYERRECOMMEND_THEWAY              @"theWay"
+#define RH_GP_SHAREPLAYERRECOMMEND_MONEY               @"money"
+#define RH_GP_SHAREPLAYERRECOMMEND_BONUS               @"bonus"
 
 #endif /* RH_API_h */
 

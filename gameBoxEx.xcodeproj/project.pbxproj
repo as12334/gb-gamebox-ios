@@ -60,6 +60,10 @@
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
+		79BB2D9820312F4B000CDE6B /* RH_ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2D9720312F4B000CDE6B /* RH_ShareViewController.m */; };
+		79BB2D9C203130B0000CDE6B /* RH_ShareNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2D9B203130B0000CDE6B /* RH_ShareNavBarView.m */; };
+		79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BB2D9D203130CE000CDE6B /* RH_ShareNavBarView.xib */; };
+		79BB2DA12031699E000CDE6B /* RH_SharePlayerRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */; };
 		79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
@@ -693,6 +697,13 @@
 		79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoModel.m; sourceTree = "<group>"; };
 		79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetailModel.h; sourceTree = "<group>"; };
 		79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalDetailModel.m; sourceTree = "<group>"; };
+		79BB2D9620312F4B000CDE6B /* RH_ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ShareViewController.h; sourceTree = "<group>"; };
+		79BB2D9720312F4B000CDE6B /* RH_ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShareViewController.m; sourceTree = "<group>"; };
+		79BB2D9A203130B0000CDE6B /* RH_ShareNavBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ShareNavBarView.h; sourceTree = "<group>"; };
+		79BB2D9B203130B0000CDE6B /* RH_ShareNavBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShareNavBarView.m; sourceTree = "<group>"; };
+		79BB2D9D203130CE000CDE6B /* RH_ShareNavBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ShareNavBarView.xib; sourceTree = "<group>"; };
+		79BB2D9F2031699E000CDE6B /* RH_SharePlayerRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SharePlayerRecommendModel.h; sourceTree = "<group>"; };
+		79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SharePlayerRecommendModel.m; sourceTree = "<group>"; };
 		79D6E6D0201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgSysMsgModel.h; sourceTree = "<group>"; };
 		79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgSysMsgModel.m; sourceTree = "<group>"; };
 		79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageModel.h; sourceTree = "<group>"; };
@@ -1752,6 +1763,34 @@
 			path = login;
 			sourceTree = "<group>";
 		};
+		79BB2D9420312F09000CDE6B /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				79BB2D9920313066000CDE6B /* ShareNavBarView */,
+				79BB2D9520312F24000CDE6B /* cells */,
+				79BB2D9620312F4B000CDE6B /* RH_ShareViewController.h */,
+				79BB2D9720312F4B000CDE6B /* RH_ShareViewController.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		79BB2D9520312F24000CDE6B /* cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		79BB2D9920313066000CDE6B /* ShareNavBarView */ = {
+			isa = PBXGroup;
+			children = (
+				79BB2D9A203130B0000CDE6B /* RH_ShareNavBarView.h */,
+				79BB2D9B203130B0000CDE6B /* RH_ShareNavBarView.m */,
+				79BB2D9D203130CE000CDE6B /* RH_ShareNavBarView.xib */,
+			);
+			path = ShareNavBarView;
+			sourceTree = "<group>";
+		};
 		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
 			isa = PBXGroup;
 			children = (
@@ -2547,6 +2586,8 @@
 				F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */,
 				795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */,
 				795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */,
+				79BB2D9F2031699E000CDE6B /* RH_SharePlayerRecommendModel.h */,
+				79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -2871,6 +2912,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				79BB2D9420312F09000CDE6B /* Share */,
 				B87A6B37200AF1CF00C9788F /* BitCoin */,
 				B87A6B2620088FF900C9788F /* bankCard */,
 				B87A6B1A2006191600C9788F /* promoList */,
@@ -3766,6 +3808,7 @@
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
 				F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */,
 				228B93102027287E008C8313 /* tab_v3_service_selected_green@3x.png in Resources */,
+				79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				228B93112027287E008C8313 /* tab_v3_service_selected_green@2x.png in Resources */,
 				F6FB64182014323600EEED4E /* RH_UserCenterlogout.plist in Resources */,
@@ -4138,6 +4181,7 @@
 				A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
 				B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */,
+				79BB2D9820312F4B000CDE6B /* RH_ShareViewController.m in Sources */,
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
@@ -4160,6 +4204,7 @@
 				A0109FD61F8788FF004E6EF4 /* UIColor+Hex.m in Sources */,
 				F6A2ACE12004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.m in Sources */,
 				B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */,
+				79BB2DA12031699E000CDE6B /* RH_SharePlayerRecommendModel.m in Sources */,
 				A0109FD71F8788FF004E6EF4 /* UIView+DNImagePicker.m in Sources */,
 				A0109FD81F8788FF004E6EF4 /* DNAlbumTableViewCell.m in Sources */,
 				A0109FD91F8788FF004E6EF4 /* DNAssetsViewCell.m in Sources */,
@@ -4240,6 +4285,7 @@
 				A0109F6B1F8787E4004E6EF4 /* CLBlurredView.m in Sources */,
 				B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */,
 				A0109F6C1F8787E4004E6EF4 /* CLBorderView.m in Sources */,
+				79BB2D9C203130B0000CDE6B /* RH_ShareNavBarView.m in Sources */,
 				A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */,
 				A0B5A5721FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.m in Sources */,
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
@@ -4449,7 +4495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
