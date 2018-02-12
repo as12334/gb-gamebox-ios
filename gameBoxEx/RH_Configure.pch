@@ -1578,6 +1578,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _5zx5 //BET365
+
+#define CODE    @"5zx5"
+#define S        @"14f959961d722629de413926602f7ccc"
+#define SID        @"365"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _feas //澳门威尼斯人
 
 #define CODE    @"feas"
@@ -1591,6 +1599,22 @@
 #define CODE    @"xc95"
 #define S        @"443110d6d974f61ab6ce1f23f27af7b5"
 #define SID        @"367"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _kgu6 //爵士城
+
+#define CODE    @"kgu6"
+#define S        @"2f240a46f97291908f8a911c19f1c6d4"
+#define SID        @"368"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _mppv //澳门新葡京娱乐城
+
+#define CODE    @"mppv"
+#define S        @"607ab31471b2f18220fb03b685a62f60"
+#define SID        @"371"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
