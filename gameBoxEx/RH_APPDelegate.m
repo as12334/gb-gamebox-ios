@@ -144,7 +144,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
             _isLogin = loginStatus ;
             
             if (!_isLogin){
-                [[RH_UserInfoManager shareUserManager] setUserBalanceInfo:nil] ;
                 [[RH_UserInfoManager shareUserManager] setUserSafetyInfo:nil] ;
                 [[RH_UserInfoManager shareUserManager] setMineSettingInfo:nil] ;
                 [[RH_UserInfoManager shareUserManager] setUserWithDrawInfo:nil] ;

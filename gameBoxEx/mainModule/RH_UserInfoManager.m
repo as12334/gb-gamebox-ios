@@ -27,7 +27,6 @@
 
 @implementation RH_UserInfoManager
 @synthesize serviceRequest = _serviceRequest;
-@synthesize userBalanceGroupInfo = _userBalanceGroupInfo ;
 @synthesize userSafetyInfo = _userSafetyInfo ;
 @synthesize mineSettingInfo = _mineSettingInfo ;
 @synthesize bankList = _bankList ;
@@ -46,17 +45,6 @@
     return _shareUserManager ;
 }
 
-#pragma mark- userBalanceGroupInfo
--(RH_UserBalanceGroupModel *)userBalanceGroupInfo
-{
-    return _userBalanceGroupInfo ;
-}
-
--(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo
-{
-    _userBalanceGroupInfo = userBalanceInfo ;
-    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
-}
 
 -(void)updateTimeZone:(NSString*)timeZone
 {

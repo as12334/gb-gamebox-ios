@@ -46,7 +46,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotificatin:)
-                                                 name:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
+                                                 name:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
     [self updateUI] ;
 }
 
@@ -63,7 +63,7 @@
 #pragma mark-
 -(void)handleNotificatin:(NSNotification*)nt
 {
-    if ([nt.name isEqualToString:RHNT_UserInfoManagerBalanceChangedNotification]){
+    if ([nt.name isEqualToString:RHNT_UserInfoManagerMineGroupChangedNotification]){
         [self performSelectorOnMainThread:@selector(updateUI) withObject:self waitUntilDone:NO] ;
     }
 }
@@ -77,7 +77,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) return 1 ;
-    return UserBalanceInfo.mApis.count ;
+    return MineSettingInfo.mApisBalanceList.count ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,12 +93,12 @@
 {
     if (indexPath.section==0) {
         RH_UserInfoTotalCell *userInfoTotalCell = [tableView dequeueReusableCellWithIdentifier:[RH_UserInfoTotalCell defaultReuseIdentifier]] ;
-        [userInfoTotalCell updateCellWithInfo:nil context:UserBalanceInfo] ;
+        [userInfoTotalCell updateCellWithInfo:nil context:MineSettingInfo] ;
         return userInfoTotalCell ;
     }else{
         RH_UserInfoGengeralCell *userInfoGeneralCell = [tableView dequeueReusableCellWithIdentifier:[RH_UserInfoGengeralCell defaultReuseIdentifier]] ;
-        if (indexPath.item < UserBalanceInfo.mApis.count){
-            [userInfoGeneralCell updateCellWithInfo:nil context:UserBalanceInfo.mApis[indexPath.item]] ;
+        if (indexPath.item < MineSettingInfo.mApisBalanceList.count){
+            [userInfoGeneralCell updateCellWithInfo:nil context:MineSettingInfo.mApisBalanceList[indexPath.item]] ;
         }
         return userInfoGeneralCell ;
     }
