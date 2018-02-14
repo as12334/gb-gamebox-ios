@@ -74,27 +74,28 @@ double memorySizeForType(CLMemoryType type)
 #pragma MARK-
 void showNetworkActivityIndicator(BOOL bShow)
 {
-    static NSUInteger networkActivityIndicatorShowTimes = 0;
-
-    if (bShow) {
-
-        if (networkActivityIndicatorShowTimes == 0) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        static NSUInteger networkActivityIndicatorShowTimes = 0;
+        
+        if (bShow) {
+            
+            if (networkActivityIndicatorShowTimes == 0) {
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            }
+            
+            //显示次数+1
+            networkActivityIndicatorShowTimes ++ ;
+            
+        }else if (networkActivityIndicatorShowTimes > 0) {
+            
+            networkActivityIndicatorShowTimes -- ;
+            
+            //无显示次数，则隐藏
+            if (networkActivityIndicatorShowTimes == 0) {
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            }
         }
-
-        //显示次数+1
-        networkActivityIndicatorShowTimes ++ ;
-
-    }else if (networkActivityIndicatorShowTimes > 0) {
-
-        networkActivityIndicatorShowTimes -- ;
-
-        //无显示次数，则隐藏
-        if (networkActivityIndicatorShowTimes == 0) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }
-    }
-
+    }) ;
 }
 
 CAShapeLayer * createLineLayer(CGPoint startPoint,CGPoint endPoint,CGFloat lineWidth,UIColor * lineColor)
