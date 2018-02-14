@@ -1562,6 +1562,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _1mw8 //海皇亚洲
+
+#define CODE    @"1mw8"
+#define S        @"369df4553269ac2239fd48568f543dfc"
+#define SID        @"361"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+
 #elif _tw1z //澳门新葡京
 
 #define CODE    @"tw1z"
