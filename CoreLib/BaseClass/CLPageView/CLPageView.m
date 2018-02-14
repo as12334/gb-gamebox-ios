@@ -304,26 +304,26 @@ UICollectionViewDataSource >
         cell = [dataSource pageView:self cellForPageAtIndex:PageIndexForIndexPath(indexPath)];
     }
 
-    if (cell == nil) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"pageView:cellForPageAtIndex:必须返回非nil的cell"
-                                     userInfo:nil];
-    }
+//    if (cell == nil) {
+//        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+//                                       reason:@"pageView:cellForPageAtIndex:必须返回非nil的cell"
+//                                     userInfo:nil];
+//    }
 
     return cell;
 }
 
 #pragma mark -
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    id<CLPageViewDelegate> delegate = self.delegate;
-    ifRespondsSelector(delegate, @selector(pageView:didSelectedPageAtIndex:)) {
-        [delegate pageView:self didSelectedPageAtIndex:PageIndexForIndexPath(indexPath)];
-    }
-
-    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    id<CLPageViewDelegate> delegate = self.delegate;
+//    ifRespondsSelector(delegate, @selector(pageView:didSelectedPageAtIndex:)) {
+//        [delegate pageView:self didSelectedPageAtIndex:PageIndexForIndexPath(indexPath)];
+//    }
+//
+//    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+//}
 
 #pragma mark -
 

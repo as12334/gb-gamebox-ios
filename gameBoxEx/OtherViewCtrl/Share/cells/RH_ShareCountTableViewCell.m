@@ -9,7 +9,7 @@
 #import "RH_ShareCountTableViewCell.h"
 #import "coreLib.h"
 #import "RH_SharePlayerRecommendModel.h"
-#import "CLLabel.h"
+
 
 @implementation RH_ShareCountTableViewCell
 {
@@ -25,12 +25,19 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.layer.cornerRadius = 5.f ;
-        self.layer.masksToBounds = YES ;
+        self.backgroundColor = [UIColor clearColor] ;
         self.contentView.backgroundColor = [UIColor clearColor] ;
+        
+        UIView *bgView = [[UIView alloc] init ];
+        [self.contentView addSubview:bgView];
+        bgView.layer.cornerRadius = 5.f;
+        bgView.layer.masksToBounds = YES ;
+        bgView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
+        
         topView = [[UIView alloc] init ];
         topView.backgroundColor = colorWithRGB(255, 255, 255) ;
-        [self.contentView addSubview:topView];
+        [bgView addSubview:topView];
+        topView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(40) ;
         
         self.myShareFriendCountLab = [[UILabel alloc] init] ;
         [topView addSubview:self.myShareFriendCountLab ];
@@ -44,39 +51,50 @@
         [topView addSubview:self.myShareAwardLab];
         self.myShareAwardLab.textAlignment = NSTextAlignmentRight ;
         self.myShareAwardLab.whc_RightSpace(20).whc_Width((screenSize().width-40)/2.0).whc_CenterY(0);
+        self.myShareAwardLab.textColor = colorWithRGB(51, 51, 51) ;
+        self.myShareAwardLab.font = [UIFont systemFontOfSize:12.f] ;
         self.myShareAwardLab.text = @"我的分享奖励256元" ;
         
         bottomView = [[UIView alloc] init ];
         bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
-        [self.contentView addSubview:bottomView];
+        [bgView addSubview:bottomView];
+        bottomView.whc_LeftSpace(0).whc_TopSpace(40).whc_RightSpace(0).whc_Height(40) ;
         
         self.friendReciprocalCountLab = [[UILabel alloc] init ];
         [bottomView addSubview:self.friendReciprocalCountLab ];
         self.friendReciprocalCountLab.textAlignment = NSTextAlignmentLeft ;
         self.friendReciprocalCountLab.whc_LeftSpace(20).whc_Width((screenSize().width-40)/2.0).whc_CenterY(0);
+        self.friendReciprocalCountLab.textColor = colorWithRGB(51, 51, 51) ;
+        self.friendReciprocalCountLab.font = [UIFont systemFontOfSize:12.f] ;
         self.friendReciprocalCountLab.text = @"好友互惠达成数56人";
         
         self.myShareBonusLab = [[UILabel alloc] init];
         [bottomView addSubview:self.myShareBonusLab];
         self.myShareBonusLab.textAlignment = NSTextAlignmentRight ;
         self.myShareBonusLab.whc_RightSpace(20).whc_Width((screenSize().width-40)/2.0).whc_CenterY(0);
+        self.myShareBonusLab.textColor = colorWithRGB(51, 51, 51) ;
+        self.myShareBonusLab.font = [UIFont systemFontOfSize:12.f] ;
         self.myShareBonusLab.text = @"我的分享红利256元" ;
     }
     return self ;
 }
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGRect frame = self.backgroundView.frame;
+    frame.origin.x += 20;
+    frame.size.width -= 40;
+    self.backgroundView.frame = frame;
+    frame = self.contentView.frame;
+    frame.origin.x += 20;
+    frame.size.width -= 40;
+    self.contentView.frame = frame;
+}
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_SharePlayerRecommendModel *recommendModel = ConvertToClassPointer(RH_SharePlayerRecommendModel, context) ;
-   
-    if (recommendModel) {
-        NSMutableString *firstStr = [NSMutableString stringWithFormat:@"我的分享好友%@人", recommendModel.mRemmendModel.mUser] ;
-        NSRange range = [firstStr rangeOfString: recommendModel.mRemmendModel.mUser];
-        //    设置变换颜色，以及变换范围(4,7)
-        NSDictionary *dic = @{NSForegroundColorAttributeName:[UIColor redColor], NSKernAttributeName:@0.f
-                              };
-//        [self.myShareFriendCountLab ]
-    }
+    self.myShareFriendCountLab.text = [NSString stringWithFormat:@"我分享的好友数%@人",[[context objectForKey:@"recommend"] objectForKey:@"user"]] ;
+    self.myShareAwardLab.text = [NSString stringWithFormat:@"我的分享奖励%@元",[[context objectForKey:@"recommend"] objectForKey:@"single"]] ;
 }
 
 - (void)awakeFromNib {
