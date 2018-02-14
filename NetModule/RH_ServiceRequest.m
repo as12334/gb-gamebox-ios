@@ -863,16 +863,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - tabbar2 优惠活动主界面列表
 -(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
-                                       PageNumber:(NSInteger)pageNumber
-                                         pageSize:(NSInteger)pageSize
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@"",
-                                     RH_SP_ACTIVITYDATALIST_PAGENUMBER:@(pageNumber),
-                                     RH_SP_ACTIVITYDATALIST_PAGESIZE:@(pageSize)
+                    queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1708,12 +1704,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3ActivityDetailList:
             {
-                NSArray *tmpArray = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
-                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
-                                   integerValueForKey:RH_GP_ACTIVITYDATALIST_TOTALNUMBER]   ;
-                resultSendData = @{RH_GP_ACTIVITYDATALIST_LIST:tmpArray?:@[],
-                                   RH_GP_ACTIVITYDATALIST_TOTALNUMBER:@(total)
-                                   } ;
+                resultSendData = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
             }
                 break;
             case ServiceRequestTypeV3AddApplyDiscountsVerify:
