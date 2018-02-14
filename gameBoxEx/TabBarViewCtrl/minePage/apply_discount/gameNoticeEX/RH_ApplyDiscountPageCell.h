@@ -22,6 +22,6 @@
 @property (nonatomic,strong)NSString *startDate;
 @property (nonatomic,strong)NSString *endDate;
 
--(void)updateViewWithContext:(CLPageLoadDatasContext*)context ;
+
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;
 @end

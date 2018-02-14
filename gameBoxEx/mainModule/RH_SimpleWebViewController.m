@@ -22,9 +22,10 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CapitalRecordViewController.h"
 #import "RH_PromoListController.h"
+#import "RH_LoginViewControllerEx.h"
 
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -452,7 +453,8 @@
     }
     
     //增加通用 js 处理
-    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
+    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"]  ;
+    
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
@@ -818,10 +820,13 @@
             NSLog(@"JSToOc :%@------ refreshPage",NSStringFromClass([self class])) ;
             [self performSelectorOnMainThread:@selector(reloadWebView) withObject:self waitUntilDone:YES] ;
         };
-        
+      
         jsContext[@"goBackPage"] = ^(){/*** 如果有上一级页面，就返回上一级 如果没有上一级页面，就不返回，而是提示用户*/
-            NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
-            [self backButtonItemHandle:self] ;
+             NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self backButtonItemHandle:self] ;
+            });
+           
         };
         
         jsContext[@"gotoDepositPage"] = ^(){/*** 跳入存款页面*/
@@ -861,6 +866,30 @@
         //nativeAutoLogin
         jsContext[@"nativeAutoLogin"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
             NSLog(@"JSToOc :%@------ nativeAutoLogin",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            
+            JSValue *jsAccount = args[0];
+            JSValue *jsPassword = args[1];
+           
+    
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:jsAccount.toString forKey:@"account"];
+            [defaults setObject:jsPassword.toString forKey:@"password"];
+            [defaults synchronize];
+            
+            
+          
+            [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
+                                                                     LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                RH_LoginViewControllerEx *loginViewCtrl = [[RH_LoginViewControllerEx alloc] init];
+                loginViewCtrl.delegate = self ;
+                if (loginViewCtrl){
+                    ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerExSignSuccessful:SignFlag:)){
+                        [loginViewCtrl.delegate loginViewViewControllerExSignSuccessful:loginViewCtrl SignFlag:NO];
+                    }
+                }
+            }) ;
         };
         //分享图片保存
         jsContext[@"saveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
@@ -878,6 +907,13 @@
             UIImage *myImage = [UIImage imageWithData:data];
             [self saveImageToPhotos:myImage];
           
+        };
+        //存款完成后返回首页
+        jsContext[@"gotoHomePage"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
+            NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+            [self reloadWebView];
         };
     }
 }
