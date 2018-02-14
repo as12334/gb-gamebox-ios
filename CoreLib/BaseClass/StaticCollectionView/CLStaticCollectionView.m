@@ -771,7 +771,7 @@
     if ([self.highLightItemList containsObject:itemCell]){
         [self.highLightItemList removeObject:itemCell] ;
 
-        [itemCell.cell setHighlighted:NO animated:YES] ;
+        [itemCell.cell setHighlighted:NO animated:NO] ;
         ifRespondsSelector(self.delegate, @selector(staticCollectionView:didUnHighlightItemAtIndexPath:)){
             [self.delegate staticCollectionView:self didUnHighlightItemAtIndexPath:itemCell.indexPath] ;
         }
