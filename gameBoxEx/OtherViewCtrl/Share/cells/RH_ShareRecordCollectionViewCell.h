@@ -7,7 +7,10 @@
 //
 
 #import "RH_PageLoadContentPageCell.h"
+#import "RH_SharePlayerRecommendModel.h"
+
 
 @interface RH_ShareRecordCollectionViewCell : RH_PageLoadContentPageCell
+-(void)updateViewWithType:(RH_SharePlayerRecommendModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;
 
 @end

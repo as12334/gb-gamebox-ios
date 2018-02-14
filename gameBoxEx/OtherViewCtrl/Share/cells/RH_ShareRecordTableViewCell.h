@@ -7,7 +7,13 @@
 //
 
 #import "CLTableViewCell.h"
+@class RH_ShareRecordTableViewCell;
+@protocol RH_ShareRecordTableViewCellDelegate <NSObject>
+@optional
+-(void)shareRecordTableViewSearchBtnDidTouchBackButton:(RH_ShareRecordTableViewCell*)shareRecordTableViewCell ;
+@end
+
 
 @interface RH_ShareRecordTableViewCell : CLTableViewCell
-
+@property(nonatomic,weak)id<RH_ShareRecordTableViewCellDelegate> delegate ;
 @end

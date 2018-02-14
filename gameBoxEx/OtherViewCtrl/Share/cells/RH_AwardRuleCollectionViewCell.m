@@ -17,7 +17,7 @@
 -(void)updateViewWithType:(RH_SharePlayerRecommendModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     if (self.contentTableView == nil) {
-        self.contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width/2., 200) style:UITableViewStylePlain];
+        self.contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 200) style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
         self.contentTableView.sectionFooterHeight = 10.0f;

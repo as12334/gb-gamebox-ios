@@ -148,14 +148,14 @@
     if (indexPath.row == 0) {
         return 80.f;
     }else if (indexPath.row == 1){
-        return 10.f ;
+        return 10.f/375*screenSize().width ;
     }else if (indexPath.row == 2)
     {
-        return 117.f;
+        return 117.f/375*screenSize().width;
     }else if (indexPath.row == 3){
         return 10.f ;
     }else if (indexPath.row == 4){
-        return 200.f ;
+        return 280.f/375*screenSize().width ;
     }
     return 80.f ;
 }

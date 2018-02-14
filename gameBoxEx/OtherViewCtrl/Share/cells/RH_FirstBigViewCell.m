@@ -88,7 +88,7 @@
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 73, MainScreenW, MainScreenH-63-NavigationBarHeight-StatusBarHeight)];
+        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 60, screenSize().width-100, 200)];
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
@@ -122,6 +122,7 @@
         RH_ShareRecordCollectionViewCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionViewCell defaultReuseIdentifier] forPageIndex:pageIndex];
 //        [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         //                cell.delegate=self;
+          [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
     }
     return nil;
