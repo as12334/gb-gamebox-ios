@@ -79,6 +79,7 @@
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
+
 }
 
 -(void)setupUI{
@@ -160,7 +161,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    if (type == ServiceRequestTypeUserLogin){
+    if ( type == ServiceRequestTypeUserLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             NSDictionary *result = ConvertToClassPointer(NSDictionary, data) ;
             if ([result boolValueForKey:@"success"]){
@@ -247,5 +248,10 @@
             self.contentView.frame = frame;
         }
     }];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RHNT_SignOKNotification object:nil] ;
 }
 @end

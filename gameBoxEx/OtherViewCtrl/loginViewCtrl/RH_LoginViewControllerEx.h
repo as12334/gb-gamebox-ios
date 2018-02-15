@@ -8,6 +8,8 @@
 
 #import "RH_BasicSubViewController.h"
 
+#define RHNT_SignOKNotification                     @"SignOKNotification"
+
 @class  RH_LoginViewControllerEx ;
 @protocol LoginViewControllerExDelegate <NSObject>
 -(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx*)loginViewContrller BackToFirstPage:(BOOL)bFirstPage;

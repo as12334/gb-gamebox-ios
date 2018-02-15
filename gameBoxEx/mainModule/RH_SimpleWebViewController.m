@@ -22,9 +22,10 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CapitalRecordViewController.h"
 #import "RH_PromoListController.h"
+#import "RH_LoginViewControllerEx.h"
 
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -452,7 +453,8 @@
     }
     
     //增加通用 js 处理
-    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
+    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"]  ;
+    
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
@@ -809,33 +811,37 @@
     
 #pragma mark -  V3 JS Function
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        jsContext[@"notifyAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
+        jsContext[@"nativeAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
             NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
             [self.serviceRequest startV3UserInfo] ;
         };
         
-        jsContext[@"refreshPage"] = ^(){/*** 刷新当前页面*/
+        jsContext[@"nativeRefreshPage"] = ^(){/*** 刷新当前页面*/
             NSLog(@"JSToOc :%@------ refreshPage",NSStringFromClass([self class])) ;
             [self performSelectorOnMainThread:@selector(reloadWebView) withObject:self waitUntilDone:YES] ;
         };
-        
-        jsContext[@"goBackPage"] = ^(){/*** 如果有上一级页面，就返回上一级 如果没有上一级页面，就不返回，而是提示用户*/
-            NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
-            [self backButtonItemHandle:self] ;
+      
+        jsContext[@"nativeGoBackPage"] = ^(){/*** 如果有上一级页面，就返回上一级 如果没有上一级页面，就不返回，而是提示用户*/
+             NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self backButtonItemHandle:self] ;
+            });
+           
         };
         
-        jsContext[@"gotoDepositPage"] = ^(){/*** 跳入存款页面*/
+        jsContext[@"nativeGotoDepositPage"] = ^(){/*** 跳入存款页面*/
             NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
             [self.navigationController popToRootViewControllerAnimated:NO];
             self.myTabBarController.selectedIndex = 0 ;
+            [self reloadWebView];
         };
         
-        jsContext[@"gotoCapitalRecordPage"] = ^(){/*** 跳到资金记录页面*/
+        jsContext[@"nativeGotoTransactionRecordPage"] = ^(){/*** 跳到资金记录页面*/
             NSLog(@"JSToOc :%@------ gotoCapitalRecordPage",NSStringFromClass([self class])) ;
             [self showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
         };
         
-        jsContext[@"startNewWebView"] = ^(){/*** 打开新的webview（打开一个新的弹窗，并且根据传入的url进行加载）*/
+        jsContext[@"nativeOpenWindow"] = ^(){/*** 打开新的webview（打开一个新的弹窗，并且根据传入的url进行加载）*/
             NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
             NSArray *args = [JSContext currentArguments];
             JSValue *customUrl;
@@ -844,11 +850,11 @@
             }
             
             customUrl = args[0] ;
-            self.appDelegate.customUrl = customUrl.toString;
+            self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
             [self showViewController:[RH_CustomViewController viewController] sender:self];
         };
         
-        jsContext[@"gotoPromoRecordPage"] = ^(){/*** 跳到我的优惠记录界面 ）*/
+        jsContext[@"nativeGotoPromoRecordPage"] = ^(){/*** 跳到我的优惠记录界面 ）*/
             NSLog(@"JSToOc :%@------ gotoPromoRecordPage",NSStringFromClass([self class])) ;
             [self showViewController:[RH_PromoListController viewController] sender:self] ;
         };
@@ -861,6 +867,25 @@
         //nativeAutoLogin
         jsContext[@"nativeAutoLogin"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
             NSLog(@"JSToOc :%@------ nativeAutoLogin",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            
+            JSValue *jsAccount = args[0];
+            JSValue *jsPassword = args[1];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:jsAccount.toString forKey:@"account"];
+            [defaults setObject:jsPassword.toString forKey:@"password"];
+            [defaults synchronize];
+            [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
+                                                                     LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                RH_LoginViewControllerEx *loginViewCtrl = [[RH_LoginViewControllerEx alloc] init];
+                loginViewCtrl.delegate = self ;
+                if (loginViewCtrl){
+                    ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerExSignSuccessful:SignFlag:)){
+                        [loginViewCtrl.delegate loginViewViewControllerExSignSuccessful:loginViewCtrl SignFlag:NO];
+                    }
+                }
+            }) ;
         };
         //分享图片保存
         jsContext[@"saveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
@@ -878,6 +903,13 @@
             UIImage *myImage = [UIImage imageWithData:data];
             [self saveImageToPhotos:myImage];
           
+        };
+        //存款完成后返回首页
+        jsContext[@"gotoHomePage"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
+            NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+            [self reloadWebView];
         };
     }
 }

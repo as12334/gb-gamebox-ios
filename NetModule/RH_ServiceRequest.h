@@ -323,9 +323,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadDiscountActivityType;
 
 #pragma mark - tabbar2 优惠活动主界面列表
--(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
-                                       PageNumber:(NSInteger)pageNumber
-                                         pageSize:(NSInteger)pageSize;
+-(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey;
 
 #pragma mark - 退出登录
 -(void)startV3UserLoginOut;

@@ -103,9 +103,7 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:self.typeModel.mActivityKey
-                                                         PageNumber:page
-                                                           pageSize:pageSize] ;
+    [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:self.typeModel.mActivityKey] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -118,9 +116,9 @@
 {
     if (type==ServiceRequestTypeV3ActivityDetailList)
     {
-        NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]
-                            totalCount:[dictTmp integerValueForKey:RH_GP_ACTIVITYDATALIST_TOTALNUMBER]
+        NSArray *arrTmp = ConvertToClassPointer(NSArray, data) ;
+        [self loadDataSuccessWithDatas:arrTmp
+                            totalCount:arrTmp.count
                         completedBlock:nil];
 
     }

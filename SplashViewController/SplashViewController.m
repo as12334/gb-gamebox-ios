@@ -434,7 +434,12 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
                 }
                 
-                showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+                if (IS_DEV_SERVER_ENV){
+                    [self.appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",TEST_DOMAIN]] ;
+                    [self splashViewComplete] ;
+                }else{
+                    showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+                }
             }
         });
         
