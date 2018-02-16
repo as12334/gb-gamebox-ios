@@ -85,7 +85,7 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 0
+#if 1
         UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
@@ -105,7 +105,7 @@
 
 -(void)_barButtonSettingHandle
 {
-#if 0
+#if 1
     [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
 #else
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出账号" message:nil preferredStyle:UIAlertControllerStyleAlert];

@@ -8,8 +8,24 @@
 
 #import "RH_ShareRecordTableViewCell.h"
 #import "coreLib.h"
+#import "RH_ShareSeletedDateView.h"
+
+/***smallCell***/
+#import "RH_SmallHeadView.h"
+#import "RH_SmallShareTableViewCell.h"
+
+
+
+@interface RH_ShareRecordTableViewCell ()<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong,readonly)RH_ShareSeletedDateView *startShareDateCell;
+@property(nonatomic,strong,readonly)RH_ShareSeletedDateView *endShareDateCell;
+@property(nonatomic,strong,readonly)RH_SmallHeadView *smallHeadView ;
+@end
 
 @implementation RH_ShareRecordTableViewCell
+@synthesize startShareDateCell = _startShareDateCell ;
+@synthesize endShareDateCell = _endShareDateCell ;
+@synthesize smallHeadView = _smallHeadView;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -37,6 +53,35 @@
         [searchBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
+       WHC_StackView *stackView = [[WHC_StackView alloc] init];
+        [topView addSubview:stackView];
+         stackView.whc_LeftSpaceToView(0, touzhuLab).whc_TopSpaceEqualView(touzhuLab).whc_RightSpaceToView(5, searchBtn).whc_HeightEqualView(searchBtn);
+        stackView.whc_Column = 2;
+        stackView.whc_HSpace = 20;
+        stackView.whc_VSpace = 0;
+        stackView.whc_Orientation = Horizontal;
+        [stackView addSubview:self.startShareDateCell];
+        [stackView addSubview:self.endShareDateCell];
+        stackView.whc_Edge = UIEdgeInsetsMake(0, 0, 0, 0);
+        [stackView whc_StartLayout];
+        
+        UILabel *label_ = [[UILabel alloc] init];
+        [stackView addSubview:label_];
+        label_.whc_Center(0, 0).whc_Width(30);
+        label_.text = @"~";
+        label_.textAlignment = NSTextAlignmentCenter;
+        
+        UITableView *bottomTbaleView = [[UITableView alloc] init];
+        [self.contentView addSubview:bottomTbaleView];
+        bottomTbaleView.delegate = self ;
+        bottomTbaleView.dataSource = self ;
+        bottomTbaleView.whc_TopSpaceToView(9, topView).whc_LeftSpace(9).whc_RightSpace(9).whc_Height(180);
+        
+        _smallHeadView = [[RH_SmallHeadView alloc] init];
+        bottomTbaleView.tableHeaderView = self.smallHeadView ;
+        _smallHeadView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(30) ;
+        _smallHeadView.backgroundColor = [UIColor redColor] ;
+        [bottomTbaleView registerClass:[RH_SmallShareTableViewCell class] forCellReuseIdentifier:[RH_SmallShareTableViewCell defaultReuseIdentifier]];
     }
     return self ;
 }
@@ -46,6 +91,64 @@
     ifRespondsSelector(self.delegate, @selector(shareRecordTableViewSearchBtnDidTouchBackButton:)){
         [self.delegate shareRecordTableViewSearchBtnDidTouchBackButton:self];
     }
+}
+
+-(RH_ShareSeletedDateView *)startShareDateCell
+{
+    if (!_startShareDateCell) {
+        _startShareDateCell = [RH_ShareSeletedDateView createInstance];
+        [_startShareDateCell updateUIWithDate:_startDate] ;
+        [_startShareDateCell addTarget:self Selector:@selector(startShareDateCellHandle)] ;
+    }
+    return _startShareDateCell ;
+}
+-(void)startShareDateCellHandle
+{
+    ifRespondsSelector(self.delegate, @selector(shareRecordTableViewWillSelectedStartDate:DefaultDate:)){
+        [self.delegate shareRecordTableViewWillSelectedStartDate:self DefaultDate:_startDate] ;
+    }
+}
+
+-(RH_ShareSeletedDateView *)endShareDateCell
+{
+    if (!_endShareDateCell) {
+        _endShareDateCell = [RH_ShareSeletedDateView createInstance];
+        [_endShareDateCell updateUIWithDate:_endDate];
+        [_endShareDateCell addTarget:self action:@selector(endShareDateCellHandle) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _endShareDateCell;
+}
+
+
+
+-(void)endShareDateCellHandle
+{
+    ifRespondsSelector(self.delegate, @selector(shareRecordTableViewWillSelectedEndDate:DefaultDate:)){
+        [self.delegate shareRecordTableViewWillSelectedEndDate:self DefaultDate:_endDate] ;
+    }
+}
+#pragma mark - tableViewDelegate
+#pragma mark-
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  
+    return 30.f ;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RH_SmallShareTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_SmallShareTableViewCell defaultReuseIdentifier]] ;
+    return cell;
+
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
+{
+    return _smallHeadView;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

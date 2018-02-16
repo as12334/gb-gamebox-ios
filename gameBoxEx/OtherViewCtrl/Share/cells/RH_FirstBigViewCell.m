@@ -79,7 +79,6 @@
         _headView = [RH_FirstBigCellHeadView createInstance];
         _headView.delegate= self;
         _headView.selectedIndex = self.selectedIndex;
-        
     }
     return _headView;
 }
@@ -120,7 +119,6 @@
     }
     else if (pageIndex==1){
         RH_ShareRecordCollectionViewCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionViewCell defaultReuseIdentifier] forPageIndex:pageIndex];
-//        [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         //                cell.delegate=self;
           [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
