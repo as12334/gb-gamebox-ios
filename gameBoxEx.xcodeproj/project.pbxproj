@@ -73,6 +73,10 @@
 		79BB2DB82032CFE8000CDE6B /* RH_ShareRecordCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DB72032CFE8000CDE6B /* RH_ShareRecordCollectionViewCell.m */; };
 		79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DBA2032D151000CDE6B /* RH_RewardRuleTableViewCell.m */; };
 		79BB2DBE2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DBD2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m */; };
+		79BB2DEC20346BC2000CDE6B /* RH_ShareSeletedDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BB2DE920346BC2000CDE6B /* RH_ShareSeletedDateView.xib */; };
+		79BB2DED20346BC2000CDE6B /* RH_ShareSeletedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DEA20346BC2000CDE6B /* RH_ShareSeletedDateView.m */; };
+		79BB2DF120356391000CDE6B /* RH_SmallHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DF020356391000CDE6B /* RH_SmallHeadView.m */; };
+		79BB2DF420356625000CDE6B /* RH_SmallShareTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DF320356625000CDE6B /* RH_SmallShareTableViewCell.m */; };
 		79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
@@ -730,6 +734,13 @@
 		79BB2DBA2032D151000CDE6B /* RH_RewardRuleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RewardRuleTableViewCell.m; sourceTree = "<group>"; };
 		79BB2DBC2032D16A000CDE6B /* RH_ShareRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ShareRecordTableViewCell.h; sourceTree = "<group>"; };
 		79BB2DBD2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShareRecordTableViewCell.m; sourceTree = "<group>"; };
+		79BB2DE920346BC2000CDE6B /* RH_ShareSeletedDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_ShareSeletedDateView.xib; sourceTree = "<group>"; };
+		79BB2DEA20346BC2000CDE6B /* RH_ShareSeletedDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ShareSeletedDateView.m; sourceTree = "<group>"; };
+		79BB2DEB20346BC2000CDE6B /* RH_ShareSeletedDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ShareSeletedDateView.h; sourceTree = "<group>"; };
+		79BB2DEF20356391000CDE6B /* RH_SmallHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SmallHeadView.h; sourceTree = "<group>"; };
+		79BB2DF020356391000CDE6B /* RH_SmallHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SmallHeadView.m; sourceTree = "<group>"; };
+		79BB2DF220356625000CDE6B /* RH_SmallShareTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SmallShareTableViewCell.h; sourceTree = "<group>"; };
+		79BB2DF320356625000CDE6B /* RH_SmallShareTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SmallShareTableViewCell.m; sourceTree = "<group>"; };
 		79D6E6D0201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgSysMsgModel.h; sourceTree = "<group>"; };
 		79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgSysMsgModel.m; sourceTree = "<group>"; };
 		79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageModel.h; sourceTree = "<group>"; };
@@ -1801,6 +1812,7 @@
 		79BB2D9520312F24000CDE6B /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				79BB2DEE20356360000CDE6B /* ShareRecordSmallCell */,
 				79BB2DA220318A7D000CDE6B /* RH_ShareCountTableViewCell.h */,
 				79BB2DA320318A7D000CDE6B /* RH_ShareCountTableViewCell.m */,
 				79BB2DAA2032775B000CDE6B /* RH_NonTableViewCell.h */,
@@ -1819,6 +1831,9 @@
 				79BB2DBA2032D151000CDE6B /* RH_RewardRuleTableViewCell.m */,
 				79BB2DBC2032D16A000CDE6B /* RH_ShareRecordTableViewCell.h */,
 				79BB2DBD2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m */,
+				79BB2DEB20346BC2000CDE6B /* RH_ShareSeletedDateView.h */,
+				79BB2DEA20346BC2000CDE6B /* RH_ShareSeletedDateView.m */,
+				79BB2DE920346BC2000CDE6B /* RH_ShareSeletedDateView.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -1831,6 +1846,17 @@
 				79BB2D9D203130CE000CDE6B /* RH_ShareNavBarView.xib */,
 			);
 			path = ShareNavBarView;
+			sourceTree = "<group>";
+		};
+		79BB2DEE20356360000CDE6B /* ShareRecordSmallCell */ = {
+			isa = PBXGroup;
+			children = (
+				79BB2DEF20356391000CDE6B /* RH_SmallHeadView.h */,
+				79BB2DF020356391000CDE6B /* RH_SmallHeadView.m */,
+				79BB2DF220356625000CDE6B /* RH_SmallShareTableViewCell.h */,
+				79BB2DF320356625000CDE6B /* RH_SmallShareTableViewCell.m */,
+			);
+			path = ShareRecordSmallCell;
 			sourceTree = "<group>";
 		};
 		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
@@ -3893,6 +3919,7 @@
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
 				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
+				79BB2DEC20346BC2000CDE6B /* RH_ShareSeletedDateView.xib in Resources */,
 				A001B3CF1F8EF7CA00309EA4 /* tab_default_home@2x.png in Resources */,
 				A07AF4E22026DBE400D6D559 /* tab_v3_service@2x.png in Resources */,
 				22C2E152202705D9008C0C06 /* login_touxiang_default@2x.png in Resources */,
@@ -4209,6 +4236,7 @@
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
 				79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */,
+				79BB2DED20346BC2000CDE6B /* RH_ShareSeletedDateView.m in Sources */,
 				79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */,
 				79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */,
 				A0109FC41F8788FF004E6EF4 /* UIView+Screenshot.m in Sources */,
@@ -4238,6 +4266,7 @@
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
+				79BB2DF420356625000CDE6B /* RH_SmallShareTableViewCell.m in Sources */,
 				79BB2DB52032CFD9000CDE6B /* RH_AwardRuleCollectionViewCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
@@ -4344,6 +4373,7 @@
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
 				A0109F701F8787E4004E6EF4 /* CLContentView.m in Sources */,
 				A0109F711F8787E4004E6EF4 /* CLGradientView.m in Sources */,
+				79BB2DF120356391000CDE6B /* RH_SmallHeadView.m in Sources */,
 				A0109F721F8787E4004E6EF4 /* CLHeaderTitleView.m in Sources */,
 				A0109F731F8787E4004E6EF4 /* CLLabel.m in Sources */,
 				A0B5A5741FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.m in Sources */,
