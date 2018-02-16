@@ -31,8 +31,9 @@
             UILabel *lineLab = [[UILabel alloc] init];
             lineLab.frame = CGRectMake(self.frame.size.width/4.0*(i+1), 0, 1, 35);
             lineLab.backgroundColor = [UIColor whiteColor] ;
+           [bgVie addSubview:lineLab] ;
             [bgVie addSubview:titleLba];
-            [bgVie addSubview:lineLab] ;
+            
         }
     }
     return self ;

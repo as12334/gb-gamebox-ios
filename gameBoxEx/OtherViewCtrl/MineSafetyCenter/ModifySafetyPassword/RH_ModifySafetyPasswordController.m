@@ -56,7 +56,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     self.title = _titleStr?:@"修改安全密码";
     [self setupInfo];
     [self setNeedUpdateView] ;
-    
     self.needObserverTapGesture = YES ;
 }
 

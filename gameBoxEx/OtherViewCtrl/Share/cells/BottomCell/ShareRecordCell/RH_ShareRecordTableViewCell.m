@@ -39,7 +39,7 @@
         
         UILabel *touzhuLab = [[UILabel alloc] init];
         [topView addSubview:touzhuLab];
-        touzhuLab.whc_LeftSpace(10).whc_CenterY(0).whc_Height(30).whc_Width(100);
+        touzhuLab.whc_LeftSpace(10).whc_CenterY(0).whc_Height(30).whc_WidthAuto();
         touzhuLab.text = @"投注日期:";
         touzhuLab.textColor = colorWithRGB(51, 51, 51) ;
         touzhuLab.font = [UIFont systemFontOfSize:12.f] ;
@@ -71,17 +71,17 @@
         label_.text = @"~";
         label_.textAlignment = NSTextAlignmentCenter;
         
-        UITableView *bottomTbaleView = [[UITableView alloc] init];
-        [self.contentView addSubview:bottomTbaleView];
-        bottomTbaleView.delegate = self ;
-        bottomTbaleView.dataSource = self ;
-        bottomTbaleView.whc_TopSpaceToView(9, topView).whc_LeftSpace(9).whc_RightSpace(9).whc_Height(180);
+        UIView *bottomView = [[UIView alloc] init];
+        [self.contentView addSubview:bottomView];
+        bottomView.backgroundColor = [UIColor redColor] ;
+        bottomView.whc_TopSpaceToView(10, topView).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(5);
+        
         
         _smallHeadView = [[RH_SmallHeadView alloc] init];
-        bottomTbaleView.tableHeaderView = self.smallHeadView ;
+         [bottomView addSubview:_smallHeadView];
         _smallHeadView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(30) ;
-        _smallHeadView.backgroundColor = [UIColor redColor] ;
-        [bottomTbaleView registerClass:[RH_SmallShareTableViewCell class] forCellReuseIdentifier:[RH_SmallShareTableViewCell defaultReuseIdentifier]];
+
+       
     }
     return self ;
 }
@@ -112,7 +112,7 @@
 -(RH_ShareSeletedDateView *)endShareDateCell
 {
     if (!_endShareDateCell) {
-        _endShareDateCell = [RH_ShareSeletedDateView createInstance];
+        _endShareDateCell = [RH_ShareSeletedDateView createInstance];        
         [_endShareDateCell updateUIWithDate:_endDate];
         [_endShareDateCell addTarget:self action:@selector(endShareDateCellHandle) forControlEvents:UIControlEventTouchUpInside];
     }

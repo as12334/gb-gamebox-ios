@@ -20,6 +20,8 @@
     self.dateLabel.textColor = colorWithRGB(51, 51, 51) ;
     self.dateLabel.font = [UIFont systemFontOfSize:10.0f] ;
     self.dateLabel.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
+    self.layer.borderWidth = 1.f;
+    self.layer.borderColor = colorWithRGB(242, 242, 242).CGColor;
 }
 
 #pragma mark-
