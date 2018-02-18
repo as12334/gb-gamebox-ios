@@ -1,5 +1,5 @@
 //
-//  RH_ShareRecordCollectionViewCell.h
+//  RH_ AwardRuleCollectionViewCell.h
 //  gameBoxEx
 //
 //  Created by Richard on 2018/2/13.
@@ -8,9 +8,9 @@
 
 #import "RH_PageLoadContentPageCell.h"
 #import "RH_SharePlayerRecommendModel.h"
+#import "CLScrollContentPageCell.h"
 
+@interface RH_AwardRuleCollectionPageCell : RH_PageLoadContentPageCell
 
-@interface RH_ShareRecordCollectionViewCell : RH_PageLoadContentPageCell
 -(void)updateViewWithType:(RH_SharePlayerRecommendModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;
-
 @end

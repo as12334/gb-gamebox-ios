@@ -16,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="betRec_calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="BlS-Ee-pvC">
-                    <rect key="frame" x="5" y="5" width="20" height="20"/>
+                    <rect key="frame" x="2" y="5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="GMx-dW-M74"/>
                         <constraint firstAttribute="width" constant="20" id="UI4-0p-BTF"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkq-IR-YG2">
-                    <rect key="frame" x="29" y="8.5" width="28.5" height="13.5"/>
+                    <rect key="frame" x="26" y="8.5" width="28.5" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                 <constraint firstAttribute="bottom" secondItem="BlS-Ee-pvC" secondAttribute="bottom" constant="5" id="Kba-PS-ht9"/>
                 <constraint firstItem="zkq-IR-YG2" firstAttribute="leading" secondItem="BlS-Ee-pvC" secondAttribute="trailing" constant="4" id="SVA-VP-NhU"/>
                 <constraint firstItem="zkq-IR-YG2" firstAttribute="leading" secondItem="BlS-Ee-pvC" secondAttribute="trailing" constant="4" id="syI-8l-qSZ"/>
-                <constraint firstItem="BlS-Ee-pvC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="wVB-V9-HrL"/>
+                <constraint firstItem="BlS-Ee-pvC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="wVB-V9-HrL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

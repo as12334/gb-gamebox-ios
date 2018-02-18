@@ -14,10 +14,11 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
         UIView *topView = [[UIView alloc] init];
         topView.backgroundColor = colorWithRGB(242, 242, 242) ;
         [self.contentView addSubview:topView ];
-        topView.whc_LeftSpace(10).whc_RightSpace(10).whc_TopSpace(20).whc_Height(70) ;
+        topView.whc_LeftSpace(10).whc_RightSpace(10).whc_TopSpace(10).whc_Height(70) ;
         
         topView.layer.borderWidth = 1.f ;
         topView.layer.borderColor = colorWithRGB(204, 204, 204).CGColor ;
@@ -25,15 +26,17 @@
         topView.layer.masksToBounds = YES ;
         
         UILabel *huhuiLab = [[UILabel alloc] init];
-        [topView addSubview:huhuiLab];
-        huhuiLab.whc_CenterX(0).whc_TopSpace(-10).whc_Height(20).whc_WidthAuto();
+        [self.contentView addSubview:huhuiLab];
+        huhuiLab.whc_CenterX(0).whc_TopSpace(0).whc_Height(20).whc_WidthAuto();
         huhuiLab.text = @"互惠奖励";
+        huhuiLab.backgroundColor  = colorWithRGB(242, 242, 242) ;
         huhuiLab.textColor = colorWithRGB(27, 117, 217) ;
         huhuiLab.font = [UIFont boldSystemFontOfSize:14.f] ;
         
+        
         UILabel *contentLab1 = [[UILabel alloc] init ];
         [topView addSubview:contentLab1];
-        contentLab1.whc_TopSpaceToView(10, huhuiLab).whc_WidthAuto().whc_CenterX(0) ;
+        contentLab1.whc_TopSpace(20).whc_WidthAuto().whc_CenterX(0) ;
         contentLab1.textAlignment = NSTextAlignmentCenter ;
         contentLab1.text = @"推荐好友成功注册并存款满500元";
         contentLab1.textColor = colorWithRGB(51, 51, 51) ;
@@ -57,15 +60,16 @@
         bottomView.layer.masksToBounds = YES ;
         
         UILabel *shareRedLab = [[UILabel alloc] init];
-        [bottomView addSubview:shareRedLab];
-        shareRedLab.whc_TopSpace(-10).whc_CenterX(0).whc_Height(20).whc_WidthAuto();
+        [self.contentView addSubview:shareRedLab];
+        shareRedLab.whc_TopSpaceToView(0, topView).whc_CenterX(0).whc_Height(20).whc_WidthAuto();
         shareRedLab.text = @"分享红利";
+        shareRedLab.backgroundColor  = colorWithRGB(242, 242, 242) ;
         shareRedLab.textColor = colorWithRGB(27, 117, 217) ;
         shareRedLab.font = [UIFont boldSystemFontOfSize:14.f] ;
         
         UILabel *lab1 = [[UILabel alloc] init];
         [bottomView addSubview:lab1];
-        lab1.whc_TopSpaceToView(10, shareRedLab).whc_CenterX(0).whc_WidthAuto().whc_Height(20);
+        lab1.whc_TopSpace(10).whc_CenterX(0).whc_WidthAuto().whc_Height(20);
         lab1.text = @"红利=分享好友的有效投注额*分享红利比例";
         lab1.textColor = colorWithRGB(51, 51, 51) ;
         lab1.font = [UIFont systemFontOfSize:14.f] ;
