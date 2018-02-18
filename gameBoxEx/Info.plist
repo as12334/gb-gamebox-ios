@@ -41,6 +41,8 @@
 	<string>使用相机</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>使用麦克风</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>test</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App needs your permission to access the Photo</string>
 	<key>UILaunchStoryboardName</key>
@@ -61,7 +63,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>test</string>
 </dict>
 </plist>

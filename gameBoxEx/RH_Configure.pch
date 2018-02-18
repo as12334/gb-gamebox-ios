@@ -1620,11 +1620,43 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _vksg //新葡京娱乐场
+
+#define CODE    @"vksg"
+#define S        @"c9f96fda5423febc3e50072c8a272bc1"
+#define SID        @"369"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _covy //老钱庄
+
+#define CODE    @"covy"
+#define S        @"56a9b81c0991acfdff36dad643a84bae"
+#define SID        @"370"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _mppv //澳门新葡京娱乐城
 
 #define CODE    @"mppv"
 #define S        @"607ab31471b2f18220fb03b685a62f60"
 #define SID        @"371"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _dufx //腾龙国际
+
+#define CODE    @"dufx"
+#define S        @"92aadf5a5d2983c63de760e80681ccf1"
+#define SID        @"372"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _sogq //太阳娱乐城
+
+#define CODE    @"sogq"
+#define S        @"937f54327ef331a97ad5ac8c58c70ec7"
+#define SID        @"373"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
