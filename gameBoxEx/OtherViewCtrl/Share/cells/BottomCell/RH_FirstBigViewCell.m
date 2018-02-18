@@ -9,10 +9,10 @@
 #import "RH_FirstBigViewCell.h"
 #import "coreLib.h"
 #import "RH_FirstBigCellHeadView.h"
-#import "RH_AwardRuleCollectionViewCell.h"
-#import "RH_ShareRecordCollectionViewCell.h"
+#import "RH_AwardRuleCollectionPageCell.h"
+#import "RH_ShareRecordCollectionPageCell.h"
 
-@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource>
+@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource,RH_ShareRecordCollectionPageCellDelegate>
 @property(nonatomic,strong,readonly)RH_FirstBigCellHeadView *headView ;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
@@ -44,9 +44,10 @@
        
         //分页视图
         [bgView addSubview:self.pageView];
+        self.pageView.whc_LeftSpace(0).whc_TopSpace(60).whc_RightSpace(0).whc_BottomSpace(0) ;
         //注册复用
-        [self.pageView registerCellForPage:[RH_AwardRuleCollectionViewCell class] andReuseIdentifier:[RH_AwardRuleCollectionViewCell defaultReuseIdentifier]] ;
-        [self.pageView registerCellForPage:[RH_ShareRecordCollectionViewCell class] andReuseIdentifier:[RH_ShareRecordCollectionViewCell defaultReuseIdentifier]] ;
+        [self.pageView registerCellForPage:[RH_AwardRuleCollectionPageCell class] andReuseIdentifier:[RH_AwardRuleCollectionPageCell defaultReuseIdentifier]] ;
+        [self.pageView registerCellForPage:[RH_ShareRecordCollectionPageCell class] andReuseIdentifier:[RH_ShareRecordCollectionPageCell defaultReuseIdentifier]] ;
         
         //设置索引
         self.pageView.dispalyPageIndex =  _selectedIndex ;
@@ -79,17 +80,14 @@
         _headView = [RH_FirstBigCellHeadView createInstance];
         _headView.delegate= self;
         _headView.selectedIndex = self.selectedIndex;
-        
     }
     return _headView;
 }
 #pragma mark 分页视图
-#pragma mark 分页视图
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 60, screenSize().width-100, 200)];
-        _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
+        _pageView = [[CLPageView alloc] initWithFrame:CGRectZero];
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
         _pageView.pageMargin = 5.0f;
@@ -114,15 +112,14 @@
 {
     if (pageIndex ==0)
     {
-        RH_AwardRuleCollectionViewCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_AwardRuleCollectionViewCell defaultReuseIdentifier] forPageIndex:pageIndex];
+        RH_AwardRuleCollectionPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_AwardRuleCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
     }
     else if (pageIndex==1){
-        RH_ShareRecordCollectionViewCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionViewCell defaultReuseIdentifier] forPageIndex:pageIndex];
-//        [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
-        //                cell.delegate=self;
-          [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+        RH_ShareRecordCollectionPageCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
+            cell.delegate=self;
+            [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
     }
     return nil;
@@ -157,11 +154,11 @@
 
 - (void)_savePageLoadDatasContextAtPageIndex:(NSUInteger)pageIndex
 {
-    RH_AwardRuleCollectionViewCell * cell = [self.pageView cellForPageAtIndex:0];
-    RH_ShareRecordCollectionViewCell *mineCell = [self.pageView cellForPageAtIndex:1];
+    RH_AwardRuleCollectionPageCell * awardRulecell = [self.pageView cellForPageAtIndex:0];
+    RH_ShareRecordCollectionPageCell *shareRecordCell = [self.pageView cellForPageAtIndex:1];
    
-    if (cell != nil) {
-        CLPageLoadDatasContext * context = (id)[cell currentPageContext];
+    if (awardRulecell != nil) {
+        CLPageLoadDatasContext * context = (id)[awardRulecell currentPageContext];
         NSString *key = [NSString stringWithFormat:@"%ld",pageIndex] ;
         if (context) {
             [self.dictPageCellDataContext setObject:context forKey:key] ;
@@ -169,8 +166,8 @@
             [self.dictPageCellDataContext removeObjectForKey:key];
         }
     }
-    else if (mineCell != nil) {
-        CLPageLoadDatasContext * context = (id)[mineCell currentPageContext];
+    else if (shareRecordCell != nil) {
+        CLPageLoadDatasContext * context = (id)[shareRecordCell currentPageContext];
         NSString *key = [NSString stringWithFormat:@"%ld",pageIndex] ;
         if (context) {
             [self.dictPageCellDataContext setObject:context forKey:key] ;
@@ -186,6 +183,19 @@
     self.headView.segmentedControl.selectedSegmentIndex = selectedIndex;
 }
 
+#pragma mark -- RH_ShareRecordCollectionPageCellDelegate
+-(void)shareRecordCollectionPageCellStartDateSelected:(RH_ShareRecordCollectionPageCell *)cell DefaultDate:(NSDate *)defaultDate
+{
+    ifRespondsSelector(self.delegate, @selector(firstBigViewCellStartDateSelected:DefaultDate:)){
+        [self.delegate firstBigViewCellStartDateSelected:self DefaultDate:defaultDate] ;
+    }
+}
+-(void)shareRecordCollectionPageCellEndDateSelected:(RH_ShareRecordCollectionPageCell *)cell DefaultDate:(NSDate *)defaultDate
+{
+    ifRespondsSelector(self.delegate, @selector(firstBigViewCellEndDateSelected:DefaultDate:)){
+        [self.delegate firstBigViewCellEndDateSelected:self DefaultDate:defaultDate] ;
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

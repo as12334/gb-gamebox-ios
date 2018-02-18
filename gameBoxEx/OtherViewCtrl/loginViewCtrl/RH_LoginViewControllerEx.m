@@ -13,11 +13,14 @@
 #import "RH_API.h"
 #import "RH_ForgetPasswordController.h"
 #import "RH_UserInfoManager.h"
+#import "RH_OldUserVerifyView.h"//老用户验证
 
-@interface RH_LoginViewControllerEx ()<LoginViewCellDelegate>
+@interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
 @property (nonatomic,assign)CGRect frame;
+@property(nonatomic,strong)RH_OldUserVerifyView *oldUserVerifyView;
+@property(nonatomic,strong)UIView *OldUserVerifyViewBgView;
 @end
 
 @implementation RH_LoginViewControllerEx
@@ -79,7 +82,8 @@
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
-
+   
+   
 }
 
 -(void)setupUI{
@@ -89,6 +93,7 @@
     [self.contentTableView registerCellWithClass:[RH_LoginViewCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
+//     [self showVerifyView];
 }
 
 
@@ -102,6 +107,24 @@
     return _loginViewCell ;
 }
 
+#pragma mark - RH_OldUserVerifyViewDelegate
+
+-(void)showVerifyView
+{
+    _OldUserVerifyViewBgView = [[UIView alloc] init];
+    [self.view addSubview:_OldUserVerifyViewBgView];
+    _OldUserVerifyViewBgView.backgroundColor = ColorWithRGBA(1, 1, 1, 0.7);
+    _OldUserVerifyViewBgView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
+    
+    _oldUserVerifyView = [[RH_OldUserVerifyView alloc] init];
+    [_OldUserVerifyViewBgView addSubview:_oldUserVerifyView];
+    _oldUserVerifyView.delegate  = self ; _oldUserVerifyView.whc_CenterX(0).whc_CenterY(0).whc_Width(screenSize().width*0.8).whc_Height(screenSize().height*0.4) ;
+}
+//确定
+-(void)oldUserVerifyViewDidTochSureBtn:(RH_OldUserVerifyView *)oldUserVerifyView withRealName:(NSString *)realName
+{
+    
+}
 -(void)loginViewCellTouchLoginButton:(RH_LoginViewCell*)loginViewCell
 {
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在登录..."];

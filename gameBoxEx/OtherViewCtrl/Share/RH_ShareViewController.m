@@ -16,7 +16,7 @@
 #import "RH_SharePlayerRecommendModel.h"
 
 
-@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate>
+@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate,RH_FirstBigViewCellDelegate>
 @property(nonatomic,  strong, readonly)RH_ShareNavBarView *shareNavView ;
 @property(nonatomic,strong,readonly)UITableView *tableView ;
 @property(nonatomic,strong,readonly) RH_SharePlayerRecommendModel *model;
@@ -155,7 +155,7 @@
     }else if (indexPath.row == 3){
         return 10.f ;
     }else if (indexPath.row == 4){
-        return 280.f/375*screenSize().width ;
+        return 300.f/375*screenSize().width ;
     }
     return 80.f ;
 }
@@ -179,12 +179,22 @@
         return nonCell ;
     }else if (indexPath.row == 4){
         RH_FirstBigViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_FirstBigViewCell defaultReuseIdentifier]] ;
+        cell.delegate = self;
         return cell ;
     }
     return nil;
 }
 #pragma mark - 复制按钮点击
 -(void)shareToFriendTableViewCellDidTouchCopyButton:(RH_ShareToFriendTableViewCell *)shareToFriendTableViewCell
+{
+    
+}
+#pragma mark - RH_FirstBigViewCellDelegate
+-(void)firstBigViewCellStartDateSelected:(RH_FirstBigViewCell *)cell DefaultDate:(NSDate *)defaultDate
+{
+    
+}
+-(void)firstBigViewCellEndDateSelected:(RH_FirstBigViewCell *)cell DefaultDate:(NSDate *)defaultDate
 {
     
 }
