@@ -78,7 +78,6 @@
     }
 }
 
-
 -(void)setupInfo
 {
     if([self.appDelegate.customUrl containsString:@"http"]){
@@ -145,6 +144,10 @@
         [self.serviceRequest startAPIRetrive:_apiID] ;
     }
     
+    //clear 音效
+    self.webURL = [NSURL URLWithString:@""] ;
+    [self reloadWebView] ;
+    
     [self.navigationController popToRootViewControllerAnimated:YES] ;
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         self.myTabBarController.selectedIndex = 2 ;
@@ -198,6 +201,10 @@
     if (_apiID>0){
         [self.serviceRequest startAPIRetrive:_apiID] ;
     }
+    
+    //clear 音效
+    self.webURL = [NSURL URLWithString:@""] ;
+    [self reloadWebView] ;
     
     [super backBarButtonItemHandle] ;
 }
