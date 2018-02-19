@@ -10,22 +10,18 @@
 #import "coreLib.h"
 #import "RH_ShareSeletedDateView.h"
 
-/***smallCell***/
-#import "RH_SmallHeadView.h"
-#import "RH_SmallShareTableViewCell.h"
 
 
 
 @interface RH_ShareRecordTableViewCell ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong,readonly)RH_ShareSeletedDateView *startShareDateCell;
 @property(nonatomic,strong,readonly)RH_ShareSeletedDateView *endShareDateCell;
-@property(nonatomic,strong,readonly)RH_SmallHeadView *smallHeadView ;
+
 @end
 
 @implementation RH_ShareRecordTableViewCell
 @synthesize startShareDateCell = _startShareDateCell ;
 @synthesize endShareDateCell = _endShareDateCell ;
-@synthesize smallHeadView = _smallHeadView;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -73,14 +69,32 @@
         
         UIView *bottomView = [[UIView alloc] init];
         [self.contentView addSubview:bottomView];
-        bottomView.backgroundColor = [UIColor redColor] ;
         bottomView.whc_TopSpaceToView(10, topView).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(5);
         
+        NSArray *titleArr = @[@"好友账号",@"有效投注",@"红利",@"互惠奖励"] ;
+        for (int i = 0; i<titleArr.count; i++) {
+            UILabel *titleLba = [[UILabel alloc] init];
+            titleLba.frame = CGRectMake(self.frame.size.width/4.0*i, 0, self.frame.size.width/4.0, 35.0);
+            titleLba.text = titleArr[i];
+            titleLba.textColor = colorWithRGB(68, 68, 68) ;
+            titleLba.backgroundColor = colorWithRGB(228, 247, 231) ;
+            titleLba.font = [UIFont systemFontOfSize:14.f] ;
+            titleLba.textAlignment = NSTextAlignmentCenter ;
+            UILabel *lineLab = [[UILabel alloc] init];
+            lineLab.frame = CGRectMake(self.frame.size.width/4.0*i, 0, 1, 35);
+            lineLab.backgroundColor = [UIColor whiteColor] ;
+            [bottomView addSubview:lineLab] ;
+            [bottomView addSubview:titleLba];
+        }
+        UILabel *topLine = [[UILabel alloc] init];
+        [bottomView addSubview:topLine];
+        topLine.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(1) ;
+        topLine.backgroundColor = [UIColor whiteColor] ;
         
-        _smallHeadView = [[RH_SmallHeadView alloc] init];
-         [bottomView addSubview:_smallHeadView];
-        _smallHeadView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(30) ;
-
+        UILabel *topLine1 = [[UILabel alloc] init];
+        [bottomView addSubview:topLine1];
+        topLine1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(1) ;
+        topLine1.backgroundColor = [UIColor whiteColor] ;
        
     }
     return self ;
@@ -88,8 +102,8 @@
 #pragma mark --搜索按钮点击代理
 -(void)searchBtnClick
 {
-    ifRespondsSelector(self.delegate, @selector(shareRecordTableViewSearchBtnDidTouchBackButton:)){
-        [self.delegate shareRecordTableViewSearchBtnDidTouchBackButton:self];
+    ifRespondsSelector(self.delegate, @selector(shareRecordTableViewSearchBtnDidTouch:)){
+        [self.delegate shareRecordTableViewSearchBtnDidTouch:self];
     }
 }
 
@@ -119,37 +133,13 @@
     return _endShareDateCell;
 }
 
-
-
 -(void)endShareDateCellHandle
 {
     ifRespondsSelector(self.delegate, @selector(shareRecordTableViewWillSelectedEndDate:DefaultDate:)){
         [self.delegate shareRecordTableViewWillSelectedEndDate:self DefaultDate:_endDate] ;
     }
 }
-#pragma mark - tableViewDelegate
-#pragma mark-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  
-    return 30.f ;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RH_SmallShareTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_SmallShareTableViewCell defaultReuseIdentifier]] ;
-    return cell;
-
-}
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
-{
-    return _smallHeadView;
-}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

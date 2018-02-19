@@ -59,19 +59,17 @@
 
 -(void)updateView:(NSArray*)typeList
 {
-    //    self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
-    self.arrayTypeList = @[[UIColor redColor],[UIColor yellowColor],[UIColor blueColor]];
+    self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
     self.segmentedControl.selectedSegmentIndex = _selectedIndex;
 }
 
-//-(RH_DiscountActivityTypeModel*)typeModelWithIndex:(NSInteger)index
-//{
-//    if (index>=0 && index <self.arrayTypeList.count){
-//        return self.arrayTypeList[index] ;
-//    }
-//
-//    return nil ;
-//}
+-(RH_SharePlayerRecommendModel *)typeModelWithIndex:(NSInteger)index 
+{
+    if (index>=0 && index <self.arrayTypeList.count){
+        return self.arrayTypeList[index] ;
+    }
+    return nil ;
+}
 #pragma mark-
 -(NSInteger)allTypes
 {
@@ -87,7 +85,6 @@
 {
     if (_selectedIndex!=selectedIndex){
         _selectedIndex = selectedIndex ;
-        //        self.segmentedControl.selectedSegmentIndex = _selectedIndex;
     }
 }
 - (void)segmentSelectedClick:(id)sender {

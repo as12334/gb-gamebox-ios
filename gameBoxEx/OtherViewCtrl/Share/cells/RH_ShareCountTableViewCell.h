@@ -17,4 +17,5 @@
 @property(nonatomic , strong) UILabel *friendReciprocalCountLab ;
 //我的分享红利
 @property(nonatomic , strong) UILabel *myShareBonusLab ;
+
 @end

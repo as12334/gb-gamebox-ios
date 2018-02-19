@@ -8,6 +8,8 @@
 
 #import "RH_ShareToFriendTableViewCell.h"
 #import "coreLib.h"
+#import "RH_SharePlayerRecommendModel.h"
+#import "RH_APPDelegate.h"
 @interface RH_ShareToFriendTableViewCell ()<UITextFieldDelegate>
 @property(nonatomic,strong,readonly)UITextField *textFiled ;
 @end
@@ -52,6 +54,7 @@
         textField.layer.borderColor = colorWithRGB(204, 204, 204).CGColor ;
         textField.backgroundColor = [UIColor whiteColor] ;
         _textFiled = textField;
+        _textFiled.enabled = NO ;
         
         UIButton *copyBtn = [UIButton new] ;
         [bgView addSubview:copyBtn];
@@ -68,6 +71,16 @@
     }
     return self ;
 }
+
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_SharePlayerRecommendModel *model = ConvertToClassPointer(RH_SharePlayerRecommendModel, context);
+    if (model.mCode) {
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        _textFiled.text  = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,model.mCode] ;
+    }
+}
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {

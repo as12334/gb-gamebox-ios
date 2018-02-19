@@ -77,6 +77,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeTimeZoneInfo , //获取站点时区
     ServiceRequestTypeSiteMessageUnReadCount , //获取站点信息-未读消息的条数
     ServiceRequestTypeV3SharePlayerRecommend ,   // 分享
+    ServiceRequestTypeV3VerifyRealNameForApp ,   // 老用户验证登录
     
 };
 
@@ -379,7 +380,30 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadMessageCenterSiteMessageUnReadCount ;
 
 #pragma mark - 分享接口
--(void)startV3LoadSharePlayerRecommend;
+-(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
+                                        endTime:(NSString *)endTime;
+
+#pragma mark -老用户验证登录
+/**
+ 老用户验证登录
+
+ @param token  登录返回的Token
+ @param resultRealName 输入框真实姓名
+ @param needRealName 默认传 YES
+ @param resultPlayerAccount 用户名
+ @param searchPlayerAccount 用户名
+ @param tempPass 密码
+ @param newPassword 密码
+ @param passLevel 默认传 20
+ */
+-(void)startV3verifyRealNameForAppWithToken:(NSString *)token
+                             resultRealName:(NSString *)resultRealName
+                               needRealName:(BOOL)needRealName
+                        resultPlayerAccount:(NSString *)resultPlayerAccount
+                        searchPlayerAccount:(NSString *)searchPlayerAccount
+                                   tempPass:(NSString *)tempPass
+                                newPassword:(NSString *)newPassword
+                                  passLevel:(NSInteger)passLevel;
 
 #pragma mark -
 /**

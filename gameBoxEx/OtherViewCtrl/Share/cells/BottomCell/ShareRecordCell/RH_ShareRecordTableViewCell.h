@@ -10,7 +10,7 @@
 @class RH_ShareRecordTableViewCell;
 @protocol RH_ShareRecordTableViewCellDelegate <NSObject>
 @optional
--(void)shareRecordTableViewSearchBtnDidTouchBackButton:(RH_ShareRecordTableViewCell*)shareRecordTableViewCell ;
+-(void)shareRecordTableViewSearchBtnDidTouch:(RH_ShareRecordTableViewCell*)shareRecordTableViewCell ;
 -(void)shareRecordTableViewWillSelectedStartDate:(RH_ShareRecordTableViewCell*)shareRecordTableView DefaultDate:(NSDate*)defaultDate ;
 -(void)shareRecordTableViewWillSelectedEndDate:(RH_ShareRecordTableViewCell*)shareRecordTableView DefaultDate:(NSDate*)defaultDate ;
 @end

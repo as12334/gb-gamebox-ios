@@ -829,6 +829,9 @@
 
 #pragma mark -- V3 分享
 #define RH_API_NAME_SHAREPLAYERRECOMMEND          @"mobile-api/mineOrigin/getUserPlayerRecommend.html"
+//请求参数
+#define RH_SP_SHAREPLAYERRECOMMEND_STARTTIME           @"search.startTime"
+#define RH_SP_SHAREPLAYERRECOMMEND_ENDTIME             @"search.endTime"
 
 //返回参数
 #define RH_GP_SHAREPLAYERRECOMMEND_REWARD              @"reward"
@@ -836,10 +839,35 @@
 #define RH_GP_SHAREPLAYERRECOMMEND_RECOMMEND           @"recommend"
 #define RH_GP_SHAREPLAYERRECOMMEND_COUNT               @"count"
 #define RH_GP_SHAREPLAYERRECOMMEND_USER                @"user"
+#define RH_GP_SHAREPLAYERRECOMMEND_BOUNDS              @"bonus"
+#define RH_GP_SHAREPLAYERRECOMMEND_SINGLE              @"single"
+
 #define RH_GP_SHAREPLAYERRECOMMEND_CODE                @"code"
 #define RH_GP_SHAREPLAYERRECOMMEND_THEWAY              @"theWay"
 #define RH_GP_SHAREPLAYERRECOMMEND_MONEY               @"money"
-#define RH_GP_SHAREPLAYERRECOMMEND_BONUS               @"bonus"
+#define RH_GP_SHAREPLAYERRECOMMEND_WITCHWITHDRAW       @"witchWithdraw"
+#define RH_GP_SHAREPLAYERRECOMMEND_THEWAY              @"theWay"
+#define RH_GP_SHAREPLAYERRECOMMEND_ISBOUNDS            @"isBonus"
+#define RH_GP_SHAREPLAYERRECOMMEND_GRADIENTTEMPARRAYLIST      @"gradientTempArrayList"
+#define RH_GP_SHAREPLAYERRECOMMEND_ID                   @"id"
+#define RH_GP_SHAREPLAYERRECOMMEND_PROPORTION           @"proportion"
+#define RH_GP_SHAREPLAYERRECOMMEND_PLAYERNUM            @"playerNum"
+#define RH_GP_SHAREPLAYERRECOMMEND_ACTIVITYRULES        @"activityRules"
+
+
+
+
+#pragma mark - V3 老用户登录验证
+#define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"passport/verify/verifyRealNameForApp.html"
+//请求参数
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN                           @"gb.token"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTREALNAME                  @"result.realName"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEEDREALNAME                    @"needRealName"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTPLAYERACCOUNT             @"result.playerAccount"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEARCHACCOUNT                   @"search.playerAccount"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS                        @"tempPass"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD                     @"newPassword"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL                       @"passLevel"
 
 #endif /* RH_API_h */
 

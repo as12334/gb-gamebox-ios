@@ -27,12 +27,15 @@
         topLab.font = [UIFont systemFontOfSize:14.f] ;
         topLab.textColor = [UIColor whiteColor] ;
         topLab.text = @"   姓名验证" ;
-        topLab.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        
         
         UIView *middleView = [[UIView alloc] init];
         [self addSubview:middleView];
-        middleView.whc_LeftSpace(20).whc_TopSpaceToView(10, topLab).whc_RightSpace(20).whc_Height(80);
-        middleView.backgroundColor = [UIColor grayColor] ;
+        middleView.whc_LeftSpace(20).whc_TopSpaceToView(20, topLab).whc_RightSpace(20).whc_Height(50);
+//        middleView.backgroundColor = [UIColor grayColor] ;
+        middleView.backgroundColor = colorWithRGB(242,222,222) ;
+        middleView.layer.cornerRadius = 5.f;
+        middleView.layer.masksToBounds = YES ;
         
         UILabel *tishiLab = [[UILabel alloc] init];
         [middleView addSubview:tishiLab];
@@ -60,22 +63,39 @@
         UIButton *sureBtn = [UIButton new] ;
         [self addSubview:sureBtn];
         sureBtn.whc_LeftSpace(30).whc_TopSpaceToView(20, _realNameField).whc_Height(30).whc_Width(100) ;
-        sureBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Green;
-        sureBtn.titleLabel.textColor = [UIColor whiteColor] ;
+        [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sureBtn setTitle:@"确认" forState:UIControlStateNormal];
         [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *cancleBtn = [UIButton new] ;
         [self addSubview:cancleBtn];
+        cancleBtn.whc_RightSpace(30).whc_TopSpaceToView(20, _realNameField).whc_Height(30).whc_Width(100) ;
         cancleBtn.backgroundColor = [UIColor whiteColor];
-        cancleBtn.titleLabel.textColor = [UIColor whiteColor] ;
+        [cancleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        cancleBtn.layer.borderWidth = 1.f ;
+        cancleBtn.layer.borderColor = colorWithRGB(242, 242, 242).CGColor ;
         [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
         [cancleBtn addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
+        //设置头像 shaole头像
+        if ([THEMEV3 isEqualToString:@"green"]){
+            topLab.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+            sureBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            topLab.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+            sureBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            topLab.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            sureBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            topLab.backgroundColor = RH_NavigationBar_BackgroundColor;
+            sureBtn.backgroundColor =RH_NavigationBar_BackgroundColor;
+        }
         
     }
     return self ;
 }
+
 #pragma mark -确定按钮点击
 -(void)sureBtnClick
 {
@@ -102,12 +122,10 @@
     return YES;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES ;
 }
-*/
+
 
 @end

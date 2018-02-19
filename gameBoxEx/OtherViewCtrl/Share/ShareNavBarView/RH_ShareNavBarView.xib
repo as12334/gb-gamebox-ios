@@ -38,7 +38,7 @@
                         <constraint firstAttribute="width" constant="44" id="Gfe-oW-dxA"/>
                         <constraint firstAttribute="height" constant="43" id="sS1-3e-giW"/>
                     </constraints>
-                    <state key="normal" image="mine_page_settings"/>
+                    <state key="normal" image="share_help"/>
                     <connections>
                         <action selector="setting_btn:" destination="Y5E-18-akO" eventType="touchUpInside" id="xIK-5b-ArG"/>
                     </connections>
@@ -65,6 +65,6 @@
     </objects>
     <resources>
         <image name="ic_back" width="16" height="16"/>
-        <image name="mine_page_settings" width="30" height="30"/>
+        <image name="share_help" width="24" height="24"/>
     </resources>
 </document>

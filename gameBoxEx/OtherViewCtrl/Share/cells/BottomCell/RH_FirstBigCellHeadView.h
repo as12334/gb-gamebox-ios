@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RH_SharePlayerRecommendModel.h"
 
 
 @class RH_FirstBigCellHeadView ;
@@ -22,5 +23,5 @@
 @property (nonatomic,assign,readonly) CGFloat viewHeight ;
 @property (strong, nonatomic)UISegmentedControl *segmentedControl;
 -(void)updateView:(NSArray*)typeList ;
-//-(RH_DiscountActivityTypeModel*)typeModelWithIndex:(NSInteger)index ;
+-(RH_SharePlayerRecommendModel *)typeModelWithIndex:(NSInteger)index ;
 @end

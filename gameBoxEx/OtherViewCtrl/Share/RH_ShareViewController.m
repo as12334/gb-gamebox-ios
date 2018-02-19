@@ -14,18 +14,23 @@
 #import "RH_ShareToFriendTableViewCell.h"
 #import "RH_FirstBigViewCell.h"
 #import "RH_SharePlayerRecommendModel.h"
+#import "RH_ShareAnnounceView.h"
 
 
 @interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate,RH_FirstBigViewCellDelegate>
 @property(nonatomic,  strong, readonly)RH_ShareNavBarView *shareNavView ;
 @property(nonatomic,strong,readonly)UITableView *tableView ;
-@property(nonatomic,strong,readonly) RH_SharePlayerRecommendModel *model;
+@property(nonatomic,strong) RH_SharePlayerRecommendModel *model;
+@property (nonatomic,strong,readonly) RH_ShareAnnounceView *announceView ;
+
+@property(nonatomic,strong)NSDictionary *dataDic ;
 
 @end
 @implementation RH_ShareViewController
 @synthesize shareNavView = _shareNavView ;
 @synthesize tableView = _tableView ;
-@synthesize model = _model;
+//@synthesize model = _model;
+@synthesize announceView = _announceView ;
 
 
 
@@ -67,7 +72,8 @@
     [self configUI] ;
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
-    [self.serviceRequest startV3LoadSharePlayerRecommend] ;
+    [self.serviceRequest startV3LoadSharePlayerRecommendStartTime:nil endTime:nil] ;
+    _dataDic = [NSMutableDictionary dictionary];
 }
 
 
@@ -110,23 +116,55 @@
     }
     return _shareNavView;
 }
+
+-(RH_ShareAnnounceView *)announceView
+{
+    if (!_announceView) {
+        _announceView = [RH_ShareAnnounceView createInstance] ;
+        self.announceView.alpha = 0.f;
+    }
+    return _announceView;
+}
+
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return (self.announceView.superview?YES:NO) ;
+}
 #pragma mark -- 返回
 -(void)shareNaviBarViewDidTouchBackButton:(RH_ShareNavBarView *)shareNaviBarView
 {
     [self backBarButtonItemHandle] ;
 }
-#pragma mark -设置按钮
+#pragma mark -公告按钮
 -(void)shareNaviBarViewDidTouchSettingButton:(RH_ShareNavBarView *)shareNaviBarView
 {
-    
+//    RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+    if (self.announceView.superview == nil) {
+        _announceView = [RH_ShareAnnounceView createInstance] ;
+        self.announceView.alpha = 0;
+        [self.view.window addSubview:self.announceView];
+        self.announceView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.announceView.alpha = 1;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.announceView showContentWith:@[_model.mActivityRules]];
+                
+            }
+        }];
+    }
 }
+
+
 
 #pragma mark - service request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3SharePlayerRecommend){
         [self setNeedUpdateView] ;
-        _model = [data objectForKey:@"data"] ;
+        _model = data;
         [self.tableView reloadData];
     }
 }
@@ -173,6 +211,7 @@
     {
         RH_ShareToFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShareToFriendTableViewCell defaultReuseIdentifier]] ;
         cell.delegate = self ;
+        [cell updateCellWithInfo:nil context:_model];
         return cell ;
     }else if (indexPath.row == 3){
         RH_NonTableViewCell *nonCell = [tableView dequeueReusableCellWithIdentifier:[RH_NonTableViewCell defaultReuseIdentifier]] ;
@@ -187,7 +226,7 @@
 #pragma mark - 复制按钮点击
 -(void)shareToFriendTableViewCellDidTouchCopyButton:(RH_ShareToFriendTableViewCell *)shareToFriendTableViewCell
 {
-    
+    showAlertView(@"提示", @"复制成功");
 }
 #pragma mark - RH_FirstBigViewCellDelegate
 -(void)firstBigViewCellStartDateSelected:(RH_FirstBigViewCell *)cell DefaultDate:(NSDate *)defaultDate

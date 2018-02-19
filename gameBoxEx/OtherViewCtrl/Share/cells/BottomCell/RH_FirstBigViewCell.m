@@ -113,13 +113,13 @@
     if (pageIndex ==0)
     {
         RH_AwardRuleCollectionPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_AwardRuleCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
-        [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+        [cell updateViewWithType:[self.headView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
     }
     else if (pageIndex==1){
         RH_ShareRecordCollectionPageCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
             cell.delegate=self;
-            [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+            [cell updateViewWithType:[self.headView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
     }
     return nil;
@@ -133,12 +133,19 @@
 
 - (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex
 {
-//     self.headView.segmentedControl.selectedSegmentIndex = pageIndex;
+    // self.headView.segmentedControl.selectedSegmentIndex = pageIndex;
 }
 
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
     
 }
+
+
+
+
+
+
+
 
 #pragma mark-pageload context
 - (CLPageLoadDatasContext *)_pageLoadDatasContextForPageAtIndex:(NSUInteger)pageIndex
@@ -180,7 +187,7 @@
 #pragma mark - firstBigCellHeadViewDelegate
 -(void)firstBigCellHeadViewDidChangedSelectedIndex:(RH_FirstBigCellHeadView *)firstBigCellHeadView SelectedIndex:(NSInteger)selectedIndex
 {
-    self.headView.segmentedControl.selectedSegmentIndex = selectedIndex;
+    self.pageView.dispalyPageIndex = selectedIndex ;
 }
 
 #pragma mark -- RH_ShareRecordCollectionPageCellDelegate

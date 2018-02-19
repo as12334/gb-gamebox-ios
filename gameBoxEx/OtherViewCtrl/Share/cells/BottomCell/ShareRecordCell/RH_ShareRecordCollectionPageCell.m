@@ -8,12 +8,16 @@
 
 #import "RH_ShareRecordCollectionPageCell.h"
 #import "RH_ShareRecordTableViewCell.h"
+#import "RH_ShowShareRecordViewCell.h"
 #import "RH_ServiceRequest.h"
 #import "RH_LoadingIndicateTableViewCell.h"
+#import "RH_SharePlayerRecommendModel.h"
+
 
 @interface RH_ShareRecordCollectionPageCell()<RH_ServiceRequestDelegate,RH_ShareRecordTableViewCellDelegate>
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
+@property(nonatomic,strong)RH_SharePlayerRecommendModel *model;
 @end
 
 @implementation RH_ShareRecordCollectionPageCell
@@ -33,6 +37,7 @@
         self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         [self.contentTableView registerCellWithClass:[RH_ShareRecordTableViewCell class]] ;
+        [self.contentTableView registerCellWithClass:[RH_ShowShareRecordViewCell class]];
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
@@ -50,7 +55,13 @@
     }
     return _serviceRequest;
 }
-
+-(RH_SharePlayerRecommendModel *)model
+{
+    if (!_model) {
+        _model = [[RH_SharePlayerRecommendModel alloc] init];
+    }
+    return _model ;
+}
 #pragma mark-
 -(CLPageLoadManagerForTableAndCollectionView*)createPageLoadManager
 {
@@ -93,9 +104,14 @@
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *strDate = [dateFormatter stringFromDate:date];
+    _startDate = [dateFormatter stringFromDate:date];
+     [self.serviceRequest startV3LoadSharePlayerRecommendStartTime:self.startDate endTime:self.endDate] ;
     
-    
+}
+#pragma mark - 搜索
+-(void)shareRecordTableViewSearchBtnDidTouch:(RH_ShareRecordTableViewCell *)shareRecordTableViewCell
+{
+    [self startUpdateData] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -106,18 +122,14 @@
 #pragma mark-
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-//    if (type==ServiceRequestTypeV3GameNotice)
-//    {
-//        RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
-//        for (ApiSelectModel *selectModel in gameModel.mApiSelectModel) {
-//            [self.listView.modelArray addObject:selectModel.mApiName];
-//            [self.listView.modelIdArray addObject:[NSString stringWithFormat:@"%ld",selectModel.mApiId]];
-//        }
-//        [self loadDataSuccessWithDatas:gameModel.mListModel
-//                            totalCount:gameModel.mPageTotal
-//                        completedBlock:nil];
-//        [self.contentTableView reloadData];
-//    }
+    if (type==ServiceRequestTypeV3SharePlayerRecommend)
+    {
+        _model = ConvertToClassPointer(RH_SharePlayerRecommendModel, data);
+        [self loadDataSuccessWithDatas:_model.mCommendModel
+                            totalCount:_model.mCommendModel.count
+                        completedBlock:nil];
+      
+    }
 }
 
 
@@ -149,25 +161,58 @@
 
 
 #pragma mark-tableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return MAX(1, self.pageLoadManager.currentDataCount) ;
+    if (section == 0) {
+        return 1;
+    }else
+    {
+        return MAX(1, self.pageLoadManager.currentDataCount) ;
+    }
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount){
-        return [RH_ShareRecordTableViewCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
-    }else{
-        return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
+    if (indexPath.section == 0) {
+        return  100 ;
+    }else if (indexPath.section ==1){
+        if (self.pageLoadManager.currentDataCount){
+            return [RH_ShowShareRecordViewCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        }else{
+            return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
+        }
     }
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RH_ShareRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShareRecordTableViewCell defaultReuseIdentifier]] ;
-    cell.delegate = self;
-    return cell ;
+    if (indexPath.section == 0) {
+        RH_ShareRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShareRecordTableViewCell defaultReuseIdentifier]] ;
+        cell.delegate = self;
+        return cell ;
+    }else if(indexPath.section == 1){
+        RH_ShowShareRecordViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShowShareRecordViewCell defaultReuseIdentifier]] ;
+        [cell updateCellWithInfo:nil context:_model];
+       
+        if (indexPath.row%2 == 0) {
+            cell.backgroundColor = colorWithRGB(228, 235, 247) ;
+        }else
+        {
+             cell.backgroundColor = [UIColor whiteColor] ;
+        }
+       return cell ;
+    }
+    return nil;
+    
+    
+   
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

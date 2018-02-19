@@ -1102,8 +1102,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 分享接口
--(void)startV3LoadSharePlayerRecommend
+-(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
+                                        endTime:(NSString *)endTime
 {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_ENDTIME];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
                      pathArguments:nil
@@ -1112,6 +1116,48 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3SharePlayerRecommend
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -老用户验证登录
+/**
+ 老用户验证登录
+ 
+ @param token  登录返回的Token
+ @param resultRealName 输入框真实姓名
+ @param needRealName 默认传 YES
+ @param resultPlayerAccount 用户名
+ @param searchPlayerAccount 用户名
+ @param tempPass 密码
+ @param newPassword 密码
+ @param passLevel 默认传 20
+ */
+-(void)startV3verifyRealNameForAppWithToken:(NSString *)token
+                             resultRealName:(NSString *)resultRealName
+                               needRealName:(BOOL)needRealName
+                        resultPlayerAccount:(NSString *)resultPlayerAccount
+                        searchPlayerAccount:(NSString *)searchPlayerAccount
+                                   tempPass:(NSString *)tempPass
+                                newPassword:(NSString *)newPassword
+                                  passLevel:(NSInteger)passLevel
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:token forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN];
+    [dict setObject:resultRealName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTREALNAME];
+    [dict setObject:@(needRealName) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEEDREALNAME];
+    [dict setObject:resultPlayerAccount forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTPLAYERACCOUNT];
+    [dict setObject:searchPlayerAccount forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEARCHACCOUNT];
+    [dict setObject:tempPass forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS];
+    [dict setObject:newPassword forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD];
+    [dict setObject:@(passLevel) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3VerifyRealNameForApp
                          scopeType:ServiceScopeTypePublic];
 }
 
@@ -1454,7 +1500,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    
     if (tempError) { //json解析错误
         tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
     }else{
@@ -1468,7 +1513,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
         (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
         if (response.statusCode==302){
-            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",nil);
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",dataObject);
         }
     }
     
@@ -1791,14 +1836,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
+                
                 case ServiceRequestTypeSiteMessageUnReadCount:
             {
                 resultSendData = [[RH_SiteMsgUnReadCountModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
+                break ;
+                
                 case ServiceRequestTypeV3SharePlayerRecommend:   //分享
             {
               resultSendData = [[RH_SharePlayerRecommendModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
+                break ;
+                
+            case ServiceRequestTypeV3VerifyRealNameForApp:  // 验证老用户登录
+            {
+                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
                 
             default:
                 resultSendData = dataObject ;

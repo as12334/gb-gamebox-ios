@@ -21,6 +21,7 @@
 @property (nonatomic,assign)CGRect frame;
 @property(nonatomic,strong)RH_OldUserVerifyView *oldUserVerifyView;
 @property(nonatomic,strong)UIView *OldUserVerifyViewBgView;
+@property(nonatomic,strong)NSString *token ;
 @end
 
 @implementation RH_LoginViewControllerEx
@@ -83,7 +84,14 @@
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
    
-   
+   //关闭键盘
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    [self.view addGestureRecognizer:singleTap];
+}
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self.view endEditing:YES];
 }
 
 -(void)setupUI{
@@ -93,7 +101,6 @@
     [self.contentTableView registerCellWithClass:[RH_LoginViewCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
-//     [self showVerifyView];
 }
 
 
@@ -103,7 +110,6 @@
         _loginViewCell = [RH_LoginViewCell createInstance] ;
         _loginViewCell.delegate = self ;
     }
-
     return _loginViewCell ;
 }
 
@@ -118,12 +124,33 @@
     
     _oldUserVerifyView = [[RH_OldUserVerifyView alloc] init];
     [_OldUserVerifyViewBgView addSubview:_oldUserVerifyView];
-    _oldUserVerifyView.delegate  = self ; _oldUserVerifyView.whc_CenterX(0).whc_CenterY(0).whc_Width(screenSize().width*0.8).whc_Height(screenSize().height*0.4) ;
+    _oldUserVerifyView.delegate  = self ; _oldUserVerifyView.whc_CenterX(0).whc_CenterY(0).whc_Width(screenSize().width*0.8).whc_Height(screenSize().height*0.38) ;
 }
-//确定
+
+-(void)hiddenVerifyView
+{
+    [_OldUserVerifyViewBgView removeFromSuperview];
+    [_oldUserVerifyView removeFromSuperview];
+}
+//老用户验证 -确定
 -(void)oldUserVerifyViewDidTochSureBtn:(RH_OldUserVerifyView *)oldUserVerifyView withRealName:(NSString *)realName
 {
-    
+    if ([realName isEqualToString:@""]) {
+        showMessage(self.view, @"真实姓名不能为空", nil);
+        return ;
+    }
+    [self hiddenVerifyView] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在验证真实姓名..."];
+    [self.serviceRequest startV3verifyRealNameForAppWithToken:self.token
+                                               resultRealName:realName
+                                                 needRealName:YES
+                                          resultPlayerAccount:self.loginViewCell.userName searchPlayerAccount:self.loginViewCell.userName tempPass:self.loginViewCell.userPassword newPassword:self.loginViewCell.userPassword
+                                                    passLevel:20];
+}
+
+-(void)oldUserVerifyViewDidTochCancleBtn:(RH_OldUserVerifyView *)oldUserVerifyView
+{
+    [self hiddenVerifyView];
 }
 -(void)loginViewCellTouchLoginButton:(RH_LoginViewCell*)loginViewCell
 {
@@ -210,17 +237,56 @@
                 [self.contentTableView reloadData] ;
             }
         }] ;
+    }else if (type == ServiceRequestTypeV3VerifyRealNameForApp){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            NSDictionary *result = ConvertToClassPointer(NSDictionary, data) ;
+            if ([result boolValueForKey:@"nameSame"]){
+                showMessage(self.view, @"登录成功", nil);
+                //登录成功后，记录用户名，密码，以便自动登录
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:self.loginViewCell.userName forKey:@"account"];
+                [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
+                [defaults synchronize];
+                [appDelegate updateLoginStatus:YES] ;
+                [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName
+                                                                         LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
+                ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
+                    [self.delegate loginViewViewControllerExLoginSuccessful:self];
+                }
+            }else{
+                showMessage(self.view, @"姓名验证失败", nil);
+                self.isNeedVerCode = true ;
+                [self.contentTableView reloadData] ;
+            }
+        }] ;
     }
 }
 
-- (void)     serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeUserLogin){
-        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            self.isNeedVerCode = true ;
-            showErrorMessage(self.view, error, nil) ;
-            [self.contentTableView reloadData] ;
-        }] ;
+        if (error.code == 302) {
+            self.token = [[error.userInfo objectForKey:@"propMessages"] objectForKey:@"gb.token"] ;
+            [self showVerifyView];
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                [self.contentTableView reloadData] ;
+            }] ;
+        }else
+        {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                self.isNeedVerCode = true ;
+                showErrorMessage(self.view, error, nil) ;
+                [self.contentTableView reloadData] ;
+            }] ;
+        }
+    }else if (type == ServiceRequestTypeV3VerifyRealNameForApp){
+        if (![error.userInfo boolValueForKey:@"nameSame"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                self.isNeedVerCode = true ;
+                showErrorMessage(self.view, error, nil) ;
+                [self.contentTableView reloadData] ;
+            }] ;
+        }
     }
 }
 

@@ -8,7 +8,14 @@
 
 #import "RH_RewardRuleTableViewCell.h"
 #import "coreLib.h"
+#import "RH_SharePlayerRecommendModel.h"
 
+@interface RH_RewardRuleTableViewCell()
+@property(nonatomic,strong)UILabel *contentLab1;
+@property(nonatomic,strong)UILabel *contentLab2;
+@property(nonatomic,strong) UIView *bottomView ;
+@property(nonatomic,strong) UILabel *shareRedLab ;
+@end
 @implementation RH_RewardRuleTableViewCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -34,73 +41,62 @@
         huhuiLab.font = [UIFont boldSystemFontOfSize:14.f] ;
         
         
-        UILabel *contentLab1 = [[UILabel alloc] init ];
-        [topView addSubview:contentLab1];
-        contentLab1.whc_TopSpace(20).whc_WidthAuto().whc_CenterX(0) ;
-        contentLab1.textAlignment = NSTextAlignmentCenter ;
-        contentLab1.text = @"推荐好友成功注册并存款满500元";
-        contentLab1.textColor = colorWithRGB(51, 51, 51) ;
-        contentLab1.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab1 = [[UILabel alloc] init ];
+        [topView addSubview:_contentLab1];
+        _contentLab1.whc_TopSpace(20).whc_WidthAuto().whc_CenterX(0) ;
+        _contentLab1.textAlignment = NSTextAlignmentCenter ;
+        _contentLab1.text = @"推荐好友成功注册并存款满500元";
+        _contentLab1.textColor = colorWithRGB(51, 51, 51) ;
+        _contentLab1.font = [UIFont systemFontOfSize:14.f] ;
         
-        UILabel *contentLab2 = [[UILabel alloc] init ];
-        [topView addSubview:contentLab2];
-        contentLab2.whc_TopSpaceToView(5, contentLab1).whc_WidthAuto().whc_CenterX(0) ;
-        contentLab2.textAlignment = NSTextAlignmentCenter ;
-        contentLab2.text = @"双方各获20元奖励";
-        contentLab2.textColor = colorWithRGB(51, 51, 51) ;
-        contentLab2.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab2 = [[UILabel alloc] init ];
+        [topView addSubview:_contentLab2];
+        _contentLab2.whc_TopSpaceToView(5, _contentLab1).whc_WidthAuto().whc_CenterX(0) ;
+        _contentLab2.textAlignment = NSTextAlignmentCenter ;
+        _contentLab2.text = @"双方各获20元奖励";
+        _contentLab2.textColor = colorWithRGB(51, 51, 51) ;
+        _contentLab2.font = [UIFont systemFontOfSize:14.f] ;
         
-        UIView *bottomView = [[UIView alloc] init];
-        bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
-        [self.contentView addSubview:bottomView];
-        bottomView.whc_LeftSpace(10).whc_RightSpace(10).whc_TopSpaceToView(10, topView).whc_Height(145) ;
-        bottomView.layer.borderWidth = 1.f ;
-        bottomView.layer.borderColor = colorWithRGB(204, 204, 204).CGColor ;
-        bottomView.layer.cornerRadius = 5.f;
-        bottomView.layer.masksToBounds = YES ;
+        _bottomView = [[UIView alloc] init];
+        _bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
+        [self.contentView addSubview:_bottomView];
+        _bottomView.whc_LeftSpace(10).whc_RightSpace(10).whc_TopSpaceToView(10, topView).whc_Height(80) ;
+        _bottomView.layer.borderWidth = 1.f ;
+        _bottomView.layer.borderColor = colorWithRGB(204, 204, 204).CGColor ;
+        _bottomView.layer.cornerRadius = 5.f;
+        _bottomView.layer.masksToBounds = YES ;
         
-        UILabel *shareRedLab = [[UILabel alloc] init];
-        [self.contentView addSubview:shareRedLab];
-        shareRedLab.whc_TopSpaceToView(0, topView).whc_CenterX(0).whc_Height(20).whc_WidthAuto();
-        shareRedLab.text = @"分享红利";
-        shareRedLab.backgroundColor  = colorWithRGB(242, 242, 242) ;
-        shareRedLab.textColor = colorWithRGB(27, 117, 217) ;
-        shareRedLab.font = [UIFont boldSystemFontOfSize:14.f] ;
+        _shareRedLab = [[UILabel alloc] init];
+        [self.contentView addSubview:_shareRedLab];
+        _shareRedLab.whc_TopSpaceToView(0, topView).whc_CenterX(0).whc_Height(20).whc_WidthAuto();
+        _shareRedLab.text = @"分享红利";
+        _shareRedLab.backgroundColor  = colorWithRGB(242, 242, 242) ;
+        _shareRedLab.textColor = colorWithRGB(27, 117, 217) ;
+        _shareRedLab.font = [UIFont boldSystemFontOfSize:14.f] ;
         
         UILabel *lab1 = [[UILabel alloc] init];
-        [bottomView addSubview:lab1];
+        [_bottomView addSubview:lab1];
         lab1.whc_TopSpace(10).whc_CenterX(0).whc_WidthAuto().whc_Height(20);
         lab1.text = @"红利=分享好友的有效投注额*分享红利比例";
         lab1.textColor = colorWithRGB(51, 51, 51) ;
         lab1.font = [UIFont systemFontOfSize:14.f] ;
         
         UIView *smallBottomView = [[UIView alloc] init];
-        [bottomView addSubview:smallBottomView];
-        smallBottomView.whc_LeftSpace(9).whc_RightSpace(9).whc_TopSpaceToView(10, lab1).whc_Height(87);
+        [_bottomView addSubview:smallBottomView];
+        smallBottomView.whc_LeftSpace(9).whc_RightSpace(9).whc_TopSpaceToView(10, lab1).whc_Height(30);
         smallBottomView.layer.borderWidth = 1.f;
         smallBottomView.layer.borderColor = [UIColor whiteColor].CGColor;
         smallBottomView.backgroundColor = [UIColor clearColor] ;
         
-        //线条
-        UILabel *line1 = [[UILabel alloc] init];
-        [smallBottomView addSubview:line1];
-        line1.backgroundColor = [UIColor whiteColor] ;
-        line1.whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1).whc_TopSpace(29);
-        
-        UILabel *line2 = [[UILabel alloc] init];
-        [smallBottomView addSubview:line2];
-        line2.backgroundColor = [UIColor whiteColor] ;
-        line2.whc_LeftSpace(0).whc_RightSpace(0).whc_Height(1).whc_TopSpace(58);
-        
         UILabel *line3 = [[UILabel alloc] init];
         [smallBottomView addSubview:line3];
         line3.backgroundColor = [UIColor whiteColor] ;
-        line3.whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1).whc_CenterX(30);
+        line3.whc_TopSpace(0).whc_Width(1).whc_CenterX(30).whc_Height(30);
         
         //表格
         UILabel *leftLab1 = [[UILabel alloc] init ];
         [smallBottomView addSubview:leftLab1];
-        leftLab1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpaceToView(0, line3).whc_BottomSpaceToView(0, line1);
+        leftLab1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpaceToView(0, line3).whc_BottomSpace(0);
         leftLab1.backgroundColor = colorWithRGB(228, 247, 231) ;
         leftLab1.textColor = colorWithRGB(51, 51, 51) ;
         leftLab1.font = [UIFont systemFontOfSize:14.f] ;
@@ -108,59 +104,47 @@
         leftLab1.layer.borderColor = [UIColor whiteColor].CGColor;
         leftLab1.text = @"分享好友有效投注人数";
         leftLab1.textAlignment = NSTextAlignmentCenter ;
-        
-        UILabel *leftLab2 = [[UILabel alloc] init ];
-        [smallBottomView addSubview:leftLab2];
-        leftLab2.whc_LeftSpace(0).whc_TopSpaceToView(0, line1).whc_RightSpaceToView(0, line3).whc_BottomSpaceToView(0, line2);
-        leftLab2.backgroundColor = colorWithRGB(228, 235, 247) ;
-        leftLab2.textColor = colorWithRGB(51, 51, 51) ;
-        leftLab2.font = [UIFont systemFontOfSize:14.f] ;
-        leftLab2.layer.borderColor = [UIColor whiteColor].CGColor ;
-        leftLab2.text = @"1以上";
-        leftLab2.textAlignment = NSTextAlignmentCenter ;
-        
-        
-        UILabel *leftLab3 = [[UILabel alloc] init ];
-        [smallBottomView addSubview:leftLab3];
-        leftLab3.whc_LeftSpace(0).whc_TopSpaceToView(0, line2).whc_RightSpaceToView(0, line3).whc_BottomSpace(0);
-        leftLab3.backgroundColor = colorWithRGB(228, 235, 247) ;
-        leftLab3.textColor = colorWithRGB(51, 51, 51) ;
-        leftLab3.font = [UIFont systemFontOfSize:14.f] ;
-        leftLab3.layer.borderColor = [UIColor whiteColor].CGColor ;
-        leftLab3.text = @"3以上";
-        leftLab3.textAlignment = NSTextAlignmentCenter ;
+
         
         UILabel *rightLab1 = [[UILabel alloc] init ];
         [smallBottomView addSubview:rightLab1];
-        rightLab1.whc_TopSpace(0).whc_RightSpace(0).whc_LeftSpaceToView(0, line3).whc_BottomSpaceToView(0, line1) ;
+        rightLab1.whc_TopSpace(0).whc_RightSpace(0).whc_LeftSpaceToView(0, line3).whc_BottomSpace(0) ;
         rightLab1.backgroundColor = colorWithRGB(228, 247, 231) ;
         rightLab1.textColor = colorWithRGB(51, 51, 51) ;
         rightLab1.font = [UIFont systemFontOfSize:14.f] ;
         rightLab1.layer.borderColor = [UIColor whiteColor].CGColor ;
         rightLab1.text = @"分享红利比例";
         rightLab1.textAlignment = NSTextAlignmentCenter ;
-        
-        UILabel *rightLab2 = [[UILabel alloc] init ];
-        [smallBottomView addSubview:rightLab2];
-        rightLab2.whc_TopSpaceToView(0, line1).whc_LeftSpaceToView(0, line3).whc_RightSpace(0).whc_BottomSpaceToView(0,line2);
-        rightLab2.backgroundColor = colorWithRGB(228, 235, 247) ;
-        rightLab2.textColor = colorWithRGB(51, 51, 51) ;
-        rightLab2.font = [UIFont systemFontOfSize:14.f] ;
-        rightLab2.layer.borderColor = [UIColor whiteColor].CGColor ;
-        rightLab2.text = @"0.02%";
-        rightLab2.textAlignment = NSTextAlignmentCenter ;
-        
-        UILabel *rightLab3 = [[UILabel alloc] init ];
-        [smallBottomView addSubview:rightLab3];
-        rightLab3.whc_LeftSpaceToView(0, line3).whc_TopSpaceToView(0, line2).whc_RightSpace(0).whc_BottomSpace(0);
-        rightLab3.backgroundColor = colorWithRGB(228, 235, 247) ;
-        rightLab3.textColor = colorWithRGB(51, 51, 51) ;
-        rightLab3.font = [UIFont systemFontOfSize:14.f] ;
-        rightLab3.layer.borderColor = [UIColor whiteColor].CGColor ;
-        rightLab3.text = @"0.05%";
-        rightLab3.textAlignment = NSTextAlignmentCenter ;
      }
     return self ;
+}
+
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_SharePlayerRecommendModel *model = ConvertToClassPointer(RH_SharePlayerRecommendModel, context) ;
+   //推荐好友成功注册并存款满${witchWithdraw}元
+    _contentLab1.text = [NSString stringWithFormat:@"推荐好友成功注册并存款满%@元",model.mWitchWithdraw];
+    // mReward 满足存款条件后谁获利：1 表示双方获取奖励 2表示你将会得到 其他表示你推荐的好友会获取到
+    if ([model.mReward isEqualToString:@"1"])
+    {
+        _contentLab2.text = [NSString stringWithFormat:@"双方各获%@元奖励",model.mMoney];
+    }else if ([model.mReward isEqualToString:@"2"])
+    {
+        _contentLab2.text = [NSString stringWithFormat:@"你将会获得%@元奖励",model.mMoney];
+    }else
+    {
+         _contentLab2.text = [NSString stringWithFormat:@"推荐的好友将会获得%@元奖励",model.mMoney];
+    }
+    if (!model.mIsBonus) {
+        _shareRedLab.hidden = YES;
+        _bottomView.hidden = YES ;
+    }else
+    {
+        _shareRedLab.hidden = NO;
+        _bottomView.hidden = NO ;
+    }
+        
+    
 }
 
 - (void)awakeFromNib {
