@@ -1495,6 +1495,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
 //        return YES ;
 //    }
+    
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
