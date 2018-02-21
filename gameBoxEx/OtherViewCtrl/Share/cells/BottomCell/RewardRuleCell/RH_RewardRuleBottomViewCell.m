@@ -20,14 +20,12 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
-        self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
-        self.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
-        self.separatorLineColor = [UIColor whiteColor];
-
         UIView *bgView = [[UIView alloc] init];
         [self.contentView addSubview:bgView];
-        bgView.whc_LeftSpace(10).whc_RightSpace(10).whc_TopSpace(10).whc_Height(30) ;
+        bgView.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(10).whc_Height(30) ;
         bgView.backgroundColor =  colorWithRGB(242, 242, 242) ;
+        bgView.layer.borderWidth = 0.5f ;
+        bgView.layer.borderColor = [UIColor whiteColor].CGColor ;
         
         UILabel *leftLine = [[UILabel alloc] init];
         [bgView addSubview:leftLine];
@@ -46,7 +44,7 @@
         
         _leftLab = [[UILabel alloc] init];
         [bgView addSubview:_leftLab];
-        _leftLab.whc_TopSpace(0).whc_LeftSpaceToView(0, leftLine).whc_RightSpaceToView(0, middleLine).whc_Height(30);
+        _leftLab.whc_TopSpace(0).whc_LeftSpaceToView(0, leftLine).whc_RightSpaceToView(0, middleLine).whc_BottomSpace(0) ;
         _leftLab.textColor = colorWithRGB(51, 51, 51) ;
         _leftLab.font = [UIFont systemFontOfSize:14.f] ;
         _leftLab.backgroundColor = colorWithRGB(228, 235, 247);
@@ -55,36 +53,26 @@
         
         _rightLab = [[UILabel alloc] init];
         [bgView addSubview:_rightLab];
-        _rightLab.whc_TopSpace(0).whc_LeftSpaceToView(0, middleLine).whc_RightSpaceToView(0, rightLine).whc_Height(30);
+        _rightLab.whc_TopSpace(0).whc_LeftSpaceToView(0, middleLine).whc_RightSpaceToView(0, rightLine).whc_BottomSpace(0) ;
         _rightLab.textColor = colorWithRGB(51, 51, 51) ;
         _rightLab.font = [UIFont systemFontOfSize:14.f] ;
         _rightLab.backgroundColor = colorWithRGB(228, 235, 247);
         _rightLab.textAlignment = NSTextAlignmentCenter ;
         _rightLab.text = @"0.02%";
-        
     }
     return self ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    
     NSArray *arr = ConvertToClassPointer(NSArray , context) ;
-    NSArray *dataArr = [self dataWithArr:arr] ;
-    for (RH_GradientTempArrayListModel *model in dataArr) {
+    for (RH_GradientTempArrayListModel *model in arr) {
           _rightLab.text = [[NSString stringWithFormat:@"%@",model.mProportion] stringByAppendingString:@"%"];
          _leftLab.text = [NSString stringWithFormat:@"%@以上",model.mPlayerNum] ;
     }
 }
 
--(NSArray *)dataWithArr:(NSArray *)arr
-{
-    NSMutableArray *mArr = [NSMutableArray array] ;
-    for (RH_GradientTempArrayListModel *model in arr) {
-        [mArr addObject:model];
-    }
-    return mArr ;
-}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

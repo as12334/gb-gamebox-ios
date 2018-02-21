@@ -280,13 +280,7 @@
             }] ;
         }
     }else if (type == ServiceRequestTypeV3VerifyRealNameForApp){
-        if (![error.userInfo boolValueForKey:@"nameSame"]) {
-            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                self.isNeedVerCode = true ;
-                showErrorMessage(self.view, error, nil) ;
-                [self.contentTableView reloadData] ;
-            }] ;
-        }
+    
     }
 }
 

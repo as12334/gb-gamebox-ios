@@ -47,7 +47,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         ////用于后台切换 v3 环境
-        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios,app_version 3.0,is_native True, %@",getDeviceModel()]];
+        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios,is_native True, %@",getDeviceModel()]];
     }else{
         newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
     }

@@ -12,7 +12,7 @@
 #import "RH_AwardRuleCollectionPageCell.h"
 #import "RH_ShareRecordCollectionPageCell.h"
 
-@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource,RH_ShareRecordCollectionPageCellDelegate>
+@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource>
 @property(nonatomic,strong,readonly)RH_FirstBigCellHeadView *headView ;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
@@ -39,9 +39,8 @@
         [bgView addSubview:self.headView];
         self.headView.whc_TopSpace(0).whc_Width(MainScreenW).whc_CenterX(0).whc_Height(63) ;
         
-        NSArray *typeList =@[[UIColor redColor],[UIColor yellowColor],[UIColor blueColor]];
+        NSArray *typeList =@[[UIColor redColor],[UIColor yellowColor]];
         [self.headView updateView:typeList] ;
-       
         //分页视图
         [bgView addSubview:self.pageView];
         self.pageView.whc_LeftSpace(0).whc_TopSpace(60).whc_RightSpace(0).whc_BottomSpace(0) ;
@@ -118,8 +117,7 @@
     }
     else if (pageIndex==1){
         RH_ShareRecordCollectionPageCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
-            cell.delegate=self;
-            [cell updateViewWithType:[self.headView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+        [cell updateViewWithType:[self.headView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         return cell;
     }
     return nil;
@@ -139,12 +137,6 @@
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
     
 }
-
-
-
-
-
-
 
 
 #pragma mark-pageload context
@@ -190,19 +182,7 @@
     self.pageView.dispalyPageIndex = selectedIndex ;
 }
 
-#pragma mark -- RH_ShareRecordCollectionPageCellDelegate
--(void)shareRecordCollectionPageCellStartDateSelected:(RH_ShareRecordCollectionPageCell *)cell DefaultDate:(NSDate *)defaultDate
-{
-    ifRespondsSelector(self.delegate, @selector(firstBigViewCellStartDateSelected:DefaultDate:)){
-        [self.delegate firstBigViewCellStartDateSelected:self DefaultDate:defaultDate] ;
-    }
-}
--(void)shareRecordCollectionPageCellEndDateSelected:(RH_ShareRecordCollectionPageCell *)cell DefaultDate:(NSDate *)defaultDate
-{
-    ifRespondsSelector(self.delegate, @selector(firstBigViewCellEndDateSelected:DefaultDate:)){
-        [self.delegate firstBigViewCellEndDateSelected:self DefaultDate:defaultDate] ;
-    }
-}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

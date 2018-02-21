@@ -9,5 +9,5 @@
 #import "CLTableViewCell.h"
 
 @interface RH_ShowShareRecordViewCell : CLTableViewCell
-
+@property(nonatomic,strong) UIView *topView ;
 @end

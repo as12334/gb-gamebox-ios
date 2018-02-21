@@ -84,6 +84,8 @@
 		79E3865820392DFF002BF767 /* RH_ShareAnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865720392DFF002BF767 /* RH_ShareAnnounceView.m */; };
 		79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865A2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m */; };
 		79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865D203A7952002BF767 /* RH_ShowShareRecordViewCell.m */; };
+		79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */; };
+		79E38668203C4D01002BF767 /* RH_MineInfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E38667203C4D01002BF767 /* RH_MineInfoDetailViewController.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
@@ -757,6 +759,10 @@
 		79E3865A2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RewardRuleBottomViewCell.m; sourceTree = "<group>"; };
 		79E3865C203A7952002BF767 /* RH_ShowShareRecordViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ShowShareRecordViewCell.h; sourceTree = "<group>"; };
 		79E3865D203A7952002BF767 /* RH_ShowShareRecordViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShowShareRecordViewCell.m; sourceTree = "<group>"; };
+		79E38663203C39CA002BF767 /* RH_MineMoreDetailWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineMoreDetailWebViewController.h; sourceTree = "<group>"; };
+		79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineMoreDetailWebViewController.m; sourceTree = "<group>"; };
+		79E38666203C4D01002BF767 /* RH_MineInfoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineInfoDetailViewController.h; sourceTree = "<group>"; };
+		79E38667203C4D01002BF767 /* RH_MineInfoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineInfoDetailViewController.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
@@ -1883,6 +1889,24 @@
 			path = ShareRecordCell;
 			sourceTree = "<group>";
 		};
+		79E38662203C3979002BF767 /* moreInfoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				79E38663203C39CA002BF767 /* RH_MineMoreDetailWebViewController.h */,
+				79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */,
+				79E38666203C4D01002BF767 /* RH_MineInfoDetailViewController.h */,
+				79E38667203C4D01002BF767 /* RH_MineInfoDetailViewController.m */,
+			);
+			path = moreInfoDetail;
+			sourceTree = "<group>";
+		};
+		79E38669203CFE98002BF767 /* PromoDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PromoDetail;
+			sourceTree = "<group>";
+		};
 		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,9 +1929,9 @@
 			children = (
 				F6A2AD6420070D160077CB92 /* RH_CapitalPulldownListView.h */,
 				F6A2AD6520070D160077CB92 /* RH_CapitalPulldownListView.m */,
-				79A5CC3C201978930044435E /* RH_CapitalQuickSelectView.h */,
 				79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */,
 				79FB815C1FFE091600325BF3 /* RH_CapitalStaticDataCell.h */,
+				79A5CC3C201978930044435E /* RH_CapitalQuickSelectView.h */,
 				79FB815D1FFE091600325BF3 /* RH_CapitalStaticDataCell.m */,
 				79FB815F1FFE092600325BF3 /* RH_CapitalStaticDataCell.xib */,
 				797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */,
@@ -3263,6 +3287,7 @@
 		A0AE8AA01FFCD20E00836C1B /* MineMoreInfo */ = {
 			isa = PBXGroup;
 			children = (
+				79E38662203C3979002BF767 /* moreInfoDetail */,
 				A0AE8AA11FFCD57300836C1B /* cells */,
 				A0AE8AAB1FFCD57300836C1B /* RH_MineMoreCells.plist */,
 				A0AE8AAC1FFCD57300836C1B /* RH_MineMoreInfoViewController.h */,
@@ -3466,6 +3491,7 @@
 		B87A6B1A2006191600C9788F /* promoList */ = {
 			isa = PBXGroup;
 			children = (
+				79E38669203CFE98002BF767 /* PromoDetail */,
 				B87A6B1E2006405800C9788F /* cells */,
 				B87A6B1B2006405100C9788F /* RH_PromoListController.h */,
 				B87A6B1C2006405100C9788F /* RH_PromoListController.m */,
@@ -4327,6 +4353,7 @@
 				79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */,
 				79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */,
 				79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */,
+				79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */,
 				A0109FE01F8788FF004E6EF4 /* MJExtensionConst.m in Sources */,
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
@@ -4444,6 +4471,7 @@
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
+				79E38668203C4D01002BF767 /* RH_MineInfoDetailViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
@@ -4602,7 +4630,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -23,7 +23,6 @@
 {
     if (self.contentTableView == nil) {
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
-//        self.myContentView CGRectMake(0, 0, self.myContentView.bounds, 200)
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
         self.contentTableView.sectionFooterHeight = 10.0f;
@@ -34,7 +33,6 @@
         self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         [self.contentTableView registerCellWithClass:[RH_RewardRuleTableViewCell class]] ;
         [self.contentTableView registerCellWithClass:[RH_RewardRuleBottomViewCell class]];
-        
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc] initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;        
@@ -118,28 +116,18 @@
 {
     if (indexPath.section == 0) {
         if (_model.mIsBonus) {
-              return  180 ;
-        }else
-        {
-            return  50;
+              return  160.f ;
+        }else{
+            return  50.f;
         }
-      
     }else if (indexPath.section ==1){
         if (_model.mIsBonus ) {
-            if (self.pageLoadManager.currentDataCount){
-                return [RH_RewardRuleTableViewCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
-            }else{
-                return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
-            }
-            
-        }else
-        {
+            return 30.f ;
+        }else{
             return 0;
         }
-      
     }
     return 0;
-    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -149,13 +137,18 @@
         [cell updateCellWithInfo:nil context:_model] ;
         return cell ;
     }else if(indexPath.section == 1){
-        if (_model.mIsBonus) {
-            RH_RewardRuleBottomViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_RewardRuleBottomViewCell defaultReuseIdentifier]] ;
-            [cell updateCellWithInfo:nil context:_model.mGradientListModel] ;
-            return cell ;
-        }else{
-            return nil;
+        if (self.pageLoadManager.currentDataCount){
+            if (_model.mIsBonus) {
+                RH_RewardRuleBottomViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_RewardRuleBottomViewCell defaultReuseIdentifier]] ;
+                [self bringSubviewToFront:cell];
+                [cell updateCellWithInfo:nil context:(RH_GradientTempArrayListModel *)_model.mGradientListModel] ;
+                return cell ;
+            }
+        }else
+        {
+            return self.loadingIndicateView ;
         }
+       
     }
     return nil;
 }
