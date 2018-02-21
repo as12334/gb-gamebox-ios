@@ -517,7 +517,7 @@
 
 -(void)cancelLoadDataHandle
 {
-    [self.serviceRequest cancleAllServices] ;
+    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3HomeInfo] ;
 }
 
 #pragma mark-
@@ -571,10 +571,6 @@
             }
         }
         
-        if (self.appDelegate.isLogin){
-            [self.serviceRequest startV3UserInfo] ;
-        }
-        
     }else if (type == ServiceRequestTypeV3ActivityStatus){
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;
@@ -591,8 +587,6 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
         }] ;
-    }else if (type == ServiceRequestTypeV3UserInfo){
-        NSLog(@"") ;
     }
 }
 
@@ -622,8 +616,6 @@
         showErrorMessage(nil, error, @"红包获取失败") ;
         [self.shadeView removeFromSuperview];
         [self.hud hide: YES];
-    }else if (type == ServiceRequestTypeV3UserInfo){
-        NSLog(@"") ;
     }
 }
 

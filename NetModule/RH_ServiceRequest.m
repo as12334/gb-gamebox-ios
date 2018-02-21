@@ -1495,6 +1495,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
 //        return YES ;
 //    }
+    
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1541,6 +1542,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeUserAutoLogin:
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+                
+                if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
+                    [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                   [self startV3UserInfo] ;
+                }
             }
                 break ;
                 
@@ -1875,6 +1881,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 [self startV3SiteTimezone] ;
             }
                 break ;
+                
+            case ServiceRequestTypeV3UserInfo:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }else{
+                    [self startV3UserInfo] ;
+                }
+            }
+                break ;
+                
             default:
                 break;
         }
@@ -1928,7 +1946,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     //特点  error 信息，统一处理 。
     if ((error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
         serviceType!=ServiceRequestTypeV3UserLoginOut &&
-        serviceType!=ServiceRequestTypeV3HomeInfo)
+        serviceType!=ServiceRequestTypeV3HomeInfo &&
+        serviceType!=ServiceRequestTypeV3UserInfo)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
