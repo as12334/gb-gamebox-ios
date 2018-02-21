@@ -13,19 +13,23 @@
 					<key>title</key>
 					<string>常见问题</string>
 					<key>targetKey</key>
-					<string></string>
+					<string>RH_MineMoreDetailWebViewController</string>
 				</dict>
 				<dict>
 					<key>cellClass</key>
 					<string>RH_MineMoreNextCell</string>
 					<key>title</key>
 					<string>注册条款</string>
+					<key>targetKey</key>
+					<string></string>
 				</dict>
 				<dict>
 					<key>cellClass</key>
 					<string>RH_MineMoreNextCell</string>
 					<key>title</key>
 					<string>关于我们</string>
+					<key>targetKey</key>
+					<string></string>
 				</dict>
 				<dict>
 					<key>cellClass</key>

@@ -888,18 +888,17 @@
             }) ;
         };
         //分享图片保存
-        jsContext[@"saveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
+        jsContext[@"nativeSaveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
             NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
             NSArray *args = [JSContext currentArguments];
             JSValue *customUrl;
             if (args.count==0) {
                 return  ;
-            }
-            
+            } 
             customUrl = args[0] ;
             self.appDelegate.customUrl = customUrl.toString;
-            
-            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pic.eastlady.cn/uploads/tp/201704/9999/ee5e5b3adb.jpg"]];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain, self.appDelegate.customUrl];
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlStr]]];
             UIImage *myImage = [UIImage imageWithData:data];
             [self saveImageToPhotos:myImage];
           

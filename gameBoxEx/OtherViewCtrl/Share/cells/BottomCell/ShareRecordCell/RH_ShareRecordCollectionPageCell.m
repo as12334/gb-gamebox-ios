@@ -12,12 +12,11 @@
 #import "RH_ServiceRequest.h"
 #import "RH_LoadingIndicateTableViewCell.h"
 #import "RH_SharePlayerRecommendModel.h"
-
-
 @interface RH_ShareRecordCollectionPageCell()<RH_ServiceRequestDelegate,RH_ShareRecordTableViewCellDelegate>
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property(nonatomic,strong)RH_SharePlayerRecommendModel *model;
+
 @end
 
 @implementation RH_ShareRecordCollectionPageCell
@@ -46,6 +45,8 @@
         [self updateWithContext:context];
     }
 }
+
+
 #pragma mark - 初始化serviceRequest
 -(RH_ServiceRequest *)serviceRequest
 {
@@ -71,7 +72,6 @@
                                                                      startSection:0
                                                                          startRow:0
                                                                    segmentedCount:1];
-    
 }
 
 #pragma mark-
@@ -101,17 +101,43 @@
 #pragma mark-  请求数据
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    NSDate *date = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    _startDate = [dateFormatter stringFromDate:date];
-     [self.serviceRequest startV3LoadSharePlayerRecommendStartTime:self.startDate endTime:self.endDate] ;
-    
+    [self.serviceRequest startV3LoadSharePlayerRecommendStartTime:self.startDate endTime:self.endDate] ;
 }
 #pragma mark - 搜索
 -(void)shareRecordTableViewSearchBtnDidTouch:(RH_ShareRecordTableViewCell *)shareRecordTableViewCell
 {
-    [self startUpdateData] ;
+    if ( [self compareOneDay:shareRecordTableViewCell.startDate?:[NSDate date] withAnotherDay:shareRecordTableViewCell.endDate?:[NSDate date]] == 1) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+        return;
+    }
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    _startDate = [dateFormatter stringFromDate:shareRecordTableViewCell.startDate]?:[dateFormatter stringFromDate:date];
+    _endDate = [dateFormatter stringFromDate:shareRecordTableViewCell.endDate]?:[dateFormatter stringFromDate:date];
+      [self startUpdateData] ;
+}
+
+#pragma mark -- 时间比较
+-(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
+    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
+    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
+    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedDescending) {
+        //NSLog(@"oneDay比 anotherDay时间晚");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"oneDay比 anotherDay时间早");
+        return -1;
+    }
+    //NSLog(@"两者时间是同一个时间");
+    return 0;
 }
 
 -(void)cancelLoadDataHandle
@@ -131,7 +157,6 @@
       
     }
 }
-
 
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
@@ -182,11 +207,7 @@
     if (indexPath.section == 0) {
         return  100 ;
     }else if (indexPath.section ==1){
-        if (self.pageLoadManager.currentDataCount){
-            return [RH_ShowShareRecordViewCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
-        }else{
-            return tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
-        }
+        return 35 ;
     }
     return 0;
 }
@@ -194,20 +215,25 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        RH_ShareRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShareRecordTableViewCell defaultReuseIdentifier]] ;
+        RH_ShareRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShareRecordTableViewCell defaultReuseIdentifier] forIndexPath:indexPath] ;
         cell.delegate = self;
         return cell ;
     }else if(indexPath.section == 1){
-        RH_ShowShareRecordViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShowShareRecordViewCell defaultReuseIdentifier]] ;
-        [cell updateCellWithInfo:nil context:_model];
-       
-        if (indexPath.row%2 == 0) {
-            cell.backgroundColor = colorWithRGB(228, 235, 247) ;
+        if (_model) {
+            RH_ShowShareRecordViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_ShowShareRecordViewCell defaultReuseIdentifier] forIndexPath:indexPath] ;
+            if (indexPath.row%2 == 0) {
+                cell.topView.backgroundColor = [UIColor whiteColor] ;
+            }else
+            {
+                cell.topView.backgroundColor =  colorWithRGB(228, 235, 247) ;
+            }
+            [cell updateCellWithInfo:nil context:_model];
+            return cell ;
         }else
         {
-             cell.backgroundColor = [UIColor whiteColor] ;
+            return  self.loadingIndicateTableViewCell;
         }
-       return cell ;
+       
     }
     return nil;
     
@@ -228,17 +254,12 @@
 //开始时间
 -(void)shareRecordTableViewWillSelectedStartDate:(RH_ShareRecordTableViewCell *)shareRecordTableView DefaultDate:(NSDate *)defaultDate
 {
-    ifRespondsSelector(self.delegate, @selector(shareRecordTableViewWillSelectedStartDate:DefaultDate:)){
-        [self.delegate shareRecordCollectionPageCellStartDateSelected:self DefaultDate:defaultDate] ;
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RH_ShareRecodStartDate_NT" object:@[self,shareRecordTableView,defaultDate?:[NSDate date]]];
 }
 
 //截止时间
 -(void)shareRecordTableViewWillSelectedEndDate:(RH_ShareRecordTableViewCell *)shareRecordTableView DefaultDate:(NSDate *)defaultDate
 {
-    ifRespondsSelector(self.delegate, @selector(shareRecordTableViewWillSelectedEndDate:DefaultDate:)){
-        [self.delegate shareRecordCollectionPageCellEndDateSelected:self DefaultDate:defaultDate] ;
-    }
-    
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"RH_ShareRecodEndDate_NT" object:@[self,shareRecordTableView,defaultDate?:[NSDate date]]];
 }
 @end

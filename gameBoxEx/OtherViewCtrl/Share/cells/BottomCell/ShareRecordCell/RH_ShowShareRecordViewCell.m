@@ -10,29 +10,71 @@
 #import "coreLib.h"
 #import "RH_SharePlayerRecommendModel.h"
 
+@interface RH_ShowShareRecordViewCell()
+//竖线
+@property(nonatomic,strong)UILabel *line1 ;
+@property(nonatomic,strong)UILabel *line2 ;
+@property(nonatomic,strong)UILabel *line3 ;
+// 显示内容左至右
+@property(nonatomic,strong)UILabel *contentLab1 ;
+@property(nonatomic,strong)UILabel *contentLab2 ;
+@property(nonatomic,strong)UILabel *contentLab3 ;
+@property(nonatomic,strong)UILabel *contentLab4 ;
+@end
+
 @implementation RH_ShowShareRecordViewCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        UIView *topView = [[UIView alloc] init];
-        [self.contentView addSubview:topView];
-        topView.backgroundColor = [UIColor whiteColor] ;
-        topView.whc_TopSpace(0).whc_RightSpace(10).whc_LeftSpace(10).whc_Height(35);
+        self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
+        _topView = [[UIView alloc] init];
+        [self.contentView addSubview:_topView];
+        _topView.layer.borderWidth = 1.f ;
+        _topView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _topView.whc_TopSpace(0).whc_RightSpace(10).whc_LeftSpace(10).whc_Height(35);
+        //竖线
+        _line1 = [[UILabel alloc] init];
+        [_topView addSubview:_line1];
+        _line1.backgroundColor = [UIColor whiteColor] ;
+        _line1.whc_LeftSpace((screenSize().width-60)/4.0).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
         
-        for (int i = 0; i<4; i++) {
-            UILabel *titleLba = [[UILabel alloc] init];
-            titleLba.frame = CGRectMake(self.frame.size.width/4.0*i, 0, self.frame.size.width/4.0, 35.0);
-            titleLba.tag = 100+i;
-            titleLba.textColor = colorWithRGB(68, 68, 68) ;
-            titleLba.font = [UIFont systemFontOfSize:14.f] ;
-            titleLba.textAlignment = NSTextAlignmentCenter ;
-            UILabel *lineLab = [[UILabel alloc] init];
-            lineLab.frame = CGRectMake(self.frame.size.width/4.0*i, 0, 1, 35);
-            lineLab.backgroundColor = [UIColor whiteColor] ;
-            [topView addSubview:lineLab] ;
-            [topView addSubview:titleLba];
-        }
+        _line2 = [[UILabel alloc] init];
+        [_topView addSubview:_line2];
+        _line2.backgroundColor = [UIColor whiteColor] ;
+        _line2.whc_CenterX(0).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
+        
+        _line3 = [[UILabel alloc] init];
+        [_topView addSubview:_line3];
+        _line3.backgroundColor = [UIColor whiteColor] ;
+        _line3.whc_LeftSpaceToView((screenSize().width-60)/4.0, _line2).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
+        _contentLab1 = [[UILabel alloc] init];
+        [_topView addSubview:_contentLab1];
+        _contentLab1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpaceToView(0, _line1).whc_BottomSpace(0) ;
+        _contentLab1.textColor = colorWithRGB(68, 68, 68) ;
+        _contentLab1.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab1.textAlignment = NSTextAlignmentCenter ;
+        
+        _contentLab2 = [[UILabel alloc] init];
+        [_topView addSubview:_contentLab2];
+        _contentLab2.whc_LeftSpaceToView(0, _line1).whc_TopSpace(0).whc_RightSpaceToView(0, _line2).whc_BottomSpace(0) ;
+        _contentLab2.textColor = colorWithRGB(68, 68, 68) ;
+        _contentLab2.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab2.textAlignment = NSTextAlignmentCenter ;
+        
+        _contentLab3 = [[UILabel alloc] init];
+        [_topView addSubview:_contentLab3];
+        _contentLab3.whc_LeftSpaceToView(0, _line2).whc_TopSpace(0).whc_RightSpaceToView(0, _line3).whc_BottomSpace(0) ;
+        _contentLab3.textColor = colorWithRGB(68, 68, 68) ;
+        _contentLab3.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab3.textAlignment = NSTextAlignmentCenter ;
+        
+        _contentLab4 = [[UILabel alloc] init];
+        [_topView addSubview:_contentLab4];
+        _contentLab4.whc_LeftSpaceToView(0, _line3).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
+        _contentLab4.textColor = colorWithRGB(68, 68, 68) ;
+        _contentLab4.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab4.textAlignment = NSTextAlignmentCenter ;
     }
     return self ;
 }
@@ -40,26 +82,10 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SharePlayerRecommendModel *recommendModel = ConvertToClassPointer(RH_SharePlayerRecommendModel, context) ;
-    
-    for (int i = 100; i<104; i++) {
-        UILabel *lab = [self.contentView viewWithTag:i];
-        switch (i) {
-            case 100:
-                lab.text = @"123" ;
-                break;
-            case 101:
-                lab.text = @"111" ;
-                break ;
-            case 102:
-                lab.text = @"121" ;
-                break ;
-            case 103:
-                lab.text = @"131" ;
-                break ;
-            default:
-                break;
-        }
-    }
+//    _contentLab1.text = [NSString stringWithFormat:@"111"];
+//    _contentLab2.text = [NSString stringWithFormat:@"222"];
+//    _contentLab3.text = [NSString stringWithFormat:@"333"];
+//    _contentLab4.text = [NSString stringWithFormat:@"444"];
 }
 
 - (void)awakeFromNib {

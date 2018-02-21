@@ -1541,11 +1541,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeUserAutoLogin:
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
-                
-                if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
-                    [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self startV3UserInfo] ;
-                }
             }
                 break ;
                 
@@ -1880,7 +1875,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 [self startV3SiteTimezone] ;
             }
                 break ;
-                
             default:
                 break;
         }
