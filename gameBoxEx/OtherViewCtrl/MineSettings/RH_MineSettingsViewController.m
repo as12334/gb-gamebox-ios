@@ -41,13 +41,21 @@
     self.button = [[UIButton alloc] init];
     [view_Footer addSubview:self.button];
     self.button.whc_TopSpace(33).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(45);
-    [self.button setBackgroundColor:colorWithRGB(27, 117, 217)];
     self.button.layer.cornerRadius = 5.0f;
     self.button.clipsToBounds = YES;
     [self.button setTitle:@"退出登录" forState:UIControlStateNormal];
     [self.button setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
     [self.button.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [self.button addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
+    if ([THEMEV3 isEqualToString:@"green"]){
+         [self.button setBackgroundColor:RH_NavigationBar_BackgroundColor_Green];
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+         [self.button setBackgroundColor:RH_NavigationBar_BackgroundColor_Red];
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+         [self.button setBackgroundColor:RH_NavigationBar_BackgroundColor_Black];
+    }else{
+         [self.button setBackgroundColor:RH_NavigationBar_BackgroundColor];
+    }
     [self.tableViewManagement reloadData];
     
 }

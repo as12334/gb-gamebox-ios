@@ -62,11 +62,23 @@
         copyBtn.layer.cornerRadius = 5.f;
         copyBtn.layer.masksToBounds = YES ;
         [copyBtn setTitle:@"复制" forState:UIControlStateNormal];
-        copyBtn.backgroundColor = colorWithRGB(27, 117, 217) ;
         copyBtn.layer.borderWidth = 1.f ;
-        copyBtn.layer.borderColor = colorWithRGB(27, 117, 217).CGColor ;
         copyBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
         [copyBtn addTarget:self action:@selector(copyBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        if ([THEMEV3 isEqualToString:@"green"]){
+            copyBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+            copyBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Green.CGColor;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            copyBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
+            copyBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            copyBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            copyBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        }else{
+            copyBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+            copyBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;;
+        }
         
     }
     return self ;

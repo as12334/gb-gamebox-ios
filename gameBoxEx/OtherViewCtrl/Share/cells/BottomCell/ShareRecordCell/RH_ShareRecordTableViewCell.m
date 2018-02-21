@@ -49,6 +49,16 @@
         [searchBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
+        if ([THEMEV3 isEqualToString:@"green"]){
+             searchBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            searchBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            searchBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            searchBtn.backgroundColor =  RH_NavigationBar_BackgroundColor;
+        }
+        
        WHC_StackView *stackView = [[WHC_StackView alloc] init];
         [topView addSubview:stackView];
          stackView.whc_LeftSpaceToView(0, touzhuLab).whc_TopSpaceEqualView(touzhuLab).whc_RightSpaceToView(5, searchBtn).whc_HeightEqualView(searchBtn);

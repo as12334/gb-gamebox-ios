@@ -57,10 +57,6 @@
     
     [self updateView] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    UIView *line = [UIView new];
-    [self addSubview:line];
-    line.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
-    line.backgroundColor = colorWithRGB(107, 172, 244);
 }
 
 -(void)dealloc
