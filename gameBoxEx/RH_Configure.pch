@@ -1089,7 +1089,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _nt6y //9发bet
+#elif _nt6y //必博
 
 #define CODE    @"nt6y"
 #define S        @"385c02cc2239963703e4075ce043d384"
@@ -1572,7 +1572,7 @@
 #define SITE_TYPE    @"integrated"
 
 
-#elif _tw1z //澳门新葡京
+#elif _tw1z //万事达娱乐城
 
 #define CODE    @"tw1z"
 #define S        @"0245625bcdb1642edc81eba7262d43da"
