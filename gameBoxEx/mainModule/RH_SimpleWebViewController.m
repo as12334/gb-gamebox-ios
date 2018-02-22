@@ -960,9 +960,8 @@
 //        [self presentViewController:alert animated:YES completion:^{
 //
 //        }];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行分享！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行查看！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
-        
         }
        
     }

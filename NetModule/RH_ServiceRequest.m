@@ -1852,7 +1852,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3VerifyRealNameForApp:  // 验证老用户登录
             {
-                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+                 resultSendData =ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA]);
             }
                 break ;
                 

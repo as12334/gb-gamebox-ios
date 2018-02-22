@@ -94,6 +94,15 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
             _bankCardStatus = BankCardStatus_None ;
             [self.tableViewManagement reloadDataWithPlistName:@"BankCardNone"] ;
             [self.addButton setTitle:@"添加" forState:UIControlStateNormal];
+            if ([THEMEV3 isEqualToString:@"green"]){
+                self.addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                self.addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                self.addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            }else{
+                _addButton.backgroundColor = RH_NavigationBar_BackgroundColor;
+            }
             
         }
     }
