@@ -49,6 +49,16 @@
         [searchBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
+        if ([THEMEV3 isEqualToString:@"green"]){
+             searchBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            searchBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            searchBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            searchBtn.backgroundColor =  RH_NavigationBar_BackgroundColor;
+        }
+        
        WHC_StackView *stackView = [[WHC_StackView alloc] init];
         [topView addSubview:stackView];
          stackView.whc_LeftSpaceToView(0, touzhuLab).whc_TopSpaceEqualView(touzhuLab).whc_RightSpaceToView(5, searchBtn).whc_HeightEqualView(searchBtn);
@@ -61,6 +71,9 @@
         stackView.whc_Edge = UIEdgeInsetsMake(0, 0, 0, 0);
         [stackView whc_StartLayout];
         
+        _startDate = [NSDate date] ;
+        _endDate = [NSDate date]  ;
+        
         UILabel *label_ = [[UILabel alloc] init];
         [stackView addSubview:label_];
         label_.whc_Center(0, 0).whc_Width(30);
@@ -69,33 +82,62 @@
         
         UIView *bottomView = [[UIView alloc] init];
         [self.contentView addSubview:bottomView];
-        bottomView.whc_TopSpaceToView(10, topView).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(5);
+        bottomView.whc_TopSpaceToView(10, topView).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(0);
+        bottomView.backgroundColor = colorWithRGB(228, 247, 231) ;
+        bottomView.layer.borderWidth = 1.f ;
+        bottomView.layer.borderColor = [UIColor whiteColor].CGColor ;
+        //竖线
+        UILabel *line1 = [[UILabel alloc] init];
+        [bottomView addSubview:line1];
+        line1.backgroundColor = [UIColor whiteColor] ;
+        line1.whc_LeftSpace((screenSize().width-60)/4.0).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
         
-        NSArray *titleArr = @[@"好友账号",@"有效投注",@"红利",@"互惠奖励"] ;
-        for (int i = 0; i<titleArr.count; i++) {
-            UILabel *titleLba = [[UILabel alloc] init];
-            titleLba.frame = CGRectMake(self.frame.size.width/4.0*i, 0, self.frame.size.width/4.0, 35.0);
-            titleLba.text = titleArr[i];
-            titleLba.textColor = colorWithRGB(68, 68, 68) ;
-            titleLba.backgroundColor = colorWithRGB(228, 247, 231) ;
-            titleLba.font = [UIFont systemFontOfSize:14.f] ;
-            titleLba.textAlignment = NSTextAlignmentCenter ;
-            UILabel *lineLab = [[UILabel alloc] init];
-            lineLab.frame = CGRectMake(self.frame.size.width/4.0*i, 0, 1, 35);
-            lineLab.backgroundColor = [UIColor whiteColor] ;
-            [bottomView addSubview:lineLab] ;
-            [bottomView addSubview:titleLba];
-        }
-        UILabel *topLine = [[UILabel alloc] init];
-        [bottomView addSubview:topLine];
-        topLine.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(1) ;
-        topLine.backgroundColor = [UIColor whiteColor] ;
+        UILabel *line2 = [[UILabel alloc] init];
+        [bottomView addSubview:line2];
+        line2.backgroundColor = [UIColor whiteColor] ;
+        line2.whc_CenterX(0).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
         
-        UILabel *topLine1 = [[UILabel alloc] init];
-        [bottomView addSubview:topLine1];
-        topLine1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_Height(1) ;
-        topLine1.backgroundColor = [UIColor whiteColor] ;
-       
+        UILabel *line3 = [[UILabel alloc] init];
+        [bottomView addSubview:line3];
+        line3.backgroundColor = [UIColor whiteColor] ;
+        line3.whc_LeftSpaceToView((screenSize().width-60)/4.0, line2).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
+        
+        UILabel *titleLba1 = [[UILabel alloc] init ];
+        [bottomView addSubview:titleLba1];
+        titleLba1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpaceToView(0, line1).whc_BottomSpace(0) ;
+        titleLba1.text = @"好友账号";
+        titleLba1.textColor = colorWithRGB(68, 68, 68) ;
+        titleLba1.backgroundColor = colorWithRGB(228, 247, 231) ;
+        titleLba1.font = [UIFont systemFontOfSize:14.f] ;
+        titleLba1.textAlignment = NSTextAlignmentCenter ;
+        
+        UILabel *titleLba2 = [[UILabel alloc] init ];
+        [bottomView addSubview:titleLba2];
+        titleLba2.whc_LeftSpaceToView(0, line1).whc_TopSpace(0).whc_RightSpaceToView(0, line2).whc_BottomSpace(0) ;
+        titleLba2.text = @"有效投注";
+        titleLba2.textColor = colorWithRGB(68, 68, 68) ;
+        titleLba2.backgroundColor = colorWithRGB(228, 247, 231) ;
+        titleLba2.font = [UIFont systemFontOfSize:14.f] ;
+        titleLba2.textAlignment = NSTextAlignmentCenter ;
+        
+        UILabel *titleLba3 = [[UILabel alloc] init ];
+        [bottomView addSubview:titleLba3];
+        titleLba3.whc_LeftSpaceToView(0, line2).whc_TopSpace(0).whc_RightSpaceToView(0, line3).whc_BottomSpace(0) ;
+        titleLba3.text = @"红利";
+        titleLba3.textColor = colorWithRGB(68, 68, 68) ;
+        titleLba3.backgroundColor = colorWithRGB(228, 247, 231) ;
+        titleLba3.font = [UIFont systemFontOfSize:14.f] ;
+        titleLba3.textAlignment = NSTextAlignmentCenter ;
+        
+        
+        UILabel *titleLba4 = [[UILabel alloc] init ];
+        [bottomView addSubview:titleLba4];
+        titleLba4.whc_LeftSpaceToView(0, line3).whc_RightSpace(0).whc_TopSpace(0).whc_BottomSpace(0) ;
+        titleLba4.text = @"互惠奖励";
+        titleLba4.textColor = colorWithRGB(68, 68, 68) ;
+        titleLba4.backgroundColor = colorWithRGB(228, 247, 231) ;
+        titleLba4.font = [UIFont systemFontOfSize:14.f] ;
+        titleLba4.textAlignment = NSTextAlignmentCenter ;
     }
     return self ;
 }

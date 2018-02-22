@@ -15,6 +15,12 @@
 
 @implementation RH_DepositeViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    [self.webView reload];
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;

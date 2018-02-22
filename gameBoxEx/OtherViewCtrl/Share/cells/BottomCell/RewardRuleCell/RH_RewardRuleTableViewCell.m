@@ -37,7 +37,6 @@
         huhuiLab.whc_CenterX(0).whc_TopSpace(0).whc_Height(20).whc_WidthAuto();
         huhuiLab.text = @"互惠奖励";
         huhuiLab.backgroundColor  = colorWithRGB(242, 242, 242) ;
-        huhuiLab.textColor = colorWithRGB(27, 117, 217) ;
         huhuiLab.font = [UIFont boldSystemFontOfSize:14.f] ;
         
         
@@ -71,7 +70,6 @@
         _shareRedLab.whc_TopSpaceToView(0, topView).whc_CenterX(0).whc_Height(20).whc_WidthAuto();
         _shareRedLab.text = @"分享红利";
         _shareRedLab.backgroundColor  = colorWithRGB(242, 242, 242) ;
-        _shareRedLab.textColor = colorWithRGB(27, 117, 217) ;
         _shareRedLab.font = [UIFont boldSystemFontOfSize:14.f] ;
         
         UILabel *lab1 = [[UILabel alloc] init];
@@ -115,6 +113,22 @@
         rightLab1.layer.borderColor = [UIColor whiteColor].CGColor ;
         rightLab1.text = @"分享红利比例";
         rightLab1.textAlignment = NSTextAlignmentCenter ;
+        
+        
+        if ([THEMEV3 isEqualToString:@"green"]){
+             _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Green;
+             huhuiLab.textColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Red;
+            huhuiLab.textColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Black;
+            huhuiLab.textColor =RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            _shareRedLab.textColor =  RH_NavigationBar_BackgroundColor;
+            huhuiLab.textColor = RH_NavigationBar_BackgroundColor;
+        }
+        
      }
     return self ;
 }

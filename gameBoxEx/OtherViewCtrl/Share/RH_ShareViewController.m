@@ -16,12 +16,17 @@
 #import "RH_SharePlayerRecommendModel.h"
 #import "RH_ShareAnnounceView.h"
 
+#import "RH_ShareRecordCollectionPageCell.h"
+#import "RH_ShareRecordTableViewCell.h"
 
-@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate,RH_FirstBigViewCellDelegate>
+
+
+@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate>
 @property(nonatomic,  strong, readonly)RH_ShareNavBarView *shareNavView ;
 @property(nonatomic,strong,readonly)UITableView *tableView ;
 @property(nonatomic,strong) RH_SharePlayerRecommendModel *model;
 @property (nonatomic,strong,readonly) RH_ShareAnnounceView *announceView ;
+
 
 @property(nonatomic,strong)NSDictionary *dataDic ;
 
@@ -31,6 +36,7 @@
 @synthesize tableView = _tableView ;
 //@synthesize model = _model;
 @synthesize announceView = _announceView ;
+
 
 
 
@@ -92,6 +98,33 @@
     [self.view addSubview:self.topView];
     [self.topView addSubview:self.shareNavView];
     self.shareNavView.whc_LeftSpace(0).whc_TopSpace(20).whc_BottomSpace(0).whc_RightSpace(0) ;
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"RH_ShareRecodStartDate_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        RH_ShareRecordCollectionPageCell *cell = note.object[0];
+        RH_ShareRecordTableViewCell *viewCell = note.object[1];
+        NSDate *defaultDate = note.object[2];
+        [self showCalendarView:@"设置开始日期"
+                initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                       MinDate:nil
+                       MaxDate:[NSDate date]
+                  comfirmBlock:^(NSDate *returnDate) {
+                      viewCell.startDate = returnDate ;
+                      cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  }] ;
+    }];
+    [[NSNotificationCenter defaultCenter]addObserverForName:@"RH_ShareRecodEndDate_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        NSLog(@"%@",note.object);
+        RH_ShareRecordCollectionPageCell *cell = note.object[0];
+        RH_ShareRecordTableViewCell *viewCell = note.object[1];
+        NSDate *defaultDate = note.object[2];
+        [self showCalendarView:@"设置截止日期"
+                initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+                       MinDate:nil
+                       MaxDate:[NSDate date]
+                  comfirmBlock:^(NSDate *returnDate) {
+                      viewCell.startDate = returnDate ;
+                      cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
+                  }] ;
+    }];
 }
 
 -(UITableView *)tableView
@@ -218,7 +251,6 @@
         return nonCell ;
     }else if (indexPath.row == 4){
         RH_FirstBigViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_FirstBigViewCell defaultReuseIdentifier]] ;
-        cell.delegate = self;
         return cell ;
     }
     return nil;
@@ -228,15 +260,10 @@
 {
     showAlertView(@"提示", @"复制成功");
 }
-#pragma mark - RH_FirstBigViewCellDelegate
--(void)firstBigViewCellStartDateSelected:(RH_FirstBigViewCell *)cell DefaultDate:(NSDate *)defaultDate
-{
-    
-}
--(void)firstBigViewCellEndDateSelected:(RH_FirstBigViewCell *)cell DefaultDate:(NSDate *)defaultDate
-{
-    
-}
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

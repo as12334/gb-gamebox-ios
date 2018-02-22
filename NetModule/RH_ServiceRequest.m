@@ -1495,6 +1495,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
 //        return YES ;
 //    }
+    
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -1542,9 +1543,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
                 
-                if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
-                    [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self startV3UserInfo] ;
+                if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
+                    [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                   [self startV3UserInfo] ;
                 }
             }
                 break ;
@@ -1851,7 +1852,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3VerifyRealNameForApp:  // 验证老用户登录
             {
-                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+                 resultSendData =ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA]);
             }
                 break ;
                 
@@ -1878,6 +1879,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 //重新请求
                 [self startV3SiteTimezone] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserInfo:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }else{
+                    [self startV3UserInfo] ;
+                }
             }
                 break ;
                 
@@ -1934,7 +1946,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     //特点  error 信息，统一处理 。
     if ((error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
         serviceType!=ServiceRequestTypeV3UserLoginOut &&
-        serviceType!=ServiceRequestTypeV3HomeInfo)
+        serviceType!=ServiceRequestTypeV3HomeInfo &&
+        serviceType!=ServiceRequestTypeV3UserInfo)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){

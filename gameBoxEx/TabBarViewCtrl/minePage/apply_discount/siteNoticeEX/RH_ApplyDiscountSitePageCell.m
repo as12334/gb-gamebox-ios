@@ -122,7 +122,16 @@
 
         
         CLBorderView *borderView = [[CLBorderView alloc]initWithFrame:CGRectMake(10,40, self.frameWidth-20, 1)];
-        borderView.backgroundColor  = colorWithRGB(23, 102, 187);
+        if ([THEMEV3 isEqualToString:@"green"]){
+             borderView.backgroundColor  =  RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+             borderView.backgroundColor  =  RH_NavigationBar_BackgroundColor;
+        }
+       
         [self addSubview:borderView];
     }else {
         [self updateWithContext:context];

@@ -76,7 +76,7 @@
     
     [self.serviceRequest startV3SiteTimezone] ;
     
-//    [self autoLogin] ;
+    [self autoLogin] ;
 }
 
 - (void)dealloc
@@ -517,7 +517,7 @@
 
 -(void)cancelLoadDataHandle
 {
-    [self.serviceRequest cancleAllServices] ;
+    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3HomeInfo] ;
 }
 
 #pragma mark-
@@ -554,14 +554,14 @@
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         if (self.progressIndicatorView.superview){
-            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
-                if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self.appDelegate updateLoginStatus:true] ;
-                }else{
-                    [self.appDelegate updateLoginStatus:false] ;
-                }
-            }] ;
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+            if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                [self.appDelegate updateLoginStatus:true] ;
+            }else{
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+            
         }else{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
@@ -570,6 +570,7 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }
+        
     }else if (type == ServiceRequestTypeV3ActivityStatus){
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;

@@ -92,6 +92,7 @@
         
     }
     [_hud hide:YES];
+
 }
 
 

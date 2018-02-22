@@ -888,18 +888,17 @@
             }) ;
         };
         //分享图片保存
-        jsContext[@"saveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
+        jsContext[@"nativeSaveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
             NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
             NSArray *args = [JSContext currentArguments];
             JSValue *customUrl;
             if (args.count==0) {
                 return  ;
-            }
-            
+            } 
             customUrl = args[0] ;
             self.appDelegate.customUrl = customUrl.toString;
-            
-            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pic.eastlady.cn/uploads/tp/201704/9999/ee5e5b3adb.jpg"]];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain, self.appDelegate.customUrl];
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlStr]]];
             UIImage *myImage = [UIImage imageWithData:data];
             [self saveImageToPhotos:myImage];
           
@@ -961,9 +960,8 @@
 //        [self presentViewController:alert animated:YES completion:^{
 //
 //        }];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行分享！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行查看！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
-        
         }
        
     }

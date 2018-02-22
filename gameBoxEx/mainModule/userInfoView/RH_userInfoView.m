@@ -34,7 +34,17 @@
     self.tableView.delegate = self ;
     self.tableView.dataSource = self ;
     
-    self.btnRetrive.backgroundColor = colorWithRGB(27, 117, 217) ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
+   
     self.btnRetrive.layer.cornerRadius = 5.0f ;
     [self.btnRetrive setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
     [self.btnRetrive.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;

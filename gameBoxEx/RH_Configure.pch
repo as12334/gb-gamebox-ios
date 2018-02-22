@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -80,7 +80,7 @@
 //    站点配制
 //===========================================================
 
-#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境
 #define CODE    @"8l6r"
