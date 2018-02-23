@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 typedef enum {
     PwdStateSetting, //设置密码模式
-    PwdStateResult //解锁模式
+    PwdStateResult, //解锁模式
+    PwdStateVerityClose // 验证关闭
 } PwdState;
 
 @class RH_GesturelLockView;

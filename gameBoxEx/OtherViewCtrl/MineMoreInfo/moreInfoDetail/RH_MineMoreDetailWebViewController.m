@@ -34,7 +34,7 @@
 
 -(BOOL)navigationBarHidden
 {
-    return NO ;
+    return YES ;
 }
 
 -(BOOL)tabBarHidden

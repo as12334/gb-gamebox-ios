@@ -11,6 +11,7 @@
 #import "RH_GesturelLockController.h"
 #import "RH_UserInfoManager.h"
 #import "coreLib.h"
+#import "SAMKeychain.h"
 
 @interface RH_LockSetPWDController ()
 {
@@ -45,6 +46,8 @@
     lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
     lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
+    
+     [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
     __weak typeof (self)vcs = self;
     lockView.setPwdData = ^(NSString *resultPwd){
         
@@ -56,14 +59,16 @@
         }else{
             pwdStr2 = resultPwd;
         }
-        
+        #define RH_GuseterLock            @"RH_GuseterLock"
         if ([pwdStr1 isEqualToString:pwdStr2]) {
             [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:pwdStr1] ;
+            [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES] ;
             [self backBarButtonItemHandle] ;
             
         }else{
             showAlertView(@"请重新设置 ", @"两次设置的密码不一致") ;
             vcs.title = @"设置解锁密码";
+             [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
             isFirst = YES;
             pwdStr2 = @"";
             pwdStr1 = @"";

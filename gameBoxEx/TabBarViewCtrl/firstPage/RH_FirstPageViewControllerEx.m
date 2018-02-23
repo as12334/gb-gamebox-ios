@@ -234,6 +234,14 @@
     }
 }
 
+#pragma mark -viewWillAppear
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    if (self.appDelegate.isLogin){
+        [self.serviceRequest startV3UserInfo] ;
+    }
+}
 #pragma mark-
 -(RH_DaynamicLabelCell *)dynamicLabCell
 {

@@ -47,6 +47,8 @@
 		22C2E15A202720B9008C0C06 /* tab_v3_home_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */; };
 		22C2E15D20272116008C0C06 /* login_touxiang_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */; };
 		22C2E15E20272116008C0C06 /* login_touxiang_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */; };
+		794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */; };
+		794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */; };
 		795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
@@ -85,7 +87,6 @@
 		79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865A2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m */; };
 		79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865D203A7952002BF767 /* RH_ShowShareRecordViewCell.m */; };
 		79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */; };
-		79E38668203C4D01002BF767 /* RH_MineInfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E38667203C4D01002BF767 /* RH_MineInfoDetailViewController.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
@@ -688,6 +689,10 @@
 		22C2E159202720B9008C0C06 /* tab_v3_home_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_red@2x.png"; sourceTree = "<group>"; };
 		22C2E15B20272116008C0C06 /* login_touxiang_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_red@3x.png"; sourceTree = "<group>"; };
 		22C2E15C20272116008C0C06 /* login_touxiang_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_red@2x.png"; sourceTree = "<group>"; };
+		794429F8203FC18C006F5A20 /* RH_VeriftyCloseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyCloseViewController.h; sourceTree = "<group>"; };
+		794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyCloseViewController.m; sourceTree = "<group>"; };
+		794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerifyCloseView.h; sourceTree = "<group>"; };
+		794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VerifyCloseView.m; sourceTree = "<group>"; };
 		795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgUnReadCountModel.h; sourceTree = "<group>"; };
 		795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgUnReadCountModel.m; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
@@ -761,8 +766,6 @@
 		79E3865D203A7952002BF767 /* RH_ShowShareRecordViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShowShareRecordViewCell.m; sourceTree = "<group>"; };
 		79E38663203C39CA002BF767 /* RH_MineMoreDetailWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineMoreDetailWebViewController.h; sourceTree = "<group>"; };
 		79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineMoreDetailWebViewController.m; sourceTree = "<group>"; };
-		79E38666203C4D01002BF767 /* RH_MineInfoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineInfoDetailViewController.h; sourceTree = "<group>"; };
-		79E38667203C4D01002BF767 /* RH_MineInfoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineInfoDetailViewController.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
@@ -1894,8 +1897,6 @@
 			children = (
 				79E38663203C39CA002BF767 /* RH_MineMoreDetailWebViewController.h */,
 				79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */,
-				79E38666203C4D01002BF767 /* RH_MineInfoDetailViewController.h */,
-				79E38667203C4D01002BF767 /* RH_MineInfoDetailViewController.m */,
 			);
 			path = moreInfoDetail;
 			sourceTree = "<group>";
@@ -3659,6 +3660,10 @@
 				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
 				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
 				F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */,
+				794429F8203FC18C006F5A20 /* RH_VeriftyCloseViewController.h */,
+				794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */,
+				794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */,
+				794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */,
 			);
 			path = gesturelLock;
 			sourceTree = "<group>";
@@ -4158,6 +4163,7 @@
 				A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */,
 				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
 				A0E367B21F906A3D00758033 /* RH_CustomViewController.h in Sources */,
+				794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */,
 				A0E367AE1F9061E500758033 /* RH_PayViewController.h in Sources */,
 				F6FB63CA2011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m in Sources */,
 				79BB2DA9203270D2000CDE6B /* RH_ShareToFriendTableViewCell.m in Sources */,
@@ -4350,6 +4356,7 @@
 				A0109FDF1F8788FF004E6EF4 /* MBProgressHUD.m in Sources */,
 				F6E402082001F0B200C52B97 /* RH_GestureOpenLockView.m in Sources */,
 				F6A2AD482005AA8D0077CB92 /* RH_NormalActivithyView.m in Sources */,
+				794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */,
 				79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */,
 				79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */,
 				79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */,
@@ -4471,7 +4478,6 @@
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
-				79E38668203C4D01002BF767 /* RH_MineInfoDetailViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,

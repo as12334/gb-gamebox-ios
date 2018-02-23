@@ -13,6 +13,7 @@
 @interface RH_MineSettingsCell()
 @property (nonatomic, strong) UISwitch *rightSwitch;
 @property (nonatomic,strong) NSDictionary *cellDict ;
+@property(nonatomic,assign)BOOL bFlag ;
 @end
 
 @implementation RH_MineSettingsCell
@@ -37,7 +38,7 @@
         
         self.selectionOption = CLSelectionOptionHighlighted ;
         self.selectionColor = RH_Cell_DefaultHolderColor ;
-        
+        self.bFlag = NO ;
     }
     return self;
 }
@@ -62,18 +63,19 @@
 
 -(void)rightSwitchHandle
 {
-    switch ([self.cellDict integerValueForKey:@"id"]) {
-        case 0: ////声音
-            [[RH_UserInfoManager shareUserManager] updateVoickSwitchFlag:self.rightSwitch.isOn] ;
-            break;
-            
-        case 1: ////锁屏
-            [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:self.rightSwitch.isOn] ;
-            break;
-            
-        default:
-            break;
+    //声音
+    if ([self.cellDict integerValueForKey:@"id"] == 0)
+    {
+         [[RH_UserInfoManager shareUserManager] updateVoickSwitchFlag:self.rightSwitch.isOn] ;
     }
+    else if ([self.cellDict integerValueForKey:@"id"] == 1)  //锁屏
+    {
+        [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:self.rightSwitch.isOn] ;
+        #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+        [SAMKeychain setPassword: self.rightSwitch.isOn?@"1":@"0" forService:@" "account:RH_updateScreenLockFlag];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"OpenLock_NT" object:@[@(self.rightSwitch.isOn)]] ;
+    }
+    
 }
 
 @end
