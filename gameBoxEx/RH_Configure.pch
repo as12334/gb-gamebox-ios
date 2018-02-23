@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1657,6 +1657,14 @@
 #define CODE    @"sogq"
 #define S        @"937f54327ef331a97ad5ac8c58c70ec7"
 #define SID        @"373"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _8egp //金柜娱乐
+
+#define CODE    @"8egp"
+#define S        @"e76ec6a5be41b5f0f829df3f01537784"
+#define SID        @"376"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
