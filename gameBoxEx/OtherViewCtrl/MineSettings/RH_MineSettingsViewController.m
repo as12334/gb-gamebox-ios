@@ -9,6 +9,10 @@
 #import "RH_MineSettingsViewController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
+#import "RH_MainTabBarController.h"
+#import "RH_LockSetPWDController.h"
+#import "RH_GesturelLockView.h"
+#import "RH_VeriftyCloseViewController.h"
 
 @interface RH_MineSettingsViewController () <CLTableViewManagementDelegate>
 
@@ -24,14 +28,57 @@
     return YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    #define RH_GuseterLock            @"RH_GuseterLock"
+    #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+    NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+    if (currentGuseterLockStr) {
+        [SAMKeychain setPassword: @"1" forService:@" "account:RH_updateScreenLockFlag];
+        [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES] ;
+        
+    }else
+    {
+        [SAMKeychain setPassword: @"0" forService:@" "account:RH_updateScreenLockFlag];
+        [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"设置";
     [self setupInfo];
+    [self setNeedUpdateView] ;
 }
 
 - (void)setupInfo {
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"OpenLock_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+       NSArray *tempArr = note.object ;
+        NSLog(@"----%@-----",tempArr[0]) ;
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && [tempArr[0] boolValue] == YES){
+
+            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
+            if (tabBarController){
+                [tabBarController.selectedViewController presentViewController:[RH_LockSetPWDController viewController]
+                                                                      animated:YES
+                                                                    completion:nil] ;
+            }
+        }else if([SITE_TYPE isEqualToString:@"integratedv3oc"] && [tempArr[0] boolValue] == NO){
+            
+            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
+            if (tabBarController){
+                [tabBarController.selectedViewController presentViewController:[RH_VeriftyCloseViewController viewController]
+                                                                      animated:YES
+                                                                    completion:nil] ;
+            }
+         
+
+        }
+    }];
+    
+   
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
@@ -57,8 +104,10 @@
          [self.button setBackgroundColor:RH_NavigationBar_BackgroundColor];
     }
     [self.tableViewManagement reloadData];
+  
     
 }
+
 
 #pragma mark - 退出登录
 -(void)loginOut
@@ -124,12 +173,14 @@
             break;
             
         case 1: ////锁屏
-            return @([RH_UserInfoManager shareUserManager].isScreenLock) ;
+            return @([RH_UserInfoManager shareUserManager].isScreenLock);
+      
             break;
         default:
             break;
     }
-
     return nil ;
 }
+
+
 @end

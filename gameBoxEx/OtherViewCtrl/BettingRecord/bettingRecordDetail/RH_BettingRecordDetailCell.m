@@ -28,7 +28,7 @@
                 lab.text = detailModel.mUserName;
                 break;
             case 11:
-                lab.text = [NSString stringWithFormat:@"%d",detailModel.mBetId];
+                lab.text = [NSString stringWithFormat:@"%ld",detailModel.mBetId];
                 break;
             case 12:
                 lab.text =detailModel.mApiName;
@@ -40,10 +40,10 @@
                 lab.text = dateStringWithFormatter(detailModel.mBetTime, @"yyyy-MM-dd HH:mm:ss");
                 break;
             case 15:
-                lab.text =[NSString stringWithFormat:@"%d",detailModel.mSingleAmount];
+                lab.text =[NSString stringWithFormat:@"%ld",detailModel.mSingleAmount];
                 break;
             case 16:
-                lab.text = [NSString stringWithFormat:@"%d",detailModel.mEffectiveTradeAmount];
+                lab.text = [NSString stringWithFormat:@"%@",detailModel.mEffectiveTradeAmount];
                 break;
             case 17:
                 lab.text = detailModel.mPayoutTime ;

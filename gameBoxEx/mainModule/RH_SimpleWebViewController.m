@@ -908,6 +908,7 @@
             NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
             [self.navigationController popToRootViewControllerAnimated:NO];
             self.myTabBarController.selectedIndex = 2 ;
+            [self.serviceRequest startV3UserInfo];
             [self reloadWebView];
         };
     }

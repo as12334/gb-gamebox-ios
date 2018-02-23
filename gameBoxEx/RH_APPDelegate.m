@@ -15,6 +15,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_GesturelLockController.h"
 #import "RH_MainNavigationController.h"
+#import "RH_GestureOpenLockView.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -194,9 +195,13 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [super applicationWillEnterForeground:application] ;
+
     
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        if ([RH_UserInfoManager shareUserManager].isScreenLock && [RH_UserInfoManager shareUserManager].screenLockPassword.length){
+        #define RH_GuseterLock            @"RH_GuseterLock"
+        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+        // [RH_UserInfoManager shareUserManager].screenLockPassword.length
+        if ([RH_UserInfoManager shareUserManager].isScreenLock && currentGuseterLockStr.length){
             RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController) ;
             if (tabBarController){
                 [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]

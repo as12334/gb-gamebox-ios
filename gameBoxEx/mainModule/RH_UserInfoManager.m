@@ -12,6 +12,7 @@
 #import "RH_ServiceRequest.h"
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
+#import "SAMKeychain.h"
 
 #define  key_languageOption                             @"appLanguage"
 #define  key_voiceSwitchFlag                             @"key_voiceSwitchFlag"
@@ -147,38 +148,42 @@
 
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch
 {
-    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:bSwitch?@"1":@"0"
-                                                                            forKey:key_voiceSwitchFlag
-                                                                             async:YES] ;
+        [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:bSwitch?@"1":@"0"
+                                                                                forKey:key_voiceSwitchFlag
+                                                                                 async:YES] ;
 }
 
 -(BOOL)isScreenLock
 {
-    NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockFlag expectType:[NSString class]] ;
-    return [bFlag boolValue] ;
+    #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+    NSString * bFlag = [SAMKeychain passwordForService:@" "account:RH_updateScreenLockFlag];
+    #define RH_GuseterLock            @"RH_GuseterLock"
+    NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+    if (currentGuseterLockStr && [bFlag boolValue] == YES) {
+        return YES ;
+    }
+    return NO ;
 }
 
 -(void)updateScreenLockFlag:(BOOL)lock
 {
-    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:lock?@"1":@"0"
-                                                                            forKey:key_screenlockFlag
-                                                                             async:YES] ;
+    #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+    [SAMKeychain setPassword:lock?@"1":@"0" forService:@" " account:RH_updateScreenLockFlag] ;
 }
 
 #pragma mark-
 -(NSString *)screenLockPassword
 {
-    NSString *screenLock = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockPassword
-                                                                                               expectType:[NSString class]] ;
+    #define RH_GuseterLock            @"RH_GuseterLock"
+    NSString * screenLock = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
     return screenLock ;
 }
 
 -(void)updateScreenLockPassword:(NSString *)lockPassrod
 {
     if (lockPassrod){
-        [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:lockPassrod
-                                                                                forKey:key_screenlockPassword
-                                                                                 async:YES] ;
+        #define RH_GuseterLock            @"RH_GuseterLock"
+        [SAMKeychain setPassword:lockPassrod forService:@" " account:RH_GuseterLock] ;
     }
 }
 

@@ -566,6 +566,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                                    otherButtonTitles:@"资金记录", nil] ;
         
         [alertView show] ;
+        [self.serviceRequest startV3UserInfo];
     }else if (type == ServiceRequestTypeWithDrawFee){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         

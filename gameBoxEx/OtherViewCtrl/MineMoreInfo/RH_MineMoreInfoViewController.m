@@ -14,7 +14,6 @@
 
 #import "RH_MineMoreInfoViewController.h"
 #import "RH_MineMoreDetailWebViewController.h"
-#import "RH_MineInfoDetailViewController.h"
 
 
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
@@ -58,8 +57,6 @@
     if (indexPath.row == 0) {
         [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:QuestionsURL]
                                              animated:YES] ;
-//        [self.navigationController pushViewController:[RH_MineInfoDetailViewController viewControllerWithContext:QuestionsURL]
-//                                             animated:YES] ;
     }else if (indexPath.row == 1)
     {
         [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:RegisterProtocol]
