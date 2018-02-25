@@ -61,6 +61,8 @@
     }
 }
 
+
+
 -(RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest) {
@@ -100,6 +102,15 @@
 
 -(BOOL)showNotingIndicaterView
 {
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
     [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
                                         detailText:@"点击重试"] ;
     return YES ;
@@ -292,11 +303,30 @@
     }
     return _listView;
 }
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return (self.listView.superview?YES:NO) ;
+}
+
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
+{
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+}
+
+
 
 #pragma mark - CapitalRecordHeaderViewDelegate
 -(void)gameNoticHeaderViewStartDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-   
     ifRespondsSelector(self.delegate, @selector(applyDiscountPageCellStartDateSelected:dateSelected:DefaultDate:)){
         [self.delegate applyDiscountPageCellStartDateSelected:self dateSelected:view DefaultDate:defaultDate];
     }

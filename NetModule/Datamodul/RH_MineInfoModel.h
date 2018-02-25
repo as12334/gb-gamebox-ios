@@ -37,6 +37,7 @@
 @property(nonatomic,strong,readonly) NSString *showTotalAssets ;
 @property(nonatomic,strong,readonly) NSString *showWalletBalance ;
 
+-(void)updateUserBalanceInfo:(NSDictionary*)info ;
 -(void)updateBankCard:(RH_BankCardModel*)bankCardInfo ;
 -(void)updateBitCode:(RH_BitCodeModel*)bitCodeInfo ;
 

@@ -280,13 +280,12 @@
 
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
 {
-    [self.navigationController popViewControllerAnimated:YES] ;
+    [self.navigationController popToRootViewControllerAnimated:YES] ;
 }
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
     [self.navigationController popViewControllerAnimated:YES] ;
-    
     if (bFlag==false){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *account = [defaults stringForKey:@"account"] ;

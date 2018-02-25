@@ -23,6 +23,7 @@
 #import "RH_CapitalRecordViewController.h"
 #import "RH_PromoListController.h"
 #import "RH_LoginViewControllerEx.h"
+#import "RH_MePageViewController.h"
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
@@ -814,6 +815,7 @@
         jsContext[@"nativeAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
             NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
             [self.serviceRequest startV3UserInfo] ;
+            [self.serviceRequest startV3GetUserAssertInfo];
         };
         
         jsContext[@"nativeRefreshPage"] = ^(){/*** 刷新当前页面*/
@@ -883,6 +885,7 @@
                 if (loginViewCtrl){
                     ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerExSignSuccessful:SignFlag:)){
                         [loginViewCtrl.delegate loginViewViewControllerExSignSuccessful:loginViewCtrl SignFlag:NO];
+                        [self.navigationController popViewControllerAnimated:YES ] ;
                     }
                 }
             }) ;
@@ -897,7 +900,14 @@
             } 
             customUrl = args[0] ;
             self.appDelegate.customUrl = customUrl.toString;
-            NSString *urlStr = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain, self.appDelegate.customUrl];
+            NSString *urlStr;
+            if ([self.appDelegate.customUrl containsString:@"http"] || [self.appDelegate.customUrl containsString:@"https:"]) {
+                urlStr = [NSString stringWithFormat:@"%@", self.appDelegate.customUrl];
+            }else
+            {
+                urlStr = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain, self.appDelegate.customUrl];
+            }
+          
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlStr]]];
             UIImage *myImage = [UIImage imageWithData:data];
             [self saveImageToPhotos:myImage];
@@ -908,7 +918,8 @@
             NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
             [self.navigationController popToRootViewControllerAnimated:NO];
             self.myTabBarController.selectedIndex = 2 ;
-            [self.serviceRequest startV3UserInfo];
+//            [self.serviceRequest startV3UserInfo];
+            [self.serviceRequest startV3GetUserAssertInfo] ;
             [self reloadWebView];
         };
     }

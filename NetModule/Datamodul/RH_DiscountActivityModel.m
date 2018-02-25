@@ -35,7 +35,13 @@
 {
     if (!_showPhoto){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showPhoto = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mPhoto] ;
+        if ([_mPhoto containsString:@"http"] || [_mUrl containsString:@"https:"]) {
+            _showPhoto = [NSString stringWithFormat:@"%@",_mPhoto] ;
+        }else
+        {
+             _showPhoto = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mPhoto] ;
+        }
+       
     }
     
     return _showPhoto ;
@@ -53,7 +59,13 @@
 {
     if (!_showLink){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mUrl] ;
+        if ([_mUrl containsString:@"http:"] || [_mUrl containsString:@"https:"]) {
+             _showLink = [NSString stringWithFormat:@"%@",_mUrl] ;
+        }else
+        {
+             _showLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mUrl] ;
+        }
+       
     }
     
     return _showLink ;

@@ -88,6 +88,7 @@
 {
     if (section==0) return 1 ;
     return MineSettingInfo.mApisBalanceList.count ;
+//    return GetUseAssertInfo.mApisBalanceList.count ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,11 +105,13 @@
     if (indexPath.section==0) {
         RH_UserInfoTotalCell *userInfoTotalCell = [tableView dequeueReusableCellWithIdentifier:[RH_UserInfoTotalCell defaultReuseIdentifier]] ;
         [userInfoTotalCell updateCellWithInfo:nil context:MineSettingInfo] ;
+//        [userInfoTotalCell updateCellWithInfo:nil context:GetUseAssertInfo] ;
         return userInfoTotalCell ;
     }else{
         RH_UserInfoGengeralCell *userInfoGeneralCell = [tableView dequeueReusableCellWithIdentifier:[RH_UserInfoGengeralCell defaultReuseIdentifier]] ;
         if (indexPath.item < MineSettingInfo.mApisBalanceList.count){
             [userInfoGeneralCell updateCellWithInfo:nil context:MineSettingInfo.mApisBalanceList[indexPath.item]] ;
+//             [userInfoGeneralCell updateCellWithInfo:nil context:GetUseAssertInfo.mApisBalanceList[indexPath.item]] ;
         }
         return userInfoGeneralCell ;
     }

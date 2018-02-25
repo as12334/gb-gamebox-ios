@@ -438,10 +438,11 @@
     //NSLog(@"两者时间是同一个时间");
     return 0;
 }
+
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    return self.listView.superview?YES:NO ;
+    return (self.userInfoView.superview?YES:NO)||(self.listView.superview?YES:NO) ||(self.quickSelectView.superview?YES:NO) ;
 }
 
 -(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
@@ -453,6 +454,17 @@
             self.listView.frame = framee;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
+        }];
+    }
+    else if (self.userInfoView.superview){
+        [self userInfoButtonItemHandle] ;
+    }else if (self.quickSelectView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.quickSelectView.frame;
+            framee.size.height = 0;
+            self.quickSelectView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.quickSelectView removeFromSuperview];
         }];
     }
 }
@@ -514,6 +526,7 @@
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+            [self.serviceRequest startV3UserInfo];
         }] ;
     }
 }

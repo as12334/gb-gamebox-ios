@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     self.title =@"投注记录";
     [self setupUI] ;
-    self.isFirstLoad = NO;
+    self.isFirstLoad = YES;
 }
 
 -(BOOL)hasTopView

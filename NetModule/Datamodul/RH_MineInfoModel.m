@@ -62,6 +62,22 @@
     return _showAvatalURL ;
 }
 
+#pragma mark -
+-(void)updateUserBalanceInfo:(NSDictionary*)info
+{
+    /*
+     assets = "1733.0";
+     balance = "1733.0";
+     currSign = "\Uffe5";
+     username = haha123;
+     */
+    _mApisBalanceList = [RH_UserApiBalanceModel dataArrayWithInfoArray:[info arrayValueForKey:@"apis"]] ;
+    _mCurrency = [info objectForKey:@"currSign"] ;
+    _mUserName = [info objectForKey:@"username"] ;
+    _mTotalAssets = [info floatValueForKey:@"assets"] ;
+    _mWalletBalance = [info floatValueForKey:@"balance"] ;
+}
+
 -(void)updateBankCard:(RH_BankCardModel*)bankCardInfo
 {
     if (bankCardInfo){
@@ -82,7 +98,7 @@
     if (!_showTotalAssets){
         _showTotalAssets = [NSString stringWithFormat:@"%.02f",_mTotalAssets] ;
     }
-    
+
     return _showTotalAssets ;
 }
 

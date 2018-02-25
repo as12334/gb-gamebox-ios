@@ -78,6 +78,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeSiteMessageUnReadCount , //获取站点信息-未读消息的条数
     ServiceRequestTypeV3SharePlayerRecommend ,   // 分享
     ServiceRequestTypeV3VerifyRealNameForApp ,   // 老用户验证登录
+    ServiceRequestTypeV3GETUSERASSERT ,   // 获取用户资产信息
+    
     
 };
 
@@ -405,6 +407,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                                 newPassword:(NSString *)newPassword
                                   passLevel:(NSInteger)passLevel;
 
+#pragma mark - 获取用户资产信息
+-(void)startV3GetUserAssertInfo ;
 #pragma mark -
 /**
  * 取消所有服务
