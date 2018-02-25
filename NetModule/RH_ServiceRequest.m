@@ -1161,6 +1161,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 获取用户资产信息
+-(void)startV3GetUserAssertInfo
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETUSERASSERT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GETUSERASSERT
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1426,7 +1440,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *error = [NSError resultDataNoJSONError] ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
-                NSString *errorCode = [NSString stringWithFormat:@"%d",response.statusCode] ;
+                NSString *errorCode = [NSString stringWithFormat:@"%ld",response.statusCode] ;
                 NSString *errorMessage = [response.description copy] ;
                 [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
                                                                                         RH_SP_COLLECTAPPERROR_CODE:errorCode,
@@ -1776,6 +1790,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+                
              case ServiceRequestTypeV3SiteMessageDetail:
             {
                 resultSendData =[[RH_SiteMsgSysMsgModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
@@ -1855,6 +1870,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                  resultSendData =ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA]);
             }
                 break ;
+            case ServiceRequestTypeV3GETUSERASSERT:
+            {
+                resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
+                if (MineSettingInfo){
+                    [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
+                }
+            }
+                break;
                 
             default:
                 resultSendData = dataObject ;

@@ -841,7 +841,6 @@
 #define RH_GP_SHAREPLAYERRECOMMEND_USER                @"user"
 #define RH_GP_SHAREPLAYERRECOMMEND_BOUNDS              @"bonus"
 #define RH_GP_SHAREPLAYERRECOMMEND_SINGLE              @"single"
-
 #define RH_GP_SHAREPLAYERRECOMMEND_CODE                @"code"
 #define RH_GP_SHAREPLAYERRECOMMEND_THEWAY              @"theWay"
 #define RH_GP_SHAREPLAYERRECOMMEND_MONEY               @"money"
@@ -853,8 +852,6 @@
 #define RH_GP_SHAREPLAYERRECOMMEND_PROPORTION           @"proportion"
 #define RH_GP_SHAREPLAYERRECOMMEND_PLAYERNUM            @"playerNum"
 #define RH_GP_SHAREPLAYERRECOMMEND_ACTIVITYRULES        @"activityRules"
-
-
 
 
 #pragma mark - V3 老用户登录验证
@@ -869,6 +866,9 @@
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS                        @"tempPass"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD                     @"newPassword"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL                       @"passLevel"
+
+#pragma mark - V3 获取用户资产信息接口 
+#define RH_API_NAME_GETUSERASSERT  @"mobile-api/userInfoOrigin/getUserAssert.html"
 
 #endif /* RH_API_h */
 
