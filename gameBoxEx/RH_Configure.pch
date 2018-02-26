@@ -1660,6 +1660,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _gvzi //威尼斯人娱乐城
+
+#define CODE    @"gvzi"
+#define S        @"fd9f96277a8b15125bceb0a0f2c0a3f7"
+#define SID        @"375"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _8egp //金柜娱乐
 
 #define CODE    @"8egp"
