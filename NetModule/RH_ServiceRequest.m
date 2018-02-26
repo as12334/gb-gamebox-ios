@@ -1933,11 +1933,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
+                
                 case ServiceRequestTypeV3RefreshSession:
             {
-                
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }
             }
                 break ;
+                
             default:
                 break;
         }
@@ -1993,7 +1998,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
         serviceType!=ServiceRequestTypeV3UserLoginOut &&
         serviceType!=ServiceRequestTypeV3HomeInfo &&
-        serviceType!=ServiceRequestTypeV3UserInfo)
+        serviceType!=ServiceRequestTypeV3UserInfo &&
+        serviceType!=ServiceRequestTypeV3RefreshSession)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){

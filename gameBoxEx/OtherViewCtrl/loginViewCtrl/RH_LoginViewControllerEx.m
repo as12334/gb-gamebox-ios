@@ -170,9 +170,11 @@
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
-    RH_ForgetPasswordController *passwordVC = [[RH_ForgetPasswordController alloc]init];
-    [self.navigationController pushViewController:passwordVC animated:YES];
+//    RH_ForgetPasswordController *passwordVC = [[RH_ForgetPasswordController alloc]init];
+//    [self.navigationController pushViewController:passwordVC animated:YES];
 //    [self showViewController:[RH_ForgetPasswordController viewControllerWithContext:self] sender:self];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    self.myTabBarController.selectedIndex = 3 ;
 }
 #pragma mark-
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -221,6 +223,7 @@
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
+                [defaults setObject:@(self.loginViewCell.isRemberPassword) forKey:@"loginIsRemberPassword"] ;
                 [defaults synchronize];
                 [appDelegate updateLoginStatus:YES] ;
                 
@@ -246,6 +249,7 @@
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
+                [defaults setObject:@(self.loginViewCell.isRemberPassword) forKey:@"loginIsRemberPassword"] ;
                 [defaults synchronize];
                 [appDelegate updateLoginStatus:YES] ;
                 [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName

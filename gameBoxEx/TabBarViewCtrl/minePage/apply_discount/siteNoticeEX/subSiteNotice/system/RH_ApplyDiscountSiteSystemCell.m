@@ -45,23 +45,20 @@
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {    
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView] ;
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(40.0f);
         self.siteModelArray = [NSMutableArray array];
         self.deleteModelArray = [NSMutableArray array];
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = [UIColor clearColor];
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        //        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         [self.contentTableView registerCellWithClass:[RH_MPSiteSystemNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        self.contentTableView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 40).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
     }else {
         [self updateWithContext:context];
     }
@@ -81,6 +78,7 @@
         return height ;
     }
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -106,14 +104,6 @@
     }else{
         return self.loadingIndicateTableViewCell ;
     }
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 40.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.headerView;
 }
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
@@ -182,6 +172,7 @@
 {
     if (!_loadingIndicateTableViewCell){
         _loadingIndicateTableViewCell = [[RH_LoadingIndicateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [_loadingIndicateTableViewCell whc_HeightEqualView] ;
         _loadingIndicateTableViewCell.backgroundColor = [UIColor whiteColor];
         _loadingIndicateTableViewCell.loadingIndicateView.delegate = self;
     }
@@ -278,26 +269,21 @@
         self.headerView.statusMark =YES;
     }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
     {
-       
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3SiteMessage){
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3SystemMessageDelete) {
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
     {
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

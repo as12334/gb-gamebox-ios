@@ -56,6 +56,5 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 
 -(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ; 
 
--(void)updateSession ;
 
 @end

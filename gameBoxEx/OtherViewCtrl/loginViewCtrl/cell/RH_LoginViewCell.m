@@ -129,12 +129,44 @@
     //初始化用户
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userNameView.textField.text = [defaults stringForKey:@"account"] ;
+    //记住密码
+    if([[defaults stringForKey:@"loginIsRemberPassword"] boolValue])
+    {
+        [self.rememberPwdSwitch setOn:YES] ;
+         self.passwordTextfield.text = [defaults stringForKey:@"password"] ;
+    }else
+    {
+        [self.rememberPwdSwitch setOn:NO];
+         self.passwordTextfield.text = @"" ;
+    }
+    self.forgetPasswordBtn.whc_LeftSpace(40).whc_BottomSpaceToView(-5, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
+    self.rememberPwdSwitch.whc_CenterYToView(0, self.forgetPasswordBtn).whc_RightSpace(40) ;
+     self.rememberPwdSwitch.transform = CGAffineTransformMakeScale( 0.7, 0.7);//缩放
+    self.rememberPwdLab.whc_RightSpaceToView(0, self.rememberPwdSwitch).whc_CenterYToView(0, self.forgetPasswordBtn).whc_WidthAuto().whc_Height(20) ;
     
-//    [self.forgetPasswordBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
-//    self.forgetPasswordBtn.whc_LeftSpace(30).whc_BottomSpaceToView(10, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
     
-   
+    if ([THEMEV3 isEqualToString:@"green"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
+    }else{
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
+    }
+    [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
+    self.rememberPwdLab.textColor = colorWithRGB(85, 85, 85) ;
+    
+    //设置关闭颜色
+//    self.rememberPwdSwitch.tintColor = colorWithRGB(242, 242, 242) ;
+    //设置圆形按钮颜色
+    self.rememberPwdSwitch.thumbTintColor = [UIColor whiteColor] ;
 }
+
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -206,6 +238,10 @@
 -(NSString *)verifyCode
 {
     return (self.verifyCodeView.hidden?nil:self.verifyCodeView.textField.text.trim) ;
+}
+-(BOOL)isRemberPassword
+{
+    return self.rememberPwdSwitch.isOn ;
 }
 
 -(IBAction)btn_obtainVerifyCode:(id)sender

@@ -77,9 +77,7 @@
     
     [self.serviceRequest startV3SiteTimezone] ;
     
-//    [self autoLogin] ;
-    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager];
-    [manager updateSession];
+    [self autoLogin] ;
 }
 
 - (void)dealloc

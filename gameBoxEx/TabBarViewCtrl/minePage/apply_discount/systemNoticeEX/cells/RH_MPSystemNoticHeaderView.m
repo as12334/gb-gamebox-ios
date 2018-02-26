@@ -32,11 +32,13 @@
     [self.endDateView addSubview:self.endSeletedDateView];
     self.startDateView.layer.cornerRadius = 3.f;
     self.startDateView.layer.borderWidth = 1.f;
+    self.startDateView.backgroundColor = [UIColor whiteColor] ;
     self.startDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.startDateView.layer.masksToBounds = YES;
     self.endDateView.layer.cornerRadius = 3.f;
     self.endDateView.layer.borderWidth = 1.f;
     self.endDateView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
+    self.endDateView.backgroundColor = [UIColor whiteColor] ;
     self.endDateView.layer.masksToBounds = YES;
     self.kuaixuanBtn.layer.cornerRadius = 3.f;
     if ([THEMEV3 isEqualToString:@"green"]){

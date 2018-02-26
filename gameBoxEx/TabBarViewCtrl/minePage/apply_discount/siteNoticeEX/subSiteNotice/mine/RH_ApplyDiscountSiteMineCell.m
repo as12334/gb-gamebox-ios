@@ -38,21 +38,20 @@
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView] ;
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(40.0f);
         self.siteModelArray = [NSMutableArray array];
         self.deleteModelArray = [NSMutableArray array];
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = [UIColor clearColor];
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         [self.contentTableView registerCellWithClass:[RH_SiteMineNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 40).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
         //通知
         //监听通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedMineMessage) name:@"noti1" object:nil];
@@ -100,14 +99,6 @@
     }else{
         return self.loadingIndicateTableViewCell ;
     }
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 40.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.headerView;
 }
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
@@ -216,7 +207,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    if (page==0) {
+    if (page==1) {
         //刷新后将model数组清空
         [self.siteModelArray removeAllObjects];
     }
@@ -270,11 +261,9 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3SiteMessageMyMessage){
-         showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageDelete) {
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {

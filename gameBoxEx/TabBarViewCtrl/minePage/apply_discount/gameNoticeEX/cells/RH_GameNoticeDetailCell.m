@@ -30,17 +30,18 @@
 }
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    RH_GameNoticeDetailModel *detaileModel = ConvertToClassPointer(RH_GameNoticeDetailModel, context);
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 17,tableView.frameWidth-16, 0)];
-    label.text = detaileModel.mContext;
-    label.font = [UIFont systemFontOfSize:12.f];
-    NSDictionary *attrs = @{NSFontAttributeName : label.font};
-    CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
-    label.numberOfLines=0;
-    CGSize size = [detaileModel.mContext boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+//    RH_GameNoticeDetailModel *detaileModel = ConvertToClassPointer(RH_GameNoticeDetailModel, context);
+//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 17,tableView.frameWidth-16, 0)];
+//    label.text = detaileModel.mContext;
+//    label.font = [UIFont systemFontOfSize:12.f];
+//    NSDictionary *attrs = @{NSFontAttributeName : label.font};
+//    CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
+//    label.numberOfLines=0;
+//    CGSize size = [detaileModel.mContext boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     // ceilf()向上取整函数, 只要大于1就取整数2. floor()向下取整函数, 只要小于2就取整数1.
     //    CGSize size = CGSizeMake(ceilf(size.width), ceilf(size.height));
-    return 90+size.height>screenSize().height?screenSize().height:90+size.height;
+//    return 90+size.height>screenSize().height?screenSize().height:90+size.height;
+    return screenSize().height - 15.f;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
