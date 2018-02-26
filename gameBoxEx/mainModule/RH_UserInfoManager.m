@@ -34,18 +34,30 @@
 @synthesize userWithDrawInfo = _userWithDrawInfo ;
 @synthesize domainCheckErrorList = _domainCheckErrorList ;
 
+
 +(instancetype)shareUserManager
 {
     static RH_UserInfoManager * _shareUserManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _shareUserManager = [[RH_UserInfoManager alloc] init];
-        
     });
     
     return _shareUserManager ;
 }
 
+-(void)updateSession
+{
+    UILocalNotification *_localNotification=[[UILocalNotification alloc] init];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        while (TRUE) {
+            [NSThread sleepForTimeInterval:5];
+//            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+            [self.serviceRequest startV3RereshUserSessin];
+            [[UIApplication sharedApplication] scheduleLocalNotification:_localNotification];
+        };
+    });
+}
 
 -(void)updateTimeZone:(NSString*)timeZone
 {
@@ -221,12 +233,18 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
+    if (type == ServiceRequestTypeV3RefreshSession) {
+        NSLog(@"%@",data) ;
+    }
 
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-
+    if (type == ServiceRequestTypeV3RefreshSession) {
+        NSLog(@"%@",error) ;
+        
+    }
 }
 
 #pragma mark-

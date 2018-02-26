@@ -526,7 +526,7 @@
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
-            [self.serviceRequest startV3UserInfo];
+             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
 }

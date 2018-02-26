@@ -41,7 +41,6 @@
         _mRealName = [info stringValueForKey:RH_GP_MINEINFO_REALNAME] ;
         _mApisBalanceList = [RH_UserApiBalanceModel dataArrayWithInfoArray:[info arrayValueForKey:@"apis"]] ;
     }
-    
     return self ;
 }
 
@@ -65,12 +64,6 @@
 #pragma mark -
 -(void)updateUserBalanceInfo:(NSDictionary*)info
 {
-    /*
-     assets = "1733.0";
-     balance = "1733.0";
-     currSign = "\Uffe5";
-     username = haha123;
-     */
     _mApisBalanceList = [RH_UserApiBalanceModel dataArrayWithInfoArray:[info arrayValueForKey:@"apis"]] ;
     _mCurrency = [info objectForKey:@"currSign"] ;
     _mUserName = [info objectForKey:@"username"] ;
