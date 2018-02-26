@@ -1175,6 +1175,20 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 防止用户掉线
+-(void)startV3RereshUserSessin
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RefreshSession
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1878,7 +1892,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break;
-                
+            case ServiceRequestTypeV3RefreshSession:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
                 break;
@@ -1912,6 +1930,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     [self.appDelegate updateLoginStatus:FALSE] ;
                 }else{
                     [self startV3UserInfo] ;
+                }
+            }
+                break ;
+                
+                case ServiceRequestTypeV3RefreshSession:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
                 }
             }
                 break ;
@@ -1967,10 +1994,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     //特点  error 信息，统一处理 。
-    if ((error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
+    // error.code==RH_API_ERRORCODE_USER_LOGOUT ||
+    if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
         serviceType!=ServiceRequestTypeV3UserLoginOut &&
         serviceType!=ServiceRequestTypeV3HomeInfo &&
-        serviceType!=ServiceRequestTypeV3UserInfo)
+        serviceType!=ServiceRequestTypeV3UserInfo &&
+        serviceType!=ServiceRequestTypeV3RefreshSession)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){

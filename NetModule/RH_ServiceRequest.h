@@ -79,7 +79,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SharePlayerRecommend ,   // 分享
     ServiceRequestTypeV3VerifyRealNameForApp ,   // 老用户验证登录
     ServiceRequestTypeV3GETUSERASSERT ,   // 获取用户资产信息
-    
+    ServiceRequestTypeV3RefreshSession ,   // 防止长时间未操作掉线
     
 };
 
@@ -409,6 +409,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 获取用户资产信息
 -(void)startV3GetUserAssertInfo ;
+
+#pragma mark - 防止用户掉线
+-(void)startV3RereshUserSessin ;
 #pragma mark -
 /**
  * 取消所有服务

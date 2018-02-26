@@ -54,6 +54,7 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 -(NSString*)bankNameWithCode:(NSString*)bankCode ;
 -(void)updateTimeZone:(NSString*)timeZone ;
 
--(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ;
+-(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ; 
+
 
 @end

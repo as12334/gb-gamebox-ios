@@ -28,6 +28,7 @@
 #import "RH_NormalActivithyView.h"
 #import "RH_GameListViewController.h"
 #import "RH_ActivityStatusModel.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -239,7 +240,6 @@
 {
     [super viewWillAppear:animated] ;
     if (self.appDelegate.isLogin){
-//        [self.serviceRequest startV3UserInfo] ;
         [self.serviceRequest startV3GetUserAssertInfo] ;
     }
 }
@@ -595,7 +595,6 @@
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
-//            [self.serviceRequest startV3UserInfo];
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }

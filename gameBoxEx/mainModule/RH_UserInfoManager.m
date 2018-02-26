@@ -24,6 +24,7 @@
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly) RH_ServiceRequest * serviceRequest;
 @property(nonatomic,copy)  AutoLoginCompletation autoLoginCompletation ;
+@property(nonatomic,strong) id netStatusObserverForUpdateUserSessionInfo ;
 @end
 
 @implementation RH_UserInfoManager
@@ -33,6 +34,7 @@
 @synthesize bankList = _bankList ;
 @synthesize userWithDrawInfo = _userWithDrawInfo ;
 @synthesize domainCheckErrorList = _domainCheckErrorList ;
+
 
 +(instancetype)shareUserManager
 {
@@ -45,6 +47,67 @@
     
     return _shareUserManager ;
 }
+
+-(instancetype)init
+{
+    self = [super init] ;
+    if (self){
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleLoginChangedNotification:)
+                                                     name:NT_LoginStatusChangedNotification
+                                                   object:nil] ;
+    }
+    
+    return self ;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+//-(void)updateSession
+//{
+//    UILocalNotification *_localNotification=[[UILocalNotification alloc] init];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+//        while (TRUE) {
+//            [NSThread sleepForTimeInterval:5];
+////            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//            [self.serviceRequest startV3RereshUserSessin];
+//            [[UIApplication sharedApplication] scheduleLocalNotification:_localNotification];
+//        };
+//    });
+//}
+
+#pragma mark -
+-(void)handleLoginChangedNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
+        [self updateSession] ;
+    }
+}
+
+-(void)updateSession
+{
+    if (NetworkAvailable()){
+        if ([self hasLogin]){
+            //取消先前服务
+            [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3RefreshSession] ;
+            [self.serviceRequest startV3RereshUserSessin] ;
+        }
+    }else{//无网络情况
+        if (!self.netStatusObserverForUpdateUserSessionInfo){
+            self.netStatusObserverForUpdateUserSessionInfo = [[NSNotificationCenter defaultCenter] addObserverForName:NT_NetReachabilityChangedNotification object:nil
+                                                                                                                queue:[NSOperationQueue mainQueue]
+                                                                                                           usingBlock:^(NSNotification * _Nonnull note) {
+                [[NSNotificationCenter defaultCenter] removeObserver:self.netStatusObserverForUpdateUserSessionInfo] ;
+                self.netStatusObserverForUpdateUserSessionInfo = nil ;
+                [self updateSession] ;
+            }] ;
+        }
+    }
+}
+
 
 
 -(void)updateTimeZone:(NSString*)timeZone
@@ -207,7 +270,7 @@
     [userDefaults setObject:loginTime?:@""  forKey:key_lastLoginTime];
 }
 
-#pragma mark-
+#pragma mark- serviceRequest
 - (RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest) {
@@ -218,15 +281,18 @@
     return _serviceRequest;
 }
 
-#pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-
+    if (type == ServiceRequestTypeV3RefreshSession) {
+        [self performSelector:@selector(updateSession) withObject:self afterDelay:5.0f] ;
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-
+    if (type == ServiceRequestTypeV3RefreshSession) {
+        [self performSelector:@selector(updateSession) withObject:self afterDelay:5.0f] ;
+    }
 }
 
 #pragma mark-

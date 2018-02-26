@@ -814,7 +814,6 @@
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         jsContext[@"nativeAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
             NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
-            [self.serviceRequest startV3UserInfo] ;
             [self.serviceRequest startV3GetUserAssertInfo];
         };
         

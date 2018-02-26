@@ -870,5 +870,8 @@
 #pragma mark - V3 获取用户资产信息接口 
 #define RH_API_NAME_GETUSERASSERT  @"mobile-api/userInfoOrigin/getUserAssert.html"
 
+#pragma mark - V3 刷新session 防掉线
+#define RH_API_NAME_REFRESHLOGINSTATUS  @"/mobile-api/mineOrigin/alwaysRequest.html"
+
 #endif /* RH_API_h */
 

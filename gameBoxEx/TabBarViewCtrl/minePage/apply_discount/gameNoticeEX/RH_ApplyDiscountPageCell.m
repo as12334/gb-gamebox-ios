@@ -54,8 +54,7 @@
         [self.contentTableView registerCellWithClass:[RH_MPGameNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
-        [self setupPageLoadManagerWithdatasContext:context1] ;
-        
+        [self setupPageLoadManagerWithdatasContext:context1]  ;
     }else {
         [self updateWithContext:context];
     }
@@ -102,15 +101,6 @@
 
 -(BOOL)showNotingIndicaterView
 {
-    if (self.listView.superview){
-        [UIView animateWithDuration:0.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
-        } completion:^(BOOL finished) {
-            [self.listView removeFromSuperview];
-        }];
-    }
     [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
                                         detailText:@"点击重试"] ;
     return YES ;

@@ -153,8 +153,8 @@
         self.navigationBarItem.rightBarButtonItem = nil ;
     }else{
         if (MineSettingInfo==nil){
-            if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3UserInfo]==FALSE){
-                [self.serviceRequest startV3UserInfo] ;
+            if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3GETUSERASSERT]==FALSE){
+                [self.serviceRequest startV3GetUserAssertInfo] ;
             }
         }
         
