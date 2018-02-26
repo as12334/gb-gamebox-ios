@@ -34,7 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *codeLab;
 @property (weak, nonatomic) IBOutlet UITextField *verifyTextfield;
+@property (weak, nonatomic) IBOutlet UILabel *rememberPwdLab;
 
+@property (weak, nonatomic) IBOutlet UISwitch *rememberPwdSwitch;
 
 @end
 
@@ -108,7 +110,6 @@
     
     [self.usernameNotice setHidden:YES];
     [self.passwordNotice setHidden:YES];
-    [self.forgetPasswordBtn setHidden:YES];
     
     _usernameTextfield.returnKeyType = UIReturnKeyDone;
     _usernameTextfield.delegate=self;
@@ -128,6 +129,9 @@
     //初始化用户
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.userNameView.textField.text = [defaults stringForKey:@"account"] ;
+    
+//    [self.forgetPasswordBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
+//    self.forgetPasswordBtn.whc_LeftSpace(30).whc_BottomSpaceToView(10, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
     
    
 }
