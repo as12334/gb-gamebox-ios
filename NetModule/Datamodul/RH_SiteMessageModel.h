@@ -20,9 +20,8 @@
 @property(nonatomic,strong,readonly)NSString *mSearchId;
 //@property(nonatomic,strong,readonly)NSString *mMarkString;
 //---extend
-@property(nonatomic,strong)NSNumber *number;
-
--(void)updataReadStatus:(BOOL)bflag ;
-
+@property(nonatomic,readonly,assign)  BOOL selectedFlag ;
+-(void)updateSelectedFlag:(BOOL)bFlag ; //更新是否勾选状态
+-(void)updataReadStatus:(BOOL)bflag ; //更新是否已读
 
 @end

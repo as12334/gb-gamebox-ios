@@ -90,12 +90,9 @@
         self.labTBalanceValue.text = mineInfoModel.showTotalAssets ;
         self.labTWalletValue.text = mineInfoModel.showWalletBalance ;
     }
-//    RH_GetUserAssertInfoModel *assertModel = ConvertToClassPointer(RH_GetUserAssertInfoModel, context) ;
-//    if (assertModel){
-//        self.labTBalanceValue.text = assertModel.showTotalAssets ;
-//        self.labTWalletValue.text = assertModel.showWalletBalance ;
-//    }
 }
+
+
 
 
 @end

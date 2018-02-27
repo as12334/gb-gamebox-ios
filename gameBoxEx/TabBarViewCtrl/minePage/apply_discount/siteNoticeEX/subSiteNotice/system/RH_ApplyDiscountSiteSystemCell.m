@@ -16,7 +16,7 @@
 #import "RH_SiteMsgUnReadCountModel.h"
 
 #import "RH_ApplyDiscountSitePageCell.h"
-@interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate>
+@interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate,SiteSystemNoticeCellDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
@@ -45,23 +45,20 @@
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {    
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView] ;
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(40.0f);
         self.siteModelArray = [NSMutableArray array];
         self.deleteModelArray = [NSMutableArray array];
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = [UIColor clearColor];
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        //        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         [self.contentTableView registerCellWithClass:[RH_MPSiteSystemNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        self.contentTableView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 40).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
     }else {
         [self updateWithContext:context];
     }
@@ -81,52 +78,40 @@
         return height ;
     }
 }
+#pragma mark - SiteSystemNoticeCellDelegate
+-(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell
+{
+    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:systemNoticeCell] ;
+    RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
+    if (siteModel.selectedFlag) {
+        [self.deleteModelArray addObject:siteModel];
+    }else{
+        [self.deleteModelArray removeObject:siteModel];
+    }
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        __weak RH_MPSiteSystemNoticeCell *noticeCell = [tableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
-        __weak RH_ApplyDiscountSiteSystemCell *weakSelf = self;
-        noticeCell.block = ^(){
-            RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
-            if ([siteModel.number isEqual:@0]) {
-                siteModel.number = @1;
-                [self.deleteModelArray addObject:siteModel];
-            }
-            else if ([siteModel.number isEqual:@1])
-            {
-                siteModel.number = @0;
-                [self.deleteModelArray removeObject:siteModel];
-            }
-            
-            [weakSelf.contentTableView reloadData];
-        };
-        [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
-        return noticeCell ;
+        RH_MPSiteSystemNoticeCell *systemCell = [tableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
+        systemCell.delegate = self ;
+        [systemCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        return systemCell ;
     }else{
         return self.loadingIndicateTableViewCell ;
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 40.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.headerView;
-}
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
 {
-    
     for (int i =0; i<self.siteModelArray.count; i++) {
         RH_SiteMessageModel *siteModel = self.siteModelArray[i];
         if (choseMark==YES) {
-            siteModel.number = @1;
+            [siteModel updateSelectedFlag:YES] ;
             [self.deleteModelArray addObject:siteModel];
         }
         else if (choseMark==NO){
-            siteModel.number=@0;
+            [siteModel updateSelectedFlag:NO] ;
             [self.deleteModelArray removeAllObjects];
         }
     }
@@ -146,7 +131,7 @@
         [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
     }else
     {
-        showAlertView(@"提示", @"请标记你要删除的消息");
+        showAlertView(@"提示", @"请选择消息记录");
     }
    
 }
@@ -164,7 +149,7 @@
         [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
     }else
     {
-        showAlertView(@"提示", @"请标记你要标记为已读的消息");
+        showAlertView(@"提示", @"请选择消息记录");
     }
   
 
@@ -182,6 +167,7 @@
 {
     if (!_loadingIndicateTableViewCell){
         _loadingIndicateTableViewCell = [[RH_LoadingIndicateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [_loadingIndicateTableViewCell whc_HeightEqualView] ;
         _loadingIndicateTableViewCell.backgroundColor = [UIColor whiteColor];
         _loadingIndicateTableViewCell.loadingIndicateView.delegate = self;
     }
@@ -257,7 +243,6 @@
             //获取model
             for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
                 RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);
-                siteModel.number = @0;
                 [self.siteModelArray addObject:siteModel];
             }
             self.headerView.allChoseBtn.userInteractionEnabled = YES;
@@ -278,26 +263,21 @@
         self.headerView.statusMark =YES;
     }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
     {
-       
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3SiteMessage){
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3SystemMessageDelete) {
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
     {
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

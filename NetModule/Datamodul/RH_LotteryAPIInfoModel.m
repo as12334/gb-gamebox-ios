@@ -41,7 +41,13 @@
 {
     if (!_showCover){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        if ([_mCover containsString:@"http:"] ||[_mCover containsString:@"https:"] ) {
+            _showCover = [NSString stringWithFormat:@"%@",_mCover] ;
+        }else
+        {
+            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        }
+        
     }
     
     return _showCover ;
@@ -52,7 +58,13 @@
     if (!_showGameLink){
         if (!_mAutoPay && _mGameLink.length) { //非免转 ，gamelink 作为 h5 link
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+            if ([_mGameLink containsString:@"http:"] ||[_mGameLink containsString:@"https:"]) {
+                _showGameLink = [NSString stringWithFormat:@"%@",_mGameLink] ;
+            }else
+            {
+                _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+            }
+            
         }
     }
     

@@ -154,8 +154,6 @@
         }else{
             button.backgroundColor = RH_NavigationBar_BackgroundColor;
         }
-
-//        button.backgroundColor = colorWithRGB(23, 102, 187);
         self.chooseBtn = button;
         self.pageView.dispalyPageIndex = button.tag-10;
     }
@@ -198,13 +196,11 @@
     else if (pageIndex==1){
         RH_ApplyDiscountSiteMineCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSiteMineCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
-        //                cell.delegate=self;
         return cell;
     }
     else if (pageIndex==2){
         RH_ApplyDiscountSiteSendCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSiteSendCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex] ] ;
-        //                cell.delegate=self;
         return cell;
     }
     return nil;
@@ -216,6 +212,7 @@
     for (UIButton *btn in self.btnArray) {
         btn.selected = NO;
         btn.backgroundColor =colorWithRGB(200, 200, 200);
+        
     }
     ((UIButton *)self.btnArray[pageIndex]).selected = YES;
     self.chooseBtn =((UIButton *)self.btnArray[pageIndex]);

@@ -878,6 +878,9 @@
             [defaults synchronize];
             [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
                                                                      LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
+           
+             RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+            [appDelegate updateLoginStatus:YES] ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 RH_LoginViewControllerEx *loginViewCtrl = [[RH_LoginViewControllerEx alloc] init];
                 loginViewCtrl.delegate = self ;

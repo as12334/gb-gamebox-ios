@@ -183,6 +183,7 @@
               }] ;
 }
 
+#pragma mark -- 滑动
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
     self.headerView.segmentedControl.selectedSegmentIndex = pageIndex;
@@ -196,7 +197,7 @@
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
 
 }
-
+#pragma mark - 点击
 -(void)DiscountTypeHeaderViewDidChangedSelectedIndex:(RH_ApplyDiscountHeaderView*)discuntTypeHeaderView SelectedIndex:(NSInteger)selectedIndex
 {
     self.pageView.dispalyPageIndex = selectedIndex ;

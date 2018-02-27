@@ -89,7 +89,12 @@
     RH_SharePlayerRecommendModel *model = ConvertToClassPointer(RH_SharePlayerRecommendModel, context);
     if (model.mCode) {
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _textFiled.text  = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,model.mCode] ;
+        if ([model.mCode containsString:@"http:"] || [model.mCode containsString:@"https:"]) {
+             _textFiled.text  = [NSString stringWithFormat:@"%@",model.mCode] ;
+        }else
+        {
+             _textFiled.text  = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,model.mCode] ;
+        }
     }
 }
 

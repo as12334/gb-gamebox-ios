@@ -42,19 +42,25 @@
 //    self.typeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, typeModel) ;
     
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView];
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(50.f) ;
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242);
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         [self.contentTableView registerCellWithClass:[RH_MPGameNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 50).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
         [self setupPageLoadManagerWithdatasContext:context1]  ;
+        __block RH_ApplyDiscountPageCell *weakSelf = self;
+        self.headerView.block = ^(int number, CGRect frame){
+            [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:2];
+        };
+        self.headerView.kuaixuanBlock = ^(int number, CGRect frame){
+            [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:1];
+        };
     }else {
         [self updateWithContext:context];
     }
@@ -101,8 +107,9 @@
 
 -(BOOL)showNotingIndicaterView
 {
-    [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
-                                        detailText:@"点击重试"] ;
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"暂无内容，点击重试"] ;
     return YES ;
 }
 
@@ -195,29 +202,13 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    __block RH_ApplyDiscountPageCell *weakSelf = self;
-    self.headerView.block = ^(int number, CGRect frame){
-        [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:2];
-    };
-    self.headerView.kuaixuanBlock = ^(int number, CGRect frame){
-        [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:1];
-    };
-    return self.headerView;
-}
-
 
 #pragma mark headerView
 -(RH_MPGameNoticHeaderView *)headerView
 {
     if (!_headerView) {
         _headerView = [RH_MPGameNoticHeaderView createInstance];
-        _headerView.frame  = CGRectMake(0, 0, self.frameWidth, 55);
+        _headerView.frame  = CGRectMake(0, 0, self.frameWidth, 50);
         _headerView.delegate=self;
     }
     return _headerView;
@@ -225,7 +216,7 @@
 -(void)selectedHeaderViewGameType:(CGRect )frame andMarkNnmber:(int )number
 {
     if (!self.listView.superview) {
-        frame.origin.y +=self.contentTableView.frameY+frame.size.height;
+        frame.origin.y +=30;
         frame.size.width+=100;
         self.listView.frame = frame;
         [self addSubview:self.listView];

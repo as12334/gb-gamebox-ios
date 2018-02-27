@@ -43,9 +43,13 @@
 {
     if (!_thumbURL){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _thumbURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        if ([_mCover containsString:@"http:"]||[_mCover containsString:@"https:"]) {
+             _thumbURL = [NSString stringWithFormat:@"%@",_mCover] ;
+        }else
+        {
+             _thumbURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        }
     }
-    
     return _thumbURL ;
 }
 

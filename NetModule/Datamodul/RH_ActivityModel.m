@@ -40,8 +40,13 @@
 -(NSString *)showEffectURL
 {
     if (!_showEffectURL){
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showEffectURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mNormalEffect] ;
+         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if ([_mNormalEffect containsString:@"http:"]||[_mNormalEffect containsString:@"https:"]) {
+             _showEffectURL = [NSString stringWithFormat:@"%@",_mNormalEffect] ;
+        }else
+        {
+              _showEffectURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mNormalEffect] ;
+        }
     }
     
     return _showEffectURL ;

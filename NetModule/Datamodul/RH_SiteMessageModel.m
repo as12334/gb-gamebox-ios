@@ -31,6 +31,12 @@
     return _mId ;
 }
 
+#pragma mark-
+-(void)updateSelectedFlag:(BOOL)bFlag
+{
+    _selectedFlag = bFlag ;
+}
+
 -(void)updataReadStatus:(BOOL)bflag
 {
     if (_mRead != bflag) {

@@ -32,20 +32,22 @@
 {
    
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView];
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(50) ;
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242);
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        //        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         [self.contentTableView registerCellWithClass:[RH_MPSystemNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 50).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
         [self setupPageLoadManagerWithdatasContext:context1] ;
+        __block RH_ApplyDiscountSystemPageCell *weakSelf = self;
+        self.headerView.block = ^(CGRect frame){
+             [weakSelf selectedHeaderViewGameType:frame];
+        };
     }else {
         [self updateWithContext:context];
     }
@@ -90,8 +92,9 @@
 
 -(BOOL)showNotingIndicaterView
 {
-    [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
-                                        detailText:@"点击重试"] ;
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"暂无内容，点击重试"] ;
     return YES ;
 }
 
@@ -174,19 +177,6 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    __block RH_ApplyDiscountSystemPageCell *weakSelf = self;
-    self.headerView.block = ^(CGRect frame){
-         [weakSelf selectedHeaderViewGameType:frame];
-    };
-    return self.headerView;
-}
-
 
 #pragma mark headerView
 -(RH_MPSystemNoticHeaderView *)headerView
@@ -201,7 +191,7 @@
 -(void)selectedHeaderViewGameType:(CGRect )frame
 {
     if (!self.listView.superview) {
-        frame.origin.y +=self.contentTableView.frameY+30;
+        frame.origin.y +=self.contentTableView.frameY -20.f;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{

@@ -315,7 +315,7 @@
                     [self showViewController:[RH_CustomViewController viewController] sender:self] ;
                     return ;
                 }else{
-                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
                     return ;
                 }
             }
@@ -330,7 +330,7 @@
                     [self showViewController:[RH_CustomViewController viewController] sender:self] ;
                     return ;
                 }else{
-                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
                     return ;
                 }
             }
@@ -522,6 +522,9 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3HomeInfo] ;
+    if (self.appDelegate.isLogin) {
+         [self.serviceRequest startV3GetUserAssertInfo] ;
+    }
 }
 
 -(void)cancelLoadDataHandle
