@@ -16,7 +16,7 @@
 #import "RH_SiteMsgUnReadCountModel.h"
 
 #import "RH_ApplyDiscountSitePageCell.h"
-@interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate>
+@interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate,SiteSystemNoticeCellDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
@@ -78,29 +78,25 @@
         return height ;
     }
 }
-
+#pragma mark - SiteSystemNoticeCellDelegate
+-(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell
+{
+    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:systemNoticeCell] ;
+    RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
+    if (siteModel.selectedFlag) {
+        [self.deleteModelArray addObject:siteModel];
+    }else{
+        [self.deleteModelArray removeObject:siteModel];
+    }
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        __weak RH_MPSiteSystemNoticeCell *noticeCell = [tableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
-        __weak RH_ApplyDiscountSiteSystemCell *weakSelf = self;
-        noticeCell.block = ^(){
-            RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
-            if ([siteModel.number isEqual:@0]) {
-                siteModel.number = @1;
-                [self.deleteModelArray addObject:siteModel];
-            }
-            else if ([siteModel.number isEqual:@1])
-            {
-                siteModel.number = @0;
-                [self.deleteModelArray removeObject:siteModel];
-            }
-            
-            [weakSelf.contentTableView reloadData];
-        };
-        [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
-        return noticeCell ;
+        RH_MPSiteSystemNoticeCell *systemCell = [tableView dequeueReusableCellWithIdentifier:[RH_MPSiteSystemNoticeCell defaultReuseIdentifier]] ;
+        systemCell.delegate = self ;
+        [systemCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
+        return systemCell ;
     }else{
         return self.loadingIndicateTableViewCell ;
     }
@@ -108,15 +104,14 @@
 #pragma mark 全选，删除,标记已读代理
 -(void)siteMessageHeaderViewAllChoseBtn:(BOOL)choseMark
 {
-    
     for (int i =0; i<self.siteModelArray.count; i++) {
         RH_SiteMessageModel *siteModel = self.siteModelArray[i];
         if (choseMark==YES) {
-            siteModel.number = @1;
+            [siteModel updateSelectedFlag:YES] ;
             [self.deleteModelArray addObject:siteModel];
         }
         else if (choseMark==NO){
-            siteModel.number=@0;
+            [siteModel updateSelectedFlag:NO] ;
             [self.deleteModelArray removeAllObjects];
         }
     }
@@ -136,7 +131,7 @@
         [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
     }else
     {
-        showAlertView(@"提示", @"请标记你要删除的消息");
+        showAlertView(@"提示", @"请选择消息记录");
     }
    
 }
@@ -154,7 +149,7 @@
         [self.serviceRequest startV3LoadSystemMessageReadYesWithIds:str];
     }else
     {
-        showAlertView(@"提示", @"请标记你要标记为已读的消息");
+        showAlertView(@"提示", @"请选择消息记录");
     }
   
 
@@ -248,7 +243,6 @@
             //获取model
             for (RH_SiteMessageModel *model in [dictTmp objectForKey:@"list"]) {
                 RH_SiteMessageModel *siteModel = ConvertToClassPointer(RH_SiteMessageModel, model);
-                siteModel.number = @0;
                 [self.siteModelArray addObject:siteModel];
             }
             self.headerView.allChoseBtn.userInteractionEnabled = YES;

@@ -102,11 +102,17 @@
     if (!_showDetailUrl){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         if (_mURL.length){
-            if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
-                _showDetailUrl = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mURL] ;
-            }else {
-                _showDetailUrl = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mURL] ;
+            if ([_mURL containsString:@"http"] || [_mURL containsString:@"https:"]) {
+                 _showDetailUrl = [NSString stringWithFormat:@"%@",_mURL] ;
+            }else
+            {
+                if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
+                    _showDetailUrl = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mURL] ;
+                }else {
+                    _showDetailUrl = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mURL] ;
+                }
             }
+           
         }
     }
     return _showDetailUrl ;

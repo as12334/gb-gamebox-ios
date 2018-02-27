@@ -25,6 +25,11 @@
     return self;
 }
 
+#pragma mark-
+-(void)updateSelectedFlag:(BOOL)bFlag
+{
+    _selectedFlag = bFlag ;
+}
 
 -(void)updataReadStatus:(BOOL)bflag
 {

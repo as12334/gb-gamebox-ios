@@ -13,7 +13,7 @@
 #import "RH_API.h"
 #import "RH_LoadingIndicateTableViewCell.h"
 #import "RH_SiteMineNoticeDetailController.h"
-@interface RH_ApplyDiscountSiteMineCell ()<MPSiteMessageHeaderViewDelegate>
+@interface RH_ApplyDiscountSiteMineCell ()<MPSiteMessageHeaderViewDelegate ,SiteMineNoticeCellDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
@@ -23,6 +23,7 @@
 @implementation RH_ApplyDiscountSiteMineCell
 @synthesize headerView = _headerView;
 @synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
+
 
 #pragma mark tableView的上部分的选择模块
 -(RH_MPSiteMessageHeaderView *)headerView
@@ -76,24 +77,24 @@
         return height ;
     }
 }
+#pragma mark - 选择按钮点击 SiteMineNoticeCellDelegate
+-(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell
+{
+    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:siteMineNoticeCell] ;
+    RH_SiteMyMessageModel *siteModel =self.siteModelArray[indexPath.item];
+    if (siteModel.selectedFlag) {
+        [self.deleteModelArray addObject:siteModel];
+    }else{
+        [self.deleteModelArray removeObject:siteModel];
+    }
+}
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        __weak RH_SiteMineNoticeCell *noticeCell = [tableView dequeueReusableCellWithIdentifier:[RH_SiteMineNoticeCell defaultReuseIdentifier]] ;
-        __weak RH_ApplyDiscountSiteMineCell *weakSelf = self;
-        noticeCell.block = ^(){
-            RH_SiteMyMessageModel *siteModel =self.siteModelArray[indexPath.item];
-            if ([siteModel.number isEqual:@0]) {
-                siteModel.number = @1;
-                [self.deleteModelArray addObject:siteModel];
-            }
-            else if ([siteModel.number isEqual:@1])
-            {
-                siteModel.number = @0;
-                [self.deleteModelArray removeObject:siteModel];
-            }
-            [weakSelf.contentTableView reloadData];
-        };
+       RH_SiteMineNoticeCell *noticeCell = [tableView dequeueReusableCellWithIdentifier:[RH_SiteMineNoticeCell defaultReuseIdentifier]] ;
+        noticeCell.delegate = self ;
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return noticeCell ;
     }else{
@@ -106,11 +107,11 @@
     for (int i =0; i<self.siteModelArray.count; i++) {
         RH_SiteMyMessageModel *siteModel = self.siteModelArray[i];
         if (choseMark==YES) {
-            siteModel.number = @1;
+            [siteModel updateSelectedFlag:YES] ;
             [self.deleteModelArray addObject:siteModel];
         }
         else if (choseMark==NO){
-            siteModel.number=@0;
+            [siteModel updateSelectedFlag:NO] ;
             [self.deleteModelArray removeAllObjects];
         }
     }
@@ -130,7 +131,7 @@
         [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
     }else
     {
-        showAlertView(@"提示", @"请选择你要删除的消息");
+        showAlertView(@"提示", @"请选择消息记录");
     }
     
 }
@@ -146,9 +147,10 @@
         }
         [self.deleteModelArray removeAllObjects];
         [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
+        [self.contentTableView reloadData];
     }else
     {
-       showAlertView(@"提示", @"请标记你要删除的消息");
+       showAlertView(@"提示", @"请选择消息记录");
     }
    
 
@@ -233,7 +235,6 @@
         if ([dictTmp arrayValueForKey:@"dataList"].count>0) {
             for (int i = 0; i<[dictTmp arrayValueForKey:@"dataList"].count; i++) {
                 RH_SiteMyMessageModel *myModel = ConvertToClassPointer(RH_SiteMyMessageModel, [dictTmp arrayValueForKey:@"dataList"][i]);
-                myModel.number = @0;
                 [self.siteModelArray addObject:myModel];
             }
             NSUInteger totalNumber = [dictTmp[@"pageTotal"] integerValue] ;

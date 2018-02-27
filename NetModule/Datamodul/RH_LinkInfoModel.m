@@ -33,7 +33,12 @@
 {
     if (!_targetLink){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _targetLink = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mLink] ;
+        if ([_mLink containsString:@"http:"] || [_mLink containsString:@"https:"]) {
+            _targetLink = [NSString stringWithFormat:@"%@",_mLink] ;
+        }else
+        {
+            _targetLink = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mLink] ;
+        }
     }
     
     return _targetLink ;

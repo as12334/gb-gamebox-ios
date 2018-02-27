@@ -212,6 +212,7 @@
     for (UIButton *btn in self.btnArray) {
         btn.selected = NO;
         btn.backgroundColor =colorWithRGB(200, 200, 200);
+        
     }
     ((UIButton *)self.btnArray[pageIndex]).selected = YES;
     self.chooseBtn =((UIButton *)self.btnArray[pageIndex]);

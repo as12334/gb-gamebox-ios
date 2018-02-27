@@ -182,5 +182,10 @@
     return nil ;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter ] removeObserver:self name:@"OpenLock_NT" object:nil] ;
+    
+}
 
 @end

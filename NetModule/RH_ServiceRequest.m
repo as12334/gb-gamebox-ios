@@ -1586,6 +1586,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
               
            case ServiceRequestTypeV3HomeInfo:
             {
+//                if (dataObject) {
+//                    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+//                    NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//                    NSLog(@"%@",jsonString11);
+//                }
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;

@@ -61,6 +61,7 @@
     [self loginButtonItemHandle] ;
 }
 
+
 #pragma mark-
 -(UIBarButtonItem *)barButtonCustom
 {

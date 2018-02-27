@@ -18,6 +18,7 @@
     NSString *pwdStr1;
     NSString *pwdStr2;
     BOOL isFirst;
+    UILabel *label ;
 }
 @end
 
@@ -26,13 +27,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
-    self.title = @"设置解锁密码";
+    self.title = @"设置锁屏手势";
     //设置界面指示图片
     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake((MainScreenW-100)/2, 80, 100, 100)];
     imgV.image = [UIImage imageNamed:@"yishiyuan"];
     [self.view addSubview:imgV];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-150)/2, 190, 150, 20)];
-    label.text = @"请滑动设置新密码";
+    label = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-150)/2, 190, 150, 20)];
+    label.text = @"请滑动绘制新手势";
     label.font = [UIFont systemFontOfSize:14.f];
     label.textColor = colorWithRGB(27, 117, 217);
     label.textAlignment = NSTextAlignmentCenter;
@@ -48,26 +49,26 @@
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
     
      [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
-    __weak typeof (self)vcs = self;
     lockView.setPwdData = ^(NSString *resultPwd){
         
         if (isFirst == YES) {
             pwdStr1 = resultPwd;
             isFirst = NO;
-            vcs.title = @"请再次设置解锁密码";
+            label.text = @"请滑动绘制新手势" ;
             return;
         }else{
             pwdStr2 = resultPwd;
+            label.text = @"请再次绘制确认手势" ;
         }
         #define RH_GuseterLock            @"RH_GuseterLock"
         if ([pwdStr1 isEqualToString:pwdStr2]) {
             [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:pwdStr1] ;
             [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES] ;
+             label.text = @"锁屏手势设置成功！" ;
             [self backBarButtonItemHandle] ;
             
         }else{
-            showAlertView(@"请重新设置 ", @"两次设置的密码不一致") ;
-            vcs.title = @"设置解锁密码";
+            showAlertView(@"请重新设置 ", @"两次绘制的锁屏手势不一致") ;
              [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
             isFirst = YES;
             pwdStr2 = @"";

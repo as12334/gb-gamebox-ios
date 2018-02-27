@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *markNewImageView;
 @property(nonatomic,assign)NSInteger mReadId;
 
+@property (nonatomic,strong) RH_SiteMyMessageModel *model ;
 @end
 @implementation RH_SiteMineNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -56,41 +57,54 @@
     self.backDropView.layer.borderColor = colorWithRGB(226, 226,226).CGColor;
     self.backDropView.layer.borderWidth=1.f;
     self.backDropView.layer.masksToBounds = YES;
-}
--(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
-{
-    RH_SiteMyMessageModel *model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
-    self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",model.mAdvisoryTitle]stringByRemovingPercentEncoding];
-    self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd HH:mm:ss");
-
-    NSLog(@"%@",model.mAdvisoryTime) ;
-    if ([model.number isEqual:@0]) {
-        self.readImageView.image =nil;
-    }
-    else if ([model.number isEqual:@1]){
-        self.readImageView.image = [UIImage imageNamed:@"choose"];
-    }
-    if (model.mIsRead==YES) {
-        [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
-        self.markNewImageView.image = [UIImage imageNamed:@""];
-    }
-    else if (model.mIsRead==NO)
-    {
-        [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
-        self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
-    }
-    self.mReadId = model.mId;
     [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         RH_SiteMyMessageModel *model1 = note.object;
         if (model1.mIsRead == YES && self.mReadId == model1.mId) {
             [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
             self.markNewImageView.image = [UIImage imageNamed:@""];
         }
-    }];    
+    }];
+}
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    self.model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
+    self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",self.model.mAdvisoryTitle]stringByRemovingPercentEncoding];
+    self.timeLabel.text = dateStringWithFormatter(self.model.mAdvisoryTime,@"yyyy-MM-dd HH:mm:ss");
+
+    [self setNeedUpdateCell] ;
+}
+
+-(void)updateCell
+{
+    if (self.model.selectedFlag) {
+        self.readImageView.image = [UIImage imageNamed:@"choose"];
+    }else {
+        self.readImageView.image = nil;
+    }
+    
+    if (self.model.mIsRead==YES) {
+        [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
+        self.markNewImageView.image = [UIImage imageNamed:@""];
+    }
+    else if (self.model.mIsRead==NO)
+    {
+        [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
+        self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
+    }
+    self.mReadId = self.model.mId;
 }
 
 - (IBAction)choseEdinBtnClick:(id)sender {
-    self.block();
+    [self.model updateSelectedFlag:!self.model.selectedFlag] ;
+    [self setNeedUpdateCell] ;
+    ifRespondsSelector(self.delegate, @selector(siteMineNoticeCellTouchEditBtn:)){
+        [self.delegate siteMineNoticeCellTouchEditBtn:self] ;
+    }
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:nil] ;
 }
 
 @end

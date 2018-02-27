@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_APPDelegate.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_MineInfoModel ()
 @end ;
@@ -50,14 +51,18 @@
     if (!_showAvatalURL){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         if (_mAvatalUrl.length){
-            if ([[_mAvatalUrl substringToIndex:1] isEqualToString:@"/"]){
-                _showAvatalURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mAvatalUrl] ;
-            }else{
-                _showAvatalURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAvatalUrl] ;
+            if ([_mAvatalUrl containsString:@"http:"] || [_mAvatalUrl containsString:@"https:"]) {
+                _showAvatalURL = [NSString stringWithFormat:@"%@",_mAvatalUrl] ;
+            }else
+            {
+                if ([[_mAvatalUrl substringToIndex:1] isEqualToString:@"/"]){
+                    _showAvatalURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mAvatalUrl] ;
+                }else{
+                    _showAvatalURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAvatalUrl] ;
+                }
             }
         }
     }
-    
     return _showAvatalURL ;
 }
 
@@ -69,6 +74,9 @@
     _mUserName = [info objectForKey:@"username"] ;
     _mTotalAssets = [info floatValueForKey:@"assets"] ;
     _mWalletBalance = [info floatValueForKey:@"balance"] ;
+    _showTotalAssets = [NSString stringWithFormat:@"%.02f",_mTotalAssets] ;
+    _showWalletBalance = [NSString stringWithFormat:@"%.02f",_mWalletBalance] ;
+    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerMineGroupChangedNotification object:nil] ;
 }
 
 -(void)updateBankCard:(RH_BankCardModel*)bankCardInfo

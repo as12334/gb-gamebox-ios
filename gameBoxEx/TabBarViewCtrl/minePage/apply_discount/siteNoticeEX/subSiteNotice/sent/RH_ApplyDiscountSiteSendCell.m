@@ -177,6 +177,7 @@
             framee.size.height = 200;
             self.listView.frame = framee;
         }];
+        
     }
     else
     {

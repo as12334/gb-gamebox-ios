@@ -40,10 +40,15 @@
     if (!_showBankURL){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         if (_mBankUrl.length){
-            if ([[_mBankUrl substringToIndex:1] isEqualToString:@"/"]){
-                _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mBankUrl] ;
-            }else {
-                _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mBankUrl] ;
+            if ([_mBankUrl containsString:@"http"] || [_mBankUrl containsString:@"https:"]) {
+                _showBankURL = [NSString stringWithFormat:@"%@",_mBankUrl] ;
+            }else
+            {
+                if ([[_mBankUrl substringToIndex:1] isEqualToString:@"/"]){
+                    _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mBankUrl] ;
+                }else {
+                    _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mBankUrl] ;
+                }
             }
         }
     }

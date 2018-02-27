@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UIImageView *readMark;
 @property(nonatomic,assign)NSInteger mReadId;
+@property (nonatomic,strong) RH_SiteMessageModel *model ;
+
 @end
 @implementation RH_MPSiteSystemNoticeCell
 
@@ -55,11 +57,19 @@
     self.backDropView.layer.borderColor = colorWithRGB(226, 226,226).CGColor;
     self.backDropView.layer.borderWidth=1.f;
     self.backDropView.layer.masksToBounds = YES;
+    [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        RH_SiteMessageModel *model1 = note.object;
+        if (model1.mRead == YES && self.mReadId == model1.mId) {
+            
+            [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
+            self.readMark.image = [UIImage imageNamed:@""];
+        }
+    }];
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     
-    RH_SiteMessageModel *model = ConvertToClassPointer(RH_SiteMessageModel, context);
+    self.model = ConvertToClassPointer(RH_SiteMessageModel, context);
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
     paraStyle.alignment = NSTextAlignmentLeft;
@@ -71,49 +81,52 @@
     paraStyle.tailIndent = 0;
     NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@.0f
                           };
-    if (model.mTitle&&model.mTitle.length <20) {
-        NSString *contentStr = [NSString stringWithFormat:@"%@",model.mTitle];
+    if (self.model.mTitle&&self.model.mTitle.length <20) {
+        NSString *contentStr = [NSString stringWithFormat:@"%@",self.model.mTitle];
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
         self.titleLabel.attributedText = attributeStr;
     }
-    else if (model.mTitle&&model.mTitle.length >40) {
-        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[model.mTitle substringToIndex:40]];
+    else if (self.model.mTitle&&self.model.mTitle.length >40) {
+        NSString *contentStr = [NSString stringWithFormat:@"    %@...",[self.model.mTitle substringToIndex:40]];
         NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
         self.titleLabel.attributedText = attributeStr;
     }else
     {
-        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",model.mTitle] attributes:dic];
+        NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"    %@",self.model.mTitle] attributes:dic];
         self.titleLabel.attributedText = attributeStr;
     }
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime,@"yyyy-MM-dd HH:mm:ss");
-    if ([model.number isEqual:@0]) {
-        self.readMarkImageView.image = nil;
-    }
-    else if ([model.number isEqual:@1]){
+    self.timeLabel.text = dateStringWithFormatter(self.model.mPublishTime,@"yyyy-MM-dd HH:mm:ss");
+   
+  
+      [self setNeedUpdateCell] ;
+}
+
+-(void)updateCell
+{
+    if (self.model.selectedFlag) {
         self.readMarkImageView.image = [UIImage imageNamed:@"choose"];
+    }else
+    {
+         self.readMarkImageView.image = nil;
     }
-    if (model.mRead==YES) {
+    if (self.model.mRead==YES) {
         [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
         self.readMark.image = [UIImage imageNamed:@""];
     }
-    else if (model.mRead==NO)
+    else if (self.model.mRead==NO)
     {
         [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.readMark.image = [UIImage imageNamed:@"mearkRead"];
     }
-    self.mReadId = model.mId;
-    [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        RH_SiteMessageModel *model1 = note.object;
-        if (model1.mRead == YES && self.mReadId == model1.mId) {
-            
-            [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
-            self.readMark.image = [UIImage imageNamed:@""];
-        }
-    }];
-//    [model isShowRedBadge:YES] ;
+    self.mReadId = self.model.mId;
 }
+
 - (IBAction)chooseEditBtn:(id)sender {
-    self.block();
+    [self.model updateSelectedFlag:!self.model.selectedFlag] ;
+    [self setNeedUpdateCell] ;
+    ifRespondsSelector(self.delegate, @selector(siteSystemNoticeCellEditBtn:)){
+        [self.delegate siteSystemNoticeCellEditBtn:self] ;
+    }
 }
 
 -(void)dealloc

@@ -16,7 +16,6 @@
 #import "RH_CapitalPulldownListView.h"
 #import "RH_CapitalQuickSelectView.h"
 #import "RH_API.h"
-#import "RH_NavigationUserInfoView.h"
 
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
@@ -494,6 +493,7 @@
                                  SearchType:typeIdstr
                                  PageNumber:page+1
                                    PageSize:pageSize] ;
+    
 }
 
 -(void)cancelLoadDataHandle
