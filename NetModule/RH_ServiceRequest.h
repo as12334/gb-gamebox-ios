@@ -136,7 +136,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * 获取站点 DOMAIN 列表
  */
--(void)startReqDomainList ;
+-(void)startReqDomainListWithDomain:(NSString*)domain ;
 
 /**
  * DOMAIN CHECK

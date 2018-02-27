@@ -118,9 +118,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     return _appDelegate ;
 }
 #pragma mark-用户接口定义
--(void)startReqDomainList
+-(void)startReqDomainListWithDomain:(NSString*)domain
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:domain
                         pathFormat:@"app/line.html"
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -147,7 +147,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUpdateCheck
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -274,7 +274,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}

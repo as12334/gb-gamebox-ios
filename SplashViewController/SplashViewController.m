@@ -15,6 +15,7 @@
 #import "RH_UpdatedVersionModel.h"
 #import "RH_DomainTableCell.h"
 #import "RH_UserInfoManager.h"
+#import "RH_ConcurrentServicesReqManager.h"
 
 #define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
 #define RHNT_DomainCheckFail                @"DomainCheckFail "
@@ -108,7 +109,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @end
 
 
-@interface SplashViewController ()<RH_ServiceRequestDelegate>
+@interface SplashViewController ()<RH_ServiceRequestDelegate,RH_ConcurrentServicesReqManagerDelegate>
 @property(nonatomic,strong) UIWindow * window;
 @property (weak, nonatomic) IBOutlet UIImageView *splashLogo;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
@@ -118,6 +119,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
 @property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
 @property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
+
+//获取 域名 list 并发请求管理器
+@property(nonatomic,strong,readonly) RH_ConcurrentServicesReqManager * concurrentServicesManager;
 @end
 
 @implementation SplashViewController
@@ -127,6 +131,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 @synthesize checkDomainServices = _checkDomainServices ;
 @synthesize domainCheckStatusList = _domainCheckStatusList ;
+@synthesize concurrentServicesManager = _concurrentServicesManager ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -139,6 +144,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     {
 #ifdef TEST_DOMAIN
         _urlArray = @[TEST_DOMAIN] ;
+        [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:0])] ;
 #endif
     }
     
@@ -171,8 +177,16 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 -(void)startReqSiteInfo
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
-    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeDomainList] ;
-    [self.serviceRequest startReqDomainList] ;
+    [self.concurrentServicesManager cancleAllServices] ;
+    for (int i=0; i<RH_API_MAIN_URL.count; i++) {
+        NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
+        [self.concurrentServicesManager createServiceRequestAddToManagerWithKey:[NSString stringWithFormat:@"%d",i]
+                                                                   requestBlock:^(RH_ServiceRequest *serviceRequest) {
+            [serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
+        }];
+    }
+    
+   [self.concurrentServicesManager startManagerRequests];
 }
 
 -(NSMutableArray *)checkDomainServices
@@ -301,6 +315,42 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     } completion:^(BOOL finished){
         [label removeFromSuperview];
     }];
+}
+
+#pragma mark - 获取 域名 list 并发请求管理器
+- (RH_ConcurrentServicesReqManager *)concurrentServicesManager
+{
+    if (!_concurrentServicesManager) {
+        _concurrentServicesManager = [[RH_ConcurrentServicesReqManager alloc] init];
+        _concurrentServicesManager.delegate = self;
+    }
+    
+    return _concurrentServicesManager;
+}
+
+- (void)concurrentServicesManager:(RH_ConcurrentServicesReqManager *)concurrentServicesManager didCompletedAllServiceWithDatas:(NSDictionary *)datas errors:(NSDictionary *)errors
+{
+    if (errors.count==RH_API_MAIN_URL.count){
+        [self.contentLoadingIndicateView hiddenView] ;
+        NSError *error = errors.allValues[0] ;
+        showAlertView(error.localizedDescription, @"系统没有返回可用的域名列表") ;
+    }
+}
+
+- (void)concurrentServicesManager:(RH_ConcurrentServicesReqManager *)concurrentServicesManager
+                   serviceRequest:(RH_ServiceRequest *)serviceRequest
+                              key:(NSString *)key
+                      serviceType:(ServiceRequestType)type
+        didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeDomainList){
+        static dispatch_once_t onceToken ;
+        dispatch_once(&onceToken, ^{
+            _urlArray = ConvertToClassPointer(NSArray, data) ;
+            [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:key.intValue])] ;
+            [self checkAllUrl] ;
+        }) ;
+    }
 }
 
 #pragma mark-
