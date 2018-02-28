@@ -130,6 +130,9 @@
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+            [defaults removeObjectForKey:@"password"];
+            [defaults synchronize] ;
         }] ;
         
         [self backBarButtonItemHandle] ;
@@ -144,6 +147,9 @@
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
                 [self backBarButtonItemHandle] ;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+                [defaults removeObjectForKey:@"password"];
+                [defaults synchronize] ;
             }else{
                 showErrorMessage(self.view, error, @"退出失败") ;
             }

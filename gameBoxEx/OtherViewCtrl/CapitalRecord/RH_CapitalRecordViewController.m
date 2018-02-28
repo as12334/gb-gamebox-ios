@@ -504,7 +504,30 @@
 #pragma mark-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+    else if (self.userInfoView.superview){
+        [self userInfoButtonItemHandle] ;
+    }else if (self.quickSelectView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.quickSelectView.frame;
+            framee.size.height = 0;
+            self.quickSelectView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.quickSelectView removeFromSuperview];
+        }];
+    }else
+    {
+         [self startUpdateData] ;
+    }
+   
 }
 
 

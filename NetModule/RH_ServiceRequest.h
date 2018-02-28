@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
     ServiceRequestTypeV3GameLink        ,
+    ServiceRequestTypeV3GameLinkForCheery, //cheery 新标准
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
     ServiceRequestTypeV3OpenActivity    ,//拆红包
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
@@ -366,6 +367,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                  ApiTypeID:(NSInteger)apiTypeID
                    GamesID:(NSString*)gamesID
                  GamesCode:(NSString*)gamesCode ;
+
+#pragma mark - 获取games link for cheery
+-(void)startv3GetGamesLinkForCheeryLink:(NSString*)gamelink;
+
 #pragma mark - 获取游戏分类
 -(void)startV3LoadGameType;
 

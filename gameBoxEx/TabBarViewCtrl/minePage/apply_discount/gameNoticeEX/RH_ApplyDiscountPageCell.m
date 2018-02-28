@@ -44,6 +44,7 @@
     if (self.contentTableView == nil) {
         [self.contentView addSubview:self.headerView];
         self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(50.f) ;
+
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
@@ -102,7 +103,18 @@
 
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }else
+    {
+         [self startUpdateData] ;
+    }
 }
 
 -(BOOL)showNotingIndicaterView
@@ -357,7 +369,15 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount){
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }else if (self.pageLoadManager.currentDataCount){
         RH_GameNoticeDetailController *detailVC= [RH_GameNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
         [self showViewController:detailVC];
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;

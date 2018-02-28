@@ -128,12 +128,13 @@
             str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
         }
         [self.deleteModelArray removeAllObjects];
+        [self.serviceRequest cancleAllServices];
         [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
     }else
     {
         showAlertView(@"提示", @"请选择消息记录");
     }
-    
+    [self.contentTableView reloadData];
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
@@ -152,8 +153,7 @@
     {
        showAlertView(@"提示", @"请选择消息记录");
     }
-   
-
+    [self.contentTableView reloadData];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

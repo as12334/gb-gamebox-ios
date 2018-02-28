@@ -14,6 +14,7 @@
 #import "RH_MainTabBarController.h"
 #import "RH_LotteryInfoModel.h"
 #import "RH_UserInfoManager.h"
+#import "RH_LotteryAPIInfoModel.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
@@ -52,10 +53,16 @@
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLink:lotteryInfoModel.mApiID
-                                           ApiTypeID:lotteryInfoModel.mApiTypeID
-                                             GamesID:lotteryInfoModel.mGameID
-                                           GamesCode:lotteryInfoModel.mCode] ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink] ;
+        }
+    }else if ([self.context isKindOfClass:[RH_LotteryAPIInfoModel class]]){ //需要请求 link
+        RH_LotteryAPIInfoModel *lotteryApiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, self.context) ;
+        if (lotteryApiInfoModel.showGameLink){ //已获取的请求链接
+            self.appDelegate.customUrl = lotteryApiInfoModel.showGameLink ;
+            [self setupURL] ;
+        }else{
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
         }
     }else{
         [self setupURL] ;
@@ -272,7 +279,8 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink){
+    }else if (type==ServiceRequestTypeV3GameLink ||
+              type==ServiceRequestTypeV3GameLinkForCheery){
         [self.contentLoadingIndicateView hiddenView] ;
         NSDictionary *gameLinkDict = ConvertToClassPointer(NSDictionary, data) ;
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
@@ -283,6 +291,7 @@
             self.appDelegate.customUrl = gameLink ;
             [self setupURL] ;
         }else{
+            showAlertView(@"温馨提示", gameMessage);
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:gameMessage detailText:@"温馨提示"] ;
         }
     }
@@ -297,7 +306,8 @@
             showErrorMessage(self.view, error, @"提示信息");
             [self.appDelegate updateLoginStatus:false] ;
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink){
+    }else if (type==ServiceRequestTypeV3GameLink ||
+              type==ServiceRequestTypeV3GameLinkForCheery){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }

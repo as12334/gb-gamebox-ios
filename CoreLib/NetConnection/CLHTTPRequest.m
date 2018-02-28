@@ -226,6 +226,11 @@
             {
                 //设置查询路径
                 if (queryArgumentStr) {
+//                    if ([url containsString:@"getGameLink.html?"]){
+//                        url = [NSString stringWithFormat:@"%@&%@",url,queryArgumentStr];
+//                    }else{
+//                        url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+//                    }
                     url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
                 }
             }

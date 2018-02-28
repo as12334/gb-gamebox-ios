@@ -129,11 +129,12 @@
         }
         [self.deleteModelArray removeAllObjects];
         [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+        [self.contentTableView reloadData];
     }else
     {
         showAlertView(@"提示", @"请选择消息记录");
     }
-   
+   [self.contentTableView reloadData];
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
@@ -151,7 +152,7 @@
     {
         showAlertView(@"提示", @"请选择消息记录");
     }
-  
+  [self.contentTableView reloadData];
 
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,7 +238,8 @@
     if (type == ServiceRequestTypeV3SiteMessage){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         NSInteger totalInter = [dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM];
-        if (data!=nil) {
+        NSArray *dataArr = [dictTmp objectForKey:@"list"];
+        if (dataArr.count > 0) {
             [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
                                 totalCount:totalInter completedBlock:nil] ;
             //获取model
@@ -252,7 +254,7 @@
             self.headerView.allChoseBtn.userInteractionEnabled = NO;
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
-        [self.contentTableView reloadData];
+  
     }
     else if (type==ServiceRequestTypeV3SystemMessageDelete) {
         [self startUpdateData];

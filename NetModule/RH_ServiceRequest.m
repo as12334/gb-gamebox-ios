@@ -984,8 +984,30 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
 }
 
-
-
+#pragma mark - 获取games link for cheery
+-(void)startv3GetGamesLinkForCheeryLink:(NSString*)gamelink
+{
+    if (gamelink.length && [gamelink containsString:@"?"]) {
+        NSArray *tempArr = [gamelink componentsSeparatedByString:@"?"] ;
+        NSString *gameLinkUrl = [tempArr objectAtIndex:0] ;
+        NSArray *paraArr = [[tempArr objectAtIndex:1] componentsSeparatedByString:@"&"];
+        NSString *temStr = [[paraArr  componentsJoinedByString:@","] stringByReplacingOccurrencesOfString:@"=" withString:@","];
+        NSArray *temArr = [temStr componentsSeparatedByString:@","] ;
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionary] ;
+        for (int i= 0; i<temArr.count/2; i++) {
+            [mDic setObject:[temArr objectAtIndex:2*i+1] forKey:[temArr objectAtIndex:i*2]];
+        }
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:gameLinkUrl?:@""
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:mDic
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeV3GameLinkForCheery
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
 
 #pragma mark - 获取取款接口
 -(void)startV3GetWithDraw
@@ -1586,11 +1608,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
               
            case ServiceRequestTypeV3HomeInfo:
             {
-//                if (dataObject) {
-//                    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-//                    NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//                    NSLog(@"%@",jsonString11);
-//                }
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break ;
@@ -1816,6 +1833,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break;
             case ServiceRequestTypeV3GameLink:
+            case ServiceRequestTypeV3GameLinkForCheery:
             {
                 resultSendData =[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
             }
