@@ -34,6 +34,7 @@
     #define RH_GuseterLock            @"RH_GuseterLock"
     #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
     NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+    //判断手势密码是否存在，更新开关状态
     if (currentGuseterLockStr) {
         [SAMKeychain setPassword: @"1" forService:@" "account:RH_updateScreenLockFlag];
         [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES] ;
@@ -43,6 +44,7 @@
         [SAMKeychain setPassword: @"0" forService:@" "account:RH_updateScreenLockFlag];
         [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
     }
+    [self.tableViewManagement reloadData];
 }
 
 - (void)viewDidLoad {
@@ -180,7 +182,6 @@
             
         case 1: ////锁屏
             return @([RH_UserInfoManager shareUserManager].isScreenLock);
-      
             break;
         default:
             break;

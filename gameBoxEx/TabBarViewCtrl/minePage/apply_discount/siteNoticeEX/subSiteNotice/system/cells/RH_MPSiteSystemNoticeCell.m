@@ -130,7 +130,7 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:RHNT_AlreadyReadStatusChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

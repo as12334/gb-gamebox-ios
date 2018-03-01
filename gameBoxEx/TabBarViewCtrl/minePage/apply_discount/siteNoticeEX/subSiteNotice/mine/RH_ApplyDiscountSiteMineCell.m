@@ -146,7 +146,6 @@
         }
         [self.deleteModelArray removeAllObjects];
         [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
-        [self.contentTableView reloadData];
     }else
     {
        showAlertView(@"提示", @"请选择消息记录");
@@ -267,6 +266,11 @@
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
         [self loadDataFailWithError:error] ;
     }
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
 @end
