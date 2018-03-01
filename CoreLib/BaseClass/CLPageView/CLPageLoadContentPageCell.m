@@ -265,16 +265,6 @@
     }
 }
 
-- (void)startUpdateDataWithShowRefreshCtrl:(BOOL)bShowRefreshCtrl
-{
-    if ([self showIndicaterView] && [self.pageLoadManager currentDataCount] == 0) {
-        [self _changeIndicaterViewStatus:CLIndicaterViewStatusLoading context:nil];
-        [self.pageLoadManager startUpdateData:NO];
-    }else{
-        [self.pageLoadManager startUpdateData:bShowRefreshCtrl scrollToTop:bShowRefreshCtrl];
-    }
-}
-
 - (void)    pageLoadManager:(CLPageLoadManagerForTableAndCollectionView *)pageLoadManager
      wantToLoadDataWithPage:(NSUInteger)page
                 andPageSize:(NSUInteger)pageSize

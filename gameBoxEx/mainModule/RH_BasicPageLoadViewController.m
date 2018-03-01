@@ -132,16 +132,6 @@
     }
 }
 
-- (void)startUpdateDataWithShowRefreshCtrl:(BOOL)bShowRefreshCtrl
-{
-    if ([self.pageLoadManager currentDataCount] == 0) {
-        [[self loadingIndicateView] showLoadingStatusWithTitle:nil detailText:nil];
-        [self.pageLoadManager startUpdateData:NO];
-    }else{
-        [self.pageLoadManager startUpdateData:bShowRefreshCtrl scrollToTop:bShowRefreshCtrl];
-    }
-}
-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
     if (loadingIndicateView == self.loadingIndicateView) {

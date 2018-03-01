@@ -74,7 +74,6 @@ typedef NS_ENUM(NSInteger, CL_DatasFilterType) {
 - (void)updateWithInitDatas:(NSArray *)initData;
 //开始更新数据
 - (void)startUpdateData;
-- (void)startUpdateDataWithShowRefreshCtrl:(BOOL)bShowRefreshCtrl ;
 - (void)startUpdateData_e:(BOOL)scrollToTop;
 
 
