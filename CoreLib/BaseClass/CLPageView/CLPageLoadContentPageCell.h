@@ -105,6 +105,7 @@ typedef NS_ENUM(NSInteger, CLIndicaterViewStatus) {
 
 //开始更新数据
 - (void)startUpdateData:(BOOL)scrollToTop;
+- (void)startUpdateDataWithShowRefreshCtrl:(BOOL)bShowRefreshCtrl ;
 
 //开始加载数据
 - (void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize;

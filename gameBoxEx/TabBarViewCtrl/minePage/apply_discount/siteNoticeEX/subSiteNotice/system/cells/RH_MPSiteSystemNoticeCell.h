@@ -7,10 +7,11 @@
 //
 
 #import "CLTableViewCell.h"
+#import "RH_SiteMessageModel.h"
 @class RH_MPSiteSystemNoticeCell;
 @protocol SiteSystemNoticeCellDelegate<NSObject>
 @optional
--(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell ;
+-(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell  cellModel:(RH_SiteMessageModel*)cellModel;
 @end
 
 @interface RH_MPSiteSystemNoticeCell : CLTableViewCell

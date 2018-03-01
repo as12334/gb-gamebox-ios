@@ -78,14 +78,12 @@
     }
 }
 #pragma mark - 选择按钮点击 SiteMineNoticeCellDelegate
--(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell
+-(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell CellModel:(RH_SiteMyMessageModel *)cellMoel
 {
-    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:siteMineNoticeCell] ;
-    RH_SiteMyMessageModel *siteModel =self.siteModelArray[indexPath.item];
-    if (siteModel.selectedFlag) {
-        [self.deleteModelArray addObject:siteModel];
+    if (cellMoel.selectedFlag) {
+        [self.deleteModelArray addObject:cellMoel];
     }else{
-        [self.deleteModelArray removeObject:siteModel];
+        [self.deleteModelArray removeObject:cellMoel];
     }
 }
 
@@ -238,7 +236,6 @@
                 [self.siteModelArray addObject:myModel];
             }
             NSUInteger totalNumber = [dictTmp[@"pageTotal"] integerValue] ;
-            
             [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:@"dataList"]
                                 totalCount:totalNumber
                             completedBlock:nil];
