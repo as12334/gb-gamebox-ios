@@ -90,6 +90,10 @@
         self.contentScrollView = self.contentTableView;
         self.contentTableView.tableHeaderView = self.sendView ;
     }
+    if (self.listView.superview){
+        [self.listView removeFromSuperview] ;
+        _listView = nil ;
+    }
 }
 
 -(instancetype)initWithFrame:(CGRect)frame

@@ -187,6 +187,7 @@
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
     self.headerView.segmentedControl.selectedSegmentIndex = pageIndex;
+     [self.pageView reloadPages:YES] ;
 }
 
 - (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex
@@ -201,6 +202,7 @@
 -(void)DiscountTypeHeaderViewDidChangedSelectedIndex:(RH_ApplyDiscountHeaderView*)discuntTypeHeaderView SelectedIndex:(NSInteger)selectedIndex
 {
     self.pageView.dispalyPageIndex = selectedIndex ;
+    [self.pageView reloadPages:YES] ;
 }
 #pragma mark-pageload context
 - (CLPageLoadDatasContext *)_pageLoadDatasContextForPageAtIndex:(NSUInteger)pageIndex

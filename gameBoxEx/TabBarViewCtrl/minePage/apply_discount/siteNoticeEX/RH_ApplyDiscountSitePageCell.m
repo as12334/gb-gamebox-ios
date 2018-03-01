@@ -157,6 +157,7 @@
         self.chooseBtn = button;
         self.pageView.dispalyPageIndex = button.tag-10;
     }
+    [self.pageView reloadPages:YES];
 }
 #pragma mark 分页视图
 -(CLPageView *)pageView
@@ -217,6 +218,7 @@
     ((UIButton *)self.btnArray[pageIndex]).selected = YES;
     self.chooseBtn =((UIButton *)self.btnArray[pageIndex]);
     ((UIButton *)self.btnArray[pageIndex]).backgroundColor =colorWithRGB(23, 102, 187);
+    [self.pageView reloadPages:YES];
 }
 
 - (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex

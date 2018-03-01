@@ -65,6 +65,11 @@
     }else {
         [self updateWithContext:context];
     }
+    
+    if (self.listView.superview){
+        [self.listView removeFromSuperview] ;
+        _listView = nil ;
+    }
 }
 
 
