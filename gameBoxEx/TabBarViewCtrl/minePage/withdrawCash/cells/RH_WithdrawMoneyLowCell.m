@@ -8,6 +8,7 @@
 
 #import "RH_WithdrawMoneyLowCell.h"
 #import "coreLib.h"
+#import "RH_WithDrawModel.h"
 
 @interface RH_WithdrawMoneyLowCell()
 @property (weak, nonatomic) IBOutlet UILabel *label_Notice;
@@ -55,6 +56,12 @@
     }
     self.clipsToBounds = YES;
     [self.button_Save addTarget:self action:@selector(buttonDidClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    NSString *textStr = ConvertToClassPointer(NSString, context) ;
+    self.label_Notice.text = [NSString stringWithFormat:@"%@\n您当前钱包余额不足!",textStr];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

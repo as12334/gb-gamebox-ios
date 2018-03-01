@@ -214,8 +214,7 @@
     {
         [MBProgressHUD hideHUDForView:self animated:YES];
         //发送成功弹出提示框
-        UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"消息提交成功" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
-        [alertView show];
+        showMessage(self, @"提示", @"消息提交成功！") ;
         [[NSNotificationCenter defaultCenter] postNotificationName:NSNotiCenterSubmitSuccessNT object:nil];
     }
 }

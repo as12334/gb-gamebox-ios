@@ -25,6 +25,11 @@
     return self;
 }
 
+-(NSInteger)ID
+{
+    return _mId ;
+}
+
 #pragma mark-
 -(void)updateSelectedFlag:(BOOL)bFlag
 {

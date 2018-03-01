@@ -79,14 +79,12 @@
     }
 }
 #pragma mark - SiteSystemNoticeCellDelegate
--(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell
+-(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell cellModel:(RH_SiteMessageModel *)cellModel
 {
-    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:systemNoticeCell] ;
-    RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
-    if (siteModel.selectedFlag) {
-        [self.deleteModelArray addObject:siteModel];
+    if (cellModel.selectedFlag) {
+        [self.deleteModelArray addObject:cellModel];
     }else{
-        [self.deleteModelArray removeObject:siteModel];
+        [self.deleteModelArray removeObject:cellModel];
     }
 }
 
@@ -227,10 +225,7 @@
 {
     [self startUpdateData] ;
 }
-//-(void)startUpdateData
-//{
-//
-//}
+
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data

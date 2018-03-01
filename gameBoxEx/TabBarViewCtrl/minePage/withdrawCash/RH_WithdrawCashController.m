@@ -47,12 +47,20 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     //记录两种类型的--
     CGFloat _bankWithdrawAmount     ; //记录银行卡 取款金额
     CGFloat _bitCoinWithdrawAmount  ; //记录比特币 取款金额
+    NSString *_withDrawMinMoneyStr ;  //在钱包没有钱的情况下返回的提示
 }
 
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize mainSegmentControl = _mainSegmentControl  ;
 @synthesize footerView = _footerView;
 @synthesize cashCell = _cashCell;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    [self.serviceRequest startV3GetWithDraw] ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,13 +69,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
-    
+   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
                                                  name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
                                                  name:UITextFieldTextDidChangeNotification
                                                object:nil] ;
+    
 }
 
 - (void)dealloc
@@ -429,6 +438,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 {
     if ([cell isKindOfClass:[RH_WithdrawMoneyLowCell class]]){
         RH_WithdrawMoneyLowCell *withDrawLowCell = ConvertToClassPointer(RH_WithdrawMoneyLowCell, cell) ;
+        [withDrawLowCell updateCellWithInfo:nil context:_withDrawMinMoneyStr] ;
         withDrawLowCell.delegate  = self ;
     }else if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
         RH_WithdrawCashThreeCell *three = ConvertToClassPointer(RH_WithdrawCashThreeCell, cell);
@@ -587,6 +597,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self setNeedUpdateView];
         }else if (error.code == RH_API_ERRORCODE_WITHDRAW_NO_MONEY) { //金额不足
             _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
+            _withDrawMinMoneyStr = [[error userInfo] objectForKey:@"NSLocalizedDescription"] ;
             [self setNeedUpdateView] ;
         }else{
             [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;

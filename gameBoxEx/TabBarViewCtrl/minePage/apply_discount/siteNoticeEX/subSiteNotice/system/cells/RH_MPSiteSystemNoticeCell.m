@@ -8,7 +8,7 @@
 
 #import "RH_MPSiteSystemNoticeCell.h"
 #import "coreLib.h"
-#import "RH_SiteMessageModel.h"
+
 #define RHNT_AlreadyReadStatusChangeNotification @"AlreadyReadStatusChangeNotification"
 @interface RH_MPSiteSystemNoticeCell()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -97,8 +97,7 @@
     }
     self.timeLabel.text = dateStringWithFormatter(self.model.mPublishTime,@"yyyy-MM-dd HH:mm:ss");
    
-  
-      [self setNeedUpdateCell] ;
+    [self setNeedUpdateCell] ;
 }
 
 -(void)updateCell
@@ -124,8 +123,8 @@
 - (IBAction)chooseEditBtn:(id)sender {
     [self.model updateSelectedFlag:!self.model.selectedFlag] ;
     [self setNeedUpdateCell] ;
-    ifRespondsSelector(self.delegate, @selector(siteSystemNoticeCellEditBtn:)){
-        [self.delegate siteSystemNoticeCellEditBtn:self] ;
+    ifRespondsSelector(self.delegate, @selector(siteSystemNoticeCellEditBtn:cellModel:)){
+        [self.delegate siteSystemNoticeCellEditBtn:self cellModel:self.model] ;
     }
 }
 

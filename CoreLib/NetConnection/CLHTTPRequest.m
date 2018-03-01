@@ -374,7 +374,9 @@ isStart = NO;                                   \
         _urlRequest = tmpURLRequest;
     }
     
-    NSLog(@"urlRequest:%@",_urlRequest.URL) ;
+    if (![_urlRequest.URL.absoluteString containsString:@"mineOrigin/alwaysRequest.html"]){
+        NSLog(@"urlRequest:%@",_urlRequest.URL) ;
+    }
     return _urlRequest;
 }
 

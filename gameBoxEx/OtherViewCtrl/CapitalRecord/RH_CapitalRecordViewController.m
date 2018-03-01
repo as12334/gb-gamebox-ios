@@ -214,7 +214,7 @@
         self.quickSelectView.frame = frame;
         [self.view addSubview:self.quickSelectView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y +2, 120, 200);
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y +2, 120, 160);
             self.quickSelectView.frame = frame;
         }];
     }

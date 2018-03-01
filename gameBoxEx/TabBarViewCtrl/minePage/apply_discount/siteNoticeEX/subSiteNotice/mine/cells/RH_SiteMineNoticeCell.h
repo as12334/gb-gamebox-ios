@@ -7,11 +7,13 @@
 //
 
 #import "CLTableViewCell.h"
+#import "RH_SiteMyMessageModel.h"
+
 typedef void (^chooseBtnBlock)(void);
 @class RH_SiteMineNoticeCell;
-@protocol SiteMineNoticeCellDelegate<NSObject>
+@protocol SiteMineNoticeCellDelegate <NSObject>
 @optional
--(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell ;
+-(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell CellModel:(RH_SiteMyMessageModel*)cellMoel;
 @end
 
 @interface RH_SiteMineNoticeCell : CLTableViewCell
