@@ -248,7 +248,7 @@
   
     }
     else if (type==ServiceRequestTypeV3SystemMessageDelete) {
-        [self startUpdateDataWithShowRefreshCtrl:NO];
+        [self startUpdateData] ;
         self.headerView.statusMark =YES;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
