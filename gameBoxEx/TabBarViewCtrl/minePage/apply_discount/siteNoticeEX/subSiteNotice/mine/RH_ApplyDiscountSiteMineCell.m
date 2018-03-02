@@ -187,6 +187,14 @@
                                                                          startRow:0
                                                                    segmentedCount:1] ;
 }
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
 
 -(BOOL)showNotingIndicaterView
 {
@@ -220,7 +228,8 @@
 #pragma mark-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+//    [self startUpdateData] ;
+    [self showNoRefreshLoadData] ;
 }
 
 
@@ -246,17 +255,21 @@
         }
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageDelete) {
-        [self startUpdateData] ;
+//        [self startUpdateData] ;
+        [self showNoRefreshLoadData] ;
         self.headerView.statusMark = YES;
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
-        [self startUpdateData];
+//        [self startUpdateData];
+        [self showNoRefreshLoadData] ;
         self.headerView.statusMark = YES;
     }
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
     if (type == ServiceRequestTypeV3SiteMessageMyMessage){
         [self loadDataFailWithError:error] ;
     }

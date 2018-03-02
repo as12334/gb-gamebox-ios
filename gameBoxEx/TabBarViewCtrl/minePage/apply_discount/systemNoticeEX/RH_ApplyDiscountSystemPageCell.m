@@ -20,6 +20,7 @@
 @property (nonatomic,strong,readonly)RH_MPSystemNoticHeaderView *headerView;
 @property (nonatomic,strong,readonly)RH_SystemNoticeListView *listView;
 @property (nonatomic,assign)NSInteger apiId;
+@property(nonatomic,strong)NSArray *dataArr ;
 @end
 
 @implementation RH_ApplyDiscountSystemPageCell
@@ -30,7 +31,6 @@
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-   
     if (self.contentTableView == nil) {
         [self.contentView addSubview:self.headerView];
         self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(50) ;
@@ -50,10 +50,6 @@
         };
     }else {
         [self updateWithContext:context];
-    }
-    if (self.listView.superview){
-        [self.listView removeFromSuperview] ;
-        _listView = nil ;
     }
 }
 
@@ -91,7 +87,8 @@
 
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+//    [self startUpdateData] ;
+      [self showNoRefreshLoadData] ;
 }
 
 -(BOOL)showNotingIndicaterView
@@ -122,6 +119,7 @@
 {
     if (type==ServiceRequestTypeV3SystemNotice)
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST] totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM] completedBlock:nil];
         [self.contentTableView reloadData];
@@ -133,6 +131,7 @@
 {
     if (type==ServiceRequestTypeV3SystemNotice )
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
@@ -229,7 +228,8 @@
                 }];
             }
             weakSelf.startDate = [weakSelf changedSinceTimeString:row];
-            [weakSelf startUpdateData] ;
+//            [weakSelf startUpdateData] ;
+            [weakSelf showNoRefreshLoadData] ;
         };
     }
     return _listView;
@@ -251,8 +251,19 @@
 }
 -(void)cellStartUpdata
 {
-    [self startUpdateData] ;
+//    [self startUpdateData] ;
+    [self showNoRefreshLoadData] ;
 }
+
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
+
 #pragma mark 修改时间
 -(NSString *)changedSinceTimeString:(NSInteger)row
 {

@@ -90,10 +90,6 @@
         self.contentScrollView = self.contentTableView;
         self.contentTableView.tableHeaderView = self.sendView ;
     }
-    if (self.listView.superview){
-        [self.listView removeFromSuperview] ;
-        _listView = nil ;
-    }
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -151,24 +147,7 @@
     return _listView;
 }
 
-#pragma mark- observer Touch gesture
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    return self.listView.superview?YES:NO ;
-}
 
--(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
-{
-    if (self.listView.superview){
-        [UIView animateWithDuration:0.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
-        } completion:^(BOOL finished) {
-            [self.listView removeFromSuperview];
-        }];
-    }
-}
 -(void)selectedSendViewdiscountType:(CGRect )frame
 {
     if (!self.listView.superview) {
@@ -178,10 +157,9 @@
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
             CGRect framee = self.listView.frame;
-            framee.size.height = 200;
+            framee.size.height = 160;
             self.listView.frame = framee;
         }];
-        
     }
     else
     {

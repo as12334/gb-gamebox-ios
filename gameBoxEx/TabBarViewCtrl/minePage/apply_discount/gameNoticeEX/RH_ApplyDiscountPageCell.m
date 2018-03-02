@@ -65,11 +65,6 @@
     }else {
         [self updateWithContext:context];
     }
-    
-    if (self.listView.superview){
-        [self.listView removeFromSuperview] ;
-        _listView = nil ;
-    }
 }
 
 
@@ -118,9 +113,19 @@
         }];
     }else
     {
-         [self startUpdateData] ;
+//         [self startUpdateData] ;
+        [self showNoRefreshLoadData] ;
     }
 }
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
+
 
 -(BOOL)showNotingIndicaterView
 {
@@ -155,6 +160,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice)
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
         for (ApiSelectModel *selectModel in gameModel.mApiSelectModel) {
             [self.listView.modelArray addObject:selectModel.mApiName];
@@ -172,6 +178,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice )
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [self loadDataFailWithError:error] ;
     }
 }
@@ -283,7 +290,8 @@
                 weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
             }
             weakSelf.apiId = apiId;
-            [weakSelf startUpdateData] ;
+//            [weakSelf startUpdateData] ;
+             [weakSelf showNoRefreshLoadData] ;
         };
         _listView.kuaixuanBlock = ^(NSInteger row){
             if (weakSelf.listView.superview){
@@ -296,7 +304,8 @@
                 }];
             }
             weakSelf.startDate = [weakSelf changedSinceTimeString:row];
-            [weakSelf startUpdateData] ;
+//            [weakSelf startUpdateData] ;
+             [weakSelf showNoRefreshLoadData] ;
         };
     }
     return _listView;
@@ -337,7 +346,8 @@
 }
 -(void)cellStartUpdata
 {
-     [self startUpdateData] ;
+//     [self startUpdateData] ;
+     [self showNoRefreshLoadData] ;
 }
 #pragma mark 修改时间
 -(NSString *)changedSinceTimeString:(NSInteger)row

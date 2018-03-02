@@ -1622,6 +1622,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
                     [userInfoManager setBankList:userGroupModel.mBankList] ;
                 }
+                [self startV3GetUserAssertInfo] ;
             }
                 break ;
             

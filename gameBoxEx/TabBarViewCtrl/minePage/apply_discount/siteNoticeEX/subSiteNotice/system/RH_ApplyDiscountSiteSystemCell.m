@@ -186,7 +186,14 @@
                                                                          startRow:0
                                                                    segmentedCount:1] ;
 }
-
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
 -(BOOL)showNotingIndicaterView
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
@@ -220,7 +227,8 @@
 #pragma mark-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+//    [self startUpdateData] ;
+    [self showNoRefreshLoadData] ;
 }
 
 #pragma mark-
@@ -248,19 +256,23 @@
   
     }
     else if (type==ServiceRequestTypeV3SystemMessageDelete) {
-        [self startUpdateData] ;
+//        [self startUpdateData] ;
+        [self showNoRefreshLoadData];
         self.headerView.statusMark =YES;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
-        [self startUpdateData];
+//        [self startUpdateData];
+        [self showNoRefreshLoadData];
         self.headerView.statusMark =YES;
     }else if (type == ServiceRequestTypeSiteMessageUnReadCount)
     {
     }
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
     if (type == ServiceRequestTypeV3SiteMessage){
         [self loadDataFailWithError:error] ;
     }
