@@ -311,9 +311,14 @@
                 return ;
             }else{ //非免转 ---跳到额度转换里 自已转钱入游戏 。
                 if (lotteryAPIInfoModel.mGameLink.length){
-                    self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                    return ;
+                    if ([lotteryAPIInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
+                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
+                        return ;
+                    }else{
+                        self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                        return ;
+                    }
                 }else{
                     showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
                     return ;
@@ -326,9 +331,14 @@
                 return ;
             }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
                 if (lotteryInfoModel.mGameLink.length){
-                    self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                    return ;
+                    if ([lotteryInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
+                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+                        return ;
+                    }else{
+                        self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                        return ;
+                    }
                 }else{
                     showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
                     return ;

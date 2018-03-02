@@ -34,6 +34,7 @@
     #define RH_GuseterLock            @"RH_GuseterLock"
     #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
     NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+    //判断手势密码是否存在，更新开关状态
     if (currentGuseterLockStr) {
         [SAMKeychain setPassword: @"1" forService:@" "account:RH_updateScreenLockFlag];
         [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES] ;
@@ -43,6 +44,7 @@
         [SAMKeychain setPassword: @"0" forService:@" "account:RH_updateScreenLockFlag];
         [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
     }
+    [self.tableViewManagement reloadData];
 }
 
 - (void)viewDidLoad {
@@ -130,6 +132,9 @@
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+            [defaults removeObjectForKey:@"password"];
+            [defaults synchronize] ;
         }] ;
         
         [self backBarButtonItemHandle] ;
@@ -144,6 +149,9 @@
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
                 [self backBarButtonItemHandle] ;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+                [defaults removeObjectForKey:@"password"];
+                [defaults synchronize] ;
             }else{
                 showErrorMessage(self.view, error, @"退出失败") ;
             }
@@ -174,7 +182,6 @@
             
         case 1: ////锁屏
             return @([RH_UserInfoManager shareUserManager].isScreenLock);
-      
             break;
         default:
             break;

@@ -269,7 +269,7 @@
      wantToLoadDataWithPage:(NSUInteger)page
                 andPageSize:(NSUInteger)pageSize
 {
-    //是否在更新数据
+    //bShowRefreshCtrl是否在更新数据
     BOOL isUpdateData = pageLoadManager.dataLoadType == CLDataLoadTypeUpdate;
 
     //通知和核对网络

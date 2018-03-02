@@ -7,7 +7,6 @@
 //
 
 #import "RH_SiteMineNoticeCell.h"
-#import "RH_SiteMyMessageModel.h"
 #import "coreLib.h"
 
 #define RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage @"ChangeNotificationSiteMineMessage"
@@ -97,14 +96,14 @@
 - (IBAction)choseEdinBtnClick:(id)sender {
     [self.model updateSelectedFlag:!self.model.selectedFlag] ;
     [self setNeedUpdateCell] ;
-    ifRespondsSelector(self.delegate, @selector(siteMineNoticeCellTouchEditBtn:)){
-        [self.delegate siteMineNoticeCellTouchEditBtn:self] ;
+    ifRespondsSelector(self.delegate, @selector(siteMineNoticeCellTouchEditBtn:CellModel:)){
+        [self.delegate siteMineNoticeCellTouchEditBtn:self CellModel:self.model] ;
     }
 }
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:nil] ;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

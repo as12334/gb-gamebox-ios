@@ -61,7 +61,7 @@
 -(NSString *)showGameLink
 {
     if (!_showGameLink){
-        if (!_mAutoPay && _mApiTypeID!=2){
+        if (!_mAutoPay && _mApiTypeID!=2 && ![_mGameLink containsString:@"mobile-api"]){
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             if ([_mGameLink containsString:@"http:"]||[_mGameLink containsString:@"https:"]) {
                 _showGameLink = [NSString stringWithFormat:@"%@",_mGameLink] ;

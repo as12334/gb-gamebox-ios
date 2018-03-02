@@ -214,7 +214,7 @@
         self.quickSelectView.frame = frame;
         [self.view addSubview:self.quickSelectView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y +2, 120, 200);
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y +2, 120, 160);
             self.quickSelectView.frame = frame;
         }];
     }
@@ -504,7 +504,30 @@
 #pragma mark-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+    else if (self.userInfoView.superview){
+        [self userInfoButtonItemHandle] ;
+    }else if (self.quickSelectView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.quickSelectView.frame;
+            framee.size.height = 0;
+            self.quickSelectView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.quickSelectView removeFromSuperview];
+        }];
+    }else
+    {
+         [self startUpdateData] ;
+    }
+   
 }
 
 

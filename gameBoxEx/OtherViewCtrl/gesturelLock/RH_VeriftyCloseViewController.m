@@ -24,9 +24,9 @@
 @synthesize verifyCloseView = _verifyCloseView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.hiddenStatusBar = YES ;
+//    self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
-    self.hiddenNavigationBar = YES ;
+//    self.hiddenNavigationBar = YES ;
     
     [self.view addSubview:self.verifyCloseView];
 }

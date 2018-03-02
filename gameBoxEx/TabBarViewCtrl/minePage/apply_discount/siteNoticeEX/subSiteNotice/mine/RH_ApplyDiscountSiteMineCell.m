@@ -78,14 +78,12 @@
     }
 }
 #pragma mark - 选择按钮点击 SiteMineNoticeCellDelegate
--(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell
+-(void)siteMineNoticeCellTouchEditBtn:(RH_SiteMineNoticeCell *)siteMineNoticeCell CellModel:(RH_SiteMyMessageModel *)cellMoel
 {
-    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:siteMineNoticeCell] ;
-    RH_SiteMyMessageModel *siteModel =self.siteModelArray[indexPath.item];
-    if (siteModel.selectedFlag) {
-        [self.deleteModelArray addObject:siteModel];
+    if (cellMoel.selectedFlag) {
+        [self.deleteModelArray addObject:cellMoel];
     }else{
-        [self.deleteModelArray removeObject:siteModel];
+        [self.deleteModelArray removeObject:cellMoel];
     }
 }
 
@@ -128,12 +126,13 @@
             str = [str substringToIndex:([str length]-1)];// 去掉最后一个","
         }
         [self.deleteModelArray removeAllObjects];
+        [self.serviceRequest cancleAllServices];
         [self.serviceRequest startV3LoadMyMessageDeleteWithIds:str];
     }else
     {
         showAlertView(@"提示", @"请选择消息记录");
     }
-    
+    [self.contentTableView reloadData];
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
@@ -147,13 +146,11 @@
         }
         [self.deleteModelArray removeAllObjects];
         [self.serviceRequest startV3LoadMyMessageReadYesWithIds:str];
-        [self.contentTableView reloadData];
     }else
     {
        showAlertView(@"提示", @"请选择消息记录");
     }
-   
-
+    [self.contentTableView reloadData];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -238,7 +235,6 @@
                 [self.siteModelArray addObject:myModel];
             }
             NSUInteger totalNumber = [dictTmp[@"pageTotal"] integerValue] ;
-            
             [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:@"dataList"]
                                 totalCount:totalNumber
                             completedBlock:nil];
@@ -270,6 +266,11 @@
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
         [self loadDataFailWithError:error] ;
     }
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
 @end

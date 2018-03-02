@@ -15,16 +15,13 @@
 #import "RH_SiteSystemDetailController.h"
 #import "RH_SiteMsgUnReadCountModel.h"
 
-#import "RH_ApplyDiscountSitePageCell.h"
+
 @interface RH_ApplyDiscountSiteSystemCell ()<MPSiteMessageHeaderViewDelegate,SiteSystemNoticeCellDelegate>
 @property(nonatomic,strong)RH_MPSiteMessageHeaderView *headerView;
 @property(nonatomic,strong)NSMutableArray *siteModelArray;
 @property(nonatomic,strong)NSMutableArray *deleteModelArray;
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
-@property(nonatomic,strong)RH_ApplyDiscountSitePageCell *applyDiscountSitePageCell;
 @property(nonatomic,strong)RH_SiteMsgUnReadCountModel *unReadModel ;
-//标记第几页
-@property(nonatomic,assign)NSInteger pageNumber;
 @end
 
 @implementation RH_ApplyDiscountSiteSystemCell
@@ -58,7 +55,7 @@
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 40).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 40).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0) ;
     }else {
         [self updateWithContext:context];
     }
@@ -74,19 +71,18 @@
     if (self.pageLoadManager.currentDataCount){
         return [RH_MPSiteSystemNoticeCell heightForCellWithInfo:nil tableView:tableView context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
     }else{
-        CGFloat height =  tableView.boundHeigh - tableView.contentInset.top - tableView.contentInset.bottom ;
+        CGFloat height = tableView.boundHeigh -  tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
     }
 }
+
 #pragma mark - SiteSystemNoticeCellDelegate
--(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell
+-(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell cellModel:(RH_SiteMessageModel *)cellModel
 {
-    NSIndexPath *indexPath = [self.contentTableView indexPathForCell:systemNoticeCell] ;
-    RH_SiteMessageModel *siteModel =self.siteModelArray[indexPath.item];
-    if (siteModel.selectedFlag) {
-        [self.deleteModelArray addObject:siteModel];
+    if (cellModel.selectedFlag) {
+        [self.deleteModelArray addObject:cellModel];
     }else{
-        [self.deleteModelArray removeObject:siteModel];
+        [self.deleteModelArray removeObject:cellModel];
     }
 }
 
@@ -129,11 +125,12 @@
         }
         [self.deleteModelArray removeAllObjects];
         [self.serviceRequest startV3LoadSystemMessageDeleteWithIds:str];
+        [self.contentTableView reloadData];
     }else
     {
         showAlertView(@"提示", @"请选择消息记录");
     }
-   
+   [self.contentTableView reloadData];
 }
 -(void)siteMessageHeaderViewReadBtn:(RH_MPSiteMessageHeaderView *)view
 {
@@ -151,7 +148,7 @@
     {
         showAlertView(@"提示", @"请选择消息记录");
     }
-  
+  [self.contentTableView reloadData];
 
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,16 +172,15 @@
     return _loadingIndicateTableViewCell ;
 }
 #pragma mark 数据请求
--(RH_LoadingIndicateView*)contentLoadingIndicateView
+-(RH_LoadingIndicateView*)loadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
 }
 
-
 - (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
 {
     return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
-                                                          pageLoadControllerClass:[CLArrayPageLoadController class]
+                                                          pageLoadControllerClass:nil
                                                                          pageSize:[self defaultPageSize]
                                                                      startSection:0
                                                                          startRow:0
@@ -226,10 +222,6 @@
 {
     [self startUpdateData] ;
 }
-//-(void)startUpdateData
-//{
-//
-//}
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
@@ -237,7 +229,8 @@
     if (type == ServiceRequestTypeV3SiteMessage){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         NSInteger totalInter = [dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM];
-        if (data!=nil) {
+        NSArray *dataArr = [dictTmp objectForKey:@"list"];
+        if (dataArr.count > 0) {
             [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]
                                 totalCount:totalInter completedBlock:nil] ;
             //获取model
@@ -252,10 +245,10 @@
             self.headerView.allChoseBtn.userInteractionEnabled = NO;
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
-        [self.contentTableView reloadData];
+  
     }
     else if (type==ServiceRequestTypeV3SystemMessageDelete) {
-        [self startUpdateData];
+        [self startUpdateData] ;
         self.headerView.statusMark =YES;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
