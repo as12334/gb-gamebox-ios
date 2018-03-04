@@ -50,7 +50,6 @@
 {
     return [self.textField.text copy] ;
 }
-
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     [self startVerifyCode] ;

@@ -1589,6 +1589,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
               
            case ServiceRequestTypeUserLogin:
+            {
+                NSArray *list = [response.allHeaderFields[@"Set-Cookie"] componentsSeparatedByString:@";"] ;
+                for (NSString *strTmp in list) {
+                    if ([strTmp containsString:@"SID="] && strTmp.length>20){
+                        NSLog(@"");
+                    }
+                }
+//                response
+            }
+                break;
            case ServiceRequestTypeUserAutoLogin:
             {
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;

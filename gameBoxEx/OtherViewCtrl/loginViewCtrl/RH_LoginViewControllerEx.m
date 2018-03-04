@@ -235,7 +235,12 @@
                 }
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
-                showMessage(self.view, @"用户名或密码错误", nil);
+                if ([[result objectForKey:@"message"] isEqualToString:@"账号被冻结"]) {
+                     showMessage(self.view, @"您的账号已被冻结，请联系客服", nil);
+                }else
+                {
+                     showMessage(self.view, @"用户名或密码错误", nil);
+                }
                 [appDelegate updateLoginStatus:NO] ;
                 [self.contentTableView reloadData] ;
             }

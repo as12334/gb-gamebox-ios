@@ -47,6 +47,9 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property(nonatomic,strong,readonly) NSString *loginUserName    ;
 @property(nonatomic,strong,readonly) NSString *loginTime        ;
 
+//记录用户修改密码是否开启验证码
+@property(nonatomic,assign) BOOL updateUserVeifyCode        ;
+
 -(void)updatelanguageOption:(CLLanguageOption)languageOption ;
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;
 -(void)updateScreenLockFlag:(BOOL)lock      ;

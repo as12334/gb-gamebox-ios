@@ -19,7 +19,8 @@
 #define  key_screenlockFlag                              @"key_screenlockFlag"
 #define  key_screenlockPassword                          @"key_screenlockPassword"
 #define  key_lastLoginUserName                           @"key_lastLoginUserName"
-#define  key_lastLoginTime                              @"key_lastLoginTime"
+#define  key_lastLoginTime                               @"key_lastLoginTime"
+#define  key_updateUserVeifyCode                         @"key_updateUserVeifyCode"
 
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly) RH_ServiceRequest * serviceRequest;
@@ -261,6 +262,12 @@
 {
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults stringForKey:key_lastLoginTime] ;
+}
+
+-(BOOL)updateUserVeifyCode
+{
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:key_updateUserVeifyCode] ;
 }
 
 -(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime

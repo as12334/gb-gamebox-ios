@@ -227,7 +227,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请重新输入新密码");
+            showMessage(self.view, nil, @"请再次输入新密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -279,7 +279,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请重新输入新密码");
+            showMessage(self.view, nil, @"请再次输入新密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -307,7 +307,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         return ;
     }
     
-    else{
+    else if(_modifySafetyStatus== ModifySafetyStatus_UpdatePermissionPassword){
         NSString *realName = [self.userNameCell.textField.text copy] ;
         NSString *oldPassword = [self.userPermissionCell.textField.text copy] ;
         NSString *newPassword = [self.userNewPermissionCell.textField.text copy] ;
@@ -331,7 +331,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请重新输入新密码");
+            showMessage(self.view, nil, @"请再次输入新密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -341,7 +341,11 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
             return;
         }
-        
+        if ([oldPassword isEqualToString:newPassword]) {
+            showMessage(self.view, nil, @"新密码与旧密码一样！");
+            [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return;
+        }
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
         [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
                                                     originPassword:oldPassword
@@ -384,8 +388,9 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySucfullSettingSafetyPassword object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"已设定安全密码":@"已更新安全密码", nil);
-            [self backBarButtonItemHandle] ;
+            showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"定安全密码设置成功":@"安全密码修改成功", nil, ^{
+                [self backBarButtonItemHandle] ;
+            });
             [serviceRequest startV3UserSafetyInfo];
         }] ;
     }else if (type == ServiceRequestTypeV3UserSafeInfo) {

@@ -48,6 +48,11 @@
         [self setNeedUpdateView] ;
     }
 }
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ; 
+}
 #pragma mark-
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView

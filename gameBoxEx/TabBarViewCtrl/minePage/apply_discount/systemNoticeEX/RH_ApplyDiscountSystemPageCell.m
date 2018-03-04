@@ -227,7 +227,8 @@
                     [weakSelf.listView removeFromSuperview];
                 }];
             }
-            weakSelf.startDate = [weakSelf changedSinceTimeString:row];
+            weakSelf.startDate = [weakSelf changedSinceTimeString:row][0];
+            weakSelf.endDate = [weakSelf changedSinceTimeString:row][1];
 //            [weakSelf startUpdateData] ;
             [weakSelf showNoRefreshLoadData] ;
         };
@@ -265,7 +266,7 @@
 }
 
 #pragma mark 修改时间
--(NSString *)changedSinceTimeString:(NSInteger)row
+-(NSArray *)changedSinceTimeString:(NSInteger)row
 {
     NSDate *date = [[NSDate alloc]init];
     //获取本周的日期
@@ -313,7 +314,8 @@
     }
     _headerView.startDate = date;
     NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd ");
-    return beforDate;
+    NSString *endDate = dateStringWithFormatter(_headerView.endDate, @"yyyy-MM-dd") ;
+    return @[beforDate,endDate];
 }
 
 #pragma mark - 获取当前月1号
