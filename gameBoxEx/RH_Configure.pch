@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1686,6 +1686,14 @@
 #define CODE    @"suxr"
 #define S        @"ff8bb0c6818bdd5c9668d99666309bbd"
 #define SID        @"377"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _co5v //澳门金沙
+
+#define CODE    @"co5v"
+#define S        @"b89facd6f9c3f10352ed91b69e0a4c03"
+#define SID        @"378"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
