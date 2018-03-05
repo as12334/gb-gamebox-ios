@@ -669,7 +669,6 @@
 #define SITE_TYPE    @"integrated"
 
 
-
 #elif _n5ns //澳门威尼斯人
 
 #define CODE    @"n5ns"
