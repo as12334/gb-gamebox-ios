@@ -1682,6 +1682,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _suxr //澳门巴黎人
+
+#define CODE    @"suxr"
+#define S        @"ff8bb0c6818bdd5c9668d99666309bbd"
+#define SID        @"377"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #endif
 
 #endif /* RH_Configure_h */
