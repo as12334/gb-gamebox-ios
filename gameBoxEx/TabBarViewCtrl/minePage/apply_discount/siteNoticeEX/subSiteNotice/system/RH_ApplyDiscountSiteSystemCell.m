@@ -259,6 +259,8 @@
 //        [self startUpdateData] ;
         [self showNoRefreshLoadData];
         self.headerView.statusMark =YES;
+        [self.contentTableView reloadData];
+        showMessage(self, nil, @"消息删除成功") ;
     }
     else if (type == ServiceRequestTypeV3SystemMessageYes){
 //        [self startUpdateData];

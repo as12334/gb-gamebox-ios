@@ -75,6 +75,13 @@
     _backToFirstPage = [context boolValue] ;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    //请求是否开启验证码接口
+    [self.serviceRequest startV3IsOpenCodeVerifty];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -268,6 +275,8 @@
                 [self.contentTableView reloadData] ;
             }
         }] ;
+    }else if (type == ServiceRequestTypeV3IsOpenCodeVerifty){
+        
     }
 }
 
@@ -290,6 +299,8 @@
         }
     }else if (type == ServiceRequestTypeV3VerifyRealNameForApp){
     
+    }else if (type == ServiceRequestTypeV3IsOpenCodeVerifty){
+        [self.serviceRequest startV3IsOpenCodeVerifty];
     }
 }
 

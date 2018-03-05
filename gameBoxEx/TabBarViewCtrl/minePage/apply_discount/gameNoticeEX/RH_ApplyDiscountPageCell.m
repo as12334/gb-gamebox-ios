@@ -144,7 +144,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
     NSDate *defaultStartDate = [[NSDate date] dateWithMoveDay:-30];
-    self.headerView.startDate = [[NSDate date] dateWithMoveDay:-30];
+    NSDate *selectStareDate = [dateFormatter dateFromString:self.startDate] ;
+    self.headerView.startDate =selectStareDate?selectStareDate:[[NSDate date] dateWithMoveDay:-30];
     //默认开始时间
     NSString *defaultStartStr = [dateFormatter stringFromDate:defaultStartDate] ;
     
