@@ -166,7 +166,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_LOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":@""
                                      }
                     queryArguments:verCode.length?@{@"username":userName?:@"",
                                                     @"password":password?:@"",
@@ -186,7 +187,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_AUTOLOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",@"Cookie":@""
                                      }
                     queryArguments:@{@"username":userName?:@"",
                                      @"password":password?:@""
@@ -314,10 +315,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3UserInfo
 {
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",@"SID":manager.sidString}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1589,20 +1591,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
               
            case ServiceRequestTypeUserLogin:
-            {
-                NSArray *list = [response.allHeaderFields[@"Set-Cookie"] componentsSeparatedByString:@";"] ;
-                for (NSString *strTmp in list) {
-                    if ([strTmp containsString:@"SID="] && strTmp.length>20){
-                        NSLog(@"");
-                    }
-                }
-//                response
-            }
-                break;
            case ServiceRequestTypeUserAutoLogin:
             {
+                NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+                NSMutableArray *mArr = [NSMutableArray array] ;
+                RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+                if (isSidStr(responseStr)) {
+                [mArr addObjectsFromArray:matchString(responseStr)] ;
+                }
+                if (mArr.count>0) {
+                    if (mArr.count==6) {
+                        manager.sidString = mArr[5] ;
+                    }else{
+                        manager.sidString = mArr[1] ;
+                    }
+                }
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
-                
                 if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
                     [SITE_TYPE isEqualToString:@"integratedv3oc"]){
                    [self startV3UserInfo] ;

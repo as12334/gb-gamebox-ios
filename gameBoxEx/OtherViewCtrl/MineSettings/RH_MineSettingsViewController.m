@@ -136,7 +136,6 @@
             [defaults removeObjectForKey:@"password"];
             [defaults synchronize] ;
         }] ;
-        
         [self backBarButtonItemHandle] ;
     }
 }

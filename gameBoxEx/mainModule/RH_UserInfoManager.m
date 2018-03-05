@@ -266,8 +266,12 @@
 
 -(BOOL)updateUserVeifyCode
 {
-    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults boolForKey:key_updateUserVeifyCode] ;
+    return _updateUserVeifyCode ;
+}
+#pragma mark - SID
+-(NSString *)sidString
+{
+    return _sidString ;
 }
 
 -(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime
