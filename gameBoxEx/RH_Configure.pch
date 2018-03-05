@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -667,6 +667,7 @@
 #define SID        @"198"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
+
 
 
 #elif _n5ns //澳门威尼斯人
