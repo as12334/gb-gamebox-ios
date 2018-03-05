@@ -1689,6 +1689,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _co5v //澳门金沙
+
+#define CODE    @"co5v"
+#define S        @"b89facd6f9c3f10352ed91b69e0a4c03"
+#define SID        @"378"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #endif
 
 #endif /* RH_Configure_h */
