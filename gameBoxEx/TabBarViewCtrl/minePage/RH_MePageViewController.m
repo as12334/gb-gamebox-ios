@@ -48,6 +48,11 @@
         [self setNeedUpdateView] ;
     }
 }
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ; 
+}
 #pragma mark-
 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -155,7 +160,7 @@
     }else{
         if (MineSettingInfo==nil){
             if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3GETUSERASSERT]==FALSE){
-                [self.serviceRequest startV3GetUserAssertInfo] ;
+                [self.serviceRequest startV3UserInfo] ;
             }
         }
         

@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bankCardNumber;
 
+@property (weak, nonatomic) IBOutlet UILabel *rightLab;
 
 
 @end

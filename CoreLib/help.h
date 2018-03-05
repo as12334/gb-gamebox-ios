@@ -261,6 +261,9 @@ BOOL NSProtocolContainSelector(Protocol *p, SEL aSel, BOOL isRequiredMethod, BOO
 BOOL isPhoneNumber(NSString *mobileNum) ;
 BOOL isEmailAddress(NSString * email) ;
 BOOL isInteger(NSString * integerStr) ;
+BOOL isSidStr(NSString *sidStr) ;
+NSArray * matchString(NSString *string) ;
+
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat) ;
 NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone) ;
 

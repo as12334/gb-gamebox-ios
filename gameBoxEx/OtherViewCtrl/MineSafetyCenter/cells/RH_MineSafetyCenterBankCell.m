@@ -49,7 +49,6 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
     if (bankModel.mBankCardNumber) {
         [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.showBankURL]]];
@@ -69,11 +68,14 @@
             self.bankCardNumber.text =  [NSString stringWithFormat:@"%@",bankModel.mBankCardNumber ];
         }
         self.noBankLabel.hidden = YES;
+        self.rightLab.text = @"查看" ;
     }else
     {
         self.bankImage.hidden = YES;
         self.bankCardNumber.hidden = YES;
         self.noBankLabel.text = @"(未绑定银行卡)";
+        self.rightLab.text = @"设置" ;
+        
     }
    
 }

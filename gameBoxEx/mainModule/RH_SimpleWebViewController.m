@@ -849,9 +849,13 @@
             if (args.count==0) {
                 return  ;
             }
-            
             customUrl = args[0] ;
-            self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
+            if ([customUrl.toString containsString:@"http:"] ||[customUrl.toString containsString:@"https:"] ) {
+                 self.appDelegate.customUrl =[NSString stringWithFormat:@"%@",customUrl.toString];
+            }else
+            {
+                 self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
+            }
             [self showViewController:[RH_CustomViewController viewController] sender:self];
         };
         

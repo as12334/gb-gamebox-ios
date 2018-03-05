@@ -136,7 +136,6 @@
             [defaults removeObjectForKey:@"password"];
             [defaults synchronize] ;
         }] ;
-        
         [self backBarButtonItemHandle] ;
     }
 }
@@ -145,7 +144,7 @@
 {
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            if (error.code==RH_API_ERRORCODE_USER_LOGOUT){
+            if (error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code == RH_API_ERRORCODE_SESSION_TAKEOUT || error.code == RH_API_ERRORCODE_SESSION_EXPIRED){
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
                 [self backBarButtonItemHandle] ;

@@ -221,10 +221,10 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
 //    RH_MineSafetyCenterCell *centerCell = ConvertToClassPointer(RH_MineSafetyCenterCell, cell) ;
-    if (indexPath.row==3) {
+//    if (indexPath.row==2) {
         RH_BankCardModel *carModel = ConvertToClassPointer(RH_BankCardModel, MineSettingInfo.mBankCard);
         return carModel ;
-    }
-    return nil ;
+//    }
+//    return nil ;
 }
 @end

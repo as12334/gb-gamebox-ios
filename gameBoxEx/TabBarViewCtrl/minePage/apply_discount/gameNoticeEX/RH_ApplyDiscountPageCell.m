@@ -62,6 +62,9 @@
         self.headerView.kuaixuanBlock = ^(int number, CGRect frame){
             [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:1];
         };
+        NSDate *date1 = [[NSDate date] dateWithMoveDay:-30] ;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+        self.startDate =  [formatter stringFromDate:date1];
     }else {
         [self updateWithContext:context];
     }
@@ -113,9 +116,19 @@
         }];
     }else
     {
-         [self startUpdateData] ;
+//         [self startUpdateData] ;
+        [self showNoRefreshLoadData] ;
     }
 }
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
+
 
 -(BOOL)showNotingIndicaterView
 {
@@ -128,11 +141,16 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
+    NSDate *defaultStartDate = [[NSDate date] dateWithMoveDay:-30];
+    self.headerView.startDate = [[NSDate date] dateWithMoveDay:-30];
+    //默认开始时间
+    NSString *defaultStartStr = [dateFormatter stringFromDate:defaultStartDate] ;
+    
+    NSDate *date = [NSDate date];
     NSString *strDate = [dateFormatter stringFromDate:date];
-    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate?self.startDate:strDate
+    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate?self.startDate:defaultStartStr
                                                 endTime:self.endDate?self.endDate:strDate
                                              pageNumber:page+1
                                                pageSize:pageSize
@@ -150,6 +168,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice)
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
         for (ApiSelectModel *selectModel in gameModel.mApiSelectModel) {
             [self.listView.modelArray addObject:selectModel.mApiName];
@@ -167,6 +186,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice )
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [self loadDataFailWithError:error] ;
     }
 }
@@ -278,20 +298,8 @@
                 weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
             }
             weakSelf.apiId = apiId;
-            [weakSelf startUpdateData] ;
-        };
-        _listView.kuaixuanBlock = ^(NSInteger row){
-            if (weakSelf.listView.superview){
-                [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y + 2, 100, 0);
-                    framee.size.height = 0;
-                    weakSelf.listView.frame = framee;
-                } completion:^(BOOL finished) {
-                    [weakSelf.listView removeFromSuperview];
-                }];
-            }
-            weakSelf.startDate = [weakSelf changedSinceTimeString:row];
-            [weakSelf startUpdateData] ;
+//            [weakSelf startUpdateData] ;
+             [weakSelf showNoRefreshLoadData] ;
         };
     }
     return _listView;
@@ -332,41 +340,10 @@
 }
 -(void)cellStartUpdata
 {
-     [self startUpdateData] ;
+//     [self startUpdateData] ;
+     [self showNoRefreshLoadData] ;
 }
-#pragma mark 修改时间
--(NSString *)changedSinceTimeString:(NSInteger)row
-{
-    NSDate *date = [[NSDate alloc]init];
-    switch (row) {
-        case 0:
-            date= [[NSDate date] dateWithMoveDay:0];
-            break;
-        case 1:
-            date= [[NSDate date] dateWithMoveDay:-1];
-            break;
-        case 2:
-            date= [[NSDate date] dateWithMoveDay:-7];
-            break;
-        case 3:
-            date= [[NSDate date] dateWithMoveDay:-14];
-            break;
-        case 4:
-            date= [[NSDate date] dateWithMoveDay:-30];
-            break;
-        case 5:
-            date= [[NSDate date] dateWithMoveDay:-7];
-            break;
-        case 6:
-            date= [[NSDate date] dateWithMoveDay:-30];
-            break;
-            
-        default:
-            break;
-    }
-    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
-    return beforDate;
-}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.listView.superview){

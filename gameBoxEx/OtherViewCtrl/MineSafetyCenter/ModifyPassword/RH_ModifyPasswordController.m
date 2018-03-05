@@ -13,6 +13,8 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_StaticAlertView.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_ModifyPasswordController () <CLTableViewManagementDelegate, RH_ServiceRequestDelegate, RH_StaticAlertViewDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
@@ -23,6 +25,7 @@
 @property (nonatomic,strong,readonly) RH_ModifyPasswordSpecialCell *newSettingPasswordCell    ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCell *confirmSettingPasswordCell ;
 @property (nonatomic,strong,readonly) RH_ModifyPasswordCodeCell *passwordCodeCell ;
+@property(nonatomic,strong,readonly)RH_UserInfoManager *infoManager ;
 
 @property (nonatomic, strong,readonly) UILabel *label_Notice;
 @end
@@ -31,9 +34,22 @@
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize modifyButton = _modifyButton  ;
 @synthesize label_Notice = _label_Notice  ;
+@synthesize infoManager = _infoManager;
 
 - (BOOL)isSubViewController {
     return YES;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    if (_infoManager.updateUserVeifyCode) {
+          [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
+    }else
+    {
+          [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPassword"] ;
+          self.tableViewManagement.delegate = self;
+    }
 }
 
 - (void)viewDidLoad {
@@ -43,6 +59,15 @@
     self.needObserverTapGesture = YES ;
     [self setupInfo];
 }
+
+-(RH_UserInfoManager *)infoManager
+{
+    if (!_infoManager) {
+        _infoManager = [RH_UserInfoManager shareUserManager] ;
+    }
+    return _infoManager;
+}
+
 
 #pragma mark - tableview cell--
 -(RH_ModifyPasswordCell *)currentPasswordCell
@@ -98,8 +123,15 @@
 
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
-        _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_ModifyPassword" bundle:nil];
-        _tableViewManagement.delegate = self;
+        if (_infoManager.updateUserVeifyCode) {
+            _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_ModifyPasswordUsercode" bundle:nil];
+            _tableViewManagement.delegate = self;
+        }else
+        {
+            _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_ModifyPassword" bundle:nil];
+            _tableViewManagement.delegate = self;
+        }
+       
     }
     return _tableViewManagement;
 }
@@ -140,9 +172,6 @@
     NSString *currentPwd = self.currentPasswordCell.textField.text;
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
-    
-    
-    
     if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0) {
         showMessage(self.view, @"错误", @"请输入密码");
         return;
@@ -159,7 +188,10 @@
         showMessage(self.view, nil, @"两次输入的密码不一样！");
         return;
     }
-    
+    if ([newPwd isEqualToString:currentPwd]) {
+        showMessage(self.view, nil, @"新密码与旧密码一样！");
+        return;
+    }
     
     if (self.passwordCodeCell){//需要输入验证码
         if (self.passwordCodeCell.passwordCode.length<1){
@@ -209,6 +241,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3UpdateLoginPassword){
+        _infoManager.updateUserVeifyCode = NO ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if (self.rhAlertView.superview == nil) {
                 self.rhAlertView = [[RH_StaticAlertView alloc] init];
@@ -231,18 +264,22 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3UpdateLoginPassword){
-        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"修改密码失败");
-        }] ;
+        
+        if(error.code != RH_API_ERRORCODE_SESSION_TAKEOUT){
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showErrorMessage(self.view, error, @"修改密码失败");
+            }] ;
+        }
         NSDictionary *userInfo = error.userInfo ;
         if ([userInfo boolValueForKey:RH_GP_MINEMODIFYPASSWORD_ISOPENCAPTCHA]){
             [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
+            _infoManager.updateUserVeifyCode = YES ;
         }
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
             self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
         }
-        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 6 || [userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 0) {
-            self.label_Notice.hidden = YES;
+        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 0 || [userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 5) {
+            self.label_Notice.hidden = YES ;
         }
         //在这里判断状态码， 如果冻结，就直接退出APP
         //TODO
