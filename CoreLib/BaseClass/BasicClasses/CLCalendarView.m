@@ -107,31 +107,23 @@
 //    setSizeConstraint(self.cancelButton, NSLayoutAttributeHeight, 30.0f );
 }
 
-//#pragma mark-
-//-(void)setDefaultDate:(NSString *)defaultDate
-//{
-//    if (_defaultDate!=defaultDate){
-//        _defaultDate = defaultDate ;
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-//        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
-//        NSDate *date = [dateFormatter dateFromString:defaultDate] ;
-//        if (date){
-//            [self.datePicker setDate:date animated:NO] ;
-//        }
-//    }
-//}
 #pragma mark-  修改默认时间
 -(void)setDefaultDate:(NSString *)defaultDate
 {
     if (_defaultDate!=defaultDate){
-         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
+        _defaultDate = defaultDate ;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
-        NSDate *date = [dateFormatter dateFromString:[dateFormatter stringFromDate:[NSDate date]]] ;
+        NSDate *date = [dateFormatter dateFromString:defaultDate] ;
         if (date){
+            [self.datePicker setDate:date animated:NO] ;
+        }else{
+            NSDate *date = [dateFormatter dateFromString:[dateFormatter stringFromDate:[NSDate date]]] ;
             [self.datePicker setDate:date animated:NO] ;
         }
     }
 }
+
 #pragma mark-  设置最小日期
 -(void)setMinDate:(NSDate *)minDate
 {

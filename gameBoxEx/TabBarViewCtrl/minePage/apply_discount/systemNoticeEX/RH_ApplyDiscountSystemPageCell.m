@@ -102,11 +102,29 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    NSDate *date = [NSDate date];
+//    NSDate *date = [NSDate date];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *strDate = [dateFormatter stringFromDate:date];
+    
+//    NSDate *selectStareDate = [dateFormatter dateFromString:self.startDate] ;
+//    self.headerView.startDate =selectStareDate?selectStareDate:[[NSDate date] dateWithMoveDay:-30];
+//    //默认开始时间
+//    NSString *defaultStartStr = [dateFormatter stringFromDate:dateFormatter] ;
+    
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
+    NSDate *defaultStartDate = [[NSDate date] dateWithMoveDay:-30];
+    NSDate *selectStareDate = [dateFormatter dateFromString:self.startDate] ;
+    self.headerView.startDate =selectStareDate?selectStareDate:[[NSDate date] dateWithMoveDay:-30];
+    //默认开始时间
+    NSString *defaultStartStr = [dateFormatter stringFromDate:defaultStartDate] ;
+    
+    NSDate *date = [NSDate date];
     NSString *strDate = [dateFormatter stringFromDate:date];
-    [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate?self.startDate:strDate endTime:self.endDate?self.endDate:strDate pageNumber:page+1 pageSize:pageSize];
+    
+    [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate?self.startDate:defaultStartStr endTime:self.endDate?self.endDate:strDate pageNumber:page+1 pageSize:pageSize];
 }
 
 -(void)cancelLoadDataHandle

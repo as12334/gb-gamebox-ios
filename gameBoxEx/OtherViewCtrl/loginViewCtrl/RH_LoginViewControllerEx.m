@@ -17,6 +17,7 @@
 
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
+@property (nonatomic,assign) BOOL isInitOk ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
 @property (nonatomic,assign)CGRect frame;
 @property(nonatomic,strong)RH_OldUserVerifyView *oldUserVerifyView;
@@ -70,16 +71,15 @@
     
 }
 
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated] ;
+//    [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
+//}
+
 -(void)setupViewContext:(id)context
 {
     _backToFirstPage = [context boolValue] ;
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated] ;
-    //请求是否开启验证码接口
-    [self.serviceRequest startV3IsOpenCodeVerifty];
 }
 
 - (void)viewDidLoad {
@@ -91,6 +91,7 @@
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
    
+    [self setNeedUpdateView] ;
    //关闭键盘
     self.view.userInteractionEnabled = YES;
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
@@ -119,6 +120,30 @@
     }
     return _loginViewCell ;
 }
+
+#pragma mark-
+-(RH_LoadingIndicateView*)contentLoadingIndicateView
+{
+    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+}
+
+
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初始化登录信息" detailText:@"请稍等"] ;
+//    [self.serviceRequest startV3IsOpenCodeVerifty] ;
+    [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
+}
+
+-(void)updateView
+{
+    if (!self.isInitOk){
+        [self loadingIndicateViewDidTap:nil] ;
+        return ;
+    }
+    [self.contentTableView reloadData] ;
+}
+
 
 #pragma mark - RH_OldUserVerifyViewDelegate
 
@@ -154,7 +179,7 @@
                                           resultPlayerAccount:self.loginViewCell.userName searchPlayerAccount:self.loginViewCell.userName tempPass:self.loginViewCell.userPassword newPassword:self.loginViewCell.userPassword
                                                     passLevel:20];
 }
-
+#pragma mark - 老用户登录验证框 点击取消按钮
 -(void)oldUserVerifyViewDidTochCancleBtn:(RH_OldUserVerifyView *)oldUserVerifyView
 {
     [self hiddenVerifyView];
@@ -207,13 +232,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RH_LoginViewCell heightForCellWithInfo:nil tableView:tableView context:@(self.isNeedVerCode)] ;
+    if (self.isInitOk){
+        return [RH_LoginViewCell heightForCellWithInfo:nil tableView:tableView context:@(self.isNeedVerCode)] ;
+    }else{
+        return MainScreenH - StatusBarHeight - NavigationBarHeight  ;
+    }
+//     return [RH_LoginViewCell heightForCellWithInfo:nil tableView:tableView context:@(self.isNeedVerCode)] ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.loginViewCell updateCellWithInfo:nil context:@(self.isNeedVerCode)] ;
-    return self.loginViewCell ;
+    if (self.isInitOk){
+        [self.loginViewCell updateCellWithInfo:nil context:@(self.isNeedVerCode)] ;
+        return self.loginViewCell ;
+    }else{
+        return self.loadingIndicateTableViewCell  ;
+    }
+//    [self.loginViewCell updateCellWithInfo:nil context:@(self.isNeedVerCode)] ;
+//    return self.loginViewCell ;
 }
 
 #pragma mark-
@@ -242,11 +278,18 @@
                 }
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
-                if ([[result objectForKey:@"message"] isEqualToString:@"账号被冻结"]) {
-                     showMessage(self.view, @"您的账号已被冻结，请联系客服", nil);
-                }else
+                if (![[result objectForKey:@"message"] isEqual:[NSNull null]]) {
+                    if ([[result objectForKey:@"message"] isEqualToString:@"账号被冻结"]) {
+                        showMessage(self.view, @"您的账号已被冻结，请联系客服", nil);
+                    }else
+                    {
+                         showMessage(self.view, @"用户名或密码错误", nil);
+                    }
+                }else if(![[result objectForKey:@"propMessages"] isEqual:[NSNull null]])
                 {
-                     showMessage(self.view, @"用户名或密码错误", nil);
+                    if ([[result objectForKey:@"propMessages"] objectForKey:@"captcha"]) {
+                        showMessage(self.view, [[result objectForKey:@"propMessages"] objectForKey:@"captcha"], nil);
+                    }
                 }
                 [appDelegate updateLoginStatus:NO] ;
                 [self.contentTableView reloadData] ;
@@ -275,9 +318,8 @@
                 [self.contentTableView reloadData] ;
             }
         }] ;
-    }else if (type == ServiceRequestTypeV3IsOpenCodeVerifty){
-        
     }
+   
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
@@ -299,9 +341,20 @@
         }
     }else if (type == ServiceRequestTypeV3VerifyRealNameForApp){
     
-    }else if (type == ServiceRequestTypeV3IsOpenCodeVerifty){
-        [self.serviceRequest startV3IsOpenCodeVerifty];
     }
+    else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid){
+        [self.contentLoadingIndicateView hiddenView] ;
+        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+        if (manager.sidString.length==0) {
+            showErrorMessage(self.view, nil, @"登录信息初始化失败");
+        }else
+        {
+            self.isInitOk = YES;
+            [self setNeedUpdateView];
+        }
+        
+    }
+
 }
 
 #pragma mark-

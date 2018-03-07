@@ -48,7 +48,7 @@
     
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
-        if (lotteryInfoModel.showGameLink){ //已获取的请求链接
+        if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
             [self setupURL] ;
         }else{

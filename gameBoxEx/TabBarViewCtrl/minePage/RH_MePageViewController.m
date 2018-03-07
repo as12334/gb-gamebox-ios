@@ -36,7 +36,7 @@
     self.title = @"我的" ;
     [self setupUI];
     [self setNeedUpdateView] ;
-    
+    [self setupPageLoadManager] ;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
                                                  name:NT_LoginStatusChangedNotification object:nil] ;
@@ -66,6 +66,16 @@
     [self loginButtonItemHandle] ;
 }
 
+#pragma mark -
+-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+{
+    [self.serviceRequest startV3GetUserAssertInfo] ;
+}
+
+-(void)cancelLoadDataHandle
+{
+    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3GETUSERASSERT] ;
+}
 
 #pragma mark-
 -(UIBarButtonItem *)barButtonCustom
@@ -111,7 +121,7 @@
 
 -(void)_barButtonSettingHandle
 {
-#if 1
+#if 0
     [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
 #else
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -312,6 +322,9 @@
             [defaults removeObjectForKey:@"password"];
             [defaults synchronize] ;
         }] ;
+    }else if (type == ServiceRequestTypeV3GETUSERASSERT)
+    {
+        [self loadDataSuccessWithDatas:@[] totalCount:0] ;
     }
 }
 
@@ -323,13 +336,17 @@
         }] ;
     }else if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            if (error.code==RH_API_ERRORCODE_USER_LOGOUT){
+            if (error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code == RH_API_ERRORCODE_SESSION_TAKEOUT || error.code == RH_API_ERRORCODE_SESSION_EXPIRED){
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
             }else{
                 showErrorMessage(self.view, error, @"退出失败") ;
             }
         }] ;
+    }else if (type == ServiceRequestTypeV3GETUSERASSERT)
+    {
+        [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+        showErrorMessage(self.view, error, @"");
     }
 }
 

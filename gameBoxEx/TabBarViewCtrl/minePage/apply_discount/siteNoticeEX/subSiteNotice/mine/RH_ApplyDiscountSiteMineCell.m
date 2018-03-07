@@ -258,10 +258,13 @@
 //        [self startUpdateData] ;
         [self showNoRefreshLoadData] ;
         self.headerView.statusMark = YES;
+        [self.contentTableView reloadData];
+        showMessage(self, nil, @"消息删除成功") ;
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageReadYes) {
 //        [self startUpdateData];
         [self showNoRefreshLoadData] ;
+        [self.contentTableView reloadData];
         self.headerView.statusMark = YES;
     }
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;

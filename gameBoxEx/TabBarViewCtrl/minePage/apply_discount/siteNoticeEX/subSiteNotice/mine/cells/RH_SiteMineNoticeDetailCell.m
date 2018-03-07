@@ -21,41 +21,47 @@
 {
     RH_SiteMyMessageDetailModel *model = ConvertToClassPointer(RH_SiteMyMessageDetailModel,context);
     RH_SiteMyMessageDetailListModel *listModel = ConvertToClassPointer(RH_SiteMyMessageDetailListModel, context);
+    
     if (model) {
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(16, 33,tableView.frameWidth-32, 0)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(14, 33,tableView.frameWidth-28, 0)];
         label.text = model.mAdvisoryContent;
-        label.font = [UIFont systemFontOfSize:12.f];
+        label.font = [UIFont systemFontOfSize:13.f];
         NSDictionary *attrs = @{NSFontAttributeName : label.font};
         CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
         label.numberOfLines=0;
         CGSize size = [model.mAdvisoryContent boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-        
-        UILabel *label_1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 33,tableView.frameWidth-32, 0)];
+        UILabel *label_1 = [[UILabel alloc]initWithFrame:CGRectMake(14, 33,tableView.frameWidth-28, 0)];
         label_1.text = model.mAdvisoryTitle;
-        label_1.font = [UIFont systemFontOfSize:14.f];
+        label_1.font = [UIFont systemFontOfSize:15.f];
         NSDictionary *attrs_1 = @{NSFontAttributeName : label.font};
         CGSize maxSize_1 = CGSizeMake(label_1.frameWidth, MAXFLOAT);
         label_1.numberOfLines=0;
         CGSize size_1 = [model.mAdvisoryTitle boundingRectWithSize:maxSize_1 options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs_1 context:nil].size;
-        return 130+size.height+size_1.height<screenSize().height?90+size.height+size_1.height:200+size.height+size_1.height;
+        return size.height+size_1.height +50;
+//        CGSize size = caculaterLabelTextDrawSize(model.mAdvisoryContent,[UIFont systemFontOfSize:12.f],tableView.frameWidth-32);
+//        CGSize size_1 = caculaterLabelTextDrawSize(model.mAdvisoryTitle,[UIFont systemFontOfSize:15.f],tableView.frameWidth-32) ;
+
     }else
     {
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(16, 33,tableView.frameWidth-32, 0)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(14, 33,tableView.frameWidth-28, 0)];
         label.text = listModel.mReplyContent;
-        label.font = [UIFont systemFontOfSize:12.f];
+        label.font = [UIFont systemFontOfSize:12.5f];
         NSDictionary *attrs = @{NSFontAttributeName : label.font};
         CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
         label.numberOfLines=0;
         CGSize size = [listModel.mReplyContent boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-        
-        UILabel *label_1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 33,tableView.frameWidth-32, 0)];
+
+        UILabel *label_1 = [[UILabel alloc]initWithFrame:CGRectMake(14, 33,tableView.frameWidth-28, 0)];
         label_1.text = listModel.mReplyTitle;
-        label_1.font = [UIFont systemFontOfSize:14.f];
+        label_1.font = [UIFont systemFontOfSize:15.f];
         NSDictionary *attrs_1 = @{NSFontAttributeName : label.font};
         CGSize maxSize_1 = CGSizeMake(label_1.frameWidth, MAXFLOAT);
         label_1.numberOfLines=0;
         CGSize size_1 = [listModel.mReplyTitle boundingRectWithSize:maxSize_1 options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs_1 context:nil].size;
-        return 130+size.height+size_1.height<screenSize().height?90+size.height+size_1.height:130+size.height+size_1.height;
+        return size.height+size_1.height +50;
+//        CGSize size = caculaterLabelTextDrawSize(listModel.mReplyContent,[UIFont systemFontOfSize:12.f],tableView.frameWidth-32);
+//        CGSize size_1 = caculaterLabelTextDrawSize(listModel.mReplyTitle,[UIFont systemFontOfSize:15.f],tableView.frameWidth-32) ;
+//        return size.height+size_1.height ;
     }
    
 }
@@ -79,7 +85,9 @@
     [super awakeFromNib];
     // Initialization code
     self.titleLabel.textColor = colorWithRGB(68, 68, 68);
+    self.titleLabel.font = [UIFont systemFontOfSize:15.f] ;
     self.contextLabel.textColor = colorWithRGB(68, 68, 68);
+    self.contextLabel.font = [UIFont systemFontOfSize:12.f] ;
     self.backDropView.layer.cornerRadius= 3.f;
     self.backDropView.layer.borderColor = colorWithRGB(180, 180, 180).CGColor;
     self.backDropView.layer.borderWidth = 1.f;

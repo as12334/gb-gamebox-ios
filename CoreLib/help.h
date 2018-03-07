@@ -263,6 +263,8 @@ BOOL isEmailAddress(NSString * email) ;
 BOOL isInteger(NSString * integerStr) ;
 BOOL isSidStr(NSString *sidStr) ;
 NSArray * matchString(NSString *string) ;
+//长SID 匹配数组
+NSArray * matchLongString(NSString *string) ;
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat) ;
 NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone) ;
