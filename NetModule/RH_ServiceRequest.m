@@ -1568,7 +1568,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
     if (tempError) { //json解析错误
-        tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
+        if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
+                                     response.statusCode,
+                                     response.description,nil);
+        }else{
+            tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
+        }
     }else{
         if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
