@@ -223,6 +223,7 @@
     RH_MineAccountCell *mineAccountCell = ConvertToClassPointer(RH_MineAccountCell, cell) ;
     if (mineAccountCell){
         mineAccountCell.delegate = self ;
+//        mineAccountCell updateCellWithInfo:<#(NSDictionary *)#> context:<#(id)#>
     }
     RH_MinePageLoginoutBannarCell *loginoutCell = ConvertToClassPointer(RH_MinePageLoginoutBannarCell, cell);
     __weak RH_MePageViewController *weakSelf = self;

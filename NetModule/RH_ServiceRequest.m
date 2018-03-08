@@ -467,6 +467,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                               confirmPassword:(nullable NSString *)pwd2
                                    verifyCode:(nullable NSString *)code
 {
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:realName?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_REALNAME] ;
     [dictTmp setValue:originPwd?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_ORIGINPWD] ;
@@ -478,7 +479,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"SID":manager.sidString?:manager.sidString
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
