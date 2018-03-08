@@ -126,8 +126,10 @@
 
 -(void)bettingRecordHeaderViewWillSelectedStartDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.startDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置开始日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date] dateWithMoveDay:-30]
                    MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
@@ -137,8 +139,10 @@
 
 -(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.endDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置截止日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date] dateWithMoveDay:-30]
                    MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {

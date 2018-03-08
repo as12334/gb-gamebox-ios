@@ -136,6 +136,7 @@
         self.titelField.text = @"";
         self.contenTextView.text = @"";
         self.codeTextField.text = @"";
+       
     }];
 }
 
@@ -156,6 +157,10 @@
     self.titelField.text = @"";
     self.contenTextView.text = @"";
     self.codeTextField.text = @"";
+    self.typeLabel.text = @"请选择";
+    ifRespondsSelector(self.delegate, @selector(siteSendMessageViewDidTouchCancelBtn:)){
+        [self.delegate siteSendMessageViewDidTouchCancelBtn:self];
+    }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     ifRespondsSelector(self.delegate, @selector(selectedCodeTextFieldAndChangedKeyboardFrame:)){

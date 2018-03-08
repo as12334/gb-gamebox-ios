@@ -162,12 +162,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":@""
+                                     @"SID":manager.sidString?:manager.sidString
                                      }
                     queryArguments:verCode.length?@{@"username":userName?:@"",
                                                     @"password":password?:@"",
@@ -179,6 +180,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeUserLogin
                          scopeType:ServiceScopeTypePublic];
+    
 }
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
@@ -206,7 +208,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_VERIFYCODE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",
                                      }
                     queryArguments:@{@"_t":timeStr}
                      bodyArguments:nil
@@ -223,7 +225,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_VERIFYCODE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",
                                      }
                     queryArguments:@{@"_t":timeStr}
                      bodyArguments:nil
@@ -315,11 +317,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3UserInfo
 {
-    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",@"SID":manager.sidString}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -474,7 +475,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (code.length){
         [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
     }
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
@@ -497,7 +497,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (code.length){
         [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
     }
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
                      pathArguments:nil
@@ -973,7 +972,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (gamesCode){
         [dict setValue:gamesCode forKey:RH_SP_GAMESLINK_GAMECODE];
     }
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMESLINK
                      pathArguments:nil
@@ -1191,7 +1189,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETUSERASSERT
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1225,6 +1224,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3IsOpenCodeVerifty
                          scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 通过GET请求登录接口获取SID
+-(void)startV3RequsetLoginWithGetLoadSid
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_LOGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3RequetLoginWithGetLoadSid
+                         scopeType:ServiceScopeTypePublic];
+    
 }
 
 #pragma mark -
@@ -1313,7 +1330,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
         }
     }
-    
+   
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:apiName
                                                                 pathFormat:pathFormat
                                                              pathArguments:pathArguments
@@ -1323,7 +1340,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                       type:httpType];
     
     httpRequest.timeOutInterval = _timeOutInterval ;
-
     //开始请求
     [self _startHttpRequest:httpRequest forType:type scopeType:scopeType];
 }
@@ -1551,6 +1567,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
         return YES ;
+    }else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
+    {
+        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+        NSMutableArray *mArr = [NSMutableArray array] ;
+        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+        if (isSidStr(responseStr)) {
+            [mArr addObjectsFromArray:matchString(responseStr)] ;
+        }
+        if (mArr.count>0) {
+            manager.sidString = [mArr lastObject] ;
+        }
     }
 //    
 //    else if (type==ServiceRequestTypeV3SystemMessageYes){
@@ -1620,11 +1647,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 [mArr addObjectsFromArray:matchString(responseStr)] ;
                 }
                 if (mArr.count>0) {
-                    if (mArr.count==6) {
-                        manager.sidString = mArr[5] ;
-                    }else{
-                        manager.sidString = mArr[1] ;
-                    }
+                     manager.sidString = [mArr lastObject] ;
                 }
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
                 if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
@@ -1955,6 +1978,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
             }
                 break ;
+                case ServiceRequestTypeV3IsOpenCodeVerifty:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
                 break;
@@ -1998,6 +2026,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
                     [self.appDelegate updateLoginStatus:FALSE] ;
                 }
+            }
+                break ;
+                case ServiceRequestTypeUserLogin:
+            {
+                
             }
                 break ;
                 
@@ -2053,11 +2086,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
     //特点  error 信息，统一处理 。
     // error.code==RH_API_ERRORCODE_USER_LOGOUT ||
-    if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED) &&
+    if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED ||
+          error.code==RH_API_ERRORCODE_USER_LOGOUT) &&
         serviceType!=ServiceRequestTypeV3UserLoginOut &&
         serviceType!=ServiceRequestTypeV3HomeInfo &&
         serviceType!=ServiceRequestTypeV3UserInfo &&
-        serviceType!=ServiceRequestTypeV3RefreshSession)
+        serviceType!=ServiceRequestTypeV3RefreshSession &&
+        serviceType!=ServiceRequestTypeSiteMessageUnReadCount)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){

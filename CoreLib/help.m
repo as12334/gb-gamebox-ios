@@ -804,6 +804,23 @@ NSArray * matchString(NSString *string)
     return array;
 }
 
+//长SID 匹配数组
+NSArray * matchLongString(NSString *string)
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"SID=(.*?)," options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    //match: 所有匹配到的字符,根据() 包含级
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSTextCheckingResult *match in matches) {
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            [array addObject:component];
+        }
+    }
+    return array;
+}
+
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
 {

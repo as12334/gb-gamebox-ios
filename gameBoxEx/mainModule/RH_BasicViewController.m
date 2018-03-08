@@ -432,7 +432,9 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type SpecifiedError:(NSError *)error
 {
     if (error.code==RH_API_ERRORCODE_SESSION_EXPIRED || error.code==RH_API_ERRORCODE_USER_LOGOUT){
-        showMessage(nil, error.code==RH_API_ERRORCODE_SESSION_EXPIRED?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
+        if (type!=ServiceRequestTypeV3SiteMessageMyMessageDetail){
+            showMessage(nil, error.code==RH_API_ERRORCODE_SESSION_EXPIRED?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
+        }
         [self.appDelegate updateLoginStatus:NO] ;
         [self loginButtonItemHandle] ;
     }

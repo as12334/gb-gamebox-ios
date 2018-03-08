@@ -82,6 +82,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GETUSERASSERT ,   // 获取用户资产信息
     ServiceRequestTypeV3RefreshSession ,   // 防止长时间未操作掉线
     ServiceRequestTypeV3IsOpenCodeVerifty,// 登录是否开启验证码
+    ServiceRequestTypeV3RequetLoginWithGetLoadSid,// get请求登录接口获取SID
     
 };
 
@@ -420,6 +421,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3RereshUserSessin ;
 #pragma mark - 用户登录是否开启验证码
 -(void)startV3IsOpenCodeVerifty;
+#pragma mark - 通过GET请求登录接口获取SID
+-(void)startV3RequsetLoginWithGetLoadSid;
+
 #pragma mark -
 /**
  * 取消所有服务

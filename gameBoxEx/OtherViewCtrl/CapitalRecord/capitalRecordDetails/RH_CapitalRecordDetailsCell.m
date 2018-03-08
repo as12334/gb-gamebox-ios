@@ -133,7 +133,7 @@
         self.FivethTitleLab.text = @"转入";
         self.SixthTitleLab.text = @"状态";
         self.subFirstTitleLab.text = detailModel.mTransactionNo;
-        self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
         self.subThirdTitleLab.text = detailModel.mTransactionMoney;
         self.subFourthTitleLab.text = detailModel.mTransferOut;
         self.subFivethTitleLab.text = detailModel.mTransferInto;
@@ -145,7 +145,7 @@
         self.FivethTitleLab.text = @"状态";
         self.SixthView.hidden = YES;
         self.subFirstTitleLab.text = detailModel.mTransactionNo;
-        self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
         if ([infoModel.mTransaction_typeName isEqualToString:@"返水"]) {
             self.subFourthTitleLab.text = [NSString stringWithFormat:@"%@", detailModel.mDeductFavorable];
         }else
@@ -165,7 +165,7 @@
             self.FirstTitleLab.text = @"交易号:";
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
             self.SecondTitleLab.text = @"创建时间:";
-            self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+            self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
             self.thirdTitleLab.text = @"描述:";
             self.subThirdTitleLab.text = detailModel.mTransactionWayName;
             self.FourthTitleLab.text = @"txId:";
@@ -206,7 +206,7 @@
             self.shijidaozhangLeftLab.text = @"状态:";
             self.shijiMoney.text = detailModel.mStatusName ;
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
-            self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+            self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
             self.subThirdTitleLab.text = detailModel.mTransactionWayName;
             [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
             self.realNameLab.text = detailModel.mRealName;
@@ -225,7 +225,7 @@
              _BottomView2.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
             self.thirdTitleLab.text = @"描述";
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
-            self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+            self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
             self.subThirdTitleLab.text = detailModel.mTransactionWayName;
             self.FourthView.hidden = YES;
             self.FivethView.hidden = YES;
@@ -237,7 +237,7 @@
         [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
         self.thirdTitleLab.text = @"描述";
         self.subFirstTitleLab.text = detailModel.mTransactionNo;
-        self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:SS");
+        self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
         self.subThirdTitleLab.text = detailModel.mTransactionWayName;
         self.FourthView.hidden = YES;
         self.FivethView.hidden = YES;

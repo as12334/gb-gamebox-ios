@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RH_SendMessageVerityModel.h"
+@class RH_SiteSendMessageView ;
 typedef void (^SiteSendMessageViewBlock)(CGRect frame);
 typedef void (^SiteSendMessageViewSubmitBlock)(NSString *titelStr,NSString *contenStr,NSString *codeStr);
 //typedef void (^SiteSendMessageViewSubmitSuccessBlock)(NSString *titelStr,NSString *contenStr);
@@ -15,6 +16,7 @@ typedef void (^SiteSendMessageViewSubmitBlock)(NSString *titelStr,NSString *cont
 @protocol RH_SiteSendMessageViewDelegate<NSObject>
 @optional
 -(void)selectedCodeTextFieldAndChangedKeyboardFrame:(CGRect )frame;
+-(void)siteSendMessageViewDidTouchCancelBtn:(RH_SiteSendMessageView *)siteSendMessageView;
 @end
 @interface RH_SiteSendMessageView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;

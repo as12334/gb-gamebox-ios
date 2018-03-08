@@ -77,7 +77,7 @@
     
     [self.serviceRequest startV3SiteTimezone] ;
     
-    [self autoLogin] ;
+//    [self autoLogin] ;
 }
 
 - (void)dealloc

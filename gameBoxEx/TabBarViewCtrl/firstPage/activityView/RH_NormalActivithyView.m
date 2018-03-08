@@ -57,6 +57,8 @@
 //    [btn setImage:ImageWithName(@"button-03") forState:UIControlStateNormal];
 //    [btn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
 //    btn.whc_CenterX(0).whc_BottomSpace(20).whc_Width(60).whc_Height(30);
+//    self.gainActivityLabel.whc_CenterX(0).whc_BottomSpaceToView(20,  self.openActivityBtn) ;
+
     
 }
 #pragma mark -确定按钮点击

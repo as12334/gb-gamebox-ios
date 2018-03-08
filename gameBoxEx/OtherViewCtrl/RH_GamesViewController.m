@@ -52,7 +52,7 @@
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
     
     if (_apiInfoModel){//需请求加载的link
-        if (_apiInfoModel.showGameLink){ //已获取的请求链接
+        if (_apiInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = _apiInfoModel.showGameLink ;
             [self setupInfo] ;
         }else{
@@ -64,7 +64,7 @@
 //                                           GamesCode:nil] ;
         }
     }else if (_lotteryInfoModel){//
-        if (_lotteryInfoModel.showGameLink){ //已获取的请求链接
+        if (_lotteryInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
             [self setupInfo] ;
         }else{
