@@ -200,6 +200,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NSNotiCenterSubmitSuccessNT object:nil];
         self.sendView.typeLabel.text = @"请选择";
         self.typeStr =nil;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)name:UIKeyboardWillHideNotification
+                                                   object:nil];
     }
 }
 
