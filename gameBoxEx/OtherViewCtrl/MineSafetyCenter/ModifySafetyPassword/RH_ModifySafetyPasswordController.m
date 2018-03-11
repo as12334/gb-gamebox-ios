@@ -148,13 +148,13 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 {
     return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
 }
--(RH_ModifyPasswordCodeCell *)userPasswordCodeCell
+-(RH_ModifySafetyPwdCodeCell *)userPasswordCodeCell
 {
     if (_modifySafetyStatus == ModifySafetyStatus_SetPermissionPasswordUsedCode){
-        return ConvertToClassPointer(RH_ModifyPasswordCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
+        return ConvertToClassPointer(RH_ModifySafetyPwdCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]) ;
     }else if (_modifySafetyStatus == ModifySafetyStatus_UpdatePermissionPasswordUsedCode)
     {
-        return ConvertToClassPointer(RH_ModifyPasswordCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]) ;
+        return ConvertToClassPointer(RH_ModifySafetyPwdCodeCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]) ;
     }
     
     return nil ;

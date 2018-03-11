@@ -62,11 +62,26 @@
     NSString *contentStrTitle = [NSString stringWithFormat:@"%@",model.mTitle];
     NSAttributedString *attributeStrTitle = [[NSAttributedString alloc] initWithString:contentStrTitle attributes:dic];
     self.titleLabel.attributedText = attributeStrTitle;
-    NSString *contentStr = [NSString stringWithFormat:@"%@",model.mContent];
+    NSString *contentStr = [NSString stringWithFormat:@"%@",[self filterHTML:model.mContent]];
     NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
     self.contextLabel.attributedText = attributeStr;
     self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd HH:mm:ss");
 }
+#pragma mark - 处理HTML 标签
+-(NSString *)filterHTML:(NSString *)html
+{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    return html;
+}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
