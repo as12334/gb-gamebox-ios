@@ -35,7 +35,7 @@
 @synthesize bankList = _bankList ;
 @synthesize userWithDrawInfo = _userWithDrawInfo ;
 @synthesize domainCheckErrorList = _domainCheckErrorList ;
-
+@synthesize sidString = _sidString ;
 
 +(instancetype)shareUserManager
 {
@@ -272,6 +272,14 @@
 -(NSString *)sidString
 {
     return _sidString ;
+}
+
+-(void)setSidString:(NSString *)sidString
+{
+    if (![sidString isEqualToString:_sidString]){
+        _sidString = sidString ;
+        NSLog(@"...SID INFO...parse sid:%@",_sidString) ;
+    }
 }
 
 -(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime

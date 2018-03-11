@@ -261,7 +261,6 @@
             NSDictionary *result = ConvertToClassPointer(NSDictionary, data) ;
             if ([result boolValueForKey:@"success"]){
                 showMessage(self.view, @"登录成功", nil);
-
                 //登录成功后，记录用户名，密码，以便自动登录
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
@@ -272,7 +271,6 @@
                 
                 [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName
                                                                          LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
-                
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }

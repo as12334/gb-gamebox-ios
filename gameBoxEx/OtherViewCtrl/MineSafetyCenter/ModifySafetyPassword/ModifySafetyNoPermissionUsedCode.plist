@@ -33,7 +33,7 @@
 				</dict>
 				<dict>
 					<key>cellClass</key>
-					<string>RH_ModifyPasswordCodeCell</string>
+					<string>RH_ModifySafetyPwdCodeCell</string>
 				</dict>
 			</array>
 			<key>sectionHeaderHeight</key>

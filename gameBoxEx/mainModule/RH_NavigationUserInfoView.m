@@ -53,8 +53,7 @@
     RH_MineInfoModel *userInfoModel = MineSettingInfo ;
     if (userInfoModel){
         self.labUserName.text = userInfoModel.mUserName ;
-        NSInteger strLength = userInfoModel.showTotalAssets.length ;
-        self.labBalance.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_Width(strLength<5?strLength*8:strLength*7).whc_Height(15);
+        self.labBalance.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_WidthAuto().whc_Height(15);
         self.leftImageView.whc_RightSpaceToView(2, self.labBalance).whc_TopSpaceToView(4, self.labUserName).whc_Width(6).whc_Height(6);
         self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userInfoModel.mCurrency,userInfoModel.showTotalAssets] ;
     }

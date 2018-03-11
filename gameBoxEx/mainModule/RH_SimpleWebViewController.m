@@ -821,7 +821,7 @@
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         jsContext[@"nativeAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
             NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
-            [self.serviceRequest startV3GetUserAssertInfo];
+            [self.serviceRequest startV3UserInfo];
         };
         
         jsContext[@"nativeRefreshPage"] = ^(){/*** 刷新当前页面*/
@@ -955,6 +955,25 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.myTabBarController.selectedIndex = 3 ;
             });
+        };
+        
+        jsContext[@"gotoTab"] = ^() {
+            NSLog(@"JSToOc :%@------ gotoTab",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            NSString *target;
+            for (JSValue *jsVal in args) {
+                target = jsVal.toString;
+                NSLog(@"%@", jsVal.toString);
+            }
+            if (args[0] != nil) {
+                NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+                if (index >= 0 && index != NSNotFound) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.navigationController popToRootViewControllerAnimated:NO];
+                        self.myTabBarController.selectedIndex = [target intValue] ;
+                    });
+                }
+            }
         };
     }
 }
