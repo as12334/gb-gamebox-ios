@@ -160,6 +160,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startV3UpdateCheck
+{
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+                        pathFormat:@"boss-api/app/update.html"
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"code":S,
+                                     @"type":@"ios",
+                                     @"siteId":SID
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3UpdateCheck
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
     RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
@@ -1635,6 +1651,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeUpdateCheck:
+            case ServiceRequestTypeV3UpdateCheck:
             {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
