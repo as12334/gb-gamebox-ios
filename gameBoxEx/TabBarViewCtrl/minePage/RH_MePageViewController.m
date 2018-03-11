@@ -69,10 +69,11 @@
 #pragma mark -
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    if (HasLogin){
+    if (HasLogin) {
         [self.serviceRequest startV3GetUserAssertInfo] ;
-    }else{
-        [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+    }else
+    {
+         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
     }
 }
 

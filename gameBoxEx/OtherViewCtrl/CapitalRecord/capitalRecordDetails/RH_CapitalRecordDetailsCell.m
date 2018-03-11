@@ -159,6 +159,8 @@
         self.subFivethTitleLab.text = detailModel.mStatusName;
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]  ||[infoModel.mTransaction_typeName isEqualToString:@"deposit"] ) {
+        self.SevenLeftLab.hidden = YES ;
+        self.SevenRightLab.hidden = YES ;
         if ([detailModel.mBankCodeName isEqualToString:@"比特币"] || [detailModel.mBankCode isEqualToString:@"bitcoin"])
         {
             //比特币存款

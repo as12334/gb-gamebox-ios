@@ -77,7 +77,7 @@
     else if (_number==2){
         cell.textLabel.text  = self.modelArray[indexPath.item];
     }
-    cell.textLabel.font = [UIFont systemFontOfSize:12.f];
+    cell.textLabel.font = [UIFont systemFontOfSize:10.5f];
     cell.textLabel.textColor = colorWithRGB(153, 153, 153);
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;

@@ -879,10 +879,12 @@
             }) ;
         };
         
-        jsContext[@"gotoLoginPage"] = ^(){/*** 跳到login界面 ）*/
-            NSLog(@"JSToOc :%@------ gotoLoginPage",NSStringFromClass([self class])) ;
+        
+        // nativeLogin  gotoLoginPage
+        jsContext[@"nativeLogin"] = ^(){/*** 跳到login界面 ）*/
+            NSLog(@"JSToOc :%@------ nativeLogin",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showViewController:[RH_LoginViewControllerEx viewController] sender:self] ;
+                [self loginButtonItemHandle] ;
             });
         };
         
@@ -946,6 +948,13 @@
 //            [self.serviceRequest startV3UserInfo];
             [self.serviceRequest startV3GetUserAssertInfo] ;
             [self reloadWebView];
+        };
+        //存款点击在线客服页面跳转
+        jsContext[@"nativeGoToCustomerPage"] = ^(){/*** 存款点击在线客服页面跳转）*/
+            NSLog(@"JSToOc :%@------ nativeGoToCustomerPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.myTabBarController.selectedIndex = 3 ;
+            });
         };
     }
 }

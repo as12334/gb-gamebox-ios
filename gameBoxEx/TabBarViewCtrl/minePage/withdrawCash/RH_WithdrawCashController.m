@@ -55,11 +55,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 @synthesize footerView = _footerView;
 @synthesize cashCell = _cashCell;
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated] ;
-    [self.serviceRequest startV3GetWithDraw] ;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
