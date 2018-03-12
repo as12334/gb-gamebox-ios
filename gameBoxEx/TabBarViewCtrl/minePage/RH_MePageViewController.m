@@ -150,7 +150,7 @@
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Red];
         
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Black];
     }else{
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
     }
