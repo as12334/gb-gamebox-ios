@@ -85,15 +85,36 @@
 //    站点配制
 //===========================================================
 
-#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
+#define THEME     @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _DEBUG1 //开发环境 V3  H5  test 01
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define THEMEV3     @"green"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _DEBUG2 //开发环境 V3  H5  test 01
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
 
 #elif _rf80 //TEST01[21]  V3原生
 
@@ -1696,6 +1717,30 @@
 #define CODE    @"co5v"
 #define S        @"b89facd6f9c3f10352ed91b69e0a4c03"
 #define SID        @"378"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _unje //99彩票网
+
+#define CODE    @"unje"
+#define S        @"84b458cd4cb4ca24d46e6a81bf4ece92"
+#define SID        @"379"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _n0pd //永利娱乐场
+
+#define CODE    @"n0pd"
+#define S        @"d2e5fb741951d83172cbbb80df5ddde6"
+#define SID        @"380"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wrde //胜通国际娱乐城
+
+#define CODE    @"wrde"
+#define S        @"bd146695de21fa924ab420c3fdd9e6a2"
+#define SID        @"381"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
