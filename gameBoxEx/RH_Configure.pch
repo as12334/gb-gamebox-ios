@@ -1699,6 +1699,30 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _unje //99彩票网
+
+#define CODE    @"unje"
+#define S        @"84b458cd4cb4ca24d46e6a81bf4ece92"
+#define SID        @"379"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _n0pd //永利娱乐场
+
+#define CODE    @"n0pd"
+#define S        @"d2e5fb741951d83172cbbb80df5ddde6"
+#define SID        @"380"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wrde //胜通国际娱乐城
+
+#define CODE    @"wrde"
+#define S        @"bd146695de21fa924ab420c3fdd9e6a2"
+#define SID        @"381"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #endif
 
 #endif /* RH_Configure_h */
