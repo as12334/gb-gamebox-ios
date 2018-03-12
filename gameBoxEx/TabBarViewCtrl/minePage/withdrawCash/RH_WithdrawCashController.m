@@ -318,7 +318,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [_mainSegmentControl removeFromSuperview] ;
             _mainSegmentControl = nil ;
             [self.contentTableView  whc_ResetConstraints] ;
-            self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+            self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(0);
         }
     }else {
         [self.contentLoadingIndicateView hiddenView] ;

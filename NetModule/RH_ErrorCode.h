@@ -26,7 +26,6 @@
 #define RH_API_ERRORCODE_NO_JSON_ERROR                      902
 
 
-
 #pragma mark -  界面处理的 特别 code
 #define RH_API_ERRORCODE_SESSION_EXPIRED                      600   //session 过期
 #define RH_API_ERRORCODE_SESSION_TAKEOUT                      606   // 被强制踢出
