@@ -160,6 +160,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startV3UpdateCheck
+{
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+                        pathFormat:@"boss-api/app/update.html"
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"code":S,
+                                     @"type":@"ios",
+                                     @"siteId":SID
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3UpdateCheck
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
     RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
@@ -317,10 +333,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3UserInfo
 {
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":manager.sidString?:@""
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -467,6 +486,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                               confirmPassword:(nullable NSString *)pwd2
                                    verifyCode:(nullable NSString *)code
 {
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:realName?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_REALNAME] ;
     [dictTmp setValue:originPwd?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_ORIGINPWD] ;
@@ -478,7 +498,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":manager.sidString?:@""
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1632,6 +1654,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeUpdateCheck:
+            case ServiceRequestTypeV3UpdateCheck:
             {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
@@ -1644,11 +1667,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 NSMutableArray *mArr = [NSMutableArray array] ;
                 RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
                 if (isSidStr(responseStr)) {
-                [mArr addObjectsFromArray:matchString(responseStr)] ;
+                [mArr addObjectsFromArray:matchLongString(responseStr)] ;
                 }
                 if (mArr.count>0) {
-                     manager.sidString = [mArr lastObject] ;
+                     manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
                 }
+                NSLog(@"....SID INFO...get.sid:%@",responseStr) ;
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
                 if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
                     [SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -1968,9 +1992,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3GETUSERASSERT:
             {
                 resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
-                if (MineSettingInfo){
-                    [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
-                }
+//                if (MineSettingInfo){
+//                    [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
+//                }
+                  [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
             }
                 break;
             case ServiceRequestTypeV3RefreshSession:

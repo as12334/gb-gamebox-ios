@@ -57,7 +57,7 @@
         }
     }else if ([self.context isKindOfClass:[RH_LotteryAPIInfoModel class]]){ //需要请求 link
         RH_LotteryAPIInfoModel *lotteryApiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, self.context) ;
-        if (lotteryApiInfoModel.showGameLink){ //已获取的请求链接
+        if (lotteryApiInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = lotteryApiInfoModel.showGameLink ;
             [self setupURL] ;
         }else{

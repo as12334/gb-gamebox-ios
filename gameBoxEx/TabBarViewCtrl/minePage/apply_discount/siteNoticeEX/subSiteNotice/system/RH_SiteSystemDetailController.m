@@ -35,6 +35,8 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
+    self.contentTableView.estimatedRowHeight = 56;
+    self.contentTableView.rowHeight = UITableViewAutomaticDimension;
     [self.contentTableView registerCellWithClass:[RH_SiteSystemDetailCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;

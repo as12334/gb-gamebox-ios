@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -87,7 +87,7 @@
 
 #define THEMEV3             @"default"   //green,red,black,default .
 
-#ifdef _DEBUG //开发环境 V2  H5
+#ifdef _DEBUG //开发环境 V3  H5  test 01
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"

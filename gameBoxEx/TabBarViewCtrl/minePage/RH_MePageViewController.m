@@ -69,7 +69,12 @@
 #pragma mark -
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3GetUserAssertInfo] ;
+    if (HasLogin) {
+        [self.serviceRequest startV3GetUserAssertInfo] ;
+    }else
+    {
+         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+    }
 }
 
 -(void)cancelLoadDataHandle
@@ -135,7 +140,6 @@
     [self presentViewController:alertController animated:YES completion:nil];
 #endif
 }
-
 
 #pragma mark-
 -(void)setupUI
@@ -223,6 +227,7 @@
     RH_MineAccountCell *mineAccountCell = ConvertToClassPointer(RH_MineAccountCell, cell) ;
     if (mineAccountCell){
         mineAccountCell.delegate = self ;
+//        mineAccountCell updateCellWithInfo:<#(NSDictionary *)#> context:<#(id)#>
     }
     RH_MinePageLoginoutBannarCell *loginoutCell = ConvertToClassPointer(RH_MinePageLoginoutBannarCell, cell);
     __weak RH_MePageViewController *weakSelf = self;
@@ -318,9 +323,9 @@
     }else if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"用户已成功退出",nil) ;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
-            [defaults removeObjectForKey:@"password"];
-            [defaults synchronize] ;
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+//            [defaults removeObjectForKey:@"password"];
+//            [defaults synchronize] ;
         }] ;
     }else if (type == ServiceRequestTypeV3GETUSERASSERT)
     {

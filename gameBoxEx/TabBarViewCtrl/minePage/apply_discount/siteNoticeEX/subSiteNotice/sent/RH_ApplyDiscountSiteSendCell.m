@@ -44,11 +44,11 @@
         if (weakSelf.typeStr==nil) {
             showMessage(weakSelf,@"发送失败", @"请选择问题类型");
         }
-        else if (titleStr.length<2 || titleStr.length > 100) {
-            showMessage(weakSelf,@"发送失败", @"标题在2-100个字");
+        else if (titleStr.length<4 || titleStr.length > 10) {
+            showMessage(weakSelf,@"发送失败", @"标题在4-10个字");
         }
-        else if (contentStr.length<1||contentStr.length>2000){
-            showMessage(weakSelf, @"发送失败",@"内容在1个字以上2000字以内");
+        else if (contentStr.length<10||contentStr.length>2000){
+            showMessage(weakSelf, @"发送失败",@"内容在10个字以上2000字以内");
         }else if (self.sendMessageVerityModel.mIsOpenCaptcha == YES)
         {
            if([codeStr isEqualToString:@""])
@@ -200,6 +200,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NSNotiCenterSubmitSuccessNT object:nil];
         self.sendView.typeLabel.text = @"请选择";
         self.typeStr =nil;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)name:UIKeyboardWillHideNotification
+                                                   object:nil];
     }
 }
 

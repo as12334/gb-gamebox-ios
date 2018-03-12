@@ -70,7 +70,18 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    //.05
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
+//    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"/^+|\s+$/g" withString:@""];
+//    if (strTmp.length<10) {
+//         _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .100  ;
+//    }else if (strTmp.length>10 && strTmp.length < 100)
+//    {
+//        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .100  ;
+//    }else if (strTmp.length>100)
+//    {
+//        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .01  ;
+//    }
     _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
 //    strTmp.length * 0.6 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;

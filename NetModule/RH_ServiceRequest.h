@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeCollectAPPError   , //check domain 失败 上传数据接口
     
     //V3接口
+    ServiceRequestTypeV3UpdateCheck     , //v3 站点升级接口
     ServiceRequestTypeV3HomeInfo        ,
     ServiceRequestTypeV3UserInfo        ,
     ServiceRequestTypeV3MineGroupInfo   ,
@@ -150,6 +151,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  * update CHECK
  */
 -(void)startUpdateCheck ;
+
+#pragma mark - v3 站点升级接口
+-(void)startV3UpdateCheck ;
 
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode ;
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password;

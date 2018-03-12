@@ -62,6 +62,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *shijiMoney;
 //状态
 @property (weak, nonatomic) IBOutlet UILabel *zhuangtaiLab;
+@property (weak, nonatomic) IBOutlet UILabel *SevenRightLab;
+
 /*左边lab*/
 @property (weak, nonatomic) IBOutlet UIImageView *bankRightImage;  //银行卡右边的图片
 @property (weak, nonatomic) IBOutlet UILabel *xingmingLab;
@@ -74,6 +76,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *shijidaozhangLeftLab;
 
 @property (weak, nonatomic) IBOutlet UILabel *zhuangtaiLeftLab;
+@property (weak, nonatomic) IBOutlet UILabel *SevenLeftLab;
 
 
 /**
@@ -156,6 +159,8 @@
         self.subFivethTitleLab.text = detailModel.mStatusName;
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]  ||[infoModel.mTransaction_typeName isEqualToString:@"deposit"] ) {
+        self.SevenLeftLab.hidden = YES ;
+        self.SevenRightLab.hidden = YES ;
         if ([detailModel.mBankCodeName isEqualToString:@"比特币"] || [detailModel.mBankCode isEqualToString:@"bitcoin"])
         {
             //比特币存款
@@ -245,18 +250,20 @@
         _BottomView.hidden = NO;
         self.xingmingLab.text = @"姓名:";
         self.zhekouyouhuiLeftLab.text = @"取款金额:";
-        self.thirdLeftLab.text = @"折扣优惠:";
-        self.shouxufeiLeftLab.text = @"手续费:";
-        self.shijidaozhangLeftLab.text = @"实际到账:";
-        self.zhuangtaiLeftLab.text = @"状态:";
+        self.thirdLeftLab.text = @"手续费:";
+        self.shouxufeiLeftLab.text = @"行政费用：";
+        self.shijidaozhangLeftLab.text = @"折扣优惠:";
+        self.zhuangtaiLeftLab.text = @"实际到账:";
+        self.SevenLeftLab.text = @"状态：";
         _BottomView2.hidden = YES;
         _BottomView.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
         self.realNameLab.text = detailModel.mRealName;
         self.youhuiLab.text= [NSString stringWithFormat:@"%@",detailModel.mWithdrawMoney] ;
-        self.thirdRightLab.text = detailModel.mDeductFavorable ;
-        self.shouxuFeiLab.text = detailModel.mPoundage;
-        self.shijiMoney.text =detailModel.mRechargeTotalAmount;
-        self.zhuangtaiLab.text = detailModel.mStatusName;
+        self.thirdRightLab.text =  detailModel.mPoundage;
+        self.shouxuFeiLab.text = detailModel.mAdministrativeFee;
+        self.shijiMoney.text =detailModel.mDeductFavorable;
+        self.zhuangtaiLab.text = detailModel.mRechargeTotalAmount;
+        self.SevenRightLab.text = detailModel.mStatusName ;
     }
 }
 

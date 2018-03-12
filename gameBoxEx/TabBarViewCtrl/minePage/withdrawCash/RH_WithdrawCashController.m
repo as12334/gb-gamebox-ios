@@ -55,11 +55,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 @synthesize footerView = _footerView;
 @synthesize cashCell = _cashCell;
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated] ;
-    [self.serviceRequest startV3GetWithDraw] ;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -576,8 +571,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                                    otherButtonTitles:@"资金记录", nil] ;
         
         [alertView show] ;
-//        [self.serviceRequest startV3UserInfo];
-        [self.serviceRequest startV3GetUserAssertInfo] ;
+        [self.serviceRequest startV3UserInfo];
     }else if (type == ServiceRequestTypeWithDrawFee){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         
@@ -606,7 +600,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showMessage(self.contentView, error.localizedDescription, error.userInfo[@"msg"]);
         }] ;
-        
         NSDictionary *userInfo = error.userInfo ;
         NSString *token = [userInfo stringValueForKey:@"token"] ;
         [self.withDrawModel updateToken:token] ;

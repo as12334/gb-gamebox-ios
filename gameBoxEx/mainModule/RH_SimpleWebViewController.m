@@ -496,10 +496,11 @@
     }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
               [reqUrl.lowercaseString isEqualToString:[NSString stringWithFormat:@"%@/",self.domain.lowercaseString]]){
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-            if (self.myTabBarController.selectedIndex!=2){
-                self.myTabBarController.selectedIndex = 2 ;
-                return NO ;
-            }
+            return YES ;
+//            if (self.myTabBarController.selectedIndex!=2){
+//                self.myTabBarController.selectedIndex = 2 ;
+//                return YES ;
+//            }
         }else{
             if (self.myTabBarController.selectedIndex!=0){
                 self.myTabBarController.selectedIndex = 0 ;
@@ -543,9 +544,15 @@
         if ([self.appDelegate.customUrl containsString:@"/passport/logout.html"]){
             self.appDelegate.logoutUrl = self.appDelegate.customUrl ;
             if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                self.myTabBarController.selectedIndex = 2 ;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.myTabBarController.selectedIndex = 2 ;
+                });
+                
             }else{
-                self.myTabBarController.selectedIndex = 0 ;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     self.myTabBarController.selectedIndex = 0 ;
+                });
+               
             }
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -814,7 +821,7 @@
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         jsContext[@"nativeAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
             NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
-            [self.serviceRequest startV3GetUserAssertInfo];
+            [self.serviceRequest startV3UserInfo];
         };
         
         jsContext[@"nativeRefreshPage"] = ^(){/*** 刷新当前页面*/
@@ -832,18 +839,22 @@
         
         jsContext[@"nativeGotoDepositPage"] = ^(){/*** 跳入存款页面*/
             NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
-            [self.navigationController popToRootViewControllerAnimated:NO];
-            self.myTabBarController.selectedIndex = 0 ;
-            [self reloadWebView];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                self.myTabBarController.selectedIndex = 0 ;
+                [self reloadWebView];
+            });
         };
         
         jsContext[@"nativeGotoTransactionRecordPage"] = ^(){/*** 跳到资金记录页面*/
             NSLog(@"JSToOc :%@------ gotoCapitalRecordPage",NSStringFromClass([self class])) ;
-            [self showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 [self showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
+            });
         };
         
         jsContext[@"nativeOpenWindow"] = ^(){/*** 打开新的webview（打开一个新的弹窗，并且根据传入的url进行加载）*/
-            NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
+            NSLog(@"JSToOc :%@------ nativeOpenWindow",NSStringFromClass([self class])) ;
             NSArray *args = [JSContext currentArguments];
             JSValue *customUrl;
             if (args.count==0) {
@@ -856,17 +867,25 @@
             {
                  self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
             }
-            [self showViewController:[RH_CustomViewController viewController] sender:self];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showViewController:[RH_CustomViewController viewController] sender:self];
+            }) ;
         };
         
         jsContext[@"nativeGotoPromoRecordPage"] = ^(){/*** 跳到我的优惠记录界面 ）*/
             NSLog(@"JSToOc :%@------ gotoPromoRecordPage",NSStringFromClass([self class])) ;
-            [self showViewController:[RH_PromoListController viewController] sender:self] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+              [self showViewController:[RH_PromoListController viewController] sender:self] ;
+            }) ;
         };
         
-        jsContext[@"gotoLoginPage"] = ^(){/*** 跳到login界面 ）*/
-            NSLog(@"JSToOc :%@------ gotoLoginPage",NSStringFromClass([self class])) ;
-            [self showViewController:[RH_LoginViewControllerEx viewController] sender:self] ;
+        
+        // nativeLogin  gotoLoginPage
+        jsContext[@"nativeLogin"] = ^(){/*** 跳到login界面 ）*/
+            NSLog(@"JSToOc :%@------ nativeLogin",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loginButtonItemHandle] ;
+            });
         };
         
         //nativeAutoLogin
@@ -898,7 +917,7 @@
         };
         //分享图片保存
         jsContext[@"nativeSaveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
-            NSLog(@"JSToOc :%@------ startNewWebView",NSStringFromClass([self class])) ;
+            NSLog(@"JSToOc :%@------ nativeSaveImage",NSStringFromClass([self class])) ;
             NSArray *args = [JSContext currentArguments];
             JSValue *customUrl;
             if (args.count==0) {
@@ -922,11 +941,39 @@
         //存款完成后返回首页
         jsContext[@"gotoHomePage"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
             NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
-            [self.navigationController popToRootViewControllerAnimated:NO];
-            self.myTabBarController.selectedIndex = 2 ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                self.myTabBarController.selectedIndex = 2 ;
+            });
 //            [self.serviceRequest startV3UserInfo];
             [self.serviceRequest startV3GetUserAssertInfo] ;
             [self reloadWebView];
+        };
+        //存款点击在线客服页面跳转
+        jsContext[@"nativeGoToCustomerPage"] = ^(){/*** 存款点击在线客服页面跳转）*/
+            NSLog(@"JSToOc :%@------ nativeGoToCustomerPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.myTabBarController.selectedIndex = 3 ;
+            });
+        };
+        
+        jsContext[@"gotoTab"] = ^() {
+            NSLog(@"JSToOc :%@------ gotoTab",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            NSString *target;
+            for (JSValue *jsVal in args) {
+                target = jsVal.toString;
+                NSLog(@"%@", jsVal.toString);
+            }
+            if (args[0] != nil) {
+                NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+                if (index >= 0 && index != NSNotFound) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.navigationController popToRootViewControllerAnimated:NO];
+                        self.myTabBarController.selectedIndex = [target intValue] ;
+                    });
+                }
+            }
         };
     }
 }

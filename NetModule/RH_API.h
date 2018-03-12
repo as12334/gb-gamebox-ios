@@ -639,7 +639,7 @@
 //返回参数-无
 
 #pragma mark - V3 获取安全密码验证码
-#define RH_API_NAME_SAFETYCAPCHA             @"mobile-api/captcha/securityPwd.html"
+#define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
 //请求参数 -无
 
 #pragma mark - V3 优惠记录列表
