@@ -67,6 +67,8 @@
     }else{
         [self setupURL] ;
     }
+    
+    
 }
 
 
@@ -89,6 +91,12 @@
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         [self reloadWebView] ;//预防两次url 一样，不加载情况
+    }
+    //隐藏按钮
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
+        if ([self.appDelegate.customUrl containsString:@"signUp/index.html"]  || [self.appDelegate.customUrl containsString:@"promo/promoDetail.html"] ) {
+            _gameBgImage.hidden = YES ;
+        }
     }
 }
 
@@ -207,8 +215,8 @@
 
     jsContext[@"loginOut"] = ^(){
         NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
         
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
