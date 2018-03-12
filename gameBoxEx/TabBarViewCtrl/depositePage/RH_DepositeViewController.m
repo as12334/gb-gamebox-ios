@@ -18,6 +18,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+    self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/wallet/deposit/index.html",self.domain]] ;
     [self.webView reload];
 }
 
@@ -26,7 +27,6 @@
     [super viewDidLoad] ;
     self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/wallet/deposit/index.html",self.domain]] ;
     self.navigationItem.titleView = nil ;
-
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
 }

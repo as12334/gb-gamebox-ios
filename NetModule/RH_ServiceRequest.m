@@ -179,92 +179,179 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_LOGIN
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
-                                     }
-                    queryArguments:verCode.length?@{@"username":userName?:@"",
-                                                    @"password":password?:@"",
-                                                    @"captcha":verCode
-                                                    } :@{@"username":userName?:@"",
-                                                         @"password":password?:@""
-                                                         }
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeUserLogin
-                         scopeType:ServiceScopeTypePublic];
-    
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_LOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                        @"password":password?:@"",
+                                                        @"captcha":verCode
+                                                        } :@{@"username":userName?:@"",
+                                                             @"password":password?:@""
+                                                             }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_LOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         }
+                        queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                        @"password":password?:@"",
+                                                        @"captcha":verCode
+                                                        } :@{@"username":userName?:@"",
+                                                             @"password":password?:@""
+                                                             }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_AUTOLOGIN
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@""
-                                     }
-                    queryArguments:@{@"username":userName?:@"",
-                                     @"password":password?:@""
-                                     }
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeUserAutoLogin
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_AUTOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"username":userName?:@"",
+                                         @"password":password?:@""
+                                         }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserAutoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_AUTOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone"
+                                         }
+                        queryArguments:@{@"username":userName?:@"",
+                                         @"password":password?:@""
+                                         }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserAutoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
 }
 
 -(void)startGetVerifyCode
 {
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
-    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_VERIFYCODE
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
-                                     }
-                    queryArguments:@{@"_t":timeStr}
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeObtainVerifyCode
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
 }
 
 -(void)startGetSecurePasswordVerifyCode {
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }
     
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
-    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_VERIFYCODE
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
-                                     }
-                    queryArguments:@{@"_t":timeStr}
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
-                         scopeType:ServiceScopeTypePublic];
 }
 
 -(void)startDemoLogin
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_DEMOLOGIN
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
-                                     }
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeDemoLogin
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_DEMOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeDemoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_DEMOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone"
+                                         }
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeDemoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 -(void)startGetCustomService

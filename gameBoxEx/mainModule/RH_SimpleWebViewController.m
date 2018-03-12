@@ -483,10 +483,11 @@
         [[UIApplication sharedApplication]openURL:request.URL];
         return NO ;
         //bSucc是否成功调起支付宝
-    }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
-        [reqUrl containsString:@"/login/commonLogin.html"]){
+    }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])
+              && ([reqUrl containsString:@"/login/commonLogin.html"] || [reqUrl containsString:@"/passport/login.html"] )){
         //跳转原生
-        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
+        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
+            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
             RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
             loginViewCtrlEx.delegate = self ;
             [self showViewController:loginViewCtrlEx sender:self] ;
