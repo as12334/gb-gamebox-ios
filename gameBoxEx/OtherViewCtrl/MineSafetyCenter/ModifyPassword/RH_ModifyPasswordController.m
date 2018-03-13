@@ -45,6 +45,7 @@
     [super viewWillAppear:animated] ;
     if (_infoManager.updateUserVeifyCode) {
           [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
+          self.tableViewManagement.delegate = self;
     }else
     {
           [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPassword"] ;
@@ -58,16 +59,8 @@
     self.title = @"修改登录密码";
     self.needObserverTapGesture = YES ;
     [self setupInfo];
+    _infoManager = [RH_UserInfoManager shareUserManager] ;
 }
-
--(RH_UserInfoManager *)infoManager
-{
-    if (!_infoManager) {
-        _infoManager = [RH_UserInfoManager shareUserManager] ;
-    }
-    return _infoManager;
-}
-
 
 #pragma mark - tableview cell--
 -(RH_ModifyPasswordCell *)currentPasswordCell
@@ -180,7 +173,11 @@
         showMessage(self.view, @"提示", @"密码至少六位");
         return;
     }
-    if ([self isPureInt:newPwd] || [self isPureInt:newPwd2]) {
+//    if ([self isPureInt:newPwd] || [self isPureInt:newPwd2]) {
+//        showMessage(self.view, @"提示", @"密码过于简单");
+//        return;
+//    }
+    if (![self checkPassWordIsNotEasy:newPwd] || ![self checkPassWordIsNotEasy:newPwd2]) {
         showMessage(self.view, @"提示", @"密码过于简单");
         return;
     }
@@ -208,18 +205,41 @@
     }
 
 }
-
-- (BOOL)isPureInt:(NSString *)string{
-    
-    NSScanner* scan = [NSScanner scannerWithString:string];
-    
-    int val;
-    
-    return [scan scanInt:&val] && [scan isAtEnd];
-    
+#pragma mark - 判断密码强度
+- (BOOL)checkPassWordIsNotEasy:(NSString *)passWord1 {
+    NSInteger passWord = [passWord1 integerValue];
+    NSMutableArray *passWordArr = [NSMutableArray array];
+    for (int i = 6; i > 0; i --) {
+        int result = pow(10, i-1);
+        NSString *num = [NSString stringWithFormat:@"%ld",passWord/result];
+        passWord -= result*(passWord/result);
+        [passWordArr addObject:num];
+    }
+    NSLog(@"%@",passWordArr);
+    int num1,num2,num3,num4,num5;
+    int str1 = [passWordArr[0] intValue];
+    int str2 = [passWordArr[1] intValue];
+    int str3 = [passWordArr[2] intValue];
+    int str4 = [passWordArr[3] intValue];
+    int str5 = [passWordArr[4] intValue];
+    int str6 = [passWordArr[5] intValue];
+    num1 = str1 - str2;
+    num2 = str2 - str3;
+    num3 = str3 - str4;
+    num4 = str4 - str5;
+    num5 = str5 - str6;
+    if (num1 == num2 && num2 == num3 && num3 == num4 && num4 == num5) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
-
+- (BOOL)isPureInt:(NSString *)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
 
 -(UILabel *)label_Notice
 {
@@ -264,7 +284,6 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3UpdateLoginPassword){
-        
         if(error.code != RH_API_ERRORCODE_SESSION_TAKEOUT){
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
                 showErrorMessage(self.view, error, @"修改密码失败");
