@@ -1755,7 +1755,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
         }
     }else{
-        if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
                 tempError = [NSError resultErrorWithResultInfo:dataObject];
             }
@@ -2159,7 +2159,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeTimeZoneInfo:
             {
                 //重新请求
-                [self startV3SiteTimezone] ;
+                [self performSelector:@selector(startV3SiteTimezone) withObject:self afterDelay:3.0f] ;
             }
                 break ;
                 

@@ -72,17 +72,21 @@
 {
     //.05
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
-//    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"/^+|\s+$/g" withString:@""];
-//    if (strTmp.length<10) {
-//         _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .100  ;
-//    }else if (strTmp.length>10 && strTmp.length < 100)
-//    {
-//        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .100  ;
-//    }else if (strTmp.length>100)
-//    {
-//        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .01  ;
-//    }
-    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
+    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+    
+    if ([self.labScrollText.text isEqualToString:strTmp])
+        return ;
+    if (strTmp.length<10) {
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .18;
+    }else if (strTmp.length>10 && strTmp.length < 100)
+    {
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .075  ;
+    }else if (strTmp.length>100)
+    {
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .055  ;
+    }
+//    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
 //    strTmp.length * 0.6 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
