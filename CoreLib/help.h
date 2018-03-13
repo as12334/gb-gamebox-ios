@@ -281,7 +281,7 @@ NSString * appStoreURL(NSString * appID) ;
 NSString * appStoreHTTPURL(NSString * appID) ;
 void gotoAppStore(NSString * appID) ;
 BOOL openURL(NSString * url);
-BOOL isIgnoreHTTPS(NSString *domain) ;
+//BOOL isIgnoreHTTPS(NSString *domain) ;
 NSString *getIPAddress(BOOL preferIPv4) ;
 NSString *getLocalizedString(CLLanguageOption languageOption,NSString* key) ;
 #endif /* help_h */

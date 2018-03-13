@@ -68,7 +68,6 @@
     return _infoManager;
 }
 
-
 #pragma mark - tableview cell--
 -(RH_ModifyPasswordCell *)currentPasswordCell
 {
