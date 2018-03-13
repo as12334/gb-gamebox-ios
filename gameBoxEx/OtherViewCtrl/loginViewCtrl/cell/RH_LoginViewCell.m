@@ -86,9 +86,9 @@
         [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.headImage.image = ImageWithName(@"login_touxiang_default");
-        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
-        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal] ;
+        self.headImage.image = ImageWithName(@"login_touxiang_black");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor ;
     }else{
         self.headImage.image = ImageWithName(@"login_touxiang_default");
