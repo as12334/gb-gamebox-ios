@@ -72,6 +72,8 @@
 {
     //.05
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
+    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
 //    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"/^+|\s+$/g" withString:@""];
 //    if (strTmp.length<10) {
 //         _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .100  ;
@@ -82,7 +84,7 @@
 //    {
 //        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .01  ;
 //    }
-    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
+    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .15  ;
 //    strTmp.length * 0.6 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
