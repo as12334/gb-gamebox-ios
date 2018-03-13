@@ -88,13 +88,14 @@
 #define THEMEV3             @"default"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN  @"test71.hongtubet.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
-#define SID        @"21"
+#define SID        @"71"
 #define THEME     @"default.skin"
 //#define THEMEV3     @"black"   //green,red,black,default .
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 
 #elif _DEBUG1 //开发环境 V3  H5  test 01

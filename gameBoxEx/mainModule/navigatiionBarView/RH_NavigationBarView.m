@@ -50,8 +50,8 @@
 
     NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
     UIImage *menuImage = ImageWithName(logoName);
-    self.layoutImageWidth.constant = menuImage.size.width ;
-    self.layoutImageHeight.constant = menuImage.size.height ;
+    self.layoutImageHeight.constant = MIN(menuImage.size.height,30.0f) ;
+    self.layoutImageWidth.constant = menuImage.size.width *self.layoutImageHeight.constant/menuImage.size.height  ;
     self.logoImageView.image =  menuImage ;
     self.labTitle.text = @"" ;
     
