@@ -18,7 +18,7 @@
 @implementation RH_GameCategoryCell
 +(CGSize)sizeForViewWithInfo:(NSDictionary *)info containerViewSize:(CGSize)containerViewSize context:(id)context
 {
-    CGSize size = caculaterLabelTextDrawSize([info stringValueForKey:@"value"], [UIFont systemFontOfSize:12.0f], containerViewSize.width) ;
+    CGSize size = caculaterLabelTextDrawSize([info stringValueForKey:@"value"]?:[info stringValueForKey:@"key"], [UIFont systemFontOfSize:12.0f], containerViewSize.width) ;
     return CGSizeMake(size.width + 20 ,40) ;
 }
 
@@ -56,7 +56,7 @@
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
     self.gamelistTypeModel = info ;
-    self.labTitle.text = [self.gamelistTypeModel stringValueForKey:@"value"] ;
+    self.labTitle.text = [self.gamelistTypeModel stringValueForKey:@"value"]?:[self.gamelistTypeModel stringValueForKey:@"key"] ;
 }
 
 @end

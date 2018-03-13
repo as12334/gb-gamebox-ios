@@ -108,8 +108,8 @@
     
     if (self.bannerModels.count > index) {
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index]
-                                                            thumbURL]] placeholderImage:ImageWithName(@"default_banner.jpg")] ;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
+                     placeholderImage:ImageWithName(@"default_banner.jpg")] ;
     }else{
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
         [imageView setImage:ImageWithName(@"default_banner.jpg")] ;

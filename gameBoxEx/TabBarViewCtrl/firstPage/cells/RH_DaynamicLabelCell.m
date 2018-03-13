@@ -74,7 +74,7 @@
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
     strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
     strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
-    
+
     if ([self.labScrollText.text isEqualToString:strTmp])
         return ;
     if (strTmp.length<10) {
