@@ -2246,7 +2246,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         serviceType!=ServiceRequestTypeV3HomeInfo &&
         serviceType!=ServiceRequestTypeV3UserInfo &&
         serviceType!=ServiceRequestTypeV3RefreshSession &&
-        serviceType!=ServiceRequestTypeSiteMessageUnReadCount)
+        serviceType!=ServiceRequestTypeSiteMessageUnReadCount&&
+        serviceType!=ServiceRequestTypeV3GETUSERASSERT)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
