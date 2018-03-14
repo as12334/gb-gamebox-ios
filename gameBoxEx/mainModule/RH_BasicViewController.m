@@ -431,7 +431,6 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type SpecifiedError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3GETUSERASSERT) return;
     if (error.code==RH_API_ERRORCODE_SESSION_EXPIRED || error.code==RH_API_ERRORCODE_USER_LOGOUT){
         if (type!=ServiceRequestTypeV3SiteMessageMyMessageDetail){
             showMessage(nil, error.code==RH_API_ERRORCODE_SESSION_EXPIRED?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
