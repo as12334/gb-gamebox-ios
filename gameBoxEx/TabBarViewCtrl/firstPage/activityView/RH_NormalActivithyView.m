@@ -197,7 +197,7 @@
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     // do something
-                    self.gainActivityLabel.text = [NSString stringWithFormat:@"获得%@圆",self.openModel.mAward] ;
+                    self.gainActivityLabel.text = [NSString stringWithFormat:@"获得%@元",self.openModel.mAward] ;
                 });
                 
             }

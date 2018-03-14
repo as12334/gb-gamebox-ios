@@ -76,8 +76,8 @@
     _hud.removeFromSuperViewOnHide = YES;
     
     [self.serviceRequest startV3SiteTimezone] ;
-    
-//    [self autoLogin] ;
+    //自动登录
+    [self autoLogin] ;
 }
 
 - (void)dealloc
@@ -194,7 +194,7 @@
     [self setupPageLoadManager] ;
     
     UIView *foot_View = [UIView new];
-    foot_View.frame = CGRectMake(0, 0, screenSize().width, 100);
+    foot_View.frame = CGRectMake(0, 0, screenSize().width, 20);
     UILabel *label = [UILabel new];
     [foot_View addSubview:label];
     label.whc_TopSpace(15).whc_CenterX(0).whc_Height(30).whc_LeftSpace(30).whc_RightSpace(30);
@@ -705,7 +705,7 @@
             return 0.0f ;
         }
     }else{
-        return MainScreenH  - TabBarHeight - [self topViewHeight] ;
+        return MainScreenH  - TabBarHeight - [self topViewHeight];
     }
     return 0.0f ;
 }

@@ -64,6 +64,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *zhuangtaiLab;
 @property (weak, nonatomic) IBOutlet UILabel *SevenRightLab;
 
+@property (weak, nonatomic) IBOutlet UILabel *realNameLab1; //真实姓名
+
+@property (weak, nonatomic) IBOutlet UIImageView *TypeImageView;
 /*左边lab*/
 @property (weak, nonatomic) IBOutlet UIImageView *bankRightImage;  //银行卡右边的图片
 @property (weak, nonatomic) IBOutlet UILabel *xingmingLab;
@@ -182,7 +185,7 @@
             self.bankImageView.image = ImageWithName(@"bitcoin_image");
             self.isSuccState.hidden = YES;
             self.xingmingLab.text = @"姓名:";
-            self.realNameLab.text = detailModel.mRealName;
+            self.realNameLab.text = detailModel.mRealName?:MineSettingInfo.mRealName;
             self.zhekouyouhuiLeftLab.text = @"比特币:";
             self.youhuiLab.text = detailModel.mRechargeAmount;
             self.thirdLeftLab.text = @"状态:";
@@ -226,8 +229,9 @@
             self.serviceChargeMoney.text = detailModel.mPoundage ;
             self.inMyAccountMoney.text = detailModel.mRechargeTotalAmount ;
             self.isSuccState.text = detailModel.mStatusName ;
-            
              _BottomView2.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
+            self.realNameLab1.text = detailModel.mRealName?:MineSettingInfo.mRealName;
+            [self.TypeImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
             self.thirdTitleLab.text = @"描述";
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
             self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");

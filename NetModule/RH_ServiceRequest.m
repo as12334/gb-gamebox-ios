@@ -1185,7 +1185,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
                          SafetyPwd:(NSString *)safetyPassword
                            gbToken:(NSString *)gbToken
-                          CardType:(int)cardType  //（1：银行卡，2：比特币）
+                          CardType:(NSInteger)cardType  //（1：银行卡，2：比特币）
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
