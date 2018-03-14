@@ -83,6 +83,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         _modifySafetyStatus = ModifySafetyStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyInitInfo"] ;
         [self loadingIndicateViewDidTap:nil] ;
+         self.title = @"设置安全密码";
         return ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
@@ -94,6 +95,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;
             [self.modifyButton setTitle:@"设置用户真实姓名" forState:UIControlStateNormal] ;
+            self.title = @"设置真实姓名";
             return ;
         }else if (UserSafetyInfo.mHasPersimmionPwd==FALSE){
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_SetPermissionPasswordUsedCode:ModifySafetyStatus_SetPermissionPassword ;
@@ -101,6 +103,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.modifyButton setTitle:@"设置安全密码" forState:UIControlStateNormal] ;
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;
+            self.title = @"设置安全密码";
             return ;
         }else{
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_UpdatePermissionPasswordUsedCode:ModifySafetyStatus_UpdatePermissionPassword ;
@@ -108,6 +111,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.modifyButton setTitle:@"确定" forState:UIControlStateNormal] ;
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;
+            self.title = @"修改安全密码";
             return ;
         }
     }

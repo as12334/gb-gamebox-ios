@@ -36,6 +36,7 @@
 @synthesize userWithDrawInfo = _userWithDrawInfo ;
 @synthesize domainCheckErrorList = _domainCheckErrorList ;
 @synthesize sidString = _sidString ;
+@synthesize updateUserVeifyCode = _updateUserVeifyCode ;
 
 +(instancetype)shareUserManager
 {
@@ -268,6 +269,14 @@
 {
     return _updateUserVeifyCode ;
 }
+
+-(void)setUpdateUserVeifyCode:(BOOL)updateUserVeifyCode
+{
+    if (updateUserVeifyCode != _updateUserVeifyCode) {
+        _updateUserVeifyCode = updateUserVeifyCode ;
+    }
+}
+
 #pragma mark - SID
 -(NSString *)sidString
 {

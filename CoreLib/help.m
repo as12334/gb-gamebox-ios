@@ -917,14 +917,14 @@ BOOL openURL(NSString * url)
     return NO;
 }
 
-BOOL isIgnoreHTTPS(NSString *domain)
-{
-    for (NSString * ignoreStr in RH_IgnoreHTTPS_LIST) {
-        if ([domain containsString:ignoreStr])
-            return TRUE ;
-    }
-    return FALSE ;
-}
+//BOOL isIgnoreHTTPS(NSString *domain)
+//{
+//    for (NSString * ignoreStr in RH_IgnoreHTTPS_LIST) {
+//        if ([domain containsString:ignoreStr])
+//            return TRUE ;
+//    }
+//    return FALSE ;
+//}
 
 #pragma mark--获取 设备 ip address
 #import <ifaddrs.h>
