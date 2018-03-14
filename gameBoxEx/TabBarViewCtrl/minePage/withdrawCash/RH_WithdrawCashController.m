@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.serviceRequest startV3GetWithDraw] ;
     }else if ([nt.name isEqualToString:UITextFieldTextDidChangeNotification]){
         UITextField *textF = ConvertToClassPointer(UITextField, nt.object) ;
-        if (textF){
+        if (textF && [textF isMemberOfClass:[UITextField class]]){
             if (self.mainSegmentControl.selectedSegmentIndex){
                 _bitCoinWithdrawAmount = [textF.text floatValue] ;
             }else
@@ -190,77 +190,84 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 }
 
 - (void)buttonConfirmHandle {
-    CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
-    if (self.mainSegmentControl.selectedSegmentIndex==0){
-        if ([self _checkShowBankCardInfo:YES]) {
-            return ;
-        }
-    }else{
-        if ([self _checkShowBitCoinInfo:YES]) {
-            return ;
-        }
-    }
-    
-    if (self.cashCell.textField.text.trim.length == 0 ) {
-        showMessage(self.view, @"", @"请输入取款金额");
-        return;
-    }
-    
-    if (amountValue <self.withDrawModel.mWithdrawMinNum ||
-        amountValue >self.withDrawModel.mWithdrawMaxNum) {
-        showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%.2f-%.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
-        return;
-    }
-    
-    AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
-    if (auditMap==nil){
-        //计算费率信息
-        [self showProgressIndicatorViewWithAnimated:YES title:@"计算费用..."];
-        [self.serviceRequest startV3WithDrawFeeWithAmount:amountValue] ;
-        return ;
-    }
-    
-    //检测最终可取 金额是否大于 0
-    if (auditMap.mActualWithdraw<=0){
-        showMessage(self.view, @"提示信息",@"实际取款金额应大于零");
-        return ;
-    }
-    
-    //检测取款余额是否大于钱包余额
-    if (amountValue>MineSettingInfo.mWalletBalance){
-        showMessage(self.view, @"提示信息",@"取款金额应小于钱包余额!");
-        return ;
-    }
-    
-    //检测是否有设置安全密码
-    if (self.withDrawModel.mIsSafePassword==false){
-        showAlertView(@"安全提示", @"请设置安全密码") ;
-        [self showViewController:[RH_ModifySafetyPasswordController viewControllerWithContext:@"设置安全密码"] sender:self] ;
-        return ;
-    }
-    
-    //安全密码提示框
-    UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex==1){//确认
-            NSString *safetyPass =  [alertView textFieldAtIndex:0].text ;
-            if (safetyPass.length){
-                [self showProgressIndicatorViewWithAnimated:YES title:@"提交中..."];
-                //（1：银行卡，2：比特币）
-                [self.serviceRequest startV3SubmitWithdrawAmount:amountValue
-                                                       SafetyPwd:safetyPass
-                                                         gbToken:self.withDrawModel.mToken
-                                                        CardType:self.mainSegmentControl.selectedSegmentIndex+1] ;
-                
+    if (self.appDelegate.isLogin) {
+        CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
+        if (self.mainSegmentControl.selectedSegmentIndex==0){
+            if ([self _checkShowBankCardInfo:YES]) {
+                return ;
+            }
+        }else{
+            if ([self _checkShowBitCoinInfo:YES]) {
+                return ;
             }
         }
         
+        if (self.cashCell.textField.text.trim.length == 0 ) {
+            showMessage(self.view, @"", @"请输入取款金额");
+            return;
+        }
+        
+        if (amountValue <self.withDrawModel.mWithdrawMinNum ||
+            amountValue >self.withDrawModel.mWithdrawMaxNum) {
+            showMessage(self.view, @"请重新输入", [NSString stringWithFormat:@"金额有效范围为【%.2f-%.2f】",self.withDrawModel.mWithdrawMinNum,self.withDrawModel.mWithdrawMaxNum]);
+            return;
+        }
+        
+        AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
+        if (auditMap==nil){
+            //计算费率信息
+            [self showProgressIndicatorViewWithAnimated:YES title:@"计算费用..."];
+            [self.serviceRequest startV3WithDrawFeeWithAmount:amountValue] ;
+            return ;
+        }
+        
+        //检测最终可取 金额是否大于 0
+        if (auditMap.mActualWithdraw<=0){
+            showMessage(self.view, @"提示信息",@"实际取款金额应大于零");
+            return ;
+        }
+        
+        //检测取款余额是否大于钱包余额
+        if (amountValue>MineSettingInfo.mWalletBalance){
+            showMessage(self.view, @"提示信息",@"取款金额应小于钱包余额!");
+            return ;
+        }
+        
+        //检测是否有设置安全密码
+        if (self.withDrawModel.mIsSafePassword==false){
+            showAlertView(@"安全提示", @"请设置安全密码") ;
+            [self showViewController:[RH_ModifySafetyPasswordController viewControllerWithContext:@"设置安全密码"] sender:self] ;
+            return ;
+        }
+        
+        //安全密码提示框
+        UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex==1){//确认
+                NSString *safetyPass =  [alertView textFieldAtIndex:0].text ;
+                if (safetyPass.length){
+                    [self showProgressIndicatorViewWithAnimated:YES title:@"提交中..."];
+                    //（1：银行卡，2：比特币）
+                    [self.serviceRequest startV3SubmitWithdrawAmount:amountValue
+                                                           SafetyPwd:safetyPass
+                                                             gbToken:self.withDrawModel.mToken
+                                                            CardType:self.mainSegmentControl.selectedSegmentIndex+1] ;
+                    
+                }
+            }
+        }
+                                                           title:nil
+                                                         message:@"请输入安全密码"
+                                                cancelButtonName:@"取消"
+                                               otherButtonTitles:@"确认", nil] ;
+        alert.alertViewStyle = UIAlertViewStyleSecureTextInput ;
+        [alert show];
+    }else
+    {
+        showMessage_b(self.view, nil, @"您的账号在另一设备登录！", ^{
+            [self loginButtonItemHandle] ;
+        });
     }
-                                                       title:nil
-                                                     message:@"请输入安全密码"
-                                             cancelButtonName:@"取消"
-                                            otherButtonTitles:@"确认", nil] ;
-    alert.alertViewStyle = UIAlertViewStyleSecureTextInput ;
-    [alert show];
+   
 }
 
 #pragma mark - mainSegmentControl

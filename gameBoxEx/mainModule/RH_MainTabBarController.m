@@ -124,7 +124,6 @@
         service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         mine.image = [[UIImage imageNamed:@"tab_mine"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-
     if ([@"integrated" isEqualToString:SITE_TYPE]) {
         transfer.image = [[UIImage imageNamed:@"tab_transfer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         if ([@"blue.skin" isEqualToString:THEME]) {
