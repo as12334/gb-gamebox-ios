@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 @property (nonatomic,strong, readonly)  RH_BankCardLocationCell *bankLocationCell ;
 
 @property (nonatomic,strong, readonly)  RH_BankPickerSelectView *bankPickerSelectView ;
-
+@property (nonatomic,assign) BOOL isInitOk ;
 ////---
 @property (nonatomic, strong,readonly) UIView *footerView ;
 @property (nonatomic, strong,readonly) UIButton *addButton ;
@@ -75,6 +75,11 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 
 -(void)updateView
 {
+    if (!self.isInitOk){
+        [self loadingIndicateViewDidTap:nil] ;
+        return ;
+    }
+    [self.contentTableView reloadData] ;
     if (MineSettingInfo==nil){
         _bankCardStatus = BankCardStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"BankCardInit"] ;
@@ -114,6 +119,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
 //    }
     
 }
+
 
 #pragma mark -
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
@@ -311,6 +317,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
     if (type == ServiceRequestTypeV3UserInfo){
         [self.contentLoadingIndicateView hiddenView] ;
         [self setNeedUpdateView] ;
+        self.isInitOk = YES ;
     }else if (type == ServiceRequestTypeV3AddBankCard){
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

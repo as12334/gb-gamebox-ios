@@ -1185,7 +1185,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
                          SafetyPwd:(NSString *)safetyPassword
                            gbToken:(NSString *)gbToken
-                          CardType:(int)cardType  //（1：银行卡，2：比特币）
+                          CardType:(NSInteger)cardType  //（1：银行卡，2：比特币）
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
@@ -2246,7 +2246,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         serviceType!=ServiceRequestTypeV3HomeInfo &&
         serviceType!=ServiceRequestTypeV3UserInfo &&
         serviceType!=ServiceRequestTypeV3RefreshSession &&
-        serviceType!=ServiceRequestTypeSiteMessageUnReadCount)
+        serviceType!=ServiceRequestTypeSiteMessageUnReadCount&&
+        serviceType!=ServiceRequestTypeV3GETUSERASSERT)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
