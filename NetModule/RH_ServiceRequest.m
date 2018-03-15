@@ -486,7 +486,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dictTmp
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3APIGameList
                          scopeType:ServiceScopeTypePublic];
 }

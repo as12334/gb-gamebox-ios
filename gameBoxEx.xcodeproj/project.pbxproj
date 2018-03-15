@@ -64,6 +64,7 @@
 		79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */; };
 		79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */; };
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
+		79AFA716205A1FF5001BF327 /* RH_HasNavCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AFA715205A1FF5001BF327 /* RH_HasNavCustomViewController.m */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
 		79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77072006018800BBFC13 /* RH_CapitalDetailModel.m */; };
 		79BB2D9820312F4B000CDE6B /* RH_ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2D9720312F4B000CDE6B /* RH_ShareViewController.m */; };
@@ -722,6 +723,8 @@
 		79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalQuickSelectView.m; sourceTree = "<group>"; };
 		79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawModel.h; sourceTree = "<group>"; };
 		79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithDrawModel.m; sourceTree = "<group>"; };
+		79AFA714205A1FF5001BF327 /* RH_HasNavCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HasNavCustomViewController.h; sourceTree = "<group>"; };
+		79AFA715205A1FF5001BF327 /* RH_HasNavCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HasNavCustomViewController.m; sourceTree = "<group>"; };
 		79BA77032005F63C00BBFC13 /* RH_CapitalInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoModel.h; sourceTree = "<group>"; };
 		79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoModel.m; sourceTree = "<group>"; };
 		79BA77062006018800BBFC13 /* RH_CapitalDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalDetailModel.h; sourceTree = "<group>"; };
@@ -3058,6 +3061,8 @@
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
+				79AFA714205A1FF5001BF327 /* RH_HasNavCustomViewController.h */,
+				79AFA715205A1FF5001BF327 /* RH_HasNavCustomViewController.m */,
 				A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */,
 				A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */,
 			);
@@ -4385,6 +4390,7 @@
 				A0109FE01F8788FF004E6EF4 /* MJExtensionConst.m in Sources */,
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
+				79AFA716205A1FF5001BF327 /* RH_HasNavCustomViewController.m in Sources */,
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,

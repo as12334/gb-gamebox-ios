@@ -392,7 +392,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySucfullSettingSafetyPassword object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"定安全密码设置成功":@"安全密码修改成功", nil, ^{
+            showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"安全密码设置成功":@"安全密码修改成功", nil, ^{
                 [self backBarButtonItemHandle] ;
             });
             [serviceRequest startV3UserSafetyInfo];

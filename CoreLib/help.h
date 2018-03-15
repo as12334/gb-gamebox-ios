@@ -265,6 +265,16 @@ BOOL isSidStr(NSString *sidStr) ;
 NSArray * matchString(NSString *string) ;
 //长SID 匹配数组
 NSArray * matchLongString(NSString *string) ;
+//密码正则
+BOOL isSimplePwd(NSString *password);
+#pragma mark -- 是否升序
+BOOL isAscendingPwd(NSString *password) ;
+#pragma mark - 是否降序
+BOOL isDescendingPwd(NSString *password);
+#pragma mark - 是否升降序
+BOOL isDescendingAndPwdisAscendingPwd(NSString *password) ;
+#pragma mark -连续三个以上重复数字
+BOOL isSameMoreThreePwd(NSString *password) ;
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat) ;
 NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone) ;

@@ -1,86 +1,30 @@
 //
-//  RH_CustomViewController.m
+//  RH_HasNavCustomViewController.m
 //  gameBoxEx
 //
-//  Created by luis on 2017/10/7.
-//  Copyright © 2017年 luis. All rights reserved.
+//  Created by Richard on 2018/3/15.
+//  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_CustomViewController.h"
-#import <JavaScriptCore/JavaScriptCore.h>
-#import "RH_APPDelegate.h"
-#import "RH_MainNavigationController.h"
-#import "RH_FirstPageViewController.h"
-#import "RH_MainTabBarController.h"
-#import "RH_LotteryInfoModel.h"
+#import "RH_HasNavCustomViewController.h"
 #import "RH_UserInfoManager.h"
-#import "RH_LotteryAPIInfoModel.h"
 
-@interface RH_CustomViewController ()
-@property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
-@property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
-@property(nonatomic,strong)CLButton * homeBack;
-@property(nonatomic,strong)CLButton * backBack;
-
+@interface RH_HasNavCustomViewController ()
 @property(nonatomic,strong) id context ;
 @end
 
-@implementation RH_CustomViewController
-@synthesize gameBgImage = _gameBgImage              ;
-@synthesize imageFirstPage = _imageFirstPage    ;
-
+@implementation RH_HasNavCustomViewController
 -(void)setupViewContext:(id)context
 {
     self.context = context ;
 }
 
--(void)viewDidLoad
-{
-    [super viewDidLoad] ;
-    self.navigationItem.titleView = nil ;
-    [self.view addSubview:self.gameBgImage];
-    [self.view bringSubviewToFront:self.gameBgImage] ;
-    UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
-    [self.gameBgImage setUserInteractionEnabled:YES];//开启图片控件的用户交互
-    [self.gameBgImage addGestureRecognizer:pan];
-    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.view, -0.0f) ;
-    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
-    
-    if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
-        RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
-        if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-            [self setupURL] ;
-        }else{
-            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink] ;
-        }
-    }else if ([self.context isKindOfClass:[RH_LotteryAPIInfoModel class]]){ //需要请求 link
-        RH_LotteryAPIInfoModel *lotteryApiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, self.context) ;
-        if (lotteryApiInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = lotteryApiInfoModel.showGameLink ;
-            [self setupURL] ;
-        }else{
-            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
-        }
-    }else{
-        [self setupURL] ;
-    }
-    
-    
+- (void)viewDidLoad {
+    [super viewDidLoad];
+//    self.navigationItem.titleView = nil ;
+     [self setupURL] ;
+    self.title = @"123";
 }
-
-
--(void)handlePan:(UIPanGestureRecognizer *)pan
-{
-    CGPoint point=[pan translationInView:self.view];
-//    NSLog(@"%f,%f",point.x,point.y);
-    pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
-    //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
-    [pan setTranslation:CGPointMake(0, 0) inView:self.view];
-}
-
 -(void)setupURL
 {
     if([self.appDelegate.customUrl containsString:@"http"]){
@@ -88,16 +32,12 @@
     }else{
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
     }
-    
+    if ([self.appDelegate.customUrl containsString:@"transfer"]) {
+        self.title = @"额度转换112" ;
+        self.navigationItem.titleView.backgroundColor = [UIColor redColor] ;
+    }
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         [self reloadWebView] ;//预防两次url 一样，不加载情况
-    }
-    //隐藏按钮
-    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
-        if ([self.appDelegate.customUrl containsString:@"signUp/index.html"]  || [self.appDelegate.customUrl containsString:@"promo/promoDetail.html"]
-            || [self.appDelegate.customUrl containsString:@"transfer/index.html"]  ) {
-            _gameBgImage.hidden = YES ;
-        }
     }
 }
 
@@ -108,60 +48,7 @@
 
 -(BOOL)navigationBarHidden
 {
-    return YES ;
-}
-
-- (UIImageView *)gameBgImage
-{
-    if (!_gameBgImage) {
-        _gameBgImage = [[UIImageView alloc] initWithImage:ImageWithName(@"game_btn_bg")];
-        _gameBgImage.translatesAutoresizingMaskIntoConstraints = NO ;
-        _gameBgImage.backgroundColor = [UIColor clearColor];
-        _gameBgImage.alpha = 0.3f ;
-        _gameBgImage.contentMode = UIViewContentModeScaleAspectFill;
-        _gameBgImage.clipsToBounds = YES;
-        _gameBgImage.userInteractionEnabled = YES;
-
-       _homeBack = [[CLButton alloc] initWithFrame:CGRectMake(0, 0, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
-        _homeBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-        [_homeBack setBackgroundColor:BlackColorWithAlpha(0.2f)
-                                  forState:UIControlStateHighlighted];
-        [_homeBack setBackgroundImage:ImageWithName(@"icon_home") forState:UIControlStateNormal] ;
-        [_homeBack addTarget:self
-                           action:@selector(_homeBackHandle)
-                 forControlEvents:UIControlEventTouchUpInside];
-        [_gameBgImage addSubview:_homeBack];
-
-
-        _backBack = [[CLButton alloc] initWithFrame:CGRectMake(0, floor(_gameBgImage.boundHeigh/2.0)+1, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
-        _backBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-        [_backBack setBackgroundColor:BlackColorWithAlpha(0.2f)
-                            forState:UIControlStateHighlighted];
-        [_backBack setBackgroundImage:ImageWithName(@"title_back") forState:UIControlStateNormal] ;
-        [_backBack addTarget:self
-                     action:@selector(_backBackHandle)
-           forControlEvents:UIControlEventTouchUpInside];
-        [_gameBgImage addSubview:_backBack];
-
-    }
-
-    return _gameBgImage;
-}
-
-
--(void)_homeBackHandle
-{
-    [self.navigationController popToRootViewControllerAnimated:YES] ;
-    if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
-        self.myTabBarController.selectedIndex = 2 ;
-    }else{
-        self.myTabBarController.selectedIndex = 0 ;
-    }
-}
-
--(void)_backBackHandle
-{
-    [self backBarButtonItemHandle] ;
+    return NO ;
 }
 
 -(BOOL)needLogin
@@ -194,7 +81,7 @@
             customUrl = jsVal;
             NSLog(@"%@", jsVal.toString);
         }
-
+        
         if (args[0] != NULL) {
             self.appDelegate.customUrl = customUrl.toString;
         }
@@ -213,11 +100,11 @@
             }
         }) ;
     } ;
-
+    
     jsContext[@"loginOut"] = ^(){
         NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
+        //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+        //        [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
         
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -288,21 +175,6 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink ||
-              type==ServiceRequestTypeV3GameLinkForCheery){
-        [self.contentLoadingIndicateView hiddenView] ;
-        NSDictionary *gameLinkDict = ConvertToClassPointer(NSDictionary, data) ;
-        RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
-        [lotteryInfoModel updateShowGameLink:gameLinkDict] ;
-        NSString *gameLink = lotteryInfoModel.showGameLink ;
-        NSString *gameMessage = lotteryInfoModel.mGameMsg ;
-        if (gameLink.length){
-            self.appDelegate.customUrl = gameLink ;
-            [self setupURL] ;
-        }else{
-            showAlertView(@"温馨提示", gameMessage);
-            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:gameMessage detailText:@"温馨提示"] ;
-        }
     }
 }
 
@@ -327,16 +199,16 @@
     [super webViewDidEndLoad:error] ;
     if (error){
         [self.webView stringByEvaluatingJavaScriptFromString:@"$('.mui-inner-wrap').height();"];//防止白屏
-
+        
         //账号退出
         if([self.appDelegate.customUrl isEqualToString:@"/passport/logout.html"]){
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }
-
+        
         NSArray* filterUrls = [[NSArray alloc] initWithObjects:@"/login/commonLogin.",@"/signUp/index.",@"/passport/logout.",@"/help/",@"/promoDetail.",@"/lottery/mainIndex.",@"/lottery/",@"/index.",@"/lotteryResultHistory/",nil];
         //判断是否需要登录判断
-
+        
         if([filterUrls containsObject: self.webURL.absoluteString] == 1){
             [self.webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
         }
@@ -344,5 +216,20 @@
 }
 
 #pragma mark-
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
