@@ -843,7 +843,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:NO];
                 self.myTabBarController.selectedIndex = 0 ;
-                [self reloadWebView];
+//                [self reloadWebView];
             });
         };
         
@@ -876,7 +876,13 @@
         jsContext[@"nativeGotoPromoRecordPage"] = ^(){/*** 跳到我的优惠记录界面 ）*/
             NSLog(@"JSToOc :%@------ gotoPromoRecordPage",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
-              [self showViewController:[RH_PromoListController viewController] sender:self] ;
+                if (self.appDelegate.isLogin) {
+                     [self showViewController:[RH_PromoListController viewController] sender:self] ;
+                }else
+                {
+                    [self loginButtonItemHandle] ;
+                }
+             
             }) ;
         };
         

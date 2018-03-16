@@ -173,65 +173,33 @@
         showMessage(self.view, @"提示", @"密码至少六位");
         return;
     }
-//    if ([self isPureInt:newPwd] || [self isPureInt:newPwd2]) {
-//        showMessage(self.view, @"提示", @"密码过于简单");
-//        return;
-//    }
-    if (![self checkPassWordIsNotEasy:newPwd] || ![self checkPassWordIsNotEasy:newPwd2]) {
+    if (newPwd.length>0 && newPwd2.length>0) {
+        if (![newPwd isEqualToString:newPwd2]) {
+            showMessage(self.view, nil, @"两次输入的密码不一样！");
+            return;
+        }
+    }
+    //密码升序或者降序
+    if (isDescendingAndPwdisAscendingPwd(newPwd) &&isDescendingAndPwdisAscendingPwd(newPwd2)) {
         showMessage(self.view, @"提示", @"密码过于简单");
         return;
     }
-    if (![newPwd isEqualToString:newPwd2]) {
-        showMessage(self.view, nil, @"两次输入的密码不一样！");
+    //三位以上的重复数字
+    if (isSameMoreThreePwd(newPwd) &&isSameMoreThreePwd(newPwd2)) {
+        showMessage(self.view, @"提示", @"密码过于简单");
         return;
     }
-    if ([newPwd isEqualToString:currentPwd]) {
-        showMessage(self.view, nil, @"新密码与旧密码一样！");
-        return;
-    }
-    
     if (self.passwordCodeCell){//需要输入验证码
         if (self.passwordCodeCell.passwordCode.length<1){
             showMessage(self.view, nil, @"请输入验证码！");
             return;
         }
     }
-    
     if (NetworkAvailable()){
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在修改密码"];
         [self.serviceRequest startV3UpdateLoginPassword:currentPwd newPassword:newPwd verifyCode:self.passwordCodeCell.passwordCode];
     }else{
         showAlertView(@"无网络", @"请稍后再试") ;
-    }
-
-}
-#pragma mark - 判断密码强度
-- (BOOL)checkPassWordIsNotEasy:(NSString *)passWord1 {
-    NSInteger passWord = [passWord1 integerValue];
-    NSMutableArray *passWordArr = [NSMutableArray array];
-    for (int i = 6; i > 0; i --) {
-        int result = pow(10, i-1);
-        NSString *num = [NSString stringWithFormat:@"%ld",passWord/result];
-        passWord -= result*(passWord/result);
-        [passWordArr addObject:num];
-    }
-    NSLog(@"%@",passWordArr);
-    int num1,num2,num3,num4,num5;
-    int str1 = [passWordArr[0] intValue];
-    int str2 = [passWordArr[1] intValue];
-    int str3 = [passWordArr[2] intValue];
-    int str4 = [passWordArr[3] intValue];
-    int str5 = [passWordArr[4] intValue];
-    int str6 = [passWordArr[5] intValue];
-    num1 = str1 - str2;
-    num2 = str2 - str3;
-    num3 = str3 - str4;
-    num4 = str4 - str5;
-    num5 = str5 - str6;
-    if (num1 == num2 && num2 == num3 && num3 == num4 && num4 == num5) {
-        return NO;
-    } else {
-        return YES;
     }
 }
 
@@ -295,10 +263,13 @@
             _infoManager.updateUserVeifyCode = YES ;
         }
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
-            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]+1] ;
         }
-        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 0 || [userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 5) {
-            self.label_Notice.hidden = YES ;
+        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 5) {
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有1次机会"] ;
+        }else
+        {
+             self.label_Notice.hidden = NO ;
         }
         //在这里判断状态码， 如果冻结，就直接退出APP
         //TODO

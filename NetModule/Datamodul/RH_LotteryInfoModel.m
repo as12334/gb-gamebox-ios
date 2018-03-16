@@ -69,10 +69,8 @@
             {
                 _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
             }
-            
         }
     }
-    
     return _showGameLink ;
 }
 

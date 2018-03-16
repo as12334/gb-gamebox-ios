@@ -821,6 +821,42 @@ NSArray * matchLongString(NSString *string)
     return array;
 }
 
+BOOL isSimplePwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+#pragma mark -- 是否升序
+BOOL isAscendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+
+#pragma mark - 是否降序
+BOOL isDescendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5}\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+#pragma mark - 是否升降序
+BOOL isDescendingAndPwdisAscendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5})\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+
+#pragma mark -连续三个以上重复数字
+BOOL isSameMoreThreePwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"([\\d])\\1{2,}";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
 {

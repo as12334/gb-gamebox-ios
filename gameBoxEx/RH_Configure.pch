@@ -129,6 +129,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _erln //太阳城集团
+
+#define CODE    @"erln"
+#define S        @"81a0d811edec500290dbbc094957396e"
+#define SID        @"66"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _7cxt //百发彩票
 
 #define CODE    @"7cxt"

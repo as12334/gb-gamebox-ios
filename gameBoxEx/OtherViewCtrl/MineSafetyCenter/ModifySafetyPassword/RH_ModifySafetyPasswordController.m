@@ -223,7 +223,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.userNameCell.textField becomeFirstResponder] ;
             return ;
         }
-        
         if (newPassword.length<1){
             showMessage(self.view, nil, @"请输入新密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
@@ -249,7 +248,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
                 return;
             }
         }
-        
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
         [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
                                                     originPassword:nil
@@ -295,10 +293,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         if (verifyCode.length < 1) {
             showMessage(self.view, nil, @"请输入验证码！");
-            return ;
-        }
-        if ([oldPassword isEqualToString:newPassword]) {
-            showMessage(self.view, nil, @"新密码不能和旧密码一样！");
             return ;
         }
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
@@ -392,7 +386,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySucfullSettingSafetyPassword object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"定安全密码设置成功":@"安全密码修改成功", nil, ^{
+            showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"安全密码设置成功":@"安全密码修改成功", nil, ^{
                 [self backBarButtonItemHandle] ;
             });
             [serviceRequest startV3UserSafetyInfo];
