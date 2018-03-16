@@ -107,14 +107,22 @@
 
 #pragma mark - autoLogin
 - (void) autoLogin{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *account = [defaults objectForKey:@"account"];
-    NSString *password = [defaults objectForKey:@"password"];
-    
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *account ;
+    NSString *password ;
+    //判断是否记住密码进行自动登录
+    if([[defaults stringForKey:@"loginIsRemberPassword"] boolValue])
+    {
+        account = [defaults objectForKey:@"account"];
+        password = [defaults objectForKey:@"password"];
+    }else
+    {
+        account = [defaults objectForKey:@"account"];
+        password = nil ;
+    }
     if(account.length==0 || password.length ==0){
         return;
     }
-    
     [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
     return ;
 };

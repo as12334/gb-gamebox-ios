@@ -83,9 +83,9 @@
     
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    return [self validateNumber:string];
-}
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    return [self validateNumber:string];
+//}
 
 - (BOOL)validateNumber:(NSString*)number {
     BOOL res = YES;
