@@ -94,8 +94,12 @@
     }
     //隐藏按钮
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
-        if ([self.appDelegate.customUrl containsString:@"signUp/index.html"]  || [self.appDelegate.customUrl containsString:@"promo/promoDetail.html"]
-            || [self.appDelegate.customUrl containsString:@"transfer/index.html"]  ) {
+        if ([self.appDelegate.customUrl containsString:@"signUp/index.html"]  ||
+            [self.appDelegate.customUrl containsString:@"promo/promoDetail.html"] ||
+            [self.appDelegate.customUrl containsString:@"transfer/index.html"] ||
+            [self.appDelegate.customUrl containsString:@"company/index"] ||
+            [self.appDelegate.customUrl containsString:@"electronic/index"] ||
+            [self.appDelegate.customUrl containsString:@"company/bitcoin/index"]) {
             _gameBgImage.hidden = YES ;
         }
     }

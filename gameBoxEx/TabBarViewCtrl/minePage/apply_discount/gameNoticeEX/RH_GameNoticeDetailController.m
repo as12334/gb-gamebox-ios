@@ -106,8 +106,9 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3GameNoticeDetail){
-         showErrorMessage(nil, error, nil) ;
-        [self loadDataFailWithError:error] ;
+        if (error.code !=1001) {
+             showErrorMessage(nil, error, nil) ;
+        }
     }
 }
 
@@ -136,7 +137,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount){
+    if (self.pageLoadManager.currentDataCount > 0){
         RH_GameNoticeDetailCell *noticeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_GameNoticeDetailCell defaultReuseIdentifier]] ;
         [noticeCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]] ;
         return noticeCell ;
