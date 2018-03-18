@@ -52,6 +52,16 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.bannerModels = ConvertToClassPointer(NSArray, context) ;
+    if (self.bannerModels==nil){
+        self.pageControl.numberOfPages = 1;
+        
+        if (_pageView) {
+            [_pageView removeFromSuperview];
+            _pageView = nil;
+        }
+        
+        [self.pageView reloadData];
+    }
 }
 
 #pragma mark -
@@ -77,7 +87,7 @@
 
 - (NSInteger)numberOfCellsInPageView:(KIPageView *)pageView
 {
-    return self.bannerModels.count?:1;
+    return MAX(self.bannerModels.count,1);
 }
 
 
@@ -98,10 +108,11 @@
     
     if (self.bannerModels.count > index) {
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]] ;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
+                     placeholderImage:ImageWithName(@"default_banner.jpg")] ;
     }else{
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
-        [imageView setImage:ImageWithName(@"default_banner")] ;
+        [imageView setImage:ImageWithName(@"default_banner.jpg")] ;
     }
     
     return cell;

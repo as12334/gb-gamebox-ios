@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_APPDelegate.h"
+#import "RH_ModifySafetyPasswordController.h"
 
 @implementation BankcardMapModel
 @synthesize showBankURL =_showBankURL;
@@ -24,7 +25,7 @@
         _mBankcardMasterName = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_BANKCARDMASTERNAME];
         _mIsDefault = [info boolValueForKey:@"isDefault"];
          _mUserId = [info boolValueForKey:@"userId"];
-         _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:@"createTime"]/1000.0];
+         _mCreateTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:@"createTime"]/1000.0];
          _mBankDeposit = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_BANKDEPOSIT];
          _mType = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_TYPE];
          _mCustomBankName = [info stringValueForKey:RH_GP_WITHDRAWBANKCARD_CUSTOMBANKNAME];
@@ -39,10 +40,15 @@
     if (!_showBankURL){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         if (_mBankUrl.length){
-            if ([[_mBankUrl substringToIndex:1] isEqualToString:@"/"]){
-                _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mBankUrl] ;
-            }else {
-                _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mBankUrl] ;
+            if ([_mBankUrl containsString:@"http"] || [_mBankUrl containsString:@"https:"]) {
+                _showBankURL = [NSString stringWithFormat:@"%@",_mBankUrl] ;
+            }else
+            {
+                if ([[_mBankUrl substringToIndex:1] isEqualToString:@"/"]){
+                    _showBankURL = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mBankUrl] ;
+                }else {
+                    _showBankURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mBankUrl] ;
+                }
             }
         }
     }
@@ -82,6 +88,7 @@
 @end
 
 @implementation RH_WithDrawModel
+@synthesize withDrawFeeDict = _withDrawFeeDict ;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info])
@@ -105,10 +112,43 @@
         _mBankcardMap = dictMutable ;
         _mCurrencySign = [info stringValueForKey:RH_GP_WITHDRAW_CURRENCYSIGN];
         _mTotalBalance = [info integerValueForKey:RH_GP_WITHDRAW_TOTALBALANCE];
+        _mWithdrawMinNum = [[info dictionaryValueForKey:@"rank"] floatValueForKey:@"withdrawMinNum"] ;
+        _mWithdrawMaxNum = [[info dictionaryValueForKey:@"rank"] floatValueForKey:@"withdrawMaxNum"] ;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleNotification:)
+                                                     name:RHNT_AlreadySucfullSettingSafetyPassword
+                                                   object:nil]   ;
     }
+    
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:RHNT_AlreadySucfullSettingSafetyPassword]){
+        _mIsSafePassword = YES ;
+     }
+}
 
+-(void)updateToken:(NSString *)tokenStr
+{
+    if (tokenStr.length){
+        _mToken  = tokenStr ;
+    }
+}
+
+-(NSMutableDictionary *)withDrawFeeDict
+{
+    if (!_withDrawFeeDict){
+        _withDrawFeeDict = [[NSMutableDictionary alloc] init] ;
+    }
+    
+    return _withDrawFeeDict ;
+}
 
 @end

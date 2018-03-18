@@ -9,6 +9,7 @@
 #import "RH_BasicAlertView.h"
 #import "coreLib.h"
 #import "RH_AnnouncementModel.h"
+#import "RH_BasicAlertViewCell.h"
 @interface RH_BasicAlertView() <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -69,7 +70,18 @@
         label.textColor = colorWithRGB(51, 51, 51);
         label.text = @"公告";
         self.cancelButton = [[UIButton alloc] init];
-        [self.cancelButton setImage:ImageWithName(@"home_announce_close") forState:UIControlStateNormal];
+        if ([THEMEV3 isEqualToString:@"green"]){
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_green") forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_red") forState:UIControlStateNormal];
+            
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            //shaole
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_black") forState:UIControlStateNormal];
+        }else{
+            [self.cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
+        }
+        
         [self addSubview:self.cancelButton];
         self.cancelButton.whc_TopSpaceToView(5, contentView).whc_CenterX(0).whc_Width(70).whc_Height(70);
         self.cancelButton.layer.cornerRadius = 35;
@@ -81,7 +93,7 @@
 }
 
 - (void)cancelButtonDidTap:(UIButton *)button {
-    
+     
     [UIView animateWithDuration:0.3 animations:^{
         contentView.transform = CGAffineTransformMakeScale(0.1, 0.1);
         contentView.alpha = 0.1;
@@ -99,8 +111,11 @@
     if (content.count == 0) {
         return;
     }
-    contents = [NSArray array];
-    contents = content;
+    if (contents == nil) {
+        contents = [[NSArray alloc] init];
+    }
+    
+    contents = [content copy];
 //    for (int i = 0; i < content.count; i++) {
 //        RH_AnnouncementModel *model = content[i];
 //        UITextView *textView = [[UITextView alloc] init];
@@ -116,6 +131,8 @@
 //    }
     [contentView addSubview:self.tableView];
     self.tableView.whc_TopSpace(39).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(15);
+    self.tableView.estimatedRowHeight = 56;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
     [UIView animateWithDuration:0.3 animations:^{
         contentView.transform = CGAffineTransformIdentity;
@@ -129,9 +146,6 @@
     return 10;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [UITableViewCell whc_CellHeightForIndexPath:indexPath tableView:tableView];
-}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -141,22 +155,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CLTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[CLTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//    RH_BasicAlertViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (cell == nil) {
+        RH_BasicAlertViewCell  *cell = [[RH_BasicAlertViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         RH_AnnouncementModel *model = contents[indexPath.row];
-        cell.textLabel.text = model.mContent;
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.textColor = colorWithRGB(102, 102, 102);
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        
+        cell.contentLabel.text = model.mContent;
+        NSLog(@"%@", model.mContent);
+        NSLog(@"%d", indexPath.row);
         UIImageView *imageB = [UIImageView new];
         [cell.contentView addSubview:imageB];
         imageB.image = ImageWithName(@"line-notic");
         imageB.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
         
         cell.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
-    }
+//    }
     return cell;
 }
 

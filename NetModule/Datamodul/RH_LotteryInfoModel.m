@@ -46,7 +46,13 @@
 {
     if (!_showCover){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        if ([_mCover containsString:@"http:"] || [_mCover containsString:@"https:"]) {
+            _showCover = [NSString stringWithFormat:@"%@",_mCover] ;
+        }else
+        {
+            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        }
+        
     }
     
     return _showCover ;
@@ -55,12 +61,16 @@
 -(NSString *)showGameLink
 {
     if (!_showGameLink){
-        if (!_mAutoPay && _mApiTypeID!=2){
+        if (!_mAutoPay && _mApiTypeID!=2 && ![_mGameLink containsString:@"mobile-api"]){
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+            if ([_mGameLink containsString:@"http:"]||[_mGameLink containsString:@"https:"]) {
+                _showGameLink = [NSString stringWithFormat:@"%@",_mGameLink] ;
+            }else
+            {
+                _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+            }
         }
     }
-    
     return _showGameLink ;
 }
 

@@ -8,6 +8,7 @@
 
 #import "RH_WithdrawMoneyLowCell.h"
 #import "coreLib.h"
+#import "RH_WithDrawModel.h"
 
 @interface RH_WithdrawMoneyLowCell()
 @property (weak, nonatomic) IBOutlet UILabel *label_Notice;
@@ -19,19 +20,48 @@
 @implementation RH_WithdrawMoneyLowCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
-    return 300;
+    return screenSize().height;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.label_Notice.whc_Center(0, 20).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(60);
+    UIImageView *imageC = [UIImageView new];
+    [self.contentView addSubview:imageC];
+    imageC.whc_TopSpace(48).whc_CenterX(0).whc_Width(118).whc_Height(118);
+    imageC.image = ImageWithName(@"icon-text");
+    
+    self.label_Notice.whc_TopSpaceToView(12, imageC).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(60);
     self.button_Save.whc_TopSpaceToView(20, self.label_Notice).whc_CenterX(0).whc_Width(100).whc_Height(44);
-    self.label_Notice.text = @"取款金额最少为50.00元\n您当前钱包余额不足，您可以先把游戏里的钱\n转到钱包.";
+    self.label_Notice.text = @"取款金额至少为100.00元\n您当前钱包余额不足!";
     self.label_Notice.textColor = RH_Label_DefaultTextColor;
+    NSDictionary *dic = @{NSKernAttributeName:@1.f,
+                          
+                          };
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:self.label_Notice.text attributes:dic];
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:10];//行间距
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.label_Notice.text length])];
+    [self.label_Notice setAttributedText:attributedString];
+    self.label_Notice.textAlignment = NSTextAlignmentCenter;
     self.button_Save.layer.cornerRadius = 5.0;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
     self.clipsToBounds = YES;
     [self.button_Save addTarget:self action:@selector(buttonDidClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    NSString *textStr = ConvertToClassPointer(NSString, context) ;
+    self.label_Notice.text = [NSString stringWithFormat:@"%@\n您当前钱包余额不足!",textStr];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

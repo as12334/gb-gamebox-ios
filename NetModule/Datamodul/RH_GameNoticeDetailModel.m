@@ -20,7 +20,7 @@
         _mLink = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_LINK];
         _mGameName = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_GAMENAME];
 //        _mPublishTime = [info integerValueForKey:RH_GP_GAMENOTICEDETAIL_PUBLISHTIME];
-        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_GAMENOTICEDETAIL_PUBLISHTIME]/1000] ;
+        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_GAMENOTICEDETAIL_PUBLISHTIME]/1000.0] ;
         _mContext = [info stringValueForKey:RH_GP_GAMENOTICEDETAIL_CONTEXT];
     }
     return self;

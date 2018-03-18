@@ -22,4 +22,5 @@
 @property (nonatomic,strong)RH_ActivityModel *activityModel;
 @property (nonatomic,strong)RH_OpenActivityModel *openModel;
 @property(nonatomic,strong)RH_ActivityStatusModel *statusModel;
+- (IBAction)closeClick:(id)sender;
 @end

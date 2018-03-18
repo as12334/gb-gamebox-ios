@@ -19,6 +19,8 @@
 #import "RH_ApplyDiscountViewController.h"
 #import "RH_MineRecordTableViewCell.h"
 
+#import "RH_HasNavCustomViewController.h" //有导航的webView
+
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -36,7 +38,7 @@
     self.title = @"我的" ;
     [self setupUI];
     [self setNeedUpdateView] ;
-    
+    [self setupPageLoadManager] ;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
                                                  name:NT_LoginStatusChangedNotification object:nil] ;
@@ -47,6 +49,11 @@
     if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
         [self setNeedUpdateView] ;
     }
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ; 
 }
 #pragma mark-
 
@@ -59,6 +66,22 @@
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
     [self loginButtonItemHandle] ;
+}
+
+#pragma mark -
+-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+{
+    if (HasLogin) {
+        [self.serviceRequest startV3GetUserAssertInfo] ;
+    }else
+    {
+         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+    }
+}
+
+-(void)cancelLoadDataHandle
+{
+    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3GETUSERASSERT] ;
 }
 
 #pragma mark-
@@ -78,18 +101,22 @@
 
 -(void)_barButtonCustomHandle
 {
-//    [self showViewController:[RH_MineCustomerServicesController viewController] sender:self] ;
+     [self.tabBarController setSelectedIndex:3];
 }
 
 #pragma mark-
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 0
-        UIImage *menuImage = ImageWithName(@"mine_page_settings");
+#if 1
+        //注释设置按钮  改成退出
+//        UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
-        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
+//        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+        button.frame = CGRectMake(0, 0, 50, 30) ;
+//        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
+        [button setTitle:@"退出" forState:UIControlStateNormal] ;
+        button.titleLabel.font = [UIFont systemFontOfSize:15.f] ;
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
 #else
@@ -120,13 +147,22 @@
 #endif
 }
 
-
 #pragma mark-
 -(void)setupUI
 {
-    [self.navigationBar setBarTintColor:colorWithRGB(27, 117, 217)];
+    if ([THEMEV3 isEqualToString:@"green"]){
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Green];
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Red];
+        
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Black];
+    }else{
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
+    }
+    self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
     if (self.appDelegate.isLogin) {
-        self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
+        
         self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
     }
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
@@ -143,7 +179,7 @@
         self.navigationBarItem.rightBarButtonItem = nil ;
     }else{
         if (MineSettingInfo==nil){
-            if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3UserInfo]==FALSE){
+            if ([self.serviceRequest isRequestingWithType:ServiceRequestTypeV3GETUSERASSERT]==FALSE){
                 [self.serviceRequest startV3UserInfo] ;
             }
         }
@@ -197,6 +233,7 @@
     RH_MineAccountCell *mineAccountCell = ConvertToClassPointer(RH_MineAccountCell, cell) ;
     if (mineAccountCell){
         mineAccountCell.delegate = self ;
+//        mineAccountCell updateCellWithInfo:<#(NSDictionary *)#> context:<#(id)#>
     }
     RH_MinePageLoginoutBannarCell *loginoutCell = ConvertToClassPointer(RH_MinePageLoginoutBannarCell, cell);
     __weak RH_MePageViewController *weakSelf = self;
@@ -292,7 +329,13 @@
     }else if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"用户已成功退出",nil) ;
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+//            [defaults removeObjectForKey:@"password"];
+//            [defaults synchronize] ;
         }] ;
+    }else if (type == ServiceRequestTypeV3GETUSERASSERT)
+    {
+        [self loadDataSuccessWithDatas:@[] totalCount:0] ;
     }
 }
 
@@ -304,13 +347,17 @@
         }] ;
     }else if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            if (error.code==1){
+            if (error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code == RH_API_ERRORCODE_SESSION_TAKEOUT || error.code == RH_API_ERRORCODE_SESSION_EXPIRED){
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
             }else{
                 showErrorMessage(self.view, error, @"退出失败") ;
             }
         }] ;
+    }else if (type == ServiceRequestTypeV3GETUSERASSERT)
+    {
+        [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+        showErrorMessage(self.view, error, @"");
     }
 }
 

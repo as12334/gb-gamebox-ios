@@ -20,10 +20,13 @@
 #import "MacroDef.h"
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
-
+#import "RH_CapitalRecordViewController.h"
+#import "RH_PromoListController.h"
+#import "RH_LoginViewControllerEx.h"
+#import "RH_MePageViewController.h"
 
 //原生登录代理和H5代理。方便切换打包用
-@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate>
+@interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
 //关闭网页按钮
 @property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
 @end
@@ -115,33 +118,40 @@
             [self.webView stopLoading] ;
             [self _setContentShowState:RH_WebViewContentShowStateNone] ;
 
-            UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex==alertView.cancelButtonIndex){//返回首页
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                        [self.navigationController popToRootViewControllerAnimated:NO];
-                        self.myTabBarController.selectedIndex = 2 ;
+            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                //push login viewController
+                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
+                loginViewCtrlEx.delegate = self ;
+                [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
+            }else{
+                UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex==alertView.cancelButtonIndex){//返回首页
+                        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                            [self.navigationController popToRootViewControllerAnimated:NO];
+                            self.myTabBarController.selectedIndex = 2 ;
+                        }else{
+                            self.myTabBarController.selectedIndex = 0 ;
+                        }
                     }else{
-                        self.myTabBarController.selectedIndex = 0 ;
+                        //push login viewController
+                        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登录界面
+                            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
+                            loginViewCtrlEx.delegate = self ;
+                            [self showViewController:loginViewCtrlEx sender:self] ;
+                        }else{
+                            //H5登录接口
+                            RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
+                            loginViewCtrl.delegate = self ;
+                            [self showViewController:loginViewCtrl sender:self] ;
+                        }
                     }
-                }else{
-                    //push login viewController
-                    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){//显示原生登录界面
-                        RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController];
-                        loginViewCtrlEx.delegate = self ;
-                        [self showViewController:loginViewCtrlEx sender:self] ;
-                    }else{
-                        //H5登录接口
-                        RH_LoginViewController *loginViewCtrl = [RH_LoginViewController viewController];
-                        loginViewCtrl.delegate = self ;
-                        [self showViewController:loginViewCtrl sender:self] ;
-                    }
-                }
-            } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
-                                                                 message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
-                                                        cancelButtonName:NSLocalizedString(@"ALERT_LOGIN_BTN_BACKFIRST", nil)
-                                                       otherButtonTitles:NSLocalizedString(@"ALERT_LOGIN_BTN_CONFIRMLOGIN", nil), nil] ;
+                } title:NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil)
+                                                                     message:NSLocalizedString(@"ALERT_LOGIN_PROMPT_DESC", nil)
+                                                            cancelButtonName:NSLocalizedString(@"ALERT_LOGIN_BTN_BACKFIRST", nil)
+                                                           otherButtonTitles:NSLocalizedString(@"ALERT_LOGIN_BTN_CONFIRMLOGIN", nil), nil] ;
 
-            [alertView show] ;
+                [alertView show] ;
+            }
         }
     }
 }
@@ -216,20 +226,43 @@
 }
 
 #pragma mark-
--(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller BackToFirstPage:(BOOL)bFirstPage
 {
-    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+    if (loginViewContrller.presentingViewController){
+        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
+    if (bFirstPage){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+        }else{
+            self.myTabBarController.selectedIndex = 0 ;
+        }
+    }
 }
 
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
 {
-    [self.navigationController popViewControllerAnimated:YES] ;
+    if (loginViewContrller.presentingViewController){
+        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
     [self reloadWebView] ;
 }
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
-    [self.navigationController popViewControllerAnimated:YES] ;
+    if (loginViewContrller.presentingViewController){
+        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
     [self reloadWebView] ;
     
     if (bFlag==false){
@@ -421,7 +454,8 @@
     }
     
     //增加通用 js 处理
-    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
+    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"]  ;
+    
     [self setupJSCallBackOC:jsContext] ;
     [self webViewDidEndLoad:nil];
     
@@ -449,10 +483,11 @@
         [[UIApplication sharedApplication]openURL:request.URL];
         return NO ;
         //bSucc是否成功调起支付宝
-    }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
-        [reqUrl containsString:@"/login/commonLogin.html"]){
+    }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])
+              && ([reqUrl containsString:@"/login/commonLogin.html"] || [reqUrl containsString:@"/passport/login.html"] )){
         //跳转原生
-        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
+        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
+            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
             RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
             loginViewCtrlEx.delegate = self ;
             [self showViewController:loginViewCtrlEx sender:self] ;
@@ -462,10 +497,11 @@
     }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
               [reqUrl.lowercaseString isEqualToString:[NSString stringWithFormat:@"%@/",self.domain.lowercaseString]]){
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-            if (self.myTabBarController.selectedIndex!=2){
-                self.myTabBarController.selectedIndex = 2 ;
-                return NO ;
-            }
+            return YES ;
+//            if (self.myTabBarController.selectedIndex!=2){
+//                self.myTabBarController.selectedIndex = 2 ;
+//                return YES ;
+//            }
         }else{
             if (self.myTabBarController.selectedIndex!=0){
                 self.myTabBarController.selectedIndex = 0 ;
@@ -509,9 +545,15 @@
         if ([self.appDelegate.customUrl containsString:@"/passport/logout.html"]){
             self.appDelegate.logoutUrl = self.appDelegate.customUrl ;
             if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                self.myTabBarController.selectedIndex = 2 ;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.myTabBarController.selectedIndex = 2 ;
+                });
+                
             }else{
-                self.myTabBarController.selectedIndex = 0 ;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     self.myTabBarController.selectedIndex = 0 ;
+                });
+               
             }
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -534,7 +576,6 @@
     jsContext[@"goBack"] = ^() {
         NSLog(@"JSToOc :%@------ goBack",NSStringFromClass([self class])) ;
         NSUInteger index = [self.navigationController.viewControllers indexOfObject:self] ;
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (index>=1 && index !=NSNotFound){
                 [self backBarButtonItemHandle] ;
@@ -728,7 +769,7 @@
         [defaults synchronize];
         
         [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
-                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-mm-dd HH:mm:ss")] ;
+                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
         
         [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -776,6 +817,236 @@
     jsContext[@"demoEnter"] = ^() {
         [self performSelectorOnMainThread:@selector(demoEnter) withObject:self waitUntilDone:NO] ;
     };
+    
+#pragma mark -  V3 JS Function
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        jsContext[@"nativeAccountChange"] = ^(){/*** 通知账户已经变动(用户额度转换)*/
+            NSLog(@"JSToOc :%@------ notifyAccountChange",NSStringFromClass([self class])) ;
+            [self.serviceRequest startV3UserInfo];
+        };
+        
+        jsContext[@"nativeRefreshPage"] = ^(){/*** 刷新当前页面*/
+            NSLog(@"JSToOc :%@------ refreshPage",NSStringFromClass([self class])) ;
+            [self performSelectorOnMainThread:@selector(reloadWebView) withObject:self waitUntilDone:YES] ;
+        };
+      
+        jsContext[@"nativeGoBackPage"] = ^(){/*** 如果有上一级页面，就返回上一级 如果没有上一级页面，就不返回，而是提示用户*/
+             NSLog(@"JSToOc :%@------ goBackPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self backButtonItemHandle:self] ;
+            });
+           
+        };
+        
+        jsContext[@"nativeGotoDepositPage"] = ^(){/*** 跳入存款页面*/
+            NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                self.myTabBarController.selectedIndex = 0 ;
+//                [self reloadWebView];
+            });
+        };
+        
+        jsContext[@"nativeGotoTransactionRecordPage"] = ^(){/*** 跳到资金记录页面*/
+            NSLog(@"JSToOc :%@------ gotoCapitalRecordPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 [self showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
+            });
+        };
+        
+        jsContext[@"nativeOpenWindow"] = ^(){/*** 打开新的webview（打开一个新的弹窗，并且根据传入的url进行加载）*/
+            NSLog(@"JSToOc :%@------ nativeOpenWindow",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            JSValue *customUrl;
+            if (args.count==0) {
+                return  ;
+            }
+            customUrl = args[0] ;
+            if ([customUrl.toString containsString:@"http:"] ||[customUrl.toString containsString:@"https:"] ) {
+                 self.appDelegate.customUrl =[NSString stringWithFormat:@"%@",customUrl.toString];
+            }else
+            {
+                 self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showViewController:[RH_CustomViewController viewController] sender:self];
+            }) ;
+        };
+        
+        jsContext[@"nativeGotoPromoRecordPage"] = ^(){/*** 跳到我的优惠记录界面 ）*/
+            NSLog(@"JSToOc :%@------ gotoPromoRecordPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.appDelegate.isLogin) {
+                     [self showViewController:[RH_PromoListController viewController] sender:self] ;
+                }else
+                {
+                    [self loginButtonItemHandle] ;
+                }
+             
+            }) ;
+        };
+        
+        
+        // nativeLogin  gotoLoginPage
+        jsContext[@"nativeLogin"] = ^(){/*** 跳到login界面 ）*/
+            NSLog(@"JSToOc :%@------ nativeLogin",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loginButtonItemHandle] ;
+            });
+        };
+        
+        //nativeAutoLogin
+        jsContext[@"nativeAutoLogin"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
+            NSLog(@"JSToOc :%@------ nativeAutoLogin",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            
+            JSValue *jsAccount = args[0];
+            JSValue *jsPassword = args[1];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:jsAccount.toString forKey:@"account"];
+            [defaults setObject:jsPassword.toString forKey:@"password"];
+            [defaults synchronize];
+            [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
+                                                                     LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
+           
+             RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+            [appDelegate updateLoginStatus:YES] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                RH_LoginViewControllerEx *loginViewCtrl = [[RH_LoginViewControllerEx alloc] init];
+                loginViewCtrl.delegate = self ;
+                if (loginViewCtrl){
+                    ifRespondsSelector(loginViewCtrl.delegate, @selector(loginViewViewControllerExSignSuccessful:SignFlag:)){
+                        [loginViewCtrl.delegate loginViewViewControllerExSignSuccessful:loginViewCtrl SignFlag:NO];
+                        [self.navigationController popViewControllerAnimated:YES ] ;
+                    }
+                }
+            }) ;
+        };
+        //分享图片保存
+        jsContext[@"nativeSaveImage"] = ^(){/*** 拿到图片的url 将图片保存至本地相册 ）*/
+            NSLog(@"JSToOc :%@------ nativeSaveImage",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            JSValue *customUrl;
+            if (args.count==0) {
+                return  ;
+            } 
+            customUrl = args[0] ;
+            self.appDelegate.customUrl = customUrl.toString;
+            NSString *urlStr;
+            if ([self.appDelegate.customUrl containsString:@"http"] || [self.appDelegate.customUrl containsString:@"https:"]) {
+                urlStr = [NSString stringWithFormat:@"%@", self.appDelegate.customUrl];
+            }else
+            {
+                urlStr = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain, self.appDelegate.customUrl];
+            }
+          
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",urlStr]]];
+            UIImage *myImage = [UIImage imageWithData:data];
+            [self saveImageToPhotos:myImage];
+          
+        };
+        //存款完成后返回首页
+        jsContext[@"gotoHomePage"] = ^(){/*** 注册成功后 回调 原生自动login ）*/
+            NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                self.myTabBarController.selectedIndex = 2 ;
+            });
+//            [self.serviceRequest startV3UserInfo];
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+            [self reloadWebView];
+        };
+        //存款点击在线客服页面跳转
+        jsContext[@"nativeGoToCustomerPage"] = ^(){/*** 存款点击在线客服页面跳转）*/
+            NSLog(@"JSToOc :%@------ nativeGoToCustomerPage",NSStringFromClass([self class])) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.myTabBarController.selectedIndex = 3 ;
+            });
+        };
+        
+        jsContext[@"gotoTab"] = ^() {
+            NSLog(@"JSToOc :%@------ gotoTab",NSStringFromClass([self class])) ;
+            NSArray *args = [JSContext currentArguments];
+            NSString *target;
+            for (JSValue *jsVal in args) {
+                target = jsVal.toString;
+                NSLog(@"%@", jsVal.toString);
+            }
+            if (args[0] != nil) {
+                NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+                if (index >= 0 && index != NSNotFound) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.navigationController popToRootViewControllerAnimated:NO];
+                        self.myTabBarController.selectedIndex = [target intValue] ;
+                    });
+                }
+            }
+        };
+    }
+}
+- (void)saveImageToPhotos:(UIImage*)savedImage
+
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        }];
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+        
+    }else{
+        msg = @"保存图片成功!请到相册里查看" ;
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        /* 照片是否可以编辑 */
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        /* 根据照片来源确定AlertAction */
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        /* 判断相册是否可以访问 */
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+//            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"立即前往" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                [[self topMostController] presentViewController:picker animated:YES completion:^{
+//
+//                }];
+//            }];
+//
+//            [alert addAction:action1];
+//        }
+//        UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//
+//
+//        }];
+//        [alert addAction:cancel];
+//
+//        [self presentViewController:alert animated:YES completion:^{
+//
+//        }];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行查看！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+       
+    }
+}
+
+- (UIViewController*) topMostController {
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
 }
 
 #pragma mark- demoEnter -

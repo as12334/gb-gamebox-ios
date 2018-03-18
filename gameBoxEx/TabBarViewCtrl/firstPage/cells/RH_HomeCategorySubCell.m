@@ -61,8 +61,15 @@
         self.lineView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1) ;
         self.lineView.backgroundColor = colorWithRGB(226, 226, 226);
         
-        self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
-        
+        if ([THEMEV3 isEqualToString:@"green"]){
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Green ;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Red ;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Black ;
+        }else{
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
+        }
     }else {
         [self.imageB removeFromSuperview];
         self.imageB.image = nil;

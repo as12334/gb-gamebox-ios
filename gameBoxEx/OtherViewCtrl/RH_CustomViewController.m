@@ -14,6 +14,7 @@
 #import "RH_MainTabBarController.h"
 #import "RH_LotteryInfoModel.h"
 #import "RH_UserInfoManager.h"
+#import "RH_LotteryAPIInfoModel.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
@@ -47,19 +48,27 @@
     
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
-        if (lotteryInfoModel.showGameLink){ //已获取的请求链接
+        if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLink:lotteryInfoModel.mApiID
-                                           ApiTypeID:lotteryInfoModel.mApiTypeID
-                                             GamesID:lotteryInfoModel.mGameID
-                                           GamesCode:lotteryInfoModel.mCode] ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink] ;
+        }
+    }else if ([self.context isKindOfClass:[RH_LotteryAPIInfoModel class]]){ //需要请求 link
+        RH_LotteryAPIInfoModel *lotteryApiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, self.context) ;
+        if (lotteryApiInfoModel.showGameLink.length){ //已获取的请求链接
+            self.appDelegate.customUrl = lotteryApiInfoModel.showGameLink ;
+            [self setupURL] ;
+        }else{
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
         }
     }else{
         [self setupURL] ;
     }
+    
+    
 }
 
 
@@ -82,6 +91,13 @@
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         [self reloadWebView] ;//预防两次url 一样，不加载情况
+    }
+    //隐藏按钮
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
+        if ([self.appDelegate.customUrl containsString:@"signUp/index.html"]  || [self.appDelegate.customUrl containsString:@"promo/promoDetail.html"]
+            || [self.appDelegate.customUrl containsString:@"transfer/index.html"]  ) {
+            _gameBgImage.hidden = YES ;
+        }
     }
 }
 
@@ -200,8 +216,8 @@
 
     jsContext[@"loginOut"] = ^(){
         NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
         
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -223,7 +239,7 @@
         [defaults synchronize];
         
         [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:jsAccount.toString
-                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-mm-dd HH:mm:ss")] ;
+                                                                 LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.appDelegate updateLoginStatus:jsStatus.toBool] ;
@@ -272,7 +288,8 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink){
+    }else if (type==ServiceRequestTypeV3GameLink ||
+              type==ServiceRequestTypeV3GameLinkForCheery){
         [self.contentLoadingIndicateView hiddenView] ;
         NSDictionary *gameLinkDict = ConvertToClassPointer(NSDictionary, data) ;
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
@@ -283,6 +300,7 @@
             self.appDelegate.customUrl = gameLink ;
             [self setupURL] ;
         }else{
+            showAlertView(@"温馨提示", gameMessage);
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:gameMessage detailText:@"温馨提示"] ;
         }
     }
@@ -297,7 +315,8 @@
             showErrorMessage(self.view, error, @"提示信息");
             [self.appDelegate updateLoginStatus:false] ;
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink){
+    }else if (type==ServiceRequestTypeV3GameLink ||
+              type==ServiceRequestTypeV3GameLinkForCheery){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }

@@ -21,19 +21,9 @@
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_accountback" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-Yz-1ss">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_useravator" translatesAutoresizingMaskIntoConstraints="NO" id="Otx-Qr-Acz">
-                        <rect key="frame" x="15" y="23.5" width="77" height="77"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="77" id="Evd-su-gWq"/>
-                            <constraint firstAttribute="width" constant="77" id="Ys4-yZ-yOH"/>
-                        </constraints>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYA-QN-l5z">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYA-QN-l5z">
                         <rect key="frame" x="100" y="46" width="86" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="HGn-l2-5zu"/>
-                            <constraint firstAttribute="width" constant="86" id="m7H-7Z-3kV"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="登录/注册">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -41,29 +31,43 @@
                             <action selector="loginClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="a1t-DM-SnV"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xao-CD-hLm">
+                        <rect key="frame" x="16" y="22" width="76" height="91"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwo-br-hcD">
+                                <rect key="frame" x="8" y="20" width="60" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Otx-Qr-Acz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3l2-1y-Y52"/>
-                    <constraint firstItem="FYA-QN-l5z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4dg-eU-0bS"/>
                     <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="4qe-TO-8aL"/>
                     <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="BIE-AX-hFc"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ca0-yZ-9Cg"/>
                     <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HJ5-Bd-SLy"/>
-                    <constraint firstItem="FYA-QN-l5z" firstAttribute="leading" secondItem="Otx-Qr-Acz" secondAttribute="trailing" constant="8" id="HN8-oh-Jl6"/>
                     <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JZb-6N-zdf"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="K8v-Yv-hMg"/>
+                    <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="OBO-Cv-ym6"/>
                     <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Q4y-XP-ZY3"/>
                     <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="XXV-5A-uIW"/>
-                    <constraint firstItem="Otx-Qr-Acz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dUN-Cg-8Fx"/>
                     <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ry2-XY-A3x"/>
                     <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="vUN-3k-yDI"/>
+                    <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="zOz-wL-C51"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="headImageView" destination="Otx-Qr-Acz" id="Qji-tn-IYz"/>
+                <outlet property="headIconBgView" destination="Xao-CD-hLm" id="Mbk-Sw-GtF"/>
+                <outlet property="headIconImageView" destination="uwo-br-hcD" id="WlU-re-hC7"/>
+                <outlet property="headImageView" destination="AcX-Yz-1ss" id="Mc8-UH-aDC"/>
+                <outlet property="loginAndRegiest" destination="FYA-QN-l5z" id="eAi-6V-za8"/>
             </connections>
+            <point key="canvasLocation" x="-345" y="-63"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="mine_page_accountback" width="375" height="125"/>
-        <image name="mine_page_useravator" width="30" height="30"/>
     </resources>
 </document>

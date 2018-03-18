@@ -18,11 +18,11 @@
     {
         _mID = [info integerValueForKey:RH_GP_PROMOINFO_ID] ;
         _mUserID = [info integerValueForKey:RH_GP_PROMOINFO_USERID] ;
-        _mApplyTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_PROMOINFO_APPLYTIME]/1000.0] ;
+        _mApplyTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_PROMOINFO_APPLYTIME]/1000.0] ;
         _mCheckState = [info integerValueForKey:RH_GP_PROMOINFO_CHECKSTATE] ;
         _mActivityName = [info stringValueForKey:RH_GP_PROMOINFO_ACTIVITYNAME] ;
         _mActivityVersion = [info stringValueForKey:RH_GP_PROMOINFO_ACTIVITYVERSION] ;
-        _mPreferentialAudit = [info boolValueForKey:RH_GP_PROMOINFO_PREFERENTIALAUDIT] ;
+        _mPreferentialAudit = [info floatValueForKey:RH_GP_PROMOINFO_PREFERENTIALAUDIT] ;
         _mPreferentialAuditName = [info stringValueForKey:RH_GP_PROMOINFO_PREFERENTIALAUDITNAME] ;
         _mPreferentialValue = [info floatValueForKey:RH_GP_PROMOINFO_PREFERENTIALVALUE] ;
         _mCheckStateName = [info stringValueForKey:RH_GP_PROMOINFO_CHECKSTATENAME] ;

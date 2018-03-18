@@ -17,16 +17,31 @@
     {
         _mId = [info integerValueForKey:RH_GP_SITEMESSAGE_ID];
         _mContent = [info stringValueForKey:RH_GP_SITEMESSAGE_CONTENT];
-        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SITEMESSAGE_PUBLISHTIME]/1000.0] ;
+        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_SITEMESSAGE_PUBLISHTIME]/1000.0] ;
         _mLink = [info stringValueForKey:RH_GP_SITEMESSAGE_LINK];
         _mTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_TITLE];
         _mRead = [info boolValueForKey:RH_GP_SITEMESSAGE_READ];
         _mSearchId = [info stringValueForKey:RH_GP_SITEMESSAGE_SEARCHID];
+        
     }
     return self;
 }
 -(NSInteger)ID
 {
     return _mId ;
+}
+
+#pragma mark-
+-(void)updateSelectedFlag:(BOOL)bFlag
+{
+    _selectedFlag = bFlag ;
+}
+
+-(void)updataReadStatus:(BOOL)bflag
+{
+    if (_mRead != bflag) {
+        _mRead = bflag  ;
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadyReadStatusChangeNotification object:self] ;
+    }
 }
 @end

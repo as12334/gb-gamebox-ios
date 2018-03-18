@@ -27,30 +27,28 @@ CLScreenSizeType mainScreenType()
 NSArray * adaptationResourceNames(NSString * resourceName)
 {
     if (resourceName.length) {
-
         CLScreenSizeType screenType = mainScreenType();
-
+        
         switch (screenType) {
             case CLScreenSizeTypeSmallSmall:
                 return @[[resourceName stringByAppendingString:@"@smallsmall"],
                          [resourceName stringByAppendingString:@"@small"]];
                 break;
-
+                
             case CLScreenSizeTypeSmall:
                 return @[[resourceName stringByAppendingString:@"@small"]];
                 break;
-
+                
             case CLScreenSizeTypeMiddle:
                 return @[[resourceName stringByAppendingString:@"@middle"]];
                 break;
-
+                
             case CLScreenSizeTypeBig:
                 return @[[resourceName stringByAppendingString:@"@big"]];
                 break;
         }
-
     }
-
+   
     return nil;
 }
 
@@ -107,7 +105,6 @@ NSString * validAdaptationNibName(NSString * nibName,NSBundle * bundleOrNil)
     id value = nil;
 
     if (key.length) {
-
         NSArray * adaptationNames = adaptationResourceNames(key);
         for (NSString * adaptationName in adaptationNames) {
             value = self[adaptationName];

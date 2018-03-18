@@ -34,7 +34,8 @@
 - (UIImageView *)image_Back {
     if (_image_Back == nil) {
         _image_Back = [[UIImageView alloc] init];
-        _image_Back.image = ImageWithName(@"mine_page_safetycenter");
+//        _image_Back.image = ImageWithName(@"mine_page_safetycenter");
+        _image_Back.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _image_Back;
 }
@@ -55,10 +56,18 @@
         NSString *userName =  MineSettingInfo.mUserName ;
         _label.text = [NSString stringWithFormat:@"亲爱的%@,\n您的账号信息正在享受全面的安全防护",userName];
         _label.textColor = colorWithRGB(255, 255, 255);
-        _label.textAlignment = NSTextAlignmentCenter;
+        
         _label.font = [UIFont systemFontOfSize:14];
         _label.numberOfLines = 0;
-        
+        NSDictionary *dic = @{NSKernAttributeName:@0.f,
+                              
+                              };
+        NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithString:_label.text attributes:dic];
+        NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:6];//行间距
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_label.text length])];
+        [_label setAttributedText:attributedString];
+        _label.textAlignment = NSTextAlignmentCenter;
     }
     return _label;
 }
@@ -67,11 +76,10 @@
     self = [super init];
     if (self) {
         [self addSubview:self.image_Back];
-        self.image_Back.whc_Center(0, 0).whc_Width(150).whc_Height(150);
-        _image_Back.image = ImageWithName(@"mine_page_safetycenter");
+        self.image_Back.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        _image_Back.image = ImageWithName(@"safe-bg");
         [self addSubview:self.label];
-        self.label.whc_LeftSpace(50).whc_RightSpace(50).whc_BottomSpace(20).whc_Height(60);
-        [self.layer insertSublayer:self.gradientLayer atIndex:0];
+        self.label.whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(10).whc_Height(60);
     }
     return self;
 }

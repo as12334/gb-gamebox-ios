@@ -30,8 +30,8 @@
         [self.typeIdArray addObject:@"all"];
         [self.typeNameArray addObject:@"所有"];
         [self.serviceRequest startV3DepositPulldownList];
-        self.layer.cornerRadius = 10.f;
-        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.cornerRadius = 4.f;
+        self.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
         self.layer.borderWidth = 1.f;
         self.layer.masksToBounds = YES;
         [self addSubview:self.tabelView];
@@ -49,6 +49,9 @@
         _tabelView.delegate = self;
         _tabelView.dataSource = self;
         _tabelView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _tabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _tabelView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 5) ;
+        _tabelView.separatorColor = colorWithRGB(242, 242, 242) ;
     }
     return _tabelView;
 }
@@ -85,6 +88,7 @@
     cell.textLabel.text  =  self.typeNameArray[indexPath.item];
     cell.textLabel.font = [UIFont systemFontOfSize:14.f];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.textColor = colorWithRGB(102, 102, 102) ;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

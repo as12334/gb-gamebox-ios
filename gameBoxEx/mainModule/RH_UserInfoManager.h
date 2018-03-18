@@ -7,18 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RH_UserBalanceGroupModel.h"
 #import "RH_UserSafetyCodeModel.h"
 #import "RH_MineInfoModel.h"
 #import "RH_BankInfoModel.h"
 #import "RH_WithDrawModel.h"
 #import "coreLib.h"
 
-#define  RHNT_UserInfoManagerBalanceChangedNotification           @"UserInfoManagerBalanceChangedNotification"
 #define  RHNT_UserInfoManagerMineGroupChangedNotification         @"UserInfoManagerMineGroupChangedNotification"
 
 #define HasLogin                    [[RH_UserInfoManager shareUserManager] hasLogin]
-#define UserBalanceInfo             [RH_UserInfoManager shareUserManager].userBalanceGroupInfo
 #define UserSafetyInfo              [RH_UserInfoManager shareUserManager].userSafetyInfo
 #define MineSettingInfo             [RH_UserInfoManager shareUserManager].mineSettingInfo
 #define BankList                    [RH_UserInfoManager shareUserManager].bankList
@@ -28,15 +25,14 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 
 @interface RH_UserInfoManager : NSObject
 +(instancetype)shareUserManager ;
-@property(nonatomic,strong,readonly) RH_UserBalanceGroupModel *userBalanceGroupInfo ;
 @property(nonatomic,strong,readonly) RH_UserSafetyCodeModel *userSafetyInfo ;
 @property(nonatomic,strong,readonly) RH_MineInfoModel *mineSettingInfo ;
 @property(nonatomic,strong,readonly) NSArray<RH_BankInfoModel*> *bankList ;
 @property(nonatomic,strong,readonly) RH_WithDrawModel *userWithDrawInfo ;
 @property(nonatomic,strong,readonly) NSMutableArray *domainCheckErrorList ;
+@property(nonatomic,strong,readonly) NSString *timeZone ;
 
 -(BOOL)hasLogin ;
--(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo ;
 -(void)setUserSafetyInfo:(RH_UserSafetyCodeModel *)userSafetyInfo ;
 -(void)setMineSettingInfo:(RH_MineInfoModel *)mineSettingInfo ;
 -(void)setBankList:(NSArray<RH_BankInfoModel *> *)bankList ;
@@ -51,12 +47,19 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property(nonatomic,strong,readonly) NSString *loginUserName    ;
 @property(nonatomic,strong,readonly) NSString *loginTime        ;
 
+//记录用户修改密码是否开启验证码
+@property(nonatomic,assign) BOOL updateUserVeifyCode        ;
+//记录用户登录后获取SID
+@property(nonatomic,strong)NSString *sidString ;
+
 -(void)updatelanguageOption:(CLLanguageOption)languageOption ;
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;
 -(void)updateScreenLockFlag:(BOOL)lock      ;
 -(void)updateScreenLockPassword:(NSString*)lockPassrod ;
 -(NSString*)bankNameWithCode:(NSString*)bankCode ;
+-(void)updateTimeZone:(NSString*)timeZone ;
 
--(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ;
+-(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime ; 
+
 
 @end

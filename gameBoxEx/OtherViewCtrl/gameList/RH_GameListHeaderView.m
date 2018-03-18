@@ -30,8 +30,10 @@
     if (self){
         self.backgroundColor = colorWithRGB(242, 242, 242) ;
         [self addSubview:self.collectionTypeView] ;
+        
         [self.collectionTypeView reloadData] ;
         _selectedIndex = 0 ;
+        
     }
     return self ;
 }
@@ -61,6 +63,8 @@
     [super layoutSubviews] ;
     if (_selectionIndicater==nil){
         [self _updateSelectionIndicater:NO] ;
+    }else {
+        [self _updateSelectionIndicater:YES];
     }
 }
 
@@ -68,7 +72,19 @@
 {
     if (!_selectionIndicater) {
         _selectionIndicater = [[CALayer alloc] init];
-        _selectionIndicater.backgroundColor = colorWithRGB(51, 51, 51).CGColor;
+        
+        if ([THEMEV3 isEqualToString:@"green"]){
+            _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Green.CGColor;
+           
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
+            
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+             _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        }else{
+             _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor.CGColor;
+        }
+
         [self.collectionTypeView.layer addSublayer:_selectionIndicater];
     }
     
@@ -78,6 +94,23 @@
 - (void)_updateSelectionIndicater:(BOOL)animated
 {
     NSIndexPath * indexPathForSelectedItem = [self.collectionTypeView.indexPathsForSelectedItems firstObject];
+    for (NSIndexPath *indexPath in self.collectionTypeView.indexPathsForVisibleItems) {
+        RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:indexPath]);
+        [cell setTitleLabelTextColor:colorWithRGB(51, 51, 51)];
+    }
+    NSIndexPath *index = self.collectionTypeView.indexPathsForSelectedItems.firstObject;
+    RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:index]);
+    if ([THEMEV3 isEqualToString:@"green"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Green];
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Red];
+        
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Black];
+    }else{
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor];
+    }
+    
     
     [CATransaction begin];
     [CATransaction setDisableActions:!indexPathForSelectedItem || !animated];
@@ -105,7 +138,7 @@
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 10.f;
         flowLayout.minimumInteritemSpacing = 0.f;
-        flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.f, 10.0f, 10.0f) ;
+        flowLayout.sectionInset = UIEdgeInsetsMake(0.0, 10.f, 0.0f, 10.0f) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
         _collectionTypeView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout] ;
@@ -138,6 +171,7 @@
         [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]
                                               animated:YES
                                         scrollPosition:UICollectionViewScrollPositionCenteredHorizontally] ;
+        [self _updateSelectionIndicater:YES];
     }
 }
 
@@ -169,7 +203,9 @@
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RH_GameCategoryCell sizeForViewWithInfo:nil containerViewSize:collectionView.bounds.size context:self.arrayTypeList[indexPath.item]] ;
+    return [RH_GameCategoryCell sizeForViewWithInfo:ConvertToClassPointer(NSDictionary, self.arrayTypeList[indexPath.item])
+                                  containerViewSize:collectionView.bounds.size
+                                            context:nil] ;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -8,6 +8,6 @@
 
 #import "RH_BasicPageLoadViewController.h"
 #import "RH_BasicMainViewController.h"
-@interface RH_MePageViewController : RH_BasicMainViewController
+@interface RH_MePageViewController : RH_BasicPageLoadViewController
 
 @end

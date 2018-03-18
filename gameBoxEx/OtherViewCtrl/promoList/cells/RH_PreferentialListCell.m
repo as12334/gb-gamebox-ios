@@ -27,7 +27,7 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return 75.0f ;
+    return 95.0f ;
 }
 
 - (void)awakeFromNib {
@@ -35,9 +35,10 @@
     // Initialization code
     
     self.backgroundColor = [UIColor clearColor];
-    self.label_Title.whc_TopSpace(15).whc_LeftSpaceEqualViewOffset(self.image_Right, 20).whc_Height(20).whc_Width(200);
+    self.label_Title.whc_TopSpace(15).whc_LeftSpaceEqualViewOffset(self.image_Right, 20).whc_Height(40).whc_Width(screenSize().width - 25 - screenSize().width/3.0);
+    self.label_Title.numberOfLines = 0 ;
     self.label_Bottom.whc_BottomSpace(15).whc_LeftSpaceEqualView(self.label_Title).whc_Height(15).whc_Width(120);
-    self.label_Time.whc_BottomSpace(15).whc_CenterX(0).whc_Height(20).whc_Width(200);
+    self.label_Time.whc_BottomSpace(15).whc_CenterX(0).whc_Height(20).whc_Width(160);
     self.label_RightMoney.whc_TopSpace(10).whc_RightSpace(10).whc_Width(100).whc_Height(30);
     self.label_Grant.whc_CenterToView(CGPointMake(0, 30), self.label_RightMoney);
     
@@ -59,38 +60,35 @@
 {
     self.promoInfoModel = ConvertToClassPointer(RH_PromoInfoModel, context) ;
     self.label_Title.text = self.promoInfoModel.mActivityName ;
-    self.label_Bottom.text = self.promoInfoModel.mPreferentialAuditName;
+    if (self.promoInfoModel.mPreferentialAudit == 0) {
+         self.label_Bottom.text = [NSString stringWithFormat:@"%@",self.promoInfoModel.mPreferentialAuditName];
+    }else
+    {
+        self.label_Bottom.text = [NSString stringWithFormat:@"%.2f%@",self.promoInfoModel.mPreferentialAudit,self.promoInfoModel.mPreferentialAuditName];
+    }
+    
     self.label_Time.text = self.promoInfoModel.showApplyTime ;
     self.label_RightMoney.text = self.promoInfoModel.showPreferentialValue ;
     self.label_Grant.text = self.promoInfoModel.mCheckStateName ;
-    
-    switch (self.promoInfoModel.mCheckState) {
-        case 0: //进行中
-        {
-            
-        }
-            break ;
-        case 1: //待审核
-        {
-            self.image_Right.image = ImageWithName(@"mine_preferentialbackorange");
-        }
-            break;
-        case 2: //已发放
-        {
-            self.image_Right.image = ImageWithName(@"mine_preferentialbackgreen");
-        }
-            break;
-        case 4:
-        {
-            self.image_Right.image = ImageWithName(@"mine_preferentialbackgray");
-        }
-            break;
-        default: //未通过
-        {
-            self.image_Right.image = ImageWithName(@"mine_preferentialbackgray");
-        }
-            break;
+
+    if (self.promoInfoModel.mCheckState == 2 || self.promoInfoModel.mCheckState == 4 || [self.promoInfoModel.mCheckStateName isEqualToString:@"已发放"])
+    {
+        self.image_Right.image = ImageWithName(@"mine_preferentialbackorange");
     }
+    else if (self.promoInfoModel.mCheckState == 1 || [self.promoInfoModel.mCheckStateName isEqualToString:@"待审核"])
+    {
+         self.image_Right.image = ImageWithName(@"mine_preferentialbackgreen");
+    }
+    else if (self.promoInfoModel.mCheckState == 0 || [self.promoInfoModel.mCheckStateName isEqualToString:@"进行中"])
+    {
+         self.image_Right.image = ImageWithName(@"mine_preferentialbackgreen");
+    }
+    else  //未通过
+    {
+        self.image_Right.image = ImageWithName(@"mine_preferentialbackgray");
+    }
+    
+    
 }
 
 @end

@@ -20,6 +20,7 @@
 @property (nonatomic,strong,readonly)RH_MPSystemNoticHeaderView *headerView;
 @property (nonatomic,strong,readonly)RH_SystemNoticeListView *listView;
 @property (nonatomic,assign)NSInteger apiId;
+@property(nonatomic,strong)NSArray *dataArr ;
 @end
 
 @implementation RH_ApplyDiscountSystemPageCell
@@ -30,23 +31,23 @@
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-   
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView];
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(50) ;
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242);
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        //        self.contentTableView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
         [self.contentTableView registerCellWithClass:[RH_MPSystemNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 50).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
         [self setupPageLoadManagerWithdatasContext:context1] ;
-        
+        __block RH_ApplyDiscountSystemPageCell *weakSelf = self;
+        self.headerView.block = ^(CGRect frame){
+             [weakSelf selectedHeaderViewGameType:frame];
+        };
     }else {
         [self updateWithContext:context];
     }
@@ -86,20 +87,44 @@
 
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+//    [self startUpdateData] ;
+      [self showNoRefreshLoadData] ;
 }
 
 -(BOOL)showNotingIndicaterView
 {
-    [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
-                                        detailText:@"点击重试"] ;
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"暂无内容，点击重试"] ;
     return YES ;
 }
 
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-     [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate endTime:self.endDate pageNumber:page+1 pageSize:pageSize];
+//    NSDate *date = [NSDate date];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *strDate = [dateFormatter stringFromDate:date];
+    
+//    NSDate *selectStareDate = [dateFormatter dateFromString:self.startDate] ;
+//    self.headerView.startDate =selectStareDate?selectStareDate:[[NSDate date] dateWithMoveDay:-30];
+//    //默认开始时间
+//    NSString *defaultStartStr = [dateFormatter stringFromDate:dateFormatter] ;
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
+    NSDate *defaultStartDate = [[NSDate date] dateWithMoveDay:-30];
+    NSDate *selectStareDate = [dateFormatter dateFromString:self.startDate] ;
+    self.headerView.startDate =selectStareDate?selectStareDate:[[NSDate date] dateWithMoveDay:-30];
+    //默认开始时间
+    NSString *defaultStartStr = [dateFormatter stringFromDate:defaultStartDate] ;
+    
+    NSDate *date = [NSDate date];
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    
+    [self.serviceRequest startV3LoadSystemNoticeStartTime:self.startDate?self.startDate:defaultStartStr endTime:self.endDate?self.endDate:strDate pageNumber:page+1 pageSize:pageSize];
 }
 
 -(void)cancelLoadDataHandle
@@ -112,6 +137,7 @@
 {
     if (type==ServiceRequestTypeV3SystemNotice)
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST] totalCount:[dictTmp integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM] completedBlock:nil];
         [self.contentTableView reloadData];
@@ -123,6 +149,7 @@
 {
     if (type==ServiceRequestTypeV3SystemNotice )
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
@@ -171,19 +198,6 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    __block RH_ApplyDiscountSystemPageCell *weakSelf = self;
-    self.headerView.block = ^(CGRect frame){
-         [weakSelf selectedHeaderViewGameType:frame];
-    };
-    return self.headerView;
-}
-
 
 #pragma mark headerView
 -(RH_MPSystemNoticHeaderView *)headerView
@@ -198,21 +212,19 @@
 -(void)selectedHeaderViewGameType:(CGRect )frame
 {
     if (!self.listView.superview) {
-        frame.origin.y +=self.contentTableView.frameY+30;
+        frame.origin.y +=self.contentTableView.frameY -20.f;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 200;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 200);
+            self.listView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 0);
+            self.listView.frame = frame;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
         }];
@@ -227,15 +239,16 @@
         _listView.kuaixuanBlock = ^(NSInteger row){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
-                    framee.size.height = 0;
-                    weakSelf.listView.frame = framee;
+                    CGRect frame = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y +2, weakSelf.listView.frame.size.width*1.5, 0);
+                    weakSelf.listView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.listView removeFromSuperview];
                 }];
             }
-            weakSelf.startDate = [weakSelf changedSinceTimeString:row];
-            [weakSelf startUpdateData] ;
+            weakSelf.startDate = [weakSelf changedSinceTimeString:row][0];
+            weakSelf.endDate = [weakSelf changedSinceTimeString:row][1];
+//            [weakSelf startUpdateData] ;
+            [weakSelf showNoRefreshLoadData] ;
         };
     }
     return _listView;
@@ -257,41 +270,178 @@
 }
 -(void)cellStartUpdata
 {
-    [self startUpdateData] ;
+//    [self startUpdateData] ;
+    [self showNoRefreshLoadData] ;
 }
+
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
+
 #pragma mark 修改时间
--(NSString *)changedSinceTimeString:(NSInteger)row
+-(NSArray *)changedSinceTimeString:(NSInteger)row
 {
     NSDate *date = [[NSDate alloc]init];
+    //获取本周的日期
+    NSArray *currentWeekarr = [self getWeekTimeOfCurrentWeekDay];
+    NSArray *lastWeekArr = [self getWeekTimeOfLastWeekDay];
     switch (row) {
         case 0:
+            //今天
             date= [[NSDate date] dateWithMoveDay:0];
+            _headerView.endDate = date;
             break;
         case 1:
+            //昨天
             date= [[NSDate date] dateWithMoveDay:-1];
+            _headerView.endDate = date;
             break;
         case 2:
-            date= [[NSDate date] dateWithMoveDay:-7];
+            //本周
+            date = currentWeekarr[0];
+            _headerView.endDate = currentWeekarr[1];
             break;
         case 3:
-            date= [[NSDate date] dateWithMoveDay:-14];
+            //上周
+            date = lastWeekArr[0];
+            _headerView.endDate = lastWeekArr[1];
             break;
         case 4:
-            date= [[NSDate date] dateWithMoveDay:-30];
+            //本月
+            date= [self dateFromDateFirstDay];
+            _headerView.endDate = [self getMonthEndDate];
             break;
         case 5:
+            //最近7天
             date= [[NSDate date] dateWithMoveDay:-7];
+            _headerView.endDate = [date  dateWithMoveDay:+7];
             break;
         case 6:
+            //最近三十天
             date= [[NSDate date] dateWithMoveDay:-30];
+            _headerView.endDate = [date  dateWithMoveDay:+30];
             break;
             
         default:
             break;
     }
+    _headerView.startDate = date;
     NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd ");
-    return beforDate;
+    NSString *endDate = dateStringWithFormatter(_headerView.endDate, @"yyyy-MM-dd") ;
+    return @[beforDate,endDate];
 }
+
+#pragma mark - 获取当前月1号
+- (NSDate *)dateFromDateFirstDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *str1 =  [currentDateString substringWithRange:NSMakeRange(7, 3)];
+    NSString *str2 = [currentDateString stringByReplacingOccurrencesOfString:str1 withString:@"-01"];
+    //设置转换格式
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    formatter.dateFormat = @"yyyy-MM-dd";
+    //NSString转NSDate
+    NSDate *date = [formatter dateFromString:str2] ;
+    return date;
+}
+
+#pragma mark -  获取当前周的周一周日的时间
+- (NSArray *)getWeekTimeOfCurrentWeekDay
+{
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:nowDate];
+    // 获取今天是周几
+    NSInteger weekDay = [comp weekday];
+    // 获取几天是几号
+    NSInteger day = [comp day];
+    // 计算当前日期和本周的星期一和星期天相差天数
+    long firstDiff,lastDiff;
+    //    weekDay = 1;
+    if (weekDay == 1)
+    {
+        firstDiff = -6;
+        lastDiff = 0;
+    }
+    else
+    {
+        firstDiff = [calendar firstWeekday] - weekDay + 1;
+        lastDiff = 8 - weekDay;
+    }
+    // 在当前日期(去掉时分秒)基础上加上差的天数
+    [comp setDay:day + firstDiff];
+    NSDate *firstDayOfWeek = [calendar dateFromComponents:comp];
+    [comp setDay:day + lastDiff];
+    NSDate *lastDayOfWeek = [calendar dateFromComponents:comp];
+    NSArray *dateArr = @[firstDayOfWeek,lastDayOfWeek];
+    return dateArr;
+}
+
+#pragma mark -  获取上一周的周一周日的时间
+- (NSArray *)getWeekTimeOfLastWeekDay
+{
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:nowDate];
+    // 获取今天是周几
+    NSInteger weekDay = [comp weekday];
+    // 获取几天是几号
+    NSInteger day = [comp day];
+    NSInteger lastDay = day - 7;
+    // 计算当前日期和本周的星期一和星期天相差天数
+    long firstDiff,lastDiff;
+    //    weekDay = 1;
+    if (weekDay == 1)
+    {
+        firstDiff = -6;
+        lastDiff = 0;
+    }
+    else
+    {
+        firstDiff = [calendar firstWeekday] - weekDay +1;
+        lastDiff = 8 - weekDay;
+    }
+    // 在当前日期(去掉时分秒)基础上加上差的天数
+    [comp setDay:lastDay + firstDiff];
+    NSDate *firstDayOfWeek = [calendar dateFromComponents:comp];
+    [comp setDay:lastDay + lastDiff];
+    NSDate *lastDayOfWeek = [calendar dateFromComponents:comp];
+    NSArray *dateArr = @[firstDayOfWeek,lastDayOfWeek];
+    return dateArr;
+}
+
+#pragma mark - 获取本月最后一天
+- (NSDate *)getMonthEndDate
+{
+    NSDate *newDate=[NSDate date];
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    [calendar setFirstWeekday:2];//设定周一为周首日
+    BOOL ok = [calendar rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:newDate];
+    //分别修改为 NSCalendarUnitMonth NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }else {
+        return nil;
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"YYYY-MM-dd"];
+    return endDate;
+}
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){

@@ -8,6 +8,13 @@
 
 #import "RH_ModifyPasswordCell.h"
 
+@class RH_WithdrawCashTwoCell ;
+@protocol WithdrawCashTwoCellDelegate
+@optional
+-(void)withdrawCashTwoCellDidTouchDONE:(RH_WithdrawCashTwoCell*)withdrawCashCell ;
+@end
+
 @interface RH_WithdrawCashTwoCell : RH_ModifyPasswordCell
+@property (nonatomic,weak) id<WithdrawCashTwoCellDelegate> delegate ;
 
 @end

@@ -9,7 +9,7 @@
 #import "RH_BasicModel.h"
 #import "RH_BankCardModel.h"
 #import "RH_BitCodeModel.h"
-
+#import "RH_UserApiBalanceModel.h"
 
 @interface RH_MineInfoModel : RH_BasicModel
 @property(nonatomic,strong,readonly) NSString  *mAvatalUrl ;
@@ -28,11 +28,16 @@
 @property(nonatomic,strong,readonly) RH_BankCardModel *mBankCard ;
 @property(nonatomic,strong,readonly) RH_BitCodeModel *mBitCode  ;
 @property(nonatomic,strong,readonly) NSString  *mRealName ;
+//cherry 调整---
+@property (nonatomic,strong,readonly) NSArray<RH_UserApiBalanceModel*> *mApisBalanceList   ;
 
 
 //extend
 @property (nonatomic,strong,readonly) NSString *showAvatalURL ;
+@property(nonatomic,strong,readonly) NSString *showTotalAssets ;
+@property(nonatomic,strong,readonly) NSString *showWalletBalance ;
 
+-(void)updateUserBalanceInfo:(NSDictionary*)info ;
 -(void)updateBankCard:(RH_BankCardModel*)bankCardInfo ;
 -(void)updateBitCode:(RH_BitCodeModel*)bitCodeInfo ;
 

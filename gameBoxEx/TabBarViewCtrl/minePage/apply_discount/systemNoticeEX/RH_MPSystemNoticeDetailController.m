@@ -36,6 +36,7 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
+    self.contentTableView.scrollEnabled = NO;
     [self.contentTableView registerCellWithClass:[RH_MPSystemNoticeDetailCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
@@ -64,7 +65,7 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无相关数据记录"] ;
+                                        detailText:@"您暂无系统公告记录"] ;
     return YES ;
     
 }

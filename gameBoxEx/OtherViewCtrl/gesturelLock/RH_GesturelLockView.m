@@ -172,11 +172,19 @@
                     [self clear];
                 }
                 break;
+            case PwdStateVerityClose:
+                if (self.sendReaultData){
+                    if (self.sendReaultData(result) == YES) {
+                        
+                        [self clear];
+                    }else{
+                        [self ErrorShow];
+                    }
+                }                break;
             default:
                 NSLog(@"不执行操作，类型不对");
                 break;
         }
-        
         
     }
     [_slayer removeFromSuperlayer];

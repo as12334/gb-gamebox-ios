@@ -29,16 +29,23 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 {
     BitCoinStatus _bitCoinStatus ;    
     NSString *_addBitCoinAddrInfo ;
+    
+    NSString *_inputTitleContent ; //control 上下文信息
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView ;
 @synthesize addButton = _addButton ;
 
+-(void)setupViewContext:(id)context
+{
+    _inputTitleContent = ConvertToClassPointer(NSString, context) ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的比特币地址";
+    self.title = _inputTitleContent?:@"我的比特币地址";
     [self setupInfo];
     self.needObserverTapGesture = YES ;
     [self setNeedUpdateView] ;
@@ -93,6 +100,25 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         return ;
     }
 }
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    return [self validateNumber:text];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
 
 #pragma mark -
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -121,7 +147,15 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 {
     if (!_addButton){
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
-        _addButton.backgroundColor = colorWithRGB(27, 117, 217);
+        if ([THEMEV3 isEqualToString:@"green"]){
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            _addButton.backgroundColor = RH_NavigationBar_BackgroundColor;
+        }
         _addButton.layer.cornerRadius = 5;
         _addButton.clipsToBounds = YES;
         [_addButton setTitle:@"添加" forState:UIControlStateNormal];
@@ -134,9 +168,12 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
 - (void)addButtonHandle
 {
     [self tapGestureRecognizerHandle:nil] ;
-    
-    if (_addBitCoinAddrInfo.length==0){
-        showAlertView(@"提示信息", @"Bit币地址不能为空！") ;
+    if (_addBitCoinAddrInfo.length == 0) {
+        showAlertView(@"提示信息", @"请输入比特币地址");
+        return ;
+    }
+    if (_addBitCoinAddrInfo.length < 26 || _addBitCoinAddrInfo.length > 34){
+        showAlertView(@"提示信息", @"Bit币地址长度应在26-34范围内！") ;
         return ;
     }
     
@@ -164,9 +201,15 @@ typedef NS_ENUM(NSInteger,BitCoinStatus ) {
         [self.contentLoadingIndicateView hiddenView] ;
         [self setNeedUpdateView] ;
     }else if (type == ServiceRequestTypeV3AddBitCoin){
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息",@"已成功添加Bit币") ;
         }];
+        
+        if (_inputTitleContent.length){
+            [self backBarButtonItemHandle] ;
+            return ;
+        }
         
         [self setNeedUpdateView] ;
     }

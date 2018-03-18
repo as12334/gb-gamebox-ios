@@ -69,6 +69,7 @@
         [self.contentView addSubview:self.textField];
         self.textField.whc_TopSpace(1).whc_RightSpace(20).whc_Height(39).whc_Width(screenSize().width/5*3);
         self.textField.delegate = self;
+        [self.textField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventAllEvents];
         UIView *view_Back = [[UIView alloc]init];
         [self.contentView addSubview:view_Back];
         view_Back.whc_TopSpace(41).whc_LeftSpace(20).whc_RightSpace(20).whc_BottomSpace(0);
@@ -100,6 +101,20 @@
         label_Three.clipsToBounds = YES;
         
         
+//        if ([THEMEV3 isEqualToString:@"green"]){
+//            _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Green;
+//            huhuiLab.textColor = RH_NavigationBar_BackgroundColor_Green;
+//        }else if ([THEMEV3 isEqualToString:@"red"]){
+//            _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Red;
+//            huhuiLab.textColor = RH_NavigationBar_BackgroundColor_Red;
+//        }else if ([THEMEV3 isEqualToString:@"black"]){
+//            _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Black;
+//            huhuiLab.textColor =RH_NavigationBar_BackgroundColor_Black;
+//        }else{
+//            _shareRedLab.textColor =  RH_NavigationBar_BackgroundColor;
+//            huhuiLab.textColor = RH_NavigationBar_BackgroundColor;
+//        }
+        
     }
     return self;
 }
@@ -109,41 +124,79 @@
     self.textField.placeholder = info[@"detailTitle"];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"%s", __func__);
-}
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"%s", __func__);
-}
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+- (void)textFieldValueChange:(UITextField *)textFiled {
     NSString *textRange = [self.textField.text copy];
     NSString *regexS = @"[a-zA-Z][0-9]|[0-9][a-zA-Z]";
     NSString *regexS2 = @"[!@#$%^&*_]";
     if (textRange.length > 4) {
-        label_One.backgroundColor = colorWithRGB(27, 117, 217);
+        if ([THEMEV3 isEqualToString:@"green"]){
+            label_One.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            label_One.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            label_One.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            label_One.backgroundColor = RH_NavigationBar_BackgroundColor;
+        }
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexS options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray<NSTextCheckingResult *> *result = [regex matchesInString:textRange options:0 range:NSMakeRange(0, textRange.length)];
         NSLog(@"%@", result);
         if (result.count > 0) {
-            label_Two.backgroundColor = colorWithRGB(27, 117, 217);
+            if ([THEMEV3 isEqualToString:@"green"]){
+                label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            }else{
+                label_Two.backgroundColor = RH_NavigationBar_BackgroundColor;
+            }
             NSRegularExpression *regex2 = [NSRegularExpression regularExpressionWithPattern:regexS2 options:NSRegularExpressionCaseInsensitive error:nil];
             NSArray<NSTextCheckingResult *> *result2 = [regex2 matchesInString:textRange options:0 range:NSMakeRange(0, textRange.length)];
             NSLog(@"%@", result2);
             if (result2.count > 0) {
-                label_Three.backgroundColor = colorWithRGB(27, 117, 217);
+                if ([THEMEV3 isEqualToString:@"green"]){
+                    label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+                }else if ([THEMEV3 isEqualToString:@"red"]){
+                    label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+                }else if ([THEMEV3 isEqualToString:@"black"]){
+                    label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+                }else{
+                    label_Three.backgroundColor = RH_NavigationBar_BackgroundColor;
+                }
+                return ;
             }
-            return YES;
+            label_Three.backgroundColor = RH_Image_DefaultBackgroundColor;
+            return ;
         }
-        return YES;
+        label_Two.backgroundColor = RH_Image_DefaultBackgroundColor;
+        return ;
     }
     label_One.backgroundColor = RH_Image_DefaultBackgroundColor;
     label_Two.backgroundColor = RH_Image_DefaultBackgroundColor;
-    label_Three.backgroundColor = RH_Image_DefaultBackgroundColor;
+
     
-    return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [self validateNumber:string];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
 @end

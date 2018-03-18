@@ -7,7 +7,7 @@
 //
 
 #import "RH_BasicModel.h"
-
+#define RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage @"ChangeNotificationSiteMineMessage"
 @interface RH_SiteMyMessageModel : RH_BasicModel
 @property(nonatomic,strong,readonly)NSString   *mAdvisoryContent; //内容
 @property(nonatomic,strong,readonly)NSDate     *mAdvisoryTime;  //时间
@@ -17,5 +17,7 @@
 @property(nonatomic,assign,readonly)BOOL       mIsRead;
 
 //---extend
-@property(nonatomic,strong)NSNumber *number;
+@property(nonatomic,readonly,assign)  BOOL selectedFlag ;
+-(void)updateSelectedFlag:(BOOL)bFlag ; //更新是否勾选状态
+-(void)updataReadStatus:(BOOL)bflag ; //更新是否已读
 @end

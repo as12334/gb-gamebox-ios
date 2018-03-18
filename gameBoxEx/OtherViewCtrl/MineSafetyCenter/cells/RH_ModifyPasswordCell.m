@@ -8,7 +8,7 @@
 
 #import "RH_ModifyPasswordCell.h"
 #import "coreLib.h"
-@interface RH_ModifyPasswordCell()
+@interface RH_ModifyPasswordCell() <UITextFieldDelegate>
 
 @end
 
@@ -50,6 +50,7 @@
         _textField.textAlignment = NSTextAlignmentRight;
         _textField.textColor = colorWithRGB(153, 153, 153);
         _textField.secureTextEntry = YES;
+        _textField.delegate = self;
     }
     return _textField;
 }
@@ -79,5 +80,25 @@
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
     
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [self validateNumber:string];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
 }
 @end

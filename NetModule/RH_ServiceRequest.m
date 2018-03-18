@@ -17,7 +17,6 @@
 #import "RH_UserInfoManager.h"
 ///-------DATA MODULE--------------------//
 #import "RH_HomePageModel.h"
-#import "RH_UserBalanceGroupModel.h"
 #import "RH_BettingInfoModel.h"
 #import "RH_OpenActivityModel.h"
 #import "RH_BettingDetailModel.h"
@@ -41,6 +40,8 @@
 #import "RH_WithDrawModel.h"
 #import "RH_SiteMsgSysMsgModel.h"
 #import "RH_ActivityStatusModel.h"
+#import "RH_SiteMsgUnReadCountModel.h"
+#import "RH_SharePlayerRecommendModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -48,6 +49,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     ServiceScopeTypePublic,
 };
 
+#define userInfo_manager   [RH_UserInfoManager shareUserManager]
 //----------------------------------------------------------
 
 //请求上下文
@@ -117,9 +119,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     return _appDelegate ;
 }
 #pragma mark-用户接口定义
--(void)startReqDomainList
+-(void)startReqDomainListWithDomain:(NSString*)domain
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:domain
                         pathFormat:@"app/line.html"
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -146,7 +148,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUpdateCheck
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -159,73 +161,197 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+-(void)startV3UpdateCheck
+{
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+                        pathFormat:@"boss-api/app/update.html"
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"code":S,
+                                     @"type":@"ios",
+                                     @"siteId":SID
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3UpdateCheck
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_LOGIN
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
-                                     }
-                    queryArguments:verCode.length?@{@"username":userName?:@"",
-                                                    @"password":password?:@"",
-                                                    @"captcha":verCode
-                                                    } :@{@"username":userName?:@"",
-                                                         @"password":password?:@""
-                                                         }
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeUserLogin
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_LOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                        @"password":password?:@"",
+                                                        @"captcha":verCode
+                                                        } :@{@"username":userName?:@"",
+                                                             @"password":password?:@""
+                                                             }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_LOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         }
+                        queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                        @"password":password?:@"",
+                                                        @"captcha":verCode
+                                                        } :@{@"username":userName?:@"",
+                                                             @"password":password?:@""
+                                                             }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_AUTOLOGIN
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
-                                     }
-                    queryArguments:@{@"username":userName?:@"",
-                                     @"password":password?:@""
-                                     }
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeUserAutoLogin
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_AUTOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"username":userName?:@"",
+                                         @"password":password?:@""
+                                         }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserAutoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_AUTOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone"
+                                         }
+                        queryArguments:@{@"username":userName?:@"",
+                                         @"password":password?:@""
+                                         }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserAutoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
 }
 
 -(void)startGetVerifyCode
 {
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
-    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_VERIFYCODE
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
-                                     }
-                    queryArguments:@{@"_t":timeStr}
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeObtainVerifyCode
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
+}
+
+-(void)startGetSecurePasswordVerifyCode {
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
 }
 
 -(void)startDemoLogin
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_DEMOLOGIN
-                     pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
-                                     }
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeDemoLogin
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_DEMOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeDemoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_DEMOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone"
+                                         }
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeDemoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 -(void)startGetCustomService
@@ -256,7 +382,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -299,7 +425,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -358,28 +486,34 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:dictTmp
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3APIGameList
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark -投注列表
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
-                 PageSize:(NSInteger)pageSize
+                 PageSize:(NSInteger)pageSize withIsStatistics:(BOOL)isShowStatistics
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
-                                     RH_SP_BETTINGLIST_ENDDATE:endDate?:@""
+                                     RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
+                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
+                                     RH_SP_BETTINGLIST_PAGENUMBER:@(pageNumber),
+                                     RH_SP_BETTINGLIST_PAGESIZE:@(pageSize)
+                        
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3BettingList
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark -- 资金记录
 -(void)startV3DepositList:(NSString*)startDate
                   EndDate:(NSString*)endDate
                SearchType:(NSString*)type
@@ -399,7 +533,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -413,7 +549,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERSAFEINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -427,7 +565,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SETREALNAME
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:@{@"realName":name?:@""}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -450,11 +590,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (code.length){
         [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
     }
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -473,11 +614,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (code.length){
         [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
     }
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -495,7 +637,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_OPENACTIVITY
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -511,7 +655,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGDETAILS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -527,7 +673,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -541,7 +689,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITPULLDOWNLIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -563,7 +713,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBANKCARD
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -577,6 +729,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    if (startDate > endDate) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:startTime?:@"" forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
     [dict setValue:endTime?:@"" forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
@@ -585,7 +744,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -600,7 +761,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -623,10 +786,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (apiId>0){
         [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
     }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    if (startDate > endDate) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -641,7 +813,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICEDETAIL
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -649,7 +823,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
     
 }
-
+#pragma mark - 获取安全验证码
 -(void)startV3GetSafetyVerifyCode
 {
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
@@ -658,7 +832,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SAFETYCAPCHA
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:@{@"_t":timeStr}
                      bodyArguments:nil
@@ -666,7 +841,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark -优惠记录列表
 -(void)startV3PromoList:(NSInteger)pageNumber
                PageSize:(NSInteger)pageSize
 {
@@ -691,7 +866,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ONESTEPRECOVERY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -705,7 +881,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:(bitNumber?:@"")}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -722,7 +900,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -738,7 +918,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGEDETAIL
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -754,7 +936,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGEREDAYES
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -769,7 +953,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGEDELETE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -782,7 +968,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -803,7 +991,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -827,16 +1017,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - tabbar2 优惠活动主界面列表
 -(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
-                                       PageNumber:(NSInteger)pageNumber
-                                         pageSize:(NSInteger)pageSize
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@"",
-                                     RH_SP_ACTIVITYDATALIST_PAGENUMBER:@(pageNumber),
-                                     RH_SP_ACTIVITYDATALIST_PAGESIZE:@(pageSize)
+                    queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
                                      }
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -939,7 +1125,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (gamesCode){
         [dict setValue:gamesCode forKey:RH_SP_GAMESLINK_GAMECODE];
     }
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMESLINK
                      pathArguments:nil
@@ -952,8 +1137,30 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
 }
 
-
-
+#pragma mark - 获取games link for cheery
+-(void)startv3GetGamesLinkForCheeryLink:(NSString*)gamelink
+{
+    if (gamelink.length && [gamelink containsString:@"?"]) {
+        NSArray *tempArr = [gamelink componentsSeparatedByString:@"?"] ;
+        NSString *gameLinkUrl = [tempArr objectAtIndex:0] ;
+        NSArray *paraArr = [[tempArr objectAtIndex:1] componentsSeparatedByString:@"&"];
+        NSString *temStr = [[paraArr  componentsJoinedByString:@","] stringByReplacingOccurrencesOfString:@"=" withString:@","];
+        NSArray *temArr = [temStr componentsSeparatedByString:@","] ;
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionary] ;
+        for (int i= 0; i<temArr.count/2; i++) {
+            [mDic setObject:[temArr objectAtIndex:2*i+1] forKey:[temArr objectAtIndex:i*2]];
+        }
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:gameLinkUrl?:@""
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:mDic
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeV3GameLinkForCheery
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
 
 #pragma mark - 获取取款接口
 -(void)startV3GetWithDraw
@@ -976,14 +1183,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  @param gbToken 防重验证  Y
  */
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                         SafetyPwd:(NSString *)safetyPassword
                            gbToken:(NSString *)gbToken
-                          CardType:(int)cardType  //（1：银行卡，2：比特币）
+                          CardType:(NSInteger)cardType  //（1：银行卡，2：比特币）
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
     [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
     [dict setObject:@(cardType) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY] ;
-    
+    [dict setValue:safetyPassword?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_ORIGINPWD] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
@@ -1022,6 +1230,171 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3SafetyPasswordAutuentification
                          scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取手续费信息得到最终取款金额
+-(void)startV3WithDrawFeeWithAmount:(CGFloat)amount
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:[NSString stringWithFormat:@"%.2f",amount] forKey:RH_SP_WITHDRWAFEE_AMOUNT];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_WITHDRWAFEE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeWithDrawFee
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取站点时区
+-(void)startV3SiteTimezone
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_TIMEZONEINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeTimeZoneInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取站点消息-系统消息&&我的消息 未读消息的条数
+-(void)startV3LoadMessageCenterSiteMessageUnReadCount
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SITEMESSAGUNREADCOUNT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeSiteMessageUnReadCount
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 分享接口
+-(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
+                                        endTime:(NSString *)endTime
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_ENDTIME];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SharePlayerRecommend
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -老用户验证登录
+/**
+ 老用户验证登录
+ 
+ @param token  登录返回的Token
+ @param resultRealName 输入框真实姓名
+ @param needRealName 默认传 YES
+ @param resultPlayerAccount 用户名
+ @param searchPlayerAccount 用户名
+ @param tempPass 密码
+ @param newPassword 密码
+ @param passLevel 默认传 20
+ */
+-(void)startV3verifyRealNameForAppWithToken:(NSString *)token
+                             resultRealName:(NSString *)resultRealName
+                               needRealName:(BOOL)needRealName
+                        resultPlayerAccount:(NSString *)resultPlayerAccount
+                        searchPlayerAccount:(NSString *)searchPlayerAccount
+                                   tempPass:(NSString *)tempPass
+                                newPassword:(NSString *)newPassword
+                                  passLevel:(NSInteger)passLevel
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:token forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN];
+    [dict setObject:resultRealName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTREALNAME];
+    [dict setObject:@(needRealName) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEEDREALNAME];
+    [dict setObject:resultPlayerAccount forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTPLAYERACCOUNT];
+    [dict setObject:searchPlayerAccount forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEARCHACCOUNT];
+    [dict setObject:tempPass forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS];
+    [dict setObject:newPassword forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD];
+    [dict setObject:@(passLevel) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3VerifyRealNameForApp
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取用户资产信息
+-(void)startV3GetUserAssertInfo
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETUSERASSERT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GETUSERASSERT
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 防止用户掉线
+-(void)startV3RereshUserSessin
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RefreshSession
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 用户登录是否开启验证码
+-(void)startV3IsOpenCodeVerifty
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ISOPENCODEVERIFTY
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3IsOpenCodeVerifty
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 通过GET请求登录接口获取SID
+-(void)startV3RequsetLoginWithGetLoadSid
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_LOGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3RequetLoginWithGetLoadSid
+                         scopeType:ServiceScopeTypePublic];
+    
 }
 
 #pragma mark -
@@ -1085,15 +1458,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
-        if ([THEME isEqualToString:@"pink.skin"]){
+        [queryArgs setValue:@"True" forKey:RH_SP_COMMON_V3_ISNATIVE] ;
+        [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
+        [queryArgs setValue:@"zh_CN" forKey:RH_SP_COMMON_V3_LOCALE] ;//zh_CN,zh_TW,en_US,ja_JP
+        
+        ////white,black,blue,red
+        if ([THEMEV3 isEqualToString:@"green"]){
             [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
-        }else if ([THEME isEqualToString:@"blue.skin"]){
-            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            [queryArgs setValue:@"red" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            [queryArgs setValue:@"black" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
             [queryArgs setValue:@"white" forKey:RH_SP_COMMON_V3_THEME] ;
         }
         
-        [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
         CLScreenSizeType screenType = mainScreenType();
         switch (screenType) {
             case CLScreenSizeTypeBig:
@@ -1104,7 +1483,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
         }
     }
-    
+   
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:apiName
                                                                 pathFormat:pathFormat
                                                              pathArguments:pathArguments
@@ -1114,7 +1493,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                       type:httpType];
     
     httpRequest.timeOutInterval = _timeOutInterval ;
-
     //开始请求
     [self _startHttpRequest:httpRequest forType:type scopeType:scopeType];
 }
@@ -1283,7 +1661,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *error = [NSError resultDataNoJSONError] ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
-                NSString *errorCode = [NSString stringWithFormat:@"%d",response.statusCode] ;
+                NSString *errorCode = [NSString stringWithFormat:@"%ld",response.statusCode] ;
                 NSString *errorMessage = [response.description copy] ;
                 [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
                                                                                         RH_SP_COLLECTAPPERROR_CODE:errorCode,
@@ -1342,6 +1720,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
         return YES ;
+    }else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
+    {
+        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+        NSMutableArray *mArr = [NSMutableArray array] ;
+        if (isSidStr(responseStr)) {
+            [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+        }
+        if (mArr.count>0) {
+            userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+        }
     }
 //    
 //    else if (type==ServiceRequestTypeV3SystemMessageYes){
@@ -1352,16 +1740,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
 //        return YES ;
 //    }
+    
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    
     if (tempError) { //json解析错误
-        tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
+        if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
+                                     response.statusCode,
+                                     response.description,nil);
+        }else{
+            tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
+        }
     }else{
-        if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
                 tempError = [NSError resultErrorWithResultInfo:dataObject];
             }
@@ -1371,14 +1765,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
         (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
         if (response.statusCode==302){
-            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",nil);
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",dataObject);
         }
     }
     
     if (error) {
         *error = tempError;
     }
-
     //结果成功，开始处理数据
     if (tempError == nil) {
 
@@ -1391,6 +1784,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 
             case ServiceRequestTypeUpdateCheck:
+            case ServiceRequestTypeV3UpdateCheck:
             {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
@@ -1399,11 +1793,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeUserLogin:
            case ServiceRequestTypeUserAutoLogin:
             {
+                NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+                NSMutableArray *mArr = [NSMutableArray array] ;
+                if (isSidStr(responseStr)) {
+                [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+                }
+                if (mArr.count>0) {
+                     userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+                }
+                NSLog(@"....SID INFO...get.sid:%@",responseStr) ;
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
-                
-                if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
-                    [ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self startV3UserInfo] ;
+                if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
+                    [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                   [self startV3UserInfo] ;
                 }
             }
                 break ;
@@ -1427,10 +1829,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 RH_UserGroupInfoModel *userGroupModel = ConvertToClassPointer(RH_UserGroupInfoModel, resultSendData) ;
                 if (userGroupModel){
                     RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
-                    [userInfoManager setUserBalanceInfo:userGroupModel.mUserBalanceGroupInfo] ;
                     [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
                     [userInfoManager setBankList:userGroupModel.mBankList] ;
                 }
+                [self startV3GetUserAssertInfo] ;
             }
                 break ;
             
@@ -1564,7 +1966,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3OneStepRecory:
             {
-                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+                [self startV3UserInfo] ;
             }
                 break;
                 
@@ -1608,12 +2011,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3ActivityDetailList:
             {
-                NSArray *tmpArray = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
-                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
-                                   integerValueForKey:RH_GP_ACTIVITYDATALIST_TOTALNUMBER]   ;
-                resultSendData = @{RH_GP_ACTIVITYDATALIST_LIST:tmpArray?:@[],
-                                   RH_GP_ACTIVITYDATALIST_TOTALNUMBER:@(total)
-                                   } ;
+                resultSendData = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
             }
                 break;
             case ServiceRequestTypeV3AddApplyDiscountsVerify:
@@ -1639,12 +2037,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+                
              case ServiceRequestTypeV3SiteMessageDetail:
             {
                 resultSendData =[[RH_SiteMsgSysMsgModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
             case ServiceRequestTypeV3GameLink:
+            case ServiceRequestTypeV3GameLinkForCheery:
             {
                 resultSendData =[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
             }
@@ -1683,7 +2083,60 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                  resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
             }
                 break;
+            
+            case ServiceRequestTypeWithDrawFee:
+            {
+                resultSendData = [[AuditMapModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+           
+            case ServiceRequestTypeTimeZoneInfo:
+            {
+                resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) stringValueForKey:RH_GP_V3_DATA] ;
                 
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager updateTimeZone:resultSendData] ;
+                }
+            }
+                break ;
+                
+                case ServiceRequestTypeSiteMessageUnReadCount:
+            {
+                resultSendData = [[RH_SiteMsgUnReadCountModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+                
+                case ServiceRequestTypeV3SharePlayerRecommend:   //分享
+            {
+              resultSendData = [[RH_SharePlayerRecommendModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3VerifyRealNameForApp:  // 验证老用户登录
+            {
+                 resultSendData =ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA]);
+            }
+                break ;
+            case ServiceRequestTypeV3GETUSERASSERT:
+            {
+                resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
+//                if (MineSettingInfo){
+//                    [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
+//                }
+                  [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
+            }
+                break;
+            case ServiceRequestTypeV3RefreshSession:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
+                case ServiceRequestTypeV3IsOpenCodeVerifty:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
                 break;
@@ -1703,6 +2156,38 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break;
             
+            case ServiceRequestTypeTimeZoneInfo:
+            {
+                //重新请求
+                [self performSelector:@selector(startV3SiteTimezone) withObject:self afterDelay:3.0f] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserInfo:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }else{
+                    [self startV3UserInfo] ;
+                }
+            }
+                break ;
+                
+                case ServiceRequestTypeV3RefreshSession:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }
+            }
+                break ;
+                case ServiceRequestTypeUserLogin:
+            {
+                
+            }
+                break ;
+                
             default:
                 break;
         }
@@ -1754,14 +2239,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     //特点  error 信息，统一处理 。
-    if ((error.code==600 || error.code==1) && serviceType!=ServiceRequestTypeV3UserLoginOut)
+    // error.code==RH_API_ERRORCODE_USER_LOGOUT ||
+    if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED ||
+          error.code==RH_API_ERRORCODE_USER_LOGOUT) &&
+        serviceType!=ServiceRequestTypeV3UserLoginOut &&
+        serviceType!=ServiceRequestTypeV3HomeInfo &&
+        serviceType!=ServiceRequestTypeV3UserInfo &&
+        serviceType!=ServiceRequestTypeV3RefreshSession &&
+        serviceType!=ServiceRequestTypeSiteMessageUnReadCount&&
+        serviceType!=ServiceRequestTypeV3GETUSERASSERT)
     {
         //session 过期 ,用户未登录
         ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
             [self.delegate serviceRequest:self serviceType:serviceType SpecifiedError:error] ;
         }
     }
-    
     
     //移除上下文
     [self removeContextForType:serviceType];

@@ -35,7 +35,7 @@
 #pragma mark -
 -(BOOL)isExistSubCategory
 {
-    if (self.mSiteApis.count){
+    if (self.mSiteApis.count>1){
 //        RH_LotteryAPIInfoModel *lotteryApiModel = self.mSiteApis[0] ;
 //        return lotteryApiModel.mGameItems.count?YES:NO ;
         NSInteger gameItems = 0 ;
@@ -53,7 +53,12 @@
 {
     if (!_showCover){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        if ([_mCover containsString:@"http"] || [_mCover containsString:@"https:"]) {
+            _showCover = [NSString stringWithFormat:@"%@",_mCover] ;
+        }else
+        {
+            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        }
     }
     
     return _showCover ;

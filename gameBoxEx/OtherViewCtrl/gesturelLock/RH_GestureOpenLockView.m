@@ -45,7 +45,7 @@
     lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
     [self addSubview:lockView];
-    
+     [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
     //解锁手势完成之后判断密码是否正确
     _hud = [[MBProgressHUD alloc]init];
     lockView.sendReaultData = ^(NSString *resultPwd){
@@ -92,11 +92,12 @@
         
     }
     [_hud hide:YES];
+
 }
 
 
 
-//#pragma mark-
+#pragma mark-
 //-(UIWindow *)subwindow
 //{
 //    if(!_subwindow){
@@ -106,7 +107,7 @@
 //    }
 //    return _subwindow;
 //}
-//
+
 //- (void)show
 //{
 //    self.frame = self.subwindow.bounds;

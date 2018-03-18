@@ -7,15 +7,14 @@
 //
 
 #import "CLTableViewCell.h"
-typedef void (^chooseBtnBlock)(void);
+#import "RH_SiteMessageModel.h"
 @class RH_MPSiteSystemNoticeCell;
-@protocol MPSiteSystemNoticeCellDelegate<NSObject>
+@protocol SiteSystemNoticeCellDelegate<NSObject>
 @optional
--(void)chooseSiteSystemNoticeCellEditBtn:(UIButton *)button ;
+-(void)siteSystemNoticeCellEditBtn:(RH_MPSiteSystemNoticeCell *)systemNoticeCell  cellModel:(RH_SiteMessageModel*)cellModel;
 @end
 
 @interface RH_MPSiteSystemNoticeCell : CLTableViewCell
-@property(nonatomic,weak)id<MPSiteSystemNoticeCellDelegate>delegate;
+@property(nonatomic,weak)id<SiteSystemNoticeCellDelegate>delegate;
 @property(nonatomic,assign)NSNumber *statusNumber;
-@property(nonatomic,copy)chooseBtnBlock block;
 @end

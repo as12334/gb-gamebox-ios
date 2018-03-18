@@ -14,7 +14,7 @@
         <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="180" id="KGk-i7-Jjw" customClass="RH_PromoTableCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="139.5" width="320" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWH-k8-gyq">
-                                        <rect key="frame" x="10" y="9.5" width="42" height="21"/>
+                                        <rect key="frame" x="10" y="10" width="222" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -51,11 +51,12 @@
                                     <constraint firstAttribute="height" constant="40" id="7N6-eM-QXe"/>
                                     <constraint firstItem="cWH-k8-gyq" firstAttribute="centerY" secondItem="Glf-nl-StE" secondAttribute="centerY" id="7cc-gq-ELr"/>
                                     <constraint firstItem="cWH-k8-gyq" firstAttribute="leading" secondItem="Glf-nl-StE" secondAttribute="leading" constant="10" id="lfG-Rd-W3s"/>
+                                    <constraint firstItem="2As-aN-ae5" firstAttribute="leading" secondItem="cWH-k8-gyq" secondAttribute="trailing" constant="8" id="o1K-ed-P92"/>
                                     <constraint firstItem="2As-aN-ae5" firstAttribute="centerY" secondItem="Glf-nl-StE" secondAttribute="centerY" id="xB2-8F-zBr"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Glf-nl-StE" firstAttribute="top" secondItem="2Km-Gt-a2e" secondAttribute="bottom" constant="10" id="7Cu-yC-rYf"/>
                             <constraint firstItem="Glf-nl-StE" firstAttribute="leading" secondItem="yKL-n7-hVA" secondAttribute="leading" id="B0i-5v-l5K"/>
@@ -67,7 +68,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="yKL-n7-hVA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8NE-Dn-BEp"/>
                     <constraint firstAttribute="bottom" secondItem="yKL-n7-hVA" secondAttribute="bottom" id="bhu-jC-AUU"/>
@@ -82,7 +83,7 @@
                 <outlet property="btnDetail" destination="2As-aN-ae5" id="kTZ-GO-zXt"/>
                 <outlet property="labTitle" destination="cWH-k8-gyq" id="hQv-Qz-ThG"/>
             </connections>
-            <point key="canvasLocation" x="-577" y="-584"/>
+            <point key="canvasLocation" x="-694" y="-619"/>
         </tableViewCell>
     </objects>
 </document>

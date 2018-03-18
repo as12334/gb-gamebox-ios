@@ -35,23 +35,28 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    self.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }else{
+        self.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    }
+    
     self.labTitle.font = RH_NavigationBar_TitleFontSize ;
     self.labTitle.textColor = RH_NavigationBar_ForegroundColor ;
 
     NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
     UIImage *menuImage = ImageWithName(logoName);
-    self.layoutImageWidth.constant = menuImage.size.width ;
-    self.layoutImageHeight.constant = menuImage.size.height ;
+    self.layoutImageHeight.constant = MIN(menuImage.size.height,30.0f) ;
+    self.layoutImageWidth.constant = menuImage.size.width *self.layoutImageHeight.constant/menuImage.size.height  ;
     self.logoImageView.image =  menuImage ;
     self.labTitle.text = @"" ;
     
     [self updateView] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    UIView *line = [UIView new];
-    [self addSubview:line];
-    line.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
-    line.backgroundColor = colorWithRGB(107, 172, 244);
 }
 
 -(void)dealloc
@@ -171,7 +176,7 @@
         _userInfoBtnView = [RH_NavigationUserInfoView createInstance] ;
         [_userInfoBtnView.buttonCover addTarget:self
                                                 action:@selector(_userInfoBtnViewHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _userInfoBtnView.frame = CGRectMake(0, 0, 75.0f, 40.0f) ;
+        _userInfoBtnView.frame = CGRectMake(0, 0, _userInfoBtnView.labBalance.frame.size.width + 20, 40.0f) ;
     }
     
     return _userInfoBtnView ;

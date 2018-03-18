@@ -7,6 +7,7 @@
 //
 
 #import "RH_CapitalQuickSelectView.h"
+#import "coreLib.h"
 
 @interface RH_CapitalQuickSelectView ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,copy)NSArray *dataArr;
@@ -15,12 +16,13 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.layer.cornerRadius = 10.f;
-        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.cornerRadius = 4.f;
+        self.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
         self.layer.borderWidth = 1.f;
         self.layer.masksToBounds = YES;
         [self addSubview:self.mainTabelView];
-        _dataArr = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+//        _dataArr = @[@"今天",@"昨天",@"本周",@"上周",@"本月",@"最近七天",@"最近三十天"];
+        _dataArr = @[@"今天",@"昨天",@"本周",@"最近七天"];
     }
     return self;
 }
@@ -32,6 +34,9 @@
         _mainTabelView.delegate = self;
         _mainTabelView.dataSource = self;
         _mainTabelView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _mainTabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _mainTabelView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 5) ;
+        _mainTabelView.separatorColor = colorWithRGB(242, 242, 242) ;
     }
     return _mainTabelView;
 }
@@ -60,6 +65,7 @@
     cell.textLabel.text = self.dataArr[indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:14.f];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.textColor = colorWithRGB(102, 102, 102) ;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

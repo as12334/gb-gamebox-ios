@@ -8,8 +8,8 @@
 
 #import "RH_BasicSubViewController.h"
 
+#define RHNT_AlreadySuccessfulAddBitCoinInfo            @"RHNT_AlreadySuccessfulAddBitCoinInfo"
+
 @interface RH_BitCoinController : RH_BasicSubViewController
-
-
 
 @end

@@ -23,7 +23,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    self.backgroundColor = colorWithRGB(242, 242, 242) ;
+    self.backgroundColor = colorWithRGB(234, 234, 234) ;
     [self addSubview:self.collectionTypeView] ;
     [self.collectionTypeView reloadData] ;
     _selectedIndex = 0 ;
@@ -78,7 +78,7 @@
     if (!_collectionTypeView){
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 10.f;
-        flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.f, 10.0f, 10.0f);
+        flowLayout.sectionInset = UIEdgeInsetsMake(15.0, 10.f, 15.0f, 10.0f);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         _collectionTypeView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout] ;

@@ -31,7 +31,7 @@
         _mApiName = [info stringValueForKey:RH_GP_BETTING_APINAME] ;
         _mGameID = [info integerValueForKey:RH_GP_BETTING_GAMEID] ;
         _mGameName = [info stringValueForKey:RH_GP_BETTING_GAMENAME] ;
-        _mBettime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_BETTING_BETTIME]/1000.0] ;
+        _mBettime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_BETTING_BETTIME]/1000.0] ;
         _mTerminal = [info stringValueForKey:RH_GP_BETTING_TERMINAL] ;
         _mProfitAmount = [info floatValueForKey:RH_GP_BETTING_PROFITAMOUNT] ;
         _mOrderState = [info stringValueForKey:RH_GP_BETTING_ORDERSTATE] ;
@@ -102,11 +102,17 @@
     if (!_showDetailUrl){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         if (_mURL.length){
-            if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
-                _showDetailUrl = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mURL] ;
-            }else {
-                _showDetailUrl = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mURL] ;
+            if ([_mURL containsString:@"http"] || [_mURL containsString:@"https:"]) {
+                 _showDetailUrl = [NSString stringWithFormat:@"%@",_mURL] ;
+            }else
+            {
+                if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
+                    _showDetailUrl = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mURL] ;
+                }else {
+                    _showDetailUrl = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mURL] ;
+                }
             }
+           
         }
     }
     return _showDetailUrl ;

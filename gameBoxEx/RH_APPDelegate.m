@@ -15,6 +15,8 @@
 #import "RH_UserInfoManager.h"
 #import "RH_GesturelLockController.h"
 #import "RH_MainNavigationController.h"
+#import "RH_GestureOpenLockView.h"
+
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -47,7 +49,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         ////用于后台切换 v3 环境
-        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios,app_version 3.0 , %@",getDeviceModel()]];
+        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios,is_native True, %@",getDeviceModel()]];
     }else{
         newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
     }
@@ -144,7 +146,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
             _isLogin = loginStatus ;
             
             if (!_isLogin){
-                [[RH_UserInfoManager shareUserManager] setUserBalanceInfo:nil] ;
                 [[RH_UserInfoManager shareUserManager] setUserSafetyInfo:nil] ;
                 [[RH_UserInfoManager shareUserManager] setMineSettingInfo:nil] ;
                 [[RH_UserInfoManager shareUserManager] setUserWithDrawInfo:nil] ;
@@ -156,6 +157,13 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _isLogin = loginStatus ;
 
         [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
+    }
+}
+
+-(void)updateApiDomain:(NSString*)apiDomain
+{
+    if (_apiDomain.length==0){
+        _apiDomain = apiDomain ;
     }
 }
 
@@ -195,15 +203,19 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [super applicationWillEnterForeground:application] ;
+
     
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        if ([RH_UserInfoManager shareUserManager].isScreenLock && [RH_UserInfoManager shareUserManager].screenLockPassword.length){
+        #define RH_GuseterLock            @"RH_GuseterLock"
+        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+        // [RH_UserInfoManager shareUserManager].screenLockPassword.length
+        if ([RH_UserInfoManager shareUserManager].isScreenLock && currentGuseterLockStr.length){
             RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController) ;
             if (tabBarController){
-//                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
-//                                                                      animated:YES
-//                                                                    completion:nil] ;
-                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
+                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
+                                                                      animated:YES
+                                                                    completion:nil] ;
+//                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
             }
 //            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
 //            [openLockView show] ;

@@ -1,4 +1,4 @@
-//
+ //
 //  RH_FirstPageViewControllerEx.m
 //  gameBoxEx
 //
@@ -28,6 +28,8 @@
 #import "RH_NormalActivithyView.h"
 #import "RH_GameListViewController.h"
 #import "RH_ActivityStatusModel.h"
+#import "RH_UserInfoManager.h"
+
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
@@ -70,11 +72,14 @@
     self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    _hud = [[MBProgressHUD alloc]initWithView:[UIApplication sharedApplication].keyWindow];
+    _hud = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
     
-//    [self autoLogin] ;
+    [self.serviceRequest startV3SiteTimezone] ;
+    //自动登录
+    [self autoLogin] ;
 }
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
@@ -189,14 +194,14 @@
     [self setupPageLoadManager] ;
     
     UIView *foot_View = [UIView new];
-    foot_View.frame = CGRectMake(0, 0, screenSize().width, 100);
+    foot_View.frame = CGRectMake(0, 0, screenSize().width, 20);
     UILabel *label = [UILabel new];
     [foot_View addSubview:label];
     label.whc_TopSpace(15).whc_CenterX(0).whc_Height(30).whc_LeftSpace(30).whc_RightSpace(30);
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
-    label.text = @"COPYRIGHT © 2004-2017";
+    label.text = @"COPYRIGHT © 2004-2018";
     self.contentTableView.tableFooterView = foot_View;
 }
 
@@ -224,10 +229,20 @@
         
     }else{
         self.navigationBarItem.rightBarButtonItems = @[self.signButtonItem,self.loginButtonItem] ;
+        if (self.userInfoView.superview){
+            [self userInfoButtonItemHandle] ;
+        }
     }
 }
 
-
+#pragma mark -viewWillAppear
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    if (self.appDelegate.isLogin){
+        [self.serviceRequest startV3GetUserAssertInfo] ;
+    }
+}
 #pragma mark-
 -(RH_DaynamicLabelCell *)dynamicLabCell
 {
@@ -296,11 +311,16 @@
                 return ;
             }else{ //非免转 ---跳到额度转换里 自已转钱入游戏 。
                 if (lotteryAPIInfoModel.mGameLink.length){
-                    self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                    return ;
+                    if ([lotteryAPIInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
+                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
+                        return ;
+                    }else{
+                        self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                        return ;
+                    }
                 }else{
-                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
                     return ;
                 }
             }
@@ -311,11 +331,16 @@
                 return ;
             }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
                 if (lotteryInfoModel.mGameLink.length){
-                    self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-                    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                    return ;
+                    if ([lotteryInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
+                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+                        return ;
+                    }else{
+                        self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                        return ;
+                    }
                 }else{
-                    showAlertView(@"提示信息",@"数据异常,请联系后台解决!") ;
+                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
                     return ;
                 }
             }
@@ -351,6 +376,9 @@
         RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[index] ;
         return lotteryApiModel.mGameItems ;
     }else{
+        if (self.selectedCategoryModel.mSiteApis.count==1){//中间只有一层分类信息
+            return self.selectedCategoryModel.mSiteApis[0].mGameItems ;
+        }
         return self.selectedCategoryModel.mSiteApis ;
     }
 }
@@ -375,7 +403,7 @@
 {
     if (!_normalActivityView) {
         _normalActivityView = [RH_NormalActivithyView createInstance];
-        _normalActivityView.frame =CGRectMake(0, 0, 300, 350);
+        _normalActivityView.frame =CGRectMake(0, 0, screenSize().width, screenSize().height*0.5);
         _normalActivityView.center =self.view.center;
         _normalActivityView.delegate = self;
     }
@@ -399,9 +427,12 @@
 }
 -(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view
 {
-    
     [self.shadeView removeFromSuperview];
     [self.normalActivityView removeFromSuperview];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.normalActivityView closeClick:self.normalActivityView];
 }
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
@@ -414,7 +445,6 @@
     if (self.appDelegate.isLogin&&NetworkAvailable()){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
         [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
-        
         [_hud show:YES];
         [[UIApplication sharedApplication].keyWindow addSubview:_hud];
     }
@@ -425,16 +455,16 @@
     else if (NetNotReachability()){
         showAlertView(@"无网络", @"无网络打不开红包") ;
     }
+   
 }
 //点击红包小图标加载红包动画
 -(void)touchActivityViewAndOpentheActivity
 {
     //在window上加一个遮罩层
-    UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
+    UIView *bigView = [[UIView alloc]initWithFrame:MainScreenBounds];
     bigView.backgroundColor = [UIColor grayColor];
     bigView.alpha = 0.8;
-    bigView.userInteractionEnabled = NO;
-    [[UIApplication sharedApplication].keyWindow addSubview:bigView];
+    [self.view.window addSubview:bigView];
     _shadeView = bigView;
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frameWidth - activithyViewWidth -5,self.view.frameHeigh - activithyViewHeigh ,activithyViewWidth,activithyViewHeigh)];
     imageView.image = self.activityView.imgView.image;
@@ -470,7 +500,6 @@
 -(void)activityViewShowWith:(RH_ActivityModel*)activityModel
 {
     if (self.activityView.superview) return ;
-    
     self.activityView.alpha = 0.0 ;
     [self.view addSubview:self.activityView] ;
     self.activityView.whc_RightSpace(5).whc_BottomSpace(20).whc_Width(100).whc_Height(100);
@@ -493,14 +522,6 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated] ;
-    [self.normalActivityView removeFromSuperview];
-    [self.shadeView removeFromSuperview];
-    [self.hud hide:YES];
-}
-
 #pragma mark- netStatusChangedHandle
 -(void)netStatusChangedHandle
 {
@@ -513,11 +534,14 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3HomeInfo] ;
+    if (self.appDelegate.isLogin) {
+         [self.serviceRequest startV3GetUserAssertInfo] ;
+    }
 }
 
 -(void)cancelLoadDataHandle
 {
-    [self.serviceRequest cancleAllServices] ;
+    [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3HomeInfo] ;
 }
 
 #pragma mark-
@@ -554,14 +578,14 @@
         }] ;
     }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         if (self.progressIndicatorView.superview){
-            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
-                if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
-                    [self.appDelegate updateLoginStatus:true] ;
-                }else{
-                    [self.appDelegate updateLoginStatus:false] ;
-                }
-            }] ;
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+            if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                [self.appDelegate updateLoginStatus:true] ;
+            }else{
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+            
         }else{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
@@ -570,6 +594,7 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }
+        
     }else if (type == ServiceRequestTypeV3ActivityStatus){
         RH_ActivityStatusModel *statusModel = ConvertToClassPointer(RH_ActivityStatusModel, data);
         self.normalActivityView.statusModel = statusModel;
@@ -585,6 +610,7 @@
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
 }
@@ -681,7 +707,7 @@
             return 0.0f ;
         }
     }else{
-        return MainScreenH  - TabBarHeight - [self topViewHeight] ;
+        return MainScreenH  - TabBarHeight - [self topViewHeight];
     }
     return 0.0f ;
 }
@@ -735,6 +761,7 @@
             } completion:^(BOOL finished) {
                 if (finished) {
                     [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
+                    
                 }
             }];
         }

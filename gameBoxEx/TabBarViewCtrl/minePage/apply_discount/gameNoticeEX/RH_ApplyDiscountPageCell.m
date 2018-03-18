@@ -42,24 +42,35 @@
 //    self.typeModel = ConvertToClassPointer(RH_DiscountActivityTypeModel, typeModel) ;
     
     if (self.contentTableView == nil) {
+        [self.contentView addSubview:self.headerView];
+        self.headerView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(50.f) ;
+
         self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
         self.contentTableView.delegate = self   ;
         self.contentTableView.dataSource = self ;
-        self.contentTableView.sectionFooterHeight = 10.0f;
-        self.contentTableView.sectionHeaderHeight = 10.0f ;
         self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242);
         self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
-        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
         [self.contentTableView registerCellWithClass:[RH_MPGameNoticeCell class]] ;
         self.contentScrollView = self.contentTableView;
         CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
-        [self setupPageLoadManagerWithdatasContext:context1] ;
-        
+        self.contentTableView.whc_TopSpaceEqualViewOffset(self.headerView, 50).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+        [self setupPageLoadManagerWithdatasContext:context1]  ;
+        __block RH_ApplyDiscountPageCell *weakSelf = self;
+        self.headerView.block = ^(int number, CGRect frame){
+            [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:2];
+        };
+        self.headerView.kuaixuanBlock = ^(int number, CGRect frame){
+            [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:1];
+        };
+        NSDate *date1 = [[NSDate date] dateWithMoveDay:-30] ;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+        self.startDate =  [formatter stringFromDate:date1];
     }else {
         [self updateWithContext:context];
     }
 }
+
+
 
 -(RH_ServiceRequest *)serviceRequest
 {
@@ -95,24 +106,57 @@
 
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }else
+    {
+//         [self startUpdateData] ;
+        [self showNoRefreshLoadData] ;
+    }
 }
+#pragma mark - 当有数据的时候，隐藏下拉动画
+-(void)showNoRefreshLoadData
+{
+    if ([self.pageLoadManager currentDataCount]){
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    [self startUpdateData:NO] ;
+}
+
 
 -(BOOL)showNotingIndicaterView
 {
-    [self.loadingIndicateView showNothingWithImage:nil title:@"暂无内容"
-                                        detailText:@"点击重试"] ;
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"暂无内容，点击重试"] ;
     return YES ;
 }
 
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate
-                                                endTime:self.endDate
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
+    NSDate *defaultStartDate = [[NSDate date] dateWithMoveDay:-30];
+    NSDate *selectStareDate = [dateFormatter dateFromString:self.startDate] ;
+    self.headerView.startDate =selectStareDate?selectStareDate:[[NSDate date] dateWithMoveDay:-30];
+    //默认开始时间
+    NSString *defaultStartStr = [dateFormatter stringFromDate:defaultStartDate] ;
+    
+    NSDate *date = [NSDate date];
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    [self.serviceRequest startV3LoadGameNoticeStartTime:self.startDate?self.startDate:defaultStartStr
+                                                endTime:self.endDate?self.endDate:strDate
                                              pageNumber:page+1
                                                pageSize:pageSize
                                                   apiId:self.apiId];
+   
 }
 
 -(void)cancelLoadDataHandle
@@ -125,6 +169,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice)
     {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         RH_GameNoticeModel *gameModel = ConvertToClassPointer(RH_GameNoticeModel, data);
         for (ApiSelectModel *selectModel in gameModel.mApiSelectModel) {
             [self.listView.modelArray addObject:selectModel.mApiName];
@@ -142,7 +187,7 @@
 {
     if (type==ServiceRequestTypeV3GameNotice )
     {
-        showErrorMessage(nil, error,nil) ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [self loadDataFailWithError:error] ;
     }
 }
@@ -190,22 +235,6 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50.f;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    __block RH_ApplyDiscountPageCell *weakSelf = self;
-    self.headerView.block = ^(int number, CGRect frame){
-        [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:2];
-    };
-    self.headerView.kuaixuanBlock = ^(int number, CGRect frame){
-        [weakSelf selectedHeaderViewGameType:frame andMarkNnmber:1];
-    };
-    return self.headerView;
-}
-
 
 #pragma mark headerView
 -(RH_MPGameNoticHeaderView *)headerView
@@ -220,21 +249,19 @@
 -(void)selectedHeaderViewGameType:(CGRect )frame andMarkNnmber:(int )number
 {
     if (!self.listView.superview) {
-        frame.origin.y +=self.contentTableView.frameY+frame.size.height;
-        frame.size.width+=50;
+        frame.origin.y +=30;
+        frame.size.width+=100;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 200;
+            CGRect framee = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, 100, 200);
             self.listView.frame = framee;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
+            CGRect framee = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y+2, 100, 0);
             self.listView.frame = framee;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
@@ -257,12 +284,13 @@
         __block RH_ApplyDiscountPageCell *weakSelf = self;
         _listView.modelArray = [NSMutableArray array];
         [_listView.modelArray addObject:@"所有游戏"];
+        _listView.backgroundColor = [UIColor redColor];
         _listView.modelIdArray = [NSMutableArray array];
         [_listView.modelIdArray addObject:@""];
         _listView.block = ^(NSInteger apiId){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
+                    CGRect framee = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y +2, 100, 0);
                     framee.size.height = 0;
                     weakSelf.listView.frame = framee;
                 } completion:^(BOOL finished) {
@@ -271,29 +299,36 @@
                 weakSelf.headerView.gameTypeLabel.text = weakSelf.listView.gameTypeString;
             }
             weakSelf.apiId = apiId;
-            [weakSelf startUpdateData] ;
-        };
-        _listView.kuaixuanBlock = ^(NSInteger row){
-            if (weakSelf.listView.superview){
-                [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
-                    framee.size.height = 0;
-                    weakSelf.listView.frame = framee;
-                } completion:^(BOOL finished) {
-                    [weakSelf.listView removeFromSuperview];
-                }];
-            }
-            weakSelf.startDate = [weakSelf changedSinceTimeString:row];
-            [weakSelf startUpdateData] ;
+//            [weakSelf startUpdateData] ;
+             [weakSelf showNoRefreshLoadData] ;
         };
     }
     return _listView;
 }
+#pragma mark- observer Touch gesture
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return (self.listView.superview?YES:NO) ;
+}
+
+-(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
+{
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+}
+
+
 
 #pragma mark - CapitalRecordHeaderViewDelegate
 -(void)gameNoticHeaderViewStartDateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-   
     ifRespondsSelector(self.delegate, @selector(applyDiscountPageCellStartDateSelected:dateSelected:DefaultDate:)){
         [self.delegate applyDiscountPageCellStartDateSelected:self dateSelected:view DefaultDate:defaultDate];
     }
@@ -306,44 +341,21 @@
 }
 -(void)cellStartUpdata
 {
-     [self startUpdateData] ;
+//     [self startUpdateData] ;
+     [self showNoRefreshLoadData] ;
 }
-#pragma mark 修改时间
--(NSString *)changedSinceTimeString:(NSInteger)row
-{
-    NSDate *date = [[NSDate alloc]init];
-    switch (row) {
-        case 0:
-            date= [[NSDate date] dateWithMoveDay:0];
-            break;
-        case 1:
-            date= [[NSDate date] dateWithMoveDay:-1];
-            break;
-        case 2:
-            date= [[NSDate date] dateWithMoveDay:-7];
-            break;
-        case 3:
-            date= [[NSDate date] dateWithMoveDay:-14];
-            break;
-        case 4:
-            date= [[NSDate date] dateWithMoveDay:-30];
-            break;
-        case 5:
-            date= [[NSDate date] dateWithMoveDay:-7];
-            break;
-        case 6:
-            date= [[NSDate date] dateWithMoveDay:-30];
-            break;
-            
-        default:
-            break;
-    }
-    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
-    return beforDate;
-}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.pageLoadManager.currentDataCount){
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }else if (self.pageLoadManager.currentDataCount){
         RH_GameNoticeDetailController *detailVC= [RH_GameNoticeDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]];
         [self showViewController:detailVC];
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;

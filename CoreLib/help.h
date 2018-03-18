@@ -261,7 +261,23 @@ BOOL NSProtocolContainSelector(Protocol *p, SEL aSel, BOOL isRequiredMethod, BOO
 BOOL isPhoneNumber(NSString *mobileNum) ;
 BOOL isEmailAddress(NSString * email) ;
 BOOL isInteger(NSString * integerStr) ;
+BOOL isSidStr(NSString *sidStr) ;
+NSArray * matchString(NSString *string) ;
+//长SID 匹配数组
+NSArray * matchLongString(NSString *string) ;
+//密码正则
+BOOL isSimplePwd(NSString *password);
+#pragma mark -- 是否升序
+BOOL isAscendingPwd(NSString *password) ;
+#pragma mark - 是否降序
+BOOL isDescendingPwd(NSString *password);
+#pragma mark - 是否升降序
+BOOL isDescendingAndPwdisAscendingPwd(NSString *password) ;
+#pragma mark -连续三个以上重复数字
+BOOL isSameMoreThreePwd(NSString *password) ;
+
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat) ;
+NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone) ;
 
 #pragma mark-
 NSArray * indexPathsFromRange(NSInteger section,NSRange range) ;
@@ -275,7 +291,7 @@ NSString * appStoreURL(NSString * appID) ;
 NSString * appStoreHTTPURL(NSString * appID) ;
 void gotoAppStore(NSString * appID) ;
 BOOL openURL(NSString * url);
-BOOL isIgnoreHTTPS(NSString *domain) ;
+//BOOL isIgnoreHTTPS(NSString *domain) ;
 NSString *getIPAddress(BOOL preferIPv4) ;
 NSString *getLocalizedString(CLLanguageOption languageOption,NSString* key) ;
 #endif /* help_h */

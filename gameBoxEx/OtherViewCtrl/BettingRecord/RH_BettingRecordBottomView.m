@@ -50,7 +50,7 @@
     [super awakeFromNib] ;
     
     self.backgroundColor = colorWithRGB(229, 237, 247) ;
-    self.labSummer.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labSummer.font = [UIFont systemFontOfSize:14.0f] ;
     self.labSummer.textColor = colorWithRGB(99, 99, 99);
     self.labSummer.text = @"合计:" ;
     
@@ -80,8 +80,12 @@
         titleCell = [CLStaticCollectionViewTitleCell createInstance]  ;
         [titleCell setupReuseIdentifier:[CLStaticCollectionViewTitleCell defaultReuseIdentifier]] ;
         titleCell.backgroundColor = [UIColor clearColor];
-        titleCell.titleFont = [UIFont systemFontOfSize:11.0f] ;
+        titleCell.titleFont = [UIFont systemFontOfSize:14.0f] ;
         titleCell.titleColor = colorWithRGB(85, 85, 85);
+        titleCell.labTitle.textAlignment = NSTextAlignmentLeft ;
+        
+        //配制 layout
+        titleCell.labTitle.whc_LeftSpace(10).whc_CenterY(0).whc_WidthAuto() ;
     }
     
     NSInteger index = indexPath.section*2 + indexPath.item ;
@@ -96,7 +100,7 @@
             titleCell.labTitle.text = [NSString stringWithFormat: @"有效投注:%.2f", _effective];
             break;
         case 3:
-            titleCell.labTitle.text = [NSString stringWithFormat: @"投注笔数:%ld笔", _totalNumber];
+            titleCell.labTitle.text = [NSString stringWithFormat: @"投注注数:%ld笔", _totalNumber];
             break;
             
         default:

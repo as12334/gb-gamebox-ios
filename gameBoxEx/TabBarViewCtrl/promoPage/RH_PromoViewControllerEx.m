@@ -32,7 +32,7 @@
     self.title = @"优惠" ;
     //增加login status changed notification
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-    
+    self.view.backgroundColor = colorWithRGB(234, 234, 234);
     //初始化 优惠类别信息
     [self loadingIndicateViewDidTap:nil] ;
 }
@@ -106,15 +106,10 @@
 #pragma mark- RH_PromoContentPageCell delegate
 -(void)promoContentPageCellDidTouchCell:(RH_PromoContentPageCell*)promoContentPageCell CellModel:(RH_DiscountActivityModel *)discountActivityModel
 {
-    if (HasLogin)
-    {
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        if (appDelegate){
-            appDelegate.customUrl = discountActivityModel.showLink ;
-            [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-        }
-    }else{
-        [self loginButtonItemHandle] ;
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    if (appDelegate){
+        appDelegate.customUrl = discountActivityModel.showLink ;
+        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
     }
 }
 
@@ -202,6 +197,24 @@
                 [self.typeTopView updateView:typeList] ;
             }] ;
         }
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        if (self.progressIndicatorView.superview){
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+                if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                    [self.appDelegate updateLoginStatus:true] ;
+                }else{
+                    [self.appDelegate updateLoginStatus:false] ;
+                }
+            }] ;
+        }else{
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
+            if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
+                [self.appDelegate updateLoginStatus:true] ;
+            }else{
+                [self.appDelegate updateLoginStatus:false] ;
+            }
+        }
     }
 }
 
@@ -215,6 +228,10 @@
                 showErrorMessage(self.view, error, @"更新失败") ;
             }] ;
         }
+    }else if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"自动登录失败", @"提示信息");
+        }] ;
     }
 }
 

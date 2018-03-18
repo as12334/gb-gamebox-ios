@@ -9,5 +9,5 @@
 #import "CLCollectionViewCell.h"
 
 @interface RH_GameCategoryCell : CLCollectionViewCell
-
+- (void)setTitleLabelTextColor:(UIColor *)color;
 @end

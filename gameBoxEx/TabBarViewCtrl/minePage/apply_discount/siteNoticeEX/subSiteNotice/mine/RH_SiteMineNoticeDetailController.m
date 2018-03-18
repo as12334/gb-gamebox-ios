@@ -35,6 +35,8 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;
+    self.contentTableView.estimatedRowHeight = 56;
+    self.contentTableView.rowHeight = UITableViewAutomaticDimension;
     [self.contentTableView registerCellWithClass:[RH_SiteMineNoticeDetailCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
@@ -111,6 +113,7 @@
         NSArray *modelArray = [array copy];
         [self loadDataSuccessWithDatas:data?modelArray:@[]
                             totalCount:data?1:0] ;
+        [self.detailModel updataReadStatus:YES];
     }
 }
 

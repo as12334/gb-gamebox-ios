@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,8 +18,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="70"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FPd-SO-3Ql">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FPd-SO-3Ql">
+                        <rect key="frame" x="0.0" y="-3.5" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.broderWidth">
                                 <integer key="value" value="1"/>
@@ -32,25 +32,15 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美女" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLP-An-MFP">
-                        <rect key="frame" x="0.0" y="56" width="50" height="10"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="美女" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLP-An-MFP">
+                        <rect key="frame" x="27.5" y="52.5" width="22.5" height="13.5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="FPd-SO-3Ql" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QQD-Jw-qAu"/>
-                <constraint firstItem="JLP-An-MFP" firstAttribute="top" secondItem="FPd-SO-3Ql" secondAttribute="bottom" constant="6" id="Ur7-68-f1Y"/>
-                <constraint firstAttribute="trailing" secondItem="FPd-SO-3Ql" secondAttribute="trailing" id="Wqa-XY-k65"/>
-                <constraint firstItem="FPd-SO-3Ql" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eOy-Zd-fC5"/>
-                <constraint firstItem="JLP-An-MFP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="f66-fU-HJb"/>
-                <constraint firstItem="FPd-SO-3Ql" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="ipm-YR-T9s"/>
-                <constraint firstAttribute="bottom" secondItem="JLP-An-MFP" secondAttribute="bottom" constant="4" id="wDA-ls-zOa"/>
-                <constraint firstItem="FPd-SO-3Ql" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="5:7" id="xCb-sW-O2c"/>
-                <constraint firstAttribute="trailing" secondItem="JLP-An-MFP" secondAttribute="trailing" id="zgY-fb-PlZ"/>
-            </constraints>
             <size key="customSize" width="50" height="70"/>
             <connections>
                 <outlet property="imageView" destination="FPd-SO-3Ql" id="EYI-wD-abW"/>

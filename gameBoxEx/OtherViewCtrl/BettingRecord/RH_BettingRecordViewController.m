@@ -21,12 +21,14 @@
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingRecordBottomView *bettingBottomView ;
+@property(nonatomic,assign)BOOL isFirstLoad;
 @end
 
 @implementation RH_BettingRecordViewController
 @synthesize bettingRecordHeaderView = _bettingRecordHeaderView ;
 @synthesize bettingTableHeaderView = _bettingTableHeaderView     ;
 @synthesize bettingBottomView = _bettingBottomView               ;
+
 
 -(BOOL)isSubViewController
 {
@@ -38,6 +40,7 @@
     // Do any additional setup after loading the view.
     self.title =@"投注记录";
     [self setupUI] ;
+    self.isFirstLoad = YES;
 }
 
 -(BOOL)hasTopView
@@ -123,8 +126,12 @@
 
 -(void)bettingRecordHeaderViewWillSelectedStartDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.startDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置开始日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date] dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.startDate = returnDate ;
               }] ;
@@ -132,8 +139,12 @@
 
 -(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.endDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置截止日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date] dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   bettingRecordHeaderView.endDate = returnDate ;
               }] ;
@@ -141,6 +152,10 @@
 
 -(void)bettingRecordHeaderViewTouchSearchButton:(RH_BettingRecordHeaderView*)bettingRecordHeaderView
 {
+    if ( [self compareOneDay:self.bettingRecordHeaderView.startDate withAnotherDay:self.bettingRecordHeaderView.endDate] == 1) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+        return;
+    }
     [self startUpdateData] ;
 }
 
@@ -148,7 +163,7 @@
 -(RH_BettingTableHeaderView *)bettingTableHeaderView
 {
     if (!_bettingTableHeaderView){
-        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 25.0f)] ;
+        _bettingTableHeaderView = [[RH_BettingTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentTableView.frameWidth, 40.0f)] ;
         _bettingTableHeaderView.backgroundColor = colorWithRGB(240, 240, 240) ;
     }
     
@@ -181,8 +196,39 @@
     [self.serviceRequest startV3BettingList:dateStringWithFormatter(self.bettingRecordHeaderView.startDate, @"yyyy-MM-dd")
                                     EndDate:dateStringWithFormatter(self.bettingRecordHeaderView.endDate, @"yyyy-MM-dd")
                                  PageNumber:page+1
-                                   PageSize:pageSize] ;
+                                   PageSize:pageSize withIsStatistics:page+1==1?true:false] ;
+    self.isFirstLoad = page+1==1?true:false;
 }
+
+-(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    
+    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
+    
+    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
+    
+    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
+    
+    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+    
+    NSComparisonResult result = [dateA compare:dateB];
+    
+    if (result == NSOrderedDescending) {
+        //NSLog(@"oneDay比 anotherDay时间晚");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"oneDay比 anotherDay时间早");
+        return -1;
+    }
+    //NSLog(@"两者时间是同一个时间");
+    return 0;
+    
+}
+
 
 -(void)cancelLoadDataHandle
 {
@@ -201,11 +247,10 @@
 {
     if (type == ServiceRequestTypeV3BettingList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-//        [self.bettingTableHeaderView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]
-//                                                     SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]
-//                                                    ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]] ;
-        [self.bettingBottomView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0] SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_TOTALSINGLE] ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]
-                                                  effective:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]];
+        if (self.isFirstLoad) {
+            [self.bettingBottomView updateUIInfoWithTotalNumber:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0] SigleAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_TOTALSINGLE] ProfitAmount:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_PROFIT]
+                                                      effective:[[dictTmp dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] floatValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA_EFFECTIVE]];
+        }
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_BETTINGLIST_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT defaultValue:0]] ;
         

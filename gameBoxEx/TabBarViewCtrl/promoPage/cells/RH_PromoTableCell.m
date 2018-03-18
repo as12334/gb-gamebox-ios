@@ -36,13 +36,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.borderView.backgroundColor = [UIColor whiteColor] ;
+    self.borderView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor ;
+    self.borderView.layer.borderWidth = 1.0f ;
+    self.borderView.layer.cornerRadius = 4.f ;
+    self.borderView.layer.masksToBounds = YES ;
+
+    self.borderView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor clearColor] ;
     self.bottomView.backgroundColor = colorWithRGB(242, 242, 242) ;
-    self.borderView.layer.cornerRadius = 4.0f ;
-    self.borderView.borderMask = CLBorderMarkAll ;
-    self.borderView.borderColor = colorWithRGB(226, 226, 226) ;
-    self.borderView.borderWidth = PixelToPoint(1.0f) ;
-    
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = RH_Cell_DefaultHolderColor ;
     self.selectionColorAlpha = 0.5f ;

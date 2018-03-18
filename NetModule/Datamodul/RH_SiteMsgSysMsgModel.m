@@ -17,12 +17,14 @@
         _mContent = [info stringValueForKey:RH_GP_SITEMSGSYSMSG_CONTENT];
         _mId = [info integerValueForKey:RH_GP_SITEMSGSYSMSG_ID];
         _mLink = [info stringValueForKey:RH_GP_SITEMSGSYSMSG_LINK];
-        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SITEMSGSYSMSG_PUBLISHTIME]/1000.0] ;
+        _mPublishTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_SITEMSGSYSMSG_PUBLISHTIME]/1000.0] ;
         _mRead = [info boolValueForKey:RH_GP_SITEMSGSYSMSG_READ];
         _mTitle = [info stringValueForKey:RH_GP_SITEMSGSYSMSG_TITLE];
         
     }
     return self;
 }
+
+
 
 @end

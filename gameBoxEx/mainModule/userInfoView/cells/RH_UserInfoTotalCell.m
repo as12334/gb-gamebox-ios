@@ -8,7 +8,7 @@
 
 #import "RH_UserInfoTotalCell.h"
 #import "coreLib.h"
-#import "RH_UserBalanceGroupModel.h"
+#import "RH_MineInfoModel.h"
 
 @interface RH_UserInfoTotalCell()
 @property (weak, nonatomic) IBOutlet CLBorderView  *tBalanceView  ;
@@ -41,7 +41,6 @@
     self.tWalletView.borderColor = colorWithRGB(204, 204, 204)  ;
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
-    self.balanceBGView.backgroundColor = colorWithRGB(27, 117, 217) ;
     self.balanceBGView.layer.cornerRadius = 5.0f ;
     self.balanceBGView.layer.masksToBounds = YES ;
 
@@ -58,7 +57,6 @@
     self.labTWallet.textColor = [UIColor whiteColor] ;
     self.labTWallet.font = [UIFont systemFontOfSize:12.0f] ;
     
-    self.labTBalanceValue.textColor = colorWithRGB(27, 117, 217) ;
     self.labTBalanceValue.font = [UIFont systemFontOfSize:15.0f] ;
     self.labTWalletValue.textColor = colorWithRGB(14, 195, 146) ;
     self.labTWalletValue.font = [UIFont systemFontOfSize:12.0f] ;
@@ -68,18 +66,33 @@
     self.labTWallet.text = @"钱包"    ;  //
     self.labTWalletValue.text = @""  ;   //
 
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Black;
+    }else{
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }
 //    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
 //    self.separatorLineColor = colorWithRGB(204, 204, 204) ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_UserBalanceGroupModel *userBalanceGroupModel = ConvertToClassPointer(RH_UserBalanceGroupModel, context) ;
-    if (userBalanceGroupModel){
-        self.labTBalanceValue.text = userBalanceGroupModel.mAssets ;
-        self.labTWalletValue.text = userBalanceGroupModel.mBalance ;
+    RH_MineInfoModel *mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, context) ;
+    if (mineInfoModel){
+        self.labTBalanceValue.text = mineInfoModel.showTotalAssets ;
+        self.labTWalletValue.text = mineInfoModel.showWalletBalance ;
     }
 }
+
+
 
 
 @end

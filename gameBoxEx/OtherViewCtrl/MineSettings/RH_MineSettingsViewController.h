@@ -9,5 +9,4 @@
 #import "RH_BasicPageLoadViewController.h"
 
 @interface RH_MineSettingsViewController : RH_BasicPageLoadViewController
-
 @end

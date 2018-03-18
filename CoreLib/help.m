@@ -14,6 +14,7 @@
 #import <mach/mach.h>
 #import "SAMKeychain.h"
 #import "sys/utsname.h"
+#import "RH_UserInfoManager.h"
 
 #pragma mark -
 NSString * const defaultReuseDef = @"defaultReuseDef";
@@ -73,27 +74,28 @@ double memorySizeForType(CLMemoryType type)
 #pragma MARK-
 void showNetworkActivityIndicator(BOOL bShow)
 {
-    static NSUInteger networkActivityIndicatorShowTimes = 0;
-
-    if (bShow) {
-
-        if (networkActivityIndicatorShowTimes == 0) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        static NSUInteger networkActivityIndicatorShowTimes = 0;
+        
+        if (bShow) {
+            
+            if (networkActivityIndicatorShowTimes == 0) {
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            }
+            
+            //显示次数+1
+            networkActivityIndicatorShowTimes ++ ;
+            
+        }else if (networkActivityIndicatorShowTimes > 0) {
+            
+            networkActivityIndicatorShowTimes -- ;
+            
+            //无显示次数，则隐藏
+            if (networkActivityIndicatorShowTimes == 0) {
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            }
         }
-
-        //显示次数+1
-        networkActivityIndicatorShowTimes ++ ;
-
-    }else if (networkActivityIndicatorShowTimes > 0) {
-
-        networkActivityIndicatorShowTimes -- ;
-
-        //无显示次数，则隐藏
-        if (networkActivityIndicatorShowTimes == 0) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }
-    }
-
+    }) ;
 }
 
 CAShapeLayer * createLineLayer(CGPoint startPoint,CGPoint endPoint,CGFloat lineWidth,UIColor * lineColor)
@@ -777,7 +779,84 @@ BOOL isInteger(NSString * integerStr)
     NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", integerRegex];
     return [integerTest evaluateWithObject:integerStr];
 }
+//SID
+BOOL isSidStr(NSString *sidStr)
+{
+    NSString *sidStrRegex = @"SID=(.*?)";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", sidStrRegex];
+    return [integerTest evaluateWithObject:sidStr];
+}
 
+//SID 匹配数组
+NSArray * matchString(NSString *string)
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"SID=(.*?);" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    //match: 所有匹配到的字符,根据() 包含级
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSTextCheckingResult *match in matches) {
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            [array addObject:component];
+        }
+    }
+    return array;
+}
+
+//长SID 匹配数组
+NSArray * matchLongString(NSString *string)
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"SID=(.*?)," options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    //match: 所有匹配到的字符,根据() 包含级
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSTextCheckingResult *match in matches) {
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            [array addObject:component];
+        }
+    }
+    return array;
+}
+
+BOOL isSimplePwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+#pragma mark -- 是否升序
+BOOL isAscendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+
+#pragma mark - 是否降序
+BOOL isDescendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5}\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+#pragma mark - 是否升降序
+BOOL isDescendingAndPwdisAscendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5})\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+
+#pragma mark -连续三个以上重复数字
+BOOL isSameMoreThreePwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"([\\d])\\1{2,}";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
 {
@@ -788,13 +867,29 @@ NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
     static NSDateFormatter * dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        //        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     }
-
+    
+    if ([RH_UserInfoManager shareUserManager].timeZone){
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[RH_UserInfoManager shareUserManager].timeZone]] ;
+    }
+    
     dateFormatter.dateFormat = dateFormat;
     return [dateFormatter stringFromDate:date];
 }
 
+NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone)
+{
+    if (date == nil || dateFormat.length == 0) {
+        return nil;
+    }
+    
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:timezone]] ;
+    
+    dateFormatter.dateFormat = dateFormat;
+    return [dateFormatter stringFromDate:date];
+}
 
 #pragma mark-
 NSArray * indexPathsFromRange(NSInteger section,NSRange range) {
@@ -858,14 +953,14 @@ BOOL openURL(NSString * url)
     return NO;
 }
 
-BOOL isIgnoreHTTPS(NSString *domain)
-{
-    for (NSString * ignoreStr in RH_IgnoreHTTPS_LIST) {
-        if ([domain containsString:ignoreStr])
-            return TRUE ;
-    }
-    return FALSE ;
-}
+//BOOL isIgnoreHTTPS(NSString *domain)
+//{
+//    for (NSString * ignoreStr in RH_IgnoreHTTPS_LIST) {
+//        if ([domain containsString:ignoreStr])
+//            return TRUE ;
+//    }
+//    return FALSE ;
+//}
 
 #pragma mark--获取 设备 ip address
 #import <ifaddrs.h>

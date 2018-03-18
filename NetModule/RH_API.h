@@ -24,9 +24,11 @@
 
 //v3原生接口公共规范
 #define RH_SP_COMMON_V3_OSTYPE                              @"terminal"
-#define RH_SP_COMMON_V3_VERSION                             @"version"
 #define RH_SP_COMMON_V3_THEME                               @"theme"
 #define RH_SP_COMMON_V3_RESOLUTION                          @"resolution"
+#define RH_SP_COMMON_V3_VERSION                             @"version"
+#define RH_SP_COMMON_V3_ISNATIVE                            @"is_native"
+#define RH_SP_COMMON_V3_LOCALE                              @"locale"
 #define RH_SP_COMMON_V3_VERSION_VALUE                       @"3.0"
 
 //===========================================================
@@ -41,9 +43,9 @@
 #define RH_GP_MESSAGE               @"message"
 
 //v3原生通用返回参数定义
-#define RH_GP_V3_ERROR               @"error"   //错误数量
+#define RH_GP_V3_ERROR               @"code"   //错误数量
 #define RH_GP_V3_CODE                @"code"    //状态码
-#define RH_GP_V3_MESSAGE             @"msg"             //消息框
+#define RH_GP_V3_MESSAGE             @"message"             //消息框
 #define RH_GP_V3_VERSION             @"version"         //版本信息
 #define RH_GP_V3_DATA                @"data"
 
@@ -58,7 +60,6 @@
 #define RH_GP_CHECKVERSION_MEMO                                     @"memo"
 #define RH_GP_CHECKVERSION_UPDATETIME                               @"updateTime"
 #define RH_GP_CHECKVERSION_MD5                                      @"md5"
-
 
 
 #pragma mark- Page list
@@ -300,9 +301,21 @@
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAY                       @"transactionWay"
 #define RH_GP_CAPITALDETAIL_TRANSACTIONWAYNAME                   @"transactionWayName"
 #define RH_GP_CAPITALDETAIL_USERNAME                             @"userName"
+#define RH_GP_CAPITALDETAIL_TRANSFERINTO                         @"transferInto"
+#define RH_GP_CAPITALDETAIL_TRANSFEROUT                          @"transferOut"
+#define RH_GP_CAPITALDETAIL_RECHARGEAMOUNT                       @"rechargeAmount"
+#define RH_GP_CAPITALDETAIL_WITHDRAWMONEY                        @"withdrawMoney"
+#define RH_GP_CAPITALDETAIL_BANKCODENAME                         @"bankCodeName"
+#define RH_GP_CAPITALDETAIL_BANKURL                              @"bankUrl"
+#define RH_GP_CAPITALDETAIL_TXID                                 @"txId"
+#define RH_GP_CAPITALDETAIL_BITCOINADRESS                        @"bitcoinAdress"
+#define RH_GP_CAPITALDETAIL_RETURNTIME                           @"returnTime"
+#define RH_GP_CAPITALDETAIL_BANKCODE                             @"bankCode"
+
 
 #pragma mark - V3 银行卡 信息模型
 #define RH_GP_BANKCARDINFO_BANKNAME                                 @"bankName"
+#define RH_GP_BANKCARDINFO_BANKCODE                                 @"bankNameCode"
 #define RH_GP_BANKCARDINFO_BANKCARDMASTERNAME                       @"bankcardMasterName"
 #define RH_GP_BANKCARDINFO_BANKCARDNUMBER                           @"bankcardNumber"
 #define RH_GP_BANKCARDINFO_BANKDEPOSIT                              @"bankDeposit"
@@ -434,6 +447,7 @@
 //api的路径
 #define RH_API_NAME_COLLECTAPPERROR                        @"facade/collectAppDomainError.html"
 //请求参数
+#define RH_SP_COLLECTAPPERROR_MARK                       @"mark"
 #define RH_SP_COLLECTAPPERROR_SITEID                       @"siteId"
 #define RH_SP_COLLECTAPPERROR_USERNAME                     @"username"
 #define RH_SP_COLLECTAPPERROR_LASTLOGINTIME                @"lastLoginTime"
@@ -521,8 +535,10 @@
 //请求参数 无
 #define RH_SP_BETTINGLIST_STARTDATE                          @"search.beginBetTime"
 #define RH_SP_BETTINGLIST_ENDDATE                            @"search.endBetTime"
-#define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.currentIndex"
+#define RH_SP_BETTINGLIST_PAGENUMBER                         @"paging.pageNumber"
 #define RH_SP_BETTINGLIST_PAGESIZE                           @"paging.pageSize"
+#define RH_SP_BETTINGLIST_ISSHOWSTATISTICS                   @"isShowStatistics"
+
 //返回参数
 #define RH_GP_BETTINGLIST_LIST                              @"list"
 #define RH_GP_BETTINGLIST_TOTALCOUNT                        @"totalSize"
@@ -622,7 +638,7 @@
 //返回参数-无
 
 #pragma mark - V3 获取安全密码验证码
-#define RH_API_NAME_SAFETYCAPCHA             @"mobile-api/captcha/securityPwd.html"
+#define RH_API_NAME_SAFETYCAPCHA             @"captcha/securityPwd.html"
 //请求参数 -无
 
 #pragma mark - V3 优惠记录列表
@@ -785,6 +801,8 @@
 #define RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT     @"withdrawAmount"
 #define RH_SP_SUBMITWITHDRAWINFO_GBTOKEN            @"gb.token"
 #define RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY       @"remittanceWay"
+#define RH_SP_SUBMITWITHDRAWINFO_ORIGINPWD           @"originPwd"
+
 
 #pragma mark -V3 获取游戏分类
 #define RH_API_NAME_LOADGAMETYPE                @"mobile-api/origin/getGameTag.html"
@@ -796,6 +814,67 @@
 #define RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH                   @"mobile-api/mineOrigin/checkSafePassword.html"
 // 请求参数
 #define RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD           @"originPwd"
+
+#pragma mark - V3 获取手续费信息得到最终取款金额
+#define RH_API_NAME_WITHDRWAFEE                   @"mobile-api/withdrawOrigin/withdrawFee.html"
+//请求参数
+#define RH_SP_WITHDRWAFEE_AMOUNT                  @"withdrawAmount"
+
+#pragma mark - V3 获取站点时区接口
+#define RH_API_NAME_TIMEZONEINFO                   @"mobile-api/origin/getTimeZone.html"
+
+#pragma mark -- V3 获取消息中心-站点信息未读消息条数
+#define RH_API_NAME_SITEMESSAGUNREADCOUNT        @"mobile-api/mineOrigin/getUnReadCount.html"
+
+#pragma mark -- V3 分享
+#define RH_API_NAME_SHAREPLAYERRECOMMEND          @"mobile-api/mineOrigin/getUserPlayerRecommend.html"
+//请求参数
+#define RH_SP_SHAREPLAYERRECOMMEND_STARTTIME           @"search.startTime"
+#define RH_SP_SHAREPLAYERRECOMMEND_ENDTIME             @"search.endTime"
+
+//返回参数
+#define RH_GP_SHAREPLAYERRECOMMEND_REWARD              @"reward"
+#define RH_GP_SHAREPLAYERRECOMMEND_SIGN                @"sign"
+#define RH_GP_SHAREPLAYERRECOMMEND_RECOMMEND           @"recommend"
+#define RH_GP_SHAREPLAYERRECOMMEND_COUNT               @"count"
+#define RH_GP_SHAREPLAYERRECOMMEND_USER                @"user"
+#define RH_GP_SHAREPLAYERRECOMMEND_BOUNDS              @"bonus"
+#define RH_GP_SHAREPLAYERRECOMMEND_SINGLE              @"single"
+#define RH_GP_SHAREPLAYERRECOMMEND_CODE                @"code"
+#define RH_GP_SHAREPLAYERRECOMMEND_THEWAY              @"theWay"
+#define RH_GP_SHAREPLAYERRECOMMEND_MONEY               @"money"
+#define RH_GP_SHAREPLAYERRECOMMEND_WITCHWITHDRAW       @"witchWithdraw"
+#define RH_GP_SHAREPLAYERRECOMMEND_THEWAY              @"theWay"
+#define RH_GP_SHAREPLAYERRECOMMEND_ISBOUNDS            @"isBonus"
+#define RH_GP_SHAREPLAYERRECOMMEND_GRADIENTTEMPARRAYLIST      @"gradientTempArrayList"
+#define RH_GP_SHAREPLAYERRECOMMEND_ID                   @"id"
+#define RH_GP_SHAREPLAYERRECOMMEND_PROPORTION           @"proportion"
+#define RH_GP_SHAREPLAYERRECOMMEND_PLAYERNUM            @"playerNum"
+#define RH_GP_SHAREPLAYERRECOMMEND_ACTIVITYRULES        @"activityRules"
+
+
+#pragma mark - V3 老用户登录验证
+//#define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"passport/verify/verifyRealNameForApp.html"
+#define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"mobile-api/userInfoOrigin/verifyRealNameForApp.html"
+//请求参数
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN                           @"gb.token"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTREALNAME                  @"result.realName"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEEDREALNAME                    @"needRealName"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTPLAYERACCOUNT             @"result.playerAccount"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEARCHACCOUNT                   @"search.playerAccount"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS                        @"tempPass"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD                     @"newPassword"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL                       @"passLevel"
+
+#pragma mark - V3 获取用户资产信息接口 
+#define RH_API_NAME_GETUSERASSERT  @"mobile-api/userInfoOrigin/getUserAssert.html"
+
+#pragma mark - V3 刷新session 防掉线
+#define RH_API_NAME_REFRESHLOGINSTATUS  @"/mobile-api/mineOrigin/alwaysRequest.html"
+
+#pragma mark - V3 用户进入登录页面验证码是否开启
+#define RH_API_NAME_ISOPENCODEVERIFTY         @"mobile-api/mineOrigin/loginIsOpenVerify.html"
+
 
 
 #endif /* RH_API_h */

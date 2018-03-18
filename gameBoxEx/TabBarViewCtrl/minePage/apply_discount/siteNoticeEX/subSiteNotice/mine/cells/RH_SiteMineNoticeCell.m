@@ -7,8 +7,9 @@
 //
 
 #import "RH_SiteMineNoticeCell.h"
-#import "RH_SiteMyMessageModel.h"
 #import "coreLib.h"
+
+#define RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage @"ChangeNotificationSiteMineMessage"
 @interface RH_SiteMineNoticeCell()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
@@ -17,7 +18,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *readImageView;
 @property (weak, nonatomic) IBOutlet UIView *backDropView;
 @property (weak, nonatomic) IBOutlet UIImageView *markNewImageView;
+@property(nonatomic,assign)NSInteger mReadId;
 
+@property (nonatomic,strong) RH_SiteMyMessageModel *model ;
 @end
 @implementation RH_SiteMineNoticeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -30,7 +33,7 @@
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [model.mAdvisoryTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    return 60+size.height;
+    return 90+size.height;
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -53,36 +56,54 @@
     self.backDropView.layer.borderColor = colorWithRGB(226, 226,226).CGColor;
     self.backDropView.layer.borderWidth=1.f;
     self.backDropView.layer.masksToBounds = YES;
+    [[NSNotificationCenter defaultCenter] addObserverForName:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        RH_SiteMyMessageModel *model1 = note.object;
+        if (model1.mIsRead == YES && self.mReadId == model1.mId) {
+            [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
+            self.markNewImageView.image = [UIImage imageNamed:@""];
+        }
+    }];
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_SiteMyMessageModel *model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
+    self.model = ConvertToClassPointer(RH_SiteMyMessageModel, context);
+    self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",self.model.mAdvisoryTitle]stringByRemovingPercentEncoding];
+    self.timeLabel.text = dateStringWithFormatter(self.model.mAdvisoryTime,@"yyyy-MM-dd HH:mm:ss");
 
-    self.titleLabel.text = self.titleLabel.text = [[NSString stringWithFormat:@"   %@",model.mAdvisoryTitle]stringByRemovingPercentEncoding];
-    self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd hh:mm:ss");
+    [self setNeedUpdateCell] ;
+}
 
-    self.titleLabel.text = [NSString stringWithFormat:@"   %@",model.mAdvisoryTitle];
-    self.timeLabel.text = dateStringWithFormatter(model.mAdvisoryTime,@"yyyy-MM-dd hh:mm:ss");
-
-    if ([model.number isEqual:@0]) {
-        self.readImageView.image =nil;
-    }
-    else if ([model.number isEqual:@1]){
+-(void)updateCell
+{
+    if (self.model.selectedFlag) {
         self.readImageView.image = [UIImage imageNamed:@"choose"];
+    }else {
+        self.readImageView.image = nil;
     }
-    if (model.mIsRead==YES) {
-        [self.titleLabel setTextColor:[UIColor redColor]];
+    
+    if (self.model.mIsRead==YES) {
+        [self.titleLabel setTextColor:colorWithRGB(153, 153, 153)];
         self.markNewImageView.image = [UIImage imageNamed:@""];
     }
-    else if (model.mIsRead==NO)
+    else if (self.model.mIsRead==NO)
     {
-        [self.titleLabel setTextColor:[UIColor blackColor]];
+        [self.titleLabel setTextColor:colorWithRGB(51, 51, 51)];
         self.markNewImageView.image = [UIImage imageNamed:@"mearkRead"];
     }
+    self.mReadId = self.model.mId;
 }
 
 - (IBAction)choseEdinBtnClick:(id)sender {
-    self.block();
+    [self.model updateSelectedFlag:!self.model.selectedFlag] ;
+    [self setNeedUpdateCell] ;
+    ifRespondsSelector(self.delegate, @selector(siteMineNoticeCellTouchEditBtn:CellModel:)){
+        [self.delegate siteMineNoticeCellTouchEditBtn:self CellModel:self.model] ;
+    }
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

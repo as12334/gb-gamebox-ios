@@ -22,17 +22,20 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeUserAutoLogin     ,
     ServiceRequestTypeDemoLogin         ,
     ServiceRequestTypeObtainVerifyCode     ,
+    ServiceRequestTypeObtainSecurePasswordVerifyCode    ,
     ServiceRequestTypeGetCustomService  ,
     ServiceRequestTypeTestUrl           ,
     ServiceRequestTypeAPIRetrive        , //api 回收接口
     ServiceRequestTypeCollectAPPError   , //check domain 失败 上传数据接口
     
     //V3接口
+    ServiceRequestTypeV3UpdateCheck     , //v3 站点升级接口
     ServiceRequestTypeV3HomeInfo        ,
     ServiceRequestTypeV3UserInfo        ,
     ServiceRequestTypeV3MineGroupInfo   ,
     ServiceRequestTypeV3APIGameList     ,
     ServiceRequestTypeV3GameLink        ,
+    ServiceRequestTypeV3GameLinkForCheery, //cheery 新标准
     ServiceRequestTypeV3ActivityStatus    , //获取红包状态
     ServiceRequestTypeV3OpenActivity    ,//拆红包
     ServiceRequestTypeV3BettingList     , //投注记录 。。。
@@ -71,7 +74,16 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3GetWithDrawInfo   ,  // 取款信息接口
     ServiceRequestTypeV3SubmitWithdrawInfo   ,  // 提交取款信息
     ServiceRequestTypeV3LoadGameType,          //获取游戏分类
-    ServiceRequestTypeV3SafetyPasswordAutuentification    //取款安全密码验证
+    ServiceRequestTypeV3SafetyPasswordAutuentification ,   //取款安全密码验证
+    ServiceRequestTypeWithDrawFee , //取款手续费计算
+    ServiceRequestTypeTimeZoneInfo , //获取站点时区
+    ServiceRequestTypeSiteMessageUnReadCount , //获取站点信息-未读消息的条数
+    ServiceRequestTypeV3SharePlayerRecommend ,   // 分享
+    ServiceRequestTypeV3VerifyRealNameForApp ,   // 老用户验证登录
+    ServiceRequestTypeV3GETUSERASSERT ,   // 获取用户资产信息
+    ServiceRequestTypeV3RefreshSession ,   // 防止长时间未操作掉线
+    ServiceRequestTypeV3IsOpenCodeVerifty,// 登录是否开启验证码
+    ServiceRequestTypeV3RequetLoginWithGetLoadSid,// get请求登录接口获取SID
     
 };
 
@@ -128,7 +140,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * 获取站点 DOMAIN 列表
  */
--(void)startReqDomainList ;
+-(void)startReqDomainListWithDomain:(NSString*)domain ;
 
 /**
  * DOMAIN CHECK
@@ -140,10 +152,15 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
  */
 -(void)startUpdateCheck ;
 
+#pragma mark - v3 站点升级接口
+-(void)startV3UpdateCheck ;
+
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode ;
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password;
 
 -(void)startGetVerifyCode ;
+
+-(void)startGetSecurePasswordVerifyCode;
 
 -(void)startDemoLogin;
 
@@ -180,7 +197,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 投注记录
 -(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
                PageNumber:(NSInteger)pageNumber
-                 PageSize:(NSInteger)pageSize ;
+                 PageSize:(NSInteger)pageSize
+                withIsStatistics:(BOOL)isShowStatistics;
 #pragma mark - 资金记录
 -(void)startV3DepositList:(NSString*)startDate
                   EndDate:(NSString*)endDate
@@ -315,9 +333,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadDiscountActivityType;
 
 #pragma mark - tabbar2 优惠活动主界面列表
--(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
-                                       PageNumber:(NSInteger)pageNumber
-                                         pageSize:(NSInteger)pageSize;
+-(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey;
 
 #pragma mark - 退出登录
 -(void)startV3UserLoginOut;
@@ -348,19 +364,70 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 提交取款信息
 -(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                         SafetyPwd:(NSString *)safetyPassword
                            gbToken:(NSString *)gbToken
-                          CardType:(int)cardType ;
+                          CardType:(NSInteger)cardType ; //（1：银行卡，2：比特币）
 
 #pragma mark - 获取games link
 -(void)startv3GetGamesLink:(NSInteger)apiID
                  ApiTypeID:(NSInteger)apiTypeID
                    GamesID:(NSString*)gamesID
                  GamesCode:(NSString*)gamesCode ;
+
+#pragma mark - 获取games link for cheery
+-(void)startv3GetGamesLinkForCheeryLink:(NSString*)gamelink;
+
 #pragma mark - 获取游戏分类
 -(void)startV3LoadGameType;
 
 #pragma mark - 取款验证安全密码
 -(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd;
+
+#pragma mark - 获取手续费信息得到最终取款金额
+-(void)startV3WithDrawFeeWithAmount:(CGFloat)amount ;
+
+#pragma mark - 获取站点时区
+-(void)startV3SiteTimezone ;
+
+#pragma mark - 获取站点消息-系统消息&&我的消息 未读条数
+-(void)startV3LoadMessageCenterSiteMessageUnReadCount ;
+
+#pragma mark - 分享接口
+-(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
+                                        endTime:(NSString *)endTime;
+
+#pragma mark -老用户验证登录
+/**
+ 老用户验证登录
+
+ @param token  登录返回的Token
+ @param resultRealName 输入框真实姓名
+ @param needRealName 默认传 YES
+ @param resultPlayerAccount 用户名
+ @param searchPlayerAccount 用户名
+ @param tempPass 密码
+ @param newPassword 密码
+ @param passLevel 默认传 20
+ */
+-(void)startV3verifyRealNameForAppWithToken:(NSString *)token
+                             resultRealName:(NSString *)resultRealName
+                               needRealName:(BOOL)needRealName
+                        resultPlayerAccount:(NSString *)resultPlayerAccount
+                        searchPlayerAccount:(NSString *)searchPlayerAccount
+                                   tempPass:(NSString *)tempPass
+                                newPassword:(NSString *)newPassword
+                                  passLevel:(NSInteger)passLevel;
+
+#pragma mark - 获取用户资产信息
+-(void)startV3GetUserAssertInfo ;
+
+#pragma mark - 防止用户掉线
+-(void)startV3RereshUserSessin ;
+#pragma mark - 用户登录是否开启验证码
+-(void)startV3IsOpenCodeVerifty;
+#pragma mark - 通过GET请求登录接口获取SID
+-(void)startV3RequsetLoginWithGetLoadSid;
+
 #pragma mark -
 /**
  * 取消所有服务

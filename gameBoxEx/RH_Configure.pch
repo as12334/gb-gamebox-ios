@@ -17,26 +17,31 @@
 //    API host
 //===========================================================
 #pragma mark- 运行环境配制
-#define IS_DEV_SERVER_ENV                       0
-#define IS_TEST_SERVER_ENV                      1
+#define IS_DEV_SERVER_ENV                               0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
 #define RH_APP_VERCODE                  @"3"
-#define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
+#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
 #define RH_APP_VERCODE                  @"3"
 //API的主URL
-#define RH_API_MAIN_URL                         @"http://192.168.0.92/boss"
+#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
 #define RH_APP_VERCODE                  @"2"
+//agpicdance.info
+//hpdbtopgolddesign.com
+//apiplay.info
+#define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss",\
+                                @"https://agpicdance.info:1344/boss",\
+                                @"https://hpdbtopgolddesign.com:1344/boss"]
 
-#define RH_API_MAIN_URL                         @"https://apiplay.info:1344/boss"
 #define RH_APP_UPDATECHECK                      @"j5ZSSGKixBXyF+Rub/BRig=="
 #endif
 #endif
@@ -45,7 +50,11 @@
 //===========================================================
 //    界面属性定义
 //===========================================================
-#define   RH_NavigationBar_BackgroundColor              colorWithRGB(27, 117, 217)
+#define   RH_NavigationBar_BackgroundColor                      colorWithRGB(27, 117, 217)
+#define   RH_NavigationBar_BackgroundColor_Red                  colorWithRGB(242, 32, 95)
+#define   RH_NavigationBar_BackgroundColor_Green                colorWithRGB(4, 109, 79)
+#define   RH_NavigationBar_BackgroundColor_Black                colorWithRGB(21, 21, 21)
+
 #define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
 
@@ -72,26 +81,48 @@
 //    ignore  https crt domain list
 //===========================================================
 #define  RH_IgnoreHTTPS_LIST                 @[@"hongtubet",@"bdo888"]
-
 //===========================================================
 //    站点配制
 //===========================================================
 
-#ifdef _DEBUG //开发环境
+#define THEMEV3             @"default"   //green,red,black,default .
 
-#define CODE    @"8l6r"
-#define S        @"6bf3b743e414045e5123fc317fb9b535"
-#define SID        @"71"
+#ifdef _DEBUG //开发环境 V3  H5  test 01
+#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN  @"test71.hongtubet.com"
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
+#define THEME     @"default.skin"
+//#define THEMEV3     @"black"   //green,red,black,default .
+#define SITE_TYPE    @"integrated"
+
+
+#elif _DEBUG1 //开发环境 V3  H5  test 01
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3"
+#define THEMEV3     @"green"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
 
-#elif _rf80 //TEST01[21]
+#elif _DEBUG2 //开发环境 V3  H5  test 01
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define CODE    @"rf80"
+#define S        @"632fbc122abfffdec078a665a76a1c16"
+#define SID        @"21"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
 
+#elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
-//@"test01.ampinplay0matrix.com"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
+//#define TEST_DOMAIN           @"192.168.0.150"   //cherry
+//#define TEST_DOMAIN           @"192.168.0.183"   //legend
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
@@ -129,7 +160,7 @@
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _XH5Z //澳门永利
 
@@ -145,7 +176,7 @@
 #define S        @"49c7e4a3b15215ed1d3d346140a868fb"
 #define SID        @"110"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _74bk //新葡京娱乐场
 
@@ -1085,7 +1116,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _nt6y //9发bet
+#elif _nt6y //必博
 
 #define CODE    @"nt6y"
 #define S        @"385c02cc2239963703e4075ce043d384"
@@ -1510,11 +1541,205 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _wqck //bet365
+
+#define CODE    @"wqck"
+#define S        @"54e87151f9fc49e18e19292fbf4c68d1"
+#define SID        @"353"
+#define THEME    @"green.skin"
+#define SITE_TYPE    @"integrated"
+
+
 #elif _dllb //金沙娱乐场
 
 #define CODE    @"dllb"
 #define S        @"7ffa67b40eea93a97805d59970d76b94"
 #define SID        @"355"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wbzt //澳门美高梅
+
+#define CODE    @"wbzt"
+#define S        @"dcf3bec6f41a870e00212e7cc99606a7"
+#define SID        @"356"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _opmi //永利娱乐城
+
+#define CODE    @"opmi"
+#define S        @"eed63a75cb98f902830477f5cba04f31"
+#define SID        @"357"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _n5gl //澳门威尼斯人
+
+#define CODE    @"n5gl"
+#define S        @"c57b52e0aeaf5563980d277c3c05c7d1"
+#define SID        @"358"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _vyx1 //大大彩票
+
+#define CODE    @"vyx1"
+#define S        @"a52956857d670202ac6828b28c6daeb6"
+#define SID        @"360"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _1mw8 //海皇亚洲
+
+#define CODE    @"1mw8"
+#define S        @"369df4553269ac2239fd48568f543dfc"
+#define SID        @"361"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+
+#elif _tw1z //万事达娱乐城
+
+#define CODE    @"tw1z"
+#define S        @"0245625bcdb1642edc81eba7262d43da"
+#define SID        @"362"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _r4pf //胜益国际娱乐
+
+#define CODE    @"r4pf"
+#define S        @"b83cd9f681d8110048b9a90021e1c7e3"
+#define SID        @"363"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _5zx5 //BET365
+
+#define CODE    @"5zx5"
+#define S        @"14f959961d722629de413926602f7ccc"
+#define SID        @"365"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _feas //澳门威尼斯人
+
+#define CODE    @"feas"
+#define S        @"fd7b632187397070a9110e6baacec702"
+#define SID        @"366"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _xc95 //豪爵娱乐城
+
+#define CODE    @"xc95"
+#define S        @"443110d6d974f61ab6ce1f23f27af7b5"
+#define SID        @"367"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _kgu6 //爵士城
+
+#define CODE    @"kgu6"
+#define S        @"2f240a46f97291908f8a911c19f1c6d4"
+#define SID        @"368"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _vksg //新葡京娱乐场
+
+#define CODE    @"vksg"
+#define S        @"c9f96fda5423febc3e50072c8a272bc1"
+#define SID        @"369"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _covy //老钱庄
+
+#define CODE    @"covy"
+#define S        @"56a9b81c0991acfdff36dad643a84bae"
+#define SID        @"370"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _mppv //澳门新葡京娱乐城
+
+#define CODE    @"mppv"
+#define S        @"607ab31471b2f18220fb03b685a62f60"
+#define SID        @"371"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _dufx //腾龙国际
+
+#define CODE    @"dufx"
+#define S        @"92aadf5a5d2983c63de760e80681ccf1"
+#define SID        @"372"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _sogq //太阳娱乐城
+
+#define CODE    @"sogq"
+#define S        @"937f54327ef331a97ad5ac8c58c70ec7"
+#define SID        @"373"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _gvzi //威尼斯人娱乐城
+
+#define CODE    @"gvzi"
+#define S        @"fd9f96277a8b15125bceb0a0f2c0a3f7"
+#define SID        @"375"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _8egp //金柜娱乐
+
+#define CODE    @"8egp"
+#define S        @"e76ec6a5be41b5f0f829df3f01537784"
+#define SID        @"376"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _suxr //澳门巴黎人
+
+#define CODE    @"suxr"
+#define S        @"ff8bb0c6818bdd5c9668d99666309bbd"
+#define SID        @"377"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _co5v //澳门金沙
+
+#define CODE    @"co5v"
+#define S        @"b89facd6f9c3f10352ed91b69e0a4c03"
+#define SID        @"378"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _unje //99彩票网
+
+#define CODE    @"unje"
+#define S        @"84b458cd4cb4ca24d46e6a81bf4ece92"
+#define SID        @"379"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _n0pd //永利娱乐场
+
+#define CODE    @"n0pd"
+#define S        @"d2e5fb741951d83172cbbb80df5ddde6"
+#define SID        @"380"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wrde //胜通国际娱乐城
+
+#define CODE    @"wrde"
+#define S        @"bd146695de21fa924ab420c3fdd9e6a2"
+#define SID        @"381"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

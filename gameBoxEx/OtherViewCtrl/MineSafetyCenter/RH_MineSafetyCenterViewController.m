@@ -20,6 +20,8 @@
 #import "RH_MineInfoModel.h"
 #import "RH_MineSafetyCenterCell.h"
 #import "RH_BankCardModel.h"
+#import "RH_SafetyNaviBarView.h"
+
 typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     SafetyCenterStatus_Init                        ,
     SafetyCenterStatus_None                        ,
@@ -29,10 +31,10 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 };
 
 
-@interface RH_MineSafetyCenterViewController () <CLTableViewManagementDelegate>
-
+@interface RH_MineSafetyCenterViewController () <CLTableViewManagementDelegate,RH_SafetyNaviBarViewDelegate>
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) RH_MineSafetyCenterHeaderView *headerView;
+@property (nonatomic,strong,readonly) RH_SafetyNaviBarView *safetyNaviBarView ;
 @end
 
 @implementation RH_MineSafetyCenterViewController
@@ -42,9 +44,30 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize headerView = _headerView;
+@synthesize safetyNaviBarView = _safetyNaviBarView ;
+
+-(BOOL)hasNavigationBar
+{
+    return NO ;
+}
 
 - (BOOL)isSubViewController {
     return YES;
+}
+
+-(BOOL)hasTopView
+{
+    return YES ;
+}
+
+-(BOOL)topViewIncludeStatusBar
+{
+    return YES ;
+}
+
+-(CGFloat)topViewHeight
+{
+    return StatusBarHeight+NavigationBarHeight ;
 }
 
 - (void)viewDidLoad {
@@ -61,15 +84,26 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (RH_MineSafetyCenterHeaderView *)headerView {
     if (_headerView == nil) {
         _headerView = [[RH_MineSafetyCenterHeaderView alloc] init];
-        _headerView.frame = CGRectMake(0, 0, screenSize().width, 260);
+        _headerView.frame = CGRectMake(0, 0, screenSize().width, 301);
+        NSLog(@"%f", screenSize().width);
+        if (screenSize().width == 414) {
+            _headerView.frame = CGRectMake(0, 0, screenSize().width, 321);
+        }
     }
     return _headerView;
 }
 
 #pragma mark-
 - (void)setupInfo {
+    [self.topView addSubview:self.safetyNaviBarView] ;
+    self.safetyNaviBarView.whc_LeftSpace(0).whc_TopSpace(0).whc_BottomSpace(0).whc_RightSpace(0) ;
     
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
+    UIEdgeInsets edgeInset = self.contentTableView.contentInset ;
+    edgeInset.top -= heighStatusBar +heighNavigationBar ;
+    self.contentTableView.contentInset = edgeInset ;
+    self.contentTableView.scrollIndicatorInsets = edgeInset ;
+    
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
 }
@@ -105,6 +139,23 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
         }
     }
 }
+
+#pragma mark -
+-(RH_SafetyNaviBarView *)safetyNaviBarView
+{
+    if (!_safetyNaviBarView){
+        _safetyNaviBarView = [RH_SafetyNaviBarView createInstance] ;
+        _safetyNaviBarView.delegate = self ;
+    }
+    
+    return _safetyNaviBarView ;
+}
+
+-(void)safetyNaviBarViewDidTouchBackButton:(RH_SafetyNaviBarView*)safetyNaviBarView
+{
+    [self backBarButtonItemHandle] ;
+}
+
 
 #pragma mark-
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
@@ -170,10 +221,10 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
 //    RH_MineSafetyCenterCell *centerCell = ConvertToClassPointer(RH_MineSafetyCenterCell, cell) ;
-    if (indexPath.row==2) {
+//    if (indexPath.row==2) {
         RH_BankCardModel *carModel = ConvertToClassPointer(RH_BankCardModel, MineSettingInfo.mBankCard);
         return carModel ;
-    }
-    return nil ;
+//    }
+//    return nil ;
 }
 @end

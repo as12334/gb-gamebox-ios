@@ -8,6 +8,8 @@
 
 #import "RH_BasicSubViewController.h"
 
+#define RHNT_AlreadySuccessAddBankCardInfo                  @"RHNT_AlreadySuccessAddBankCardInfo"
+
 @interface RH_BankCardController : RH_BasicSubViewController
 
 @end

@@ -23,8 +23,14 @@
         _mBannerList = [RH_BannelModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_BANNER]] ;
         _mAnnouncementList = [RH_AnnouncementModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_ANNOUNCEMENT]] ;
         _mLotteryCategoryList = [RH_LotteryCategoryModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_HOMEINFO_SITEAPIRELATION]] ;
+        
     }
     
+////    //--TEST
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:1518090656142/1000.0] ;
+//    NSString *strTmp = dateStringWithFormatterWithTimezone(date, @"yyyy-MM-dd HH:mm:ss", @"GMT+0800");
+//    NSLog(@"%@",strTmp) ;
+////    //---END TEST
     return self ;
 }
 

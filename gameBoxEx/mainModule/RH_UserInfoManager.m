@@ -12,27 +12,31 @@
 #import "RH_ServiceRequest.h"
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
+#import "SAMKeychain.h"
 
 #define  key_languageOption                             @"appLanguage"
 #define  key_voiceSwitchFlag                             @"key_voiceSwitchFlag"
 #define  key_screenlockFlag                              @"key_screenlockFlag"
 #define  key_screenlockPassword                          @"key_screenlockPassword"
 #define  key_lastLoginUserName                           @"key_lastLoginUserName"
-#define  key_lastLoginTime                              @"key_lastLoginTime"
+#define  key_lastLoginTime                               @"key_lastLoginTime"
+#define  key_updateUserVeifyCode                         @"key_updateUserVeifyCode"
 
 @interface RH_UserInfoManager ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly) RH_ServiceRequest * serviceRequest;
 @property(nonatomic,copy)  AutoLoginCompletation autoLoginCompletation ;
+@property(nonatomic,strong) id netStatusObserverForUpdateUserSessionInfo ;
 @end
 
 @implementation RH_UserInfoManager
 @synthesize serviceRequest = _serviceRequest;
-@synthesize userBalanceGroupInfo = _userBalanceGroupInfo ;
 @synthesize userSafetyInfo = _userSafetyInfo ;
 @synthesize mineSettingInfo = _mineSettingInfo ;
 @synthesize bankList = _bankList ;
 @synthesize userWithDrawInfo = _userWithDrawInfo ;
 @synthesize domainCheckErrorList = _domainCheckErrorList ;
+@synthesize sidString = _sidString ;
+@synthesize updateUserVeifyCode = _updateUserVeifyCode ;
 
 +(instancetype)shareUserManager
 {
@@ -46,18 +50,75 @@
     return _shareUserManager ;
 }
 
-#pragma mark- userBalanceGroupInfo
--(RH_UserBalanceGroupModel *)userBalanceGroupInfo
+-(instancetype)init
 {
-    return _userBalanceGroupInfo ;
+    self = [super init] ;
+    if (self){
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleLoginChangedNotification:)
+                                                     name:NT_LoginStatusChangedNotification
+                                                   object:nil] ;
+    }
+    
+    return self ;
 }
 
--(void)setUserBalanceInfo:(RH_UserBalanceGroupModel *)userBalanceInfo
+-(void)dealloc
 {
-    _userBalanceGroupInfo = userBalanceInfo ;
-    [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_UserInfoManagerBalanceChangedNotification object:nil] ;
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
+//-(void)updateSession
+//{
+//    UILocalNotification *_localNotification=[[UILocalNotification alloc] init];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+//        while (TRUE) {
+//            [NSThread sleepForTimeInterval:5];
+////            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//            [self.serviceRequest startV3RereshUserSessin];
+//            [[UIApplication sharedApplication] scheduleLocalNotification:_localNotification];
+//        };
+//    });
+//}
+
+#pragma mark -
+-(void)handleLoginChangedNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
+        [self updateSession] ;
+    }
+}
+
+-(void)updateSession
+{
+    if (NetworkAvailable()){
+        if ([self hasLogin]){
+            //取消先前服务
+            [self.serviceRequest cancleServiceWithType:ServiceRequestTypeV3RefreshSession] ;
+            [self.serviceRequest startV3RereshUserSessin] ;
+        }
+    }else{//无网络情况
+        if (!self.netStatusObserverForUpdateUserSessionInfo){
+            self.netStatusObserverForUpdateUserSessionInfo = [[NSNotificationCenter defaultCenter] addObserverForName:NT_NetReachabilityChangedNotification object:nil
+                                                                                                                queue:[NSOperationQueue mainQueue]
+                                                                                                           usingBlock:^(NSNotification * _Nonnull note) {
+                [[NSNotificationCenter defaultCenter] removeObserver:self.netStatusObserverForUpdateUserSessionInfo] ;
+                self.netStatusObserverForUpdateUserSessionInfo = nil ;
+                [self updateSession] ;
+            }] ;
+        }
+    }
+}
+
+
+
+-(void)updateTimeZone:(NSString*)timeZone
+{
+    if (timeZone.length){
+        NSString *timeStr = [timeZone stringByReplacingOccurrencesOfString:@":" withString:@""] ;
+        _timeZone = timeStr ;
+    }
+}
 #pragma mark -
 -(RH_UserSafetyCodeModel *)userSafetyInfo
 {
@@ -152,38 +213,42 @@
 
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch
 {
-    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:bSwitch?@"1":@"0"
-                                                                            forKey:key_voiceSwitchFlag
-                                                                             async:YES] ;
+        [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:bSwitch?@"1":@"0"
+                                                                                forKey:key_voiceSwitchFlag
+                                                                                 async:YES] ;
 }
 
 -(BOOL)isScreenLock
 {
-    NSString *bFlag = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockFlag expectType:[NSString class]] ;
-    return [bFlag boolValue] ;
+    #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+    NSString * bFlag = [SAMKeychain passwordForService:@" "account:RH_updateScreenLockFlag];
+    #define RH_GuseterLock            @"RH_GuseterLock"
+    NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+    if (currentGuseterLockStr && [bFlag boolValue] == YES) {
+        return YES ;
+    }
+    return NO ;
 }
 
 -(void)updateScreenLockFlag:(BOOL)lock
 {
-    [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:lock?@"1":@"0"
-                                                                            forKey:key_screenlockFlag
-                                                                             async:YES] ;
+    #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+    [SAMKeychain setPassword:lock?@"1":@"0" forService:@" " account:RH_updateScreenLockFlag] ;
 }
 
 #pragma mark-
 -(NSString *)screenLockPassword
 {
-    NSString *screenLock = [[CLDocumentCachePool shareTempCachePool] cacheKeyedUnArchiverRootObjectForKey:key_screenlockPassword
-                                                                                               expectType:[NSString class]] ;
+    #define RH_GuseterLock            @"RH_GuseterLock"
+    NSString * screenLock = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
     return screenLock ;
 }
 
 -(void)updateScreenLockPassword:(NSString *)lockPassrod
 {
     if (lockPassrod){
-        [[CLDocumentCachePool shareTempCachePool] cacheKeyedArchiverDataWithRootObject:lockPassrod
-                                                                                forKey:key_screenlockPassword
-                                                                                 async:YES] ;
+        #define RH_GuseterLock            @"RH_GuseterLock"
+        [SAMKeychain setPassword:lockPassrod forService:@" " account:RH_GuseterLock] ;
     }
 }
 
@@ -200,6 +265,32 @@
     return [userDefaults stringForKey:key_lastLoginTime] ;
 }
 
+-(BOOL)updateUserVeifyCode
+{
+    return _updateUserVeifyCode ;
+}
+
+-(void)setUpdateUserVeifyCode:(BOOL)updateUserVeifyCode
+{
+    if (updateUserVeifyCode != _updateUserVeifyCode) {
+        _updateUserVeifyCode = updateUserVeifyCode ;
+    }
+}
+
+#pragma mark - SID
+-(NSString *)sidString
+{
+    return _sidString ;
+}
+
+-(void)setSidString:(NSString *)sidString
+{
+    if (![sidString isEqualToString:_sidString]){
+        _sidString = sidString ;
+        NSLog(@"...SID INFO...parse sid:%@",_sidString) ;
+    }
+}
+
 -(void)updateLoginInfoWithUserName:(NSString*)userName LoginTime:(NSString*)loginTime
 {
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
@@ -207,7 +298,7 @@
     [userDefaults setObject:loginTime?:@""  forKey:key_lastLoginTime];
 }
 
-#pragma mark-
+#pragma mark- serviceRequest
 - (RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest) {
@@ -218,15 +309,18 @@
     return _serviceRequest;
 }
 
-#pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-
+    if (type == ServiceRequestTypeV3RefreshSession) {
+        [self performSelector:@selector(updateSession) withObject:self afterDelay:5.0f] ;
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-
+    if (type == ServiceRequestTypeV3RefreshSession) {
+        [self performSelector:@selector(updateSession) withObject:self afterDelay:5.0f] ;
+    }
 }
 
 #pragma mark-

@@ -55,12 +55,28 @@
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         navigationBar.barStyle = UIBarStyleDefault ;
         if (GreaterThanIOS11System){
-            navigationBar.barTintColor = RH_NavigationBar_BackgroundColor;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor;
+            }
         }else
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
             [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
         }
 
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
@@ -248,20 +264,28 @@
     [self showViewController:loginViewControllerEx sender:self] ;
 }
 
--(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller BackToFirstPage:(BOOL)bFirstPage
 {
     [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+    
+    if (bFirstPage){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+        }else{
+            self.myTabBarController.selectedIndex = 0 ;
+        }
+    }
 }
 
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
 {
-    [self.navigationController popViewControllerAnimated:YES] ;
+    [self.navigationController popToRootViewControllerAnimated:YES] ;
 }
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
     [self.navigationController popViewControllerAnimated:YES] ;
-    
     if (bFlag==false){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *account = [defaults stringForKey:@"account"] ;
@@ -327,7 +351,7 @@
 //                          forControlEvents:UIControlEventTouchUpInside] ;
         [_navigationUserInfoView.buttonCover addTarget:self
                                                 action:@selector(userInfoButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
-        _navigationUserInfoView.frame = CGRectMake(0, 0, 60.0f, 40.0f) ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 60.f, 40.0f) ;
     }
     
     return _navigationUserInfoView ;
@@ -407,8 +431,10 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type SpecifiedError:(NSError *)error
 {
-    if (error.code==600 || error.code==1){
-        showMessage(nil, error.code==600?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
+    if (error.code==RH_API_ERRORCODE_SESSION_EXPIRED || error.code==RH_API_ERRORCODE_USER_LOGOUT){
+        if (type!=ServiceRequestTypeV3SiteMessageMyMessageDetail){
+            showMessage(nil, error.code==RH_API_ERRORCODE_SESSION_EXPIRED?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
+        }
         [self.appDelegate updateLoginStatus:NO] ;
         [self loginButtonItemHandle] ;
     }
@@ -517,7 +543,6 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     return backgroundView ;
 }
 
-
 -(void)_calendarBackgroupViewTapGestureHandle
 {
     [self hideCalendarViewWithAnimated:YES] ;
@@ -525,6 +550,8 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
 
 -(void)showCalendarView:(NSString*)title
          initDateString:(NSString*)dateStr
+                MinDate:(NSDate*)minDate
+                MaxDate:(NSDate*)maxDate
            comfirmBlock:(CalendaCompleteBlock)completeBlock;
 {
     if (!dateStr.length){
@@ -533,7 +560,9 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
         dateStr = [dateFormatter stringFromDate:[NSDate date]] ;
     }
 
-    CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr] ;
+    CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr
+                                                                  MinDate:minDate
+                                                                  MaxDate:maxDate] ;
     [self hideCalendarViewWithAnimated:NO] ;
 
     _calendarCompleteBlock = completeBlock ;
@@ -564,6 +593,7 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
                      } completion:^(BOOL finished) {
                          [self.view bringSubviewToFront:self.calendarBackgroundView] ;
                      }] ;
+    
 }
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated

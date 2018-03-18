@@ -11,4 +11,6 @@
 
 @interface RH_NavigationUserInfoView :UIControl
 @property (nonatomic,strong,readonly)  UIButton *buttonCover ;
+@property (nonatomic,strong) IBOutlet UILabel *labBalance  ;
+-(void)updateUI ;
 @end

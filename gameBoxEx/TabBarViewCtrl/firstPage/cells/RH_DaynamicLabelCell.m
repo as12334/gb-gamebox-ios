@@ -36,7 +36,16 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
-    self.labRemark.backgroundColor = colorWithRGB(27, 117, 217) ;
+    if ([THEMEV3 isEqualToString:@"green"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }else{
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
+    }
+    
     self.labRemark.textColor = [UIColor whiteColor] ;
     self.labRemark.font = [UIFont systemFontOfSize:14.0f] ;
     self.labRemark.layer.cornerRadius = 4.0f ;
@@ -47,7 +56,7 @@
     [self.contentView addSubview:self.scrollView] ;
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
-    self.separatorLineColor = RH_Line_DefaultColor ;
+    self.separatorLineColor = colorWithRGB(226, 226, 226) ;
     self.separatorLineWidth = 1.0f ;
     
     self.selectionOption = CLSelectionOptionHighlighted ;
@@ -61,8 +70,24 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    //.05
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
-    _dynamicTimeInterval = strTmp.length * 0.5 ;// 一个字符 0.5
+    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+    strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+
+    if ([self.labScrollText.text isEqualToString:strTmp])
+        return ;
+    if (strTmp.length<10) {
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .18;
+    }else if (strTmp.length>10 && strTmp.length < 100)
+    {
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .075  ;
+    }else if (strTmp.length>100)
+    {
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .055  ;
+    }
+//    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
+//    strTmp.length * 0.6 ;// 一个字符 0.5
     self.labScrollText.text = strTmp ;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);

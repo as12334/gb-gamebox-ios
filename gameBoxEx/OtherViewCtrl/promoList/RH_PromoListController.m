@@ -10,6 +10,8 @@
 #import "coreLib.h"
 #import "RH_PreferentialListCell.h"
 #import "RH_API.h"
+#import "RH_PromoInfoModel.h"
+
 
 @interface RH_PromoListController ()
 @end
@@ -140,5 +142,15 @@
         return self.loadingIndicateTableViewCell ;
     }
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    RH_PromoInfoModel *model = ConvertToClassPointer(RH_PromoInfoModel, [self.pageLoadManager dataAtIndex:indexPath.row]) ;
+//    NSLog(@"%ld",model.mID) ;
+//    NSString *mStr = [NSString stringWithFormat:@"/promo/promoDetail.html?searchId=%ld",model.mID] ;
+//    [self.navigationController pushViewController:[RH_PromoDetailViewController viewControllerWithContext:mStr] animated:YES] ;
+}
+
+
+
 
 @end

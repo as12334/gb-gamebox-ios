@@ -5,12 +5,12 @@
 //  Created by Lenny on 2018/1/7.
 //  Copyright © 2018年 luis. All rights reserved.
 //
-
+#import "RH_ModifyPasswordNameCell.h"
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_ModifyPasswordCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_ModifySafetyPwdCodeCell.h"
-
+#import "RH_ModifyPasswordCodeCell.h"
 typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     ModifySafetyStatus_Init                         ,
     ModifySafetyStatus_SetRealName                  ,
@@ -36,10 +36,16 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 @implementation RH_ModifySafetyPasswordController
 {
     ModifySafetyStatus _modifySafetyStatus  ;
+    NSString *_titleStr ;
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView ;
 @synthesize modifyButton = _modifyButton ;
+
+-(void)setupViewContext:(id)context
+{
+    _titleStr = ConvertToClassPointer(NSString, context) ;
+}
 
 - (BOOL)isSubViewController {
     return YES;
@@ -47,10 +53,9 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"修改安全密码";
+    self.title = _titleStr?:@"修改安全密码";
     [self setupInfo];
     [self setNeedUpdateView] ;
-    
     self.needObserverTapGesture = YES ;
 }
 
@@ -78,6 +83,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         _modifySafetyStatus = ModifySafetyStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyInitInfo"] ;
         [self loadingIndicateViewDidTap:nil] ;
+         self.title = @"设置安全密码";
         return ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
@@ -89,6 +95,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;
             [self.modifyButton setTitle:@"设置用户真实姓名" forState:UIControlStateNormal] ;
+            self.title = @"设置真实姓名";
             return ;
         }else if (UserSafetyInfo.mHasPersimmionPwd==FALSE){
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_SetPermissionPasswordUsedCode:ModifySafetyStatus_SetPermissionPassword ;
@@ -96,6 +103,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.modifyButton setTitle:@"设置安全密码" forState:UIControlStateNormal] ;
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;
+            self.title = @"设置安全密码";
             return ;
         }else{
             _modifySafetyStatus = UserSafetyInfo.mIsOpenCaptch?ModifySafetyStatus_UpdatePermissionPasswordUsedCode:ModifySafetyStatus_UpdatePermissionPassword ;
@@ -103,6 +111,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.modifyButton setTitle:@"确定" forState:UIControlStateNormal] ;
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;
+            self.title = @"修改安全密码";
             return ;
         }
     }
@@ -124,9 +133,9 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 }
 
 #pragma mark -
--(RH_ModifyPasswordCell *)userNameCell
+-(RH_ModifyPasswordNameCell *)userNameCell
 {
-    return ConvertToClassPointer(RH_ModifyPasswordCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
+    return ConvertToClassPointer(RH_ModifyPasswordNameCell, [self.tableViewManagement cellViewAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) ;
 }
 
 -(RH_ModifyPasswordCell *)userPermissionCell
@@ -171,7 +180,16 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 {
     if (!_modifyButton){
         _modifyButton = [UIButton buttonWithType:UIButtonTypeCustom] ;
-        _modifyButton.backgroundColor = colorWithRGB(27, 117, 217);
+        if ([THEMEV3 isEqualToString:@"green"]){
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor;
+        }
+        
         _modifyButton.layer.cornerRadius = 5;
         _modifyButton.clipsToBounds = YES;
         [_modifyButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -213,7 +231,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请重新输入新密码");
+            showMessage(self.view, nil, @"请再次输入新密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -240,7 +258,60 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
                                                         verifyCode:self.userPasswordCodeCell.passwordCode] ;
         
         return ;
-    }else{
+    }else if (_modifySafetyStatus == ModifySafetyStatus_UpdatePermissionPasswordUsedCode) {
+        NSString *realName = [self.userNameCell.textField.text copy] ;
+        NSString *oldPassword = [self.userPermissionCell.textField.text copy] ;
+        NSString *newPassword = [self.userNewPermissionCell.textField.text copy] ;
+        NSString *confirmPassword = [self.userConfirmPermissionCell.textField.text copy] ;
+        NSString *verifyCode = [self.userPasswordCodeCell.passwordCode copy];
+        if (realName.length<1){
+            showMessage(self.view, nil, @"请输入真实姓名");
+            [self.userNameCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (oldPassword.length<1){
+            showMessage(self.view, nil, @"请输入旧密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (newPassword.length<1){
+            showMessage(self.view, nil, @"请输入新密码");
+            [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (confirmPassword.length<1){
+            showMessage(self.view, nil, @"请再次输入新密码");
+            [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (![newPassword isEqualToString:confirmPassword]) {
+            showMessage(self.view, nil, @"两次输入密码不一样！");
+            [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return;
+        }
+        if (verifyCode.length < 1) {
+            showMessage(self.view, nil, @"请输入验证码！");
+            return ;
+        }
+        if ([oldPassword isEqualToString:newPassword]) {
+            showMessage(self.view, nil, @"新密码不能和旧密码一样！");
+            return ;
+        }
+        [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
+        [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
+                                                    originPassword:oldPassword
+                                                       newPassword:newPassword
+                                                   confirmPassword:confirmPassword
+                                                        verifyCode:self.userPasswordCodeCell.passwordCode] ;
+        
+        return ;
+    }
+    
+    else if(_modifySafetyStatus== ModifySafetyStatus_UpdatePermissionPassword){
         NSString *realName = [self.userNameCell.textField.text copy] ;
         NSString *oldPassword = [self.userPermissionCell.textField.text copy] ;
         NSString *newPassword = [self.userNewPermissionCell.textField.text copy] ;
@@ -264,7 +335,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请重新输入新密码");
+            showMessage(self.view, nil, @"请再次输入新密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -274,7 +345,11 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
             return;
         }
-        
+        if ([oldPassword isEqualToString:newPassword]) {
+            showMessage(self.view, nil, @"新密码与旧密码一样！");
+            [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return;
+        }
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
         [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
                                                     originPassword:oldPassword
@@ -308,17 +383,22 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         if (data==nil){
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"获取安全初始化信息失败"];
         }else{
-        [self setNeedUpdateView] ;
+            [self setNeedUpdateView] ;
         }
     }else if (type == ServiceRequestTypeV3SetRealName){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
         [UserSafetyInfo updateHasRealName:YES] ;
         [self setNeedUpdateView] ;
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadySucfullSettingSafetyPassword object:nil] ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"已设定安全密码":@"已更新安全密码", nil);
-            [self backBarButtonItemHandle] ;
+            showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"安全密码设置成功":@"安全密码修改成功", nil, ^{
+                [self backBarButtonItemHandle] ;
+            });
+            [serviceRequest startV3UserSafetyInfo];
         }] ;
+    }else if (type == ServiceRequestTypeV3UserSafeInfo) {
+        [self backBarButtonItemHandle];
     }
 }
 

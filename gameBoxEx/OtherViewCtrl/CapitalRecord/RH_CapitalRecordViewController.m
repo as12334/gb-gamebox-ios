@@ -30,10 +30,12 @@
 @synthesize listView =_listView;
 @synthesize quickSelectView = _quickSelectView;
 
+
 -(BOOL)isSubViewController
 {
     return YES ;
 }
+
 -(BOOL)hasTopView
 {
     return TRUE ;
@@ -41,7 +43,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return 180.0f ;
+    return 200.0f ;
 }
 
 -(BOOL)hasBottomView
@@ -57,9 +59,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title =@"资金记录";
+    [self setNeedUpdateView];
     [self setupUI] ;
 }
 
+-(void)updateView
+{
+    if (self.appDelegate.isLogin){
+        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
+        [self startUpdateData] ;
+        
+    }else{
+        self.navigationBarItem.rightBarButtonItems = @[] ;
+    }
+}
 
 #pragma mark-
 -(void)setupUI
@@ -82,6 +95,7 @@
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
+    
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_CapitalTableViewCell class]] ;
     self.contentTableView.backgroundColor = colorWithRGB(242, 242, 242) ;
@@ -111,7 +125,7 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无相关数据记录"] ;
+                                        detailText:@"您暂无资金数据记录"] ;
     return YES ;
     
 }
@@ -126,6 +140,7 @@
     }
     return _capitalRecordHeaderView ;
 }
+#pragma mark-类型选择
 -(RH_CapitalPulldownListView *)listView
 {
     if (!_listView) {
@@ -134,9 +149,8 @@
         _listView.block = ^(){
             if (weakSelf.listView.superview){
                 [UIView animateWithDuration:0.2f animations:^{
-                    CGRect framee = weakSelf.listView.frame;
-                    framee.size.height = 0;
-                    weakSelf.listView.frame = framee;
+                    CGRect frame = CGRectMake(weakSelf.listView.frame.origin.x, weakSelf.listView.frame.origin.y +2, weakSelf.listView.frame.size.width, 0) ;
+                    weakSelf.listView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.listView removeFromSuperview];
                 }];
@@ -153,17 +167,15 @@
         self.listView.frame = frame;
         [self.view addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 200;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width, 200) ;
+            self.listView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width, 0) ;
+            self.listView.frame = frame;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
         }];
@@ -180,8 +192,7 @@
         _quickSelectView.quickSelectBlock = ^(NSInteger selectRow) {
             if (weakSelf.quickSelectView.superview) {
                 [UIView animateWithDuration:0.2 animations:^{
-                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x -70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
-                    frame.size.height = 0;
+                    CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x -70, weakSelf.quickSelectView.frame.origin.y + 2 , 120, 0);
                     weakSelf.quickSelectView.frame = frame;
                 } completion:^(BOOL finished) {
                     [weakSelf.quickSelectView removeFromSuperview];
@@ -194,7 +205,7 @@
     return _quickSelectView;
 }
 
-#pragma mark - 时间选择下拉
+#pragma mark - 快选时间选择下拉
 -(void)openAndCloseSelectViewWithFarme:(CGRect)frame
 {
      __block RH_CapitalRecordViewController *weakSelf = self;
@@ -203,16 +214,14 @@
         self.quickSelectView.frame = frame;
         [self.view addSubview:self.quickSelectView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y, 120, 0);
-            frame.size.height = 200;
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x - 70, weakSelf.quickSelectView.frame.origin.y +2, 120, 160);
             self.quickSelectView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y, 120, 0);
-            frame.size.height = 0;
+            CGRect frame = CGRectMake(weakSelf.quickSelectView.frame.origin.x , weakSelf.quickSelectView.frame.origin.y +2, 120, 0);
             self.quickSelectView.frame = frame;
         } completion:^(BOOL finished) {
             [self.quickSelectView removeFromSuperview];
@@ -224,7 +233,6 @@
     NSDate *date = [[NSDate alloc]init];
     //获取本周的日期
     NSArray *currentWeekarr = [self getWeekTimeOfCurrentWeekDay];
-    NSArray *lastWeekArr = [self getWeekTimeOfLastWeekDay];
     switch (row) {
         case 0:
             // 今天
@@ -235,7 +243,6 @@
             // 昨天
             date= [[NSDate date] dateWithMoveDay:-1];
             _capitalRecordHeaderView.endDate = date;
-            
             break;
         case 2:
             //本周
@@ -243,28 +250,10 @@
             _capitalRecordHeaderView.endDate = currentWeekarr[1];
             break;
         case 3:
-            // 上周
-//            date= [[NSDate date] dateWithMoveDay:-14];
-//           _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
-            date = lastWeekArr[0];
-            _capitalRecordHeaderView.endDate = lastWeekArr[1];
-            break;
-        case 4:
-            // 本月
-            date= [self dateFromDateFirstDay];
-            _capitalRecordHeaderView.endDate = [self getMonthEndDate];
-            break;
-        case 5:
             //最近七天
             date= [[NSDate date] dateWithMoveDay:-7];
             _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
             break;
-        case 6:
-            // 最近三十天
-            date= [[NSDate date] dateWithMoveDay:-30];
-            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+30];
-            break;
-            
         default:
             break;
     }
@@ -393,16 +382,24 @@
 #pragma mark - CapitalRecordHeaderViewDelegate
 -(void)capitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_capitalRecordHeaderView.startDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置开始日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date] dateWithMoveDay:-7]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.startDate = returnDate ;
               }] ;
 }
 -(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_capitalRecordHeaderView.endDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置截止日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date] dateWithMoveDay:-7]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.endDate = returnDate ;
               }] ;
@@ -410,13 +407,45 @@
 #pragma mark --- 搜索按钮点击
 -(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
 {
+    if ( [self compareOneDay:self.capitalRecordHeaderView.startDate withAnotherDay:self.capitalRecordHeaderView.endDate] == 1) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+        return;
+    }
     [self startUpdateData] ;
+}
+#pragma mark -- 时间比较
+-(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    
+    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
+    
+    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
+    
+    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
+    
+    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+    
+    NSComparisonResult result = [dateA compare:dateB];
+    
+    if (result == NSOrderedDescending) {
+        //NSLog(@"oneDay比 anotherDay时间晚");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"oneDay比 anotherDay时间早");
+        return -1;
+    }
+    //NSLog(@"两者时间是同一个时间");
+    return 0;
 }
 
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    return self.listView.superview?YES:NO ;
+    return (self.userInfoView.superview?YES:NO)||(self.listView.superview?YES:NO) ||(self.quickSelectView.superview?YES:NO) ;
 }
 
 -(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
@@ -428,6 +457,17 @@
             self.listView.frame = framee;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
+        }];
+    }
+    else if (self.userInfoView.superview){
+        [self userInfoButtonItemHandle] ;
+    }else if (self.quickSelectView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.quickSelectView.frame;
+            framee.size.height = 0;
+            self.quickSelectView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.quickSelectView removeFromSuperview];
         }];
     }
 }
@@ -457,6 +497,7 @@
                                  SearchType:typeIdstr
                                  PageNumber:page+1
                                    PageSize:pageSize] ;
+    
 }
 
 -(void)cancelLoadDataHandle
@@ -467,7 +508,30 @@
 #pragma mark-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+    if (self.listView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.listView.frame;
+            framee.size.height = 0;
+            self.listView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.listView removeFromSuperview];
+        }];
+    }
+    else if (self.userInfoView.superview){
+        [self userInfoButtonItemHandle] ;
+    }else if (self.quickSelectView.superview){
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect framee = self.quickSelectView.frame;
+            framee.size.height = 0;
+            self.quickSelectView.frame = framee;
+        } completion:^(BOOL finished) {
+            [self.quickSelectView removeFromSuperview];
+        }];
+    }else
+    {
+         [self startUpdateData] ;
+    }
+   
 }
 
 
@@ -486,6 +550,11 @@
         
         [self loadDataSuccessWithDatas:capitalInfoOverModel.mList
                             totalCount:capitalInfoOverModel.mTotalCount] ;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+             [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
     }
 }
 
@@ -493,6 +562,10 @@
 {
     if (type == ServiceRequestTypeV3DepositList){
         [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(nil, error, @"数据回收失败") ;
+        }] ;
     }
 }
 

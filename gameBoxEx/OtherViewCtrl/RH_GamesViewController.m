@@ -52,32 +52,30 @@
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
     
     if (_apiInfoModel){//需请求加载的link
-        if (_apiInfoModel.showGameLink){ //已获取的请求链接
+        if (_apiInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = _apiInfoModel.showGameLink ;
             [self setupInfo] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLink:_apiInfoModel.mApiID
-                                           ApiTypeID:_apiInfoModel.mApiTypeID
-                                             GamesID:nil
-                                           GamesCode:nil] ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:_apiInfoModel.mGameLink] ;
+//            [self.serviceRequest startv3GetGamesLink:_apiInfoModel.mApiID
+//                                           ApiTypeID:_apiInfoModel.mApiTypeID
+//                                             GamesID:nil
+//                                           GamesCode:nil] ;
         }
     }else if (_lotteryInfoModel){//
-        if (_lotteryInfoModel.showGameLink){ //已获取的请求链接
+        if (_lotteryInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
             [self setupInfo] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLink:_lotteryInfoModel.mApiID
-                                           ApiTypeID:_lotteryInfoModel.mApiTypeID
-                                             GamesID:_lotteryInfoModel.mGameID
-                                           GamesCode:_lotteryInfoModel.mCode] ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:_lotteryInfoModel.mGameLink] ;
+            
         }
     }else{
         [self setupInfo] ;
     }
 }
-
 
 -(void)setupInfo
 {
@@ -145,6 +143,10 @@
         [self.serviceRequest startAPIRetrive:_apiID] ;
     }
     
+    //clear 音效
+    self.webURL = [NSURL URLWithString:@""] ;
+    [self reloadWebView] ;
+    
     [self.navigationController popToRootViewControllerAnimated:YES] ;
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         self.myTabBarController.selectedIndex = 2 ;
@@ -199,6 +201,10 @@
         [self.serviceRequest startAPIRetrive:_apiID] ;
     }
     
+    //clear 音效
+    self.webURL = [NSURL URLWithString:@""] ;
+    [self reloadWebView] ;
+    
     [super backBarButtonItemHandle] ;
 }
 
@@ -251,7 +257,8 @@
                 [self.appDelegate updateLoginStatus:false] ;
             }
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink){
+    }else if (type==ServiceRequestTypeV3GameLink ||
+              type==ServiceRequestTypeV3GameLinkForCheery){
         [self.contentLoadingIndicateView hiddenView] ;
         NSDictionary *gameLinkDict = ConvertToClassPointer(NSDictionary, data) ;
         if (_apiInfoModel){//需请求加载的link
@@ -266,6 +273,7 @@
             self.appDelegate.customUrl = gameLink ;
             [self setupInfo] ;
         }else{
+            showAlertView(@"温馨提示", gameMessage);
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:gameMessage detailText:@"温馨提示"] ;
         }
     }
@@ -280,7 +288,8 @@
             showErrorMessage(self.view, error, @"提示信息");
             [self.appDelegate updateLoginStatus:false] ;
         }] ;
-    }else if (type==ServiceRequestTypeV3GameLink){
+    }else if (type==ServiceRequestTypeV3GameLink ||
+              type==ServiceRequestTypeV3GameLinkForCheery){
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }

@@ -16,8 +16,8 @@
 @property(nonatomic,assign,readonly) NSInteger mCheckState;
 @property(nonatomic,strong,readonly) NSString *mCheckStateName;
 @property(nonatomic,assign,readonly) NSInteger mID;
-@property(nonatomic,assign,readonly) BOOL mPreferentialAudit  ;
-@property(nonatomic,strong,readonly) NSString *mPreferentialAuditName;
+@property(nonatomic,assign,readonly) float mPreferentialAudit  ;
+@property(nonatomic,strong,readonly) NSString *mPreferentialAuditName;   //
 @property(nonatomic,assign,readonly) CGFloat mPreferentialValue ;
 @property(nonatomic,assign,readonly) NSInteger mUserID;
 

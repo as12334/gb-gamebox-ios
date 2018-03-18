@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"AG电子";
+    self.title = _lotteryApiModel.mName?:@"列表" ;
     [self loadingIndicateViewDidTap:nil] ;
 }
 
@@ -60,7 +60,7 @@
 //                                     MainScreenH - (self.typeTopView.frameY + self.typeTopView.frameHeigh + 10)) ;
 //    self.pageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin| UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin ;
     [self.contentView addSubview:self.pageView];
-    self.pageView.whc_TopSpaceToView(5, self.typeTopView).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
+    self.pageView.whc_TopSpaceToView(2, self.typeTopView).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     //注册复用
     [self.pageView registerCellForPage:[RH_GameListContentPageCell class]] ;
     //设置索引

@@ -27,7 +27,7 @@
     [super awakeFromNib] ;
     
     self.backgroundColor = colorWithRGB(229, 237, 247) ;
-    self.labSummer.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labSummer.font = [UIFont systemFontOfSize:14.0f] ;
     self.labSummer.textColor = colorWithRGB(99, 99, 99);
     self.labSummer.text = @"合计:" ;
     
@@ -70,14 +70,19 @@
         titleCell = [CLStaticCollectionViewTitleCell createInstance]  ;
         [titleCell setupReuseIdentifier:[CLStaticCollectionViewTitleCell defaultReuseIdentifier]] ;
         titleCell.backgroundColor = [UIColor clearColor];
-        titleCell.titleFont = [UIFont systemFontOfSize:11.0f] ;
+        titleCell.labTitle.textAlignment = NSTextAlignmentLeft;
+        titleCell.titleFont = [UIFont systemFontOfSize:14.0f] ;
         titleCell.titleColor = colorWithRGB(85, 85, 85);
+        titleCell.labTitle.textAlignment = NSTextAlignmentLeft ;
+        
+        //配制 layout
+        titleCell.labTitle.whc_LeftSpace(0).whc_CenterY(0).whc_WidthAuto() ;
     }
     
     NSInteger index = indexPath.section*2 + indexPath.item ;
     switch (index) {
         case 0:
-            titleCell.labTitle.text = [NSString stringWithFormat:@"充值额度:%.02f",_rechargeSummer] ;
+            titleCell.labTitle.text = [NSString stringWithFormat:@"充值总额:%.02f",_rechargeSummer] ;
             break;
         case 1:
             titleCell.labTitle.text = [NSString stringWithFormat:@"提现总额:%.02f",_withdrawSummer] ;

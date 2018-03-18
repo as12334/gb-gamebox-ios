@@ -120,7 +120,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDw-9Y-fT5">
-                                <rect key="frame" x="362" y="13" width="31" height="14.5"/>
+                                <rect key="frame" x="362" y="13" width="31" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="31" id="i9y-MW-ZIB"/>
                                 </constraints>
@@ -172,12 +172,8 @@
                             <outlet property="textField" destination="GFx-Cq-Auz" id="2VB-HO-AU0"/>
                         </connections>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="1z2-y7-dFC">
-                        <rect key="frame" x="170" y="20" width="120" height="120"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="We6-cK-lGf">
-                        <rect key="frame" x="30" y="172" width="71.5" height="17"/>
+                        <rect key="frame" x="30" y="172" width="72" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -189,7 +185,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZW-Kx-yPS">
-                        <rect key="frame" x="30" y="253" width="57.5" height="17"/>
+                        <rect key="frame" x="30" y="253" width="58" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -200,17 +196,8 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoL-cU-pbz">
-                        <rect key="frame" x="354" y="422" width="77" height="30"/>
-                        <state key="normal" title="忘记密码？">
-                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="forgetPasswordClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Osw-EX-MQ4"/>
-                        </connections>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ea-P3-nvW" customClass="CLButton">
-                        <rect key="frame" x="30" y="452" width="401" height="40"/>
+                        <rect key="frame" x="30" y="511" width="401" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="l3H-FN-ZgL"/>
                         </constraints>
@@ -223,7 +210,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2o-DN-z2K" customClass="CLButton">
-                        <rect key="frame" x="30" y="522" width="401" height="40"/>
+                        <rect key="frame" x="30" y="568" width="401" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="mdY-B6-QcJ"/>
                         </constraints>
@@ -234,11 +221,36 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXh-r2-8gI">
-                        <rect key="frame" x="30" y="334" width="71.5" height="17"/>
+                        <rect key="frame" x="30" y="334" width="72" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="1z2-y7-dFC">
+                        <rect key="frame" x="170" y="50" width="120" height="120"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="记住密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0q-61-A55">
+                        <rect key="frame" x="301" y="498" width="64" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWv-kb-LVY">
+                        <rect key="frame" x="365" y="488" width="49" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </switch>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoL-cU-pbz">
+                        <rect key="frame" x="40" y="486" width="77" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="忘记密码？">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="forgetPasswordClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Osw-EX-MQ4"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
@@ -246,22 +258,20 @@
                     <constraint firstItem="ktC-Ss-SIJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="4Ez-oH-qy5"/>
                     <constraint firstAttribute="trailing" secondItem="4iR-Y2-kVC" secondAttribute="trailing" constant="30" id="634-Eh-Vh9"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="uA6-Ep-fti" secondAttribute="bottom" constant="8" id="6qg-rS-UJz"/>
-                    <constraint firstItem="ktC-Ss-SIJ" firstAttribute="top" secondItem="1z2-y7-dFC" secondAttribute="bottom" constant="57" id="BFn-Ag-cDy"/>
+                    <constraint firstItem="ktC-Ss-SIJ" firstAttribute="top" secondItem="1z2-y7-dFC" secondAttribute="bottom" constant="27" id="BFn-Ag-cDy"/>
                     <constraint firstItem="ktC-Ss-SIJ" firstAttribute="top" secondItem="We6-cK-lGf" secondAttribute="bottom" constant="8" id="CfS-8o-Nrw"/>
                     <constraint firstItem="ktC-Ss-SIJ" firstAttribute="leading" secondItem="We6-cK-lGf" secondAttribute="leading" id="Jnl-NF-ZET"/>
                     <constraint firstItem="uze-dM-Gi9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="O3U-1u-Ij0"/>
                     <constraint firstItem="ktC-Ss-SIJ" firstAttribute="top" secondItem="aYC-hQ-CtH" secondAttribute="bottom" constant="8" id="QwJ-c2-0rr"/>
                     <constraint firstItem="1z2-y7-dFC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RvI-Rl-P7N"/>
                     <constraint firstItem="0Ea-P3-nvW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Uw9-g3-EfK"/>
-                    <constraint firstItem="1z2-y7-dFC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="VHf-s0-kJs"/>
-                    <constraint firstItem="YoL-cU-pbz" firstAttribute="trailing" secondItem="0Ea-P3-nvW" secondAttribute="trailing" id="VJF-un-WPy"/>
+                    <constraint firstItem="1z2-y7-dFC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="VHf-s0-kJs"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="yZW-Kx-yPS" secondAttribute="bottom" constant="8" id="bIo-aF-rbe"/>
                     <constraint firstItem="uze-dM-Gi9" firstAttribute="top" secondItem="OXh-r2-8gI" secondAttribute="bottom" constant="8" id="bNj-PT-Pwl"/>
                     <constraint firstItem="z2o-DN-z2K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="bxP-dB-Udb"/>
-                    <constraint firstItem="z2o-DN-z2K" firstAttribute="top" secondItem="0Ea-P3-nvW" secondAttribute="bottom" constant="30" id="c45-gD-Crk"/>
+                    <constraint firstItem="z2o-DN-z2K" firstAttribute="top" secondItem="0Ea-P3-nvW" secondAttribute="bottom" constant="17" id="c45-gD-Crk"/>
                     <constraint firstItem="uA6-Ep-fti" firstAttribute="trailing" secondItem="4iR-Y2-kVC" secondAttribute="trailing" id="gEd-Qf-prF"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="ktC-Ss-SIJ" secondAttribute="bottom" constant="41" id="kPF-Bv-w3z"/>
-                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="YoL-cU-pbz" secondAttribute="bottom" id="kvP-aL-BVG"/>
                     <constraint firstAttribute="trailing" secondItem="0Ea-P3-nvW" secondAttribute="trailing" constant="30" id="mKQ-tZ-XeU"/>
                     <constraint firstItem="aYC-hQ-CtH" firstAttribute="trailing" secondItem="ktC-Ss-SIJ" secondAttribute="trailing" id="nAD-NO-g4e"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="njs-XF-uGa"/>
@@ -269,7 +279,7 @@
                     <constraint firstItem="OXh-r2-8gI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="sbL-KT-odd"/>
                     <constraint firstAttribute="trailing" secondItem="z2o-DN-z2K" secondAttribute="trailing" constant="30" id="tpn-Cg-58W"/>
                     <constraint firstAttribute="trailing" secondItem="ktC-Ss-SIJ" secondAttribute="trailing" constant="30" id="uFO-kw-A0k"/>
-                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="4iR-Y2-kVC" secondAttribute="bottom" constant="134" id="wbn-5L-nyq"/>
+                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="4iR-Y2-kVC" secondAttribute="bottom" constant="193" id="wbn-5L-nyq"/>
                     <constraint firstAttribute="trailing" secondItem="uze-dM-Gi9" secondAttribute="trailing" constant="30" id="wuc-OP-TdJ"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="leading" secondItem="yZW-Kx-yPS" secondAttribute="leading" id="zHd-qq-uSc"/>
                 </constraints>
@@ -287,6 +297,8 @@
                 <outlet property="loginTopLayoutConst" destination="wbn-5L-nyq" id="KgJ-sB-Tg8"/>
                 <outlet property="passwordNotice" destination="uA6-Ep-fti" id="lJI-Z1-lB3"/>
                 <outlet property="passwordTextfield" destination="wRv-rX-JKy" id="de3-19-gsS"/>
+                <outlet property="rememberPwdLab" destination="j0q-61-A55" id="KJC-u2-QiZ"/>
+                <outlet property="rememberPwdSwitch" destination="zWv-kb-LVY" id="Xer-m5-INx"/>
                 <outlet property="userNameView" destination="ktC-Ss-SIJ" id="6bE-7D-v7c"/>
                 <outlet property="userPwdView" destination="4iR-Y2-kVC" id="UeY-w8-Hhn"/>
                 <outlet property="usernameNotice" destination="aYC-hQ-CtH" id="ckU-wz-uEU"/>
@@ -294,7 +306,7 @@
                 <outlet property="verifyCodeView" destination="uze-dM-Gi9" id="glX-bJ-rhE"/>
                 <outlet property="verifyTextfield" destination="GFx-Cq-Auz" id="Fs6-7s-Kxe"/>
             </connections>
-            <point key="canvasLocation" x="-578.5" y="-112.5"/>
+            <point key="canvasLocation" x="-1256" y="-227"/>
         </tableViewCell>
     </objects>
     <resources>

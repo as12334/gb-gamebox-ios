@@ -22,19 +22,19 @@
                         <rect key="frame" x="10" y="9" width="300" height="111.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRM-gm-pXE">
-                                <rect key="frame" x="14" y="14" width="273" height="18"/>
+                                <rect key="frame" x="15" y="15" width="270" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFH-Nu-cuF">
-                                <rect key="frame" x="14" y="44" width="273" height="14.5"/>
+                                <rect key="frame" x="15" y="48" width="270" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aga-Ip-Vgw">
-                                <rect key="frame" x="260" y="82" width="26.5" height="12"/>
+                                <rect key="frame" x="258.5" y="84.5" width="26.5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,14 +42,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cRM-gm-pXE" firstAttribute="leading" secondItem="Cde-s3-QEh" secondAttribute="leading" constant="14" id="9DD-E9-JiG"/>
-                            <constraint firstItem="pFH-Nu-cuF" firstAttribute="top" secondItem="cRM-gm-pXE" secondAttribute="bottom" constant="12" id="C7C-ND-zZt"/>
-                            <constraint firstItem="cRM-gm-pXE" firstAttribute="top" secondItem="Cde-s3-QEh" secondAttribute="top" constant="14" id="CLN-KP-9ZC"/>
-                            <constraint firstItem="pFH-Nu-cuF" firstAttribute="leading" secondItem="Cde-s3-QEh" secondAttribute="leading" constant="14" id="CLg-m0-Mvr"/>
-                            <constraint firstAttribute="bottom" secondItem="aga-Ip-Vgw" secondAttribute="bottom" constant="17.5" id="Q2i-wZ-khI"/>
-                            <constraint firstAttribute="trailing" secondItem="cRM-gm-pXE" secondAttribute="trailing" constant="13" id="XCA-iI-zCT"/>
-                            <constraint firstAttribute="trailing" secondItem="aga-Ip-Vgw" secondAttribute="trailing" constant="13.5" id="fdd-yg-GA8"/>
-                            <constraint firstAttribute="trailing" secondItem="pFH-Nu-cuF" secondAttribute="trailing" constant="13" id="z9y-bl-lyf"/>
+                            <constraint firstItem="cRM-gm-pXE" firstAttribute="leading" secondItem="Cde-s3-QEh" secondAttribute="leading" constant="15" id="9DD-E9-JiG"/>
+                            <constraint firstItem="pFH-Nu-cuF" firstAttribute="top" secondItem="cRM-gm-pXE" secondAttribute="bottom" constant="15" id="C7C-ND-zZt"/>
+                            <constraint firstItem="cRM-gm-pXE" firstAttribute="top" secondItem="Cde-s3-QEh" secondAttribute="top" constant="15" id="CLN-KP-9ZC"/>
+                            <constraint firstItem="pFH-Nu-cuF" firstAttribute="leading" secondItem="Cde-s3-QEh" secondAttribute="leading" constant="15" id="CLg-m0-Mvr"/>
+                            <constraint firstAttribute="bottom" secondItem="aga-Ip-Vgw" secondAttribute="bottom" constant="15" id="Q2i-wZ-khI"/>
+                            <constraint firstAttribute="trailing" secondItem="cRM-gm-pXE" secondAttribute="trailing" constant="15" id="XCA-iI-zCT"/>
+                            <constraint firstAttribute="trailing" secondItem="aga-Ip-Vgw" secondAttribute="trailing" constant="15" id="fdd-yg-GA8"/>
+                            <constraint firstAttribute="trailing" secondItem="pFH-Nu-cuF" secondAttribute="trailing" constant="15" id="z9y-bl-lyf"/>
                         </constraints>
                     </view>
                 </subviews>

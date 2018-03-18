@@ -12,12 +12,15 @@
 #import "RH_ServiceRequest.h"
 #import "RH_SendMessageVerityModel.h"
 #import "MBProgressHUD.h"
+#import "RH_LoadingIndicateTableViewCell.h"
+#define NSNotiCenterSubmitSuccessNT  @"NSNotiCenterSubmitSuccess"
 @interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate,RH_SiteSendMessageViewDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
 @property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
-@property(nonatomic,strong,readonly)UIScrollView *scrollView;
+@property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property(nonatomic,copy)NSString  *typeStr;
+@property(nonatomic,strong)RH_SendMessageVerityModel *sendMessageVerityModel;
 @end
 @implementation RH_ApplyDiscountSiteSendCell
 {
@@ -27,13 +30,12 @@
 @synthesize sendView = _sendView;
 @synthesize listView = _listView;
 @synthesize serviceRequest = _serviceRequest;
-@synthesize scrollView = _scrollView;
+
+@synthesize loadingIndicateTableViewCell = _loadingIndicateTableViewCell ;
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context
 {
-    
-    [self addSubview:self.scrollView];
-    [self.scrollView addSubview:self.sendView];
+    [self.serviceRequest startV3AddApplyDiscountsVerify];
     __block RH_ApplyDiscountSiteSendCell *weakSelf = self;
     self.sendView.block = ^(CGRect frame){
         [weakSelf selectedSendViewdiscountType:frame];
@@ -42,25 +44,52 @@
         if (weakSelf.typeStr==nil) {
             showMessage(weakSelf,@"发送失败", @"请选择问题类型");
         }
-        else if (titleStr.length<4) {
-            showMessage(weakSelf,@"发送失败", @"标题在4个字以上");
+        else if (titleStr.length<4 || titleStr.length > 10) {
+            showMessage(weakSelf,@"发送失败", @"标题在4-10个字");
         }
         else if (contentStr.length<10||contentStr.length>2000){
             showMessage(weakSelf, @"发送失败",@"内容在10个字以上2000字以内");
+        }else if (self.sendMessageVerityModel.mIsOpenCaptcha == YES)
+        {
+           if([codeStr isEqualToString:@""])
+            {
+                showMessage(weakSelf,@"发送失败", @"请输入验证码");
+            }
+            else if (codeStr.length != 4)
+            {
+                showMessage(weakSelf,@"发送失败", @"请输入正确格式的验证码");
+            }else
+            {
+                [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
+                [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+                [UIView animateWithDuration:0.5 animations:^{
+                    weakSelf.contentScrollView.contentOffset = CGPointMake(0, 0);
+                }];
+                [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
+            }
         }
         else{
             [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
             [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
             [UIView animateWithDuration:0.5 animations:^{
-                weakSelf.scrollView.contentOffset = CGPointMake(0, 0);
+                weakSelf.contentScrollView.contentOffset = CGPointMake(0, 0);
             }];
             [MBProgressHUD showHUDAddedTo:weakSelf animated:YES];
         }
     };
-    [self.serviceRequest startV3AddApplyDiscountsVerify];
-    CLPageLoadDatasContext *context1 = [[CLPageLoadDatasContext alloc]initWithDatas:nil context:nil];
-    [self setupPageLoadManagerWithdatasContext:context1] ;
-    [self.loadingIndicateView hiddenView] ;
+    if (self.contentTableView == nil) {
+        self.contentTableView = [[UITableView alloc] initWithFrame:self.myContentView.bounds style:UITableViewStylePlain];
+        self.contentTableView.delegate = self   ;
+        self.contentTableView.dataSource = self ;
+        self.contentTableView.sectionFooterHeight = 10.0f;
+        self.contentTableView.sectionHeaderHeight = 10.0f ;
+        self.contentTableView.backgroundColor = [UIColor clearColor];
+        self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.contentTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
+        self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.myContentView.frameWidth, 0.1f)] ;
+        self.contentScrollView = self.contentTableView;
+        self.contentTableView.tableHeaderView = self.sendView ;
+    }
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -75,21 +104,13 @@
     }
     return self;
 }
--(UIScrollView *)scrollView
-{
-    if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
-        _scrollView.contentSize = CGSizeMake(0, 1000);
-        _scrollView.showsVerticalScrollIndicator = NO;
-    }
-    return _scrollView;
-}
 -(RH_SiteSendMessageView *)sendView
 {
     if (!_sendView) {
         _sendView = [RH_SiteSendMessageView createInstance];
-        _sendView.frame = CGRectMake(0,0, self.frameWidth, self.frameHeigh);
+        _sendView.frame = CGRectMake(0,50, self.frameWidth, self.frameHeigh);
         _sendView.delegate = self;
+        _sendView.userInteractionEnabled = YES ;
     }
     return _sendView;
 }
@@ -127,24 +148,6 @@
 }
 
 
-#pragma mark- observer Touch gesture
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    return self.listView.superview?YES:NO ;
-}
-
--(void)tapGestureRecognizerHandle:(UITapGestureRecognizer*)tapGestureRecognizer
-{
-    if (self.listView.superview){
-        [UIView animateWithDuration:0.2f animations:^{
-            CGRect framee = self.listView.frame;
-            framee.size.height = 0;
-            self.listView.frame = framee;
-        } completion:^(BOOL finished) {
-            [self.listView removeFromSuperview];
-        }];
-    }
-}
 -(void)selectedSendViewdiscountType:(CGRect )frame
 {
     if (!self.listView.superview) {
@@ -154,7 +157,7 @@
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
             CGRect framee = self.listView.frame;
-            framee.size.height = 200;
+            framee.size.height = 160;
             self.listView.frame = framee;
         }];
     }
@@ -168,21 +171,6 @@
             [self.listView removeFromSuperview];
         }];
     }
-}
-#pragma mark 数据请求
-
-#pragma mark-
--(BOOL)showNotingIndicaterView
-{
-    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
-                                             title:nil
-                                        detailText:@"您暂无相关数据记录"] ;
-    return YES ;
-    
-}
--(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
-{
-    [self loadDataSuccessWithDatas:@[] totalCount:0 completedBlock:nil] ;
 }
 #pragma mark-
 -(void)netStatusChangedHandle
@@ -202,33 +190,41 @@
         RH_SendMessageVerityModel *sendModel = ConvertToClassPointer(RH_SendMessageVerityModel, data);
         self.listView.sendModel = sendModel;
         self.sendView.sendModel = sendModel;
+        self.sendMessageVerityModel = sendModel;
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
         [MBProgressHUD hideHUDForView:self animated:YES];
         //发送成功弹出提示框
-        UIAlertView *alertView = [UIAlertView alertWithCallBackBlock:nil title:@"消息提交成功" message:nil cancelButtonName:nil otherButtonTitles:@"确定", nil];
-        [alertView show];
+        showMessage(self, @"提示", @"消息提交成功！") ;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSNotiCenterSubmitSuccessNT object:nil];
+        self.sendView.typeLabel.text = @"请选择";
+        self.typeStr =nil;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)name:UIKeyboardWillHideNotification
+                                                   object:nil];
     }
+}
+
+-(void)siteSendMessageViewDidTouchCancelBtn:(RH_SiteSendMessageView *)siteSendMessageView
+{
+    self.typeStr = nil ;
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3AddApplyDiscountsVerify){
         showErrorMessage(nil, error, nil) ;
-        [self loadDataFailWithError:error] ;
     }
     else if (type==ServiceRequestTypeV3AddApplyDiscounts)
     {
         [MBProgressHUD hideHUDForView:self animated:YES];
-        [self loadDataFailWithError:error] ;
         showErrorMessage(nil, error, @"发送失败");
     }
 }
 -(void)selectedCodeTextFieldAndChangedKeyboardFrame:(CGRect)frame
 {
     [UIView animateWithDuration:0.5 animations:^{
-        self.scrollView.contentOffset = CGPointMake(0, 150);
+        self.contentScrollView.contentOffset = CGPointMake(0, 150);
     }];
 }
 - (void)keyboardWillShow:(NSNotification *)aNotification
@@ -241,6 +237,8 @@
 }
 -(void)keyboardWillHide:(NSNotification *)aNotification
 {
-    self.scrollView.contentOffset = CGPointMake(0, 0);
+    self.contentScrollView.contentOffset = CGPointMake(0, 0);
 }
+
+
 @end

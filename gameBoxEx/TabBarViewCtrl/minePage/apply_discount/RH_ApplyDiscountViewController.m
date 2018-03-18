@@ -12,6 +12,8 @@
 #import "RH_ApplyDiscountPageCell.h"
 #import "RH_ApplyDiscountSystemPageCell.h"
 #import "RH_ApplyDiscountSitePageCell.h"
+#import "RH_SiteMessageModel.h"
+
 @interface RH_ApplyDiscountViewController ()<CLPageViewDelegate,CLPageViewDatasource,discountTypeHeaderViewDelegate,ApplyDiscountPageCellDelegate,ApplyDiscountSystemPageCellDelegate>
 @property(nonatomic,strong,readonly)RH_ApplyDiscountHeaderView *headerView;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
@@ -31,6 +33,11 @@
 {
     return 50;
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    [self.serviceRequest startV3LoadMessageCenterSiteMessageUnReadCount];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,12 +51,11 @@
     [self createUI];
 }
 -(void)createUI{
-    self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 50);
+    self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 63);
     [self.topView addSubview:self.headerView];
     
     NSArray *typeList =@[[UIColor redColor],[UIColor yellowColor],[UIColor blueColor]];
     [self.headerView updateView:typeList] ;
-    
     //分页视图
     [self.contentView addSubview:self.pageView];
     
@@ -80,7 +86,7 @@
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 50+NavigationBarHeight+StatusBarHeight, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 63+NavigationBarHeight + 10 + 15, MainScreenW, MainScreenH-63-NavigationBarHeight-StatusBarHeight)];
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
@@ -128,46 +134,74 @@
 #pragma mark cell的代理
 -(void)applyDiscountPageCellStartDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView*)view DefaultDate:(NSDate *)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+
     [self showCalendarView:@"设置开始日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-                  [cell startUpdateData];
+//                  [cell startUpdateData];
+                  [cell startUpdateData:NO];
+//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 -(void)applyDiscountPageCellEndDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置结束日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-                  [cell startUpdateData];
+//                  [cell startUpdateData];
+                  [cell startUpdateData:NO];
+//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
+
+
 #pragma mark --
 -(void)applyDiscountSystemStartDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置开始日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-                  [cell startUpdateData];
+//                  [cell startUpdateData];
+                  [cell startUpdateData:NO];
+//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 -(void)applyDiscountSystemEndDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
     [self showCalendarView:@"设置结束日期"
-            initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:[[NSDate date]dateWithMoveDay:-30]
+                   MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-                  [cell startUpdateData];
+//                  [cell startUpdateData];
+                  [cell startUpdateData:NO];
+//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 
+#pragma mark -- 滑动
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
     self.headerView.segmentedControl.selectedSegmentIndex = pageIndex;
@@ -179,8 +213,9 @@
 }
 
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
-}
 
+}
+#pragma mark - 点击
 -(void)DiscountTypeHeaderViewDidChangedSelectedIndex:(RH_ApplyDiscountHeaderView*)discuntTypeHeaderView SelectedIndex:(NSInteger)selectedIndex
 {
     self.pageView.dispalyPageIndex = selectedIndex ;
@@ -210,5 +245,7 @@
         }
     }
 }
+
+
 
 @end

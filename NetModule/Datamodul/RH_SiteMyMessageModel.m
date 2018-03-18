@@ -16,12 +16,31 @@
     if (self = [super initWithInfoDic:info])
     {
         _mAdvisoryContent = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYCONTENT];
-        _mAdvisoryTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTIME]/1000.0];
+        _mAdvisoryTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTIME]/1000.0];
         _mAdvisoryTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ADVISORYTITLE];
         _mId = [info integerValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_ID];
         _mReplyTitle = [info stringValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_REPLYTITLE];
         _mIsRead = [info boolValueForKey:RH_GP_SITEMESSAGE_MYMESSAGE_READ];
     }
     return self;
+}
+
+-(NSInteger)ID
+{
+    return _mId ;
+}
+
+#pragma mark-
+-(void)updateSelectedFlag:(BOOL)bFlag
+{
+    _selectedFlag = bFlag ;
+}
+
+-(void)updataReadStatus:(BOOL)bflag
+{
+    if (_mIsRead != bflag) {
+        _mIsRead = bflag  ;
+        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_AlreadyReadStatusChangeNotificationSiteMineMessage object:self] ;
+    }
 }
 @end

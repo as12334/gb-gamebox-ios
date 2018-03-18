@@ -7,10 +7,10 @@
 //
 
 #import "RH_ApplyDiscountHeaderView.h"
-
 #import "coreLib.h"
+#import "RH_SiteMsgUnReadCountModel.h"
 
-@interface RH_ApplyDiscountHeaderView()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface RH_ApplyDiscountHeaderView()<UICollectionViewDelegate>
 @property (nonatomic,strong) NSArray *arrayTypeList ;
 
 @end
@@ -23,12 +23,66 @@
         NSArray *itemArray = @[@"游戏公告",@"系统公告",@"站点信息"];
         //初始化UISegmentedControl
         self.segmentedControl = [[UISegmentedControl alloc]initWithItems:itemArray];
+//        self.segmentedControl.layer.cornerRadius = 6.f;
+//        self.segmentedControl.clipsToBounds = YES;
+        
+        self.segmentedControl.layer.borderWidth=1;
+        if ([THEMEV3 isEqualToString:@"green"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Green.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Green;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Red.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Red;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Black.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Black;
+        }else{
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor;
+        }
+        
+        self.segmentedControl.layer.masksToBounds=YES;
+        self.segmentedControl.layer.cornerRadius=6;
         //设置frame
-        [self.segmentedControl setFrame:CGRectMake((MainScreenW-200)/2,15/2, 200, 35)];
+        [self.segmentedControl setFrame:CGRectMake((MainScreenW-288)/2.0,15, 288, 33)];
         [self.segmentedControl addTarget:self action:@selector(segmentSelectedClick:) forControlEvents:UIControlEventValueChanged];
-        self.segmentedControl.tintColor = colorWithRGB(23, 102, 187);
+    
+      
+        UIFont *font = [UIFont boldSystemFontOfSize:12.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.segmentedControl setTitleTextAttributes:attributes
+                                   forState:UIControlStateNormal];
+        UIColor *noSelectTitleColor = colorWithRGB(93, 95, 103);
+        NSDictionary *colorAttr = [NSDictionary dictionaryWithObject:noSelectTitleColor forKey:NSForegroundColorAttributeName];
+        [self.segmentedControl setTitleTextAttributes:colorAttr forState:UIControlStateNormal];
         //添加到视图
         [self addSubview:self.segmentedControl];
+        UILabel *badgeLab = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.segmentedControl.frame) -10, 10, 18, 18)];
+        badgeLab.backgroundColor = [UIColor redColor] ;
+        badgeLab.layer.cornerRadius = 9;
+        badgeLab.layer.masksToBounds = YES;
+        badgeLab.textColor = [UIColor whiteColor] ;
+        badgeLab.font = [UIFont systemFontOfSize:8.f];
+        badgeLab.textAlignment = NSTextAlignmentCenter;
+        badgeLab.hidden = YES;
+        [self addSubview:badgeLab];
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"UnReadSiteMsgCount_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+            RH_SiteMsgUnReadCountModel *model = note.object ;
+            if (model.siteMsgUnReadCount && model.siteMsgUnReadCount >0) {
+                badgeLab.hidden = NO ;
+                if (model.siteMsgUnReadCount > 99) {
+                    badgeLab.text = @"99+" ;
+                }else
+                {
+                     badgeLab.text = [NSString stringWithFormat:@"%ld",model.siteMsgUnReadCount] ;
+                }
+            }else
+            {
+                badgeLab.hidden = YES ;
+            }
+        }];
+        
     }
     return self;
 }
@@ -77,4 +131,10 @@
         [self.delegate DiscountTypeHeaderViewDidChangedSelectedIndex:self SelectedIndex:self.segmentedControl.selectedSegmentIndex] ;
     }
 }
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UnReadSiteMsgCount_NT" object:nil];
+}
+
 @end

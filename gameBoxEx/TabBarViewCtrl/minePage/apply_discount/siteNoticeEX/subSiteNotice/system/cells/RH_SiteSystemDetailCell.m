@@ -20,35 +20,74 @@
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     RH_SiteMsgSysMsgModel *model = ConvertToClassPointer(RH_SiteMsgSysMsgModel,context);
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0,tableView.frameWidth-16, 0)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0,tableView.frameWidth-15, 0)];
     label.text = model.mTitle;
-    label.font = [UIFont systemFontOfSize:14.f];
+    label.font = [UIFont systemFontOfSize:15.f];
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
     NSDictionary *attrs = @{NSFontAttributeName : label.font};
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [model.mTitle boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    UILabel *label_1 = [[UILabel alloc]initWithFrame:CGRectMake(8, 0,tableView.frameWidth-16, 0)];
+    UILabel *label_1 = [[UILabel alloc]initWithFrame:CGRectMake(7.5, 0,tableView.frameWidth-15, 0)];
     label_1.text = model.mContent;
     label_1.font = [UIFont systemFontOfSize:12.f];
-    NSDictionary *attrs_1 = @{NSFontAttributeName : label_1.font};
+    NSDictionary *attrs_1 = @{NSFontAttributeName : label_1.font,NSParagraphStyleAttributeName:paraStyle,};
     CGSize maxSize_1 = CGSizeMake(label_1.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size_1 = [model.mContent boundingRectWithSize:maxSize_1 options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs_1 context:nil].size;
-    return 80+size.height+size_1.height;
+    return 90+size.height+size_1.height>screenSize().height?220+size.height+size_1.height:100+size.height+size_1.height;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SiteMsgSysMsgModel *model = ConvertToClassPointer(RH_SiteMsgSysMsgModel,context);
-    self.titleLabel.text = model.mTitle;
-    self.contextLabel.text = model.mContent;
-    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd hh:mm:ss");
-    
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = 6; //设置行间距
+    paraStyle.hyphenationFactor = 1.0;
+    paraStyle.firstLineHeadIndent = 0.0;
+    paraStyle.paragraphSpacingBefore = 0.0;
+    paraStyle.headIndent = 0;
+    paraStyle.tailIndent = 0;
+    NSDictionary *dic = @{NSParagraphStyleAttributeName:paraStyle, NSKernAttributeName:@.0f
+                          };
+    NSString *contentStrTitle = [NSString stringWithFormat:@"%@",model.mTitle];
+    NSAttributedString *attributeStrTitle = [[NSAttributedString alloc] initWithString:contentStrTitle attributes:dic];
+    self.titleLabel.attributedText = attributeStrTitle;
+    NSString *contentStr = [NSString stringWithFormat:@"%@",[self filterHTML:model.mContent]];
+    NSAttributedString *attributeStr = [[NSAttributedString alloc] initWithString:contentStr attributes:dic];
+    self.contextLabel.attributedText = attributeStr;
+    self.timeLabel.text = dateStringWithFormatter(model.mPublishTime, @"yyyy-MM-dd HH:mm:ss");
 }
+#pragma mark - 处理HTML 标签
+-(NSString *)filterHTML:(NSString *)html
+{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    return html;
+}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.titleLabel.textColor = colorWithRGB(68, 68, 68);
-    self.contextLabel.textColor = colorWithRGB(68, 68, 68);
+    self.titleLabel.textColor = colorWithRGB(51, 51, 51);
+    self.contextLabel.textColor = colorWithRGB(102, 102, 102);
+    self.timeLabel.textColor = colorWithRGB(153, 153, 153);
     self.backDropView.layer.cornerRadius= 3.f;
     self.backDropView.layer.borderColor = colorWithRGB(180, 180, 180).CGColor;
     self.backDropView.layer.borderWidth = 1.f;

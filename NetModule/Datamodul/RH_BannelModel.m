@@ -28,8 +28,8 @@
         _mType = [info stringValueForKey:RH_GP_Banner_TYPE] ;
         _mCover = [info stringValueForKey:RH_GP_Banner_COVER] ;
         _mStatus = [info integerValueForKey:RH_GP_Banner_STATUS] ;
-        _mEndTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_Banner_ENDTIME]/1000.0] ;
-        _mStartTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_Banner_STARTTIME]/1000.0] ;
+        _mEndTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_Banner_ENDTIME]/1000.0] ;
+        _mStartTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_Banner_STARTTIME]/1000.0] ;
         _mLanguage = [info stringValueForKey:RH_GP_Banner_LANGUAGE] ;
         _mOrderNum = [info integerValueForKey:RH_GP_Banner_ORDERNUM] ;
         _mCarouselID = [info integerValueForKey:RH_GP_Banner_CAROUSEL_ID] ;
@@ -43,9 +43,13 @@
 {
     if (!_thumbURL){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        _thumbURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        if ([_mCover containsString:@"http:"]||[_mCover containsString:@"https:"]) {
+             _thumbURL = [NSString stringWithFormat:@"%@",_mCover] ;
+        }else
+        {
+             _thumbURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+        }
     }
-    
     return _thumbURL ;
 }
 
