@@ -109,7 +109,6 @@
 {
     if (type == ServiceRequestTypeV3SiteMessageDetail){
         showErrorMessage(nil, error, nil) ;
-        [self loadDataFailWithError:error] ;
     }
 }
 

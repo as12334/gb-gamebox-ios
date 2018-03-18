@@ -821,6 +821,14 @@ NSArray * matchLongString(NSString *string)
     return array;
 }
 
+#pragma mark - 纯数字正则
+BOOL isNumberSecert(NSString *secPassword)
+{
+    NSString *passwordStrRegex = @"^[0-9]*$";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:secPassword];
+}
+
 BOOL isSimplePwd(NSString *password)
 {
     NSString *passwordStrRegex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$";

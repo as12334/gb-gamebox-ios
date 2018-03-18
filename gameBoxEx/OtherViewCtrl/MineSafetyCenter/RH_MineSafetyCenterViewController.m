@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
     [self.serviceRequest startV3UserInfo] ;
+    [self.serviceRequest startV3UserSafetyInfo] ;
 }
 
 

@@ -74,10 +74,11 @@
         }
         UILabel *sysBadgeLab = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 15, 15)];
         sysBadgeLab.backgroundColor = [UIColor redColor] ;
-        sysBadgeLab.layer.cornerRadius = 7.5;
+        
+        sysBadgeLab.layer.cornerRadius = 7.5f;
         sysBadgeLab.layer.masksToBounds = YES;
         sysBadgeLab.textColor = [UIColor whiteColor] ;
-        sysBadgeLab.font = [UIFont systemFontOfSize:8.f];
+        sysBadgeLab.font = [UIFont systemFontOfSize:7.f];
         sysBadgeLab.textAlignment = NSTextAlignmentCenter;
         sysBadgeLab.hidden = YES;
         [self addSubview:sysBadgeLab];
@@ -87,7 +88,14 @@
             NSLog(@"%@",note) ;
             if (model1.sysMsgUnreadCount &&[model1.sysMsgUnreadCount integerValue] > 0) {
                 _sysBadge.hidden = NO ;
-                _sysBadge.text = model1.sysMsgUnreadCount ;
+                if ([model1.sysMsgUnreadCount integerValue] > 99) {
+                    _sysBadge.text = @"99+" ;
+                    _sysBadge.font = [UIFont systemFontOfSize:7.f] ;
+                }else
+                {
+                    _sysBadge.text = model1.sysMsgUnreadCount ;
+                    _sysBadge.font = [UIFont systemFontOfSize:8.f] ;
+                }
             }else
             {
                 _sysBadge.hidden = YES ;
@@ -110,14 +118,16 @@
                 mineBadgeLab.hidden = NO ;
                 if ([model1.mineMsgUnreadCount integerValue]> 99) {
                     mineBadgeLab.text  = @"99+";
+                    mineBadgeLab.font = [UIFont systemFontOfSize:7.f];
                 }else
                 {
                      mineBadgeLab.text = model1.mineMsgUnreadCount ;
+                     mineBadgeLab.font = [UIFont systemFontOfSize:8.f];
                 }
             }else
             {
                 mineBadgeLab.hidden = YES;
-            }
+            }            
         }];
 
         

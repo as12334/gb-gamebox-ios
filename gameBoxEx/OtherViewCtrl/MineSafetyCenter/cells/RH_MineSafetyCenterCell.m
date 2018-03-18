@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
 #import "RH_BankCardModel.h"
+
 @implementation RH_MineSafetyCenterCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
@@ -43,6 +44,7 @@
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
 }
