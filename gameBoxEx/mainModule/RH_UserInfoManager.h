@@ -43,6 +43,7 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 @property (nonatomic,assign,readonly) BOOL isVoiceSwitch    ; //声音开关
 @property (nonatomic,assign,readonly) BOOL isScreenLock     ; //锁屏手势开关
 @property (nonatomic,strong,readonly) NSString *screenLockPassword ; //锁屏手势密码
+@property (nonatomic,assign) BOOL isSetSafetySecertPwd     ; //是否设置安全密码
 //记录最后一次登录的用户名，及时间
 @property(nonatomic,strong,readonly) NSString *loginUserName    ;
 @property(nonatomic,strong,readonly) NSString *loginTime        ;

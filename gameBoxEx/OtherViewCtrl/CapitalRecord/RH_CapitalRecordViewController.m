@@ -66,7 +66,8 @@
 -(void)updateView
 {
     if (self.appDelegate.isLogin){
-        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
+        //资金情况移除
+//        self.navigationBarItem.rightBarButtonItems = @[self.userInfoButtonItem] ;
         [self startUpdateData] ;
         
     }else{

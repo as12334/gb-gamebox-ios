@@ -47,6 +47,10 @@
     
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+    if ([info[@"targetKey"] isEqualToString:@"RH_ModifySafetyPasswordController"]) {
+        self.detailTextLabel.text = manager.isSetSafetySecertPwd?@"修改":@"设置";
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
