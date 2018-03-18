@@ -37,6 +37,7 @@
 @synthesize domainCheckErrorList = _domainCheckErrorList ;
 @synthesize sidString = _sidString ;
 @synthesize updateUserVeifyCode = _updateUserVeifyCode ;
+@synthesize isSetSafetySecertPwd = _isSetSafetySecertPwd ;
 
 +(instancetype)shareUserManager
 {
@@ -269,11 +270,22 @@
 {
     return _updateUserVeifyCode ;
 }
-
 -(void)setUpdateUserVeifyCode:(BOOL)updateUserVeifyCode
 {
     if (updateUserVeifyCode != _updateUserVeifyCode) {
         _updateUserVeifyCode = updateUserVeifyCode ;
+    }
+}
+
+-(BOOL)isSetSafetySecertPwd
+{
+    return _isSetSafetySecertPwd ;
+}
+
+-(void)setIsSetSafetySecertPwd:(BOOL)isSetSafetySecertPwd
+{
+    if (isSetSafetySecertPwd != _isSetSafetySecertPwd) {
+        _isSetSafetySecertPwd = isSetSafetySecertPwd ;
     }
 }
 

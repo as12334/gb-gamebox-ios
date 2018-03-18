@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
 #import "RH_BankCardModel.h"
+
 @implementation RH_MineSafetyCenterCell
 
 + (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
@@ -43,8 +44,13 @@
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    
     self.detailTextLabel.text = info[@"detailTitle"];
     self.textLabel.text = info[@"title"];
+    RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+    if ([info[@"targetKey"] isEqualToString:@"RH_ModifySafetyPasswordController"]) {
+        self.detailTextLabel.text = manager.isSetSafetySecertPwd?@"修改":@"设置";
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

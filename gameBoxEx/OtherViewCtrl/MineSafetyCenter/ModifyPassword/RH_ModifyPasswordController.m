@@ -165,13 +165,31 @@
     NSString *currentPwd = self.currentPasswordCell.textField.text;
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
-    if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0) {
-        showMessage(self.view, @"错误", @"请输入密码");
+    if (currentPwd.length == 0) {
+        showMessage(self.view, @"错误", @"请输入当前密码");
         return;
     }
+    
+    if (newPwd.length == 0 ) {
+        showMessage(self.view, @"错误", @"请输入新密码");
+        return;
+    }
+    
+    if (newPwd2.length == 0) {
+        showMessage(self.view, @"错误", @"请再次输入新密码");
+        return;
+    }
+    
+    
     if (newPwd.length < 6 || newPwd2.length < 6) {
         showMessage(self.view, @"提示", @"密码至少六位");
         return;
+    }
+    if (newPwd.length>0 && newPwd2.length>0) {
+        if (![newPwd isEqualToString:newPwd2]) {
+            showMessage(self.view, nil, @"两次输入的密码不一样！");
+            return;
+        }
     }
     //密码升序或者降序
     if (isDescendingAndPwdisAscendingPwd(newPwd) &&isDescendingAndPwdisAscendingPwd(newPwd2)) {
@@ -183,15 +201,6 @@
         showMessage(self.view, @"提示", @"密码过于简单");
         return;
     }
-    if (![newPwd isEqualToString:newPwd2]) {
-        showMessage(self.view, nil, @"两次输入的密码不一样！");
-        return;
-    }
-    if ([newPwd isEqualToString:currentPwd]) {
-        showMessage(self.view, nil, @"新密码与旧密码一样！");
-        return;
-    }
-    
     if (self.passwordCodeCell){//需要输入验证码
         if (self.passwordCodeCell.passwordCode.length<1){
             showMessage(self.view, nil, @"请输入验证码！");
@@ -266,10 +275,13 @@
             _infoManager.updateUserVeifyCode = YES ;
         }
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
-            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]+1] ;
         }
-        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 0 || [userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 5) {
-            self.label_Notice.hidden = YES ;
+        if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 5) {
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有1次机会"] ;
+        }else
+        {
+             self.label_Notice.hidden = NO ;
         }
         //在这里判断状态码， 如果冻结，就直接退出APP
         //TODO

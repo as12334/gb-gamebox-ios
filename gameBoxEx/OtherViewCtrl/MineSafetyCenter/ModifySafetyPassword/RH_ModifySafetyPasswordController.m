@@ -223,16 +223,40 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             [self.userNameCell.textField becomeFirstResponder] ;
             return ;
         }
-        
         if (newPassword.length<1){
             showMessage(self.view, nil, @"请输入新密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
+       
+        if (newPassword.length > 6) {
+            showMessage(self.view, nil, @"请输入6位新数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (!isNumberSecert(newPassword)) {
+            showMessage(self.view, nil, @"请输入数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        
         
         if (confirmPassword.length<1){
             showMessage(self.view, nil, @"请再次输入新密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        if (confirmPassword.length > 6) {
+            showMessage(self.view, nil, @"请再次输入6位新数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (!isNumberSecert(confirmPassword)) {
+            showMessage(self.view, nil, @"请输入数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
@@ -249,7 +273,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
                 return;
             }
         }
-        
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
         [self.serviceRequest startV3ModifySafePasswordWithRealName:realName
                                                     originPassword:nil
@@ -271,20 +294,56 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (oldPassword.length<1){
-            showMessage(self.view, nil, @"请输入旧密码");
+            showMessage(self.view, nil, @"请输入旧数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+       
+        if (oldPassword.length > 6) {
+            showMessage(self.view, nil, @"请输入6位旧数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (!isNumberSecert(oldPassword)) {
+            showMessage(self.view, nil, @"请输入数字密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
         if (newPassword.length<1){
-            showMessage(self.view, nil, @"请输入新密码");
+            showMessage(self.view, nil, @"请输入新数字密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (newPassword.length > 6) {
+            showMessage(self.view, nil, @"请输入6位新数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (!isNumberSecert(newPassword)) {
+            showMessage(self.view, nil, @"请输入新数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
         if (confirmPassword.length<1){
             showMessage(self.view, nil, @"请再次输入新密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (confirmPassword.length > 6) {
+            showMessage(self.view, nil, @"请再次输入6位新密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (!isNumberSecert(confirmPassword)) {
+            showMessage(self.view, nil, @"请再次输入数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
@@ -295,10 +354,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         if (verifyCode.length < 1) {
             showMessage(self.view, nil, @"请输入验证码！");
-            return ;
-        }
-        if ([oldPassword isEqualToString:newPassword]) {
-            showMessage(self.view, nil, @"新密码不能和旧密码一样！");
             return ;
         }
         [self showProgressIndicatorViewWithAnimated:YES title:@"正在设置..."] ;
@@ -323,20 +378,53 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (oldPassword.length<1){
-            showMessage(self.view, nil, @"请输入旧密码");
+            showMessage(self.view, nil, @"请输入旧数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+       
+        if (oldPassword.length > 6) {
+            showMessage(self.view, nil, @"请输入6位旧数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+
+        if (!isNumberSecert(oldPassword)) {
+            showMessage(self.view, nil, @"请输入数字密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
         if (newPassword.length<1){
-            showMessage(self.view, nil, @"请输入新密码");
+            showMessage(self.view, nil, @"请输入新数字密码");
             [self.userNewPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
+        if (newPassword.length > 6) {
+            showMessage(self.view, nil, @"请输入6位新数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        if (!isNumberSecert(newPassword)) {
+            showMessage(self.view, nil, @"请输入数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请再次输入新密码");
+            showMessage(self.view, nil, @"请再次输入新数字密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        
+        if (confirmPassword.length > 6) {
+            showMessage(self.view, nil, @"请再次输入6位新数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
+            return ;
+        }
+        if (!isNumberSecert(confirmPassword)) {
+            showMessage(self.view, nil, @"请再次输入数字密码");
+            [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         

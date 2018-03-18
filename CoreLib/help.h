@@ -265,6 +265,8 @@ BOOL isSidStr(NSString *sidStr) ;
 NSArray * matchString(NSString *string) ;
 //长SID 匹配数组
 NSArray * matchLongString(NSString *string) ;
+#pragma mark - 纯数字正则
+BOOL isNumberSecert(NSString *secPassword) ;
 //密码正则
 BOOL isSimplePwd(NSString *password);
 #pragma mark -- 是否升序

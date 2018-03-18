@@ -148,17 +148,20 @@
     if ([THEMEV3 isEqualToString:@"green"]){
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Green ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
     }else if ([THEMEV3 isEqualToString:@"red"]){
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Red ;
+         [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
     }else if ([THEMEV3 isEqualToString:@"black"]){
         //设置开启颜色
-        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Black ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
     }else{
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
     }
-    [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
     self.rememberPwdLab.textColor = colorWithRGB(85, 85, 85) ;
     
     //设置关闭颜色

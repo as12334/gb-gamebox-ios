@@ -26,7 +26,7 @@
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor clearColor] ;
     self.moreImageView.whc_RightSpace(0).whc_CenterY(0).whc_Width(3).whc_Height(20);
-    self.labUserName.whc_RightSpaceToView(0, self.moreImageView).whc_CenterY(-5).whc_Width(20).whc_Height(8);
+    self.labUserName.whc_RightSpaceToView(3, self.moreImageView).whc_CenterY(-7).whc_WidthAuto().whc_HeightAuto();
     
     
     
@@ -53,7 +53,7 @@
     RH_MineInfoModel *userInfoModel = MineSettingInfo ;
     if (userInfoModel){
         self.labUserName.text = userInfoModel.mUserName ;
-        self.labBalance.whc_RightSpaceToView(0, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_WidthAuto().whc_Height(15);
+        self.labBalance.whc_RightSpaceToView(3, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_WidthAuto().whc_Height(15);
         self.leftImageView.whc_RightSpaceToView(2, self.labBalance).whc_TopSpaceToView(4, self.labUserName).whc_Width(6).whc_Height(6);
         self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userInfoModel.mCurrency,userInfoModel.showTotalAssets] ;
     }

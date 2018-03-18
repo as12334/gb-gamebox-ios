@@ -70,6 +70,12 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     return StatusBarHeight+NavigationBarHeight ;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [self.serviceRequest startV3UserSafetyInfo] ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -78,6 +84,7 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
     [self.serviceRequest startV3UserInfo] ;
+    [self.serviceRequest startV3UserSafetyInfo] ;
 }
 
 
@@ -178,6 +185,12 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
 //       self.mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, infoModel.mUserSetting);
 //        [self.tableViewManagement reloadData];
         [self setNeedUpdateView] ;
+    }else if (type == ServiceRequestTypeV3UserSafeInfo)
+    {
+        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+        RH_UserSafetyCodeModel *codeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, data) ;
+        manager.isSetSafetySecertPwd = codeModel.mHasPersimmionPwd ;
+        
     }
 }
 
