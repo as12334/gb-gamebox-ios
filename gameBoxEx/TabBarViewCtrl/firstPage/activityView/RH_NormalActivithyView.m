@@ -61,8 +61,21 @@
 -(void)setActivityModel:(RH_ActivityModel *)activityModel
 {
     _activityModel = activityModel;
-    self.descriptionTextView.text = self.activityModel.mDescription;
+    self.descriptionTextView.text = [NSString stringWithFormat:@"%@",[self filterHTML:self.activityModel.mDescription]] ;
 }
+
+-(NSString *)filterHTML:(NSString *)html{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    return html;
+}
+
 -(void)setStatusModel:(RH_ActivityStatusModel *)statusModel
 {
 //    if (![_statusModel isEqual:statusModel]) {
@@ -213,7 +226,7 @@
 }
 - (IBAction)gameRuleSeletcd:(id)sender {
     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-03"];
-    self.descriptionTextView.text = self.activityModel.mDescription;
+    self.descriptionTextView.text = [NSString stringWithFormat:@"%@",[self filterHTML:self.activityModel.mDescription]] ;
     [self.normalBackDropView setHidden: YES];
     [self.activityRuleDropView setHidden:NO];
     [self.openActivityView setHidden:YES];
@@ -234,7 +247,7 @@
 }
 - (IBAction)firstOpenRuleSelected:(id)sender {
     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-03"];
-    self.descriptionTextView.text = self.activityModel.mDescription;
+    self.descriptionTextView.text = [NSString stringWithFormat:@"%@",[self filterHTML:self.activityModel.mDescription]] ;
     [self.normalBackDropView setHidden: YES];
     [self.activityRuleDropView setHidden:NO];
     [self.openActivityView setHidden:YES];

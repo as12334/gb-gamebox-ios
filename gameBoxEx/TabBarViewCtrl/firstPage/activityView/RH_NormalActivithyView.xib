@@ -102,11 +102,11 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L4a-hn-l52">
-                            <rect key="frame" x="20" y="48" width="86" height="110"/>
+                            <rect key="frame" x="20" y="55" width="86" height="105"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="86" id="OhJ-D8-7WX"/>
-                                <constraint firstAttribute="height" constant="110" id="fuH-qy-3cB"/>
+                                <constraint firstAttribute="height" constant="105" id="fuH-qy-3cB"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -116,7 +116,7 @@
                         <constraint firstItem="L4a-hn-l52" firstAttribute="centerX" secondItem="Wnb-RP-7FQ" secondAttribute="centerX" id="6z1-1e-vEA"/>
                         <constraint firstItem="BbP-Zr-dgT" firstAttribute="centerX" secondItem="Wnb-RP-7FQ" secondAttribute="centerX" id="Eis-AV-FSp"/>
                         <constraint firstAttribute="bottom" secondItem="BbP-Zr-dgT" secondAttribute="bottom" constant="8" id="GZ0-k2-Znz"/>
-                        <constraint firstItem="BbP-Zr-dgT" firstAttribute="top" secondItem="L4a-hn-l52" secondAttribute="bottom" constant="14" id="kH1-gP-5gv"/>
+                        <constraint firstItem="BbP-Zr-dgT" firstAttribute="top" secondItem="L4a-hn-l52" secondAttribute="bottom" constant="12" id="kH1-gP-5gv"/>
                         <constraint firstAttribute="height" constant="206" id="nC8-ej-t5u"/>
                         <constraint firstAttribute="width" constant="126" id="yhN-BR-F1q"/>
                     </constraints>
