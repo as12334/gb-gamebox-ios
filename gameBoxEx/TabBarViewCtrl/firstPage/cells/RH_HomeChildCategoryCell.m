@@ -36,11 +36,11 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor clearColor] ;
-    self.contentView.backgroundColor = [UIColor whiteColor] ;
+    self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    self.contentView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     _selectedIndex = 0 ;
-    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
     [self configureCollection:self.collectionView] ;
     
     self.lineView.backgroundColor = colorWithRGB(226, 226, 226) ;

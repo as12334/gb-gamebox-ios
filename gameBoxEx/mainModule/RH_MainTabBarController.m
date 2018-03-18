@@ -75,6 +75,10 @@
         [self setValue:tabbar forKey:@"tabBar"];
         [RH_CustomTabBar appearance].translucent = NO;
         [RH_CustomTabBar appearance].barTintColor = RH_TabBar_BackgroundColor ;
+        
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            [RH_CustomTabBar appearance].barTintColor = RH_NavigationBar_BackgroundColor_Black ;
+        }
     }
     
 //    self.view.backgroundColor = [UIColor blackColor];
@@ -315,7 +319,6 @@
 
         //隐藏所有子视图
         [[self class] hideAllSubViews:NO];
-
         //查找并显示
         NSUInteger index = 0;
         for (UINavigationController * viewController in self.viewControllers) {

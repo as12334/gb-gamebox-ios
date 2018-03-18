@@ -78,7 +78,7 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     collectionView.collectionViewLayout = flowLayout ;
-    collectionView.backgroundColor = [UIColor clearColor];
+    collectionView.backgroundColor = colorWithRGB(37, 37, 37);
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.delegate = self;
     collectionView.dataSource = self;

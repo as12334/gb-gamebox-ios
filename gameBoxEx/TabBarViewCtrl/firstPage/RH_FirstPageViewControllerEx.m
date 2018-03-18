@@ -198,7 +198,7 @@
     [self.contentTableView registerCellWithClass:[RH_HomeChildCategoryCell class]] ;
     
     [self.contentView addSubview:self.contentTableView] ;
-    self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
+    self.contentTableView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
     [self setupPageLoadManager] ;
     
     UIView *foot_View = [UIView new];
@@ -209,6 +209,10 @@
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
+    if ([THEMEV3 isEqualToString:@"black"])
+    {
+        label.textColor = [UIColor whiteColor];
+    }
     label.text = @"COPYRIGHT © 2004-2018";
     self.contentTableView.tableFooterView = foot_View;
 }

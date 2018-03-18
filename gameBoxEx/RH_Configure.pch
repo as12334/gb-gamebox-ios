@@ -85,7 +85,7 @@
 //    站点配制
 //===========================================================
 
-#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 #define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
@@ -916,7 +916,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _ixyu //美高梅娱乐城
+#elif _ixyu //众博国际娱乐城
 
 #define CODE    @"ixyu"
 #define S        @"7aa03eb5c0997aa7ad934ece05ff6ce7"
@@ -1156,7 +1156,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"lottery"
 
-#elif _x70n //澳门美高梅
+#elif _x70n //新葡京娱乐场
 
 #define CODE    @"x70n"
 #define S        @"a3fe8abcdf5c2864c2a8f965b161106a"

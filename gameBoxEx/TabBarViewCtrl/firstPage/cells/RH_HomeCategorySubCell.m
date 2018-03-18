@@ -27,10 +27,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
-    self.labTitle.textColor =  RH_Label_DefaultTextColor ;
+    self.labTitle.textColor =  [UIColor whiteColor] ;
     self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
@@ -76,7 +75,7 @@
         
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
-        self.labTitle.textColor = RH_Label_DefaultTextColor ;
+        self.labTitle.textColor = [UIColor whiteColor] ;
     }
 }
 
