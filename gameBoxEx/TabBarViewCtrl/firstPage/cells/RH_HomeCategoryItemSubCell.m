@@ -46,7 +46,7 @@
     self.categoryItem = context ;
     if ([self.categoryItem isKindOfClass:[RH_LotteryAPIInfoModel class]]){
         RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, self.categoryItem) ;
-        self.labTitle.text =  lotteryAPIInfoModel.mName ;
+        self.labTitle.text = lotteryAPIInfoModel.mName ;
         [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:lotteryAPIInfoModel.showCover]] ;
     }else if ([self.categoryItem isKindOfClass:[RH_LotteryInfoModel class]]){
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.categoryItem) ;

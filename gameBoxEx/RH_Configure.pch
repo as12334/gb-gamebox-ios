@@ -93,7 +93,7 @@
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
-#define THEME     @"default.skin"
+//#define THEME     @"default.skin"
 //#define THEMEV3     @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integrated"
 
@@ -168,6 +168,7 @@
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _XH5Z //澳门永利

@@ -439,9 +439,12 @@
 }
 -(void)normalActivityViewCloseActivityClick:(RH_NormalActivithyView *)view
 {
-    
     [self.shadeView removeFromSuperview];
     [self.normalActivityView removeFromSuperview];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.normalActivityView closeClick:self.normalActivityView];
 }
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
@@ -454,7 +457,6 @@
     if (self.appDelegate.isLogin&&NetworkAvailable()){
         RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
         [self.serviceRequest startV3ActivityStaus:homePageModel.mActivityInfo.mActivityID];
-        
         [_hud show:YES];
         [[UIApplication sharedApplication].keyWindow addSubview:_hud];
     }

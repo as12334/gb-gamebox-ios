@@ -165,10 +165,22 @@
     NSString *currentPwd = self.currentPasswordCell.textField.text;
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
-    if (currentPwd.length == 0 || newPwd.length == 0 || newPwd2.length == 0) {
-        showMessage(self.view, @"错误", @"请输入密码");
+    if (currentPwd.length == 0) {
+        showMessage(self.view, @"错误", @"请输入当前密码");
         return;
     }
+    
+    if (newPwd.length == 0 ) {
+        showMessage(self.view, @"错误", @"请输入新密码");
+        return;
+    }
+    
+    if (newPwd2.length == 0) {
+        showMessage(self.view, @"错误", @"请再次输入新密码");
+        return;
+    }
+    
+    
     if (newPwd.length < 6 || newPwd2.length < 6) {
         showMessage(self.view, @"提示", @"密码至少六位");
         return;

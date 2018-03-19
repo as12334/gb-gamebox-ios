@@ -280,12 +280,19 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
         showAlertView(@"提示信息", @"银行名不能为空！") ;
         return ;
     }
-    
-    if (_addBankCardBankCardNumber.length < 10 || _addBankCardBankCardNumber.length > 25){
-        showAlertView(@"提示信息", @"银行卡号不正确(10-25位)！") ;
+    if (_addBankCardBankCardNumber.length == 0) {
+        showAlertView(@"提示信息", @"银行卡号不能为空！") ;
+        return ;
+    }else if (!isNumberSecert(_addBankCardBankCardNumber)){
+        showAlertView(@"提示信息", @"银行卡号格式有误！") ;
         return ;
     }
     
+    if (_addBankCardBankCardNumber.length < 10 || _addBankCardBankCardNumber.length > 25 ){
+        showAlertView(@"提示信息", @"银行卡号不正确(10-25位)！") ;
+        return ;
+    }
+
     if (_addBankCardMasterBankName.length==0){
         showAlertView(@"提示信息", @"开户行不能为空！") ;
         return ;
