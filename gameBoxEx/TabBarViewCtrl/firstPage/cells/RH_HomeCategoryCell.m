@@ -96,7 +96,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_HomeCategorySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_HomeCategorySubCell defaultReuseIdentifier] forIndexPath:indexPath];
-
     [cell updateViewWithInfo:nil context:self.homePageModel.mLotteryCategoryList[indexPath.item]];
     return cell;
 }
@@ -104,7 +103,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     for (RH_HomeCategorySubCell *item in collectionView.visibleCells) {
-        [item setSelected:NO];
+        [item setSelected:YES];
     }
 //    RH_HomeCategorySubCell *item = [collectionView cellForItemAtIndexPath:indexPath];
 //    [item setSelected:YES];

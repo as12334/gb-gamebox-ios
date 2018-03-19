@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1757,6 +1757,14 @@
 #define CODE    @"3mdk"
 #define S        @"75abeacc4d0a3086679751ff456ef5cf"
 #define SID        @"382"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _0001 //站点一
+
+#define CODE    @"0001"
+#define S        @"0352ac58de086e6cfe2831e9f22c825f"
+#define SID        @"1"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
