@@ -32,10 +32,20 @@
     self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain,_urlStr]] ;
 }
 
--(BOOL)navigationBarHidden
-{
-    return YES ;
-}
+//-(BOOL)closeWebBarButtonItemHidden
+//{
+//    return YES ;
+//}
+
+//-(BOOL)navigationBarHidden
+//{
+//    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
+//        return NO ;
+//    }else
+//    {
+//        return YES ;
+//    }
+//}
 
 -(BOOL)tabBarHidden
 {

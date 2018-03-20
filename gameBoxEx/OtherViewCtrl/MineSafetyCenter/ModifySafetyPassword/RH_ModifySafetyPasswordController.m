@@ -482,8 +482,9 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showMessage_b(self.appDelegate.window, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"安全密码设置成功":@"安全密码修改成功", nil, ^{
                 [self backBarButtonItemHandle] ;
+                [serviceRequest startV3UserSafetyInfo];
             });
-            [serviceRequest startV3UserSafetyInfo];
+            
         }] ;
     }else if (type == ServiceRequestTypeV3UserSafeInfo) {
         [self backBarButtonItemHandle];

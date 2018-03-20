@@ -68,7 +68,6 @@
         [self setupURL] ;
     }
     
-    
 }
 
 
@@ -110,10 +109,21 @@
     return YES ;
 }
 
--(BOOL)navigationBarHidden
-{
-    return YES ;
-}
+//-(BOOL)navigationBarHidden
+//{
+//    if ([self.appDelegate.customUrl containsString:@"promo/promoDetail"] ) {
+//        return NO;
+//    }else
+//    {
+//        return YES ;
+//    }
+//    return YES;
+//}
+//
+//-(BOOL)closeWebBarButtonItemHidden
+//{
+//    return YES;
+//}
 
 - (UIImageView *)gameBgImage
 {

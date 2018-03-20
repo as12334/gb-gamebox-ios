@@ -102,22 +102,19 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L4a-hn-l52">
-                            <rect key="frame" x="20" y="55" width="86" height="105"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="86" id="OhJ-D8-7WX"/>
-                                <constraint firstAttribute="height" constant="105" id="fuH-qy-3cB"/>
-                            </constraints>
+                            <rect key="frame" x="20" y="40" width="90" height="120"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="L4a-hn-l52" firstAttribute="centerX" secondItem="Wnb-RP-7FQ" secondAttribute="centerX" id="6z1-1e-vEA"/>
+                        <constraint firstItem="L4a-hn-l52" firstAttribute="leading" secondItem="Wnb-RP-7FQ" secondAttribute="leading" constant="20" id="CC3-tU-eCp"/>
                         <constraint firstItem="BbP-Zr-dgT" firstAttribute="centerX" secondItem="Wnb-RP-7FQ" secondAttribute="centerX" id="Eis-AV-FSp"/>
                         <constraint firstAttribute="bottom" secondItem="BbP-Zr-dgT" secondAttribute="bottom" constant="8" id="GZ0-k2-Znz"/>
-                        <constraint firstItem="BbP-Zr-dgT" firstAttribute="top" secondItem="L4a-hn-l52" secondAttribute="bottom" constant="12" id="kH1-gP-5gv"/>
+                        <constraint firstAttribute="trailing" secondItem="L4a-hn-l52" secondAttribute="trailing" constant="16" id="JmC-CB-BtL"/>
                         <constraint firstAttribute="height" constant="206" id="nC8-ej-t5u"/>
+                        <constraint firstItem="BbP-Zr-dgT" firstAttribute="top" secondItem="L4a-hn-l52" secondAttribute="bottom" constant="12" id="oqs-dB-lP2"/>
+                        <constraint firstItem="L4a-hn-l52" firstAttribute="top" secondItem="Wnb-RP-7FQ" secondAttribute="top" constant="40" id="xFG-XW-nFW"/>
                         <constraint firstAttribute="width" constant="126" id="yhN-BR-F1q"/>
                     </constraints>
                 </view>

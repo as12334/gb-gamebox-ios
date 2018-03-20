@@ -108,7 +108,7 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _DEBUG2 //开发环境 V3  H5  test 01
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
@@ -123,6 +123,7 @@
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 //#define TEST_DOMAIN           @"192.168.0.150"   //cherry
 //#define TEST_DOMAIN           @"192.168.0.183"   //legend
+//#define TEST_DOMAIN           @"192.168.0.176"   //edon
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
@@ -169,7 +170,7 @@
 #define SID        @"71"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default .
-#define SITE_TYPE    @"integratedv3oc"
+#define SITE_TYPE    @"integrated"
 
 #elif _XH5Z //澳门永利
 

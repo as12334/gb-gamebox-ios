@@ -603,7 +603,6 @@
         [self showViewController:[RH_CapitalRecordDetailsController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]]
                           sender:self] ;
     }
-    
     [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
 }
 @end
