@@ -28,7 +28,7 @@
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
 //关闭网页按钮
-@property(nonatomic,strong,readonly) UIBarButtonItem * closeWebBarButtonItem;
+@property(nonatomic,strong) UIBarButtonItem * closeWebBarButtonItem;
 @end
 
 @implementation RH_SimpleWebViewController
@@ -51,7 +51,6 @@
     self.hiddenTabBar = [self tabBarHidden] ;
     self.hiddenNavigationBar = [self navigationBarHidden] ;
     self.navigationBarItem.rightBarButtonItems = nil ;
-
     //webView
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     _webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -202,6 +201,10 @@
     return YES ;
 }
 
+-(BOOL)closeWebBarButtonItemHidden
+{
+    return NO;
+}
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleDefault ;
@@ -392,6 +395,12 @@
                 }else{
                     self.navigationBarItem.leftBarButtonItems = @[self.backBarButtonItem];
                 }
+            }
+            if ([self closeWebBarButtonItemHidden]) {
+                self.navigationBarItem.leftBarButtonItems = @[self.backBarButtonItem];
+            }else
+            {
+                self.navigationBarItem.leftBarButtonItems = @[self.backBarButtonItem,self.closeWebBarButtonItem];
             }
         }
 
@@ -1114,7 +1123,14 @@
 - (UIBarButtonItem *)backBarButtonItem
 {
     if (!_backBarButtonItem) {
-        _backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:ImageWithName(@"title_back") style:UIBarButtonItemStylePlain target:self action:@selector(backButtonItemHandle:)];
+        NSString *imageName;
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"]||[SITE_TYPE isEqualToString:@"integratedv3"]) {
+            imageName = @"ic_back" ;
+        }else
+        {
+              imageName = @"title_back" ;
+        }
+        _backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:ImageWithName(imageName) style:UIBarButtonItemStylePlain target:self action:@selector(backButtonItemHandle:)];
         _backBarButtonItem.tintColor = [UIColor whiteColor] ;
     }
 

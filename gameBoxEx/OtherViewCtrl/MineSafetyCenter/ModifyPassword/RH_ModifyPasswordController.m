@@ -166,17 +166,17 @@
     NSString *newPwd = self.newSettingPasswordCell.textField.text;
     NSString *newPwd2 = self.confirmSettingPasswordCell.textField.text;
     if (currentPwd.length == 0) {
-        showMessage(self.view, @"错误", @"请输入当前密码");
+        showMessage(self.view, nil, @"请输入当前密码");
         return;
     }
     
     if (newPwd.length == 0 ) {
-        showMessage(self.view, @"错误", @"请输入新密码");
+        showMessage(self.view, nil, @"请输入新密码");
         return;
     }
     
     if (newPwd2.length == 0) {
-        showMessage(self.view, @"错误", @"请再次输入新密码");
+        showMessage(self.view, nil, @"请再次输入密码");
         return;
     }
     
