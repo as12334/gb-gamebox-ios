@@ -1761,6 +1761,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _agfn //太阳城
+
+#define CODE    @"agfn"
+#define S        @"3f99d74a8cbed2cf59a8e7f9fe2626e5"
+#define SID        @"386"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _0001 //站点一
 
 #define CODE    @"0001"

@@ -72,12 +72,7 @@
         
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
-<<<<<<< HEAD
         self.labTitle.textColor = [UIColor whiteColor] ;
-=======
-        self.labTitle.textColor = RH_Label_DefaultTextColor ;
-        
->>>>>>> origin/dev_lewis
     }
 }
 

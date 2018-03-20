@@ -30,26 +30,31 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
     self.labTitle.textColor =  colorWithRGB(50, 51, 51) ;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.labTitle.textColor = [UIColor whiteColor];
+    }
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
     self.borderView.layer.cornerRadius = 5.0f ;
-    self.borderView.backgroundColor = colorWithRGB(255, 255, 255) ;
+    self.borderView.backgroundColor = colorWithRGB(37, 37, 37) ;
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
+    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
     if ([THEMEV3 isEqualToString:@"green"]){
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Green:colorWithRGB(255, 255, 255) ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Red:colorWithRGB(255, 255, 255) ;
         
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Black:colorWithRGB(255, 255, 255) ;
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Black:colorWithRGB(69, 69, 69) ;
+        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
     }else{
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor:colorWithRGB(255, 255, 255) ;
     }
-    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
+    
 }
 
 -(void)setSelected:(BOOL)selected

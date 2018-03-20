@@ -99,11 +99,13 @@
             <connections>
                 <outlet property="image_Topup" destination="xs0-RH-dWi" id="YUM-SG-g6c"/>
                 <outlet property="image_Withdraw" destination="adg-mr-ABf" id="Nev-kA-RSY"/>
+                <outlet property="labRecharge" destination="aTL-7y-WS3" id="cAS-zH-l4d"/>
+                <outlet property="labWithdraw" destination="oWt-Oi-iYv" id="Ysh-Kv-nCb"/>
                 <outlet property="rechargeControl" destination="hFb-MB-RUN" id="nqc-Ya-QLd"/>
                 <outlet property="withDrawControl" destination="dsC-1H-Pms" id="XQb-xx-gsX"/>
                 <outlet property="withdrawDealLab" destination="JdS-TC-EcQ" id="qgq-sZ-U4w"/>
             </connections>
-            <point key="canvasLocation" x="119" y="-93"/>
+            <point key="canvasLocation" x="-101" y="-53"/>
         </tableViewCell>
     </objects>
     <resources>

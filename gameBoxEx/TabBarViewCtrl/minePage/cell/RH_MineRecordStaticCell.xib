@@ -46,7 +46,7 @@
                 <outlet property="explainLab" destination="pyF-bl-Y7o" id="79b-Tf-4f6"/>
                 <outlet property="titleLab" destination="UmX-4G-jrP" id="pgJ-pU-8vo"/>
             </connections>
-            <point key="canvasLocation" x="-175.5" y="-155"/>
+            <point key="canvasLocation" x="-204" y="-156"/>
         </view>
     </objects>
     <resources>
