@@ -71,6 +71,7 @@
         [self.contentView addSubview:self.textField];
         self.textField.whc_CenterY(0).whc_RightSpace(20).whc_Height(39).whc_Width(screenSize().width/5*3);
         self.textField.font = [UIFont systemFontOfSize:12];
+        self.textField.tag = 998 ;
         self.selectionOption = CLSelectionOptionHighlighted;
         self.selectionColor = RH_Cell_DefaultHolderColor;
     }
@@ -80,7 +81,6 @@
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
-    
 }
 
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

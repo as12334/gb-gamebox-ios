@@ -97,7 +97,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.serviceRequest startV3GetWithDraw] ;
     }else if ([nt.name isEqualToString:UITextFieldTextDidChangeNotification]){
         UITextField *textF = ConvertToClassPointer(UITextField, nt.object) ;
-        if (textF && [textF isMemberOfClass:[UITextField class]]){
+        // UITextField 条件判断
+        if (textF && [textF isMemberOfClass:[UITextField class]] && textF.tag !=998){
             if (self.mainSegmentControl.selectedSegmentIndex){
                 _bitCoinWithdrawAmount = [textF.text floatValue] ;
             }else
