@@ -77,6 +77,7 @@
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
         self.labTitle.textColor = RH_Label_DefaultTextColor ;
+        
     }
 }
 
