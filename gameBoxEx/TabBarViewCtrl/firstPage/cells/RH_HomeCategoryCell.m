@@ -105,8 +105,6 @@
     for (RH_HomeCategorySubCell *item in collectionView.visibleCells) {
         [item setSelected:YES];
     }
-//    RH_HomeCategorySubCell *item = [collectionView cellForItemAtIndexPath:indexPath];
-//    [item setSelected:YES];
     _selectedIndex = indexPath.item ;
     ifRespondsSelector(self.delegate, @selector(homeCategoryCellDidChangedSelectedIndex:)){
         [self.delegate homeCategoryCellDidChangedSelectedIndex:self] ;

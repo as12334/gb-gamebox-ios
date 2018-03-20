@@ -31,6 +31,9 @@
         _activityModel = activityModel ;
         [self.imgView sd_setImageWithURL:[NSURL URLWithString:_activityModel.showEffectURL]] ;
     }
+    else{
+        [self.imgView setImage:nil];
+    }
 }
 
 #pragma mark-

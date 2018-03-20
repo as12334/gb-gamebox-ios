@@ -40,6 +40,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
                                                  name:NT_LoginStatusChangedNotification object:nil] ;
+    if (self.appDelegate.isLogin) {
+        [self.serviceRequest startV3UserSafetyInfo] ;
+    }
 }
 
 -(void)handleNotification:(NSNotification*)nt
@@ -334,6 +337,12 @@
     }else if (type == ServiceRequestTypeV3GETUSERASSERT)
     {
         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+    }else if (type == ServiceRequestTypeV3UserSafeInfo)
+    {
+        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+        RH_UserSafetyCodeModel *codeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, data) ;
+        manager.isSetSafetySecertPwd = codeModel.mHasPersimmionPwd ;
+        
     }
 }
 

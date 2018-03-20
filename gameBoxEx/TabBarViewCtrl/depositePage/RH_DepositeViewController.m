@@ -18,6 +18,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+//    self.webView.frame = CGRectMake(0, -20, screenSize().width, screenSize().height);
     self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/wallet/deposit/index.html",self.domain]] ;
     [self.webView reload];
 }
@@ -40,6 +41,13 @@
 {
     return YES  ;
 }
+
+//-(BOOL)navigationBarHidden
+//{
+//    return NO ;
+//}
+
+
 
 - (void)dealloc
 {

@@ -568,7 +568,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             if (buttonIndex==1){
                 [self showViewController:[RH_CapitalRecordViewController viewControllerWithContext:nil] sender:nil];
                 _withdrawCashStatus = WithdrawCashStatus_HasOrder ;
-                 [self setNeedUpdateView];
             }else{
                 [self backBarButtonItemHandle] ;
             }
@@ -578,6 +577,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                                    otherButtonTitles:@"资金记录", nil] ;
         
         [alertView show] ;
+         [self setNeedUpdateView];
         [self.serviceRequest startV3UserInfo];
     }else if (type == ServiceRequestTypeWithDrawFee){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;

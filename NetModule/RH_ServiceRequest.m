@@ -1055,7 +1055,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1720,7 +1722,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
         return YES ;
-    }else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
+    }
+    else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
         NSMutableArray *mArr = [NSMutableArray array] ;

@@ -253,6 +253,7 @@
             self.headerView.allChoseBtn.userInteractionEnabled = NO;
             [self loadDataSuccessWithDatas:nil totalCount:0 completedBlock:nil];
         }
+         [self.contentTableView reloadData];
     }
     else if (type==ServiceRequestTypeV3MyMessageMyMessageDelete) {
 //        [self startUpdateData] ;

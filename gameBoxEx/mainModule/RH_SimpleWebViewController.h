@@ -31,10 +31,12 @@ typedef NS_ENUM(NSInteger, RH_WebViewContentShowState) {
 @property(nonatomic,strong) NSString *domain ;
 
 
+
 -(BOOL)backButtonHidden ;
 -(BOOL)navigationBarHidden ;
 -(BOOL)tabBarHidden ;
 -(BOOL)needLogin ;
+-(BOOL)closeWebBarButtonItemHidden ;
 
 //加载指示
 @property(nonatomic,strong,readonly) UIBarButtonItem * loadingBarButtonItem;
