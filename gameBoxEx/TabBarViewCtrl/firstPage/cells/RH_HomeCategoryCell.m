@@ -78,7 +78,7 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     collectionView.collectionViewLayout = flowLayout ;
-    collectionView.backgroundColor = [UIColor clearColor];
+    collectionView.backgroundColor = colorWithRGB(37, 37, 37);
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.delegate = self;
     collectionView.dataSource = self;
@@ -96,7 +96,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_HomeCategorySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_HomeCategorySubCell defaultReuseIdentifier] forIndexPath:indexPath];
-
     [cell updateViewWithInfo:nil context:self.homePageModel.mLotteryCategoryList[indexPath.item]];
     return cell;
 }
@@ -104,7 +103,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     for (RH_HomeCategorySubCell *item in collectionView.visibleCells) {
-        [item setSelected:NO];
+        [item setSelected:YES];
     }
     _selectedIndex = indexPath.item ;
     ifRespondsSelector(self.delegate, @selector(homeCategoryCellDidChangedSelectedIndex:)){

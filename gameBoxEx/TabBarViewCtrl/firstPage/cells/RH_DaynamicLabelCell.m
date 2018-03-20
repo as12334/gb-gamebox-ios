@@ -35,6 +35,7 @@
     _dynamicTimeInterval = 10.0f  ;// default ;
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
+    self.backgroundColor = colorWithRGB(21, 21, 21) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
     if ([THEMEV3 isEqualToString:@"green"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
@@ -54,7 +55,7 @@
     self.labRemark.whc_TopSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(21);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor blackColor];
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = colorWithRGB(226, 226, 226) ;
     self.separatorLineWidth = 1.0f ;
@@ -91,6 +92,9 @@
     self.labScrollText.text = strTmp ;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.labScrollText.textColor = [UIColor whiteColor];
+    }
     self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
     self.labScrollText.frame = CGRectMake(self.scrollView.frameWidth,
                                           floorf((self.scrollView.frameHeigh-self.textSize.height)/2.0),

@@ -27,10 +27,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
-    self.labTitle.textColor =  RH_Label_DefaultTextColor ;
+    self.labTitle.textColor =  [UIColor whiteColor] ;
     self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
@@ -51,22 +50,19 @@
         [self.borderView insertSubview:self.imageB atIndex:0];
         self.imageB.image = ImageWithName(@"nav-hover-bg");
         self.imageB.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
-        
-        
         if (self.lineView.superview==nil){
             self.lineView = [[UIView alloc] init] ;
         }
         [self.borderView insertSubview:self.lineView belowSubview:self.indicatorImgView] ;
-        
         self.lineView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1) ;
-        self.lineView.backgroundColor = colorWithRGB(226, 226, 226);
-        
+        self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
         if ([THEMEV3 isEqualToString:@"green"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Green ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Red ;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Black ;
+            self.labTitle.textColor = colorWithRGB(22, 141, 246) ;
+            self.imageB.image = ImageWithName(@"nav-hover-black-bg");
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
         }
@@ -76,8 +72,7 @@
         
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
-        self.labTitle.textColor = RH_Label_DefaultTextColor ;
-        
+        self.labTitle.textColor = [UIColor whiteColor] ;
     }
 }
 

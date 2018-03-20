@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -918,7 +918,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _ixyu //美高梅娱乐城
+#elif _ixyu //众博国际娱乐城
 
 #define CODE    @"ixyu"
 #define S        @"7aa03eb5c0997aa7ad934ece05ff6ce7"
@@ -1158,7 +1158,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"lottery"
 
-#elif _x70n //澳门美高梅
+#elif _x70n //新葡京娱乐场
 
 #define CODE    @"x70n"
 #define S        @"a3fe8abcdf5c2864c2a8f965b161106a"
@@ -1750,6 +1750,22 @@
 #define CODE    @"wrde"
 #define S        @"bd146695de21fa924ab420c3fdd9e6a2"
 #define SID        @"381"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _3mdk //皇家俱乐部
+
+#define CODE    @"3mdk"
+#define S        @"75abeacc4d0a3086679751ff456ef5cf"
+#define SID        @"382"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _0001 //站点一
+
+#define CODE    @"0001"
+#define S        @"0352ac58de086e6cfe2831e9f22c825f"
+#define SID        @"1"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

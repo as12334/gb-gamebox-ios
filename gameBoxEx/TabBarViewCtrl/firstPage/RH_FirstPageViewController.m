@@ -21,7 +21,7 @@
 {
     [super viewDidLoad] ;
     if (![SITE_TYPE isEqualToString:@"lottery"]){ //非彩票 站
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/mainIndex.html",self.domain]] ;
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.domain]] ;
     }else{
         self.webURL = [NSURL URLWithString:self.domain] ;
     }

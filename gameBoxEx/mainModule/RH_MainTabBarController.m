@@ -75,6 +75,10 @@
         [self setValue:tabbar forKey:@"tabBar"];
         [RH_CustomTabBar appearance].translucent = NO;
         [RH_CustomTabBar appearance].barTintColor = RH_TabBar_BackgroundColor ;
+        
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            [RH_CustomTabBar appearance].barTintColor = RH_NavigationBar_BackgroundColor_Black ;
+        }
     }
     
 //    self.view.backgroundColor = [UIColor blackColor];
@@ -183,7 +187,7 @@
             homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Black;
+            self.tabBar.tintColor = colorWithRGB(21, 141, 246);
         }else{
             saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -315,7 +319,6 @@
 
         //隐藏所有子视图
         [[self class] hideAllSubViews:NO];
-
         //查找并显示
         NSUInteger index = 0;
         for (UINavigationController * viewController in self.viewControllers) {
