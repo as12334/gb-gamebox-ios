@@ -463,7 +463,7 @@
 //===========================================================
 #pragma mark- v3 首页入口
 //api的路径
-#define RH_API_NAME_HOMEINFO                        @"mobile-api/origin/mainIndex.html"
+#define RH_API_NAME_HOMEINFO                        @"mobile-api/origin"
 //请求参数 无
 
 //返回参数

@@ -1777,6 +1777,54 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _lt1x //金鹰国际
+
+#define CODE    @"lt1x"
+#define S        @"c5b440c9aa0e1cdfcfff8b34cba8dda3"
+#define SID        @"359"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _wjxd //bet365
+
+#define CODE    @"wjxd"
+#define S        @"370b30415132ae26108c9892cedce99c"
+#define SID        @"392"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _palx //大興娱乐
+
+#define CODE    @"palx"
+#define S        @"f4685c68383a005aba9d5dafbac82b85"
+#define SID        @"390"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _1xtq //大庄家娱乐城
+
+#define CODE    @"1xtq"
+#define S        @"e0bad6dbd6a30ba8051f9a3b7f3651b8"
+#define SID        @"385"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _ajco //新葡京娱乐城
+
+#define CODE    @"ajco"
+#define S        @"f8dca777f90a628bd097b7746e9ac5e6"
+#define SID        @"396"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _gm5w //聚福国际
+
+#define CODE    @"gm5w"
+#define S        @"32fc60e36d1c2f3a1a7bd945b1797f5e"
+#define SID        @"397"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #endif
 
 #endif /* RH_Configure_h */
