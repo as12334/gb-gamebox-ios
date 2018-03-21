@@ -24,6 +24,11 @@
     self.selectionColorAlpha = 0.3f ;
     self.titleLab.textColor = colorWithRGB(51, 51, 51);
     self.explainLab.textColor = colorWithRGB(153, 153, 153);
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.titleLab.textColor = [UIColor whiteColor];
+        self.explainLab.textColor = colorWithRGB(240, 240, 240);
+        self.backgroundColor = colorWithRGB(37, 37, 37);
+    }
     self.titleLab.font = [UIFont systemFontOfSize:14];
     self.explainLab.font = [UIFont systemFontOfSize:11];
     

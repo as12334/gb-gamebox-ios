@@ -158,6 +158,7 @@
         
     }else if ([THEMEV3 isEqualToString:@"black"]){
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Black];
+        self.view.backgroundColor = [UIColor blackColor];
     }else{
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
     }

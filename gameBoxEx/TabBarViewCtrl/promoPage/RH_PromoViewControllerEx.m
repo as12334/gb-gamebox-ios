@@ -33,6 +33,9 @@
     //增加login status changed notification
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     self.view.backgroundColor = colorWithRGB(234, 234, 234);
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.view.backgroundColor = [UIColor blackColor];
+    }
     //初始化 优惠类别信息
     [self loadingIndicateViewDidTap:nil] ;
 }

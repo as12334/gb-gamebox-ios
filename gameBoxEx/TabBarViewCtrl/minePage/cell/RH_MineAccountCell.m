@@ -19,6 +19,11 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *image_Topup;
 @property (strong, nonatomic) IBOutlet UIImageView *image_Withdraw;
+
+@property (weak, nonatomic) IBOutlet UILabel *labWithdraw;
+@property (weak, nonatomic) IBOutlet UILabel *labRecharge;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *withdrawDealLab;  //  显示有提现处理的lab
 
 @end
@@ -43,6 +48,13 @@
     [self.contentView addSubview:centerLine];
     centerLine.whc_Center(0, 0).whc_Width(1).whc_Height(25);
     centerLine.backgroundColor = colorWithRGB(242, 242, 242);
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.rechargeControl.backgroundColor = colorWithRGB(37, 37, 37);
+        self.withDrawControl.backgroundColor = colorWithRGB(37, 37, 37);
+        self.labRecharge.textColor = [UIColor whiteColor];
+        self.labWithdraw.textColor = [UIColor whiteColor];
+    }
+    
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
