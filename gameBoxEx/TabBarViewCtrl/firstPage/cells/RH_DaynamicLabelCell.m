@@ -79,13 +79,13 @@
     if ([self.labScrollText.text isEqualToString:strTmp])
         return ;
     if (strTmp.length<10) {
-        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .18;
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .38;
     }else if (strTmp.length>10 && strTmp.length < 100)
     {
-        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .075  ;
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .105  ;
     }else if (strTmp.length>100)
     {
-        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .055  ;
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .085  ;
     }
 //    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
 //    strTmp.length * 0.6 ;// 一个字符 0.5
