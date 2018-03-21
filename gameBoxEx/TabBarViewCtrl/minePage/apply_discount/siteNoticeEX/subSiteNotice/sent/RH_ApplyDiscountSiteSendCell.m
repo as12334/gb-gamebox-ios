@@ -16,7 +16,7 @@
 #define NSNotiCenterSubmitSuccessNT  @"NSNotiCenterSubmitSuccess"
 @interface RH_ApplyDiscountSiteSendCell ()<RH_ServiceRequestDelegate,RH_SiteSendMessageViewDelegate>
 @property(nonatomic,strong,readonly)RH_SiteSendMessageView *sendView;
-@property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
+
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property(nonatomic,copy)NSString  *typeStr;

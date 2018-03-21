@@ -17,7 +17,10 @@
 @interface RH_ApplyDiscountViewController ()<CLPageViewDelegate,CLPageViewDatasource,discountTypeHeaderViewDelegate,ApplyDiscountPageCellDelegate,ApplyDiscountSystemPageCellDelegate>
 @property(nonatomic,strong,readonly)RH_ApplyDiscountHeaderView *headerView;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
-@property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; 
+@property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
+@property(nonatomic,strong)RH_ApplyDiscountPageCell *gameCell;
+@property(nonatomic,strong)RH_ApplyDiscountSystemPageCell *systemCell;
+@property(nonatomic,strong)RH_ApplyDiscountSitePageCell *sendCell;
 @end
 
 @implementation RH_ApplyDiscountViewController
@@ -77,11 +80,19 @@
     }
     return _headerView;
 }
+-(void)TouchSegmentedControlAndRemoveSuperView:(RH_ApplyDiscountHeaderView *)discountTypeHeaderView
+{
+    [self.gameCell.listView removeFromSuperview];
+    [self.systemCell.listView removeFromSuperview];
+    [self.sendCell.siteSendCell.listView removeFromSuperview];
+}
+
 #pragma mark 离开此控制器，移除通知
 -(void)viewWillDisappear:(BOOL)animated
 {
      [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 #pragma mark 分页视图
 -(CLPageView *)pageView
 {
@@ -114,18 +125,21 @@
         RH_ApplyDiscountPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         cell.delegate = self;
+        _gameCell = cell;
         return cell;
     }
     else if (pageIndex==1){
         RH_ApplyDiscountSystemPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSystemPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
         cell.delegate=self;
+        _systemCell = cell;
         return cell;
     }
     else if (pageIndex ==2)
     {
         RH_ApplyDiscountSitePageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSitePageCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:[self.headerView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex] andSelectedIndex:_selectedIndex] ;
+        _sendCell = cell;
         return cell;
     }
     return nil;

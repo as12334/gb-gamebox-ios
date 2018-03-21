@@ -18,7 +18,6 @@
 @property(nonatomic,strong,readonly) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property (nonatomic,strong,readonly)RH_MPSystemNoticHeaderView *headerView;
-@property (nonatomic,strong,readonly)RH_SystemNoticeListView *listView;
 @property (nonatomic,assign)NSInteger apiId;
 @property(nonatomic,strong)NSArray *dataArr ;
 @end
@@ -84,7 +83,6 @@
         [self startUpdateData] ;
     }
 }
-
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
 //    [self startUpdateData] ;
@@ -212,17 +210,18 @@
 {
     if (!self.listView.superview) {
         frame.origin.y +=self.contentTableView.frameY -20.f;
+        frame.size.width +=50;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 200);
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width, 200);
             self.listView.frame = frame;
         }];
     }
     else
     {
         [UIView animateWithDuration:.2f animations:^{
-            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width*1.5, 0);
+            CGRect frame = CGRectMake(self.listView.frame.origin.x, self.listView.frame.origin.y +2, self.listView.frame.size.width, 0);
             self.listView.frame = frame;
         } completion:^(BOOL finished) {
             [self.listView removeFromSuperview];
@@ -440,7 +439,6 @@
     return endDate;
 }
 
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
@@ -449,4 +447,5 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES] ;
     }
 }
+
 @end

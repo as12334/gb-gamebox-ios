@@ -9,6 +9,7 @@
 #import "RH_PageLoadContentPageCell.h"
 #import "RH_DiscountActivityTypeModel.h"
 #import "RH_MPSystemNoticHeaderView.h"
+#import "RH_SystemNoticeListView.h"
 @class RH_ApplyDiscountSystemPageCell;
 @protocol ApplyDiscountSystemPageCellDelegate<NSObject>
 @optional
@@ -21,6 +22,7 @@
 @property(nonatomic,weak)id<ApplyDiscountSystemPageCellDelegate>delegate;
 @property (nonatomic,strong)NSString *startDate;
 @property (nonatomic,strong)NSString *endDate;
+@property (nonatomic,strong,readonly)RH_SystemNoticeListView *listView;
 
 -(void)updateViewWithContext:(CLPageLoadDatasContext*)context ;
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;

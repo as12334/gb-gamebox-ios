@@ -526,11 +526,11 @@
 -(void)activityViewHide{
     if (self.activityView.superview){
         [UIView animateWithDuration:1.0f animations:^{
-            self.activityView.alpha = 0.0f;
+//            self.activityView.alpha = 0.0f;
         } completion:^(BOOL finished) {
-            [self.activityView removeFromSuperview] ;
-            [self.activityView.deleteButton removeFromSuperview];
-            [self.activityView whc_ResetConstraints] ;
+            [self.activityView setHidden:YES] ;
+            [self.activityView.deleteButton setHidden:YES];
+//            [self.activityView whc_ResetConstraints] ;
         }] ;
     }
 }
@@ -546,6 +546,8 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+    [self.activityView setHidden:NO] ;
+    [self.activityView.deleteButton setHidden:NO];
     [self.serviceRequest startV3HomeInfo] ;
     if (self.appDelegate.isLogin) {
          [self.serviceRequest startV3GetUserAssertInfo] ;

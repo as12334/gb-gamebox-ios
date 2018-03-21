@@ -19,6 +19,7 @@
 @property(nonatomic,strong)UIButton *chooseBtn;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
 @property(nonatomic,strong)NSMutableArray *btnArray;
+
 @end
 
 @implementation RH_ApplyDiscountSitePageCell
@@ -151,6 +152,7 @@
 #pragma mark 选择按钮的点击事件
 -(void)selectedChooseBtn:(UIButton *)button
 {
+    [self.siteSendCell.listView removeFromSuperview];
     if (!button.isSelected) {
         self.chooseBtn.selected = !self.chooseBtn.selected;
         self.chooseBtn.backgroundColor = colorWithRGB(226, 226, 226);
@@ -211,6 +213,7 @@
     else if (pageIndex==2){
         RH_ApplyDiscountSiteSendCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ApplyDiscountSiteSendCell defaultReuseIdentifier] forPageIndex:pageIndex];
         [cell updateViewWithType:nil Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex] ] ;
+        self.siteSendCell = cell;
         return cell;
     }
     return nil;

@@ -122,7 +122,10 @@
 {
     if (_selectedIndex!=selectedIndex){
         _selectedIndex = selectedIndex ;
-//        self.segmentedControl.selectedSegmentIndex = _selectedIndex;
+//      self.segmentedControl.selectedSegmentIndex = _selectedIndex;
+    ifRespondsSelector(self.delegate,@selector(TouchSegmentedControlAndRemoveSuperView:)){
+            [self.delegate TouchSegmentedControlAndRemoveSuperView:self];
+        }
     }
 }
 - (void)segmentSelectedClick:(id)sender {
