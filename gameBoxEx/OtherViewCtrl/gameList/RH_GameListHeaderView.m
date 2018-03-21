@@ -80,7 +80,7 @@
             _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
             
         }else if ([THEMEV3 isEqualToString:@"black"]){
-             _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+             _selectionIndicater.backgroundColor = colorWithRGB(22, 142, 246).CGColor;
         }else{
              _selectionIndicater.backgroundColor = RH_NavigationBar_BackgroundColor.CGColor;
         }
@@ -96,7 +96,7 @@
     NSIndexPath * indexPathForSelectedItem = [self.collectionTypeView.indexPathsForSelectedItems firstObject];
     for (NSIndexPath *indexPath in self.collectionTypeView.indexPathsForVisibleItems) {
         RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:indexPath]);
-        [cell setTitleLabelTextColor:colorWithRGB(51, 51, 51)];
+        [cell setTitleLabelTextColor:[UIColor whiteColor]];
     }
     NSIndexPath *index = self.collectionTypeView.indexPathsForSelectedItems.firstObject;
     RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:index]);
@@ -106,7 +106,7 @@
         [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Red];
         
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Black];
+        [cell setTitleLabelTextColor:colorWithRGB(22, 142, 246)];
     }else{
         [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor];
     }
@@ -145,7 +145,7 @@
         _collectionTypeView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ;
         _collectionTypeView.delegate = self ;
         _collectionTypeView.dataSource = self ;
-        _collectionTypeView.backgroundColor = [UIColor clearColor] ;
+        _collectionTypeView.backgroundColor = [UIColor blackColor] ;
         _collectionTypeView.showsHorizontalScrollIndicator = NO;
         [_collectionTypeView registerCellWithClass:[RH_GameCategoryCell class]] ;
     }

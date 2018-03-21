@@ -40,6 +40,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = _lotteryApiModel.mName?:@"列表" ;
+    [self.navigationBar setBackgroundColor:[UIColor blueColor]];
+    [self.navigationBar setTintColor:[UIColor blackColor]];
     [self loadingIndicateViewDidTap:nil] ;
 }
 

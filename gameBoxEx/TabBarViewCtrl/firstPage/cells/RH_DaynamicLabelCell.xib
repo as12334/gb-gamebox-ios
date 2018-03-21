@@ -25,6 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Zrh-pP-Prf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="hTG-oP-2ur"/>
                     <constraint firstItem="Zrh-pP-Prf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iMK-zQ-LQB"/>
@@ -33,7 +34,7 @@
             <connections>
                 <outlet property="labRemark" destination="Zrh-pP-Prf" id="dV3-Y9-RAm"/>
             </connections>
-            <point key="canvasLocation" x="-140" y="-123"/>
+            <point key="canvasLocation" x="-323" y="-29"/>
         </tableViewCell>
     </objects>
 </document>

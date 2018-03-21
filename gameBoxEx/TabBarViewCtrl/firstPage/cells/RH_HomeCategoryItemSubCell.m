@@ -22,12 +22,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
+    self.contentView.backgroundColor = colorWithRGB(37, 37, 37) ;
     self.contentView.layer.cornerRadius = 6.0f ;
     self.contentView.layer.masksToBounds = YES ;
     
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
-    self.labTitle.textColor =  RH_Label_DefaultTextColor ;
+    self.labTitle.textColor =  [UIColor whiteColor] ;
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor =  [UIColor blueColor] ;
     self.selectionColorAlpha = 0.3f ;

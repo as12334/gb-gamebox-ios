@@ -64,7 +64,7 @@
                                    detailText:@"点击页面重试"];
     }else{
         [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
-                                        title:[NSString stringWithFormat:@"[%ld]%@",error.code,error.localizedDescription]
+                                        title:[NSString stringWithFormat:@"%@",error.localizedDescription]
                                    detailText:@"点击页面重试"];
     }
 }
