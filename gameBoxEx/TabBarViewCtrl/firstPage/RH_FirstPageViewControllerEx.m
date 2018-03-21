@@ -415,7 +415,7 @@
 {
     if (!_normalActivityView) {
         _normalActivityView = [RH_NormalActivithyView createInstance];
-        _normalActivityView.frame =CGRectMake(0, 0, screenSize().width, screenSize().height*0.5);
+        _normalActivityView.frame =CGRectMake(0, 0, 300, 350);
         _normalActivityView.center =self.view.center;
         _normalActivityView.delegate = self;
     }

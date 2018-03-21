@@ -234,7 +234,7 @@
         UILabel *nextTimesLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 13)];
         nextTimesLabel.center = CGPointMake(self.normalBackDropView.center.x, self.normalBackDropView.center.y+25);
         nextTimesLabel.text = self.openModel.mNextLotteryTime;
-        nextTimesLabel.font = [UIFont systemFontOfSize:13];
+        nextTimesLabel.font = [UIFont systemFontOfSize:11];
         nextTimesLabel.textColor = colorWithRGB(255, 192, 1);
         nextTimesLabel.textAlignment = NSTextAlignmentCenter;
         self.nextTimesLabel = nextTimesLabel;
