@@ -24,4 +24,6 @@
 @property (nonatomic,weak) id<ActivithyViewDelegate> delegate ;
 @property (nonatomic,strong) RH_ActivityModel *activityModel ;
 @property(nonatomic,strong) IBOutlet UIImageView *imgView ;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+
 @end

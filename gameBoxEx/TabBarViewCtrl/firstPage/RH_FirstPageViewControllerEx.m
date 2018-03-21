@@ -529,6 +529,7 @@
             self.activityView.alpha = 0.0f;
         } completion:^(BOOL finished) {
             [self.activityView removeFromSuperview] ;
+            [self.activityView.deleteButton removeFromSuperview];
             [self.activityView whc_ResetConstraints] ;
         }] ;
     }

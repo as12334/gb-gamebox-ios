@@ -43,6 +43,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="deleteButton" destination="oih-Vc-Ost" id="aai-Tu-8rL"/>
                 <outlet property="imgView" destination="lrJ-n0-mJG" id="eA6-MY-cA5"/>
             </connections>
             <point key="canvasLocation" x="-295" y="-463"/>
