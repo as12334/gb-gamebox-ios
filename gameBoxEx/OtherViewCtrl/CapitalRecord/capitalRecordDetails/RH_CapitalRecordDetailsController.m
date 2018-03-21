@@ -106,7 +106,6 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3DepositListDetails){
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

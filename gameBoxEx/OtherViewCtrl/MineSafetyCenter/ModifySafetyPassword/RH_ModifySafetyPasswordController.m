@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 @property (nonatomic, strong,readonly) UIView *footerView ;
 @property (nonatomic, strong,readonly) UIButton *modifyButton ;
 @property (nonatomic, strong)           UILabel *label_Notice ;
+@property (nonatomic,assign) BOOL isInitSuccess ;
 @end
 
 @implementation RH_ModifySafetyPasswordController
@@ -51,35 +52,45 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     return YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+     [self.serviceRequest startV3GetWithDraw] ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = _titleStr?:@"修改安全密码";
     [self setupInfo];
     [self setNeedUpdateView] ;
     self.needObserverTapGesture = YES ;
+    self.isInitSuccess = NO ;
 }
 
 - (void)setupInfo {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
-    self.contentTableView.tableFooterView = self.footerView ;
     
     UIView *view_Footer = [[UIView alloc] init];
     view_Footer.frame = CGRectMake(0, 0, screenSize().width, 150);
     self.contentTableView.tableFooterView = view_Footer;
     
     [view_Footer addSubview:self.modifyButton];
-    self.modifyButton.whc_TopSpace(12).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(40);
+    self.modifyButton.whc_TopSpace(32).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(40);
     self.label_Notice = [UILabel new];
+    _label_Notice.font = [UIFont systemFontOfSize:10];
     [view_Footer addSubview:self.label_Notice];
     self.label_Notice.whc_LeftSpace(20).whc_TopSpace(0).whc_Width(screenSize().width/2).whc_Height(30);
 }
 
 -(void)updateView
 {
-    
-    if (UserSafetyInfo==nil){
+    if (self.isInitSuccess) {
+        [self.tableViewManagement reloadDataWithPlistName:@"WithdrawInit"] ;
+        return ;
+    }
+   else if (UserSafetyInfo==nil){
         _modifySafetyStatus = ModifySafetyStatus_Init ;
         [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyInitInfo"] ;
         [self loadingIndicateViewDidTap:nil] ;
@@ -162,18 +173,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
     }
     
     return nil ;
-}
-
-#pragma mark - footerView
--(UIView *)footerView
-{
-    if (!_footerView){
-        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 80)] ;
-        [_footerView addSubview:self.modifyButton];
-        self.modifyButton.whc_TopSpace(12).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(40);
-    }
-    
-    return _footerView ;
 }
 
 -(UIButton *)modifyButton
@@ -330,13 +329,13 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         }
         
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请再次输入新密码");
+            showMessage(self.view, nil, @"请再次输入密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
         if (confirmPassword.length > 6) {
-            showMessage(self.view, nil, @"请再次输入6位新密码");
+            showMessage(self.view, nil, @"请再次输入6位密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -412,13 +411,13 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
             return ;
         }
         if (confirmPassword.length<1){
-            showMessage(self.view, nil, @"请再次输入新数字密码");
+            showMessage(self.view, nil, @"请再次输入数字密码");
             [self.userConfirmPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
         
         if (confirmPassword.length > 6) {
-            showMessage(self.view, nil, @"请再次输入6位新数字密码");
+            showMessage(self.view, nil, @"请再次输入6位数字密码");
             [self.userPermissionCell.textField becomeFirstResponder] ;
             return ;
         }
@@ -461,6 +460,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"初始化安全信息" detailText:@"请稍等"] ;
     [self.serviceRequest startV3UserSafetyInfo] ;
+    [self.serviceRequest startV3GetWithDraw] ;
 }
 
 
@@ -500,7 +500,31 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(self.view, error, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"设定失败":@"更新失败") ;
         }] ;
+         NSDictionary *userInfo = error.userInfo ;
+        if ([userInfo boolValueForKey:@"isOpenCaptcha"]){
+            [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyPasswordUsedCode"] ;
+        }
+        if ([userInfo integerValueForKey:@"remindTimes"]) {
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:@"remindTimes"]] ;
+        }
+        if ([userInfo integerValueForKey:@"remindTimes"] == 5) {
+           self.label_Notice.hidden = YES ;
+        }else
+        {
+            self.label_Notice.hidden = NO ;
+        }
         [self setNeedUpdateView] ;
+    }else if (type == ServiceRequestTypeV3GetWithDrawInfo){
+        if (error.code == 1101) {
+            self.isInitSuccess = YES ;
+            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+           
+        }else
+        {
+            self.isInitSuccess = NO ;
+            [self.contentLoadingIndicateView hiddenView] ;
+        }
+         [self setNeedUpdateView] ;
     }
 }
 

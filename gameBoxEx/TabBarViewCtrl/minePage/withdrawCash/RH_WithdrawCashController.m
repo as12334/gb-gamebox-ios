@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
-   
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
                                                  name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
@@ -97,7 +97,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.serviceRequest startV3GetWithDraw] ;
     }else if ([nt.name isEqualToString:UITextFieldTextDidChangeNotification]){
         UITextField *textF = ConvertToClassPointer(UITextField, nt.object) ;
-        if (textF && [textF isMemberOfClass:[UITextField class]]){
+        // UITextField 条件判断
+        if (textF && [textF isMemberOfClass:[UITextField class]] && textF.tag !=998){
             if (self.mainSegmentControl.selectedSegmentIndex){
                 _bitCoinWithdrawAmount = [textF.text floatValue] ;
             }else
@@ -610,6 +611,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         NSDictionary *userInfo = error.userInfo ;
         NSString *token = [userInfo stringValueForKey:@"token"] ;
         [self.withDrawModel updateToken:token] ;
+        if (error.code == 1101) {
+            [self.navigationController popViewControllerAnimated:YES] ;
+        }
     }else if (type == ServiceRequestTypeWithDrawFee){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(self.view, error, @"费率计算失败") ;

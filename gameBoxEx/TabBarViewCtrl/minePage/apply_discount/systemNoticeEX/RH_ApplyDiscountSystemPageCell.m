@@ -150,7 +150,6 @@
     if (type==ServiceRequestTypeV3SystemNotice )
     {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
-        showErrorMessage(nil, error, nil) ;
         [self loadDataFailWithError:error] ;
     }
 }

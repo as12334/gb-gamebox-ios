@@ -193,12 +193,12 @@
     }
     //密码升序或者降序
     if (isDescendingAndPwdisAscendingPwd(newPwd) &&isDescendingAndPwdisAscendingPwd(newPwd2)) {
-        showMessage(self.view, @"提示", @"密码过于简单");
+        showMessage(self.view, @"提示", @"新密码过于简单");
         return;
     }
     //三位以上的重复数字
     if (isSameMoreThreePwd(newPwd) &&isSameMoreThreePwd(newPwd2)) {
-        showMessage(self.view, @"提示", @"密码过于简单");
+        showMessage(self.view, @"提示", @"新密码过于简单");
         return;
     }
     if (self.passwordCodeCell){//需要输入验证码
