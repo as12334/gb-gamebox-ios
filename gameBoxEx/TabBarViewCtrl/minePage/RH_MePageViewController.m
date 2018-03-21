@@ -364,8 +364,12 @@
         }] ;
     }else if (type == ServiceRequestTypeV3GETUSERASSERT)
     {
+        
         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
         showErrorMessage(self.view, error, @"");
+        if (error.code == RH_API_ERRORCODE_SESSION_TAKEOUT) {
+             [self.appDelegate updateLoginStatus:NO] ;
+        }
     }
 }
 
