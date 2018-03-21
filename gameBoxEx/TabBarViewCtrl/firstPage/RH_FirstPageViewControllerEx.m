@@ -624,7 +624,7 @@
         
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+            showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
@@ -644,7 +644,7 @@
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(nil, error, @"数据回收失败") ;
+            showErrorMessage(nil, error, @"资金回收失败") ;
         }] ;
     }
     else if (type==ServiceRequestTypeV3ActivityStatus){
