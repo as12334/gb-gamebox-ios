@@ -342,16 +342,18 @@
     
     }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid){
-        [self.contentLoadingIndicateView hiddenView] ;
+//        [self.contentLoadingIndicateView hiddenView] ;
         RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
         if (manager.sidString.length==0) {
             showErrorMessage(self.view, nil, @"登录信息初始化失败");
+
+            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
         }else
         {
             self.isInitOk = YES;
-            [self setNeedUpdateView];
+             [self.contentLoadingIndicateView hiddenView] ;
         }
-        
+         [self setNeedUpdateView];
     }
 
 }
