@@ -8,8 +8,10 @@
 
 #import "RH_PageLoadContentPageCell.h"
 #import "RH_DiscountActivityTypeModel.h"
+#import "RH_SiteSendMessagePullDownView.h"
 //RH_PageLoadContentPageCell
 typedef void (^SiteSendMessageViewSubmitSuccessBlock)(NSString *titelStr,NSString *contenStr);
 @interface RH_ApplyDiscountSiteSendCell :CLScrollContentPageCell
+@property(nonatomic,strong,readonly)RH_SiteSendMessagePullDownView *listView;
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;
 @end

@@ -27,7 +27,7 @@
 //@property (nonatomic,strong) RH_DiscountActivityTypeModel *typeModel ;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property (nonatomic,strong,readonly)RH_MPGameNoticHeaderView *headerView;
-@property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
+
 @property (nonatomic,assign)NSInteger apiId;
 @end
 
@@ -250,7 +250,6 @@
 {
     if (!self.listView.superview) {
         frame.origin.y +=30;
-        frame.size.width+=100;
         self.listView.frame = frame;
         [self addSubview:self.listView];
         [UIView animateWithDuration:.2f animations:^{

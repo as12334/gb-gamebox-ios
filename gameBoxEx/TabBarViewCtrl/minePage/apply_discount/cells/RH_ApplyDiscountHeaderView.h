@@ -12,6 +12,7 @@
 @protocol discountTypeHeaderViewDelegate<NSObject>
 @optional
 -(void)DiscountTypeHeaderViewDidChangedSelectedIndex:(RH_ApplyDiscountHeaderView*)discountTypeHeaderView SelectedIndex:(NSInteger)selectedIndex ;
+-(void)TouchSegmentedControlAndRemoveSuperView:(RH_ApplyDiscountHeaderView *)discountTypeHeaderView;
 @end
 @interface RH_ApplyDiscountHeaderView : UIView
 @property (nonatomic,weak) id<discountTypeHeaderViewDelegate> delegate ;

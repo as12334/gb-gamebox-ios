@@ -9,6 +9,7 @@
 #import "RH_PageLoadContentPageCell.h"
 #import "RH_DiscountActivityTypeModel.h"
 #import "RH_MPGameNoticHeaderView.h"
+#import "RH_MPGameNoticePulldownView.h"
 @class RH_ApplyDiscountPageCell;
 @protocol ApplyDiscountPageCellDelegate<NSObject>
 @optional
@@ -21,6 +22,7 @@
 @property(nonatomic,weak)id<ApplyDiscountPageCellDelegate>delegate;
 @property (nonatomic,strong)NSString *startDate;
 @property (nonatomic,strong)NSString *endDate;
+@property (nonatomic,strong,readonly)RH_MPGameNoticePulldownView *listView;
 
 
 -(void)updateViewWithType:(RH_DiscountActivityTypeModel*)typeModel  Context:(CLPageLoadDatasContext*)context ;

@@ -30,6 +30,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *openActitvtyTitle;
 @property (nonatomic,strong)NSString *getCurrentTime;
+
+@property(nonatomic,strong)UILabel *nextTimeTitleLabel;
+@property (nonatomic,strong)UILabel *nextTimesLabel;
 @end
 @implementation RH_NormalActivithyView
 
@@ -41,12 +44,14 @@
         [self.normalBackDropView setHidden: NO];
         [self.openActivityView setHidden:YES];
         
+        
     }
     return self;
 }
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    [self.openActitvtyTitle setHidden:YES];
 }
 #pragma mark -确定按钮点击
 -(void)setActivityModel:(RH_ActivityModel *)activityModel
@@ -71,26 +76,28 @@
 {
 //    if (![_statusModel isEqual:statusModel]) {
         _statusModel = statusModel;
-    
         [self.activityTimesLabel setText:[NSString stringWithFormat:@"你还有%@次抽奖机会",self.statusModel.mDrawTimes]];
         self.activityTimesLabel.textColor = [UIColor whiteColor] ;
         if ([self.statusModel.mDrawTimes isEqualToString:@"-1"]) {
             [self.activityTimesLabel setText:@"活动已结束"];
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityFriestBtn.userInteractionEnabled = NO;
-             [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
+            [self.openActitvtyTitle setHidden:NO];
+            [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
         }
         else if ([self.statusModel.mDrawTimes isEqualToString:@"-5"]){
             [self.activityTimesLabel setText:@"红包已抢光"];
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityFriestBtn.userInteractionEnabled = NO;
+            [self.openActitvtyTitle setHidden:NO];
              [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
         }
         else if ([self.statusModel.mDrawTimes isEqualToString:@"0"]){
             [self.activityTimesLabel setText:@"红包已抢光"];
             [self.openActivityFriestBtn setBackgroundImage:[UIImage imageNamed:@"button-can'topen"] forState:UIControlStateNormal];
             self.openActivityFriestBtn.userInteractionEnabled = NO;
-             [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
+            [self.openActitvtyTitle setHidden:NO];
+            [self.nextOpentimeLabel setText:self.statusModel.mNextLotteryTime];
         }
         else
         {
@@ -186,6 +193,8 @@
     self.gainActivityLabel.text = @" ";
     [_confirmLabel removeFromSuperview];
     [_configBtn removeFromSuperview];
+    [_nextTimeTitleLabel removeFromSuperview];
+    [_nextTimesLabel removeFromSuperview];
     self.backDropImageView.image = [UIImage imageNamed:@"hongbao-04"];
     [self.normalBackDropView setHidden: NO];
     [self.openActivityView setHidden:YES];
@@ -219,14 +228,16 @@
         nextTimeTitleLabel.font = [UIFont systemFontOfSize:9];
         nextTimeTitleLabel.textColor = colorWithRGB(255, 192, 1);
         nextTimeTitleLabel.textAlignment = NSTextAlignmentCenter;
+        self.nextTimeTitleLabel = nextTimeTitleLabel;
         [self addSubview:nextTimeTitleLabel];
         
         UILabel *nextTimesLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 13)];
-        nextTimesLabel.center = CGPointMake(self.normalBackDropView.center.x, self.normalBackDropView.center.y+15);
+        nextTimesLabel.center = CGPointMake(self.normalBackDropView.center.x, self.normalBackDropView.center.y+25);
         nextTimesLabel.text = self.openModel.mNextLotteryTime;
-        nextTimesLabel.font = [UIFont systemFontOfSize:13];
+        nextTimesLabel.font = [UIFont systemFontOfSize:11];
         nextTimesLabel.textColor = colorWithRGB(255, 192, 1);
         nextTimesLabel.textAlignment = NSTextAlignmentCenter;
+        self.nextTimesLabel = nextTimesLabel;
         [self addSubview:nextTimesLabel];
     }
     _confirmLabel.font = [UIFont systemFontOfSize:12.f];

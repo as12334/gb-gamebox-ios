@@ -415,7 +415,7 @@
 {
     if (!_normalActivityView) {
         _normalActivityView = [RH_NormalActivithyView createInstance];
-        _normalActivityView.frame =CGRectMake(0, 0, screenSize().width, screenSize().height*0.5);
+        _normalActivityView.frame =CGRectMake(0, 0, 300, 350);
         _normalActivityView.center =self.view.center;
         _normalActivityView.delegate = self;
     }
@@ -526,10 +526,11 @@
 -(void)activityViewHide{
     if (self.activityView.superview){
         [UIView animateWithDuration:1.0f animations:^{
-            self.activityView.alpha = 0.0f;
+//            self.activityView.alpha = 0.0f;
         } completion:^(BOOL finished) {
-            [self.activityView removeFromSuperview] ;
-            [self.activityView whc_ResetConstraints] ;
+            [self.activityView setHidden:YES] ;
+            [self.activityView.deleteButton setHidden:YES];
+//            [self.activityView whc_ResetConstraints] ;
         }] ;
     }
 }
@@ -545,6 +546,8 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+    [self.activityView setHidden:NO] ;
+    [self.activityView.deleteButton setHidden:NO];
     [self.serviceRequest startV3HomeInfo] ;
     if (self.appDelegate.isLogin) {
          [self.serviceRequest startV3GetUserAssertInfo] ;
@@ -621,7 +624,7 @@
         
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"数据回收成功") ;
+            showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
@@ -641,7 +644,7 @@
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(nil, error, @"数据回收失败") ;
+            showErrorMessage(nil, error, @"资金回收失败") ;
         }] ;
     }
     else if (type==ServiceRequestTypeV3ActivityStatus){
