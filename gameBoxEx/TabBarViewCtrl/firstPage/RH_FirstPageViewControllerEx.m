@@ -550,7 +550,8 @@
     [self.activityView.deleteButton setHidden:NO];
     [self.serviceRequest startV3HomeInfo] ;
     if (self.appDelegate.isLogin) {
-         [self.serviceRequest startV3GetUserAssertInfo] ;
+        [self.serviceRequest startV3GetUserAssertInfo] ;
+        [self.serviceRequest startV3RereshUserSessin] ;
     }
 }
 
@@ -626,6 +627,8 @@
             showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
+    }else if (type == ServiceRequestTypeV3RefreshSession){
+        
     }
 }
 
@@ -642,6 +645,7 @@
             showAlertView(@"自动登录失败", @"提示信息");
         }] ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
+        
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(nil, error, @"资金回收失败") ;
         }] ;
@@ -655,6 +659,7 @@
         showErrorMessage(nil, error, @"红包获取失败") ;
         [self.shadeView removeFromSuperview];
         [self.hud hide: YES];
+    }else if (type == ServiceRequestTypeV3RefreshSession){
     }
 }
 
