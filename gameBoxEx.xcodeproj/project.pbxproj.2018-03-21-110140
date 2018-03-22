@@ -518,9 +518,6 @@
 		B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */; };
 		B851139F20146CA300042ADE /* RH_WithdrawHasOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */; };
 		B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */; };
-		B85736912063542600CEC32E /* RH_RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85736902063542600CEC32E /* RH_RegistrationViewController.m */; };
-		B857369320635BCA00CEC32E /* RH_Registration.plist in Resources */ = {isa = PBXBuildFile; fileRef = B857369220635BCA00CEC32E /* RH_Registration.plist */; };
-		B857369620635D8800CEC32E /* RH_RegistrationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B857369520635D8800CEC32E /* RH_RegistrationViewCell.m */; };
 		B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */; };
 		B860F92A201DB699000EE66A /* RH_StaticAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F929201DB699000EE66A /* RH_StaticAlertView.m */; };
 		B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */; };
@@ -565,7 +562,6 @@
 		F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */; };
 		F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */; };
 		F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */; };
-		F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */; };
 		F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */; };
 		F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */; };
 		F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACC7200457980077CB92 /* RH_BettingRecordDetailCell.xib */; };
@@ -1513,11 +1509,6 @@
 		B851139C20146CA300042ADE /* RH_WithdrawHasOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawHasOrderCell.h; sourceTree = "<group>"; };
 		B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawHasOrderCell.m; sourceTree = "<group>"; };
 		B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawHasOrderCell.xib; sourceTree = "<group>"; };
-		B857368F2063542600CEC32E /* RH_RegistrationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegistrationViewController.h; sourceTree = "<group>"; };
-		B85736902063542600CEC32E /* RH_RegistrationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegistrationViewController.m; sourceTree = "<group>"; };
-		B857369220635BCA00CEC32E /* RH_Registration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_Registration.plist; sourceTree = "<group>"; };
-		B857369420635D8800CEC32E /* RH_RegistrationViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegistrationViewCell.h; sourceTree = "<group>"; };
-		B857369520635D8800CEC32E /* RH_RegistrationViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegistrationViewCell.m; sourceTree = "<group>"; };
 		B860F924201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordSpecialCell.h; sourceTree = "<group>"; };
 		B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordSpecialCell.m; sourceTree = "<group>"; };
 		B860F928201DB699000EE66A /* RH_StaticAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_StaticAlertView.h; sourceTree = "<group>"; };
@@ -1594,8 +1585,6 @@
 		F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteSystemDetailCell.xib; sourceTree = "<group>"; };
 		F681D263201B0EA600A7C449 /* RH_ActivityStatusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ActivityStatusModel.h; sourceTree = "<group>"; };
 		F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityStatusModel.m; sourceTree = "<group>"; };
-		F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewControllerEX.h; sourceTree = "<group>"; };
-		F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewControllerEX.m; sourceTree = "<group>"; };
 		F6A2ACC2200457340077CB92 /* RH_BettingRecordDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailController.h; sourceTree = "<group>"; };
 		F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordDetailController.m; sourceTree = "<group>"; };
 		F6A2ACC5200457980077CB92 /* RH_BettingRecordDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailCell.h; sourceTree = "<group>"; };
@@ -2940,11 +2929,8 @@
 		A04E60201F8DAFF000098A65 /* depositePage */ = {
 			isa = PBXGroup;
 			children = (
-				F69E34F92062760A0028D3A1 /* cell */,
 				A04E60211F8DAFF000098A65 /* RH_DepositeViewController.h */,
 				A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */,
-				F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */,
-				F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */,
 			);
 			path = depositePage;
 			sourceTree = "<group>";
@@ -3193,8 +3179,6 @@
 				A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */,
 				79BB2DF82036CC56000CDE6B /* RH_OldUserVerifyView.h */,
 				79BB2DF92036CC56000CDE6B /* RH_OldUserVerifyView.m */,
-				B857369420635D8800CEC32E /* RH_RegistrationViewCell.h */,
-				B857369520635D8800CEC32E /* RH_RegistrationViewCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -3246,9 +3230,6 @@
 				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
 				A06B64A41FD690EA00323C12 /* RH_LoginViewControllerEx.h */,
 				A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */,
-				B857368F2063542600CEC32E /* RH_RegistrationViewController.h */,
-				B85736902063542600CEC32E /* RH_RegistrationViewController.m */,
-				B857369220635BCA00CEC32E /* RH_Registration.plist */,
 			);
 			path = loginViewCtrl;
 			sourceTree = "<group>";
@@ -3632,13 +3613,6 @@
 			path = withdrawCash;
 			sourceTree = "<group>";
 		};
-		F69E34F92062760A0028D3A1 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
 		F6A2ACC1200456D10077CB92 /* bettingRecordDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -4013,7 +3987,6 @@
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				A07AF4F32026DFF500D6D559 /* tab_v3_deposit_selected_red@3x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
-				B857369320635BCA00CEC32E /* RH_Registration.plist in Resources */,
 				228B931920272961008C8313 /* tab_v3_deposit_selected_green@3x.png in Resources */,
 				F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */,
 				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
@@ -4248,7 +4221,6 @@
 				F6FB638C200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m in Sources */,
 				F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */,
 				F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */,
-				F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */,
 				F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */,
@@ -4344,7 +4316,6 @@
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
-				B85736912063542600CEC32E /* RH_RegistrationViewController.m in Sources */,
 				79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */,
 				79BB2DED20346BC2000CDE6B /* RH_ShareSeletedDateView.m in Sources */,
 				79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */,
@@ -4589,7 +4560,6 @@
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
 				A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */,
 				B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */,
-				B857369620635D8800CEC32E /* RH_RegistrationViewCell.m in Sources */,
 				A01181731FFCAB21008F6D1E /* UIView+WHC_AutoLayout.m in Sources */,
 				A0109C671F878199004E6EF4 /* RH_APPDelegate.m in Sources */,
 			);
@@ -4660,9 +4630,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_xc95=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -4673,7 +4643,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid367;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid397;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -4681,13 +4651,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "星空娱乐城";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-367";
+				APP_DISPLAY_NAME = "聚福国际";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-397";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_zrax=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_lnd9=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4697,7 +4667,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid367;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid397;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
