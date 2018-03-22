@@ -578,7 +578,6 @@
             self.normalActivityView.activityModel = homePageModel.mActivityInfo;
         }else{
             [self activityViewHide] ;
-           
         }
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
