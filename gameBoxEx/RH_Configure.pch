@@ -1641,7 +1641,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _xc95 //豪爵娱乐城
+#elif _xc95 //星空娱乐城
 
 #define CODE    @"xc95"
 #define S        @"443110d6d974f61ab6ce1f23f27af7b5"
@@ -1856,6 +1856,14 @@
 #define SID        @"65"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
+
+#elif _4pja //新葡京娱乐城
+
+#define CODE    @"4pja"
+#define S        @"a92f1c2e0e2bc618f0189e71fa3cc943"
+#define SID        @"383"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 
 #endif
