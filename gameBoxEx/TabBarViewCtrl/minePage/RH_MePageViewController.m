@@ -18,6 +18,7 @@
 #import "RH_LoginViewControllerEx.h"
 #import "RH_ApplyDiscountViewController.h"
 #import "RH_MineRecordTableViewCell.h"
+#import "RH_LimitTransferViewController.h" // 额度转换原生
 
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
@@ -281,8 +282,10 @@
         }else{
             NSString *code = [dictInfo stringValueForKey:@"code"] ;
             if ([code isEqualToString:@"transfer"]){
-                self.appDelegate.customUrl = @"/transfer/index.html" ;
-                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                //额度转换
+//                self.appDelegate.customUrl = @"/transfer/index.html" ;
+//                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                [self showViewController:[RH_LimitTransferViewController viewController] sender:self] ;
                 return ;
             }else if ([code isEqualToString:@"gameNotice"]){
                 self.appDelegate.customUrl = @"/message/gameNotice.html?isSendMessage=true" ;
