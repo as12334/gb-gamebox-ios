@@ -7,31 +7,48 @@
 //
 
 #import "RH_RegistrationViewController.h"
+#import "coreLib.h"
+@interface RH_RegistrationViewController ()<CLTableViewManagementDelegate>
 
-@interface RH_RegistrationViewController ()
-
+@property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
+//@property (nonatomic, strong, readonly) <#UIScrollView#> *<#scrollView#>;
 @end
 
 @implementation RH_RegistrationViewController
+@synthesize tableViewManagement = _tableViewManagement;
+
+
+- (BOOL)hasTopView {
+    return NO;
+}
+- (BOOL)hasNavigationBar {
+    return YES;
+}
+- (BOOL)hidesBottomBarWhenPushed {
+    return YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setupInfo];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupInfo {
+    
+    self.title = @"免费注册";
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
+    [self.contentView addSubview:self.contentTableView];
+    [self.tableViewManagement reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (CLTableViewManagement *)tableViewManagement {
+    if (_tableViewManagement == nil) {
+        _tableViewManagement = [[CLTableViewManagement alloc] initWithTableView:self.contentTableView configureFileName:@"RH_Registration" bundle:nil];
+        _tableViewManagement.delegate = self;
+    }
+    return _tableViewManagement;
 }
-*/
 
 @end
