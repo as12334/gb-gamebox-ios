@@ -42,6 +42,7 @@
 #import "RH_ActivityStatusModel.h"
 #import "RH_SiteMsgUnReadCountModel.h"
 #import "RH_SharePlayerRecommendModel.h"
+#import "RH_RegisetInitModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2246,7 +2247,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3RegiestInit:
             {
-                
+                resultSendData = [[RH_RegisetInitModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
             default:

@@ -27,6 +27,7 @@
 @synthesize footerView = _footerView;
 @synthesize tableTopView = _tableTopView ;
 @synthesize selectView = _selectView;
+
 - (BOOL)isSubViewController {
     return  YES;
 }
@@ -214,9 +215,7 @@
 {
     if (type == ServiceRequestTypeV3UserInfo) {
         RH_UserGroupInfoModel *model = ConvertToClassPointer(RH_UserGroupInfoModel, data) ;
-        NSLog(@"%@",model) ;
         RH_MineInfoModel *infoModel = model.mUserSetting ;
-//        NSArray *userApiModel = [RH_UserApiBalanceModel dataArrayWithInfoArray:infoModel.mApisBalanceList];
         NSArray *userApiModel = infoModel.mApisBalanceList;
         [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
                             totalCount:userApiModel?userApiModel.count:0] ;
@@ -234,7 +233,6 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return MAX(1, self.pageLoadManager.currentDataCount) ;
-//    return 10 ;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -245,7 +243,6 @@
         CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
     }
-//    return [RH_LimitTransferCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -258,9 +255,6 @@
     }else{
         return self.loadingIndicateTableViewCell ;
     }
-//    RH_LimitTransferCell *limtCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_LimitTransferCell defaultReuseIdentifier]] ;
-//    [limtCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
-//    return limtCell ;
 }
 
 @end

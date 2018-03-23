@@ -19,5 +19,6 @@
 
 @interface RH_BankPickerSelectView : UIView
 @property (nonatomic,weak) id<BankPickerSelectViewDelegate> delegate ;
+@property (nonatomic,strong) NSArray *dataArray ;
 
 @end
