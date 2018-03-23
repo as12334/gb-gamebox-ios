@@ -1399,7 +1399,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
 }
 
-#pragma mark - 注册初始化
+#pragma mark - 注册初始化exxxxxx
 -(void)startV3RegisetInit
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -1415,7 +1415,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-#pragma mark - 注册提交
+#pragma mark - 注册提交exxxxxxxx
 /**
  注册提交
  
@@ -1479,7 +1479,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3RegiestSubmit
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark - 注册条款
+#pragma mark - 注册条款 exxxxxx
 -(void)startV3RegisetTerm
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
