@@ -105,6 +105,7 @@
     [transferInBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     transferInBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     [transferInBtn setTitleColor:colorWithRGB(153, 153, 153) forState:UIControlStateNormal];
+    [transferInBtn addTarget:self action:@selector(transforDidTaped:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *line2 = [[UILabel alloc] init] ;
     [bottomView addSubview:line2];
@@ -177,7 +178,11 @@
         [self.delegate RH_LimitTransferTopViewMineWalletDidTaped];
     }
 }
-
+- (void)transforDidTaped:(UIButton *)button {
+    ifRespondsSelector(self.delegate, @selector(RH_LimitTransferTopViewTransforToDidTaped)) {
+        [self.delegate RH_LimitTransferTopViewTransforToDidTaped];
+    }
+}
 
 -(void)sureSubmitClick:(UIButton *)sender
 {

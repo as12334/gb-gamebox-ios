@@ -8,10 +8,10 @@
 
 #import "RH_RegistrationViewController.h"
 #import "coreLib.h"
-@interface RH_RegistrationViewController ()<CLTableViewManagementDelegate>
+@interface RH_RegistrationViewController ()<CLTableViewManagementDelegate, RH_ServiceRequestDelegate>
 
 @property (nonatomic, strong, readonly) CLTableViewManagement *tableViewManagement;
-//@property (nonatomic, strong, readonly) <#UIScrollView#> *<#scrollView#>;
+
 @end
 
 @implementation RH_RegistrationViewController
@@ -32,7 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupInfo];
+//    [self setupInfo];
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在加载..."];
     [self.serviceRequest startV3RegisetInit];
 }
 
@@ -53,4 +54,13 @@
     return _tableViewManagement;
 }
 
+#pragma mark Request
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+    NSLog(@"%s", __func__);
+    NSLog(@"%@", error);
+}
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
+    NSLog(@"%s", __func__);
+    NSLog(@"%@", data);
+}
 @end

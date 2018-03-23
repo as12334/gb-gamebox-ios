@@ -117,8 +117,23 @@
     [self setupPageLoadManager] ;
 }
 
+#pragma mark PickerView
+- (void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView *)bankPickerSelectView {
+    [self hideBankPickerSelectView];
+}
+- (void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView *)bankPickerSelectView WithSelectedBank:(id)bankModel {
+    [self hideBankPickerSelectView];
+}
+
 #pragma mark RH_LimitTransferTopView
 - (void)RH_LimitTransferTopViewMineWalletDidTaped {
+    if (self.selectView.superview == nil) {
+        [self showBankPickerSelectView];
+    }else {
+        [self hideBankPickerSelectView];
+    }
+}
+- (void)RH_LimitTransferTopViewTransforToDidTaped {
     if (self.selectView.superview == nil) {
         [self showBankPickerSelectView];
     }else {
