@@ -36,11 +36,16 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
-    self.contentView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    
+//    self.contentView.backgroundColor = [UIColor clearColor];
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.contentView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }
+    
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     _selectedIndex = 0 ;
-    self.collectionView.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    self.collectionView.backgroundColor = [UIColor redColor];
     [self configureCollection:self.collectionView] ;
     
     self.lineView.backgroundColor = colorWithRGB(226, 226, 226) ;
@@ -81,7 +86,16 @@
 {
     if (!_selectionIndicater) {
         _selectionIndicater = [[CALayer alloc] init];
-        _selectionIndicater.backgroundColor = colorWithRGB(27, 117, 217).CGColor;
+        if ([THEMEV3 isEqualToString:@"green"]) {
+            _selectionIndicater.backgroundColor = [UIColor greenColor].CGColor;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            _selectionIndicater.backgroundColor = [UIColor redColor].CGColor;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            _selectionIndicater.backgroundColor = colorWithRGB(27, 117, 217).CGColor;
+        }else{
+            _selectionIndicater.backgroundColor = colorWithRGB(27, 117, 217).CGColor;
+        }
+        
         [self.collectionView.layer addSublayer:_selectionIndicater];
     }
     

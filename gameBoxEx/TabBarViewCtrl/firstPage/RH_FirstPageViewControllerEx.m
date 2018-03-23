@@ -198,7 +198,11 @@
     [self.contentTableView registerCellWithClass:[RH_HomeChildCategoryCell class]] ;
     
     [self.contentView addSubview:self.contentTableView] ;
-    self.contentTableView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    self.contentTableView.backgroundColor = [UIColor whiteColor] ;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.contentTableView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }
+    
     [self setupPageLoadManager] ;
     
     UIView *foot_View = [UIView new];
