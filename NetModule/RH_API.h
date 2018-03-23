@@ -96,7 +96,7 @@
 #define RH_GP_SYSTEMNOTICE_SEARCHID                         @"searchId"
 #define RH_GP_SYSTEMNOTICE_READ                             @"read"
 
-#pragma mark -游戏公告模型
+#pragma mark -游戏公告模型fwwwwwwwwww
 #define RH_GP_GAMENOTICE_ID             @"id"
 #define RH_GP_GAMENOTICE_TITLE          @"title"
 #define RH_GP_GAMENOTICE_LINK           @"link"
@@ -899,6 +899,10 @@
 
 #pragma mark - V3 注册条款
 #define RH_API_NAME_REGISESTTERMS        @"mobile-api/origin/terms.html"
+
+
+
+
 
 
 

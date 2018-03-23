@@ -444,6 +444,7 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [self.normalActivityView closeClick:self.normalActivityView];
 }
 #pragma mark 点击小图标关闭按钮

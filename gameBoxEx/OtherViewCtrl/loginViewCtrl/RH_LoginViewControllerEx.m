@@ -6,6 +6,7 @@
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
+#import "RH_RegistrationViewController.h"
 #import "RH_LoginViewControllerEx.h"
 #import "RH_LoginViewCell.h"
 #import "RH_APPDelegate.h"
@@ -196,10 +197,11 @@
 
 -(void)loginViewCellTouchCreateButton:(RH_LoginViewCell*)loginViewCell
 {
-    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-    appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
-
-    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+//    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+//    appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
+//
+//    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+    [self showViewController:[RH_RegistrationViewController viewController] sender:nil];
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
