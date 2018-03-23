@@ -521,6 +521,9 @@
 		B851139B20146B8C00042ADE /* WithdrawCashHasOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = B851139A20146B8C00042ADE /* WithdrawCashHasOrder.plist */; };
 		B851139F20146CA300042ADE /* RH_WithdrawHasOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */; };
 		B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */; };
+		B85736912063542600CEC32E /* RH_RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85736902063542600CEC32E /* RH_RegistrationViewController.m */; };
+		B857369320635BCA00CEC32E /* RH_Registration.plist in Resources */ = {isa = PBXBuildFile; fileRef = B857369220635BCA00CEC32E /* RH_Registration.plist */; };
+		B857369620635D8800CEC32E /* RH_RegistrationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B857369520635D8800CEC32E /* RH_RegistrationViewCell.m */; };
 		B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */; };
 		B860F92A201DB699000EE66A /* RH_StaticAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B860F929201DB699000EE66A /* RH_StaticAlertView.m */; };
 		B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B879E07620231544007B3D45 /* RH_ModifyPasswordNameCell.m */; };
@@ -1550,6 +1553,11 @@
 		B851139C20146CA300042ADE /* RH_WithdrawHasOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithdrawHasOrderCell.h; sourceTree = "<group>"; };
 		B851139D20146CA300042ADE /* RH_WithdrawHasOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithdrawHasOrderCell.m; sourceTree = "<group>"; };
 		B851139E20146CA300042ADE /* RH_WithdrawHasOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_WithdrawHasOrderCell.xib; sourceTree = "<group>"; };
+		B857368F2063542600CEC32E /* RH_RegistrationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegistrationViewController.h; sourceTree = "<group>"; };
+		B85736902063542600CEC32E /* RH_RegistrationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegistrationViewController.m; sourceTree = "<group>"; };
+		B857369220635BCA00CEC32E /* RH_Registration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RH_Registration.plist; sourceTree = "<group>"; };
+		B857369420635D8800CEC32E /* RH_RegistrationViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegistrationViewCell.h; sourceTree = "<group>"; };
+		B857369520635D8800CEC32E /* RH_RegistrationViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegistrationViewCell.m; sourceTree = "<group>"; };
 		B860F924201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordSpecialCell.h; sourceTree = "<group>"; };
 		B860F925201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordSpecialCell.m; sourceTree = "<group>"; };
 		B860F928201DB699000EE66A /* RH_StaticAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_StaticAlertView.h; sourceTree = "<group>"; };
@@ -3297,6 +3305,8 @@
 				A06B64AA1FD6915300323C12 /* RH_LoginViewCell.xib */,
 				79BB2DF82036CC56000CDE6B /* RH_OldUserVerifyView.h */,
 				79BB2DF92036CC56000CDE6B /* RH_OldUserVerifyView.m */,
+				B857369420635D8800CEC32E /* RH_RegistrationViewCell.h */,
+				B857369520635D8800CEC32E /* RH_RegistrationViewCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -3348,6 +3358,9 @@
 				A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */,
 				A06B64A41FD690EA00323C12 /* RH_LoginViewControllerEx.h */,
 				A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */,
+				B857368F2063542600CEC32E /* RH_RegistrationViewController.h */,
+				B85736902063542600CEC32E /* RH_RegistrationViewController.m */,
+				B857369220635BCA00CEC32E /* RH_Registration.plist */,
 			);
 			path = loginViewCtrl;
 			sourceTree = "<group>";
@@ -4166,6 +4179,7 @@
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
 				A07AF4F32026DFF500D6D559 /* tab_v3_deposit_selected_red@3x.png in Resources */,
 				F6A2AD422005A84A0077CB92 /* hongbao-02.png in Resources */,
+				B857369320635BCA00CEC32E /* RH_Registration.plist in Resources */,
 				228B931920272961008C8313 /* tab_v3_deposit_selected_green@3x.png in Resources */,
 				F6FB638F200F851300EEED4E /* RH_MPSystemNoticHeaderView.xib in Resources */,
 				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
@@ -4518,6 +4532,7 @@
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
+				B85736912063542600CEC32E /* RH_RegistrationViewController.m in Sources */,
 				79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */,
 				79BB2DED20346BC2000CDE6B /* RH_ShareSeletedDateView.m in Sources */,
 				79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */,
@@ -4772,6 +4787,7 @@
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
 				A01CB4B61FFA60D400447130 /* RH_LinkInfoModel.m in Sources */,
 				B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */,
+				B857369620635D8800CEC32E /* RH_RegistrationViewCell.m in Sources */,
 				A01181731FFCAB21008F6D1E /* UIView+WHC_AutoLayout.m in Sources */,
 				A0109C671F878199004E6EF4 /* RH_APPDelegate.m in Sources */,
 			);
