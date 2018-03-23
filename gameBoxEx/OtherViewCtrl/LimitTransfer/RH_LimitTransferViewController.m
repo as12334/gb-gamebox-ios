@@ -13,30 +13,30 @@
 #import "RH_MineInfoModel.h"
 #import "RH_UserGroupInfoModel.h"
 #import "RH_UserApiBalanceModel.h"
+#import "RH_BankPickerSelectView.h"
 
-
-@interface RH_LimitTransferViewController ()<CLTableViewManagementDelegate>
+@interface RH_LimitTransferViewController ()<CLTableViewManagementDelegate, RH_LimitTransferTopViewDelegate, BankPickerSelectViewDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) UIView  *footerView;
 @property (nonatomic, strong) RH_LimitTransferTopView  *tableTopView;
-
-
-
-
+@property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectView;;
 @end
 
 @implementation RH_LimitTransferViewController
-
-
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
 @synthesize tableTopView = _tableTopView ;
-
-
-
-
+@synthesize selectView = _selectView;
 - (BOOL)isSubViewController {
     return  YES;
+}
+
+- (RH_BankPickerSelectView *)selectView {
+    if (_selectView == nil) {
+        _selectView = [RH_BankPickerSelectView createInstance];
+        _selectView.delegate = self;
+    }
+    return _selectView;
 }
 
 - (void)viewDidLoad {
@@ -56,6 +56,7 @@
     [self.contentTableView registerCellWithClass:[RH_LimitTransferCell class]] ;
     [self.contentView addSubview:self.contentTableView];
     self.tableTopView = [[RH_LimitTransferTopView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 265)];
+    self.tableTopView.delegate = self;
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 100.f)]  ;
     _footerView.backgroundColor = [UIColor whiteColor] ;
     UIButton *oneStepRecoryBtn  =  [UIButton new] ;  //一键回收
@@ -116,7 +117,39 @@
     [self setupPageLoadManager] ;
 }
 
+#pragma mark RH_LimitTransferTopView
+- (void)RH_LimitTransferTopViewMineWalletDidTaped {
+    if (self.selectView.superview == nil) {
+        [self showBankPickerSelectView];
+    }else {
+        [self hideBankPickerSelectView];
+    }
+}
+-(void)showBankPickerSelectView
+{
+    if (self.selectView.superview){
+        [self.selectView removeFromSuperview] ;
+    }
+    self.selectView.backgroundColor = colorWithRGB(153, 153, 153);
+    self.selectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+    [self.view addSubview:self.selectView] ;
+    [UIView animateWithDuration:0.5f animations:^{
+        self.selectView.frame = CGRectMake(0, MainScreenH - BankPickerSelectViewHeight , MainScreenW, BankPickerSelectViewHeight) ;
+    } completion:^(BOOL finished) {
+    }] ;
+}
 
+-(void)hideBankPickerSelectView
+{
+    if (self.selectView.superview){
+        [self.view addSubview:self.selectView] ;
+        [UIView animateWithDuration:0.5f animations:^{
+            self.selectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+        } completion:^(BOOL finished) {
+            [self.selectView removeFromSuperview] ;
+        }] ;
+    }
+}
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
@@ -229,19 +262,5 @@
 //    [limtCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
 //    return limtCell ;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

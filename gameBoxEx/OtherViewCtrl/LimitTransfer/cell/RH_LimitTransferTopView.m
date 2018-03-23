@@ -8,12 +8,13 @@
 
 #import "RH_LimitTransferTopView.h"
 #import "coreLib.h"
-
+#import "RH_BankPickerSelectView.h"
 @implementation RH_LimitTransferTopView
 {
     UIView *topView ;
     UILabel *transferLab ;  //转账处理中
     UILabel *moneyLab ;  //金额显示
+    RH_BankPickerSelectView *selectView;
     
 }
 
@@ -77,6 +78,9 @@
     [transferOutBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     transferOutBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     [transferOutBtn setTitleColor:colorWithRGB(153, 153, 153) forState:UIControlStateNormal];
+
+    [transferOutBtn addTarget:self action:@selector(mineWalletDidTaped:) forControlEvents:UIControlEventTouchUpInside];
+
     
     
     UILabel *line1 = [[UILabel alloc] init] ;
@@ -167,6 +171,13 @@
     refreshBalanceBtn.layer.masksToBounds =  YES ;
     
 }
+
+- (void)mineWalletDidTaped:(UIButton *)button {
+    ifRespondsSelector(self.delegate, @selector(RH_LimitTransferTopViewMineWalletDidTaped)) {
+        [self.delegate RH_LimitTransferTopViewMineWalletDidTaped];
+    }
+}
+
 
 -(void)sureSubmitClick:(UIButton *)sender
 {
