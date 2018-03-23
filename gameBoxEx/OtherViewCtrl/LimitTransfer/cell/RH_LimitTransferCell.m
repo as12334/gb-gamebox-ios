@@ -79,7 +79,7 @@
     if (userApiBalance){
         titleLab.text = userApiBalance.mApiName ;
         
-        if (userApiBalance.mStatus) {
+        if (![userApiBalance.mStatus isEqualToString:@""]) {
             amountLab.text = userApiBalance.mStatus ;
         }else
         {
