@@ -602,7 +602,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             _withDrawMinMoneyStr = [[error userInfo] objectForKey:@"NSLocalizedDescription"] ;
             [self setNeedUpdateView] ;
         }else{
+            showMessage(self.view, nil, error.localizedDescription) ;
             [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+            
         }
     }else if (type == ServiceRequestTypeV3SubmitWithdrawInfo) {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

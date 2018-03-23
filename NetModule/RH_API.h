@@ -875,6 +875,30 @@
 #pragma mark - V3 用户进入登录页面验证码是否开启
 #define RH_API_NAME_ISOPENCODEVERIFTY         @"mobile-api/mineOrigin/loginIsOpenVerify.html"
 
+#pragma mark - V3 注册初始化
+#define RH_API_NAME_REGISESTINIT        @"mobile-api/registerOrigin/getRegisterInfo.html"
+
+#pragma mark - V3 注册提交
+#define RH_API_NAME_REGISESTSUBMIT        @"mobile-api/registerOrigin/save.html"
+//请求参数
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY                           @"sysUser.birthday"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEX                                @"sysUser.sex"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_permissionPWD                      @"sysUser.permissionPwd"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTTIMEZONE                    @"sysUser.defaultTimezone"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTLOCALE                      @"sysUser.defaultLocale"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PHONECONTACTVALUE                  @"phone.contactValue"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_REALNAME                           @"sysUser.realName"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTCURRENCY                    @"sysUser.defaultCurrency"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSWORD                           @"sysUser.password"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QUESTION                           @"sysUserProtection.question1"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_EMAILCONTACTVALUE                  @"email.contactValue"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QQCONTACTVALUE                     @"qq.contactValue"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_WEIXINCONTACTVALUE                 @"weixin.contactValue"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_USERNAME                           @"sysUser.username"
+
+#pragma mark - V3 注册条款
+#define RH_API_NAME_REGISESTTERMS        @"mobile-api/origin/terms.html"
+
 
 
 

@@ -51,6 +51,9 @@
 		22F626A420566E3E00094564 /* home_announce_close_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A220566E3E00094564 /* home_announce_close_black@3x.png */; };
 		22F626A720566E5E00094564 /* login_touxiang_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A520566E5E00094564 /* login_touxiang_black@2x.png */; };
 		22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A620566E5E00094564 /* login_touxiang_black@3x.png */; };
+		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
+		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
+		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
 		794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */; };
 		794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */; };
 		795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */; };
@@ -701,6 +704,12 @@
 		22F626A220566E3E00094564 /* home_announce_close_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_black@3x.png"; sourceTree = "<group>"; };
 		22F626A520566E5E00094564 /* login_touxiang_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@2x.png"; sourceTree = "<group>"; };
 		22F626A620566E5E00094564 /* login_touxiang_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@3x.png"; sourceTree = "<group>"; };
+		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
+		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
+		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
+		7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferTopView.m; sourceTree = "<group>"; };
+		790743102063A0FD00A4543A /* RH_LimitTransferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferCell.h; sourceTree = "<group>"; };
+		790743112063A0FD00A4543A /* RH_LimitTransferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferCell.m; sourceTree = "<group>"; };
 		794429F8203FC18C006F5A20 /* RH_VeriftyCloseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyCloseViewController.h; sourceTree = "<group>"; };
 		794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyCloseViewController.m; sourceTree = "<group>"; };
 		794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerifyCloseView.h; sourceTree = "<group>"; };
@@ -1834,6 +1843,27 @@
 				22F626A620566E5E00094564 /* login_touxiang_black@3x.png */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		790743082063542400A4543A /* LimitTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				7907430C20635B2600A4543A /* cell */,
+				790743092063547900A4543A /* RH_LimitTransferViewController.h */,
+				7907430A2063547900A4543A /* RH_LimitTransferViewController.m */,
+			);
+			path = LimitTransfer;
+			sourceTree = "<group>";
+		};
+		7907430C20635B2600A4543A /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */,
+				7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */,
+				790743102063A0FD00A4543A /* RH_LimitTransferCell.h */,
+				790743112063A0FD00A4543A /* RH_LimitTransferCell.m */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		79BB2D9420312F09000CDE6B /* Share */ = {
@@ -3053,6 +3083,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				790743082063542400A4543A /* LimitTransfer */,
 				79BB2D9420312F09000CDE6B /* Share */,
 				B87A6B37200AF1CF00C9788F /* BitCoin */,
 				B87A6B2620088FF900C9788F /* bankCard */,
@@ -4241,6 +4272,7 @@
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
 				A010A0891F879B23004E6EF4 /* RH_BasicHelpView.m in Sources */,
 				A010A08A1F879B23004E6EF4 /* RH_BasicPageLoadViewController.m in Sources */,
+				790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */,
 				A010A08B1F879B23004E6EF4 /* RH_BasicSubViewController.m in Sources */,
 				A010A08C1F879B23004E6EF4 /* RH_BasicViewController.m in Sources */,
 				A010A08D1F879B23004E6EF4 /* RH_MainNavigationController.m in Sources */,
@@ -4323,6 +4355,7 @@
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
+				7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */,
 				A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */,
 				A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */,
 				A0109FB91F8788FF004E6EF4 /* UIImage+Representation.m in Sources */,
@@ -4467,6 +4500,7 @@
 				A0109FFC1F8788FF004E6EF4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
+				7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
 				F6FB63B72010C60300EEED4E /* RH_ApplyDiscountSystemPageCell.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,

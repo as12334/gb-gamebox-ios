@@ -25,6 +25,7 @@
 @property(nonatomic,assign,readonly) float  mWithdrawAmount ;
 @property(nonatomic,assign,readonly) BOOL  mIsBit ;
 @property(nonatomic,assign,readonly) BOOL  mIsCash ;
+@property(nonatomic,assign,readonly) BOOL  mIsAutoPay ;
 @property(nonatomic,strong,readonly) RH_BankCardModel *mBankCard ;
 @property(nonatomic,strong,readonly) RH_BitCodeModel *mBitCode  ;
 @property(nonatomic,strong,readonly) NSString  *mRealName ;

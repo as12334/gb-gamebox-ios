@@ -41,6 +41,7 @@
         _mBitCode = [[RH_BitCodeModel alloc] initWithInfoDic:[info dictionaryValueForKey:RH_GP_MINEINFO_BTCCODE]] ;
         _mRealName = [info stringValueForKey:RH_GP_MINEINFO_REALNAME] ;
         _mApisBalanceList = [RH_UserApiBalanceModel dataArrayWithInfoArray:[info arrayValueForKey:@"apis"]] ;
+        _mIsAutoPay = [info boolValueForKey:@"autoPay"] ;
     }
     return self ;
 }
