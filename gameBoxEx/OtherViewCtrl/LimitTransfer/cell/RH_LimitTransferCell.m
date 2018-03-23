@@ -85,7 +85,6 @@
         {
             amountLab.text = [NSString stringWithFormat:@"%.2f",userApiBalance.mBalance] ;
         }
-        
     }
     
     if (infoModel) {

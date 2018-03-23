@@ -84,7 +84,9 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3RefreshSession ,   // 防止长时间未操作掉线
     ServiceRequestTypeV3IsOpenCodeVerifty,// 登录是否开启验证码
     ServiceRequestTypeV3RequetLoginWithGetLoadSid,// get请求登录接口获取SID
-    
+    ServiceRequestTypeV3RegiestInit,     //注册初始化
+    ServiceRequestTypeV3RegiestSubmit,   //注册提交
+    ServiceRequestTypeV3RegiestTerm,     //注册条款
 };
 
 
@@ -427,6 +429,48 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3IsOpenCodeVerifty;
 #pragma mark - 通过GET请求登录接口获取SID
 -(void)startV3RequsetLoginWithGetLoadSid;
+
+#pragma mark - 注册初始化
+-(void)startV3RegisetInit;
+
+#pragma mark - 注册提交
+/**
+ 注册提交
+
+ @param birth 生日
+ @param sex 性别
+ @param permissionPwd <#permissionPwd description#>
+ @param defaultTimezone 时区
+ @param defaultLocale <#defaultLocale description#>
+ @param phone 手机号
+ @param realName 真实姓名
+ @param defaultCurrency <#defaultCurrency description#>
+ @param password 密码
+ @param question1 问题
+ @param email 邮箱
+ @param qq qq
+ @param weixinValue 微信
+ @param userName 用户名
+ @param captchaCode 验证码
+ */
+-(void)startV3RegisetSubmitWithBirthday:(NSString *)birth
+                                    sex:(NSString *)sex
+                          permissionPwd:(NSString *)permissionPwd
+                        defaultTimezone:(NSString *)defaultTimezone
+                          defaultLocale:(NSString *)defaultLocale
+                      phonecontactValue:(NSString *)phone
+                               realName:(NSString *)realName
+                        defaultCurrency:(NSString *)defaultCurrency
+                               password:(NSString *)password
+                              question1:(NSString *)question1
+                             emailValue:(NSString *)email
+                                qqValue:(NSString *)qq
+                            weixinValue:(NSString *)weixinValue
+                               userName:(NSString *)userName
+                            captchaCode:(NSString *)captchaCode;
+#pragma mark - 注册条款
+-(void)startV3RegisetTerm;
+
 
 #pragma mark -
 /**

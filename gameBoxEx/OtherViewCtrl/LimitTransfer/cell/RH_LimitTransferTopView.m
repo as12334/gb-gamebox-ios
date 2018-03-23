@@ -77,7 +77,6 @@
     [transferOutBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     transferOutBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     [transferOutBtn setTitleColor:colorWithRGB(153, 153, 153) forState:UIControlStateNormal];
-                               
     
     
     UILabel *line1 = [[UILabel alloc] init] ;
