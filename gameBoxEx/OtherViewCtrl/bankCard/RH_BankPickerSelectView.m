@@ -18,7 +18,7 @@
 @implementation RH_BankPickerSelectView
 {
     NSInteger selectedRow;
-    NSArray *list;
+    NSArray *_list;
 }
 @synthesize pickView = _pickView;
 - (UIPickerView *)pickView {
@@ -81,15 +81,15 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (list.count > 0) {
-        return list.count;
+    if (_list.count > 0) {
+        return _list.count;
     }
     return BankList.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if (list.count > 0) {
-        return list[row];
+    if (_list.count > 0) {
+        return _list[row];
     }
     return BankList[row].mBankName;
 }
@@ -103,7 +103,7 @@
 }
 
 - (void)setDatasourceList:(NSArray *)list{
-    list = list;
+    _list = list ;
 }
 
 @end

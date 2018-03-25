@@ -900,10 +900,19 @@
 #pragma mark - V3 注册条款
 #define RH_API_NAME_REGISESTTERMS        @"mobile-api/origin/terms.html"
 
+#pragma mark - V3  关于我们
+#define RH_API_NAME_ABOUTUS        @"mobile-api/origin/about.html"
 
+#pragma mark - V3  常见问题父级分类
+#define RH_API_NAME_HELPFIRSTTYPE        @"mobile-api/origin/helpFirstType.html"
 
+#pragma mark - V3  常见问题二级分类
+#define RH_API_NAME_HELPSECONDTYPE        @"mobile-api/origin/secondType.html"
+//请求参数
+#define RH_SP_HELPSECONDTYPE_SEARCHID                           @"searchId"
 
-
+#pragma mark - V3  常见问题详情
+#define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"
 
 
 #endif /* RH_API_h */
