@@ -27,7 +27,6 @@
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.backgroundColor = [UIColor blackColor] ;
     }
-    self.backgroundColor = [UIColor blackColor] ;
     [self addSubview:self.collectionTypeView] ;
     [self.collectionTypeView reloadData] ;
     _selectedIndex = 0 ;

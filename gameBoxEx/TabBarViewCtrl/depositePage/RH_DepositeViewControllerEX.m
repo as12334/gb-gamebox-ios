@@ -16,7 +16,7 @@
 #import "RH_DepositeMoneyBankCell.h"
 #import "RH_DepositeSystemPlatformCell.h"
 #import "RH_DepositeTransferBankcardController.h"
-@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate>
+@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -63,6 +63,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     self.title = @"存款";
     _markArray = @[@0,@1,@2,@3,@4,@5];
+    [self setNeedUpdateView];
     [self setupUI];
 }
 #pragma mark --检测是否登录
@@ -75,7 +76,7 @@
 -(void)updateView
 {
     if (self.appDelegate.isLogin&&NetworkAvailable()){
-        
+        [self.serviceRequest startV3RequestDepositOrigin];
     }
     else if(!self.appDelegate.isLogin){
         //进入登录界面
@@ -283,6 +284,22 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+#pragma mark 数据请求
+
+#pragma mark - serviceRequest
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
+    
+    if (type == ServiceRequestTypeV3DepositeOrigin) {
+     
+    }
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+    if (type == ServiceRequestTypeV3DepositeOrigin) {
+        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
 }
 
 @end

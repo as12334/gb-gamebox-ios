@@ -30,13 +30,15 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:12.0f]    ;
     self.labTitle.textColor =  colorWithRGB(50, 51, 51) ;
+    self.borderView.backgroundColor = [UIColor whiteColor] ;
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.labTitle.textColor = [UIColor whiteColor];
+        self.borderView.backgroundColor = colorWithRGB(37, 37, 37) ;
     }
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
     self.borderView.layer.cornerRadius = 5.0f ;
-    self.borderView.backgroundColor = colorWithRGB(37, 37, 37) ;
+    
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated

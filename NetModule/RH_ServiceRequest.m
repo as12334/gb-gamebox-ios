@@ -1399,6 +1399,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
     
 }
+-(void)startV3RequestDepositOrigin
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_DEPOSITE_DEPOSITEORIGIN
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositeOrigin
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark - 注册初始化exxxxxx
 -(void)startV3RegisetInit
@@ -1561,9 +1573,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3HelpDetail
                          scopeType:ServiceScopeTypePublic];
 }
-
-
-
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -1915,6 +1924,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
+    if (dataObject) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",jsonString11);
+    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
@@ -2306,6 +2320,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
             }
                 break ;
+            case ServiceRequestTypeV3DepositeOrigin:
+            {
+            }
+                break;
             case ServiceRequestTypeV3RegiestInit:
             {
                 resultSendData = [[RH_RegisetInitModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;

@@ -910,6 +910,36 @@
 #define RH_API_NAME_HELPSECONDTYPE        @"mobile-api/origin/secondType.html"
 //请求参数
 #define RH_SP_HELPSECONDTYPE_SEARCHID                           @"searchId"
+#pragma mark - V3 存款
+#define RH_API_DEPOSITE_DEPOSITEORIGIN   @"/mobile-api/depositOrigin/index.html"
+//返回参数
+#define RH_GP_DEPOSITEORIGIN_QUICKMONEYS            @"quickMoneys"
+#define RH_GP_DEPOSITEORIGIN_LOTTERYSITE            @"lotterySite"
+#define RH_GP_DEPOSITEORIGIN_ISFASTRECHARGE         @"isFastRecharge"
+#define RH_GP_DEPOSITEORIGIN_ISMULTIPLEACCOUNT      @"isMultipleAccount"
+
+#define RH_GP_DEPOSITEORIGIN_NAME                   @"name"
+#define RH_GP_DEPOSITEORIGIN_PAYACCOUNTS            @"payAccounts"
+#define RH_GP_DEPOSITEORIGIN_CODE                   @"code"
+
+#define RH_GP_DEPOSITEORIGIN_ID                     @"id"
+#define RH_GP_DEPOSITEORIGIN_SINGLEDEPOSITMAX       @"singleDepositMax"
+#define RH_GP_DEPOSITEORIGIN_QRCODEURL              @"qrCodeUrl"
+#define RH_GP_DEPOSITEORIGIN_ACCOUNTINFORMATION     @"accountInformation"
+#define RH_GP_DEPOSITEORIGIN_RECHARGETYPE           @"rechargeType"
+#define RH_GP_DEPOSITEORIGIN_TYPE                   @"type"
+#define RH_GP_DEPOSITEORIGIN_ACCOUNTTYPE            @"accountType"
+#define RH_GP_DEPOSITEORIGIN_BANKCODE               @"bankCode"
+#define RH_GP_DEPOSITEORIGIN_SINGLEDEPOSITEMIN      @"singleDepositMin"
+#define RH_GP_DEPOSITEORIGIN_FULLNAME               @"fullName"
+#define RH_GP_DEPOSITEORIGIN_FEMARK                 @"remark"
+#define RH_GP_DEPOSITEORIGIN_ACCOUNTPROMPT          @"accountPrompt"
+#define RH_GP_DEPOSITEORIGIN_PAYNAME                @"payName"
+#define RH_GP_DEPOSITEORIGIN_CUSTOMBANKNAME         @"customBankName"
+#define RH_GP_DEPOSITEORIGIN_ACCOUNT                @"account"
+#define RH_GP_DEPOSITEORIGIN_OPENACOUNTNAME         @"openAcountName"
+#define RH_GP_DEPOSITEORIGIN_ALIASNAME              @"aliasName"
+#define RH_GP_DEPOSITEORIGIN_RANDOMAMOUNT           @"randomAmount"
 
 #pragma mark - V3  常见问题详情
 #define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"

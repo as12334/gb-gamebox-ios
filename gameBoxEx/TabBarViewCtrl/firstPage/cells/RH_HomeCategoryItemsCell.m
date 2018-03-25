@@ -69,7 +69,10 @@
                                              collectionViewLayout:flowLayout];
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        _collectionView.backgroundColor = [UIColor blackColor];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            _collectionView.backgroundColor = [UIColor blackColor];
+        }
         
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
