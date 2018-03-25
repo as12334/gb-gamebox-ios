@@ -78,7 +78,11 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     collectionView.collectionViewLayout = flowLayout ;
-    collectionView.backgroundColor = colorWithRGB(37, 37, 37);
+    collectionView.backgroundColor = colorWithRGB(247, 247, 247);
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        collectionView.backgroundColor = colorWithRGB(37, 37, 37);
+    }
+    
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.delegate = self;
     collectionView.dataSource = self;

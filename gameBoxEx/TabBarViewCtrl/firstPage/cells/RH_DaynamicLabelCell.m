@@ -55,7 +55,11 @@
     self.labRemark.whc_TopSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(21);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
-    self.contentView.backgroundColor = [UIColor blackColor];
+    self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.contentView.backgroundColor = [UIColor blackColor];
+    }
+    
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = colorWithRGB(226, 226, 226) ;
     self.separatorLineWidth = 1.0f ;
