@@ -14,6 +14,7 @@
 
 #import "RH_MineMoreInfoViewController.h"
 #import "RH_MineMoreDetailWebViewController.h"
+#import "RH_AboutUsViewController.h"
 
 
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
@@ -63,8 +64,9 @@
                                              animated:YES] ;
     }else if (indexPath.row== 2)
     {
-        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:AboutUs]
-                                             animated:YES] ;
+//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:AboutUs]
+//                                             animated:YES] ;
+        [self.navigationController pushViewController:[RH_AboutUsViewController viewController] animated:YES] ;
     }
 
     return YES;

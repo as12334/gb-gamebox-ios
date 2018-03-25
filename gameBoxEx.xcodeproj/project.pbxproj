@@ -56,6 +56,9 @@
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
 		794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */; };
 		794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */; };
+		7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D0262064F81800760FEB /* RH_AboutUsViewController.m */; };
+		7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */; };
+		7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D02C206505C100760FEB /* RH_AboutUsModel.m */; };
 		795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
@@ -751,6 +754,12 @@
 		794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyCloseViewController.m; sourceTree = "<group>"; };
 		794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerifyCloseView.h; sourceTree = "<group>"; };
 		794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VerifyCloseView.m; sourceTree = "<group>"; };
+		7953D0252064F81800760FEB /* RH_AboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AboutUsViewController.h; sourceTree = "<group>"; };
+		7953D0262064F81800760FEB /* RH_AboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsViewController.m; sourceTree = "<group>"; };
+		7953D028206503B800760FEB /* RH_AboutUsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AboutUsTableViewCell.h; sourceTree = "<group>"; };
+		7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsTableViewCell.m; sourceTree = "<group>"; };
+		7953D02B206505C100760FEB /* RH_AboutUsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AboutUsModel.h; sourceTree = "<group>"; };
+		7953D02C206505C100760FEB /* RH_AboutUsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsModel.m; sourceTree = "<group>"; };
 		795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgUnReadCountModel.h; sourceTree = "<group>"; };
 		795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgUnReadCountModel.m; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
@@ -1960,6 +1969,17 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		7953D0242064F78200760FEB /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				7953D0252064F81800760FEB /* RH_AboutUsViewController.h */,
+				7953D0262064F81800760FEB /* RH_AboutUsViewController.m */,
+				7953D028206503B800760FEB /* RH_AboutUsTableViewCell.h */,
+				7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
 		79BB2D9420312F09000CDE6B /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -2856,6 +2876,8 @@
 				F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */,
 				7991A3AF20649CAF00133F74 /* RH_RegisetInitModel.h */,
 				7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */,
+				7953D02B206505C100760FEB /* RH_AboutUsModel.h */,
+				7953D02C206505C100760FEB /* RH_AboutUsModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3186,6 +3208,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				7953D0242064F78200760FEB /* AboutUs */,
 				790743082063542400A4543A /* LimitTransfer */,
 				79BB2D9420312F09000CDE6B /* Share */,
 				B87A6B37200AF1CF00C9788F /* BitCoin */,
@@ -4407,6 +4430,7 @@
 				79BB2DFA2036CC56000CDE6B /* RH_OldUserVerifyView.m in Sources */,
 				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
+				7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
@@ -4512,6 +4536,7 @@
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
+				7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
 				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
@@ -4593,6 +4618,7 @@
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
+				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
 				79BB2DB52032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,

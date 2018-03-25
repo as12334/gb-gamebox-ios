@@ -11,6 +11,7 @@
 @protocol RH_LimitTransferTopViewDelegate
 
 - (void)RH_LimitTransferTopViewMineWalletDidTaped;
+- (void)RH_LimitTransferTopViewTransforToDidTaped;
 @end
 
 @interface RH_LimitTransferTopView : UIView

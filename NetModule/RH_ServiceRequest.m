@@ -1492,7 +1492,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3RegiestSubmit
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark - 注册条款 exxxxxx
+#pragma mark - 注册条款 
 -(void)startV3RegisetTerm
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -1507,6 +1507,73 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3RegiestTerm
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - V3  关于我们
+-(void)startV3AboutUs
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ABOUTUS
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AboutUs
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  常见问题父级分类
+-(void)startV3HelpFirstType
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_HELPFIRSTTYPE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3FirstHelpFirstTyp
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  常见问题二级分类
+-(void)startV3HelpSecondType:(NSString *)searchId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_HELPSECONDTYPE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3FirstHelpSecondTyp
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  常见问题详情
+-(void)startV3HelpDetail
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_HELPDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3HelpDetail
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);

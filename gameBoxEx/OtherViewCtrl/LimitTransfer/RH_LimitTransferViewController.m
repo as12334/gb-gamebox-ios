@@ -36,6 +36,7 @@
     if (_selectView == nil) {
         _selectView = [RH_BankPickerSelectView createInstance];
         _selectView.delegate = self;
+          [_selectView setDatasourceList:@[@"1",@"2",@"3"]] ;
     }
     return _selectView;
 }
@@ -103,23 +104,26 @@
         oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
     }
-    
-    
-    BOOL isAutoPay;
-    isAutoPay = YES ;
-    if (isAutoPay) {
-        self.contentTableView.tableHeaderView = self.tableTopView ;
-        self.contentTableView.tableFooterView = nil ;
-    }else
-    {
-        self.contentTableView.tableHeaderView = nil ;
-        self.contentTableView.tableFooterView = self.footerView ;
-    }
     [self setupPageLoadManager] ;
+}
+
+#pragma mark PickerView
+- (void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView *)bankPickerSelectView {
+    [self hideBankPickerSelectView];
+}
+- (void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView *)bankPickerSelectView WithSelectedBank:(id)bankModel {
+    [self hideBankPickerSelectView];
 }
 
 #pragma mark RH_LimitTransferTopView
 - (void)RH_LimitTransferTopViewMineWalletDidTaped {
+    if (self.selectView.superview == nil) {
+        [self showBankPickerSelectView];
+    }else {
+        [self hideBankPickerSelectView];
+    }
+}
+- (void)RH_LimitTransferTopViewTransforToDidTaped {
     if (self.selectView.superview == nil) {
         [self showBankPickerSelectView];
     }else {
@@ -171,7 +175,7 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无相关优惠记录"] ;
+                                        detailText:@"您暂无相关数据"] ;
     return YES ;
 
 }
@@ -219,6 +223,16 @@
         NSArray *userApiModel = infoModel.mApisBalanceList;
         [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
                             totalCount:userApiModel?userApiModel.count:0] ;
+        if (!infoModel.mIsAutoPay) {
+            self.contentTableView.tableHeaderView = self.tableTopView ;
+            self.contentTableView.tableFooterView = nil ;
+        }else
+        {
+            self.contentTableView.tableHeaderView = nil ;
+            self.contentTableView.tableFooterView = self.footerView ;
+        }
+        [self.contentTableView reloadData] ;
+        
     }
 }
 

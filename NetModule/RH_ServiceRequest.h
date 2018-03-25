@@ -88,6 +88,11 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3RegiestInit,     //注册初始化
     ServiceRequestTypeV3RegiestSubmit,   //注册提交
     ServiceRequestTypeV3RegiestTerm,     //注册条款
+    ServiceRequestTypeV3AboutUs,     //关于我们
+    ServiceRequestTypeV3FirstHelpFirstTyp,     //常见问题父级分类
+    ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
+    ServiceRequestTypeV3HelpDetail,     //常见问题详情
+    
 };
 
 
@@ -438,15 +443,14 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 注册提交
 /**
  注册提交
-
  @param birth 生日
  @param sex 性别
- @param permissionPwd <#permissionPwd description#>
+ @param permissionPwd 安全密码
  @param defaultTimezone 时区
- @param defaultLocale <#defaultLocale description#>
+ @param defaultLocale  默认语言
  @param phone 手机号
  @param realName 真实姓名
- @param defaultCurrency <#defaultCurrency description#>
+ @param defaultCurrency 货币
  @param password 密码
  @param question1 问题
  @param email 邮箱
@@ -472,6 +476,20 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                             captchaCode:(NSString *)captchaCode;
 #pragma mark - 注册条款
 -(void)startV3RegisetTerm;
+
+#pragma mark - V3  关于我们
+-(void)startV3AboutUs;
+
+#pragma mark - V3  常见问题父级分类
+-(void)startV3HelpFirstType;
+
+#pragma mark - V3  常见问题二级分类
+-(void)startV3HelpSecondType:(NSString *)searchId;
+
+#pragma mark - V3  常见问题详情
+-(void)startV3HelpDetail;
+
+
 #pragma mark -
 /**
  * 取消所有服务
