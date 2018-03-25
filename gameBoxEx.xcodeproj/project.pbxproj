@@ -568,6 +568,11 @@
 		F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */; };
 		F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */; };
 		F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */; };
+		F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */; };
+		F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */; };
+		F6942E0A20648F35009A5573 /* QRCode.png in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0920648F35009A5573 /* QRCode.png */; };
+		F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */; };
+		F6942E10206503AC009A5573 /* RH_DepositePayAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */; };
 		F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */; };
 		F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34FB20634C070028D3A1 /* RH_DepositePayforWayCell.m */; };
 		F69E34FE20634C070028D3A1 /* RH_DepositePayforWayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E34FC20634C070028D3A1 /* RH_DepositePayforWayCell.xib */; };
@@ -1634,6 +1639,14 @@
 		F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteSystemDetailCell.xib; sourceTree = "<group>"; };
 		F681D263201B0EA600A7C449 /* RH_ActivityStatusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ActivityStatusModel.h; sourceTree = "<group>"; };
 		F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityStatusModel.m; sourceTree = "<group>"; };
+		F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferQRCodeCell.h; sourceTree = "<group>"; };
+		F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferQRCodeCell.m; sourceTree = "<group>"; };
+		F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferQRCodeCell.xib; sourceTree = "<group>"; };
+		F6942E0920648F35009A5573 /* QRCode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRCode.png; sourceTree = "<group>"; };
+		F6942E0B2064DE67009A5573 /* RH_DepositeTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferModel.h; sourceTree = "<group>"; };
+		F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferModel.m; sourceTree = "<group>"; };
+		F6942E0E206503AC009A5573 /* RH_DepositePayAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositePayAccountModel.h; sourceTree = "<group>"; };
+		F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositePayAccountModel.m; sourceTree = "<group>"; };
 		F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewControllerEX.h; sourceTree = "<group>"; };
 		F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewControllerEX.m; sourceTree = "<group>"; };
 		F69E34FA20634C070028D3A1 /* RH_DepositePayforWayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositePayforWayCell.h; sourceTree = "<group>"; };
@@ -2834,6 +2847,10 @@
 				795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */,
 				79BB2D9F2031699E000CDE6B /* RH_SharePlayerRecommendModel.h */,
 				79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */,
+				F6942E0B2064DE67009A5573 /* RH_DepositeTransferModel.h */,
+				F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */,
+				F6942E0E206503AC009A5573 /* RH_DepositePayAccountModel.h */,
+				F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3799,6 +3816,10 @@
 				F69E35452063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.h */,
 				F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */,
 				F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */,
+				F6942E0920648F35009A5573 /* QRCode.png */,
+				F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */,
+				F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */,
+				F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */,
 			);
 			path = transferCell;
 			sourceTree = "<group>";
@@ -4122,6 +4143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6942E0A20648F35009A5573 /* QRCode.png in Resources */,
 				A0E3680B1F945E3F00758033 /* RH_MainTabBarItems.plist in Resources */,
 				F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
@@ -4277,6 +4299,7 @@
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
 				F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */,
+				F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */,
 				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */,
@@ -4382,6 +4405,7 @@
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
+				F6942E10206503AC009A5573 /* RH_DepositePayAccountModel.m in Sources */,
 				A0522A622007818600A5A6E9 /* RH_BankCardModel.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
@@ -4404,6 +4428,7 @@
 				B84F94642017319F003E40BC /* RH_GameListContentPageCell.m in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
 				A0522A85200C84C400A5A6E9 /* RH_PromoViewControllerEx.m in Sources */,
+				F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
 				A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */,
 				79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */,
@@ -4688,6 +4713,7 @@
 				A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */,
 				A0109F761F8787E4004E6EF4 /* CLSectionControl.m in Sources */,
 				B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */,
+				F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */,
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */,
@@ -4884,7 +4910,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

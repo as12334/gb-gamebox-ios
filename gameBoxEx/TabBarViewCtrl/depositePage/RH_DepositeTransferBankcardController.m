@@ -11,10 +11,12 @@
 #import "RH_DepositeTransferBankInfoCell.h"
 #import "RH_DepositeTransferPayWayCell.h"
 #import "RH_DepositeTransferReminderCell.h"
+#import "RH_DepositeTransferQRCodeCell.h"
 @interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
+@property(nonatomic,assign)NSInteger indexMark;
 @end
 
 @implementation RH_DepositeTransferBankcardController
@@ -36,12 +38,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"银行卡转账";
-    _markArray = @[@0,@1,@2,@3,@4,@5];
     [self setupUI];
 }
+#pragma mark --获取点击的具体的item
 -(void)setupViewContext:(id)context
 {
-    
+    self.indexMark = [ConvertToClassPointer(NSNumber, context) integerValue];
+    if (self.indexMark==0) {
+        _markArray =@[@0,@1,@2,@3,@4,@5];
+    }
+    else if (self.indexMark==2){
+        _markArray =@[@0,@2,@3,@4,@1,@5];
+
+    }
+    else{
+       _markArray =@[@0,@1,@2,@3,@4,@5];
+    }
 }
 #pragma mark --视图
 -(void)setupUI{
@@ -55,6 +67,7 @@
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferBankInfoCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferPayWayCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferReminderCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_DepositeTransferQRCodeCell class]];
     //提交按钮
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     submitBtn.frame = CGRectMake(0, 0, self.contentView.frameWidth, 40);
@@ -83,30 +96,35 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    if (self.indexMark ==0) {
+        return 4;
+    }
+    else if (self.indexMark==2){
+        return 5;
+    }
     return  4 ;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.item==0) {
+    if (indexPath.item==[_markArray[0] integerValue]) {
         return 180.0f ;
     }
-    else if (indexPath.item==1){
+    else if (indexPath.item==[_markArray[1] integerValue]){
         return 40.f;
     }
-    else if (indexPath.item==2)
+    else if (indexPath.item==[_markArray[2] integerValue])
     {
         return 40.f;
     }
-    else if (indexPath.item==3)
+    else if (indexPath.item==[_markArray[3] integerValue])
     {
         return 200.f;
     }
-//    else if (indexPath.item==[_markArray[2] integerValue]){
-//        return 44.f;
-//    }
+    else if (indexPath.item==[_markArray[4] integerValue]){
+        return 190.f;
+    }
 //    else if (indexPath.item==[_markArray[3] integerValue]){
 //        return 44.f;
 //    }
@@ -121,35 +139,34 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.item==0) {
+    if (indexPath.item==[_markArray[0] integerValue]) {
         RH_DepositeTransferBankInfoCell *bankInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferBankInfoCell defaultReuseIdentifier]] ;
 //        payforWayCell.delegate = self;
         return bankInfoCell ;
     }
-    else if (indexPath.item == 1){
+    else if (indexPath.item == [_markArray[1] integerValue]){
         RH_DepositeTransferPayWayCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayWayCell defaultReuseIdentifier]] ;
         return paywayCell ;
     }
-    else if (indexPath.item == 2){
+    else if (indexPath.item == [_markArray[2] integerValue]){
         RH_DepositeTransferPayWayCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayWayCell defaultReuseIdentifier]] ;
         paywayCell.leftTitleLabel.text = @"存款人";
         paywayCell.rightTitleLabel.text = @"转入账号对应的姓名";
         return paywayCell ;
     }
-    else if (indexPath.item == 3){
+    else if (indexPath.item == [_markArray[3] integerValue]){
         RH_DepositeTransferReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferReminderCell defaultReuseIdentifier]] ;
         reminderCell.delegate=self;
         return reminderCell ;
     }
     else if (indexPath.item == [_markArray[4]integerValue]){
-//        RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
-//        reminderCell.delegate = self;
-//        return reminderCell ;
-    }
+        RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
+        //        platformCell.delegate=self;
+        return qrcodeCell ;    }
     else if (indexPath.item==[_markArray[5]integerValue]){
-//        RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
-//        platformCell.delegate=self;
-//        return platformCell ;
+//        RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
+////        platformCell.delegate=self;
+//        return qrcodeCell ;
     }
     return nil;
 }
