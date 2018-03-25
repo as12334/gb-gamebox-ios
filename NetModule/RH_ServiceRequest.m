@@ -2255,6 +2255,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositeOrigin:
             {
+                
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:
