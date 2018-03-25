@@ -79,13 +79,12 @@
     if (userApiBalance){
         titleLab.text = userApiBalance.mApiName ;
         
-        if (userApiBalance.mStatus) {
+        if (![userApiBalance.mStatus isEqualToString:@""]) {
             amountLab.text = userApiBalance.mStatus ;
         }else
         {
             amountLab.text = [NSString stringWithFormat:@"%.2f",userApiBalance.mBalance] ;
         }
-        
     }
     
     if (infoModel) {

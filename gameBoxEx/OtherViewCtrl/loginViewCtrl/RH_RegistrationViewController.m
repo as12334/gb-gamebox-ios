@@ -33,6 +33,7 @@
     // Do any additional setup after loading the view.
     
     [self setupInfo];
+    [self.serviceRequest startV3RegisetInit];
 }
 
 - (void)setupInfo {
@@ -41,6 +42,7 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
+    
 }
 
 - (CLTableViewManagement *)tableViewManagement {

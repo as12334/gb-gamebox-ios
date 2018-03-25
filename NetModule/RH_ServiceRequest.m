@@ -42,6 +42,7 @@
 #import "RH_ActivityStatusModel.h"
 #import "RH_SiteMsgUnReadCountModel.h"
 #import "RH_SharePlayerRecommendModel.h"
+#import "RH_RegisetInitModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1410,6 +1411,102 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositeOrigin
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 注册初始化exxxxxx
+-(void)startV3RegisetInit
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_REGISESTINIT
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RegiestInit
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 注册提交exxxxxxxx
+/**
+ 注册提交
+ 
+ @param birth 生日
+ @param sex 性别
+ @param permissionPwd  安全码
+ @param defaultTimezone 时区
+ @param defaultLocale 默认语言
+ @param phone 手机号
+ @param realName 真实姓名
+ @param defaultCurrency   货币
+ @param password 密码
+ @param question1 问题
+ @param email 邮箱
+ @param qq qq
+ @param weixinValue 微信
+ @param userName 用户名
+ @param captchaCode 验证码
+ */
+-(void)startV3RegisetSubmitWithBirthday:(NSString *)birth
+                                    sex:(NSString *)sex
+                          permissionPwd:(NSString *)permissionPwd
+                        defaultTimezone:(NSString *)defaultTimezone
+                          defaultLocale:(NSString *)defaultLocale
+                      phonecontactValue:(NSString *)phone
+                               realName:(NSString *)realName
+                        defaultCurrency:(NSString *)defaultCurrency
+                               password:(NSString *)password
+                              question1:(NSString *)question1
+                             emailValue:(NSString *)email
+                                qqValue:(NSString *)qq
+                            weixinValue:(NSString *)weixinValue
+                               userName:(NSString *)userName
+                            captchaCode:(NSString *)captchaCode
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:birth forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY];
+    [dict setObject:sex forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEX];
+    [dict setObject:permissionPwd forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PERMISSIONPWD];
+    [dict setObject:defaultTimezone forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTTIMEZONE];
+    [dict setObject:phone forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PHONECONTACTVALUE];
+    [dict setObject:realName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_REALNAME];
+    [dict setObject:defaultLocale forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTLOCALE];
+    [dict setObject:defaultCurrency forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTCURRENCY];
+    [dict setObject:password forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSWORD];
+    [dict setObject:question1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QUESTION];
+    [dict setObject:email forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_EMAILCONTACTVALUE];
+    [dict setObject:qq forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QQCONTACTVALUE];
+    [dict setObject:weixinValue forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_WEIXINCONTACTVALUE];
+    [dict setObject:userName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_USERNAME];
+    [dict setObject:captchaCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CAPCHACODE];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_REGISESTSUBMIT
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RegiestSubmit
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 注册条款 exxxxxx
+-(void)startV3RegisetTerm
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_REGISESTTERMS
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RegiestTerm
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2158,7 +2255,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositeOrigin:
             {
-                
+            }
+                break;
+            case ServiceRequestTypeV3RegiestInit:
+            {
+                resultSendData = [[RH_RegisetInitModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
             default:

@@ -63,6 +63,7 @@
 		797F678F2008A25E009E3FAB /* RH_GameNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678E2008A25E009E3FAB /* RH_GameNoticeModel.m */; };
 		797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */; };
 		797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */; };
+		7991A3B120649CAF00133F74 /* RH_RegisetInitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */; };
 		79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */; };
 		79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */; };
 		79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */; };
@@ -764,6 +765,8 @@
 		797F67912008A272009E3FAB /* RH_GameNoticeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameNoticeDetailModel.m; sourceTree = "<group>"; };
 		797F6796200B789B009E3FAB /* RH_SiteMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMessageModel.h; sourceTree = "<group>"; };
 		797F6797200B789B009E3FAB /* RH_SiteMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMessageModel.m; sourceTree = "<group>"; };
+		7991A3AF20649CAF00133F74 /* RH_RegisetInitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisetInitModel.h; sourceTree = "<group>"; };
+		7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisetInitModel.m; sourceTree = "<group>"; };
 		79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineSafetyCenterBankCell.m; sourceTree = "<group>"; };
 		79A5CC38201871AE0044435E /* RH_MineSafetyCenterBankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterBankCell.h; sourceTree = "<group>"; };
 		79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineSafetyCenterBankCell.xib; sourceTree = "<group>"; };
@@ -2851,6 +2854,8 @@
 				F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */,
 				F6942E0E206503AC009A5573 /* RH_DepositePayAccountModel.h */,
 				F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */,
+				7991A3AF20649CAF00133F74 /* RH_RegisetInitModel.h */,
+				7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -4800,6 +4805,7 @@
 				F6FB6415201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m in Sources */,
 				F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
+				7991A3B120649CAF00133F74 /* RH_RegisetInitModel.m in Sources */,
 				F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */,
 				B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */,
 				A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */,
@@ -4884,7 +4890,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

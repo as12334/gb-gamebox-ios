@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RH_LimitTransferTopView : UIView
+@protocol RH_LimitTransferTopViewDelegate
 
+- (void)RH_LimitTransferTopViewMineWalletDidTaped;
+@end
+
+@interface RH_LimitTransferTopView : UIView
+@property (nonatomic, weak) id<RH_LimitTransferTopViewDelegate> delegate;
 @end

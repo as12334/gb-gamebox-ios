@@ -883,7 +883,7 @@
 //请求参数
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY                           @"sysUser.birthday"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEX                                @"sysUser.sex"
-#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_permissionPWD                      @"sysUser.permissionPwd"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PERMISSIONPWD                      @"sysUser.permissionPwd"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTTIMEZONE                    @"sysUser.defaultTimezone"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTLOCALE                      @"sysUser.defaultLocale"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PHONECONTACTVALUE                  @"phone.contactValue"
@@ -895,6 +895,7 @@
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QQCONTACTVALUE                     @"qq.contactValue"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_WEIXINCONTACTVALUE                 @"weixin.contactValue"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_USERNAME                           @"sysUser.username"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CAPCHACODE                         @"captchaCode"
 
 #pragma mark - V3 注册条款
 #define RH_API_NAME_REGISESTTERMS        @"mobile-api/origin/terms.html"
