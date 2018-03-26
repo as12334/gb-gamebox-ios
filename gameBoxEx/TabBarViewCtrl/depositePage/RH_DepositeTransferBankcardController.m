@@ -12,6 +12,7 @@
 #import "RH_DepositeTransferPayWayCell.h"
 #import "RH_DepositeTransferReminderCell.h"
 #import "RH_DepositeTransferQRCodeCell.h"
+#import "RH_DepositeTransferWXinInfoCell.h"
 @interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -43,13 +44,17 @@
 #pragma mark --获取点击的具体的item
 -(void)setupViewContext:(id)context
 {
-    self.indexMark = [ConvertToClassPointer(NSNumber, context) integerValue];
-    if (self.indexMark==0) {
+    NSArray *array = ConvertToClassPointer(NSArray, context);
+    if ([array[0] isEqualToString:@"company"]) {
         _markArray =@[@0,@1,@2,@3,@4,@5];
     }
-    else if (self.indexMark==2){
-        _markArray =@[@0,@2,@3,@4,@1,@5];
+    else if ([array[0] isEqualToString:@"wechat"]){
+        _markArray =@[@5,@2,@3,@4,@1,@0];
 
+    }
+    else if ([array[0] isEqualToString:@"alipay"])
+    {
+        _markArray =@[@5,@2,@3,@4,@1,@0];
     }
     else{
        _markArray =@[@0,@1,@2,@3,@4,@5];
@@ -68,6 +73,7 @@
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferPayWayCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferReminderCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferQRCodeCell class]];
+    [self.contentTableView registerCellWithClass:[RH_DepositeTransferWXinInfoCell class]];
     //提交按钮
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     submitBtn.frame = CGRectMake(0, 0, self.contentView.frameWidth, 40);
@@ -131,9 +137,9 @@
 //    else if (indexPath.item ==[_markArray[4] integerValue]){
 //        return 200.f;
 //    }
-//    else if (indexPath.item ==[_markArray[5] integerValue]){
-//        return 130.f;
-//    }
+    else if (indexPath.item ==[_markArray[5] integerValue]){
+        return 180.f;
+    }
     return 0.f ;
 }
 
@@ -164,9 +170,9 @@
         //        platformCell.delegate=self;
         return qrcodeCell ;    }
     else if (indexPath.item==[_markArray[5]integerValue]){
-//        RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
-////        platformCell.delegate=self;
-//        return qrcodeCell ;
+        RH_DepositeTransferWXinInfoCell *wxInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferWXinInfoCell defaultReuseIdentifier]] ;
+//        platformCell.delegate=self;
+        return wxInfoCell ;
     }
     return nil;
 }

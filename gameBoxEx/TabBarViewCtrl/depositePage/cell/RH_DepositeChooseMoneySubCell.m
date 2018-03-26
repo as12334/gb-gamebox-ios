@@ -7,12 +7,17 @@
 //
 
 #import "RH_DepositeChooseMoneySubCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
 @interface RH_DepositeChooseMoneySubCell()
 @property (weak, nonatomic) IBOutlet UIImageView *chooseMoneyIcon;
 
 @end
 @implementation RH_DepositeChooseMoneySubCell
-
+-(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
+{
+    
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

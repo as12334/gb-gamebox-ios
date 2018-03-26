@@ -56,11 +56,9 @@
 
 #pragma mark Request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
-    NSLog(@"%s", __func__);
-    NSLog(@"%@", error);
+    
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
-    NSLog(@"%s", __func__);
-    NSLog(@"%@", data);
+
 }
 @end

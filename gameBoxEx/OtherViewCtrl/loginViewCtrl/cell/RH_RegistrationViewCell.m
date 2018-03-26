@@ -53,8 +53,6 @@
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
-    NSLog(@"%s", __func__);
-    NSLog(@"%@", info);
     label_Title.text = info[@"title"];
     textField.placeholder = info[@"content"];
     if ([info[@"cellType"] isEqualToString:@"password"]) {

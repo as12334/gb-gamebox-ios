@@ -112,7 +112,6 @@
                   }] ;
     }];
     [[NSNotificationCenter defaultCenter]addObserverForName:@"RH_ShareRecodEndDate_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        NSLog(@"%@",note.object);
         RH_ShareRecordCollectionPageCell *cell = note.object[0];
         RH_ShareRecordTableViewCell *viewCell = note.object[1];
         NSDate *defaultDate = note.object[2];

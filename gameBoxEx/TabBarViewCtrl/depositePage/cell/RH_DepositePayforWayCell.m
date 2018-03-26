@@ -9,17 +9,27 @@
 #import "RH_DepositePayforWayCell.h"
 #import "RH_DepositePayforWaySubCell.h"
 #import "coreLib.h"
+#import "RH_DepositeTransferModel.h"
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-30)/3.0)
 #define HomeCategoryItemsCellHeight                     70.0f
 @interface RH_DepositePayforWayCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
+@property (nonatomic,strong)NSArray *payModelArray;
+@property (nonatomic,strong) RH_DepositeTransferModel *transferModel;
 @end
 @implementation RH_DepositePayforWayCell
 
 @synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return 60;
+     RH_DepositeTransferModel* transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
+    if (transferModel.mPayModel.count%5==0) {
+        return 90*(transferModel.mPayModel.count/5);
+    }
+    else
+    {
+        return 90*(transferModel.mPayModel.count/5+1);
+    }
 }
 
 - (void)awakeFromNib
@@ -38,8 +48,8 @@
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-//    self.itemsList = ConvertToClassPointer(NSArray, context) ;
-//    [self.collectionView reloadData] ;
+    self.payModelArray = ConvertToClassPointer(NSArray, context);
+    [self.collectionView reloadData];
 }
 
 #pragma mark-
@@ -75,17 +85,24 @@
 #pragma mark -
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    if (self.payModelArray.count%5==0) {
+        return self.payModelArray.count/5;
+    }
+    else{
+        return self.payModelArray.count/5+1;
+    }
+    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.payModelArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositePayforWaySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_DepositePayforWaySubCell defaultReuseIdentifier] forIndexPath:indexPath];
+    [cell updateViewWithInfo:nil context:self.payModelArray[indexPath.item]];
     return cell;
 }
 

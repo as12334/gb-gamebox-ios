@@ -43,6 +43,8 @@
 #import "RH_SiteMsgUnReadCountModel.h"
 #import "RH_SharePlayerRecommendModel.h"
 #import "RH_RegisetInitModel.h"
+#import "RH_DepositeTransferModel.h"
+#import "RH_DepositePayAccountModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2322,7 +2324,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositeOrigin:
             {
-                
+                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])];
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:

@@ -7,9 +7,13 @@
 //
 
 #import "RH_DepositeSystemPlatformSubCell.h"
-
+#import "coreLib.h"
+#import "RH_API.h"
 @implementation RH_DepositeSystemPlatformSubCell
-
+-(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
+{
+    
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

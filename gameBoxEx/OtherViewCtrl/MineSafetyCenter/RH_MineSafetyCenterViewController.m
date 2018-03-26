@@ -91,7 +91,6 @@ typedef NS_ENUM(NSInteger,SafetyCenterStatus ) {
     if (_headerView == nil) {
         _headerView = [[RH_MineSafetyCenterHeaderView alloc] init];
         _headerView.frame = CGRectMake(0, 0, screenSize().width, 301);
-        NSLog(@"%f", screenSize().width);
         if (screenSize().width == 414) {
             _headerView.frame = CGRectMake(0, 0, screenSize().width, 321);
         }

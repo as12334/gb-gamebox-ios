@@ -16,13 +16,19 @@
 #import "RH_DepositeMoneyBankCell.h"
 #import "RH_DepositeSystemPlatformCell.h"
 #import "RH_DepositeTransferBankcardController.h"
+#import "RH_DepositeTransferModel.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
+@property(nonatomic,strong)RH_DepositeTransferModel *transferModel;
+@property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
 @end
 
 @implementation RH_DepositeViewControllerEX
+{
+    NSInteger _selectNumber;
+}
 @synthesize circleView = _circleView;
 -(BOOL)tabBarHidden
 {
@@ -76,7 +82,8 @@
 -(void)updateView
 {
     if (self.appDelegate.isLogin&&NetworkAvailable()){
-        [self.serviceRequest startV3RequestDepositOrigin];
+//        [self.serviceRequest startV3RequestDepositOrigin];
+        [self setupPageLoadManager] ;
     }
     else if(!self.appDelegate.isLogin){
         //进入登录界面
@@ -185,7 +192,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.item==[_markArray[0] integerValue]) {
-        return 90.0f ;
+        return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transferModel] ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
         return 120.f;
@@ -200,54 +207,67 @@
         return 200.f;
     }
     else if (indexPath.item ==[_markArray[5] integerValue]){
-        return 130.f;
+        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.transferModel.mPayModel[_selectNumber]];
     }
     return 0.0f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.item==[_markArray[0]integerValue]) {
-        RH_DepositePayforWayCell *payforWayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositePayforWayCell defaultReuseIdentifier]] ;
-        payforWayCell.delegate = self;
-        return payforWayCell ;
+   
+    if (self.pageLoadManager.currentDataCount) {
+        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, [self.pageLoadManager dataAtIndex:0]);
+        if (indexPath.item==[_markArray[0]integerValue]) {
+            RH_DepositePayforWayCell *payforWayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositePayforWayCell defaultReuseIdentifier]] ;
+            payforWayCell.delegate = self;
+            [payforWayCell updateCellWithInfo:nil context:transferModel.mPayModel];
+            return payforWayCell ;
+        }
+        else if (indexPath.item == [_markArray[1]integerValue]){
+            RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
+            [moneyCell updateCellWithInfo:nil context:transferModel.mPaydataModel];
+            return moneyCell ;
+        }
+        else if (indexPath.item == [_markArray[2]integerValue]){
+            RH_DepositeMoneyNumberCell *numberCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyNumberCell defaultReuseIdentifier]] ;
+            
+            return numberCell ;
+        }
+        else if (indexPath.item == [_markArray[3]integerValue]){
+            RH_DepositeMoneyBankCell *bankCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyBankCell defaultReuseIdentifier]] ;
+            return bankCell ;
+        }
+        else if (indexPath.item == [_markArray[4]integerValue]){
+            RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
+            reminderCell.delegate = self;
+            return reminderCell ;
+        }
+        else if (indexPath.item==[_markArray[5]integerValue]){
+            RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
+            platformCell.delegate=self;
+            _platformCell = platformCell;
+            [platformCell updateCellWithInfo:nil context:transferModel.mPayModel[_selectNumber]];
+            return platformCell ;
+        }
     }
-    else if (indexPath.item == [_markArray[1]integerValue]){
-        RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
-        
-        return moneyCell ;
+    else{
+        return self.loadingIndicateTableViewCell ;
     }
-    else if (indexPath.item == [_markArray[2]integerValue]){
-        RH_DepositeMoneyNumberCell *numberCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyNumberCell defaultReuseIdentifier]] ;
-        
-        return numberCell ;
-    }
-    else if (indexPath.item == [_markArray[3]integerValue]){
-        RH_DepositeMoneyBankCell *bankCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyBankCell defaultReuseIdentifier]] ;
-        return bankCell ;
-    }
-    else if (indexPath.item == [_markArray[4]integerValue]){
-        RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
-        reminderCell.delegate = self;
-        return reminderCell ;
-    }
-    else if (indexPath.item==[_markArray[5]integerValue]){
-        RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
-        platformCell.delegate=self;
-        return platformCell ;
-    }
+    
     return nil;
 }
 #pragma mark --depositePayforWay的代理，选择付款的平台
 -(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem itemIndex:(NSInteger)itemIndex
 {
-    if (itemIndex==0) {
+    _selectNumber = itemIndex;
+    if ([self.transferModel.mPayModel[itemIndex].mCode isEqualToString:@"online"]) {
         _markArray = @[@0,@1,@2,@3,@4,@5];
     }
     else {
         _markArray = @[@0,@2,@3,@5,@4,@1];
     }
     [self.contentTableView reloadData];
+    
 }
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
@@ -255,9 +275,10 @@
     [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
--(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell indexCellItem:(NSInteger)index
+-(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell codeString:(NSString *)codeStr typeString:(NSString *)typeStr
 {
-    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:@(index)];
+    NSArray *array = @[codeStr,typeStr];
+    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:array];
     [self showViewController:transferVC sender:self];
 }
 #pragma mark --点击提交按钮
@@ -288,11 +309,67 @@
 #pragma mark 数据请求
 
 #pragma mark - serviceRequest
+-(RH_LoadingIndicateView*)contentLoadingIndicateView
+{
+    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+}
 
+
+- (CLPageLoadManagerForTableAndCollectionView *)createPageLoadManager
+{
+    return [[CLPageLoadManagerForTableAndCollectionView alloc] initWithScrollView:self.contentTableView
+                                                          pageLoadControllerClass:nil
+                                                                         pageSize:[self defaultPageSize]
+                                                                     startSection:0
+                                                                         startRow:0
+                                                                   segmentedCount:1] ;
+}
+
+-(BOOL)showNotingIndicaterView
+{
+    [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
+                                             title:nil
+                                        detailText:@"您暂无相关数据记录"] ;
+    return YES ;
+    
+}
+#pragma mark-
+-(void)netStatusChangedHandle
+{
+    if (NetworkAvailable()){
+        [self startUpdateData] ;
+    }
+}
+#pragma mark- 请求回调
+
+-(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
+{
+    [self.serviceRequest startV3RequestDepositOrigin];
+}
+-(void)cancelLoadDataHandle
+{
+    [self.serviceRequest cancleAllServices] ;
+}
+
+#pragma mark-
+- (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
+{
+    [self startUpdateData] ;
+}
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-     
+        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, data);
+        self.transferModel = transferModel;
+        [self loadDataSuccessWithDatas:transferModel?@[transferModel]:@[]
+                            totalCount:transferModel?1:0] ;
+        if ([self.transferModel.mPayModel[0].mCode isEqualToString:@"online"]) {
+            _markArray = @[@0,@1,@2,@3,@4,@5];
+        }
+        else {
+            _markArray = @[@0,@2,@3,@5,@4,@1];
+        }
+        [self.contentTableView reloadData];
     }
 }
 

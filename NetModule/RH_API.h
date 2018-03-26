@@ -913,6 +913,9 @@
 #pragma mark - V3 存款
 #define RH_API_DEPOSITE_DEPOSITEORIGIN   @"/mobile-api/depositOrigin/index.html"
 //返回参数
+#define RH_GP_DEPOSITEORIGIN_PAY                    @"pay"
+#define RH_GP_DEPOSITEORIGIN_PAYDATA                @"payData"
+
 #define RH_GP_DEPOSITEORIGIN_QUICKMONEYS            @"quickMoneys"
 #define RH_GP_DEPOSITEORIGIN_LOTTERYSITE            @"lotterySite"
 #define RH_GP_DEPOSITEORIGIN_ISFASTRECHARGE         @"isFastRecharge"
@@ -932,7 +935,7 @@
 #define RH_GP_DEPOSITEORIGIN_BANKCODE               @"bankCode"
 #define RH_GP_DEPOSITEORIGIN_SINGLEDEPOSITEMIN      @"singleDepositMin"
 #define RH_GP_DEPOSITEORIGIN_FULLNAME               @"fullName"
-#define RH_GP_DEPOSITEORIGIN_FEMARK                 @"remark"
+#define RH_GP_DEPOSITEORIGIN_REMARK                 @"remark"
 #define RH_GP_DEPOSITEORIGIN_ACCOUNTPROMPT          @"accountPrompt"
 #define RH_GP_DEPOSITEORIGIN_PAYNAME                @"payName"
 #define RH_GP_DEPOSITEORIGIN_CUSTOMBANKNAME         @"customBankName"
