@@ -19,11 +19,8 @@
 
 @interface RH_BankPickerSelectView : UIView
 @property (nonatomic,weak) id<BankPickerSelectViewDelegate> delegate ;
-<<<<<<< HEAD
+
 ///设置新的数据源
 - (void)setDatasourceList:(NSArray *)list;
-=======
-@property (nonatomic,strong) NSArray *dataArray ;
 
->>>>>>> origin/dev_richard
 @end

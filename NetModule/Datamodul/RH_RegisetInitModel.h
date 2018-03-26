@@ -57,7 +57,7 @@
 @property (nonatomic , assign , readonly) BOOL              bulitIn;
 @property (nonatomic , strong , readonly) NSString              * isOnly;
 @property (nonatomic , strong , readonly) NSString              * i18nName;
-@property (nonatomic , strong , readonly) NSString              * name;
+@property (nonatomic , strong ) NSString              * name;
 
 @end
 
