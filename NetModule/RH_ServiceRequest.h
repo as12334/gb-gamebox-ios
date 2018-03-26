@@ -92,7 +92,10 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3FirstHelpFirstTyp,     //常见问题父级分类
     ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
     ServiceRequestTypeV3HelpDetail,     //常见问题详情
-    
+    ServiceRequestTypeV3GetNoAutoTransferInfo,    // 非免转额度转换初始化
+    ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
+    ServiceRequestTypeV3ReconnectTransfer,        //非免转额度转换异常再次请求
+    ServiceRequestTypeV3RefreshApi,               //非免转刷新单个
 };
 
 
@@ -488,6 +491,23 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - V3  常见问题详情
 -(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
 
+#pragma mark - V3  非免转额度转换初始化
+-(void)startV3GetNoAutoTransferInfoInit ;
+
+
+#pragma mark - V3  非免转额度转换提交
+-(void)startV3SubitTransfersMoneyToken:(NSString *)token
+                           transferOut:(NSString *)transferOut
+                          transferInto:(NSString *)transferInto
+                        transferAmount:(float)transferAmount ;
+
+
+#pragma mark - V3  非免转额度转换异常再次请求
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo ;
+
+
+#pragma mark - V3  非免转刷新单个
+-(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
 
 #pragma mark -
 /**

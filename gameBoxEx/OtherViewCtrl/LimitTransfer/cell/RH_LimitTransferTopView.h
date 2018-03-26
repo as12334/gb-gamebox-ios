@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class RH_LimitTransferTopView ;
+@protocol LimitTransferTopViewDelegate
 
-@protocol RH_LimitTransferTopViewDelegate
-
-- (void)RH_LimitTransferTopViewMineWalletDidTaped;
-- (void)RH_LimitTransferTopViewTransforToDidTaped;
+-(void)limitTransferTopViewDidTouchTransferInBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView;
+-(void)limitTransferTopViewDidTouchTransferOutBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView;
+-(void)limitTransferTopViewDidTouchRefreshBalanceBtn ;
+-(void)limitTransferTopViewDidTouchSureSubmitBtn:(UIButton *)sender withTransferInBtn:(UIButton *)transfrtIn transferOut:(UIButton *)transferOut amount:(NSString *)amount ;
 @end
 
 @interface RH_LimitTransferTopView : UIView
-@property (nonatomic, weak) id<RH_LimitTransferTopViewDelegate> delegate;
+@property (nonatomic, weak) id<LimitTransferTopViewDelegate> delegate;
+-(void)updataBTnTitleTransferInBtnTitle:(NSString *)tranferInTitle ;
+-(void)updataBTnTitletransferOutBtnTitle:(NSString *)tranferOutTitle ;
 @end

@@ -111,6 +111,7 @@
 		79FA653B20677B65000C7DB6 /* RH_HelpCenterDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */; };
 		79FA653E20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */; };
 		79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */; };
+		79FA65442068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA65432068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -875,6 +876,8 @@
 		79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailViewController.m; sourceTree = "<group>"; };
 		79FA653F20677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailViewCell.h; sourceTree = "<group>"; };
 		79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailViewCell.m; sourceTree = "<group>"; };
+		79FA65422068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GetNoAutoTransferInfoModel.h; sourceTree = "<group>"; };
+		79FA65432068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GetNoAutoTransferInfoModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -2990,6 +2993,8 @@
 				79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */,
 				79FA653920677B65000C7DB6 /* RH_HelpCenterDetailModel.h */,
 				79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */,
+				79FA65422068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.h */,
+				79FA65432068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -4788,6 +4793,7 @@
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
+				79FA65442068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
 				79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */,

@@ -948,6 +948,26 @@
 #pragma mark - V3  常见问题详情
 #define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"
 
+#pragma mark - V3  非免转额度转换初始化
+#define RH_API_NAME_GETNOAUTOTRANSFERINFO        @"mobile-api/userInfoOrigin/getNoAutoTransferInfo.html"
+
+#pragma mark - V3  非免转额度转换提交
+#define RH_API_NAME_SUBTRANSFERMONEY       @"mobile-api/userInfoOrigin/transfersMoney.html"
+//请求参数
+#define RH_SP_SUBTRANSFERMONEY_TOKEN                                 @"gb.token"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFEROUT                           @"transferOut"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFERINTO                          @"transferInto"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFERAMOUNT                        @"result.transferAmount"
+
+#pragma mark - V3  非免转额度转换异常再次请求
+#define RH_API_NAME_RECONNECTTRANSFER        @"mobile-api/userInfoOrigin/reconnectTransfer.html"
+//请求参数
+#define RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO                  @"search.transactionNo" //失败的orderId
+
+#pragma mark - V3  非免转刷新单个
+#define RH_API_NAME_REFRESHAPI        @"mobile-api/userInfoOrigin/refreshApi.html"
+//请求参数
+#define RH_SP_REFRESHAPI_APIID                 @"search.apiId"  //apiId
 
 #endif /* RH_API_h */
 

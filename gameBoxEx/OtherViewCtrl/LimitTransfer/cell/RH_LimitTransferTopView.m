@@ -77,8 +77,8 @@
     [transferOutBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     transferOutBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     [transferOutBtn setTitleColor:colorWithRGB(153, 153, 153) forState:UIControlStateNormal];
-
-    [transferOutBtn addTarget:self action:@selector(mineWalletDidTaped:) forControlEvents:UIControlEventTouchUpInside];
+    transferOutBtn.tag = 886 ;
+    [transferOutBtn addTarget:self action:@selector(transferInBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
     
     
@@ -104,7 +104,8 @@
     [transferInBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     transferInBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     [transferInBtn setTitleColor:colorWithRGB(153, 153, 153) forState:UIControlStateNormal];
-    [transferInBtn addTarget:self action:@selector(transforDidTaped:) forControlEvents:UIControlEventTouchUpInside];
+    [transferInBtn addTarget:self action:@selector(transferOutBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    transferInBtn.tag = 887 ;
     
     UILabel *line2 = [[UILabel alloc] init] ;
     [bottomView addSubview:line2];
@@ -125,8 +126,10 @@
     [amountView addSubview:amountTextfield];
     amountTextfield.whc_RightSpace(10).whc_CenterY(0).whc_HeightAuto().whc_WidthAuto() ;
     amountTextfield.placeholder = @"请输入" ;
+    amountTextfield.tag = 889 ;
     amountTextfield.font = [UIFont systemFontOfSize:14.f] ;
     amountTextfield.textAlignment = NSTextAlignmentRight ;
+    amountTextfield.keyboardType = UIKeyboardTypeNumberPad ;
     
     UILabel *line3 = [[UILabel alloc] init] ;
     [bottomView addSubview:line3];
@@ -169,22 +172,51 @@
     refreshBalanceBtn.titleLabel.font = [UIFont systemFontOfSize:12.f] ;
     refreshBalanceBtn.layer.cornerRadius = 5;
     refreshBalanceBtn.layer.masksToBounds =  YES ;
+    [refreshBalanceBtn addTarget:self action:@selector(refreshBalanceBtnClick) forControlEvents:UIControlEventTouchUpInside] ;
     
 }
 
-- (void)mineWalletDidTaped:(UIButton *)button {
-    ifRespondsSelector(self.delegate, @selector(RH_LimitTransferTopViewMineWalletDidTaped)) {
-        [self.delegate RH_LimitTransferTopViewMineWalletDidTaped];
+#pragma mark - 转入账户
+- (void)transferInBtnClick:(UIButton *)button {
+    ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchTransferInBtn:withView:)) {
+        [self.delegate limitTransferTopViewDidTouchTransferInBtn:button withView:self];
     }
 }
-- (void)transforDidTaped:(UIButton *)button {
-    ifRespondsSelector(self.delegate, @selector(RH_LimitTransferTopViewTransforToDidTaped)) {
-        [self.delegate RH_LimitTransferTopViewTransforToDidTaped];
+#pragma mark - 转出账户
+- (void)transferOutBtnClick:(UIButton *)button {
+    ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchTransferOutBtn:withView:)){
+        [self.delegate limitTransferTopViewDidTouchTransferOutBtn:button withView:self];
     }
 }
 
+#pragma mark - 确认提交
 -(void)sureSubmitClick:(UIButton *)sender
 {
-    
+    UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
+    UIButton *transferInBtn = (UIButton *)[self viewWithTag:887] ;
+    UITextField *amount =(UITextField *) [self viewWithTag:889] ;
+    ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchSureSubmitBtn:withTransferInBtn:transferOut:amount:)){
+        [self.delegate limitTransferTopViewDidTouchSureSubmitBtn:sender withTransferInBtn:transferInBtn transferOut:transferOutBtn amount:amount.text] ;
+    }
 }
+
+#pragma mark - 刷新余额
+-(void)refreshBalanceBtnClick
+{
+    ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchRefreshBalanceBtn)){
+        [self.delegate limitTransferTopViewDidTouchRefreshBalanceBtn];
+    }
+}
+#pragma mark - 更新按钮标题
+-(void)updataBTnTitleTransferInBtnTitle:(NSString *)tranferInTitle
+{
+    UIButton *transferInBtn = (UIButton *)[self viewWithTag:886] ;
+    [transferInBtn setTitle:tranferInTitle forState:UIControlStateNormal];
+}
+-(void)updataBTnTitletransferOutBtnTitle:(NSString *)tranferOutTitle
+{
+     UIButton *transferOutBtn = (UIButton *)[self viewWithTag:887] ;
+      [transferOutBtn setTitle:tranferOutTitle forState:UIControlStateNormal];
+}
+
 @end
