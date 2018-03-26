@@ -14,7 +14,7 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _paramsModel = [info objectForKey:@"params"] ;
+        _paramsModel = [[ParamsModel alloc] initWithInfoDic:[info objectForKey:@"params"]];
         _signUpDataMapModel = [info objectForKey:@"signUpDataMap"] ;
         _requiredJson =  [info objectForKey:@"requiredJson"] ;
         _isPhone = [info boolValueForKey:@"isPhone"] ;
@@ -22,6 +22,7 @@
         _isEmail = [info boolValueForKey:@"isEmail"] ;
         _selectOptionModel = [info objectForKey:@"selectOption"] ;
         _registCodeField = [info boolValueForKey:@"registCodeField"] ;
+        _fieldModel = [FieldModel dataArrayWithInfoArray:[info objectForKey:@"field"]] ;
     }
     return self ;
 }
