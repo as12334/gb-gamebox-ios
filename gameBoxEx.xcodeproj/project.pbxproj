@@ -99,6 +99,18 @@
 		79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865D203A7952002BF767 /* RH_ShowShareRecordViewCell.m */; };
 		79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
+		79FA651A20673BE2000C7DB6 /* RH_RegisterClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA651920673BE2000C7DB6 /* RH_RegisterClauseViewController.m */; };
+		79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA651C20673C48000C7DB6 /* RH_RegisterClauseViewCell.m */; };
+		79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA651F20673C64000C7DB6 /* RH_RegisterClauseModel.m */; };
+		79FA652420674297000C7DB6 /* RH_HelpCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA652320674297000C7DB6 /* RH_HelpCenterViewController.m */; };
+		79FA6527206742B9000C7DB6 /* RH_HelpCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA6526206742B9000C7DB6 /* RH_HelpCenterViewCell.m */; };
+		79FA652A20674550000C7DB6 /* RH_HelpCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA652920674550000C7DB6 /* RH_HelpCenterModel.m */; };
+		79FA652E206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA652D206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m */; };
+		79FA6533206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA6532206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m */; };
+		79FA6536206773E8000C7DB6 /* RH_HelpCenterSecondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */; };
+		79FA653B20677B65000C7DB6 /* RH_HelpCenterDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */; };
+		79FA653E20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */; };
+		79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -837,6 +849,30 @@
 		79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineMoreDetailWebViewController.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
+		79FA651820673BE2000C7DB6 /* RH_RegisterClauseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisterClauseViewController.h; sourceTree = "<group>"; };
+		79FA651920673BE2000C7DB6 /* RH_RegisterClauseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisterClauseViewController.m; sourceTree = "<group>"; };
+		79FA651B20673C48000C7DB6 /* RH_RegisterClauseViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisterClauseViewCell.h; sourceTree = "<group>"; };
+		79FA651C20673C48000C7DB6 /* RH_RegisterClauseViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisterClauseViewCell.m; sourceTree = "<group>"; };
+		79FA651E20673C64000C7DB6 /* RH_RegisterClauseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisterClauseModel.h; sourceTree = "<group>"; };
+		79FA651F20673C64000C7DB6 /* RH_RegisterClauseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisterClauseModel.m; sourceTree = "<group>"; };
+		79FA652220674297000C7DB6 /* RH_HelpCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterViewController.h; sourceTree = "<group>"; };
+		79FA652320674297000C7DB6 /* RH_HelpCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterViewController.m; sourceTree = "<group>"; };
+		79FA6525206742B9000C7DB6 /* RH_HelpCenterViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterViewCell.h; sourceTree = "<group>"; };
+		79FA6526206742B9000C7DB6 /* RH_HelpCenterViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterViewCell.m; sourceTree = "<group>"; };
+		79FA652820674550000C7DB6 /* RH_HelpCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterModel.h; sourceTree = "<group>"; };
+		79FA652920674550000C7DB6 /* RH_HelpCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterModel.m; sourceTree = "<group>"; };
+		79FA652C206754F4000C7DB6 /* RH_HelpCenterSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterSecondViewController.h; sourceTree = "<group>"; };
+		79FA652D206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterSecondViewController.m; sourceTree = "<group>"; };
+		79FA6531206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterSecondViewCell.h; sourceTree = "<group>"; };
+		79FA6532206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterSecondViewCell.m; sourceTree = "<group>"; };
+		79FA6534206773E8000C7DB6 /* RH_HelpCenterSecondModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterSecondModel.h; sourceTree = "<group>"; };
+		79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterSecondModel.m; sourceTree = "<group>"; };
+		79FA653920677B65000C7DB6 /* RH_HelpCenterDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailModel.h; sourceTree = "<group>"; };
+		79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailModel.m; sourceTree = "<group>"; };
+		79FA653C20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailViewController.h; sourceTree = "<group>"; };
+		79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailViewController.m; sourceTree = "<group>"; };
+		79FA653F20677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailViewCell.h; sourceTree = "<group>"; };
+		79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailViewCell.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -2075,6 +2111,68 @@
 			path = PromoDetail;
 			sourceTree = "<group>";
 		};
+		79FA651720673B90000C7DB6 /* RegisterClause */ = {
+			isa = PBXGroup;
+			children = (
+				79FA651820673BE2000C7DB6 /* RH_RegisterClauseViewController.h */,
+				79FA651920673BE2000C7DB6 /* RH_RegisterClauseViewController.m */,
+				79FA651B20673C48000C7DB6 /* RH_RegisterClauseViewCell.h */,
+				79FA651C20673C48000C7DB6 /* RH_RegisterClauseViewCell.m */,
+			);
+			path = RegisterClause;
+			sourceTree = "<group>";
+		};
+		79FA652120674258000C7DB6 /* HelpCenter */ = {
+			isa = PBXGroup;
+			children = (
+				79FA653820677A5B000C7DB6 /* HelpCenterDetail */,
+				79FA652F2067736C000C7DB6 /* cell */,
+				79FA652220674297000C7DB6 /* RH_HelpCenterViewController.h */,
+				79FA652320674297000C7DB6 /* RH_HelpCenterViewController.m */,
+				79FA652B20675494000C7DB6 /* HelpSecondCenter */,
+			);
+			path = HelpCenter;
+			sourceTree = "<group>";
+		};
+		79FA652B20675494000C7DB6 /* HelpSecondCenter */ = {
+			isa = PBXGroup;
+			children = (
+				79FA653020677378000C7DB6 /* cell */,
+				79FA652C206754F4000C7DB6 /* RH_HelpCenterSecondViewController.h */,
+				79FA652D206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m */,
+			);
+			path = HelpSecondCenter;
+			sourceTree = "<group>";
+		};
+		79FA652F2067736C000C7DB6 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				79FA6525206742B9000C7DB6 /* RH_HelpCenterViewCell.h */,
+				79FA6526206742B9000C7DB6 /* RH_HelpCenterViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		79FA653020677378000C7DB6 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				79FA6531206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.h */,
+				79FA6532206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		79FA653820677A5B000C7DB6 /* HelpCenterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				79FA653C20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.h */,
+				79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */,
+				79FA653F20677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.h */,
+				79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */,
+			);
+			path = HelpCenterDetail;
+			sourceTree = "<group>";
+		};
 		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
 			isa = PBXGroup;
 			children = (
@@ -2878,6 +2976,14 @@
 				7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */,
 				7953D02B206505C100760FEB /* RH_AboutUsModel.h */,
 				7953D02C206505C100760FEB /* RH_AboutUsModel.m */,
+				79FA651E20673C64000C7DB6 /* RH_RegisterClauseModel.h */,
+				79FA651F20673C64000C7DB6 /* RH_RegisterClauseModel.m */,
+				79FA652820674550000C7DB6 /* RH_HelpCenterModel.h */,
+				79FA652920674550000C7DB6 /* RH_HelpCenterModel.m */,
+				79FA6534206773E8000C7DB6 /* RH_HelpCenterSecondModel.h */,
+				79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */,
+				79FA653920677B65000C7DB6 /* RH_HelpCenterDetailModel.h */,
+				79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3208,6 +3314,8 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				79FA652120674258000C7DB6 /* HelpCenter */,
+				79FA651720673B90000C7DB6 /* RegisterClause */,
 				7953D0242064F78200760FEB /* AboutUs */,
 				790743082063542400A4543A /* LimitTransfer */,
 				79BB2D9420312F09000CDE6B /* Share */,
@@ -4412,6 +4520,7 @@
 				A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */,
 				A01181611FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m in Sources */,
 				A01CB48A1FF9C09F00447130 /* RH_ActivityModel.m in Sources */,
+				79FA6536206773E8000C7DB6 /* RH_HelpCenterSecondModel.m in Sources */,
 				A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */,
 				B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */,
 				A07DCEC61FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m in Sources */,
@@ -4422,6 +4531,7 @@
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
+				79FA6533206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m in Sources */,
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
@@ -4429,6 +4539,7 @@
 				79BB2DAF2032BA8E000CDE6B /* RH_FirstBigViewCell.m in Sources */,
 				79BB2DFA2036CC56000CDE6B /* RH_OldUserVerifyView.m in Sources */,
 				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
+				79FA652A20674550000C7DB6 /* RH_HelpCenterModel.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
 				7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
@@ -4440,6 +4551,7 @@
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
 				B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
+				79FA651A20673BE2000C7DB6 /* RH_RegisterClauseViewController.m in Sources */,
 				A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */,
 				A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */,
 				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
@@ -4464,6 +4576,7 @@
 				A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */,
 				A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */,
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
+				79FA6527206742B9000C7DB6 /* RH_HelpCenterViewCell.m in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
@@ -4493,6 +4606,7 @@
 				B879E0812026D9C0007B3D45 /* RH_BankCardLocationCell.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
+				79FA652420674297000C7DB6 /* RH_HelpCenterViewController.m in Sources */,
 				F69E35432063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */,
@@ -4644,6 +4758,7 @@
 				A0109FDD1F8788FF004E6EF4 /* DNSendButton.m in Sources */,
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
 				F69E350220634C6F0028D3A1 /* RH_DepositePayforWaySubCell.m in Sources */,
+				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
 				F6FB63A92010386100EEED4E /* RH_ApplyDiscountHeaderView.m in Sources */,
 				A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */,
 				B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */,
@@ -4687,6 +4802,7 @@
 				A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */,
 				F69E35202063971C0028D3A1 /* RH_DepositeSubmitCircleCell.m in Sources */,
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
+				79FA653B20677B65000C7DB6 /* RH_HelpCenterDetailModel.m in Sources */,
 				F6FB638A200F851300EEED4E /* RH_MPSystemNoticeCell.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
@@ -4704,6 +4820,7 @@
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				F6FB63BD201192B800EEED4E /* RH_ApplyDiscountSitePageCell.m in Sources */,
+				79FA653E20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
 				79BB2DAC2032775B000CDE6B /* RH_NonTableViewCell.m in Sources */,
 				A011816F1FFCAB21008F6D1E /* WHC_StackView.m in Sources */,
@@ -4732,6 +4849,7 @@
 				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */,
+				79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */,
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
 				A0109F701F8787E4004E6EF4 /* CLContentView.m in Sources */,
 				A0109F711F8787E4004E6EF4 /* CLGradientView.m in Sources */,
@@ -4755,6 +4873,7 @@
 				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
+				79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
 				F6A2ACD1200495940077CB92 /* RH_CapitalRecordDetailsCell.m in Sources */,
 				A011815B1FFC6BE4008F6D1E /* RH_BettingTableHeaderView.m in Sources */,
@@ -4813,6 +4932,7 @@
 				A0109F9D1F8787E4004E6EF4 /* CLUserGuideView.m in Sources */,
 				A0109F9E1F8787E4004E6EF4 /* CLBasicViewController.m in Sources */,
 				F6FB639C200F851300EEED4E /* RH_GameNoticeDetailController.m in Sources */,
+				79FA652E206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m in Sources */,
 				A0109F9F1F8787E4004E6EF4 /* CLBasicViewControllerAnimatedTransitioning.m in Sources */,
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,

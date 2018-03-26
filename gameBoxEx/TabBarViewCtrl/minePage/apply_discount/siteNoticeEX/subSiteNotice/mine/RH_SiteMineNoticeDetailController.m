@@ -82,7 +82,7 @@
 {
     
     //    [self.serviceRequest startV3LoadSystemNoticeDetailSearchId:self.systemModel.mID];
-    [self.serviceRequest startV3SiteMessageMyMessageDetailWithID:[NSString stringWithFormat:@"%d",self.detailModel.mId]];
+    [self.serviceRequest startV3SiteMessageMyMessageDetailWithID:[NSString stringWithFormat:@"%ld",(long)self.detailModel.mId]];
 }
 -(void)cancelLoadDataHandle
 {

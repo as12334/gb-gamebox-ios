@@ -1,20 +1,30 @@
 //
-//  RH_AboutUsViewController.m
+//  RH_HelpCenterSecondViewController.m
 //  gameBoxEx
 //
-//  Created by Richard on 2018/3/23.
+//  Created by Richard on 2018/3/25.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_AboutUsViewController.h"
-#import "RH_AboutUsTableViewCell.h"
-#import "RH_AboutUsModel.h"
+#import "RH_HelpCenterSecondViewController.h"
+#import "RH_HelpCenterSecondModel.h"
+#import "RH_HelpCenterSecondViewCell.h"
+#import "RH_HelpCenterModel.h"
+#import "RH_HelpCenterDetailViewController.h"
 
-@interface RH_AboutUsViewController ()
+@interface RH_HelpCenterSecondViewController ()
 
 @end
 
-@implementation RH_AboutUsViewController
+@implementation RH_HelpCenterSecondViewController
+{
+    RH_HelpCenterModel *_model ;
+}
+
+-(void)setupViewContext:(id)context
+{
+    _model = ConvertToClassPointer(RH_HelpCenterModel, context) ;
+}
 
 -(BOOL)isSubViewController
 {
@@ -23,10 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.title = @"关于我们" ;
+    self.title = _model.mName ;
     [self setupInfo];
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
+    
 }
 
 - (void)setupInfo
@@ -35,7 +45,7 @@
     self.contentTableView.sectionHeaderHeight = 9.0f ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     
-    [self.contentTableView registerCellWithClass:[RH_AboutUsTableViewCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_HelpCenterSecondViewCell class]] ;
     [self.contentView addSubview:self.contentTableView];
     [self setupPageLoadManager] ;
 }
@@ -75,7 +85,7 @@
 -(NSUInteger)defaultPageSize
 {
     CGFloat contentHeigh =  self.contentTableView.frameHeigh - self.contentTableView.contentInset.top - self.contentTableView.contentInset.bottom ;
-    CGFloat cellHeigh = [RH_AboutUsTableViewCell heightForCellWithInfo:nil tableView:nil context:nil] ;
+    CGFloat cellHeigh = [RH_HelpCenterSecondViewCell heightForCellWithInfo:nil tableView:nil context:nil] ;
     return floorf(contentHeigh/cellHeigh) ;
     
 }
@@ -84,7 +94,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3AboutUs] ;
+    [self.serviceRequest startV3HelpSecondTypeWithSearchId:_model.mId] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -102,17 +112,17 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3AboutUs) {
-        RH_AboutUsModel *model = ConvertToClassPointer(RH_AboutUsModel, data) ;
-        [self loadDataSuccessWithDatas:model?@[model]:nil
-                            totalCount:model?1:1] ;
+    if (type == ServiceRequestTypeV3FirstHelpSecondTyp) {
+        NSArray *model = data;
+        [self loadDataSuccessWithDatas:model?model:nil
+                            totalCount:model?model.count:1] ;
         
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3AboutUs) {
+    if (type == ServiceRequestTypeV3FirstHelpSecondTyp) {
         [self loadDataFailWithError:error] ;
     }
 }
@@ -126,7 +136,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        return [RH_AboutUsTableViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        return [RH_HelpCenterSecondViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
     }else{
         CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
@@ -136,12 +146,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        RH_AboutUsTableViewCell *aboutUsCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_AboutUsTableViewCell defaultReuseIdentifier]] ;
-        [aboutUsCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
-        return aboutUsCell ;
+        RH_HelpCenterSecondViewCell *helpCenterCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_HelpCenterSecondViewCell defaultReuseIdentifier]] ;
+        [helpCenterCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        return helpCenterCell ;
     }else{
         return self.loadingIndicateTableViewCell ;
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RH_HelpCenterSecondModel *model = [self.pageLoadManager dataAtIndexPath:indexPath] ;
+    NSLog(@"%@",model.mId) ;
+    [self.navigationController pushViewController:[RH_HelpCenterDetailViewController viewControllerWithContext:model]
+                                         animated:YES] ;
 }
 
 
@@ -149,8 +167,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 /*
 #pragma mark - Navigation

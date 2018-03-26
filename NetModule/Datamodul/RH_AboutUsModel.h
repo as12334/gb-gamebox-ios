@@ -10,4 +10,7 @@
 
 @interface RH_AboutUsModel : RH_BasicModel
 
+@property(nonatomic,strong,readonly)NSString *mTitle ;
+@property(nonatomic,strong,readonly)NSString *mContent ;
+@property(nonatomic,strong,readonly)NSString *mContentDefault ;
 @end

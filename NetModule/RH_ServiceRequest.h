@@ -311,8 +311,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                PageSize:(NSInteger)pageSize ;
 
 #pragma mark -  一键回收
-//请求参数  无
--(void)startV3OneStepRecovery;
+-(void)startV3OneStepRecoverySearchId:(NSString *)searchId;
 
 #pragma mark - V3 添加比特币
 -(void)startV3AddBtcWithNumber:(NSString *)bitNumber;
@@ -484,10 +483,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3HelpFirstType;
 
 #pragma mark - V3  常见问题二级分类
--(void)startV3HelpSecondType:(NSString *)searchId;
+-(void)startV3HelpSecondTypeWithSearchId:(NSString *)searchId ;
 
 #pragma mark - V3  常见问题详情
--(void)startV3HelpDetail;
+-(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
 
 
 #pragma mark -

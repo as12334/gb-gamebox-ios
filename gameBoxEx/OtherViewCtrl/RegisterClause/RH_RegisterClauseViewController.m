@@ -1,20 +1,20 @@
 //
-//  RH_AboutUsViewController.m
+//  RH_RegisterClauseViewController.m
 //  gameBoxEx
 //
-//  Created by Richard on 2018/3/23.
+//  Created by Richard on 2018/3/25.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_AboutUsViewController.h"
-#import "RH_AboutUsTableViewCell.h"
-#import "RH_AboutUsModel.h"
+#import "RH_RegisterClauseViewController.h"
+#import "RH_RegisterClauseViewCell.h"
+#import "RH_RegisterClauseModel.h"
 
-@interface RH_AboutUsViewController ()
+@interface RH_RegisterClauseViewController ()
 
 @end
 
-@implementation RH_AboutUsViewController
+@implementation RH_RegisterClauseViewController
 
 -(BOOL)isSubViewController
 {
@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"关于我们" ;
+    self.title = @"注册条款" ;
     [self setupInfo];
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
 }
@@ -35,7 +35,7 @@
     self.contentTableView.sectionHeaderHeight = 9.0f ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     
-    [self.contentTableView registerCellWithClass:[RH_AboutUsTableViewCell class]] ;
+    [self.contentTableView registerCellWithClass:[RH_RegisterClauseViewCell class]] ;
     [self.contentView addSubview:self.contentTableView];
     [self setupPageLoadManager] ;
 }
@@ -75,7 +75,7 @@
 -(NSUInteger)defaultPageSize
 {
     CGFloat contentHeigh =  self.contentTableView.frameHeigh - self.contentTableView.contentInset.top - self.contentTableView.contentInset.bottom ;
-    CGFloat cellHeigh = [RH_AboutUsTableViewCell heightForCellWithInfo:nil tableView:nil context:nil] ;
+    CGFloat cellHeigh = [RH_RegisterClauseViewCell heightForCellWithInfo:nil tableView:nil context:nil] ;
     return floorf(contentHeigh/cellHeigh) ;
     
 }
@@ -84,7 +84,7 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3AboutUs] ;
+    [self.serviceRequest startV3RegisetTerm] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -102,8 +102,8 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3AboutUs) {
-        RH_AboutUsModel *model = ConvertToClassPointer(RH_AboutUsModel, data) ;
+    if (type == ServiceRequestTypeV3RegiestTerm) {
+        RH_RegisterClauseModel *model = ConvertToClassPointer(RH_RegisterClauseModel, data) ;
         [self loadDataSuccessWithDatas:model?@[model]:nil
                             totalCount:model?1:1] ;
         
@@ -112,7 +112,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3AboutUs) {
+    if (type == ServiceRequestTypeV3RegiestTerm) {
         [self loadDataFailWithError:error] ;
     }
 }
@@ -126,7 +126,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        return [RH_AboutUsTableViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
+        return [RH_RegisterClauseViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
     }else{
         CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
         return height ;
@@ -136,21 +136,18 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-        RH_AboutUsTableViewCell *aboutUsCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_AboutUsTableViewCell defaultReuseIdentifier]] ;
-        [aboutUsCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
-        return aboutUsCell ;
+        RH_RegisterClauseViewCell *registerClauseCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_RegisterClauseViewCell defaultReuseIdentifier]] ;
+        [registerClauseCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        return registerClauseCell ;
     }else{
         return self.loadingIndicateTableViewCell ;
     }
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 /*
 #pragma mark - Navigation

@@ -1,29 +1,18 @@
 //
-//  RH_AboutUsTableViewCell.m
+//  RH_RegisterClauseViewCell.m
 //  gameBoxEx
 //
-//  Created by Richard on 2018/3/23.
+//  Created by Richard on 2018/3/25.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_AboutUsTableViewCell.h"
+#import "RH_RegisterClauseViewCell.h"
+#import "RH_RegisterClauseModel.h"
 #import "coreLib.h"
-#import "RH_AboutUsModel.h"
 
-@implementation RH_AboutUsTableViewCell
+@implementation RH_RegisterClauseViewCell
 {
     UIWebView *webView ;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -43,9 +32,19 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_AboutUsModel *model = ConvertToClassPointer(RH_AboutUsModel, context) ;
-    [webView loadHTMLString:model.mContent baseURL:nil] ;
+    RH_RegisterClauseModel *model = ConvertToClassPointer(RH_RegisterClauseModel, context) ;
+    [webView loadHTMLString:model.mValue baseURL:nil] ;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
 
 @end
