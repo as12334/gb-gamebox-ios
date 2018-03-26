@@ -37,7 +37,7 @@
     titleLab = [[UILabel alloc] init] ;
     [self.contentView addSubview:titleLab];
     titleLab.whc_LeftSpace(10).whc_CenterY(0).whc_WidthAuto().whc_HeightAuto() ;
-    titleLab.text = @"新霸电子6:";
+    titleLab.text = @"";
     titleLab.font = [UIFont systemFontOfSize:14.f] ;
     
     refreshBtnAndrecycleBtn = [[UIButton alloc] init];
@@ -60,7 +60,7 @@
     amountLab = [[UILabel alloc] init] ;
     [self.contentView addSubview:amountLab];
     amountLab.whc_RightSpaceToView(10, refreshBtnAndrecycleBtn).whc_CenterY(0).whc_HeightAuto().whc_WidthAuto() ;
-    amountLab.text = @"0.00";
+    amountLab.text = @"";
     amountLab.font = [UIFont systemFontOfSize:14.f] ;
     amountLab.textColor = colorWithRGB(153, 153, 153) ;
     
@@ -101,7 +101,7 @@
 #pragma mark -- 刷新&回收按钮点击
 -(void)refreshBtnAndrecycleBtnClick:(UIButton *)sender
 {
-    
+   
 }
 
 

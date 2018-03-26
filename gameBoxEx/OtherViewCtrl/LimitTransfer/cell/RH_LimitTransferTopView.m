@@ -15,7 +15,6 @@
     UILabel *transferLab ;  //转账处理中
     UILabel *moneyLab ;  //金额显示
     RH_BankPickerSelectView *selectView;
-    
 }
 
 /*

@@ -694,7 +694,8 @@
 
 #pragma mark - V3 一键回收
 #define RH_API_NAME_ONESTEPRECOVERY          @"mobile-api/mineOrigin/recovery.html"
-//请求参数  无
+//请求参数
+#define RH_SP_ONESTEPRECOVERY_SEARCHAPIID         @"search.apiId"
 
 #pragma mark - V3 添加比特币
 #define RH_API_NAME_ADDBTC                  @"mobile-api/userInfoOrigin/submitBtc.html"

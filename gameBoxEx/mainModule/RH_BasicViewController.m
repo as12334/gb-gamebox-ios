@@ -385,7 +385,7 @@
 {
     [self userInfoButtonItemHandle] ;
     [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
-    [self.serviceRequest startV3OneStepRecovery]  ;
+    [self.serviceRequest startV3OneStepRecoverySearchId:nil]  ;
 }
 
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView

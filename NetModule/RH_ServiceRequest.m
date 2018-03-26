@@ -43,6 +43,11 @@
 #import "RH_SiteMsgUnReadCountModel.h"
 #import "RH_SharePlayerRecommendModel.h"
 #import "RH_RegisetInitModel.h"
+#import "RH_AboutUsModel.h" // 关于我们
+#import "RH_RegisterClauseModel.h" //注册条款
+#import "RH_HelpCenterModel.h" //帮助中心
+#import "RH_HelpCenterSecondModel.h" //帮助中心二级界面
+#import "RH_HelpCenterDetailModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -860,9 +865,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3PromoList
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark - 一键回收
--(void)startV3OneStepRecovery
+#pragma mark -  一键回收&单个回收
+-(void)startV3OneStepRecoverySearchId:(NSString *)searchId
 {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_ONESTEPRECOVERY_SEARCHAPIID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONESTEPRECOVERY
                      pathArguments:nil
@@ -871,7 +878,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                      @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
-                     bodyArguments:nil
+                     bodyArguments:dict?:@{}
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3OneStepRecory
                          scopeType:ServiceScopeTypePublic];
@@ -1541,7 +1548,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - V3  常见问题二级分类
--(void)startV3HelpSecondType:(NSString *)searchId
+-(void)startV3HelpSecondTypeWithSearchId:(NSString *)searchId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
@@ -1551,25 +1558,27 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      }
-                    queryArguments:nil
+                    queryArguments:dict
                      bodyArguments:nil
-                          httpType:HTTPRequestTypePost
+                          httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeV3FirstHelpSecondTyp
                          scopeType:ServiceScopeTypePublic];
 }
 
 #pragma mark - V3  常见问题详情
--(void)startV3HelpDetail
+-(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId
 {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HELPDETAIL
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      }
-                    queryArguments:nil
+                    queryArguments:dict
                      bodyArguments:nil
-                          httpType:HTTPRequestTypePost
+                          httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeV3HelpDetail
                          scopeType:ServiceScopeTypePublic];
 }
@@ -2328,6 +2337,37 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3RegiestInit:
             {
                 resultSendData = [[RH_RegisetInitModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+            case ServiceRequestTypeV3AboutUs:
+            {
+                resultSendData = [[RH_AboutUsModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+            case ServiceRequestTypeV3RegiestTerm:
+            {
+                 resultSendData = [[RH_RegisterClauseModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+            case ServiceRequestTypeV3FirstHelpFirstTyp:
+            {
+                 resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+                resultSendData = [RH_HelpCenterModel dataArrayWithInfoArray:resultSendData] ;
+                
+            }
+                break ;
+            case ServiceRequestTypeV3FirstHelpSecondTyp:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
+                resultSendData = [RH_HelpCenterSecondModel dataArrayWithInfoArray:resultSendData] ;
+            }
+                break ;
+            case ServiceRequestTypeV3HelpDetail:
+            {
+//                resultSendData = [[RH_HelpCenterDetailModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
+                resultSendData = [RH_HelpCenterDetailModel dataArrayWithInfoArray:resultSendData] ;
+
             }
                 break ;
             default:

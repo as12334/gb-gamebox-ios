@@ -54,12 +54,12 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
     self.contentTableView.sectionHeaderHeight = 9.0f ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
-   
     [self.contentTableView registerCellWithClass:[RH_LimitTransferCell class]] ;
     [self.contentView addSubview:self.contentTableView];
+    self.contentTableView.whc_LeftSpace(0).whc_TopSpace(-30).whc_RightSpace(0).whc_BottomSpace(0) ;
     self.tableTopView = [[RH_LimitTransferTopView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 265)];
     self.tableTopView.delegate = self;
-    _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 100.f)]  ;
+    _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 120.f)]  ;
     _footerView.backgroundColor = [UIColor whiteColor] ;
     UIButton *oneStepRecoryBtn  =  [UIButton new] ;  //一键回收
     [_footerView addSubview:oneStepRecoryBtn];
