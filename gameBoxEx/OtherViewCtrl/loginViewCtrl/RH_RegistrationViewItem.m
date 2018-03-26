@@ -23,6 +23,13 @@
     NSInteger minDateYear;
     NSInteger maxDateYear;
     RH_RegistrationSelectView *selectView;
+    
+    NSArray<SexModel *> *sexModel;
+    NSArray<MainCurrencyModel *> *mainCurrencyModel;
+    NSArray<DefaultLocaleModel *> *defaultLocaleModel;
+    NSArray<SecurityIssuesModel *> *securityIssuesModel;
+    
+    id selectedItem;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -71,6 +78,22 @@
 }
 
 - (NSString *)textFieldContent {
+    if ([fieldModel.name isEqualToString:@"sex"]) {
+        SexModel *model = selectedItem;
+        return model.mValue;
+    }
+    if ([fieldModel.name isEqualToString:@"mainCurrency"]) {
+        MainCurrencyModel *model = selectedItem;
+        return model.mValue;
+    }
+    if ([fieldModel.name isEqualToString:@"defaultLocale"]) {
+        DefaultLocaleModel *model = selectedItem;
+        return model.mValue;
+    }
+    if ([fieldModel.name isEqualToString:@"securityIssues"]) {
+        SecurityIssuesModel *model = selectedItem;
+        return model.mValue;
+    }
     return  textField.text ;
 }
 
@@ -167,6 +190,31 @@
     textField.text = zone;
 }
 
+- (void)setSexModel:(NSArray<SexModel *> *)models {
+    sexModel = [NSArray array];
+    sexModel = models;
+    [self setSexSelectLayout];
+    textField.enabled = NO;
+}
+- (void)setDefaultLocale:(NSArray<DefaultLocaleModel *> *)models {
+    defaultLocaleModel = [NSArray array];
+    defaultLocaleModel = models;
+    [self setDefaultLocaleLayout];
+    textField.enabled = NO;
+}
+- (void)setMainCurrencyModel:(NSArray<MainCurrencyModel *> *)models {
+    mainCurrencyModel = [NSArray array];
+    mainCurrencyModel = models;
+    [self setMainCurrencyLayout];
+    textField.enabled = NO;
+}
+- (void)setSecurityIssues:(NSArray<SecurityIssuesModel *> *)models {
+    securityIssuesModel = [NSArray array];
+    securityIssuesModel = models;
+    [self setSecurityIssuesLayout];
+    textField.enabled = NO;
+}
+
 - (void)setBirthDayMin:(NSInteger )start MaxDate:(NSInteger )end {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -181,7 +229,7 @@
 //    NSString* dateString2 = [formatter stringFromDate:date];
 //    NSLog(@"%@", dateString2);
     maxDateYear = date.year;
-    
+    textField.enabled = NO;
 }
 
 - (void)setSexSelectLayout {
@@ -193,7 +241,108 @@
 }
 
 - (void)sexSelectDidTap {
-    
+    if (selectView.superview == nil) {
+        selectView = [[RH_RegistrationSelectView alloc] init];
+        selectView.delegate = self;
+        [selectView setSelectViewType:@""];
+        [selectView setColumNumbers:1];
+        [selectView setDataList:sexModel];
+        selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        [self.window addSubview:selectView];
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height - 200, screenSize().width, 200);
+        }];
+    }else {
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        }completion:^(BOOL finished) {
+            [selectView removeFromSuperview];
+        }];
+    }
+}
+
+- (void)setMainCurrencyLayout {
+    UIButton *button = [UIButton new];
+    [self addSubview:button];
+    button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
+    button.backgroundColor = [UIColor purpleColor];
+    [button addTarget:self action:@selector(mainCurrencyDidTaped) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)mainCurrencyDidTaped {
+    if (selectView.superview == nil) {
+        selectView = [[RH_RegistrationSelectView alloc] init];
+        selectView.delegate = self;
+        [selectView setSelectViewType:@""];
+        [selectView setColumNumbers:1];
+        [selectView setDataList:mainCurrencyModel];
+        selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        [self.window addSubview:selectView];
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height - 200, screenSize().width, 200);
+        }];
+    }else {
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        }completion:^(BOOL finished) {
+            [selectView removeFromSuperview];
+        }];
+    }
+}
+
+- (void)setDefaultLocaleLayout {
+    UIButton *button = [UIButton new];
+    [self addSubview:button];
+    button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
+    button.backgroundColor = [UIColor purpleColor];
+    [button addTarget:self action:@selector(defaultLocaleDidTaped) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)defaultLocaleDidTaped {
+    if (selectView.superview == nil) {
+        selectView = [[RH_RegistrationSelectView alloc] init];
+        selectView.delegate = self;
+        [selectView setSelectViewType:@""];
+        [selectView setColumNumbers:1];
+        [selectView setDataList:defaultLocaleModel];
+        selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        [self.window addSubview:selectView];
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height - 200, screenSize().width, 200);
+        }];
+    }else {
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        }completion:^(BOOL finished) {
+            [selectView removeFromSuperview];
+        }];
+    }
+}
+
+- (void)setSecurityIssuesLayout {
+    UIButton *button = [UIButton new];
+    [self addSubview:button];
+    button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
+    button.backgroundColor = [UIColor purpleColor];
+    [button addTarget:self action:@selector(securityIssuesDidTaped) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)securityIssuesDidTaped {
+    if (selectView.superview == nil) {
+        selectView = [[RH_RegistrationSelectView alloc] init];
+        selectView.delegate = self;
+        [selectView setSelectViewType:@""];
+        [selectView setColumNumbers:1];
+        [selectView setDataList:securityIssuesModel];
+        selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        [self.window addSubview:selectView];
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height - 200, screenSize().width, 200);
+        }];
+    }else {
+        [UIView animateWithDuration:0.3 animations:^{
+            selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+        }completion:^(BOOL finished) {
+            [selectView removeFromSuperview];
+        }];
+    }
 }
 - (void)setBirthdaySelectLayout {
     UIButton *button = [UIButton new];
@@ -233,6 +382,31 @@
 }
 - (void)RH_RegistrationSelectViewDidConfirmButtonTapedwith:(NSString *)selected {
     textField.text = selected;
+    [UIView animateWithDuration:0.3 animations:^{
+        selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
+    }completion:^(BOOL finished) {
+        [selectView removeFromSuperview];
+    }];
+}
+- (void)RH_RegistrationSelectViewDidConfirmButtonTaped:(id)selected {
+    selectedItem = selected;
+    if ([fieldModel.name isEqualToString:@"sex"]) {
+        SexModel *model = ConvertToClassPointer(SexModel, selected);
+        textField.text = model.mText;
+    }
+    if ([fieldModel.name isEqualToString:@"mainCurrency"]) {
+        MainCurrencyModel *model = ConvertToClassPointer(MainCurrencyModel, selected);
+        textField.text = model.mText;
+    }
+    if ([fieldModel.name isEqualToString:@"defaultLocale"]) {
+        DefaultLocaleModel *model = ConvertToClassPointer(DefaultLocaleModel, selected);
+        textField.text = model.mText;
+    }
+    if ([fieldModel.name isEqualToString:@"securityIssues"]) {
+        SecurityIssuesModel *model = ConvertToClassPointer(SecurityIssuesModel, selected);
+        textField.text = model.mText;
+    }
+    
     [UIView animateWithDuration:0.3 animations:^{
         selectView.frame = CGRectMake(0, screenSize().height, screenSize().width, 200);
     }completion:^(BOOL finished) {
