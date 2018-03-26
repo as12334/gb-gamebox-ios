@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1864,6 +1864,23 @@
 #define SID        @"383"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
+
+#elif _wjrd //双赢国际城
+
+#define CODE    @"wjrd"
+#define S        @"0660d80d757222e0d6d411f2b7e9809b"
+#define SID        @"395"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _ptmx //世茂国际娱乐
+
+#define CODE    @"ptmx"
+#define S        @"86a652360bbafb98c857c9dd9d389c54"
+#define SID        @"399"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 
 
 #endif
