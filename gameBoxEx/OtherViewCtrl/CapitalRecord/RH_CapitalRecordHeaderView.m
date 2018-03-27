@@ -71,8 +71,8 @@
         self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.serachBtn.backgroundColor = ColorWithNumberRGB(0x1b75d9);
+        self.btnQuickSelect.backgroundColor = ColorWithNumberRGB(0x1bd986);
     }else{
         self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor;

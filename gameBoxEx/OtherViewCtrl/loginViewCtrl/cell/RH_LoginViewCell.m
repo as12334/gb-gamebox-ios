@@ -74,7 +74,7 @@
     self.verifyCodeView.layer.borderColor = [UIColor grayColor].CGColor ;
     self.verifyCodeView.layer.borderWidth = PixelToPoint(1.0f) ;
     
-    //设置头像 shaole头像
+    //设置头像
     if ([THEMEV3 isEqualToString:@"green"]){
         self.headImage.image = ImageWithName(@"login_touxiang_green");
         [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
@@ -86,9 +86,9 @@
         [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.headImage.image = ImageWithName(@"login_touxiang_black");
-        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
-        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal] ;
+        self.headImage.image = ImageWithName(@"login_touxiang_default");
+        [self.btnLogin setBackgroundColor:ColorWithNumberRGB(0x1766bb) forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:ColorWithNumberRGB(0x1766bb) forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor ;
     }else{
         self.headImage.image = ImageWithName(@"login_touxiang_default");
@@ -155,8 +155,8 @@
          [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
     }else if ([THEMEV3 isEqualToString:@"black"]){
         //设置开启颜色
-        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Black ;
-        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
     }else{
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;

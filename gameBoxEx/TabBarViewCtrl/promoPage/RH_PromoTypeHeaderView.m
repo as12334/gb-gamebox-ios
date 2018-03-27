@@ -24,9 +24,9 @@
 {
     [super awakeFromNib] ;
     self.backgroundColor = colorWithRGB(234, 234, 234) ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
-        self.backgroundColor = [UIColor blackColor] ;
-    }
+//    if ([THEMEV3 isEqualToString:@"black"]) {
+//        self.backgroundColor = [UIColor blackColor] ;
+//    }
     [self addSubview:self.collectionTypeView] ;
     [self.collectionTypeView reloadData] ;
     _selectedIndex = 0 ;

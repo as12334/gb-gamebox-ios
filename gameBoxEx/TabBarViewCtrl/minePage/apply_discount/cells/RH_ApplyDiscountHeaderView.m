@@ -35,7 +35,7 @@
             self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
             self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Black.CGColor;
-            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Black;
+            self.segmentedControl.tintColor = colorWithRGB(30, 104 , 184);
         }else{
             self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor.CGColor;
             self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor;

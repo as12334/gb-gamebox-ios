@@ -1357,15 +1357,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 防止用户掉线
 -(void)startV3RereshUserSessin
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3RefreshSession
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RefreshSession
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 #pragma mark - 用户登录是否开启验证码

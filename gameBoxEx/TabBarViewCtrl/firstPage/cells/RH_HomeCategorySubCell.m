@@ -32,6 +32,7 @@
     self.labTitle.textColor =  [UIColor blackColor] ;
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
+        self.backgroundColor = colorWithRGB(37, 37, 37) ;
     }
     self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;

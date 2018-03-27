@@ -151,7 +151,7 @@
         sureSubmitBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
         sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
     }else{
         sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;

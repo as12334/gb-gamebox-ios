@@ -40,7 +40,8 @@
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
 
     }else if ([THEMEV3 isEqualToString:@"black"]){
-         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+         self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
+        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
     }else{
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
