@@ -58,7 +58,6 @@
 }
 
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
-    NSLog(@"info:%@",info);
     NSArray *rowsinfo = info[@"rowsInfo"];
     self.image_Withdraw.image = ImageWithName(rowsinfo[0][@"image"]);
     self.image_Topup.image = ImageWithName(rowsinfo[1][@"image"]);

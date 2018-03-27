@@ -7,13 +7,24 @@
 //
 
 #import "RH_DepositeTransferWXinInfoCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositePayAccountModel.h"
 @interface RH_DepositeTransferWXinInfoCell ()
 @property (weak, nonatomic) IBOutlet UIButton *accountInfo;
 @property (weak, nonatomic) IBOutlet UIView *accountInfoView;
+@property (weak, nonatomic) IBOutlet UIImageView *bankIconImage;
+@property (weak, nonatomic) IBOutlet UILabel *personIdNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *personNameLabel;
 
 @end
 @implementation RH_DepositeTransferWXinInfoCell
-
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
+    self.personIdNumLabel.text = accountModel.mAccount;
+    self.personNameLabel.text = accountModel.mFullName;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

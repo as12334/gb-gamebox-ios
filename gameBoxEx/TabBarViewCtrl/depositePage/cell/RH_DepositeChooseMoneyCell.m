@@ -9,11 +9,13 @@
 #import "RH_DepositeChooseMoneyCell.h"
 #import "RH_DepositeChooseMoneySubCell.h"
 #import "coreLib.h"
+#import "RH_DepositeTransferModel.h"
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-30)/3.0)
 #define HomeCategoryItemsCellHeight                     70.0f
 @interface RH_DepositeChooseMoneyCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 //@property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic,strong) RH_DepositePaydataModel *dataModel;
 @end
 @implementation RH_DepositeChooseMoneyCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -37,8 +39,8 @@
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    //    self.itemsList = ConvertToClassPointer(NSArray, context) ;
-    //    [self.collectionView reloadData] ;
+    self.dataModel = ConvertToClassPointer(RH_DepositePaydataModel, context);
+    [self.collectionView reloadData];
 }
 
 #pragma mark-
@@ -72,12 +74,13 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.dataModel.mQuickMoneys.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeChooseMoneySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_DepositeChooseMoneySubCell defaultReuseIdentifier] forIndexPath:indexPath];
+    [cell updateViewWithInfo:nil context:self.dataModel.mQuickMoneys[indexPath.item]];
     return cell;
 }
 

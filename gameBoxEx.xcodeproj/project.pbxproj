@@ -56,6 +56,9 @@
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
 		794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */; };
 		794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */; };
+		7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D0262064F81800760FEB /* RH_AboutUsViewController.m */; };
+		7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */; };
+		7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D02C206505C100760FEB /* RH_AboutUsModel.m */; };
 		795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
@@ -96,6 +99,19 @@
 		79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3865D203A7952002BF767 /* RH_ShowShareRecordViewCell.m */; };
 		79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */; };
 		79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */; };
+		79FA651A20673BE2000C7DB6 /* RH_RegisterClauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA651920673BE2000C7DB6 /* RH_RegisterClauseViewController.m */; };
+		79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA651C20673C48000C7DB6 /* RH_RegisterClauseViewCell.m */; };
+		79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA651F20673C64000C7DB6 /* RH_RegisterClauseModel.m */; };
+		79FA652420674297000C7DB6 /* RH_HelpCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA652320674297000C7DB6 /* RH_HelpCenterViewController.m */; };
+		79FA6527206742B9000C7DB6 /* RH_HelpCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA6526206742B9000C7DB6 /* RH_HelpCenterViewCell.m */; };
+		79FA652A20674550000C7DB6 /* RH_HelpCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA652920674550000C7DB6 /* RH_HelpCenterModel.m */; };
+		79FA652E206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA652D206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m */; };
+		79FA6533206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA6532206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m */; };
+		79FA6536206773E8000C7DB6 /* RH_HelpCenterSecondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */; };
+		79FA653B20677B65000C7DB6 /* RH_HelpCenterDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */; };
+		79FA653E20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */; };
+		79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */; };
+		79FA65442068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA65432068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m */; };
 		79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */; };
 		79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FB81541FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m */; };
 		79FB81591FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79FB81581FFDDACE00325BF3 /* RH_CapitalRecordHeaderView.xib */; };
@@ -571,6 +587,16 @@
 		F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */; };
 		F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */; };
 		F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */; };
+		F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */; };
+		F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */; };
+		F6942E0A20648F35009A5573 /* QRCode.png in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0920648F35009A5573 /* QRCode.png */; };
+		F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */; };
+		F6942E10206503AC009A5573 /* RH_DepositePayAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */; };
+		F696B8362068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B8342068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m */; };
+		F696B8372068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F696B8352068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.xib */; };
+		F696B83B2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B8392068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m */; };
+		F696B83C2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F696B83A2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib */; };
+		F696B83F2068F9970038D1C5 /* RH_depositOriginseachSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B83E2068F9970038D1C5 /* RH_depositOriginseachSaleModel.m */; };
 		F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */; };
 		F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34FB20634C070028D3A1 /* RH_DepositePayforWayCell.m */; };
 		F69E34FE20634C070028D3A1 /* RH_DepositePayforWayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E34FC20634C070028D3A1 /* RH_DepositePayforWayCell.xib */; };
@@ -748,6 +774,12 @@
 		794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyCloseViewController.m; sourceTree = "<group>"; };
 		794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerifyCloseView.h; sourceTree = "<group>"; };
 		794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VerifyCloseView.m; sourceTree = "<group>"; };
+		7953D0252064F81800760FEB /* RH_AboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AboutUsViewController.h; sourceTree = "<group>"; };
+		7953D0262064F81800760FEB /* RH_AboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsViewController.m; sourceTree = "<group>"; };
+		7953D028206503B800760FEB /* RH_AboutUsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AboutUsTableViewCell.h; sourceTree = "<group>"; };
+		7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsTableViewCell.m; sourceTree = "<group>"; };
+		7953D02B206505C100760FEB /* RH_AboutUsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AboutUsModel.h; sourceTree = "<group>"; };
+		7953D02C206505C100760FEB /* RH_AboutUsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsModel.m; sourceTree = "<group>"; };
 		795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgUnReadCountModel.h; sourceTree = "<group>"; };
 		795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgUnReadCountModel.m; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
@@ -825,6 +857,32 @@
 		79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineMoreDetailWebViewController.m; sourceTree = "<group>"; };
 		79F3FA7A200C4C17004612D2 /* RH_DiscountActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityModel.h; sourceTree = "<group>"; };
 		79F3FA7B200C4C17004612D2 /* RH_DiscountActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DiscountActivityModel.m; sourceTree = "<group>"; };
+		79FA651820673BE2000C7DB6 /* RH_RegisterClauseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisterClauseViewController.h; sourceTree = "<group>"; };
+		79FA651920673BE2000C7DB6 /* RH_RegisterClauseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisterClauseViewController.m; sourceTree = "<group>"; };
+		79FA651B20673C48000C7DB6 /* RH_RegisterClauseViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisterClauseViewCell.h; sourceTree = "<group>"; };
+		79FA651C20673C48000C7DB6 /* RH_RegisterClauseViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisterClauseViewCell.m; sourceTree = "<group>"; };
+		79FA651E20673C64000C7DB6 /* RH_RegisterClauseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisterClauseModel.h; sourceTree = "<group>"; };
+		79FA651F20673C64000C7DB6 /* RH_RegisterClauseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisterClauseModel.m; sourceTree = "<group>"; };
+		79FA652220674297000C7DB6 /* RH_HelpCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterViewController.h; sourceTree = "<group>"; };
+		79FA652320674297000C7DB6 /* RH_HelpCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterViewController.m; sourceTree = "<group>"; };
+		79FA6525206742B9000C7DB6 /* RH_HelpCenterViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterViewCell.h; sourceTree = "<group>"; };
+		79FA6526206742B9000C7DB6 /* RH_HelpCenterViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterViewCell.m; sourceTree = "<group>"; };
+		79FA652820674550000C7DB6 /* RH_HelpCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterModel.h; sourceTree = "<group>"; };
+		79FA652920674550000C7DB6 /* RH_HelpCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterModel.m; sourceTree = "<group>"; };
+		79FA652C206754F4000C7DB6 /* RH_HelpCenterSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterSecondViewController.h; sourceTree = "<group>"; };
+		79FA652D206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterSecondViewController.m; sourceTree = "<group>"; };
+		79FA6531206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterSecondViewCell.h; sourceTree = "<group>"; };
+		79FA6532206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterSecondViewCell.m; sourceTree = "<group>"; };
+		79FA6534206773E8000C7DB6 /* RH_HelpCenterSecondModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterSecondModel.h; sourceTree = "<group>"; };
+		79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterSecondModel.m; sourceTree = "<group>"; };
+		79FA653920677B65000C7DB6 /* RH_HelpCenterDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailModel.h; sourceTree = "<group>"; };
+		79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailModel.m; sourceTree = "<group>"; };
+		79FA653C20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailViewController.h; sourceTree = "<group>"; };
+		79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailViewController.m; sourceTree = "<group>"; };
+		79FA653F20677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_HelpCenterDetailViewCell.h; sourceTree = "<group>"; };
+		79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_HelpCenterDetailViewCell.m; sourceTree = "<group>"; };
+		79FA65422068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GetNoAutoTransferInfoModel.h; sourceTree = "<group>"; };
+		79FA65432068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GetNoAutoTransferInfoModel.m; sourceTree = "<group>"; };
 		79FB814A1FFDD37100325BF3 /* RH_CapitalRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordViewController.h; sourceTree = "<group>"; };
 		79FB814B1FFDD37100325BF3 /* RH_CapitalRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordViewController.m; sourceTree = "<group>"; };
 		79FB81531FFDD88400325BF3 /* RH_CapitalRecordHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordHeaderView.h; sourceTree = "<group>"; };
@@ -1643,6 +1701,22 @@
 		F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteSystemDetailCell.xib; sourceTree = "<group>"; };
 		F681D263201B0EA600A7C449 /* RH_ActivityStatusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ActivityStatusModel.h; sourceTree = "<group>"; };
 		F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityStatusModel.m; sourceTree = "<group>"; };
+		F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferQRCodeCell.h; sourceTree = "<group>"; };
+		F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferQRCodeCell.m; sourceTree = "<group>"; };
+		F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferQRCodeCell.xib; sourceTree = "<group>"; };
+		F6942E0920648F35009A5573 /* QRCode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QRCode.png; sourceTree = "<group>"; };
+		F6942E0B2064DE67009A5573 /* RH_DepositeTransferModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferModel.h; sourceTree = "<group>"; };
+		F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferModel.m; sourceTree = "<group>"; };
+		F6942E0E206503AC009A5573 /* RH_DepositePayAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositePayAccountModel.h; sourceTree = "<group>"; };
+		F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositePayAccountModel.m; sourceTree = "<group>"; };
+		F696B8332068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferOrderNumCell.h; sourceTree = "<group>"; };
+		F696B8342068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferOrderNumCell.m; sourceTree = "<group>"; };
+		F696B8352068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferOrderNumCell.xib; sourceTree = "<group>"; };
+		F696B8382068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferPayAdressCell.h; sourceTree = "<group>"; };
+		F696B8392068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferPayAdressCell.m; sourceTree = "<group>"; };
+		F696B83A2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferPayAdressCell.xib; sourceTree = "<group>"; };
+		F696B83D2068F9970038D1C5 /* RH_depositOriginseachSaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_depositOriginseachSaleModel.h; sourceTree = "<group>"; };
+		F696B83E2068F9970038D1C5 /* RH_depositOriginseachSaleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_depositOriginseachSaleModel.m; sourceTree = "<group>"; };
 		F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewControllerEX.h; sourceTree = "<group>"; };
 		F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewControllerEX.m; sourceTree = "<group>"; };
 		F69E34FA20634C070028D3A1 /* RH_DepositePayforWayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositePayforWayCell.h; sourceTree = "<group>"; };
@@ -1953,6 +2027,17 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		7953D0242064F78200760FEB /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				7953D0252064F81800760FEB /* RH_AboutUsViewController.h */,
+				7953D0262064F81800760FEB /* RH_AboutUsViewController.m */,
+				7953D028206503B800760FEB /* RH_AboutUsTableViewCell.h */,
+				7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
 		79BB2D9420312F09000CDE6B /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -2046,6 +2131,68 @@
 			children = (
 			);
 			path = PromoDetail;
+			sourceTree = "<group>";
+		};
+		79FA651720673B90000C7DB6 /* RegisterClause */ = {
+			isa = PBXGroup;
+			children = (
+				79FA651820673BE2000C7DB6 /* RH_RegisterClauseViewController.h */,
+				79FA651920673BE2000C7DB6 /* RH_RegisterClauseViewController.m */,
+				79FA651B20673C48000C7DB6 /* RH_RegisterClauseViewCell.h */,
+				79FA651C20673C48000C7DB6 /* RH_RegisterClauseViewCell.m */,
+			);
+			path = RegisterClause;
+			sourceTree = "<group>";
+		};
+		79FA652120674258000C7DB6 /* HelpCenter */ = {
+			isa = PBXGroup;
+			children = (
+				79FA653820677A5B000C7DB6 /* HelpCenterDetail */,
+				79FA652F2067736C000C7DB6 /* cell */,
+				79FA652220674297000C7DB6 /* RH_HelpCenterViewController.h */,
+				79FA652320674297000C7DB6 /* RH_HelpCenterViewController.m */,
+				79FA652B20675494000C7DB6 /* HelpSecondCenter */,
+			);
+			path = HelpCenter;
+			sourceTree = "<group>";
+		};
+		79FA652B20675494000C7DB6 /* HelpSecondCenter */ = {
+			isa = PBXGroup;
+			children = (
+				79FA653020677378000C7DB6 /* cell */,
+				79FA652C206754F4000C7DB6 /* RH_HelpCenterSecondViewController.h */,
+				79FA652D206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m */,
+			);
+			path = HelpSecondCenter;
+			sourceTree = "<group>";
+		};
+		79FA652F2067736C000C7DB6 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				79FA6525206742B9000C7DB6 /* RH_HelpCenterViewCell.h */,
+				79FA6526206742B9000C7DB6 /* RH_HelpCenterViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		79FA653020677378000C7DB6 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				79FA6531206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.h */,
+				79FA6532206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		79FA653820677A5B000C7DB6 /* HelpCenterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				79FA653C20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.h */,
+				79FA653D20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m */,
+				79FA653F20677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.h */,
+				79FA654020677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m */,
+			);
+			path = HelpCenterDetail;
 			sourceTree = "<group>";
 		};
 		79FB81491FFDCD4600325BF3 /* CapitalRecord */ = {
@@ -2843,8 +2990,26 @@
 				795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */,
 				79BB2D9F2031699E000CDE6B /* RH_SharePlayerRecommendModel.h */,
 				79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */,
+				F6942E0B2064DE67009A5573 /* RH_DepositeTransferModel.h */,
+				F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */,
+				F6942E0E206503AC009A5573 /* RH_DepositePayAccountModel.h */,
+				F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */,
 				7991A3AF20649CAF00133F74 /* RH_RegisetInitModel.h */,
 				7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */,
+				7953D02B206505C100760FEB /* RH_AboutUsModel.h */,
+				7953D02C206505C100760FEB /* RH_AboutUsModel.m */,
+				79FA651E20673C64000C7DB6 /* RH_RegisterClauseModel.h */,
+				79FA651F20673C64000C7DB6 /* RH_RegisterClauseModel.m */,
+				79FA652820674550000C7DB6 /* RH_HelpCenterModel.h */,
+				79FA652920674550000C7DB6 /* RH_HelpCenterModel.m */,
+				79FA6534206773E8000C7DB6 /* RH_HelpCenterSecondModel.h */,
+				79FA6535206773E8000C7DB6 /* RH_HelpCenterSecondModel.m */,
+				79FA653920677B65000C7DB6 /* RH_HelpCenterDetailModel.h */,
+				79FA653A20677B65000C7DB6 /* RH_HelpCenterDetailModel.m */,
+				F696B83D2068F9970038D1C5 /* RH_depositOriginseachSaleModel.h */,
+				F696B83E2068F9970038D1C5 /* RH_depositOriginseachSaleModel.m */,
+				79FA65422068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.h */,
+				79FA65432068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m */,
 			);
 			path = Datamodul;
 			sourceTree = "<group>";
@@ -3175,6 +3340,9 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				79FA652120674258000C7DB6 /* HelpCenter */,
+				79FA651720673B90000C7DB6 /* RegisterClause */,
+				7953D0242064F78200760FEB /* AboutUs */,
 				790743082063542400A4543A /* LimitTransfer */,
 				79BB2D9420312F09000CDE6B /* Share */,
 				B87A6B37200AF1CF00C9788F /* BitCoin */,
@@ -3808,12 +3976,22 @@
 				F69E353B2063D2290028D3A1 /* RH_DepositeTransferPayWayCell.h */,
 				F69E353C2063D2290028D3A1 /* RH_DepositeTransferPayWayCell.m */,
 				F69E353D2063D2290028D3A1 /* RH_DepositeTransferPayWayCell.xib */,
+				F696B8332068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.h */,
+				F696B8342068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m */,
+				F696B8352068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.xib */,
+				F696B8382068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.h */,
+				F696B8392068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m */,
+				F696B83A2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib */,
 				F69E35402063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.h */,
 				F69E35412063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.m */,
 				F69E35422063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib */,
 				F69E35452063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.h */,
 				F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */,
 				F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */,
+				F6942E0920648F35009A5573 /* QRCode.png */,
+				F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */,
+				F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */,
+				F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */,
 			);
 			path = transferCell;
 			sourceTree = "<group>";
@@ -4137,6 +4315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6942E0A20648F35009A5573 /* QRCode.png in Resources */,
 				A0E3680B1F945E3F00758033 /* RH_MainTabBarItems.plist in Resources */,
 				F6A2ACE22004DE280077CB92 /* RH_MineDiscountRecordTableViewCell.xib in Resources */,
 				A0E367BE1F90DA8D00758033 /* Assets.xcassets in Resources */,
@@ -4180,6 +4359,7 @@
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
+				F696B83C2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib in Resources */,
 				228B93092027226A008C8313 /* tab_v3_home_selected_green@2x.png in Resources */,
 				A07AF4DC2026DBE400D6D559 /* tab_v3_service_selected_red@2x.png in Resources */,
 				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
@@ -4292,6 +4472,7 @@
 				A001B3E11F8EF7CA00309EA4 /* tab_lottery_selected@2x.png in Resources */,
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
 				F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */,
+				F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */,
 				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */,
@@ -4346,6 +4527,7 @@
 				A001B3EE1F8EF7CA00309EA4 /* tab_withdraw@2x.png in Resources */,
 				22F626A720566E5E00094564 /* login_touxiang_black@2x.png in Resources */,
 				F69E35442063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib in Resources */,
+				F696B8372068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.xib in Resources */,
 				A01181551FFC6BE4008F6D1E /* RH_BettingSelectedDateView.xib in Resources */,
 				A0522A78200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
@@ -4376,6 +4558,7 @@
 				A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */,
 				A01181611FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m in Sources */,
 				A01CB48A1FF9C09F00447130 /* RH_ActivityModel.m in Sources */,
+				79FA6536206773E8000C7DB6 /* RH_HelpCenterSecondModel.m in Sources */,
 				A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */,
 				B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */,
 				A07DCEC61FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m in Sources */,
@@ -4386,6 +4569,7 @@
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
+				79FA6533206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m in Sources */,
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
@@ -4393,15 +4577,19 @@
 				79BB2DAF2032BA8E000CDE6B /* RH_FirstBigViewCell.m in Sources */,
 				79BB2DFA2036CC56000CDE6B /* RH_OldUserVerifyView.m in Sources */,
 				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
+				79FA652A20674550000C7DB6 /* RH_HelpCenterModel.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
+				7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
+				F6942E10206503AC009A5573 /* RH_DepositePayAccountModel.m in Sources */,
 				A0522A622007818600A5A6E9 /* RH_BankCardModel.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
 				B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
+				79FA651A20673BE2000C7DB6 /* RH_RegisterClauseViewController.m in Sources */,
 				A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */,
 				A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */,
 				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
@@ -4419,12 +4607,14 @@
 				B84F94642017319F003E40BC /* RH_GameListContentPageCell.m in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
 				A0522A85200C84C400A5A6E9 /* RH_PromoViewControllerEx.m in Sources */,
+				F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
 				A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */,
 				79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */,
 				A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */,
 				A04E60541F8DB05600098A65 /* RH_DepositeViewController.m in Sources */,
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
+				79FA6527206742B9000C7DB6 /* RH_HelpCenterViewCell.m in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
@@ -4432,6 +4622,7 @@
 				79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */,
 				A010A0961F879D57004E6EF4 /* CLViewControllerTransitioningDelegate.h in Sources */,
 				F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */,
+				F696B83B2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m in Sources */,
 				B84A33CF2064E9F400A8BFEE /* RH_RegistrationViewItem.m in Sources */,
 				F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
@@ -4455,6 +4646,7 @@
 				B879E0812026D9C0007B3D45 /* RH_BankCardLocationCell.m in Sources */,
 				A010A0541F87999F004E6EF4 /* RH_LocationManager.m in Sources */,
 				79FB81551FFDD88400325BF3 /* RH_CapitalRecordHeaderView.m in Sources */,
+				79FA652420674297000C7DB6 /* RH_HelpCenterViewController.m in Sources */,
 				F69E35432063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.m in Sources */,
 				A07FE3801FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.m in Sources */,
 				F6A2AD692007663E0077CB92 /* RH_CapitalTypeModel.m in Sources */,
@@ -4498,6 +4690,7 @@
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
+				7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
 				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
@@ -4570,6 +4763,7 @@
 				A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
 				B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */,
+				F696B8362068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m in Sources */,
 				79BB2D9820312F4B000CDE6B /* RH_ShareViewController.m in Sources */,
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
@@ -4580,6 +4774,7 @@
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
+				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
 				79BB2DB52032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
@@ -4605,6 +4800,7 @@
 				A0109FDD1F8788FF004E6EF4 /* DNSendButton.m in Sources */,
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
 				F69E350220634C6F0028D3A1 /* RH_DepositePayforWaySubCell.m in Sources */,
+				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
 				F6FB63A92010386100EEED4E /* RH_ApplyDiscountHeaderView.m in Sources */,
 				A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */,
 				B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */,
@@ -4622,6 +4818,7 @@
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
+				79FA65442068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
 				79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */,
@@ -4648,6 +4845,7 @@
 				A05747C91FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.m in Sources */,
 				F69E35202063971C0028D3A1 /* RH_DepositeSubmitCircleCell.m in Sources */,
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
+				79FA653B20677B65000C7DB6 /* RH_HelpCenterDetailModel.m in Sources */,
 				F6FB638A200F851300EEED4E /* RH_MPSystemNoticeCell.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
@@ -4665,6 +4863,7 @@
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
 				F6FB63BD201192B800EEED4E /* RH_ApplyDiscountSitePageCell.m in Sources */,
+				79FA653E20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
 				79BB2DAC2032775B000CDE6B /* RH_NonTableViewCell.m in Sources */,
 				A011816F1FFCAB21008F6D1E /* WHC_StackView.m in Sources */,
@@ -4693,6 +4892,7 @@
 				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */,
+				79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */,
 				A0109F6F1F8787E4004E6EF4 /* CLCollectionViewCell.m in Sources */,
 				A0109F701F8787E4004E6EF4 /* CLContentView.m in Sources */,
 				A0109F711F8787E4004E6EF4 /* CLGradientView.m in Sources */,
@@ -4705,6 +4905,7 @@
 				A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */,
 				A0109F761F8787E4004E6EF4 /* CLSectionControl.m in Sources */,
 				B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */,
+				F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */,
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */,
@@ -4715,6 +4916,7 @@
 				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
+				79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
 				F6A2ACD1200495940077CB92 /* RH_CapitalRecordDetailsCell.m in Sources */,
 				A011815B1FFC6BE4008F6D1E /* RH_BettingTableHeaderView.m in Sources */,
@@ -4773,6 +4975,7 @@
 				A0109F9D1F8787E4004E6EF4 /* CLUserGuideView.m in Sources */,
 				A0109F9E1F8787E4004E6EF4 /* CLBasicViewController.m in Sources */,
 				F6FB639C200F851300EEED4E /* RH_GameNoticeDetailController.m in Sources */,
+				79FA652E206754F4000C7DB6 /* RH_HelpCenterSecondViewController.m in Sources */,
 				A0109F9F1F8787E4004E6EF4 /* CLBasicViewControllerAnimatedTransitioning.m in Sources */,
 				A0109FA01F8787E4004E6EF4 /* CLNavigationTransitioningDelegate.m in Sources */,
 				A0109FA11F8787E4004E6EF4 /* CLPresentAnimatedTransitioning.m in Sources */,
@@ -4782,6 +4985,7 @@
 				F69E3507206355780028D3A1 /* RH_DepositeChooseMoneyCell.m in Sources */,
 				F6FB637E200F851300EEED4E /* RH_SiteMineNoticeCell.m in Sources */,
 				A08578541FB9BE9C00E002B1 /* CLNavigationBar.m in Sources */,
+				F696B83F2068F9970038D1C5 /* RH_depositOriginseachSaleModel.m in Sources */,
 				F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */,
 				A0522A8D200C89A000A5A6E9 /* RH_PromoTableCell.m in Sources */,
 				189C13AB1FF9E99F00B14298 /* RH_MePageViewController.m in Sources */,
@@ -4889,7 +5093,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid367;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid389;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -4897,8 +5101,8 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "星空娱乐城";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-367";
+				APP_DISPLAY_NAME = "波贝娱乐城";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-389";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
@@ -4913,7 +5117,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid367;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid389;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

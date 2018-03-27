@@ -73,7 +73,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -385,7 +385,7 @@
 {
     [self userInfoButtonItemHandle] ;
     [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
-    [self.serviceRequest startV3OneStepRecovery]  ;
+    [self.serviceRequest startV3OneStepRecoverySearchId:nil]  ;
 }
 
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView

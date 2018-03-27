@@ -64,8 +64,6 @@
             NSString *account = [defaults objectForKey:@"account"];
             NSString *password = [defaults objectForKey:@"password"];
 
-            NSLog(@"%@%@",account,password);
-
             if(account != NULL && ![account isEqualToString: @""]){
                 account = [NSString stringWithFormat:@"document.getElementById('username').value='%@'",account];
                 [self.webView stringByEvaluatingJavaScriptFromString:account];
@@ -81,7 +79,6 @@
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {
     CGPoint point=[pan translationInView:self.view];
-    NSLog(@"%f,%f",point.x,point.y);
     pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
     [pan setTranslation:CGPointMake(0, 0) inView:self.contentView];

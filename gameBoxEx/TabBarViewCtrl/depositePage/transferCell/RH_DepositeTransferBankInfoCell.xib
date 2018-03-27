@@ -143,6 +143,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bankAdressLabel" destination="cCe-jC-cbV" id="sGj-Ks-eGg"/>
+                <outlet property="bankCardNameLabel" destination="b0b-mN-gxp" id="8SJ-NE-u0V"/>
+                <outlet property="bankCardNumLabel" destination="Rry-TG-jn6" id="AKK-Vg-Pe5"/>
                 <outlet property="bankInfoView" destination="TOX-Ii-e8S" id="paJ-RR-S3R"/>
                 <outlet property="copBtn" destination="oql-Yi-lPz" id="Xx1-RI-Lj7"/>
                 <outlet property="copBtnThr" destination="pzh-F4-s3Z" id="qXj-HI-uly"/>

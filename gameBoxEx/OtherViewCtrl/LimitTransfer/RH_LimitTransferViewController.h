@@ -9,7 +9,6 @@
 #import "RH_BasicPageLoadViewController.h"
 #import "RH_BasicViewController.h"
 #import "RH_BasicSubViewController.h"
-// RH_BasicPageLoadViewController
 @interface RH_LimitTransferViewController : RH_BasicPageLoadViewController
 
 @end

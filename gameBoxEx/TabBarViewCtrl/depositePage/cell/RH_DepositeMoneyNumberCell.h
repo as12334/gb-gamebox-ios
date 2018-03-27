@@ -9,5 +9,5 @@
 #import "CLTableViewCell.h"
 
 @interface RH_DepositeMoneyNumberCell : CLTableViewCell
-
+@property (weak, nonatomic) IBOutlet UITextField *payMoneyNumLabel;
 @end

@@ -288,6 +288,7 @@
     
     NSString *securityIssues = [self obtainContent:@"securityIssues"];
     
+<<<<<<< HEAD
     
     for (NSString *obj in registrationInitModel.requiredJson) {
         if ([obj isEqualToString:@"304"]) {
@@ -363,6 +364,9 @@
     
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
     [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode];
+=======
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:@"" editType:@"" recommendUserInputCode:@"" confirmPassword:@"" confirmPermissionPwd:@"" answer1:@"" termsOfService:@""];
+>>>>>>> origin/dev_richard
 }
 
 - (void)startAnimate {
@@ -391,10 +395,14 @@
 
 #pragma mark Request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
+<<<<<<< HEAD
     NSLog(@"%s", __func__);
     NSLog(@"%@", error);
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     showErrorMessage(self.contentView, error, @"");
+=======
+    
+>>>>>>> origin/dev_richard
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
@@ -407,6 +415,6 @@
     if (type == ServiceRequestTypeV3RegiestSubmit) {
         
     }
-    
+
 }
 @end

@@ -8,7 +8,6 @@
 
 #import "RH_LimitTransferCell.h"
 #import "coreLib.h"
-#import "RH_UserApiBalanceModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_UserGroupInfoModel.h"
 
@@ -17,6 +16,7 @@
     UILabel *titleLab ; //标题
     UILabel *amountLab; //金额
     UIButton *refreshBtnAndrecycleBtn ; // 单个刷新&回收
+    RH_UserApiBalanceModel *userApiBalance ;
 }
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -32,18 +32,18 @@
     return self ;
 }
 
+
 -(void)setUpUI
 {
     titleLab = [[UILabel alloc] init] ;
     [self.contentView addSubview:titleLab];
     titleLab.whc_LeftSpace(10).whc_CenterY(0).whc_WidthAuto().whc_HeightAuto() ;
-    titleLab.text = @"新霸电子6:";
+    titleLab.text = @"";
     titleLab.font = [UIFont systemFontOfSize:14.f] ;
     
     refreshBtnAndrecycleBtn = [[UIButton alloc] init];
     [self.contentView addSubview:refreshBtnAndrecycleBtn];
     refreshBtnAndrecycleBtn.whc_RightSpace(10).whc_CenterY(0).whc_HeightAuto().whc_WidthAuto();
-//    [refreshBtnAndrecycleBtn setTitle:@"回收" forState:UIControlStateNormal];
     [refreshBtnAndrecycleBtn setTitleColor:colorWithRGB(153, 153, 153) forState:UIControlStateNormal];
     [refreshBtnAndrecycleBtn addTarget:self action:@selector(refreshBtnAndrecycleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     refreshBtnAndrecycleBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
@@ -60,7 +60,7 @@
     amountLab = [[UILabel alloc] init] ;
     [self.contentView addSubview:amountLab];
     amountLab.whc_RightSpaceToView(10, refreshBtnAndrecycleBtn).whc_CenterY(0).whc_HeightAuto().whc_WidthAuto() ;
-    amountLab.text = @"0.00";
+    amountLab.text = @"";
     amountLab.font = [UIFont systemFontOfSize:14.f] ;
     amountLab.textColor = colorWithRGB(153, 153, 153) ;
     
@@ -75,7 +75,7 @@
 {
     RH_MineInfoModel *infoModel = [RH_UserInfoManager shareUserManager].mineSettingInfo;
     
-    RH_UserApiBalanceModel *userApiBalance = ConvertToClassPointer(RH_UserApiBalanceModel, context) ;
+    userApiBalance = ConvertToClassPointer(RH_UserApiBalanceModel, context) ;
     if (userApiBalance){
         titleLab.text = userApiBalance.mApiName ;
         
@@ -86,22 +86,23 @@
             amountLab.text = [NSString stringWithFormat:@"%.2f",userApiBalance.mBalance] ;
         }
     }
-    
     if (infoModel) {
         if (infoModel.mIsAutoPay) {
             [refreshBtnAndrecycleBtn setTitle:@"回收" forState:UIControlStateNormal];
         }else
         {
-            [refreshBtnAndrecycleBtn setImage:ImageWithName(@"home_markcell_image") forState:UIControlStateNormal];
+            [refreshBtnAndrecycleBtn setImage:ImageWithName(@"mine_refresh_icon") forState:UIControlStateNormal];
+             [refreshBtnAndrecycleBtn setTitle:nil forState:UIControlStateNormal];
         }
     }
-    
 }
 
 #pragma mark -- 刷新&回收按钮点击
 -(void)refreshBtnAndrecycleBtnClick:(UIButton *)sender
 {
-    
+    ifRespondsSelector(self.delegate, @selector(limitTransferCelRecoryAndRefreshBtnDidTouch:withBtn:withModel:)){
+        [self.delegate limitTransferCelRecoryAndRefreshBtnDidTouch:self withBtn:sender withModel:userApiBalance] ;
+    }
 }
 
 

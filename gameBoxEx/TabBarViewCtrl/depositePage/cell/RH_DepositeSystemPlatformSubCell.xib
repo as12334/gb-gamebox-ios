@@ -33,7 +33,7 @@
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="NM7-0d-ItI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="5YX-MT-IEM"/>
                 <constraint firstAttribute="bottom" secondItem="NM7-0d-ItI" secondAttribute="bottom" constant="10" id="Vz1-8D-5N3"/>
@@ -42,6 +42,10 @@
                 <constraint firstItem="zSl-1D-pqb" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zn1-uB-gUR"/>
             </constraints>
             <size key="customSize" width="170" height="50"/>
+            <connections>
+                <outlet property="payWayImage" destination="NM7-0d-ItI" id="W5j-Qz-adf"/>
+                <outlet property="payWayLabel" destination="zSl-1D-pqb" id="BkW-NB-lGU"/>
+            </connections>
             <point key="canvasLocation" x="85" y="52"/>
         </collectionViewCell>
     </objects>
