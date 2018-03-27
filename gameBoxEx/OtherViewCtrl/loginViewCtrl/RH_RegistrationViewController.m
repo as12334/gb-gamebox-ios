@@ -105,6 +105,15 @@
         if ([obj isEqualToString:@"sex"]) {
             [item setSexModel:registrationInitModel.selectOptionModel.sexModel];
         }
+        if ([obj isEqualToString:@"mainCurrency"]) {
+            [item setMainCurrencyModel:registrationInitModel.selectOptionModel.mainCurrencyModel];
+        }
+        if ([obj isEqualToString:@"defaultLocale"]) {
+            [item setDefaultLocale:registrationInitModel.selectOptionModel.defaultLocaleModel];
+        }
+        if ([obj isEqualToString:@"securityIssues"]) {
+            [item setSecurityIssues:registrationInitModel.selectOptionModel.securityIssuesModel];
+        }
         [self.stackView addSubview:item];
         //密码输入框，要多插入一个
         if ([field.name isEqualToString:@"password"]) {
@@ -160,6 +169,127 @@
     label.textColor = colorWithRGB(168, 168, 168);
     label.text = @"hahahsasudnakubaksjhcbakshcajscnkaujskcn";
     
+    UIButton *button = [UIButton new];
+    [mainScrollView addSubview:button];
+    button.whc_TopSpaceToView(20, button_Check).whc_LeftSpaceEqualView(button_Check).whc_RightSpaceEqualViewOffset(self.stackView, 20).whc_Height(44);
+    button.layer.cornerRadius = 5;
+    button.clipsToBounds = YES;
+    [button setTitle:@"立即注册" forState:UIControlStateNormal];
+    [button setBackgroundColor:colorWithRGB(20, 90, 180)];
+    [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (NSString *)obtainContent:(NSString *)name {
+    
+//    FieldModel *model = [[FieldModel alloc] init];
+    for (RH_RegistrationViewItem *item in self.stackView.whc_Subviews) {
+        if ([item.contentType isEqualToString:name]) {
+            NSString *content  = [item textFieldContent];
+            if (content.length == 0) {
+                if ([name isEqualToString:@"username"]) {
+                    showMessage(self.contentView, @"请输入账号", @"");
+                }
+                if ([name isEqualToString:@"birthday"]) {
+                    showMessage(self.contentView, @"请选择生日", @"");
+                }
+                if ([name isEqualToString:@"201"]) {
+                    showMessage(self.contentView, @"请输入邮箱", @"");
+                }
+                if ([name isEqualToString:@"301"]) {
+                    showMessage(self.contentView, @"请输入QQ号", @"");
+                }
+                if ([name isEqualToString:@"304"]) {
+                    showMessage(self.contentView, @"请输入微信", @"");
+                }
+                if ([name isEqualToString:@"password"]) {
+                    showMessage(self.contentView, @"请输入密码", @"");
+                }
+                if ([name isEqualToString:@"password2"]) {
+                    showMessage(self.contentView, @"请再次输入密码", @"");
+                }
+                if ([name isEqualToString:@"realName"]) {
+                    showMessage(self.contentView, @"请输入真实姓名", @"");
+                }
+                if ([name isEqualToString:@"verificationCode"]) {
+                    showMessage(self.contentView, @"请输入验证码", @"");
+                }
+                if ([name isEqualToString:@"paymentPassword"]) {
+                    showMessage(self.contentView, @"请输入安全密码", @"");
+                }
+                if ([name isEqualToString:@"paymentPassword2"]) {
+                    showMessage(self.contentView, @"请再次输入安全密码", @"");
+                }
+                if ([name isEqualToString:@"defaultTimezone"]) {
+                    showMessage(self.contentView, @"请选择时区", @"");
+                }
+                if ([name isEqualToString:@"sex"]) {
+                    showMessage(self.contentView, @"请选择性别", @"");
+                }
+                if ([name isEqualToString:@"mainCurrency"]) {
+                    showMessage(self.contentView, @"请选择货币", @"");
+                }
+                if ([name isEqualToString:@"defaultLocale"]) {
+                    showMessage(self.contentView, @"请选择语言", @"");
+                }
+                if ([name isEqualToString:@"securityIssues"]) {
+                    showMessage(self.contentView, @"请回答安全问题", @"");
+                }
+            }else {
+                return content;
+            }
+        }
+    }
+    return @"";
+}
+
+- (void)buttonRegistrationHandle {
+    
+    NSString *usernama = [self obtainContent:@"username"];
+    if (usernama.length == 0) {
+        return;
+    }
+    NSString *password = [self obtainContent:@"password"];
+    if (password.length == 0) {
+        return;
+    }
+    NSString *password2 = [self obtainContent:@"password2"];
+    if (password2.length == 0) {
+        return;
+    }
+    if (![password isEqualToString:password2]) {
+        showMessage(self.contentView, @"两次输入的密码不一样", @"");
+        return;
+    }
+    NSString *verificationCode = [self obtainContent:@"verificationCode"];
+    if (verificationCode.length == 0) { return;}
+    NSString *weixin = [self obtainContent:@"304"];
+    if (weixin.length == 0) { return;}
+    NSString *phone = [self obtainContent:@"110"];
+    if (phone.length == 0) { return;}
+    NSString *email = [self obtainContent:@"201"];
+    if (email.length == 0) { return;}
+    NSString *realname = [self obtainContent:@"realName"];
+    if (realname.length == 0) { return;}
+    NSString *qq = [self obtainContent:@"301"];
+    if (qq.length == 0) { return;}
+    NSString *permission = [self obtainContent:@"paymentPassword"];
+    if (permission.length == 0) { return;}
+    NSString *permission2 = [self obtainContent:@"paymentPassword2"];
+    if (permission2.length == 0) { return;}
+    NSString *timezone = [self obtainContent:@"defaultTimezone"];
+    if (timezone.length == 0) { return;}
+    NSString *birthday = [self obtainContent:@"birthday"];
+    if (birthday.length == 0) { return;}
+    NSString *sex = [self obtainContent:@"sex"];
+    if (sex.length == 0) { return;}
+    NSString *mainCurrency = [self obtainContent:@"mainCurrency"];
+    if (mainCurrency.length == 0) { return;}
+    NSString *defaultLocale = [self obtainContent:@"defaultLocale"];
+    if (defaultLocale.length == 0) { return;}
+    NSString *securityIssues = [self obtainContent:@"securityIssues"];
+    if (securityIssues.length == 0) { return;}
+    
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode];
 }
 
 - (void)startAnimate {
@@ -198,5 +328,9 @@
         [self.contentLoadingIndicateView hiddenView];
         [self layoutContentViews];
     }
+    if (type == ServiceRequestTypeV3RegiestSubmit) {
+        
+    }
+
 }
 @end

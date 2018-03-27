@@ -20,7 +20,7 @@
         _isPhone = [info boolValueForKey:@"isPhone"] ;
         _isRequiredForRegisterCode = [info boolValueForKey:@"isRequiredForRegisterCode"] ;
         _isEmail = [info boolValueForKey:@"isEmail"] ;
-        _selectOptionModel = [info objectForKey:@"selectOption"] ;
+        _selectOptionModel = [[SelectOptionModel alloc] initWithInfoDic:[info objectForKey:@"selectOption"]] ;
         _registCodeField = [info boolValueForKey:@"registCodeField"] ;
         _fieldModel = [FieldModel dataArrayWithInfoArray:[info objectForKey:@"field"]] ;
     }
@@ -102,8 +102,8 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mValue = [info stringValueForKey:@"Value"] ;
-        _mText = [info stringValueForKey:@"Text"] ;
+        _mValue = [info stringValueForKey:@"value"] ;
+        _mText = [info stringValueForKey:@"text"] ;
     }
     return self ;
 }
@@ -113,8 +113,8 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mValue = [info stringValueForKey:@"Value"] ;
-        _mText = [info stringValueForKey:@"Text"] ;
+        _mValue = [info stringValueForKey:@"value"] ;
+        _mText = [info stringValueForKey:@"text"] ;
     }
     return self ;
 }
@@ -124,8 +124,8 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mValue = [info stringValueForKey:@"Value"] ;
-        _mText = [info stringValueForKey:@"Text"] ;
+        _mValue = [info stringValueForKey:@"value"] ;
+        _mText = [info stringValueForKey:@"text"] ;
     }
     return self ;
 }
@@ -135,8 +135,8 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mValue = [info stringValueForKey:@"Value"] ;
-        _mText = [info stringValueForKey:@"Text"] ;
+        _mValue = [info stringValueForKey:@"value"] ;
+        _mText = [info stringValueForKey:@"text"] ;
     }
     return self ;
 }

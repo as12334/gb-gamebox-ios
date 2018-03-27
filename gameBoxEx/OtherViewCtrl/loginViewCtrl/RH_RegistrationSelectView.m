@@ -6,6 +6,7 @@
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
+#import "RH_RegisetInitModel.h"
 #import "RH_RegistrationSelectView.h"
 #import "coreLib.h"
 @interface RH_RegistrationSelectView()<UIPickerViewDelegate, UIPickerViewDataSource>
@@ -17,7 +18,7 @@
 @implementation RH_RegistrationSelectView
 {
     NSInteger selectedRow;
-    NSArray *list;
+    NSArray<id> *list;
     NSInteger pickerviewColumNum;
     NSString *mType;
     NSInteger selectedYear;
@@ -78,8 +79,34 @@
 }
 - (void)confirm {
     ifRespondsSelector(self.delegate, @selector(RH_RegistrationSelectViewDidConfirmButtonTapedwith:)){
-        [self.delegate RH_RegistrationSelectViewDidConfirmButtonTapedwith:[NSString stringWithFormat:@"%ld-%ld-%ld", (long)selectedYear, (long)selectedMonth, (long)selectedDay]] ;
+        if ([mType isEqualToString:@"birthday"]) {
+            [self.delegate RH_RegistrationSelectViewDidConfirmButtonTapedwith:[NSString stringWithFormat:@"%ld-%ld-%ld", (long)selectedYear, (long)selectedMonth, (long)selectedDay]] ;
+        }else {
+            id s = @"";
+            if ([list[selectedRow] isKindOfClass:[SexModel class]]) {
+                SexModel *model = list[selectedRow];
+                s = model.mText;
+            }
+            if ([list[selectedRow] isKindOfClass:[MainCurrencyModel class]]) {
+                MainCurrencyModel *model = list[selectedRow];
+                s = model.mText;
+            }
+            if ([list[selectedRow] isKindOfClass:[DefaultLocaleModel class]]) {
+                DefaultLocaleModel *model = list[selectedRow];
+                s = model.mText;
+            }
+            if ([list[selectedRow] isKindOfClass:[SecurityIssuesModel class]]) {
+                SecurityIssuesModel *model = list[selectedRow];
+                s = model.mText;
+            }
+            [self.delegate RH_RegistrationSelectViewDidConfirmButtonTaped:list[selectedRow]];
+        }
     }
+}
+
+- (void)setDataList:(NSArray<id> *)dataList {
+    list = [NSArray array];
+    list = dataList;
 }
 
 - (void)setColumNumbers:(NSInteger)num {
@@ -109,7 +136,7 @@
     }else {
         
     }
-    return 0;
+    return list.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -122,6 +149,24 @@
         }
         if (component == 2) {
             return [NSString stringWithFormat:@"%ld", row + 1];
+        }
+    }
+    else {
+        if ([list[row] isKindOfClass:[SexModel class]]) {
+            SexModel *model = list[row];
+            return model.mText;
+        }
+        if ([list[row] isKindOfClass:[MainCurrencyModel class]]) {
+            MainCurrencyModel *model = list[row];
+            return model.mText;
+        }
+        if ([list[row] isKindOfClass:[DefaultLocaleModel class]]) {
+            DefaultLocaleModel *model = list[row];
+            return model.mText;
+        }
+        if ([list[row] isKindOfClass:[SecurityIssuesModel class]]) {
+            SecurityIssuesModel *model = list[row];
+            return model.mText;
         }
     }
     return @"";
@@ -139,13 +184,11 @@
     if (component == 2) {
         selectedDay = row + 1;
     }
+    selectedRow = row;
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return pickerviewColumNum ;
 }
 
-- (void)setDatasourceList:(NSArray *)list{
-    list = list;
-}
 
 @end
