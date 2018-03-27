@@ -5,12 +5,12 @@
 //  Created by Lenny on 2018/3/23.
 //  Copyright © 2018年 luis. All rights reserved.
 //
-
+#import "RH_APPDelegate.h"
 #import "RH_RegistrationSelectView.h"
 #import "RH_RegistrationViewItem.h"
 #import "coreLib.h"
 
-@interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate>
+@interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate>
 @end
 @implementation RH_RegistrationViewItem
 {
@@ -423,11 +423,31 @@
 
 - (void)setVerifyCodeLayout {
     textField.whc_RightSpace(150);
-    imageView_VerifyCode = [UIImageView new];
-    [self addSubview:imageView_VerifyCode];
-    imageView_VerifyCode.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
-    imageView_VerifyCode.backgroundColor = [UIColor redColor];
+//    imageView_VerifyCode = [UIImageView new];
+//    [self addSubview:imageView_VerifyCode];
+//    imageView_VerifyCode.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
+//    imageView_VerifyCode.backgroundColor = [UIColor redColor];
+    UIWebView *webView = [UIWebView new];
+    [self addSubview:webView];
+    webView.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
+    webView.backgroundColor = [UIColor redColor];
+    RH_APPDelegate *app = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/captcha/pmregister.html", app.domain]];
+    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(webViewTapHandle:)];
+    tap.cancelsTouchesInView = NO;
+    tap.delegate = self;
+    [webView addGestureRecognizer:tap];
+    webView.multipleTouchEnabled = NO;
 }
+- (void)webViewTapHandle:(UITapGestureRecognizer *)tap {
+    UIWebView *webView = tap.view;
+    [webView reload];
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
 - (void)setPhoneVerifyCodeLayout {
     textField.whc_RightSpace(150);
     UIButton *button = [UIButton new];
