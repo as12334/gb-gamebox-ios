@@ -51,6 +51,7 @@
 		22F626A420566E3E00094564 /* home_announce_close_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A220566E3E00094564 /* home_announce_close_black@3x.png */; };
 		22F626A720566E5E00094564 /* login_touxiang_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A520566E5E00094564 /* login_touxiang_black@2x.png */; };
 		22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A620566E5E00094564 /* login_touxiang_black@3x.png */; };
+		22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -453,7 +454,6 @@
 		A07AF4E42026DBE400D6D559 /* tab_blue_mid_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4CE2026DBE400D6D559 /* tab_blue_mid_selected@2x.png */; };
 		A07AF4E52026DBE400D6D559 /* tab_v3_my_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4CF2026DBE400D6D559 /* tab_v3_my_selected_red@2x.png */; };
 		A07AF4E62026DBE400D6D559 /* tab_v3_promo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4D02026DBE400D6D559 /* tab_v3_promo@2x.png */; };
-		A07AF4E72026DBE400D6D559 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4D12026DBE400D6D559 /* tab_v3_home@2x.png */; };
 		A07AF4E82026DBE400D6D559 /* tab_v3_my_selected_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4D22026DBE400D6D559 /* tab_v3_my_selected_red@3x.png */; };
 		A07AF4E92026DBE400D6D559 /* tab_v3_promo_selected_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4D32026DBE400D6D559 /* tab_v3_promo_selected_red@2x.png */; };
 		A07AF4EA2026DBE400D6D559 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A07AF4D42026DBE400D6D559 /* tab_v3_home_selected@2x.png */; };
@@ -764,6 +764,7 @@
 		22F626A220566E3E00094564 /* home_announce_close_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_black@3x.png"; sourceTree = "<group>"; };
 		22F626A520566E5E00094564 /* login_touxiang_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@2x.png"; sourceTree = "<group>"; };
 		22F626A620566E5E00094564 /* login_touxiang_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@3x.png"; sourceTree = "<group>"; };
+		22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -1485,7 +1486,6 @@
 		A07AF4CE2026DBE400D6D559 /* tab_blue_mid_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_blue_mid_selected@2x.png"; sourceTree = "<group>"; };
 		A07AF4CF2026DBE400D6D559 /* tab_v3_my_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_red@2x.png"; sourceTree = "<group>"; };
 		A07AF4D02026DBE400D6D559 /* tab_v3_promo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo@2x.png"; sourceTree = "<group>"; };
-		A07AF4D12026DBE400D6D559 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
 		A07AF4D22026DBE400D6D559 /* tab_v3_my_selected_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_red@3x.png"; sourceTree = "<group>"; };
 		A07AF4D32026DBE400D6D559 /* tab_v3_promo_selected_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected_red@2x.png"; sourceTree = "<group>"; };
 		A07AF4D42026DBE400D6D559 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
@@ -3510,8 +3510,8 @@
 				A07AF4CC2026DBE400D6D559 /* tab_v3_service@2x.png */,
 				A07AF4CE2026DBE400D6D559 /* tab_blue_mid_selected@2x.png */,
 				A07AF4D02026DBE400D6D559 /* tab_v3_promo@2x.png */,
-				A07AF4D12026DBE400D6D559 /* tab_v3_home@2x.png */,
 				A07AF4D42026DBE400D6D559 /* tab_v3_home_selected@2x.png */,
+				22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */,
 				A07AF4D62026DBE400D6D559 /* tab_v3_my@2x.png */,
 				A07AF4D72026DBE400D6D559 /* tab_blue_mid@2x.png */,
 			);
@@ -4390,6 +4390,7 @@
 				A07AF4E12026DBE400D6D559 /* tab_v3_service_selected_red@3x.png in Resources */,
 				A001B3D01F8EF7CA00309EA4 /* tab_default_mine@2x.png in Resources */,
 				A001B3D11F8EF7CA00309EA4 /* tab_default_service@2x.png in Resources */,
+				22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */,
 				A0AE8AAE1FFCD57300836C1B /* RH_MineMoreNextCell.xib in Resources */,
 				A07AF4E82026DBE400D6D559 /* tab_v3_my_selected_red@3x.png in Resources */,
 				F69E35262063A1300028D3A1 /* RH_DepositeMoneyBankCell.xib in Resources */,
@@ -4399,7 +4400,6 @@
 				F69E350D206355AD0028D3A1 /* RH_DepositeChooseMoneySubCell.xib in Resources */,
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */,
-				A07AF4E72026DBE400D6D559 /* tab_v3_home@2x.png in Resources */,
 				A07AF4F22026DFF500D6D559 /* tab_v3_deposit_selected_red@2x.png in Resources */,
 				A06E0F592010801B00EF275A /* BitCoinExist.plist in Resources */,
 				F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */,
