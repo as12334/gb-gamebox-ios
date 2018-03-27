@@ -27,4 +27,6 @@
 @property(nonatomic,strong,readonly)NSString *mOpenAcountName;
 @property(nonatomic,strong,readonly)NSString *mAliasName;
 @property(nonatomic,strong,readonly)NSString *mRandomAmount;
+@property(nonatomic,strong,readonly)NSString *mBankName;
+@property(nonatomic,strong,readonly)NSString *mDepositWay;
 @end

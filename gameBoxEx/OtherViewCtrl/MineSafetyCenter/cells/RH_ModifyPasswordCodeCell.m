@@ -104,8 +104,6 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeObtainVerifyCode){
-        NSLog(@"%s", __func__);
-        NSLog(@"%@", data);
         [self.indicator stopAnimating];
         self.label_indicator.text = @"" ;
         self.codeImage.hidden = NO;

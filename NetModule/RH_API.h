@@ -694,7 +694,8 @@
 
 #pragma mark - V3 一键回收
 #define RH_API_NAME_ONESTEPRECOVERY          @"mobile-api/mineOrigin/recovery.html"
-//请求参数  无
+//请求参数
+#define RH_SP_ONESTEPRECOVERY_SEARCHAPIID         @"search.apiId"
 
 #pragma mark - V3 添加比特币
 #define RH_API_NAME_ADDBTC                  @"mobile-api/userInfoOrigin/submitBtc.html"
@@ -878,6 +879,10 @@
 #pragma mark - V3 注册初始化
 #define RH_API_NAME_REGISESTINIT        @"mobile-api/registerOrigin/getRegisterInfo.html"
 
+#pragma mark - v3 注册验证码
+#define RH_API_NAME_REGISESTCAPTCHACODE        @"captcha/pmregister.html"
+
+
 #pragma mark - V3 注册提交
 #define RH_API_NAME_REGISESTSUBMIT        @"mobile-api/registerOrigin/save.html"
 //请求参数
@@ -900,9 +905,22 @@
 #pragma mark - V3 注册条款
 #define RH_API_NAME_REGISESTTERMS        @"mobile-api/origin/terms.html"
 
+#pragma mark - V3  关于我们
+#define RH_API_NAME_ABOUTUS        @"mobile-api/origin/about.html"
+
+#pragma mark - V3  常见问题父级分类
+#define RH_API_NAME_HELPFIRSTTYPE        @"mobile-api/origin/helpFirstType.html"
+
+#pragma mark - V3  常见问题二级分类
+#define RH_API_NAME_HELPSECONDTYPE        @"mobile-api/origin/secondType.html"
+//请求参数
+#define RH_SP_HELPSECONDTYPE_SEARCHID                           @"searchId"
 #pragma mark - V3 存款
 #define RH_API_DEPOSITE_DEPOSITEORIGIN   @"/mobile-api/depositOrigin/index.html"
 //返回参数
+#define RH_GP_DEPOSITEORIGIN_PAY                    @"pay"
+#define RH_GP_DEPOSITEORIGIN_PAYDATA                @"payData"
+
 #define RH_GP_DEPOSITEORIGIN_QUICKMONEYS            @"quickMoneys"
 #define RH_GP_DEPOSITEORIGIN_LOTTERYSITE            @"lotterySite"
 #define RH_GP_DEPOSITEORIGIN_ISFASTRECHARGE         @"isFastRecharge"
@@ -922,7 +940,7 @@
 #define RH_GP_DEPOSITEORIGIN_BANKCODE               @"bankCode"
 #define RH_GP_DEPOSITEORIGIN_SINGLEDEPOSITEMIN      @"singleDepositMin"
 #define RH_GP_DEPOSITEORIGIN_FULLNAME               @"fullName"
-#define RH_GP_DEPOSITEORIGIN_FEMARK                 @"remark"
+#define RH_GP_DEPOSITEORIGIN_REMARK                 @"remark"
 #define RH_GP_DEPOSITEORIGIN_ACCOUNTPROMPT          @"accountPrompt"
 #define RH_GP_DEPOSITEORIGIN_PAYNAME                @"payName"
 #define RH_GP_DEPOSITEORIGIN_CUSTOMBANKNAME         @"customBankName"
@@ -930,9 +948,47 @@
 #define RH_GP_DEPOSITEORIGIN_OPENACOUNTNAME         @"openAcountName"
 #define RH_GP_DEPOSITEORIGIN_ALIASNAME              @"aliasName"
 #define RH_GP_DEPOSITEORIGIN_RANDOMAMOUNT           @"randomAmount"
+#define RH_GP_DEPOSITEORIGIN_BANKNAME               @"bankName"
+#define RH_GP_DEPOSITEORIGIN_DEPOSITEWAY            @"depositWay"
+#pragma mark - V3  常见问题详情
+#define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"
 
+#pragma mark - V3 存款获取优惠
+#define RH_API_NAME_DEPOSITESEACHSALE               @"/mobile-api/depositOrigin/seachSale.html"
+//请求参数
+#define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
+#define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"PayAccount.depositWay"
+#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"PayAccount.id"
+//返回参数
+#define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
+#define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"
+#define RH_GP_DEPOSITESEACHSALE_COUNTERFEE          @"counterFee"
+#define RH_GP_DEPOSITESEACHSALE_FAILURECOUNT        @"failureCount"
 
+#define RH_GP_DEPOSITESEACHSALE_SALES                    @"sales"
+#define RH_GP_DEPOSITESEACHSALE_ID                  @"id"
+#define RH_GP_DEPOSITESEACHSALE_PREFERENTIAL        @"preferential"
+#define RH_GP_DEPOSITESEACHSALE_ACTIVITYNAME        @"activityName"
+#pragma mark - V3  非免转额度转换初始化
+#define RH_API_NAME_GETNOAUTOTRANSFERINFO        @"mobile-api/userInfoOrigin/getNoAutoTransferInfo.html"
 
+#pragma mark - V3  非免转额度转换提交
+#define RH_API_NAME_SUBTRANSFERMONEY       @"mobile-api/userInfoOrigin/transfersMoney.html"
+//请求参数
+#define RH_SP_SUBTRANSFERMONEY_TOKEN                                 @"gb.token"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFEROUT                           @"transferOut"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFERINTO                          @"transferInto"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFERAMOUNT                        @"result.transferAmount"
+
+#pragma mark - V3  非免转额度转换异常再次请求
+#define RH_API_NAME_RECONNECTTRANSFER        @"mobile-api/userInfoOrigin/reconnectTransfer.html"
+//请求参数
+#define RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO                  @"search.transactionNo" //失败的orderId
+
+#pragma mark - V3  非免转刷新单个
+#define RH_API_NAME_REFRESHAPI        @"mobile-api/userInfoOrigin/refreshApi.html"
+//请求参数
+#define RH_SP_REFRESHAPI_APIID                 @"search.apiId"  //apiId
 
 #endif /* RH_API_h */
 

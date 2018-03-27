@@ -14,6 +14,10 @@
 
 #import "RH_MineMoreInfoViewController.h"
 #import "RH_MineMoreDetailWebViewController.h"
+/***原生***/
+#import "RH_AboutUsViewController.h"
+#import "RH_RegisterClauseViewController.h" //注册条款
+#import "RH_HelpCenterViewController.h"
 
 
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
@@ -94,16 +98,20 @@
 {
 
     if (indexPath.row == 0) {
-        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:QuestionsURL]
-                                             animated:YES] ;
+//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:QuestionsURL]
+//                                             animated:YES] ;
+         [self.navigationController pushViewController:[RH_HelpCenterViewController viewController] animated:YES] ;
+        
     }else if (indexPath.row == 1)
     {
-        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:RegisterProtocol]
-                                             animated:YES] ;
+//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:RegisterProtocol]
+//                                             animated:YES] ;
+        [self.navigationController pushViewController:[RH_RegisterClauseViewController viewController] animated:YES] ;
     }else if (indexPath.row== 2)
     {
-        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:AboutUs]
-                                             animated:YES] ;
+//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:AboutUs]
+//                                             animated:YES] ;
+        [self.navigationController pushViewController:[RH_AboutUsViewController viewController] animated:YES] ;
     }
 
     return YES;

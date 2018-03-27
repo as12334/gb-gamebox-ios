@@ -59,6 +59,9 @@
                     <constraint firstItem="nCs-3U-bxg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="hcN-5C-KZV"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="qrurlImage" destination="nCs-3U-bxg" id="06X-YV-6be"/>
+            </connections>
             <point key="canvasLocation" x="25" y="125.5"/>
         </tableViewCell>
     </objects>

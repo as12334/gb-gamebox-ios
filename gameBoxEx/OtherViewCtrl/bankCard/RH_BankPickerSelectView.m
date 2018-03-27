@@ -9,6 +9,7 @@
 #import "RH_BankPickerSelectView.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
+#import "RH_GetNoAutoTransferInfoModel.h"
 @interface RH_BankPickerSelectView()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIPickerView *pickView;
@@ -18,6 +19,7 @@
 @implementation RH_BankPickerSelectView
 {
     NSInteger selectedRow;
+    NSArray *_list;
 }
 @synthesize pickView = _pickView;
 - (UIPickerView *)pickView {
@@ -70,6 +72,10 @@
 }
 - (void)confirm {
     ifRespondsSelector(self.delegate, @selector(bankPickerSelectViewDidTouchConfirmButton:WithSelectedBank:)){
+        if (_list.count > 0) {
+              [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:_list[selectedRow]] ;
+            return ;
+        }
         [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:BankList[selectedRow]] ;
     }
 }
@@ -80,10 +86,17 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
+    if (_list.count > 0) {
+        return _list.count;
+    }
     return BankList.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (_list.count > 0) {
+        SelectModel *model = _list[row];
+        return model.mText;
+    }
     return BankList[row].mBankName;
 }
 
@@ -93,6 +106,10 @@
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1 ;
+}
+
+- (void)setDatasourceList:(NSArray *)list{
+    _list = list ;
 }
 
 @end

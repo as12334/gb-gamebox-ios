@@ -160,8 +160,6 @@
         RH_BasicAlertViewCell  *cell = [[RH_BasicAlertViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         RH_AnnouncementModel *model = contents[indexPath.row];
         cell.contentLabel.text = model.mContent;
-        NSLog(@"%@", model.mContent);
-        NSLog(@"%d", indexPath.row);
         UIImageView *imageB = [UIImageView new];
         [cell.contentView addSubview:imageB];
         imageB.image = ImageWithName(@"line-notic");

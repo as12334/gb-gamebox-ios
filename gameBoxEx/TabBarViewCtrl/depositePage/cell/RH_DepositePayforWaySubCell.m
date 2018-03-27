@@ -7,10 +7,13 @@
 //
 
 #import "RH_DepositePayforWaySubCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositeTransferModel.h"
 @interface RH_DepositePayforWaySubCell()
 @property (weak, nonatomic) IBOutlet UIImageView *payforIcon;
-
 @property (weak, nonatomic) IBOutlet UILabel *payforTitle;
+@property (nonatomic,strong)RH_DepositePayModel *payModel;
 @end
 @implementation RH_DepositePayforWaySubCell
 
@@ -18,5 +21,9 @@
     [super awakeFromNib];
     // Initialization code
 }
-
+-(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
+{
+    self.payModel = ConvertToClassPointer(RH_DepositePayModel, context);
+    self.payforTitle.text = self.payModel.mName;
+}
 @end

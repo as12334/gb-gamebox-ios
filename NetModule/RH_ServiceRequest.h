@@ -86,8 +86,19 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3RequetLoginWithGetLoadSid,// get请求登录接口获取SID
     ServiceRequestTypeV3DepositeOrigin,//请求获取存款平台相关信息
     ServiceRequestTypeV3RegiestInit,     //注册初始化
+    ServiceRequestTypeV3RegiestCaptchaCode,     //注册验证码
     ServiceRequestTypeV3RegiestSubmit,   //注册提交
     ServiceRequestTypeV3RegiestTerm,     //注册条款
+    ServiceRequestTypeV3AboutUs,     //关于我们
+    ServiceRequestTypeV3FirstHelpFirstTyp,     //常见问题父级分类
+    ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
+    ServiceRequestTypeV3HelpDetail,     //常见问题详情
+    ServiceRequestTypeV3DepositOriginSeachSale,  //存款获取优惠
+    ServiceRequestTypeV3GetNoAutoTransferInfo,    // 非免转额度转换初始化
+    ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
+    ServiceRequestTypeV3ReconnectTransfer,        //非免转额度转换异常再次请求
+    ServiceRequestTypeV3RefreshApi,               //非免转刷新单个
+    
 };
 
 
@@ -306,8 +317,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                PageSize:(NSInteger)pageSize ;
 
 #pragma mark -  一键回收
-//请求参数  无
--(void)startV3OneStepRecovery;
+-(void)startV3OneStepRecoverySearchId:(NSString *)searchId;
 
 #pragma mark - V3 添加比特币
 -(void)startV3AddBtcWithNumber:(NSString *)bitNumber;
@@ -434,19 +444,20 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3RequestDepositOrigin;
 #pragma mark - 注册初始化
 -(void)startV3RegisetInit;
+#pragma mark - 注册验证码
+-(void)startV3RegisetCaptchaCode;
 
 #pragma mark - 注册提交
 /**
  注册提交
-
  @param birth 生日
  @param sex 性别
- @param permissionPwd <#permissionPwd description#>
+ @param permissionPwd 安全密码
  @param defaultTimezone 时区
- @param defaultLocale <#defaultLocale description#>
+ @param defaultLocale  默认语言
  @param phone 手机号
  @param realName 真实姓名
- @param defaultCurrency <#defaultCurrency description#>
+ @param defaultCurrency 货币
  @param password 密码
  @param question1 问题
  @param email 邮箱
@@ -472,6 +483,41 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                             captchaCode:(NSString *)captchaCode;
 #pragma mark - 注册条款
 -(void)startV3RegisetTerm;
+
+#pragma mark - V3  关于我们
+-(void)startV3AboutUs;
+
+#pragma mark - V3  常见问题父级分类
+-(void)startV3HelpFirstType;
+
+#pragma mark - V3  常见问题二级分类
+-(void)startV3HelpSecondTypeWithSearchId:(NSString *)searchId ;
+
+#pragma mark - V3  常见问题详情
+-(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
+
+#pragma mark 存款获取优惠
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
+
+#pragma mark - V3  非免转额度转换初始化
+-(void)startV3GetNoAutoTransferInfoInit ;
+
+
+#pragma mark - V3  非免转额度转换提交
+-(void)startV3SubitTransfersMoneyToken:(NSString *)token
+                           transferOut:(NSString *)transferOut
+                          transferInto:(NSString *)transferInto
+                        transferAmount:(float)transferAmount ;
+
+
+#pragma mark - V3  非免转额度转换异常再次请求
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo ;
+
+
+#pragma mark - V3  非免转刷新单个
+-(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
+
+
 #pragma mark -
 /**
  * 取消所有服务

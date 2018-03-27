@@ -38,11 +38,6 @@
     self.textLabel.text = info.myTitle ;
     RH_MineInfoModel *infoModel = [RH_UserInfoManager shareUserManager].mineSettingInfo;
     RH_BankCardModel *bankModek = infoModel.mBankCard;
-    NSLog(@"%@",bankModek.mBankCode);
-    
-    
- 
-   
     self.detailTextLabel.text = ConvertToClassPointer(NSString, context) ;
 }
 

@@ -86,7 +86,6 @@
         _sysBadge =sysBadgeLab;
         [[NSNotificationCenter defaultCenter] addObserverForName:@"isHaveNoReadSiteSysMessage_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
             RH_SiteMsgUnReadCountModel *model1 = note.object;
-            NSLog(@"%@",note) ;
             if (model1.sysMsgUnreadCount &&[model1.sysMsgUnreadCount integerValue] > 0) {
                 _sysBadge.hidden = NO ;
                 if ([model1.sysMsgUnreadCount integerValue] > 99) {

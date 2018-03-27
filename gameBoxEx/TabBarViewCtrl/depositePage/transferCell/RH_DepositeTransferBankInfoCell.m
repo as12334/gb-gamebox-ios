@@ -7,14 +7,27 @@
 //
 
 #import "RH_DepositeTransferBankInfoCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositePayAccountModel.h"
 @interface RH_DepositeTransferBankInfoCell()
 @property (weak, nonatomic) IBOutlet UIView *bankInfoView;
 @property (weak, nonatomic) IBOutlet UIButton *copBtn;
 @property (weak, nonatomic) IBOutlet UIButton *copBtnTwo;
 @property (weak, nonatomic) IBOutlet UIButton *copBtnThr;
+@property (weak, nonatomic) IBOutlet UILabel *bankCardNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankCardNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankAdressLabel;
 
 @end
 @implementation RH_DepositeTransferBankInfoCell
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
+    self.bankCardNumLabel.text = accountModel.mAccount;
+    self.bankCardNameLabel.text = accountModel.mBankName;
+    self.bankAdressLabel.text = accountModel.mOpenAcountName;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -30,7 +43,6 @@
     self.copBtnThr.layer.cornerRadius = 5.f;
     self.copBtnThr.layer.masksToBounds = YES;
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

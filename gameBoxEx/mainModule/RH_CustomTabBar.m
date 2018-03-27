@@ -20,7 +20,6 @@
 // 重新布局tabBarItem（这里需要具体情况具体分析，本例是中间有个按钮，两边平均分配按钮）
 - (void)layoutSubviews
 {
-    NSLog(@"layoutSubviews");
     [super layoutSubviews];
     // 把tabBarButton取出来（把tabBar的SubViews打印出来就明白了）
     NSMutableArray *tabBarButtonArray = [NSMutableArray array];

@@ -8,10 +8,6 @@
 
 #import "RH_BasicModel.h"
 
-//@interface RH_RegisetInitModel : RH_BasicModel
-//@end
-
-
 @interface IpLocaleModel :RH_BasicModel
 @property (nonatomic , strong , readonly) NSString              * region;
 @property (nonatomic , strong , readonly) NSString              * country;
@@ -57,7 +53,7 @@
 @property (nonatomic , assign , readonly) BOOL              bulitIn;
 @property (nonatomic , strong , readonly) NSString              * isOnly;
 @property (nonatomic , strong , readonly) NSString              * i18nName;
-@property (nonatomic , strong , readonly) NSString              * name;
+@property (nonatomic , strong ) NSString              * name;
 
 @end
 

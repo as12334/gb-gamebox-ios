@@ -142,7 +142,6 @@
         }
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexS options:NSRegularExpressionCaseInsensitive error:nil];
         NSArray<NSTextCheckingResult *> *result = [regex matchesInString:textRange options:0 range:NSMakeRange(0, textRange.length)];
-        NSLog(@"%@", result);
         if (result.count > 0) {
             if ([THEMEV3 isEqualToString:@"green"]){
                 label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
@@ -155,7 +154,6 @@
             }
             NSRegularExpression *regex2 = [NSRegularExpression regularExpressionWithPattern:regexS2 options:NSRegularExpressionCaseInsensitive error:nil];
             NSArray<NSTextCheckingResult *> *result2 = [regex2 matchesInString:textRange options:0 range:NSMakeRange(0, textRange.length)];
-            NSLog(@"%@", result2);
             if (result2.count > 0) {
                 if ([THEMEV3 isEqualToString:@"green"]){
                     label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
