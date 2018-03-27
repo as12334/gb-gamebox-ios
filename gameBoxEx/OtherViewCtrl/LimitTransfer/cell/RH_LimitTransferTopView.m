@@ -192,11 +192,9 @@
 #pragma mark - 确认提交
 -(void)sureSubmitClick:(UIButton *)sender
 {
-    UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
-    UIButton *transferInBtn = (UIButton *)[self viewWithTag:887] ;
     UITextField *amount =(UITextField *) [self viewWithTag:889] ;
-    ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchSureSubmitBtn:withTransferInBtn:transferOut:amount:)){
-        [self.delegate limitTransferTopViewDidTouchSureSubmitBtn:sender withTransferInBtn:transferInBtn transferOut:transferOutBtn amount:amount.text] ;
+    ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchSureSubmitBtnWithamount:)){
+        [self.delegate limitTransferTopViewDidTouchSureSubmitBtnWithamount:amount.text] ;
     }
 }
 
@@ -210,12 +208,12 @@
 #pragma mark - 更新按钮标题
 -(void)updataBTnTitleTransferInBtnTitle:(NSString *)tranferInTitle
 {
-    UIButton *transferInBtn = (UIButton *)[self viewWithTag:886] ;
+    UIButton *transferInBtn = (UIButton *)[self viewWithTag:887] ;
     [transferInBtn setTitle:tranferInTitle forState:UIControlStateNormal];
 }
 -(void)updataBTnTitletransferOutBtnTitle:(NSString *)tranferOutTitle
 {
-     UIButton *transferOutBtn = (UIButton *)[self viewWithTag:887] ;
+     UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
       [transferOutBtn setTitle:tranferOutTitle forState:UIControlStateNormal];
 }
 #pragma mark - 更新顶部数据

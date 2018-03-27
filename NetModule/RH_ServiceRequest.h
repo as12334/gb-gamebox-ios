@@ -98,7 +98,12 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
     ServiceRequestTypeV3ReconnectTransfer,        //非免转额度转换异常再次请求
     ServiceRequestTypeV3RefreshApi,               //非免转刷新单个
-    
+    ServiceRequestTypeV3OnlinePay,               //线上支付提交存款
+    ServiceRequestTypeV3ScanPay,               //扫码支付提交存款
+    ServiceRequestTypeV3CompanyPay,               //网银支付提交存款
+    ServiceRequestTypeV3ElectronicPay,               //电子支付提交存款
+    ServiceRequestTypeV3BitcoinPay,               //比特币支付提交存款
+    ServiceRequestTypeV3OneStepRefresh,               //一键刷新
 };
 
 
@@ -480,7 +485,14 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                                 qqValue:(NSString *)qq
                             weixinValue:(NSString *)weixinValue
                                userName:(NSString *)userName
-                            captchaCode:(NSString *)captchaCode;
+                            captchaCode:(NSString *)captchaCode
+                  recommendRegisterCode:(NSString *)recommendRegisterCode
+                               editType:(NSString *)editType
+                 recommendUserInputCode:(NSString *)recommendUserInputCode
+                        confirmPassword:(NSString *)confirmPassword
+                   confirmPermissionPwd:(NSString *)confirmPermissionPwd
+                                answer1:(NSString *)answer1
+                         termsOfService:(NSString *)termsOfService;
 #pragma mark - 注册条款
 -(void)startV3RegisetTerm;
 
@@ -517,6 +529,47 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - V3  非免转刷新单个
 -(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
 
+#pragma mark - V3 线上支付提交存款
+-(void)startV3OnlinePayWithRechargeAmount:(float)amount
+                             rechargeType:(NSString *)rechargeType
+                             payAccountId:(NSInteger)payAccountId
+                               activityId:(NSInteger)activityId ;
+
+#pragma mark - V3 扫码支付提交存款
+-(void)startV3ScanPayWithRechargeAmount:(float)amount
+                           rechargeType:(NSString *)rechargeType
+                           payAccountId:(NSInteger)payAccountId
+                          payerBankcard:(NSInteger)payerBankcard
+                             activityId:(NSInteger)activityId ;
+
+#pragma mark -  V3 网银支付提交存款
+-(void)startV3CompanyPayWithRechargeAmount:(float)amount
+                              rechargeType:(NSString *)rechargeType
+                              payAccountId:(NSInteger)payAccountId
+                                 payerName:(NSString *)payerName
+                           rechargeAddress:(NSString *)rechargeAddress
+                                activityId:(NSInteger)activityId ;
+
+#pragma mark - V3 电子支付提交存款
+-(void)startV3ElectronicPayWithRechargeAmount:(float)amount
+                                 rechargeType:(NSString *)rechargeType
+                                 payAccountId:(NSInteger)payAccountId
+                                    bankOrder:(NSInteger)bankOrder
+                                    payerName:(NSString *)payerName
+                              payerBankcard:(NSString *)payerBankcard
+                                   activityId:(NSInteger)activityId ;
+
+#pragma mark - V3 比特币支付提交存款
+-(void)startV3BitcoinPayWithRechargeType:(NSString *)rechargeType
+                              payAccountId:(NSInteger)payAccountId
+                              activityId:(NSInteger)activityId
+                              returnTime:(NSString *)returnTime
+                           payerBankcard:(NSString *)payerBankcard
+                               bitAmount:(float)bitAmount
+                           bankOrderTxID:(NSString *)bankOrder;
+
+#pragma mark - V3 一键刷新
+-(void)startV3OneStepRefresh ;
 
 #pragma mark -
 /**
