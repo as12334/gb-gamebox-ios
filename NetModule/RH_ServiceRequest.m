@@ -1584,7 +1584,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3HelpDetail
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark 存款优惠
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
+    [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITESEACHSALE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositOriginSeachSale
+                         scopeType:ServiceScopeTypePublic];
+    
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1920,15 +1939,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
         }
     }
-//    
-//    else if (type==ServiceRequestTypeV3SystemMessageYes){
-//        NSError * tempError = nil;
-//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-//                                                                                      error:&tempError] : @{};
-//        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
-//        return YES ;
+//    else if (type == ServiceRequestTypeV3DepositOriginSeachSale)
+//    {
+//        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+//        NSMutableArray *mArr = [NSMutableArray array] ;
+//        if (isSidStr(responseStr)) {
+//            [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+//        }
+//        if (mArr.count>0) {
+//            userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+//        }
 //    }
+    
+//    
+    else if (type==ServiceRequestTypeV3DepositOriginSeachSale){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+        NSLog(@"----%@",dataObject);
+        return YES ;
+    }
     
     //json解析
     NSError * tempError = nil;
@@ -2372,6 +2404,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
             }
                 break ;
+                case ServiceRequestTypeV3DepositOriginSeachSale:
+            {
+                
+                
+            }
+                break;
             default:
                 resultSendData = dataObject ;
                 break;

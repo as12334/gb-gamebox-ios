@@ -117,8 +117,11 @@
             <connections>
                 <outlet property="accountInfo" destination="hN2-xB-FMd" id="5Gb-Ik-gc4"/>
                 <outlet property="accountInfoView" destination="3ZR-UB-Vfc" id="lFP-tT-veG"/>
+                <outlet property="bankIconImage" destination="Nbw-iR-5pS" id="rOe-Hp-Vz5"/>
+                <outlet property="personIdNumLabel" destination="3ka-cc-6VS" id="pfu-4l-kHG"/>
+                <outlet property="personNameLabel" destination="SEd-m9-KyJ" id="X8L-fv-dOR"/>
             </connections>
-            <point key="canvasLocation" x="32" y="183"/>
+            <point key="canvasLocation" x="-155" y="175"/>
         </tableViewCell>
     </objects>
     <resources>

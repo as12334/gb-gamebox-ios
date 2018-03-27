@@ -9,10 +9,17 @@
 #import "RH_DepositeSystemPlatformSubCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
+#import "RH_DepositePayAccountModel.h"
+@interface RH_DepositeSystemPlatformSubCell()
+@property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *payWayImage;
+
+@end
 @implementation RH_DepositeSystemPlatformSubCell
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    
+    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
+    self.payWayLabel.text = accountModel.mBankName;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

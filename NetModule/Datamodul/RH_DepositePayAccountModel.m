@@ -31,6 +31,8 @@
         _mOpenAcountName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_OPENACOUNTNAME];
         _mAliasName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_ALIASNAME];
         _mRandomAmount = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_RANDOMAMOUNT];
+        _mBankName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_BANKNAME];
+        _mDepositWay = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_DEPOSITEWAY];
     }
     return self;
 }

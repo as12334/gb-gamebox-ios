@@ -85,12 +85,7 @@
 #pragma mark -
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    if (self.payModelArray.count%5==0) {
-        return self.payModelArray.count/5;
-    }
-    else{
-        return self.payModelArray.count/5+1;
-    }
+    return 1;
     
 }
 
@@ -111,6 +106,7 @@
     ifRespondsSelector(self.delegate, @selector(depositePayforWayDidtouchItemCell:itemIndex:)){
         [self.delegate depositePayforWayDidtouchItemCell:self itemIndex:indexPath.item];
     }
+    
 }
 
 

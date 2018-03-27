@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong)NSArray *accountModelArray;
 @property (nonatomic,strong)RH_DepositePayModel *payModel;
+@property (nonatomic,assign)NSInteger cellStatusIndex;
 @end
 
 @implementation RH_DepositeSystemPlatformCell
@@ -39,17 +40,17 @@
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
+    _cellStatusIndex = 100;
     [self.collectionView reloadData] ;
     [self setupUI];
 }
--(void)setSelectNumber:(NSInteger)selectNumber
+-(void)updateConllectionView
 {
-    _selectNumber = selectNumber;
+    [self awakeFromNib];
 }
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-//        self.itemsList = ConvertToClassPointer(NSArray, context) ;
     RH_DepositePayModel *payModel = ConvertToClassPointer(RH_DepositePayModel, context);
     _payModel = payModel;
     _accountModelArray = ConvertToClassPointer(NSArray, payModel.mPayAccounts);
@@ -83,7 +84,6 @@
 #pragma mark -
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-//    return self.accountModelArray.count%2?(self.accountModelArray.count/2)+1:(self.accountModelArray.count/2);
     return 1;
 }
 
@@ -96,16 +96,24 @@
 {
     RH_DepositeSystemPlatformSubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_DepositeSystemPlatformSubCell defaultReuseIdentifier] forIndexPath:indexPath];
     [cell updateViewWithInfo:nil context:self.accountModelArray[indexPath.item]];
+    if (indexPath.item == _cellStatusIndex) {
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
+    else
+    {
+        cell.contentView.backgroundColor = [UIColor lightGrayColor];
+    }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, self.accountModelArray[indexPath.item]);
-    ifRespondsSelector(self.delegate, @selector(depositeSystemPlatformCellDidtouch:codeString:typeString:)){
-        [self.delegate depositeSystemPlatformCellDidtouch:self codeString:self.payModel.mCode typeString:accountModel.mType] ;
+    ifRespondsSelector(self.delegate, @selector(depositeSystemPlatformCellDidtouch:codeString:accountModel:)){
+        [self.delegate depositeSystemPlatformCellDidtouch:self codeString:self.payModel.mCode accountModel:accountModel] ;
     }
+    _cellStatusIndex = indexPath.item ;
+    [self.collectionView reloadData];
 }
-
 
 @end

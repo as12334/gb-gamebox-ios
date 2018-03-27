@@ -944,10 +944,26 @@
 #define RH_GP_DEPOSITEORIGIN_OPENACOUNTNAME         @"openAcountName"
 #define RH_GP_DEPOSITEORIGIN_ALIASNAME              @"aliasName"
 #define RH_GP_DEPOSITEORIGIN_RANDOMAMOUNT           @"randomAmount"
-
+#define RH_GP_DEPOSITEORIGIN_BANKNAME               @"bankName"
+#define RH_GP_DEPOSITEORIGIN_DEPOSITEWAY            @"depositWay"
 #pragma mark - V3  常见问题详情
 #define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"
 
+#pragma mark - V3 存款获取优惠
+#define RH_API_NAME_DEPOSITESEACHSALE               @"/mobile-api/depositOrigin/seachSale.html"
+//请求参数
+#define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
+#define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"PayAccount.depositWay"
+#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"PayAccount.id"
+//返回参数
+#define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
+#define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"
+#define RH_GP_DEPOSITESEACHSALE_COUNTERFEE          @"counterFee"
+#define RH_GP_DEPOSITESEACHSALE_FAILURECOUNT        @"failureCount"
 
+#define RH_GP_DEPOSITESEACHSALE_SALES                    @"sales"
+#define RH_GP_DEPOSITESEACHSALE_ID                  @"id"
+#define RH_GP_DEPOSITESEACHSALE_PREFERENTIAL        @"preferential"
+#define RH_GP_DEPOSITESEACHSALE_ACTIVITYNAME        @"activityName"
 #endif /* RH_API_h */
 

@@ -92,6 +92,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3FirstHelpFirstTyp,     //常见问题父级分类
     ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
     ServiceRequestTypeV3HelpDetail,     //常见问题详情
+    ServiceRequestTypeV3DepositOriginSeachSale,  //存款获取优惠
     
 };
 
@@ -488,6 +489,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - V3  常见问题详情
 -(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
 
+#pragma mark 存款获取优惠
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
 
 #pragma mark -
 /**

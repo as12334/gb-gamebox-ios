@@ -23,6 +23,10 @@
 @property(nonatomic,strong)NSArray *markArray;
 @property(nonatomic,strong)RH_DepositeTransferModel *transferModel;
 @property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
+@property(nonatomic,strong)RH_DepositeMoneyNumberCell *numberCell;
+@property(nonatomic,strong)NSArray *accountModelArray;
+@property(nonatomic,strong)UIView *backDropView;
+@property(nonatomic,strong)NSString *payNumStr;
 @end
 
 @implementation RH_DepositeViewControllerEX
@@ -71,6 +75,10 @@
     _markArray = @[@0,@1,@2,@3,@4,@5];
     [self setNeedUpdateView];
     [self setupUI];
+    // 键盘出现的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    // 键盘消失的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma mark --检测是否登录
 -(void)handleNotification:(NSNotification*)nt
@@ -230,6 +238,8 @@
         }
         else if (indexPath.item == [_markArray[2]integerValue]){
             RH_DepositeMoneyNumberCell *numberCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyNumberCell defaultReuseIdentifier]] ;
+//            [numberCell updateCellWithInfo:nil context:transferModel.mPayModel[indexPath.item]];
+            self.numberCell = numberCell;
             
             return numberCell ;
         }
@@ -259,6 +269,7 @@
 #pragma mark --depositePayforWay的代理，选择付款的平台
 -(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem itemIndex:(NSInteger)itemIndex
 {
+    [self.platformCell updateConllectionView];
     _selectNumber = itemIndex;
     if ([self.transferModel.mPayModel[itemIndex].mCode isEqualToString:@"online"]) {
         _markArray = @[@0,@1,@2,@3,@4,@5];
@@ -275,25 +286,33 @@
     [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
--(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell codeString:(NSString *)codeStr typeString:(NSString *)typeStr
+-(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell codeString:(NSString *)codeStr accountModel:(id)accountModel
 {
-    NSArray *array = @[codeStr,typeStr];
-    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:array];
-    [self showViewController:transferVC sender:self];
+    NSArray *array = @[codeStr,accountModel];
+    self.accountModelArray = array;
+    [self.numberCell updateCellWithInfo:nil context:accountModel];
+//    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:array];
+//    [self showViewController:transferVC sender:self];
+    [self.contentTableView reloadData];
 }
 #pragma mark --点击提交按钮
 -(void)submitDepositeInfo
 {
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    [mutableArray addObject:self.accountModelArray];
+    [mutableArray addObject:self.payNumStr];
+    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+    [self showViewController:transferVC sender:self];
     //遮罩层
-    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-    shadeView.backgroundColor = [UIColor lightGrayColor];
-    shadeView.alpha = 0.7f;
-    shadeView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-    [shadeView addGestureRecognizer:tap];
-    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-    _shadeView = shadeView;
-    [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+//    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+//    shadeView.backgroundColor = [UIColor lightGrayColor];
+//    shadeView.alpha = 0.7f;
+//    shadeView.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+//    [shadeView addGestureRecognizer:tap];
+//    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+//    _shadeView = shadeView;
+//    [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -378,5 +397,34 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }
+#pragma mark -键盘监听方法
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    // 获取键盘的高度
+    CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat height = frame.size.height;
+    UIView *backDropView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frameHeigh-height, self.view.frameWidth, 40)];
+    backDropView.backgroundColor = [UIColor lightGrayColor];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"确定" forState:UIControlStateNormal];
+    [btn setBackgroundColor:[UIColor greenColor]];
+    [btn addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(self.view.frameWidth-40, 0, 40, 40);
+    [backDropView addSubview:btn];
+    backDropView.userInteractionEnabled = YES;
+    self.backDropView = backDropView;
+    [self.view addSubview:backDropView];
+}
+-(void)hideKeyboard{
+    [self.numberCell.payMoneyNumLabel resignFirstResponder];
+    [self.backDropView removeFromSuperview];
+    self.payNumStr = self.numberCell.payMoneyNumLabel.text;
+}
+- (void)keyboardWillBeHiden:(NSNotification *)notification
+{
+//    self.textFiledScrollView.frame = CGRectMake(0, 64, kViewWidth, 455.5);
+    
+}
+
 
 @end

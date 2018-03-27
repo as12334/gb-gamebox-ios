@@ -7,9 +7,24 @@
 //
 
 #import "RH_DepositeMoneyNumberCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositeTransferModel.h"
+#import "RH_DepositePayAccountModel.h"
+@interface RH_DepositeMoneyNumberCell()
 
+@property (weak, nonatomic) IBOutlet UIButton *decimalsBtn;
+
+@end
 @implementation RH_DepositeMoneyNumberCell
-
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
+    self.payMoneyNumLabel.placeholder = [NSString stringWithFormat:@"%ld~%ld",accountModel.mSingleDepositMin,accountModel.mSingleDepositMax];
+    self.payMoneyNumLabel.textAlignment = NSTextAlignmentCenter;
+//    (float)(1+arc4random()%99)/100
+    [self.decimalsBtn setTitle:[NSString stringWithFormat:@"%0.2f",(float)(1+arc4random()%99)/100] forState:UIControlStateNormal];
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
