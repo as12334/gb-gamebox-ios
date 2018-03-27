@@ -9,6 +9,7 @@
 #import "RH_BankPickerSelectView.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
+#import "RH_GetNoAutoTransferInfoModel.h"
 @interface RH_BankPickerSelectView()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIPickerView *pickView;
@@ -71,6 +72,10 @@
 }
 - (void)confirm {
     ifRespondsSelector(self.delegate, @selector(bankPickerSelectViewDidTouchConfirmButton:WithSelectedBank:)){
+        if (_list.count > 0) {
+              [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:_list[selectedRow]] ;
+            return ;
+        }
         [self.delegate bankPickerSelectViewDidTouchConfirmButton:self WithSelectedBank:BankList[selectedRow]] ;
     }
 }
@@ -89,7 +94,8 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (_list.count > 0) {
-        return _list[row];
+        SelectModel *model = _list[row];
+        return model.mText;
     }
     return BankList[row].mBankName;
 }

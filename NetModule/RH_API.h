@@ -879,6 +879,10 @@
 #pragma mark - V3 注册初始化
 #define RH_API_NAME_REGISESTINIT        @"mobile-api/registerOrigin/getRegisterInfo.html"
 
+#pragma mark - v3 注册验证码
+#define RH_API_NAME_REGISESTCAPTCHACODE        @"captcha/pmregister.html"
+
+
 #pragma mark - V3 注册提交
 #define RH_API_NAME_REGISESTSUBMIT        @"mobile-api/registerOrigin/save.html"
 //请求参数
@@ -965,5 +969,26 @@
 #define RH_GP_DEPOSITESEACHSALE_ID                  @"id"
 #define RH_GP_DEPOSITESEACHSALE_PREFERENTIAL        @"preferential"
 #define RH_GP_DEPOSITESEACHSALE_ACTIVITYNAME        @"activityName"
+#pragma mark - V3  非免转额度转换初始化
+#define RH_API_NAME_GETNOAUTOTRANSFERINFO        @"mobile-api/userInfoOrigin/getNoAutoTransferInfo.html"
+
+#pragma mark - V3  非免转额度转换提交
+#define RH_API_NAME_SUBTRANSFERMONEY       @"mobile-api/userInfoOrigin/transfersMoney.html"
+//请求参数
+#define RH_SP_SUBTRANSFERMONEY_TOKEN                                 @"gb.token"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFEROUT                           @"transferOut"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFERINTO                          @"transferInto"
+#define RH_SP_SUBTRANSFERMONEY_TRANSFERAMOUNT                        @"result.transferAmount"
+
+#pragma mark - V3  非免转额度转换异常再次请求
+#define RH_API_NAME_RECONNECTTRANSFER        @"mobile-api/userInfoOrigin/reconnectTransfer.html"
+//请求参数
+#define RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO                  @"search.transactionNo" //失败的orderId
+
+#pragma mark - V3  非免转刷新单个
+#define RH_API_NAME_REFRESHAPI        @"mobile-api/userInfoOrigin/refreshApi.html"
+//请求参数
+#define RH_SP_REFRESHAPI_APIID                 @"search.apiId"  //apiId
+
 #endif /* RH_API_h */
 

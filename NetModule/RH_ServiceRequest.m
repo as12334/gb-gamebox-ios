@@ -50,6 +50,7 @@
 #import "RH_HelpCenterModel.h" //帮助中心
 #import "RH_HelpCenterSecondModel.h" //帮助中心二级界面
 #import "RH_HelpCenterDetailModel.h"
+#import "RH_GetNoAutoTransferInfoModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1421,7 +1422,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-#pragma mark - 注册初始化exxxxxx
+#pragma mark - 注册初始化
 -(void)startV3RegisetInit
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -1437,7 +1438,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-#pragma mark - 注册提交exxxxxxxx
+#pragma mark - 注册验证码
+-(void)startV3RegisetCaptchaCode
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_REGISESTCAPTCHACODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RegiestCaptchaCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
+
+#pragma mark - 注册提交
 /**
  注册提交
  
@@ -1584,6 +1606,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3HelpDetail
                          scopeType:ServiceScopeTypePublic];
 }
+
 #pragma mark 存款优惠
 -(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
 {
@@ -1591,6 +1614,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
     [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITESEACHSALE
                      pathArguments:nil
@@ -1602,8 +1626,89 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3DepositOriginSeachSale
                          scopeType:ServiceScopeTypePublic];
-    
 }
+
+#pragma mark - V3  非免转额度转换初始化
+-(void)startV3GetNoAutoTransferInfoInit
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETNOAUTOTRANSFERINFO
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetNoAutoTransferInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转额度转换提交
+-(void)startV3SubitTransfersMoneyToken:(NSString *)token
+                           transferOut:(NSString *)transferOut
+                          transferInto:(NSString *)transferInto
+                        transferAmount:(float)transferAmount
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN];
+    [dict setObject:transferOut forKey:RH_SP_SUBTRANSFERMONEY_TRANSFEROUT];
+    [dict setObject:transferInto forKey:RH_SP_SUBTRANSFERMONEY_TRANSFERINTO];
+    [dict setObject:@(transferAmount) forKey:RH_SP_SUBTRANSFERMONEY_TRANSFERAMOUNT];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SUBTRANSFERMONEY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SubmitTransfersMoney
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转额度转换异常再次请求
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:transactionNo forKey:RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_RECONNECTTRANSFER
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ReconnectTransfer
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转刷新单个
+-(void)startV3RefreshApiWithApiId:(NSInteger)apiId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(apiId) forKey:RH_SP_REFRESHAPI_APIID];
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_REFRESHAPI
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RefreshApi
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -1904,7 +2009,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         return YES ;
     }else if (type == ServiceRequestTypeObtainVerifyCode ||
-              type == ServiceRequestTypeV3SafetyObtainVerifyCode){
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
+              type == ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
         *reslutData = image ;
@@ -2398,7 +2504,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3HelpDetail:
             {
-//                resultSendData = [[RH_HelpCenterDetailModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
                 resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
                 resultSendData = [RH_HelpCenterDetailModel dataArrayWithInfoArray:resultSendData] ;
 
@@ -2410,6 +2515,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+            case ServiceRequestTypeV3GetNoAutoTransferInfo:
+            {
+                resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
                 break;

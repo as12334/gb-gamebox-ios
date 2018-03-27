@@ -14,32 +14,56 @@
 #import "RH_UserGroupInfoModel.h"
 #import "RH_UserApiBalanceModel.h"
 #import "RH_BankPickerSelectView.h"
+#import "RH_GetNoAutoTransferInfoModel.h"
 
-@interface RH_LimitTransferViewController ()<CLTableViewManagementDelegate, RH_LimitTransferTopViewDelegate, BankPickerSelectViewDelegate>
+@interface RH_LimitTransferViewController ()<CLTableViewManagementDelegate, LimitTransferTopViewDelegate, BankPickerSelectViewDelegate,RH_LimitTransferCellDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) UIView  *footerView;
 @property (nonatomic, strong) RH_LimitTransferTopView  *tableTopView;
-@property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectView;;
+@property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectViewTransferIn;
+@property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectViewTransferOut;
+@property (nonatomic , strong)RH_GetNoAutoTransferInfoModel *selectInfoModel ;
+
 @end
 
 @implementation RH_LimitTransferViewController
+{
+    NSString *_selectInText ;
+    NSString *_selectInValue ;
+    NSString *_selectOutText ;
+    NSString *_selectOutValue ;
+}
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
 @synthesize tableTopView = _tableTopView ;
-@synthesize selectView = _selectView;
+@synthesize selectViewTransferIn = _selectViewTransferIn;
+@synthesize selectViewTransferOut= _selectViewTransferOut;
 
 - (BOOL)isSubViewController {
     return  YES;
 }
 
-- (RH_BankPickerSelectView *)selectView {
-    if (_selectView == nil) {
-        _selectView = [RH_BankPickerSelectView createInstance];
-        _selectView.delegate = self;
-          [_selectView setDatasourceList:@[@"1",@"2",@"3"]] ;
+
+
+-(RH_BankPickerSelectView *)selectViewTransferIn
+{
+    if (_selectViewTransferIn == nil) {
+        _selectViewTransferIn = [RH_BankPickerSelectView createInstance] ;
+        _selectViewTransferIn.delegate = self ;
+        _selectViewTransferIn.tag = 110 ;
     }
-    return _selectView;
+    return _selectViewTransferIn ;
 }
+-(RH_BankPickerSelectView *)selectViewTransferOut
+{
+    if (_selectViewTransferOut==nil) {
+        _selectViewTransferOut = [RH_BankPickerSelectView createInstance] ;
+        _selectViewTransferOut.delegate = self ;
+        _selectViewTransferOut.tag = 111 ;
+    }
+    return _selectViewTransferOut ;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,7 +80,7 @@
     self.contentTableView.sectionFooterHeight = 0.0f ;
     [self.contentTableView registerCellWithClass:[RH_LimitTransferCell class]] ;
     [self.contentView addSubview:self.contentTableView];
-    self.contentTableView.whc_LeftSpace(0).whc_TopSpace(-30).whc_RightSpace(0).whc_BottomSpace(0) ;
+    self.contentTableView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
     self.tableTopView = [[RH_LimitTransferTopView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 265)];
     self.tableTopView.delegate = self;
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 120.f)]  ;
@@ -69,6 +93,7 @@
     oneStepRecoryBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     oneStepRecoryBtn.layer.cornerRadius = 5.f ;
     oneStepRecoryBtn.layer.masksToBounds = YES ;
+    [oneStepRecoryBtn addTarget:self action:@selector(oneStepRecoryBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
      UIButton *oneStepRefreshBtn  =  [UIButton new] ;  //一键刷新
     [_footerView addSubview:oneStepRefreshBtn];
@@ -78,6 +103,7 @@
     oneStepRefreshBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     oneStepRefreshBtn.layer.cornerRadius = 5.f ;
     oneStepRefreshBtn.layer.masksToBounds = YES ;
+    [oneStepRefreshBtn addTarget:self action:@selector(oneStepRefreshBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     if ([THEMEV3 isEqualToString:@"green"]){
         oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
@@ -109,49 +135,96 @@
 
 #pragma mark PickerView
 - (void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView *)bankPickerSelectView {
-    [self hideBankPickerSelectView];
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
+    
 }
 - (void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView *)bankPickerSelectView WithSelectedBank:(id)bankModel {
-    [self hideBankPickerSelectView];
+    if (bankPickerSelectView.tag == 110) {
+        _selectInText =  ((SelectModel *)bankModel).mText ;
+        _selectInValue = ((SelectModel *)bankModel).mValue  ;
+        [self.tableTopView updataBTnTitleTransferInBtnTitle:_selectInText] ;
+         [self.contentTableView reloadData] ;
+    }else if (bankPickerSelectView.tag == 111){
+        _selectOutText =  ((SelectModel *)bankModel).mText ;
+        _selectOutValue =  ((SelectModel *)bankModel).mValue ;
+        [self.tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText];
+         [self.contentTableView reloadData] ;
+    }
+   
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
 }
 
 #pragma mark RH_LimitTransferTopView
-- (void)RH_LimitTransferTopViewMineWalletDidTaped {
-    if (self.selectView.superview == nil) {
-        [self showBankPickerSelectView];
+- (void)limitTransferTopViewDidTouchTransferInBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView {
+    if (self.selectViewTransferIn.superview == nil) {
+        [self hideBankPickerSelectViewWithType:@"transferOut"];
+        [self showBankPickerSelectViewWithType:@"transferIn"];
     }else {
-        [self hideBankPickerSelectView];
+        [self hideBankPickerSelectViewWithType:@"transferIn"];
     }
 }
-- (void)RH_LimitTransferTopViewTransforToDidTaped {
-    if (self.selectView.superview == nil) {
-        [self showBankPickerSelectView];
+- (void)limitTransferTopViewDidTouchTransferOutBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView {
+    if (self.selectViewTransferOut.superview == nil) {
+        [self hideBankPickerSelectViewWithType:@"transferIn"];
+        [self showBankPickerSelectViewWithType:@"transferOut"];
     }else {
-        [self hideBankPickerSelectView];
+        [self hideBankPickerSelectViewWithType:@"transferOut"];
     }
-}
--(void)showBankPickerSelectView
-{
-    if (self.selectView.superview){
-        [self.selectView removeFromSuperview] ;
-    }
-    self.selectView.backgroundColor = colorWithRGB(153, 153, 153);
-    self.selectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
-    [self.view addSubview:self.selectView] ;
-    [UIView animateWithDuration:0.5f animations:^{
-        self.selectView.frame = CGRectMake(0, MainScreenH - BankPickerSelectViewHeight , MainScreenW, BankPickerSelectViewHeight) ;
-    } completion:^(BOOL finished) {
-    }] ;
 }
 
--(void)hideBankPickerSelectView
+#pragma mark - topView 余额刷新 = 一键刷新
+-(void)limitTransferTopViewDidTouchRefreshBalanceBtn
 {
-    if (self.selectView.superview){
-        [self.view addSubview:self.selectView] ;
+    // 请求一键刷新余额
+}
+
+-(void)showBankPickerSelectViewWithType:(NSString *)type
+{
+    if ([type isEqualToString:@"transferIn"]) {
+        if (self.selectViewTransferIn.superview){
+            [self.selectViewTransferIn removeFromSuperview] ;
+        }
+        self.selectViewTransferIn.backgroundColor = colorWithRGB(153, 153, 153);
+        self.selectViewTransferIn.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+        [self.view addSubview:self.selectViewTransferIn] ;
+        [_selectViewTransferIn setDatasourceList:_selectInfoModel.selectModel] ;
         [UIView animateWithDuration:0.5f animations:^{
-            self.selectView.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+            self.selectViewTransferIn.frame = CGRectMake(0, MainScreenH - BankPickerSelectViewHeight , MainScreenW, BankPickerSelectViewHeight) ;
         } completion:^(BOOL finished) {
-            [self.selectView removeFromSuperview] ;
+        }] ;
+    }else if ([type isEqualToString:@"transferOut"]){
+        if (self.selectViewTransferOut.superview){
+            [self.selectViewTransferOut removeFromSuperview] ;
+        }
+        self.selectViewTransferOut.backgroundColor = colorWithRGB(153, 153, 153);
+        self.selectViewTransferOut.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+        [self.view addSubview:self.selectViewTransferOut] ;
+        [_selectViewTransferOut setDatasourceList:_selectInfoModel.selectModel] ;
+        [UIView animateWithDuration:0.5f animations:^{
+            self.selectViewTransferOut.frame = CGRectMake(0, MainScreenH - BankPickerSelectViewHeight , MainScreenW, BankPickerSelectViewHeight) ;
+        } completion:^(BOOL finished) {
+        }] ;
+    }
+}
+
+-(void)hideBankPickerSelectViewWithType:(NSString *)type
+{
+    if (self.selectViewTransferIn.superview){
+        [self.view addSubview:self.selectViewTransferIn] ;
+        [UIView animateWithDuration:0.5f animations:^{
+            self.selectViewTransferIn.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+        } completion:^(BOOL finished) {
+            [self.selectViewTransferIn removeFromSuperview] ;
+        }] ;
+    }else if (self.selectViewTransferOut.superview)
+    {
+        [self.view addSubview:self.selectViewTransferOut] ;
+        [UIView animateWithDuration:0.5f animations:^{
+            self.selectViewTransferOut.frame = CGRectMake(0, MainScreenH , MainScreenW, 0) ;
+        } completion:^(BOOL finished) {
+            [self.selectViewTransferOut removeFromSuperview] ;
         }] ;
     }
 }
@@ -200,6 +273,7 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3UserInfo] ;
+    [self.serviceRequest startV3GetNoAutoTransferInfoInit] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -231,14 +305,38 @@
             self.contentTableView.tableHeaderView = nil ;
             self.contentTableView.tableFooterView = self.footerView ;
         }
-        [self.contentTableView reloadData] ;
-        
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
+    }else if (type == ServiceRequestTypeV3RefreshApi){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
+    }else if (type == ServiceRequestTypeV3GetNoAutoTransferInfo)
+    {
+        //额度转换初始化
+        _selectInfoModel = ConvertToClassPointer(RH_GetNoAutoTransferInfoModel, data) ;
+        [self.tableTopView topViewUpdataTopDateWithModel:_selectInfoModel];
     }
+     [self.contentTableView reloadData] ;
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3UserInfo) {
+        [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(nil, error, @"资金回收失败") ;
+        }] ;
+    }else if (type == ServiceRequestTypeV3RefreshApi){
+       showErrorMessage(nil, error, @"资金刷新失败") ;
+    }else if (type == ServiceRequestTypeV3GetNoAutoTransferInfo)
+    {
+        //额度转换初始化
         [self loadDataFailWithError:error] ;
     }
 }
@@ -264,10 +362,66 @@
     if (self.pageLoadManager.currentDataCount){
         RH_LimitTransferCell *limtCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_LimitTransferCell defaultReuseIdentifier]] ;
         [limtCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
+        limtCell.delegate = self ;
         return limtCell ;
-
     }else{
         return self.loadingIndicateTableViewCell ;
+    }
+}
+
+#pragma mark - RH_LimitTransferCellDelegate 单个回收 && 单个刷新
+-(void)limitTransferCelRecoryAndRefreshBtnDidTouch:(RH_LimitTransferCell *)limitTransferCell withBtn:(UIButton *)sender withModel:(RH_UserApiBalanceModel *)model
+{
+    if ([sender.titleLabel.text isEqualToString:@"回收"]) {
+        //单个回收
+        if (model.mBalance == 0 ) {
+            showMessage(self.view, nil, @"当前余额为0不能回收") ;
+            return ;
+        }
+        [self showProgressIndicatorViewWithAnimated:NO title:@"回收中..."] ;
+        [self.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%ld",model.mApiID]] ;
+    }else
+    {
+        // 单个刷新
+        [self showProgressIndicatorViewWithAnimated:NO title:@"刷新中..."] ;
+        [self.serviceRequest startV3RefreshApiWithApiId:model.mApiID] ;
+        
+    }
+}
+#pragma mark - 一键回收
+-(void)oneStepRecoryBtnClick
+{
+    [self showProgressIndicatorViewWithAnimated:NO title:@"一键回收中..."] ;
+    [self.serviceRequest startV3OneStepRecoverySearchId:nil] ;
+}
+
+#pragma mark - 一键刷新
+-(void)oneStepRefreshBtnClick
+{
+    
+}
+
+#pragma mark - 确认提交
+-(void)limitTransferTopViewDidTouchSureSubmitBtn:(UIButton *)sender withTransferInBtn:(UIButton *)transfrtIn transferOut:(UIButton *)transferOut amount:(NSString *)amount
+{
+//    if (amount) {
+//        <#statements#>
+//    }
+}
+
+
+
+#pragma mark -
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
+    return [_selectViewTransferIn superview] || [_selectViewTransferOut superview];
+}
+
+- (void)tapGestureRecognizerHandle:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    if (_selectViewTransferIn.superview || _selectViewTransferOut.superview){
+        [self hideBankPickerSelectViewWithType:@"transferOut"] ;
+        [self hideBankPickerSelectViewWithType:@"transferIn"] ;
     }
 }
 

@@ -86,6 +86,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3RequetLoginWithGetLoadSid,// get请求登录接口获取SID
     ServiceRequestTypeV3DepositeOrigin,//请求获取存款平台相关信息
     ServiceRequestTypeV3RegiestInit,     //注册初始化
+    ServiceRequestTypeV3RegiestCaptchaCode,     //注册验证码
     ServiceRequestTypeV3RegiestSubmit,   //注册提交
     ServiceRequestTypeV3RegiestTerm,     //注册条款
     ServiceRequestTypeV3AboutUs,     //关于我们
@@ -93,6 +94,10 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
     ServiceRequestTypeV3HelpDetail,     //常见问题详情
     ServiceRequestTypeV3DepositOriginSeachSale,  //存款获取优惠
+    ServiceRequestTypeV3GetNoAutoTransferInfo,    // 非免转额度转换初始化
+    ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
+    ServiceRequestTypeV3ReconnectTransfer,        //非免转额度转换异常再次请求
+    ServiceRequestTypeV3RefreshApi,               //非免转刷新单个
     
 };
 
@@ -439,6 +444,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3RequestDepositOrigin;
 #pragma mark - 注册初始化
 -(void)startV3RegisetInit;
+#pragma mark - 注册验证码
+-(void)startV3RegisetCaptchaCode;
 
 #pragma mark - 注册提交
 /**
@@ -491,6 +498,25 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark 存款获取优惠
 -(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
+
+#pragma mark - V3  非免转额度转换初始化
+-(void)startV3GetNoAutoTransferInfoInit ;
+
+
+#pragma mark - V3  非免转额度转换提交
+-(void)startV3SubitTransfersMoneyToken:(NSString *)token
+                           transferOut:(NSString *)transferOut
+                          transferInto:(NSString *)transferInto
+                        transferAmount:(float)transferAmount ;
+
+
+#pragma mark - V3  非免转额度转换异常再次请求
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo ;
+
+
+#pragma mark - V3  非免转刷新单个
+-(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
+
 
 #pragma mark -
 /**
