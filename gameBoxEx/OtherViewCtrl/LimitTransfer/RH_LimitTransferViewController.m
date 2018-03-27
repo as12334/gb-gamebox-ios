@@ -319,6 +319,7 @@
     {
         //额度转换初始化
         _selectInfoModel = ConvertToClassPointer(RH_GetNoAutoTransferInfoModel, data) ;
+        [self.tableTopView topViewUpdataTopDateWithModel:_selectInfoModel];
     }
      [self.contentTableView reloadData] ;
 }

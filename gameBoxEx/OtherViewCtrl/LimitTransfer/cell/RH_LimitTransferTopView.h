@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RH_GetNoAutoTransferInfoModel.h"
 @class RH_LimitTransferTopView ;
 @protocol LimitTransferTopViewDelegate
 
@@ -20,4 +21,5 @@
 @property (nonatomic, weak) id<LimitTransferTopViewDelegate> delegate;
 -(void)updataBTnTitleTransferInBtnTitle:(NSString *)tranferInTitle ;
 -(void)updataBTnTitletransferOutBtnTitle:(NSString *)tranferOutTitle ;
+-(void)topViewUpdataTopDateWithModel:(RH_GetNoAutoTransferInfoModel *)model ;
 @end

@@ -49,7 +49,7 @@
     moneyLab = [[UILabel alloc] init];
     [topView addSubview:moneyLab] ;
     moneyLab.whc_LeftSpaceToView(0, transferLab).whc_TopSpace(10.f).whc_BottomSpace(10).whc_WidthAuto() ;
-    moneyLab.text =@"￥0.00";
+    moneyLab.text =@"";
     moneyLab.font = [UIFont systemFontOfSize:12.f] ;
     moneyLab.textColor = [UIColor orangeColor] ;
     
@@ -217,6 +217,11 @@
 {
      UIButton *transferOutBtn = (UIButton *)[self viewWithTag:887] ;
       [transferOutBtn setTitle:tranferOutTitle forState:UIControlStateNormal];
+}
+#pragma mark - 更新顶部数据
+-(void)topViewUpdataTopDateWithModel:(RH_GetNoAutoTransferInfoModel *)model
+{
+    moneyLab.text = [NSString stringWithFormat:@"%@%.2f",model.mCurrency,model.mTransferPendingAmount] ;
 }
 
 @end

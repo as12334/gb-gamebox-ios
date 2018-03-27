@@ -879,6 +879,10 @@
 #pragma mark - V3 注册初始化
 #define RH_API_NAME_REGISESTINIT        @"mobile-api/registerOrigin/getRegisterInfo.html"
 
+#pragma mark - v3 注册验证码
+#define RH_API_NAME_REGISESTCAPTCHACODE        @"captcha/pmregister.html"
+
+
 #pragma mark - V3 注册提交
 #define RH_API_NAME_REGISESTSUBMIT        @"mobile-api/registerOrigin/save.html"
 //请求参数

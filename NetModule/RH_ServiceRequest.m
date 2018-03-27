@@ -1422,7 +1422,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-#pragma mark - 注册初始化exxxxxx
+#pragma mark - 注册初始化
 -(void)startV3RegisetInit
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -1438,7 +1438,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-#pragma mark - 注册提交exxxxxxxx
+#pragma mark - 注册验证码
+-(void)startV3RegisetCaptchaCode
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_REGISESTCAPTCHACODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RegiestCaptchaCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
+
+#pragma mark - 注册提交
 /**
  注册提交
  
@@ -1966,7 +1987,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         return YES ;
     }else if (type == ServiceRequestTypeObtainVerifyCode ||
-              type == ServiceRequestTypeV3SafetyObtainVerifyCode){
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
+              type == ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
         *reslutData = image ;
