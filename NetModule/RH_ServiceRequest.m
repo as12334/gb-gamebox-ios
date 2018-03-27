@@ -1709,6 +1709,162 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - V3 线上支付提交存款
+-(void)startV3OnlinePayWithRechargeAmount:(float)amount
+                             rechargeType:(NSString *)rechargeType
+                             payAccountId:(NSInteger)payAccountId
+                               activityId:(NSInteger)activityId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+     [dict setObject:@(amount) forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
+    [dict setObject:@(payAccountId) forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
+    [dict setObject:@(activityId) forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ONLINEPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OnlinePay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 扫码支付提交存款
+-(void)startV3ScanPayWithRechargeAmount:(float)amount
+                           rechargeType:(NSString *)rechargeType
+                           payAccountId:(NSInteger)payAccountId
+                          payerBankcard:(NSInteger)payerBankcard
+                             activityId:(NSInteger)activityId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(amount) forKey:RH_SP_SCANPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_SCANPAY_RECHARGETYPE];
+    [dict setObject:@(payAccountId) forKey:RH_SP_SCANPAY_PAYACCOUNTID];
+    [dict setObject:@(payerBankcard) forKey:RH_SP_SCANPAY_PAYERBANKCARD];
+    [dict setObject:@(activityId) forKey:RH_SP_SCANPAY_ACTIVITYID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_SCANPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ScanPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -  V3 网银支付提交存款
+-(void)startV3CompanyPayWithRechargeAmount:(float)amount
+                              rechargeType:(NSString *)rechargeType
+                              payAccountId:(NSInteger)payAccountId
+                                 payerName:(NSString *)payerName
+                           rechargeAddress:(NSString *)rechargeAddress
+                                activityId:(NSInteger)activityId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(amount) forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
+    [dict setObject:@(payAccountId) forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
+    [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
+    [dict setObject:rechargeAddress forKey:RH_SP_COMPANYPAY_RECHARGEADDRESS];
+    [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_COMPANYPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CompanyPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 电子支付提交存款
+-(void)startV3ElectronicPayWithRechargeAmount:(float)amount
+                                 rechargeType:(NSString *)rechargeType
+                                 payAccountId:(NSInteger)payAccountId
+                                    bankOrder:(NSInteger)bankOrder
+                                    payerName:(NSString *)payerName
+                                payerBankcard:(NSString *)payerBankcard
+                                   activityId:(NSInteger)activityId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(amount) forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
+    [dict setObject:@(payAccountId) forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
+    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
+    [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
+    [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ELECTRONICPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ElectronicPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 比特币支付提交存款
+-(void)startV3BitcoinPayWithRechargeType:(NSString *)rechargeType
+                            payAccountId:(NSInteger)payAccountId
+                              activityId:(NSInteger)activityId
+                              returnTime:(NSString *)returnTime
+                           payerBankcard:(NSString *)payerBankcard
+                               bitAmount:(float)bitAmount
+                           bankOrderTxID:(NSString *)bankOrder
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:rechargeType forKey:RH_SP_BITCOINPAY_RECHARGETYPE];
+    [dict setObject:@(payAccountId) forKey:RH_SP_BITCOINPAY_PAYACCOUNTID];
+    [dict setObject:@(activityId) forKey:RH_SP_BITCOINPAY_ACTIVITYID];
+    [dict setObject:returnTime forKey:RH_SP_BITCOINPAY_RETURNTIME];
+    [dict setObject:payerBankcard forKey:RH_SP_BITCOINPAY_PAYERBANKCARD];
+    [dict setObject:@(bitAmount) forKey:RH_SP_BITCOINPAY_BITAMOUNT];
+    [dict setObject:bankOrder forKey:RH_SP_BITCOINPAY_BANKORDER];
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_BITCOINPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BitcoinPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 一键刷新
+-(void)startV3OneStepRefresh
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ONESTEPREFRESH
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OneStepRefresh
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);

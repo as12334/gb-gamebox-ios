@@ -71,6 +71,9 @@
     self.title = @"额度转换";
     [self setupInfo];
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
+    //转出默认值
+    _selectOutValue = @"wallet";
+    _selectInValue = @"" ;
 }
 
 - (void)setupInfo
@@ -141,17 +144,45 @@
 }
 - (void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView *)bankPickerSelectView WithSelectedBank:(id)bankModel {
     if (bankPickerSelectView.tag == 110) {
-        _selectInText =  ((SelectModel *)bankModel).mText ;
-        _selectInValue = ((SelectModel *)bankModel).mValue  ;
-        [self.tableTopView updataBTnTitleTransferInBtnTitle:_selectInText] ;
-         [self.contentTableView reloadData] ;
-    }else if (bankPickerSelectView.tag == 111){
         _selectOutText =  ((SelectModel *)bankModel).mText ;
         _selectOutValue =  ((SelectModel *)bankModel).mValue ;
         [self.tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText];
-         [self.contentTableView reloadData] ;
+        [self.contentTableView reloadData] ;
+        
+        if ([_selectOutValue isEqualToString:@"wallet"]) {
+            if ([_selectInValue isEqualToString:@"wallet"]) {
+                _selectInValue = @"";
+                _selectInText = @"请选择";
+                [self.tableTopView updataBTnTitleTransferInBtnTitle:_selectInText] ;
+            }
+        }else if (![_selectOutValue isEqualToString:@"wallet"])
+        {
+            if (![_selectInValue isEqualToString:@"wallet"]) {
+                _selectInValue = @"wallet";
+                _selectInText = @"我的钱包";
+                [self.tableTopView updataBTnTitleTransferInBtnTitle:_selectInText] ;
+            }
+        }
+    }else if (bankPickerSelectView.tag == 111){
+        _selectInText =  ((SelectModel *)bankModel).mText ;
+        _selectInValue = ((SelectModel *)bankModel).mValue  ;
+        [self.tableTopView updataBTnTitleTransferInBtnTitle:_selectInText] ;
+        [self.contentTableView reloadData] ;
+        if ([_selectInValue isEqualToString:@"wallet"]) {
+            if ([_selectOutValue isEqualToString:@"wallet"]) {
+                _selectOutValue = @"";
+                _selectOutText = @"请选择";
+                [self.tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText];
+            }
+        }else if (![_selectInValue isEqualToString:@"wallet"])
+        {
+            if (![_selectOutValue isEqualToString:@"wallet"]) {
+                _selectOutValue = @"wallet";
+                _selectOutText = @"我的钱包";
+                [self.tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText];
+            }
+        }
     }
-   
     [self hideBankPickerSelectViewWithType:@"transferOut"];
     [self hideBankPickerSelectViewWithType:@"transferIn"];
 }
@@ -320,6 +351,12 @@
         //额度转换初始化
         _selectInfoModel = ConvertToClassPointer(RH_GetNoAutoTransferInfoModel, data) ;
         [self.tableTopView topViewUpdataTopDateWithModel:_selectInfoModel];
+    }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
+        // 额度转换提交
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
     }
      [self.contentTableView reloadData] ;
 }
@@ -337,6 +374,8 @@
     }else if (type == ServiceRequestTypeV3GetNoAutoTransferInfo)
     {
         //额度转换初始化
+        [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
         [self loadDataFailWithError:error] ;
     }
 }
@@ -402,11 +441,22 @@
 }
 
 #pragma mark - 确认提交
--(void)limitTransferTopViewDidTouchSureSubmitBtn:(UIButton *)sender withTransferInBtn:(UIButton *)transfrtIn transferOut:(UIButton *)transferOut amount:(NSString *)amount
+-(void)limitTransferTopViewDidTouchSureSubmitBtnWithamount:(NSString *)amount
 {
-//    if (amount) {
-//        <#statements#>
-//    }
+    if ([_selectOutValue isEqualToString:@""]) {
+        showMessage(self.view, nil, @"请选择转出游戏名称") ;
+        return ;
+    }
+    if ([_selectInValue isEqualToString:@""]) {
+        showMessage(self.view, nil, @"请选择转入游戏名称") ;
+        return ;
+    }
+    if (amount.length==0) {
+        showMessage(self.view, nil, @"请输入转账金额") ;
+        return ;
+    }
+    [self showProgressIndicatorViewWithAnimated:NO title:@"提交中..."] ;
+    [self.serviceRequest startV3SubitTransfersMoneyToken:_selectInfoModel.mToken transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
 }
 
 
