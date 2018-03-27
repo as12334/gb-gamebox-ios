@@ -901,6 +901,13 @@
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_WEIXINCONTACTVALUE                 @"weixin.contactValue"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_USERNAME                           @"sysUser.username"
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CAPCHACODE                         @"captchaCode"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RECOMMENDREGISTERCODE              @"recommendRegisterCode"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_EDITTYPE                           @"editType"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RECOMMENDUSERINPUTCODE             @"recommendUserInputCode"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPASSWORD                    @"confirmPassword"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPERMISSIONPWD               @"confirmPermissionPwd"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SYSUSERPROTECTIONANSWER            @"sysUserProtection.answer1"
+#define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TERMOFSERVICE                      @"termsOfService"
 
 #pragma mark - V3 注册条款
 #define RH_API_NAME_REGISESTTERMS        @"mobile-api/origin/terms.html"

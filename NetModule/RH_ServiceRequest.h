@@ -104,9 +104,6 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3ElectronicPay,               //电子支付提交存款
     ServiceRequestTypeV3BitcoinPay,               //比特币支付提交存款
     ServiceRequestTypeV3OneStepRefresh,               //一键刷新
-    
-    
-    
 };
 
 
@@ -488,7 +485,14 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                                 qqValue:(NSString *)qq
                             weixinValue:(NSString *)weixinValue
                                userName:(NSString *)userName
-                            captchaCode:(NSString *)captchaCode;
+                            captchaCode:(NSString *)captchaCode
+                  recommendRegisterCode:(NSString *)recommendRegisterCode
+                               editType:(NSString *)editType
+                 recommendUserInputCode:(NSString *)recommendUserInputCode
+                        confirmPassword:(NSString *)confirmPassword
+                   confirmPermissionPwd:(NSString *)confirmPermissionPwd
+                                answer1:(NSString *)answer1
+                         termsOfService:(NSString *)termsOfService;
 #pragma mark - 注册条款
 -(void)startV3RegisetTerm;
 

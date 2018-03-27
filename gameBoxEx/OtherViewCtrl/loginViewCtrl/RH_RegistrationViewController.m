@@ -289,7 +289,7 @@
     NSString *securityIssues = [self obtainContent:@"securityIssues"];
     if (securityIssues.length == 0) { return;}
     
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode];
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:@"" editType:@"" recommendUserInputCode:@"" confirmPassword:@"" confirmPermissionPwd:@"" answer1:@"" termsOfService:@""];
 }
 
 - (void)startAnimate {

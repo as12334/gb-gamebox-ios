@@ -192,8 +192,6 @@
 #pragma mark - 确认提交
 -(void)sureSubmitClick:(UIButton *)sender
 {
-    UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
-    UIButton *transferInBtn = (UIButton *)[self viewWithTag:887] ;
     UITextField *amount =(UITextField *) [self viewWithTag:889] ;
     ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchSureSubmitBtnWithamount:)){
         [self.delegate limitTransferTopViewDidTouchSureSubmitBtnWithamount:amount.text] ;
