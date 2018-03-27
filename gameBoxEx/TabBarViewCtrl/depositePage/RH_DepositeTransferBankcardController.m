@@ -18,6 +18,7 @@
 #import "RH_DepositeTransferPayAdressCell.h"
 #import "RH_API.h"
 #import "coreLib.h"
+#import "RH_DepositOriginseachSaleModel.h"
 @interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -26,6 +27,7 @@
 @property(nonatomic,strong)NSArray *transferwayArray;
 @property(nonatomic,strong)RH_DepositePayAccountModel *accountModel;
 @property(nonatomic,strong)NSMutableArray *accountMuArray;
+@property(nonatomic,strong)RH_DepositOriginseachSaleModel *saleModel;
 @end
 
 @implementation RH_DepositeTransferBankcardController
@@ -235,16 +237,7 @@
 -(void)submitDepositeInfo
 {
     [self setupPageLoadManager];
-    //遮罩层
-    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-    shadeView.backgroundColor = [UIColor lightGrayColor];
-    shadeView.alpha = 0.7f;
-    shadeView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-    [shadeView addGestureRecognizer:tap];
-    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-    _shadeView = shadeView;
-    [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+    
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -291,7 +284,7 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
 //
-    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:@"200" PayAccountDepositWay:@"wechatpay_fast" PayAccountID:@"4389"];
+    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[1] floatValue] PayAccountDepositWay:self.accountModel.mDepositWay PayAccountID:self.accountModel.mId];
     
 }
 -(void)cancelLoadDataHandle
@@ -307,7 +300,21 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositOriginSeachSale) {
-     
+        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
+        self.saleModel = saleModel;
+        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
+                            totalCount:saleModel?1:0] ;
+        //遮罩层
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [self.circleView setupViewWithContext:self.saleModel];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
 }
 

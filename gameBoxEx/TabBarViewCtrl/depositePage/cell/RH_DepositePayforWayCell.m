@@ -23,12 +23,12 @@
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
      RH_DepositeTransferModel* transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
-    if (transferModel.mPayModel.count%5==0) {
-        return 90*(transferModel.mPayModel.count/5);
+    if (transferModel.mPayModel.count%3==0) {
+        return 78*(transferModel.mPayModel.count/3);
     }
     else
     {
-        return 90*(transferModel.mPayModel.count/5+1);
+        return 78*(transferModel.mPayModel.count/3+1);
     }
 }
 
@@ -37,7 +37,6 @@
     [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor] ;
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
-    
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
@@ -62,7 +61,7 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
         flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        flowLayout.itemSize =CGSizeMake(70, 70);
+//        flowLayout.itemSize =CGSizeMake(65, 68);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,
                                                                              0,
                                                                              self.contentView.frameWidth,

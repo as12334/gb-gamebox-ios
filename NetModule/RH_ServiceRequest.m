@@ -51,6 +51,7 @@
 #import "RH_HelpCenterSecondModel.h" //帮助中心二级界面
 #import "RH_HelpCenterDetailModel.h"
 #import "RH_GetNoAutoTransferInfoModel.h"
+#import "RH_DepositOriginseachSaleModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1608,12 +1609,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark 存款优惠
--(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat )rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSInteger)payAccountID
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
-    [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    [dict setValue:@(payAccountID) forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
     
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITESEACHSALE
@@ -2058,16 +2059,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //    }
     
 //    
-    else if (type==ServiceRequestTypeV3DepositOriginSeachSale){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
-        NSLog(@"----%@",dataObject);
-        return YES ;
-    }
-    
+   
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -2511,8 +2503,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 case ServiceRequestTypeV3DepositOriginSeachSale:
             {
-                
-                
+                resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
             case ServiceRequestTypeV3GetNoAutoTransferInfo:

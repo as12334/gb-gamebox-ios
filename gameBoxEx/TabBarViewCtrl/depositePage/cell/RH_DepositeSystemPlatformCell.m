@@ -54,8 +54,7 @@
     RH_DepositePayModel *payModel = ConvertToClassPointer(RH_DepositePayModel, context);
     _payModel = payModel;
     _accountModelArray = ConvertToClassPointer(NSArray, payModel.mPayAccounts);
-    [self.collectionView reloadData] ;
-    
+    [self.collectionView reloadData] ;    
 }
 
 #pragma mark-

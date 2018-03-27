@@ -957,8 +957,8 @@
 #define RH_API_NAME_DEPOSITESEACHSALE               @"/mobile-api/depositOrigin/seachSale.html"
 //请求参数
 #define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
-#define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"PayAccount.depositWay"
-#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"PayAccount.id"
+#define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"depositWay"
+#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"result.payAccountId"
 //返回参数
 #define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
 #define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"

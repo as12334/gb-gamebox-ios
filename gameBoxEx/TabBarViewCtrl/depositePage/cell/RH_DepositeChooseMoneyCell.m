@@ -10,8 +10,8 @@
 #import "RH_DepositeChooseMoneySubCell.h"
 #import "coreLib.h"
 #import "RH_DepositeTransferModel.h"
-#define HomeCategoryItemsCellWidth                     floorf((MainScreenW-30)/3.0)
-#define HomeCategoryItemsCellHeight                     70.0f
+#define HomeCategoryItemsCellWidth                     floorf((MainScreenW-60)/5.0)
+#define HomeCategoryItemsCellHeight                     (MainScreenW-60)/5.0
 @interface RH_DepositeChooseMoneyCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 //@property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -20,7 +20,7 @@
 @implementation RH_DepositeChooseMoneyCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return 70;
+    return HomeCategoryItemsCellHeight+50;
 }
 
 - (void)awakeFromNib
@@ -52,17 +52,19 @@
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
     flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.itemSize =CGSizeMake(70, 70);
+//    flowLayout.itemSize =CGSizeMake(60, 60);
     [_collectionView setCollectionViewLayout:flowLayout];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     _collectionView.backgroundColor = [UIColor whiteColor] ;
-    
+    CGRect frame = _collectionView.frame;
+    frame.size.height =HomeCategoryItemsCellHeight;
+    _collectionView.frame  = frame;
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10) ;
+    _collectionView.contentInset = UIEdgeInsetsMake(0, 10, 0, 10) ;
     [_collectionView registerCellWithClass:[RH_DepositeChooseMoneySubCell class]];
 }
 

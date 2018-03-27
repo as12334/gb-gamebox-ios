@@ -8,10 +8,17 @@
 
 #import "RH_DepositeSubmitCircleView.h"
 #import "RH_DepositeSubmitCircleCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositOriginseachSaleModel.h"
 @interface RH_DepositeSubmitCircleView()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 
 @property (weak, nonatomic) IBOutlet UIButton *depositeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *chareLabel;
+@property (nonatomic,strong)NSArray *salesArray;
+@property (nonatomic,strong)NSMutableArray *statusArray;
 @end
 @implementation RH_DepositeSubmitCircleView
 
@@ -22,6 +29,17 @@
     // Drawing code
 }
 */
+-(void)setupViewWithContext:(id)context
+{
+    RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, context);
+    self.moneyNumLabel.text = saleModel.mCounterFee;
+    self.chareLabel.text = saleModel.mMsg;
+    self.salesArray = saleModel.mDetailsModel;
+    self.statusArray = [NSMutableArray array];
+    for (int i = 0; i<self.salesArray.count; i++) {
+        [self.statusArray addObject:@0];
+    }
+}
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
@@ -36,11 +54,11 @@
 }
 -(void)setupUI{
     
+   
     self.layer.cornerRadius = 5.f;
     self.layer.masksToBounds = YES;
     self.depositeBtn.layer.cornerRadius = 5.f;
     self.depositeBtn.layer.masksToBounds = YES;
-    
     _tabelView.delegate = self;
     _tabelView.dataSource = self;
     _tabelView.showsVerticalScrollIndicator = NO;
@@ -48,10 +66,12 @@
     _tabelView.layer.masksToBounds = YES;
     _tabelView.backgroundColor = [UIColor lightGrayColor];
     [_tabelView registerNib:[UINib nibWithNibName:@"RH_DepositeSubmitCircleCell" bundle:nil] forCellReuseIdentifier:@"circleCell"];
+    
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.salesArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -67,6 +87,18 @@
     if (cell ==nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"RH_DepositeSubmitCircleCell" owner:self options:nil]lastObject];
     }
+    NSArray *array = @[self.statusArray[indexPath.item],self.salesArray[indexPath.item]];
+    [cell updateCellWithInfo:nil context:array];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.statusArray[indexPath.item] isEqual:@0]) {
+        self.statusArray[indexPath.item] = @1;
+    }
+    else if ([self.statusArray[indexPath.item] isEqual:@1]){
+        self.statusArray[indexPath.item] = @0;
+    }
+    [self.tabelView reloadData];
 }
 @end

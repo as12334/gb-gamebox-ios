@@ -497,7 +497,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
 
 #pragma mark 存款获取优惠
--(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSInteger)payAccountID;
 
 #pragma mark - V3  非免转额度转换初始化
 -(void)startV3GetNoAutoTransferInfoInit ;

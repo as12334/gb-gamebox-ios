@@ -7,9 +7,29 @@
 //
 
 #import "RH_DepositeSubmitCircleCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositOriginseachSaleModel.h"
+@interface RH_DepositeSubmitCircleCell()
+@property (weak, nonatomic) IBOutlet UILabel *chargNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *checkedImageview;
 
+@end
 @implementation RH_DepositeSubmitCircleCell
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    NSArray *array = ConvertToClassPointer(NSArray, context);
+    RH_DepositOriginseachSaleDetailsModel *detailsModel = array[1];
+    self.chargNameLabel.text = detailsModel.mActivityName;
+  
+    if ([array[0] isEqual:@0]) {
+        self.checkedImageview.image = [UIImage imageNamed:@""];
+    }
+    else if ([array[0] isEqual:@1]){
+        self.checkedImageview.image = [UIImage imageNamed:@"choose"];
+    }
 
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

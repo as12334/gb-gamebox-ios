@@ -17,6 +17,7 @@
 #import "RH_DepositeSystemPlatformCell.h"
 #import "RH_DepositeTransferBankcardController.h"
 #import "RH_DepositeTransferModel.h"
+#import "RH_DepositOriginseachSaleModel.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -24,9 +25,13 @@
 @property(nonatomic,strong)RH_DepositeTransferModel *transferModel;
 @property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
 @property(nonatomic,strong)RH_DepositeMoneyNumberCell *numberCell;
+@property(nonatomic,strong)RH_DepositePayAccountModel *payAccountModel;
 @property(nonatomic,strong)NSArray *accountModelArray;
 @property(nonatomic,strong)UIView *backDropView;
 @property(nonatomic,strong)NSString *payNumStr;
+@property(nonatomic,strong)RH_DepositOriginseachSaleModel *saleModel;
+//支付方式类型
+@property(nonatomic,strong)NSString *payforType;
 @end
 
 @implementation RH_DepositeViewControllerEX
@@ -291,28 +296,25 @@
     NSArray *array = @[codeStr,accountModel];
     self.accountModelArray = array;
     [self.numberCell updateCellWithInfo:nil context:accountModel];
-//    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:array];
-//    [self showViewController:transferVC sender:self];
+    //判断选择的支付方式的type，来确定是否跳转
+    RH_DepositePayAccountModel *payAccountModel = ConvertToClassPointer(RH_DepositePayAccountModel, accountModel);
+    self.payforType = payAccountModel.mType;
+    self.payAccountModel = payAccountModel;
     [self.contentTableView reloadData];
 }
 #pragma mark --点击提交按钮
 -(void)submitDepositeInfo
 {
-    NSMutableArray *mutableArray = [NSMutableArray array];
-    [mutableArray addObject:self.accountModelArray];
-    [mutableArray addObject:self.payNumStr];
-    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
-    [self showViewController:transferVC sender:self];
-    //遮罩层
-//    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-//    shadeView.backgroundColor = [UIColor lightGrayColor];
-//    shadeView.alpha = 0.7f;
-//    shadeView.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-//    [shadeView addGestureRecognizer:tap];
-//    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-//    _shadeView = shadeView;
-//    [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+    if ([self.payforType isEqualToString:@"1"]) {
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        [mutableArray addObject:self.accountModelArray];
+        [mutableArray addObject:self.payNumStr];
+        RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+        [self showViewController:transferVC sender:self];
+    }
+    else{
+      [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.payAccountModel.mDepositWay PayAccountID:self.payAccountModel.mId];
+    }
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -390,11 +392,31 @@
         }
         [self.contentTableView reloadData];
     }
+    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
+        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
+        self.saleModel = saleModel;
+        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
+                            totalCount:saleModel?1:0] ;
+        //遮罩层
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [self.circleView setupViewWithContext:self.saleModel];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3DepositeOrigin) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
+    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
+        
     }
 }
 #pragma mark -键盘监听方法

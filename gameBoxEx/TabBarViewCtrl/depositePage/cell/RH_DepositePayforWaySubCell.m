@@ -20,10 +20,57 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+//    self.layer.cornerRadius = 2;
+//    self.layer.borderWidth = 1;
+//    self.layer.borderColor = colorWithRGB(23, 102, 187).CGColor;
+//    self.layer.masksToBounds = YES;
 }
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
     self.payModel = ConvertToClassPointer(RH_DepositePayModel, context);
     self.payforTitle.text = self.payModel.mName;
+   
+    if ([self.payModel.mName isEqualToString:@"在线支付"]) {
+        self.payforIcon.image = [UIImage imageNamed:@"1"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"网银存款"]){
+        self.payforIcon.image = [UIImage imageNamed:@"2"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"微信支付"]){
+        self.payforIcon.image = [UIImage imageNamed:@"3"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"支付宝支付"]){
+        self.payforIcon.image = [UIImage imageNamed:@"4"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"QQ钱包"]){
+        self.payforIcon.image = [UIImage imageNamed:@"5"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"京东钱包"]){
+        self.payforIcon.image = [UIImage imageNamed:@"6"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"百度钱包"]){
+        self.payforIcon.image = [UIImage imageNamed:@"7"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"比特币"]){
+        self.payforIcon.image = [UIImage imageNamed:@"8"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"一码付"]){
+        self.payforIcon.image = [UIImage imageNamed:@"9"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"银联扫码"]){
+        self.payforIcon.image = [UIImage imageNamed:@"10"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"快充中心"]){
+        self.payforIcon.image = [UIImage imageNamed:@"11"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"柜员机"]){
+        self.payforIcon.image = [UIImage imageNamed:@"12"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"易收付"]){
+        self.payforIcon.image = [UIImage imageNamed:@"13"];
+    }
+    else if ([self.payModel.mName isEqualToString:@"其他"]){
+        self.payforIcon.image = [UIImage imageNamed:@"14"];
+    }
 }
 @end
