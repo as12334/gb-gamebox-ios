@@ -282,6 +282,13 @@
 
 - (void)buttonRegistrationHandle {
     
+    NSString *regCode = [self obtainContent:@"regCode"];
+    if (registrationInitModel.isRequiredForRegisterCode) {
+        if (regCode.length == 0) {
+            showMessage(self.contentView, @"请输入邀请码", @"");
+            return ;
+        }
+    }
     NSString *usernama = [self obtainContent:@"username"];
     if (usernama.length == 0) {
         return;
@@ -301,33 +308,111 @@
     NSString *verificationCode = [self obtainContent:@"verificationCode"];
     if (verificationCode.length == 0) { return;}
     NSString *weixin = [self obtainContent:@"304"];
-    if (weixin.length == 0) { return;}
-    NSString *phone = [self obtainContent:@"110"];
-    if (phone.length == 0) { return;}
-    NSString *email = [self obtainContent:@"201"];
-    if (email.length == 0) { return;}
-    NSString *realname = [self obtainContent:@"realName"];
-    if (realname.length == 0) { return;}
-    NSString *qq = [self obtainContent:@"301"];
-    if (qq.length == 0) { return;}
-    NSString *permission = [self obtainContent:@"paymentPassword"];
-    if (permission.length == 0) { return;}
-    NSString *permission2 = [self obtainContent:@"paymentPassword2"];
-    if (permission2.length == 0) { return;}
-    NSString *timezone = [self obtainContent:@"defaultTimezone"];
-    if (timezone.length == 0) { return;}
-    NSString *birthday = [self obtainContent:@"birthday"];
-    if (birthday.length == 0) { return;}
-    NSString *sex = [self obtainContent:@"sex"];
-    if (sex.length == 0) { return;}
-    NSString *mainCurrency = [self obtainContent:@"mainCurrency"];
-    if (mainCurrency.length == 0) { return;}
-    NSString *defaultLocale = [self obtainContent:@"defaultLocale"];
-    if (defaultLocale.length == 0) { return;}
-    NSString *securityIssues = [self obtainContent:@"securityIssues"];
-    if (securityIssues.length == 0) { return;}
     
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:@"" editType:@"" recommendUserInputCode:@"" confirmPassword:@"" confirmPermissionPwd:@"" answer1:@"" termsOfService:@""];
+    NSString *phone = [self obtainContent:@"110"];
+    
+    NSString *email = [self obtainContent:@"201"];
+    
+    NSString *realname = [self obtainContent:@"realName"];
+    
+    NSString *qq = [self obtainContent:@"301"];
+    
+    NSString *permission = [self obtainContent:@"paymentPassword"];
+    
+    NSString *permission2 = [self obtainContent:@"paymentPassword2"];
+    
+    NSString *timezone = [self obtainContent:@"defaultTimezone"];
+    
+    NSString *birthday = [self obtainContent:@"birthday"];
+    
+    NSString *sex = [self obtainContent:@"sex"];
+    
+    NSString *mainCurrency = [self obtainContent:@"mainCurrency"];
+    
+    NSString *defaultLocale = [self obtainContent:@"defaultLocale"];
+    
+    NSString *securityIssues = [self obtainContent:@"securityIssues"];
+    NSString *securityIssues2 = [self obtainContent:@"securityIssues2"];
+    
+    for (NSString *obj in registrationInitModel.requiredJson) {
+        if ([obj isEqualToString:@"304"]) {
+            if (weixin.length == 0) {
+                showMessage(self.contentView, @"请输入与微信号", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"110"]) {
+            if (phone.length == 0) {
+                showMessage(self.contentView, @"请输入手机号", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"201"]) {
+            if (email.length == 0) {
+                showMessage(self.contentView, @"请输入邮箱", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"realName"]) {
+            if (realname.length == 0) {
+                showMessage(self.contentView, @"请输入真实姓名", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"301"]) {
+            if (qq.length == 0) {
+                showMessage(self.contentView, @"请输入QQ号", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"paymentPassword"]) {
+            if (permission.length == 0) {
+                showMessage(self.contentView, @"请输入安全密码", @"");
+                return;}
+            if (permission2.length == 0) {
+                showMessage(self.contentView, @"请再次输入安全密码", @"");
+                return;}
+            if ([permission2 isEqualToString:permission]) {
+                showMessage(self.contentView, @"两次输入的安全密码不一样", @"");
+                return;
+            }
+        }
+        
+        if ([obj isEqualToString:@"defaultTimezone"]) {
+            if (timezone.length == 0) {
+                showMessage(self.contentView, @"请选择时区", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"birthday"]) {
+            if (birthday.length == 0) {
+                showMessage(self.contentView, @"请选择生日", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"sex"]) {
+            if (sex.length == 0) {
+                showMessage(self.contentView, @"请选择性别", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"mainCurrency"]) {
+            if (mainCurrency.length == 0) {
+                showMessage(self.contentView, @"请选择货币", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"defaultLocale"]) {
+            if (defaultLocale.length == 0) {
+                showMessage(self.contentView, @"请选择语言", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"securityIssues"]) {
+            if (securityIssues.length == 0) {
+                showMessage(self.contentView, @"请选择安全问题", @"");
+                return;}
+        }
+        if ([obj isEqualToString:@"securityIssues2"]) {
+            if (securityIssues.length == 0) {
+                showMessage(self.contentView, @"请回答安全问题", @"");
+                return;}
+        }
+    }
+    
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:regCode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11"];
+
 }
 
 - (void)startAnimate {
@@ -356,7 +441,11 @@
 
 #pragma mark Request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
-    
+    NSLog(@"%s", __func__);
+    NSLog(@"%@", error);
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
+    showErrorMessage(self.contentView, error, @"");
+
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
