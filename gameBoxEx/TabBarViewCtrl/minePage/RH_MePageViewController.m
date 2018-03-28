@@ -156,18 +156,16 @@
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Green];
     }else if ([THEMEV3 isEqualToString:@"red"]){
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Red];
-        
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Black];
-        self.view.backgroundColor = [UIColor blackColor];
+        [self.navigationBar setBarTintColor:ColorWithNumberRGB(0x1766bb)];
     }else{
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
     }
     self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
     if (self.appDelegate.isLogin) {
-        
         self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
     }
+    self.view.backgroundColor = colorWithRGB(242, 242, 242);
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.tableViewManagement reloadData] ;

@@ -73,8 +73,10 @@
         self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.balanceBGView.backgroundColor = colorWithRGB(35, 119, 214);
         self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Black;
+        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
+        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
     }else{
         self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;

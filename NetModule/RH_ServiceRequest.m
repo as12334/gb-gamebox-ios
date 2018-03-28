@@ -1368,15 +1368,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 防止用户掉线
 -(void)startV3RereshUserSessin
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3RefreshSession
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RefreshSession
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 #pragma mark - 用户登录是否开启验证码
@@ -1495,6 +1497,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             weixinValue:(NSString *)weixinValue
                                userName:(NSString *)userName
                             captchaCode:(NSString *)captchaCode
+
+                  recommendRegisterCode:(NSString *)recommendRegisterCode
+                               editType:(NSString *)editType
+                 recommendUserInputCode:(NSString *)recommendUserInputCode
+                        confirmPassword:(NSString *)confirmPassword
+                   confirmPermissionPwd:(NSString *)confirmPermissionPwd
+                                answer1:(NSString *)answer1
+                         termsOfService:(NSString *)termsOfService
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:birth forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY];
@@ -1512,6 +1522,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:weixinValue forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_WEIXINCONTACTVALUE];
     [dict setObject:userName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_USERNAME];
     [dict setObject:captchaCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CAPCHACODE];
+    [dict setObject:recommendRegisterCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RECOMMENDREGISTERCODE];
+    [dict setObject:editType forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_EDITTYPE];
+    [dict setObject:recommendUserInputCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RECOMMENDUSERINPUTCODE];
+    [dict setObject:confirmPassword forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPASSWORD];
+    [dict setObject:confirmPermissionPwd forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPERMISSIONPWD];
+    [dict setObject:answer1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SYSUSERPROTECTIONANSWER];
+    [dict setObject:termsOfService forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TERMOFSERVICE];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTSUBMIT
                      pathArguments:nil

@@ -37,7 +37,7 @@
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor_Black;
+        self.btnSearch.backgroundColor =  ColorWithNumberRGB(0x1766bb);
     }else{
         self.btnSearch.backgroundColor =  RH_NavigationBar_BackgroundColor;
     }

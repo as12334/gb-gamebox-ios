@@ -109,7 +109,7 @@
 
     self.viewControllers = viewControllers;
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        self.selectedIndex = 2 ;
+        self.selectedIndex = 0 ;
     }
     [self updateTabbarSkins] ;
 }
@@ -182,9 +182,9 @@
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Red;
             
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = colorWithRGB(21, 141, 246);

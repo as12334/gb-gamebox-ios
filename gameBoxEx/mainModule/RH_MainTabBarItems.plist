@@ -167,6 +167,18 @@
 	<array>
 		<dict>
 			<key>title</key>
+			<string>TABBAR_FIRSTPAGE_TITLE</string>
+			<key>image</key>
+			<string>tab_v3_home</string>
+			<key>selectedImage</key>
+			<string>tab_v3_home_selected</string>
+			<key>showHome</key>
+			<true/>
+			<key>viewControllerClass</key>
+			<string>RH_FirstPageViewControllerEx</string>
+		</dict>
+		<dict>
+			<key>title</key>
 			<string>TABBAR_DEPOSITPAGE_TITLE2</string>
 			<key>image</key>
 			<string>tab_v3_deposit</string>
@@ -184,18 +196,6 @@
 			<string>tab_v3_promo_selected</string>
 			<key>viewControllerClass</key>
 			<string>RH_PromoViewControllerEx</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>TABBAR_FIRSTPAGE_TITLE</string>
-			<key>image</key>
-			<string>tab_v3_home</string>
-			<key>selectedImage</key>
-			<string>tab_v3_home_selected</string>
-			<key>showHome</key>
-			<true/>
-			<key>viewControllerClass</key>
-			<string>RH_FirstPageViewControllerEx</string>
 		</dict>
 		<dict>
 			<key>title</key>

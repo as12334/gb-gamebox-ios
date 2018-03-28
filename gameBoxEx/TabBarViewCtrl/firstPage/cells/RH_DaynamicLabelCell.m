@@ -37,12 +37,13 @@
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.backgroundColor = colorWithRGB(21, 21, 21) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
+    
     if ([THEMEV3 isEqualToString:@"green"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+        self.labRemark.backgroundColor = ColorWithNumberRGB(0x168df6) ;
     }else{
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }
@@ -52,17 +53,19 @@
     self.labRemark.layer.cornerRadius = 4.0f ;
     self.labRemark.clipsToBounds = YES;
     self.labRemark.text = @"公告" ;
-    self.labRemark.whc_TopSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(21);
+    self.labRemark.whc_TopSpace(5).whc_BottomSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(22);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
-    self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
-    if ([THEMEV3 isEqualToString:@"black"]) {
-        self.contentView.backgroundColor = [UIColor blackColor];
-    }
     
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = colorWithRGB(226, 226, 226) ;
     self.separatorLineWidth = 1.0f ;
+    
+    self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.contentView.backgroundColor = colorWithRGB(21, 21, 21);
+        self.separatorLineColor = [UIColor clearColor] ;
+    }
     
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = [UIColor lightGrayColor] ;

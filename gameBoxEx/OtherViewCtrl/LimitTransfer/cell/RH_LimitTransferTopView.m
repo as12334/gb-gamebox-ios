@@ -154,7 +154,7 @@
         sureSubmitBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
         sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
     }else{
         sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
@@ -192,8 +192,6 @@
 #pragma mark - 确认提交
 -(void)sureSubmitClick:(UIButton *)sender
 {
-    UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
-    UIButton *transferInBtn = (UIButton *)[self viewWithTag:887] ;
     UITextField *amount =(UITextField *) [self viewWithTag:889] ;
     ifRespondsSelector(self.delegate, @selector(limitTransferTopViewDidTouchSureSubmitBtnWithamount:)){
         [self.delegate limitTransferTopViewDidTouchSureSubmitBtnWithamount:amount.text] ;

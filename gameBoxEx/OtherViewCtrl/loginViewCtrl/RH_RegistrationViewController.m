@@ -34,6 +34,44 @@
     return YES;
 }
 
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1b75d9) ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
 - (WHC_StackView *)stackView {
     if (_stackView == nil) {
         _stackView = [WHC_StackView new];
@@ -289,7 +327,7 @@
     NSString *securityIssues = [self obtainContent:@"securityIssues"];
     if (securityIssues.length == 0) { return;}
     
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode];
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:@"" editType:@"" recommendUserInputCode:@"" confirmPassword:@"" confirmPermissionPwd:@"" answer1:@"" termsOfService:@""];
 }
 
 - (void)startAnimate {

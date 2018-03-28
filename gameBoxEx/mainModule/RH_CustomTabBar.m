@@ -45,26 +45,26 @@
     
     if (tabBarButtonArray.count==0) return ;
     
-    if (!((tabBarButtonArray.count -1)%2)){//说明奇数，有中间数
-        NSInteger midIndex = (tabBarButtonArray.count -1)/2 ;
-        UIView *midView = [tabBarButtonArray objectAtIndex:midIndex] ;
-        CGRect frame = midView.frame ;
-        frame = CGRectMake(frame.origin.x, frame.origin.y-self.midMoveUP,
-                           frame.size.width,
-                           frame.size.height + self.midMoveUP) ;
-//        frame.origin.y = -self.midMoveUP ;
-        midView.frame = frame ;
-        
-        //给底部Tabbar添加背景；
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            _midBackLayer = [CALayer new];
-            _midBackLayer.frame = CGRectMake(CGRectGetMinX(frame) - 25 + frame.size.width/2, CGRectGetMinY(frame) + 5, 50, 50);
-            _midBackLayer.backgroundColor = RH_TabBar_BackgroundColor.CGColor ;
-            _midBackLayer.cornerRadius = 25;
-            [midView.superview.layer insertSublayer:_midBackLayer below:midView.layer];
-        });
-    }
+//    if (!((tabBarButtonArray.count -1)%2)){//说明奇数，有中间数
+//        NSInteger midIndex = (tabBarButtonArray.count -1)/2 ;
+//        UIView *midView = [tabBarButtonArray objectAtIndex:midIndex] ;
+//        CGRect frame = midView.frame ;
+//        frame = CGRectMake(frame.origin.x, frame.origin.y-self.midMoveUP,
+//                           frame.size.width,
+//                           frame.size.height + self.midMoveUP) ;
+////        frame.origin.y = -self.midMoveUP ;
+//        midView.frame = frame ;
+//
+//        //给底部Tabbar添加背景；
+//        static dispatch_once_t onceToken;
+//        dispatch_once(&onceToken, ^{
+//            _midBackLayer = [CALayer new];
+//            _midBackLayer.frame = CGRectMake(CGRectGetMinX(frame) - 25 + frame.size.width/2, CGRectGetMinY(frame) + 5, 50, 50);
+//            _midBackLayer.backgroundColor = RH_TabBar_BackgroundColor.CGColor ;
+//            _midBackLayer.cornerRadius = 25;
+//            [midView.superview.layer insertSublayer:_midBackLayer below:midView.layer];
+//        });
+//    }
 }
 
 
