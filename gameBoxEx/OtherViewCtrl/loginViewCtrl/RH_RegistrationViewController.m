@@ -244,6 +244,13 @@
 
 - (void)buttonRegistrationHandle {
     
+    NSString *regCode = [self obtainContent:@"regCode"];
+    if (registrationInitModel.isRequiredForRegisterCode) {
+        if (regCode.length == 0) {
+            showMessage(self.contentView, @"请输入邀请码", @"");
+            return ;
+        }
+    }
     NSString *usernama = [self obtainContent:@"username"];
     if (usernama.length == 0) {
         return;
@@ -287,8 +294,7 @@
     NSString *defaultLocale = [self obtainContent:@"defaultLocale"];
     
     NSString *securityIssues = [self obtainContent:@"securityIssues"];
-    
-<<<<<<< HEAD
+    NSString *securityIssues2 = [self obtainContent:@"securityIssues2"];
     
     for (NSString *obj in registrationInitModel.requiredJson) {
         if ([obj isEqualToString:@"304"]) {
@@ -359,14 +365,16 @@
                 showMessage(self.contentView, @"请选择安全问题", @"");
                 return;}
         }
-        
+        if ([obj isEqualToString:@"securityIssues2"]) {
+            if (securityIssues.length == 0) {
+                showMessage(self.contentView, @"请回答安全问题", @"");
+                return;}
+        }
     }
     
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode];
-=======
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:@"" editType:@"" recommendUserInputCode:@"" confirmPassword:@"" confirmPermissionPwd:@"" answer1:@"" termsOfService:@""];
->>>>>>> origin/dev_richard
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:regCode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11"];
+
 }
 
 - (void)startAnimate {
@@ -395,14 +403,11 @@
 
 #pragma mark Request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
-<<<<<<< HEAD
     NSLog(@"%s", __func__);
     NSLog(@"%@", error);
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     showErrorMessage(self.contentView, error, @"");
-=======
-    
->>>>>>> origin/dev_richard
+
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
