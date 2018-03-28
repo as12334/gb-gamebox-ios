@@ -67,12 +67,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = @"额度转换";
     [self setupInfo];
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
     //转出默认值
     _selectOutValue = @"wallet";
+    _selectOutText = @"我的钱包";
     _selectInValue = @"" ;
 }
 
@@ -209,6 +209,9 @@
 -(void)limitTransferTopViewDidTouchRefreshBalanceBtn
 {
     // 请求一键刷新余额
+    [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    [self.serviceRequest startV3OneStepRefresh] ;
+    
 }
 
 -(void)showBankPickerSelectViewWithType:(NSString *)type
@@ -303,8 +306,8 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3UserInfo] ;
     [self.serviceRequest startV3GetNoAutoTransferInfoInit] ;
+    [self.serviceRequest startV3UserInfo] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -328,7 +331,7 @@
         NSArray *userApiModel = infoModel.mApisBalanceList;
         [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
                             totalCount:userApiModel?userApiModel.count:0] ;
-        if (!infoModel.mIsAutoPay) {
+        if (infoModel.mIsAutoPay) {
             self.contentTableView.tableHeaderView = self.tableTopView ;
             self.contentTableView.tableFooterView = nil ;
         }else
@@ -357,6 +360,12 @@
             showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
+    }else if (type == ServiceRequestTypeV3OneStepRefresh)
+    {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"刷新成功") ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
     }
      [self.contentTableView reloadData] ;
 }
@@ -376,6 +385,9 @@
         //额度转换初始化
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
+        [self loadDataFailWithError:error] ;
+    }else if (type == ServiceRequestTypeV3OneStepRefresh)
+    {
         [self loadDataFailWithError:error] ;
     }
 }
@@ -437,17 +449,26 @@
 #pragma mark - 一键刷新
 -(void)oneStepRefreshBtnClick
 {
-    
+    [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    [self.serviceRequest startV3OneStepRefresh] ;
 }
 
 #pragma mark - 确认提交
 -(void)limitTransferTopViewDidTouchSureSubmitBtnWithamount:(NSString *)amount
 {
-    if ([_selectOutValue isEqualToString:@""]) {
+//    if ([_selectOutValue isEqualToString:@""]) {
+//        showMessage(self.view, nil, @"请选择转出游戏名称") ;
+//        return ;
+//    }
+//    if ([_selectInValue isEqualToString:@""]) {
+//        showMessage(self.view, nil, @"请选择转入游戏名称") ;
+//        return ;
+//    }
+    if ([_selectOutText isEqualToString:@""] || _selectOutText == nil) {
         showMessage(self.view, nil, @"请选择转出游戏名称") ;
         return ;
     }
-    if ([_selectInValue isEqualToString:@""]) {
+    if ([_selectInText isEqualToString:@""] ||_selectInText == nil) {
         showMessage(self.view, nil, @"请选择转入游戏名称") ;
         return ;
     }
@@ -456,7 +477,7 @@
         return ;
     }
     [self showProgressIndicatorViewWithAnimated:NO title:@"提交中..."] ;
-    [self.serviceRequest startV3SubitTransfersMoneyToken:_selectInfoModel.mToken transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
+    [self.serviceRequest startV3SubitTransfersMoneyToken:_selectInfoModel.mToken transferOut:_selectOutText transferInto:_selectInText transferAmount:[amount floatValue]];
 }
 
 

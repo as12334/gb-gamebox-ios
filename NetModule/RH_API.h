@@ -855,7 +855,6 @@
 
 
 #pragma mark - V3 老用户登录验证
-//#define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"passport/verify/verifyRealNameForApp.html"
 #define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"mobile-api/userInfoOrigin/verifyRealNameForApp.html"
 //请求参数
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN                           @"gb.token"
