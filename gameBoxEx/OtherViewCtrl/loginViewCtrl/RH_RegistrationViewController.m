@@ -185,58 +185,58 @@
     for (RH_RegistrationViewItem *item in self.stackView.whc_Subviews) {
         if ([item.contentType isEqualToString:name]) {
             NSString *content  = [item textFieldContent];
-            if (content.length == 0) {
-                if ([name isEqualToString:@"username"]) {
-                    showMessage(self.contentView, @"请输入账号", @"");
-                }
-                if ([name isEqualToString:@"birthday"]) {
-                    showMessage(self.contentView, @"请选择生日", @"");
-                }
-                if ([name isEqualToString:@"201"]) {
-                    showMessage(self.contentView, @"请输入邮箱", @"");
-                }
-                if ([name isEqualToString:@"301"]) {
-                    showMessage(self.contentView, @"请输入QQ号", @"");
-                }
-                if ([name isEqualToString:@"304"]) {
-                    showMessage(self.contentView, @"请输入微信", @"");
-                }
-                if ([name isEqualToString:@"password"]) {
-                    showMessage(self.contentView, @"请输入密码", @"");
-                }
-                if ([name isEqualToString:@"password2"]) {
-                    showMessage(self.contentView, @"请再次输入密码", @"");
-                }
-                if ([name isEqualToString:@"realName"]) {
-                    showMessage(self.contentView, @"请输入真实姓名", @"");
-                }
-                if ([name isEqualToString:@"verificationCode"]) {
-                    showMessage(self.contentView, @"请输入验证码", @"");
-                }
-                if ([name isEqualToString:@"paymentPassword"]) {
-                    showMessage(self.contentView, @"请输入安全密码", @"");
-                }
-                if ([name isEqualToString:@"paymentPassword2"]) {
-                    showMessage(self.contentView, @"请再次输入安全密码", @"");
-                }
-                if ([name isEqualToString:@"defaultTimezone"]) {
-                    showMessage(self.contentView, @"请选择时区", @"");
-                }
-                if ([name isEqualToString:@"sex"]) {
-                    showMessage(self.contentView, @"请选择性别", @"");
-                }
-                if ([name isEqualToString:@"mainCurrency"]) {
-                    showMessage(self.contentView, @"请选择货币", @"");
-                }
-                if ([name isEqualToString:@"defaultLocale"]) {
-                    showMessage(self.contentView, @"请选择语言", @"");
-                }
-                if ([name isEqualToString:@"securityIssues"]) {
-                    showMessage(self.contentView, @"请回答安全问题", @"");
-                }
-            }else {
+//            if (content.length == 0) {
+//                if ([name isEqualToString:@"username"]) {
+//                    showMessage(self.contentView, @"请输入账号", @"");
+//                }
+//                if ([name isEqualToString:@"birthday"]) {
+//                    showMessage(self.contentView, @"请选择生日", @"");
+//                }
+//                if ([name isEqualToString:@"201"]) {
+//                    showMessage(self.contentView, @"请输入邮箱", @"");
+//                }
+//                if ([name isEqualToString:@"301"]) {
+//                    showMessage(self.contentView, @"请输入QQ号", @"");
+//                }
+//                if ([name isEqualToString:@"304"]) {
+//                    showMessage(self.contentView, @"请输入微信", @"");
+//                }
+//                if ([name isEqualToString:@"password"]) {
+//                    showMessage(self.contentView, @"请输入密码", @"");
+//                }
+//                if ([name isEqualToString:@"password2"]) {
+//                    showMessage(self.contentView, @"请再次输入密码", @"");
+//                }
+//                if ([name isEqualToString:@"realName"]) {
+//                    showMessage(self.contentView, @"请输入真实姓名", @"");
+//                }
+//                if ([name isEqualToString:@"verificationCode"]) {
+//                    showMessage(self.contentView, @"请输入验证码", @"");
+//                }
+//                if ([name isEqualToString:@"paymentPassword"]) {
+//                    showMessage(self.contentView, @"请输入安全密码", @"");
+//                }
+//                if ([name isEqualToString:@"paymentPassword2"]) {
+//                    showMessage(self.contentView, @"请再次输入安全密码", @"");
+//                }
+//                if ([name isEqualToString:@"defaultTimezone"]) {
+//                    showMessage(self.contentView, @"请选择时区", @"");
+//                }
+//                if ([name isEqualToString:@"sex"]) {
+//                    showMessage(self.contentView, @"请选择性别", @"");
+//                }
+//                if ([name isEqualToString:@"mainCurrency"]) {
+//                    showMessage(self.contentView, @"请选择货币", @"");
+//                }
+//                if ([name isEqualToString:@"defaultLocale"]) {
+//                    showMessage(self.contentView, @"请选择语言", @"");
+//                }
+//                if ([name isEqualToString:@"securityIssues"]) {
+//                    showMessage(self.contentView, @"请回答安全问题", @"");
+//                }
+//            }else {
                 return content;
-            }
+//            }
         }
     }
     return @"";
@@ -253,14 +253,17 @@
     }
     NSString *usernama = [self obtainContent:@"username"];
     if (usernama.length == 0) {
+        showMessage(self.contentView, @"请输入用户名", @"");
         return;
     }
     NSString *password = [self obtainContent:@"password"];
     if (password.length == 0) {
+        showMessage(self.contentView, @"请输入密码", @"");
         return;
     }
     NSString *password2 = [self obtainContent:@"password2"];
     if (password2.length == 0) {
+        showMessage(self.contentView, @"请再次输入密码", @"");
         return;
     }
     if (![password isEqualToString:password2]) {
@@ -268,7 +271,9 @@
         return;
     }
     NSString *verificationCode = [self obtainContent:@"verificationCode"];
-    if (verificationCode.length == 0) { return;}
+    if (verificationCode.length == 0) {
+        showMessage(self.contentView, @"请输入验证码", @"");
+        return;}
     NSString *weixin = [self obtainContent:@"304"];
     
     NSString *phone = [self obtainContent:@"110"];
@@ -329,7 +334,7 @@
             if (permission2.length == 0) {
                 showMessage(self.contentView, @"请再次输入安全密码", @"");
                 return;}
-            if ([permission2 isEqualToString:permission]) {
+            if (![permission2 isEqualToString:permission]) {
                 showMessage(self.contentView, @"两次输入的安全密码不一样", @"");
                 return;
             }
@@ -371,9 +376,9 @@
                 return;}
         }
     }
-    
+    NSString *registcode = registrationInitModel.paramsModel.registCode ?: @"";
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:birthday sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:regCode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11"];
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:[NSString stringWithFormat:@"%@&",birthday] sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:registcode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11" requiredJson:registrationInitModel.requiredJson];
 
 }
 
@@ -412,6 +417,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
     NSLog(@"%@", data);
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     if (type == ServiceRequestTypeV3RegiestInit) {
         registrationInitModel =( RH_RegisetInitModel *)data;
         [self.contentLoadingIndicateView hiddenView];

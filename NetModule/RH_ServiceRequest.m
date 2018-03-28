@@ -1502,6 +1502,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    confirmPermissionPwd:(NSString *)confirmPermissionPwd
                                 answer1:(NSString *)answer1
                          termsOfService:(NSString *)termsOfService
+                           requiredJson:(NSArray<NSString *> *)requiredJson
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:birth forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY];
@@ -1526,6 +1527,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:confirmPermissionPwd forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPERMISSIONPWD];
     [dict setObject:answer1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SYSUSERPROTECTIONANSWER];
     [dict setObject:termsOfService forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TERMOFSERVICE];
+    [dict setObject:requiredJson forKey:@"requiredJson"];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTSUBMIT
                      pathArguments:nil
