@@ -71,7 +71,7 @@
         
         _collectionView.backgroundColor = [UIColor whiteColor];
         if ([THEMEV3 isEqualToString:@"black"]) {
-            _collectionView.backgroundColor = [UIColor blackColor];
+            _collectionView.backgroundColor = colorWithRGB(21, 21, 21);
         }
         
         _collectionView.showsHorizontalScrollIndicator = NO;
