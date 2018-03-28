@@ -22,7 +22,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
-    self.personIdNumLabel.text = accountModel.mAccount;
+    self.personIdNumLabel.text = [NSString stringWithFormat:@"%ld",accountModel.mAccount] ;
     self.personNameLabel.text = accountModel.mFullName;
 }
 - (void)awakeFromNib {

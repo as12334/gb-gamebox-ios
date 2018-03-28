@@ -14,7 +14,7 @@
 -(void)limitTransferTopViewDidTouchTransferInBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView;
 -(void)limitTransferTopViewDidTouchTransferOutBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView;
 -(void)limitTransferTopViewDidTouchRefreshBalanceBtn ;
--(void)limitTransferTopViewDidTouchSureSubmitBtn:(UIButton *)sender withTransferInBtn:(UIButton *)transfrtIn transferOut:(UIButton *)transferOut amount:(NSString *)amount ;
+-(void)limitTransferTopViewDidTouchSureSubmitBtnWithamount:(NSString *)amount ;
 @end
 
 @interface RH_LimitTransferTopView : UIView

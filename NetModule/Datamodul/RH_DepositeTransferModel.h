@@ -18,6 +18,7 @@
 @interface RH_DepositePayModel:RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mName;
 @property(nonatomic,strong,readonly)NSString *mCode;
+@property(nonatomic,strong,readonly)NSString *mUrl;
 //@property(nonatomic,strong,readonly)RH_DepositePayAccountModel *mPayAccounts;
 @property(nonatomic,strong,readonly)NSArray<RH_DepositePayAccountModel *>*mPayAccounts;
 @end

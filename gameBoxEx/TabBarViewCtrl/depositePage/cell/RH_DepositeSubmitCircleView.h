@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RH_DepositeSubmitCircleView.h"
+@class RH_DepositeSubmitCircleView;
+@protocol DepositeSubmitCircleViewDelegate<NSObject>
+@optional
+-(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView;
+-(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId;
+@end
 @interface RH_DepositeSubmitCircleView : UIView
-
+@property(nonatomic,weak)id<DepositeSubmitCircleViewDelegate>delegate;
 @end

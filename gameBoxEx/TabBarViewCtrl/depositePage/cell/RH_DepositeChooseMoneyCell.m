@@ -16,6 +16,7 @@
 //@property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong) RH_DepositePaydataModel *dataModel;
+@property (nonatomic,strong)NSArray *picNameArray;
 @end
 @implementation RH_DepositeChooseMoneyCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -33,6 +34,8 @@
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
     [self.collectionView reloadData] ;
+    //图片名称数组
+    _picNameArray = @[@"100",@"200",@"500",@"1000",@"5000"];
     [self setupUI];
 }
 
@@ -76,13 +79,13 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.dataModel.mQuickMoneys.count;
+    return 5;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeChooseMoneySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_DepositeChooseMoneySubCell defaultReuseIdentifier] forIndexPath:indexPath];
-    [cell updateViewWithInfo:nil context:self.dataModel.mQuickMoneys[indexPath.item]];
+    [cell updateViewWithInfo:nil context:self.picNameArray[indexPath.item]];
     return cell;
 }
 

@@ -39,6 +39,7 @@
         _mName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_NAME];
 //        _mPayAccounts = [[RH_DepositePayAccountModel alloc]initWithInfoDic:[info dictionaryValueForKey:RH_GP_DEPOSITEORIGIN_PAYACCOUNTS]];
         _mPayAccounts = [RH_DepositePayAccountModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_DEPOSITEORIGIN_PAYACCOUNTS]];
+        _mUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_URL];
     }
     return self;
 }

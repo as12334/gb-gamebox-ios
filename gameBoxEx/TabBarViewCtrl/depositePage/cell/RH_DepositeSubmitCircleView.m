@@ -99,6 +99,15 @@
     else if ([self.statusArray[indexPath.item] isEqual:@1]){
         self.statusArray[indexPath.item] = @0;
     }
+    ifRespondsSelector(self.delegate, @selector(depositeSubmitCircleViewChooseDiscount:)){
+        RH_DepositOriginseachSaleDetailsModel *detaileModel = ConvertToClassPointer(RH_DepositOriginseachSaleDetailsModel, self.salesArray[indexPath.item]);
+        [self.delegate depositeSubmitCircleViewChooseDiscount:detaileModel.mId];
+    }
     [self.tabelView reloadData];
+}
+- (IBAction)transferMoneySelected:(id)sender {
+    ifRespondsSelector(self.delegate, @selector(depositeSubmitCircleViewTransferMoney:)){
+        [self.delegate depositeSubmitCircleViewTransferMoney:self];
+    }
 }
 @end

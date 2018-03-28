@@ -18,7 +18,7 @@
 #import "RH_DepositeTransferBankcardController.h"
 #import "RH_DepositeTransferModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
-@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate>
+@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -32,6 +32,8 @@
 @property(nonatomic,strong)RH_DepositOriginseachSaleModel *saleModel;
 //支付方式类型
 @property(nonatomic,strong)NSString *payforType;
+//优惠ID
+@property(nonatomic,assign)NSInteger activityId;
 @end
 
 @implementation RH_DepositeViewControllerEX
@@ -185,6 +187,7 @@
         _circleView = [RH_DepositeSubmitCircleView createInstance];
         _circleView.frame = CGRectMake(0, 0, 250, 360);
         _circleView.center = self.view.center;
+        _circleView.delegate = self;
     }
     return _circleView;
 }
@@ -305,16 +308,26 @@
 #pragma mark --点击提交按钮
 -(void)submitDepositeInfo
 {
-    if ([self.payforType isEqualToString:@"1"]) {
-        NSMutableArray *mutableArray = [NSMutableArray array];
-        [mutableArray addObject:self.accountModelArray];
-        [mutableArray addObject:self.payNumStr];
-        RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
-        [self showViewController:transferVC sender:self];
+
+    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
+    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
+       
+        NSArray *array = (NSArray *)(((RH_DepositePayModel *)self.transferModel.mPayModel[_selectNumber]).mPayAccounts);
+//  [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:payAccount.mDepositWay PayAccountID:payAccount.mId];
     }
     else{
-      [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.payAccountModel.mDepositWay PayAccountID:self.payAccountModel.mId];
+        if ([self.payforType isEqualToString:@"1"]) {
+            NSMutableArray *mutableArray = [NSMutableArray array];
+            [mutableArray addObject:self.accountModelArray];
+            [mutableArray addObject:self.payNumStr];
+            RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+            [self showViewController:transferVC sender:self];
+        }
+        else{
+          [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.payAccountModel.mDepositWay PayAccountID:self.payAccountModel.mId];
+        }
     }
+
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -326,6 +339,22 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+#pragma mark -- 点击弹框里面的提交按钮
+-(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
+{
+    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
+    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
+        
+//        NSArray *array = ConvertToClassPointer(NSArray, pModel.mPayAccounts);
+//       RH_DepositePayAccountModel *aModel= ConvertToClassPointer(RH_DepositePayAccountModel,array[0]);
+//        [self.serviceRequest startV3OnlinePayWithRechargeAmount:[self.payNumStr floatValue] rechargeType:aModel.mRechargeType payAccountId:aModel.mAccount activityId:self.activityId];
+    }
+}
+#pragma mark -- 优惠列表
+-(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
+{
+    self.activityId = activityId;
 }
 #pragma mark 数据请求
 
@@ -384,12 +413,15 @@
         self.transferModel = transferModel;
         [self loadDataSuccessWithDatas:transferModel?@[transferModel]:@[]
                             totalCount:transferModel?1:0] ;
-        if ([self.transferModel.mPayModel[0].mCode isEqualToString:@"online"]) {
-            _markArray = @[@0,@1,@2,@3,@4,@5];
+        for (RH_DepositePayModel *payModel in self.transferModel.mPayModel) {
+            if ([payModel.mCode isEqualToString:@"online"]) {
+                _markArray = @[@0,@1,@2,@3,@4,@5];
+            }
+            else {
+                _markArray = @[@0,@2,@3,@5,@4,@1];
+            }
         }
-        else {
-            _markArray = @[@0,@2,@3,@5,@4,@1];
-        }
+        
         [self.contentTableView reloadData];
     }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){

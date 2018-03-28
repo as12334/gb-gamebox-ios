@@ -24,7 +24,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
-    self.bankCardNumLabel.text = accountModel.mAccount;
+    self.bankCardNumLabel.text = [NSString stringWithFormat:@"%ld",accountModel.mAccount];
     self.bankCardNameLabel.text = accountModel.mBankName;
     self.bankAdressLabel.text = accountModel.mOpenAcountName;
 }

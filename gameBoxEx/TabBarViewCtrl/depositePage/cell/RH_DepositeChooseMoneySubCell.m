@@ -16,7 +16,7 @@
 @implementation RH_DepositeChooseMoneySubCell
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    NSString *numStr = ConvertToClassPointer(NSString, [context stringValue]);
+    NSString *numStr = ConvertToClassPointer(NSString, context);
     if ([numStr isEqualToString:@"100"]) {
         self.chooseMoneyIcon.image = [UIImage imageNamed:@"100"];
     }

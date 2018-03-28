@@ -27,7 +27,7 @@
         _mAccountPrompt = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_ACCOUNTPROMPT];
         _mPayName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_PAYNAME];
         _mCustomBankName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_CUSTOMBANKNAME];
-        _mAccount = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_ACCOUNT];
+        _mAccount = [info integerValueForKey:RH_GP_DEPOSITEORIGIN_ACCOUNT];
         _mOpenAcountName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_OPENACOUNTNAME];
         _mAliasName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_ALIASNAME];
         _mRandomAmount = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_RANDOMAMOUNT];
