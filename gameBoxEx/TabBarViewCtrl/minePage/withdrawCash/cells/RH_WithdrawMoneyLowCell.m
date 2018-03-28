@@ -50,7 +50,7 @@
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
     }else{
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
