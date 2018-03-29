@@ -196,7 +196,7 @@
 {
     if (HasLogin)
     {
-        self.tabBarController.selectedIndex = 0  ;
+        self.tabBarController.selectedIndex = 1  ;
     }else{
         [self loginButtonItemHandle] ;
     }
