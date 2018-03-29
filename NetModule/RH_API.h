@@ -991,6 +991,7 @@
 #define RH_API_NAME_RECONNECTTRANSFER        @"mobile-api/userInfoOrigin/reconnectTransfer.html"
 //请求参数
 #define RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO                  @"search.transactionNo" //失败的orderId
+#define RH_SP_SUBTRANSFERMONEY_TOKEN                           @"gb.token" //token
 
 #pragma mark - V3  非免转刷新单个
 #define RH_API_NAME_REFRESHAPI        @"mobile-api/userInfoOrigin/refreshApi.html"

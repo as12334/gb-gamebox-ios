@@ -96,7 +96,22 @@
         }
     }
 }
-
+-(void)updateCellWithInfoModel:(RH_UserApiBalanceModel *)model
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+     amountLab.text = [NSString stringWithFormat:@"%.2f",model.mBalance] ;
+    });
+    
+}
+-(void)updateRecoryDataCellWithInfoContext:(id)context
+{
+    RH_UserApiBalanceModel *model = ConvertToClassPointer(RH_UserApiBalanceModel, context) ;
+    if (model){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            amountLab.text = [NSString stringWithFormat:@"%.2f",model.mBalance] ;
+        });
+    }
+}
 #pragma mark -- 刷新&回收按钮点击
 -(void)refreshBtnAndrecycleBtnClick:(UIButton *)sender
 {

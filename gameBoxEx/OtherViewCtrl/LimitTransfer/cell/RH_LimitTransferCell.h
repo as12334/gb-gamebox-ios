@@ -18,4 +18,8 @@
 @interface RH_LimitTransferCell : CLTableViewCell
 @property (nonatomic, weak) id<RH_LimitTransferCellDelegate> delegate;
 
+-(void)updateCellWithInfoModel:(RH_UserApiBalanceModel *)model;
+-(void)updateRecoryDataCellWithInfoContext:(id)context ;
+
+
 @end
