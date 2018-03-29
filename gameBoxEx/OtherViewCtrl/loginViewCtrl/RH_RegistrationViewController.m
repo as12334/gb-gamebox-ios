@@ -205,7 +205,7 @@
     label.whc_LeftSpaceToView(10, button_Check).whc_BottomSpaceEqualView(button_Check).whc_Height(20).whc_WidthAuto();
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = colorWithRGB(168, 168, 168);
-    label.text = @"hahahsasudnakubaksjhcbakshcajscnkaujskcn";
+    label.text = @"";
     
     UIButton *button = [UIButton new];
     [mainScrollView addSubview:button];
