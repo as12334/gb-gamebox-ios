@@ -72,12 +72,6 @@
 }
 
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated] ;
-//    [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
-//}
-
 
 - (BOOL)hidesBottomBarWhenPushed {
     return YES;
