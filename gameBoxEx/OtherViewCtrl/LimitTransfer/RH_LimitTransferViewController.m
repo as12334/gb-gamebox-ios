@@ -375,8 +375,7 @@
             self.contentTableView.tableFooterView = nil ;
         }else
         {
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0 )];
-            self.contentTableView.tableHeaderView = view;
+            self.contentTableView.tableHeaderView = nil;
             self.contentTableView.tableFooterView = self.footerView ;
         }
        
