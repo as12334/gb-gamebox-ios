@@ -21,6 +21,7 @@
 @property(nonatomic,strong,readonly)NSString *mUrl;
 //@property(nonatomic,strong,readonly)RH_DepositePayAccountModel *mPayAccounts;
 @property(nonatomic,strong,readonly)NSArray<RH_DepositePayAccountModel *>*mPayAccounts;
+@property(nonatomic,strong)NSNumber *statusNumber;
 @end
 
 

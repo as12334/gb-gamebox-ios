@@ -43,4 +43,11 @@
     }
     return self;
 }
+-(NSNumber *)statusNumber
+{
+    if (!_statusNumber) {
+        _statusNumber = @0;
+    }
+    return _statusNumber;
+}
 @end

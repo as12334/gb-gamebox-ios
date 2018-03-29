@@ -530,9 +530,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
 
 #pragma mark - V3 线上支付提交存款
--(void)startV3OnlinePayWithRechargeAmount:(float)amount
+-(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
                              rechargeType:(NSString *)rechargeType
-                             payAccountId:(NSInteger)payAccountId
+                             payAccountId:(NSString *)payAccountId
                                activityId:(NSInteger)activityId ;
 
 #pragma mark - V3 扫码支付提交存款

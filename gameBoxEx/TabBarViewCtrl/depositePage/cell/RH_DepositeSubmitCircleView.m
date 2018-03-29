@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *chareLabel;
 @property (nonatomic,strong)NSArray *salesArray;
-@property (nonatomic,strong)NSMutableArray *statusArray;
+@property (nonatomic,assign)NSInteger selectCellIndex;
 @end
 @implementation RH_DepositeSubmitCircleView
 
@@ -35,10 +35,6 @@
     self.moneyNumLabel.text = saleModel.mCounterFee;
     self.chareLabel.text = saleModel.mMsg;
     self.salesArray = saleModel.mDetailsModel;
-    self.statusArray = [NSMutableArray array];
-    for (int i = 0; i<self.salesArray.count; i++) {
-        [self.statusArray addObject:@0];
-    }
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -87,18 +83,20 @@
     if (cell ==nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"RH_DepositeSubmitCircleCell" owner:self options:nil]lastObject];
     }
-    NSArray *array = @[self.statusArray[indexPath.item],self.salesArray[indexPath.item]];
-    [cell updateCellWithInfo:nil context:array];
+    
+    [cell updateCellWithInfo:nil context:self.salesArray[indexPath.item]];
+    if (_selectCellIndex ==indexPath.item) {
+        cell.checkedImageview.image = [UIImage imageNamed:@"choose"];
+    }
+    else
+    {
+        cell.checkedImageview.image = [UIImage imageNamed:@""];
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.statusArray[indexPath.item] isEqual:@0]) {
-        self.statusArray[indexPath.item] = @1;
-    }
-    else if ([self.statusArray[indexPath.item] isEqual:@1]){
-        self.statusArray[indexPath.item] = @0;
-    }
+    _selectCellIndex = indexPath.item;
     ifRespondsSelector(self.delegate, @selector(depositeSubmitCircleViewChooseDiscount:)){
         RH_DepositOriginseachSaleDetailsModel *detaileModel = ConvertToClassPointer(RH_DepositOriginseachSaleDetailsModel, self.salesArray[indexPath.item]);
         [self.delegate depositeSubmitCircleViewChooseDiscount:detaileModel.mId];

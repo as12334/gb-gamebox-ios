@@ -961,7 +961,7 @@
 #define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"
 
 #pragma mark - V3 存款获取优惠
-#define RH_API_NAME_DEPOSITESEACHSALE               @"/mobile-api/depositOrigin/seachSale.html"
+#define RH_API_NAME_DEPOSITESEACHSALE               @"mobile-api/depositOrigin/seachSale.html"
 //请求参数
 #define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
 #define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"depositWay"
