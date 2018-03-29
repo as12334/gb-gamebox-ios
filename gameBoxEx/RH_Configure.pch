@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1880,6 +1880,22 @@
 #define CODE    @"ptmx"
 #define S        @"86a652360bbafb98c857c9dd9d389c54"
 #define SID        @"399"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _izlr //澳门威尼斯人
+
+#define CODE    @"izlr"
+#define S        @"e11149b6b9debd71c96e3aaf991e4ab1"
+#define SID        @"503"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _u0er //乐鼎国际娱乐
+
+#define CODE    @"u0er"
+#define S        @"2e23942c041257c8f9a3e9a49b9960fb"
+#define SID        @"507"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
