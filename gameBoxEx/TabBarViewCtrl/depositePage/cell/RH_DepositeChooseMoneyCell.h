@@ -7,7 +7,12 @@
 //
 
 #import "CLTableViewCell.h"
-
+#import "RH_DepositeChooseMoneyCell.h"
+@class RH_DepositeChooseMoneyCell;
+@protocol DepositeChooseMoneyCellDelegate<NSObject>
+@optional
+-(void)depositeChooseMoneyCell:(NSInteger )moneyNumber;
+@end
 @interface RH_DepositeChooseMoneyCell : CLTableViewCell
-
+@property(nonatomic,weak)id<DepositeChooseMoneyCellDelegate>delegate;
 @end

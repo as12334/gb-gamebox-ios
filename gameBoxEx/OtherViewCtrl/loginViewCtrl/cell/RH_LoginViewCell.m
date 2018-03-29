@@ -139,11 +139,12 @@
         [self.rememberPwdSwitch setOn:NO];
          self.passwordTextfield.text = @"" ;
     }
-    self.forgetPasswordBtn.whc_LeftSpace(40).whc_BottomSpaceToView(5, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
+    self.forgetPasswordBtn.whc_LeftSpace(40).whc_BottomSpaceToView(-5, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
     self.rememberPwdSwitch.whc_CenterYToView(0, self.forgetPasswordBtn).whc_RightSpace(40) ;
      self.rememberPwdSwitch.transform = CGAffineTransformMakeScale( 0.7, 0.7);//缩放
     self.rememberPwdLab.whc_RightSpaceToView(0, self.rememberPwdSwitch).whc_CenterYToView(0, self.forgetPasswordBtn).whc_WidthAuto().whc_Height(20) ;
-   
+//    self.btnLogin.whc_LeftSpace(40).whc_BottomSpaceToView(510, self.btnCreateUser).whc_WidthAuto().whc_Height(42) ;
+//    self.btnCreateUser.whc_LeftSpace(40).whc_BottomSpaceToView(10, self.btnLogin).whc_WidthAuto().whc_Height(42) ;
     
     if ([THEMEV3 isEqualToString:@"green"]){
         //设置开启颜色

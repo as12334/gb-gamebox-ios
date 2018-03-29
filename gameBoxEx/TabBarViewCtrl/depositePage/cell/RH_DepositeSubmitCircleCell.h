@@ -9,5 +9,5 @@
 #import "CLTableViewCell.h"
 
 @interface RH_DepositeSubmitCircleCell : CLTableViewCell
-
+@property (weak, nonatomic) IBOutlet UIImageView *checkedImageview;
 @end

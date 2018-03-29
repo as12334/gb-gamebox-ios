@@ -1843,6 +1843,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _llnd //钱柜娱乐
+
+#define CODE    @"llnd"
+#define S        @"aaf1d647920c3e71895ec04bdce5994c"
+#define SID        @"388"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _gplw //波贝娱乐城
 
 #define CODE    @"gplw"
@@ -1896,6 +1904,14 @@
 #define CODE    @"u0er"
 #define S        @"2e23942c041257c8f9a3e9a49b9960fb"
 #define SID        @"507"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _45jj //澳门金沙娱乐场
+
+#define CODE    @"45jj"
+#define S        @"206339808ae0021a59fe506d1a620956"
+#define SID        @"508"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

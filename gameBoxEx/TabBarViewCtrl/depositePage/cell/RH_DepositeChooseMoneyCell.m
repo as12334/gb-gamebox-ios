@@ -65,6 +65,7 @@
     _collectionView.frame  = frame;
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.scrollEnabled = NO;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 10, 0, 10) ;
@@ -89,11 +90,25 @@
     return cell;
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    ifRespondsSelector(self.delegate, @selector(homeCategoryItemsCellDidTouchItemCell:DataModel:)){
-//        [self.delegate homeCategoryItemsCellDidTouchItemCell:self DataModel:self.itemsList[indexPath.section*3+indexPath.item]] ;
-//    }
-//}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ifRespondsSelector(self.delegate, @selector(depositeChooseMoneyCell:)){
+        if (indexPath.item==0) {
+            [self.delegate depositeChooseMoneyCell:100] ;
+        }
+        else if (indexPath.item==1) {
+            [self.delegate depositeChooseMoneyCell:200] ;
+        }
+        else if (indexPath.item==2) {
+            [self.delegate depositeChooseMoneyCell:500] ;
+        }
+       else if (indexPath.item==3) {
+            [self.delegate depositeChooseMoneyCell:1000] ;
+        }
+       else if (indexPath.item==4) {
+            [self.delegate depositeChooseMoneyCell:5000] ;
+        }
+    }
+}
 
 @end

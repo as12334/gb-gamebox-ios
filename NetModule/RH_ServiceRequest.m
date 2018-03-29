@@ -52,6 +52,7 @@
 #import "RH_HelpCenterDetailModel.h"
 #import "RH_GetNoAutoTransferInfoModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
+#import "RH_UserApiBalanceModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1505,6 +1506,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    confirmPermissionPwd:(NSString *)confirmPermissionPwd
                                 answer1:(NSString *)answer1
                          termsOfService:(NSString *)termsOfService
+                           requiredJson:(NSArray<NSString *> *)requiredJson
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:birth forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY];
@@ -1529,6 +1531,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:confirmPermissionPwd forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPERMISSIONPWD];
     [dict setObject:answer1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SYSUSERPROTECTIONANSWER];
     [dict setObject:termsOfService forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TERMOFSERVICE];
+    [dict setObject:requiredJson forKey:@"requiredJson"];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTSUBMIT
                      pathArguments:nil
@@ -1636,7 +1639,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITESEACHSALE
                      pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                   headerArguments:@{
                                      @"User-Agent":@"app_ios, iPhone",
                                      }
                     queryArguments:dict
@@ -1654,6 +1657,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
 
                     queryArguments:nil
@@ -1680,6 +1684,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1691,9 +1696,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - V3  非免转额度转换异常再次请求
 -(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+                                       withToken:(NSString *)token
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:transactionNo forKey:RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO];
+    [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_RECONNECTTRANSFER
                      pathArguments:nil
@@ -1709,10 +1716,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 
 #pragma mark - V3  非免转刷新单个
--(void)startV3RefreshApiWithApiId:(NSInteger)apiId
+-(void)startV3RefreshApiWithApiId:(NSString *)apiId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(apiId) forKey:RH_SP_REFRESHAPI_APIID];
+    [dict setObject:apiId forKey:RH_SP_REFRESHAPI_APIID];
     
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REFRESHAPI
@@ -1728,16 +1735,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - V3 线上支付提交存款
--(void)startV3OnlinePayWithRechargeAmount:(float)amount
+-(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
                              rechargeType:(NSString *)rechargeType
-                             payAccountId:(NSInteger)payAccountId
+                             payAccountId:(NSString*)payAccountId
                                activityId:(NSInteger)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-     [dict setObject:@(amount) forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
-    [dict setObject:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
-    [dict setObject:@(payAccountId) forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
-    [dict setObject:@(activityId) forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+     [dict setValue:@(amount) forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
+    [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
+    [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
+    [dict setValue:@(activityId) forKey:RH_SP_ONLINEPAY_ACTIVITYID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONLINEPAY
                      pathArguments:nil
@@ -2182,7 +2189,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(NO) ;
         }
         return YES ;
-    }else if (type == ServiceRequestTypeObtainVerifyCode ||
+    }
+    
+    else if (type == ServiceRequestTypeObtainVerifyCode ||
               type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
               type == ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2216,7 +2225,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-    
+//    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject ;
+//        return YES ;
+//    }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
@@ -2228,18 +2244,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
         }
     }
-//    else if (type == ServiceRequestTypeV3DepositOriginSeachSale)
-//    {
-//        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
-//        NSMutableArray *mArr = [NSMutableArray array] ;
-//        if (isSidStr(responseStr)) {
-//            [mArr addObjectsFromArray:matchLongString(responseStr)] ;
-//        }
-//        if (mArr.count>0) {
-//            userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
-//        }
-//    }
-    
+  
 //    
    
     //json解析
@@ -2698,6 +2703,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+            case ServiceRequestTypeV3OneStepRefresh:
+            {
+                NSDictionary *dic = [dataObject objectForKey:RH_GP_V3_DATA] ;
+                resultSendData = [RH_UserApiBalanceModel dataArrayWithInfoArray:[dic objectForKey:@"apis"]] ;
+            }
+                break;
+            case ServiceRequestTypeV3RefreshApi:
+            {
+                resultSendData =  [[RH_UserApiBalanceModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                ConvertToClassPointer(RH_UserApiBalanceModel ,resultSendData) ;
+                RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                NSArray *daraArr =userInfoManager.mineSettingInfo.mApisBalanceList;
+                for (RH_UserApiBalanceModel *model in daraArr) {
+                     [model upApiMoneyWith:resultSendData] ;
+                }
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
                 break;

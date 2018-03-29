@@ -140,6 +140,7 @@
     bodyArguments:(NSDictionary *)bodyArguments
              type:(HTTPRequestType)type
 {
+//    NSLog(@"body1参数为=%@",[[NSString alloc] initWithData:[CLHTTPRequest _dataWithBodyArguments:bodyArguments]  encoding:NSUTF8StringEncoding]);
     return [self initWithURL:url
                   pathFormat:pathFormat
                pathArguments:pathArguments

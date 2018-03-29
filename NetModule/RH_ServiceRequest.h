@@ -492,7 +492,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                         confirmPassword:(NSString *)confirmPassword
                    confirmPermissionPwd:(NSString *)confirmPermissionPwd
                                 answer1:(NSString *)answer1
-                         termsOfService:(NSString *)termsOfService;
+                         termsOfService:(NSString *)termsOfService
+                           requiredJson:(NSArray<NSString *> *)requiredJson;
 #pragma mark - 注册条款
 -(void)startV3RegisetTerm;
 
@@ -523,16 +524,17 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 
 #pragma mark - V3  非免转额度转换异常再次请求
--(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo ;
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+                                       withToken:(NSString *)token ;
 
 
 #pragma mark - V3  非免转刷新单个
--(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
+-(void)startV3RefreshApiWithApiId:(NSString *)apiId ;
 
 #pragma mark - V3 线上支付提交存款
--(void)startV3OnlinePayWithRechargeAmount:(float)amount
+-(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
                              rechargeType:(NSString *)rechargeType
-                             payAccountId:(NSInteger)payAccountId
+                             payAccountId:(NSString *)payAccountId
                                activityId:(NSInteger)activityId ;
 
 #pragma mark - V3 扫码支付提交存款

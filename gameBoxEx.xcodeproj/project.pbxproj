@@ -597,6 +597,8 @@
 		F696B83B2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B8392068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m */; };
 		F696B83C2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F696B83A2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib */; };
 		F696B83F2068F9970038D1C5 /* RH_DepositOriginseachSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B83E2068F9970038D1C5 /* RH_DepositOriginseachSaleModel.m */; };
+		F696B843206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B841206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m */; };
+		F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F696B842206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib */; };
 		F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */; };
 		F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34FB20634C070028D3A1 /* RH_DepositePayforWayCell.m */; };
 		F69E34FE20634C070028D3A1 /* RH_DepositePayforWayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E34FC20634C070028D3A1 /* RH_DepositePayforWayCell.xib */; };
@@ -1717,6 +1719,9 @@
 		F696B83A2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferPayAdressCell.xib; sourceTree = "<group>"; };
 		F696B83D2068F9970038D1C5 /* RH_DepositOriginseachSaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositOriginseachSaleModel.h; sourceTree = "<group>"; };
 		F696B83E2068F9970038D1C5 /* RH_DepositOriginseachSaleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositOriginseachSaleModel.m; sourceTree = "<group>"; };
+		F696B840206BC9690038D1C5 /* RH_DepositeTransferButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferButtonCell.h; sourceTree = "<group>"; };
+		F696B841206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferButtonCell.m; sourceTree = "<group>"; };
+		F696B842206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferButtonCell.xib; sourceTree = "<group>"; };
 		F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewControllerEX.h; sourceTree = "<group>"; };
 		F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewControllerEX.m; sourceTree = "<group>"; };
 		F69E34FA20634C070028D3A1 /* RH_DepositePayforWayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositePayforWayCell.h; sourceTree = "<group>"; };
@@ -3963,6 +3968,9 @@
 				F69E352C2063A5F10028D3A1 /* RH_DepositeSystemPlatformSubCell.h */,
 				F69E352D2063A5F10028D3A1 /* RH_DepositeSystemPlatformSubCell.m */,
 				F69E352E2063A5F10028D3A1 /* RH_DepositeSystemPlatformSubCell.xib */,
+				F696B840206BC9690038D1C5 /* RH_DepositeTransferButtonCell.h */,
+				F696B841206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m */,
+				F696B842206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -4334,6 +4342,7 @@
 				F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */,
 				228B93102027287E008C8313 /* tab_v3_service_selected_green@3x.png in Resources */,
 				79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */,
+				F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				228B93112027287E008C8313 /* tab_v3_service_selected_green@2x.png in Resources */,
 				F6FB64182014323600EEED4E /* RH_UserCenterlogout.plist in Resources */,
@@ -4685,6 +4694,7 @@
 				A0109FAC1F8788FF004E6EF4 /* NSString+Base64.m in Sources */,
 				F69E35162063613B0028D3A1 /* RH_DepositeReminderCell.m in Sources */,
 				79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */,
+				F696B843206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m in Sources */,
 				F6FB6391200F851300EEED4E /* RH_MPSystemNoticeDetailController.m in Sources */,
 				797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */,
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
@@ -5082,7 +5092,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_u0er=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_45jj=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5093,7 +5103,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid507;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid508;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5101,8 +5111,8 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "乐鼎国际娱乐";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-507";
+				APP_DISPLAY_NAME = "澳门金沙娱乐场";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-508";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
@@ -5117,7 +5127,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid507;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid508;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

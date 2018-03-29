@@ -159,6 +159,7 @@
     if ([model.name isEqualToString:@"defaultTimezone"]) {
         label_Title.text = @"时区☆";
         textField.placeholder = @"";
+        textField.enabled = NO;
     }
     if ([model.name isEqualToString:@"birthday"]) {
         label_Title.text = @"生日☆";
@@ -506,18 +507,22 @@
     }
     if ([fieldModel.name isEqualToString:@"paymentPassword"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-        if (textField.text.length > 6) {
+        if (textField.text.length > 5) {
             return NO;
         }
     }
     if ([fieldModel.name isEqualToString:@"paymentPassword2"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-        if (textField.text.length > 6) {
+        if (textField.text.length > 5) {
             return NO;
         }
     }
     if ([fieldModel.name isEqualToString:@"regCode"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    }
+    if ([fieldModel.name isEqualToString:@"securityIssues2"]) {
+//        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        return YES;
     }
 //    tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
     int i = 0;

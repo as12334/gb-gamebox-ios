@@ -71,10 +71,9 @@
     }
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated] ;
-//    [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
+
+//- (BOOL)hidesBottomBarWhenPushed {
+//    return YES;
 //}
 
 -(void)setupViewContext:(id)context
@@ -111,6 +110,9 @@
     [self.contentTableView reloadData] ;
 }
 
+- (BOOL)isSubViewController {
+    return  YES;
+}
 
 -(RH_LoginViewCell*)loginViewCell
 {
