@@ -208,7 +208,13 @@
     UIView *foot_View = [UIView new];
     foot_View.frame = CGRectMake(0, 0, screenSize().width, 20);
     UILabel *label = [UILabel new];
+    UIView *lineView = [UIView new];
+    lineView.frame = CGRectMake(0, 0, screenSize().width, 1);
+    lineView.backgroundColor = colorWithRGB(37, 37, 37);
+    
     [foot_View addSubview:label];
+    [foot_View addSubview:lineView];
+    lineView.whc_TopSpace(10).whc_CenterX(0).whc_Height(1.5).whc_LeftSpace(10).whc_RightSpace(10);
     label.whc_TopSpace(15).whc_CenterX(0).whc_Height(30).whc_LeftSpace(30).whc_RightSpace(30);
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;

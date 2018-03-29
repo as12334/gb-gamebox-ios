@@ -137,7 +137,7 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
              borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Black;
+             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor;
         }else{
              borderView.backgroundColor  =  RH_NavigationBar_BackgroundColor;
         }

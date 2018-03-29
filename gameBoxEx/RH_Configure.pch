@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -127,6 +127,14 @@
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq //超博娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
@@ -1592,6 +1600,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _lt1x //金鹰国际
+
+#define CODE    @"lt1x"
+#define S        @"c5b440c9aa0e1cdfcfff8b34cba8dda3"
+#define SID        @"359"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _vyx1 //大大彩票
 
 #define CODE    @"vyx1"
@@ -1761,35 +1777,19 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _1xtq //大庄家娱乐城
+
+#define CODE    @"1xtq"
+#define S        @"e0bad6dbd6a30ba8051f9a3b7f3651b8"
+#define SID        @"385"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _agfn //太阳城
 
 #define CODE    @"agfn"
 #define S        @"3f99d74a8cbed2cf59a8e7f9fe2626e5"
 #define SID        @"386"
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
-
-#elif _0001 //站点一
-
-#define CODE    @"0001"
-#define S        @"0352ac58de086e6cfe2831e9f22c825f"
-#define SID        @"1"
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
-
-#elif _lt1x //金鹰国际
-
-#define CODE    @"lt1x"
-#define S        @"c5b440c9aa0e1cdfcfff8b34cba8dda3"
-#define SID        @"359"
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
-
-#elif _wjxd //bet365
-
-#define CODE    @"wjxd"
-#define S        @"370b30415132ae26108c9892cedce99c"
-#define SID        @"392"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
@@ -1801,13 +1801,23 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _1xtq //大庄家娱乐城
+#elif _wjxd //bet365
 
-#define CODE    @"1xtq"
-#define S        @"e0bad6dbd6a30ba8051f9a3b7f3651b8"
-#define SID        @"385"
+#define CODE    @"wjxd"
+#define S        @"370b30415132ae26108c9892cedce99c"
+#define SID        @"392"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
+
+#elif _0001 //站点一
+
+#define CODE    @"0001"
+#define S        @"0352ac58de086e6cfe2831e9f22c825f"
+#define SID        @"1"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+
 
 #elif _ajco //新葡京娱乐城
 
@@ -1849,14 +1859,6 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _1qkq //超博娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3oc"
-
 #elif _4pja //新葡京娱乐城
 
 #define CODE    @"4pja"
@@ -1880,8 +1882,6 @@
 #define SID        @"399"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
-
-
 
 #endif
 
