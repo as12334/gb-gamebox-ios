@@ -29,10 +29,11 @@
 #import "RH_GameListViewController.h"
 #import "RH_ActivityStatusModel.h"
 #import "RH_UserInfoManager.h"
+#import "RH_AdvertisementView.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
-        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
+        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate>
 //@property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
@@ -40,6 +41,7 @@
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
 @property (nonatomic, strong) RH_BasicAlertView *rhAlertView ;
 @property (nonatomic,strong)  RH_ActivityModel *activityModel;
+@property (nonatomic,strong) RH_AdvertisementView *advertisentView ;
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
@@ -59,6 +61,7 @@
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
 @synthesize activityView = _activityView                    ;
 @synthesize normalActivityView= _normalActivityView         ;
+@synthesize advertisentView = _advertisentView ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -164,6 +167,23 @@
     return _rhAlertView ;
 }
 
+-(RH_AdvertisementView *)advertisentView
+{
+    if (!_advertisentView) {
+        _advertisentView = [RH_AdvertisementView createInstance] ;
+        _advertisentView.delegate = self ;
+    }
+    return _advertisentView ;
+}
+
+#pragma mark - AdvertisementViewDelegate
+-(void)advertisementViewDidTouchSureBtn:(RH_AdvertisementView *)advertisementView DataModel:(RH_PhoneDialogModel *)phoneModel
+{
+    [advertisementView hideAdvertisementView] ;
+    self.appDelegate.customUrl = phoneModel.link ;
+    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    return ;
+}
 
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -590,6 +610,14 @@
             self.normalActivityView.activityModel = homePageModel.mActivityInfo;
         }else{
             [self activityViewHide] ;
+        }
+        NSArray *phoneDataArr = homePageModel.phoneDialogModel ;
+        if (phoneDataArr.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.view.window addSubview:self.advertisentView];
+                self.advertisentView.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(0).whc_BottomSpace(0) ;
+                [self.advertisentView advertisementViewUpDataWithModel:homePageModel.phoneDialogModel[0]] ;
+            }) ;
         }
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{

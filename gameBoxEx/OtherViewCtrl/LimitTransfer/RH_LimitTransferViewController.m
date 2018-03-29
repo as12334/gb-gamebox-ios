@@ -34,6 +34,7 @@
     NSString *_selectOutText ;
     NSString *_selectOutValue ;
     NSString *_newToken;
+    RH_UserApiBalanceModel *_userBalanceModel ;
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
@@ -78,9 +79,9 @@
 
 - (void)setupInfo
 {
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
-//    self.contentTableView.sectionHeaderHeight = 9.0f ;
-//    self.contentTableView.sectionFooterHeight = 0.0f ;
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
+    self.contentTableView.sectionHeaderHeight = 0.0f ;
+    self.contentTableView.sectionFooterHeight = 0.0f ;
     [self.contentTableView registerCellWithClass:[RH_LimitTransferCell class]] ;
     [self.contentView addSubview:self.contentTableView];
     self.contentTableView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
@@ -121,11 +122,11 @@
         oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
         oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
         
-        oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
     }else{
         oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
@@ -381,8 +382,7 @@
        
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            [self.serviceRequest startV3UserInfo] ;
-            showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
+            showSuccessMessage(self.view, @"提示信息", [data objectForKey:@"message"]) ;
         }] ;
          [self startUpdateData_e:NO];
     }else if (type == ServiceRequestTypeV3RefreshApi){
@@ -519,10 +519,11 @@
 -(void)limitTransferCelRecoryAndRefreshBtnDidTouch:(RH_LimitTransferCell *)limitTransferCell withBtn:(UIButton *)sender withModel:(RH_UserApiBalanceModel *)model
 {
     _limitCell = limitTransferCell ;
+     _userBalanceModel = ConvertToClassPointer(RH_UserApiBalanceModel, model) ;
     if ([sender.titleLabel.text isEqualToString:@"回收"]) {
         //单个回收
         if (model.mBalance == 0 ) {
-            showMessage(self.view, nil, @"当前余额为0不能回收") ;
+            showMessage(self.view, nil, @"没有可回收的api") ;
             return ;
         }
         [self showProgressIndicatorViewWithAnimated:NO title:@"回收中..."] ;
@@ -532,7 +533,6 @@
         // 单个刷新
         [self showProgressIndicatorViewWithAnimated:NO title:@"刷新中..."] ;
         [self.serviceRequest startV3RefreshApiWithApiId:[NSString stringWithFormat:@"%ld&",model.mApiID]] ;
-        
     }
 }
 #pragma mark - 一键回收
@@ -552,19 +552,11 @@
 #pragma mark - 确认提交
 -(void)limitTransferTopViewDidTouchSureSubmitBtnWithamount:(NSString *)amount
 {
-//    if ([_selectOutValue isEqualToString:@""]) {
-//        showMessage(self.view, nil, @"请选择转出游戏名称") ;
-//        return ;
-//    }
-//    if ([_selectInValue isEqualToString:@""]) {
-//        showMessage(self.view, nil, @"请选择转入游戏名称") ;
-//        return ;
-//    }
-    if ([_selectOutText isEqualToString:@""] || _selectOutText == nil) {
+    if ([_selectOutValue isEqualToString:@""] || _selectOutValue == nil) {
         showMessage(self.view, nil, @"请选择转出游戏名称") ;
         return ;
     }
-    if ([_selectInText isEqualToString:@""] ||_selectInText == nil) {
+    if ([_selectInValue isEqualToString:@""] || _selectInValue == nil) {
         showMessage(self.view, nil, @"请选择转入游戏名称") ;
         return ;
     }
@@ -575,7 +567,6 @@
     [self showProgressIndicatorViewWithAnimated:NO title:@"提交中..."] ;
     NSString *_token = _newToken?:_selectInfoModel.mToken ;
     [self.serviceRequest startV3SubitTransfersMoneyToken:[NSString stringWithFormat:@"%@&",_token] transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
-  
 }
 
 

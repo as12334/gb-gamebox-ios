@@ -91,6 +91,8 @@
 		79BB2DED20346BC2000CDE6B /* RH_ShareSeletedDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DEA20346BC2000CDE6B /* RH_ShareSeletedDateView.m */; };
 		79BB2DFA2036CC56000CDE6B /* RH_OldUserVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DF92036CC56000CDE6B /* RH_OldUserVerifyView.m */; };
 		79D6E6D2201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */; };
+		79D8640F206CD1E400E527B7 /* RH_AdvertisementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D8640E206CD1E400E527B7 /* RH_AdvertisementView.m */; };
+		79D86412206CDDFE00E527B7 /* RH_PhoneDialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D86411206CDDFE00E527B7 /* RH_PhoneDialogModel.m */; };
 		79E223F6200C8D64006B0450 /* RH_SiteMyMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */; };
 		79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223F8200CC210006B0450 /* RH_DiscountActivityTypeModel.m */; };
 		79E223FC200D9BF0006B0450 /* RH_SendMessageVerityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E223FB200D9BF0006B0450 /* RH_SendMessageVerityModel.m */; };
@@ -842,6 +844,10 @@
 		79BB2DF92036CC56000CDE6B /* RH_OldUserVerifyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_OldUserVerifyView.m; sourceTree = "<group>"; };
 		79D6E6D0201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgSysMsgModel.h; sourceTree = "<group>"; };
 		79D6E6D1201AFD5C0090D3FD /* RH_SiteMsgSysMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgSysMsgModel.m; sourceTree = "<group>"; };
+		79D8640D206CD1E400E527B7 /* RH_AdvertisementView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AdvertisementView.h; sourceTree = "<group>"; };
+		79D8640E206CD1E400E527B7 /* RH_AdvertisementView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AdvertisementView.m; sourceTree = "<group>"; };
+		79D86410206CDDFE00E527B7 /* RH_PhoneDialogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_PhoneDialogModel.h; sourceTree = "<group>"; };
+		79D86411206CDDFE00E527B7 /* RH_PhoneDialogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_PhoneDialogModel.m; sourceTree = "<group>"; };
 		79E223F4200C8D64006B0450 /* RH_SiteMyMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMyMessageModel.h; sourceTree = "<group>"; };
 		79E223F5200C8D64006B0450 /* RH_SiteMyMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMyMessageModel.m; sourceTree = "<group>"; };
 		79E223F7200CC210006B0450 /* RH_DiscountActivityTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DiscountActivityTypeModel.h; sourceTree = "<group>"; };
@@ -2953,6 +2959,8 @@
 				A05747B61FF4E2070068D0E4 /* RH_AnnouncementModel.m */,
 				A05747BA1FF4E5350068D0E4 /* RH_HomePageModel.h */,
 				A05747B91FF4E5350068D0E4 /* RH_HomePageModel.m */,
+				79D86410206CDDFE00E527B7 /* RH_PhoneDialogModel.h */,
+				79D86411206CDDFE00E527B7 /* RH_PhoneDialogModel.m */,
 				A0522A6F200B001500A5A6E9 /* RH_UserGroupInfoModel.h */,
 				A0522A6E200B001400A5A6E9 /* RH_UserGroupInfoModel.m */,
 				A01CB4AB1FFA131B00447130 /* RH_UserApiBalanceModel.h */,
@@ -3601,6 +3609,8 @@
 				A07DCEC91FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib */,
 				B8248392202836F700CD1ECB /* RH_BasicAlertViewCell.h */,
 				B8248393202836F700CD1ECB /* RH_BasicAlertViewCell.m */,
+				79D8640D206CD1E400E527B7 /* RH_AdvertisementView.h */,
+				79D8640E206CD1E400E527B7 /* RH_AdvertisementView.m */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -4703,6 +4713,7 @@
 				7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
+				79D8640F206CD1E400E527B7 /* RH_AdvertisementView.m in Sources */,
 				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
 				B84A33D22067A63D00A8BFEE /* RH_RegistrationSelectView.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
@@ -4818,6 +4829,7 @@
 				A0109FDF1F8788FF004E6EF4 /* MBProgressHUD.m in Sources */,
 				F6E402082001F0B200C52B97 /* RH_GestureOpenLockView.m in Sources */,
 				F6A2AD482005AA8D0077CB92 /* RH_NormalActivithyView.m in Sources */,
+				79D86412206CDDFE00E527B7 /* RH_PhoneDialogModel.m in Sources */,
 				794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */,
 				79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */,
 				79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */,
