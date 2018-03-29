@@ -216,6 +216,13 @@
      UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
       [transferOutBtn setTitle:tranferOutTitle forState:UIControlStateNormal];
 }
+-(void)topViewUpdataAmountText:(NSString *)textValue
+{
+    UITextField *amount =(UITextField *) [self viewWithTag:889] ;
+    amount.text = textValue ;
+}
+
+
 #pragma mark - 更新顶部数据
 -(void)topViewUpdataTopDateWithModel:(RH_GetNoAutoTransferInfoModel *)model
 {

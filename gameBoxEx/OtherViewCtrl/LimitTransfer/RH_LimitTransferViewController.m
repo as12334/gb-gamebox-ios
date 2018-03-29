@@ -23,6 +23,7 @@
 @property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectViewTransferIn;
 @property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectViewTransferOut;
 @property (nonatomic , strong)RH_GetNoAutoTransferInfoModel *selectInfoModel ;
+@property (nonatomic , strong)RH_LimitTransferCell *limitCell ;
 
 @end
 
@@ -32,6 +33,7 @@
     NSString *_selectInValue ;
     NSString *_selectOutText ;
     NSString *_selectOutValue ;
+    NSString *_newToken;
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
@@ -42,8 +44,6 @@
 - (BOOL)isSubViewController {
     return  YES;
 }
-
-
 
 -(RH_BankPickerSelectView *)selectViewTransferIn
 {
@@ -79,8 +79,8 @@
 - (void)setupInfo
 {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
-    self.contentTableView.sectionHeaderHeight = 9.0f ;
-    self.contentTableView.sectionFooterHeight = 0.0f ;
+//    self.contentTableView.sectionHeaderHeight = 9.0f ;
+//    self.contentTableView.sectionFooterHeight = 0.0f ;
     [self.contentTableView registerCellWithClass:[RH_LimitTransferCell class]] ;
     [self.contentView addSubview:self.contentTableView];
     self.contentTableView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
@@ -370,49 +370,92 @@
         NSArray *userApiModel = infoModel.mApisBalanceList;
         [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
                             totalCount:userApiModel?userApiModel.count:0] ;
-        if (infoModel.mIsAutoPay) {
+        if (!infoModel.mIsAutoPay) {
             self.contentTableView.tableHeaderView = self.tableTopView ;
             self.contentTableView.tableFooterView = nil ;
         }else
         {
-            self.contentTableView.tableHeaderView = nil ;
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0 )];
+            self.contentTableView.tableHeaderView = view;
             self.contentTableView.tableFooterView = self.footerView ;
         }
+       
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            [self.serviceRequest startV3UserInfo] ;
             showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
+         [self startUpdateData_e:NO];
     }else if (type == ServiceRequestTypeV3RefreshApi){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
+        [_limitCell updateCellWithInfoModel:data];
+        [self startUpdateData_e:NO];
+         [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3GetNoAutoTransferInfo)
     {
         //额度转换初始化
         _selectInfoModel = ConvertToClassPointer(RH_GetNoAutoTransferInfoModel, data) ;
         [self.tableTopView topViewUpdataTopDateWithModel:_selectInfoModel];
+        [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
         // 额度转换提交
-        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
-        }] ;
+        if (data) {
+            _newToken =  [[data objectForKey:@"data"] objectForKey:@"token"] ;
+            if ([[[data objectForKey:@"data"] objectForKey:@"state"] boolValue] == YES ) {
+                if ([[[data objectForKey:@"data"] objectForKey:@"result"] integerValue] == 0) {
+                    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                        showSuccessMessage(self.view, @"提示信息", @"额度转换成功") ;
+                    }] ;
+                }
+                [self.serviceRequest startV3OneStepRefresh] ;
+                [self.contentTableView reloadData] ;
+            }else if ([[[data objectForKey:@"data"] objectForKey:@"result"] integerValue] == 1)
+            {
+                [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                    showSuccessMessage(self.view, @"提示信息", @"额度转换失败") ;
+                }] ;
+            }else if ([[data objectForKey:@"data"] objectForKey:@"result"])
+            {
+                //获取失败的orderId
+                NSString *orderId = [[data objectForKey:@"data"] objectForKey:@"orderId"] ;
+                NSString *failToken = [[data objectForKey:@"data"] objectForKey:@"token"] ;
+                [self.serviceRequest startV3ReconnectTransferWithTransactionNo:orderId withToken:failToken] ;
+            }
+        }else
+        {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showSuccessMessage(self.view, @"提示信息", @"转账失败") ;
+            }] ;
+        }
+        _selectOutText = @"我的钱包";
+        _selectOutValue = @"wallet" ;
+        [_tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText] ;
+        [_tableTopView updataBTnTitleTransferInBtnTitle:@"请选择"] ;
+        _selectInValue = @"" ;
+        _selectInText = @"" ;
+        [_tableTopView topViewUpdataAmountText:@""] ;
+         [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3OneStepRefresh)
     {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"刷新成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
+        NSArray *userApiModel = ConvertToClassPointer(NSArray, data) ;
+        [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
+                            totalCount:userApiModel?userApiModel.count:0] ;
+         [self.contentTableView reloadData] ;
+    }else if (type == ServiceRequestTypeV3ReconnectTransfer)
+    {
+        //异常订单
     }
-     [self.contentTableView reloadData] ;
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3UserInfo) {
-        [self loadDataFailWithError:error] ;
+        showErrorMessage(nil, error, nil) ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(nil, error, @"资金回收失败") ;
@@ -424,10 +467,24 @@
         //额度转换初始化
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
-        [self loadDataFailWithError:error] ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+             showErrorMessage(nil, error, @"额度转换失败") ;
+        }] ;
+        _newToken = [error.userInfo objectForKey:@"token"] ;
+        _selectOutText = @"我的钱包";
+        _selectOutValue = @"wallet" ;
+        [_tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText] ;
+        [_tableTopView updataBTnTitleTransferInBtnTitle:@"请选择"] ;
+        _selectInValue = @"" ;
+        _selectInText = @"" ;
+        [_tableTopView topViewUpdataAmountText:@""] ;
     }else if (type == ServiceRequestTypeV3OneStepRefresh)
     {
-        [self loadDataFailWithError:error] ;
+        showErrorMessage(nil, error, nil) ;
+    }else if (type == ServiceRequestTypeV3ReconnectTransfer)
+    {
+        //异常订单
+        showErrorMessage(nil, error, @"提示信息") ;
     }
 }
 
@@ -462,6 +519,7 @@
 #pragma mark - RH_LimitTransferCellDelegate 单个回收 && 单个刷新
 -(void)limitTransferCelRecoryAndRefreshBtnDidTouch:(RH_LimitTransferCell *)limitTransferCell withBtn:(UIButton *)sender withModel:(RH_UserApiBalanceModel *)model
 {
+    _limitCell = limitTransferCell ;
     if ([sender.titleLabel.text isEqualToString:@"回收"]) {
         //单个回收
         if (model.mBalance == 0 ) {
@@ -469,12 +527,12 @@
             return ;
         }
         [self showProgressIndicatorViewWithAnimated:NO title:@"回收中..."] ;
-        [self.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%ld",model.mApiID]] ;
+        [self.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%ld&",model.mApiID]] ;
     }else
     {
         // 单个刷新
         [self showProgressIndicatorViewWithAnimated:NO title:@"刷新中..."] ;
-        [self.serviceRequest startV3RefreshApiWithApiId:model.mApiID] ;
+        [self.serviceRequest startV3RefreshApiWithApiId:[NSString stringWithFormat:@"%ld&",model.mApiID]] ;
         
     }
 }
@@ -516,7 +574,8 @@
         return ;
     }
     [self showProgressIndicatorViewWithAnimated:NO title:@"提交中..."] ;
-    [self.serviceRequest startV3SubitTransfersMoneyToken:_selectInfoModel.mToken transferOut:_selectOutText transferInto:_selectInText transferAmount:[amount floatValue]];
+    NSString *_token = _newToken?:_selectInfoModel.mToken ;
+    [self.serviceRequest startV3SubitTransfersMoneyToken:[NSString stringWithFormat:@"%@&",_token] transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
 }
 
 

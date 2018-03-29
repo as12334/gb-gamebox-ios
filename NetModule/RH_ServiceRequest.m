@@ -52,6 +52,7 @@
 #import "RH_HelpCenterDetailModel.h"
 #import "RH_GetNoAutoTransferInfoModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
+#import "RH_UserApiBalanceModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1656,6 +1657,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
 
                     queryArguments:nil
@@ -1682,6 +1684,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1693,9 +1696,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - V3  非免转额度转换异常再次请求
 -(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+                                       withToken:(NSString *)token
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:transactionNo forKey:RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO];
+    [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_RECONNECTTRANSFER
                      pathArguments:nil
@@ -1711,10 +1716,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 
 #pragma mark - V3  非免转刷新单个
--(void)startV3RefreshApiWithApiId:(NSInteger)apiId
+-(void)startV3RefreshApiWithApiId:(NSString *)apiId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(apiId) forKey:RH_SP_REFRESHAPI_APIID];
+    [dict setObject:apiId forKey:RH_SP_REFRESHAPI_APIID];
     
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REFRESHAPI
@@ -2698,6 +2703,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             }
                 break;
+            case ServiceRequestTypeV3OneStepRefresh:
+            {
+                NSDictionary *dic = [dataObject objectForKey:RH_GP_V3_DATA] ;
+                resultSendData = [RH_UserApiBalanceModel dataArrayWithInfoArray:[dic objectForKey:@"apis"]] ;
+            }
+                break;
+            case ServiceRequestTypeV3RefreshApi:
+            {
+                resultSendData =  [[RH_UserApiBalanceModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                ConvertToClassPointer(RH_UserApiBalanceModel ,resultSendData) ;
+                RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                NSArray *daraArr =userInfoManager.mineSettingInfo.mApisBalanceList;
+                for (RH_UserApiBalanceModel *model in daraArr) {
+                     [model upApiMoneyWith:resultSendData] ;
+                }
+            }
+                break ;
             default:
                 resultSendData = dataObject ;
                 break;

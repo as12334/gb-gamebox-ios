@@ -524,11 +524,12 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 
 #pragma mark - V3  非免转额度转换异常再次请求
--(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo ;
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+                                       withToken:(NSString *)token ;
 
 
 #pragma mark - V3  非免转刷新单个
--(void)startV3RefreshApiWithApiId:(NSInteger)apiId ;
+-(void)startV3RefreshApiWithApiId:(NSString *)apiId ;
 
 #pragma mark - V3 线上支付提交存款
 -(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount

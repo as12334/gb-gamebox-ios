@@ -27,4 +27,11 @@
     return self ;
 }
 
+-(void)upApiMoneyWith:(RH_UserApiBalanceModel *)userBalanceModel
+{
+    if (_mApiID == userBalanceModel.mApiID ) {
+        _mBalance = userBalanceModel.mBalance ;
+    }
+}
+
 @end
