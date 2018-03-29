@@ -162,13 +162,13 @@
     [mainScrollView addSubview:button_Check];
     button_Check.whc_TopSpaceToView(20, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     button_Check.backgroundColor = [UIColor blueColor];
-    UILabel *label = [UILabel new];
+    UIButton *label = [UIButton new];
     [mainScrollView addSubview:label];
     label.whc_LeftSpaceToView(10, button_Check).whc_BottomSpaceEqualView(button_Check).whc_Height(20).whc_WidthAuto();
-    label.font = [UIFont systemFontOfSize:15];
-    label.textColor = colorWithRGB(168, 168, 168);
-    label.text = @"";
-    
+    label.titleLabel.font = [UIFont systemFontOfSize:15];
+    [label setTitleColor:colorWithRGB(168, 168, 168) forState:UIControlStateNormal]; ;
+    [label setTitle:@"注册条款" forState:UIControlStateNormal];
+    [label addTarget:self action:@selector(zhucetiaokuan) forControlEvents:UIControlEventTouchUpInside];
     UIButton *button = [UIButton new];
     [mainScrollView addSubview:button];
     button.whc_TopSpaceToView(20, button_Check).whc_LeftSpaceEqualView(button_Check).whc_RightSpaceEqualViewOffset(self.stackView, 20).whc_Height(44);
@@ -177,6 +177,10 @@
     [button setTitle:@"立即注册" forState:UIControlStateNormal];
     [button setBackgroundColor:colorWithRGB(20, 90, 180)];
     [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)zhucetiaokuan {
+    
 }
 
 - (NSString *)obtainContent:(NSString *)name {
@@ -416,7 +420,8 @@
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
-    NSLog(@"%@", data);
+    NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+    NSLog(@"%@", dict);
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     if (type == ServiceRequestTypeV3RegiestInit) {
         registrationInitModel =( RH_RegisetInitModel *)data;
@@ -424,7 +429,12 @@
         [self layoutContentViews];
     }
     if (type == ServiceRequestTypeV3RegiestSubmit) {
-        
+        if ([dict[@"success"] isEqual:@true]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 [self.navigationController popViewControllerAnimated:YES];
+            });
+           
+        }
     }
 
 }
