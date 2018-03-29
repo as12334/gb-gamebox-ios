@@ -575,6 +575,7 @@
     [self showProgressIndicatorViewWithAnimated:NO title:@"提交中..."] ;
     NSString *_token = _newToken?:_selectInfoModel.mToken ;
     [self.serviceRequest startV3SubitTransfersMoneyToken:[NSString stringWithFormat:@"%@&",_token] transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
+    NSLog(@"lwies s da shuai bi ") ;
 }
 
 
