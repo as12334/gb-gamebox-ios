@@ -71,14 +71,10 @@
     }
 }
 
-<<<<<<< HEAD
-=======
+- (BOOL)isSubViewController {
+    return  YES;
+}
 
-//- (BOOL)hidesBottomBarWhenPushed {
-//    return YES;
-//}
-
->>>>>>> origin/dev_sam
 -(void)setupViewContext:(id)context
 {
     _backToFirstPage = [context boolValue] ;
@@ -92,7 +88,7 @@
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
-       
+    _isInitOk = YES ;
     [self setNeedUpdateView] ;
    //关闭键盘
     self.view.userInteractionEnabled = YES;
@@ -111,10 +107,6 @@
     [self.contentTableView registerCellWithClass:[RH_LoginViewCell class]] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
-}
-
-- (BOOL)isSubViewController {
-    return  YES;
 }
 
 -(RH_LoginViewCell*)loginViewCell

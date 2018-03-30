@@ -45,7 +45,13 @@
             _showCover = [NSString stringWithFormat:@"%@",_mCover] ;
         }else
         {
-            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+            if ([[_mCover substringToIndex:1] isEqualToString:@"/"] ) {
+                  _showCover = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mCover] ;
+            }else
+            {
+                  _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+            }
+          
         }
         
     }
