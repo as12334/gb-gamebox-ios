@@ -75,6 +75,9 @@
 - (BOOL)hidesBottomBarWhenPushed {
     return YES;
 }
+- (BOOL)isSubViewController {
+    return  YES;
+}
 
 -(void)setupViewContext:(id)context
 {

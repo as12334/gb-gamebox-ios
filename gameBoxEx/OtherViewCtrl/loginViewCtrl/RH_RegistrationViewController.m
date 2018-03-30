@@ -30,8 +30,12 @@
 - (BOOL)hasNavigationBar {
     return YES;
 }
-- (BOOL)hidesBottomBarWhenPushed {
-    return YES;
+//- (BOOL)hidesBottomBarWhenPushed {
+//    return YES;
+//}
+
+- (BOOL)isSubViewController {
+    return  YES;
 }
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
