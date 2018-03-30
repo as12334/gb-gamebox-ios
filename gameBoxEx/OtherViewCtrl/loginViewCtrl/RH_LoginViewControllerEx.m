@@ -71,6 +71,14 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+
+//- (BOOL)hidesBottomBarWhenPushed {
+//    return YES;
+//}
+
+>>>>>>> origin/dev_sam
 -(void)setupViewContext:(id)context
 {
     _backToFirstPage = [context boolValue] ;
@@ -105,6 +113,9 @@
     [self.contentTableView reloadData] ;
 }
 
+- (BOOL)isSubViewController {
+    return  YES;
+}
 
 -(RH_LoginViewCell*)loginViewCell
 {

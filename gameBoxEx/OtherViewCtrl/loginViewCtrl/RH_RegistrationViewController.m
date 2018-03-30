@@ -22,16 +22,12 @@
     NSInteger animate_Item_Index;
 }
 @synthesize stackView = _stackView;
-
+- (BOOL)isSubViewController {
+    return  YES;
+}
 
 - (BOOL)hasTopView {
     return NO;
-}
-- (BOOL)hasNavigationBar {
-    return YES;
-}
-- (BOOL)hidesBottomBarWhenPushed {
-    return YES;
 }
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
