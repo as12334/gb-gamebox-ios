@@ -53,6 +53,7 @@
     
     [self createUI];
 }
+
 -(void)createUI{
     self.headerView.frame = CGRectMake(0,0, self.contentView.frameWidth, 63);
     [self.topView addSubview:self.headerView];
@@ -87,7 +88,15 @@
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
             [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
         }
         
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
@@ -107,6 +116,7 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
+
 #pragma mark --- 头视图
 -(RH_ApplyDiscountHeaderView *)headerView
 {
