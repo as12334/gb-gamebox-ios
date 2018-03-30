@@ -12,6 +12,7 @@
 
 @interface RH_HomeCategorySubCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
+@property (weak, nonatomic) IBOutlet CLBorderView *bgView;
 @property (nonatomic,strong) IBOutlet UIImageView *imgIcon ;
 @property (nonatomic,strong) IBOutlet UILabel *labTitle ;
 @property (nonatomic,strong) RH_LotteryCategoryModel *lotteryCategoryModel ;
@@ -30,9 +31,11 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  [UIColor blackColor] ;
+    self.bgView.alpha = 0.0;
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
         self.backgroundColor = colorWithRGB(37, 37, 37) ;
+        self.bgView.alpha = 1.0;
     }
     self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;
@@ -70,6 +73,7 @@
             self.labTitle.textColor = colorWithRGB(22, 141, 246) ;
 //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
+            [self bringSubviewToFront:self.imgIcon];
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
             self.lineView.backgroundColor = colorWithRGB(22, 141, 246);

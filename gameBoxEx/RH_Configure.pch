@@ -1875,6 +1875,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _nkwz //BB娱乐城
+
+#define CODE    @"nkwz"
+#define S        @"88ed3838acf048e50042f5162fc87373"
+#define SID        @"393"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _wjrd //双赢国际城
 
 #define CODE    @"wjrd"

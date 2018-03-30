@@ -206,7 +206,7 @@
         JSValue *customUrl;
         for (JSValue *jsVal in args) {
             customUrl = jsVal;
-            NSLog(@"%@", jsVal.toString);
+            NSLog(@"jsVal==%@", jsVal.toString);
         }
 
         if (args[0] != NULL) {
