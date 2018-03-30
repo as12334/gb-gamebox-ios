@@ -53,6 +53,7 @@
 #import "RH_GetNoAutoTransferInfoModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_UserApiBalanceModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1418,7 +1419,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_DEPOSITE_DEPOSITEORIGIN
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1889,7 +1891,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3OneStepRefresh
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark - 存款渠道初始化
+-(void)startV3RequestDepositOriginChannel:(NSString *)httpCode
+{
+    NSString *pathFormat = [NSString stringWithFormat:@"%@%@.html",RH_API_DEPOSITE_DEPOSITEORIGINCHANNEL,httpCode];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:pathFormat
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositeOriginChannel
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2650,7 +2667,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositeOrigin:
             {
-                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])];
+//                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+                resultSendData = [RH_DepositeTransferModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:
@@ -2720,6 +2738,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }
             }
                 break ;
+                case ServiceRequestTypeV3DepositeOriginChannel:
+            {
+                resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
             default:
                 resultSendData = dataObject ;
                 break;

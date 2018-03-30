@@ -15,7 +15,7 @@
 @interface RH_DepositeChooseMoneyCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 //@property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic,strong) RH_DepositePaydataModel *dataModel;
+//@property (nonatomic,strong) RH_DepositePaydataModel *dataModel;
 @property (nonatomic,strong)NSArray *picNameArray;
 @end
 @implementation RH_DepositeChooseMoneyCell
@@ -42,7 +42,7 @@
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.dataModel = ConvertToClassPointer(RH_DepositePaydataModel, context);
+//    self.dataModel = ConvertToClassPointer(RH_DepositePaydataModel, context);
     [self.collectionView reloadData];
 }
 

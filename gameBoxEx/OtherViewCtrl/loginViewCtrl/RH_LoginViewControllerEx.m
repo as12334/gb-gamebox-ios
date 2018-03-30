@@ -71,11 +71,6 @@
     }
 }
 
-
-- (BOOL)hidesBottomBarWhenPushed {
-    return YES;
-}
-
 -(void)setupViewContext:(id)context
 {
     _backToFirstPage = [context boolValue] ;

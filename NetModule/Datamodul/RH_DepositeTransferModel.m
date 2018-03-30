@@ -13,41 +13,11 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mPayModel = [RH_DepositePayModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_DEPOSITEORIGIN_PAY]];
-        _mPaydataModel = [[RH_DepositePaydataModel alloc]initWithInfoDic:[info dictionaryValueForKey:RH_GP_DEPOSITEORIGIN_PAYDATA]];
-    }
-    return self;
-}
-@end
-@implementation RH_DepositePaydataModel
--(id)initWithInfoDic:(NSDictionary *)info
-{
-    if (self=[super initWithInfoDic:info]) {
-        _mQuickMoneys = [info arrayValueForKey:RH_GP_DEPOSITEORIGIN_QUICKMONEYS];
-        _mLotterySite = [info boolValueForKey:RH_GP_DEPOSITEORIGIN_LOTTERYSITE];
-        _mIsFastRecharge = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_ISFASTRECHARGE];
-        _mIsMultipleAccount = [info boolValueForKey:RH_GP_DEPOSITEORIGIN_ISMULTIPLEACCOUNT];
-    }
-    return self;
-}
-@end
-@implementation RH_DepositePayModel
--(id)initWithInfoDic:(NSDictionary *)info
-{
-    if (self=[super initWithInfoDic:info]) {
         _mCode = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_CODE];
-        _mName = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_NAME];
-//        _mPayAccounts = [[RH_DepositePayAccountModel alloc]initWithInfoDic:[info dictionaryValueForKey:RH_GP_DEPOSITEORIGIN_PAYACCOUNTS]];
-        _mPayAccounts = [RH_DepositePayAccountModel dataArrayWithInfoArray:[info arrayValueForKey:RH_GP_DEPOSITEORIGIN_PAYACCOUNTS]];
-        _mUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_URL];
+        _mName =[info stringValueForKey:RH_GP_DEPOSITEORIGIN_NAME];
+        _mIconUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGIN_ICOURL];
     }
     return self;
 }
--(NSNumber *)statusNumber
-{
-    if (!_statusNumber) {
-        _statusNumber = @0;
-    }
-    return _statusNumber;
-}
 @end
+

@@ -85,6 +85,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3IsOpenCodeVerifty,// 登录是否开启验证码
     ServiceRequestTypeV3RequetLoginWithGetLoadSid,// get请求登录接口获取SID
     ServiceRequestTypeV3DepositeOrigin,//请求获取存款平台相关信息
+    ServiceRequestTypeV3DepositeOriginChannel,//请求获取存款平台相关信息
     ServiceRequestTypeV3RegiestInit,     //注册初始化
     ServiceRequestTypeV3RegiestCaptchaCode,     //注册验证码
     ServiceRequestTypeV3RegiestSubmit,   //注册提交
@@ -94,6 +95,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
     ServiceRequestTypeV3HelpDetail,     //常见问题详情
     ServiceRequestTypeV3DepositOriginSeachSale,  //存款获取优惠
+    
     ServiceRequestTypeV3GetNoAutoTransferInfo,    // 非免转额度转换初始化
     ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
     ServiceRequestTypeV3ReconnectTransfer,        //非免转额度转换异常再次请求
@@ -572,7 +574,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - V3 一键刷新
 -(void)startV3OneStepRefresh ;
-
+#pragma mark -v3 存款渠道初始化
+-(void)startV3RequestDepositOriginChannel:(NSString *)httpCode;
 #pragma mark -
 /**
  * 取消所有服务

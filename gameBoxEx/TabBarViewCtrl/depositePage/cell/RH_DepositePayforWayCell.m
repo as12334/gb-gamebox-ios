@@ -23,13 +23,13 @@
 @synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-     RH_DepositeTransferModel* transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
-    if (transferModel.mPayModel.count%3==0) {
-        return 78*(transferModel.mPayModel.count/3);
+     NSArray * transferModelArray = ConvertToClassPointer(NSArray, context);
+    if (transferModelArray.count%3==0) {
+        return 78*(transferModelArray.count/3);
     }
     else
     {
-        return 78*(transferModel.mPayModel.count/3+1);
+        return 78*(transferModelArray.count/3+1);
     }
 }
 
@@ -116,15 +116,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ifRespondsSelector(self.delegate, @selector(depositePayforWayDidtouchItemCell:itemIndex:deposityWay:accountId: rechardType:)){
-        RH_DepositePayModel *payModel = ConvertToClassPointer(RH_DepositePayModel, self.payModelArray[indexPath.item]);
-        if ([payModel.mCode isEqualToString:@"online"]) {
-            [self.delegate depositePayforWayDidtouchItemCell:self itemIndex:indexPath.item deposityWay:((RH_DepositePayAccountModel*)payModel.mPayAccounts[0]).mDepositWay accountId:((RH_DepositePayAccountModel*)payModel.mPayAccounts[0]).mId rechardType:((RH_DepositePayAccountModel*)payModel.mPayAccounts[0]).mRechargeType];
-        }
-        else{
-            [self.delegate depositePayforWayDidtouchItemCell:self itemIndex:indexPath.item deposityWay:payModel.mName accountId:1 rechardType:nil];
-        }
-        
+    ifRespondsSelector(self.delegate, @selector(depositePayforWayDidtouchItemCell:depositeCode:depositeName:)){
+
+        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.payModelArray[indexPath.item]);
+        [self.delegate depositePayforWayDidtouchItemCell:self depositeCode:transferModel.mCode depositeName:transferModel.mName];
     }
     _selectedBtnIndex = indexPath.item;
     [self.collectionView reloadData];

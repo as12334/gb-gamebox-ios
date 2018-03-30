@@ -578,6 +578,7 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
 		F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */; };
 		F681D2522019762A00A7C449 /* RH_CapitalRecordBlackLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */; };
 		F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D254201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m */; };
@@ -1686,6 +1687,8 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
+		F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferChannelModel.m; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
 		F681D24D2019729000A7C449 /* RH_CapitalRecordNameLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordNameLabel.h; sourceTree = "<group>"; };
 		F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordNameLabel.m; sourceTree = "<group>"; };
@@ -2997,6 +3000,8 @@
 				79BB2DA02031699E000CDE6B /* RH_SharePlayerRecommendModel.m */,
 				F6942E0B2064DE67009A5573 /* RH_DepositeTransferModel.h */,
 				F6942E0C2064DE67009A5573 /* RH_DepositeTransferModel.m */,
+				F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */,
+				F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */,
 				F6942E0E206503AC009A5573 /* RH_DepositePayAccountModel.h */,
 				F6942E0F206503AC009A5573 /* RH_DepositePayAccountModel.m */,
 				7991A3AF20649CAF00133F74 /* RH_RegisetInitModel.h */,
@@ -4738,6 +4743,7 @@
 				F69E35392063C8E10028D3A1 /* RH_DepositeTransferBankInfoCell.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
+				F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */,
 				A0109FBB1F8788FF004E6EF4 /* UIImage+Tint.m in Sources */,
 				A0109FBC1F8788FF004E6EF4 /* UIImage+UPload.m in Sources */,
 				F6FB639A200F851300EEED4E /* RH_MPGameSeletedDateView.m in Sources */,

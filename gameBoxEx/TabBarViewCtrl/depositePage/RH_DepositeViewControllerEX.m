@@ -17,20 +17,20 @@
 #import "RH_DepositeSystemPlatformCell.h"
 #import "RH_DepositeTransferBankcardController.h"
 #import "RH_DepositeTransferModel.h"
-#import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeTransferButtonCell.h"
+#import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
 @property(nonatomic,strong)RH_DepositeTransferModel *transferModel;
+@property(nonatomic,strong)RH_DepositeTransferChannelModel *channelModel;
+@property(nonatomic,strong)NSArray *transModelArray;
 @property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
 @property(nonatomic,strong)RH_DepositeMoneyNumberCell *numberCell;
-@property(nonatomic,strong)RH_DepositePayAccountModel *payAccountModel;
 @property(nonatomic,strong)NSArray *accountModelArray;
 @property(nonatomic,strong)UIView *backDropView;
 @property(nonatomic,strong)NSString *payNumStr;
-@property(nonatomic,strong)RH_DepositOriginseachSaleModel *saleModel;
 //支付方式类型
 @property(nonatomic,strong)NSString *payforType;
 //优惠ID
@@ -78,7 +78,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     self.title = @"存款";
-    _markArray = @[@0,@1,@2,@3,@4,@5];
+    _markArray = @[@0,@1,@2,@3,@4,@5,@6];
     [self setNeedUpdateView];
     [self setupUI];
     // 键盘出现的通知
@@ -233,32 +233,34 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    
-    return  5 ;
+    return  6 ;
    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.item==[_markArray[0] integerValue]) {
-        return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transferModel] ;
+        return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transModelArray] ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
-        return 120.f;
+        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.channelModel.mArrayListModel];
+//        return 120.f;
     }
-    else if (indexPath.item==[_markArray[2] integerValue]){
-        return 44.f;
+    else if (indexPath.item ==[_markArray[2]integerValue]){
+        return 80.f;
     }
     else if (indexPath.item==[_markArray[3] integerValue]){
         return 44.f;
     }
-    else if (indexPath.item ==[_markArray[4] integerValue]){
-        return 200.f;
+    else if (indexPath.item==[_markArray[4] integerValue]){
+        return 44.f;
     }
     else if (indexPath.item ==[_markArray[5] integerValue]){
-        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.transferModel.mPayModel[_selectNumber]];
+//
+        return 50;
     }
-    else if (indexPath.item ==[_markArray[6]integerValue]){
-        return 80.f;
+    else if (indexPath.item ==[_markArray[6] integerValue]){
+        return 200.f;
     }
     return 0.0f ;
 }
@@ -267,20 +269,28 @@
 {
    
     if (self.pageLoadManager.currentDataCount) {
-        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, [self.pageLoadManager dataAtIndex:0]);
+        NSArray *transferModelArray = ConvertToClassPointer(NSArray, [self.pageLoadManager dataAtIndex:0]);
         if (indexPath.item==[_markArray[0]integerValue]) {
             RH_DepositePayforWayCell *payforWayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositePayforWayCell defaultReuseIdentifier]] ;
             payforWayCell.delegate = self;
-            [payforWayCell updateCellWithInfo:nil context:transferModel.mPayModel];
+            [payforWayCell updateCellWithInfo:nil context:transferModelArray];
             return payforWayCell ;
         }
-        else if (indexPath.item == [_markArray[1]integerValue]){
-            RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
-            moneyCell.delegate = self;
-            [moneyCell updateCellWithInfo:nil context:transferModel.mPaydataModel];
-            return moneyCell ;
+        else if (indexPath.item==[_markArray[1]integerValue]){
+            RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
+            platformCell.delegate=self;
+            [platformCell updateCellWithInfo:nil context:self.channelModel.mArrayListModel];
+            _platformCell = platformCell;
+            
+            return platformCell ;
         }
         else if (indexPath.item == [_markArray[2]integerValue]){
+            RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
+            moneyCell.delegate = self;
+            
+            return moneyCell ;
+        }
+        else if (indexPath.item == [_markArray[3]integerValue]){
             RH_DepositeMoneyNumberCell *numberCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyNumberCell defaultReuseIdentifier]] ;
             self.numberCell = numberCell;
             UIToolbar * topView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
@@ -297,27 +307,22 @@
             [numberCell.payMoneyNumLabel setInputAccessoryView:topView];
             return numberCell ;
         }
-        else if (indexPath.item == [_markArray[3]integerValue]){
+        else if (indexPath.item == [_markArray[4]integerValue]){
             RH_DepositeMoneyBankCell *bankCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyBankCell defaultReuseIdentifier]] ;
             return bankCell ;
         }
-        else if (indexPath.item == [_markArray[4]integerValue]){
-            RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
-            reminderCell.delegate = self;
-            return reminderCell ;
-        }
-        else if (indexPath.item==[_markArray[5]integerValue]){
-            RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
-            platformCell.delegate=self;
-            _platformCell = platformCell;
-            [platformCell updateCellWithInfo:nil context:transferModel.mPayModel[_selectNumber]];
-            return platformCell ;
-        }
-        else if (indexPath.item == [_markArray[6]integerValue]){
+        else if (indexPath.item == [_markArray[5]integerValue]){
             RH_DepositeTransferButtonCell *btnCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferButtonCell defaultReuseIdentifier]];
             btnCell.delegate = self;
             return btnCell;
         }
+        else if (indexPath.item == [_markArray[6]integerValue]){
+            RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
+            reminderCell.delegate = self;
+            return reminderCell ;
+        }
+       
+       
     }
     else{
         return self.loadingIndicateTableViewCell ;
@@ -326,18 +331,15 @@
     return nil;
 }
 #pragma mark --depositePayforWay的代理，选择付款的平台
--(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem itemIndex:(NSInteger)itemIndex deposityWay:(NSString *)deposityWay accountId:(NSInteger)accountId rechardType:(NSString *)rechardTypeStr
+-(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem depositeCode:(NSString *)depositeCode depositeName:(NSString *)depositName
 {
     [self.platformCell updateConllectionView];
-    _selectNumber = itemIndex;
-    self.depositeWayString = deposityWay;
-    self.accountId = accountId;
-    self.rechargeTypeStr = rechardTypeStr;
-    if ([self.transferModel.mPayModel[itemIndex].mCode isEqualToString:@"online"]) {
-        _markArray = @[@0,@1,@2,@3,@5,@6,@4];
+    [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
+    if ([depositName isEqualToString:@"在线支付"]) {
+        _markArray = @[@0,@6,@1,@2,@3,@4,@5];
     }
     else {
-        _markArray = @[@0,@2,@3,@6,@5,@1,@4];
+        _markArray = @[@0,@1,@2,@3,@6,@4,@5];
     }
     [self.contentTableView reloadData];
     
@@ -352,11 +354,9 @@
 {
     NSArray *array = @[codeStr,accountModel];
     self.accountModelArray = array;
-    [self.numberCell updateCellWithInfo:nil context:accountModel];
+//    [self.numberCell updateCellWithInfo:nil context:accountModel];
     //判断选择的支付方式的type，来确定是否跳转
-    RH_DepositePayAccountModel *payAccountModel = ConvertToClassPointer(RH_DepositePayAccountModel, accountModel);
-    self.payforType = payAccountModel.mType;
-    self.payAccountModel = payAccountModel;
+    
     [self.contentTableView reloadData];
 }
 #pragma mark --选择金钱的代理
@@ -369,48 +369,48 @@
 #pragma mark --提交按钮的代理
 -(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
 {
-    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
-    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
-        if (self.depositeWayString==nil) {
-            showMessage(self.view, @"请选择付款平台", nil);
-        }
-        else{
-            if ([self.payNumStr integerValue]<self.numberCell.moneyNumMin||[self.payNumStr integerValue]>self.numberCell.moneyNumMax) {
-                showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
-            }
-            else
-            {
-                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.depositeWayString PayAccountID:self.accountId];
-            }
-        }
-    }
-    else{
-        if (self.depositeWayString==nil) {
-            showMessage(self.view, @"请选择付款平台", nil);
-        }
-        else{
-            if (self.payforType==nil) {
-                showMessage(self.view, @"请选择存款方式", nil);
-            }
-            else{
-                if ([self.payNumStr integerValue]<self.numberCell.moneyNumMin||[self.payNumStr integerValue]>self.numberCell.moneyNumMax) {
-                    showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
-                }
-                else{
-                    if ([self.payforType isEqualToString:@"1"]) {
-                        NSMutableArray *mutableArray = [NSMutableArray array];
-                        [mutableArray addObject:self.accountModelArray];
-                        [mutableArray addObject:self.payNumStr];
-                        RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
-                        [self showViewController:transferVC sender:self];
-                    }
-                    else{
-                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.payAccountModel.mDepositWay PayAccountID:self.payAccountModel.mId];
-                    }
-                }
-            }
-        }
-    }
+//    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
+//    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
+//        if (self.depositeWayString==nil) {
+//            showMessage(self.view, @"请选择付款平台", nil);
+//        }
+//        else{
+//            if ([self.payNumStr integerValue]<self.numberCell.moneyNumMin||[self.payNumStr integerValue]>self.numberCell.moneyNumMax) {
+//                showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
+//            }
+//            else
+//            {
+//                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.depositeWayString PayAccountID:self.accountId];
+//            }
+//        }
+//    }
+//    else{
+//        if (self.depositeWayString==nil) {
+//            showMessage(self.view, @"请选择付款平台", nil);
+//        }
+//        else{
+//            if (self.payforType==nil) {
+//                showMessage(self.view, @"请选择存款方式", nil);
+//            }
+//            else{
+//                if ([self.payNumStr integerValue]<self.numberCell.moneyNumMin||[self.payNumStr integerValue]>self.numberCell.moneyNumMax) {
+//                    showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
+//                }
+//                else{
+//                    if ([self.payforType isEqualToString:@"1"]) {
+//                        NSMutableArray *mutableArray = [NSMutableArray array];
+//                        [mutableArray addObject:self.accountModelArray];
+//                        [mutableArray addObject:self.payNumStr];
+//                        RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+//                        [self showViewController:transferVC sender:self];
+//                    }
+//                    else{
+//                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.payAccountModel.mDepositWay PayAccountID:self.payAccountModel.mId];
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 }
 
@@ -428,25 +428,25 @@
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
 {
-    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
-    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
-        [self.serviceRequest startV3OnlinePayWithRechargeAmount:[self.payNumStr floatValue] rechargeType:self.rechargeTypeStr
-                                                   payAccountId:[NSString stringWithFormat:@"%ld&",self.accountId]
-                                                     activityId:self.activityId];
-    }
-    else
-    {
-        if ([self.payforType isEqualToString:@"1"]) {
-            NSMutableArray *mutableArray = [NSMutableArray array];
-            [mutableArray addObject:self.accountModelArray];
-            [mutableArray addObject:self.payNumStr];
-            RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
-            [self showViewController:transferVC sender:self];
-        }
-        else{
-//            [self.serviceRequest startV3OnlinePayWithRechargeAmount:<#(float)#> rechargeType:<#(NSString *)#> payAccountId:<#(NSInteger)#> activityId:<#(NSInteger)#>];
-        }
-    }
+//    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
+//    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
+//        [self.serviceRequest startV3OnlinePayWithRechargeAmount:[self.payNumStr floatValue] rechargeType:self.rechargeTypeStr
+//                                                   payAccountId:[NSString stringWithFormat:@"%ld&",self.accountId]
+//                                                     activityId:self.activityId];
+//    }
+//    else
+//    {
+//        if ([self.payforType isEqualToString:@"1"]) {
+//            NSMutableArray *mutableArray = [NSMutableArray array];
+//            [mutableArray addObject:self.accountModelArray];
+//            [mutableArray addObject:self.payNumStr];
+//            RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+//            [self showViewController:transferVC sender:self];
+//        }
+//        else{
+////            [self.serviceRequest startV3OnlinePayWithRechargeAmount:<#(float)#> rechargeType:<#(NSString *)#> payAccountId:<#(NSInteger)#> activityId:<#(NSInteger)#>];
+//        }
+//    }
 }
 #pragma mark -- 优惠列表
 -(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
@@ -506,37 +506,34 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, data);
-        self.transferModel = transferModel;
-        [self loadDataSuccessWithDatas:transferModel?@[transferModel]:@[]
-                            totalCount:transferModel?1:0] ;
-        for (RH_DepositePayModel *payModel in self.transferModel.mPayModel) {
-            if ([payModel.mCode isEqualToString:@"online"]) {
-                _markArray = @[@0,@1,@2,@3,@5,@6,@4];
-            }
-            else {
-                _markArray = @[@0,@1,@2,@3,@5,@6,@4];
-            }
-        }
+        self.transModelArray  = ConvertToClassPointer(NSArray , data);
+        [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
+                                     totalCount:self.transModelArray?1:0] ;
         
         [self.contentTableView reloadData];
     }
+    else if (type == ServiceRequestTypeV3DepositeOriginChannel)
+    {
+        RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
+        self.channelModel = channelModel;
+        [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
+    }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
-        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
-        self.saleModel = saleModel;
-        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
-                            totalCount:saleModel?1:0] ;
-        //遮罩层
-        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-        shadeView.backgroundColor = [UIColor lightGrayColor];
-        shadeView.alpha = 0.7f;
-        shadeView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-        [shadeView addGestureRecognizer:tap];
-        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-        _shadeView = shadeView;
-        [self.circleView setupViewWithContext:self.saleModel];
-        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+//        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
+//        self.saleModel = saleModel;
+//        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
+//                            totalCount:saleModel?1:0] ;
+//        //遮罩层
+//        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+//        shadeView.backgroundColor = [UIColor lightGrayColor];
+//        shadeView.alpha = 0.7f;
+//        shadeView.userInteractionEnabled = YES;
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+//        [shadeView addGestureRecognizer:tap];
+//        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+//        _shadeView = shadeView;
+//        [self.circleView setupViewWithContext:self.saleModel];
+//        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
 }
 
