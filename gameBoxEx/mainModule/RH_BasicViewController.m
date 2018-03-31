@@ -390,6 +390,12 @@
     [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
     [self.serviceRequest startV3OneStepRecoverySearchId:nil]  ;
 }
+-(void)userInfoViewDidTouchOneStepRefreshButton:(RH_userInfoView *)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"数据刷新中"] ;
+    [self.serviceRequest startV3OneStepRefresh]  ;
+}
 
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView
 {
