@@ -124,6 +124,7 @@
 //#define TEST_DOMAIN           @"192.168.0.150"   //cherry
 //#define TEST_DOMAIN           @"192.168.0.183"   //legend
 //#define TEST_DOMAIN           @"192.168.0.176"   //edon
+//#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"

@@ -13,5 +13,9 @@
 @property(nonatomic,strong,readonly)NSString *mName;
 @property(nonatomic,strong,readonly)NSString *mIconUrl;
 
+@property(nonatomic,strong,readonly)NSString *showCover ;
+
+
+
 @end
 

@@ -22,8 +22,8 @@
         _mAccountType = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTTYPE];
         _mBankCode = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_BANKCODE];
         _mBankName = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_BANKNAME];
-        _mSingleDepositMin = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SINGLEDEPOSITEMIN];
-        _mSingleDepositMax = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SINGLEDEPOSITEMAX];
+        _mSingleDepositMin = [info integerValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SINGLEDEPOSITEMIN];
+        _mSingleDepositMax = [info integerValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SINGLEDEPOSITEMAX];
         _mOpenAcountName = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_OPENACOUNTNAME];
         _mQrCodeUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_QRCODEURL];
         _mRemark = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_REMARK];

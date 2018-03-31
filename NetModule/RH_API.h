@@ -921,12 +921,13 @@
 #define RH_API_NAME_HELPSECONDTYPE        @"mobile-api/origin/secondType.html"
 //请求参数
 #define RH_SP_HELPSECONDTYPE_SEARCHID     @"searchId"
+
 #pragma mark - V3 存款
 #define RH_API_DEPOSITE_DEPOSITEORIGIN   @"mobile-api/depositOrigin/index.html"
 //返回参数
 #define RH_GP_DEPOSITEORIGIN_CODE                   @"code"
 #define RH_GP_DEPOSITEORIGIN_NAME                   @"name"
-#define RH_GP_DEPOSITEORIGIN_ICOURL                 @"icoUrl"
+#define RH_GP_DEPOSITEORIGIN_ICOURL                 @"iconUrl"
 
 //存款渠道初始化
 #pragma mark --V3 存款渠道初始化
@@ -973,7 +974,7 @@
 //请求参数
 #define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
 #define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"depositWay"
-#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"result.payAccountId"
+#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"account"
 //返回参数
 #define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
 #define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"
@@ -1011,7 +1012,7 @@
 //请求参数
 #define RH_SP_ONLINEPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_ONLINEPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_ONLINEPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_ONLINEPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_ONLINEPAY_ACTIVITYID                   @"activityId"           //优惠ID
 
 #pragma mark - V3 扫码支付提交存款
@@ -1019,7 +1020,7 @@
 //请求参数
 #define RH_SP_SCANPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_SCANPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_SCANPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_SCANPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_SCANPAY_PAYERBANKCARD                @"Result.payerBankcard"  //授权码（只针对反扫）
 #define RH_SP_SCANPAY_ACTIVITYID                   @"activityId"           //优惠ID
 
@@ -1029,7 +1030,7 @@
 //请求参数
 #define RH_SP_COMPANYPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_COMPANYPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_COMPANYPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_COMPANYPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_COMPANYPAY_PAYERNAME                    @"result.payerName"  //存款人姓名
 #define RH_SP_COMPANYPAY_RECHARGEADDRESS              @"result.rechargeAddress"  //存款地址
 #define RH_SP_COMPANYPAY_ACTIVITYID                   @"activityId"           //优惠ID
@@ -1040,7 +1041,7 @@
 //请求参数
 #define RH_SP_ELECTRONICPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_ELECTRONICPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_ELECTRONICPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_ELECTRONICPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_ELECTRONICPAY_BANKORDER                    @"result.bankOrder"   //订单后5位
 #define RH_SP_ELECTRONICPAY_PAYERNAME                    @"result.payerName"  //支付户名(只针对支付宝电子支付)
 #define RH_SP_ELECTRONICPAY_PAYERBANKCARD                @"result.payerBankcard"  //支付账号
@@ -1050,7 +1051,7 @@
 #define RH_API_NAME_BITCOINPAY  @"mobile-api/depositOrigin/bitcoinPay.html"
 //请求参数
 #define RH_SP_BITCOINPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_BITCOINPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_BITCOINPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_BITCOINPAY_ACTIVITYID                   @"activityId"           //优惠ID
 #define RH_SP_BITCOINPAY_RETURNTIME                   @"result.returnTime"     //交易时间
 #define RH_SP_BITCOINPAY_PAYERBANKCARD                @"result.payerBankcard"     //比特币钱包地址  long　(26-34位)

@@ -104,8 +104,10 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3ScanPay,               //扫码支付提交存款
     ServiceRequestTypeV3CompanyPay,               //网银支付提交存款
     ServiceRequestTypeV3ElectronicPay,               //电子支付提交存款
+    ServiceRequestTypeV3AlipayElectronicPay,     //支付宝电子支付提交存款
     ServiceRequestTypeV3BitcoinPay,               //比特币支付提交存款
     ServiceRequestTypeV3OneStepRefresh,               //一键刷新
+    ServiceRequestTypeV3CounterPay,             //柜台机存款
 };
 
 
@@ -512,7 +514,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
 
 #pragma mark 存款获取优惠
--(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSInteger)payAccountID;
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
 
 #pragma mark - V3  非免转额度转换初始化
 -(void)startV3GetNoAutoTransferInfoInit ;
@@ -537,35 +539,51 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString *)payAccountId
-                               activityId:(NSInteger)activityId ;
+                               activityId:(NSString *)activityId ;
 
 #pragma mark - V3 扫码支付提交存款
 -(void)startV3ScanPayWithRechargeAmount:(float)amount
                            rechargeType:(NSString *)rechargeType
                            payAccountId:(NSInteger)payAccountId
                           payerBankcard:(NSInteger)payerBankcard
-                             activityId:(NSInteger)activityId ;
+                             activityId:(NSInteger)activityId
+                               account:(NSString *)account;
 
 #pragma mark -  V3 网银支付提交存款
 -(void)startV3CompanyPayWithRechargeAmount:(float)amount
                               rechargeType:(NSString *)rechargeType
-                              payAccountId:(NSInteger)payAccountId
+                              payAccountId:(NSString *)payAccountId
+                                 payerName:(NSString *)payerName
+                                activityId:(NSInteger)activityId ;
+
+#pragma mark -  V3 柜台机支付提交存款
+-(void)startV3CounterPayWithRechargeAmount:(float)amount
+                              rechargeType:(NSString *)rechargeType
+                              payAccountId:(NSString *)payAccountId
                                  payerName:(NSString *)payerName
                            rechargeAddress:(NSString *)rechargeAddress
                                 activityId:(NSInteger)activityId ;
-
 #pragma mark - V3 电子支付提交存款
 -(void)startV3ElectronicPayWithRechargeAmount:(float)amount
                                  rechargeType:(NSString *)rechargeType
-                                 payAccountId:(NSInteger)payAccountId
+                                 payAccountId:(NSString *)payAccountId
                                     bankOrder:(NSInteger)bankOrder
                                     payerName:(NSString *)payerName
                               payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;
 
+#pragma mark - V3 支付宝电子支付提交存款
+-(void)startV3AlipayElectronicPayWithRechargeAmount:(float)amount
+                                 rechargeType:(NSString *)rechargeType
+                                 payAccountId:(NSString *)payAccountId
+                                    bankOrder:(NSInteger)bankOrder
+                                    payerName:(NSString *)payerName
+                                payerBankcard:(NSString *)payerBankcard
+                                   activityId:(NSInteger)activityId ;
+
 #pragma mark - V3 比特币支付提交存款
 -(void)startV3BitcoinPayWithRechargeType:(NSString *)rechargeType
-                              payAccountId:(NSInteger)payAccountId
+                              payAccountId:(NSString *)payAccountId
                               activityId:(NSInteger)activityId
                               returnTime:(NSString *)returnTime
                            payerBankcard:(NSString *)payerBankcard

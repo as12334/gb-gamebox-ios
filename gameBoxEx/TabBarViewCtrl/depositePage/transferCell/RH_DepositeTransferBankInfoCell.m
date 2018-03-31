@@ -9,7 +9,7 @@
 #import "RH_DepositeTransferBankInfoCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
-#import "RH_DepositePayAccountModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeTransferBankInfoCell()
 @property (weak, nonatomic) IBOutlet UIView *bankInfoView;
 @property (weak, nonatomic) IBOutlet UIButton *copBtn;
@@ -23,10 +23,10 @@
 @implementation RH_DepositeTransferBankInfoCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
-    self.bankCardNumLabel.text = [NSString stringWithFormat:@"%ld",accountModel.mAccount];
-    self.bankCardNameLabel.text = accountModel.mBankName;
-    self.bankAdressLabel.text = accountModel.mOpenAcountName;
+    RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
+    self.bankCardNameLabel.text = listModel.mBankName;
+    self.bankAdressLabel.text = listModel.mOpenAcountName;
 }
 
 - (void)awakeFromNib {

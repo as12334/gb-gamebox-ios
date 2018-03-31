@@ -277,10 +277,11 @@
 #define   addConnectChar()                              \
 {                                                       \
 if (!isStart) {                                     \
-[bodyData appendData:DataWithUTF8Code(@"&")];   \
+                    \
 }else{                                              \
 isStart = NO;                                   \
-}                                                   \
+} \
+        [bodyData appendData:DataWithUTF8Code(@"&")];   \
 }
             id value = bodyArguments[key];
 

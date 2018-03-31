@@ -98,8 +98,8 @@
 {
     _selectCellIndex = indexPath.item;
     ifRespondsSelector(self.delegate, @selector(depositeSubmitCircleViewChooseDiscount:)){
-        RH_DepositOriginseachSaleDetailsModel *detaileModel = ConvertToClassPointer(RH_DepositOriginseachSaleDetailsModel, self.salesArray[indexPath.item]);
-        [self.delegate depositeSubmitCircleViewChooseDiscount:detaileModel.mId];
+        
+        [self.delegate depositeSubmitCircleViewChooseDiscount:((RH_DepositOriginseachSaleDetailsModel *)self.salesArray[indexPath.item]).mId];
     }
     [self.tabelView reloadData];
 }

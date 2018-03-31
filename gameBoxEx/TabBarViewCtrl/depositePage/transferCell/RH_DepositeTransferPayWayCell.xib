@@ -41,7 +41,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="leftTitleLabel" destination="Rwx-8z-zLH" id="iTt-lN-m2q"/>
                 <outlet property="payNumTextfield" destination="9Eo-H9-Tvy" id="ORH-bY-0Jv"/>
                 <outlet property="payWayLabel" destination="Rwx-8z-zLH" id="JIR-Jy-had"/>
             </connections>

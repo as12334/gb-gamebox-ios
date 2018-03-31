@@ -26,7 +26,6 @@
 {
     self.transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
     self.payforTitle.text = self.transferModel.mName;
-    NSString *imageStr = [NSString stringWithFormat:@"%@",self.transferModel.mIconUrl];
-    [self.payforIcon sd_setImageWithURL:[NSURL URLWithString:imageStr]];
+    [self.payforIcon sd_setImageWithURL:[NSURL URLWithString:self.transferModel.showCover]];
 }
 @end

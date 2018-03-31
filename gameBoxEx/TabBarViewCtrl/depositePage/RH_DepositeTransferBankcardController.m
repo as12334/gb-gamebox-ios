@@ -13,21 +13,26 @@
 #import "RH_DepositeTransferReminderCell.h"
 #import "RH_DepositeTransferQRCodeCell.h"
 #import "RH_DepositeTransferWXinInfoCell.h"
-#import "RH_DepositePayAccountModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 #import "RH_DepositeTransferOrderNumCell.h"
 #import "RH_DepositeTransferPayAdressCell.h"
 #import "RH_API.h"
 #import "coreLib.h"
 #import "RH_DepositOriginseachSaleModel.h"
-@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate>
+#import "RH_DepositeTransferButtonCell.h"
+@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
 @property(nonatomic,assign)NSInteger indexMark;
 @property(nonatomic,strong)NSArray *transferwayArray;
-@property(nonatomic,strong)RH_DepositePayAccountModel *accountModel;
+@property(nonatomic,strong)RH_DepositeTransferListModel *listModel;
 @property(nonatomic,strong)NSMutableArray *accountMuArray;
 @property(nonatomic,strong)RH_DepositOriginseachSaleModel *saleModel;
+@property(nonatomic,assign)NSInteger activityId;
+@property(nonatomic,strong)RH_DepositeTransferOrderNumCell *transferOrderCell ;
+@property(nonatomic,strong)RH_DepositeTransferPayAdressCell *adressCell;
+@property(nonatomic,strong)RH_DepositeTransferPayWayCell *paywayCell;
 @end
 
 @implementation RH_DepositeTransferBankcardController
@@ -56,41 +61,40 @@
 {
     self.accountMuArray = [NSMutableArray array];
     self.accountMuArray = ConvertToClassPointer(NSMutableArray, context);
-    self.transferwayArray = self.accountMuArray[0];
-    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, self.transferwayArray[1]);
-    self.accountModel = accountModel;
-    if ([self.transferwayArray[0] isEqualToString:@"company"]) {
-        _markArray =@[@0,@1,@2,@3,@4,@5];
+    RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.accountMuArray[1]);
+    self.listModel = listModel;
+    if ([self.accountMuArray[2] isEqualToString:@"company"]) {
+        _markArray =@[@0,@7,@6,@1,@2,@5,@3,@4];
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"wechat"]){
-        _markArray =@[@5,@2,@3,@4,@1,@0];
+    else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
+        _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
 
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"alipay"])
+    else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
     {
-        _markArray =@[@6,@2,@3,@5,@1,@0,@4];
+        _markArray =@[@7,@0,@1,@2,@3,@4,@5,@6];;
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"qqWallet"])
+    else if ([self.accountMuArray[2] isEqualToString:@"qq"])
     {
-        _markArray =@[@5,@2,@3,@4,@1,@0];
+        _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"jdPay"])
+    else if ([self.accountMuArray[2] isEqualToString:@"jd"])
     {
-        _markArray =@[@5,@2,@3,@4,@1,@0];
+        _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"baifuPay"])
+    else if ([self.accountMuArray[2] isEqualToString:@"bd"])
     {
-        _markArray =@[@5,@2,@3,@4,@1,@0];
+        _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"oneCodePay"]){
-        _markArray =@[@5,@2,@4,@3,@1,@0];
+    else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
+        _markArray =@[@7,@0,@1,@2,@5,@6,@3,@4];
     }
-    else if ([self.transferwayArray[0]isEqualToString:@"counter"]){
-        _markArray =@[@0,@1,@2,@4,@6,@5,@3];
+    else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
+        _markArray =@[@0,@7,@6,@1,@2,@3,@4,@5];
     }
-    else if ([self.transferwayArray[0]isEqualToString:@"other"])
+    else if ([self.accountMuArray[2] isEqualToString:@"other"])
     {
-        _markArray = @[@5,@2,@3,@4,@1,@0];
+        _markArray = @[@7,@0,@1,@2,@3,@6,@4,@5];
     }
     else{
        _markArray =@[@0,@1,@2,@3,@4,@5];
@@ -112,15 +116,7 @@
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferWXinInfoCell class]];
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferOrderNumCell class]];
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferPayAdressCell class]];
-    
-    //提交按钮
-    UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    submitBtn.frame = CGRectMake(0, 0, self.contentView.frameWidth, 40);
-    submitBtn.backgroundColor = [UIColor blueColor];
-    [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submitBtn addTarget:self action:@selector(submitDepositeInfo) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView addSubview:submitBtn];
+    [self.contentTableView registerCellWithClass:[RH_DepositeTransferButtonCell class]];
 }
 #pragma mark --点击提交按钮弹框
 -(RH_DepositeSubmitCircleView *)circleView
@@ -129,6 +125,7 @@
         _circleView = [RH_DepositeSubmitCircleView createInstance];
         _circleView.frame = CGRectMake(0, 0, 250, 360);
         _circleView.center = self.view.center;
+        _circleView.delegate = self;
     }
     return _circleView;
 }
@@ -141,17 +138,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.transferwayArray[0] isEqualToString:@"company"] ) {
-        return 4;
-    }
-    else if ([self.transferwayArray[0] isEqualToString:@"wechat"]||[self.transferwayArray[0]isEqualToString:@"counter"]){
+    if ([self.accountMuArray[2] isEqualToString:@"company"] ) {
         return 5;
     }
-    else if ([self.transferwayArray[0] isEqualToString:@"alipay"])
-    {
+    else if ([self.accountMuArray[2] isEqualToString:@"wechat"]||[self.transferwayArray[0]isEqualToString:@"counter"]){
         return 6;
     }
-    return  4 ;
+    else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
+    {
+        return 7;
+    }
+    else if ([self.accountMuArray[2]isEqualToString:@"onecodepay"]){
+        return 5;
+    }
+    return  6 ;
     
 }
 
@@ -161,70 +161,83 @@
         return 180.0f ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
-        return 40.f;
+        return 190.f;
     }
     else if (indexPath.item==[_markArray[2] integerValue])
     {
-        return 40.f;
+        return 190.f;
     }
     else if (indexPath.item==[_markArray[3] integerValue])
     {
-        return 200.f;
-    }
-    else if (indexPath.item==[_markArray[4] integerValue]){
-        return 190.f;
-    }
-//    else if (indexPath.item ==[_markArray[4] integerValue]){
-//        return 200.f;
-//    }
-    else if (indexPath.item ==[_markArray[5] integerValue]){
-        return 180.f;
-    }
-    else if (indexPath.item==[_markArray[6] integerValue]){
         return 44.f;
     }
+    else if (indexPath.item==[_markArray[4] integerValue]){
+        return 44.f;
+    }
+    else if (indexPath.item ==[_markArray[5] integerValue]){
+        return 44.f;
+    }
+    else if (indexPath.item==[_markArray[6] integerValue]){
+        return 80.f;
+    }
+    else if (indexPath.item==[_markArray[7]integerValue]){
+        return 200.f;
+    }
+    
     return 0.f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     if (indexPath.item==[_markArray[0] integerValue]) {
         RH_DepositeTransferBankInfoCell *bankInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferBankInfoCell defaultReuseIdentifier]] ;
 //        payforWayCell.delegate = self;
-        [bankInfoCell updateCellWithInfo:nil context:self.accountModel];
+        [bankInfoCell updateCellWithInfo:nil context:self.listModel];
         return bankInfoCell ;
     }
-    else if (indexPath.item == [_markArray[1] integerValue]){
-        RH_DepositeTransferPayWayCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayWayCell defaultReuseIdentifier]] ;
-        [paywayCell updateCellWithInfo:nil context:self.transferwayArray];
-        return paywayCell ;
-    }
-    else if (indexPath.item == [_markArray[2] integerValue]){
-        RH_DepositeTransferOrderNumCell *orderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferOrderNumCell defaultReuseIdentifier]] ;
-       [orderCell updateCellWithInfo:nil context:self.transferwayArray];
-        return orderCell ;
-    }
-    else if (indexPath.item == [_markArray[3] integerValue]){
-        RH_DepositeTransferReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferReminderCell defaultReuseIdentifier]] ;
-        reminderCell.delegate=self;
-        [reminderCell updateCellWithInfo:nil context:self.accountModel];
-        return reminderCell ;
-    }
-    else if (indexPath.item == [_markArray[4]integerValue]){
-        RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
-        //        platformCell.delegate=self;
-        [qrcodeCell updateCellWithInfo:nil context:self.accountModel];
-        return qrcodeCell ;    }
-    else if (indexPath.item==[_markArray[5]integerValue]){
+    else if (indexPath.item==[_markArray[1]integerValue]){
         RH_DepositeTransferWXinInfoCell *wxInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferWXinInfoCell defaultReuseIdentifier]] ;
-//        platformCell.delegate=self;
-        [wxInfoCell updateCellWithInfo:nil context:self.accountModel];
+        //        platformCell.delegate=self;
+        [wxInfoCell updateCellWithInfo:nil context:self.listModel];
         return wxInfoCell ;
     }
-    else if (indexPath.item == [_markArray[6] integerValue]){
-        RH_DepositeTransferPayAdressCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayAdressCell defaultReuseIdentifier]] ;
-       [paywayCell updateCellWithInfo:nil context:self.transferwayArray];
+    else if (indexPath.item == [_markArray[2]integerValue]){
+        RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
+        //        platformCell.delegate=self;
+        //        [qrcodeCell updateCellWithInfo:nil context:self.accountModel];
+        return qrcodeCell ;
+        
+    }
+    else if (indexPath.item == [_markArray[3] integerValue]){
+        RH_DepositeTransferPayWayCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayWayCell defaultReuseIdentifier]] ;
+        self.paywayCell = paywayCell;
+        [paywayCell updateCellWithInfo:nil context:self.accountMuArray[2]];
         return paywayCell ;
+    }
+    else if (indexPath.item == [_markArray[4] integerValue]){
+        RH_DepositeTransferOrderNumCell *orderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferOrderNumCell defaultReuseIdentifier]] ;
+        self.transferOrderCell = orderCell;
+       [orderCell updateCellWithInfo:nil context:self.accountMuArray[2]];
+        return orderCell ;
+    }
+    else if (indexPath.item == [_markArray[5] integerValue]){
+        RH_DepositeTransferPayAdressCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayAdressCell defaultReuseIdentifier]] ;
+        self.adressCell = paywayCell;
+       [paywayCell updateCellWithInfo:nil context:self.accountMuArray[2]];
+        return paywayCell ;
+    }
+    else if (indexPath.item == [_markArray[6] integerValue]){
+        RH_DepositeTransferButtonCell *btnCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferButtonCell defaultReuseIdentifier]];
+        btnCell.delegate = self;
+        return btnCell;
+    }
+    else if (indexPath.item == [_markArray[7] integerValue]){
+        RH_DepositeTransferReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferReminderCell defaultReuseIdentifier]] ;
+        reminderCell.delegate=self;
+        //        [reminderCell updateCellWithInfo:nil context:self.accountModel];
+        return reminderCell ;
     }
     return nil;
 }
@@ -244,6 +257,40 @@
 {
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
+}
+#pragma mark --点击提交按钮
+-(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
+{
+    [self submitDepositeInfo];
+}
+#pragma mark --选择弹框列表
+-(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
+{
+    self.activityId = activityId;
+}
+#pragma mark -- 点击弹框里面的提交按钮
+-(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
+{
+    if ([self.accountMuArray[2]isEqualToString:@"wechat"]||
+        [self.accountMuArray[2]isEqualToString:@"qq"]||
+        [self.accountMuArray[2]isEqualToString:@"jd"]||
+        [self.accountMuArray[2]isEqualToString:@"bd"]||
+        [self.accountMuArray[2]isEqualToString:@"bitcion"]||
+        [self.accountMuArray[2]isEqualToString:@"unionpay"]) {
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString activityId:self.activityId];
+        
+    }
+    else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
+    {
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+    }
+    else if ([self.accountMuArray[2]isEqualToString:@"company"]){
+        [self.serviceRequest startV3CompanyPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString
+         activityId:self.activityId];
+    }
+    else if ([self.accountMuArray[2]isEqualToString:@"counter"]){
+        [self.serviceRequest startV3CounterPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString rechargeAddress:self.adressCell.adressStr activityId:self.activityId];
+    }
 }
 #pragma mark 数据请求
 
@@ -284,7 +331,7 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
 //
-    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[1] floatValue] PayAccountDepositWay:self.accountModel.mDepositWay PayAccountID:self.accountModel.mId];
+    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
     
 }
 -(void)cancelLoadDataHandle

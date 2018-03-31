@@ -17,8 +17,8 @@
 @property(nonatomic,strong,readonly)NSString *mAccountType;
 @property(nonatomic,strong,readonly)NSString *mBankCode;
 @property(nonatomic,strong,readonly)NSString *mBankName;
-@property(nonatomic,strong,readonly)NSString *mSingleDepositMin;
-@property(nonatomic,strong,readonly)NSString *mSingleDepositMax;
+@property(nonatomic,assign,readonly)NSInteger mSingleDepositMin;
+@property(nonatomic,assign,readonly)NSInteger mSingleDepositMax;
 @property(nonatomic,strong,readonly)NSString *mOpenAcountName;
 @property(nonatomic,strong,readonly)NSString *mQrCodeUrl;
 @property(nonatomic,strong,readonly)NSString *mRemark;

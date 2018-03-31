@@ -634,6 +634,9 @@
 		F69E35442063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E35422063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib */; };
 		F69E35482063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */; };
 		F69E35492063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */; };
+		F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */; };
+		F6A0BC9B206F87B3006DB380 /* RH_DepositeBitcionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */; };
+		F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */; };
 		F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */; };
 		F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */; };
 		F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACC7200457980077CB92 /* RH_BettingRecordDetailCell.xib */; };
@@ -1780,6 +1783,11 @@
 		F69E35452063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferWXinInfoCell.h; sourceTree = "<group>"; };
 		F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferWXinInfoCell.m; sourceTree = "<group>"; };
 		F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferWXinInfoCell.xib; sourceTree = "<group>"; };
+		F6A0BC95206F8787006DB380 /* RH_DepositBitcionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositBitcionViewController.h; sourceTree = "<group>"; };
+		F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositBitcionViewController.m; sourceTree = "<group>"; };
+		F6A0BC98206F87B3006DB380 /* RH_DepositeBitcionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeBitcionCell.h; sourceTree = "<group>"; };
+		F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeBitcionCell.m; sourceTree = "<group>"; };
+		F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeBitcionCell.xib; sourceTree = "<group>"; };
 		F6A2ACC2200457340077CB92 /* RH_BettingRecordDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailController.h; sourceTree = "<group>"; };
 		F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordDetailController.m; sourceTree = "<group>"; };
 		F6A2ACC5200457980077CB92 /* RH_BettingRecordDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailCell.h; sourceTree = "<group>"; };
@@ -3247,6 +3255,8 @@
 				A04E60221F8DAFF000098A65 /* RH_DepositeViewController.m */,
 				F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */,
 				F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */,
+				F6A0BC95206F8787006DB380 /* RH_DepositBitcionViewController.h */,
+				F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */,
 				F69E35352063C50E0028D3A1 /* transferCell */,
 				F69E35322063B2370028D3A1 /* RH_DepositeTransferBankcardController.h */,
 				F69E35332063B2370028D3A1 /* RH_DepositeTransferBankcardController.m */,
@@ -3986,6 +3996,9 @@
 				F696B840206BC9690038D1C5 /* RH_DepositeTransferButtonCell.h */,
 				F696B841206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m */,
 				F696B842206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib */,
+				F6A0BC98206F87B3006DB380 /* RH_DepositeBitcionCell.h */,
+				F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */,
+				F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -4534,6 +4547,7 @@
 				189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */,
 				A07AF4EC2026DBE400D6D559 /* tab_v3_my@2x.png in Resources */,
 				228B931420272904008C8313 /* tab_v3_my_selected_green@3x.png in Resources */,
+				F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */,
 				A06E0F582010801B00EF275A /* BitCoinNone.plist in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
 				A0522A592007350A00A5A6E9 /* ModifySafetyNoRealName.plist in Resources */,
@@ -4880,6 +4894,7 @@
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
+				F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				F6FB640F20142C2800EEED4E /* RH_ForgetPasswordView.m in Sources */,
@@ -4902,6 +4917,7 @@
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */,
+				F6A0BC9B206F87B3006DB380 /* RH_DepositeBitcionCell.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
 				F6FB63B72010C60300EEED4E /* RH_ApplyDiscountSystemPageCell.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,
@@ -5134,7 +5150,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

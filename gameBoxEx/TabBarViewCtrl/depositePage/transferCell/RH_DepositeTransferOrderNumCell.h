@@ -9,5 +9,5 @@
 #import "CLTableViewCell.h"
 
 @interface RH_DepositeTransferOrderNumCell : CLTableViewCell
-
+@property(nonatomic,strong)NSString *transferOrderString;
 @end

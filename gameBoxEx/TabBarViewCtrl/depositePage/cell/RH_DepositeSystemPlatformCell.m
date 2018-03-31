@@ -107,10 +107,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, self.accountModelArray[indexPath.item]);
-//    ifRespondsSelector(self.delegate, @selector(depositeSystemPlatformCellDidtouch:codeString:accountModel:)){
-////        [self.delegate depositeSystemPlatformCellDidtouch:self codeString:self.payModel.mCode accountModel:accountModel] ;
-//    }
+    RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.listModelArray[indexPath.item]);
+    ifRespondsSelector(self.delegate, @selector(depositeSystemPlatformCellDidtouch:payTypeString:accountModel:)){
+        [self.delegate depositeSystemPlatformCellDidtouch:self payTypeString :listModel.mType accountModel:listModel] ;
+    }
     _cellStatusIndex = indexPath.item ;
     [self.collectionView reloadData];
 }
