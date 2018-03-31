@@ -198,6 +198,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ea-P3-nvW" customClass="CLButton">
                         <rect key="frame" x="30" y="561" width="401" height="42"/>
+                        <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="42" id="l3H-FN-ZgL"/>
                         </constraints>
@@ -306,7 +307,7 @@
                 <outlet property="verifyCodeView" destination="uze-dM-Gi9" id="glX-bJ-rhE"/>
                 <outlet property="verifyTextfield" destination="GFx-Cq-Auz" id="Fs6-7s-Kxe"/>
             </connections>
-            <point key="canvasLocation" x="-2121" y="-229"/>
+            <point key="canvasLocation" x="-2346" y="-208"/>
         </tableViewCell>
     </objects>
     <resources>
