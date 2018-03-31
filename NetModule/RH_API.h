@@ -975,6 +975,7 @@
 #define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
 #define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"depositWay"
 #define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"account"
+#define RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER     @"result.bankOrder"
 //返回参数
 #define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
 #define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"

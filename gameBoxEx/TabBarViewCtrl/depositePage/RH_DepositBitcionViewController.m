@@ -10,11 +10,19 @@
 #import "RH_DepositeBitcionCell.h"
 #import "coreLib.h"
 #import "RH_DepositeTransferChannelModel.h"
-@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate>
-@property(nonatomic,strong)RH_DepositeTransferListModel *listModel;
+#import "RH_DepositOriginseachSaleModel.h"
+#import "RH_DepositeSubmitCircleView.h"
+@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate>
+@property(nonatomic,strong)NSArray *listModelArray;
+@property(nonatomic,strong)RH_DepositeBitcionCell *bitcionCell;
+@property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
+@property(nonatomic,strong)UIView *shadeView;
+@property(nonatomic,assign)NSInteger activityId;
+
 @end
 
 @implementation RH_DepositBitcionViewController
+@synthesize circleView = _circleView;
 -(BOOL)isSubViewController
 {
     return YES;
@@ -26,8 +34,8 @@
     [self setupUI];
 }
 -(void)setupViewContext:(id)context{
-    RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
-    self.listModel = listModel;
+    RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, context);
+    self.listModelArray = ConvertToClassPointer(NSArray, channelModel.mArrayListModel);
 }
 #pragma mark --视图
 -(void)setupUI{
@@ -40,7 +48,27 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeBitcionCell class]] ;
 }
-
+#pragma mark --点击提交按钮弹框
+-(RH_DepositeSubmitCircleView *)circleView
+{
+    if (!_circleView) {
+        _circleView = [RH_DepositeSubmitCircleView createInstance];
+        _circleView.frame = CGRectMake(0, 0, 250, 360);
+        _circleView.center = self.view.center;
+        _circleView.delegate = self;
+    }
+    return _circleView;
+}
+#pragma mark -- 优惠列表
+-(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
+{
+    self.activityId = activityId;
+}
+#pragma mark -- 点击弹框里面的提交按钮
+-(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
+{
+    [self.serviceRequest startV3BitcoinPayWithRechargeType:((RH_DepositeTransferListModel*)self.listModelArray[0]).mRechargeType payAccountId:((RH_DepositeTransferListModel*)self.listModelArray[0]).mSearchId activityId:self.activityId returnTime:@"2018-02-28 12:00:00" payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
+}
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -62,12 +90,15 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeBitcionCell *bitecionCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeBitcionCell defaultReuseIdentifier]] ;
+    self.bitcionCell = bitecionCell;
     bitecionCell.delegate = self;
     return bitecionCell ;
 }
 
 #pragma mark --点击提交按钮
--(void)depositeBitcionCellSubmit:(NSMutableArray *)bitcoinInfo{
+-(void)depositeBitcionCellSubmit:(RH_DepositeBitcionCell *)bitcoinCell
+{
+    [self setupPageLoadManager] ;
     
 }
 #pragma mark 数据请求
@@ -108,8 +139,7 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    //
-//    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+    [self.serviceRequest startV3DepositOriginSeachSaleBittionRechargeAmount:[self.bitcionCell.bitcoinNumStr floatValue] PayAccountDepositWay:((RH_DepositeTransferListModel*)self.listModelArray[0]).mDepositWay bittionTxid:[self.bitcionCell.txidStr integerValue] PayAccountID:((RH_DepositeTransferListModel*)self.listModelArray[0]).mSearchId];
     
 }
 -(void)cancelLoadDataHandle
@@ -124,13 +154,27 @@
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
-    if (type == ServiceRequestTypeV3DepositOriginSeachSale) {
-        
+    if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale) {
+        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
+        //        self.saleModel = saleModel;
+        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
+                            totalCount:saleModel?1:0] ;
+        //遮罩层
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [self.circleView setupViewWithContext:saleModel];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
-    if (type == ServiceRequestTypeV3DepositOriginSeachSale) {
+    if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }

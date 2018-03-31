@@ -95,6 +95,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3FirstHelpSecondTyp,     //常见问题二级分类
     ServiceRequestTypeV3HelpDetail,     //常见问题详情
     ServiceRequestTypeV3DepositOriginSeachSale,  //存款获取优惠
+    ServiceRequestTypeV3DepositOriginBittionSeachSale,//比特币优惠
     
     ServiceRequestTypeV3GetNoAutoTransferInfo,    // 非免转额度转换初始化
     ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
@@ -515,6 +516,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark 存款获取优惠
 -(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
+#pragma mark 比特币存款获取优惠
+-(void)startV3DepositOriginSeachSaleBittionRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay bittionTxid:(NSInteger )bankOrder PayAccountID:(NSString *)payAccountID;
 
 #pragma mark - V3  非免转额度转换初始化
 -(void)startV3GetNoAutoTransferInfoInit ;

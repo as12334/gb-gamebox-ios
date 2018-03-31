@@ -1650,6 +1650,29 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositOriginSeachSale
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark 比特币存款优惠
+-(void)startV3DepositOriginSeachSaleBittionRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay bittionTxid:(NSInteger)bankOrder PayAccountID:(NSString *)payAccountID
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
+    [dict setValue:@(bankOrder) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER];
+    [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITESEACHSALE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositOriginBittionSeachSale
+                         scopeType:ServiceScopeTypePublic];
+}
+
 
 #pragma mark - V3  非免转额度转换初始化
 -(void)startV3GetNoAutoTransferInfoInit
@@ -2290,7 +2313,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3OnlinePay){
+//    else if (type == ServiceRequestTypeV3BitcoinPay){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2760,6 +2783,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
+                case ServiceRequestTypeV3DepositOriginBittionSeachSale:
+            {
+                resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
             case ServiceRequestTypeV3GetNoAutoTransferInfo:
             {
                 resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
@@ -2785,6 +2813,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }
                 break;
                 case ServiceRequestTypeV3AlipayElectronicPay:
+            {
+                
+            }
+                break;
+                case ServiceRequestTypeV3BitcoinPay:
             {
                 
             }

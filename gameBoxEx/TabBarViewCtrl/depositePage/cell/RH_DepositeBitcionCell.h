@@ -11,8 +11,12 @@
 @class RH_DepositeBitcionCell;
 @protocol DepositeBitcionCellDelegate<NSObject>
 @optional
--(void)depositeBitcionCellSubmit:(NSMutableArray *)bitcoinInfo;
+-(void)depositeBitcionCellSubmit:(RH_DepositeBitcionCell *)bitcoinCell;
 @end
 @interface RH_DepositeBitcionCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositeBitcionCellDelegate>delegate;
+@property(nonatomic,strong)NSString *bitcoinAdressStr;
+@property(nonatomic,strong)NSString *txidStr;
+@property(nonatomic,strong)NSString *bitcoinNumStr;
+@property(nonatomic,strong)NSString *bitcoinChangeTimeStr;
 @end

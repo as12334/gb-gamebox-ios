@@ -338,10 +338,7 @@
     [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
     self.depositeName = depositName;
     self.depositeCode = depositeCode;
-    if ([depositeCode isEqualToString:@"bitcoin"]) {
-        RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.listModel];
-        [self showViewController:bitcionVC sender:self];
-    }else{
+//   else{
         if ([depositName isEqualToString:@"在线支付"]) {
             _markArray = @[@0,@6,@1,@2,@3,@4,@5];
         }
@@ -349,7 +346,7 @@
             _markArray = @[@0,@1,@2,@3,@6,@4,@5];
         }
         [self.contentTableView reloadData];
-    }
+//    }
 }
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
@@ -542,6 +539,11 @@
         RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
         self.channelModel = channelModel;
         [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
+        
+        if ([self.depositeCode isEqualToString:@"bitcoin"]) {
+            RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.channelModel];
+            [self showViewController:bitcionVC sender:self];
+        }
         [self.contentTableView reloadData];
     }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){

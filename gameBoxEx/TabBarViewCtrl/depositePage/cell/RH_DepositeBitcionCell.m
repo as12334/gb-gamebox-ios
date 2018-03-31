@@ -9,37 +9,40 @@
 #import "RH_DepositeBitcionCell.h"
 #import "coreLib.h"
 @interface RH_DepositeBitcionCell()<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *bitcoinAdressStr;
+@property (weak, nonatomic) IBOutlet UITextField *bitcoinAdressTextfield;
 
-@property (weak, nonatomic) IBOutlet UITextField *txidStr;
-@property (weak, nonatomic) IBOutlet UITextField *bitcoinNum;
-@property (weak, nonatomic) IBOutlet UITextField *bitcoinChangeTimeStr;
-@property (nonatomic,strong)NSMutableArray *bitcoinInfoArray;
+@property (weak, nonatomic) IBOutlet UITextField *txidTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *bitcoinNumTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *bitcoinChangeTimeTextfield;
+
 @end
 @implementation RH_DepositeBitcionCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.bitcoinInfoArray = [NSMutableArray array];
-    self.bitcoinAdressStr.delegate = self;
-    self.txidStr.delegate = self;
-    self.bitcoinNum.delegate = self;
-    self.bitcoinChangeTimeStr.delegate = self;
+    
     // Initialization code
 }
 - (IBAction)submitClick:(id)sender {
-    
+    self.bitcoinAdressTextfield.delegate = self;
+    self.txidTextfield.delegate = self;
+    self.bitcoinNumTextfield.delegate = self;
+    self.bitcoinChangeTimeTextfield.delegate = self;
+    [self.bitcoinAdressTextfield resignFirstResponder];
+    [self.txidTextfield resignFirstResponder];
+    [self.bitcoinNumTextfield resignFirstResponder];
+    [self.bitcoinChangeTimeTextfield resignFirstResponder];
     ifRespondsSelector(self.delegate, @selector(depositeBitcionCellSubmit:)){
-        [self.delegate depositeBitcionCellSubmit:self.bitcoinInfoArray] ;
+        [self.delegate depositeBitcionCellSubmit:self] ;
     }
     
 }
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    [self.bitcoinInfoArray addObject:self.bitcoinAdressStr.text];
-    [self.bitcoinInfoArray addObject:self.txidStr.text];
-    [self.bitcoinInfoArray addObject:self.bitcoinNum.text];
-    [self.bitcoinInfoArray addObject:self.bitcoinChangeTimeStr.text];
+    self.bitcoinAdressStr = self.bitcoinAdressTextfield.text;
+    self.txidStr = self.txidTextfield.text;
+    self.bitcoinNumStr = self.bitcoinNumTextfield.text;
+    self.bitcoinChangeTimeStr = self.bitcoinChangeTimeTextfield.text;
     return YES;
 }
 
