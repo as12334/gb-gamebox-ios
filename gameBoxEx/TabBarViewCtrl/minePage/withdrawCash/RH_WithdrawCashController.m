@@ -231,6 +231,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonConfirmHandle {
     if (self.appDelegate.isLogin) {
+        [self.cashCell.textField resignFirstResponder] ;
         CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
         if (self.mainSegmentControl.selectedSegmentIndex==0){
             if ([self _checkShowBankCardInfo:YES]) {
@@ -467,7 +468,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 -(void)withdrawMoneyLowCellDidTouchQuickButton:(RH_WithdrawMoneyLowCell*)withdrawLowCell
 {
     [self backBarButtonItemHandle] ;
-    self.myTabBarController.selectedIndex = 0 ;
+    self.myTabBarController.selectedIndex = 1 ;
 }
 
 #pragma mark- tableview Managentment

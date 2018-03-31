@@ -16,6 +16,7 @@
 @protocol UserInfoViewDelegate
 @optional
 -(void)userInfoViewDidTouchOneStepRecoryButton:(RH_userInfoView*)userInfoView ;
+-(void)userInfoViewDidTouchOneStepRefreshButton:(RH_userInfoView*)userInfoView ;
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView ;
 @end
 

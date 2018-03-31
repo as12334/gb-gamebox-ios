@@ -270,18 +270,26 @@
         bodyData = [NSMutableData data];
 
         BOOL isStart = YES;
-
+        
         for (NSString * key in bodyArguments.allKeys) {
 
 
+//#define   addConnectChar()                              \
+//{                                                       \
+//if (!isStart) {                                     \
+//[bodyData appendData:DataWithUTF8Code(@"&")];   \
+//}else{                                              \
+//isStart = NO;                                   \
+//}                                                   \
+//}
 #define   addConnectChar()                              \
 {                                                       \
 if (!isStart) {                                     \
-                    \
+isStart = YES;\
 }else{                                              \
 isStart = NO;                                   \
-} \
-        [bodyData appendData:DataWithUTF8Code(@"&")];   \
+}                                                   \
+[bodyData appendData:DataWithUTF8Code(@"&")];    \
 }
             id value = bodyArguments[key];
 
@@ -303,10 +311,9 @@ isStart = NO;                                   \
                 [bodyData appendData:DataWithUTF8Code(tmpStr)];
             }
         }
-
+        NSLog(@"body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]) ;
 //        HttpRequestDebugLog("body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
     }
-
     return bodyData;
 }
 

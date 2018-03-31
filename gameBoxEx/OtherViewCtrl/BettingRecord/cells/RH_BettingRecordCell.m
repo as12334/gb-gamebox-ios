@@ -75,29 +75,50 @@
         titleCell.labTitle.intrinsicSizeExpansionLength = CGSizeMake(10.0f, 10.0f) ;
         titleCell.titleFont = [UIFont systemFontOfSize:12.0f] ;
         titleCell.titleColor = [UIColor blackColor] ;
-    }
-    
+    }    
     switch (indexPath.item) {
         case 0: //游戏名称
+            titleCell.titleColor = [UIColor blackColor] ;
             titleCell.labTitle.text = self.bettingInfoModel.showName ;
             break;
-        
+
         case 1: //投注时间
+            titleCell.titleColor = [UIColor blackColor] ;
             titleCell.labTitle.text = self.bettingInfoModel.showBettingDate ;
             break;
-            
+
         case 2: //投注额
+            titleCell.titleColor = [UIColor blackColor] ;
             titleCell.labTitle.text = self.bettingInfoModel.showSingleAmount ;
             break;
-        
+
         case 3: //派彩
+            if ([self.bettingInfoModel.mOrderState isEqualToString:@"settle"] && self.bettingInfoModel.mProfitAmount >0) {
+                titleCell.labTitle.textColor = colorWithRGB(77, 206, 131) ;
+            }else if ([self.bettingInfoModel.mOrderState isEqualToString:@"settle"] && self.bettingInfoModel.mProfitAmount < 0)
+            {
+                titleCell.labTitle.textColor = colorWithRGB(243, 66, 53) ;
+            }else if ([self.bettingInfoModel.mOrderState isEqualToString:@"settle"] &&
+                      self.bettingInfoModel.mProfitAmount == 0)
+            {
+                titleCell.labTitle.textColor = [UIColor blackColor] ;
+            }
             titleCell.labTitle.text = self.bettingInfoModel.showProfitAmount ;
             break;
-       
+
         case 4: //状态
+            if ([self.bettingInfoModel.mOrderState isEqualToString:@"settle"]) {
+                titleCell.labTitle.textColor = colorWithRGB(77, 206, 131) ;
+            }else if ([self.bettingInfoModel.mOrderState isEqualToString:@"pending_settle"])
+            {
+                titleCell.labTitle.textColor = colorWithRGB(253, 160, 0) ;
+            }else
+            {
+                titleCell.labTitle.textColor = colorWithRGB(234, 94, 94) ;
+            }
             titleCell.labTitle.text = self.bettingInfoModel.showStatus ;
             break;
-            
+
         default:
             break;
     }

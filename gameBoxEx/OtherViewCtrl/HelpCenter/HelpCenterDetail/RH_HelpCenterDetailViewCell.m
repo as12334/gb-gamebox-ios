@@ -19,6 +19,7 @@
 {
     UIButton *titleBtn;
     UIWebView *webView ;
+    UILabel *contentLab ;
     RH_HelpCenterDetailModel *dataModel  ;
 }
 
@@ -26,12 +27,21 @@
 {
     RH_HelpCenterDetailModel *model =  ConvertToClassPointer(RH_HelpCenterDetailModel, context) ;
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,tableView.frameWidth, 0)];
-    label.text = model.helpContent;
+    NSString *str = model.helpContent ;
+    NSScanner * scanner = [NSScanner scannerWithString:str];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        str = [str stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    label.text = str;
     label.font = [UIFont systemFontOfSize:16.f];
     NSDictionary *attrs = @{NSFontAttributeName : label.font};
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
-    CGSize size = [model.helpContent boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+    CGSize size = [str boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
     return 100.f +size.height;
 }
 
@@ -72,13 +82,18 @@
     [self.contentView addSubview:webView];
     webView.delegate = self ;
     webView.whc_LeftSpace(0).whc_TopSpaceToView(0, titleBtn).whc_RightSpace(0).whc_HeightAuto() ;
+    
+    contentLab = [UILabel new] ;
+    [self.contentView addSubview:contentLab];
+    contentLab.whc_LeftSpace(10).whc_TopSpaceToView(0, titleBtn).whc_RightSpace(10).whc_HeightAuto() ;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_HelpCenterDetailModel *model =  ConvertToClassPointer(RH_HelpCenterDetailModel, context) ;
     [titleBtn setTitle:[NSString stringWithFormat:@"%@",model.helpTitle] forState:UIControlStateNormal];
-    [webView loadHTMLString:model.helpContent baseURL:nil] ;
+//    [webView loadHTMLString:[self filterHTML:model.helpContent] baseURL:nil] ;
+    contentLab.text = [self filterHTML:model.helpContent] ;
     dataModel = model ;
 //    if (!self.isOpen) {
 //        webView.hidden = NO ;

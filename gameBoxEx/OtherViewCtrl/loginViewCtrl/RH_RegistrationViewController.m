@@ -33,6 +33,7 @@
 - (BOOL)hasNavigationBar {
     return YES;
 }
+
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
