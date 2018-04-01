@@ -112,21 +112,21 @@
     mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 100);
     [mainScrollView addSubview:self.stackView];
     self.stackView.whc_TopSpace(70).whc_LeftSpace(20).whc_Width(screenSize().width - 40).whc_HeightAuto();
-    if (registrationInitModel.registCodeField) {
-        RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
-        FieldModel *field = [[FieldModel alloc] init];
-        field.name = @"regCode";
-        [item setFieldModel:field];
-        [item setRequiredJson:registrationInitModel.requiredJson];
-        [self.stackView addSubview:item];
-    }
+//    if (registrationInitModel.registCodeField) {
+//        RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+//        FieldModel *field = [[FieldModel alloc] init];
+//        field.name = @"regCode";
+//        [item setFieldModel:field];
+//        [item setRequiredJson:registrationInitModel.requiredJson];
+//        [self.stackView addSubview:item];
+//    }
     for (FieldModel *field in registrationInitModel.fieldModel) {
-        if ([field.name isEqualToString:@"regCode"]) {
-            continue;
-        }
-        if ([field.name isEqualToString:@"serviceTerms"]) {
-            continue;
-        }
+//        if ([field.name isEqualToString:@"regCode"]) {
+////            continue;
+//        }
+//        if ([field.name isEqualToString:@"serviceTerms"]) {
+////            continue;
+//        }
         RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
 //        FieldModel *field;
 //        for (FieldModel *model in registrationInitModel.fieldModel) {
@@ -135,7 +135,6 @@
 //            }
 //        }
         [item setFieldModel:field];
-        [item setRequiredJson:registrationInitModel.requiredJson];
         if ([field.name isEqualToString:@"defaultTimezone"]) {
             [item setTimeZone:registrationInitModel.paramsModel.timezone];
         }
@@ -161,16 +160,13 @@
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"password2";
             [item setFieldModel:field];
-            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
-        
         if ([field.name isEqualToString:@"110"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"110verify";
             [item setFieldModel:field];
-            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
         if ([field.name isEqualToString:@"paymentPassword"]) {
@@ -178,7 +174,6 @@
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"paymentPassword2";
             [item setFieldModel:field];
-            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
         if ([field.name isEqualToString:@"securityIssues"]) {
@@ -186,9 +181,9 @@
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"securityIssues2";
             [item setFieldModel:field];
-            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
+        [item setRequiredJson:registrationInitModel.requiredJson];
     }
     
     [self.stackView whc_StartLayout];
