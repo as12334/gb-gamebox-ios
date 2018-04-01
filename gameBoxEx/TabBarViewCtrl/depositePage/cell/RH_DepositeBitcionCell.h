@@ -19,4 +19,6 @@
 @property(nonatomic,strong)NSString *txidStr;
 @property(nonatomic,strong)NSString *bitcoinNumStr;
 @property(nonatomic,strong)NSString *bitcoinChangeTimeStr;
+
+@property (nonatomic,strong) NSDate *bitConDate ;
 @end
