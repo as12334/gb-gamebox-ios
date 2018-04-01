@@ -6,6 +6,7 @@
 //  Copyright © 2017年 jinguihua. All rights reserved.
 //
 
+#import "RH_RegistrationViewController.h"
 #import "RH_BasicViewController.h"
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
@@ -323,7 +324,8 @@
 -(void)signButtonItemHandle
 {
     self.appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
-    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+//    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+    [self showViewController:[RH_RegistrationViewController viewController] sender:nil];
 }
 
 #pragma mark-

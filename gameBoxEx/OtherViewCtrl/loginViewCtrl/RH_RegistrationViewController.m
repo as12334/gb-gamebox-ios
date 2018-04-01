@@ -5,7 +5,7 @@
 //  Created by Lenny on 2018/3/22.
 //  Copyright © 2018年 luis. All rights reserved.
 //
-
+#import "WHC_KeyboardManager.h"
 #import "RH_RegisetInitModel.h"
 #import "RH_RegistrationViewController.h"
 #import "coreLib.h"
@@ -90,7 +90,7 @@
     self.title = @"免费注册";
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在加载..." detailText:@"请稍候"];
     animate_Item_Index = 1;
-    
+    [[WHC_KeyboardManager share] addMonitorViewController:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -117,56 +117,60 @@
         FieldModel *field = [[FieldModel alloc] init];
         field.name = @"regCode";
         [item setFieldModel:field];
+        [item setRequiredJson:registrationInitModel.requiredJson];
         [self.stackView addSubview:item];
     }
-    for (NSString *obj in registrationInitModel.requiredJson) {
-        if ([obj isEqualToString:@"regCode"]) {
+    for (FieldModel *field in registrationInitModel.fieldModel) {
+        if ([field.name isEqualToString:@"regCode"]) {
             continue;
         }
-        if ([obj isEqualToString:@"serviceTerms"]) {
+        if ([field.name isEqualToString:@"serviceTerms"]) {
             continue;
         }
         RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
-        FieldModel *field;
-        for (FieldModel *model in registrationInitModel.fieldModel) {
-            if ([model.name isEqualToString:obj]) {
-                field = model;
-            }
-        }
+//        FieldModel *field;
+//        for (FieldModel *model in registrationInitModel.fieldModel) {
+//            if ([model.name isEqualToString:obj]) {
+//                field = model;
+//            }
+//        }
         [item setFieldModel:field];
-        if ([obj isEqualToString:@"defaultTimezone"]) {
+        [item setRequiredJson:registrationInitModel.requiredJson];
+        if ([field.name isEqualToString:@"defaultTimezone"]) {
             [item setTimeZone:registrationInitModel.paramsModel.timezone];
         }
-        if ([obj isEqualToString:@"birthday"]) {
+        if ([field.name isEqualToString:@"birthday"]) {
             [item setBirthDayMin:registrationInitModel.paramsModel.minDate MaxDate:registrationInitModel.paramsModel.maxDate];
         }
-        if ([obj isEqualToString:@"sex"]) {
+        if ([field.name isEqualToString:@"sex"]) {
             [item setSexModel:registrationInitModel.selectOptionModel.sexModel];
         }
-        if ([obj isEqualToString:@"mainCurrency"]) {
+        if ([field.name isEqualToString:@"mainCurrency"]) {
             [item setMainCurrencyModel:registrationInitModel.selectOptionModel.mainCurrencyModel];
         }
-        if ([obj isEqualToString:@"defaultLocale"]) {
+        if ([field.name isEqualToString:@"defaultLocale"]) {
             [item setDefaultLocale:registrationInitModel.selectOptionModel.defaultLocaleModel];
         }
-        if ([obj isEqualToString:@"securityIssues"]) {
+        if ([field.name isEqualToString:@"securityIssues"]) {
             [item setSecurityIssues:registrationInitModel.selectOptionModel.securityIssuesModel];
         }
         [self.stackView addSubview:item];
-        //密码输入框，要多插入一个
+        
         if ([field.name isEqualToString:@"password"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"password2";
             [item setFieldModel:field];
+            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
-        //手机号输入框。也要多插入一个，输入手机号验证码
+        
         if ([field.name isEqualToString:@"110"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"110verify";
             [item setFieldModel:field];
+            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
         if ([field.name isEqualToString:@"paymentPassword"]) {
@@ -174,6 +178,7 @@
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"paymentPassword2";
             [item setFieldModel:field];
+            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
         if ([field.name isEqualToString:@"securityIssues"]) {
@@ -181,9 +186,11 @@
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"securityIssues2";
             [item setFieldModel:field];
+            [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
     }
+    
     [self.stackView whc_StartLayout];
     [self.view layoutIfNeeded];
     if (self.stackView.boundHeigh > screenSize().height) {
@@ -458,8 +465,7 @@
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
-    NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
-    NSLog(@"%@", dict);
+
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     if (type == ServiceRequestTypeV3RegiestInit) {
         registrationInitModel =( RH_RegisetInitModel *)data;
@@ -467,11 +473,18 @@
         [self layoutContentViews];
     }
     if (type == ServiceRequestTypeV3RegiestSubmit) {
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+            NSLog(@"%@", dict);
         if ([dict[@"success"] isEqual:@true]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[self obtainContent:@"username"] forKey:@"account"];
+            [defaults setObject:[self obtainContent:@"password"] forKey:@"password"];
+
+            [defaults synchronize];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didRegistratedSuccessful" object:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                 [self.navigationController popViewControllerAnimated:YES];
+                 [self.navigationController popToRootViewControllerAnimated:YES];
             });
-           
         }
     }
 
