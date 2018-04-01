@@ -1924,6 +1924,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _lboi //繁星国际
+
+#define CODE    @"lboi"
+#define S        @"550e127694b6fda273e7c8398229a019"
+#define SID        @"511"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #endif
 
 #endif /* RH_Configure_h */
