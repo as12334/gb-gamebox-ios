@@ -47,7 +47,7 @@
                 <outlet property="collectionView" destination="uhg-gV-Hfd" id="XEm-jk-P4a"/>
                 <outlet property="lineView" destination="BF4-as-efV" id="Cfh-lC-GjJ"/>
             </connections>
-            <point key="canvasLocation" x="-1231" y="-1315.5"/>
+            <point key="canvasLocation" x="-1150" y="-1320"/>
         </tableViewCell>
     </objects>
 </document>

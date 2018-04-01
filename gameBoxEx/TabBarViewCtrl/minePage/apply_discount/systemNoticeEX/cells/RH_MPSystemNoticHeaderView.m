@@ -46,7 +46,7 @@
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.kuaixuanBtn.backgroundColor = ColorWithNumberRGB(0x1b75d9);
     }else{
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
     }

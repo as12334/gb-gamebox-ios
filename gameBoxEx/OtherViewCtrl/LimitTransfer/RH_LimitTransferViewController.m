@@ -16,13 +16,14 @@
 #import "RH_BankPickerSelectView.h"
 #import "RH_GetNoAutoTransferInfoModel.h"
 
-@interface RH_LimitTransferViewController ()<CLTableViewManagementDelegate, LimitTransferTopViewDelegate, BankPickerSelectViewDelegate,RH_LimitTransferCellDelegate>
+@interface RH_LimitTransferViewController ()<CLTableViewManagementDelegate, LimitTransferTopViewDelegate, BankPickerSelectViewDelegate,RH_LimitTransferCellDelegate,UITextFieldDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic, strong, readonly) UIView  *footerView;
 @property (nonatomic, strong) RH_LimitTransferTopView  *tableTopView;
 @property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectViewTransferIn;
 @property (nonatomic, strong, readonly) RH_BankPickerSelectView *selectViewTransferOut;
 @property (nonatomic , strong)RH_GetNoAutoTransferInfoModel *selectInfoModel ;
+@property (nonatomic , strong)RH_LimitTransferCell *limitCell ;
 
 @end
 
@@ -32,6 +33,8 @@
     NSString *_selectInValue ;
     NSString *_selectOutText ;
     NSString *_selectOutValue ;
+    NSString *_newToken;
+    RH_UserApiBalanceModel *_userBalanceModel ;
 }
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize footerView = _footerView;
@@ -42,8 +45,6 @@
 - (BOOL)isSubViewController {
     return  YES;
 }
-
-
 
 -(RH_BankPickerSelectView *)selectViewTransferIn
 {
@@ -67,25 +68,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = @"额度转换";
     [self setupInfo];
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
     //转出默认值
     _selectOutValue = @"wallet";
+    _selectOutText = @"我的钱包";
     _selectInValue = @"" ;
+    [self.view endEditing:YES];
 }
 
 - (void)setupInfo
 {
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
-    self.contentTableView.sectionHeaderHeight = 9.0f ;
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
+    self.contentTableView.sectionHeaderHeight = 0.0f ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     [self.contentTableView registerCellWithClass:[RH_LimitTransferCell class]] ;
     [self.contentView addSubview:self.contentTableView];
     self.contentTableView.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
     self.tableTopView = [[RH_LimitTransferTopView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 265)];
     self.tableTopView.delegate = self;
+    self.tableTopView.amountTextfield.delegate = self ;
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 120.f)]  ;
     _footerView.backgroundColor = [UIColor whiteColor] ;
     UIButton *oneStepRecoryBtn  =  [UIButton new] ;  //一键回收
@@ -121,11 +124,11 @@
         oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
         oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
         
-        oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
     }else{
         oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
@@ -136,6 +139,15 @@
     [self setupPageLoadManager] ;
 }
 
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.tableTopView.amountTextfield resignFirstResponder] ;
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
+}
+
 #pragma mark PickerView
 - (void)bankPickerSelectViewDidTouchCancelButton:(RH_BankPickerSelectView *)bankPickerSelectView {
     [self hideBankPickerSelectViewWithType:@"transferOut"];
@@ -143,6 +155,7 @@
     
 }
 - (void)bankPickerSelectViewDidTouchConfirmButton:(RH_BankPickerSelectView *)bankPickerSelectView WithSelectedBank:(id)bankModel {
+   
     if (bankPickerSelectView.tag == 110) {
         _selectOutText =  ((SelectModel *)bankModel).mText ;
         _selectOutValue =  ((SelectModel *)bankModel).mValue ;
@@ -187,8 +200,48 @@
     [self hideBankPickerSelectViewWithType:@"transferIn"];
 }
 
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
+
 #pragma mark RH_LimitTransferTopView
 - (void)limitTransferTopViewDidTouchTransferInBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView {
+     [_tableTopView.amountTextfield resignFirstResponder] ;
     if (self.selectViewTransferIn.superview == nil) {
         [self hideBankPickerSelectViewWithType:@"transferOut"];
         [self showBankPickerSelectViewWithType:@"transferIn"];
@@ -197,6 +250,7 @@
     }
 }
 - (void)limitTransferTopViewDidTouchTransferOutBtn:(UIButton *)sender withView:(RH_LimitTransferTopView *)topView {
+     [_tableTopView.amountTextfield resignFirstResponder] ;
     if (self.selectViewTransferOut.superview == nil) {
         [self hideBankPickerSelectViewWithType:@"transferIn"];
         [self showBankPickerSelectViewWithType:@"transferOut"];
@@ -208,7 +262,13 @@
 #pragma mark - topView 余额刷新 = 一键刷新
 -(void)limitTransferTopViewDidTouchRefreshBalanceBtn
 {
+    [_tableTopView.amountTextfield resignFirstResponder] ;
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
     // 请求一键刷新余额
+    [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    [self.serviceRequest startV3OneStepRefresh] ;
+    
 }
 
 -(void)showBankPickerSelectViewWithType:(NSString *)type
@@ -303,8 +363,8 @@
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3UserInfo] ;
     [self.serviceRequest startV3GetNoAutoTransferInfoInit] ;
+    [self.serviceRequest startV3UserInfo] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -333,38 +393,86 @@
             self.contentTableView.tableFooterView = nil ;
         }else
         {
-            self.contentTableView.tableHeaderView = nil ;
+            self.contentTableView.tableHeaderView = nil;
             self.contentTableView.tableFooterView = self.footerView ;
         }
+       
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
+            showSuccessMessage(self.view, @"提示信息", [data objectForKey:@"message"]) ;
         }] ;
+         [self startUpdateData_e:NO];
     }else if (type == ServiceRequestTypeV3RefreshApi){
+        NSLog(@"+++%@+++++",data) ;
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
+        [_limitCell updateCellWithInfoModel:data];
+         [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3GetNoAutoTransferInfo)
     {
         //额度转换初始化
         _selectInfoModel = ConvertToClassPointer(RH_GetNoAutoTransferInfoModel, data) ;
         [self.tableTopView topViewUpdataTopDateWithModel:_selectInfoModel];
+        [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
         // 额度转换提交
+        if (data) {
+            _newToken =  [[data objectForKey:@"data"] objectForKey:@"token"] ;
+            if ([[[data objectForKey:@"data"] objectForKey:@"state"] boolValue] == YES ) {
+                if ([[[data objectForKey:@"data"] objectForKey:@"result"] integerValue] == 0) {
+                    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                        showSuccessMessage(self.view, @"提示信息", @"额度转换成功") ;
+                    }] ;
+                }
+//                [self.serviceRequest startV3OneStepRefresh] ;
+                [self startUpdateData_e:NO];
+                [self.contentTableView reloadData] ;
+            }else if ([[[data objectForKey:@"data"] objectForKey:@"result"] integerValue] == 1)
+            {
+                [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                    showSuccessMessage(self.view, @"提示信息", @"额度转换失败") ;
+                }] ;
+            }else if ([[data objectForKey:@"data"] objectForKey:@"result"])
+            {
+                //获取失败的orderId
+                NSString *orderId = [[data objectForKey:@"data"] objectForKey:@"orderId"] ;
+                NSString *failToken = [[data objectForKey:@"data"] objectForKey:@"token"] ;
+                [self.serviceRequest startV3ReconnectTransferWithTransactionNo:orderId withToken:failToken] ;
+            }
+        }else
+        {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showSuccessMessage(self.view, @"提示信息", @"转账失败") ;
+            }] ;
+        }
+        _selectOutText = @"我的钱包";
+        _selectOutValue = @"wallet" ;
+        [_tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText] ;
+        [_tableTopView updataBTnTitleTransferInBtnTitle:@"请选择"] ;
+        _selectInValue = @"" ;
+        _selectInText = @"" ;
+        [_tableTopView topViewUpdataAmountText:@""] ;
+         [self.contentTableView reloadData] ;
+    }else if (type == ServiceRequestTypeV3OneStepRefresh)
+    {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
-            [self.serviceRequest startV3GetUserAssertInfo] ;
+            showSuccessMessage(self.view, @"提示信息", @"刷新成功") ;
         }] ;
+        NSArray *userApiModel = ConvertToClassPointer(NSArray, data) ;
+        [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
+                            totalCount:userApiModel?userApiModel.count:0] ;
+         [self.contentTableView reloadData] ;
+    }else if (type == ServiceRequestTypeV3ReconnectTransfer)
+    {
+        //异常订单
     }
-     [self.contentTableView reloadData] ;
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3UserInfo) {
-        [self loadDataFailWithError:error] ;
+        showErrorMessage(nil, error, nil) ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(nil, error, @"资金回收失败") ;
@@ -376,7 +484,24 @@
         //额度转换初始化
         [self loadDataFailWithError:error] ;
     }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
-        [self loadDataFailWithError:error] ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+             showErrorMessage(nil, error, @"额度转换失败") ;
+        }] ;
+        _newToken = [error.userInfo objectForKey:@"token"] ;
+        _selectOutText = @"我的钱包";
+        _selectOutValue = @"wallet" ;
+        [_tableTopView updataBTnTitletransferOutBtnTitle:_selectOutText] ;
+        [_tableTopView updataBTnTitleTransferInBtnTitle:@"请选择"] ;
+        _selectInValue = @"" ;
+        _selectInText = @"" ;
+        [_tableTopView topViewUpdataAmountText:@""] ;
+    }else if (type == ServiceRequestTypeV3OneStepRefresh)
+    {
+        showErrorMessage(nil, error, nil) ;
+    }else if (type == ServiceRequestTypeV3ReconnectTransfer)
+    {
+        //异常订单
+        showErrorMessage(nil, error, @"提示信息") ;
     }
 }
 
@@ -411,10 +536,15 @@
 #pragma mark - RH_LimitTransferCellDelegate 单个回收 && 单个刷新
 -(void)limitTransferCelRecoryAndRefreshBtnDidTouch:(RH_LimitTransferCell *)limitTransferCell withBtn:(UIButton *)sender withModel:(RH_UserApiBalanceModel *)model
 {
+     [_tableTopView.amountTextfield resignFirstResponder] ;
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
+    _limitCell = limitTransferCell ;
+     _userBalanceModel = ConvertToClassPointer(RH_UserApiBalanceModel, model) ;
     if ([sender.titleLabel.text isEqualToString:@"回收"]) {
         //单个回收
         if (model.mBalance == 0 ) {
-            showMessage(self.view, nil, @"当前余额为0不能回收") ;
+            showMessage(self.view, nil, @"没有可回收的api") ;
             return ;
         }
         [self showProgressIndicatorViewWithAnimated:NO title:@"回收中..."] ;
@@ -423,13 +553,15 @@
     {
         // 单个刷新
         [self showProgressIndicatorViewWithAnimated:NO title:@"刷新中..."] ;
-        [self.serviceRequest startV3RefreshApiWithApiId:model.mApiID] ;
-        
+        [self.serviceRequest startV3RefreshApiWithApiId:[NSString stringWithFormat:@"%ld",model.mApiID]] ;
     }
 }
 #pragma mark - 一键回收
 -(void)oneStepRecoryBtnClick
 {
+    [_tableTopView.amountTextfield resignFirstResponder] ;
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
     [self showProgressIndicatorViewWithAnimated:NO title:@"一键回收中..."] ;
     [self.serviceRequest startV3OneStepRecoverySearchId:nil] ;
 }
@@ -437,17 +569,24 @@
 #pragma mark - 一键刷新
 -(void)oneStepRefreshBtnClick
 {
-    
+    [_tableTopView.amountTextfield resignFirstResponder] ;
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
+    [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    [self.serviceRequest startV3OneStepRefresh] ;
 }
 
 #pragma mark - 确认提交
 -(void)limitTransferTopViewDidTouchSureSubmitBtnWithamount:(NSString *)amount
 {
-    if ([_selectOutValue isEqualToString:@""]) {
+    [_tableTopView.amountTextfield resignFirstResponder] ;
+    [self hideBankPickerSelectViewWithType:@"transferOut"];
+    [self hideBankPickerSelectViewWithType:@"transferIn"];
+    if ([_selectOutValue isEqualToString:@""] || _selectOutValue == nil) {
         showMessage(self.view, nil, @"请选择转出游戏名称") ;
         return ;
     }
-    if ([_selectInValue isEqualToString:@""]) {
+    if ([_selectInValue isEqualToString:@""] || _selectInValue == nil) {
         showMessage(self.view, nil, @"请选择转入游戏名称") ;
         return ;
     }
@@ -456,7 +595,8 @@
         return ;
     }
     [self showProgressIndicatorViewWithAnimated:NO title:@"提交中..."] ;
-    [self.serviceRequest startV3SubitTransfersMoneyToken:_selectInfoModel.mToken transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
+    NSString *_token = _newToken?:_selectInfoModel.mToken ;
+    [self.serviceRequest startV3SubitTransfersMoneyToken:[NSString stringWithFormat:@"%@",_token] transferOut:_selectOutValue transferInto:_selectInValue transferAmount:[amount floatValue]];
 }
 
 

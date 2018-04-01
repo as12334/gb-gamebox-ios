@@ -11,7 +11,7 @@
 @class RH_DepositeSystemPlatformCell;
 @protocol DepositeSystemPlatformCellDelegate<NSObject>
 @optional
--(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell*)cell codeString:(NSString *)codeStr accountModel:(id)accountModel;
+-(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell*)cell payTypeString:(NSString *)payType accountModel:(id)accountModel;
 @end
 @interface RH_DepositeSystemPlatformCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositeSystemPlatformCellDelegate>delegate;

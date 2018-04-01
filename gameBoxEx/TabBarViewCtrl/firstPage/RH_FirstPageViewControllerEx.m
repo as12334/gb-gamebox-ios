@@ -29,10 +29,11 @@
 #import "RH_GameListViewController.h"
 #import "RH_ActivityStatusModel.h"
 #import "RH_UserInfoManager.h"
+#import "RH_AdvertisementView.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
-        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate>
+        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate>
 //@property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
@@ -40,6 +41,7 @@
 @property (nonatomic,strong,readonly) RH_HomeCategoryItemsCell *homeCategoryItemsCell ;
 @property (nonatomic, strong) RH_BasicAlertView *rhAlertView ;
 @property (nonatomic,strong)  RH_ActivityModel *activityModel;
+@property (nonatomic,strong) RH_AdvertisementView *advertisentView ;
 //-
 @property (nonatomic,strong,readonly) RH_LotteryCategoryModel *selectedCategoryModel ;
 @property (nonatomic,strong,readonly) NSArray *currentCategoryItemsList;
@@ -59,6 +61,7 @@
 @synthesize homeCategoryItemsCell = _homeCategoryItemsCell  ;
 @synthesize activityView = _activityView                    ;
 @synthesize normalActivityView= _normalActivityView         ;
+@synthesize advertisentView = _advertisentView ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -164,6 +167,23 @@
     return _rhAlertView ;
 }
 
+-(RH_AdvertisementView *)advertisentView
+{
+    if (!_advertisentView) {
+        _advertisentView = [RH_AdvertisementView createInstance] ;
+        _advertisentView.delegate = self ;
+    }
+    return _advertisentView ;
+}
+
+#pragma mark - AdvertisementViewDelegate
+-(void)advertisementViewDidTouchSureBtn:(RH_AdvertisementView *)advertisementView DataModel:(RH_PhoneDialogModel *)phoneModel
+{
+    [advertisementView hideAdvertisementView] ;
+    self.appDelegate.customUrl = phoneModel.link ;
+    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    return ;
+}
 
 #pragma mark- observer Touch gesture
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -208,7 +228,13 @@
     UIView *foot_View = [UIView new];
     foot_View.frame = CGRectMake(0, 0, screenSize().width, 20);
     UILabel *label = [UILabel new];
+    UIView *lineView = [UIView new];
+    lineView.frame = CGRectMake(0, 0, screenSize().width, 1);
+    lineView.backgroundColor = colorWithRGB(37, 37, 37);
+    
     [foot_View addSubview:label];
+    [foot_View addSubview:lineView];
+    lineView.whc_TopSpace(10).whc_CenterX(0).whc_Height(1.5).whc_LeftSpace(10).whc_RightSpace(10);
     label.whc_TopSpace(15).whc_CenterX(0).whc_Height(30).whc_LeftSpace(30).whc_RightSpace(30);
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
@@ -585,6 +611,14 @@
         }else{
             [self activityViewHide] ;
         }
+        NSArray *phoneDataArr = homePageModel.phoneDialogModel ;
+        if (phoneDataArr.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.view.window addSubview:self.advertisentView];
+                self.advertisentView.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(0).whc_BottomSpace(0) ;
+                [self.advertisentView advertisementViewUpDataWithModel:homePageModel.phoneDialogModel[0]] ;
+            }) ;
+        }
     }else if (type == ServiceRequestTypeDemoLogin){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if ([data boolValue]){
@@ -634,6 +668,11 @@
         }] ;
     }else if (type == ServiceRequestTypeV3RefreshSession){
         
+    }else if (type == ServiceRequestTypeV3OneStepRefresh){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
     }
 }
 
@@ -665,6 +704,10 @@
         [self.shadeView removeFromSuperview];
         [self.hud hide: YES];
     }else if (type == ServiceRequestTypeV3RefreshSession){
+    }else if (type == ServiceRequestTypeV3OneStepRefresh){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(nil, error, @"资金刷新失败") ;
+        }] ;
     }
 }
 

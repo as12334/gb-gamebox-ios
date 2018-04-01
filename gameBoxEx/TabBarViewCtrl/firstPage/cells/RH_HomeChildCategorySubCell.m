@@ -26,7 +26,10 @@
     
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
-    self.labTitle.textColor =  [UIColor whiteColor] ;
+    self.labTitle.textColor =  [UIColor blackColor] ;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.labTitle.textColor =  [UIColor whiteColor] ;
+    }
     
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;

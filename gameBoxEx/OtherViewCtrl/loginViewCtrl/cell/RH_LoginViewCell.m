@@ -74,7 +74,7 @@
     self.verifyCodeView.layer.borderColor = [UIColor grayColor].CGColor ;
     self.verifyCodeView.layer.borderWidth = PixelToPoint(1.0f) ;
     
-    //设置头像 shaole头像
+    //设置头像
     if ([THEMEV3 isEqualToString:@"green"]){
         self.headImage.image = ImageWithName(@"login_touxiang_green");
         [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
@@ -86,9 +86,9 @@
         [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.headImage.image = ImageWithName(@"login_touxiang_black");
-        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
-        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal] ;
+        self.headImage.image = ImageWithName(@"login_touxiang_default");
+        [self.btnLogin setBackgroundColor:ColorWithNumberRGB(0x1766bb) forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:ColorWithNumberRGB(0x1766bb) forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor ;
     }else{
         self.headImage.image = ImageWithName(@"login_touxiang_default");
@@ -139,11 +139,10 @@
         [self.rememberPwdSwitch setOn:NO];
          self.passwordTextfield.text = @"" ;
     }
-    self.forgetPasswordBtn.whc_LeftSpace(40).whc_BottomSpaceToView(-5, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
+    self.forgetPasswordBtn.whc_LeftSpace(40).whc_BottomSpaceToView(-25, self.btnLogin).whc_WidthAuto().whc_Height(20) ;
     self.rememberPwdSwitch.whc_CenterYToView(0, self.forgetPasswordBtn).whc_RightSpace(40) ;
      self.rememberPwdSwitch.transform = CGAffineTransformMakeScale( 0.7, 0.7);//缩放
     self.rememberPwdLab.whc_RightSpaceToView(0, self.rememberPwdSwitch).whc_CenterYToView(0, self.forgetPasswordBtn).whc_WidthAuto().whc_Height(20) ;
-    
     
     if ([THEMEV3 isEqualToString:@"green"]){
         //设置开启颜色
@@ -155,8 +154,8 @@
          [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
     }else if ([THEMEV3 isEqualToString:@"black"]){
         //设置开启颜色
-        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Black ;
-        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
     }else{
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
@@ -176,7 +175,7 @@
     BOOL isNeedVerCode = [context boolValue] ;
     self.verifyCodeView.hidden = !isNeedVerCode ;
     self.codeLab.hidden = !isNeedVerCode;
-    self.loginTopLayoutConst.constant = isNeedVerCode?110.0f :40.0f ;
+    self.loginTopLayoutConst.constant = isNeedVerCode?135.0f :65.0f ;
     
     if (isNeedVerCode){
         [self startVerifyCode] ;

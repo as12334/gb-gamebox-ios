@@ -23,6 +23,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.contentView.backgroundColor = [UIColor clearColor] ;
+    
     // Initialization code
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.labTitle.textColor = colorWithRGB(51, 51, 51) ;
@@ -32,6 +33,11 @@
     
     self.labTitle.text = @"" ;
     self.labTitleValue.text = @"" ;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.contentView.backgroundColor = colorWithRGB(68, 68, 68) ;
+        self.labTitle.textColor = [UIColor whiteColor] ;
+        self.labTitleValue.textColor = [UIColor whiteColor] ;
+    }
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

@@ -7,9 +7,20 @@
 //
 
 #import "RH_DepositeSubmitCircleCell.h"
+#import "coreLib.h"
+#import "RH_API.h"
+#import "RH_DepositOriginseachSaleModel.h"
+@interface RH_DepositeSubmitCircleCell()
+@property (weak, nonatomic) IBOutlet UILabel *chargNameLabel;
 
+
+@end
 @implementation RH_DepositeSubmitCircleCell
-
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_DepositOriginseachSaleDetailsModel *detailsModel = ConvertToClassPointer(RH_DepositOriginseachSaleDetailsModel, context);
+    self.chargNameLabel.text = detailsModel.mActivityName;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

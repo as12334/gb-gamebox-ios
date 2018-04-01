@@ -13,17 +13,19 @@
 @interface RH_DepositePayforWaySubCell()
 @property (weak, nonatomic) IBOutlet UIImageView *payforIcon;
 @property (weak, nonatomic) IBOutlet UILabel *payforTitle;
-@property (nonatomic,strong)RH_DepositePayModel *payModel;
+@property (nonatomic,strong)RH_DepositeTransferModel *transferModel;
 @end
 @implementation RH_DepositePayforWaySubCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+
 }
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.payModel = ConvertToClassPointer(RH_DepositePayModel, context);
-    self.payforTitle.text = self.payModel.mName;
+    self.transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
+    self.payforTitle.text = self.transferModel.mName;
+    [self.payforIcon sd_setImageWithURL:[NSURL URLWithString:self.transferModel.showCover]];
 }
 @end

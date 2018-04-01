@@ -79,8 +79,8 @@
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.confimBtn.backgroundColor = ColorWithNumberRGB(0x1766bb);
+        self.cancelBtn.backgroundColor = ColorWithNumberRGB(0x1766bb);
     }else{
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor;

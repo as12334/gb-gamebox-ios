@@ -40,7 +40,8 @@
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
 
     }else if ([THEMEV3 isEqualToString:@"black"]){
-         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+         self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
+        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
     }else{
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
@@ -62,6 +63,12 @@
 
 -(void)updateUI
 {
+    if (!MineSettingInfo.mIsAutoPay) {
+        [self.btnRetrive setTitle:@"一键刷新" forState:UIControlStateNormal];
+    }else
+    {
+        [self.btnRetrive setTitle:@"一键回收" forState:UIControlStateNormal];
+    }
     [self.tableView reloadData] ;
 }
 
@@ -120,9 +127,17 @@
 #pragma mark -  一键回收点击方法
 -(IBAction)btn_oneStepRecover:(id)sender
 {
-    ifRespondsSelector(self.delegate, @selector(userInfoViewDidTouchOneStepRecoryButton:)){
-        [self.delegate userInfoViewDidTouchOneStepRecoryButton:self] ;
+    if (!MineSettingInfo.mIsAutoPay) {
+        ifRespondsSelector(self.delegate, @selector(userInfoViewDidTouchOneStepRefreshButton:)){
+            [self.delegate userInfoViewDidTouchOneStepRefreshButton:self] ;
+        }
+    }else
+    {
+        ifRespondsSelector(self.delegate, @selector(userInfoViewDidTouchOneStepRecoryButton:)){
+            [self.delegate userInfoViewDidTouchOneStepRecoryButton:self] ;
+        }
     }
+   
 }
 
 -(IBAction)btn_Deposit:(id)sender

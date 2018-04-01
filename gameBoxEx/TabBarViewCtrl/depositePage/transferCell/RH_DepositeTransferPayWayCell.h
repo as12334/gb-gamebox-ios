@@ -9,7 +9,5 @@
 #import "CLTableViewCell.h"
 
 @interface RH_DepositeTransferPayWayCell : CLTableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *leftTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rightTitleLabel;
-
+@property (nonatomic,strong)NSString *paywayString;
 @end

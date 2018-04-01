@@ -855,7 +855,6 @@
 
 
 #pragma mark - V3 老用户登录验证
-//#define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"passport/verify/verifyRealNameForApp.html"
 #define RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP        @"mobile-api/userInfoOrigin/verifyRealNameForApp.html"
 //请求参数
 #define RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN                           @"gb.token"
@@ -921,51 +920,62 @@
 #pragma mark - V3  常见问题二级分类
 #define RH_API_NAME_HELPSECONDTYPE        @"mobile-api/origin/secondType.html"
 //请求参数
-#define RH_SP_HELPSECONDTYPE_SEARCHID                           @"searchId"
+#define RH_SP_HELPSECONDTYPE_SEARCHID     @"searchId"
+
 #pragma mark - V3 存款
-#define RH_API_DEPOSITE_DEPOSITEORIGIN   @"/mobile-api/depositOrigin/index.html"
+#define RH_API_DEPOSITE_DEPOSITEORIGIN   @"mobile-api/depositOrigin/index.html"
 //返回参数
-#define RH_GP_DEPOSITEORIGIN_PAY                    @"pay"
-#define RH_GP_DEPOSITEORIGIN_PAYDATA                @"payData"
-
-#define RH_GP_DEPOSITEORIGIN_QUICKMONEYS            @"quickMoneys"
-#define RH_GP_DEPOSITEORIGIN_LOTTERYSITE            @"lotterySite"
-#define RH_GP_DEPOSITEORIGIN_ISFASTRECHARGE         @"isFastRecharge"
-#define RH_GP_DEPOSITEORIGIN_ISMULTIPLEACCOUNT      @"isMultipleAccount"
-
-#define RH_GP_DEPOSITEORIGIN_NAME                   @"name"
-#define RH_GP_DEPOSITEORIGIN_PAYACCOUNTS            @"payAccounts"
 #define RH_GP_DEPOSITEORIGIN_CODE                   @"code"
+#define RH_GP_DEPOSITEORIGIN_NAME                   @"name"
+#define RH_GP_DEPOSITEORIGIN_ICOURL                 @"iconUrl"
 
-#define RH_GP_DEPOSITEORIGIN_ID                     @"id"
-#define RH_GP_DEPOSITEORIGIN_SINGLEDEPOSITMAX       @"singleDepositMax"
-#define RH_GP_DEPOSITEORIGIN_QRCODEURL              @"qrCodeUrl"
-#define RH_GP_DEPOSITEORIGIN_ACCOUNTINFORMATION     @"accountInformation"
-#define RH_GP_DEPOSITEORIGIN_RECHARGETYPE           @"rechargeType"
-#define RH_GP_DEPOSITEORIGIN_TYPE                   @"type"
-#define RH_GP_DEPOSITEORIGIN_ACCOUNTTYPE            @"accountType"
-#define RH_GP_DEPOSITEORIGIN_BANKCODE               @"bankCode"
-#define RH_GP_DEPOSITEORIGIN_SINGLEDEPOSITEMIN      @"singleDepositMin"
-#define RH_GP_DEPOSITEORIGIN_FULLNAME               @"fullName"
-#define RH_GP_DEPOSITEORIGIN_REMARK                 @"remark"
-#define RH_GP_DEPOSITEORIGIN_ACCOUNTPROMPT          @"accountPrompt"
-#define RH_GP_DEPOSITEORIGIN_PAYNAME                @"payName"
-#define RH_GP_DEPOSITEORIGIN_CUSTOMBANKNAME         @"customBankName"
-#define RH_GP_DEPOSITEORIGIN_ACCOUNT                @"account"
-#define RH_GP_DEPOSITEORIGIN_OPENACOUNTNAME         @"openAcountName"
-#define RH_GP_DEPOSITEORIGIN_ALIASNAME              @"aliasName"
-#define RH_GP_DEPOSITEORIGIN_RANDOMAMOUNT           @"randomAmount"
-#define RH_GP_DEPOSITEORIGIN_BANKNAME               @"bankName"
-#define RH_GP_DEPOSITEORIGIN_DEPOSITEWAY            @"depositWay"
+//存款渠道初始化
+#pragma mark --V3 存款渠道初始化
+#define RH_API_DEPOSITE_DEPOSITEORIGINCHANNEL       @"mobile-api/depositOrigin/"
+//返回参数
+#define RH_GP_DEPOSITEORIGINCHANNEL_CURRENCY            @"currency"
+#define RH_GP_DEPOSITEORIGINCHANNEL_CUSTOMERSERVICE     @"customerService"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ARRAYLIST           @"arrayList"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ID                  @"id"
+#define RH_GP_DEPOSITEORIGINCHANNEL_PAYNAME             @"payName"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNT             @"account"
+#define RH_GP_DEPOSITEORIGINCHANNEL_FULLNAME            @"fullName"
+#define RH_GP_DEPOSITEORIGINCHANNEL_CODE                @"code"
+#define RH_GP_DEPOSITEORIGINCHANNEL_TYPE                @"type"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTTYPE         @"accountType"
+#define RH_GP_DEPOSITEORIGINCHANNEL_BANKCODE            @"bankCode"
+#define RH_GP_DEPOSITEORIGINCHANNEL_BANKNAME            @"bankName"
+#define RH_GP_DEPOSITEORIGINCHANNEL_SINGLEDEPOSITEMIN   @"singleDepositMin"
+#define RH_GP_DEPOSITEORIGINCHANNEL_SINGLEDEPOSITEMAX   @"singleDepositMax"
+#define RH_GP_DEPOSITEORIGINCHANNEL_OPENACOUNTNAME      @"openAcountName"
+#define RH_GP_DEPOSITEORIGINCHANNEL_QRCODEURL           @"qrCodeUrl"
+#define RH_GP_DEPOSITEORIGINCHANNEL_REMARK              @"remark"
+#define RH_GP_DEPOSITEORIGINCHANNEL_RANDOMAMOUNT        @"randomAmount"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ALIASNAME           @"aliasName"
+#define RH_GP_DEPOSITEORIGINCHANNEL_CUSTOMBANKNAME      @"customBankName"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTINFOEMATION  @"accountInformation"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTPROMPT       @"accountPrompt"
+#define RH_GP_DEPOSITEORIGINCHANNEL_RECHARGETYPE        @"rechargeType"
+#define RH_GP_DEPOSITEORIGINCHANNEL_DEPOSITWAY          @"depositWay"
+#define RH_GP_DEPOSITEORIGINCHANNEL_PAYTYPE             @"payType"
+#define RH_GP_DEPOSITEORIGINCHANNEL_SEARCHID            @"searchId"
+#define RH_GP_DEPOSITEORIGINCHANNEL_IMGURL              @"imgUrl"
+#define RH_GP_DEPOSITEORIGINCHANNEL_QUICKMONEYS         @"quickMoneys"
+#define RH_GP_DEPOSITEORIGINCHANNEL_PAYERBANKCARD       @"payerBankcard"
+#define RH_GP_DEPOSITEORIGINCHANNEL_HIDE                @"hide"
+#define RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT     @"multipleAccount"
+
+
 #pragma mark - V3  常见问题详情
 #define RH_API_NAME_HELPDETAIL        @"mobile-api/origin/helpDetail.html"
 
 #pragma mark - V3 存款获取优惠
-#define RH_API_NAME_DEPOSITESEACHSALE               @"/mobile-api/depositOrigin/seachSale.html"
+#define RH_API_NAME_DEPOSITESEACHSALE               @"mobile-api/depositOrigin/seachSale.html"
 //请求参数
 #define RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT      @"result.rechargeAmount"
-#define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"PayAccount.depositWay"
-#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"PayAccount.id"
+#define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"depositWay"
+#define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"account"
+#define RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER     @"result.bankOrder"
 //返回参数
 #define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
 #define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"
@@ -991,6 +1001,7 @@
 #define RH_API_NAME_RECONNECTTRANSFER        @"mobile-api/userInfoOrigin/reconnectTransfer.html"
 //请求参数
 #define RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO                  @"search.transactionNo" //失败的orderId
+#define RH_SP_SUBTRANSFERMONEY_TOKEN                           @"gb.token" //token
 
 #pragma mark - V3  非免转刷新单个
 #define RH_API_NAME_REFRESHAPI        @"mobile-api/userInfoOrigin/refreshApi.html"
@@ -1002,7 +1013,7 @@
 //请求参数
 #define RH_SP_ONLINEPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_ONLINEPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_ONLINEPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_ONLINEPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_ONLINEPAY_ACTIVITYID                   @"activityId"           //优惠ID
 
 #pragma mark - V3 扫码支付提交存款
@@ -1010,7 +1021,7 @@
 //请求参数
 #define RH_SP_SCANPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_SCANPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_SCANPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_SCANPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_SCANPAY_PAYERBANKCARD                @"Result.payerBankcard"  //授权码（只针对反扫）
 #define RH_SP_SCANPAY_ACTIVITYID                   @"activityId"           //优惠ID
 
@@ -1020,7 +1031,7 @@
 //请求参数
 #define RH_SP_COMPANYPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_COMPANYPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_COMPANYPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_COMPANYPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_COMPANYPAY_PAYERNAME                    @"result.payerName"  //存款人姓名
 #define RH_SP_COMPANYPAY_RECHARGEADDRESS              @"result.rechargeAddress"  //存款地址
 #define RH_SP_COMPANYPAY_ACTIVITYID                   @"activityId"           //优惠ID
@@ -1031,7 +1042,7 @@
 //请求参数
 #define RH_SP_ELECTRONICPAY_RECHARGEAMOUNT               @"result.rechargeAmount"  //存款金额
 #define RH_SP_ELECTRONICPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_ELECTRONICPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_ELECTRONICPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_ELECTRONICPAY_BANKORDER                    @"result.bankOrder"   //订单后5位
 #define RH_SP_ELECTRONICPAY_PAYERNAME                    @"result.payerName"  //支付户名(只针对支付宝电子支付)
 #define RH_SP_ELECTRONICPAY_PAYERBANKCARD                @"result.payerBankcard"  //支付账号
@@ -1041,7 +1052,7 @@
 #define RH_API_NAME_BITCOINPAY  @"mobile-api/depositOrigin/bitcoinPay.html"
 //请求参数
 #define RH_SP_BITCOINPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
-#define RH_SP_BITCOINPAY_PAYACCOUNTID                 @"result.payAccountId"  //存款渠道ID
+#define RH_SP_BITCOINPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_BITCOINPAY_ACTIVITYID                   @"activityId"           //优惠ID
 #define RH_SP_BITCOINPAY_RETURNTIME                   @"result.returnTime"     //交易时间
 #define RH_SP_BITCOINPAY_PAYERBANKCARD                @"result.payerBankcard"     //比特币钱包地址  long　(26-34位)

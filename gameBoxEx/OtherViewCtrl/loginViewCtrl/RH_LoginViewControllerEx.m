@@ -42,7 +42,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -50,7 +50,15 @@
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
             [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
         }
         
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
@@ -69,14 +77,11 @@
         navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
-    
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated] ;
-//    [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
-//}
+- (BOOL)isSubViewController {
+    return  YES;
+}
 
 -(void)setupViewContext:(id)context
 {
@@ -91,8 +96,7 @@
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
-   
-    
+//    _isInitOk = YES ;
     [self setNeedUpdateView] ;
    //关闭键盘
     self.view.userInteractionEnabled = YES;
@@ -112,7 +116,6 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView reloadData] ;
 }
-
 
 -(RH_LoginViewCell*)loginViewCell
 {

@@ -197,9 +197,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ea-P3-nvW" customClass="CLButton">
-                        <rect key="frame" x="30" y="511" width="401" height="40"/>
+                        <rect key="frame" x="30" y="561" width="401" height="42"/>
+                        <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="l3H-FN-ZgL"/>
+                            <constraint firstAttribute="height" constant="42" id="l3H-FN-ZgL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="立即登录">
@@ -210,7 +211,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2o-DN-z2K" customClass="CLButton">
-                        <rect key="frame" x="30" y="568" width="401" height="40"/>
+                        <rect key="frame" x="30" y="621" width="401" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="mdY-B6-QcJ"/>
                         </constraints>
@@ -231,18 +232,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="记住密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0q-61-A55">
-                        <rect key="frame" x="301" y="498" width="64" height="18"/>
+                        <rect key="frame" x="301" y="488" width="64" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWv-kb-LVY">
-                        <rect key="frame" x="365" y="488" width="49" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </switch>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoL-cU-pbz">
-                        <rect key="frame" x="40" y="486" width="77" height="30"/>
+                        <rect key="frame" x="30" y="473" width="77" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="忘记密码？">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,6 +248,10 @@
                             <action selector="forgetPasswordClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Osw-EX-MQ4"/>
                         </connections>
                     </button>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWv-kb-LVY">
+                        <rect key="frame" x="373" y="473" width="49" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </switch>
                 </subviews>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
@@ -269,7 +270,7 @@
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="yZW-Kx-yPS" secondAttribute="bottom" constant="8" id="bIo-aF-rbe"/>
                     <constraint firstItem="uze-dM-Gi9" firstAttribute="top" secondItem="OXh-r2-8gI" secondAttribute="bottom" constant="8" id="bNj-PT-Pwl"/>
                     <constraint firstItem="z2o-DN-z2K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="bxP-dB-Udb"/>
-                    <constraint firstItem="z2o-DN-z2K" firstAttribute="top" secondItem="0Ea-P3-nvW" secondAttribute="bottom" constant="17" id="c45-gD-Crk"/>
+                    <constraint firstItem="z2o-DN-z2K" firstAttribute="top" secondItem="0Ea-P3-nvW" secondAttribute="bottom" constant="18" id="c45-gD-Crk"/>
                     <constraint firstItem="uA6-Ep-fti" firstAttribute="trailing" secondItem="4iR-Y2-kVC" secondAttribute="trailing" id="gEd-Qf-prF"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="top" secondItem="ktC-Ss-SIJ" secondAttribute="bottom" constant="41" id="kPF-Bv-w3z"/>
                     <constraint firstAttribute="trailing" secondItem="0Ea-P3-nvW" secondAttribute="trailing" constant="30" id="mKQ-tZ-XeU"/>
@@ -279,7 +280,7 @@
                     <constraint firstItem="OXh-r2-8gI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="sbL-KT-odd"/>
                     <constraint firstAttribute="trailing" secondItem="z2o-DN-z2K" secondAttribute="trailing" constant="30" id="tpn-Cg-58W"/>
                     <constraint firstAttribute="trailing" secondItem="ktC-Ss-SIJ" secondAttribute="trailing" constant="30" id="uFO-kw-A0k"/>
-                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="4iR-Y2-kVC" secondAttribute="bottom" constant="193" id="wbn-5L-nyq"/>
+                    <constraint firstItem="0Ea-P3-nvW" firstAttribute="top" secondItem="4iR-Y2-kVC" secondAttribute="bottom" constant="243" id="wbn-5L-nyq"/>
                     <constraint firstAttribute="trailing" secondItem="uze-dM-Gi9" secondAttribute="trailing" constant="30" id="wuc-OP-TdJ"/>
                     <constraint firstItem="4iR-Y2-kVC" firstAttribute="leading" secondItem="yZW-Kx-yPS" secondAttribute="leading" id="zHd-qq-uSc"/>
                 </constraints>
@@ -306,7 +307,7 @@
                 <outlet property="verifyCodeView" destination="uze-dM-Gi9" id="glX-bJ-rhE"/>
                 <outlet property="verifyTextfield" destination="GFx-Cq-Auz" id="Fs6-7s-Kxe"/>
             </connections>
-            <point key="canvasLocation" x="-1256" y="-227"/>
+            <point key="canvasLocation" x="-2346" y="-208"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -23,7 +23,7 @@
 @property(nonatomic,strong,readonly)NSString *mAccountPrompt;
 @property(nonatomic,strong,readonly)NSString *mPayName;
 @property(nonatomic,strong,readonly)NSString *mCustomBankName;
-@property(nonatomic,strong,readonly)NSString *mAccount;
+@property(nonatomic,assign,readonly)NSInteger mAccount;
 @property(nonatomic,strong,readonly)NSString *mOpenAcountName;
 @property(nonatomic,strong,readonly)NSString *mAliasName;
 @property(nonatomic,strong,readonly)NSString *mRandomAmount;

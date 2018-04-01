@@ -90,6 +90,9 @@
                     <state key="normal" title="马上存款">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="transferMoneySelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="nPg-W1-xoa"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -121,7 +124,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="chareLabel" destination="5fW-Jd-d1p" id="Dwx-fQ-M1P"/>
                 <outlet property="depositeBtn" destination="oRA-bm-CPQ" id="YIq-kl-ynl"/>
+                <outlet property="moneyNumLabel" destination="QeO-WE-TtN" id="eCa-hT-qWk"/>
                 <outlet property="tabelView" destination="Rus-ZN-RSo" id="Arw-8k-GH0"/>
             </connections>
             <point key="canvasLocation" x="-45" y="205"/>

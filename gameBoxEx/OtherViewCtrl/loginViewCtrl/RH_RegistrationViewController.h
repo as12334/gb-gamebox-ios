@@ -7,6 +7,7 @@
 //
 
 #import "RH_BasicSubViewController.h"
+#import "RH_BasicPageLoadViewController.h"
 
 @interface RH_RegistrationViewController : RH_BasicSubViewController
 

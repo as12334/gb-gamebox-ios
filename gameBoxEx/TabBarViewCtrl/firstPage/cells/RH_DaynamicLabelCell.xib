@@ -18,18 +18,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="29.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrh-pP-Prf" customClass="CLLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrh-pP-Prf" customClass="CLLabel">
                         <rect key="frame" x="9" y="6" width="37.5" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                <constraints>
-                    <constraint firstItem="Zrh-pP-Prf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="hTG-oP-2ur"/>
-                    <constraint firstItem="Zrh-pP-Prf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iMK-zQ-LQB"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="labRemark" destination="Zrh-pP-Prf" id="dV3-Y9-RAm"/>

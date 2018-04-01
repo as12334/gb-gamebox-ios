@@ -37,12 +37,13 @@
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.backgroundColor = colorWithRGB(21, 21, 21) ;
     self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
+    
     if ([THEMEV3 isEqualToString:@"green"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+        self.labRemark.backgroundColor = ColorWithNumberRGB(0x168df6) ;
     }else{
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }
@@ -52,17 +53,19 @@
     self.labRemark.layer.cornerRadius = 4.0f ;
     self.labRemark.clipsToBounds = YES;
     self.labRemark.text = @"公告" ;
-    self.labRemark.whc_TopSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(21);
+    self.labRemark.whc_TopSpace(5).whc_BottomSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(22);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
-    self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
-    if ([THEMEV3 isEqualToString:@"black"]) {
-        self.contentView.backgroundColor = [UIColor blackColor];
-    }
     
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
     self.separatorLineColor = colorWithRGB(226, 226, 226) ;
     self.separatorLineWidth = 1.0f ;
+    
+    self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.contentView.backgroundColor = colorWithRGB(21, 21, 21);
+        self.separatorLineColor = [UIColor clearColor] ;
+    }
     
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = [UIColor lightGrayColor] ;
@@ -79,7 +82,7 @@
     NSString *strTmp = ConvertToClassPointer(NSString, context) ;
     strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
     strTmp = [strTmp stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
-
+//    strTmp = @"亲爱的玩家朋友：";
     if ([self.labScrollText.text isEqualToString:strTmp])
         return ;
     if (strTmp.length<10) {
@@ -87,23 +90,31 @@
     }else if (strTmp.length>10 && strTmp.length < 100)
     {
         _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .105  ;
-    }else if (strTmp.length>100)
+    }else if (strTmp.length>100&&strTmp.length<500)
     {
         _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .085  ;
     }
+    else if (strTmp.length>500){
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding]*.065;
+    }
 //    _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .05  ;
 //    strTmp.length * 0.6 ;// 一个字符 0.5
-    self.labScrollText.text = strTmp ;
+    self.labScrollText.text = strTmp;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.labScrollText.textColor = [UIColor whiteColor];
     }
-    self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
+//    self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
+//    self.textSize = [self.labScrollText.text sizeWithFont:[UIFont boldSystemFontOfSize:17.0f] constrainedToSize:CGSizeMake(300, self.labScrollText.frame.size.height) lineBreakMode:NSLineBreakByWordWrapping];
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14.f],};
+    self.textSize = [self.labScrollText.text boundingRectWithSize:CGSizeMake(5000, 14) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
+//    [label setFrame:CGRectMake(100, 100, textSize.width, textSize.height)];
     self.labScrollText.frame = CGRectMake(self.scrollView.frameWidth,
                                           floorf((self.scrollView.frameHeigh-self.textSize.height)/2.0),
                                           self.textSize.width,
                                           self.textSize.height) ;
+    
 }
 
 

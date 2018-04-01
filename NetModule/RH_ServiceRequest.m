@@ -51,6 +51,9 @@
 #import "RH_HelpCenterSecondModel.h" //帮助中心二级界面
 #import "RH_HelpCenterDetailModel.h"
 #import "RH_GetNoAutoTransferInfoModel.h"
+#import "RH_DepositOriginseachSaleModel.h"
+#import "RH_UserApiBalanceModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -1367,15 +1370,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 防止用户掉线
 -(void)startV3RereshUserSessin
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeV3RefreshSession
-                         scopeType:ServiceScopeTypePublic];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RefreshSession
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 #pragma mark - 用户登录是否开启验证码
@@ -1414,7 +1419,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_DEPOSITE_DEPOSITEORIGIN
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1625,10 +1631,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark 存款优惠
--(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat )rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
     [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
     
@@ -1644,6 +1650,29 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3DepositOriginSeachSale
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark 比特币存款优惠
+-(void)startV3DepositOriginSeachSaleBittionRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay bittionTxid:(NSInteger)bankOrder PayAccountID:(NSString *)payAccountID
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
+    [dict setValue:@(bankOrder) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER];
+    [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_DEPOSITESEACHSALE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositOriginBittionSeachSale
+                         scopeType:ServiceScopeTypePublic];
+}
+
 
 #pragma mark - V3  非免转额度转换初始化
 -(void)startV3GetNoAutoTransferInfoInit
@@ -1653,6 +1682,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
 
                     queryArguments:nil
@@ -1679,6 +1709,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1690,9 +1721,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - V3  非免转额度转换异常再次请求
 -(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+                                       withToken:(NSString *)token
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:transactionNo forKey:RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO];
+    [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN] ;
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_RECONNECTTRANSFER
                      pathArguments:nil
@@ -1708,10 +1741,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 
 #pragma mark - V3  非免转刷新单个
--(void)startV3RefreshApiWithApiId:(NSInteger)apiId
+-(void)startV3RefreshApiWithApiId:(NSString *)apiId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(apiId) forKey:RH_SP_REFRESHAPI_APIID];
+    [dict setObject:apiId forKey:RH_SP_REFRESHAPI_APIID];
     
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REFRESHAPI
@@ -1727,16 +1760,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - V3 线上支付提交存款
--(void)startV3OnlinePayWithRechargeAmount:(float)amount
+-(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
                              rechargeType:(NSString *)rechargeType
-                             payAccountId:(NSInteger)payAccountId
-                               activityId:(NSInteger)activityId
+                             payAccountId:(NSString*)payAccountId
+                               activityId:(NSString *)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-     [dict setObject:@(amount) forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
-    [dict setObject:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
-    [dict setObject:@(payAccountId) forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
-    [dict setObject:@(activityId) forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+     [dict setValue:@(amount) forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
+    [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
+    [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
+    [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONLINEPAY
                      pathArguments:nil
@@ -1756,13 +1789,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                            payAccountId:(NSInteger)payAccountId
                           payerBankcard:(NSInteger)payerBankcard
                              activityId:(NSInteger)activityId
+                               account:(NSString *)account
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(amount) forKey:RH_SP_SCANPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_SCANPAY_RECHARGETYPE];
-    [dict setObject:@(payAccountId) forKey:RH_SP_SCANPAY_PAYACCOUNTID];
+//    [dict setObject:@(payAccountId) forKey:RH_SP_SCANPAY_PAYACCOUNTID];
     [dict setObject:@(payerBankcard) forKey:RH_SP_SCANPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_SCANPAY_ACTIVITYID];
+    [dict setValue:account forKey:RH_SP_SCANPAY_PAYACCOUNTID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SCANPAY
                      pathArguments:nil
@@ -1779,17 +1814,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark -  V3 网银支付提交存款
 -(void)startV3CompanyPayWithRechargeAmount:(float)amount
                               rechargeType:(NSString *)rechargeType
-                              payAccountId:(NSInteger)payAccountId
+                              payAccountId:(NSString *)payAccountId
                                  payerName:(NSString *)payerName
-                           rechargeAddress:(NSString *)rechargeAddress
                                 activityId:(NSInteger)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(amount) forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
-    [dict setObject:@(payAccountId) forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
+    [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
     [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
-    [dict setObject:rechargeAddress forKey:RH_SP_COMPANYPAY_RECHARGEADDRESS];
     [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_COMPANYPAY
@@ -1803,11 +1836,37 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3CompanyPay
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark -  V3 柜台机支付提交存款
+-(void)startV3CounterPayWithRechargeAmount:(float)amount
+                              rechargeType:(NSString *)rechargeType
+                              payAccountId:(NSString *)payAccountId
+                                 payerName:(NSString *)payerName
+                           rechargeAddress:(NSString *)rechargeAddress
+                                activityId:(NSInteger)activityId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(amount) forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
+    [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
+    [dict setObject:rechargeAddress forKey:RH_SP_COMPANYPAY_RECHARGEADDRESS];
+    [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_COMPANYPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CounterPay
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark - V3 电子支付提交存款
 -(void)startV3ElectronicPayWithRechargeAmount:(float)amount
                                  rechargeType:(NSString *)rechargeType
-                                 payAccountId:(NSInteger)payAccountId
+                                 payAccountId:(NSString *)payAccountId
                                     bankOrder:(NSInteger)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
@@ -1816,7 +1875,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(amount) forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
-    [dict setObject:@(payAccountId) forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
+    [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
     [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
@@ -1834,10 +1893,40 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3ElectronicPay
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark - V3 支付宝电子支付提交存款
+-(void)startV3AlipayElectronicPayWithRechargeAmount:(float)amount
+                                 rechargeType:(NSString *)rechargeType
+                                 payAccountId:(NSString *)payAccountId
+                                    bankOrder:(NSInteger)bankOrder
+                                    payerName:(NSString *)payerName
+                                payerBankcard:(NSString *)payerBankcard
+                                   activityId:(NSInteger)activityId
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(amount) forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
+    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
+    [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
+    [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_ELECTRONICPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AlipayElectronicPay
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark - V3 比特币支付提交存款
 -(void)startV3BitcoinPayWithRechargeType:(NSString *)rechargeType
-                            payAccountId:(NSInteger)payAccountId
+                            payAccountId:(NSString *)payAccountId
                               activityId:(NSInteger)activityId
                               returnTime:(NSString *)returnTime
                            payerBankcard:(NSString *)payerBankcard
@@ -1846,7 +1935,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:rechargeType forKey:RH_SP_BITCOINPAY_RECHARGETYPE];
-    [dict setObject:@(payAccountId) forKey:RH_SP_BITCOINPAY_PAYACCOUNTID];
+    [dict setObject:payAccountId forKey:RH_SP_BITCOINPAY_PAYACCOUNTID];
     [dict setObject:@(activityId) forKey:RH_SP_BITCOINPAY_ACTIVITYID];
     [dict setObject:returnTime forKey:RH_SP_BITCOINPAY_RETURNTIME];
     [dict setObject:payerBankcard forKey:RH_SP_BITCOINPAY_PAYERBANKCARD];
@@ -1881,7 +1970,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3OneStepRefresh
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark - 存款渠道初始化
+-(void)startV3RequestDepositOriginChannel:(NSString *)httpCode
+{
+    NSString *pathFormat = [NSString stringWithFormat:@"%@%@.html",RH_API_DEPOSITE_DEPOSITEORIGINCHANNEL,httpCode];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:pathFormat
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositeOriginChannel
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2181,7 +2285,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             *reslutData = @(NO) ;
         }
         return YES ;
-    }else if (type == ServiceRequestTypeObtainVerifyCode ||
+    }
+    
+    else if (type == ServiceRequestTypeObtainVerifyCode ||
               type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
               type == ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2207,6 +2313,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
+//    else if (type == ServiceRequestTypeV3BitcoinPay){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject ;
+//        return YES ;
+//    }
+    
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
@@ -2218,39 +2333,19 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
         }
     }
-//    else if (type == ServiceRequestTypeV3DepositOriginSeachSale)
-//    {
-//        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
-//        NSMutableArray *mArr = [NSMutableArray array] ;
-//        if (isSidStr(responseStr)) {
-//            [mArr addObjectsFromArray:matchLongString(responseStr)] ;
-//        }
-//        if (mArr.count>0) {
-//            userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
-//        }
-//    }
-    
+  
 //    
-    else if (type==ServiceRequestTypeV3DepositOriginSeachSale){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
-        NSLog(@"----%@",dataObject);
-        return YES ;
-    }
-    
+   
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (dataObject) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString11);
-    }
+//    if (dataObject) {
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",jsonString11);
+//    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
@@ -2644,7 +2739,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
             case ServiceRequestTypeV3DepositeOrigin:
             {
-                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])];
+//                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+                resultSendData = [RH_DepositeTransferModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:
@@ -2684,8 +2780,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break ;
                 case ServiceRequestTypeV3DepositOriginSeachSale:
             {
-                
-                
+                resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+                case ServiceRequestTypeV3DepositOriginBittionSeachSale:
+            {
+                resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
             case ServiceRequestTypeV3GetNoAutoTransferInfo:
@@ -2693,6 +2793,62 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
+                case ServiceRequestTypeV3OnlinePay:
+            {
+                
+            }
+                break;
+            case ServiceRequestTypeV3CompanyPay:{
+                
+            }
+                break;
+                case ServiceRequestTypeV3CounterPay:
+            {
+                
+            }
+                break;
+                case ServiceRequestTypeV3ElectronicPay:
+            {
+                
+            }
+                break;
+                case ServiceRequestTypeV3AlipayElectronicPay:
+            {
+                
+            }
+                break;
+                case ServiceRequestTypeV3BitcoinPay:
+            {
+                
+            }
+                break;
+            case ServiceRequestTypeV3OneStepRefresh:
+            {
+                NSDictionary *dic = [dataObject objectForKey:RH_GP_V3_DATA] ;
+                resultSendData = [RH_UserApiBalanceModel dataArrayWithInfoArray:[dic objectForKey:@"apis"]] ;
+            }
+                break;
+            case ServiceRequestTypeV3RefreshApi:
+            {
+                resultSendData =  [[RH_UserApiBalanceModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                ConvertToClassPointer(RH_UserApiBalanceModel ,resultSendData) ;
+                RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                NSArray *daraArr =userInfoManager.mineSettingInfo.mApisBalanceList;
+                for (RH_UserApiBalanceModel *model in daraArr) {
+                     [model upApiMoneyWith:resultSendData] ;
+                }
+            }
+                break ;
+                case ServiceRequestTypeV3DepositeOriginChannel:
+            {
+                resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+                case ServiceRequestTypeV3ScanPay:
+            {
+                
+            }
+                break;
             default:
                 resultSendData = dataObject ;
                 break;

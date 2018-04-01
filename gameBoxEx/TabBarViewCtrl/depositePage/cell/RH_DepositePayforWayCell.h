@@ -11,7 +11,7 @@
 @class RH_DepositePayforWayCell;
 @protocol DepositePayforWayCellDelegate<NSObject>
 @optional
--(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem itemIndex:(NSInteger )itemIndex;
+-(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem depositeCode:(NSString *)depositeCode depositeName:(NSString *)depositName;
 @end
 @interface RH_DepositePayforWayCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositePayforWayCellDelegate>delegate;

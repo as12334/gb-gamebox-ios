@@ -9,5 +9,5 @@
 #import "CLTableViewCell.h"
 
 @interface RH_DepositeTransferPayAdressCell : CLTableViewCell
-
+@property(nonatomic,strong)NSString *adressStr;
 @end

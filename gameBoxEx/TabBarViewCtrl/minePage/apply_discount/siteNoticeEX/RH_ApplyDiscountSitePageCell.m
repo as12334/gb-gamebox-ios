@@ -63,7 +63,7 @@
                 }else if ([THEMEV3 isEqualToString:@"red"]){
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
                 }else if ([THEMEV3 isEqualToString:@"black"]){
-                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+                    btn.backgroundColor =ColorWithNumberRGB(0x1766bb);
                 }else{
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor;
                 }
@@ -137,7 +137,7 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
              borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Black;
+             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor;
         }else{
              borderView.backgroundColor  =  RH_NavigationBar_BackgroundColor;
         }
@@ -161,7 +161,7 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
             button.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            button.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            button.backgroundColor = ColorWithNumberRGB(0x1766bb);
         }else{
             button.backgroundColor = RH_NavigationBar_BackgroundColor;
         }

@@ -35,6 +35,10 @@
                     <constraint firstItem="G3h-m5-nfH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mow-iD-IVH"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="chargNameLabel" destination="G3h-m5-nfH" id="UMh-vl-gfC"/>
+                <outlet property="checkedImageview" destination="Io7-8S-88v" id="uTX-fC-PRF"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

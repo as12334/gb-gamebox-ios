@@ -73,7 +73,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -375,6 +375,9 @@
                                          64,
                                          userInfoViewWidth,
                                          0);
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            _userInfoView.backgroundColor = colorWithRGB(68, 68, 68);
+        }
         _userInfoView.delegate = self ;
     }
 
@@ -386,6 +389,12 @@
     [self userInfoButtonItemHandle] ;
     [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
     [self.serviceRequest startV3OneStepRecoverySearchId:nil]  ;
+}
+-(void)userInfoViewDidTouchOneStepRefreshButton:(RH_userInfoView *)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"数据刷新中"] ;
+    [self.serviceRequest startV3OneStepRefresh]  ;
 }
 
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView

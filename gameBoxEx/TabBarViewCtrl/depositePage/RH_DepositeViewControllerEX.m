@@ -17,16 +17,32 @@
 #import "RH_DepositeSystemPlatformCell.h"
 #import "RH_DepositeTransferBankcardController.h"
 #import "RH_DepositeTransferModel.h"
-@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate>
+#import "RH_DepositeTransferButtonCell.h"
+#import "RH_DepositeTransferChannelModel.h"
+#import "RH_DepositOriginseachSaleModel.h"
+#import "RH_DepositBitcionViewController.h"
+@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
 @property(nonatomic,strong)RH_DepositeTransferModel *transferModel;
-@property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
+@property(nonatomic,strong)RH_DepositeTransferChannelModel *channelModel;
+@property(nonatomic,strong)RH_DepositeTransferListModel *listModel;
+@property(nonatomic,strong)NSArray *transModelArray;
 @property(nonatomic,strong)RH_DepositeMoneyNumberCell *numberCell;
 @property(nonatomic,strong)NSArray *accountModelArray;
-@property(nonatomic,strong)UIView *backDropView;
 @property(nonatomic,strong)NSString *payNumStr;
+//支付方式类型
+@property(nonatomic,strong)NSString *payforType;
+//优惠ID
+@property(nonatomic,assign)NSInteger activityId;
+@property(nonatomic,assign)NSInteger accountId;
+@property(nonatomic,strong)NSString *rechargeTypeStr;
+//存款渠道name
+@property(nonatomic,strong)NSString *depositeName;
+@property(nonatomic,strong)NSString *depositeCode;
+
+
 @end
 
 @implementation RH_DepositeViewControllerEX
@@ -42,14 +58,7 @@
 {
     return YES  ;
 }
--(BOOL)hasBottomView
-{
-    return YES;
-}
--(CGFloat)bottomViewHeight
-{
-    return 40.f;
-}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
@@ -70,16 +79,57 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //增加login status changed notification
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     self.title = @"存款";
-    _markArray = @[@0,@1,@2,@3,@4,@5];
+    _markArray = @[@0,@1,@2,@3,@4,@5,@6];
     [self setNeedUpdateView];
     [self setupUI];
     // 键盘出现的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     // 键盘消失的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
 }
+
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
+
 #pragma mark --检测是否登录
 -(void)handleNotification:(NSNotification*)nt
 {
@@ -162,16 +212,9 @@
     [self.contentTableView registerCellWithClass:[RH_DepositeReminderCell class]];
     [self.contentTableView registerCellWithClass:[RH_DepositeMoneyBankCell class]];
     [self.contentTableView registerCellWithClass:[RH_DepositeSystemPlatformCell class]];
+    [self.contentTableView registerCellWithClass:[RH_DepositeTransferButtonCell class]];
     [self.contentView addSubview:self.contentTableView] ;
     
-    //提交按钮
-    UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    submitBtn.frame = CGRectMake(0, 0, self.contentView.frameWidth, 40);
-    submitBtn.backgroundColor = [UIColor blueColor];
-    [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submitBtn addTarget:self action:@selector(submitDepositeInfo) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView addSubview:submitBtn];
 }
 #pragma mark --点击提交按钮弹框
 -(RH_DepositeSubmitCircleView *)circleView
@@ -180,6 +223,7 @@
         _circleView = [RH_DepositeSubmitCircleView createInstance];
         _circleView.frame = CGRectMake(0, 0, 250, 360);
         _circleView.center = self.view.center;
+        _circleView.delegate = self;
     }
     return _circleView;
 }
@@ -193,29 +237,34 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    
-    return  5 ;
+    return  6 ;
    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.item==[_markArray[0] integerValue]) {
-        return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transferModel] ;
+        return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transModelArray] ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
-        return 120.f;
+        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.channelModel.mArrayListModel];
+//        return 120.f;
     }
-    else if (indexPath.item==[_markArray[2] integerValue]){
-        return 44.f;
+    else if (indexPath.item ==[_markArray[2]integerValue]){
+        return 120.f;
     }
     else if (indexPath.item==[_markArray[3] integerValue]){
         return 44.f;
     }
-    else if (indexPath.item ==[_markArray[4] integerValue]){
-        return 200.f;
+    else if (indexPath.item==[_markArray[4] integerValue]){
+        return 44.f;
     }
     else if (indexPath.item ==[_markArray[5] integerValue]){
-        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.transferModel.mPayModel[_selectNumber]];
+//
+        return 50;
+    }
+    else if (indexPath.item ==[_markArray[6] integerValue]){
+        return 200.f;
     }
     return 0.0f ;
 }
@@ -224,41 +273,58 @@
 {
    
     if (self.pageLoadManager.currentDataCount) {
-        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, [self.pageLoadManager dataAtIndex:0]);
+        NSArray *transferModelArray = ConvertToClassPointer(NSArray, [self.pageLoadManager dataAtIndex:0]);
         if (indexPath.item==[_markArray[0]integerValue]) {
             RH_DepositePayforWayCell *payforWayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositePayforWayCell defaultReuseIdentifier]] ;
             payforWayCell.delegate = self;
-            [payforWayCell updateCellWithInfo:nil context:transferModel.mPayModel];
+            [payforWayCell updateCellWithInfo:nil context:transferModelArray];
             return payforWayCell ;
         }
-        else if (indexPath.item == [_markArray[1]integerValue]){
-            RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
-            [moneyCell updateCellWithInfo:nil context:transferModel.mPaydataModel];
-            return moneyCell ;
+        else if (indexPath.item==[_markArray[1]integerValue]){
+            RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
+            platformCell.delegate=self;
+            [platformCell updateCellWithInfo:nil context:self.channelModel.mArrayListModel];
+            return platformCell ;
         }
         else if (indexPath.item == [_markArray[2]integerValue]){
-            RH_DepositeMoneyNumberCell *numberCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyNumberCell defaultReuseIdentifier]] ;
-//            [numberCell updateCellWithInfo:nil context:transferModel.mPayModel[indexPath.item]];
-            self.numberCell = numberCell;
+            RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
+            moneyCell.delegate = self;
             
-            return numberCell ;
+            return moneyCell ;
         }
         else if (indexPath.item == [_markArray[3]integerValue]){
+            RH_DepositeMoneyNumberCell *numberCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyNumberCell defaultReuseIdentifier]] ;
+            self.numberCell = numberCell;
+            UIToolbar * topView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
+            [topView setBarStyle:UIBarStyleBlackTranslucent];
+            UIBarButtonItem * btnSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(2, 5, 50, 25);
+            [btn addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTitle:@"完成"forState:UIControlStateNormal];
+            
+            UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithCustomView:btn];
+            NSArray * buttonsArray = [NSArray   arrayWithObjects:btnSpace,doneBtn,nil];
+            [topView setItems:buttonsArray];
+            [numberCell.payMoneyNumLabel setInputAccessoryView:topView];
+            return numberCell ;
+        }
+        else if (indexPath.item == [_markArray[4]integerValue]){
             RH_DepositeMoneyBankCell *bankCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyBankCell defaultReuseIdentifier]] ;
             return bankCell ;
         }
-        else if (indexPath.item == [_markArray[4]integerValue]){
+        else if (indexPath.item == [_markArray[5]integerValue]){
+            RH_DepositeTransferButtonCell *btnCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferButtonCell defaultReuseIdentifier]];
+            btnCell.delegate = self;
+            return btnCell;
+        }
+        else if (indexPath.item == [_markArray[6]integerValue]){
             RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
             reminderCell.delegate = self;
             return reminderCell ;
         }
-        else if (indexPath.item==[_markArray[5]integerValue]){
-            RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
-            platformCell.delegate=self;
-            _platformCell = platformCell;
-            [platformCell updateCellWithInfo:nil context:transferModel.mPayModel[_selectNumber]];
-            return platformCell ;
-        }
+       
+       
     }
     else{
         return self.loadingIndicateTableViewCell ;
@@ -267,18 +333,20 @@
     return nil;
 }
 #pragma mark --depositePayforWay的代理，选择付款的平台
--(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem itemIndex:(NSInteger)itemIndex
+-(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem depositeCode:(NSString *)depositeCode depositeName:(NSString *)depositName
 {
-    [self.platformCell updateConllectionView];
-    _selectNumber = itemIndex;
-    if ([self.transferModel.mPayModel[itemIndex].mCode isEqualToString:@"online"]) {
-        _markArray = @[@0,@1,@2,@3,@4,@5];
-    }
-    else {
-        _markArray = @[@0,@2,@3,@5,@4,@1];
-    }
-    [self.contentTableView reloadData];
-    
+    [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
+    self.depositeName = depositName;
+    self.depositeCode = depositeCode;
+//   else{
+        if ([depositName isEqualToString:@"在线支付"]) {
+            _markArray = @[@0,@6,@1,@2,@3,@4,@5];
+        }
+        else {
+            _markArray = @[@0,@1,@2,@3,@6,@4,@5];
+        }
+        [self.contentTableView reloadData];
+//    }
 }
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
@@ -286,34 +354,75 @@
     [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
--(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell codeString:(NSString *)codeStr accountModel:(id)accountModel
+-(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel
 {
-    NSArray *array = @[codeStr,accountModel];
-    self.accountModelArray = array;
+    self.payforType = payType;
+    self.listModel = accountModel;
     [self.numberCell updateCellWithInfo:nil context:accountModel];
-//    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:array];
-//    [self showViewController:transferVC sender:self];
+    //判断选择的支付方式的type，来确定是否跳转
     [self.contentTableView reloadData];
 }
-#pragma mark --点击提交按钮
--(void)submitDepositeInfo
+#pragma mark --选择金钱的代理
+-(void)depositeChooseMoneyCell:(NSInteger)moneyNumber
 {
-    NSMutableArray *mutableArray = [NSMutableArray array];
-    [mutableArray addObject:self.accountModelArray];
-    [mutableArray addObject:self.payNumStr];
-    RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
-    [self showViewController:transferVC sender:self];
-    //遮罩层
-//    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-//    shadeView.backgroundColor = [UIColor lightGrayColor];
-//    shadeView.alpha = 0.7f;
-//    shadeView.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-//    [shadeView addGestureRecognizer:tap];
-//    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-//    _shadeView = shadeView;
-//    [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+    NSInteger sum =  [self.numberCell.payMoneyNumLabel.text integerValue]+moneyNumber;
+    self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",sum];
+    self.payNumStr = [NSString stringWithFormat:@"%ld",sum];
 }
+#pragma mark --提交按钮的代理
+-(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
+{
+    //  线上支付比较特殊
+    if ([self.depositeCode isEqualToString:@"online"])
+    {
+        RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[0]) ;
+        if (self.depositeName==nil)
+        {
+            showMessage(self.view, @"请选择付款平台", nil);
+        }
+    else{
+        if ([self.payNumStr integerValue]<onlineModel.mSingleDepositMin||[self.payNumStr integerValue]>onlineModel.mSingleDepositMax)
+            {
+                showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",onlineModel.mSingleDepositMin,onlineModel.mSingleDepositMax], nil);
+            }
+        else{
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:onlineModel.mDepositWay PayAccountID:onlineModel.mSearchId];
+            }
+        }
+    }
+    else{
+    
+        if (self.depositeName==nil) {
+            showMessage(self.view, @"请选择付款平台", nil);
+        }
+        else{
+            if (self.payforType==nil) {
+                showMessage(self.view, @"请选择存款方式", nil);
+            }
+            else{
+                if ([self.payNumStr integerValue]<self.numberCell.moneyNumMin||[self.payNumStr integerValue]>self.numberCell.moneyNumMax) {
+                    showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
+                }
+                else{
+                    
+                        if ([self.payforType isEqualToString:@"1"]) {
+                            NSMutableArray *mutableArray = [NSMutableArray array];
+                            [mutableArray addObject:self.payNumStr];
+                            [mutableArray addObject:self.listModel];
+                            [mutableArray addObject:self.depositeCode];
+                            RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+                            [self showViewController:transferVC sender:self];
+                        }
+                        else{
+                            [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.payNumStr floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                        }
+                }
+            }
+        }
+    }
+
+}
+
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
 {
@@ -324,6 +433,47 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+#pragma mark -- 点击弹框里面的提交按钮
+-(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
+{
+//    //线上支付特殊，没有第二级菜单选择TYPE，只有在一级判断出“线上支付”,拿到type和ID
+//    if ([self.transferModel.mPayModel[_selectNumber].mCode isEqualToString:@"online"]) {
+//        [self.serviceRequest startV3OnlinePayWithRechargeAmount:[self.payNumStr floatValue] rechargeType:self.rechargeTypeStr
+//                                                   payAccountId:[NSString stringWithFormat:@"%ld&",self.accountId]
+//                                                     activityId:self.activityId];
+//    }
+//    else
+//    {
+//        if ([self.payforType isEqualToString:@"1"]) {
+//            NSMutableArray *mutableArray = [NSMutableArray array];
+//            [mutableArray addObject:self.accountModelArray];
+//            [mutableArray addObject:self.payNumStr];
+//            RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+//            [self showViewController:transferVC sender:self];
+//        }
+//        else{
+////            [self.serviceRequest startV3OnlinePayWithRechargeAmount:<#(float)#> rechargeType:<#(NSString *)#> payAccountId:<#(NSInteger)#> activityId:<#(NSInteger)#>];
+//        }
+//    }
+    if ([self.depositeCode isEqualToString:@"online"]) {
+         RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[0]) ;
+        [self.serviceRequest startV3OnlinePayWithRechargeAmount:[self.payNumStr floatValue] rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
+    }
+    else{
+        [self.serviceRequest
+         startV3ScanPayWithRechargeAmount:[self.payNumStr floatValue]
+         rechargeType:self.listModel.mRechargeType
+         payAccountId:nil
+         payerBankcard:nil
+         activityId:self.activityId
+         account:self.listModel.mSearchId];
+    }
+}
+#pragma mark -- 优惠列表
+-(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
+{
+    self.activityId = activityId;
 }
 #pragma mark 数据请求
 
@@ -378,17 +528,40 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, data);
-        self.transferModel = transferModel;
-        [self loadDataSuccessWithDatas:transferModel?@[transferModel]:@[]
-                            totalCount:transferModel?1:0] ;
-        if ([self.transferModel.mPayModel[0].mCode isEqualToString:@"online"]) {
-            _markArray = @[@0,@1,@2,@3,@4,@5];
-        }
-        else {
-            _markArray = @[@0,@2,@3,@5,@4,@1];
+        self.transModelArray  = ConvertToClassPointer(NSArray , data);
+        [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
+                                     totalCount:self.transModelArray?1:0] ;
+        
+        [self.contentTableView reloadData];
+    }
+    else if (type == ServiceRequestTypeV3DepositeOriginChannel)
+    {
+        RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
+        self.channelModel = channelModel;
+        [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
+        
+        if ([self.depositeCode isEqualToString:@"bitcoin"]) {
+            RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.channelModel];
+            [self showViewController:bitcionVC sender:self];
         }
         [self.contentTableView reloadData];
+    }
+    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
+        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
+//        self.saleModel = saleModel;
+        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
+                            totalCount:saleModel?1:0] ;
+        //遮罩层
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [self.circleView setupViewWithContext:saleModel];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
 }
 
@@ -396,33 +569,40 @@
     if (type == ServiceRequestTypeV3DepositeOrigin) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
+    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
+        
+    }
 }
 #pragma mark -键盘监听方法
 - (void)keyboardWasShown:(NSNotification *)notification
 {
+    
     // 获取键盘的高度
     CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat height = frame.size.height;
-    UIView *backDropView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frameHeigh-height, self.view.frameWidth, 40)];
-    backDropView.backgroundColor = [UIColor lightGrayColor];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"确定" forState:UIControlStateNormal];
-    [btn setBackgroundColor:[UIColor greenColor]];
-    [btn addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(self.view.frameWidth-40, 0, 40, 40);
-    [backDropView addSubview:btn];
-    backDropView.userInteractionEnabled = YES;
-    self.backDropView = backDropView;
-    [self.view addSubview:backDropView];
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect tabelViewFrame = self.contentTableView.frame;
+        tabelViewFrame.origin.y-=height;
+        self.contentTableView.frame = tabelViewFrame;
+    }];
+
+
 }
 -(void)hideKeyboard{
     [self.numberCell.payMoneyNumLabel resignFirstResponder];
-    [self.backDropView removeFromSuperview];
     self.payNumStr = self.numberCell.payMoneyNumLabel.text;
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {
 //    self.textFiledScrollView.frame = CGRectMake(0, 64, kViewWidth, 455.5);
+    // 获取键盘的高度
+    CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat height = frame.size.height;
+    [UIView animateWithDuration:0.25 animations:^{
+        CGRect tabelViewFrame = self.contentTableView.frame;
+        tabelViewFrame.origin.y+=height;
+        self.contentTableView.frame = tabelViewFrame;
+    }];
     
 }
 

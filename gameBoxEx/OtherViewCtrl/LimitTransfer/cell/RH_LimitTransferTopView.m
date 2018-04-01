@@ -122,14 +122,14 @@
     amountLab.text = @"金额" ;
     amountLab.font = [UIFont systemFontOfSize:14.f] ;
     
-    UITextField *amountTextfield = [UITextField new] ;
-    [amountView addSubview:amountTextfield];
-    amountTextfield.whc_RightSpace(10).whc_CenterY(0).whc_HeightAuto().whc_WidthAuto() ;
-    amountTextfield.placeholder = @"请输入" ;
-    amountTextfield.tag = 889 ;
-    amountTextfield.font = [UIFont systemFontOfSize:14.f] ;
-    amountTextfield.textAlignment = NSTextAlignmentRight ;
-    amountTextfield.keyboardType = UIKeyboardTypeNumberPad ;
+    _amountTextfield = [UITextField new] ;
+    [amountView addSubview:_amountTextfield];
+    _amountTextfield.whc_RightSpace(10).whc_CenterY(0).whc_HeightAuto().whc_WidthAuto() ;
+    _amountTextfield.placeholder = @"请输入" ;
+    _amountTextfield.tag = 889 ;
+    _amountTextfield.font = [UIFont systemFontOfSize:14.f] ;
+    _amountTextfield.textAlignment = NSTextAlignmentRight ;
+    _amountTextfield.keyboardType = UIKeyboardTypeNumberPad ;
     
     UILabel *line3 = [[UILabel alloc] init] ;
     [bottomView addSubview:line3];
@@ -154,8 +154,8 @@
         sureSubmitBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
         sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-        sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Black.CGColor;
+        sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+        sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;;
     }else{
         sureSubmitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         sureSubmitBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;;
@@ -173,7 +173,6 @@
     refreshBalanceBtn.layer.cornerRadius = 5;
     refreshBalanceBtn.layer.masksToBounds =  YES ;
     [refreshBalanceBtn addTarget:self action:@selector(refreshBalanceBtnClick) forControlEvents:UIControlEventTouchUpInside] ;
-    
 }
 
 #pragma mark - 转入账户
@@ -216,6 +215,15 @@
      UIButton *transferOutBtn = (UIButton *)[self viewWithTag:886] ;
       [transferOutBtn setTitle:tranferOutTitle forState:UIControlStateNormal];
 }
+-(void)topViewUpdataAmountText:(NSString *)textValue
+{
+    UITextField *amount =(UITextField *) [self viewWithTag:889] ;
+    amount.text = textValue ;
+}
+
+
+
+
 #pragma mark - 更新顶部数据
 -(void)topViewUpdataTopDateWithModel:(RH_GetNoAutoTransferInfoModel *)model
 {

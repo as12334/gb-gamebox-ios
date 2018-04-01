@@ -140,6 +140,7 @@
     bodyArguments:(NSDictionary *)bodyArguments
              type:(HTTPRequestType)type
 {
+//    NSLog(@"body1参数为=%@",[[NSString alloc] initWithData:[CLHTTPRequest _dataWithBodyArguments:bodyArguments]  encoding:NSUTF8StringEncoding]);
     return [self initWithURL:url
                   pathFormat:pathFormat
                pathArguments:pathArguments
@@ -269,17 +270,26 @@
         bodyData = [NSMutableData data];
 
         BOOL isStart = YES;
-
+        
         for (NSString * key in bodyArguments.allKeys) {
 
 
+//#define   addConnectChar()                              \
+//{                                                       \
+//if (!isStart) {                                     \
+//[bodyData appendData:DataWithUTF8Code(@"&")];   \
+//}else{                                              \
+//isStart = NO;                                   \
+//}                                                   \
+//}
 #define   addConnectChar()                              \
 {                                                       \
 if (!isStart) {                                     \
-[bodyData appendData:DataWithUTF8Code(@"&")];   \
+isStart = YES;\
 }else{                                              \
 isStart = NO;                                   \
 }                                                   \
+[bodyData appendData:DataWithUTF8Code(@"&")];    \
 }
             id value = bodyArguments[key];
 
@@ -301,10 +311,9 @@ isStart = NO;                                   \
                 [bodyData appendData:DataWithUTF8Code(tmpStr)];
             }
         }
-
+        NSLog(@"body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]) ;
 //        HttpRequestDebugLog("body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
     }
-
     return bodyData;
 }
 
@@ -428,7 +437,7 @@ isStart = NO;                                   \
     }
 }
 
-- (void)    urlConnectionManager:(URLConnectionManager *)manager
+- (void)urlConnectionManager:(URLConnectionManager *)manager
                       connection:(NSURLConnection *)connection
        didSendHTTPBodyDataLength:(long long)sendDataLenght
               expectedDataLength:(long long)expectedDataLength

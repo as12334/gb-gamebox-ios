@@ -16,28 +16,29 @@
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @property (nonatomic,strong)NSArray *payModelArray;
 @property (nonatomic,strong) RH_DepositeTransferModel *transferModel;
+@property (nonatomic,assign)NSInteger selectedBtnIndex;
 @end
 @implementation RH_DepositePayforWayCell
 
 @synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-     RH_DepositeTransferModel* transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
-    if (transferModel.mPayModel.count%5==0) {
-        return 90*(transferModel.mPayModel.count/5);
+     NSArray * transferModelArray = ConvertToClassPointer(NSArray, context);
+    if (transferModelArray.count%3==0) {
+        return 78*(transferModelArray.count/3);
     }
     else
     {
-        return 90*(transferModel.mPayModel.count/5+1);
+        return 78*(transferModelArray.count/3+1);
     }
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    _selectedBtnIndex = -1;
     self.backgroundColor = [UIColor whiteColor] ;
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
-    
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
@@ -62,16 +63,15 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
         flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        flowLayout.itemSize =CGSizeMake(70, 70);
+//        flowLayout.itemSize =CGSizeMake(65, 68);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,
                                                                              0,
                                                                              self.contentView.frameWidth,
                                                                              self.contentView.frameHeigh)
                                              collectionViewLayout:flowLayout];
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
         _collectionView.backgroundColor = [UIColor lightTextColor];
-        
+        _collectionView.scrollEnabled = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
@@ -98,15 +98,31 @@
 {
     RH_DepositePayforWaySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_DepositePayforWaySubCell defaultReuseIdentifier] forIndexPath:indexPath];
     [cell updateViewWithInfo:nil context:self.payModelArray[indexPath.item]];
+    if (indexPath.item == _selectedBtnIndex) {
+        cell.layer.cornerRadius = 2;
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = colorWithRGB(23, 102, 187).CGColor;
+        cell.layer.masksToBounds = YES;
+    }
+    else
+    {
+        cell.layer.cornerRadius = 2;
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = colorWithRGB(224,224, 224).CGColor;
+        cell.layer.masksToBounds = YES;
+    }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ifRespondsSelector(self.delegate, @selector(depositePayforWayDidtouchItemCell:itemIndex:)){
-        [self.delegate depositePayforWayDidtouchItemCell:self itemIndex:indexPath.item];
+    ifRespondsSelector(self.delegate, @selector(depositePayforWayDidtouchItemCell:depositeCode:depositeName:)){
+
+        RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.payModelArray[indexPath.item]);
+        [self.delegate depositePayforWayDidtouchItemCell:self depositeCode:transferModel.mCode depositeName:transferModel.mName];
     }
-    
+    _selectedBtnIndex = indexPath.item;
+    [self.collectionView reloadData];
 }
 
 

@@ -9,9 +9,8 @@
 #import "RH_DepositeMoneyNumberCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
-#import "RH_DepositeTransferModel.h"
-#import "RH_DepositePayAccountModel.h"
-@interface RH_DepositeMoneyNumberCell()
+#import "RH_DepositeTransferChannelModel.h"
+@interface RH_DepositeMoneyNumberCell()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *decimalsBtn;
 
@@ -19,10 +18,11 @@
 @implementation RH_DepositeMoneyNumberCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
-    self.payMoneyNumLabel.placeholder = [NSString stringWithFormat:@"%ld~%ld",accountModel.mSingleDepositMin,accountModel.mSingleDepositMax];
+   RH_DepositeTransferListModel  *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    self.payMoneyNumLabel.placeholder = [NSString stringWithFormat:@"%ld~%ld",listModel.mSingleDepositMin,listModel.mSingleDepositMax];
+    self.moneyNumMin = listModel.mSingleDepositMin;
+    self.moneyNumMax = listModel.mSingleDepositMax;
     self.payMoneyNumLabel.textAlignment = NSTextAlignmentCenter;
-//    (float)(1+arc4random()%99)/100
     [self.decimalsBtn setTitle:[NSString stringWithFormat:@"%0.2f",(float)(1+arc4random()%99)/100] forState:UIControlStateNormal];
 }
 - (void)awakeFromNib {

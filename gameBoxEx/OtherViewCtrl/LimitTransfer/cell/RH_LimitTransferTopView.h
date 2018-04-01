@@ -18,8 +18,10 @@
 @end
 
 @interface RH_LimitTransferTopView : UIView
+@property(nonatomic ,strong) UITextField *amountTextfield ;
 @property (nonatomic, weak) id<LimitTransferTopViewDelegate> delegate;
 -(void)updataBTnTitleTransferInBtnTitle:(NSString *)tranferInTitle ;
 -(void)updataBTnTitletransferOutBtnTitle:(NSString *)tranferOutTitle ;
 -(void)topViewUpdataTopDateWithModel:(RH_GetNoAutoTransferInfoModel *)model ;
+-(void)topViewUpdataAmountText:(NSString *)textValue ;
 @end

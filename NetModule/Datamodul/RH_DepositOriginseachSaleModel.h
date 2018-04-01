@@ -7,15 +7,15 @@
 //
 
 #import "RH_BasicModel.h"
-@interface RH_depositOriginseachSaleDetailsModel:RH_BasicModel
+@interface RH_DepositOriginseachSaleDetailsModel:RH_BasicModel
 @property(nonatomic,assign,readonly)NSInteger mId;
 @property(nonatomic,assign,readonly)bool mPreferential;
 @property(nonatomic,strong,readonly)NSString *mActivityName;
 @end
-@interface RH_depositOriginseachSaleModel : RH_BasicModel
+@interface RH_DepositOriginseachSaleModel : RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mMsg;
 @property(nonatomic,assign,readonly)float   mFee;
 @property(nonatomic,strong,readonly)NSString *mCounterFee;
 @property(nonatomic,assign,readonly)NSInteger mFailureCount;
-@property(nonatomic,strong,readonly)NSArray<RH_depositOriginseachSaleDetailsModel*>*mDetailsModel;
+@property(nonatomic,strong,readonly)NSArray<RH_DepositOriginseachSaleDetailsModel*>*mDetailsModel;
 @end
