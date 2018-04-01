@@ -124,9 +124,9 @@
         if ([field.name isEqualToString:@"regCode"]) {
             continue;
         }
-//        if ([field.name isEqualToString:@"serviceTerms"]) {
-////            continue;
-//        }
+        if ([field.name isEqualToString:@"serviceTerms"]) {
+            continue;
+        }
         RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
 //        FieldModel *field;
 //        for (FieldModel *model in registrationInitModel.fieldModel) {

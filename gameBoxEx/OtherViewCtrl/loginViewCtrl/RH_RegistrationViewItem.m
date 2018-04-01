@@ -109,7 +109,7 @@
                 textField.placeholder = @"请输入用户名"; break ;
             }
             if ([obj isEqualToString:@"password"]) {
-                label_Title.text = @"请输入密码";
+                label_Title.text = @"请输入密码⭐️";
                 textField.placeholder = @"请输入6-20个字母数字或字符"; break ;
             }
             if ([obj isEqualToString:@"password2"]) {
@@ -588,7 +588,7 @@
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     }
     if ([fieldModel.name isEqualToString:@"201"]) {
-        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@_"];
+        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@".0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@_"];
     }
     if ([fieldModel.name isEqualToString:@"realName"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
