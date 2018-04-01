@@ -119,8 +119,10 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3SiteMessageMyMessageDetail){
-        [self loadDataFailWithError:error] ;
+    if (error.code != 1001) {
+        if (type == ServiceRequestTypeV3SiteMessageMyMessageDetail){
+            [self loadDataFailWithError:error] ;
+        }
     }
 }
 
