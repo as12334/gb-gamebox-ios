@@ -11,6 +11,7 @@
 #import "RH_DepositePayAccountModel.h"
 @interface RH_DepositeTransferOrderNumCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payforWayLabel;
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 
 @end
@@ -19,6 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context

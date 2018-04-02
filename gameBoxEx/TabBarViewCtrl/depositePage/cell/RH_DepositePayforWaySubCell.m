@@ -12,7 +12,7 @@
 #import "RH_DepositeTransferModel.h"
 @interface RH_DepositePayforWaySubCell()
 @property (weak, nonatomic) IBOutlet UIImageView *payforIcon;
-@property (weak, nonatomic) IBOutlet UILabel *payforTitle;
+
 @property (nonatomic,strong)RH_DepositeTransferModel *transferModel;
 @end
 @implementation RH_DepositePayforWaySubCell

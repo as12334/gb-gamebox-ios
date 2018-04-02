@@ -60,7 +60,7 @@
     _tabelView.showsVerticalScrollIndicator = NO;
     _tabelView.layer.cornerRadius = 5.f;
     _tabelView.layer.masksToBounds = YES;
-    _tabelView.backgroundColor = [UIColor lightGrayColor];
+    _tabelView.backgroundColor = colorWithRGB(242, 242, 242);
     [_tabelView registerNib:[UINib nibWithNibName:@"RH_DepositeSubmitCircleCell" bundle:nil] forCellReuseIdentifier:@"circleCell"];
     
     
@@ -86,12 +86,13 @@
     
     [cell updateCellWithInfo:nil context:self.salesArray[indexPath.item]];
     if (_selectCellIndex ==indexPath.item) {
-        cell.checkedImageview.image = [UIImage imageNamed:@"choose"];
+        cell.checkedImageview.image = [UIImage imageNamed:@"blue"];
     }
     else
     {
-        cell.checkedImageview.image = [UIImage imageNamed:@""];
+        cell.checkedImageview.image = [UIImage imageNamed:@"white"];
     }
+    cell.backgroundColor = colorWithRGB(242, 242, 242);
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

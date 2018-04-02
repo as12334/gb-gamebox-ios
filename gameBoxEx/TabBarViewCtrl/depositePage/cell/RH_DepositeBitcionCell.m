@@ -72,6 +72,11 @@
     }
     
 }
+- (IBAction)saveToPhone:(id)sender {
+    ifRespondsSelector(self.delegate, @selector(depositeBitcionCellDidTouchSaveToPhoneWithUrl:)){
+        [self.delegate depositeBitcionCellDidTouchSaveToPhoneWithUrl:self.listModel.qrShowCover] ;
+    }
+}
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.bitcoinAdressStr = self.bitcoinAdressTextfield.text;

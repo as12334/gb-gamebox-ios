@@ -9,5 +9,5 @@
 #import "CLCollectionViewCell.h"
 
 @interface RH_DepositePayforWaySubCell : CLCollectionViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *payforTitle;
 @end

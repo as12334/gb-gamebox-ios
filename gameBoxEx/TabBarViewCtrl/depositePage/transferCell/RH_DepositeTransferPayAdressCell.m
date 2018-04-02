@@ -12,6 +12,7 @@
 @interface RH_DepositeTransferPayAdressCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payLabel;
 
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 @end
 @implementation RH_DepositeTransferPayAdressCell
@@ -19,6 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.downLineView.backgroundColor =colorWithRGB(242, 242, 242);
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {

@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *bankCardNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankCardNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankAdressLabel;
+@property (weak, nonatomic) IBOutlet UIView *colorView;
+@property (weak, nonatomic) IBOutlet UILabel *accountInfoLabel;
 
 @end
 @implementation RH_DepositeTransferBankInfoCell
@@ -34,8 +36,8 @@
     // Initialization code
     self.bankInfoView.layer.cornerRadius = 5.f;
     self.bankInfoView.layer.masksToBounds=YES;
-    self.bankInfoView.layer.borderWidth = 1.f;
-    self.bankInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.bankInfoView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.colorView.backgroundColor = colorWithRGB(23, 102, 204);
     self.copBtn.layer.cornerRadius = 5.f;
     self.copBtn.layer.masksToBounds = YES;
     self.copBtnTwo.layer.cornerRadius = 5.f;

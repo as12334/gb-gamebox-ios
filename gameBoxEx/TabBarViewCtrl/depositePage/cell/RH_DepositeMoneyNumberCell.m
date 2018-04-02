@@ -13,6 +13,9 @@
 @interface RH_DepositeMoneyNumberCell()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *decimalsBtn;
+@property (weak, nonatomic) IBOutlet UILabel *deposieLabel;
+@property (weak, nonatomic) IBOutlet CLBorderView *uplineView;
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 @end
 @implementation RH_DepositeMoneyNumberCell
@@ -34,6 +37,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.deposieLabel setTextColor:colorWithRGB(102, 102, 102)];
+    self.uplineView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

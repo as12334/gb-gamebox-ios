@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bankIconImage;
 @property (weak, nonatomic) IBOutlet UILabel *personIdNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *personNameLabel;
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
+@property (weak, nonatomic) IBOutlet UIView *colorView;
 
 @end
 @implementation RH_DepositeTransferWXinInfoCell
@@ -32,8 +34,10 @@
     self.accountInfo.layer.masksToBounds = YES;
     self.accountInfoView.layer.cornerRadius = 10.f;
     self.accountInfoView.layer.masksToBounds = YES;
-    self.accountInfoView.layer.borderWidth = 1.f;
-    self.accountInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.accountInfoView.backgroundColor = colorWithRGB(242, 242, 242);
+     self.colorView.backgroundColor = colorWithRGB(23, 102, 204);
+    self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
+    [self.personIdNumLabel setTextColor:colorWithRGB(51, 51, 51)];
 }
 - (IBAction)bankNumCopyClick:(id)sender {
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];

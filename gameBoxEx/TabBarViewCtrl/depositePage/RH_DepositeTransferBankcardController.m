@@ -21,7 +21,7 @@
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeTransferButtonCell.h"
 #import "RH_DepositeTransferPulldownView.h"
-@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferPulldownViewDelegate>
+@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferPulldownViewDelegate,DepositeTransferQRCodeCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -113,12 +113,12 @@
 }
 #pragma mark --视图
 -(void)setupUI{
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
     self.contentTableView.sectionHeaderHeight = 0.0f ;
-    self.contentTableView.separatorStyle = UITableViewRowActionStyleNormal;
+    self.contentTableView.separatorStyle = UITableViewRowActionStyleDefault;
     [self.contentView addSubview:self.contentTableView] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferBankInfoCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferPayWayCell class]] ;
@@ -135,7 +135,7 @@
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
         _circleView.frame = CGRectMake(0, 0, 250, 360);
-        _circleView.center = self.view.center;
+        _circleView.center = self.contentView.center;
         _circleView.delegate = self;
     }
     return _circleView;
@@ -169,24 +169,24 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.item==[_markArray[0] integerValue]) {
-        return 180.0f ;
+        return 226.0f ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
         return 190.f;
     }
     else if (indexPath.item==[_markArray[2] integerValue])
     {
-        return 190.f;
+        return 137.f;
     }
     else if (indexPath.item==[_markArray[3] integerValue])
     {
-        return 44.f;
+        return 50.f;
     }
     else if (indexPath.item==[_markArray[4] integerValue]){
-        return 44.f;
+        return 50.f;
     }
     else if (indexPath.item ==[_markArray[5] integerValue]){
-        return 44.f;
+        return 50.f;
     }
     else if (indexPath.item==[_markArray[6] integerValue]){
         return 80.f;
@@ -216,7 +216,7 @@
     }
     else if (indexPath.item == [_markArray[2]integerValue]){
         RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
-//                platformCell.delegate=self;
+        qrcodeCell.delegate=self;
         [qrcodeCell updateCellWithInfo:nil context:self.listModel];
         return qrcodeCell ;
         
@@ -477,9 +477,17 @@
         [self.serviceRequest startV3CounterPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString rechargeAddress:self.adressCell.adressStr activityId:self.activityId];
     }
 }
+
+#pragma mark - DepositeTransferQRCodeCellDelegate
+-(void)depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:(NSString *)imageUrl
+{
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]]];
+    UIImage *myImage = [UIImage imageWithData:data];
+    [self saveImageToPhotos:myImage];
+}
 #pragma mark 数据请求
 
-#pragma mark - serviceRequest
+#pragma mark - serviceRequest 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
@@ -564,10 +572,10 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
-        showMessage(self.circleView, error, @"付款失败");
+        showErrorMessage(self.circleView, error, @"付款失败");
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
-        showMessage(self.circleView, error, @"付款失败");
+        showErrorMessage(self.circleView, error, @"付款失败");
     }
 }
 

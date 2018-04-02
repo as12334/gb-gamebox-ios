@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *transferTextField;
+@property (weak, nonatomic) IBOutlet CLBorderView *upLineView;
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 @end
 @implementation RH_DepositeTransferPayWayCell
@@ -85,6 +87,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.upLineView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

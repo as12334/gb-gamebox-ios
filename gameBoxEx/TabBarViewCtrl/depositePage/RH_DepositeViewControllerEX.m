@@ -24,6 +24,8 @@
 #import "RH_BankPickerSelectView.h"
 #import "THScrollChooseView.h"
 #import "RH_DepositeKuaiChongController.h"
+#import "RH_CustomViewController.h"
+#import "RH_APPDelegate.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -35,6 +37,7 @@
 @property(nonatomic,strong)RH_DepositeMoneyNumberCell *numberCell;
 @property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
 @property(nonatomic,strong)NSArray *accountModelArray;
+@property(nonatomic,strong,readonly)UIButton *closeBtn;
 
 //支付方式类型
 @property(nonatomic,strong)NSString *payforType;
@@ -56,6 +59,7 @@
     NSInteger _selectNumber;
 }
 @synthesize circleView = _circleView;
+@synthesize closeBtn = _closeBtn;
 
 -(BOOL)tabBarHidden
 {
@@ -68,6 +72,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+    [self.contentTableView setContentOffset:CGPointMake(0,-64) animated:YES];
     if ([self needLogin]){
         //check whether login
         if (!self.appDelegate.isLogin){
@@ -81,6 +86,8 @@
     }
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -88,7 +95,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     self.title = @"存款";
-    _markArray = @[@0,@1,@2,@3,@4,@5,@6];
+    _markArray = @[@0,@6,@1,@2,@3,@4,@5];
     [self setNeedUpdateView];
     [self setupUI];
     // 键盘出现的通知
@@ -230,13 +237,29 @@
 {
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
-        _circleView.frame = CGRectMake(0, 0, 250, 360);
-        _circleView.center = self.view.center;
+        _circleView.frame = CGRectMake(0, 0, 295, 358);
+        _circleView.center = self.contentView.center;
         _circleView.delegate = self;
     }
     return _circleView;
 }
-
+#pragma mark --弹框的关闭按钮
+-(UIButton *)closeBtn
+{
+    if (!_closeBtn) {
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_closeBtn setBackgroundImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        _closeBtn.frame = CGRectMake((self.view.frameWidth-51)/2, self.circleView.frameHeigh+self.circleView.frameY+24, 51, 51);
+        [_closeBtn addTarget:self action:@selector(closeTheCircleView) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeBtn;
+}
+-(void)closeTheCircleView
+{
+    [_shadeView removeFromSuperview];
+    [self.circleView removeFromSuperview];
+    [self.closeBtn removeFromSuperview];
+}
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -245,9 +268,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
+    if ([self.depositeCode isEqualToString:@"bitcoin"]||[self.depositeName isEqualToString:@"快充中心"]){
+        return 1;
+    }
+    else{
     return  6 ;
-   
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -263,14 +289,14 @@
         return 120.f;
     }
     else if (indexPath.item==[_markArray[3] integerValue]){
-        return 44.f;
+        return 50.f;
     }
     else if (indexPath.item==[_markArray[4] integerValue]){
-        return 44.f;
+        return 50.f;
     }
     else if (indexPath.item ==[_markArray[5] integerValue]){
 //
-        return 50;
+        return 80;
     }
     else if (indexPath.item ==[_markArray[6] integerValue]){
         return 200.f;
@@ -358,15 +384,16 @@
     if ([self.depositeName isEqualToString:@"快充中心"]) {
         RH_DepositeKuaiChongController *kuaichongVC = [RH_DepositeKuaiChongController viewControllerWithContext:depositeCode];
         [self showViewController:kuaichongVC sender:self];
+        _markArray = @[@0];
     }
-//   else{
+   else{
         if ([depositName isEqualToString:@"在线支付"]) {
             _markArray = @[@0,@6,@1,@2,@3,@4,@5];
         }
         else {
             _markArray = @[@0,@1,@2,@3,@6,@4,@5];
         }
-    
+   }
         [self.contentTableView reloadData];
 }
 #pragma mark --depositeReminder的代理,跳转到客服
@@ -452,6 +479,7 @@
 {
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
+    [self.closeBtn removeFromSuperview];
 }
 
 - (void)dealloc
@@ -485,7 +513,7 @@
 #pragma mark --银行列表
 -(void)depositeMoneyBankCellChoosePickerview:(RH_DepositeMoneyBankCell *)cell andBankNameArray:(NSMutableArray *)bankNameArray
 {
-    if (bankNameArray!=nil) {
+    if (bankNameArray.count>0) {
         THScrollChooseView *scrollChooseView = [[THScrollChooseView alloc] initWithQuestionArray:bankNameArray withDefaultDesc:bankNameArray[0]];
         [scrollChooseView showView];
         scrollChooseView.confirmBlock = ^(NSInteger selectedQuestion) {
@@ -558,10 +586,10 @@
         RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
         self.channelModel = channelModel;
         [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
-        
         if ([self.depositeCode isEqualToString:@"bitcoin"]) {
             RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.channelModel];
             [self showViewController:bitcionVC sender:self];
+            self.markArray = @[@0];
         }
         [self.contentTableView reloadData];
     }
@@ -581,9 +609,21 @@
         _shadeView = shadeView;
         [self.circleView setupViewWithContext:saleModel];
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.closeBtn];
     }
     else if (type==ServiceRequestTypeV3OnlinePay){
-        showMessage(self.circleView, @"存款成功", nil);
+        if ([data objectForKey:@"data"]) {
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+            }) ;
+           
+        }else
+        {
+            showMessage(self.circleView, @"存款失败", nil);
+        }
+        
     }
     else if (type==ServiceRequestTypeV3ScanPay){
         showMessage(self.circleView, @"存款成功", nil);
@@ -599,6 +639,7 @@
         
     }
     else if (type==ServiceRequestTypeV3OnlinePay){
+
         showErrorMessage(self.circleView, error, @"存款失败");
     }
     else if (type==ServiceRequestTypeV3ScanPay){
@@ -616,6 +657,8 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
+    [self.circleView removeFromSuperview];
+    [self.closeBtn removeFromSuperview];
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {
