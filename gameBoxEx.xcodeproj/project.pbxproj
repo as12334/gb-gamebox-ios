@@ -80,6 +80,7 @@
 		7937C444207209720010CD0C /* PGPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C440207209720010CD0C /* PGPickerView.m */; };
 		7937C445207209720010CD0C /* PGPickerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C441207209720010CD0C /* PGPickerTableView.m */; };
 		7937C446207209720010CD0C /* PGPickerColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C442207209720010CD0C /* PGPickerColumnCell.m */; };
+		7937C449207212F80010CD0C /* RH_DepositSuccessAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C447207212F70010CD0C /* RH_DepositSuccessAlertView.m */; };
 		794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */; };
 		794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */; };
 		7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D0262064F81800760FEB /* RH_AboutUsViewController.m */; };
@@ -862,6 +863,8 @@
 		7937C440207209720010CD0C /* PGPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerView.m; sourceTree = "<group>"; };
 		7937C441207209720010CD0C /* PGPickerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerTableView.m; sourceTree = "<group>"; };
 		7937C442207209720010CD0C /* PGPickerColumnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerColumnCell.m; sourceTree = "<group>"; };
+		7937C447207212F70010CD0C /* RH_DepositSuccessAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_DepositSuccessAlertView.m; sourceTree = "<group>"; };
+		7937C448207212F70010CD0C /* RH_DepositSuccessAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_DepositSuccessAlertView.h; sourceTree = "<group>"; };
 		794429F8203FC18C006F5A20 /* RH_VeriftyCloseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyCloseViewController.h; sourceTree = "<group>"; };
 		794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyCloseViewController.m; sourceTree = "<group>"; };
 		794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerifyCloseView.h; sourceTree = "<group>"; };
@@ -4192,6 +4195,8 @@
 				79BA36AA20710A6500FD2BFE /* RH_DespositeBitCoinStaticDataCell.h */,
 				79BA36AB20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m */,
 				79BA36AC20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.xib */,
+				7937C448207212F70010CD0C /* RH_DepositSuccessAlertView.h */,
+				7937C447207212F70010CD0C /* RH_DepositSuccessAlertView.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -4871,6 +4876,7 @@
 				A010A08A1F879B23004E6EF4 /* RH_BasicPageLoadViewController.m in Sources */,
 				790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */,
 				A010A08B1F879B23004E6EF4 /* RH_BasicSubViewController.m in Sources */,
+				7937C449207212F80010CD0C /* RH_DepositSuccessAlertView.m in Sources */,
 				A010A08C1F879B23004E6EF4 /* RH_BasicViewController.m in Sources */,
 				A010A08D1F879B23004E6EF4 /* RH_MainNavigationController.m in Sources */,
 				A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */,
