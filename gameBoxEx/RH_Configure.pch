@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1897,6 +1897,14 @@
 #define CODE    @"ptmx"
 #define S        @"86a652360bbafb98c857c9dd9d389c54"
 #define SID        @"399"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _skab //金尊娱乐城
+
+#define CODE    @"skab"
+#define S        @"428e4e6432322311a7748bab8b7d50a0"
+#define SID        @"501"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
