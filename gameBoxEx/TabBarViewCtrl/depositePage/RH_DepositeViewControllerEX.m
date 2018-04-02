@@ -420,7 +420,7 @@
 -(void)depositeChooseMoneyCell:(NSInteger)moneyNumber
 {
     NSInteger sum =  [self.numberCell.payMoneyNumLabel.text integerValue]+moneyNumber;
-    self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",sum];
+    self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",moneyNumber];
     
 }
 #pragma mark --提交按钮的代理
@@ -652,24 +652,17 @@
     else if (type==ServiceRequestTypeV3ScanPay){
         if ([data objectForKey:@"data"]) {
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                if (self.successAlertView.superview == nil) {
-                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
-                    self.successAlertView.alpha = 0;
-                    self.successAlertView.delegate = self;
-                    [self.contentView addSubview:self.successAlertView];
-                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
-                    [UIView animateWithDuration:0.3 animations:^{
-                        self.successAlertView.alpha = 1;
-                    } completion:^(BOOL finished) {
-                        if (finished) {
-                            [self.successAlertView showContentView];
-                        }
-                    }];
-                }
-            }] ;
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+            }) ;
+        }] ;
         }else
         {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showMessage(self.view, @"付款失败", nil);
+            }] ;
         }
     }
     

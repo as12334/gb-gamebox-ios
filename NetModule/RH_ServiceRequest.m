@@ -2844,11 +2844,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
-                case ServiceRequestTypeV3ScanPay:
-            {
-                
-            }
-                break;
+//                case ServiceRequestTypeV3ScanPay:
+//            {
+//                
+//            }
+//                break;
             default:
                 resultSendData = dataObject ;
                 break;

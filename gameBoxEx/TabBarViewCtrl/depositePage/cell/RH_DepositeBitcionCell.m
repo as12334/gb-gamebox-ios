@@ -56,7 +56,7 @@ static NSString *content = @"温馨提示\n*为了提高对账速度及成功率
     WHC_StackView *stackView = [[WHC_StackView alloc] init];
     stackView.userInteractionEnabled = YES ;
     [self addSubview:stackView];
-    stackView.whc_RightSpace(0).whc_TopSpaceToView(4, _bitcoinNumTextfield).whc_Width(200).whc_Height(38) ;
+    stackView.whc_RightSpace(0).whc_TopSpaceToView(15, _bitcoinNumTextfield).whc_Width(200).whc_Height(38) ;
     stackView.whc_Column = 1;
     stackView.whc_HSpace = 10;
     stackView.whc_VSpace = 10;
