@@ -21,6 +21,7 @@
     RH_RegisetInitModel *registrationInitModel;
     UIScrollView *mainScrollView;
     NSInteger animate_Item_Index;
+    BOOL isAgreedServiceTerm;
 }
 @synthesize stackView = _stackView;
 - (BOOL)isSubViewController {
@@ -94,6 +95,7 @@
     [[WHC_KeyboardManager share] addMonitorViewController:self];
     
     [self.serviceRequest startV3RegisetInit];
+    isAgreedServiceTerm = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,14 +117,20 @@
     mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 100);
     [mainScrollView addSubview:self.stackView];
     self.stackView.whc_TopSpace(70).whc_LeftSpace(20).whc_Width(screenSize().width - 40).whc_HeightAuto();
-    if (registrationInitModel.registCodeField) {
-        RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
-        FieldModel *field = [[FieldModel alloc] init];
-        field.name = @"regCode";
-        [item setFieldModel:field];
-        [item setRequiredJson:registrationInitModel.requiredJson];
-        [self.stackView addSubview:item];
+    for (FieldModel *field in registrationInitModel.fieldModel) {
+        if ([field.name isEqualToString:@"regCode"]) {
+            RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+            [item setFieldModel:field];
+            [item setRequiredJson:registrationInitModel.requiredJson];
+            [self.stackView addSubview:item];
+        }
     }
+//    if (registrationInitModel.registCodeField) {
+//
+//        FieldModel *field = [[FieldModel alloc] init];
+//        field.name = @"regCode";
+//
+//    }
     for (FieldModel *field in registrationInitModel.fieldModel) {
         if ([field.name isEqualToString:@"regCode"]) {
             continue;
@@ -214,9 +222,13 @@
 
 - (void)setupBottomView {
     UIButton *button_Check = [UIButton new];
+    button_Check.tag = 1023;
     [mainScrollView addSubview:button_Check];
     button_Check.whc_TopSpaceToView(20, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
-    button_Check.backgroundColor = [UIColor blueColor];
+    
+    [button_Check setSelected:YES];
+    [button_Check setImage:ImageWithName(@"choose") forState:UIControlStateNormal];
+    [button_Check addTarget:self action:@selector(button_CheckHandle:) forControlEvents:UIControlEventTouchUpInside];
     UIButton *label = [UIButton new];
     [mainScrollView addSubview:label];
     label.whc_LeftSpaceToView(10, button_Check).whc_BottomSpaceEqualView(button_Check).whc_Height(20).whc_WidthAuto();
@@ -232,6 +244,19 @@
     [button setTitle:@"立即注册" forState:UIControlStateNormal];
     [button setBackgroundColor:colorWithRGB(20, 90, 180)];
     [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)button_CheckHandle:(UIButton *)button {
+    
+    if ([button isSelected]) {
+        [button setSelected:NO];
+        [button setImage:ImageWithName(@"not-choose") forState:UIControlStateNormal];
+        isAgreedServiceTerm = NO;
+    }else {
+        [button setSelected:YES];
+        [button setImage:ImageWithName(@"choose") forState:UIControlStateNormal];
+        isAgreedServiceTerm = YES;
+    }
 }
 
 - (void)zhucetiaokuan {
@@ -433,12 +458,18 @@
             if (securityIssues.length == 0) {
                 showMessage(self.contentView, @"请选择安全问题", @"");
                 return;}
+//            if ([obj isEqualToString:@"securityIssues2"]) {
+                if (securityIssues2.length == 0) {
+                    showMessage(self.contentView, @"请回答安全问题", @"");
+                    return;}
+//            }
         }
-        if ([obj isEqualToString:@"securityIssues2"]) {
-            if (securityIssues.length == 0) {
-                showMessage(self.contentView, @"请回答安全问题", @"");
-                return;}
-        }
+        
+    }
+    
+    if (isAgreedServiceTerm == NO) {
+        showMessage(self.contentView, @"请同意注册条款", nil);
+        return ;
     }
     NSString *registcode = registrationInitModel.paramsModel.registCode ?: @"";
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];

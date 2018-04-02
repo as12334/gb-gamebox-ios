@@ -11,6 +11,7 @@
 #import "coreLib.h"
 
 @interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
+@property (nonatomic, strong) NSTimer *timer;
 @end
 @implementation RH_RegistrationViewItem
 {
@@ -30,6 +31,8 @@
     NSArray<SecurityIssuesModel *> *securityIssuesModel;
     
     id selectedItem;
+    NSInteger countDownNumber;
+    
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -62,6 +65,7 @@
         textField.delegate = self;
         
         fieldModel = [[FieldModel alloc] init];
+        
     }
     return self;
 }
@@ -330,7 +334,7 @@
     UIButton *button = [UIButton new];
     [self addSubview:button];
     button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
-    button.backgroundColor = [UIColor purpleColor];
+    [button setImage:ImageWithName(@"down") forState:UIControlStateNormal];
     [button addTarget:self action:@selector(sexSelectDidTap) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -359,7 +363,7 @@
     UIButton *button = [UIButton new];
     [self addSubview:button];
     button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
-    button.backgroundColor = [UIColor purpleColor];
+    [button setImage:ImageWithName(@"down") forState:UIControlStateNormal];
     [button addTarget:self action:@selector(mainCurrencyDidTaped) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)mainCurrencyDidTaped {
@@ -387,7 +391,7 @@
     UIButton *button = [UIButton new];
     [self addSubview:button];
     button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
-    button.backgroundColor = [UIColor purpleColor];
+    [button setImage:ImageWithName(@"down") forState:UIControlStateNormal];
     [button addTarget:self action:@selector(defaultLocaleDidTaped) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)defaultLocaleDidTaped {
@@ -415,7 +419,7 @@
     UIButton *button = [UIButton new];
     [self addSubview:button];
     button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
-    button.backgroundColor = [UIColor purpleColor];
+    [button setImage:ImageWithName(@"down") forState:UIControlStateNormal];
     [button addTarget:self action:@selector(securityIssuesDidTaped) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)securityIssuesDidTaped {
@@ -442,7 +446,7 @@
     UIButton *button = [UIButton new];
     [self addSubview:button];
     button.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(20);
-    button.backgroundColor = [UIColor purpleColor];
+    [button setImage:ImageWithName(@"down") forState:UIControlStateNormal];
     [button addTarget:self action:@selector(birthdaySelectTaped) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)birthdaySelectTaped {
@@ -512,8 +516,22 @@
     button_Check = [UIButton new];
     [self addSubview:button_Check];
     button_Check.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(25);
-    button_Check.backgroundColor = [UIColor blueColor];
+//    button_Check.backgroundColor = [UIColor blueColor];
     textField.secureTextEntry = YES;
+    [button_Check setImage:ImageWithName(@"eye") forState:UIControlStateNormal];
+    [button_Check addTarget:self action:@selector(button_CheckHandle:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)button_CheckHandle:(UIButton *)button {
+    if ([button isSelected]) {
+        [button setSelected:NO];
+        [button setImage:ImageWithName(@"eye") forState:UIControlStateNormal];
+        textField.secureTextEntry = YES;
+    }else {
+        [button setSelected:YES];
+        [button setImage:ImageWithName(@"eyeclose") forState:UIControlStateNormal];
+        textField.secureTextEntry = NO;
+    }
 }
 
 - (void)setVerifyCodeLayout {
@@ -534,6 +552,8 @@
     tap.delegate = self;
     [webView addGestureRecognizer:tap];
     webView.multipleTouchEnabled = NO;
+    webView.scrollView.bounces = NO;
+    webView.scrollView.scrollEnabled = NO;
 }
 - (void)webViewTapHandle:(UITapGestureRecognizer *)tap {
     UIWebView *webView = (UIWebView *)tap.view;
@@ -546,6 +566,7 @@
 - (void)setPhoneVerifyCodeLayout {
     textField.whc_RightSpace(150);
     UIButton *button = [UIButton new];
+    button.tag = 1002;
     [self addSubview:button];
     button.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
     button.layer.borderColor = colorWithRGB(20, 90, 180).CGColor;
@@ -560,8 +581,58 @@
 }
 
 - (void)obtainVerifyTaped {
-    
-    
+    WHC_StackView *stackView = (WHC_StackView *)self.superview;
+    NSString *phone;
+    for (RH_RegistrationViewItem *item in stackView.whc_Subviews) {
+        if ([item.contentType isEqualToString:@"110"]) {
+            phone = item.textFieldContent;
+        }
+    }
+    NSLog(@"%@", phone);
+    if (phone.length != 11) {
+        showMessage(self.window, @"请输入正确的手机号码", nil);
+        return ;
+    }
+    RH_APPDelegate *app = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+    NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@/verificationCode/getPhoneVerificationCode.html", app.domain]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    NSDictionary *dict = @{
+                           @"phone": textField.text
+                           };
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if ([s isEqualToString:@"true"]) {
+            countDownNumber = 90;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(startCountDown) userInfo:nil repeats:YES];
+            });
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                showMessage(self.window, @"发送失败", @"");
+            });
+        }
+    }];
+    [dataTask resume];
+}
+
+- (void)startCountDown {
+    NSLog(@"%s", __func__);
+        countDownNumber--;
+        UIButton *button = [self viewWithTag:1002];
+        if (countDownNumber > 0) {
+            button.enabled = NO;
+            button.layer.borderColor = colorWithRGB(168, 168, 168).CGColor;
+            [button setTitle:[NSString stringWithFormat:@"%lds",(long)countDownNumber] forState:UIControlStateNormal];
+            [button setTitleColor:colorWithRGB(168, 168, 168) forState:UIControlStateNormal];
+        }else {
+            [self.timer invalidate];
+            button.layer.borderColor = colorWithRGB(20, 90, 180).CGColor;
+            [button setTitleColor:colorWithRGB(20, 90, 180) forState:UIControlStateNormal];
+            [button setTitle:@"获取验证码" forState:UIControlStateNormal];
+            button.enabled = YES;
+        }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -576,18 +647,27 @@
     }
     if ([fieldModel.name isEqualToString:@"password"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
+        if (textField.text.length + number.length > 20) {
+            return NO;
+        }
     }
     if ([fieldModel.name isEqualToString:@"password2"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
+        if (textField.text.length + number.length > 20) {
+            return NO;
+        }
     }
     if ([fieldModel.name isEqualToString:@"verificationCode"]) {
-        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"];
     }
     if ([fieldModel.name isEqualToString:@"304"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_"];
     }
     if ([fieldModel.name isEqualToString:@"110"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        if (textField.text.length + number.length > 11) {
+            return NO;
+        }
     }
     if ([fieldModel.name isEqualToString:@"110verify"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
@@ -604,13 +684,13 @@
     }
     if ([fieldModel.name isEqualToString:@"paymentPassword"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-        if (textField.text.length > 5) {
+        if (textField.text.length + number.length > 6) {
             return NO;
         }
     }
     if ([fieldModel.name isEqualToString:@"paymentPassword2"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-        if (textField.text.length > 5) {
+        if (textField.text.length + number.length > 6) {
             return NO;
         }
     }
