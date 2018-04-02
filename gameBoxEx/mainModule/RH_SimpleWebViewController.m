@@ -284,6 +284,7 @@
 #pragma mark -
 - (void)setWebURL:(NSURL *)webURL
 {
+    NSLog(@"_webURL===%@",_webURL);
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
@@ -337,6 +338,7 @@
 //        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
 //    }
     [urlRequest setValue:@"application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
     [self.webView loadRequest:urlRequest];
 }
 
@@ -487,6 +489,9 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString* reqUrl = request.URL.absoluteString;
+    if ([reqUrl isEqualToString:@"https://777.ampinplayopt0matrix.com/m/new/#/game"]) {
+       _webURL = [NSURL URLWithString:@"http://777.ampinplayopt0matrix.com/m/new/#/game"];
+    }
     NSLog(@"-start Request---:%@",reqUrl);
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         [[UIApplication sharedApplication]openURL:request.URL];
