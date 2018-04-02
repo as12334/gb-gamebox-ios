@@ -688,7 +688,34 @@
             }] ;
         }else
         {
-            showMessage(self.view, @"付款失败", nil);
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showMessage(self.view, @"付款失败", nil);
+            }] ;
+        }
+    }else if(type == ServiceRequestTypeV3CompanyPay)
+    {
+        if ([data objectForKey:@"data"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }] ;
+        }else
+        {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showMessage(self.view, @"付款失败", nil);
+            }] ;
         }
     }
 }
@@ -698,10 +725,19 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
-        showErrorMessage(self.circleView, error, @"付款失败");
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"付款失败");
+        }] ;
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
-        showErrorMessage(self.circleView, error, @"付款失败");
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"付款失败");
+        }] ;
+    }else if(type == ServiceRequestTypeV3CompanyPay)
+    {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"付款失败");
+        }] ;
     }
 }
 
