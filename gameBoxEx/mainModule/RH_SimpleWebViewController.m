@@ -690,6 +690,7 @@
             if([jsCustom.toString containsString:@"http"]){
                 downloadURL = jsCustom.toString.trim ;
             }else{
+               
                 downloadURL = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,jsCustom.toString.trim] ;
             }
             
@@ -872,10 +873,12 @@
             }
             customUrl = args[0] ;
             if ([customUrl.toString containsString:@"http:"] ||[customUrl.toString containsString:@"https:"] ) {
+                
                  self.appDelegate.customUrl =[NSString stringWithFormat:@"%@",customUrl.toString];
             }else
             {
-                 self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
+               
+                self.appDelegate.customUrl =[NSString stringWithFormat:@"%@"@"%@",self.appDelegate.domain,customUrl.toString];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showViewController:[RH_CustomViewController viewController] sender:self];
@@ -943,9 +946,11 @@
             self.appDelegate.customUrl = customUrl.toString;
             NSString *urlStr;
             if ([self.appDelegate.customUrl containsString:@"http"] || [self.appDelegate.customUrl containsString:@"https:"]) {
+                
                 urlStr = [NSString stringWithFormat:@"%@", self.appDelegate.customUrl];
             }else
             {
+                
                 urlStr = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain, self.appDelegate.customUrl];
             }
           

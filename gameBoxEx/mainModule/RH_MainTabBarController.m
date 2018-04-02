@@ -77,7 +77,7 @@
         [RH_CustomTabBar appearance].barTintColor = RH_TabBar_BackgroundColor ;
         
         if ([THEMEV3 isEqualToString:@"black"]) {
-            [RH_CustomTabBar appearance].barTintColor = RH_NavigationBar_BackgroundColor_Black ;
+            [RH_CustomTabBar appearance].barTintColor = colorWithRGB(37, 37, 37) ;
         }
     }
     

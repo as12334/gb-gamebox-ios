@@ -1900,6 +1900,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _skab //金尊娱乐城
+
+#define CODE    @"skab"
+#define S        @"428e4e6432322311a7748bab8b7d50a0"
+#define SID        @"501"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 #elif _izlr //澳门威尼斯人
 
 #define CODE    @"izlr"

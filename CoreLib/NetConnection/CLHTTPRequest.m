@@ -140,7 +140,7 @@
     bodyArguments:(NSDictionary *)bodyArguments
              type:(HTTPRequestType)type
 {
-//    NSLog(@"body1参数为=%@",[[NSString alloc] initWithData:[CLHTTPRequest _dataWithBodyArguments:bodyArguments]  encoding:NSUTF8StringEncoding]);
+    NSLog(@"body1参数为=%@",[[NSString alloc] initWithData:[CLHTTPRequest _dataWithBodyArguments:bodyArguments]  encoding:NSUTF8StringEncoding]);
     return [self initWithURL:url
                   pathFormat:pathFormat
                pathArguments:pathArguments
@@ -334,7 +334,7 @@ isStart = NO;                                   \
 {
     if (!_urlRequest) {
 
-        //        HttpRequestDebugLog(@"URL = %@",_requestURL);
+                HttpRequestDebugLog(@"URL = %@",_requestURL);
 
         NSMutableURLRequest * tmpURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[_requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 

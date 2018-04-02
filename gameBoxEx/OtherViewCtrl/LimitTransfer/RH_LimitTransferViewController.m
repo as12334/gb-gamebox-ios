@@ -92,6 +92,7 @@
     _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize().width, 120.f)]  ;
     _footerView.backgroundColor = [UIColor whiteColor] ;
     UIButton *oneStepRecoryBtn  =  [UIButton new] ;  //一键回收
+    oneStepRecoryBtn.backgroundColor = [UIColor redColor];
     [_footerView addSubview:oneStepRecoryBtn];
     oneStepRecoryBtn.whc_LeftSpace(10).whc_TopSpace(10).whc_RightSpace(10).whc_Height(40) ;
     [oneStepRecoryBtn setTitle:@"一键回收" forState:UIControlStateNormal];
@@ -124,11 +125,11 @@
         oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
         oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red.CGColor;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
-        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
-        
-        oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
-        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;
+        oneStepRecoryBtn.backgroundColor = colorWithRGB(24, 102, 187);
+        oneStepRecoryBtn.layer.borderColor = colorWithRGB(24, 102, 187).CGColor;
+
+        oneStepRefreshBtn.backgroundColor = colorWithRGB(24, 102, 187);;
+        oneStepRefreshBtn.layer.borderColor = colorWithRGB(24, 102, 187).CGColor;
     }else{
         oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;

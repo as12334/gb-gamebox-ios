@@ -77,7 +77,7 @@
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
 {
-    [self.serviceRequest startV3BitcoinPayWithRechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId activityId:self.activityId returnTime:@"2018-02-28 12:00:00" payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
+    [self.serviceRequest startV3BitcoinPayWithRechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId activityId:self.activityId returnTime:self.bitcionCell.bitcoinChangeTimeStr payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
 }
 
 -(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate *)defaultDate
@@ -102,6 +102,7 @@
     NSString *dateString = [dateFormat stringFromDate:date];
     self.bitcionCell.bitConDate = date ;
     NSLog(@"date: %@", dateString);
+    self.bitcionCell.bitcoinChangeTimeStr = dateString;
 }
 
 -(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl
