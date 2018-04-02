@@ -69,6 +69,20 @@
 {
     [self.serviceRequest startV3BitcoinPayWithRechargeType:((RH_DepositeTransferListModel*)self.listModelArray[0]).mRechargeType payAccountId:((RH_DepositeTransferListModel*)self.listModelArray[0]).mSearchId activityId:self.activityId returnTime:@"2018-02-28 12:00:00" payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
 }
+
+-(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate *)defaultDate
+{
+    NSString *defaultDateStr1 =  dateStringWithFormatter(bitcoinCell.bitConDate, @"yyyy-MM-dd HH:mm:ss");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd HH:mm:ss");
+    [self showCalendarView:@"选择交易时间"
+            initDateString:defaultDateStr1?:defaultDateStr2
+                   MinDate:nil
+                   MaxDate:[NSDate date]
+              comfirmBlock:^(NSDate *returnDate) {
+                  bitcoinCell.bitConDate = returnDate ;
+              }] ;
+}
+
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

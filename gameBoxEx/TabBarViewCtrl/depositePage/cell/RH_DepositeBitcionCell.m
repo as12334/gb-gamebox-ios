@@ -73,7 +73,9 @@
 
 -(void)bitcoinStaticDateCellHandle
 {
-    NSLog(@"") ;
+    ifRespondsSelector(self.delegate, @selector(depositeBitcionCellDidTouchTimeSelectView:DefaultDate:)){
+        [self.delegate depositeBitcionCellDidTouchTimeSelectView:self DefaultDate:_bitConDate] ;
+    }
 
 }
 
