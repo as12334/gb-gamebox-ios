@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -1921,6 +1921,14 @@
 #define CODE    @"45jj"
 #define S        @"206339808ae0021a59fe506d1a620956"
 #define SID        @"508"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _lboi //繁星国际
+
+#define CODE    @"lboi"
+#define S        @"550e127694b6fda273e7c8398229a019"
+#define SID        @"511"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 

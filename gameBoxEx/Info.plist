@@ -20,6 +20,8 @@
 	<string>3.0</string>
 	<key>CFBundleVersion</key>
 	<string>20171010</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
