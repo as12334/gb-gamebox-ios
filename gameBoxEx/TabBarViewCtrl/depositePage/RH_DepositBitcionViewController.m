@@ -12,7 +12,8 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeSubmitCircleView.h"
-@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate>
+
+@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate,PGDatePickerDelegate>
 @property(nonatomic,strong)NSArray *listModelArray;
 @property(nonatomic,strong)RH_DepositeBitcionCell *bitcionCell;
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
@@ -39,6 +40,7 @@
     self.listModelArray = ConvertToClassPointer(NSArray, channelModel.mArrayListModel);
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, channelModel.mArrayListModel[0]);
     self.listModel = listModel;
+    
 }
 #pragma mark --视图
 -(void)setupUI{
@@ -80,15 +82,26 @@
 
 -(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(bitcoinCell.bitConDate, @"yyyy-MM-dd HH:mm:ss");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd HH:mm:ss");
-    [self showCalendarView:@"选择交易时间"
-            initDateString:defaultDateStr1?:defaultDateStr2
-                   MinDate:nil
-                   MaxDate:[NSDate date]
-              comfirmBlock:^(NSDate *returnDate) {
-                  bitcoinCell.bitConDate = returnDate ;
-              }] ;
+    PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
+    datePickManager.isShadeBackgroud = true;
+    PGDatePicker *datePicker = datePickManager.datePicker;
+    datePicker.delegate = self;
+    datePicker.datePickerType = PGPickerViewType2;
+    datePicker.datePickerMode = PGDatePickerModeDateHourMinute;
+    [self presentViewController:datePickManager animated:false completion:nil];
+    self.bitcionCell = bitcoinCell ;
+}
+
+#pragma mark - PGDatePickerDelegate
+- (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
+    NSLog(@"dateComponents = %@", dateComponents);
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *date = [gregorian dateFromComponents:dateComponents];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    self.bitcionCell.bitConDate = date ;
+    NSLog(@"date: %@", dateString);
 }
 
 -(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl

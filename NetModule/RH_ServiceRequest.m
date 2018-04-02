@@ -2798,30 +2798,30 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //                
 //            }
 //                break;
-            case ServiceRequestTypeV3CompanyPay:{
-                
-            }
-                break;
-                case ServiceRequestTypeV3CounterPay:
-            {
-                
-            }
-                break;
-                case ServiceRequestTypeV3ElectronicPay:
-            {
-                
-            }
-                break;
-                case ServiceRequestTypeV3AlipayElectronicPay:
-            {
-                
-            }
-                break;
-                case ServiceRequestTypeV3BitcoinPay:
-            {
-                
-            }
-                break;
+//            case ServiceRequestTypeV3CompanyPay:{
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3CounterPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3ElectronicPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3AlipayElectronicPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3BitcoinPay:
+//            {
+//                
+//            }
+//                break;
             case ServiceRequestTypeV3OneStepRefresh:
             {
                 NSDictionary *dic = [dataObject objectForKey:RH_GP_V3_DATA] ;

@@ -21,7 +21,9 @@
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeTransferButtonCell.h"
 #import "RH_DepositeTransferPulldownView.h"
-@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferPulldownViewDelegate,DepositeTransferQRCodeCellDelegate>
+#import "RH_DepositSuccessAlertView.h" //存款成功的弹窗
+#import "RH_CapitalRecordViewController.h" //资金记录
+@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferQRCodeCellDelegate,DepositSuccessAlertViewDelegate,DepositeTransferPulldownViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -35,6 +37,7 @@
 @property(nonatomic,strong)RH_DepositeTransferPayAdressCell *adressCell;
 @property(nonatomic,strong)RH_DepositeTransferPayWayCell *paywayCell;
 @property(nonatomic,strong,readonly)RH_DepositeTransferPulldownView *pulldownView;
+@property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 @end
 
 @implementation RH_DepositeTransferBankcardController
@@ -51,6 +54,12 @@
 -(CGFloat)bottomViewHeight
 {
     return 40.f;
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated] ;
+    [self.successAlertView removeFromSuperview] ;
 }
 
 - (void)viewDidLoad {
@@ -414,6 +423,7 @@
             else{
                     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                
             }
         }
     }
@@ -462,19 +472,28 @@
         [self.accountMuArray[2]isEqualToString:@"bd"]||
         [self.accountMuArray[2]isEqualToString:@"bitcion"]||
         [self.accountMuArray[2]isEqualToString:@"unionpay"]) {
+        
         [self.serviceRequest startV3ElectronicPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString activityId:self.activityId];
+        [self closeShadeView] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
         [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self closeShadeView] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }
     else if ([self.accountMuArray[2]isEqualToString:@"company"]){
         [self.serviceRequest startV3CompanyPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString
          activityId:self.activityId];
+        [self closeShadeView] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }
     else if ([self.accountMuArray[2]isEqualToString:@"counter"]){
         [self.serviceRequest startV3CounterPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString rechargeAddress:self.adressCell.adressStr activityId:self.activityId];
+        [self closeShadeView] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }
 }
 
@@ -511,6 +530,22 @@
                                         detailText:@"您暂无相关数据记录"] ;
     return YES ;
     
+}
+
+#pragma mark -DepositSuccessAlertViewDelegate
+- (void)depositSuccessAlertViewDidTouchCancelButton {
+    
+    [self backBarButtonItemHandle] ;
+}
+//再存一次
+-(void)depositSuccessAlertViewDidTouchSaveAgainBtn
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+}
+//查看资金记录
+-(void)depositSuccessAlertViewDidTouchCheckCapitalBtn
+{
+    [self.navigationController showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
 }
 #pragma mark-
 -(void)netStatusChangedHandle
@@ -557,7 +592,28 @@
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
-        showMessage(self.circleView, @"付款成功", nil);
+        if ([data objectForKey:@"data"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }] ;
+        }else
+        {
+            showMessage(self.view, @"付款失败", nil);
+        }
+        
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
         showMessage(self.circleView, @"付款成功", nil);
