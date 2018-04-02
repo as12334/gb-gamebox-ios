@@ -402,7 +402,7 @@
 -(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView
 {
     [self userInfoButtonItemHandle] ;
-    self.myTabBarController.selectedIndex = 0 ;
+    self.myTabBarController.selectedIndex = 1 ;
 }
 
 -(void)userInfoButtonItemHandle
