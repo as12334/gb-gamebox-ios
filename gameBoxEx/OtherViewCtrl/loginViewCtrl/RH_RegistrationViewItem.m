@@ -513,6 +513,7 @@
     [self addSubview:button_Check];
     button_Check.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(25);
     button_Check.backgroundColor = [UIColor blueColor];
+    textField.secureTextEntry = YES;
 }
 
 - (void)setVerifyCodeLayout {
@@ -560,6 +561,7 @@
 
 - (void)obtainVerifyTaped {
     
+    
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -585,6 +587,9 @@
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_"];
     }
     if ([fieldModel.name isEqualToString:@"110"]) {
+        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    }
+    if ([fieldModel.name isEqualToString:@"110verify"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     }
     if ([fieldModel.name isEqualToString:@"201"]) {

@@ -10,6 +10,7 @@
 #import "RH_RegistrationViewController.h"
 #import "coreLib.h"
 #import "RH_RegistrationViewItem.h"
+#import "RH_RegisterClauseViewController.h"
 @interface RH_RegistrationViewController ()<RH_ServiceRequestDelegate>
 
 @property (nonatomic, strong, readonly) WHC_StackView *stackView;
@@ -91,12 +92,14 @@
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在加载..." detailText:@"请稍候"];
     animate_Item_Index = 1;
     [[WHC_KeyboardManager share] addMonitorViewController:self];
+    
+    [self.serviceRequest startV3RegisetInit];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self.serviceRequest startV3RegisetInit];
+    
 }
 
 - (void)layoutContentViews {
@@ -126,6 +129,9 @@
         }
         if ([field.name isEqualToString:@"serviceTerms"]) {
             continue;
+        }
+        if ([field.name isEqualToString:@"verificationCode"]) {
+            continue ;
         }
         RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
 //        FieldModel *field;
@@ -185,7 +191,16 @@
         }
         [item setRequiredJson:registrationInitModel.requiredJson];
     }
-    
+    for (FieldModel *f in registrationInitModel.fieldModel) {
+        if ([f.name isEqualToString:@"verificationCode"]) {
+            RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+            FieldModel *field = [[FieldModel alloc] init];
+            field.name = @"verificationCode";
+            [item setFieldModel:field];
+            [self.stackView addSubview:item];
+            [item setRequiredJson:registrationInitModel.requiredJson];
+        }
+    }
     [self.stackView whc_StartLayout];
     [self.view layoutIfNeeded];
     if (self.stackView.boundHeigh > screenSize().height) {
@@ -220,7 +235,7 @@
 }
 
 - (void)zhucetiaokuan {
-    
+    [self showViewController:[RH_RegisterClauseViewController viewController] sender:nil];
 }
 
 - (NSString *)obtainContent:(NSString *)name {
@@ -322,6 +337,8 @@
     
     NSString *phone = [self obtainContent:@"110"];
     
+    NSString *phoneVerify = [self obtainContent:@"110verify"];
+    
     NSString *email = [self obtainContent:@"201"];
     
     NSString *realname = [self obtainContent:@"realName"];
@@ -355,6 +372,9 @@
             if (phone.length == 0) {
                 showMessage(self.contentView, @"请输入手机号", @"");
                 return;}
+            if (phoneVerify.length == 0) {
+                showMessage(self.contentView, @"请输入手机验证码", @"");
+            }
         }
         if ([obj isEqualToString:@"201"]) {
             if (email.length == 0) {
