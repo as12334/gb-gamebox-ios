@@ -616,10 +616,50 @@
         
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
-        showMessage(self.circleView, @"付款成功", nil);
+        if ([data objectForKey:@"data"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }] ;
+        }else
+        {
+            showMessage(self.view, @"付款失败", nil);
+        }
     }
     else if (type==ServiceRequestTypeV3CounterPay){
-        showMessage(self.circleView, @"付款成功", nil);
+        if ([data objectForKey:@"data"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }] ;
+        }else
+        {
+            showMessage(self.view, @"付款失败", nil);
+        }
     }
 }
 
