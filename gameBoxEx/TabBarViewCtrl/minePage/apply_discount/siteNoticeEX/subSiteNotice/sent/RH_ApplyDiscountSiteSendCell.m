@@ -90,6 +90,14 @@
         self.contentScrollView = self.contentTableView;
         self.contentTableView.tableHeaderView = self.sendView ;
     }
+    //关闭键盘
+    self.contentTableView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    [self.contentTableView addGestureRecognizer:singleTap];
+}
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self.contentTableView endEditing:YES];
 }
 
 -(instancetype)initWithFrame:(CGRect)frame

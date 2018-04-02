@@ -68,23 +68,19 @@
         cancelButton = [[UIButton alloc] init];
         if ([THEMEV3 isEqualToString:@"green"]){
             [cancelButton setImage:ImageWithName(@"home_announce_close_green") forState:UIControlStateNormal];
-            sureBtn.backgroundColor = [UIColor greenColor] ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
             [cancelButton setImage:ImageWithName(@"home_announce_close_red") forState:UIControlStateNormal];
-            sureBtn.backgroundColor = [UIColor redColor] ;
+            
         }else if ([THEMEV3 isEqualToString:@"black"]){
             //shaole
-           [cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
-            sureBtn.backgroundColor = colorWithRGB(27, 117, 217) ;
+            [cancelButton setImage:ImageWithName(@"home_announce_close_black") forState:UIControlStateNormal];
         }else{
             [cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
-            sureBtn.backgroundColor = colorWithRGB(27, 117, 217) ;
         }
         [self addSubview:cancelButton];
         cancelButton.whc_TopSpaceToView(5, contentView).whc_CenterX(0).whc_Width(70).whc_Height(70);
         cancelButton.layer.cornerRadius = 35;
         self.clipsToBounds = YES;
-        cancelButton.alpha = 0.3;
         [cancelButton addTarget:self action:@selector(cancelButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
@@ -134,7 +130,7 @@
 {
     [UIView animateWithDuration:0.3 animations:^{
         contentView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-        contentView.alpha = 0.3;
+        contentView.alpha =1;
     } completion:^(BOOL finished) {
         if (finished) {
             [self removeFromSuperview];

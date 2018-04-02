@@ -86,7 +86,14 @@
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
 //    [self startUpdateData] ;
-      [self showNoRefreshLoadData] ;
+     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    if (appDelegate.isLogin) {
+        [self showNoRefreshLoadData] ;
+    }else
+    {
+         [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
+    }
+    
 }
 
 -(BOOL)showNotingIndicaterView

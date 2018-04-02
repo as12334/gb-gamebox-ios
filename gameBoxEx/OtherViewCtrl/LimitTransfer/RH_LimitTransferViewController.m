@@ -456,13 +456,21 @@
          [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3OneStepRefresh)
     {
-        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"刷新成功") ;
-        }] ;
-        NSArray *userApiModel = ConvertToClassPointer(NSArray, data) ;
-        [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
-                            totalCount:userApiModel?userApiModel.count:0] ;
-         [self.contentTableView reloadData] ;
+        if ([data count] > 0 ) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showSuccessMessage(self.view, @"提示信息", @"刷新成功") ;
+            }] ;
+            NSArray *userApiModel = ConvertToClassPointer(NSArray, data) ;
+            [self loadDataSuccessWithDatas:userApiModel?userApiModel:@[]
+                                totalCount:userApiModel?userApiModel.count:0] ;
+            [self.contentTableView reloadData] ;
+        }else
+        {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showSuccessMessage(self.view, @"提示信息", @"刷新失败") ;
+            }] ;
+        }
+      
     }else if (type == ServiceRequestTypeV3ReconnectTransfer)
     {
         //异常订单
@@ -471,6 +479,9 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
+    if (error.code == 1001) {
+        return ;
+    }
     if (type == ServiceRequestTypeV3UserInfo) {
         showErrorMessage(nil, error, nil) ;
     }else if (type == ServiceRequestTypeV3OneStepRecory){

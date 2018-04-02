@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     CGFloat _bankWithdrawAmount     ; //记录银行卡 取款金额
     CGFloat _bitCoinWithdrawAmount  ; //记录比特币 取款金额
     NSString *_withDrawMinMoneyStr ;  //在钱包没有钱的情况下返回的提示
+    AuditMapModel *auditMap ;
 }
 
 @synthesize tableViewManagement = _tableViewManagement;
@@ -72,6 +73,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                                                  name:UITextFieldTextDidChangeNotification
                                                object:nil] ;
     
+    //关闭键盘
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    [self.view addGestureRecognizer:singleTap];
+}
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self.view endEditing:YES];
 }
 
 - (void)dealloc
@@ -254,7 +263,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             return;
         }
         
-        AuditMapModel *auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
+        auditMap = [self.withDrawModel.withDrawFeeDict objectForKey:self.cashCell.textField.text.trim] ;
         if (auditMap==nil){
             //计算费率信息
             [self showProgressIndicatorViewWithAnimated:YES title:@"计算费用..."];
@@ -280,6 +289,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self showViewController:[RH_ModifySafetyPasswordController viewControllerWithContext:@"设置安全密码"] sender:self] ;
             return ;
         }
+        
         
         //安全密码提示框
         UIAlertView *alert = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -308,7 +318,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self loginButtonItemHandle] ;
         });
     }
-   
 }
 
 #pragma mark - mainSegmentControl

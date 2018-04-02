@@ -154,8 +154,10 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3SiteMessageDetail){
-        showErrorMessage(nil, error, nil) ;
+    if (error.code != 1001) {
+        if (type == ServiceRequestTypeV3SiteMessageDetail){
+            showErrorMessage(nil, error, nil) ;
+        }
     }
 }
 

@@ -52,6 +52,10 @@
 //    [self.serviceRequest startV3LoadDiscountActivityType] ;
     
     [self createUI];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:NT_LoginStatusChangedNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        [self loginButtonItemHandle] ;
+    }] ;
 }
 
 -(void)createUI{
@@ -70,6 +74,7 @@
     //设置索引
     self.pageView.dispalyPageIndex =  _selectedIndex ;//self.headerView.segmentedControl.selectedSegmentIndex;
 }
+
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
