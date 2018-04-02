@@ -7,18 +7,41 @@
 //
 
 #import "RH_DepositeMoneyBankCell.h"
+#import "coreLib.h"
+#import "RH_DepositeTransferChannelModel.h"
+@interface RH_DepositeMoneyBankCell()
+@property(nonatomic,strong)NSMutableArray *bankNameArray;
 
+@end
 @implementation RH_DepositeMoneyBankCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseBankName)];
+    self.bankNameLabel.userInteractionEnabled = YES;
+    self.bankNameString = self.bankNameLabel.text;
+    [self.bankNameLabel addGestureRecognizer:tap];
+    self.bankNameArray = [NSMutableArray array];
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, context);
+    for (RH_DepositeTransferListModel *listModel in channelModel.mArrayListModel) {
+        
+        if (listModel.mPayName!=nil) {
+           [self.bankNameArray addObject:listModel.mPayName];
+        }
+    }
+}
+-(void)chooseBankName
+{
+    ifRespondsSelector(self.delegate, @selector(depositeMoneyBankCellChoosePickerview:andBankNameArray:)){
+        [self.delegate depositeMoneyBankCellChoosePickerview:self andBankNameArray:self.bankNameArray];
+    }
+}
+- (IBAction)chooseBankNameClick:(id)sender {
+    [self chooseBankName];
 }
 
 @end

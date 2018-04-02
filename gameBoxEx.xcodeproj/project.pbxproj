@@ -590,6 +590,8 @@
 		F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D25F201ACDB200A7C449 /* RH_SiteSystemDetailCell.m */; };
 		F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */; };
 		F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */; };
+		F682020120707418003593C9 /* THScrollChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F682020020707418003593C9 /* THScrollChooseView.m */; };
+		F68202042070E05E003593C9 /* RH_DepositeKuaiChongController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68202032070E05E003593C9 /* RH_DepositeKuaiChongController.m */; };
 		F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */; };
 		F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */; };
 		F6942E0A20648F35009A5573 /* QRCode.png in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0920648F35009A5573 /* QRCode.png */; };
@@ -1715,6 +1717,10 @@
 		F681D260201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SiteSystemDetailCell.xib; sourceTree = "<group>"; };
 		F681D263201B0EA600A7C449 /* RH_ActivityStatusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ActivityStatusModel.h; sourceTree = "<group>"; };
 		F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ActivityStatusModel.m; sourceTree = "<group>"; };
+		F68201FF20707418003593C9 /* THScrollChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THScrollChooseView.h; sourceTree = "<group>"; };
+		F682020020707418003593C9 /* THScrollChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THScrollChooseView.m; sourceTree = "<group>"; };
+		F68202022070E05E003593C9 /* RH_DepositeKuaiChongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeKuaiChongController.h; sourceTree = "<group>"; };
+		F68202032070E05E003593C9 /* RH_DepositeKuaiChongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeKuaiChongController.m; sourceTree = "<group>"; };
 		F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferQRCodeCell.h; sourceTree = "<group>"; };
 		F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferQRCodeCell.m; sourceTree = "<group>"; };
 		F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferQRCodeCell.xib; sourceTree = "<group>"; };
@@ -3257,6 +3263,8 @@
 				F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */,
 				F6A0BC95206F8787006DB380 /* RH_DepositBitcionViewController.h */,
 				F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */,
+				F68202022070E05E003593C9 /* RH_DepositeKuaiChongController.h */,
+				F68202032070E05E003593C9 /* RH_DepositeKuaiChongController.m */,
 				F69E35352063C50E0028D3A1 /* transferCell */,
 				F69E35322063B2370028D3A1 /* RH_DepositeTransferBankcardController.h */,
 				F69E35332063B2370028D3A1 /* RH_DepositeTransferBankcardController.m */,
@@ -3368,6 +3376,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				F68201FE20707418003593C9 /* 滚轮选择器 */,
 				79FA652120674258000C7DB6 /* HelpCenter */,
 				79FA651720673B90000C7DB6 /* RegisterClause */,
 				7953D0242064F78200760FEB /* AboutUs */,
@@ -3955,6 +3964,15 @@
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
+			sourceTree = "<group>";
+		};
+		F68201FE20707418003593C9 /* 滚轮选择器 */ = {
+			isa = PBXGroup;
+			children = (
+				F68201FF20707418003593C9 /* THScrollChooseView.h */,
+				F682020020707418003593C9 /* THScrollChooseView.m */,
+			);
+			path = "滚轮选择器";
 			sourceTree = "<group>";
 		};
 		F69E34F92062760A0028D3A1 /* cell */ = {
@@ -4704,6 +4722,7 @@
 				A044437E200E3250004F942B /* PXAlertView+Customization.m in Sources */,
 				B8248394202836F700CD1ECB /* RH_BasicAlertViewCell.m in Sources */,
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
+				F682020120707418003593C9 /* THScrollChooseView.m in Sources */,
 				B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */,
 				189C13B01FF9E99F00B14298 /* RH_MineRecordStaticCell.m in Sources */,
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
@@ -4817,6 +4836,7 @@
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
 				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
+				F68202042070E05E003593C9 /* RH_DepositeKuaiChongController.m in Sources */,
 				79BB2DB52032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
@@ -5152,7 +5172,6 @@
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
-
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

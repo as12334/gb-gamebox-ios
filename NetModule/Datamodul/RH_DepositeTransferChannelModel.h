@@ -32,6 +32,12 @@
 @property(nonatomic,strong,readonly)NSString *mPayType;
 @property(nonatomic,strong,readonly)NSString *mSearchId;
 @property(nonatomic,strong,readonly)NSString *mImgUrl;
+@property(nonatomic,strong,readonly)NSString *mAccountImg;
+
+
+@property(nonatomic,strong,readonly)NSString *showCover ;
+@property(nonatomic,strong,readonly)NSString *qrShowCover;
+@property(nonatomic,strong,readonly)NSString *accountImgCover;
 
 @end
 @interface RH_DepositeTransferChannelModel : RH_BasicModel

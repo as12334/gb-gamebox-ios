@@ -21,6 +21,7 @@
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.payWayLabel.text = listModel.mPayName;
+    [self.payWayImage sd_setImageWithURL:[NSURL URLWithString:listModel.showCover]];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -9,7 +9,11 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
+#import "RH_APPDelegate.h"
 @implementation RH_DepositeTransferListModel
+@synthesize showCover = _showCover ;
+@synthesize qrShowCover = _qrShowCover;
+@synthesize accountImgCover = _accountImgCover;
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
@@ -37,8 +41,50 @@
         _mPayType = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_PAYTYPE];
         _mSearchId = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SEARCHID];
         _mImgUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_IMGURL];
+        _mAccountImg = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG];
     }
     return self;
+}
+
+-(NSString *)showCover
+{
+    if (!_showCover){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if ([_mImgUrl containsString:@"http"] || [_mImgUrl containsString:@"https:"]) {
+            _showCover = [NSString stringWithFormat:@"%@",_mImgUrl] ;
+        }else
+        {
+            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mImgUrl] ;
+        }
+    }
+    
+    return _showCover ;
+}
+-(NSString *)qrShowCover
+{
+    if (!_qrShowCover){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if ([_mQrCodeUrl containsString:@"http"] || [_mQrCodeUrl containsString:@"https:"]) {
+            _qrShowCover = [NSString stringWithFormat:@"%@",_mQrCodeUrl] ;
+        }else
+        {
+            _qrShowCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mQrCodeUrl] ;
+        }
+    }
+    return _qrShowCover;
+}
+-(NSString *)accountImgCover
+{
+    if (!_accountImgCover){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        if ([_mAccountImg containsString:@"http"] || [_mAccountImg containsString:@"https:"]) {
+            _qrShowCover = [NSString stringWithFormat:@"%@",_mAccountImg] ;
+        }else
+        {
+            _accountImgCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mAccountImg] ;
+        }
+    }
+    return _accountImgCover;
 }
 @end
 

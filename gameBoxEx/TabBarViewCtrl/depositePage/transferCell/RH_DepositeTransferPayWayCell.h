@@ -7,7 +7,14 @@
 //
 
 #import "CLTableViewCell.h"
-
+#import "RH_DepositeTransferPayWayCell.h"
+@class RH_DepositeTransferPayWayCell;
+@protocol DepositeTransferPayWayCellDelegate<NSObject>
+@optional
+-(void)depositeTransferPaywayCellSelecteUpframe:(RH_DepositeTransferPayWayCell *)cell;
+@end
 @interface RH_DepositeTransferPayWayCell : CLTableViewCell
 @property (nonatomic,strong)NSString *paywayString;
+@property (weak, nonatomic) IBOutlet UITextField *payNumTextfield;
+@property(nonatomic,weak)id<DepositeTransferPayWayCellDelegate>delegate;
 @end

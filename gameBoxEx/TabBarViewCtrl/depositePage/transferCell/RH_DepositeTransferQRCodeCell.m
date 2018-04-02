@@ -9,7 +9,7 @@
 #import "RH_DepositeTransferQRCodeCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
-#import "RH_DepositePayAccountModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 #import "UIImageView+WebCache.h"
 @interface RH_DepositeTransferQRCodeCell()
 @property (weak, nonatomic) IBOutlet UIImageView *qrurlImage;
@@ -18,8 +18,8 @@
 @implementation RH_DepositeTransferQRCodeCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
-    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:accountModel.mQrCodeUrl]];
+    RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover]];
     
 }
 - (void)awakeFromNib {

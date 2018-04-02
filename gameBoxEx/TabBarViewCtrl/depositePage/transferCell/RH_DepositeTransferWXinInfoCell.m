@@ -35,6 +35,17 @@
     self.accountInfoView.layer.borderWidth = 1.f;
     self.accountInfoView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
+- (IBAction)bankNumCopyClick:(id)sender {
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    [pboard setString:self.personIdNumLabel.text];
+    showMessage(self, @"复制成功",nil);
+    
+}
+- (IBAction)personNameCopyClick:(id)sender {
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    [pboard setString:self.personNameLabel.text];
+    showMessage(self, @"复制成功",nil);
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -20,7 +20,7 @@
 #import "coreLib.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeTransferButtonCell.h"
-@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate>
+@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -205,26 +205,29 @@
     }
     else if (indexPath.item == [_markArray[2]integerValue]){
         RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
-        //        platformCell.delegate=self;
-        //        [qrcodeCell updateCellWithInfo:nil context:self.accountModel];
+//                platformCell.delegate=self;
+        [qrcodeCell updateCellWithInfo:nil context:self.listModel];
         return qrcodeCell ;
         
     }
     else if (indexPath.item == [_markArray[3] integerValue]){
         RH_DepositeTransferPayWayCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayWayCell defaultReuseIdentifier]] ;
         self.paywayCell = paywayCell;
+        paywayCell.delegate = self;
         [paywayCell updateCellWithInfo:nil context:self.accountMuArray[2]];
         return paywayCell ;
     }
     else if (indexPath.item == [_markArray[4] integerValue]){
         RH_DepositeTransferOrderNumCell *orderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferOrderNumCell defaultReuseIdentifier]] ;
         self.transferOrderCell = orderCell;
+        orderCell.delegate = self;
        [orderCell updateCellWithInfo:nil context:self.accountMuArray[2]];
         return orderCell ;
     }
     else if (indexPath.item == [_markArray[5] integerValue]){
         RH_DepositeTransferPayAdressCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayAdressCell defaultReuseIdentifier]] ;
         self.adressCell = paywayCell;
+        paywayCell.delegate = self;
        [paywayCell updateCellWithInfo:nil context:self.accountMuArray[2]];
         return paywayCell ;
     }
@@ -246,28 +249,170 @@
 {
     [self.tabBarController setSelectedIndex:3];
 }
-#pragma mark --点击提交按钮
--(void)submitDepositeInfo
-{
-    [self setupPageLoadManager];
-    
-}
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
 {
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
 }
+#pragma mark --点击textfield
+-(void)depositeTransferPaywayCellSelecteUpframe:(RH_DepositeTransferPayWayCell *)cell
+{
+    if ([self.accountMuArray[2] isEqualToString:@"company"]||[self.accountMuArray[2] isEqualToString:@"counter"]) {
+       [self.contentTableView setContentOffset:CGPointMake(0,100) animated:YES];
+    }
+   
+    else {
+        [self.contentTableView setContentOffset:CGPointMake(0,200) animated:YES];
+    }
+    
+    
+}
+-(void)depositeTransferOrderNumCellSelecteUpframe:(RH_DepositeTransferOrderNumCell *)cell
+{
+    if ([self.accountMuArray[2] isEqualToString:@"company"]||[self.accountMuArray[2] isEqualToString:@"counter"]) {
+        [self.contentTableView setContentOffset:CGPointMake(0,100) animated:YES];
+    }
+    
+    else {
+        [self.contentTableView setContentOffset:CGPointMake(0,200) animated:YES];
+    }
+    
+}
+-(void)depositeTransferPayAdressCellSelecteUpframe:(RH_DepositeTransferPayAdressCell *)cell
+{
+    if ([self.accountMuArray[2] isEqualToString:@"company"]||[self.accountMuArray[2] isEqualToString:@"counter"]) {
+        [self.contentTableView setContentOffset:CGPointMake(0,100) animated:YES];
+    }
+    
+    else {
+        [self.contentTableView setContentOffset:CGPointMake(0,200) animated:YES];
+    }
+}
 #pragma mark --点击提交按钮
 -(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
 {
-    [self submitDepositeInfo];
+    [self.paywayCell.payNumTextfield resignFirstResponder];
+    [self.transferOrderCell.orderNumTextfiled resignFirstResponder];
+    [self.adressCell.payTextfield resignFirstResponder];
+    if (self.paywayCell.superview&&self.paywayCell.paywayString==nil) {
+        if ([self.accountMuArray[2] isEqualToString:@"company"]) {
+           
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
+            showMessage(self.view, @"请填写微信昵称", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
+        {
+            showMessage(self.view, @"请填写支付户名", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"qq"])
+        {
+            showMessage(self.view, @"请填写QQ号", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"jd"])
+        {
+            showMessage(self.view, @"请填写京东号", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"bd"])
+        {
+            showMessage(self.view, @"请填写百度号", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
+            showMessage(self.view, @"请填写订单号后五位", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
+            showMessage(self.view, @"请填写存款方式", nil);
+        }
+        else if ([self.accountMuArray[2] isEqualToString:@"other"])
+        {
+            showMessage(self.view, @"请填其他的方式账号", nil);
+        }
+    }
+    else{
+        if (self.transferOrderCell.superview&&self.transferOrderCell.transferOrderString==nil) {
+            if ([self.accountMuArray[2] isEqualToString:@"company"]) {
+                
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
+                showMessage(self.view, @"请填写‘商户订单号’", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
+            {
+                showMessage(self.view, @"请填写支付宝账号", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"qq"])
+            {
+                showMessage(self.view, @"请填写‘商户订单号’", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"jd"])
+            {
+                showMessage(self.view, @"请填写‘商户订单号’", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"bd"])
+            {
+                showMessage(self.view, @"请填写‘商户订单号’", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
+                showMessage(self.view, @"请填写订单号后五位", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
+                showMessage(self.view, @"请填转账账号对应的姓名", nil);
+            }
+            else if ([self.accountMuArray[2] isEqualToString:@"other"])
+            {
+                showMessage(self.view, @"请填订单号，非‘商户订单号’", nil);
+            }
+        }
+        else{
+            if (self.adressCell.superview&&self.adressCell.adressStr==nil) {
+                if ([self.accountMuArray[2] isEqualToString:@"company"]) {
+                    
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
+                    
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
+                {
+                    showMessage(self.view, @"请填写'商户订单号'", nil);
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"qq"])
+                {
+                    
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"jd"])
+                {
+                    
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"bd"])
+                {
+                   
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
+                  
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
+                    showMessage(self.view, @"请填写存款地点", nil);
+                }
+                else if ([self.accountMuArray[2] isEqualToString:@"other"])
+                {
+                 
+                }
+            }
+            else{
+                    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+            }
+        }
+    }
+   
 }
 #pragma mark --选择弹框列表
 -(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
 {
     self.activityId = activityId;
 }
+
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
 {
@@ -323,7 +468,7 @@
 -(void)netStatusChangedHandle
 {
     if (NetworkAvailable()){
-        [self startUpdateData] ;
+//        [self startUpdateData] ;
     }
 }
 #pragma mark- 请求回调
@@ -331,7 +476,7 @@
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
 //
-    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+    
     
 }
 -(void)cancelLoadDataHandle
@@ -363,11 +508,26 @@
         [self.circleView setupViewWithContext:self.saleModel];
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
+    else if (type==ServiceRequestTypeV3ElectronicPay){
+        showMessage(self.circleView, @"付款成功", nil);
+    }
+    else if (type==ServiceRequestTypeV3AlipayElectronicPay){
+        showMessage(self.circleView, @"付款成功", nil);
+    }
+    else if (type==ServiceRequestTypeV3CounterPay){
+        showMessage(self.circleView, @"付款成功", nil);
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3DepositOriginSeachSale) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
+    else if (type==ServiceRequestTypeV3ElectronicPay){
+        showMessage(self.circleView, error, @"付款失败");
+    }
+    else if (type==ServiceRequestTypeV3AlipayElectronicPay){
+        showMessage(self.circleView, error, @"付款失败");
     }
 }
 

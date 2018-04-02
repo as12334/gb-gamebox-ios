@@ -12,6 +12,7 @@
 @protocol DepositeBitcionCellDelegate<NSObject>
 @optional
 -(void)depositeBitcionCellSubmit:(RH_DepositeBitcionCell *)bitcoinCell;
+-(void)depositeBitcionCellUpframe:(RH_DepositeBitcionCell *)bitcoinCell;
 @end
 @interface RH_DepositeBitcionCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositeBitcionCellDelegate>delegate;

@@ -11,7 +11,7 @@
 #import "RH_DepositePayAccountModel.h"
 @interface RH_DepositeTransferOrderNumCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payforWayLabel;
-@property (weak, nonatomic) IBOutlet UITextField *orderNumTextfiled;
+
 
 @end
 @implementation RH_DepositeTransferOrderNumCell
@@ -67,6 +67,13 @@
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.self.transferOrderString = self.orderNumTextfiled.text;
+    return YES;
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferOrderNumCellSelecteUpframe:)){
+        [self.delegate depositeTransferOrderNumCellSelecteUpframe:self];
+    }
     return YES;
 }
 @end

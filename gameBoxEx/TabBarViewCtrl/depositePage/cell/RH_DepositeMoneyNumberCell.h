@@ -10,6 +10,7 @@
 
 @interface RH_DepositeMoneyNumberCell : CLTableViewCell
 @property (weak, nonatomic) IBOutlet UITextField *payMoneyNumLabel;
+@property (nonatomic,strong)NSString *payMoneyString;
 @property (nonatomic,assign)NSInteger moneyNumMin;
 @property (nonatomic,assign)NSInteger moneyNumMax;
 @end

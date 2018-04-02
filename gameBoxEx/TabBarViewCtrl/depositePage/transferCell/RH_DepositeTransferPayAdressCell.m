@@ -11,7 +11,7 @@
 #import "coreLib.h"
 @interface RH_DepositeTransferPayAdressCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payLabel;
-@property (weak, nonatomic) IBOutlet UITextField *payTextfield;
+
 
 @end
 @implementation RH_DepositeTransferPayAdressCell
@@ -65,6 +65,13 @@
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.adressStr = self.payTextfield.text;
+    return YES;
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferPayAdressCellSelecteUpframe:)){
+        [self.delegate depositeTransferPayAdressCellSelecteUpframe:self];
+    }
     return YES;
 }
 @end

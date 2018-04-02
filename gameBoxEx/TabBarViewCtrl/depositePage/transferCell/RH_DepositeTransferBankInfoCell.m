@@ -48,5 +48,22 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)cardNumCopySelect:(id)sender {
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    [pboard setString:self.bankCardNumLabel.text];
+//    pboard.string = self.bankCardNumLabel.text;
+    showMessage(self, @"复制成功",nil);
+
+}
+- (IBAction)pernameSelect:(id)sender {
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    pboard.string = self.bankCardNameLabel.text;
+    showMessage(self, @"复制成功",nil);
+}
+- (IBAction)bankAdressSelect:(id)sender {
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    pboard.string = self.bankAdressLabel.text;
+    showMessage(self, @"复制成功",nil);
+}
 
 @end

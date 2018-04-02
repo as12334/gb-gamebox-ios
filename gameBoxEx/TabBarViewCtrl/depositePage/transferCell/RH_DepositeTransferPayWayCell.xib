@@ -30,14 +30,24 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdv-xx-Ie1">
+                        <rect key="frame" x="114" y="6" width="200" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Tdv-xx-Ie1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="2tc-Wk-Why"/>
                     <constraint firstItem="9Eo-H9-Tvy" firstAttribute="leading" secondItem="Rwx-8z-zLH" secondAttribute="trailing" constant="44.5" id="2uX-0H-o2H"/>
                     <constraint firstAttribute="bottom" secondItem="9Eo-H9-Tvy" secondAttribute="bottom" constant="7.5" id="Hu8-Uz-wTM"/>
                     <constraint firstItem="Rwx-8z-zLH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="PKx-9I-N6f"/>
                     <constraint firstItem="9Eo-H9-Tvy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="WBW-wC-PCf"/>
                     <constraint firstAttribute="trailing" secondItem="9Eo-H9-Tvy" secondAttribute="trailing" constant="6" id="aYz-rN-DPP"/>
+                    <constraint firstItem="Tdv-xx-Ie1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="114" id="gru-vd-3Qt"/>
+                    <constraint firstAttribute="bottom" secondItem="Tdv-xx-Ie1" secondAttribute="bottom" constant="7.5" id="j7Q-8O-exY"/>
                     <constraint firstItem="Rwx-8z-zLH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mE8-ZE-bTA"/>
+                    <constraint firstAttribute="trailing" secondItem="Tdv-xx-Ie1" secondAttribute="trailing" constant="6" id="tAg-RA-3xY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

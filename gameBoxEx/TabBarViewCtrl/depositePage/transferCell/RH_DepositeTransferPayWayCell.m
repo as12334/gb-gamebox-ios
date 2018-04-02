@@ -13,7 +13,7 @@
 #import "RH_DepositeTransferModel.h"
 @interface RH_DepositeTransferPayWayCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
-@property (weak, nonatomic) IBOutlet UITextField *payNumTextfield;
+
 
 @end
 @implementation RH_DepositeTransferPayWayCell
@@ -62,6 +62,13 @@
 {
     self.paywayString = self.payNumTextfield.text;
     NSLog(@"%@",self.paywayString);
+    return YES;
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferPaywayCellSelecteUpframe:)){
+        [self.delegate depositeTransferPaywayCellSelecteUpframe:self];
+    }
     return YES;
 }
 - (void)awakeFromNib {
