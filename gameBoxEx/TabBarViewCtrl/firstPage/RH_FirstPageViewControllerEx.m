@@ -75,6 +75,7 @@
     self.needObserverTapGesture = YES ;
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"didRegistratedSuccessful" object:nil];
     _hud = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
     
@@ -135,6 +136,14 @@
 {
     if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
         [self setNeedUpdateView] ;
+    }
+    if ([nt.name isEqualToString:@"didRegistratedSuccessful"]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *account ;
+        NSString *password ;
+        account = [defaults objectForKey:@"account"];
+        password = [defaults objectForKey:@"password"];
+        [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
     }
 }
 

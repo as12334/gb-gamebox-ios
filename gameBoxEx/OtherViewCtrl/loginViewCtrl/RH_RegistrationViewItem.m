@@ -60,6 +60,8 @@
         textField.font = [UIFont systemFontOfSize:15];
         textField.textColor = colorWithRGB(99, 99, 99);
         textField.delegate = self;
+        
+        fieldModel = [[FieldModel alloc] init];
     }
     return self;
 }
@@ -81,109 +83,199 @@
 - (NSString *)textFieldContent {
     if ([fieldModel.name isEqualToString:@"sex"]) {
         SexModel *model = selectedItem;
-        return model.mValue;
+        return model.mValue ?: @"";
     }
     if ([fieldModel.name isEqualToString:@"mainCurrency"]) {
         MainCurrencyModel *model = selectedItem;
-        return model.mValue;
+        return model.mValue ?: @"";
     }
     if ([fieldModel.name isEqualToString:@"defaultLocale"]) {
         DefaultLocaleModel *model = selectedItem;
-        return model.mValue;
+        return model.mValue ?: @"";
     }
     if ([fieldModel.name isEqualToString:@"securityIssues"]) {
         SecurityIssuesModel *model = selectedItem;
-        return model.mValue;
+        return model.mValue ?: @"";
     }
     return  textField.text ;
+}
+
+- (void)setRequiredJson:(NSArray<NSString *> *)requiredJson {
+    for (NSString *obj in requiredJson) {
+        
+        if ([obj isEqualToString:fieldModel.name]) {
+            if ([obj isEqualToString:@"username"]) {
+                label_Title.text = @"请输入用户名⭐️";
+                textField.placeholder = @"请输入用户名"; break ;
+            }
+            if ([obj isEqualToString:@"password"]) {
+                label_Title.text = @"请输入密码⭐️";
+                textField.placeholder = @"请输入6-20个字母数字或字符"; break ;
+            }
+            if ([obj isEqualToString:@"password2"]) {
+                label_Title.text = @"请再次输入密码";
+                textField.placeholder = @"请再次输入登录密码"; break ;
+            }
+            if ([obj isEqualToString:@"verificationCode"]) {
+                label_Title.text = @"请输入验证码⭐️";
+                textField.placeholder = @"请输入验证码"; break ;
+            }
+            if ([obj isEqualToString:@"regCode"]) {
+                label_Title.text = @"请输入推荐码⭐️";
+                textField.placeholder = @"请输入推荐码"; break ;
+            }
+            if ([obj isEqualToString:@"304"]) {
+                label_Title.text = @"请输入微信⭐️";
+                textField.placeholder = @"请输入微信"; break ;
+            }
+            if ([obj isEqualToString:@"110"]) {
+                label_Title.text = @"请输入手机号⭐️";
+                textField.placeholder = @"请输入手机号"; break ;
+            }
+            if ([obj isEqualToString:@"110verify"]) {
+                label_Title.text = @"请输入手机验证码⭐️";
+                textField.placeholder = @"请输入手机验证码"; break ;
+            }
+            if ([obj isEqualToString:@"201"]) {
+                label_Title.text = @"邮箱⭐️";
+                textField.placeholder = @"请输入邮箱地址"; break ;
+            }
+            if ([obj isEqualToString:@"realName"]) {
+                label_Title.text = @"请输入真实姓名⭐️";
+                textField.placeholder = @"请输入真实姓名"; break ;
+            }
+            if ([obj isEqualToString:@"301"]) {
+                label_Title.text = @"请输入QQ号码⭐️";
+                textField.placeholder = @"请输入QQ号码"; break ;
+            }
+            if ([obj isEqualToString:@"paymentPassword"]) {
+                label_Title.text = @"请输入6位数字安全密码⭐️";
+                textField.placeholder = @"请输入6位数字安全密码"; break ;
+            }
+            if ([obj isEqualToString:@"paymentPassword2"]) {
+                label_Title.text = @"请再次输入6位数字安全密码";
+                textField.placeholder = @"请再次输入6位数字安全密码"; break ;
+            }
+            if ([obj isEqualToString:@"defaultTimezone"]) {
+                label_Title.text = @"时区⭐️";
+                textField.placeholder = @"";
+                textField.enabled = NO; break ;
+            }
+            if ([obj isEqualToString:@"birthday"]) {
+                label_Title.text = @"生日⭐️";
+                textField.placeholder = @""; break ;
+            }
+            if ([obj isEqualToString:@"sex"]) {
+                label_Title.text = @"性别⭐️";
+                textField.placeholder = @"请选择性别"; break ;
+            }
+            if ([obj isEqualToString:@"mainCurrency"]) {
+                label_Title.text = @"货币⭐️";
+                textField.placeholder = @"人民币"; break ;
+            }
+            if ([obj isEqualToString:@"defaultLocale"]) {
+                label_Title.text = @"主语言⭐️";
+                textField.placeholder = @"简体中文"; break ;
+            }
+            if ([obj isEqualToString:@"securityIssues"]) {
+                label_Title.text = @"请选择安全问题⭐️";
+                textField.placeholder = @"请选择安全问题"; break ;
+            }
+            if ([obj isEqualToString:@"securityIssues2"]) {
+                label_Title.text = @"回答安全问题⭐️";
+                textField.placeholder = @"请输入回答";break ;
+            }
+        }
+        
+    }
 }
 
 - (void)setFieldModel:(FieldModel *)model {
     fieldModel = model;
     if ([model.name isEqualToString:@"username"]) {
-        label_Title.text = @"请输入用户名☆";
+        label_Title.text = @"请输入用户名";
         textField.placeholder = @"请输入用户名";
     }
     if ([model.name isEqualToString:@"password"]) {
-        label_Title.text = @"请输入密码☆";
+        label_Title.text = @"请输入密码";
         textField.placeholder = @"请输入6-20个字母数字或字符";
         [self setPasswordLayout];
     }
     if ([model.name isEqualToString:@"password2"]) {
-        label_Title.text = @"请再次输入密码☆";
+        label_Title.text = @"请再次输入密码";
         textField.placeholder = @"请再次输入登录密码";
         [self setPasswordLayout];
     }
     if ([model.name isEqualToString:@"verificationCode"]) {
-        label_Title.text = @"请输入验证码☆";
+        label_Title.text = @"请输入验证码";
         textField.placeholder = @"请输入验证码";
         [self setVerifyCodeLayout];
     }
     if ([model.name isEqualToString:@"regCode"]) {
-        label_Title.text = @"请输入推荐码☆";
+        label_Title.text = @"请输入推荐码";
         textField.placeholder = @"请输入推荐码";
     }
     if ([model.name isEqualToString:@"304"]) {
-        label_Title.text = @"请输入微信☆";
+        label_Title.text = @"请输入微信";
         textField.placeholder = @"请输入微信";
     }
     if ([model.name isEqualToString:@"110"]) {
-        label_Title.text = @"请输入手机号☆";
+        label_Title.text = @"请输入手机号";
         textField.placeholder = @"请输入手机号";
     }
     if ([model.name isEqualToString:@"110verify"]) {
-        label_Title.text = @"请输入手机验证码☆";
+        label_Title.text = @"请输入手机验证码";
         textField.placeholder = @"请输入手机验证码";
         [self setPhoneVerifyCodeLayout];
     }
     if ([model.name isEqualToString:@"201"]) {
-        label_Title.text = @"邮箱☆";
+        label_Title.text = @"邮箱";
         textField.placeholder = @"请输入邮箱地址";
     }
     if ([model.name isEqualToString:@"realName"]) {
-        label_Title.text = @"请输入真实姓名☆";
+        label_Title.text = @"请输入真实姓名";
         textField.placeholder = @"请输入真实姓名";
     }
     if ([model.name isEqualToString:@"301"]) {
-        label_Title.text = @"请输入QQ号码☆";
+        label_Title.text = @"请输入QQ号码";
         textField.placeholder = @"请输入QQ号码";
     }
     if ([model.name isEqualToString:@"paymentPassword"]) {
-        label_Title.text = @"请输入6位数字安全密码☆";
+        label_Title.text = @"请输入6位数字安全密码";
         textField.placeholder = @"请输入6位数字安全密码";
     }
     if ([model.name isEqualToString:@"paymentPassword2"]) {
-        label_Title.text = @"请再次输入6位数字安全密码☆";
+        label_Title.text = @"请再次输入6位数字安全密码";
         textField.placeholder = @"请再次输入6位数字安全密码";
     }
     if ([model.name isEqualToString:@"defaultTimezone"]) {
-        label_Title.text = @"时区☆";
+        label_Title.text = @"时区";
         textField.placeholder = @"";
         textField.enabled = NO;
     }
     if ([model.name isEqualToString:@"birthday"]) {
-        label_Title.text = @"生日☆";
+        label_Title.text = @"生日";
         textField.placeholder = @"";
         [self setBirthdaySelectLayout];
     }
     if ([model.name isEqualToString:@"sex"]) {
-        label_Title.text = @"性别☆";
+        label_Title.text = @"性别";
         textField.placeholder = @"请选择性别";
     }
     if ([model.name isEqualToString:@"mainCurrency"]) {
-        label_Title.text = @"货币☆";
+        label_Title.text = @"货币";
         textField.placeholder = @"人民币";
     }
     if ([model.name isEqualToString:@"defaultLocale"]) {
-        label_Title.text = @"主语言☆";
+        label_Title.text = @"主语言";
         textField.placeholder = @"简体中文";
     }
     if ([model.name isEqualToString:@"securityIssues"]) {
-        label_Title.text = @"请选择安全问题☆";
+        label_Title.text = @"请选择安全问题";
         textField.placeholder = @"请选择安全问题";
     }
     if ([model.name isEqualToString:@"securityIssues2"]) {
-        label_Title.text = @"回答安全问题☆";
+        label_Title.text = @"回答安全问题";
         textField.placeholder = @"请输入回答";
     }
 }
@@ -496,7 +588,7 @@
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     }
     if ([fieldModel.name isEqualToString:@"201"]) {
-        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@_"];
+        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@".0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM@_"];
     }
     if ([fieldModel.name isEqualToString:@"realName"]) {
         tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$_"];
@@ -518,7 +610,7 @@
         }
     }
     if ([fieldModel.name isEqualToString:@"regCode"]) {
-        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"];
     }
     if ([fieldModel.name isEqualToString:@"securityIssues2"]) {
 //        tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];

@@ -531,6 +531,9 @@
 		B8107ABC1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABB1FFDDC5D0086DDC3 /* RH_MineSafetyCenterHeaderView.m */; };
 		B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */; };
 		B8107AC31FFE1A8C0086DDC3 /* RH_MineSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */; };
+		B81568A62070D8D7003F5E79 /* NSObject+WHC_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B81568A02070D8D7003F5E79 /* NSObject+WHC_Extension.m */; };
+		B81568A72070D8D7003F5E79 /* WHC_KeyboardHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B81568A42070D8D7003F5E79 /* WHC_KeyboardHeaderView.m */; };
+		B81568A82070D8D7003F5E79 /* WHC_KeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B81568A52070D8D7003F5E79 /* WHC_KeyboardManager.m */; };
 		B8248394202836F700CD1ECB /* RH_BasicAlertViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8248393202836F700CD1ECB /* RH_BasicAlertViewCell.m */; };
 		B832D0551FFE321000B403B0 /* RH_MineSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B832D0541FFE321000B403B0 /* RH_MineSettingsCell.m */; };
 		B84A33CF2064E9F400A8BFEE /* RH_RegistrationViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B84A33CE2064E9F400A8BFEE /* RH_RegistrationViewItem.m */; };
@@ -1615,6 +1618,12 @@
 		B8107ABE1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsViewController.h; sourceTree = "<group>"; };
 		B8107ABF1FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineSettingsViewController.m; sourceTree = "<group>"; };
 		B8107AC21FFE1A8C0086DDC3 /* RH_MineSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_MineSettings.plist; sourceTree = "<group>"; };
+		B81568A02070D8D7003F5E79 /* NSObject+WHC_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WHC_Extension.m"; sourceTree = "<group>"; };
+		B81568A12070D8D7003F5E79 /* WHC_KeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_KeyboardManager.h; sourceTree = "<group>"; };
+		B81568A22070D8D7003F5E79 /* WHC_KeyboardHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHC_KeyboardHeaderView.h; sourceTree = "<group>"; };
+		B81568A32070D8D7003F5E79 /* NSObject+WHC_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WHC_Extension.h"; sourceTree = "<group>"; };
+		B81568A42070D8D7003F5E79 /* WHC_KeyboardHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_KeyboardHeaderView.m; sourceTree = "<group>"; };
+		B81568A52070D8D7003F5E79 /* WHC_KeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_KeyboardManager.m; sourceTree = "<group>"; };
 		B8248392202836F700CD1ECB /* RH_BasicAlertViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BasicAlertViewCell.h; sourceTree = "<group>"; };
 		B8248393202836F700CD1ECB /* RH_BasicAlertViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BasicAlertViewCell.m; sourceTree = "<group>"; };
 		B832D0531FFE321000B403B0 /* RH_MineSettingsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineSettingsCell.h; sourceTree = "<group>"; };
@@ -2715,6 +2724,7 @@
 		A0109EF01F87852F004E6EF4 /* OtherLib */ = {
 			isa = PBXGroup;
 			children = (
+				B815689F2070D8D7003F5E79 /* WHC_KeyboradManager(OC) */,
 				A0444375200E3250004F942B /* PXAlertView */,
 				A01181621FFCAB20008F6D1E /* WHC_AutoLayoutKit */,
 				A0ADD3231FEB627F00B24B51 /* KIPageView */,
@@ -3854,6 +3864,19 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		B815689F2070D8D7003F5E79 /* WHC_KeyboradManager(OC) */ = {
+			isa = PBXGroup;
+			children = (
+				B81568A02070D8D7003F5E79 /* NSObject+WHC_Extension.m */,
+				B81568A12070D8D7003F5E79 /* WHC_KeyboardManager.h */,
+				B81568A22070D8D7003F5E79 /* WHC_KeyboardHeaderView.h */,
+				B81568A32070D8D7003F5E79 /* NSObject+WHC_Extension.h */,
+				B81568A42070D8D7003F5E79 /* WHC_KeyboardHeaderView.m */,
+				B81568A52070D8D7003F5E79 /* WHC_KeyboardManager.m */,
+			);
+			path = "WHC_KeyboradManager(OC)";
+			sourceTree = "<group>";
+		};
 		B87A6B1A2006191600C9788F /* promoList */ = {
 			isa = PBXGroup;
 			children = (
@@ -4620,6 +4643,7 @@
 				A07DCEC61FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.m in Sources */,
 				A0ADD3291FEB627F00B24B51 /* KIPageViewCell.m in Sources */,
 				B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */,
+				B81568A62070D8D7003F5E79 /* NSObject+WHC_Extension.m in Sources */,
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
 				F69E351A20638F240028D3A1 /* RH_DepositeSubmitCircleView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
@@ -4724,6 +4748,7 @@
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
 				F682020120707418003593C9 /* THScrollChooseView.m in Sources */,
 				B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */,
+				B81568A82070D8D7003F5E79 /* WHC_KeyboardManager.m in Sources */,
 				189C13B01FF9E99F00B14298 /* RH_MineRecordStaticCell.m in Sources */,
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
 				A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */,
@@ -4872,6 +4897,7 @@
 				79D86412206CDDFE00E527B7 /* RH_PhoneDialogModel.m in Sources */,
 				794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */,
 				79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */,
+				B81568A72070D8D7003F5E79 /* WHC_KeyboardHeaderView.m in Sources */,
 				79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */,
 				79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */,
 				79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */,

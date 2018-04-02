@@ -2737,6 +2737,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
             case ServiceRequestTypeV3RegiestInit:
             {
+                NSLog(@"%@", dataObject);
                 resultSendData = [[RH_RegisetInitModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
