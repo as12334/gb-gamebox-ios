@@ -126,19 +126,6 @@
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferOrderNumCell class]];
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferPayAdressCell class]];
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferButtonCell class]];
-    
-    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
-    self.successAlertView.alpha = 0;
-    self.successAlertView.delegate = self;
-    [self.contentView addSubview:self.successAlertView];
-    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
-    [UIView animateWithDuration:0.3 animations:^{
-        self.successAlertView.alpha = 1;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self.successAlertView showContentView];
-        }
-    }];
 }
 #pragma mark --点击提交按钮弹框
 -(RH_DepositeSubmitCircleView *)circleView
