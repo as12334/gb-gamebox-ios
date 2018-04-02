@@ -23,7 +23,6 @@
 #import "RH_DepositBitcionViewController.h"
 #import "RH_BankPickerSelectView.h"
 #import "THScrollChooseView.h"
-#import "RH_DepositeKuaiChongController.h"
 #import "RH_CustomViewController.h"
 #import "RH_APPDelegate.h"
 #import "RH_DepositSuccessAlertView.h"
@@ -390,8 +389,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self showViewController:[RH_CustomViewController viewController] sender:self] ;
         }) ;
-//        RH_DepositeKuaiChongController *kuaichongVC = [RH_DepositeKuaiChongController viewControllerWithContext:depositeCode];
-//        [self showViewController:kuaichongVC sender:self];
         _markArray = @[@0];
     }
    else{
