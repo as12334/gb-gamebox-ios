@@ -2313,7 +2313,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3CounterPay){
+//    else if (type == ServiceRequestTypeV3CompanyPay){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2799,7 +2799,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //            }
 //                break;
 //            case ServiceRequestTypeV3CompanyPay:{
-//                
+//
 //            }
 //                break;
 //                case ServiceRequestTypeV3CounterPay:
