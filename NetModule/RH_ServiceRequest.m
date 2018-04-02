@@ -2786,11 +2786,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
-                case ServiceRequestTypeV3OnlinePay:
-            {
-                
-            }
-                break;
+//                case ServiceRequestTypeV3OnlinePay:
+//            {
+//                
+//            }
+//                break;
             case ServiceRequestTypeV3CompanyPay:{
                 
             }

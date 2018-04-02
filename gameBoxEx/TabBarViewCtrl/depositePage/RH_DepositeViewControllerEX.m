@@ -24,6 +24,8 @@
 #import "RH_BankPickerSelectView.h"
 #import "THScrollChooseView.h"
 #import "RH_DepositeKuaiChongController.h"
+#import "RH_CustomViewController.h"
+#import "RH_APPDelegate.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -80,6 +82,8 @@
         }
     }
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -583,7 +587,18 @@
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
     else if (type==ServiceRequestTypeV3OnlinePay){
-        showMessage(self.circleView, @"存款成功", nil);
+        if ([data objectForKey:@"data"]) {
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+            }) ;
+           
+        }else
+        {
+            showMessage(self.circleView, @"存款失败", nil);
+        }
+        
     }
     else if (type==ServiceRequestTypeV3ScanPay){
         showMessage(self.circleView, @"存款成功", nil);
@@ -599,10 +614,10 @@
         
     }
     else if (type==ServiceRequestTypeV3OnlinePay){
-        showMessage(self.circleView, error, @"存款失败");
+         showErrorMessage(self.circleView, error, @"存款失败") ;
     }
     else if (type==ServiceRequestTypeV3ScanPay){
-        showMessage(self.circleView, error, @"存款失败");
+        showErrorMessage(self.circleView, error, @"存款失败") ;
     }
 }
 #pragma mark -键盘监听方法
@@ -616,6 +631,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
+    [self.circleView removeFromSuperview];
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {

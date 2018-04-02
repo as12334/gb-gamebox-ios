@@ -36,6 +36,9 @@
                         <state key="normal" title="保存到手机">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="saveToPhone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gPX-ME-Bur"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-DJ-Ru0">
                         <rect key="frame" x="117" y="143" width="86" height="30"/>

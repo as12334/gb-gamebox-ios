@@ -91,6 +91,13 @@
               }] ;
 }
 
+-(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl
+{
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]]];
+    UIImage *myImage = [UIImage imageWithData:data];
+    [self saveImageToPhotos:myImage];
+}
+
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -233,7 +240,7 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type==ServiceRequestTypeV3BitcoinPay){
-        showMessage(self.circleView, error,@"存款失败");
+        showErrorMessage(self.circleView, error, @"存款失败") ;
     }
 }
 

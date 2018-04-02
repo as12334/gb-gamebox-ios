@@ -7,7 +7,11 @@
 //
 
 #import "CLTableViewCell.h"
-
+@class RH_DepositeTransferQRCodeCell;
+@protocol DepositeTransferQRCodeCellDelegate<NSObject>
+@optional
+-(void)depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:(NSString *)imageUrl;
+@end
 @interface RH_DepositeTransferQRCodeCell : CLTableViewCell
-
+@property(weak,nonatomic)id <DepositeTransferQRCodeCellDelegate> delegate;
 @end

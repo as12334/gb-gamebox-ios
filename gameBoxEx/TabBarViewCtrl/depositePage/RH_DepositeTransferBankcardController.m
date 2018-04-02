@@ -20,7 +20,7 @@
 #import "coreLib.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeTransferButtonCell.h"
-@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate>
+@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferQRCodeCellDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -205,7 +205,7 @@
     }
     else if (indexPath.item == [_markArray[2]integerValue]){
         RH_DepositeTransferQRCodeCell *qrcodeCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferQRCodeCell defaultReuseIdentifier]] ;
-//                platformCell.delegate=self;
+        qrcodeCell.delegate=self;
         [qrcodeCell updateCellWithInfo:nil context:self.listModel];
         return qrcodeCell ;
         
@@ -437,9 +437,17 @@
         [self.serviceRequest startV3CounterPayWithRechargeAmount:[self.accountMuArray[0]floatValue] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString rechargeAddress:self.adressCell.adressStr activityId:self.activityId];
     }
 }
+
+#pragma mark - DepositeTransferQRCodeCellDelegate
+-(void)depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:(NSString *)imageUrl
+{
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]]];
+    UIImage *myImage = [UIImage imageWithData:data];
+    [self saveImageToPhotos:myImage];
+}
 #pragma mark 数据请求
 
-#pragma mark - serviceRequest
+#pragma mark - serviceRequest 
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;
@@ -524,10 +532,10 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
-        showMessage(self.circleView, error, @"付款失败");
+        showErrorMessage(self.circleView, error, @"付款失败");
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
-        showMessage(self.circleView, error, @"付款失败");
+        showErrorMessage(self.circleView, error, @"付款失败");
     }
 }
 
