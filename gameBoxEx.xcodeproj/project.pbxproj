@@ -55,6 +55,31 @@
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
+		7937C4252072073B0010CD0C /* PGDatePicker+DateHour.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C3FA207207340010CD0C /* PGDatePicker+DateHour.m */; };
+		7937C4262072073B0010CD0C /* NSCalendar+PGCurrent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C3FC207207340010CD0C /* NSCalendar+PGCurrent.m */; };
+		7937C4272072073B0010CD0C /* UIColor+PGHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C3FD207207340010CD0C /* UIColor+PGHex.m */; };
+		7937C4282072073B0010CD0C /* PGDatePicker+Logic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C400207207350010CD0C /* PGDatePicker+Logic.m */; };
+		7937C4292072073B0010CD0C /* PGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C401207207350010CD0C /* PGDatePicker.m */; };
+		7937C42A2072073B0010CD0C /* PGDatePicker+DateHourMinute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C403207207350010CD0C /* PGDatePicker+DateHourMinute.m */; };
+		7937C42B2072073B0010CD0C /* PGDatePicker+YearAndMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C404207207350010CD0C /* PGDatePicker+YearAndMonth.m */; };
+		7937C42C2072073B0010CD0C /* PGDatePicker+Year.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C407207207360010CD0C /* PGDatePicker+Year.m */; };
+		7937C42D2072073B0010CD0C /* PGDatePickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C408207207360010CD0C /* PGDatePickManager.m */; };
+		7937C42E2072073B0010CD0C /* PGDatePicker+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C40B207207370010CD0C /* PGDatePicker+Time.m */; };
+		7937C42F2072073B0010CD0C /* NSBundle+PGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C40D207207370010CD0C /* NSBundle+PGDatePicker.m */; };
+		7937C4302072073B0010CD0C /* PGDatePicker+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C40F207207370010CD0C /* PGDatePicker+Common.m */; };
+		7937C4312072073B0010CD0C /* PGDatePicker+DateAndTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C410207207380010CD0C /* PGDatePicker+DateAndTime.m */; };
+		7937C4322072073B0010CD0C /* PGDatePicker+DateHourMinuteSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C412207207380010CD0C /* PGDatePicker+DateHourMinuteSecond.m */; };
+		7937C4332072073B0010CD0C /* PGDatePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7937C416207207380010CD0C /* PGDatePicker.bundle */; };
+		7937C4342072073B0010CD0C /* NSDate+PGCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C418207207390010CD0C /* NSDate+PGCategory.m */; };
+		7937C4352072073B0010CD0C /* PGDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C419207207390010CD0C /* PGDatePickerView.m */; };
+		7937C4362072073B0010CD0C /* PGDatePickManagerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C41A207207390010CD0C /* PGDatePickManagerHeaderView.m */; };
+		7937C4372072073B0010CD0C /* PGDatePicker+TimeAndSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C41B207207390010CD0C /* PGDatePicker+TimeAndSecond.m */; };
+		7937C4382072073B0010CD0C /* PGDatePicker+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C41C207207390010CD0C /* PGDatePicker+Date.m */; };
+		7937C4392072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C4242072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m */; };
+		7937C443207209720010CD0C /* PGPickerColumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C43F207209720010CD0C /* PGPickerColumnView.m */; };
+		7937C444207209720010CD0C /* PGPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C440207209720010CD0C /* PGPickerView.m */; };
+		7937C445207209720010CD0C /* PGPickerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C441207209720010CD0C /* PGPickerTableView.m */; };
+		7937C446207209720010CD0C /* PGPickerColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C442207209720010CD0C /* PGPickerColumnCell.m */; };
 		794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */; };
 		794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */; };
 		7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D0262064F81800760FEB /* RH_AboutUsViewController.m */; };
@@ -786,6 +811,57 @@
 		7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferTopView.m; sourceTree = "<group>"; };
 		790743102063A0FD00A4543A /* RH_LimitTransferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferCell.h; sourceTree = "<group>"; };
 		790743112063A0FD00A4543A /* RH_LimitTransferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferCell.m; sourceTree = "<group>"; };
+		7937C3FA207207340010CD0C /* PGDatePicker+DateHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+DateHour.m"; sourceTree = "<group>"; };
+		7937C3FB207207340010CD0C /* PGDatePicker+YearAndMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+YearAndMonth.h"; sourceTree = "<group>"; };
+		7937C3FC207207340010CD0C /* NSCalendar+PGCurrent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+PGCurrent.m"; sourceTree = "<group>"; };
+		7937C3FD207207340010CD0C /* UIColor+PGHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PGHex.m"; sourceTree = "<group>"; };
+		7937C3FE207207340010CD0C /* PGDatePickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDatePickManager.h; sourceTree = "<group>"; };
+		7937C3FF207207340010CD0C /* PGDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDatePickerView.h; sourceTree = "<group>"; };
+		7937C400207207350010CD0C /* PGDatePicker+Logic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+Logic.m"; sourceTree = "<group>"; };
+		7937C401207207350010CD0C /* PGDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDatePicker.m; sourceTree = "<group>"; };
+		7937C402207207350010CD0C /* PGDatePicker+Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+Time.h"; sourceTree = "<group>"; };
+		7937C403207207350010CD0C /* PGDatePicker+DateHourMinute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+DateHourMinute.m"; sourceTree = "<group>"; };
+		7937C404207207350010CD0C /* PGDatePicker+YearAndMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+YearAndMonth.m"; sourceTree = "<group>"; };
+		7937C405207207360010CD0C /* NSCalendar+PGCurrent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+PGCurrent.h"; sourceTree = "<group>"; };
+		7937C406207207360010CD0C /* PGDatePicker+MinuteAndSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+MinuteAndSecond.h"; sourceTree = "<group>"; };
+		7937C407207207360010CD0C /* PGDatePicker+Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+Year.m"; sourceTree = "<group>"; };
+		7937C408207207360010CD0C /* PGDatePickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDatePickManager.m; sourceTree = "<group>"; };
+		7937C409207207360010CD0C /* PGDatePicker+DateHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+DateHour.h"; sourceTree = "<group>"; };
+		7937C40A207207370010CD0C /* PGDatePicker+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+Date.h"; sourceTree = "<group>"; };
+		7937C40B207207370010CD0C /* PGDatePicker+Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+Time.m"; sourceTree = "<group>"; };
+		7937C40C207207370010CD0C /* NSDate+PGCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+PGCategory.h"; sourceTree = "<group>"; };
+		7937C40D207207370010CD0C /* NSBundle+PGDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+PGDatePicker.m"; sourceTree = "<group>"; };
+		7937C40E207207370010CD0C /* PGDatePicker+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+Common.h"; sourceTree = "<group>"; };
+		7937C40F207207370010CD0C /* PGDatePicker+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+Common.m"; sourceTree = "<group>"; };
+		7937C410207207380010CD0C /* PGDatePicker+DateAndTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+DateAndTime.m"; sourceTree = "<group>"; };
+		7937C411207207380010CD0C /* PGDatePicker+DateAndTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+DateAndTime.h"; sourceTree = "<group>"; };
+		7937C412207207380010CD0C /* PGDatePicker+DateHourMinuteSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+DateHourMinuteSecond.m"; sourceTree = "<group>"; };
+		7937C413207207380010CD0C /* PGDatePicker+Logic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+Logic.h"; sourceTree = "<group>"; };
+		7937C414207207380010CD0C /* PGDatePicker+Year.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+Year.h"; sourceTree = "<group>"; };
+		7937C415207207380010CD0C /* PGDatePickerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDatePickerHeader.h; sourceTree = "<group>"; };
+		7937C416207207380010CD0C /* PGDatePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PGDatePicker.bundle; sourceTree = "<group>"; };
+		7937C417207207390010CD0C /* PGDatePicker+DateHourMinuteSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+DateHourMinuteSecond.h"; sourceTree = "<group>"; };
+		7937C418207207390010CD0C /* NSDate+PGCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+PGCategory.m"; sourceTree = "<group>"; };
+		7937C419207207390010CD0C /* PGDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDatePickerView.m; sourceTree = "<group>"; };
+		7937C41A207207390010CD0C /* PGDatePickManagerHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGDatePickManagerHeaderView.m; sourceTree = "<group>"; };
+		7937C41B207207390010CD0C /* PGDatePicker+TimeAndSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+TimeAndSecond.m"; sourceTree = "<group>"; };
+		7937C41C207207390010CD0C /* PGDatePicker+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+Date.m"; sourceTree = "<group>"; };
+		7937C41D2072073A0010CD0C /* PGEnumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGEnumeration.h; sourceTree = "<group>"; };
+		7937C41E2072073A0010CD0C /* PGDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDatePicker.h; sourceTree = "<group>"; };
+		7937C41F2072073A0010CD0C /* PGDatePicker+DateHourMinute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+DateHourMinute.h"; sourceTree = "<group>"; };
+		7937C4202072073A0010CD0C /* PGDatePicker+TimeAndSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+TimeAndSecond.h"; sourceTree = "<group>"; };
+		7937C4212072073A0010CD0C /* UIColor+PGHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PGHex.h"; sourceTree = "<group>"; };
+		7937C4222072073B0010CD0C /* NSBundle+PGDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+PGDatePicker.h"; sourceTree = "<group>"; };
+		7937C4232072073B0010CD0C /* PGDatePickManagerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDatePickManagerHeaderView.h; sourceTree = "<group>"; };
+		7937C4242072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+MinuteAndSecond.m"; sourceTree = "<group>"; };
+		7937C43B207209710010CD0C /* PGPickerColumnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPickerColumnCell.h; sourceTree = "<group>"; };
+		7937C43C207209710010CD0C /* PGPickerColumnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPickerColumnView.h; sourceTree = "<group>"; };
+		7937C43D207209710010CD0C /* PGPickerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPickerTableView.h; sourceTree = "<group>"; };
+		7937C43E207209710010CD0C /* PGPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGPickerView.h; sourceTree = "<group>"; };
+		7937C43F207209720010CD0C /* PGPickerColumnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerColumnView.m; sourceTree = "<group>"; };
+		7937C440207209720010CD0C /* PGPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerView.m; sourceTree = "<group>"; };
+		7937C441207209720010CD0C /* PGPickerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerTableView.m; sourceTree = "<group>"; };
+		7937C442207209720010CD0C /* PGPickerColumnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGPickerColumnCell.m; sourceTree = "<group>"; };
 		794429F8203FC18C006F5A20 /* RH_VeriftyCloseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyCloseViewController.h; sourceTree = "<group>"; };
 		794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyCloseViewController.m; sourceTree = "<group>"; };
 		794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerifyCloseView.h; sourceTree = "<group>"; };
@@ -2069,6 +2145,73 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		7937C3F92072071A0010CD0C /* PGDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				7937C43A207209370010CD0C /* PGDPickView */,
+				7937C4222072073B0010CD0C /* NSBundle+PGDatePicker.h */,
+				7937C40D207207370010CD0C /* NSBundle+PGDatePicker.m */,
+				7937C405207207360010CD0C /* NSCalendar+PGCurrent.h */,
+				7937C3FC207207340010CD0C /* NSCalendar+PGCurrent.m */,
+				7937C40C207207370010CD0C /* NSDate+PGCategory.h */,
+				7937C418207207390010CD0C /* NSDate+PGCategory.m */,
+				7937C416207207380010CD0C /* PGDatePicker.bundle */,
+				7937C41E2072073A0010CD0C /* PGDatePicker.h */,
+				7937C401207207350010CD0C /* PGDatePicker.m */,
+				7937C40E207207370010CD0C /* PGDatePicker+Common.h */,
+				7937C40F207207370010CD0C /* PGDatePicker+Common.m */,
+				7937C40A207207370010CD0C /* PGDatePicker+Date.h */,
+				7937C41C207207390010CD0C /* PGDatePicker+Date.m */,
+				7937C411207207380010CD0C /* PGDatePicker+DateAndTime.h */,
+				7937C410207207380010CD0C /* PGDatePicker+DateAndTime.m */,
+				7937C409207207360010CD0C /* PGDatePicker+DateHour.h */,
+				7937C3FA207207340010CD0C /* PGDatePicker+DateHour.m */,
+				7937C41F2072073A0010CD0C /* PGDatePicker+DateHourMinute.h */,
+				7937C403207207350010CD0C /* PGDatePicker+DateHourMinute.m */,
+				7937C417207207390010CD0C /* PGDatePicker+DateHourMinuteSecond.h */,
+				7937C412207207380010CD0C /* PGDatePicker+DateHourMinuteSecond.m */,
+				7937C413207207380010CD0C /* PGDatePicker+Logic.h */,
+				7937C400207207350010CD0C /* PGDatePicker+Logic.m */,
+				7937C406207207360010CD0C /* PGDatePicker+MinuteAndSecond.h */,
+				7937C4242072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m */,
+				7937C402207207350010CD0C /* PGDatePicker+Time.h */,
+				7937C40B207207370010CD0C /* PGDatePicker+Time.m */,
+				7937C4202072073A0010CD0C /* PGDatePicker+TimeAndSecond.h */,
+				7937C41B207207390010CD0C /* PGDatePicker+TimeAndSecond.m */,
+				7937C414207207380010CD0C /* PGDatePicker+Year.h */,
+				7937C407207207360010CD0C /* PGDatePicker+Year.m */,
+				7937C3FB207207340010CD0C /* PGDatePicker+YearAndMonth.h */,
+				7937C404207207350010CD0C /* PGDatePicker+YearAndMonth.m */,
+				7937C415207207380010CD0C /* PGDatePickerHeader.h */,
+				7937C3FF207207340010CD0C /* PGDatePickerView.h */,
+				7937C419207207390010CD0C /* PGDatePickerView.m */,
+				7937C3FE207207340010CD0C /* PGDatePickManager.h */,
+				7937C408207207360010CD0C /* PGDatePickManager.m */,
+				7937C4232072073B0010CD0C /* PGDatePickManagerHeaderView.h */,
+				7937C41A207207390010CD0C /* PGDatePickManagerHeaderView.m */,
+				7937C41D2072073A0010CD0C /* PGEnumeration.h */,
+				7937C4212072073A0010CD0C /* UIColor+PGHex.h */,
+				7937C3FD207207340010CD0C /* UIColor+PGHex.m */,
+			);
+			name = PGDatePicker;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		7937C43A207209370010CD0C /* PGDPickView */ = {
+			isa = PBXGroup;
+			children = (
+				7937C43B207209710010CD0C /* PGPickerColumnCell.h */,
+				7937C442207209720010CD0C /* PGPickerColumnCell.m */,
+				7937C43C207209710010CD0C /* PGPickerColumnView.h */,
+				7937C43F207209720010CD0C /* PGPickerColumnView.m */,
+				7937C43D207209710010CD0C /* PGPickerTableView.h */,
+				7937C441207209720010CD0C /* PGPickerTableView.m */,
+				7937C43E207209710010CD0C /* PGPickerView.h */,
+				7937C440207209720010CD0C /* PGPickerView.m */,
+			);
+			path = PGDPickView;
+			sourceTree = "<group>";
+		};
 		7953D0242064F78200760FEB /* AboutUs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2729,6 +2872,7 @@
 		A0109EF01F87852F004E6EF4 /* OtherLib */ = {
 			isa = PBXGroup;
 			children = (
+				7937C3F92072071A0010CD0C /* PGDatePicker */,
 				B815689F2070D8D7003F5E79 /* WHC_KeyboradManager(OC) */,
 				A0444375200E3250004F942B /* PXAlertView */,
 				A01181621FFCAB20008F6D1E /* WHC_AutoLayoutKit */,
@@ -4442,6 +4586,7 @@
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
 				F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
+				7937C4332072073B0010CD0C /* PGDatePicker.bundle in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */,
 				A001B3CB1F8EF7CA00309EA4 /* tab_blue_mine@2x.png in Resources */,
@@ -4657,6 +4802,8 @@
 				F69E351A20638F240028D3A1 /* RH_DepositeSubmitCircleView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
+				7937C4372072073B0010CD0C /* PGDatePicker+TimeAndSecond.m in Sources */,
+				7937C42E2072073B0010CD0C /* PGDatePicker+Time.m in Sources */,
 				A0E53DAA1F974CAA00CE69E4 /* RH_ChatInputBar.m in Sources */,
 				79FA6533206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m in Sources */,
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
@@ -4679,8 +4826,10 @@
 				B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
 				79FA651A20673BE2000C7DB6 /* RH_RegisterClauseViewController.m in Sources */,
+				7937C42F2072073B0010CD0C /* NSBundle+PGDatePicker.m in Sources */,
 				A0E53DC51F987D1400CE69E4 /* RH_IMMessageTableCell.m in Sources */,
 				A01181711FFCAB21008F6D1E /* UIView+WHC_Frame.m in Sources */,
+				7937C4362072073B0010CD0C /* PGDatePickManagerHeaderView.m in Sources */,
 				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
 				A0E367B21F906A3D00758033 /* RH_CustomViewController.h in Sources */,
 				794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */,
@@ -4692,6 +4841,7 @@
 				79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */,
 				A001B3F61F8F073B00309EA4 /* RH_CustomServicePageViewController.m in Sources */,
 				A001B3F21F8EFF4200309EA4 /* RH_TransferViewController.m in Sources */,
+				7937C443207209720010CD0C /* PGPickerColumnView.m in Sources */,
 				A001B3C81F8E133B00309EA4 /* RH_LoginViewController.h in Sources */,
 				B84F94642017319F003E40BC /* RH_GameListContentPageCell.m in Sources */,
 				A04E605D1F8DEDCA00098A65 /* RH_MinePageViewController.m in Sources */,
@@ -4706,6 +4856,7 @@
 				79FA6527206742B9000C7DB6 /* RH_HelpCenterViewCell.m in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
+				7937C444207209720010CD0C /* PGPickerView.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
 				B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */,
 				79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */,
@@ -4743,6 +4894,7 @@
 				A010A0571F87999F004E6EF4 /* RH_BasicImageModel.m in Sources */,
 				A010A0591F87999F004E6EF4 /* RH_CommonInputContainerView.m in Sources */,
 				A010A05C1F87999F004E6EF4 /* RH_LoadingIndicateTableViewCell.m in Sources */,
+				7937C4262072073B0010CD0C /* NSCalendar+PGCurrent.m in Sources */,
 				A010A05D1F87999F004E6EF4 /* RH_LoadingIndicateView.m in Sources */,
 				A010A05E1F87999F004E6EF4 /* RH_ModelInfoCachePool.m in Sources */,
 				A010A05F1F87999F004E6EF4 /* RH_NavigationBarButton.m in Sources */,
@@ -4777,8 +4929,10 @@
 				F69E35162063613B0028D3A1 /* RH_DepositeReminderCell.m in Sources */,
 				79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */,
 				F696B843206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m in Sources */,
+				7937C4292072073B0010CD0C /* PGDatePicker.m in Sources */,
 				F6FB6391200F851300EEED4E /* RH_MPSystemNoticeDetailController.m in Sources */,
 				797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */,
+				7937C4382072073B0010CD0C /* PGDatePicker+Date.m in Sources */,
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
@@ -4791,6 +4945,7 @@
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
 				A0109FB01F8788FF004E6EF4 /* UIActionSheet+Block.m in Sources */,
 				79FB815E1FFE091600325BF3 /* RH_CapitalStaticDataCell.m in Sources */,
+				7937C4272072073B0010CD0C /* UIColor+PGHex.m in Sources */,
 				A0109FB11F8788FF004E6EF4 /* UIAlertView+Block.m in Sources */,
 				B8107AB31FFDB8DD0086DDC3 /* RH_MineSafetyCenterViewController.m in Sources */,
 				A0522A7D200B6FD600A5A6E9 /* RH_BitCodeModel.m in Sources */,
@@ -4804,6 +4959,7 @@
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
 				A0AE8AB21FFCD57300836C1B /* RH_MineMoreNextCell.m in Sources */,
 				B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */,
+				7937C4342072073B0010CD0C /* NSDate+PGCategory.m in Sources */,
 				79E3865820392DFF002BF767 /* RH_ShareAnnounceView.m in Sources */,
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
 				F6FB6382200F851300EEED4E /* RH_SiteSendMessagePullDownView.m in Sources */,
@@ -4813,6 +4969,7 @@
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
 				7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */,
+				7937C4392072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m in Sources */,
 				A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */,
 				A039BDA92005BAD50080D56F /* RH_BettingDetailModel.m in Sources */,
 				A0109FB91F8788FF004E6EF4 /* UIImage+Representation.m in Sources */,
@@ -4831,8 +4988,10 @@
 				A0109FBE1F8788FF004E6EF4 /* UIScrollView+ScrollToBorder.m in Sources */,
 				A0109FBF1F8788FF004E6EF4 /* UITableView+Register.m in Sources */,
 				A0109FC01F8788FF004E6EF4 /* UITableViewCell+ShowContent.m in Sources */,
+				7937C42A2072073B0010CD0C /* PGDatePicker+DateHourMinute.m in Sources */,
 				A0109FC11F8788FF004E6EF4 /* UIView+FrameSize.m in Sources */,
 				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
+				7937C446207209720010CD0C /* PGPickerColumnCell.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
@@ -4868,6 +5027,7 @@
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
+				7937C4312072073B0010CD0C /* PGDatePicker+DateAndTime.m in Sources */,
 				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
 				F68202042070E05E003593C9 /* RH_DepositeKuaiChongController.m in Sources */,
@@ -4894,6 +5054,7 @@
 				A01EE2671F8878B30085717E /* SplashViewController.m in Sources */,
 				A0109FDD1F8788FF004E6EF4 /* DNSendButton.m in Sources */,
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
+				7937C4252072073B0010CD0C /* PGDatePicker+DateHour.m in Sources */,
 				F69E350220634C6F0028D3A1 /* RH_DepositePayforWaySubCell.m in Sources */,
 				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
 				F6FB63A92010386100EEED4E /* RH_ApplyDiscountHeaderView.m in Sources */,
@@ -4908,6 +5069,7 @@
 				794429FD203FC6A2006F5A20 /* RH_VerifyCloseView.m in Sources */,
 				79E3865E203A7952002BF767 /* RH_ShowShareRecordViewCell.m in Sources */,
 				B81568A72070D8D7003F5E79 /* WHC_KeyboardHeaderView.m in Sources */,
+				7937C4322072073B0010CD0C /* PGDatePicker+DateHourMinuteSecond.m in Sources */,
 				79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */,
 				79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */,
 				79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */,
@@ -4917,6 +5079,7 @@
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
 				79FA65442068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m in Sources */,
+				7937C42D2072073B0010CD0C /* PGDatePickManager.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
 				A0109FE41F8788FF004E6EF4 /* MJPropertyType.m in Sources */,
 				79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */,
@@ -4926,6 +5089,7 @@
 				A0109FE61F8788FF004E6EF4 /* NSObject+MJCoding.m in Sources */,
 				A0109FE71F8788FF004E6EF4 /* NSObject+MJKeyValue.m in Sources */,
 				B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */,
+				7937C4282072073B0010CD0C /* PGDatePicker+Logic.m in Sources */,
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
@@ -4944,6 +5108,8 @@
 				F69E35202063971C0028D3A1 /* RH_DepositeSubmitCircleCell.m in Sources */,
 				A0109FEF1F8788FF004E6EF4 /* NSImage+WebCache.m in Sources */,
 				79FA653B20677B65000C7DB6 /* RH_HelpCenterDetailModel.m in Sources */,
+				7937C4302072073B0010CD0C /* PGDatePicker+Common.m in Sources */,
+				7937C4352072073B0010CD0C /* PGDatePickerView.m in Sources */,
 				F6FB638A200F851300EEED4E /* RH_MPSystemNoticeCell.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
@@ -4981,6 +5147,7 @@
 				A0109F691F8787E4004E6EF4 /* CLAPPDelegate.m in Sources */,
 				A0109F6A1F8787E4004E6EF4 /* CLBadgeView.m in Sources */,
 				A0109F6B1F8787E4004E6EF4 /* CLBlurredView.m in Sources */,
+				7937C42C2072073B0010CD0C /* PGDatePicker+Year.m in Sources */,
 				B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */,
 				A0109F6C1F8787E4004E6EF4 /* CLBorderView.m in Sources */,
 				F69E351120635B8C0028D3A1 /* RH_DepositeMoneyNumberCell.m in Sources */,
@@ -5000,6 +5167,7 @@
 				A0109F721F8787E4004E6EF4 /* CLHeaderTitleView.m in Sources */,
 				A0109F731F8787E4004E6EF4 /* CLLabel.m in Sources */,
 				A0B5A5741FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.m in Sources */,
+				7937C445207209720010CD0C /* PGPickerTableView.m in Sources */,
 				A0109F741F8787E4004E6EF4 /* CLLineLayer.m in Sources */,
 				A0109F751F8787E4004E6EF4 /* CLMaskView.m in Sources */,
 				A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */,
@@ -5061,6 +5229,7 @@
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
 				F681D259201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m in Sources */,
 				B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */,
+				7937C42B2072073B0010CD0C /* PGDatePicker+YearAndMonth.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
