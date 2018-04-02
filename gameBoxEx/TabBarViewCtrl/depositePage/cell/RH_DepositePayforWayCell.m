@@ -10,7 +10,7 @@
 #import "RH_DepositePayforWaySubCell.h"
 #import "coreLib.h"
 #import "RH_DepositeTransferModel.h"
-#define HomeCategoryItemsCellWidth                     floorf((MainScreenW-30)/3.0)
+#define HomeCategoryItemsCellWidth                     floorf((MainScreenW-50)/5.0)
 #define HomeCategoryItemsCellHeight                     70.0f
 @interface RH_DepositePayforWayCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong,readonly) UICollectionView *collectionView ;
@@ -24,12 +24,12 @@
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
      NSArray * transferModelArray = ConvertToClassPointer(NSArray, context);
-    if (transferModelArray.count%3==0) {
-        return 78*(transferModelArray.count/3);
+    if (transferModelArray.count%5==0) {
+        return 78*(transferModelArray.count/5);
     }
     else
     {
-        return 78*(transferModelArray.count/3+1);
+        return 78*(transferModelArray.count/5+1);
     }
 }
 

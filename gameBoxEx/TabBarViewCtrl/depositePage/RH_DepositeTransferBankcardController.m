@@ -20,7 +20,8 @@
 #import "coreLib.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeTransferButtonCell.h"
-@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate>
+#import "RH_DepositeTransferPulldownView.h"
+@interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferPulldownViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -33,10 +34,12 @@
 @property(nonatomic,strong)RH_DepositeTransferOrderNumCell *transferOrderCell ;
 @property(nonatomic,strong)RH_DepositeTransferPayAdressCell *adressCell;
 @property(nonatomic,strong)RH_DepositeTransferPayWayCell *paywayCell;
+@property(nonatomic,strong,readonly)RH_DepositeTransferPulldownView *pulldownView;
 @end
 
 @implementation RH_DepositeTransferBankcardController
 @synthesize circleView = _circleView;
+@synthesize pulldownView = _pulldownView;
 -(BOOL)isSubViewController
 {
     return YES;
@@ -55,6 +58,14 @@
     // Do any additional setup after loading the view.
     self.title = @"银行卡转账";
     [self setupUI];
+}
+-(RH_DepositeTransferPulldownView *)pulldownView
+{
+    if (!_pulldownView) {
+        _pulldownView = [RH_DepositeTransferPulldownView createInstance];
+        _pulldownView.delegate = self;
+    }
+    return _pulldownView;
 }
 #pragma mark --获取点击的具体的item
 -(void)setupViewContext:(id)context
@@ -252,6 +263,7 @@
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
 {
+    [self.pulldownView removeFromSuperview];
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
 }
@@ -412,7 +424,35 @@
 {
     self.activityId = activityId;
 }
-
+#pragma mark --点击柜台机选择
+-(void)depositeTransferPaywayCellSelectePullDownView:(CGRect)frame
+{
+    if (!self.pulldownView.superview) {
+        CGRect framm = frame;
+        framm.origin.y+=280;
+        framm.size.height+=100;
+        framm.size.width-=100;
+        self.pulldownView.frame =framm;
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [[UIApplication sharedApplication].keyWindow addSubview:self.pulldownView];
+    }
+}
+#pragma mark --点击柜台存款方式
+-(void)depositeTransferChooseCunterCelected:(NSString *)cunterNameString
+{
+    self.paywayCell.transferLabel.text = cunterNameString;
+    self.paywayCell.paywayString = cunterNameString;
+    [self.pulldownView removeFromSuperview];
+    [self.shadeView removeFromSuperview];
+    [self.contentTableView reloadData];
+}
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
 {

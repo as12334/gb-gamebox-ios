@@ -366,8 +366,8 @@
         else {
             _markArray = @[@0,@1,@2,@3,@6,@4,@5];
         }
+    
         [self.contentTableView reloadData];
-//    }
 }
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
@@ -388,13 +388,13 @@
 {
     NSInteger sum =  [self.numberCell.payMoneyNumLabel.text integerValue]+moneyNumber;
     self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",sum];
-    [self.contentTableView setContentOffset:CGPointMake(0,200) animated:YES];
+    
 }
 #pragma mark --提交按钮的代理
 -(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
 {
     [self.numberCell.payMoneyNumLabel resignFirstResponder];
-    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
+//    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
     //点击提交按钮tabelView向下移动
     //  线上支付比较特殊
     if ([self.depositeCode isEqualToString:@"online"])
@@ -599,16 +599,16 @@
         
     }
     else if (type==ServiceRequestTypeV3OnlinePay){
-        showMessage(self.circleView, error, @"存款失败");
+        showErrorMessage(self.circleView, error, @"存款失败");
     }
     else if (type==ServiceRequestTypeV3ScanPay){
-        showMessage(self.circleView, error, @"存款失败");
+        showErrorMessage(self.circleView, error, @"存款失败");
     }
 }
 #pragma mark -键盘监听方法
 - (void)keyboardWasShown:(NSNotification *)notification
 {
-   [self.contentTableView setContentOffset:CGPointMake(0,300) animated:YES];
+   [self.contentTableView setContentOffset:CGPointMake(0,200) animated:YES];
 }
 -(void)hideKeyboard{
     [self.numberCell.payMoneyNumLabel resignFirstResponder];

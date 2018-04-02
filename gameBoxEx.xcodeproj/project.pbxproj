@@ -597,6 +597,9 @@
 		F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D264201B0EA600A7C449 /* RH_ActivityStatusModel.m */; };
 		F682020120707418003593C9 /* THScrollChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F682020020707418003593C9 /* THScrollChooseView.m */; };
 		F68202042070E05E003593C9 /* RH_DepositeKuaiChongController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68202032070E05E003593C9 /* RH_DepositeKuaiChongController.m */; };
+		F68202072071C580003593C9 /* RH_DepositeTransferPulldownView.m in Sources */ = {isa = PBXBuildFile; fileRef = F68202062071C580003593C9 /* RH_DepositeTransferPulldownView.m */; };
+		F682020A2071DD26003593C9 /* RH_DepositeSubmitSucceedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F68202092071DD26003593C9 /* RH_DepositeSubmitSucceedView.m */; };
+		F682020C2071DD34003593C9 /* RH_DepositeSubmitSucceedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F682020B2071DD34003593C9 /* RH_DepositeSubmitSucceedView.xib */; };
 		F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */; };
 		F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */; };
 		F6942E0A20648F35009A5573 /* QRCode.png in Resources */ = {isa = PBXBuildFile; fileRef = F6942E0920648F35009A5573 /* QRCode.png */; };
@@ -1735,6 +1738,11 @@
 		F682020020707418003593C9 /* THScrollChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THScrollChooseView.m; sourceTree = "<group>"; };
 		F68202022070E05E003593C9 /* RH_DepositeKuaiChongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeKuaiChongController.h; sourceTree = "<group>"; };
 		F68202032070E05E003593C9 /* RH_DepositeKuaiChongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeKuaiChongController.m; sourceTree = "<group>"; };
+		F68202052071C580003593C9 /* RH_DepositeTransferPulldownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferPulldownView.h; sourceTree = "<group>"; };
+		F68202062071C580003593C9 /* RH_DepositeTransferPulldownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferPulldownView.m; sourceTree = "<group>"; };
+		F68202082071DD26003593C9 /* RH_DepositeSubmitSucceedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeSubmitSucceedView.h; sourceTree = "<group>"; };
+		F68202092071DD26003593C9 /* RH_DepositeSubmitSucceedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeSubmitSucceedView.m; sourceTree = "<group>"; };
+		F682020B2071DD34003593C9 /* RH_DepositeSubmitSucceedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeSubmitSucceedView.xib; sourceTree = "<group>"; };
 		F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferQRCodeCell.h; sourceTree = "<group>"; };
 		F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferQRCodeCell.m; sourceTree = "<group>"; };
 		F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferQRCodeCell.xib; sourceTree = "<group>"; };
@@ -4048,6 +4056,9 @@
 				79BA36AA20710A6500FD2BFE /* RH_DespositeBitCoinStaticDataCell.h */,
 				79BA36AB20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m */,
 				79BA36AC20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.xib */,
+				F68202082071DD26003593C9 /* RH_DepositeSubmitSucceedView.h */,
+				F68202092071DD26003593C9 /* RH_DepositeSubmitSucceedView.m */,
+				F682020B2071DD34003593C9 /* RH_DepositeSubmitSucceedView.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -4077,6 +4088,8 @@
 				F6942E0420648EDD009A5573 /* RH_DepositeTransferQRCodeCell.h */,
 				F6942E0520648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m */,
 				F6942E0620648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib */,
+				F68202052071C580003593C9 /* RH_DepositeTransferPulldownView.h */,
+				F68202062071C580003593C9 /* RH_DepositeTransferPulldownView.m */,
 			);
 			path = transferCell;
 			sourceTree = "<group>";
@@ -4542,6 +4555,7 @@
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
 				A01181221FFB763B008F6D1E /* RH_UserCenterlogin.plist in Resources */,
 				A05747E91FF889EE0068D0E4 /* RH_userInfoView.xib in Resources */,
+				F682020C2071DD34003593C9 /* RH_DepositeSubmitSucceedView.xib in Resources */,
 				22F626A420566E3E00094564 /* home_announce_close_black@3x.png in Resources */,
 				F6FB6388200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib in Resources */,
 				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
@@ -4653,6 +4667,7 @@
 				A0ADD3291FEB627F00B24B51 /* KIPageViewCell.m in Sources */,
 				B879E07720231544007B3D45 /* RH_ModifyPasswordNameCell.m in Sources */,
 				B81568A62070D8D7003F5E79 /* NSObject+WHC_Extension.m in Sources */,
+				F68202072071C580003593C9 /* RH_DepositeTransferPulldownView.m in Sources */,
 				A0ADD3281FEB627F00B24B51 /* KIPageView.m in Sources */,
 				F69E351A20638F240028D3A1 /* RH_DepositeSubmitCircleView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
@@ -4727,6 +4742,7 @@
 				F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */,
 				F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */,
 				F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */,
+				F682020A2071DD26003593C9 /* RH_DepositeSubmitSucceedView.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */,
 				F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */,

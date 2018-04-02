@@ -41,6 +41,7 @@
                 <outlet property="payforIcon" destination="um5-4G-LwP" id="qmf-fA-wEZ"/>
                 <outlet property="payforTitle" destination="A4d-qc-bzD" id="QCd-v9-uCJ"/>
             </connections>
+            <point key="canvasLocation" x="32.5" y="62"/>
         </collectionViewCell>
     </objects>
     <resources>

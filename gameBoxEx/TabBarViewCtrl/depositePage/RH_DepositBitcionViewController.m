@@ -225,6 +225,7 @@
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
 {
+    
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
 }
