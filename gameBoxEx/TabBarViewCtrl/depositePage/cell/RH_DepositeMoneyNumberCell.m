@@ -29,6 +29,7 @@
     self.payMoneyNumLabel.textAlignment = NSTextAlignmentCenter;
     [self.decimalsBtn setTitle:[NSString stringWithFormat:@"%0.2f",(float)(1+arc4random()%99)/100] forState:UIControlStateNormal];
 }
+
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.payMoneyString = self.payMoneyNumLabel.text;

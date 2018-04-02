@@ -23,10 +23,11 @@
 #import "RH_DepositBitcionViewController.h"
 #import "RH_BankPickerSelectView.h"
 #import "THScrollChooseView.h"
-#import "RH_DepositeKuaiChongController.h"
 #import "RH_CustomViewController.h"
 #import "RH_APPDelegate.h"
-@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget>
+#import "RH_DepositSuccessAlertView.h"
+#import "RH_CapitalRecordViewController.h"
+@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -38,6 +39,7 @@
 @property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
 @property(nonatomic,strong)NSArray *accountModelArray;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
+@property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 
 //支付方式类型
 @property(nonatomic,strong)NSString *payforType;
@@ -382,13 +384,17 @@
     self.depositeCode = depositeCode;
     
     if ([self.depositeName isEqualToString:@"快充中心"]) {
-        RH_DepositeKuaiChongController *kuaichongVC = [RH_DepositeKuaiChongController viewControllerWithContext:depositeCode];
-        [self showViewController:kuaichongVC sender:self];
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        appDelegate.customUrl =depositeCode ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        }) ;
         _markArray = @[@0];
     }
    else{
         if ([depositName isEqualToString:@"在线支付"]) {
             _markArray = @[@0,@6,@1,@2,@3,@4,@5];
+            [self.numberCell setupViewWithContext:self.channelModel];
         }
         else {
             _markArray = @[@0,@1,@2,@3,@6,@4,@5];
@@ -432,7 +438,7 @@
             showMessage(self.view, @"请选择付款平台", nil);
         }
         else{
-            if ([self.numberCell.payMoneyNumLabel.text integerValue]<onlineModel.mSingleDepositMin||[self.numberCell.payMoneyNumLabel.text integerValue]>onlineModel.mSingleDepositMax)
+            if ([self.numberCell.payMoneyNumLabel.text integerValue]<onlineModel.mSingleDepositMin||[self.numberCell.payMoneyNumLabel.text integerValue]>onlineModel.mSingleDepositMax+1||[self.numberCell.payMoneyNumLabel.text integerValue]==0)
                 {
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",onlineModel.mSingleDepositMin,onlineModel.mSingleDepositMax], nil);
                 }
@@ -451,7 +457,7 @@
                 showMessage(self.view, @"请选择存款方式", nil);
             }
             else{
-                if ([self.numberCell.payMoneyNumLabel.text integerValue]<self.numberCell.moneyNumMin||[self.numberCell.payMoneyNumLabel.text integerValue]>self.numberCell.moneyNumMax) {
+                if ([self.numberCell.payMoneyNumLabel.text integerValue]<self.numberCell.moneyNumMin||[self.numberCell.payMoneyNumLabel.text integerValue]>self.numberCell.moneyNumMax+1||[self.numberCell.payMoneyNumLabel.text integerValue]==0) {
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
                 }
                 else{
@@ -482,6 +488,18 @@
     [self.closeBtn removeFromSuperview];
 }
 
+#pragma mark - DepositSuccessAlertViewDelegate
+-(void)depositSuccessAlertViewDidTouchCheckCapitalBtn
+{
+    [self.navigationController showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
+}
+
+-(void)depositSuccessAlertViewDidTouchSaveAgainBtn
+{
+    [self.successAlertView removeFromSuperview];
+    [self.contentTableView reloadData] ;
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
@@ -502,6 +520,8 @@
          payerBankcard:nil
          activityId:self.activityId
          account:self.listModel.mSearchId];
+        [self closeShadeView] ;
+        [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }
 }
 #pragma mark -- 优惠列表
@@ -568,6 +588,7 @@
     [self.serviceRequest cancleAllServices] ;
 }
 
+
 #pragma mark-
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
@@ -590,6 +611,9 @@
             RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.channelModel];
             [self showViewController:bitcionVC sender:self];
             self.markArray = @[@0];
+        }
+        if ([self.depositeCode isEqualToString:@"online"]) {
+            self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
         }
         [self.contentTableView reloadData];
     }
@@ -626,7 +650,27 @@
         
     }
     else if (type==ServiceRequestTypeV3ScanPay){
-        showMessage(self.circleView, @"存款成功", nil);
+        if ([data objectForKey:@"data"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }] ;
+        }else
+        {
+            showMessage(self.view, @"付款失败", nil);
+        }
     }
     
 }
@@ -656,9 +700,11 @@
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated] ;
     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
     [self.circleView removeFromSuperview];
     [self.closeBtn removeFromSuperview];
+    [self.successAlertView removeFromSuperview];
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {

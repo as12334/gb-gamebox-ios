@@ -27,7 +27,7 @@
 {
     NSArray *array = ConvertToClassPointer(NSArray, context);
     NSInteger num = array.count%2?((array.count/2)+1):(array.count/2);
-    return  50.f+50*num;
+    return  50.f+55*num;
 }
 
 - (void)awakeFromNib
@@ -35,7 +35,6 @@
     [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor] ;
     self.contentView.backgroundColor = [UIColor whiteColor] ;
-    
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
