@@ -126,7 +126,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 750.f ;
+    return 850.f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,6 +167,11 @@
     }
 
     
+}
+#pragma mark --客服
+-(void)touchTextViewCustomPushCustomViewController:(RH_DepositeBitcionCell *)cell
+{
+     [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark 数据请求
 

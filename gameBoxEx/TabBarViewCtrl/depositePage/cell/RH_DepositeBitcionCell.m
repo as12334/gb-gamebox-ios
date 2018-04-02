@@ -13,7 +13,7 @@
 
 #import "RH_DespositeBitCoinStaticDataCell.h"
 
-@interface RH_DepositeBitcionCell()<UITextFieldDelegate>
+@interface RH_DepositeBitcionCell()<UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *bitcoinAdressTextfield;
 
 @property (weak, nonatomic) IBOutlet UITextField *txidTextfield;
@@ -24,10 +24,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *personNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+@property (weak, nonatomic) IBOutlet UIView *submitBtnBackView;
+@property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (nonatomic,strong)RH_DepositeTransferListModel *listModel;
 @property (nonatomic,strong,readonly) RH_DespositeBitCoinStaticDataCell *bitcoinStaticDateCell ;
+@property (weak, nonatomic) IBOutlet UIView *accountInfoBakcView;
+@property (weak, nonatomic) IBOutlet UIView *accountInfoView;
+@property (weak, nonatomic) IBOutlet UIButton *savePhoneBtn;
+
 @end
 @implementation RH_DepositeBitcionCell
+static NSString *content = @"温馨提示\n*为了提高对账速度及成功率，当前支付方式已开通随机额度，请输入整数存款金额，将随机增加0.11~0.99元。\n*请保留好转账单据以便核对证明。\n*如果出现充值失败或充值未到账的情况，请联系在线客服寻求帮助。点击联系在线客服";
 @synthesize bitcoinStaticDateCell = _bitcoinStaticDateCell ;
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -36,9 +43,14 @@
     [self.bitcoinIcon sd_setImageWithURL:[NSURL URLWithString:self.listModel.accountImgCover]];
     self.personNameLabel.text = self.listModel.mFullName;
     [self.qrImageView sd_setImageWithURL:[NSURL URLWithString:self.listModel.qrShowCover]];
-    
 }
-
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self =[super initWithCoder:aDecoder]) {
+        
+    }
+    return self;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     WHC_StackView *stackView = [[WHC_StackView alloc] init];
@@ -60,6 +72,48 @@
     self.txidTextfield.delegate = self;
     self.bitcoinNumTextfield.delegate = self;
     self.bitcoinChangeTimeTextfield.delegate = self;
+    self.submitBtnBackView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.noteTextView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.accountInfoBakcView.layer.cornerRadius = 5.f;
+    self.accountInfoBakcView.layer.masksToBounds = YES;
+    self.accountInfoView.layer.cornerRadius = 3.f;
+    self.accountInfoView.layer.masksToBounds = YES;
+    self.savePhoneBtn.layer.cornerRadius = 5.f;
+    self.savePhoneBtn.layer.masksToBounds = YES;
+    self.bitcoinNoteTextview.text = @"扫码支付存款到比特币账户，\n自动到账。";
+    [self setupUI];
+}
+-(void)setupUI{
+    // 设置属性
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    // 设置行间距
+    paragraphStyle.paragraphSpacing = 2; // 段落间距
+    paragraphStyle.lineSpacing = 10;      // 行间距
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName:colorWithRGB(102,102, 102),
+                                 NSParagraphStyleAttributeName:paragraphStyle
+                                 };
+    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:content attributes:attributes];
+    [attrStr addAttributes:@{
+                             NSLinkAttributeName:@"点击联系在线客服"
+                             }
+                     range:[content rangeOfString:@"点击联系在线客服"]];
+    self.noteTextView.linkTextAttributes = @{NSForegroundColorAttributeName:colorWithRGB(23, 102, 187)}; // 修改可点击文字的颜色
+    self.noteTextView.attributedText = attrStr;
+    self.noteTextView.editable = NO;
+    self.noteTextView.scrollEnabled = NO;
+    self.noteTextView.delegate = self;
+}
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    NSRange range = [content rangeOfString:@"点击联系在线客服"];
+    if (characterRange.location == range.location) {
+        // 做你想做的事
+        ifRespondsSelector(self.delegate, @selector(touchTextViewCustomPushCustomViewController:)){
+            [self.delegate touchTextViewCustomPushCustomViewController:self];
+        }
+        
+    }
+    return YES;
 }
 - (IBAction)submitClick:(id)sender {
  

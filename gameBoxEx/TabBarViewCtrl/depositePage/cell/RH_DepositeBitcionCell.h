@@ -17,6 +17,7 @@
 
 -(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate*)defaultDate ;
 -(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl ;
+-(void)touchTextViewCustomPushCustomViewController:(RH_DepositeBitcionCell *)cell;
 @end
 @interface RH_DepositeBitcionCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositeBitcionCellDelegate>delegate;

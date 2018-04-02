@@ -38,11 +38,13 @@
 @property(nonatomic,strong)RH_DepositeTransferPayWayCell *paywayCell;
 @property(nonatomic,strong,readonly)RH_DepositeTransferPulldownView *pulldownView;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
+@property(nonatomic,strong,readonly)UIButton *closeBtn;
 @end
 
 @implementation RH_DepositeTransferBankcardController
 @synthesize circleView = _circleView;
 @synthesize pulldownView = _pulldownView;
+@synthesize closeBtn = _closeBtn;
 -(BOOL)isSubViewController
 {
     return YES;
@@ -65,7 +67,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"银行卡转账";
+//    self.title = @"银行卡转账";
     [self setupUI];
 }
 -(RH_DepositeTransferPulldownView *)pulldownView
@@ -85,36 +87,44 @@
     self.listModel = listModel;
     if ([self.accountMuArray[2] isEqualToString:@"company"]) {
         _markArray =@[@0,@7,@6,@1,@2,@5,@3,@4];
+        self.title = @"网银付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
         _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
-
+        self.title = @"微信付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
     {
-        _markArray =@[@7,@0,@1,@2,@3,@4,@5,@6];;
+        _markArray =@[@7,@0,@1,@2,@3,@4,@5,@6];
+        self.title = @"支付宝付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"qq"])
     {
         _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
+        self.title = @"QQ钱包付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"jd"])
     {
         _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
+        self.title = @"京东钱包付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"bd"])
     {
         _markArray =@[@7,@0,@1,@2,@3,@6,@4,@5];
+        self.title = @"百度钱包付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
         _markArray =@[@7,@0,@1,@2,@5,@6,@3,@4];
+        self.title = @"一码付";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
         _markArray =@[@0,@7,@6,@1,@2,@3,@4,@5];
+        self.title = @"柜台机付款";
     }
     else if ([self.accountMuArray[2] isEqualToString:@"other"])
     {
         _markArray = @[@7,@0,@1,@2,@3,@6,@4,@5];
+        self.title = @"其他付款付款";
     }
     else{
        _markArray =@[@0,@1,@2,@3,@4,@5];
@@ -143,13 +153,29 @@
 {
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
-        _circleView.frame = CGRectMake(0, 0, 250, 360);
+        _circleView.frame = CGRectMake(0, 0, 295, 358);
         _circleView.center = self.contentView.center;
         _circleView.delegate = self;
     }
     return _circleView;
 }
-
+#pragma mark --弹框的关闭按钮
+-(UIButton *)closeBtn
+{
+    if (!_closeBtn) {
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_closeBtn setBackgroundImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        _closeBtn.frame = CGRectMake((self.view.frameWidth-51)/2, self.circleView.frameHeigh+self.circleView.frameY+24, 51, 51);
+        [_closeBtn addTarget:self action:@selector(closeTheCircleView) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeBtn;
+}
+-(void)closeTheCircleView
+{
+    [_shadeView removeFromSuperview];
+    [self.circleView removeFromSuperview];
+    [self.closeBtn removeFromSuperview];
+}
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -275,6 +301,7 @@
     [self.pulldownView removeFromSuperview];
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
+    [self.closeBtn removeFromSuperview];
 }
 #pragma mark --点击textfield
 -(void)depositeTransferPaywayCellSelecteUpframe:(RH_DepositeTransferPayWayCell *)cell
@@ -439,9 +466,10 @@
 {
     if (!self.pulldownView.superview) {
         CGRect framm = frame;
-        framm.origin.y+=280;
+        framm.origin.y+=340;
         framm.size.height+=100;
-        framm.size.width-=100;
+        framm.size.width=150;
+        framm.origin.x = self.contentView.frameWidth-160;
         self.pulldownView.frame =framm;
         UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
         shadeView.backgroundColor = [UIColor lightGrayColor];
@@ -590,6 +618,7 @@
         _shadeView = shadeView;
         [self.circleView setupViewWithContext:self.saleModel];
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.closeBtn];
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
         if ([data objectForKey:@"data"]) {
