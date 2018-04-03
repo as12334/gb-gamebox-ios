@@ -588,7 +588,7 @@
             }] ;
         }else
         {
-            showMessage(self.view, @"付款失败", nil);
+            showMessage(self.view, @"存款失败", nil);
         }
         
     }
@@ -612,7 +612,7 @@
             }] ;
         }else
         {
-            showMessage(self.view, @"付款失败", nil);
+            showMessage(self.view, @"存款失败", nil);
         }
     }
     else if (type==ServiceRequestTypeV3CounterPay){
@@ -636,7 +636,7 @@
         }else
         {
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                showMessage(self.view, @"付款失败", nil);
+                showMessage(self.view, @"存款失败", nil);
             }] ;
         }
     }else if(type == ServiceRequestTypeV3CompanyPay)
@@ -661,7 +661,7 @@
         }else
         {
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                showMessage(self.view, @"付款失败", nil);
+                showMessage(self.view, @"存款失败", nil);
             }] ;
         }
     }
@@ -673,17 +673,17 @@
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"付款失败");
+            showErrorMessage(self.view, error, @"存款失败");
         }] ;
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"付款失败");
+            showErrorMessage(self.view, error, @"存款失败");
         }] ;
     }else if(type == ServiceRequestTypeV3CompanyPay)
     {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(self.view, error, @"付款失败");
+            showErrorMessage(self.view, error, @"存款失败");
         }] ;
     }
 }
