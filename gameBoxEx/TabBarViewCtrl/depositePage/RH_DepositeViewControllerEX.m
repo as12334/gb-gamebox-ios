@@ -289,7 +289,7 @@
         return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transModelArray] ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
-        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.channelModel.mArrayListModel];
+        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.channelModel.mArrayListModel] -10;
 //        return 120.f;
     }
     else if (indexPath.item ==[_markArray[2]integerValue]){
@@ -381,6 +381,12 @@
 -(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem depositeCode:(NSString *)depositeCode depositeName:(NSString *)depositName
 {
     [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
+    if ([depositName isEqualToString:@"快充中心"]) {
+       
+    }else
+    {
+         [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
     //点击各个渠道，重置存款方式
     [self.platformCell awakeFromNib];
     self.payforType=nil;
@@ -609,18 +615,20 @@
     }
     else if (type == ServiceRequestTypeV3DepositeOriginChannel)
     {
-        RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
-        self.channelModel = channelModel;
-        [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
-        if ([self.depositeCode isEqualToString:@"bitcoin"]) {
-            RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.channelModel];
-            [self showViewController:bitcionVC sender:self];
-            self.markArray = @[@0];
-        }
-        if ([self.depositeCode isEqualToString:@"online"]) {
-            self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
-        }
-        [self.contentTableView reloadData];
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
+            self.channelModel = channelModel;
+            [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
+            if ([self.depositeCode isEqualToString:@"bitcoin"]) {
+                RH_DepositBitcionViewController *bitcionVC = [RH_DepositBitcionViewController viewControllerWithContext:self.channelModel];
+                [self showViewController:bitcionVC sender:self];
+                self.markArray = @[@0];
+            }
+            if ([self.depositeCode isEqualToString:@"online"]) {
+                self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
+            }
+            [self.contentTableView reloadData];
+        }] ;
     }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
         RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);

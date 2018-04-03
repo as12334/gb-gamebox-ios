@@ -12,14 +12,17 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeSubmitCircleView.h"
+#import "RH_DepositSuccessAlertView.h" //存款成功的弹窗
+#import "RH_CapitalRecordViewController.h"
 
-@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate,PGDatePickerDelegate>
+@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate,PGDatePickerDelegate,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong)NSArray *listModelArray;
 @property(nonatomic,strong)RH_DepositeBitcionCell *bitcionCell;
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,assign)NSInteger activityId;
 @property(nonatomic,strong)RH_DepositeTransferListModel *listModel;
+@property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 
 @end
 
@@ -78,6 +81,8 @@
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
 {
     [self.serviceRequest startV3BitcoinPayWithRechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId activityId:self.activityId returnTime:self.bitcionCell.bitcoinChangeTimeStr payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
+    [self closeShadeView] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
 }
 
 -(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate *)defaultDate
@@ -103,6 +108,22 @@
     self.bitcionCell.bitConDate = date ;
     NSLog(@"date: %@", dateString);
     self.bitcionCell.bitcoinChangeTimeStr = dateString;
+}
+
+#pragma mark - DepositSuccessAlertViewDelegate
+- (void)depositSuccessAlertViewDidTouchCancelButton {
+    
+    [self backBarButtonItemHandle] ;
+}
+//再存一次
+-(void)depositSuccessAlertViewDidTouchSaveAgainBtn
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+}
+//查看资金记录
+-(void)depositSuccessAlertViewDidTouchCheckCapitalBtn
+{
+    [self.navigationController showViewController:[RH_CapitalRecordViewController viewController] sender:self] ;
 }
 
 -(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl
@@ -162,6 +183,7 @@
                 else
                 {
                       [self.serviceRequest startV3DepositOriginSeachSaleBittionRechargeAmount:[self.bitcionCell.bitcoinNumStr floatValue] PayAccountDepositWay:self.listModel.mDepositWay bittionTxid:[self.bitcionCell.txidStr integerValue] PayAccountID:self.listModel.mSearchId];
+                    [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
                 }
             }
         }
@@ -228,39 +250,65 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale) {
-        RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
-        //        self.saleModel = saleModel;
-        [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
-                            totalCount:saleModel?1:0] ;
-        //遮罩层
-        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-        shadeView.backgroundColor = [UIColor lightGrayColor];
-        shadeView.alpha = 0.7f;
-        shadeView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-        [shadeView addGestureRecognizer:tap];
-        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-        _shadeView = shadeView;
-        [self.circleView setupViewWithContext:saleModel];
-        [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, data);
+            //        self.saleModel = saleModel;
+            [self loadDataSuccessWithDatas:saleModel?@[saleModel]:@[]
+                                totalCount:saleModel?1:0] ;
+            //遮罩层
+            UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+            shadeView.backgroundColor = [UIColor lightGrayColor];
+            shadeView.alpha = 0.7f;
+            shadeView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+            [shadeView addGestureRecognizer:tap];
+            [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+            _shadeView = shadeView;
+            [self.circleView setupViewWithContext:saleModel];
+            [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
+        }] ;
     }
     else if (type==ServiceRequestTypeV3BitcoinPay){
-        showMessage(self.circleView, @"存款成功", nil);
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if (data) {
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }else
+            {
+                 showMessage(self.view, @"存款失败", nil);
+            }
+        }] ;
+       
     }
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
 {
-    
     [_shadeView removeFromSuperview];
     [self.circleView removeFromSuperview];
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale) {
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+             showErrorMessage(self.view, error, @"获取优惠信息失败") ;
+        }] ;
     }
     else if (type==ServiceRequestTypeV3BitcoinPay){
-        showErrorMessage(self.circleView, error, @"存款失败") ;
+         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+          showErrorMessage(self.view, error, @"存款失败") ;
+        }] ;
     }
 }
 

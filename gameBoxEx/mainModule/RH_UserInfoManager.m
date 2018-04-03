@@ -38,6 +38,7 @@
 @synthesize sidString = _sidString ;
 @synthesize updateUserVeifyCode = _updateUserVeifyCode ;
 @synthesize isSetSafetySecertPwd = _isSetSafetySecertPwd ;
+@synthesize isBindBitCoin = _isBindBitCoin ;
 
 +(instancetype)shareUserManager
 {
@@ -286,6 +287,19 @@
 {
     if (isSetSafetySecertPwd != _isSetSafetySecertPwd) {
         _isSetSafetySecertPwd = isSetSafetySecertPwd ;
+    }
+}
+
+//是否绑定比特币
+-(BOOL)isBindBitCoin
+{
+    return _isBindBitCoin ;
+}
+
+-(void)setIsBindBitCoin:(BOOL)isBindBitCoin
+{
+    if (isBindBitCoin != _isBindBitCoin) {
+        _isBindBitCoin = isBindBitCoin ;
     }
 }
 
