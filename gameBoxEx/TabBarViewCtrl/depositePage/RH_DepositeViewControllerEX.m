@@ -85,6 +85,11 @@
                 [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
             }
         }
+        else
+        {
+            self.numberCell.payMoneyNumLabel.text=nil;
+//            self.numberCell.payMoneyNumLabel.text.length=
+        }
     }
 }
 

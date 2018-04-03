@@ -343,9 +343,9 @@
     [self.paywayCell.payNumTextfield resignFirstResponder];
     [self.transferOrderCell.orderNumTextfiled resignFirstResponder];
     [self.adressCell.payTextfield resignFirstResponder];
-    if (self.paywayCell.superview&&self.paywayCell.paywayString==nil) {
+    if (self.paywayCell.superview&&self.paywayCell.paywayString.length==0) {
         if ([self.accountMuArray[2] isEqualToString:@"company"]) {
-           
+           showMessage(self.view, @"请填写存款方式", nil);
         }
         else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
             showMessage(self.view, @"请填写微信昵称", nil);
@@ -378,75 +378,22 @@
         }
     }
     else{
-        if (self.transferOrderCell.superview&&self.transferOrderCell.transferOrderString==nil) {
-            if ([self.accountMuArray[2] isEqualToString:@"company"]) {
-                
+            if ([self.accountMuArray[2] isEqualToString:@"company"]&&self.transferOrderCell.transferOrderString.length==0) {
+                showMessage(self.view, @"请填写账号对应的姓名", nil);
             }
-            else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
-                showMessage(self.view, @"请填写‘商户订单号’", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
+            else if ([self.accountMuArray[2] isEqualToString:@"alipay"]&&self.transferOrderCell.transferOrderString.length==0)
             {
                 showMessage(self.view, @"请填写支付宝账号", nil);
             }
-            else if ([self.accountMuArray[2] isEqualToString:@"qq"])
-            {
-                showMessage(self.view, @"请填写‘商户订单号’", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"jd"])
-            {
-                showMessage(self.view, @"请填写‘商户订单号’", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"bd"])
-            {
-                showMessage(self.view, @"请填写‘商户订单号’", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
-                showMessage(self.view, @"请填写订单号后五位", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
+            else if ([self.accountMuArray[2] isEqualToString:@"counter"]&&self.transferOrderCell.transferOrderString.length==0){
                 showMessage(self.view, @"请填转账账号对应的姓名", nil);
             }
-            else if ([self.accountMuArray[2] isEqualToString:@"other"])
-            {
-                showMessage(self.view, @"请填订单号，非‘商户订单号’", nil);
-            }
-        }
+
         else{
-            if (self.adressCell.superview&&self.adressCell.adressStr==nil) {
-                if ([self.accountMuArray[2] isEqualToString:@"company"]) {
-                    
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
-                    
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
-                {
-                    showMessage(self.view, @"请填写'商户订单号'", nil);
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"qq"])
-                {
-                    
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"jd"])
-                {
-                    
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"bd"])
-                {
-                   
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
-                  
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
-                    showMessage(self.view, @"请填写存款地点", nil);
-                }
-                else if ([self.accountMuArray[2] isEqualToString:@"other"])
-                {
-                 
-                }
+             if ([self.accountMuArray[2] isEqualToString:@"counter"]&&self.adressCell.adressStr==0){
+                showMessage(self.view, @"请填写存款地点", nil);
             }
+            
             else{
                     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
@@ -688,7 +635,34 @@
             }] ;
         }else
         {
-            showMessage(self.view, @"付款失败", nil);
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showMessage(self.view, @"付款失败", nil);
+            }] ;
+        }
+    }else if(type == ServiceRequestTypeV3CompanyPay)
+    {
+        if ([data objectForKey:@"data"]) {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                if (self.successAlertView.superview == nil) {
+                    self.successAlertView = [[RH_DepositSuccessAlertView alloc] init];
+                    self.successAlertView.alpha = 0;
+                    self.successAlertView.delegate = self;
+                    [self.contentView addSubview:self.successAlertView];
+                    self.successAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.successAlertView.alpha = 1;
+                    } completion:^(BOOL finished) {
+                        if (finished) {
+                            [self.successAlertView showContentView];
+                        }
+                    }];
+                }
+            }] ;
+        }else
+        {
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showMessage(self.view, @"付款失败", nil);
+            }] ;
         }
     }
 }
@@ -698,10 +672,19 @@
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type==ServiceRequestTypeV3ElectronicPay){
-        showErrorMessage(self.circleView, error, @"付款失败");
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"付款失败");
+        }] ;
     }
     else if (type==ServiceRequestTypeV3AlipayElectronicPay){
-        showErrorMessage(self.circleView, error, @"付款失败");
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"付款失败");
+        }] ;
+    }else if(type == ServiceRequestTypeV3CompanyPay)
+    {
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, @"付款失败");
+        }] ;
     }
 }
 
