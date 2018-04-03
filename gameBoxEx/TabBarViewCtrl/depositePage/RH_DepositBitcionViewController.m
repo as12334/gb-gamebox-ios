@@ -58,7 +58,7 @@
 {
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
-        _circleView.frame = CGRectMake(0, 0, 250, 360);
+        _circleView.frame = CGRectMake(0, 0, 295, 358);
         _circleView.center = self.view.center;
         _circleView.delegate = self;
     }

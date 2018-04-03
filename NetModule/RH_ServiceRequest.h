@@ -515,7 +515,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId ;
 
 #pragma mark 存款获取优惠
--(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID;
 #pragma mark 比特币存款获取优惠
 -(void)startV3DepositOriginSeachSaleBittionRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay bittionTxid:(NSInteger )bankOrder PayAccountID:(NSString *)payAccountID;
 
@@ -539,13 +539,13 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3RefreshApiWithApiId:(NSString *)apiId ;
 
 #pragma mark - V3 线上支付提交存款
--(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
+-(void)startV3OnlinePayWithRechargeAmount:(NSString *)amount
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString *)payAccountId
                                activityId:(NSString *)activityId ;
 
 #pragma mark - V3 扫码支付提交存款
--(void)startV3ScanPayWithRechargeAmount:(float)amount
+-(void)startV3ScanPayWithRechargeAmount:(NSString *)amount
                            rechargeType:(NSString *)rechargeType
                            payAccountId:(NSInteger)payAccountId
                           payerBankcard:(NSInteger)payerBankcard
@@ -553,21 +553,21 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                                account:(NSString *)account;
 
 #pragma mark -  V3 网银支付提交存款
--(void)startV3CompanyPayWithRechargeAmount:(float)amount
+-(void)startV3CompanyPayWithRechargeAmount:(NSString *)amount
                               rechargeType:(NSString *)rechargeType
                               payAccountId:(NSString *)payAccountId
                                  payerName:(NSString *)payerName
                                 activityId:(NSInteger)activityId ;
 
 #pragma mark -  V3 柜台机支付提交存款
--(void)startV3CounterPayWithRechargeAmount:(float)amount
+-(void)startV3CounterPayWithRechargeAmount:(NSString *)amount
                               rechargeType:(NSString *)rechargeType
                               payAccountId:(NSString *)payAccountId
                                  payerName:(NSString *)payerName
                            rechargeAddress:(NSString *)rechargeAddress
                                 activityId:(NSInteger)activityId ;
 #pragma mark - V3 电子支付提交存款
--(void)startV3ElectronicPayWithRechargeAmount:(float)amount
+-(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
                                     bankOrder:(NSInteger)bankOrder
@@ -576,7 +576,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                                    activityId:(NSInteger)activityId ;
 
 #pragma mark - V3 支付宝电子支付提交存款
--(void)startV3AlipayElectronicPayWithRechargeAmount:(float)amount
+-(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
                                     bankOrder:(NSInteger)bankOrder

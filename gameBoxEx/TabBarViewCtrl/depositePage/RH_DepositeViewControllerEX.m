@@ -52,7 +52,10 @@
 @property(nonatomic,strong)NSString *depositeCode;
 //点击选择金额按钮，界面上移
 @property(nonatomic,assign)CGFloat keyboardHeight;
-
+//在线存款具体选择的那个银行
+@property(nonatomic,assign)NSInteger bankSeletedIndex;
+//将金额传入到优惠弹出界面
+@property(nonatomic,strong)NSString *discountStr;
 
 @end
 
@@ -380,6 +383,7 @@
 #pragma mark --depositePayforWay的代理，选择付款的平台
 -(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem depositeCode:(NSString *)depositeCode depositeName:(NSString *)depositName
 {
+  
     [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
     //点击各个渠道，重置存款方式
     [self.platformCell awakeFromNib];
@@ -434,10 +438,14 @@
     [self.numberCell.payMoneyNumLabel resignFirstResponder];
 //    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
     //点击提交按钮tabelView向下移动
+    CGFloat sum =[self.numberCell.payMoneyNumLabel.text floatValue]+[self.numberCell.decimalsBtn.titleLabel.text floatValue];
+    NSString *sumStr = [NSString stringWithFormat:@"%0.2f",sum];
+    self.discountStr = sumStr;
+    
     //  线上支付比较特殊
     if ([self.depositeCode isEqualToString:@"online"])
     {
-        RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[0]) ;
+        RH_DepositeTransferListModel *onlineModel =  (RH_DepositeTransferListModel *)self.channelModel.mArrayListModel[self.bankSeletedIndex] ;
         if (self.depositeName==nil)
         {
             showMessage(self.view, @"请选择付款平台", nil);
@@ -448,7 +456,7 @@
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",onlineModel.mSingleDepositMin,onlineModel.mSingleDepositMax], nil);
                 }
             else{
-                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.numberCell.payMoneyNumLabel.text floatValue] PayAccountDepositWay:onlineModel.mDepositWay PayAccountID:onlineModel.mSearchId];
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:sumStr  PayAccountDepositWay:onlineModel.mDepositWay PayAccountID:onlineModel.mSearchId];
                 }
         }
     }
@@ -469,14 +477,14 @@
                     
                         if ([self.payforType isEqualToString:@"1"]) {
                             NSMutableArray *mutableArray = [NSMutableArray array];
-                            [mutableArray addObject:self.numberCell.payMoneyNumLabel.text];
+                            [mutableArray addObject:sumStr];
                             [mutableArray addObject:self.listModel];
                             [mutableArray addObject:self.depositeCode];
                             RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
                             [self showViewController:transferVC sender:self];
                         }
                         else{
-                            [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.numberCell.payMoneyNumLabel.text floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                            [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:sumStr PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                         }
                 }
             }
@@ -514,12 +522,13 @@
 {
 
     if ([self.depositeCode isEqualToString:@"online"]) {
-         RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[0]) ;
-        [self.serviceRequest startV3OnlinePayWithRechargeAmount:[self.numberCell.payMoneyNumLabel.text floatValue] rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
+         RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[self.bankSeletedIndex]) ;
+        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
     }
     else{
         [self.serviceRequest
-         startV3ScanPayWithRechargeAmount:[self.numberCell.payMoneyNumLabel.text floatValue]
+         startV3ScanPayWithRechargeAmount:
+         self.discountStr
          rechargeType:self.listModel.mRechargeType
          payAccountId:nil
          payerBankcard:nil
@@ -541,10 +550,12 @@
     if (bankNameArray.count>0) {
         THScrollChooseView *scrollChooseView = [[THScrollChooseView alloc] initWithQuestionArray:bankNameArray withDefaultDesc:bankNameArray[0]];
         [scrollChooseView showView];
+        __weak RH_DepositeViewControllerEX *weakSelf = self;
         scrollChooseView.confirmBlock = ^(NSInteger selectedQuestion) {
-            
-            //        [cell.bankNameLabel setTitle:questionArray[selectedQuestion] forState:UIControlStateNormal];
+            weakSelf.bankSeletedIndex = selectedQuestion;
             [cell.bankNameLabel setText:bankNameArray[selectedQuestion]];
+            //选择不同的银行需要存入的钱的范围不一样
+            weakSelf.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[selectedQuestion]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[selectedQuestion]).mSingleDepositMax];
         };
     }
 }
@@ -636,6 +647,7 @@
         [shadeView addGestureRecognizer:tap];
         [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
         _shadeView = shadeView;
+        self.circleView.moneyNumLabel.text = self.discountStr;
         [self.circleView setupViewWithContext:saleModel];
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
         [[UIApplication sharedApplication].keyWindow addSubview:self.closeBtn];

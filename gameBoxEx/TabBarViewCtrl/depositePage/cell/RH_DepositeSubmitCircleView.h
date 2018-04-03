@@ -16,4 +16,5 @@
 @end
 @interface RH_DepositeSubmitCircleView : UIView
 @property(nonatomic,weak)id<DepositeSubmitCircleViewDelegate>delegate;
+@property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
 @end

@@ -15,24 +15,17 @@
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 
 @property (weak, nonatomic) IBOutlet UIButton *depositeBtn;
-@property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *chareLabel;
 @property (nonatomic,strong)NSArray *salesArray;
 @property (nonatomic,assign)NSInteger selectCellIndex;
 @end
 @implementation RH_DepositeSubmitCircleView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 -(void)setupViewWithContext:(id)context
 {
     RH_DepositOriginseachSaleModel *saleModel = ConvertToClassPointer(RH_DepositOriginseachSaleModel, context);
-    self.moneyNumLabel.text = saleModel.mCounterFee;
+//    self.moneyNumLabel.text = saleModel.mCounterFee;
     self.chareLabel.text = saleModel.mMsg;
     self.salesArray = saleModel.mDetailsModel;
 }

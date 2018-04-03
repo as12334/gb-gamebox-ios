@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bankAdressLabel;
 @property (weak, nonatomic) IBOutlet UIView *colorView;
 @property (weak, nonatomic) IBOutlet UILabel *accountInfoLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
 
 @end
 @implementation RH_DepositeTransferBankInfoCell
@@ -29,6 +30,7 @@
     self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
     self.bankCardNameLabel.text = listModel.mBankName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
+    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
 }
 
 - (void)awakeFromNib {

@@ -12,7 +12,7 @@
 #import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeMoneyNumberCell()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *decimalsBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *deposieLabel;
 @property (weak, nonatomic) IBOutlet CLBorderView *uplineView;
 @property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
@@ -27,13 +27,25 @@
     self.moneyNumMin = listModel.mSingleDepositMin;
     self.moneyNumMax = listModel.mSingleDepositMax;
     self.payMoneyNumLabel.textAlignment = NSTextAlignmentCenter;
-    [self.decimalsBtn setTitle:[NSString stringWithFormat:@"%0.2f",(float)(1+arc4random()%99)/100] forState:UIControlStateNormal];
+    if (listModel.mRandomAmount==NO) {
+        [self.decimalsBtn setHidden:YES];
+        [self.decimalsBtn setTitle:@"" forState:UIControlStateNormal];
+        self.decimalsBtn.titleLabel.text = nil;
+    }
+    else{
+        [self.decimalsBtn setHidden:NO];
+        [self.decimalsBtn setTitle:[NSString stringWithFormat:@"%0.2f",(float)(1+arc4random()%99)/100] forState:UIControlStateNormal];
+    }
 }
-
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    self.payMoneyString = self.payMoneyNumLabel.text;
+    CGFloat sum = [self.payMoneyNumLabel.text integerValue]+[self.decimalsBtn.titleLabel.text floatValue];
+    NSString *string = [NSString stringWithFormat:@"%0.2f",sum];
+    self.payMoneyString = string;
     return YES;
+}
+- (IBAction)clickChangedNum:(id)sender {
+    [self.decimalsBtn setTitle:[NSString stringWithFormat:@"%0.2f",(float)(1+arc4random()%99)/100] forState:UIControlStateNormal];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

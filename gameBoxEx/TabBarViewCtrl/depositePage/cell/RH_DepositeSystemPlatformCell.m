@@ -39,7 +39,7 @@
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
     _cellStatusIndex = 100;
-    [self.collectionView reloadData] ;
+//    [self.collectionView reloadData] ;
     [self setupUI];
 }
 -(void)updateConllectionView

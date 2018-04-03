@@ -31,6 +31,7 @@
     else if ([nameString isEqualToString:@"company"]){
         self.payWayLabel.text = @"存款方式";
         self.payNumTextfield.placeholder = @"网银存款";
+        self.payNumTextfield.userInteractionEnabled = NO;
     }
     else if ([nameString isEqualToString:@"wechat"]){
         self.payWayLabel.text = @"您的微信昵称";

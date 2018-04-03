@@ -63,6 +63,9 @@
                         <state key="normal" title="启动微信APP支付">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="openOtherAppClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="x4n-gr-puk"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

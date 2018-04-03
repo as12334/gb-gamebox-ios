@@ -1631,10 +1631,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark 存款优惠
--(void)startV3DepositOriginSeachSaleRechargeAmount:(CGFloat )rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
     [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
     
@@ -1760,13 +1760,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - V3 线上支付提交存款
--(void)startV3OnlinePayWithRechargeAmount:(CGFloat)amount
+-(void)startV3OnlinePayWithRechargeAmount:(NSString *)amount
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString*)payAccountId
                                activityId:(NSString *)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-     [dict setValue:@(amount) forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
+     [dict setValue:amount forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
     [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
     [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
     [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
@@ -1784,7 +1784,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - V3 扫码支付提交存款
--(void)startV3ScanPayWithRechargeAmount:(float)amount
+-(void)startV3ScanPayWithRechargeAmount:(NSString *)amount
                            rechargeType:(NSString *)rechargeType
                            payAccountId:(NSInteger)payAccountId
                           payerBankcard:(NSInteger)payerBankcard
@@ -1792,7 +1792,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                account:(NSString *)account
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(amount) forKey:RH_SP_SCANPAY_RECHARGEAMOUNT];
+    [dict setObject:amount forKey:RH_SP_SCANPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_SCANPAY_RECHARGETYPE];
 //    [dict setObject:@(payAccountId) forKey:RH_SP_SCANPAY_PAYACCOUNTID];
     [dict setObject:@(payerBankcard) forKey:RH_SP_SCANPAY_PAYERBANKCARD];
@@ -1812,14 +1812,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark -  V3 网银支付提交存款
--(void)startV3CompanyPayWithRechargeAmount:(float)amount
+-(void)startV3CompanyPayWithRechargeAmount:(NSString *)amount
                               rechargeType:(NSString *)rechargeType
                               payAccountId:(NSString *)payAccountId
                                  payerName:(NSString *)payerName
                                 activityId:(NSInteger)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(amount) forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
+    [dict setObject:amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
     [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
@@ -1837,7 +1837,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark -  V3 柜台机支付提交存款
--(void)startV3CounterPayWithRechargeAmount:(float)amount
+-(void)startV3CounterPayWithRechargeAmount:(NSString *)amount
                               rechargeType:(NSString *)rechargeType
                               payAccountId:(NSString *)payAccountId
                                  payerName:(NSString *)payerName
@@ -1845,7 +1845,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                 activityId:(NSInteger)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(amount) forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
+    [dict setObject: amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
     [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
@@ -1864,7 +1864,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - V3 电子支付提交存款
--(void)startV3ElectronicPayWithRechargeAmount:(float)amount
+-(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
                                     bankOrder:(NSInteger)bankOrder
@@ -1873,7 +1873,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                    activityId:(NSInteger)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(amount) forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
+    [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
     [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
@@ -1894,7 +1894,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - V3 支付宝电子支付提交存款
--(void)startV3AlipayElectronicPayWithRechargeAmount:(float)amount
+-(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
                                     bankOrder:(NSInteger)bankOrder
@@ -1903,7 +1903,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                    activityId:(NSInteger)activityId
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@(amount) forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
+    [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
     [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
@@ -2313,7 +2313,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3CompanyPay){
+//    else if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2804,7 +2804,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //                break;
 //                case ServiceRequestTypeV3CounterPay:
 //            {
-//                
+//
 //            }
 //                break;
 //                case ServiceRequestTypeV3ElectronicPay:

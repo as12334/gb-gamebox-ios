@@ -55,6 +55,9 @@
         [self.delegate depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:self.transferModel.qrShowCover] ;
     }
 }
+- (IBAction)openOtherAppClick:(id)sender {
+    showMessage(self, @"功能暂未开放", nil);
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

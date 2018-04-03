@@ -25,7 +25,14 @@
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.personIdNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount] ;
+    if (listModel.mAccount.length>15) {
+        self.personIdNumLabel.font = [UIFont systemFontOfSize:10.f];
+    }
+    else{
+        self.personIdNumLabel.font = [UIFont systemFontOfSize:14.f];
+    }
     self.personNameLabel.text = listModel.mFullName;
+    [self.bankIconImage sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
