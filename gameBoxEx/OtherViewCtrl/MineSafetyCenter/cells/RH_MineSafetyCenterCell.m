@@ -51,6 +51,9 @@
     if ([info[@"targetKey"] isEqualToString:@"RH_ModifySafetyPasswordController"]) {
         self.detailTextLabel.text = manager.isSetSafetySecertPwd?@"修改":@"设置";
     }
+    if ([info[@"targetKey"] isEqualToString:@"RH_BitCoinController"]) {
+        self.detailTextLabel.text = manager.isBindBitCoin?@"查看":@"设置";
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

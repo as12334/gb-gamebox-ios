@@ -9,6 +9,7 @@
 #import "RH_UserGroupInfoModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
+#import "RH_UserInfoManager.h"
 
 @interface RH_UserGroupInfoModel ()
 @end ;
@@ -21,6 +22,8 @@
         _mLinkList = [RH_LinkInfoModel dataArrayWithInfoArray:[info arrayValueForKey:@"link"]] ;
         _mUserSetting = [[RH_MineInfoModel alloc] initWithInfoDic:[info dictionaryValueForKey:@"user"]] ;
         _mBankList = [RH_BankInfoModel dataArrayWithInfoArray:[info arrayValueForKey:@"bankList"]] ;
+        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+        manager.isBindBitCoin = _mUserSetting.mIsBit ;
     }
     
     return self ;

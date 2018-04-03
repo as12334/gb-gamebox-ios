@@ -136,7 +136,6 @@ static NSString *content = @"温馨提示\n*为了提高对账速度及成功率
     self.bitcoinAdressStr = self.bitcoinAdressTextfield.text;
     self.txidStr = self.txidTextfield.text;
     self.bitcoinNumStr = self.bitcoinNumTextfield.text;
-    self.bitcoinChangeTimeStr = self.bitcoinChangeTimeTextfield.text;
     return YES;
 }
 
