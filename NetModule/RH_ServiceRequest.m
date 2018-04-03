@@ -1509,6 +1509,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                 answer1:(NSString *)answer1
                          termsOfService:(NSString *)termsOfService
                            requiredJson:(NSArray<NSString *> *)requiredJson
+                              phoneCode:(NSString *)phoneCode
+                             checkPhone:(NSString *)checkPhone
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:birth forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY];
@@ -1534,6 +1536,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:answer1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SYSUSERPROTECTIONANSWER];
     [dict setObject:termsOfService forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TERMOFSERVICE];
     [dict setObject:requiredJson forKey:@"requiredJson"];
+    [dict setObject:phoneCode forKey:@"phoneCode"];
+    [dict setObject:checkPhone forKey:@"checkPhone"];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTSUBMIT
                      pathArguments:nil
@@ -1980,12 +1984,31 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      }
-                    queryArguments:nil
+                    queryArguments:nil 
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3DepositeOriginChannel
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 获取手机验证码
+-(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:phoneNumber forKey:@"phone"];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:@"mobile-api/origin/sendPhoneCode.html"
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetPhoneCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2354,7 +2377,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
         }
     }else{
-        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList){
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList ){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
                 tempError = [NSError resultErrorWithResultInfo:dataObject];
             }

@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "app_logo_71.png",
+      "filename" : "deposite_bankchoose@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "deposite_bankchoose@3x.png",
       "scale" : "3x"
     }
   ],

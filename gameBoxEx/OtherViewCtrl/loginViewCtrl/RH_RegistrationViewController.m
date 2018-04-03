@@ -329,12 +329,17 @@
 - (void)buttonRegistrationHandle {
     
     NSString *regCode = [self obtainContent:@"regCode"];
-    if (registrationInitModel.isRequiredForRegisterCode) {
-        if (regCode.length == 0) {
-            showMessage(self.contentView, @"请输入邀请码", @"");
-            return ;
+    for (NSString *obj in registrationInitModel.requiredJson) {
+        if ([obj isEqualToString:@"regCode"]) {
+            if (registrationInitModel.isRequiredForRegisterCode) {
+                if (regCode.length == 0) {
+                    showMessage(self.contentView, @"请输入邀请码", @"");
+                    return ;
+                }
+            }
         }
     }
+    
     NSString *usernama = [self obtainContent:@"username"];
     if (usernama.length == 0) {
         showMessage(self.contentView, @"请输入用户名", @"");
@@ -354,10 +359,7 @@
         showMessage(self.contentView, @"两次输入的密码不一样", @"");
         return;
     }
-    NSString *verificationCode = [self obtainContent:@"verificationCode"];
-    if (verificationCode.length == 0) {
-        showMessage(self.contentView, @"请输入验证码", @"");
-        return;}
+    
     NSString *weixin = [self obtainContent:@"304"];
     
     NSString *phone = [self obtainContent:@"110"];
@@ -399,6 +401,7 @@
                 return;}
             if (phoneVerify.length == 0) {
                 showMessage(self.contentView, @"请输入手机验证码", @"");
+                return;
             }
         }
         if ([obj isEqualToString:@"201"]) {
@@ -466,14 +469,17 @@
         }
         
     }
-    
+    NSString *verificationCode = [self obtainContent:@"verificationCode"];
+    if (verificationCode.length == 0) {
+        showMessage(self.contentView, @"请输入验证码", @"");
+        return;}
     if (isAgreedServiceTerm == NO) {
         showMessage(self.contentView, @"请同意注册条款", nil);
         return ;
     }
     NSString *registcode = registrationInitModel.paramsModel.registCode ?: @"";
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:[NSString stringWithFormat:@"%@&",birthday] sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:registcode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11" requiredJson:registrationInitModel.requiredJson];
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:[NSString stringWithFormat:@"%@&",birthday] sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:registcode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11" requiredJson:registrationInitModel.requiredJson phoneCode:phoneVerify checkPhone:@"checkPhone"];
 
 }
 

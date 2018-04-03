@@ -88,8 +88,9 @@
 #define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
-#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN  @"test71.hongtubet.com"
+#define TEST_DOMAIN @"192.168.0.176"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"

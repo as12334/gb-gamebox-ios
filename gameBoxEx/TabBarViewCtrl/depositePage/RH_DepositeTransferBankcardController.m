@@ -412,8 +412,9 @@
             }
         }
     }
-   
 }
+   
+//}
 #pragma mark --选择弹框列表
 -(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
 {
