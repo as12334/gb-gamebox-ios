@@ -602,10 +602,10 @@
 }
 
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
-    
+    NSLog(@"%@", data);
     if (type == ServiceRequestTypeV3GetPhoneCode) {
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
-        
+        NSLog(@"%@", dict);
             if ([dict[@"success"] isEqual:@YES]) {
                 countDownNumber = 90;
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -622,7 +622,7 @@
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3GetPhoneCode) {
-        
+        showErrorMessage(self.window, error, nil);
     }
 
 }
