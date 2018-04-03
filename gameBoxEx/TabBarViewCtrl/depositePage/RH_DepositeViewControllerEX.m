@@ -306,7 +306,7 @@
         return 80;
     }
     else if (indexPath.item ==[_markArray[6] integerValue]){
-        return 200.f;
+        return 160.f;
     }
     return 0.0f ;
 }

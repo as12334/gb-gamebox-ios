@@ -40,7 +40,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9F-jo-hbp">
                         <rect key="frame" x="266" y="0.0" width="54" height="48.5"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="54" id="eys-Rl-kpE"/>
                         </constraints>
@@ -49,8 +49,8 @@
                             <color key="titleColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-X1-raT">
-                        <rect key="frame" x="73" y="6" width="185" height="35.5"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-X1-raT">
+                        <rect key="frame" x="147.5" y="6" width="110.5" height="35.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -71,7 +71,7 @@
                     <constraint firstItem="wd4-Xr-aQb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hyk-YI-1Bh"/>
                     <constraint firstItem="2xv-Rm-O26" firstAttribute="top" secondItem="a9F-jo-hbp" secondAttribute="bottom" id="rRK-zF-ic8"/>
                     <constraint firstItem="2xv-Rm-O26" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sOc-eO-jQK"/>
-                    <constraint firstItem="t8z-X1-raT" firstAttribute="leading" secondItem="wd4-Xr-aQb" secondAttribute="trailing" constant="5.5" id="xuS-Wl-HKe"/>
+                    <constraint firstItem="t8z-X1-raT" firstAttribute="leading" secondItem="wd4-Xr-aQb" secondAttribute="trailing" constant="80" id="xuS-Wl-HKe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

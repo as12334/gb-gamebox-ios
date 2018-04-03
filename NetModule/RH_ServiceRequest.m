@@ -1980,12 +1980,32 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      }
-                    queryArguments:nil
+                    queryArguments:nil 
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3DepositeOriginChannel
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 获取手机验证码
+-(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSLog(@"+++p=%@++++dict=%@+",phoneNumber,dict) ;
+    [dict setObject:phoneNumber forKey:@"phone"];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:@"verificationCode/getPhoneVerificationCode.html"
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetPhoneCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2354,7 +2374,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
         }
     }else{
-        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList){
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList &&type!=ServiceRequestTypeV3GetPhoneCode){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
                 tempError = [NSError resultErrorWithResultInfo:dataObject];
             }

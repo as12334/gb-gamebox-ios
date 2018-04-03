@@ -390,19 +390,18 @@
             }
 
         else{
-             if ([self.accountMuArray[2] isEqualToString:@"counter"]&&self.adressCell.adressStr==0){
-                showMessage(self.view, @"请填写存款地点", nil);
-            }
-            
-            else{
+//             if ([self.accountMuArray[2] isEqualToString:@"counter"]&&self.adressCell.adressStr==0){
+//                showMessage(self.view, @"请填写存款地点", nil);
+//            }
+//            else{
                     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:[self.accountMuArray[0] floatValue] PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 
             }
         }
-    }
-   
 }
+   
+//}
 #pragma mark --选择弹框列表
 -(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
 {

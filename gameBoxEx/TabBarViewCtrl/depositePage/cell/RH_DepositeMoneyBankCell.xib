@@ -24,7 +24,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国工商银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOc-wc-kBa">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国工商银行" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOc-wc-kBa">
                         <rect key="frame" x="117" y="16.5" width="86" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -37,7 +37,7 @@
                             <constraint firstAttribute="width" constant="44" id="V42-wD-zbV"/>
                             <constraint firstAttribute="height" constant="50" id="Vuf-mQ-KdD"/>
                         </constraints>
-                        <state key="normal" image="home_markcell_image"/>
+                        <state key="normal" image="deposite_bankchoose"/>
                         <connections>
                             <action selector="chooseBankNameClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P9Y-lg-8Ia"/>
                         </connections>
@@ -61,6 +61,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="home_markcell_image" width="13" height="6"/>
+        <image name="deposite_bankchoose" width="14" height="14"/>
     </resources>
 </document>
