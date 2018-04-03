@@ -11,7 +11,8 @@
 #import "coreLib.h"
 @interface RH_DepositeTransferPayAdressCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payLabel;
-@property (weak, nonatomic) IBOutlet UITextField *payTextfield;
+
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 @end
 @implementation RH_DepositeTransferPayAdressCell
@@ -19,6 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.downLineView.backgroundColor =colorWithRGB(242, 242, 242);
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -65,6 +67,13 @@
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.adressStr = self.payTextfield.text;
+    return YES;
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferPayAdressCellSelecteUpframe:)){
+        [self.delegate depositeTransferPayAdressCellSelecteUpframe:self];
+    }
     return YES;
 }
 @end

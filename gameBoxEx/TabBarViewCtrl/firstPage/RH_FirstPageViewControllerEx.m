@@ -672,7 +672,7 @@
         
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showSuccessMessage(self.view, @"提示信息", @"资金回收成功") ;
+            showSuccessMessage(self.view, @"提示信息", [data objectForKey:@"message"]) ;
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }else if (type == ServiceRequestTypeV3RefreshSession){
@@ -700,7 +700,7 @@
     }else if (type == ServiceRequestTypeV3OneStepRecory){
         
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-            showErrorMessage(nil, error, @"资金回收失败") ;
+            showErrorMessage(nil, error, @"提示信息") ;
         }] ;
     }
     else if (type==ServiceRequestTypeV3ActivityStatus){

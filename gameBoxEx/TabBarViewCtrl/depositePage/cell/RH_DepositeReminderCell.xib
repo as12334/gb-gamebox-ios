@@ -19,23 +19,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DMg-4L-miN">
-                        <rect key="frame" x="16" y="20" width="288" height="141"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="181.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="DMg-4L-miN" secondAttribute="bottom" constant="20.5" id="CUI-R8-x9n"/>
+                    <constraint firstAttribute="bottom" secondItem="DMg-4L-miN" secondAttribute="bottom" id="CUI-R8-x9n"/>
                     <constraint firstAttribute="trailing" secondItem="DMg-4L-miN" secondAttribute="trailing" constant="16" id="CbI-b7-pfI"/>
-                    <constraint firstItem="DMg-4L-miN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="eNR-Vg-hPx"/>
+                    <constraint firstItem="DMg-4L-miN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eNR-Vg-hPx"/>
                     <constraint firstItem="DMg-4L-miN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nMo-Pz-a8j"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="reminderTextView" destination="DMg-4L-miN" id="AUZ-Pf-1Dl"/>
             </connections>
-            <point key="canvasLocation" x="25" y="121"/>
+            <point key="canvasLocation" x="-54" y="118"/>
         </tableViewCell>
     </objects>
 </document>

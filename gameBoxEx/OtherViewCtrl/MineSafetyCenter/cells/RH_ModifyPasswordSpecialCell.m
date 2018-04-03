@@ -136,7 +136,9 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
             label_One.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            label_One.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+//            label_One.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            label_One.backgroundColor = colorWithRGB(23, 102, 187);
+            
         }else{
             label_One.backgroundColor = RH_NavigationBar_BackgroundColor;
         }
@@ -148,7 +150,8 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+//                label_Two.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+                label_Two.backgroundColor = colorWithRGB(23, 102, 187);
             }else{
                 label_Two.backgroundColor = RH_NavigationBar_BackgroundColor;
             }
@@ -160,7 +163,8 @@
                 }else if ([THEMEV3 isEqualToString:@"red"]){
                     label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
                 }else if ([THEMEV3 isEqualToString:@"black"]){
-                    label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+//                    label_Three.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+                    label_Three.backgroundColor = colorWithRGB(23, 102, 187);
                 }else{
                     label_Three.backgroundColor = RH_NavigationBar_BackgroundColor;
                 }

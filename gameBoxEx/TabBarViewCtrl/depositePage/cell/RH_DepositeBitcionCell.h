@@ -12,6 +12,12 @@
 @protocol DepositeBitcionCellDelegate<NSObject>
 @optional
 -(void)depositeBitcionCellSubmit:(RH_DepositeBitcionCell *)bitcoinCell;
+
+-(void)depositeBitcionCellUpframe:(RH_DepositeBitcionCell *)bitcoinCell;
+
+-(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate*)defaultDate ;
+-(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl ;
+-(void)touchTextViewCustomPushCustomViewController:(RH_DepositeBitcionCell *)cell;
 @end
 @interface RH_DepositeBitcionCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositeBitcionCellDelegate>delegate;
@@ -19,4 +25,6 @@
 @property(nonatomic,strong)NSString *txidStr;
 @property(nonatomic,strong)NSString *bitcoinNumStr;
 @property(nonatomic,strong)NSString *bitcoinChangeTimeStr;
+
+@property (nonatomic,strong) NSDate *bitConDate ;
 @end

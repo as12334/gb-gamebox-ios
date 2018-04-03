@@ -17,6 +17,8 @@ static NSString *content = @"温馨提示\n*为了提高对账速度及成功率
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+     self.reminderTextView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.backgroundColor = colorWithRGB(242, 242, 242);
     [self setupUI];
 }
 -(void)setupUI{
@@ -26,7 +28,7 @@ static NSString *content = @"温馨提示\n*为了提高对账速度及成功率
     paragraphStyle.paragraphSpacing = 2; // 段落间距
     paragraphStyle.lineSpacing = 10;      // 行间距
     NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName:[UIColor blackColor],
+                                 NSForegroundColorAttributeName:colorWithRGB(102,102, 102),
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:content attributes:attributes];
@@ -34,7 +36,7 @@ static NSString *content = @"温馨提示\n*为了提高对账速度及成功率
                              NSLinkAttributeName:@"点击联系在线客服"
                              }
                      range:[content rangeOfString:@"点击联系在线客服"]];
-    _reminderTextView.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor blueColor]}; // 修改可点击文字的颜色
+    _reminderTextView.linkTextAttributes = @{NSForegroundColorAttributeName:colorWithRGB(23, 102, 187)}; // 修改可点击文字的颜色
     _reminderTextView.attributedText = attrStr;
     _reminderTextView.editable = NO;
     _reminderTextView.scrollEnabled = NO;

@@ -12,12 +12,14 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_DepositeSubmitCircleView.h"
-@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate>
+
+@interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate,PGDatePickerDelegate>
 @property(nonatomic,strong)NSArray *listModelArray;
 @property(nonatomic,strong)RH_DepositeBitcionCell *bitcionCell;
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,assign)NSInteger activityId;
+@property(nonatomic,strong)RH_DepositeTransferListModel *listModel;
 
 @end
 
@@ -36,6 +38,9 @@
 -(void)setupViewContext:(id)context{
     RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, context);
     self.listModelArray = ConvertToClassPointer(NSArray, channelModel.mArrayListModel);
+    RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, channelModel.mArrayListModel[0]);
+    self.listModel = listModel;
+    
 }
 #pragma mark --视图
 -(void)setupUI{
@@ -64,11 +69,49 @@
 {
     self.activityId = activityId;
 }
+#pragma mark 点击textfield改变fame的代理
+-(void)depositeBitcionCellUpframe:(RH_DepositeBitcionCell *)bitcoinCell
+{
+    [self.contentTableView setContentOffset:CGPointMake(0,200) animated:YES];
+}
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
 {
-    [self.serviceRequest startV3BitcoinPayWithRechargeType:((RH_DepositeTransferListModel*)self.listModelArray[0]).mRechargeType payAccountId:((RH_DepositeTransferListModel*)self.listModelArray[0]).mSearchId activityId:self.activityId returnTime:@"2018-02-28 12:00:00" payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
+    [self.serviceRequest startV3BitcoinPayWithRechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId activityId:self.activityId returnTime:self.bitcionCell.bitcoinChangeTimeStr payerBankcard:self.bitcionCell.bitcoinAdressStr bitAmount:[self.bitcionCell.bitcoinNumStr floatValue] bankOrderTxID:self.bitcionCell.txidStr];
 }
+
+-(void)depositeBitcionCellDidTouchTimeSelectView:(RH_DepositeBitcionCell *)bitcoinCell DefaultDate:(NSDate *)defaultDate
+{
+    PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
+    datePickManager.isShadeBackgroud = true;
+    PGDatePicker *datePicker = datePickManager.datePicker;
+    datePicker.delegate = self;
+    datePicker.datePickerType = PGPickerViewType2;
+    datePicker.datePickerMode = PGDatePickerModeDateHourMinute;
+    [self presentViewController:datePickManager animated:false completion:nil];
+    self.bitcionCell = bitcoinCell ;
+}
+
+#pragma mark - PGDatePickerDelegate
+- (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
+    NSLog(@"dateComponents = %@", dateComponents);
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *date = [gregorian dateFromComponents:dateComponents];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    self.bitcionCell.bitConDate = date ;
+    NSLog(@"date: %@", dateString);
+    self.bitcionCell.bitcoinChangeTimeStr = dateString;
+}
+
+-(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl
+{
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]]];
+    UIImage *myImage = [UIImage imageWithData:data];
+    [self saveImageToPhotos:myImage];
+}
+
 #pragma mark-tableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -84,13 +127,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 750.f ;
+    return 850.f ;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeBitcionCell *bitecionCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeBitcionCell defaultReuseIdentifier]] ;
     self.bitcionCell = bitecionCell;
+    [bitecionCell updateCellWithInfo:nil context:self.listModel];
     bitecionCell.delegate = self;
     return bitecionCell ;
 }
@@ -98,8 +142,37 @@
 #pragma mark --点击提交按钮
 -(void)depositeBitcionCellSubmit:(RH_DepositeBitcionCell *)bitcoinCell
 {
-    [self setupPageLoadManager] ;
+     [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
+    if (self.bitcionCell.bitcoinAdressStr==nil||self.bitcionCell.bitcoinAdressStr.length<26||self.bitcionCell.bitcoinAdressStr.length>34) {
+        showMessage(self.view, @"请输入26位~34位比特币地址", nil);
+    }
+    else{
+        if (self.bitcionCell.txidStr==nil||self.bitcionCell.txidStr.length>64) {
+          showMessage(self.view, @"请输入小于64位交易产生的txid", nil);
+        }
+        else{
+            if (self.bitcionCell.bitcoinNumStr==nil||[self.bitcionCell.bitcoinNumStr floatValue]>100000000) {
+                showMessage(self.view, @"请输入整数小于8位，小数小于8位的比特币数量", nil);
+            }
+            else
+            {
+                if (self.bitcionCell.bitcoinChangeTimeStr==nil) {
+                    showMessage(self.view, @"请输入交易时间", nil);
+                }
+                else
+                {
+                      [self.serviceRequest startV3DepositOriginSeachSaleBittionRechargeAmount:[self.bitcionCell.bitcoinNumStr floatValue] PayAccountDepositWay:self.listModel.mDepositWay bittionTxid:[self.bitcionCell.txidStr integerValue] PayAccountID:self.listModel.mSearchId];
+                }
+            }
+        }
+    }
+
     
+}
+#pragma mark --客服
+-(void)touchTextViewCustomPushCustomViewController:(RH_DepositeBitcionCell *)cell
+{
+     [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark 数据请求
 
@@ -139,7 +212,7 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3DepositOriginSeachSaleBittionRechargeAmount:[self.bitcionCell.bitcoinNumStr floatValue] PayAccountDepositWay:((RH_DepositeTransferListModel*)self.listModelArray[0]).mDepositWay bittionTxid:[self.bitcionCell.txidStr integerValue] PayAccountID:((RH_DepositeTransferListModel*)self.listModelArray[0]).mSearchId];
+    
     
 }
 -(void)cancelLoadDataHandle
@@ -171,11 +244,23 @@
         [self.circleView setupViewWithContext:saleModel];
         [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
     }
+    else if (type==ServiceRequestTypeV3BitcoinPay){
+        showMessage(self.circleView, @"存款成功", nil);
+    }
 }
-
+#pragma mark --点击遮罩层，关闭遮罩层和弹框
+-(void)closeShadeView
+{
+    
+    [_shadeView removeFromSuperview];
+    [self.circleView removeFromSuperview];
+}
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale) {
         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+    }
+    else if (type==ServiceRequestTypeV3BitcoinPay){
+        showErrorMessage(self.circleView, error, @"存款失败") ;
     }
 }
 

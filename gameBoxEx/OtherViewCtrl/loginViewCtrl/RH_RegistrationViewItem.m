@@ -9,8 +9,9 @@
 #import "RH_RegistrationSelectView.h"
 #import "RH_RegistrationViewItem.h"
 #import "coreLib.h"
+#import "RH_ServiceRequest.h"
 
-@interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
+@interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate,RH_ServiceRequestDelegate>
 @property (nonatomic, strong) NSTimer *timer;
 @end
 @implementation RH_RegistrationViewItem
@@ -24,6 +25,7 @@
     NSInteger minDateYear;
     NSInteger maxDateYear;
     RH_RegistrationSelectView *selectView;
+    RH_ServiceRequest *serverRequest ;
     
     NSArray<SexModel *> *sexModel;
     NSArray<MainCurrencyModel *> *mainCurrencyModel;
@@ -65,6 +67,9 @@
         textField.delegate = self;
         
         fieldModel = [[FieldModel alloc] init];
+        
+        serverRequest = [[RH_ServiceRequest alloc] init] ;
+        serverRequest.delegate = self ;
         
     }
     return self;
@@ -593,30 +598,33 @@
         showMessage(self.window, @"请输入正确的手机号码", nil);
         return ;
     }
-    RH_APPDelegate *app = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
-    NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@/verificationCode/getPhoneVerificationCode.html?phone=%@", app.domain, phone]];
+    [serverRequest startV3GetPhoneCodeWithPhoneNumber:phone] ;
+}
+
+-(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//    request.HTTPMethod = @"POST";
-//    NSDictionary *dict = @{
-//                           @"phone": phone
-//                           };
-//    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        if ([s isEqualToString:@"true"]) {
-            countDownNumber = 90;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(startCountDown) userInfo:nil repeats:YES];
-            });
-        }else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                showMessage(self.window, @"发送失败", @"");
-            });
-        }
-    }];
-    [dataTask resume];
-    NSLog(@"%@", request);
+    if (type == ServiceRequestTypeV3GetPhoneCode) {
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+        
+            if ([dict[@"success"] isEqual:@YES]) {
+                countDownNumber = 90;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(startCountDown) userInfo:nil repeats:YES];
+                });
+            }else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showMessage(self.window, @"发送失败", @"");
+                });
+            }
+    }
+}
+
+-(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeV3GetPhoneCode) {
+        
+    }
+
 }
 
 - (void)startCountDown {

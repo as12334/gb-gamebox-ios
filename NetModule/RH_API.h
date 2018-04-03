@@ -964,6 +964,7 @@
 #define RH_GP_DEPOSITEORIGINCHANNEL_PAYERBANKCARD       @"payerBankcard"
 #define RH_GP_DEPOSITEORIGINCHANNEL_HIDE                @"hide"
 #define RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT     @"multipleAccount"
+#define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG          @"accountImg"
 
 
 #pragma mark - V3  常见问题详情
@@ -976,6 +977,7 @@
 #define RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY         @"depositWay"
 #define RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID        @"account"
 #define RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER     @"result.bankOrder"
+#define RH_SP_DEPOSITESEACHSALE_RESULTBITAMOUNT     @"result.bitAmount"
 //返回参数
 #define RH_GP_DEPOSITESEACHSALE_MSG                 @"msg"
 #define RH_GP_DEPOSITESEACHSALE_FEE                 @"fee"

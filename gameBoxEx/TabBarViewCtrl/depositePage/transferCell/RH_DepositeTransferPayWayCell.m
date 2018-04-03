@@ -13,7 +13,10 @@
 #import "RH_DepositeTransferModel.h"
 @interface RH_DepositeTransferPayWayCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
-@property (weak, nonatomic) IBOutlet UITextField *payNumTextfield;
+
+@property (weak, nonatomic) IBOutlet UITextField *transferTextField;
+@property (weak, nonatomic) IBOutlet CLBorderView *upLineView;
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 @end
 @implementation RH_DepositeTransferPayWayCell
@@ -56,6 +59,11 @@
     else if ([nameString isEqualToString:@"counter"]){
         self.payWayLabel.text = @"存款方式";
         self.payNumTextfield.placeholder = @"柜台现金存款";
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pulldownListView)];
+        self.transferLabel.userInteractionEnabled = YES;
+        [self.transferLabel addGestureRecognizer:tap];
+        [self.transferLabel setHidden:NO];
+        [self.transferTextField setHidden:YES];
     }
 }
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -64,9 +72,23 @@
     NSLog(@"%@",self.paywayString);
     return YES;
 }
+-(void)pulldownListView{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferPaywayCellSelectePullDownView:)){
+        [self.delegate depositeTransferPaywayCellSelectePullDownView:self.transferLabel.frame];
+    }
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferPaywayCellSelecteUpframe:)){
+        [self.delegate depositeTransferPaywayCellSelecteUpframe:self];
+    }
+    return YES;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.upLineView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

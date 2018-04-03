@@ -285,6 +285,8 @@
                 if (![[result objectForKey:@"message"] isEqual:[NSNull null]]) {
                     if ([[result objectForKey:@"message"] isEqualToString:@"账号被冻结"]) {
                         showMessage(self.view, @"您的账号已被冻结，请联系客服", nil);
+                    }else if([[result objectForKey:@"message"] isEqualToString:@"账号被停用"]){
+                        showMessage(self.view, @"您账户已被停用,暂不支持登录", nil) ;
                     }else
                     {
                          showMessage(self.view, @"用户名或密码错误", nil);

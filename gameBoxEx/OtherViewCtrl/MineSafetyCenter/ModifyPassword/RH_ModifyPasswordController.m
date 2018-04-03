@@ -114,6 +114,53 @@
     self.label_Notice.whc_LeftSpace(20).whc_TopSpace(0).whc_Width(screenSize().width/2).whc_Height(30);
 }
 
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
+
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
         if (_infoManager.updateUserVeifyCode) {
@@ -144,7 +191,9 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
             _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+//            _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+            _modifyButton.backgroundColor = colorWithRGB(23, 102, 187);
+
         }else{
             _modifyButton.backgroundColor = RH_NavigationBar_BackgroundColor;
         }
@@ -192,15 +241,15 @@
         }
     }
     //密码升序或者降序
-    if (isDescendingAndPwdisAscendingPwd(newPwd) &&isDescendingAndPwdisAscendingPwd(newPwd2)) {
-        showMessage(self.view, @"提示", @"新密码过于简单");
-        return;
-    }
+//    if (isDescendingAndPwdisAscendingPwd(newPwd) &&isDescendingAndPwdisAscendingPwd(newPwd2)) {
+//        showMessage(self.view, @"提示", @"新密码过于简单");
+//        return;
+//    }
     //三位以上的重复数字
-    if (isSameMoreThreePwd(newPwd) &&isSameMoreThreePwd(newPwd2)) {
-        showMessage(self.view, @"提示", @"新密码过于简单");
-        return;
-    }
+//    if (isSameMoreThreePwd(newPwd) &&isSameMoreThreePwd(newPwd2)) {
+//        showMessage(self.view, @"提示", @"新密码过于简单");
+//        return;
+//    }
     if (self.passwordCodeCell){//需要输入验证码
         if (self.passwordCodeCell.passwordCode.length<1){
             showMessage(self.view, nil, @"请输入验证码！");

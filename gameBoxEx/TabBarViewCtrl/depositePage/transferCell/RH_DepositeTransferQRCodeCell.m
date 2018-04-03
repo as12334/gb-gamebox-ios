@@ -9,22 +9,65 @@
 #import "RH_DepositeTransferQRCodeCell.h"
 #import "coreLib.h"
 #import "RH_API.h"
-#import "RH_DepositePayAccountModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 #import "UIImageView+WebCache.h"
 @interface RH_DepositeTransferQRCodeCell()
 @property (weak, nonatomic) IBOutlet UIImageView *qrurlImage;
+@property(nonatomic,strong)RH_DepositeTransferListModel *transferModel ;
+@property (weak, nonatomic) IBOutlet UIView *qrbackView;
 
+@property (weak, nonatomic) IBOutlet UIButton *saveTophoneBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *openAppBtn;
 @end
 @implementation RH_DepositeTransferQRCodeCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_DepositePayAccountModel *accountModel = ConvertToClassPointer(RH_DepositePayAccountModel, context);
-    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:accountModel.mQrCodeUrl]];
+    RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    self.transferModel = listmodel ;
+    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover]];
     
+    if ([listmodel.mBankCode isEqualToString:@"qqwallet"]) {
+        [self.openAppBtn setTitle:@"启动QQ支付" forState:UIControlStateNormal];
+    }
+    else if ([listmodel.mBankCode isEqualToString:@"bdwallet"]) {
+        [self.openAppBtn setTitle:@"启动百度支付" forState:UIControlStateNormal];
+    }
+    else if ([listmodel.mBankCode isEqualToString:@"other"]) {
+        [self.openAppBtn setTitle:@"启动其他方式支付" forState:UIControlStateNormal];
+    }
+    else if ([listmodel.mBankCode isEqualToString:@"alipay"]) {
+        [self.openAppBtn setTitle:@"启动支付宝支付" forState:UIControlStateNormal];
+    }
+    else if ([listmodel.mBankCode isEqualToString:@"wechatpay"]) {
+        [self.openAppBtn setTitle:@"启动微信支付" forState:UIControlStateNormal];
+    }
+    else if ([listmodel.mBankCode isEqualToString:@"onecodepay"]) {
+        [self.openAppBtn setTitle:@"启动一码付支付" forState:UIControlStateNormal];
+    }
+    else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
+        [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
+    }
+
+}
+- (IBAction)saveToPhone:(id)sender {
+    ifRespondsSelector(self.delegate, @selector(depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:)){
+        [self.delegate depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:self.transferModel.qrShowCover] ;
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.qrbackView.layer.cornerRadius = 3.f;
+    self.qrbackView.layer.masksToBounds = YES;
+    self.qrbackView.layer.borderColor = colorWithRGB(242, 242, 242).CGColor;
+    self.qrbackView.layer.borderWidth = 1.f;
+    self.saveTophoneBtn.layer.cornerRadius = 3.f;
+    self.saveTophoneBtn.layer.masksToBounds = YES;
+    self.openAppBtn.layer.cornerRadius = 3.f;
+    self.openAppBtn.layer.masksToBounds = YES;
+    [self.saveTophoneBtn setBackgroundColor:colorWithRGB(23, 102, 203)];
+    [self.openAppBtn setBackgroundColor:colorWithRGB(23, 102, 203)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

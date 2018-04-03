@@ -109,6 +109,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3BitcoinPay,               //比特币支付提交存款
     ServiceRequestTypeV3OneStepRefresh,               //一键刷新
     ServiceRequestTypeV3CounterPay,             //柜台机存款
+    ServiceRequestTypeV3GetPhoneCode,             //获取手机验证码
 };
 
 
@@ -599,6 +600,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3OneStepRefresh ;
 #pragma mark -v3 存款渠道初始化
 -(void)startV3RequestDepositOriginChannel:(NSString *)httpCode;
+
+#pragma mark - 获取手机验证码
+-(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber ;
+
 #pragma mark -
 /**
  * 取消所有服务

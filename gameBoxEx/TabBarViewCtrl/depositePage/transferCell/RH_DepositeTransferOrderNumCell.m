@@ -11,7 +11,8 @@
 #import "RH_DepositePayAccountModel.h"
 @interface RH_DepositeTransferOrderNumCell()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *payforWayLabel;
-@property (weak, nonatomic) IBOutlet UITextField *orderNumTextfiled;
+@property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
+
 
 @end
 @implementation RH_DepositeTransferOrderNumCell
@@ -19,6 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -67,6 +69,13 @@
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.self.transferOrderString = self.orderNumTextfiled.text;
+    return YES;
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    ifRespondsSelector(self.delegate, @selector(depositeTransferOrderNumCellSelecteUpframe:)){
+        [self.delegate depositeTransferOrderNumCellSelecteUpframe:self];
+    }
     return YES;
 }
 @end

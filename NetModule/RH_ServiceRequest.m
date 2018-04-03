@@ -1658,7 +1658,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3DepositOriginSeachSaleBittionRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay bittionTxid:(NSInteger)bankOrder PayAccountID:(NSString *)payAccountID
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBITAMOUNT];
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
     [dict setValue:@(bankOrder) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER];
     [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
@@ -1984,12 +1984,31 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      }
-                    queryArguments:nil
+                    queryArguments:nil 
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3DepositeOriginChannel
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 获取手机验证码
+-(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:phoneNumber forKey:@"phone"];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:@"mobile-api/origin/sendPhoneCode.html"
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetPhoneCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2317,7 +2336,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3BitcoinPay){
+//    else if (type == ServiceRequestTypeV3CompanyPay){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2325,7 +2344,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //        *reslutData = dataObject ;
 //        return YES ;
 //    }
-    
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
@@ -2359,7 +2377,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
         }
     }else{
-        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList){
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList ){
             if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
                 tempError = [NSError resultErrorWithResultInfo:dataObject];
             }
@@ -2798,35 +2816,35 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
-                case ServiceRequestTypeV3OnlinePay:
-            {
-                
-            }
-                break;
-            case ServiceRequestTypeV3CompanyPay:{
-                
-            }
-                break;
-                case ServiceRequestTypeV3CounterPay:
-            {
-                
-            }
-                break;
-                case ServiceRequestTypeV3ElectronicPay:
-            {
-                
-            }
-                break;
-                case ServiceRequestTypeV3AlipayElectronicPay:
-            {
-                
-            }
-                break;
-                case ServiceRequestTypeV3BitcoinPay:
-            {
-                
-            }
-                break;
+//                case ServiceRequestTypeV3OnlinePay:
+//            {
+//                
+//            }
+//                break;
+//            case ServiceRequestTypeV3CompanyPay:{
+//
+//            }
+//                break;
+//                case ServiceRequestTypeV3CounterPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3ElectronicPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3AlipayElectronicPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3BitcoinPay:
+//            {
+//                
+//            }
+//                break;
             case ServiceRequestTypeV3OneStepRefresh:
             {
                 NSDictionary *dic = [dataObject objectForKey:RH_GP_V3_DATA] ;
@@ -2849,11 +2867,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
-                case ServiceRequestTypeV3ScanPay:
-            {
-                
-            }
-                break;
+//                case ServiceRequestTypeV3ScanPay:
+//            {
+//                
+//            }
+//                break;
             default:
                 resultSendData = dataObject ;
                 break;
@@ -2895,6 +2913,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
                     tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(nil, @"您账号已在其他设备登录，请重新登录") ;
+                    });
                     [self.appDelegate updateLoginStatus:FALSE] ;
                 }
             }

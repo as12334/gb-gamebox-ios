@@ -96,6 +96,7 @@
 #import "CLSegmentedControl.h"
 #import "CLSelectionControl.h"
 #import "WHC_AutoLayout.h"
+#import "PGDatePickManager.h"
 
 #pragma mark-
 #import "UIAlertView+PXAlertViewOverride.h"
@@ -133,6 +134,8 @@
 #pragma MARK-indicatorView
 #import "CLActivityIndicatorView.h"
 #import "CLRefreshControl.h"
+
+
 
 
 #endif /* coreLib_h */
