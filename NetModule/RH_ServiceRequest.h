@@ -498,7 +498,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                    confirmPermissionPwd:(NSString *)confirmPermissionPwd
                                 answer1:(NSString *)answer1
                          termsOfService:(NSString *)termsOfService
-                           requiredJson:(NSArray<NSString *> *)requiredJson;
+                           requiredJson:(NSArray<NSString *> *)requiredJson
+                              phoneCode:(NSString *)phoneCode
+                             checkPhone:(NSString *)checkPhone;
 #pragma mark - 注册条款
 -(void)startV3RegisetTerm;
 

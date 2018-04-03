@@ -594,13 +594,14 @@
         return ;
     }
     RH_APPDelegate *app = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
-    NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@/verificationCode/getPhoneVerificationCode.html", app.domain]];
+    NSURL *url = [NSURL  URLWithString:[NSString stringWithFormat:@"%@/verificationCode/getPhoneVerificationCode.html?phone=%@", app.domain, phone]];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = @"POST";
-    NSDictionary *dict = @{
-                           @"phone": textField.text
-                           };
-    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+//    request.HTTPMethod = @"POST";
+//    NSDictionary *dict = @{
+//                           @"phone": phone
+//                           };
+//    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if ([s isEqualToString:@"true"]) {
@@ -615,6 +616,7 @@
         }
     }];
     [dataTask resume];
+    NSLog(@"%@", request);
 }
 
 - (void)startCountDown {
