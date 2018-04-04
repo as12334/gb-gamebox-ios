@@ -49,7 +49,11 @@
         self.contentCollectionView.dataSource=self;
         [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
         [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
-        self.contentCollectionView.backgroundColor = [UIColor blackColor];
+        self.contentCollectionView.backgroundColor = [UIColor clearColor];
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            self.contentCollectionView.backgroundColor = [UIColor blackColor];
+        }
+        
         self.contentScrollView = self.contentCollectionView;
         [self setupPageLoadManagerWithdatasContext:context] ;
         

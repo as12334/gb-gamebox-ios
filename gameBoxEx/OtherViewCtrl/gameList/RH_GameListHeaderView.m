@@ -145,7 +145,11 @@
         _collectionTypeView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ;
         _collectionTypeView.delegate = self ;
         _collectionTypeView.dataSource = self ;
-        _collectionTypeView.backgroundColor = [UIColor blackColor] ;
+        _collectionTypeView.backgroundColor = [UIColor clearColor] ;
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            _collectionTypeView.backgroundColor = [UIColor blackColor] ;
+        }
+        
         _collectionTypeView.showsHorizontalScrollIndicator = NO;
         [_collectionTypeView registerCellWithClass:[RH_GameCategoryCell class]] ;
     }
