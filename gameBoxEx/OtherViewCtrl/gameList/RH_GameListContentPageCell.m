@@ -100,7 +100,8 @@
 #pragma mark- 请求回调
 -(NSUInteger)defaultPageSize
 {
-    return self.contentCollectionView.frameHeigh/((MainScreenW-50)/4*7/5)*4;
+//    return self.contentCollectionView.frameHeigh/((MainScreenW-50)/4*7/5)*4;
+    return 20 ;
 }
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
@@ -108,7 +109,7 @@
     [self.serviceRequest startV3GameListWithApiID:self.lotteryInfoModel.mApiID
                                         ApiTypeID:self.lotteryInfoModel.mApiTypeID
                                        PageNumber:page
-                                         PageSize:pageSize
+                                         PageSize:[self defaultPageSize]
                                        SearchName:self.searchName
                                             TagID:[self.typeModel stringValueForKey:@"key"]] ;
 }
@@ -130,7 +131,6 @@
     
     if (type == ServiceRequestTypeV3APIGameList){
         NSDictionary *dictTmp = ConvertToClassPointer(NSDictionary, data) ;
-        
         [self loadDataSuccessWithDatas:[dictTmp arrayValueForKey:RH_GP_APIGAMELIST_LIST]
                             totalCount:[dictTmp integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]
                         completedBlock:nil];
