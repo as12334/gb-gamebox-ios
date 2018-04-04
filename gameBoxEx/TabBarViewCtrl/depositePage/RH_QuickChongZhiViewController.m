@@ -8,7 +8,7 @@
 
 #import "RH_QuickChongZhiViewController.h"
 
-@interface RH_QuickChongZhiViewController ()
+@interface RH_QuickChongZhiViewController ()<UIWebViewDelegate>
 {
     NSString *_urlStr ;
     UIWebView *_webView ;
@@ -78,14 +78,35 @@
     // Do any additional setup after loading the view.
     self.title = @"快充中心";
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, NavigationBarHeight +StatusBarHeight, screenSize().width, screenSize().height-NavigationBarHeight -StatusBarHeight)] ;
+    _webView.delegate = self ;
     [self.view addSubview:_webView];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationTyp:(UIWebViewNavigationType)navigationType
+{
+    return YES ;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self showProgressIndicatorViewWithAnimated:YES title:@"加载中"] ;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        showErrorMessage(self.view, error, nil) ;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
