@@ -11,7 +11,7 @@
 
 @interface RH_GameCategoryCell()<CLMaskViewDataSource>
 @property (nonatomic,strong) IBOutlet CLBorderView *borderView ;
-@property (nonatomic,strong) IBOutlet UILabel *labTitle ;
+
 @property (nonatomic,strong) NSDictionary *gamelistTypeModel ;
 @end
 
@@ -36,10 +36,10 @@
     self.borderMask = CLBorderMarkNone ;
     self.borderView.layer.cornerRadius = 5.0f ;
     self.borderView.backgroundColor = colorWithRGB(255, 255, 255) ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
-        self.borderView.backgroundColor = [UIColor clearColor] ;
-        self.labTitle.textColor =  [UIColor whiteColor] ;
-    }
+//    if ([THEMEV3 isEqualToString:@"black"]) {
+//        self.borderView.backgroundColor = [UIColor clearColor] ;
+//        self.labTitle.textColor =  [UIColor whiteColor] ;
+//    }
 }
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated

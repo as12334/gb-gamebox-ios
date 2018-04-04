@@ -33,12 +33,12 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.borderMask = CLBorderMarkBottom ;
-    self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
+    self.tBalanceView.borderColor = colorWithRGB(242, 242, 242) ;
     self.tBalanceView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
     self.tWalletView.backgroundColor = [UIColor clearColor] ;
     self.tWalletView.borderMask = CLBorderMarkBottom ;
-    self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
+    self.tWalletView.borderColor = colorWithRGB(242, 242, 242) ;
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
     self.balanceBGView.layer.cornerRadius = 5.0f ;
@@ -59,7 +59,7 @@
     
     self.labTBalanceValue.font = [UIFont systemFontOfSize:15.0f] ;
     self.labTWalletValue.textColor = colorWithRGB(14, 195, 146) ;
-    self.labTWalletValue.font = [UIFont systemFontOfSize:12.0f] ;
+    self.labTWalletValue.font = [UIFont systemFontOfSize:15.0f] ;
     
     self.labTBalance.text = @"总资产" ;   //
     self.labTBalanceValue.text = @"" ;

@@ -239,7 +239,7 @@
     UILabel *label = [UILabel new];
     UIView *lineView = [UIView new];
     lineView.frame = CGRectMake(0, 0, screenSize().width, 1);
-    lineView.backgroundColor = colorWithRGB(37, 37, 37);
+    
     
     [foot_View addSubview:label];
     [foot_View addSubview:lineView];
@@ -250,7 +250,11 @@
     label.textColor = colorWithRGB(51, 51, 51);
     if ([THEMEV3 isEqualToString:@"black"])
     {
-        label.textColor = [UIColor whiteColor];
+        label.textColor = colorWithRGB(85, 85, 85);
+        lineView.backgroundColor = colorWithRGB(37, 37, 37);
+    }else{
+        label.textColor = colorWithRGB(153, 153, 153);
+        lineView.backgroundColor = colorWithRGB(239, 239, 239);
     }
     label.text = @"COPYRIGHT © 2004-2018";
     self.contentTableView.tableFooterView = foot_View;

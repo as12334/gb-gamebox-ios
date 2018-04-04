@@ -124,7 +124,7 @@
         CGRect cellFrame = [self.collectionTypeView layoutAttributesForItemAtIndexPath:indexPathForSelectedItem].frame;
         
         //设置选择指示器位置
-        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 2.f, CGRectGetWidth(cellFrame), 2.f);
+        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 4.f, CGRectGetWidth(cellFrame), 4.f);
     }
     
     [CATransaction commit];
@@ -201,6 +201,10 @@
 {
     RH_GameCategoryCell *typeCell = [self.collectionTypeView dequeueReusableCellWithReuseIdentifier:[RH_GameCategoryCell defaultReuseIdentifier] forIndexPath:indexPath];
     [typeCell updateViewWithInfo:ConvertToClassPointer(NSDictionary, self.arrayTypeList[indexPath.item]) context:nil] ;
+    if (![THEMEV3 isEqualToString:@"black"]) {
+        typeCell.labTitle.textColor = [UIColor blackColor];
+    }
+    
     return typeCell;
 }
 
