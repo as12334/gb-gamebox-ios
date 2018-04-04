@@ -15,6 +15,13 @@
 @end
 @implementation RH_DepositeMoneyBankCell
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self =[super initWithCoder:aDecoder]) {
+        
+    }
+    return self;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -26,9 +33,9 @@
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
+    self.bankNameArray = [NSMutableArray array];
     RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, context);
     for (RH_DepositeTransferListModel *listModel in channelModel.mArrayListModel) {
-        
         if (listModel.mPayName!=nil) {
            [self.bankNameArray addObject:listModel.mPayName];
         }

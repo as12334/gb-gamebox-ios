@@ -168,12 +168,12 @@
         showMessage(self.view, @"请输入26位~34位比特币地址", nil);
     }
     else{
-        if (self.bitcionCell.txidStr==nil||self.bitcionCell.txidStr.length>64) {
+        if (self.bitcionCell.txidStr.length==0||self.bitcionCell.txidStr.length>64) {
           showMessage(self.view, @"请输入小于64位交易产生的txid", nil);
         }
         else{
-            if (self.bitcionCell.bitcoinNumStr==nil||[self.bitcionCell.bitcoinNumStr floatValue]>100000000) {
-                showMessage(self.view, @"请输入整数小于8位，小数小于8位的比特币数量", nil);
+            if (self.bitcionCell.bitcoinNumStr.length==0||[self.bitcionCell.bitcoinNumStr floatValue]>100000000) {
+                showMessage(self.view, @"", @"请输入整数少于8位，小数少于8位的比特币数量");
             }
             else
             {

@@ -224,14 +224,19 @@
         {
             self.BottomView2.hidden = NO;
             self.BottomView.hidden = YES;
-            self.typeTitleLab.text = detailModel.mBankCodeName;
+            
             self.rechargeMoney.text = detailModel.mRechargeAmount ;
             self.serviceChargeMoney.text = detailModel.mPoundage ;
             self.inMyAccountMoney.text = detailModel.mRechargeTotalAmount ;
             self.isSuccState.text = detailModel.mStatusName ;
              _BottomView2.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
             self.realNameLab1.text = detailModel.mRealName?:MineSettingInfo.mRealName;
-            [self.TypeImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
+            if (detailModel.showBankURL.length > 0) {
+                 [self.TypeImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
+            }else
+            {
+                self.typeTitleLab.text = detailModel.mBankCodeName;
+            }
             self.thirdTitleLab.text = @"描述";
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
             self.subSecondTitleLab.text =  dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");

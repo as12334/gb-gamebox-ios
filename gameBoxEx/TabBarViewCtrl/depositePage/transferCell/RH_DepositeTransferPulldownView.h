@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RH_DepositeTransferChannelModel.h"
 @protocol DepositeTransferPulldownViewDelegate<NSObject>
 @optional
--(void)depositeTransferChooseCunterCelected:(NSString *)cunterNameString;
+-(void)depositeTransferChooseCunterCelected:(RH_DepositeTansferCounterModel *)cunterModel;
 @end
 @interface RH_DepositeTransferPulldownView : UIView
 @property(nonatomic,weak)id<DepositeTransferPulldownViewDelegate>delegate;
