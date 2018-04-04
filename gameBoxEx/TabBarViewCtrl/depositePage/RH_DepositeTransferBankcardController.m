@@ -47,6 +47,55 @@
 @synthesize circleView = _circleView;
 @synthesize pulldownView = _pulldownView;
 @synthesize closeBtn = _closeBtn;
+
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
+
+
 -(BOOL)isSubViewController
 {
     return YES;

@@ -27,6 +27,7 @@
 #import "RH_APPDelegate.h"
 #import "RH_DepositSuccessAlertView.h"
 #import "RH_CapitalRecordViewController.h"
+#import "RH_QuickChongZhiViewController.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -109,7 +110,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     self.title = @"存款";
-    _markArray = @[@0,@6,@1,@2,@3,@4,@5];
     [self setNeedUpdateView];
     [self setupUI];
     // 键盘出现的通知
@@ -407,7 +407,7 @@
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         appDelegate.customUrl =depositeCode ;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+            [self showViewController:[RH_QuickChongZhiViewController viewControllerWithContext:depositeCode] sender:self] ;
         }) ;
         _markArray = @[@0];
     }
@@ -631,7 +631,7 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    
+     _markArray = @[@0,@6,@1,@2,@3,@4,@5];
     [self.serviceRequest startV3RequestDepositOrigin];
 
 }

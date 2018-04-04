@@ -56,6 +56,7 @@
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
+		7907FCC62075062C00DA971C /* RH_QuickChongZhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907FCC52075062C00DA971C /* RH_QuickChongZhiViewController.m */; };
 		7937C4252072073B0010CD0C /* PGDatePicker+DateHour.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C3FA207207340010CD0C /* PGDatePicker+DateHour.m */; };
 		7937C4262072073B0010CD0C /* NSCalendar+PGCurrent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C3FC207207340010CD0C /* NSCalendar+PGCurrent.m */; };
 		7937C4272072073B0010CD0C /* UIColor+PGHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7937C3FD207207340010CD0C /* UIColor+PGHex.m */; };
@@ -815,6 +816,8 @@
 		7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferTopView.m; sourceTree = "<group>"; };
 		790743102063A0FD00A4543A /* RH_LimitTransferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferCell.h; sourceTree = "<group>"; };
 		790743112063A0FD00A4543A /* RH_LimitTransferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferCell.m; sourceTree = "<group>"; };
+		7907FCC42075062C00DA971C /* RH_QuickChongZhiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_QuickChongZhiViewController.h; sourceTree = "<group>"; };
+		7907FCC52075062C00DA971C /* RH_QuickChongZhiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_QuickChongZhiViewController.m; sourceTree = "<group>"; };
 		7937C3FA207207340010CD0C /* PGDatePicker+DateHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+DateHour.m"; sourceTree = "<group>"; };
 		7937C3FB207207340010CD0C /* PGDatePicker+YearAndMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+YearAndMonth.h"; sourceTree = "<group>"; };
 		7937C3FC207207340010CD0C /* NSCalendar+PGCurrent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+PGCurrent.m"; sourceTree = "<group>"; };
@@ -3448,6 +3451,8 @@
 				F69E35352063C50E0028D3A1 /* transferCell */,
 				F69E35322063B2370028D3A1 /* RH_DepositeTransferBankcardController.h */,
 				F69E35332063B2370028D3A1 /* RH_DepositeTransferBankcardController.m */,
+				7907FCC42075062C00DA971C /* RH_QuickChongZhiViewController.h */,
+				7907FCC52075062C00DA971C /* RH_QuickChongZhiViewController.m */,
 			);
 			path = depositePage;
 			sourceTree = "<group>";
@@ -4856,6 +4861,7 @@
 				A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */,
 				A0E367B21F906A3D00758033 /* RH_CustomViewController.h in Sources */,
 				794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */,
+				7907FCC62075062C00DA971C /* RH_QuickChongZhiViewController.m in Sources */,
 				A0E367AE1F9061E500758033 /* RH_PayViewController.h in Sources */,
 				F6FB63CA2011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m in Sources */,
 				79BB2DA9203270D2000CDE6B /* RH_ShareToFriendTableViewCell.m in Sources */,
