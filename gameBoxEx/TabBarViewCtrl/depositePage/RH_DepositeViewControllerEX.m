@@ -450,7 +450,7 @@
     [self.numberCell.payMoneyNumLabel resignFirstResponder];
 //    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
     //点击提交按钮tabelView向下移动
-    CGFloat sum =[self.numberCell.payMoneyNumLabel.text floatValue]+[self.numberCell.decimalsBtn.titleLabel.text floatValue];
+    CGFloat sum =[self.numberCell.payMoneyNumLabel.text doubleValue]+[self.numberCell.decimalsBtn.titleLabel.text doubleValue];
     NSString *sumStr = [NSString stringWithFormat:@"%0.2f",sum];
     self.discountStr = sumStr;
     
@@ -498,7 +498,7 @@
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
                 }
                 else{
-                    if ([sumStr floatValue]>self.numberCell.moneyNumMax) {
+                    if ([sumStr doubleValue]>self.numberCell.moneyNumMax) {
                         showMessage(self.view, [NSString stringWithFormat:@"您输入的%@超出了限定",sumStr], nil);
                     }
                     else{

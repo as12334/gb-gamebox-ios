@@ -18,48 +18,48 @@
 @property (weak, nonatomic) IBOutlet UITextField *transferTextField;
 @property (weak, nonatomic) IBOutlet CLBorderView *upLineView;
 @property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
-
+@property (nonatomic,strong)NSString *nameString;
 @end
 @implementation RH_DepositeTransferPayWayCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     NSArray *array = ConvertToClassPointer(NSArray, context);
-    NSString *nameString = array[2];
+    self.nameString = array[2];
     self.payNumTextfield.delegate=self;
-    if ([nameString isEqualToString:@"other"]) {
+    if ([self.nameString isEqualToString:@"other"]) {
         self.payWayLabel.text = @"您的其他方式账号";
         self.payNumTextfield.placeholder = @"请填写其他方式账号";
     }
-    else if ([nameString isEqualToString:@"company"]){
+    else if ([self.nameString isEqualToString:@"company"]){
         self.payWayLabel.text = @"存款方式";
         self.payNumTextfield.placeholder = @"网银存款";
         self.payNumTextfield.userInteractionEnabled = NO;
     }
-    else if ([nameString isEqualToString:@"wechat"]){
+    else if ([self.nameString isEqualToString:@"wechat"]){
         self.payWayLabel.text = @"您的微信昵称";
         self.payNumTextfield.placeholder = @"如：陈XX";
     }
-    else if ([nameString isEqualToString:@"alipay"]){
+    else if ([self.nameString isEqualToString:@"alipay"]){
         self.payWayLabel.text = @"您的支付户名";
         self.payNumTextfield.placeholder = @"请填写存款时的真实姓名";
     }
-    else if ([nameString isEqualToString:@"qq"]){
+    else if ([self.nameString isEqualToString:@"qq"]){
         self.payWayLabel.text = @"您的QQ钱包账号";
         self.payNumTextfield.placeholder = @"请填写QQ号码";
     }
-    else if ([nameString isEqualToString:@"jd"]){
+    else if ([self.nameString isEqualToString:@"jd"]){
         self.payWayLabel.text = @"您的京东账号";
         self.payNumTextfield.placeholder = @"请填写京东账号";
     }
-    else if ([nameString isEqualToString:@"bd"]){
+    else if ([self.nameString isEqualToString:@"bd"]){
         self.payWayLabel.text = @"您的百度账号";
         self.payNumTextfield.placeholder = @"请填写百度账号";
     }
-    else if ([nameString isEqualToString:@"onecodepay"]){
+    else if ([self.nameString isEqualToString:@"onecodepay"]){
         self.payWayLabel.text = @"订单后五位";
         self.payNumTextfield.placeholder = @"请填写商户订单号";
     }
-    else if ([nameString isEqualToString:@"counter"]){
+    else if ([self.nameString isEqualToString:@"counter"]){
         self.payWayLabel.text = @"存款方式";
         self.payNumTextfield.placeholder = ((RH_DepositeTansferCounterModel *)(array[3][0])).mName;
         self.transferLabel.text =((RH_DepositeTansferCounterModel *)(array[3][0])).mName;
@@ -73,7 +73,54 @@
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.paywayString = self.payNumTextfield.text;
-    NSLog(@"%@",self.paywayString);
+    if ([self.nameString isEqualToString:@"other"]) {
+        self.payWayLabel.text = @"您的其他方式账号";
+        self.payNumTextfield.placeholder = @"请填写其他方式账号";
+    }
+    else if ([self.nameString isEqualToString:@"company"]){
+        self.payWayLabel.text = @"存款方式";
+        self.payNumTextfield.placeholder = @"网银存款";
+        self.payNumTextfield.userInteractionEnabled = NO;
+    }
+    else if ([self.nameString isEqualToString:@"wechat"]){
+        self.payWayLabel.text = @"您的微信昵称";
+        self.payNumTextfield.placeholder = @"如：陈XX";
+    }
+    else if ([self.nameString isEqualToString:@"alipay"]){
+        self.payWayLabel.text = @"您的支付户名";
+        self.payNumTextfield.placeholder = @"请填写存款时的真实姓名";
+    }
+    else if ([self.nameString isEqualToString:@"qq"]){
+        self.payWayLabel.text = @"您的QQ钱包账号";
+        self.payNumTextfield.placeholder = @"请填写QQ号码";
+    }
+    else if ([self.nameString isEqualToString:@"jd"]){
+        self.payWayLabel.text = @"您的京东账号";
+        self.payNumTextfield.placeholder = @"请填写京东账号";
+    }
+    else if ([self.nameString isEqualToString:@"bd"]){
+        self.payWayLabel.text = @"您的百度账号";
+        self.payNumTextfield.placeholder = @"请填写百度账号";
+    }
+    else if ([self.nameString isEqualToString:@"onecodepay"]){
+        if (self.payNumTextfield.text.length!=5) {
+            showMessage(self, @"请输入纯数字五位订单号", nil);
+            
+        }
+        else if (self.payNumTextfield.text.length==5)
+        {
+            NSString *regex = @"[0-9]*";
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+            if ([pred evaluateWithObject:self.payNumTextfield.text]) {
+              
+                
+            }
+            else{
+                showMessage(self, @"请输入五位纯数字订单号", nil);
+            }
+        }
+        
+    }
     return YES;
 }
 -(void)pulldownListView{

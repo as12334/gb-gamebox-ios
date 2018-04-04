@@ -2340,14 +2340,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
-//        NSError * tempError = nil;
-//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-//                                                                                      error:&tempError] : @{};
-//        *reslutData = dataObject ;
-//        return YES ;
-//    }
+    else if (type == ServiceRequestTypeV3OnlinePay){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
@@ -2820,10 +2820,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break ;
-//                case ServiceRequestTypeV3OnlinePay:
-//            {
-//                
-//            }
+                case ServiceRequestTypeV3OnlinePay:
+            {
+                
+            }
 //                break;
 //            case ServiceRequestTypeV3CompanyPay:{
 //
