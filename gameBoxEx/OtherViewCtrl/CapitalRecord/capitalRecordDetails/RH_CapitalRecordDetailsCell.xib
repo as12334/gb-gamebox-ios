@@ -376,7 +376,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="17" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥1.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img-Lj-kC3" customClass="RH_CapitalRecordBlackLabel">
-                                <rect key="frame" x="99" y="128" width="42" height="17"/>
+                                <rect key="frame" x="81" y="128" width="42" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -405,7 +405,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="img-Lj-kC3" firstAttribute="leading" secondItem="9CH-mI-cyo" secondAttribute="trailing" constant="-8" id="0t0-hs-WSC"/>
+                            <constraint firstItem="img-Lj-kC3" firstAttribute="leading" secondItem="9CH-mI-cyo" secondAttribute="trailing" constant="-26" id="0t0-hs-WSC"/>
                             <constraint firstItem="sTl-Y9-tez" firstAttribute="leading" secondItem="dbI-uy-wbr" secondAttribute="trailing" constant="4" id="14r-Pd-mkM"/>
                             <constraint firstItem="70f-Bf-G8c" firstAttribute="trailing" secondItem="9CH-mI-cyo" secondAttribute="trailing" id="3tl-mk-q1W"/>
                             <constraint firstItem="7jU-Sc-E95" firstAttribute="leading" secondItem="Oy1-Zn-Voq" secondAttribute="leading" constant="17" id="5yp-tw-8Nx"/>

@@ -291,6 +291,9 @@
 {
     if (type == ServiceRequestTypeV3UpdateLoginPassword){
         _infoManager.updateUserVeifyCode = NO ;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
+        [defaults setObject:self.confirmSettingPasswordCell.textField.text forKey:@"password"];
+        [defaults synchronize];
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if (self.rhAlertView.superview == nil) {
                 self.rhAlertView = [[RH_StaticAlertView alloc] init];

@@ -23,7 +23,7 @@
         _mUserSetting = [[RH_MineInfoModel alloc] initWithInfoDic:[info dictionaryValueForKey:@"user"]] ;
         _mBankList = [RH_BankInfoModel dataArrayWithInfoArray:[info arrayValueForKey:@"bankList"]] ;
         RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
-        manager.isBindBitCoin = _mUserSetting.mIsBit ;
+        manager.isBindBitCoin = _mUserSetting.mBitCode?YES:NO ;
     }
     
     return self ;
