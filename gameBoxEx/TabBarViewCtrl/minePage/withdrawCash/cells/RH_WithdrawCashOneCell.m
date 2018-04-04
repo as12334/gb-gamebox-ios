@@ -67,7 +67,8 @@
         [self.contentView addSubview:self.bankIconImageView];
         [self.contentView addSubview:self.bankUserNameLb];
         [self.contentView addSubview:self.bankCardLab];
-        self.bankIconImageView.whc_LeftSpace(10).whc_WidthAuto().whc_Height(30).whc_CenterY(0);
+        self.bankIconImageView.whc_LeftSpace(10).whc_Width(90).whc_Height(30).whc_CenterY(0);
+        self.bankIconImageView.contentMode = UIViewContentModeScaleAspectFit ;
         self.bankUserNameLb.whc_LeftSpaceToView(5, self.bankIconImageView).whc_CenterY(0).whc_WidthAuto();
         self.bankCardLab.whc_LeftSpaceToView(5, self.bankUserNameLb).whc_CenterY(0).whc_WidthAuto();
         self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine;
