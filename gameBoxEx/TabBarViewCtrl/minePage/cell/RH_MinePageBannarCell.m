@@ -53,7 +53,7 @@
     self.imageUserAvator.layer.cornerRadius = 25.0f ;
     self.imageUserAvator.layer.masksToBounds = YES ;
     
-    self.label_UserNickName.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpace(32).whc_HeightAuto().whc_Width(100);
+    self.label_UserNickName.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpace(32).whc_HeightAuto().whc_WidthAuto();
     self.label_TimeTitle.whc_TopSpaceToView(10, self.label_UserNickName).whc_LeftSpaceToView(12, self.imgUserBG).whc_HeightAuto().whc_Width(100);
     self.label_TimeLast.whc_LeftSpaceToView(12, self.imgUserBG).whc_TopSpaceToView(5, self.label_TimeTitle).whc_HeightAuto().whc_WidthAuto();
     
