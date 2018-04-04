@@ -30,8 +30,10 @@
 //    self.borderView.layer.masksToBounds = YES ;
     self.borderView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     self.labDate.textColor = colorWithRGB(51, 51, 51) ;
-    self.labDate.font = [UIFont systemFontOfSize:14.0f] ;
-    self.labDate.text = dateStringWithFormatter([ NSDate date], @"yyyy-MM-dd HH:mm:ss") ;
+    self.labDate.font = [UIFont systemFontOfSize:12.0f] ;
+//    self.labDate.text = dateStringWithFormatter([ NSDate date], @"yyyy-MM-dd HH:mm:ss") ;
+    self.labDate.text = @"请选择交易时间";
+    [self.labDate setTextColor:colorWithRGB(210, 210, 210)];
     self.labDate.textAlignment = NSTextAlignmentRight ;
 }
 

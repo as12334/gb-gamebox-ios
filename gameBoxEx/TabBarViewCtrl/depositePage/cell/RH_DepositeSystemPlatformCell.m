@@ -50,7 +50,13 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.listModelArray = ConvertToClassPointer(NSArray, context);
-    [self.collectionView reloadData] ;
+    RH_DepositeTransferListModel *listModel = self.listModelArray[0];
+    if ([listModel.mDepositWay isEqualToString:@"online_deposit"]) {
+        
+    }
+    else {
+       [self.collectionView reloadData] ;
+    }
 }
 
 #pragma mark-
