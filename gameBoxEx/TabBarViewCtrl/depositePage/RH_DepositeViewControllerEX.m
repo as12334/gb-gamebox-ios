@@ -42,6 +42,9 @@
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 @property(nonatomic,strong)RH_DepositeMoneyBankCell *bankCell;
 
+//柜台机下拉列表数组
+@property(nonatomic,strong)NSArray *counterArray;
+
 //支付方式类型
 @property(nonatomic,strong)NSString *payforType;
 //优惠ID
@@ -330,7 +333,7 @@
             RH_DepositeSystemPlatformCell *platformCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeSystemPlatformCell defaultReuseIdentifier]] ;
             platformCell.delegate=self;
             self.platformCell = platformCell;
-            [platformCell updateCellWithInfo:nil context:self.channelModel.mArrayListModel];
+            [platformCell updateCellWithInfo:nil context:self.channelModel];
             return platformCell ;
         }
         else if (indexPath.item == [_markArray[2]integerValue]){
@@ -425,11 +428,12 @@
     [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
--(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel
+-(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel acounterModel:(NSArray *)acounterModel
 {
     self.payforType = payType;
     self.listModel = accountModel;
     [self.numberCell updateCellWithInfo:nil context:accountModel];
+    self.counterArray = acounterModel;
     //判断选择的支付方式的type，来确定是否跳转
     [self.contentTableView reloadData];
 }
@@ -503,6 +507,7 @@
                             [mutableArray addObject:sumStr];
                             [mutableArray addObject:self.listModel];
                             [mutableArray addObject:self.depositeCode];
+                            [mutableArray addObject:self.counterArray];
                             RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
                             [self showViewController:transferVC sender:self];
                         }

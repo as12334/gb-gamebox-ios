@@ -9,9 +9,11 @@
 #import "RH_DepositeTransferPulldownView.h"
 #import "RH_API.h"
 #import "coreLib.h"
+#import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeTransferPulldownView()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tabelView;
 @property(nonatomic,strong)NSArray *array;
+
 @end
 @implementation RH_DepositeTransferPulldownView
 
@@ -22,10 +24,15 @@
         self.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
         self.layer.borderWidth = 1.f;
         self.layer.masksToBounds = YES;
-        self.array = @[@"柜员机现金存款",@"柜员机转账",@"银行柜台存款"];
-        [self addSubview:self.tabelView];
+//        self.array = @[@"柜员机现金存款",@"柜员机转账",@"银行柜台存款"];
+        
     }
     return self;
+}
+-(void)setupViewWithContext:(id)context
+{
+    self.array = ConvertToClassPointer(NSArray, context);
+    [self addSubview:self.tabelView];
 }
 -(UITableView *)tabelView
 {
@@ -48,7 +55,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.array.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -64,13 +71,15 @@
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     cell.textLabel.textColor = colorWithRGB(153, 153, 153);
-    cell.textLabel.text = self.array[indexPath.item];
+    RH_DepositeTansferCounterModel *counterModel = ConvertToClassPointer(RH_DepositeTansferCounterModel, self.array[indexPath.item]);
+    cell.textLabel.text = counterModel.mName;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ifRespondsSelector(self.delegate, @selector(depositeTransferChooseCunterCelected:)){
-        [self.delegate depositeTransferChooseCunterCelected:self.array[indexPath.item]];
+        RH_DepositeTansferCounterModel *counterModel = ConvertToClassPointer(RH_DepositeTansferCounterModel, self.array[indexPath.item]);
+        [self.delegate depositeTransferChooseCunterCelected:counterModel];
     }
     [self.tabelView reloadData];
 }

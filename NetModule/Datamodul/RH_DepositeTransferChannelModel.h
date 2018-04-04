@@ -40,10 +40,15 @@
 @property(nonatomic,strong,readonly)NSString *accountImgCover;
 
 @end
+@interface RH_DepositeTansferCounterModel:RH_BasicModel
+@property(nonatomic,strong,readonly)NSString *mCode;
+@property (nonatomic,strong,readonly)NSString *mName;
+@end
 @interface RH_DepositeTransferChannelModel : RH_BasicModel
 @property(nonatomic,strong,readonly)NSString *mCurrency;
 @property(nonatomic,strong,readonly)NSString *mCustomerService;
 @property(nonatomic,strong,readonly)NSArray<RH_DepositeTransferListModel *>*mArrayListModel;
+@property(nonatomic,strong,readonly)NSArray<RH_DepositeTansferCounterModel *>*mAounterModel;
 @property(nonatomic,strong,readonly)NSArray *mQuickMoneys;
 @property(nonatomic,strong,readonly)NSString *mPayerBankcard;
 @property(nonatomic,assign,readonly)bool mHide;

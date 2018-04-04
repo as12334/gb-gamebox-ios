@@ -173,7 +173,7 @@
         }
         else{
             if (self.bitcionCell.bitcoinNumStr.length==0||[self.bitcionCell.bitcoinNumStr floatValue]>100000000) {
-                showMessage(self.view, @"请输入整数小于8位，小数小于8位的比特币数量", nil);
+                showMessage(self.view, @"", @"请输入整数少于8位，小数少于8位的比特币数量");
             }
             else
             {
