@@ -85,7 +85,7 @@
 //    站点配制
 //===========================================================
 
-#define THEMEV3             @"green"   //green,red,black,default .
+#define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"

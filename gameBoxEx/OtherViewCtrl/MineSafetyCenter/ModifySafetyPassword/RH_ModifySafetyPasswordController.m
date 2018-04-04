@@ -546,28 +546,31 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         showErrorMessage(self.view, error, @"设置真实姓名失败") ;
     }else if (type == ServiceRequestTypeV3UpdateSafePassword){
          NSDictionary *userInfo = error.userInfo ;
-        if ([userInfo integerValueForKey:@"remindTimes"] != 0) {
-            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                showErrorMessage(self.view, error, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"设定失败":@"更新失败") ;
-            }] ;
-        }
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error, _modifySafetyStatus==ModifySafetyStatus_SetPermissionPassword?@"设定失败":@"更新失败") ;
+        }] ;
+        
         if ([userInfo boolValueForKey:@"isOpenCaptcha"]){
             [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyPasswordUsedCode"] ;
         }
-        if ([userInfo integerValueForKey:@"remindTimes"]) {
-            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:@"remindTimes"]] ;
-        }
-        if ([userInfo integerValueForKey:@"remindTimes"] == 5) {
-           self.label_Notice.hidden = YES ;
-        }else if([userInfo integerValueForKey:@"remindTimes"] == 0){
-            self.label_Notice.hidden = YES ;
-            showMessage_b(self.view, nil, @"您输入的安全密码已上限，用户余额被冻结，请联系客服", ^{
-                [self backBarButtonItemHandle] ;
-                [serviceRequest startV3UserSafetyInfo];
-            });
-        }else
-        {
-            self.label_Notice.hidden = NO ;
+        if (_modifySafetyStatus != ModifySafetyStatus_SetPermissionPassword) {
+            if ([userInfo integerValueForKey:@"remindTimes"]) {
+                self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:@"remindTimes"]] ;
+            }
+            if ([userInfo integerValueForKey:@"remindTimes"] == 5) {
+                self.label_Notice.hidden = YES ;
+            }else if([userInfo integerValueForKey:@"remindTimes"] == 0){
+                self.label_Notice.hidden = YES ;
+                [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                    showMessage_b(self.view, nil, @"您输入的安全密码已上限，用户余额被冻结，请联系客服", ^{
+                        [self backBarButtonItemHandle] ;
+                        [serviceRequest startV3UserSafetyInfo];
+                    });
+                }] ;
+            }else
+            {
+                self.label_Notice.hidden = NO ;
+            }
         }
         [self setNeedUpdateView] ;
     }else if (type == ServiceRequestTypeV3GetWithDrawInfo){
