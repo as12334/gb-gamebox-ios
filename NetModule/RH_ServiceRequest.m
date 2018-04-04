@@ -2336,7 +2336,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3DepositOriginBittionSeachSale){
+//    else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers

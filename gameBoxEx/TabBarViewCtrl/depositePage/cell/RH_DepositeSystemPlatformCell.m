@@ -52,7 +52,7 @@
     self.listModelArray = ConvertToClassPointer(NSArray, context);
     RH_DepositeTransferListModel *listModel = self.listModelArray[0];
     if ([listModel.mDepositWay isEqualToString:@"online_deposit"]) {
-        
+        self.listModelArray=@[];
     }
     else {
        [self.collectionView reloadData] ;
