@@ -264,6 +264,7 @@
             [shadeView addGestureRecognizer:tap];
             [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
             _shadeView = shadeView;
+            self.circleView.moneyNumLabel.text = @"";
             [self.circleView setupViewWithContext:saleModel];
             [[UIApplication sharedApplication].keyWindow addSubview:self.circleView];
         }] ;

@@ -42,7 +42,7 @@
     }
     
     self.bankImage.whc_LeftSpaceToView(10, self.leftBankTitle).whc_CenterY(0).whc_Width(80).whc_Height(20);
-    self.bankCardNumber.whc_LeftSpaceToView(5, self.bankImage).whc_CenterY(0).whc_Width(60).whc_TopSpace(12);
+    self.bankCardNumber.whc_LeftSpaceToView(10, self.bankImage).whc_CenterY(0).whc_Width(60).whc_TopSpace(12);
     self.noBankLabel.whc_LeftSpaceToView(0, self.leftBankTitle).whc_TopSpace(12).whc_Width(100).whc_Height(20);
 
 }

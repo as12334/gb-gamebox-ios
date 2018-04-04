@@ -40,6 +40,7 @@
 @property(nonatomic,strong)NSArray *accountModelArray;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
+@property(nonatomic,strong)RH_DepositeMoneyBankCell *bankCell;
 
 //支付方式类型
 @property(nonatomic,strong)NSString *payforType;
@@ -358,6 +359,7 @@
         else if (indexPath.item == [_markArray[4]integerValue]){
             RH_DepositeMoneyBankCell *bankCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeMoneyBankCell defaultReuseIdentifier]] ;
             bankCell.delegate = self;
+            self.bankCell = bankCell;
             [bankCell updateCellWithInfo:nil context:self.channelModel];
             return bankCell ;
         }
@@ -409,7 +411,7 @@
    else{
         if ([depositName isEqualToString:@"在线支付"]) {
             _markArray = @[@0,@6,@1,@2,@3,@4,@5];
-            [self.numberCell setupViewWithContext:self.channelModel];
+            self.bankCell.bankNameLabel.text=@"请选择支付银行";
         }
         else {
             _markArray = @[@0,@1,@2,@3,@6,@4,@5];
@@ -462,8 +464,14 @@
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",onlineModel.mSingleDepositMin,onlineModel.mSingleDepositMax], nil);
                 }
             else{
+                if ([self.bankCell.bankNameLabel.text isEqualToString:@"请选择支付银行"]) {
+                    showMessage(self.view, @"请选择支付银行", nil);
+                }
+                else{
                 [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:sumStr  PayAccountDepositWay:onlineModel.mDepositWay PayAccountID:onlineModel.mSearchId];
                 }
+                
+            }
         }
     }
     else{
@@ -562,15 +570,18 @@
             [cell.bankNameLabel setText:bankNameArray[selectedQuestion]];
             //选择不同的银行需要存入的钱的范围不一样
             weakSelf.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[selectedQuestion]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[selectedQuestion]).mSingleDepositMax];
+            [weakSelf.numberCell setupViewWithContext:((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[selectedQuestion])];
         };
     }
+//    [self.contentTableView reloadData];
 }
 #pragma mark 数据请求
 
 #pragma mark - serviceRequest
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
-    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+//    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+    return nil;
 }
 
 
@@ -603,7 +614,9 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+    
     [self.serviceRequest startV3RequestDepositOrigin];
+
 }
 -(void)cancelLoadDataHandle
 {
@@ -619,10 +632,10 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-        self.transModelArray  = ConvertToClassPointer(NSArray , data);
-        [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
-                                     totalCount:self.transModelArray?1:0] ;
-        [self.contentTableView reloadData];
+            self.transModelArray  = ConvertToClassPointer(NSArray , data);
+            [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
+                                totalCount:self.transModelArray?1:0] ;
+            [self.contentTableView reloadData];
     }
     else if (type == ServiceRequestTypeV3DepositeOriginChannel)
     {
@@ -637,6 +650,7 @@
             }
             if ([self.depositeCode isEqualToString:@"online"]) {
                 self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
+                
             }
             [self.contentTableView reloadData];
         }] ;
@@ -695,7 +709,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
         

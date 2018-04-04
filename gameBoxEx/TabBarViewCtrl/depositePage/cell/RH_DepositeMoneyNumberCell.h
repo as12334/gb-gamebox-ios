@@ -14,5 +14,7 @@
 @property (nonatomic,strong)NSString *payMoneyString;
 @property (nonatomic,assign)NSInteger moneyNumMin;
 @property (nonatomic,assign)NSInteger moneyNumMax;
+@property (nonatomic,strong)NSNumber  *decimalsBtnStatus;
+@property (nonatomic,strong)RH_DepositeTransferChannelModel *channelModel;
 
 @end

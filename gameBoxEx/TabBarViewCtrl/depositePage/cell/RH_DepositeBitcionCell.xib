@@ -21,9 +21,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZq-Aa-5xq">
                         <rect key="frame" x="35" y="43" width="250" height="137"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="THZ-cB-seq">
-                                <rect key="frame" x="18" y="8" width="13" height="14"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THZ-cB-seq">
+                                <rect key="frame" x="18" y="8" width="80" height="14"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="6SO-Zb-y9P"/>
                                     <constraint firstAttribute="height" constant="14" id="M5q-Rc-S5H"/>
                                 </constraints>
                             </imageView>
