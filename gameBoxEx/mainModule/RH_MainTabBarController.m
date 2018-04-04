@@ -167,16 +167,16 @@
         UITabBarItem *mineItem = [self.tabBar.items objectAtIndex:4];
         
         if ([THEMEV3 isEqualToString:@"green"]){
-            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Green;
         }else if ([THEMEV3 isEqualToString:@"red"]){
-            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Red;
@@ -189,11 +189,11 @@
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = colorWithRGB(21, 141, 246);
         }else{
-            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor;
         }
         
