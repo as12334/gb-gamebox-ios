@@ -13,7 +13,7 @@
 #import "RH_DepositeTransferModel.h"
 #import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeTransferPayWayCell()<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
+
 
 @property (weak, nonatomic) IBOutlet UITextField *transferTextField;
 @property (weak, nonatomic) IBOutlet CLBorderView *upLineView;

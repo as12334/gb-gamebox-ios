@@ -507,7 +507,9 @@
                             [mutableArray addObject:sumStr];
                             [mutableArray addObject:self.listModel];
                             [mutableArray addObject:self.depositeCode];
-                            [mutableArray addObject:self.counterArray];
+                            if (self.counterArray.count>0) {
+                              [mutableArray addObject:self.counterArray];
+                            }
                             RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
                             [self showViewController:transferVC sender:self];
                         }

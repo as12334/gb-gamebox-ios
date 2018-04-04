@@ -10,7 +10,7 @@
 #import "coreLib.h"
 #import "RH_DepositePayAccountModel.h"
 @interface RH_DepositeTransferOrderNumCell()<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *payforWayLabel;
+
 @property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 
 
@@ -57,7 +57,7 @@
         self.orderNumTextfiled.placeholder = @"请填写“商户订单号”";
     }
     else if ([nameStr isEqualToString:@"oneCodePay"]){
-        self.payforWayLabel.text = @"订单后五位";
+        self.payforWayLabel.text = @"订单号后五位";
         self.orderNumTextfiled.placeholder = @"请填写商户订单号";
     }
     else if ([nameStr isEqualToString:@"counter"]){

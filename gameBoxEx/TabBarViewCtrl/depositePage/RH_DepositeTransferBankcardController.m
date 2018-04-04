@@ -345,8 +345,20 @@
 -(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
 {
     [self.paywayCell.payNumTextfield resignFirstResponder];
+//    if ([self.paywayCell.payWayLabel.text isEqualToString:@"订单后五位"]&&self.paywayCell.payNumTextfield.text.length!=5) {
+//        showMessage(self.view, @"请填写真确的五位订单号或不填", nil);
+//        return;
+//    }
     [self.transferOrderCell.orderNumTextfiled resignFirstResponder];
+//    if ([self.transferOrderCell.payforWayLabel.text isEqualToString:@"订单号后五位"]&&self.transferOrderCell.orderNumTextfiled.text.length!=5) {
+//        showMessage(self.view, @"请填写真确的五位订单号或不填", nil);
+//        return;
+//    }
     [self.adressCell.payTextfield resignFirstResponder];
+//    if ([self.adressCell.payLabel.text isEqualToString:@"订单号后五位"]&&self.adressCell.payTextfield.text.length!=5) {
+//        showMessage(self.view, @"请填写真确的五位订单号或不填", nil);
+//        return;
+//    }
     if ([self.accountMuArray[2] isEqualToString:@"counter"]) {
         if (self.transferOrderCell.transferOrderString.length==0) {
             showMessage(self.view, @"请填转账账号对应的姓名", nil);
@@ -393,7 +405,7 @@
                 showMessage(self.view, @"请填写百度号", nil);
             }
             else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
-                showMessage(self.view, @"请填写订单号后五位", nil);
+                showMessage(self.view, @"请输入纯数字五位订单号", nil);
             }
             else if ([self.accountMuArray[2] isEqualToString:@"other"])
             {
@@ -401,17 +413,36 @@
             }
         }
         else{
-            
-          if ([self.accountMuArray[2] isEqualToString:@"alipay"]&&self.transferOrderCell.transferOrderString.length==0)
+            if (self.paywayCell.superview&&[self.accountMuArray[2] isEqualToString:@"onecodepay"]&&self.paywayCell.payNumTextfield.text.length!=5) {
+                showMessage(self.view, @"请输入纯数字五位订单号", nil);
+                
+            }
+            else if (self.paywayCell.superview&&[self.accountMuArray[2] isEqualToString:@"onecodepay"]&&self.paywayCell.payNumTextfield.text.length==5)
             {
-                showMessage(self.view, @"请填写支付宝账号", nil);
+                NSString *regex = @"[0-9]*";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                if ([pred evaluateWithObject:self.paywayCell.payNumTextfield.text]) {
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
+                else{
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
             }
             else{
-               
-                [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
-                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                
+                if ([self.accountMuArray[2] isEqualToString:@"alipay"]&&self.transferOrderCell.transferOrderString.length==0)
+                {
+                    showMessage(self.view, @"请填写支付宝账号", nil);
+                }
+                else{
+                    
+                    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
             }
+            
         }
+        
     }
 }
    

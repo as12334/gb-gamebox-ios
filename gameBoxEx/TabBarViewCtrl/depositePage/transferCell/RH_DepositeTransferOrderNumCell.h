@@ -16,5 +16,6 @@
 @interface RH_DepositeTransferOrderNumCell : CLTableViewCell
 @property(nonatomic,strong)NSString *transferOrderString;
 @property (weak, nonatomic) IBOutlet UITextField *orderNumTextfiled;
+@property (weak, nonatomic) IBOutlet UILabel *payforWayLabel;
 @property(nonatomic,weak)id<DepositeTransferOrderNumCellDelegate>delegate;
 @end

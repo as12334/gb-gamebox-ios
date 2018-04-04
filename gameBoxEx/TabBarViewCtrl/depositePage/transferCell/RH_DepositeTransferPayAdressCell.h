@@ -16,5 +16,6 @@
 @interface RH_DepositeTransferPayAdressCell : CLTableViewCell
 @property(nonatomic,strong)NSString *adressStr;
 @property (weak, nonatomic) IBOutlet UITextField *payTextfield;
+@property (weak, nonatomic) IBOutlet UILabel *payLabel;
 @property(nonatomic,weak)id<DepositeTransferPayAdressCellDelegate>delegate;
 @end
