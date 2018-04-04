@@ -352,12 +352,10 @@
 //        [self.contentLoadingIndicateView hiddenView] ;
         RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
         if (manager.sidString.length==0) {
-            showErrorMessage(self.view, nil, @"登录信息初始化失败");
-
-            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"初始化登录信息失败"];
         }else
         {
-            self.isInitOk = YES;
+             self.isInitOk = YES;
              [self.contentLoadingIndicateView hiddenView] ;
         }
          [self setNeedUpdateView];
