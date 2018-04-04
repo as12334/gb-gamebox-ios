@@ -206,11 +206,16 @@
     
     if (type == ServiceRequestTypeV3LoadGameType) {
         [self.contentLoadingIndicateView hiddenView];
+        NSMutableArray *dataArr = [NSMutableArray array] ;
+        [dataArr insertObject:@{@"key":@"all",@"value":@"所有游戏"} atIndex:0];
         NSArray *arr = ConvertToClassPointer(NSArray, data);
-        if (arr.count == 0) {
+        [dataArr addObjectsFromArray:arr];
+        NSArray *arr1 = [dataArr copy] ;
+        
+        if (arr1.count == 0) {
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"" detailText:@""] ;
         }else{
-            [self.typeTopView updateView:arr];
+            [self.typeTopView updateView:arr1];
             [self setupInfo];
         }
     }

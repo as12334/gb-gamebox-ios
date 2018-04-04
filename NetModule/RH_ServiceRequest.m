@@ -487,9 +487,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (searchName.length){
         [dictTmp setValue:searchName forKey:RH_SP_APIGAMELIST_NAME] ;
     }
-    
     if (tagID.length){
-        [dictTmp setValue:tagID forKey:RH_SP_APIGAMELIST_TAGID] ;
+        if ([tagID isEqualToString:@"all"]) {
+            [dictTmp setValue:@"" forKey:RH_SP_APIGAMELIST_TAGID] ;
+        }else
+        {
+            [dictTmp setValue:tagID forKey:RH_SP_APIGAMELIST_TAGID] ;
+        }
     }
     
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -2461,8 +2465,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3APIGameList:
             {
                 NSArray *tmpArray = [RH_LotteryInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_APIGAMELIST_LIST]] ;
-                NSInteger total = [[[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
-                                     dictionaryValueForKey:@"page"] dictionaryValueForKey:@"page"] integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]   ;
+                NSInteger total = [[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     dictionaryValueForKey:@"page"]  integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]   ;
                 
                 resultSendData = @{RH_GP_APIGAMELIST_LIST:tmpArray?:@[],
                                    RH_GP_APIGAMELIST_TOTALCOUNT:@(total)

@@ -459,16 +459,22 @@
             showMessage(self.view, @"请选择付款平台", nil);
         }
         else{
-            if ([self.numberCell.payMoneyNumLabel.text integerValue]<onlineModel.mSingleDepositMin||[self.numberCell.payMoneyNumLabel.text integerValue]>onlineModel.mSingleDepositMax+1||[self.numberCell.payMoneyNumLabel.text integerValue]==0)
+            if ([self.numberCell.payMoneyNumLabel.text integerValue]<onlineModel.mSingleDepositMin||[self.numberCell.payMoneyNumLabel.text integerValue]>onlineModel.mSingleDepositMax||[self.numberCell.payMoneyNumLabel.text integerValue]==0)
                 {
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",onlineModel.mSingleDepositMin,onlineModel.mSingleDepositMax], nil);
                 }
+            
             else{
-                if ([self.bankCell.bankNameLabel.text isEqualToString:@"请选择支付银行"]) {
-                    showMessage(self.view, @"请选择支付银行", nil);
+                if ([sumStr floatValue]>onlineModel.mSingleDepositMax) {
+                    showMessage(self.view, [NSString stringWithFormat:@"您输入的%@超出了限定",sumStr], nil);
                 }
                 else{
-                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:sumStr  PayAccountDepositWay:onlineModel.mDepositWay PayAccountID:onlineModel.mSearchId];
+                    if ([self.bankCell.bankNameLabel.text isEqualToString:@"请选择支付银行"]) {
+                        showMessage(self.view, @"请选择支付银行", nil);
+                    }
+                    else{
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:sumStr  PayAccountDepositWay:onlineModel.mDepositWay PayAccountID:onlineModel.mSearchId];
+                    }
                 }
                 
             }
@@ -484,11 +490,14 @@
                 showMessage(self.view, @"请选择存款方式", nil);
             }
             else{
-                if ([self.numberCell.payMoneyNumLabel.text integerValue]<self.numberCell.moneyNumMin||[self.numberCell.payMoneyNumLabel.text integerValue]>self.numberCell.moneyNumMax+1||[self.numberCell.payMoneyNumLabel.text integerValue]==0) {
+                if ([self.numberCell.payMoneyNumLabel.text integerValue]<self.numberCell.moneyNumMin||[self.numberCell.payMoneyNumLabel.text integerValue]>self.numberCell.moneyNumMax||[self.numberCell.payMoneyNumLabel.text integerValue]==0) {
                     showMessage(self.view, [NSString stringWithFormat:@"请输入%ld~%ld元",self.numberCell.moneyNumMin,self.numberCell.moneyNumMax], nil);
                 }
                 else{
-                    
+                    if ([sumStr floatValue]>self.numberCell.moneyNumMax) {
+                        showMessage(self.view, [NSString stringWithFormat:@"您输入的%@超出了限定",sumStr], nil);
+                    }
+                    else{
                         if ([self.payforType isEqualToString:@"1"]) {
                             NSMutableArray *mutableArray = [NSMutableArray array];
                             [mutableArray addObject:sumStr];
@@ -500,6 +509,7 @@
                         else{
                             [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:sumStr PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                         }
+                    }
                 }
             }
         }
