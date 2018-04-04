@@ -61,6 +61,9 @@
 }
 - (IBAction)pernameSelect:(id)sender {
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    if (self.bankCardNameLabel.text.length==0) {
+        return;
+    }
     pboard.string = self.bankCardNameLabel.text;
     showMessage(self, @"复制成功",nil);
 }

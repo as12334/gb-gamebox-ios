@@ -417,7 +417,7 @@
             _markArray = @[@0,@1,@2,@3,@6,@4,@5];
         }
    }
-        [self.contentTableView reloadData];
+//        [self.contentTableView reloadData];
 }
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
@@ -650,6 +650,7 @@
     else if (type == ServiceRequestTypeV3DepositeOriginChannel)
     {
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            self.channelModel=nil;
             RH_DepositeTransferChannelModel *channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, data);
             self.channelModel = channelModel;
             [self loadDataSuccessWithDatas:channelModel?@[channelModel]:@[] totalCount:channelModel?1:0];
@@ -658,9 +659,8 @@
                 [self showViewController:bitcionVC sender:self];
                 self.markArray = @[@0];
             }
-            if ([self.depositeCode isEqualToString:@"online"]) {
+            else if ([self.depositeCode isEqualToString:@"online"]) {
                 self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
-                
             }
             [self.contentTableView reloadData];
         }] ;

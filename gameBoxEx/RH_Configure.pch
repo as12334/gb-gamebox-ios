@@ -119,8 +119,8 @@
 
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-//#define TEST_DOMAIN             @"test71.hongtubet.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN             @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 //#define TEST_DOMAIN           @"192.168.0.150"   //cherry
