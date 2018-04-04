@@ -76,7 +76,10 @@
 {
     if (!_pulldownView) {
         _pulldownView = [RH_DepositeTransferPulldownView createInstance];
-        [_pulldownView setupViewWithContext:self.accountMuArray[3]];
+        if ([self.accountMuArray[2] isEqualToString:@"counter"])
+        {
+             [_pulldownView setupViewWithContext:self.accountMuArray[3]];
+        }
         _pulldownView.delegate = self;
     }
     return _pulldownView;
