@@ -76,6 +76,7 @@
 {
     if (!_pulldownView) {
         _pulldownView = [RH_DepositeTransferPulldownView createInstance];
+        [_pulldownView setupViewWithContext:self.accountMuArray[3]];
         _pulldownView.delegate = self;
     }
     return _pulldownView;
@@ -122,6 +123,7 @@
     else if ([self.accountMuArray[2] isEqualToString:@"counter"]){
         _markArray =@[@0,@7,@6,@1,@2,@3,@4,@5];
         self.title = @"柜台机付款";
+        self.counterStr = ((RH_DepositeTansferCounterModel*)(self.accountMuArray[3][0])).mCode;
     }
     else if ([self.accountMuArray[2] isEqualToString:@"other"])
     {
@@ -141,7 +143,6 @@
     self.contentTableView.sectionHeaderHeight = 0.0f ;
     self.contentTableView.separatorStyle = UITableViewRowActionStyleDefault;
     [self.contentView addSubview:self.contentTableView] ;
-    self.counterStr = @"柜员机现金存款";
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferBankInfoCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferPayWayCell class]] ;
     [self.contentTableView registerCellWithClass:[RH_DepositeTransferReminderCell class]] ;
@@ -263,7 +264,7 @@
         RH_DepositeTransferPayWayCell *paywayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferPayWayCell defaultReuseIdentifier]] ;
         self.paywayCell = paywayCell;
         paywayCell.delegate = self;
-        [paywayCell updateCellWithInfo:nil context:self.accountMuArray[2]];
+        [paywayCell updateCellWithInfo:nil context:self.accountMuArray];
         return paywayCell ;
     }
     else if (indexPath.item == [_markArray[4] integerValue]){
@@ -442,10 +443,11 @@
     }
 }
 #pragma mark --点击柜台存款方式
--(void)depositeTransferChooseCunterCelected:(NSString *)cunterNameString
+-(void)depositeTransferChooseCunterCelected:(RH_DepositeTansferCounterModel *)cunterModel
 {
-    self.paywayCell.transferLabel.text = cunterNameString;
-    self.counterStr = cunterNameString;
+ 
+    self.paywayCell.transferLabel.text = cunterModel.mName;
+    self.counterStr = cunterModel.mCode;
     [self.pulldownView removeFromSuperview];
     [self.shadeView removeFromSuperview];
     [self.contentTableView reloadData];
@@ -479,16 +481,6 @@
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }
     else if ([self.accountMuArray[2]isEqualToString:@"counter"]){
-        if ([self.counterStr isEqualToString:@"柜员机现金存款"]) {
-            self.counterStr = @"atm_money";
-        }
-        else if ([self.counterStr isEqualToString:@"柜员机转账"])
-        {
-            self.counterStr = @"atm_recharge";
-        }
-        else if ([self.counterStr isEqualToString:@"银行柜台存款"]){
-            self.counterStr = @"atm_counter";
-        }
         [self.serviceRequest startV3CounterPayWithRechargeAmount:self.accountMuArray[0]  rechargeType:self.counterStr payAccountId:self.listModel.mSearchId payerName:self.transferOrderCell.transferOrderString rechargeAddress:self.adressCell.adressStr activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;

@@ -937,6 +937,7 @@
 #define RH_GP_DEPOSITEORIGINCHANNEL_CURRENCY            @"currency"
 #define RH_GP_DEPOSITEORIGINCHANNEL_CUSTOMERSERVICE     @"customerService"
 #define RH_GP_DEPOSITEORIGINCHANNEL_ARRAYLIST           @"arrayList"
+#define RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES    @"counterRechargeTypes"
 #define RH_GP_DEPOSITEORIGINCHANNEL_ID                  @"id"
 #define RH_GP_DEPOSITEORIGINCHANNEL_PAYNAME             @"payName"
 #define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNT             @"account"
@@ -966,6 +967,9 @@
 #define RH_GP_DEPOSITEORIGINCHANNEL_HIDE                @"hide"
 #define RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT     @"multipleAccount"
 #define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG          @"accountImg"
+
+#define RH_GP_DEPOSITECOUNTER_CODE                      @"code"
+#define RH_GP_DEPOSITECOUNTER_NAME                      @"name"
 
 
 #pragma mark - V3  常见问题详情

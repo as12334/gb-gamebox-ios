@@ -87,7 +87,16 @@
     return _accountImgCover;
 }
 @end
-
+@implementation RH_DepositeTansferCounterModel
+-(id)initWithInfoDic:(NSDictionary *)info
+{
+    if (self = [super initWithInfoDic:info]) {
+        _mCode = [info stringValueForKey:RH_GP_DEPOSITECOUNTER_CODE];
+        _mName = [info stringValueForKey:RH_GP_DEPOSITECOUNTER_NAME];
+    }
+    return self;
+}
+@end
 @implementation RH_DepositeTransferChannelModel
 -(id)initWithInfoDic:(NSDictionary *)info
 {
@@ -99,6 +108,7 @@
         _mPayerBankcard = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_PAYERBANKCARD];
         _mHide = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_HIDE];
         _mMultipleAccount = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT];
+        _mAounterModel = [RH_DepositeTansferCounterModel dataArrayWithInfoArray:[info adaptationValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES]];
     }
     return self;
 }

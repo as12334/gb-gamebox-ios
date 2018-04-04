@@ -18,6 +18,8 @@
 @property (nonatomic,strong)NSArray *listModelArray;
 @property (nonatomic,strong)RH_DepositeTransferChannelModel *channelModel;
 @property (nonatomic,assign)NSInteger cellStatusIndex;
+@property (nonatomic,strong)RH_DepositeTansferCounterModel *counterModel;
+@property (nonatomic,strong)NSArray *counterArray;
 @end
 
 @implementation RH_DepositeSystemPlatformCell
@@ -49,7 +51,9 @@
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.listModelArray = ConvertToClassPointer(NSArray, context);
+    self.channelModel = ConvertToClassPointer(RH_DepositeTransferChannelModel, context);
+    self.listModelArray = ConvertToClassPointer(NSArray, self.channelModel.mArrayListModel);
+    self.counterArray = ConvertToClassPointer(NSArray, self.channelModel.mAounterModel);
     RH_DepositeTransferListModel *listModel = self.listModelArray[0];
     if ([listModel.mDepositWay isEqualToString:@"online_deposit"]) {
         self.listModelArray=@[];
@@ -113,8 +117,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.listModelArray[indexPath.item]);
-    ifRespondsSelector(self.delegate, @selector(depositeSystemPlatformCellDidtouch:payTypeString:accountModel:)){
-        [self.delegate depositeSystemPlatformCellDidtouch:self payTypeString :listModel.mType accountModel:listModel] ;
+    ifRespondsSelector(self.delegate, @selector(depositeSystemPlatformCellDidtouch:payTypeString:accountModel:acounterModel:)){
+        [self.delegate depositeSystemPlatformCellDidtouch:self payTypeString :listModel.mType accountModel:listModel acounterModel:self.counterArray];
     }
     _cellStatusIndex = indexPath.item ;
     [self.collectionView reloadData];
