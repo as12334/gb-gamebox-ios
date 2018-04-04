@@ -224,7 +224,7 @@
         {
             self.BottomView2.hidden = NO;
             self.BottomView.hidden = YES;
-            self.typeTitleLab.text = detailModel.mBankCodeName;
+//            self.typeTitleLab.text = detailModel.mBankCodeName;
             self.rechargeMoney.text = detailModel.mRechargeAmount ;
             self.serviceChargeMoney.text = detailModel.mPoundage ;
             self.inMyAccountMoney.text = detailModel.mRechargeTotalAmount ;
