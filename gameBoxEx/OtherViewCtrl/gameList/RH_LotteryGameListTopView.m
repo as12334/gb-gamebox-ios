@@ -39,7 +39,11 @@
     self.contentView.layer.borderColor = colorWithRGB(204, 204, 204).CGColor ;
     self.contentView.layer.cornerRadius = 5;
     self.contentView.layer.masksToBounds = YES ;
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor clearColor];
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.backgroundColor = [UIColor blackColor];
+    }
+    
 //    contentView.clipsToBounds = YES;
 }
 

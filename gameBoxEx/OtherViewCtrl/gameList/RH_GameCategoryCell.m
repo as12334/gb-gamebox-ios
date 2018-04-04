@@ -38,7 +38,7 @@
     self.borderView.backgroundColor = colorWithRGB(255, 255, 255) ;
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.borderView.backgroundColor = [UIColor clearColor] ;
-//        self.labTitle.textColor =  [UIColor whiteColor] ;
+        self.labTitle.textColor =  [UIColor whiteColor] ;
     }
 }
 
