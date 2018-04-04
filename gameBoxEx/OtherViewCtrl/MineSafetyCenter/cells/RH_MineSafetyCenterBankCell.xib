@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifr-mK-ebV">
-                        <rect key="frame" x="385" y="12" width="29" height="20"/>
+                        <rect key="frame" x="387" y="12" width="29" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ifr-mK-ebV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="2OW-A4-Oc0"/>
-                    <constraint firstAttribute="trailing" secondItem="ifr-mK-ebV" secondAttribute="trailing" constant="3" id="EGE-5Y-ktg"/>
+                    <constraint firstAttribute="trailing" secondItem="ifr-mK-ebV" secondAttribute="trailing" constant="1" id="EGE-5Y-ktg"/>
                     <constraint firstAttribute="bottom" secondItem="ifr-mK-ebV" secondAttribute="bottom" constant="12" id="mtr-gL-olQ"/>
                     <constraint firstAttribute="bottom" secondItem="10J-hV-Bg9" secondAttribute="bottom" constant="12" id="q7Y-gx-lLD"/>
                     <constraint firstItem="10J-hV-Bg9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="sbn-HJ-Q2y"/>

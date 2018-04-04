@@ -614,7 +614,9 @@
 
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
+    
     [self.serviceRequest startV3RequestDepositOrigin];
+
 }
 -(void)cancelLoadDataHandle
 {
@@ -630,10 +632,10 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-        self.transModelArray  = ConvertToClassPointer(NSArray , data);
-        [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
-                                     totalCount:self.transModelArray?1:0] ;
-        [self.contentTableView reloadData];
+            self.transModelArray  = ConvertToClassPointer(NSArray , data);
+            [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
+                                totalCount:self.transModelArray?1:0] ;
+            [self.contentTableView reloadData];
     }
     else if (type == ServiceRequestTypeV3DepositeOriginChannel)
     {
@@ -707,7 +709,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
     if (type == ServiceRequestTypeV3DepositeOrigin) {
-        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
+         [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
         
