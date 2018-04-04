@@ -2917,9 +2917,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
                     tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(nil, @"您账号已在其他设备登录，请重新登录") ;
-                    });
                     [self.appDelegate updateLoginStatus:FALSE] ;
                 }
             }
