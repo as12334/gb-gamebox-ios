@@ -176,12 +176,14 @@
             [item setFieldModel:field];
             [self.stackView addSubview:item];
         }
-        if ([field.name isEqualToString:@"110"]) {
-            RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
-            FieldModel *field = [[FieldModel alloc] init];
-            field.name = @"110verify";
-            [item setFieldModel:field];
-            [self.stackView addSubview:item];
+        if (registrationInitModel.isPhone) {
+            if ([field.name isEqualToString:@"110"]) {
+                RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+                FieldModel *field = [[FieldModel alloc] init];
+                field.name = @"110verify";
+                [item setFieldModel:field];
+                [self.stackView addSubview:item];
+            }
         }
         if ([field.name isEqualToString:@"paymentPassword"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
@@ -399,9 +401,11 @@
             if (phone.length == 0) {
                 showMessage(self.contentView, @"请输入手机号", @"");
                 return;}
-            if (phoneVerify.length == 0) {
-                showMessage(self.contentView, @"请输入手机验证码", @"");
-                return;
+            if (registrationInitModel.isPhone) {
+                if (phoneVerify.length == 0) {
+                    showMessage(self.contentView, @"请输入手机验证码", @"");
+                    return;
+                }
             }
         }
         if ([obj isEqualToString:@"201"]) {
