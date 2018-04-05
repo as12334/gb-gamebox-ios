@@ -394,7 +394,8 @@
 #pragma mark --每次进来默认选中第一个
 -(void)depositePayforWayInitializeStatus
 {
-    
+    if (self.transModelArray.count > 0) {
+        
     RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.transModelArray[0]);
     NSString *depositeCode = transferModel.mCode;
     NSString *depositeName = transferModel.mName;
@@ -435,6 +436,7 @@
     self.payforCell.selectedBtnIndex = 0;
     [self.payforCell.collectionView reloadData];
     [self.contentTableView reloadData];
+    }
 }
 
 #pragma mark --depositePayforWay的代理，选择付款的平台

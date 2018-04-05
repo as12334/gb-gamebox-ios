@@ -39,6 +39,7 @@
 @synthesize updateUserVeifyCode = _updateUserVeifyCode ;
 @synthesize isSetSafetySecertPwd = _isSetSafetySecertPwd ;
 @synthesize isBindBitCoin = _isBindBitCoin ;
+@synthesize isShowPhoneCodeCell = _isShowPhoneCodeCell ;
 
 +(instancetype)shareUserManager
 {
@@ -287,6 +288,18 @@
 {
     if (isSetSafetySecertPwd != _isSetSafetySecertPwd) {
         _isSetSafetySecertPwd = isSetSafetySecertPwd ;
+    }
+}
+
+-(BOOL)isShowPhoneCodeCell
+{
+    return _isShowPhoneCodeCell ;
+}
+
+-(void)setIsShowPhoneCodeCell:(BOOL)isShowPhoneCodeCell
+{
+    if (isShowPhoneCodeCell != _isSetSafetySecertPwd) {
+        _isShowPhoneCodeCell = isShowPhoneCodeCell ;
     }
 }
 
