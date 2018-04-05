@@ -31,7 +31,7 @@
     // Initialization code
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
-    self.labTitle.textColor =  colorWithRGB(50, 51, 51) ;
+    self.labTitle.textColor =  colorWithRGB(82, 82, 82) ;
     self.selectionOption = CLSelectionOptionNone ;
     self.borderMask = CLBorderMarkNone ;
     self.borderView.layer.cornerRadius = 5.0f ;
@@ -49,7 +49,7 @@
 //        self.sep
 //    }
 //    self.borderView.backgroundColor = selected?colorWithRGB(49, 126, 194):colorWithRGB(255, 255, 255) ;
-//    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
+    self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
 }
 
 -(void)setSelected:(BOOL)selected

@@ -97,7 +97,9 @@
     NSIndexPath * indexPathForSelectedItem = [self.collectionTypeView.indexPathsForSelectedItems firstObject];
     for (NSIndexPath *indexPath in self.collectionTypeView.indexPathsForVisibleItems) {
         RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:indexPath]);
-        [cell setTitleLabelTextColor:[UIColor whiteColor]];
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            [cell setTitleLabelTextColor:[UIColor whiteColor]];
+        }
     }
     NSIndexPath *index = self.collectionTypeView.indexPathsForSelectedItems.firstObject;
     RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:index]);
