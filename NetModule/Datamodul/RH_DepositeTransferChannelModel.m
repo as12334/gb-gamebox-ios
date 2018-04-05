@@ -108,7 +108,9 @@
         _mPayerBankcard = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_PAYERBANKCARD];
         _mHide = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_HIDE];
         _mMultipleAccount = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT];
-        _mAounterModel = [RH_DepositeTansferCounterModel dataArrayWithInfoArray:[info adaptationValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES]];
+        if (![[info objectForKey:RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES]isKindOfClass:[NSNull class]]) {
+         _mAounterModel = [RH_DepositeTansferCounterModel dataArrayWithInfoArray:[info adaptationValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES]];
+        }
     }
     return self;
 }

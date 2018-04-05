@@ -79,6 +79,7 @@
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
+    self.textField.tag = 999 ;
     
 }
 

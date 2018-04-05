@@ -13,14 +13,14 @@
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-50)/5.0)
 #define HomeCategoryItemsCellHeight                     70.0f
 @interface RH_DepositePayforWayCell()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic,strong,readonly) UICollectionView *collectionView ;
+
 @property (nonatomic,strong)NSArray *payModelArray;
 @property (nonatomic,strong) RH_DepositeTransferModel *transferModel;
-@property (nonatomic,assign)NSInteger selectedBtnIndex;
+
 @end
 @implementation RH_DepositePayforWayCell
 
-@synthesize collectionView = _collectionView ;
+//@synthesize collectionView = _collectionView ;
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
      NSArray * transferModelArray = ConvertToClassPointer(NSArray, context);

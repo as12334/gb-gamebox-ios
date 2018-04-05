@@ -85,6 +85,7 @@
 //    站点配制
 //===========================================================
 
+//#define THEMEV3             @"green"   //green,red,black,default .
 #define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
@@ -95,7 +96,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"
 #define THEME     @"default.skin"
-#define THEMEV3     @"green"   //green,red,black,default .
+#define THEMEV3     @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 
@@ -120,7 +121,7 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-//#define TEST_DOMAIN             @"test71.hongtubet.com"
+//#define TEST_DOMAIN           @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 //#define TEST_DOMAIN           @"192.168.0.150"   //cherry
@@ -133,7 +134,7 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _1qkq //超博娱乐
+#elif _1qkq //宏图娱乐
 
 #define CODE    @"1qkq"
 #define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
@@ -147,6 +148,7 @@
 #define S        @"81a0d811edec500290dbbc094957396e"
 #define SID        @"66"
 #define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7cxt //百发彩票

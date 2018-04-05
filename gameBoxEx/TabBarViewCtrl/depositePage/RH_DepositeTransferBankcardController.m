@@ -47,6 +47,55 @@
 @synthesize circleView = _circleView;
 @synthesize pulldownView = _pulldownView;
 @synthesize closeBtn = _closeBtn;
+
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
+
+
 -(BOOL)isSubViewController
 {
     return YES;
@@ -76,7 +125,9 @@
 {
     if (!_pulldownView) {
         _pulldownView = [RH_DepositeTransferPulldownView createInstance];
-        [_pulldownView setupViewWithContext:self.accountMuArray[3]];
+        if ([self.accountMuArray[2] isEqualToString:@"counter"]) {
+            [_pulldownView setupViewWithContext:self.accountMuArray[3]];
+        }
         _pulldownView.delegate = self;
     }
     return _pulldownView;
@@ -289,7 +340,7 @@
     else if (indexPath.item == [_markArray[7] integerValue]){
         RH_DepositeTransferReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferReminderCell defaultReuseIdentifier]] ;
         reminderCell.delegate=self;
-        //        [reminderCell updateCellWithInfo:nil context:self.accountModel];
+        [reminderCell updateCellWithInfo:nil context:self.accountMuArray[2]];
         return reminderCell ;
     }
     return nil;
@@ -345,77 +396,180 @@
 -(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
 {
     [self.paywayCell.payNumTextfield resignFirstResponder];
+
     [self.transferOrderCell.orderNumTextfiled resignFirstResponder];
+
     [self.adressCell.payTextfield resignFirstResponder];
+    
     if ([self.accountMuArray[2] isEqualToString:@"counter"]) {
         if (self.transferOrderCell.transferOrderString.length==0) {
-            showMessage(self.view, @"请填转账账号对应的姓名", nil);
-        }
-        else{
-            if (self.adressCell.adressStr==0) {
-                showMessage(self.view, @"请填写存款地点", nil);
+                showMessage(self.view, @"请填转账账号对应的姓名", nil);
             }
             else{
-                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                if (self.adressCell.adressStr==0) {
+                    showMessage(self.view, @"请填写存款地点", nil);
+                }
+                else{
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
             }
-        }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"company"]){
         if (self.transferOrderCell.transferOrderString.length==0) {
             showMessage(self.view, @"请填写账号对应的姓名", nil);
         }
         else{
-            
+
             [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
             [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
         }
     }
-    else{
-        if (self.paywayCell.superview&&self.paywayCell.paywayString.length==0) {
-            
-            if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
-                showMessage(self.view, @"请填写微信昵称", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"alipay"])
-            {
-                showMessage(self.view, @"请填写支付户名", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"qq"])
-            {
-                showMessage(self.view, @"请填写QQ号", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"jd"])
-            {
-                showMessage(self.view, @"请填写京东号", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"bd"])
-            {
-                showMessage(self.view, @"请填写百度号", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"]){
-                showMessage(self.view, @"请填写订单号后五位", nil);
-            }
-            else if ([self.accountMuArray[2] isEqualToString:@"other"])
-            {
-                showMessage(self.view, @"请填其他的方式账号", nil);
-            }
+    else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
+        if (self.paywayCell.paywayString.length==0) {
+            showMessage(self.view, @"请填写微信昵称", nil);
         }
         else{
-            
-          if ([self.accountMuArray[2] isEqualToString:@"alipay"]&&self.transferOrderCell.transferOrderString.length==0)
-            {
-                showMessage(self.view, @"请填写支付宝账号", nil);
+            if (self.transferOrderCell.transferOrderString.length!=5) {
+                showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
             else{
-               
-                [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
-                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                NSString *regex = @"[0-9]*";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
+                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
+                else{
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
             }
         }
     }
+    else if ([self.accountMuArray[2] isEqualToString:@"qq"]){
+        if (self.paywayCell.paywayString.length==0) {
+            showMessage(self.view, @"请填写qq号码", nil);
+        }
+        else{
+            if (self.transferOrderCell.transferOrderString.length!=5) {
+                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+            }
+            else{
+                NSString *regex = @"[0-9]*";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
+                else{
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
+            }
+        }
+    }
+    else if ([self.accountMuArray[2] isEqualToString:@"jd"]){
+        if (self.paywayCell.paywayString.length==0) {
+            showMessage(self.view, @"请填写京东号", nil);
+        }
+        else{
+            if (self.transferOrderCell.transferOrderString.length!=5) {
+                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+            }
+            else{
+                NSString *regex = @"[0-9]*";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
+                else{
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
+            }
+        }
+    }
+    else if ([self.accountMuArray[2] isEqualToString:@"bd"]){
+        if (self.paywayCell.paywayString.length==0) {
+            showMessage(self.view, @"请填写百度账号", nil);
+        }
+        else{
+            if (self.transferOrderCell.transferOrderString.length!=5) {
+                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+            }
+            else{
+                NSString *regex = @"[0-9]*";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
+                else{
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
+            }
+        }
+    }
+    else if ([self.accountMuArray[2] isEqualToString:@"other"]){
+        if (self.paywayCell.paywayString.length==0) {
+            showMessage(self.view, @"请填写其他方式的账号", nil);
+        }
+        else{
+            if (self.transferOrderCell.transferOrderString.length!=5) {
+                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+            }
+            else{
+                NSString *regex = @"[0-9]*";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
+                else{
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
+            }
+        }
+    }
+    else if ([self.accountMuArray[2] isEqualToString:@"alipay"]){
+        if (self.paywayCell.paywayString.length==0) {
+            showMessage(self.view, @"请填写支付宝用户名", nil);
+        }
+        else{
+            if (self.transferOrderCell.transferOrderString.length==0) {
+                showMessage(self.view, @"请输入支付宝账号", nil);
+            }
+            else{
+                if (self.adressCell.adressStr.length!=5) {
+                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                }
+                else{
+                    NSString *regex = @"[0-9]*";
+                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
+                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                    }
+                    else{
+                        showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    }
+                }
+            }
+        }
+        
+    }
+
+    else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"])
+    {
+        if (self.paywayCell.paywayString.length!=5) {
+            showMessage(self.view, @"请输入五位纯数字订单号", nil);
+        }
+        else{
+            NSString *regex = @"[0-9]*";
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+            if ([pred evaluateWithObject:self.paywayCell.paywayString]) {
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+            }
+            else{
+                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+            }
+        }
+    }
+
 }
-   
-//}
+
 #pragma mark --选择弹框列表
 -(void)depositeSubmitCircleViewChooseDiscount:(NSInteger)activityId
 {
@@ -490,6 +644,7 @@
 #pragma mark - DepositeTransferQRCodeCellDelegate
 -(void)depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:(NSString *)imageUrl
 {
+    [self showProgressIndicatorViewWithAnimated:YES title:@"图片保存中"];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]]];
     UIImage *myImage = [UIImage imageWithData:data];
     [self saveImageToPhotos:myImage];
