@@ -177,6 +177,7 @@
 
 -(void)depositeBitcionCellDidTouchSaveToPhoneWithUrl:(NSString *)imageUrl
 {
+    [self showProgressIndicatorViewWithAnimated:YES title:@"图片保存中"] ;
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrl]]];
     UIImage *myImage = [UIImage imageWithData:data];
     [self saveImageToPhotos:myImage];

@@ -457,10 +457,8 @@
     //选的的平台传入到rrminderArray里面，一遍传入
     [self.reminderArray addObject:self.depositeCode];
     if ([self.depositeName isEqualToString:@"快充中心"]) {
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        appDelegate.customUrl =depositeCode ;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_QuickChongZhiViewController viewControllerWithContext:depositeCode] sender:self] ;
+            [self showViewController:[RH_QuickChongZhiViewController viewControllerWithContext:@[depositeCode,depositName]] sender:self] ;
         }) ;
         _markArray = @[@0];
     }

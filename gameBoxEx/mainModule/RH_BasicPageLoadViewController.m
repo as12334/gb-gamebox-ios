@@ -597,15 +597,16 @@
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        }];
-        [alert addAction:cancel];
-        
-        [self presentViewController:alert animated:YES completion:^{
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancel];
             
-        }];
-        
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+        }] ;
     }else{
         msg = @"保存图片成功!请到相册里查看" ;
         UIImagePickerController *picker = [[UIImagePickerController alloc]init];
@@ -615,10 +616,13 @@
         /* 根据照片来源确定AlertAction */
         //        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
         /* 判断相册是否可以访问 */
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行查看！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
-        }
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行查看！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+            }
+        }] ;
+        
         
     }
 }

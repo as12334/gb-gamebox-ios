@@ -11,6 +11,7 @@
 @interface RH_QuickChongZhiViewController ()<UIWebViewDelegate>
 {
     NSString *_urlStr ;
+    NSString *_title ;
     UIWebView *_webView ;
 }
 @end
@@ -70,13 +71,17 @@
 
 -(void)setupViewContext:(id)context
 {
-    _urlStr = ConvertToClassPointer(NSString, context) ;
+    NSArray *dataArr = ConvertToClassPointer(NSArray, context) ;
+    if (dataArr.count > 0) {
+        _urlStr = dataArr[0] ;
+        _title = dataArr[1] ;
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"快充中心";
+    self.title = _title;
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, NavigationBarHeight +StatusBarHeight, screenSize().width, screenSize().height-NavigationBarHeight -StatusBarHeight)] ;
     _webView.delegate = self ;
     [self.view addSubview:_webView];
