@@ -9,7 +9,6 @@
 #import "RH_RegisetInitModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
-#import "RH_UserInfoManager.h"
 
 @implementation RH_RegisetInitModel
 -(id)initWithInfoDic:(NSDictionary *)info
@@ -24,8 +23,6 @@
         _selectOptionModel = [[SelectOptionModel alloc] initWithInfoDic:[info objectForKey:@"selectOption"]] ;
         _registCodeField = [info boolValueForKey:@"registCodeField"] ;
         _fieldModel = [FieldModel dataArrayWithInfoArray:[info objectForKey:@"field"]] ;
-        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
-        manager.isShowPhoneCodeCell = _isPhone ;
     }
     return self ;
 }

@@ -10,7 +10,6 @@
 #import "RH_RegistrationViewItem.h"
 #import "coreLib.h"
 #import "RH_ServiceRequest.h"
-#import "RH_UserInfoManager.h"
 
 @interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate,RH_ServiceRequestDelegate>
 @property (nonatomic, strong) NSTimer *timer;
@@ -234,11 +233,9 @@
     if ([model.name isEqualToString:@"110verify"]) {
         label_Title.text = @"请输入手机验证码";
         textField.placeholder = @"请输入手机验证码";
-        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
-        if (manager.isShowPhoneCodeCell) {
-             [self setPhoneVerifyCodeLayout];
-        }
+        [self setPhoneVerifyCodeLayout];
     }
+    
     if ([model.name isEqualToString:@"201"]) {
         label_Title.text = @"邮箱";
         textField.placeholder = @"请输入邮箱地址";
