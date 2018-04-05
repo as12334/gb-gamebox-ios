@@ -43,7 +43,7 @@
      self.allChoseBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
     [self.allChoseBtn setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateNormal];
     self.allChoseBtn.titleLabel.layoutMargins= UIEdgeInsetsMake(0, 20, 0, 0);
-    self.allSelectedImageView.layer.cornerRadius = 4.f;
+    self.allSelectedImageView.layer.cornerRadius = 10.f;
     self.allSelectedImageView.layer.borderColor = colorWithRGB(226, 226, 226).CGColor;
     self.allSelectedImageView.layer.borderWidth = 1.f;
     self.allSelectedImageView.layer.masksToBounds = YES;

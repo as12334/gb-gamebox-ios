@@ -10,4 +10,5 @@
 
 @interface RH_GameCategoryCell : CLCollectionViewCell
 - (void)setTitleLabelTextColor:(UIColor *)color;
+@property (nonatomic,strong) IBOutlet UILabel *labTitle ;
 @end

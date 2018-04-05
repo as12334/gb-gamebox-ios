@@ -15,6 +15,7 @@
 //选择指示器
 @property(nonatomic,strong,readonly) CALayer * selectionIndicater;
 
+@property (nonatomic,strong)UIView *lineView;
 @property (nonatomic,strong) NSArray *arrayTypeList ;
 @end
 
@@ -96,7 +97,9 @@
     NSIndexPath * indexPathForSelectedItem = [self.collectionTypeView.indexPathsForSelectedItems firstObject];
     for (NSIndexPath *indexPath in self.collectionTypeView.indexPathsForVisibleItems) {
         RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:indexPath]);
-        [cell setTitleLabelTextColor:[UIColor whiteColor]];
+        if ([THEMEV3 isEqualToString:@"black"]) {
+            [cell setTitleLabelTextColor:[UIColor whiteColor]];
+        }
     }
     NSIndexPath *index = self.collectionTypeView.indexPathsForSelectedItems.firstObject;
     RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:index]);
@@ -124,7 +127,13 @@
         CGRect cellFrame = [self.collectionTypeView layoutAttributesForItemAtIndexPath:indexPathForSelectedItem].frame;
         
         //设置选择指示器位置
-        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 2.f, CGRectGetWidth(cellFrame), 2.f);
+        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 1.5f, CGRectGetWidth(cellFrame), 1.5f);
+        if (!self.lineView) {
+            self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(cellFrame) - 1.f, [UIScreen mainScreen].bounds.size.width, 1)];
+            self.lineView.backgroundColor = colorWithRGB(71, 71, 71);
+            [self addSubview:self.lineView];
+        }
+        
     }
     
     [CATransaction commit];
@@ -152,6 +161,8 @@
         
         _collectionTypeView.showsHorizontalScrollIndicator = NO;
         [_collectionTypeView registerCellWithClass:[RH_GameCategoryCell class]] ;
+        
+        
     }
     
     return _collectionTypeView ;
@@ -201,6 +212,10 @@
 {
     RH_GameCategoryCell *typeCell = [self.collectionTypeView dequeueReusableCellWithReuseIdentifier:[RH_GameCategoryCell defaultReuseIdentifier] forIndexPath:indexPath];
     [typeCell updateViewWithInfo:ConvertToClassPointer(NSDictionary, self.arrayTypeList[indexPath.item]) context:nil] ;
+    if (![THEMEV3 isEqualToString:@"black"]) {
+        typeCell.labTitle.textColor = [UIColor blackColor];
+    }
+    
     return typeCell;
 }
 

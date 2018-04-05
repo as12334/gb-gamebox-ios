@@ -38,9 +38,11 @@
     [super awakeFromNib];
     
 //    self.contentView.backgroundColor = [UIColor clearColor];
+     self.lineView.backgroundColor = colorWithRGB(226, 226, 226) ;
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.contentView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+         self.lineView.backgroundColor = colorWithRGB(102, 102, 102) ;
     }
     
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
@@ -48,7 +50,7 @@
     self.collectionView.backgroundColor = [UIColor redColor];
     [self configureCollection:self.collectionView] ;
     
-    self.lineView.backgroundColor = colorWithRGB(226, 226, 226) ;
+   
     self.lineView.whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0).whc_Height(1) ;
 }
 

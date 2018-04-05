@@ -169,6 +169,8 @@
 
 #elif _zmis //测试站点三
 
+#define TEST_DOMAIN  @"test80.hongtubet.com"
+
 #define CODE    @"zmis"
 #define S        @"5ef84e61a56641ee0c28301a46a01a7c"
 #define SID        @"80"
@@ -181,7 +183,7 @@
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _XH5Z //澳门永利
@@ -1942,6 +1944,80 @@
 #define SID        @"511"
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
+
+#elif _mkxe //金沙娱乐场
+
+#define CODE    @"mkxe"
+#define S        @"571ff853ff47d6e80b59716a3bccf38b"
+#define SID        @"500"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+
+#elif _xmpk //奥林匹克娱乐城
+
+#define CODE    @"xmpk"
+#define S        @"96e58050eea52e86de4fad2566666f79"
+#define SID        @"510"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _fap9 //威尼斯人娱乐城
+
+#define CODE    @"fap9"
+#define S        @"725c32c05cc389f73b8e5a2debf72caa"
+#define SID        @"506"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _jtet //澳门博彩控股
+
+#define CODE    @"jtet"
+#define S        @"690999104d29bb013529e3316dad7d25"
+#define SID        @"513"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _rl4o //AUY澳盈
+
+#define CODE    @"rl4o"
+#define S        @"a089b492c353d9420a09f4b5d07d6a22"
+#define SID        @"515"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _eobp //威尼斯人
+
+#define CODE    @"eobp"
+#define S        @"75d43e5aa136d83be57969e3d0f6a65f"
+#define SID        @"505"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _2etb //太阳城集团
+
+#define CODE    @"2etb"
+#define S        @"b5a9a1752759113ae4664234d9e47481"
+#define SID        @"521"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _838o //皇冠现金网
+
+#define CODE    @"838o"
+#define S        @"adee5dceec613dc609cd516185101f92"
+#define SID        @"502"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _pgvj //阿德国际
+
+#define CODE    @"pgvj"
+#define S        @"722628a57559aa13183225f7149e1b9c"
+#define SID        @"509"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
 
 #endif
 

@@ -47,7 +47,7 @@
                 <outlet property="borderView" destination="rrl-ae-mdi" id="8N8-gW-y0S"/>
                 <outlet property="labTitle" destination="af7-kk-kYL" id="Dkh-nk-pgh"/>
             </connections>
-            <point key="canvasLocation" x="-873" y="-352"/>
+            <point key="canvasLocation" x="-951" y="-395"/>
         </collectionViewCell>
     </objects>
 </document>

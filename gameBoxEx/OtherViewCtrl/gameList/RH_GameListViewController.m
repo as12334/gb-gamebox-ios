@@ -20,6 +20,7 @@
 @property (nonatomic, strong,readonly) CLPageView            *pageView;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; //存储 pagecell data content ;
 
+
 @end
 
 @implementation RH_GameListViewController
@@ -41,7 +42,10 @@
     // Do any additional setup after loading the view.
     self.title = _lotteryApiModel.mName?:@"列表" ;
     [self.navigationBar setBackgroundColor:[UIColor blueColor]];
-    [self.navigationBar setTintColor:[UIColor blackColor]];
+//    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    if ([THEMEV3 isEqualToString:@"black"]) {
+        self.view.backgroundColor = [UIColor blackColor];
+    }
     [self loadingIndicateViewDidTap:nil] ;
 }
 
