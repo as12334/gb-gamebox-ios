@@ -459,7 +459,7 @@
                 password = [NSString stringWithFormat:@"document.getElementById('password').value='%@'",password];
                 [self.webView stringByEvaluatingJavaScriptFromString:password];
             }
-        }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     }
     
     //增加通用 js 处理

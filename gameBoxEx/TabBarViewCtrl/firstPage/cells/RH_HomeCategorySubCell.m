@@ -31,11 +31,12 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  [UIColor blackColor] ;
-    self.bgView.alpha = 0.0;
     if ([THEMEV3 isEqualToString:@"black"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
         self.backgroundColor = colorWithRGB(37, 37, 37) ;
-        self.bgView.alpha = 1.0;
+    }else{
+        self.backgroundColor = colorWithRGB(239, 239, 239) ;
+        self.bgView.backgroundColor = colorWithRGB(247, 247, 247);
     }
     self.imgIcon.whc_TopSpace(4).whc_CenterX(0).whc_Width(25).whc_Height(25);
     self.selectionOption = CLSelectionOptionNone ;

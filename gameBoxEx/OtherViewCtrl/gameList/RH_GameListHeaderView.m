@@ -99,6 +99,8 @@
         RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:indexPath]);
         if ([THEMEV3 isEqualToString:@"black"]) {
             [cell setTitleLabelTextColor:[UIColor whiteColor]];
+        }else{
+            [cell setTitleLabelTextColor:colorWithRGB(51, 51, 51)];
         }
     }
     NSIndexPath *index = self.collectionTypeView.indexPathsForSelectedItems.firstObject;
@@ -106,12 +108,12 @@
     if ([THEMEV3 isEqualToString:@"green"]){
         [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Green];
     }else if ([THEMEV3 isEqualToString:@"red"]){
-        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Red];
+        [cell setTitleLabelTextColor:colorWithRGB(242, 32, 95)];
         
     }else if ([THEMEV3 isEqualToString:@"black"]){
         [cell setTitleLabelTextColor:colorWithRGB(22, 142, 246)];
     }else{
-        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor];
+        [cell setTitleLabelTextColor:colorWithRGB(23, 102, 87)];
     }
     
     

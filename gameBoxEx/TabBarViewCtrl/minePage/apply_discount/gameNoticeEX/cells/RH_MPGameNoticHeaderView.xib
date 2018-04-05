@@ -15,86 +15,64 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-og-ORj">
-                    <rect key="frame" x="7" y="5.5" width="100" height="30"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-og-ORj">
+                    <rect key="frame" x="17" y="5.5" width="100" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="3hQ-6x-hjn"/>
-                        <constraint firstAttribute="width" constant="100" id="qyE-G1-EnP"/>
-                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-Zh-vUs">
-                    <rect key="frame" x="120" y="5.5" width="100" height="30"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-Zh-vUs">
+                    <rect key="frame" x="137" y="5.5" width="100" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="XAf-A9-FbH"/>
-                        <constraint firstAttribute="width" constant="100" id="kPh-gF-GiS"/>
-                    </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2w-3A-XrD">
-                    <rect key="frame" x="110" y="14" width="8" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="8" id="Y7f-Tz-oNx"/>
-                        <constraint firstAttribute="height" constant="12" id="yLm-KA-qif"/>
-                    </constraints>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-pJ-0Uf" userLabel="rightView">
+                    <rect key="frame" x="137" y="5" width="100" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="CLSelectionControl">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="doen" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-Nk-qPz">
+                                    <rect key="frame" x="79" y="7.5" width="15" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="所有游戏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQ6-WI-fEL">
+                                    <rect key="frame" x="3" y="0.5" width="100" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="gameTypeSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="mPI-Jt-CeS"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2w-3A-XrD">
+                    <rect key="frame" x="127" y="14" width="8" height="12"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="CLSelectionControl">
-                    <rect key="frame" x="232" y="4.5" width="100" height="30"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doen" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-Nk-qPz">
-                            <rect key="frame" x="79" y="7.5" width="15" height="15"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="15" id="mad-Qj-stN"/>
-                                <constraint firstAttribute="height" constant="15" id="tMm-2c-XTf"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有游戏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQ6-WI-fEL">
-                            <rect key="frame" x="3" y="0.5" width="100" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="100" id="kaa-Yb-WEG"/>
-                                <constraint firstAttribute="height" constant="30" id="pxZ-ce-yq1"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="eDQ-Nk-qPz" firstAttribute="centerY" secondItem="N3P-XL-iS1" secondAttribute="centerY" id="6uL-4Q-ult"/>
-                        <constraint firstAttribute="width" constant="100" id="DvP-02-Kmx"/>
-                        <constraint firstAttribute="height" constant="30" id="ccy-ks-RAK"/>
-                        <constraint firstItem="SQ6-WI-fEL" firstAttribute="centerY" secondItem="N3P-XL-iS1" secondAttribute="centerY" id="dYs-l3-tcE"/>
-                        <constraint firstAttribute="trailing" secondItem="eDQ-Nk-qPz" secondAttribute="trailing" constant="6" id="fvf-ew-xOZ"/>
-                        <constraint firstItem="SQ6-WI-fEL" firstAttribute="leading" secondItem="N3P-XL-iS1" secondAttribute="leading" constant="3" id="ogd-Ze-aB0"/>
-                    </constraints>
-                    <connections>
-                        <action selector="gameTypeSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="mPI-Jt-CeS"/>
-                    </connections>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="1KE-og-ORj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="119-9U-edX"/>
-                <constraint firstItem="N3P-XL-iS1" firstAttribute="leading" secondItem="ouN-Zh-vUs" secondAttribute="trailing" constant="12" id="3Yq-cz-96m"/>
-                <constraint firstItem="N2w-3A-XrD" firstAttribute="leading" secondItem="1KE-og-ORj" secondAttribute="trailing" constant="3" id="BDU-oG-AWy"/>
-                <constraint firstItem="1KE-og-ORj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="H65-nh-dfu"/>
-                <constraint firstItem="ouN-Zh-vUs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QpL-nr-wrp"/>
-                <constraint firstItem="N3P-XL-iS1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aEQ-s7-xVM"/>
-                <constraint firstItem="N2w-3A-XrD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="diz-o7-Apq"/>
-                <constraint firstItem="ouN-Zh-vUs" firstAttribute="leading" secondItem="N2w-3A-XrD" secondAttribute="trailing" constant="2" id="jJa-ea-qhV"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="downImg" destination="eDQ-Nk-qPz" id="abd-an-ziS"/>
                 <outlet property="ennDateView" destination="ouN-Zh-vUs" id="M1G-dX-9rX"/>
                 <outlet property="gameTypeControl" destination="N3P-XL-iS1" id="9zJ-HF-FLa"/>
                 <outlet property="gameTypeLabel" destination="SQ6-WI-fEL" id="oN9-QF-IIf"/>
+                <outlet property="label" destination="N2w-3A-XrD" id="Rjp-eA-gP5"/>
+                <outlet property="rightView" destination="1cu-pJ-0Uf" id="fgG-NT-m99"/>
                 <outlet property="startDateView" destination="1KE-og-ORj" id="4gO-40-gB3"/>
             </connections>
-            <point key="canvasLocation" x="143" y="111"/>
+            <point key="canvasLocation" x="337" y="-19"/>
         </view>
     </objects>
     <resources>

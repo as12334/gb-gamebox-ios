@@ -300,7 +300,7 @@
         return [RH_DepositePayforWayCell heightForCellWithInfo:nil tableView:tableView context:self.transModelArray] ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
-        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.channelModel.mArrayListModel] -10;
+        return [RH_DepositeSystemPlatformCell heightForCellWithInfo:nil tableView:tableView context:self.channelModel.mArrayListModel] ;
 //        return 120.f;
     }
     else if (indexPath.item ==[_markArray[2]integerValue]){

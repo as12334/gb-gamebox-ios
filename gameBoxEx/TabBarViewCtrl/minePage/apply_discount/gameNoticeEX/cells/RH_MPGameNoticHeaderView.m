@@ -15,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UIView *ennDateView;
 @property (nonatomic,strong,readonly) RH_MPGameSeletedDateView *endSeletedDateView ;
 @property (weak, nonatomic) IBOutlet CLSelectionControl *gameTypeControl;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIImageView *downImg;
+@property (weak, nonatomic) IBOutlet UIView *rightView;
+
 @property (weak, nonatomic) IBOutlet UIButton *kuaixuanBtn;
 @end
 
@@ -59,7 +63,17 @@
     self.startSeletedDateView.dateLabel.font = [UIFont systemFontOfSize:12.f];
     self.endSeletedDateView.dateLabel.textColor =  colorWithRGB(153, 153, 153);
     self.endSeletedDateView.dateLabel.font = [UIFont systemFontOfSize:12.f];
+    CGFloat screenW= [UIScreen mainScreen].bounds.size.width;
+    self.startDateView.whc_LeftSpace(screenW/30).whc_TopSpace(15).whc_Width(screenW/3.2).whc_Height(30);
+    self.label.whc_LeftSpaceToView(0, self.startDateView).whc_TopSpace(15).whc_Width(8).whc_Height(30);
+    self.ennDateView.whc_LeftSpaceToView(0, self.label).whc_TopSpace(15).whc_Width(screenW/3.2).whc_Height(30);
     
+    self.rightView.backgroundColor = [UIColor clearColor];
+    self.rightView.whc_RightSpaceToView(0, self).whc_TopSpace(15).whc_Width(screenW/3.2).whc_Height(30);
+     self.gameTypeLabel.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpace(15).whc_BottomSpace(0).whc_Width(screenW/3.2).whc_Height(30);
+    self.gameTypeControl.whc_RightSpaceToView([UIScreen mainScreen].bounds.size.width/30, self).whc_TopSpace(0).whc_BottomSpace(0).whc_LeftSpace(10).whc_Width(screenW/3.2).whc_Height(30);
+    self.downImg.whc_LeftSpaceToView(0, self.gameTypeLabel).whc_TopSpace(15/2).whc_Width(15).whc_RightSpace(5).whc_Height(15);
+
 }
 -(RH_MPGameSeletedDateView *)startSeletedDateView
 {
@@ -116,7 +130,8 @@
 }
 - (IBAction)gameTypeSelected:(id)sender {
     __block RH_MPGameNoticHeaderView *weakSelf = self;
-    self.block(2,weakSelf.gameTypeControl.frame);
+    self.block(5,CGRectMake([UIScreen mainScreen].bounds.size.width/1.4, 10, 80, 40));
 }
+
 
 @end
