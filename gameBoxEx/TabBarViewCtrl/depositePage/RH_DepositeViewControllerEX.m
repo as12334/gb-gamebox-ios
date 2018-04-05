@@ -394,6 +394,7 @@
 #pragma mark --每次进来默认选中第一个
 -(void)depositePayforWayInitializeStatus
 {
+
     if(self.transModelArray.count>0){
     RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.transModelArray[0]);
     NSString *depositeCode = transferModel.mCode;
@@ -413,7 +414,10 @@
     self.depositeName = depositeName;
     self.depositeCode = depositeCode;
     //选的的平台传入到rrminderArray里面，一遍传入
-    [self.reminderArray addObject:self.depositeCode];
+    if (self.depositeCode) {
+         [self.reminderArray addObject:self.depositeCode];
+    }
+   
     if ([self.depositeName isEqualToString:@"快充中心"]) {
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         appDelegate.customUrl =depositeCode ;
