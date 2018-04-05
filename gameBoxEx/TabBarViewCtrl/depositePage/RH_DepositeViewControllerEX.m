@@ -38,6 +38,7 @@
 @property(nonatomic,strong)NSArray *transModelArray;
 @property(nonatomic,strong)RH_DepositeMoneyNumberCell *numberCell;
 @property(nonatomic,strong)RH_DepositeSystemPlatformCell *platformCell;
+@property(nonatomic,strong)RH_DepositePayforWayCell *payforCell;
 @property(nonatomic,strong)NSArray *accountModelArray;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
@@ -61,6 +62,8 @@
 @property(nonatomic,assign)NSInteger bankSeletedIndex;
 //将金额传入到优惠弹出界面
 @property(nonatomic,strong)NSString *discountStr;
+//将平台和通道一并传给提示文案的cell
+@property(nonatomic,strong)NSMutableArray *reminderArray;
 
 @end
 
@@ -99,6 +102,7 @@
 //            self.numberCell.payMoneyNumLabel.text.length=
         }
     }
+   
 }
 
 
@@ -326,6 +330,7 @@
         if (indexPath.item==[_markArray[0]integerValue]) {
             RH_DepositePayforWayCell *payforWayCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositePayforWayCell defaultReuseIdentifier]] ;
             payforWayCell.delegate = self;
+            self.payforCell = payforWayCell;
             [payforWayCell updateCellWithInfo:nil context:transferModelArray];
             return payforWayCell ;
         }
@@ -374,6 +379,7 @@
         else if (indexPath.item == [_markArray[6]integerValue]){
             RH_DepositeReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeReminderCell defaultReuseIdentifier]] ;
             reminderCell.delegate = self;
+            [reminderCell updateCellWithInfo:nil context:self.reminderArray];
             return reminderCell ;
         }
        
@@ -385,10 +391,57 @@
     
     return nil;
 }
+#pragma mark --每次进来默认选中第一个
+-(void)depositePayforWayInitializeStatus
+{
+    
+    RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.transModelArray[0]);
+    NSString *depositeCode = transferModel.mCode;
+    NSString *depositeName = transferModel.mName;
+    //每次选择平台就要初始化文案的数组
+    self.reminderArray = [NSMutableArray array];
+    [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
+    if ([depositeName isEqualToString:@"快充中心"]) {
+        
+    }else
+    {
+        [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
+    }
+    //点击各个渠道，重置存款方式
+    [self.platformCell awakeFromNib];
+    self.payforType=nil;
+    self.depositeName = depositeName;
+    self.depositeCode = depositeCode;
+    //选的的平台传入到rrminderArray里面，一遍传入
+    [self.reminderArray addObject:self.depositeCode];
+    if ([self.depositeName isEqualToString:@"快充中心"]) {
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        appDelegate.customUrl =depositeCode ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showViewController:[RH_QuickChongZhiViewController viewControllerWithContext:depositeCode] sender:self] ;
+        }) ;
+        _markArray = @[@0];
+    }
+    else{
+        if ([depositeName isEqualToString:@"在线支付"]) {
+            _markArray = @[@0,@6,@1,@2,@3,@4,@5];
+            self.bankCell.bankNameLabel.text=@"请选择支付银行";
+        }
+        else {
+            _markArray = @[@0,@1,@2,@3,@6,@4,@5];
+        }
+    }
+    //初始化的平台的cell做处理
+    self.payforCell.selectedBtnIndex = 0;
+    [self.payforCell.collectionView reloadData];
+    [self.contentTableView reloadData];
+}
+
 #pragma mark --depositePayforWay的代理，选择付款的平台
 -(void)depositePayforWayDidtouchItemCell:(RH_DepositePayforWayCell *)payforItem depositeCode:(NSString *)depositeCode depositeName:(NSString *)depositName
 {
-  
+    //每次选择平台就要初始化文案的数组
+    self.reminderArray = [NSMutableArray array];
     [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
     if ([depositName isEqualToString:@"快充中心"]) {
        
@@ -399,10 +452,10 @@
     //点击各个渠道，重置存款方式
     [self.platformCell awakeFromNib];
     self.payforType=nil;
-    
     self.depositeName = depositName;
     self.depositeCode = depositeCode;
-    
+    //选的的平台传入到rrminderArray里面，一遍传入
+    [self.reminderArray addObject:self.depositeCode];
     if ([self.depositeName isEqualToString:@"快充中心"]) {
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         appDelegate.customUrl =depositeCode ;
@@ -434,6 +487,14 @@
     self.listModel = accountModel;
     [self.numberCell updateCellWithInfo:nil context:accountModel];
     self.counterArray = acounterModel;
+    //将通道方式也传入到reminderArray;
+    if (self.reminderArray.count==1) {
+        [self.reminderArray addObject:payType];
+    }
+    else if (self.reminderArray.count==2){
+        [self.reminderArray replaceObjectAtIndex:1 withObject:payType];
+    }
+    
     //判断选择的支付方式的type，来确定是否跳转
     [self.contentTableView reloadData];
 }
@@ -652,7 +713,10 @@
             self.transModelArray  = ConvertToClassPointer(NSArray , data);
             [self loadDataSuccessWithDatas:self.transModelArray?@[self.transModelArray]:@[]
                                 totalCount:self.transModelArray?1:0] ;
-            [self.contentTableView reloadData];
+        
+        //请求完就进入默认选中第一个
+        [self depositePayforWayInitializeStatus];
+        [self.contentTableView reloadData];
     }
     else if (type == ServiceRequestTypeV3DepositeOriginChannel)
     {

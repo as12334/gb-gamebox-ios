@@ -15,4 +15,6 @@
 @end
 @interface RH_DepositePayforWayCell : CLTableViewCell
 @property(nonatomic,weak)id<DepositePayforWayCellDelegate>delegate;
+@property (nonatomic,strong) UICollectionView *collectionView ;
+@property (nonatomic,assign)NSInteger selectedBtnIndex;
 @end

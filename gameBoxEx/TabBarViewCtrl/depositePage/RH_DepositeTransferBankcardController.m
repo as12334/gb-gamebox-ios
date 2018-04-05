@@ -340,7 +340,7 @@
     else if (indexPath.item == [_markArray[7] integerValue]){
         RH_DepositeTransferReminderCell *reminderCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferReminderCell defaultReuseIdentifier]] ;
         reminderCell.delegate=self;
-        //        [reminderCell updateCellWithInfo:nil context:self.accountModel];
+        [reminderCell updateCellWithInfo:nil context:self.accountMuArray[2]];
         return reminderCell ;
     }
     return nil;
