@@ -15,6 +15,7 @@
 //选择指示器
 @property(nonatomic,strong,readonly) CALayer * selectionIndicater;
 
+@property (nonatomic,strong)UIView *lineView;
 @property (nonatomic,strong) NSArray *arrayTypeList ;
 @end
 
@@ -124,7 +125,13 @@
         CGRect cellFrame = [self.collectionTypeView layoutAttributesForItemAtIndexPath:indexPathForSelectedItem].frame;
         
         //设置选择指示器位置
-        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 4.f, CGRectGetWidth(cellFrame), 4.f);
+        self.selectionIndicater.frame = CGRectMake(CGRectGetMinX(cellFrame), CGRectGetMaxY(cellFrame) - 1.5f, CGRectGetWidth(cellFrame), 1.5f);
+        if (!self.lineView) {
+            self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(cellFrame) - 1.f, [UIScreen mainScreen].bounds.size.width, 1)];
+            self.lineView.backgroundColor = colorWithRGB(71, 71, 71);
+            [self addSubview:self.lineView];
+        }
+        
     }
     
     [CATransaction commit];
@@ -152,6 +159,8 @@
         
         _collectionTypeView.showsHorizontalScrollIndicator = NO;
         [_collectionTypeView registerCellWithClass:[RH_GameCategoryCell class]] ;
+        
+        
     }
     
     return _collectionTypeView ;

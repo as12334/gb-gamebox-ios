@@ -52,7 +52,7 @@
                             <action selector="clickChangedNum:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Tfh-6m-yPj"/>
                         </connections>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-X1-raT">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0-99999999" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-X1-raT">
                         <rect key="frame" x="147.5" y="6" width="110.5" height="35.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
