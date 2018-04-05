@@ -22,7 +22,7 @@
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     
     [self.payWayImage sd_setImageWithURL:[NSURL URLWithString:listModel.showCover]];
-    if (listModel.mAliasName==nil) {
+    if ([listModel.mAliasName isEqualToString:@""] ||listModel.mAliasName == nil ) {
        self.payWayLabel.text = listModel.mPayName;
     }
     else{
