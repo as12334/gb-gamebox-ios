@@ -109,7 +109,7 @@
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等"];
-    [self.serviceRequest startV3LoadGameType];
+    [self.serviceRequest startV3LoadGameTypeWithApiId:_lotteryApiModel.mApiID searchApiTypeId:_lotteryApiModel.mApiTypeID];
 }
 
 #pragma mark -pageView

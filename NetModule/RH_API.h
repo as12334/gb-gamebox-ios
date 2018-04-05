@@ -808,6 +808,9 @@
 
 #pragma mark -V3 获取游戏分类
 #define RH_API_NAME_LOADGAMETYPE                @"mobile-api/origin/getGameTag.html"
+//请求参数
+#define RH_SP_LOADGAMETYPE_SEARCH_APIID          @"search.apiId"
+#define RH_SP_LOADGAMETYPE_SEARCH_APITYPEID      @"search.apiTypeId"
 //返回参数
 #define RH_GP_LOADGAMETYPE_KEY                  @"key"
 #define RH_GP_LOADGAMETYPE_VALUE                @"value"

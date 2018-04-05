@@ -1223,14 +1223,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark - 获取游戏分类
--(void)startV3LoadGameType
+-(void)startV3LoadGameTypeWithApiId:(NSInteger)apiId searchApiTypeId:(NSInteger)apiTypeId
 {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(apiId) forKey:RH_SP_LOADGAMETYPE_SEARCH_APIID];
+    [dict setObject:@(apiTypeId) forKey:RH_SP_LOADGAMETYPE_SEARCH_APITYPEID];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOADGAMETYPE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:nil
-                     bodyArguments:nil
+                     bodyArguments:dict
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3LoadGameType
                          scopeType:ServiceScopeTypePublic];
