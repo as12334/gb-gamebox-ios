@@ -129,7 +129,7 @@
     self.kuaixuanBlock(1,frame);
 }
 - (IBAction)gameTypeSelected:(id)sender {
-    __block RH_MPGameNoticHeaderView *weakSelf = self;
+//    __block RH_MPGameNoticHeaderView *weakSelf = self;
     self.block(5,CGRectMake([UIScreen mainScreen].bounds.size.width/1.4, 10, 80, 40));
 }
 
