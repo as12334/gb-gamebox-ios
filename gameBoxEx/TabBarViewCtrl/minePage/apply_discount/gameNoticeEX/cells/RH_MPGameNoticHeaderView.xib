@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-og-ORj">
-                    <rect key="frame" x="7" y="5.5" width="100" height="30"/>
+                    <rect key="frame" x="17" y="5.5" width="100" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="3hQ-6x-hjn"/>
@@ -24,7 +24,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-Zh-vUs">
-                    <rect key="frame" x="120" y="5.5" width="100" height="30"/>
+                    <rect key="frame" x="130" y="5.5" width="100" height="30"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="XAf-A9-FbH"/>
@@ -42,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="CLSelectionControl">
-                    <rect key="frame" x="232" y="4.5" width="100" height="30"/>
+                    <rect key="frame" x="242" y="4.5" width="100" height="30"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doen" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-Nk-qPz">
                             <rect key="frame" x="79" y="7.5" width="15" height="15"/>
@@ -78,14 +78,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="1KE-og-ORj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="119-9U-edX"/>
+                <constraint firstItem="1KE-og-ORj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="17" id="119-9U-edX"/>
                 <constraint firstItem="N3P-XL-iS1" firstAttribute="leading" secondItem="ouN-Zh-vUs" secondAttribute="trailing" constant="12" id="3Yq-cz-96m"/>
-                <constraint firstItem="N2w-3A-XrD" firstAttribute="leading" secondItem="1KE-og-ORj" secondAttribute="trailing" constant="3" id="BDU-oG-AWy"/>
+                <constraint firstItem="N2w-3A-XrD" firstAttribute="leading" secondItem="1KE-og-ORj" secondAttribute="trailing" constant="-7" id="BDU-oG-AWy"/>
                 <constraint firstItem="1KE-og-ORj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="H65-nh-dfu"/>
                 <constraint firstItem="ouN-Zh-vUs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QpL-nr-wrp"/>
                 <constraint firstItem="N3P-XL-iS1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aEQ-s7-xVM"/>
                 <constraint firstItem="N2w-3A-XrD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="diz-o7-Apq"/>
-                <constraint firstItem="ouN-Zh-vUs" firstAttribute="leading" secondItem="N2w-3A-XrD" secondAttribute="trailing" constant="2" id="jJa-ea-qhV"/>
+                <constraint firstItem="ouN-Zh-vUs" firstAttribute="leading" secondItem="N2w-3A-XrD" secondAttribute="trailing" constant="12" id="jJa-ea-qhV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

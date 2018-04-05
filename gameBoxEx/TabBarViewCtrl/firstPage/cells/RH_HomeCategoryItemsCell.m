@@ -73,7 +73,7 @@
         if ([THEMEV3 isEqualToString:@"black"]) {
             _collectionView.backgroundColor = colorWithRGB(21, 21, 21);
         }
-        
+        _collectionView.scrollEnabled = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
