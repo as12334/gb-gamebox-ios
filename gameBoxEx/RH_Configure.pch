@@ -86,7 +86,7 @@
 //===========================================================
 
 //#define THEMEV3             @"green"   //green,red,black,default .
-#define THEMEV3             @"black"   //green,red,black,default .
+//#define THEMEV3             @"black"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
@@ -115,13 +115,15 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define THEMEV3     @"red"   //green,red,black,default .
+#define THEMEV3     @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
+
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-//#define TEST_DOMAIN           @"test71.hongtubet.com"
+//#define TEST_DOMAIN           @"beebet777.com"
+//#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 //#define TEST_DOMAIN           @"192.168.0.150"   //cherry
@@ -132,6 +134,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _1qkq //宏图娱乐
@@ -140,6 +143,7 @@
 #define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
 #define SID        @"65"
 #define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _erln //太阳城集团
@@ -201,6 +205,7 @@
 #define S        @"49c7e4a3b15215ed1d3d346140a868fb"
 #define SID        @"110"
 #define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _74bk //新葡京娱乐场
