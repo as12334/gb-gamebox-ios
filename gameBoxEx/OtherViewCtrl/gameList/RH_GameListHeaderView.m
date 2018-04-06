@@ -113,7 +113,7 @@
     }else if ([THEMEV3 isEqualToString:@"black"]){
         [cell setTitleLabelTextColor:colorWithRGB(22, 142, 246)];
     }else{
-        [cell setTitleLabelTextColor:colorWithRGB(23, 102, 87)];
+        [cell setTitleLabelTextColor:colorWithRGB(23, 102, 187)];
     }
     
     
