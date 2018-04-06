@@ -176,12 +176,14 @@
             [item setFieldModel:field];
             [self.stackView addSubview:item];
         }
-        if ([field.name isEqualToString:@"110"]) {
-            RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
-            FieldModel *field = [[FieldModel alloc] init];
-            field.name = @"110verify";
-            [item setFieldModel:field];
-            [self.stackView addSubview:item];
+        if (registrationInitModel.isPhone) {
+            if ([field.name isEqualToString:@"110"]) {
+                RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+                FieldModel *field = [[FieldModel alloc] init];
+                field.name = @"110verify";
+                [item setFieldModel:field];
+                [self.stackView addSubview:item];
+            }
         }
         if ([field.name isEqualToString:@"paymentPassword"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
@@ -399,9 +401,11 @@
             if (phone.length == 0) {
                 showMessage(self.contentView, @"请输入手机号", @"");
                 return;}
-            if (phoneVerify.length == 0) {
-                showMessage(self.contentView, @"请输入手机验证码", @"");
-                return;
+            if (registrationInitModel.isPhone) {
+                if (phoneVerify.length == 0) {
+                    showMessage(self.contentView, @"请输入手机验证码", @"");
+                    return;
+                }
             }
         }
         if ([obj isEqualToString:@"201"]) {
@@ -479,7 +483,7 @@
     }
     NSString *registcode = registrationInitModel.paramsModel.registCode ?: @"";
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
-    [self.serviceRequest startV3RegisetSubmitWithBirthday:[NSString stringWithFormat:@"%@&",birthday] sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:registcode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11" requiredJson:registrationInitModel.requiredJson phoneCode:phoneVerify checkPhone:@"checkPhone"];
+    [self.serviceRequest startV3RegisetSubmitWithBirthday:[NSString stringWithFormat:@"%@",birthday] sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:registcode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11" requiredJson:registrationInitModel.requiredJson phoneCode:phoneVerify checkPhone:@"checkPhone"];
 
 }
 

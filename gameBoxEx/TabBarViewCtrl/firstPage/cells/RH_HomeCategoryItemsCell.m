@@ -28,7 +28,7 @@
     NSInteger number = array.count ;
     NSInteger lines = MAX(number%3?(number/3)+1:(number/3) ,3);
     
-    return HomeCategoryItemsCellHeight * lines + (lines-1)*5 + 25.0f ;
+    return HomeCategoryItemsCellHeight * lines + (lines-1)*5 + 40.0f ;
 }
 
 - (void)awakeFromNib
@@ -73,7 +73,7 @@
         if ([THEMEV3 isEqualToString:@"black"]) {
             _collectionView.backgroundColor = colorWithRGB(21, 21, 21);
         }
-        
+        _collectionView.scrollEnabled = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;

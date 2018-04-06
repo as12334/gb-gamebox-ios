@@ -57,6 +57,7 @@
     // Initialization code
     self.backgroundColor = colorWithRGB(242, 242, 242);
     self.reminderTextView.backgroundColor = colorWithRGB(242, 242, 242);
+    self.reminderTextView.userInteractionEnabled = NO;
     
     
 }

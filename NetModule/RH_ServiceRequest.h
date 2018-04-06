@@ -402,7 +402,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startv3GetGamesLinkForCheeryLink:(NSString*)gamelink;
 
 #pragma mark - 获取游戏分类
--(void)startV3LoadGameType;
+-(void)startV3LoadGameTypeWithApiId:(NSInteger)apiId searchApiTypeId:(NSInteger)apiTypeId;
 
 #pragma mark - 取款验证安全密码
 -(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd;

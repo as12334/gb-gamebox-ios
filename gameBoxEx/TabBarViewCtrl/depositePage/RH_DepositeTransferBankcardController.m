@@ -425,14 +425,14 @@
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
-        if (self.paywayCell.paywayString.length==0) {
+        if (self.paywayCell.paywayString.length==0||self.paywayCell.paywayString==nil) {
             showMessage(self.view, @"请填写微信昵称", nil);
         }
         else{
-            if (self.transferOrderCell.transferOrderString.length!=5) {
+            if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
                 showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
-            else{
+            else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
@@ -442,17 +442,20 @@
                     showMessage(self.view, @"请输入五位纯数字订单号", nil);
                 }
             }
+            else{
+               [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+            }
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"qq"]){
-        if (self.paywayCell.paywayString.length==0) {
+        if (self.paywayCell.paywayString.length==0||self.paywayCell.paywayString==nil) {
             showMessage(self.view, @"请填写qq号码", nil);
         }
         else{
-            if (self.transferOrderCell.transferOrderString.length!=5) {
+            if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
                 showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
-            else{
+            else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
@@ -461,18 +464,21 @@
                 else{
                     showMessage(self.view, @"请输入五位纯数字订单号", nil);
                 }
+            }
+            else{
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
             }
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"jd"]){
-        if (self.paywayCell.paywayString.length==0) {
+        if (self.paywayCell.paywayString.length==0 ||self.paywayCell.paywayString == nil) {
             showMessage(self.view, @"请填写京东号", nil);
         }
         else{
-            if (self.transferOrderCell.transferOrderString.length!=5) {
+            if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
                 showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
-            else{
+            else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
@@ -481,18 +487,21 @@
                 else{
                     showMessage(self.view, @"请输入五位纯数字订单号", nil);
                 }
+            }
+            else{
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
             }
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"bd"]){
-        if (self.paywayCell.paywayString.length==0) {
+        if (self.paywayCell.paywayString.length==0||self.paywayCell.paywayString == nil) {
             showMessage(self.view, @"请填写百度账号", nil);
         }
         else{
-            if (self.transferOrderCell.transferOrderString.length!=5) {
+            if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
                 showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
-            else{
+            else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
@@ -501,18 +510,21 @@
                 else{
                     showMessage(self.view, @"请输入五位纯数字订单号", nil);
                 }
+            }
+            else{
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
             }
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"other"]){
-        if (self.paywayCell.paywayString.length==0) {
+        if (self.paywayCell.paywayString.length==0||self.paywayCell.paywayString == nil) {
             showMessage(self.view, @"请填写其他方式的账号", nil);
         }
         else{
-            if (self.transferOrderCell.transferOrderString.length!=5) {
+            if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
                 showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
-            else{
+            else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
@@ -521,6 +533,9 @@
                 else{
                     showMessage(self.view, @"请输入五位纯数字订单号", nil);
                 }
+            }
+            else{
+                [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
             }
         }
     }
@@ -533,10 +548,10 @@
                 showMessage(self.view, @"请输入支付宝账号", nil);
             }
             else{
-                if (self.adressCell.adressStr.length!=5) {
+                if (self.adressCell.adressStr.length!=5&&self.adressCell.adressStr.length!=0&&self.adressCell.adressStr!=nil) {
                     showMessage(self.view, @"请输入五位纯数字订单号", nil);
                 }
-                else{
+                else if(self.adressCell.adressStr.length!=0){
                     NSString *regex = @"[0-9]*";
                     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                     if ([pred evaluateWithObject:self.adressCell.adressStr]) {
@@ -546,6 +561,9 @@
                         showMessage(self.view, @"请输入五位纯数字订单号", nil);
                     }
                 }
+                else{
+                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                }
             }
         }
         
@@ -553,10 +571,10 @@
 
     else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"])
     {
-        if (self.paywayCell.paywayString.length!=5) {
+        if (self.paywayCell.paywayString.length!=5&&self.paywayCell.paywayString.length!=0&&self.paywayCell.paywayString!=nil) {
             showMessage(self.view, @"请输入五位纯数字订单号", nil);
         }
-        else{
+        else if(self.paywayCell.paywayString.length!=0){
             NSString *regex = @"[0-9]*";
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
             if ([pred evaluateWithObject:self.paywayCell.paywayString]) {
@@ -565,6 +583,9 @@
             else{
                 showMessage(self.view, @"请输入五位纯数字订单号", nil);
             }
+        }
+        else{
+            [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
         }
     }
 

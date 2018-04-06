@@ -394,15 +394,11 @@
 #pragma mark --每次进来默认选中第一个
 -(void)depositePayforWayInitializeStatus
 {
-    NSString *depositeCode = @"";
-    NSString *depositeName = @"";
-    RH_DepositeTransferModel *transferModel;
-    if (self.transModelArray.count > 0) {
-        transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.transModelArray[0]);
-    }
-    
-    depositeCode = transferModel.mCode;
-    depositeName = transferModel.mName;
+
+    if(self.transModelArray.count>0){
+    RH_DepositeTransferModel *transferModel = ConvertToClassPointer(RH_DepositeTransferModel, self.transModelArray[0]);
+    NSString *depositeCode = transferModel.mCode;
+    NSString *depositeName = transferModel.mName;
     //每次选择平台就要初始化文案的数组
     self.reminderArray = [NSMutableArray array];
     [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
@@ -443,6 +439,7 @@
     self.payforCell.selectedBtnIndex = 0;
     [self.payforCell.collectionView reloadData];
     [self.contentTableView reloadData];
+    }
 }
 
 #pragma mark --depositePayforWay的代理，选择付款的平台

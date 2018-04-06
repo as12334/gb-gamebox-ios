@@ -76,8 +76,6 @@
 }
 
 
-
-
 - (BOOL)isRequire {
     if ([fieldModel.isRequired isEqualToString:@"2"]) {
         return NO;
@@ -237,6 +235,7 @@
         textField.placeholder = @"请输入手机验证码";
         [self setPhoneVerifyCodeLayout];
     }
+    
     if ([model.name isEqualToString:@"201"]) {
         label_Title.text = @"邮箱";
         textField.placeholder = @"请输入邮箱地址";
