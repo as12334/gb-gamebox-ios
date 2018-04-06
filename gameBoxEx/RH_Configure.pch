@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -85,12 +85,7 @@
 //    站点配制
 //===========================================================
 
-//#define THEMEV3             @"green"   //green,red,black,default .
-<<<<<<< HEAD
 #define THEMEV3             @"default"   //green,red,black,default .
-=======
-//#define THEMEV3             @"black"   //green,red,black,default .
->>>>>>> origin/dev_lewis
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
@@ -147,12 +142,8 @@
 #define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
 #define SID        @"65"
 #define THEME    @"default.skin"
-<<<<<<< HEAD
-#define SITE_TYPE    @"integrated"
-=======
 #define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
->>>>>>> origin/dev_lewis
 
 #elif _erln //太阳城集团
 
@@ -213,7 +204,7 @@
 #define S        @"49c7e4a3b15215ed1d3d346140a868fb"
 #define SID        @"110"
 #define THEME    @"default.skin"
-#define THEMEV3     @"black"   //green,red,black,default .
+#define THEMEV3     @"default"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _74bk //新葡京娱乐场

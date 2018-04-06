@@ -15,44 +15,24 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-<<<<<<< HEAD
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-og-ORj">
                     <rect key="frame" x="17" y="5.5" width="100" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-=======
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-og-ORj">
-                    <rect key="frame" x="17" y="5.5" width="100" height="30"/>
->>>>>>> origin/dev_lewis
+
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-<<<<<<< HEAD
+
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-Zh-vUs">
                     <rect key="frame" x="137" y="5.5" width="100" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-=======
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-Zh-vUs">
-                    <rect key="frame" x="130" y="5.5" width="100" height="30"/>
->>>>>>> origin/dev_lewis
+
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-<<<<<<< HEAD
+
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cu-pJ-0Uf" userLabel="rightView">
                     <rect key="frame" x="137" y="5" width="100" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-=======
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2w-3A-XrD">
-                    <rect key="frame" x="110" y="14" width="8" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="8" id="Y7f-Tz-oNx"/>
-                        <constraint firstAttribute="height" constant="12" id="yLm-KA-qif"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="CLSelectionControl">
-                    <rect key="frame" x="242" y="4.5" width="100" height="30"/>
->>>>>>> origin/dev_lewis
+
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N3P-XL-iS1" customClass="CLSelectionControl">
                             <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -87,19 +67,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-<<<<<<< HEAD
-=======
-            <constraints>
-                <constraint firstItem="1KE-og-ORj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="17" id="119-9U-edX"/>
-                <constraint firstItem="N3P-XL-iS1" firstAttribute="leading" secondItem="ouN-Zh-vUs" secondAttribute="trailing" constant="12" id="3Yq-cz-96m"/>
-                <constraint firstItem="N2w-3A-XrD" firstAttribute="leading" secondItem="1KE-og-ORj" secondAttribute="trailing" constant="-7" id="BDU-oG-AWy"/>
-                <constraint firstItem="1KE-og-ORj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="H65-nh-dfu"/>
-                <constraint firstItem="ouN-Zh-vUs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QpL-nr-wrp"/>
-                <constraint firstItem="N3P-XL-iS1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aEQ-s7-xVM"/>
-                <constraint firstItem="N2w-3A-XrD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="diz-o7-Apq"/>
-                <constraint firstItem="ouN-Zh-vUs" firstAttribute="leading" secondItem="N2w-3A-XrD" secondAttribute="trailing" constant="12" id="jJa-ea-qhV"/>
-            </constraints>
->>>>>>> origin/dev_lewis
+
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="downImg" destination="eDQ-Nk-qPz" id="abd-an-ziS"/>
