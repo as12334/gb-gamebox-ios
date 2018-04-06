@@ -24,7 +24,7 @@
     // Initialization code
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
     self.labTitle.textColor =  [UIColor blackColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]){
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]){
         self.labTitle.textColor =  [UIColor whiteColor] ;
         self.contentView.backgroundColor = colorWithRGB(37, 37, 37) ;
     }

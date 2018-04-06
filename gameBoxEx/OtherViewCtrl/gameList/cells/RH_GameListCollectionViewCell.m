@@ -31,7 +31,7 @@
     self.selectionColor = RH_Cell_DefaultHolderColor ;
     self.selectionColorAlpha = 0.3f ;
     self.labName.font = [UIFont systemFontOfSize:14];
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.labName.textColor = [UIColor whiteColor];
     }
     

@@ -76,7 +76,7 @@
         [RH_CustomTabBar appearance].translucent = NO;
         [RH_CustomTabBar appearance].barTintColor = RH_TabBar_BackgroundColor ;
         
-        if ([THEMEV3 isEqualToString:@"black"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
             [RH_CustomTabBar appearance].barTintColor = colorWithRGB(37, 37, 37) ;
         }
     }

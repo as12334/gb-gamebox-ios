@@ -39,7 +39,7 @@
     
 //    self.contentView.backgroundColor = [UIColor clearColor];
      self.lineView.backgroundColor = colorWithRGB(226, 226, 226) ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.contentView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
          self.lineView.backgroundColor = colorWithRGB(102, 102, 102) ;
@@ -89,7 +89,8 @@
     if (!_selectionIndicater) {
         _selectionIndicater = [[CALayer alloc] init];
         if ([THEMEV3 isEqualToString:@"green"]) {
-            _selectionIndicater.backgroundColor = [UIColor greenColor].CGColor;
+//            _selectionIndicater.backgroundColor = [UIColor greenColor].CGColor;
+            _selectionIndicater.backgroundColor = colorWithRGB(27, 117, 217).CGColor;
         }else if ([THEMEV3 isEqualToString:@"red"]){
             _selectionIndicater.backgroundColor = [UIColor redColor].CGColor;
         }else if ([THEMEV3 isEqualToString:@"black"]){

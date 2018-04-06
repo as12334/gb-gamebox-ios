@@ -33,7 +33,7 @@
     
     self.labTitle.text = @"" ;
     self.labTitleValue.text = @"" ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.contentView.backgroundColor = colorWithRGB(68, 68, 68) ;
         self.labTitle.textColor = [UIColor whiteColor] ;
         self.labTitleValue.textColor = [UIColor whiteColor] ;

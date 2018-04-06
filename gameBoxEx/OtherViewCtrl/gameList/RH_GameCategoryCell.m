@@ -36,7 +36,7 @@
     self.borderMask = CLBorderMarkNone ;
     self.borderView.layer.cornerRadius = 5.0f ;
     self.borderView.backgroundColor = colorWithRGB(255, 255, 255) ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.borderView.backgroundColor = [UIColor clearColor] ;
         self.labTitle.textColor =  [UIColor whiteColor] ;
     }

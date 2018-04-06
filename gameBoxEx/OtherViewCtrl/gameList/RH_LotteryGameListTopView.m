@@ -40,7 +40,7 @@
     self.contentView.layer.cornerRadius = 5;
     self.contentView.layer.masksToBounds = YES ;
     self.backgroundColor = [UIColor clearColor];
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.backgroundColor = [UIColor blackColor];
     }
     

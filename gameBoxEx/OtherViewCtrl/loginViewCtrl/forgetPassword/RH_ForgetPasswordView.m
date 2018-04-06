@@ -7,6 +7,7 @@
 //
 
 #import "RH_ForgetPasswordView.h"
+#import "coreLib.h"
 @interface RH_ForgetPasswordView()
 @property (weak, nonatomic) IBOutlet UIView *passwordView;
 
@@ -30,5 +31,8 @@
     _submitBtn.layer.borderWidth = 1.f;
     _submitBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _submitBtn.layer.masksToBounds = YES;
+    if ([THEMEV3 isEqualToString:@"green"]) {
+        self.submitBtn.backgroundColor = colorWithRGB(4, 109, 79);
+    }
 }
 @end

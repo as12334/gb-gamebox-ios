@@ -56,6 +56,12 @@
                                              selector:@selector(handleNotification:)
                                                  name:RHNT_DiscountActivityImageSizeChanged
                                                object:nil] ;
+    if ([THEMEV3 isEqualToString:@"green"]) {
+        self.labTitle.textColor = colorWithRGB(255, 255, 255) ;
+        [self.btnDetail setTitleColor:colorWithRGB(15, 167, 115) forState:UIControlStateNormal]  ;
+        self.borderView.backgroundColor = colorWithRGB(53, 53, 53);
+        self.bottomView.backgroundColor = colorWithRGB(37, 37, 37);;
+    }
 }
 
 -(void)dealloc

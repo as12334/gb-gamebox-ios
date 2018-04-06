@@ -38,7 +38,8 @@
     self.tableView.dataSource = self ;
     
     if ([THEMEV3 isEqualToString:@"green"]){
-         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+//         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
     }else if ([THEMEV3 isEqualToString:@"red"]){
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
 

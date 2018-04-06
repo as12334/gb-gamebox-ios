@@ -377,7 +377,7 @@
                                          64,
                                          userInfoViewWidth,
                                          0);
-        if ([THEMEV3 isEqualToString:@"black"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
             _userInfoView.backgroundColor = colorWithRGB(68, 68, 68);
         }
         _userInfoView.delegate = self ;
