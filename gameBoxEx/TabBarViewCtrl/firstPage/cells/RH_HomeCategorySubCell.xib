@@ -54,7 +54,7 @@
                             <constraint firstAttribute="trailing" secondItem="HI3-k4-E4P" secondAttribute="trailing" constant="18" id="uph-5Q-LVx"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-QH-VI7">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-QH-VI7">
                         <rect key="frame" x="24" y="74" width="13" height="6"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="6" id="JJi-06-lYT"/>
@@ -85,4 +85,7 @@
             <point key="canvasLocation" x="-1039" y="-330"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="up-icon" width="13" height="6"/>
+    </resources>
 </document>

@@ -66,18 +66,21 @@
         
         if ([THEMEV3 isEqualToString:@"green"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Green ;
+            self.indicatorImgView.alpha = 1.0;
 //            self.lineView.backgroundColor = [UIColor greenColor];
         }else if ([THEMEV3 isEqualToString:@"red"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Red ;
+            self.indicatorImgView.alpha = 1.0;
 //            self.lineView.backgroundColor = [UIColor redColor];
         }else if ([THEMEV3 isEqualToString:@"black"]){
             self.labTitle.textColor = colorWithRGB(22, 141, 246) ;
 //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
             [self bringSubviewToFront:self.imgIcon];
+            self.indicatorImgView.alpha = 0.0;
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
-            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
+            self.indicatorImgView.alpha = 1.0;
         }
     }else {
         [self.imageB removeFromSuperview];
