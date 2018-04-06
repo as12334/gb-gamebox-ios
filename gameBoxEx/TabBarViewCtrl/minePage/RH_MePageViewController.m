@@ -31,6 +31,18 @@
 @synthesize barButtonCustom = _barButtonCustom ;
 @synthesize barButtonSetting = _barButtonSetting ;
 @synthesize tableViewManagement = _tableViewManagement;
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    if (HasLogin) {
+        [self.serviceRequest startV3GetUserAssertInfo] ;
+    }else
+    {
+        [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

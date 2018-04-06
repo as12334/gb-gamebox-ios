@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -120,9 +120,9 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 
-//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
-#define TEST_DOMAIN         @"test71.hongtubet.com"
+//#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
 //#define TEST_DOMAIN           @"192.168.0.150"   //cherry
@@ -269,7 +269,7 @@
 #define S        @"b5a693d5567e5b677f316a17063c1a28"
 #define SID        @"119"
 #define THEME     @"blue.skin"
-#define THEMEV3    @"black"   //green,red,black,default .
+//#define THEMEV3    @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _cvqb //演示站点
