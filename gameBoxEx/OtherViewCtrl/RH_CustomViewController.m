@@ -69,7 +69,12 @@
     }
     
 }
+- (void)viewDidDisappear:(BOOL)animated
 
+{
+    [super viewDidDisappear:animated];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+}
 
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {

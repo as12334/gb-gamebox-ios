@@ -1408,7 +1408,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3RequsetLoginWithGetLoadSid
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_LOGIN
+                        pathFormat:RH_API_NAME_LOADSIDSTR
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
