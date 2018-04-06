@@ -26,7 +26,7 @@
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     RH_HelpCenterDetailModel *model =  ConvertToClassPointer(RH_HelpCenterDetailModel, context) ;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,tableView.frameWidth, 0)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,tableView.frameWidth - 20, 0)];
     NSString *str = model.helpContent ;
     NSScanner * scanner = [NSScanner scannerWithString:str];
     NSString * text = nil;
@@ -37,12 +37,12 @@
         str = [str stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
     }
     label.text = str;
-    label.font = [UIFont systemFontOfSize:16.f];
+    label.font = [UIFont systemFontOfSize:17.5f];
     NSDictionary *attrs = @{NSFontAttributeName : label.font};
     CGSize maxSize = CGSizeMake(label.frameWidth, MAXFLOAT);
     label.numberOfLines=0;
     CGSize size = [str boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-    return 100.f +size.height;
+    return 50.f +size.height;
 }
 
 -(NSString *)filterHTML:(NSString *)html{
@@ -95,12 +95,6 @@
 //    [webView loadHTMLString:[self filterHTML:model.helpContent] baseURL:nil] ;
     contentLab.text = [self filterHTML:model.helpContent] ;
     dataModel = model ;
-//    if (!self.isOpen) {
-//        webView.hidden = NO ;
-//    }else
-//    {
-//        webView.hidden = YES ;
-//    }
     
 }
 

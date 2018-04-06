@@ -26,9 +26,22 @@
 {
     NSArray *array = ConvertToClassPointer(NSArray, context) ;
     NSInteger number = array.count ;
-    NSInteger lines = MAX(number%3?(number/3)+1:(number/3) ,3);
+    NSInteger lines ;
+    if (number%3 != 0) {
+        lines = number/3+1;
+    }else
+    {
+        lines = number/3 ;
+    }
+//    NSInteger lines = MAX(number%3?(number/3)+1:(number/3) ,3);
     
-    return HomeCategoryItemsCellHeight * lines + (lines-1)*5 + 40.0f ;
+    if (lines<3) {
+        return HomeCategoryItemsCellHeight * lines + (lines-1)*5 + 40.0f ;
+    }else
+    {
+        return HomeCategoryItemsCellHeight * lines + (lines-1)*5 + 60.0f ;
+    }
+    
 }
 
 - (void)awakeFromNib

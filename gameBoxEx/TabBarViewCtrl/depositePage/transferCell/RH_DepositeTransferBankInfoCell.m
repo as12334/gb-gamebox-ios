@@ -68,6 +68,9 @@
     showMessage(self, @"复制成功",nil);
 }
 - (IBAction)bankAdressSelect:(id)sender {
+    if (self.bankAdressLabel.text.length == 0) {
+        return ;
+    }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = self.bankAdressLabel.text;
     showMessage(self, @"复制成功",nil);

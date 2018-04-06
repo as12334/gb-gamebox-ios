@@ -2922,6 +2922,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
                     [self.appDelegate updateLoginStatus:FALSE] ;
                 }
+                if (tempError.code == RH_API_ERRORCODE_SESSION_TAKEOUT) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                         showAlertView(tempError.userInfo[@"NSLocalizedDescription"], nil) ;
+                    }) ;
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }
             }
                 break ;
                 case ServiceRequestTypeUserLogin:
