@@ -2023,7 +2023,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
-#elif _sa7t //亿豪国际
+#elif _ex57 //皇家娱乐城
+
+#define CODE    @"ex57"
+#define S        @"68365cff4e5d13ac70f7d982a3a68908"
+#define SID        @"516"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _sa7t //亿豪国际娱乐城
 
 #define CODE    @"sa7t"
 #define S        @"443a4284df376987b2e0f02d2291a39e"
