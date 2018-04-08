@@ -41,7 +41,7 @@
 {
     if (!_showCover){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        if ([_mCover containsString:@"http:"] ||[_mCover containsString:@"https:"] ) {
+        if ([_mCover containsString:@"http:"] || [_mCover containsString:@"https:"] || [_mCover containsString:@"ftp:"]) {
             _showCover = [NSString stringWithFormat:@"%@",_mCover] ;
         }else
         {
@@ -51,9 +51,7 @@
             {
                   _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
             }
-          
         }
-        
     }
     
     return _showCover ;
