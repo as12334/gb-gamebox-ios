@@ -86,7 +86,7 @@
         self.cancelButton = [[UIButton alloc] init];
         if ([THEMEV3 isEqualToString:@"green"]){
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_green") forState:UIControlStateNormal];
-            
+            saveAgainBtn.backgroundColor = colorWithRGB(4, 109, 79) ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_red") forState:UIControlStateNormal];
             

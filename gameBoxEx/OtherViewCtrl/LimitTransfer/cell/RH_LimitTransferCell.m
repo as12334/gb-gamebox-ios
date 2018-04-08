@@ -48,7 +48,7 @@
     [refreshBtnAndrecycleBtn addTarget:self action:@selector(refreshBtnAndrecycleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     refreshBtnAndrecycleBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
     if ([THEMEV3 isEqualToString:@"green"]){
-        [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal] ;
+        [refreshBtnAndrecycleBtn setTitleColor:colorWithRGB(4, 109, 79) forState:UIControlStateNormal] ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal] ;
     }else if ([THEMEV3 isEqualToString:@"black"]){

@@ -65,8 +65,8 @@
     view_Line.backgroundColor = colorWithRGB(226, 226, 226);
 
     if ([THEMEV3 isEqualToString:@"green"]){
-        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
-        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.serachBtn.backgroundColor = colorWithRGB(4, 109, 79);
+        self.btnQuickSelect.backgroundColor = colorWithRGB(4, 109, 79);
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Red;

@@ -36,7 +36,7 @@
 {
     [super awakeFromNib] ;
     if ([THEMEV3 isEqualToString:@"green"]){
-        self.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+        self.backgroundColor = colorWithRGB(4, 109, 79) ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
     }else if ([THEMEV3 isEqualToString:@"black"]){

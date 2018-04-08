@@ -73,11 +73,11 @@
 
     if (self.promoInfoModel.mCheckState == 2 || self.promoInfoModel.mCheckState == 4 || [self.promoInfoModel.mCheckStateName isEqualToString:@"已发放"])
     {
-        self.image_Right.image = ImageWithName(@"mine_preferentialbackorange");
+        self.image_Right.image = ImageWithName(@"mine_preferentialbackgreen");
     }
     else if (self.promoInfoModel.mCheckState == 1 || [self.promoInfoModel.mCheckStateName isEqualToString:@"待审核"])
     {
-         self.image_Right.image = ImageWithName(@"mine_preferentialbackgreen");
+         self.image_Right.image = ImageWithName(@"mine_preferentialbackorange");
     }
     else if (self.promoInfoModel.mCheckState == 0 || [self.promoInfoModel.mCheckStateName isEqualToString:@"进行中"])
     {

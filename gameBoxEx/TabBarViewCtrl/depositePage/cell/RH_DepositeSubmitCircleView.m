@@ -48,6 +48,9 @@
     self.layer.masksToBounds = YES;
     self.depositeBtn.layer.cornerRadius = 5.f;
     self.depositeBtn.layer.masksToBounds = YES;
+    if ([THEMEV3 isEqualToString:@"green"]) {
+        self.depositeBtn.backgroundColor = colorWithRGB(11, 102, 75);
+    }
     _tabelView.delegate = self;
     _tabelView.dataSource = self;
     _tabelView.showsVerticalScrollIndicator = NO;
