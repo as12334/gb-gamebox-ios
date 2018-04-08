@@ -23,6 +23,9 @@
     [self.submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.submitBtn.backgroundColor = colorWithRGB(23, 102, 187);
     self.backgroundColor = colorWithRGB(242, 242, 242);
+    if ([THEMEV3 isEqualToString:@"green"]) {
+        self.submitBtn.backgroundColor = colorWithRGB(11, 109, 79);
+    }
 }
 - (IBAction)click:(id)sender {
     ifRespondsSelector(self.delegate, @selector(selectedDepositeTransferButton:)){

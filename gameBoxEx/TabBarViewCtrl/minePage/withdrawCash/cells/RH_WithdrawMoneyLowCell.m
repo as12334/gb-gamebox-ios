@@ -47,6 +47,7 @@
     self.button_Save.layer.cornerRadius = 5.0;
     if ([THEMEV3 isEqualToString:@"green"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.button_Save.backgroundColor = colorWithRGB(11, 102, 75);
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){

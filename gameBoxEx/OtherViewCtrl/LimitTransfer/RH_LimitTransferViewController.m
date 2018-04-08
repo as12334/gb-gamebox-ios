@@ -113,10 +113,10 @@
     [oneStepRefreshBtn addTarget:self action:@selector(oneStepRefreshBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     if ([THEMEV3 isEqualToString:@"green"]){
-        oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        oneStepRecoryBtn.backgroundColor = colorWithRGB(4, 109, 79);
         oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Green.CGColor;
         
-        oneStepRefreshBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        oneStepRefreshBtn.backgroundColor = colorWithRGB(4, 109, 79);;
         oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Green.CGColor;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         oneStepRecoryBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red;
