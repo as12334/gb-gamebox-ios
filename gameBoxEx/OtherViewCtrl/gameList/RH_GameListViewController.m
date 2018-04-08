@@ -43,7 +43,7 @@
     self.title = _lotteryApiModel.mName?:@"列表" ;
     [self.navigationBar setBackgroundColor:[UIColor blueColor]];
 //    [self.navigationBar setTintColor:[UIColor whiteColor]];
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.view.backgroundColor = [UIColor blackColor];
     }
     [self loadingIndicateViewDidTap:nil] ;

@@ -245,6 +245,9 @@
     button.clipsToBounds = YES;
     [button setTitle:@"立即注册" forState:UIControlStateNormal];
     [button setBackgroundColor:colorWithRGB(20, 90, 180)];
+    if ([THEMEV3 isEqualToString:@"green"]) {
+        [button setBackgroundColor:colorWithRGB(4, 109, 79)];
+    }
     [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
 }
 

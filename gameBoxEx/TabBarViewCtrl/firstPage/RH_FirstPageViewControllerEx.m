@@ -228,7 +228,7 @@
     
     [self.contentView addSubview:self.contentTableView] ;
     self.contentTableView.backgroundColor = [UIColor whiteColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.contentTableView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
     }
     

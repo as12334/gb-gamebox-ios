@@ -204,7 +204,7 @@
 #define S        @"49c7e4a3b15215ed1d3d346140a868fb"
 #define SID        @"110"
 #define THEME    @"default.skin"
-#define THEMEV3     @"default"   //green,red,black,default .
+#define THEMEV3     @"green"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _74bk //新葡京娱乐场
@@ -2024,6 +2024,21 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integrated"
 
+#elif _ex57 //皇家娱乐城
+
+#define CODE    @"ex57"
+#define S        @"68365cff4e5d13ac70f7d982a3a68908"
+#define SID        @"516"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _sa7t //亿豪国际娱乐城
+
+#define CODE    @"sa7t"
+#define S        @"443a4284df376987b2e0f02d2291a39e"
+#define SID        @"518"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 #endif
 

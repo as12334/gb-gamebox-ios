@@ -79,7 +79,7 @@
     
     collectionView.collectionViewLayout = flowLayout ;
     collectionView.backgroundColor = colorWithRGB(247, 247, 247);
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         collectionView.backgroundColor = colorWithRGB(37, 37, 37);
     }
     

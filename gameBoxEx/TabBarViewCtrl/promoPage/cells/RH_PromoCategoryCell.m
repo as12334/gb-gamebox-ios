@@ -46,7 +46,7 @@
     [super setSelected:selected animated:animated] ;
     self.labTitle.textColor = selected?colorWithRGB(252, 252, 252):colorWithRGB(50, 51, 51) ;
     if ([THEMEV3 isEqualToString:@"green"]){
-        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Green:colorWithRGB(255, 255, 255) ;
+        self.borderView.backgroundColor = selected?colorWithRGB(15, 167, 115):colorWithRGB(255, 255, 255) ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Red:colorWithRGB(255, 255, 255) ;
         

@@ -114,7 +114,7 @@
                 <outlet property="tWalletView" destination="JUE-fD-W1P" id="4mr-wW-PMf"/>
                 <outlet property="walletBGView" destination="YT9-mz-Yhq" id="NOf-MK-0Ue"/>
             </connections>
-            <point key="canvasLocation" x="-313" y="-225"/>
+            <point key="canvasLocation" x="-492" y="-260"/>
         </tableViewCell>
     </objects>
 </document>
