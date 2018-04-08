@@ -69,7 +69,12 @@
     }
     
 }
+- (void)viewDidDisappear:(BOOL)animated
 
+{
+    [super viewDidDisappear:animated];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+}
 
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {
@@ -358,6 +363,7 @@
 }
 
 #pragma mark-
+
 // 允许自动旋转
 -(BOOL)shouldAutorotate{
     return YES;
@@ -370,4 +376,5 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
 }
+
 @end

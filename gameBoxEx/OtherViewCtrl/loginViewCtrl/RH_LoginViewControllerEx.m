@@ -324,6 +324,13 @@
                 [self.contentTableView reloadData] ;
             }
         }] ;
+    } else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid){
+        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
+        if (manager.sidString.length >0) {
+            self.isInitOk = YES;
+            [self.contentLoadingIndicateView hiddenView] ;
+            [self setNeedUpdateView];
+        }
     }
    
 }
@@ -350,14 +357,7 @@
     }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid){
 //        [self.contentLoadingIndicateView hiddenView] ;
-        RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
-        if (manager.sidString.length==0) {
-            [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"初始化登录信息失败"];
-        }else
-        {
-             self.isInitOk = YES;
-             [self.contentLoadingIndicateView hiddenView] ;
-        }
+        [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"提示" detailText:@"初始化登录信息失败"];
          [self setNeedUpdateView];
     }
 

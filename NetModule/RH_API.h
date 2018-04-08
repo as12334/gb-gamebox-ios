@@ -1072,5 +1072,9 @@
 
 #pragma mark - V3 一键刷新
 #define RH_API_NAME_ONESTEPREFRESH   @"mobile-api/userInfoOrigin/refresh.html"
+
+#pragma mark - V3 获取SID
+#define RH_API_NAME_LOADSIDSTR   @"mobile-api/origin/getHttpCookie.html"
+
 #endif /* RH_API_h */
 

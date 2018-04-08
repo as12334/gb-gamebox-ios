@@ -103,7 +103,12 @@
 #pragma mark-
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:self.typeModel.mActivityKey] ;
+    if ([self.typeModel.mActivityKey isEqualToString:@"all"]) {
+        [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:@""] ;
+    }else
+    {
+        [self.serviceRequest startV3LoadDiscountActivityTypeListWithKey:self.typeModel.mActivityKey] ;
+    }
 }
 
 -(void)cancelLoadDataHandle
