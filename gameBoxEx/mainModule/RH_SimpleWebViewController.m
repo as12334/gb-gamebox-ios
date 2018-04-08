@@ -161,7 +161,8 @@
         _loading = NO;
         showNetworkActivityIndicator(NO);
     }
-
+    self.webView.delegate = nil;
+//    [WebView stopLoading];
     [self.webView stopLoading];
     _webURL = nil;
     
@@ -469,7 +470,7 @@
     [self webViewDidEndLoad:nil];
     
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+//        [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
     }
 }
 
@@ -1095,10 +1096,10 @@
             if (!self.appDelegate.isLogin){
                 [self.contentLoadingIndicateView showDefaultNeedLoginStatus] ;
             }else{
-                [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+//                [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
             }
         }else{
-            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
+//            [self.contentLoadingIndicateView showDefaultLoadingErrorStatus] ;
         }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
