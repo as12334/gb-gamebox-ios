@@ -2634,7 +2634,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3PromoActivityType:
             {
-                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+                NSArray *orginDataArr = [ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA] ;
+                NSMutableArray *dataArr = [NSMutableArray array] ;
+                [dataArr insertObject:@{@"activityKey":@"all",@"activityTypeName":@"全部"} atIndex:0];
+                [dataArr addObjectsFromArray:orginDataArr];
+                NSArray *dataArr1 = [dataArr copy] ;
+                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:dataArr1] ;
             }
                 break;
                 
