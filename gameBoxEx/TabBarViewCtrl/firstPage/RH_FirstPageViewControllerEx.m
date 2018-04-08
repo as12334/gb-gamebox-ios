@@ -30,10 +30,10 @@
 #import "RH_ActivityStatusModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
-
+#import <SafariServices/SafariServices.h>
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
-        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate>
+        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
 //@property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
@@ -828,26 +828,40 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==1){
-        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-        if (self.rhAlertView.superview == nil) {
-            self.rhAlertView = [RH_BasicAlertView createInstance];
-            self.rhAlertView.alpha = 0;
-            [self.view.window addSubview:self.rhAlertView];
-            self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
-
-            [UIView animateWithDuration:0.3 animations:^{
-                self.rhAlertView.alpha = 1;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
-                    
-                }
-            }];
-        }
+//    if (indexPath.section==1){
+//        RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
+//        if (self.rhAlertView.superview == nil) {
+//            self.rhAlertView = [RH_BasicAlertView createInstance];
+//            self.rhAlertView.alpha = 0;
+//            [self.view.window addSubview:self.rhAlertView];
+//            self.rhAlertView.whc_TopSpace(0).whc_LeftSpace(0).whc_BottomSpace(0).whc_RightSpace(0);
+//
+//            [UIView animateWithDuration:0.3 animations:^{
+//                self.rhAlertView.alpha = 1;
+//            } completion:^(BOOL finished) {
+//                if (finished) {
+//                    [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
+//
+//                }
+//            }];
+//        }
+//    }
+    NSURL *url = [NSURL URLWithString:@"https://888.ampinplayopt0matrix.com/app/WebService/JSON/display.php/Login?uppername=ddwb001&page_site=live&page_present=live&key=99401b64467e44e1a98a6183d00f71dc4717238&username=nu9rn2puea&website=dawoo&lang=zh-cn&gamekind=3&ad=10"];
+        // Fallback on earlier versions
+    if (@available(iOS 9.0, *)) {
+        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:url];
+//        [self showViewController:safariVC sender:nil];
+        safariVC.delegate = self;
+        [self presentViewController:safariVC animated:YES completion:nil];
+    } else {
+        // Fallback on earlier versions
     }
 }
-
+-(NSArray<UIActivity *> *)safariViewController:(SFSafariViewController *)controller activityItemsForURL:(NSURL *)URL title:(NSString *)title
+{
+    NSArray *array = @[@"哈哈"];
+    return array;
+}
 #pragma mark- Banner Cells Delegate
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {

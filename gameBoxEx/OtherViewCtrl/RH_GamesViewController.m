@@ -230,7 +230,11 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if  (error.code==101){//忽略不处理 。
-    }else{
+    }
+//    else if (error.code==-999){
+//        return;
+//    }
+    else{
         [super webView:webView didFailLoadWithError:error] ;
     }
 }
