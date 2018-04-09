@@ -2089,7 +2089,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }else if ([THEMEV3 isEqualToString:@"black"]){
             [queryArgs setValue:@"black" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
-            [queryArgs setValue:@"white" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }
         
         CLScreenSizeType screenType = mainScreenType();
