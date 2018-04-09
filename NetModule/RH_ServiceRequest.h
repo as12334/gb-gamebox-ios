@@ -110,6 +110,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3OneStepRefresh,               //一键刷新
     ServiceRequestTypeV3CounterPay,             //柜台机存款
     ServiceRequestTypeV3GetPhoneCode,             //获取手机验证码
+    ServiceRequestTypeV3CollectAppDomainError,   // 错误日志提交接口
 };
 
 

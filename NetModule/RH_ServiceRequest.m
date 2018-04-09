@@ -176,7 +176,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3UpdateCheck
 {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
-                        pathFormat:@"boss-api/app/update.html"
+                        pathFormat:@"app/update.html"
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{@"code":S,
