@@ -12,7 +12,7 @@
 #import "coreLib.h"
 #import "RH_DiscountActivityTypeModel.h"
 #import "RH_UserInfoManager.h"
-#import "RH_CustomViewController.h"
+#import "RH_PromoDetailViewController.h"
 
 @interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource,PromoTypeHeaderViewDelegate,PromoContentPageCellDelegate>
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;
@@ -154,7 +154,7 @@
     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     if (appDelegate){
         appDelegate.customUrl = discountActivityModel.showLink ;
-        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        [self showViewController:[RH_PromoDetailViewController viewController] sender:self] ;
     }
 }
 
