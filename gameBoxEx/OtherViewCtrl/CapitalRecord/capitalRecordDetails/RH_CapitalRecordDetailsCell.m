@@ -269,8 +269,8 @@
         self.realNameLab.text = detailModel.mRealName;
         self.youhuiLab.text= [NSString stringWithFormat:@"%@",detailModel.mWithdrawMoney] ;
         self.thirdRightLab.text =  detailModel.mPoundage;
-        self.shouxuFeiLab.text = detailModel.mAdministrativeFee;
-        self.shijiMoney.text =detailModel.mDeductFavorable;
+        self.shouxuFeiLab.text = detailModel.mAdministrativeFee?:@"--";
+        self.shijiMoney.text =detailModel.mDeductFavorable?:@"--";
         self.zhuangtaiLab.text = detailModel.mRechargeTotalAmount;
         self.SevenRightLab.text = detailModel.mStatusName ;
     }

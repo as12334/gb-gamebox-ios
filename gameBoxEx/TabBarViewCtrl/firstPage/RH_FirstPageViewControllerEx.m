@@ -30,10 +30,10 @@
 #import "RH_ActivityStatusModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
-
+#import <SafariServices/SafariServices.h>
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
-        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate>
+        HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
 //@property (nonatomic,strong,readonly) UILabel *labDomain ;
 @property (nonatomic,strong,readonly) RH_DaynamicLabelCell *dynamicLabCell ;
 @property (nonatomic,strong,readonly) RH_HomeCategoryCell *homeCategoryCell ;
@@ -248,7 +248,7 @@
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
-    if ([THEMEV3 isEqualToString:@"black"])
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"])
     {
         label.textColor = colorWithRGB(85, 85, 85);
         lineView.backgroundColor = colorWithRGB(37, 37, 37);
@@ -841,13 +841,27 @@
             } completion:^(BOOL finished) {
                 if (finished) {
                     [self.rhAlertView showContentWith:homePageModel.mAnnouncementList];
-                    
+
                 }
             }];
         }
     }
+//    NSURL *url = [NSURL URLWithString:@"https://888.ampinplayopt0matrix.com/app/WebService/JSON/display.php/Login?uppername=ddwb001&page_site=live&page_present=live&key=99401b64467e44e1a98a6183d00f71dc4717238&username=nu9rn2puea&website=dawoo&lang=zh-cn&gamekind=3&ad=10"];
+//        // Fallback on earlier versions
+//    if (@available(iOS 9.0, *)) {
+//        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:url];
+////        [self showViewController:safariVC sender:nil];
+//        safariVC.delegate = self;
+//        [self presentViewController:safariVC animated:YES completion:nil];
+//    } else {
+//        // Fallback on earlier versions
+//    }
 }
-
+//-(NSArray<UIActivity *> *)safariViewController:(SFSafariViewController *)controller activityItemsForURL:(NSURL *)URL title:(NSString *)title
+//{
+//    NSArray *array = @[@"哈哈"];
+//    return array;
+//}
 #pragma mark- Banner Cells Delegate
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {

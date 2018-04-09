@@ -107,6 +107,15 @@
 {
     self.lotteryCategoryModel = ConvertToClassPointer(RH_LotteryCategoryModel, context) ;
     self.labTitle.text = self.lotteryCategoryModel.mApiTypeName ;
+//    NSString * string=@"";
+//    if ([self.lotteryCategoryModel.showCover containsString:@"mobile-api/ios/themes/blue"]) {
+//        if ([THEMEV3 isEqualToString:@"green"]) {
+//            string=[self.lotteryCategoryModel.showCover stringByReplacingOccurrencesOfString:@"blue"withString:@"green"];
+//        }
+//    }
+//
+//    NSLog(@"green1=%@",string);
+//    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:string]] ;
     [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryCategoryModel.showCover]] ;
 }
 
