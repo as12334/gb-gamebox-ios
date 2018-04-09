@@ -21,11 +21,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOX-Ii-e8S">
                         <rect key="frame" x="25" y="56" width="270" height="158"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gongxi" translatesAutoresizingMaskIntoConstraints="NO" id="eet-ce-NFC">
-                                <rect key="frame" x="8" y="8" width="125" height="14"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gongxi" translatesAutoresizingMaskIntoConstraints="NO" id="eet-ce-NFC">
+                                <rect key="frame" x="8" y="8" width="60" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="LKU-Kt-nEz"/>
-                                    <constraint firstAttribute="width" constant="125" id="YNn-nw-L8a"/>
+                                    <constraint firstAttribute="width" constant="60" id="YNn-nw-L8a"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="储蓄卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNK-dP-piM">

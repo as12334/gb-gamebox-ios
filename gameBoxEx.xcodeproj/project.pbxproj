@@ -673,6 +673,7 @@
 		F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */; };
 		F6A0BC9B206F87B3006DB380 /* RH_DepositeBitcionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */; };
 		F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */; };
+		F6A22B8E2079AA1E0018D6E6 /* LCtextWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A22B8D2079AA1E0018D6E6 /* LCtextWebViewViewController.m */; };
 		F6A2ACC4200457340077CB92 /* RH_BettingRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */; };
 		F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */; };
 		F6A2ACC9200457980077CB92 /* RH_BettingRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A2ACC7200457980077CB92 /* RH_BettingRecordDetailCell.xib */; };
@@ -1895,6 +1896,8 @@
 		F6A0BC98206F87B3006DB380 /* RH_DepositeBitcionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeBitcionCell.h; sourceTree = "<group>"; };
 		F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeBitcionCell.m; sourceTree = "<group>"; };
 		F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeBitcionCell.xib; sourceTree = "<group>"; };
+		F6A22B8C2079AA1E0018D6E6 /* LCtextWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCtextWebViewViewController.h; sourceTree = "<group>"; };
+		F6A22B8D2079AA1E0018D6E6 /* LCtextWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCtextWebViewViewController.m; sourceTree = "<group>"; };
 		F6A2ACC2200457340077CB92 /* RH_BettingRecordDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailController.h; sourceTree = "<group>"; };
 		F6A2ACC3200457340077CB92 /* RH_BettingRecordDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingRecordDetailController.m; sourceTree = "<group>"; };
 		F6A2ACC5200457980077CB92 /* RH_BettingRecordDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingRecordDetailCell.h; sourceTree = "<group>"; };
@@ -2495,6 +2498,8 @@
 				A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */,
 				A04E60521F8DB02400098A65 /* OtherViewCtrl */,
 				A05E63611F8BA135007BAA95 /* RH_Configure.pch */,
+				F6A22B8C2079AA1E0018D6E6 /* LCtextWebViewViewController.h */,
+				F6A22B8D2079AA1E0018D6E6 /* LCtextWebViewViewController.m */,
 				A0109C651F878199004E6EF4 /* RH_APPDelegate.h */,
 				A0109C661F878199004E6EF4 /* RH_APPDelegate.m */,
 				A0E367BD1F90DA5000758033 /* Assets.xcassets */,
@@ -5058,6 +5063,7 @@
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
+				F6A22B8E2079AA1E0018D6E6 /* LCtextWebViewViewController.m in Sources */,
 				7937C4312072073B0010CD0C /* PGDatePicker+DateAndTime.m in Sources */,
 				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
@@ -5381,7 +5387,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_sa7t=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5406,7 +5412,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

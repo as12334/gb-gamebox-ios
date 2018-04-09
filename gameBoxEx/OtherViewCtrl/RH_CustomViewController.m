@@ -69,7 +69,12 @@
     }
     
 }
+- (void)viewDidDisappear:(BOOL)animated
 
+{
+    [super viewDidDisappear:animated];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+}
 
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {
@@ -358,5 +363,18 @@
 }
 
 #pragma mark-
+
+// 允许自动旋转
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll;
+}
+
+//3.返回进入界面默认显示方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
 
 @end

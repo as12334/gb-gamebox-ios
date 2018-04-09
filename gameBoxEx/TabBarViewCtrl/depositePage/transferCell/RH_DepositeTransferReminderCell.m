@@ -19,7 +19,7 @@
     // Initialization code
      self.reminderTextView.backgroundColor = colorWithRGB(242, 242, 242);
     self.backgroundColor = colorWithRGB(242, 242, 242);
-    self.reminderTextView.userInteractionEnabled = NO;
+//    self.reminderTextView.userInteractionEnabled = NO;
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {

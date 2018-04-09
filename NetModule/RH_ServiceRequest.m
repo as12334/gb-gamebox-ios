@@ -1408,7 +1408,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3RequsetLoginWithGetLoadSid
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
-                        pathFormat:RH_API_NAME_LOGIN
+                        pathFormat:RH_API_NAME_LOADSIDSTR
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
@@ -2634,7 +2634,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3PromoActivityType:
             {
-                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA]] ;
+                NSArray *orginDataArr = [ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA] ;
+                NSMutableArray *dataArr = [NSMutableArray array] ;
+                [dataArr insertObject:@{@"activityKey":@"all",@"activityTypeName":@"全部"} atIndex:0];
+                [dataArr addObjectsFromArray:orginDataArr];
+                NSArray *dataArr1 = [dataArr copy] ;
+                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:dataArr1] ;
             }
                 break;
                 
@@ -2920,6 +2925,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
                     tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }
+                if (tempError.code == RH_API_ERRORCODE_SESSION_TAKEOUT) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                         showAlertView(tempError.userInfo[@"NSLocalizedDescription"], nil) ;
+                    }) ;
                     [self.appDelegate updateLoginStatus:FALSE] ;
                 }
             }
