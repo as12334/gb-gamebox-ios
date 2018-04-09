@@ -248,7 +248,7 @@
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
-    if ([THEMEV3 isEqualToString:@"black"])
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"])
     {
         label.textColor = colorWithRGB(85, 85, 85);
         lineView.backgroundColor = colorWithRGB(37, 37, 37);

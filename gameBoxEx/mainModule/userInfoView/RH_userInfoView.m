@@ -24,7 +24,7 @@
     [super awakeFromNib] ;
     self.borderMask = CLBorderMarkAll ;
     self.borderColor = colorWithRGB(204, 204, 204) ;
-    if ([THEMEV3 isEqualToString:@"black"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
         self.borderColor = colorWithRGB(85, 85, 85) ;
     }
     self.borderWidth = PixelToPoint(1.0f) ;
