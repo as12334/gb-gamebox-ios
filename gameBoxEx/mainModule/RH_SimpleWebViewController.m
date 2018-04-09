@@ -488,7 +488,11 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString* reqUrl = request.URL.absoluteString;
-    NSLog(@"-start Request---:%@",reqUrl);
+   
+//    if ([reqUrl isEqualToString:@"https://777.ampinplayopt0matrix.com/m/new/#/game"]) {
+//        reqUrl = @"http://777.ampinplayopt0matrix.com/m/new/#/game";
+//    }
+    
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         [[UIApplication sharedApplication]openURL:request.URL];
         return NO ;
@@ -519,6 +523,7 @@
             }
         }
     }
+    NSLog(@"-start Request---:%@",reqUrl);
     return YES;
 }
 

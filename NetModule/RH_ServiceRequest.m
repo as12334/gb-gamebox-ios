@@ -2083,7 +2083,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         
         ////white,black,blue,red
         if ([THEMEV3 isEqualToString:@"green"]){
-            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
             [queryArgs setValue:@"red" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"black"]){
@@ -2370,11 +2370,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (dataObject) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString11);
-    }
+//    if (dataObject) {
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",jsonString11);
+//    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
