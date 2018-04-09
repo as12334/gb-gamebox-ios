@@ -381,12 +381,18 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
                 [self splashViewComplete] ;
             }else{
-                [self.serviceRequest startUpdateCheck] ;
+                if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
+                    [self.serviceRequest startV3UpdateCheck];
+                }else
+                {
+                    [self.serviceRequest startUpdateCheck] ;
+                }
+                
             }
         }) ;
         
         [self.domainTableView reloadData] ;
-    }else if (type == ServiceRequestTypeUpdateCheck){
+    }else if (type == ServiceRequestTypeUpdateCheck || type == ServiceRequestTypeV3UpdateCheck){
         RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
         
         if(checkVersion.mVersionCode<=[RH_APP_VERCODE integerValue]){

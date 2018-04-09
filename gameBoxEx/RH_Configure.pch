@@ -34,13 +34,13 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"2"
+#define RH_APP_VERCODE                  @"3"
 //agpicdance.info
 //hpdbtopgolddesign.com
 //apiplay.info
-#define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss",\
-                                @"https://agpicdance.info:1344/boss",\
-                                @"https://hpdbtopgolddesign.com:1344/boss"]
+#define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
+                                @"https://agpicdance.info:1344/boss-api",\
+                                @"https://hpdbtopgolddesign.com:1344/boss-api"]
 
 #define RH_APP_UPDATECHECK                      @"j5ZSSGKixBXyF+Rub/BRig=="
 #endif
@@ -133,12 +133,9 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-<<<<<<< HEAD
-#define THEMEV3             @"green"   //green,red,black,default .
-=======
-#define THEMEV3             @"default"   //green,red,black,default .
->>>>>>> origin/dev_richard
-#define SITE_TYPE    @"integratedv3oc"
+
+//#define THEMEV3             @"green"   //green,red,black,default .
+//#define SITE_TYPE    @"integratedv3oc"
 
 #elif _1qkq //宏图娱乐
 
