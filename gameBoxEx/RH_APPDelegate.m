@@ -18,6 +18,7 @@
 #import "RH_GestureOpenLockView.h"
 
 
+
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
 
@@ -258,7 +259,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (BOOL)needRegister3DTouchShortcutItems {
     return NO;
 }
-
 
 
 @end

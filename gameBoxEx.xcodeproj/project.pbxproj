@@ -89,6 +89,7 @@
 		7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D029206503B800760FEB /* RH_AboutUsTableViewCell.m */; };
 		7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7953D02C206505C100760FEB /* RH_AboutUsModel.m */; };
 		795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */; };
+		79595C6F207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 79595C6E207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.m */; };
 		797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */; };
 		797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678820085DA5009E3FAB /* RH_SystemNoticeModel.m */; };
 		797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F678B200890DF009E3FAB /* RH_SystemNoticeDetailModel.m */; };
@@ -883,6 +884,8 @@
 		7953D02C206505C100760FEB /* RH_AboutUsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AboutUsModel.m; sourceTree = "<group>"; };
 		795513D8203040420096CA77 /* RH_SiteMsgUnReadCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SiteMsgUnReadCountModel.h; sourceTree = "<group>"; };
 		795513D9203040420096CA77 /* RH_SiteMsgUnReadCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SiteMsgUnReadCountModel.m; sourceTree = "<group>"; };
+		79595C6D207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MyUncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		79595C6E207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MyUncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		797252EB2004953200A73F05 /* RH_CapitalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalTableViewCell.h; sourceTree = "<group>"; };
 		797252EC2004953200A73F05 /* RH_CapitalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalTableViewCell.m; sourceTree = "<group>"; };
 		797F678720085DA5009E3FAB /* RH_SystemNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SystemNoticeModel.h; sourceTree = "<group>"; };
@@ -2249,6 +2252,15 @@
 			path = AboutUs;
 			sourceTree = "<group>";
 		};
+		79595C6C207B0DD50052F472 /* 异常捕获 */ = {
+			isa = PBXGroup;
+			children = (
+				79595C6D207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.h */,
+				79595C6E207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.m */,
+			);
+			path = "异常捕获";
+			sourceTree = "<group>";
+		};
 		79BB2D9420312F09000CDE6B /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -3561,6 +3573,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				79595C6C207B0DD50052F472 /* 异常捕获 */,
 				F68201FE20707418003593C9 /* 滚轮选择器 */,
 				79FA652120674258000C7DB6 /* HelpCenter */,
 				79FA651720673B90000C7DB6 /* RegisterClause */,
@@ -4877,6 +4890,7 @@
 				A0522A85200C84C400A5A6E9 /* RH_PromoViewControllerEx.m in Sources */,
 				F6942E0720648EDD009A5573 /* RH_DepositeTransferQRCodeCell.m in Sources */,
 				A04E60531F8DB05600098A65 /* RH_DepositeViewController.h in Sources */,
+				79595C6F207B0E0E0052F472 /* RH_MyUncaughtExceptionHandler.m in Sources */,
 				A05747BB1FF4E5350068D0E4 /* RH_HomePageModel.m in Sources */,
 				79E223F9200CC210006B0450 /* RH_DiscountActivityTypeModel.m in Sources */,
 				A058FF361FE8A6BC006EF279 /* CWLateralSlideConfiguration.m in Sources */,
@@ -5379,9 +5393,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5405,8 +5419,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5416,7 +5430,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid65;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

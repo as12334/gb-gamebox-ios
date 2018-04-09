@@ -35,8 +35,7 @@
 #else
 //正式环境
 #define RH_APP_VERCODE                  @"3"
-//agpicdance.info
-//hpdbtopgolddesign.com
+//agpicdance.info//hpdbtopgolddesign.com
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
                                 @"https://agpicdance.info:1344/boss-api",\
@@ -85,7 +84,7 @@
 //    站点配制
 //===========================================================
 
-//#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"green"   //green,red,black,default .
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
@@ -143,7 +142,6 @@
 #define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
 #define SID        @"65"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _erln //太阳城集团
@@ -383,7 +381,7 @@
 #define S        @"5c441ff853deb589cd515950950ef1ec"
 #define SID        @"141"
 #define THEME    @"green.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _vbgt //澳门新葡京娱乐场
 
@@ -623,7 +621,7 @@
 #define S        @"8d188612586e44c2184f4e08addb845f"
 #define SID        @"185"
 #define THEME    @"pink.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _cwad //赛博体育
 
@@ -865,7 +863,7 @@
 #define S        @"71667414a4274b0883d3e0d492498bf1"
 #define SID        @"218"
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _tcjp //鼎彩国际
 
