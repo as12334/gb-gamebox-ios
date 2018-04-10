@@ -18,6 +18,7 @@
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; //存储 pagecell data content ;
+@property(nonatomic,strong)NSArray *typrlistArray;
 @end
 
 @implementation RH_PromoViewControllerEx
@@ -113,6 +114,7 @@
 {
     self.typeTopView.whc_TopSpace(StatusBarHeight+NavigationBarHeight).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(self.typeTopView.viewHeight) ;
     self.pageView.whc_TopSpace(StatusBarHeight + NavigationBarHeight + self.typeTopView.viewHeight +10).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(TabBarHeight) ;
+   
 }
 
 #pragma mark -
@@ -132,7 +134,6 @@
         _typeTopView = [RH_PromoTypeHeaderView createInstance] ;
         _typeTopView.delegate = self ;
     }
-    
     return _typeTopView ;
 }
 
@@ -236,6 +237,7 @@
             [self.typeTopView updateView:typeList] ;
             [self.contentLoadingIndicateView hiddenView] ;
             [self setupInfo] ;
+            self.typrlistArray = typeList;
         }else{
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
                 NSArray *typeList = ConvertToClassPointer(NSArray , data) ;
