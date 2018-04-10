@@ -50,9 +50,11 @@
 //    界面属性定义
 //===========================================================
 #define   RH_NavigationBar_BackgroundColor                      colorWithRGB(27, 117, 217)
-#define   RH_NavigationBar_BackgroundColor_Red                  colorWithRGB(242, 32, 95)
+#define   RH_NavigationBar_BackgroundColor_Red                  colorWithRGB(198, 41, 40)
 #define   RH_NavigationBar_BackgroundColor_Green                colorWithRGB(4, 109, 79)
 #define   RH_NavigationBar_BackgroundColor_Black                colorWithRGB(21, 21, 21)
+#define   RH_NavigationBar_BackgroundColor_Blue                colorWithRGB(16, 88, 140)
+#define   RH_NavigationBar_BackgroundColor_Orange               ColorWithNumberRGB(0xff7700)
 
 #define   RH_NavigationBar_ForegroundColor              colorWithRGB(255, 255, 255)
 #define   RH_NavigationBar_TitleFontSize                [UIFont systemFontOfSize:16.0f]
@@ -188,7 +190,7 @@
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
-#define THEMEV3             @"green"   //green,red,black,default .
+#define THEMEV3             @"orange"   //green,red,black,blue,default .orange
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _XH5Z //澳门永利

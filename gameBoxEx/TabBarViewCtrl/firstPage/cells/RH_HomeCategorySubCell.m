@@ -31,7 +31,7 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  [UIColor blackColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
         self.backgroundColor = colorWithRGB(37, 37, 37) ;
     }else{
@@ -72,6 +72,7 @@
 //            self.lineView.backgroundColor = [UIColor greenColor];
         }else if ([THEMEV3 isEqualToString:@"red"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Red ;
+            self.imageB.image = ImageWithName(@"nav-hover-black-bg");
             self.indicatorImgView.alpha = 1.0;
 //            self.lineView.backgroundColor = [UIColor redColor];
         }else if ([THEMEV3 isEqualToString:@"black"]){
@@ -80,6 +81,13 @@
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
             [self bringSubviewToFront:self.imgIcon];
             self.indicatorImgView.alpha = 0.0;
+        }else if ([THEMEV3 isEqualToString:@"blue"]){
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Blue ;
+            //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
+            self.imageB.image = ImageWithName(@"nav-hover-black-bg");
+            [self bringSubviewToFront:self.imgIcon];
+            self.indicatorImgView.alpha = 0.0;
+            self.labTitle.textColor = [UIColor whiteColor] ;
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
             self.indicatorImgView.alpha = 1.0;
@@ -90,10 +98,10 @@
         
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
-        self.labTitle.textColor = [UIColor blackColor] ;
-        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+//        self.labTitle.textColor = [UIColor blackColor] ;
+//        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
             self.labTitle.textColor = [UIColor whiteColor] ;
-        }
+//        }
     }
 }
 

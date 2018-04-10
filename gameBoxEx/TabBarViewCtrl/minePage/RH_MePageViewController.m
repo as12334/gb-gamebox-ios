@@ -165,11 +165,19 @@
 -(void)setupUI
 {
     if ([THEMEV3 isEqualToString:@"green"]){
-        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Green];
+//        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Green];
+         [self.navigationBar setBackgroundColor:RH_NavigationBar_BackgroundColor_Green];
     }else if ([THEMEV3 isEqualToString:@"red"]){
-        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Red];
+        [self.navigationBar setBackgroundColor:RH_NavigationBar_BackgroundColor_Red];
+//        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Red];
     }else if ([THEMEV3 isEqualToString:@"black"]){
         [self.navigationBar setBarTintColor:ColorWithNumberRGB(0x1766bb)];
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+//        [self.navigationBar setBackgroundColor:RH_NavigationBar_BackgroundColor_Blue];
+        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Blue];
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        [self.navigationBar setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange];
+//        [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor_Orange];
     }else{
         [self.navigationBar setBarTintColor:RH_NavigationBar_BackgroundColor];
     }

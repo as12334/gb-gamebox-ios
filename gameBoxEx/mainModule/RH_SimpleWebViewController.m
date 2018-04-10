@@ -285,6 +285,7 @@
 #pragma mark -
 - (void)setWebURL:(NSURL *)webURL
 {
+    NSLog(@"webURL===%@",webURL);
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
