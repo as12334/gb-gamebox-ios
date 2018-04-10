@@ -1576,7 +1576,7 @@
 		A058FF371FE8B466006EF279 /* RH_FirstPageViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_FirstPageViewControllerEx.m; sourceTree = "<group>"; };
 		A058FF381FE8B466006EF279 /* RH_FirstPageViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_FirstPageViewControllerEx.h; sourceTree = "<group>"; };
 		A058FF3E1FE8BE39006EF279 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; };
+		A05E63611F8BA135007BAA95 /* RH_Configure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_Configure.pch; sourceTree = "<group>"; wrapsLines = 0; };
 		A05E63B31F8C649E007BAA95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A06B64A41FD690EA00323C12 /* RH_LoginViewControllerEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewControllerEx.h; sourceTree = "<group>"; };
 		A06B64A51FD690EA00323C12 /* RH_LoginViewControllerEx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewControllerEx.m; sourceTree = "<group>"; };

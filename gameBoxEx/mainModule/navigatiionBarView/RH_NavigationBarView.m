@@ -36,11 +36,13 @@
 {
     [super awakeFromNib] ;
     if ([THEMEV3 isEqualToString:@"green"]){
-        self.backgroundColor = colorWithRGB(4, 109, 79) ;
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
     }else{
         self.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }

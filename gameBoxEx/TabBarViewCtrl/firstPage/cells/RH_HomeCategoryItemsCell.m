@@ -83,7 +83,7 @@
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         _collectionView.backgroundColor = [UIColor whiteColor];
-        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]) {
             _collectionView.backgroundColor = colorWithRGB(21, 21, 21);
         }
         _collectionView.scrollEnabled = NO;
