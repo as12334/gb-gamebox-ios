@@ -150,6 +150,15 @@
         }) ;
         
     };
+    //优惠详情加入成功之后跳转到申请优惠界面
+    jsContext[@"nativeGoToApplyPromoPage"] = ^() {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //跳转原生申请优惠界面
+            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+            loginViewCtrlEx.delegate = self ;
+            [self showViewController:loginViewCtrlEx sender:self] ;
+        }) ;
+    };
 }
 
 #pragma mark-
