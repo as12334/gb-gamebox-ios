@@ -28,7 +28,7 @@
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
-    self.bankCardNameLabel.text = listModel.mBankName;
+    self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
     [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
 }

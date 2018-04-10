@@ -72,7 +72,6 @@
 {
     [loginViewContrller hideWithDesignatedWay:YES completedBlock:^{
         [self reloadWebView] ;
-        
     }] ;
 }
 
