@@ -5428,15 +5428,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "新葡京娱乐城";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-396";
 				APP_DISPLAY_NAME = "澳门银河娱乐城";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-522";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_ajco=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_j1ms=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5446,7 +5444,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid396;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid522;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

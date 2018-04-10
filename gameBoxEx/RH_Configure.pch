@@ -93,7 +93,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"
 #define THEME     @"default.skin"
-#define THEMEV3     @"black"   //green,red,black,default .
+#define THEMEV3     @"default"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 
@@ -962,7 +962,7 @@
 #define S        @"ed787d30af2456e15d16cb458c1f86f9"
 #define SID        @"220"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"green"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _ionm //金沙娱乐场
@@ -1316,7 +1316,7 @@
 #define S        @"b3d4e9a7c092f99593253226dad03efe"
 #define SID        @"268"
 #define THEME    @"green.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
+#define THEMEV3             @"green"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _aqpd //天天彩票
@@ -1378,7 +1378,7 @@
 #define S        @"90e974e3fbae299946d2f89935dc509a"
 #define SID        @"271"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default .
+#define THEMEV3             @"red"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _1pff //太阳城集团
