@@ -441,6 +441,30 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"-webView finish ---:");
+//    CGFloat rightSpace = 0.0;
+//    if (self.view.frame.size.width == 320.0) {
+//        rightSpace = self.view.frame.size.width/6.5;
+//    } else if (self.view.frame.size.width == 375.0){
+//        rightSpace = self.view.frame.size.width/7.2;
+//    } else {
+//        rightSpace = self.view.frame.size.width/8.0;
+//    }
+//    NSString *script = [NSString stringWithFormat:
+//                        @"var script = document.createElement('script');"
+//                        "script.type = 'text/javascript';"
+//                        "script.text = \"function ResizeImages() { "
+//                        "var img;"
+//                        "var maxwidth=%f;"
+//                        "for(i=0;i <document.images.length;i++){"
+//                        "img = document.images[i];"
+//                        "if(img.width > maxwidth){"
+//                        "img.width = maxwidth;"
+//                        "}"
+//                        "}"
+//                        "}\";"
+//                        "document.getElementsByTagName('head')[0].appendChild(script);", self.view.frame.size.width - rightSpace];
+//    [webView stringByEvaluatingJavaScriptFromString: script];
+//    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
     [self _setContentShowState:RH_WebViewContentShowStateShowed];
     [self _setLoading:NO];
     NSString *url = webView.request.URL.absoluteString;
