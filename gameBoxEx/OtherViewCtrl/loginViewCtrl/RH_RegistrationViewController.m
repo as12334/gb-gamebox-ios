@@ -114,7 +114,7 @@
     mainScrollView.scrollEnabled = YES;
     mainScrollView.showsVerticalScrollIndicator = YES;
     mainScrollView.showsHorizontalScrollIndicator = NO;
-    mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 100);
+    mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 200);
     [mainScrollView addSubview:self.stackView];
     self.stackView.whc_TopSpace(70).whc_LeftSpace(20).whc_Width(screenSize().width - 40).whc_HeightAuto();
     for (FieldModel *field in registrationInitModel.fieldModel) {
