@@ -19,7 +19,6 @@
 @synthesize collectionTypeView = _collectionTypeView ;
 @synthesize selectedIndex = _selectedIndex ;
 @synthesize viewHeight = _viewHeight  ;
-
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
@@ -47,7 +46,6 @@
 -(CGFloat)viewHeight
 {
     if (_arrayTypeList.count==0) return 0.0f ;
-    
     if (_viewHeight==0){
         CGFloat width = 10 ;
         CGFloat rows = 1 ;
@@ -59,7 +57,6 @@
                 rows ++ ;
             }
         }
-        
         _viewHeight = rows*30 + (rows+1)*10 ;
     }
     
@@ -81,14 +78,14 @@
     if (!_collectionTypeView){
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 10.f;
-        flowLayout.sectionInset = UIEdgeInsetsMake(15.0, 10.f, 15.0f, 10.0f);
+        flowLayout.sectionInset = UIEdgeInsetsMake(15.0, 10.f, 15.0f, 5.0f);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        
         _collectionTypeView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout] ;
         _collectionTypeView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ;
         _collectionTypeView.delegate = self ;
         _collectionTypeView.dataSource = self ;
         _collectionTypeView.backgroundColor = [UIColor clearColor] ;
+        _collectionTypeView.scrollEnabled = NO ;
         [_collectionTypeView registerCellWithClass:[RH_PromoCategoryCell class]] ;
     }
     

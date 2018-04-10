@@ -25,7 +25,7 @@
 {
      NSArray * transferModelArray = ConvertToClassPointer(NSArray, context);
     if (transferModelArray.count%5==0) {
-        return 80*(transferModelArray.count/5)+10;
+        return 80*(transferModelArray.count/5)+20;
     }
     else
     {
