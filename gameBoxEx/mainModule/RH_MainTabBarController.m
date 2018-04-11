@@ -194,7 +194,7 @@
             homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            self.tabBar.tintColor = colorWithRGB(21, 141, 246);
+            self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Orange;
         }else{
             saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
