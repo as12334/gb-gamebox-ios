@@ -2243,6 +2243,15 @@
 #define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _aioz //九州国际
+
+#define CODE    @"aioz"
+#define S        @"54cf6901851b41953a4e44a4c24354c5"
+#define SID        @"512"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _ex57 //皇家娱乐城
 
 #define CODE    @"ex57"
@@ -2250,6 +2259,15 @@
 #define SID        @"516"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _qec8 //澳门金沙娱乐场
+
+#define CODE    @"qec8"
+#define S        @"861ce7c81d29d7b0e69ab5cd2dcf9380"
+#define SID        @"517"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _sa7t //亿豪国际娱乐城
@@ -2261,29 +2279,20 @@
 #define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _uvvu //澳门银河娱乐城
+
+#define CODE    @"uvvu"
+#define S        @"620fcc14a88a86e10188ef8c41184d11"
+#define SID        @"522"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _mmrx //澳门威尼斯人
 
 #define CODE    @"mmrx"
 #define S        @"643d4492d9ef6250664d77f7b66c0746"
 #define SID        @"523"
-#define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default .
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _aioz //九州国际
-
-#define CODE    @"aioz"
-#define S        @"54cf6901851b41953a4e44a4c24354c5"
-#define SID        @"512"
-#define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default .
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _qec8 //澳门金沙娱乐场
-
-#define CODE    @"qec8"
-#define S        @"861ce7c81d29d7b0e69ab5cd2dcf9380"
-#define SID        @"517"
 #define THEME    @"default.skin"
 #define THEMEV3             @"default"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
@@ -2297,13 +2306,13 @@
 #define THEMEV3             @"red"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _uvvu //澳门银河娱乐城
+#elif _pvbs //大富豪娱乐城
 
-#define CODE    @"uvvu"
-#define S        @"620fcc14a88a86e10188ef8c41184d11"
-#define SID        @"522"
-#define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default .
+#define CODE    @"pvbs"
+#define S        @"47b46779b9b9ae4e98d3998d5e127d03"
+#define SID        @"528"
+#define THEME     @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif
