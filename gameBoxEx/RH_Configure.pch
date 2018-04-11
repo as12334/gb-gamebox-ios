@@ -964,7 +964,7 @@
 #define THEMEV3             @"green"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _ionm //金沙娱乐场
+#elif _ionm //澳门金沙娱乐场
 
 #define CODE    @"ionm"
 #define S        @"a032d44966641cfed152f6eb90bf89c7"
@@ -1914,7 +1914,7 @@
 #define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _8egp //金柜娱乐
+#elif _8egp //VNS娱乐城
 
 #define CODE    @"8egp"
 #define S        @"e76ec6a5be41b5f0f829df3f01537784"
