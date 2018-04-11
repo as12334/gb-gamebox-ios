@@ -1192,7 +1192,7 @@
 #define S        @"82c01fa2f5c8ef697e80e0d92af8c853"
 #define SID        @"257"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
+#define THEMEV3             @"green"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7rda //澳门威尼斯人
@@ -2304,6 +2304,15 @@
 #define SID        @"525"
 #define THEME    @"default.skin"
 #define THEMEV3             @"red"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ma0e //澳门巴黎人
+
+#define CODE    @"ma0e"
+#define S        @"1b07b9228aee224cd1ebe70e3f0a9a48"
+#define SID        @"526"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _pvbs //大富豪娱乐城
