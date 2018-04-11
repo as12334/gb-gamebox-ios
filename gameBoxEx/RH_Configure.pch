@@ -683,7 +683,7 @@
 #define S        @"c8826177aa6db7a1d99cf268ed8d9cd8"
 #define SID        @"186"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
+#define THEMEV3             @"default"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _b02h //澳门银河
@@ -2258,7 +2258,7 @@
 #define S        @"68365cff4e5d13ac70f7d982a3a68908"
 #define SID        @"516"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
+#define THEMEV3             @"red"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _qec8 //澳门金沙娱乐场
