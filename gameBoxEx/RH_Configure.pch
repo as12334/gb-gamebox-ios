@@ -1308,7 +1308,7 @@
 #define S        @"d0d5771115ac221bb153a07d98996d60"
 #define SID        @"266"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
+#define THEMEV3             @"red"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _q1mv //bet365
