@@ -28,7 +28,8 @@
     self.webURL = [NSURL URLWithString:self.appDelegate.servicePath.trim];
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
-   
+    [self.webView setScalesPageToFit:NO];
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
 }
 
 -(BOOL)tabBarHidden

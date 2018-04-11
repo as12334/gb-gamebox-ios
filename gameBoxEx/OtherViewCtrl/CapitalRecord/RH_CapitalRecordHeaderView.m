@@ -70,6 +70,12 @@
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.serachBtn.backgroundColor = ColorWithNumberRGB(0x1b75d9);
         self.btnQuickSelect.backgroundColor = ColorWithNumberRGB(0x1bd986);

@@ -35,7 +35,6 @@
 - (BOOL)hasNavigationBar {
     return YES;
 }
-
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
@@ -46,7 +45,11 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1b75d9) ;
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -54,7 +57,19 @@
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
             [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
         }
         
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
@@ -74,6 +89,7 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
+
 - (WHC_StackView *)stackView {
     if (_stackView == nil) {
         _stackView = [WHC_StackView new];
@@ -247,6 +263,14 @@
     [button setBackgroundColor:colorWithRGB(20, 90, 180)];
     if ([THEMEV3 isEqualToString:@"green"]) {
         [button setBackgroundColor:colorWithRGB(4, 109, 79)];
+    }else if ([THEMEV3 isEqualToString:@"red"]) {
+        [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Red];
+    }else if ([THEMEV3 isEqualToString:@"black"]) {
+//        [button setBackgroundColor:colorWithRGB(4, 109, 79)];
+    }else if ([THEMEV3 isEqualToString:@"bule"]) {
+        [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Blue];
+    }else if ([THEMEV3 isEqualToString:@"orange"]) {
+        [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange];
     }
     [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
 }

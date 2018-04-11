@@ -105,12 +105,15 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户行:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-eP-jQO">
                                 <rect key="frame" x="8" y="112.5" width="47" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="Xx5-Ac-sha"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="建设路口" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-jC-cbV">
-                                <rect key="frame" x="59" y="113" width="149" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="建设路口" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-jC-cbV">
+                                <rect key="frame" x="59" y="113" width="153" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -127,11 +130,11 @@
                             <constraint firstItem="b0b-mN-gxp" firstAttribute="centerY" secondItem="9ka-9W-Ph7" secondAttribute="centerY" id="2aL-LQ-NNR"/>
                             <constraint firstItem="eet-ce-NFC" firstAttribute="top" secondItem="TOX-Ii-e8S" secondAttribute="top" constant="8" id="4l5-7I-7mZ"/>
                             <constraint firstAttribute="trailing" secondItem="Kis-sr-kzK" secondAttribute="trailing" constant="8" id="Ekw-uN-mjY"/>
+                            <constraint firstItem="pzh-F4-s3Z" firstAttribute="leading" secondItem="cCe-jC-cbV" secondAttribute="trailing" constant="4" id="IJV-Sg-q7K"/>
                             <constraint firstItem="Sfs-A5-mRN" firstAttribute="top" secondItem="HNK-dP-piM" secondAttribute="bottom" constant="4.5" id="IaW-AO-KAV"/>
                             <constraint firstItem="cCe-jC-cbV" firstAttribute="centerY" secondItem="wDh-eP-jQO" secondAttribute="centerY" id="IbQ-HU-2r2"/>
                             <constraint firstItem="Sfs-A5-mRN" firstAttribute="leading" secondItem="TOX-Ii-e8S" secondAttribute="leading" id="N8k-96-fJw"/>
                             <constraint firstItem="Rry-TG-jn6" firstAttribute="top" secondItem="Sfs-A5-mRN" secondAttribute="bottom" constant="16" id="OPX-bn-aTL"/>
-                            <constraint firstItem="cCe-jC-cbV" firstAttribute="leading" secondItem="wDh-eP-jQO" secondAttribute="trailing" constant="4" id="Ppc-PW-C0K"/>
                             <constraint firstItem="pzh-F4-s3Z" firstAttribute="top" secondItem="Kis-sr-kzK" secondAttribute="bottom" constant="4" id="QDD-Fm-cyZ"/>
                             <constraint firstItem="b0b-mN-gxp" firstAttribute="leading" secondItem="9ka-9W-Ph7" secondAttribute="trailing" constant="4" id="Yme-Lw-Ja6"/>
                             <constraint firstItem="9ka-9W-Ph7" firstAttribute="top" secondItem="Rry-TG-jn6" secondAttribute="bottom" constant="13" id="aGj-hx-CHn"/>
@@ -146,6 +149,7 @@
                             <constraint firstAttribute="trailing" secondItem="oql-Yi-lPz" secondAttribute="trailing" constant="8" id="q0A-bg-PFN"/>
                             <constraint firstAttribute="trailing" secondItem="Sfs-A5-mRN" secondAttribute="trailing" id="vi7-Lm-JDH"/>
                             <constraint firstItem="HNK-dP-piM" firstAttribute="top" secondItem="TOX-Ii-e8S" secondAttribute="top" constant="10" id="w4o-ed-5eF"/>
+                            <constraint firstItem="cCe-jC-cbV" firstAttribute="leading" secondItem="wDh-eP-jQO" secondAttribute="trailing" constant="4" id="wPr-YQ-ugh"/>
                             <constraint firstAttribute="trailing" secondItem="HNK-dP-piM" secondAttribute="trailing" constant="8" id="wnG-lK-1wQ"/>
                             <constraint firstItem="oql-Yi-lPz" firstAttribute="top" secondItem="Sfs-A5-mRN" secondAttribute="bottom" constant="16" id="y11-As-3lj"/>
                             <constraint firstItem="eet-ce-NFC" firstAttribute="leading" secondItem="TOX-Ii-e8S" secondAttribute="leading" constant="8" id="yC6-Vr-efB"/>

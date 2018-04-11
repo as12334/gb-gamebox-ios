@@ -162,6 +162,14 @@
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Red ;
          [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Blue ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Blue forState:UIControlStateNormal];
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Orange forState:UIControlStateNormal];
     }else if ([THEMEV3 isEqualToString:@"black"]){
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;

@@ -116,13 +116,13 @@
 
 -(void)updateTabbarSkins
 {
-    UITabBarItem *home = [self.tabBar.items objectAtIndex:0];
-    UITabBarItem *deposit = [self.tabBar.items objectAtIndex:1];
-    UITabBarItem *transfer = [self.tabBar.items objectAtIndex:2];
-    UITabBarItem *service = [self.tabBar.items objectAtIndex:3];
-    UITabBarItem *mine = [self.tabBar.items objectAtIndex:4];
-
-    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
+    if (self.tabBar.items.count >0) {
+        UITabBarItem *home = [self.tabBar.items objectAtIndex:0];
+        UITabBarItem *deposit = [self.tabBar.items objectAtIndex:1];
+        UITabBarItem *transfer = [self.tabBar.items objectAtIndex:2];
+        UITabBarItem *service = [self.tabBar.items objectAtIndex:3];
+        UITabBarItem *mine = [self.tabBar.items objectAtIndex:4];
+       if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         home.image = [[UIImage imageNamed:@"tab_home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         deposit.image = [[UIImage imageNamed:@"tab_deposit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         service.image = [[UIImage imageNamed:@"tab_service"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -188,6 +188,13 @@
             serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = colorWithRGB(21, 141, 246);
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.tabBar.tintColor = colorWithRGB(21, 141, 246);
         }else{
             saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -211,7 +218,7 @@
         mine.selectedImage = [[UIImage imageNamed:@"tab_lottery_mine"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.tabBar.tintColor = [UIColor colorWithRed:0.87 green:0.32 blue:0.30 alpha:1.0];
     }
-
+}
 //    if ([@"185" isEqualToString:SID]) {
 //        home.title = @"メインページ";
 //        deposit.title = @"振込";

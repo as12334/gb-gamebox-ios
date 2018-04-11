@@ -24,9 +24,9 @@
     [super awakeFromNib] ;
     self.borderMask = CLBorderMarkAll ;
     self.borderColor = colorWithRGB(204, 204, 204) ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]) {
-        self.borderColor = colorWithRGB(85, 85, 85) ;
-    }
+//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]) {
+//        self.borderColor = colorWithRGB(85, 85, 85) ;
+//    }
     self.borderWidth = PixelToPoint(1.0f) ;
     self.layer.masksToBounds = YES ;
     
