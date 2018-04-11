@@ -53,6 +53,12 @@
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor:colorWithRGB(255, 255, 255) ;
 //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Blue:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Orange:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
     }else{
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor:colorWithRGB(255, 255, 255) ;
     }

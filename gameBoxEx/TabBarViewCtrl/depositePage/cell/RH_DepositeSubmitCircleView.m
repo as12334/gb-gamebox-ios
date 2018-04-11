@@ -49,6 +49,16 @@
     self.depositeBtn.layer.cornerRadius = 5.f;
     self.depositeBtn.layer.masksToBounds = YES;
     if ([THEMEV3 isEqualToString:@"green"]) {
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else{
         self.depositeBtn.backgroundColor = colorWithRGB(11, 102, 75);
     }
     _tabelView.delegate = self;

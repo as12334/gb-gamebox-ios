@@ -43,6 +43,8 @@
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
     }else if ([THEMEV3 isEqualToString:@"blue"]){
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
     }else{
         self.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }

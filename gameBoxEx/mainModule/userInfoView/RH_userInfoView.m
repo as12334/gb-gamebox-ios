@@ -24,7 +24,7 @@
     [super awakeFromNib] ;
     self.borderMask = CLBorderMarkAll ;
     self.borderColor = colorWithRGB(204, 204, 204) ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]) {
         self.borderColor = colorWithRGB(85, 85, 85) ;
     }
     self.borderWidth = PixelToPoint(1.0f) ;
@@ -42,9 +42,15 @@
         self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
     }else if ([THEMEV3 isEqualToString:@"red"]){
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
-
+        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
     }else if ([THEMEV3 isEqualToString:@"black"]){
          self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
+        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
         self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
     }else{
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor;

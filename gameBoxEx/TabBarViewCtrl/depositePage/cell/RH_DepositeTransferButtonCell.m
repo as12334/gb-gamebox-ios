@@ -24,7 +24,17 @@
     self.submitBtn.backgroundColor = colorWithRGB(23, 102, 187);
     self.backgroundColor = colorWithRGB(242, 242, 242);
     if ([THEMEV3 isEqualToString:@"green"]) {
-        self.submitBtn.backgroundColor = colorWithRGB(11, 109, 79);
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"black"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else if ([THEMEV3 isEqualToString:@"red"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"blue"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else{
+        
     }
 }
 - (IBAction)click:(id)sender {

@@ -142,7 +142,7 @@
                 <outlet property="personIdNumLabel" destination="3ka-cc-6VS" id="pfu-4l-kHG"/>
                 <outlet property="personNameLabel" destination="SEd-m9-KyJ" id="X8L-fv-dOR"/>
             </connections>
-            <point key="canvasLocation" x="-155" y="166.5"/>
+            <point key="canvasLocation" x="43" y="145"/>
         </tableViewCell>
     </objects>
     <resources>

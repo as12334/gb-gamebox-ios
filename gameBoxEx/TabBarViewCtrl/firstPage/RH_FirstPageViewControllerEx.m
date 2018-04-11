@@ -228,7 +228,7 @@
     
     [self.contentView addSubview:self.contentTableView] ;
     self.contentTableView.backgroundColor = [UIColor whiteColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"red"]) {
         self.contentTableView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
     }
     
@@ -248,7 +248,7 @@
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"])
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"red"])
     {
         label.textColor = colorWithRGB(85, 85, 85);
         lineView.backgroundColor = colorWithRGB(37, 37, 37);

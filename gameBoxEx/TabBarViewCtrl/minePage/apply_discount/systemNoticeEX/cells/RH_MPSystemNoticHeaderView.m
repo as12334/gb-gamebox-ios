@@ -47,6 +47,10 @@
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.kuaixuanBtn.backgroundColor = ColorWithNumberRGB(0x1b75d9);
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else{
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
     }

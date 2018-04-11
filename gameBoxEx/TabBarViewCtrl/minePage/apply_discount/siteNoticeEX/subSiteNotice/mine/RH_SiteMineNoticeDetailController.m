@@ -36,6 +36,10 @@
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
                 navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -49,6 +53,10 @@
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
                 backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }

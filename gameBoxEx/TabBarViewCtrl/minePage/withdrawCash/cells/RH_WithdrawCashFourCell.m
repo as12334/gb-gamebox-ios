@@ -52,6 +52,10 @@
         self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Black;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.textLabel.textColor = RH_NavigationBar_BackgroundColor_Orange;
     }else{
         self.textLabel.textColor = RH_NavigationBar_BackgroundColor;
     }

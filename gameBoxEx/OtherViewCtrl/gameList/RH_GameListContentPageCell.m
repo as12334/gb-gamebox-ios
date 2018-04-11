@@ -50,7 +50,7 @@
         [self.contentCollectionView registerCellWithClass:[RH_GameListCollectionViewCell class]] ;
         [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
         self.contentCollectionView.backgroundColor = [UIColor clearColor];
-        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
             self.contentCollectionView.backgroundColor = [UIColor blackColor];
         }
         
