@@ -81,6 +81,12 @@
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.confimBtn.backgroundColor = ColorWithNumberRGB(0x1766bb);
         self.cancelBtn.backgroundColor = ColorWithNumberRGB(0x1766bb);
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else{
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor;

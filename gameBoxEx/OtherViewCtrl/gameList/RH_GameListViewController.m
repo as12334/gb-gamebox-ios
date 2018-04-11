@@ -37,13 +37,69 @@
     _lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
 }
 
++(void)configureNavigationBar:(UINavigationBar *)navigationBar
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            navigationBar.barTintColor = [UIColor blackColor];
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            backgroundView.backgroundColor = [UIColor blackColor] ;
+        }
+        
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = _lotteryApiModel.mName?:@"列表" ;
     [self.navigationBar setBackgroundColor:[UIColor blueColor]];
 //    [self.navigationBar setTintColor:[UIColor whiteColor]];
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
         self.view.backgroundColor = [UIColor blackColor];
     }
     [self loadingIndicateViewDidTap:nil] ;

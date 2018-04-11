@@ -2085,7 +2085,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         if ([THEMEV3 isEqualToString:@"green"]){
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
-            [queryArgs setValue:@"red" forKey:RH_SP_COMMON_V3_THEME] ;
+            [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"black"]){
             [queryArgs setValue:@"black" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{

@@ -36,6 +36,12 @@
         }else if ([THEMEV3 isEqualToString:@"black"]){
             self.segmentedControl.layer.borderColor= colorWithRGB(30, 104 , 184).CGColor;
             self.segmentedControl.tintColor = colorWithRGB(30, 104 , 184);
+        }else if ([THEMEV3 isEqualToString:@"blue"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Blue.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Blue;
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Orange.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Orange;
         }else{
             self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor.CGColor;
             self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor;

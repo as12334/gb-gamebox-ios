@@ -72,6 +72,25 @@ static NSString *content =  @"温馨提示：\n* 为了方便系统快速完成�
     self.txidTextfield.delegate = self;
     self.bitcoinNumTextfield.delegate = self;
     self.bitcoinChangeTimeTextfield.delegate = self;
+    if ([THEMEV3 isEqualToString:@"green"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else{
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }
     self.submitBtnBackView.backgroundColor = colorWithRGB(242, 242, 242);
     self.noteTextView.backgroundColor = colorWithRGB(242, 242, 242);
     self.accountInfoBakcView.layer.cornerRadius = 5.f;

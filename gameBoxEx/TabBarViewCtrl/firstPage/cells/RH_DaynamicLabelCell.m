@@ -46,6 +46,8 @@
         self.labRemark.backgroundColor = ColorWithNumberRGB(0x168df6) ;
     }else if ([THEMEV3 isEqualToString:@"blue"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else{
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }

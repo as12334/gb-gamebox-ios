@@ -96,7 +96,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
     self.contentTableView.tableFooterView = nil;
 }
-
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
@@ -108,6 +107,10 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
                 navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -115,7 +118,19 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
             [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
         }
         
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
@@ -216,9 +231,15 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }else if ([THEMEV3 isEqualToString:@"black"]){
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"blue"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Blue forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
         }else{
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Orange forState:UIControlStateNormal];
         }
         
         [_footerView addSubview:self.button_Check];
@@ -341,6 +362,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor;
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"blue"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Blue forState:UIControlStateNormal];
+            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Blue;
+            
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Orange forState:UIControlStateNormal];
+            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Orange;
+            
         }else{
             _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor;
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;

@@ -31,7 +31,7 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  [UIColor blackColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
         self.backgroundColor = colorWithRGB(37, 37, 37) ;
     }else{
@@ -50,7 +50,8 @@
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated] ;
-    self.indicatorImgView.hidden = !selected ;
+//    self.indicatorImgView.hidden = !selected ;
+    self.indicatorImgView.hidden = YES;
     if (selected) {
         if (self.imageB.superview == nil) {
             self.imageB = [UIImageView new];
@@ -66,27 +67,30 @@
         
         if ([THEMEV3 isEqualToString:@"green"]){
 //            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Green ;
-            self.indicatorImgView.alpha = 0.0;
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
             self.labTitle.textColor = colorWithRGB(30, 161, 114) ;
 //            self.lineView.backgroundColor = [UIColor greenColor];
         }else if ([THEMEV3 isEqualToString:@"red"]){
-            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Red ;
+            self.labTitle.textColor = [UIColor whiteColor] ;
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
-            self.indicatorImgView.alpha = 1.0;
+//            [self sendSubviewToBack:self.imgIcon];
 //            self.lineView.backgroundColor = [UIColor redColor];
         }else if ([THEMEV3 isEqualToString:@"black"]){
             self.labTitle.textColor = colorWithRGB(22, 141, 246) ;
 //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
-            [self bringSubviewToFront:self.imgIcon];
-            self.indicatorImgView.alpha = 0.0;
+//            [self bringSubviewToFront:self.imgIcon];
         }else if ([THEMEV3 isEqualToString:@"blue"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Blue ;
             //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
-            [self bringSubviewToFront:self.imgIcon];
-            self.indicatorImgView.alpha = 0.0;
+//            [self bringSubviewToFront:self.imgIcon];
+            self.labTitle.textColor = [UIColor whiteColor] ;
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Orange ;
+            //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
+            self.imageB.image = ImageWithName(@"nav-hover-black-bg");
+            //            [self bringSubviewToFront:self.imgIcon];
             self.labTitle.textColor = [UIColor whiteColor] ;
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
