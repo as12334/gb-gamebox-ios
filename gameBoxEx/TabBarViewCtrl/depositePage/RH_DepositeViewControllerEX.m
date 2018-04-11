@@ -703,6 +703,12 @@
     [self.serviceRequest startV3RequestDepositOrigin];
 
 }
+#pragma mark -
+-(void)tryRefreshData
+{
+    _markArray = @[@0,@6,@1,@2,@3,@4,@5];
+    [self.serviceRequest startV3RequestDepositOrigin];
+}
 -(void)cancelLoadDataHandle
 {
     [self.serviceRequest cancleAllServices] ;
