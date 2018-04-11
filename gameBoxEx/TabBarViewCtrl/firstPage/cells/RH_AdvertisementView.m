@@ -74,6 +74,9 @@
         }else if ([THEMEV3 isEqualToString:@"black"]){
             //shaole
             [cancelButton setImage:ImageWithName(@"home_announce_close_black") forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            //shaole
+            [cancelButton setImage:ImageWithName(@"home_announce_close_orange") forState:UIControlStateNormal];
         }else{
             [cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
         }
