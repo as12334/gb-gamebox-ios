@@ -155,18 +155,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    RH_BasicAlertViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (cell == nil) {
-        RH_BasicAlertViewCell  *cell = [[RH_BasicAlertViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-        RH_AnnouncementModel *model = contents[indexPath.row];
-        cell.contentLabel.text = model.mContent;
-        UIImageView *imageB = [UIImageView new];
-        [cell.contentView addSubview:imageB];
-        imageB.image = ImageWithName(@"line-notic");
-        imageB.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
-        
-        cell.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
-//    }
+    //    RH_BasicAlertViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    //    if (cell == nil) {
+    RH_BasicAlertViewCell  *cell = [[RH_BasicAlertViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    RH_AnnouncementModel *model = contents[indexPath.row];
+    cell.contentLabel.text = model.mContent;
+    NSLog(@"mContent==%@",model.mContent);
+    UIImageView *imageB = [UIImageView new];
+    [cell.contentView addSubview:imageB];
+    imageB.image = ImageWithName(@"line-notic");
+    imageB.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1);
+    
+    cell.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
+    //    }
     return cell;
 }
 
