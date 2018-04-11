@@ -76,9 +76,9 @@
         [RH_CustomTabBar appearance].translucent = NO;
         [RH_CustomTabBar appearance].barTintColor = RH_TabBar_BackgroundColor ;
         
-//        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
             [RH_CustomTabBar appearance].barTintColor = colorWithRGB(37, 37, 37) ;
-//        }
+        }
     }
     
 //    self.view.backgroundColor = [UIColor blackColor];

@@ -48,6 +48,8 @@
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"default"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor;
     }else{
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }
@@ -66,10 +68,10 @@
     self.separatorLineWidth = 1.0f ;
     
     self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
-//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
         self.contentView.backgroundColor = colorWithRGB(21, 21, 21);
         self.separatorLineColor = [UIColor clearColor] ;
-//    }
+    }
     
     self.selectionOption = CLSelectionOptionHighlighted ;
     self.selectionColor = [UIColor lightGrayColor] ;
@@ -106,9 +108,9 @@
     self.labScrollText.text = strTmp;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);
-//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
         self.labScrollText.textColor = [UIColor whiteColor];
-//    }
+    }
 //    self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;
 //    self.textSize = [self.labScrollText.text sizeWithFont:[UIFont boldSystemFontOfSize:17.0f] constrainedToSize:CGSizeMake(300, self.labScrollText.frame.size.height) lineBreakMode:NSLineBreakByWordWrapping];
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14.f],};

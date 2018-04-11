@@ -79,9 +79,9 @@
     
     collectionView.collectionViewLayout = flowLayout ;
 //    collectionView.backgroundColor = colorWithRGB(247, 247, 247);
-//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
         collectionView.backgroundColor = colorWithRGB(37, 37, 37);
-//    }
+    }
     
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.delegate = self;

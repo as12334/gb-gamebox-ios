@@ -64,7 +64,7 @@
         }
         [self.borderView insertSubview:self.lineView belowSubview:self.indicatorImgView] ;
         self.lineView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_Height(1) ;
-        
+        self.imgIcon.alpha = 0.0;
         if ([THEMEV3 isEqualToString:@"green"]){
 //            self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Green ;
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
@@ -92,6 +92,11 @@
             self.imageB.image = ImageWithName(@"nav-hover-black-bg");
             //            [self bringSubviewToFront:self.imgIcon];
             self.labTitle.textColor = [UIColor whiteColor] ;
+        }else if ([THEMEV3 isEqualToString:@"default"]){
+            self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
+            //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
+            [self bringSubviewToFront:self.imgIcon];
+            self.labTitle.textColor = [UIColor blackColor] ;
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
             self.indicatorImgView.alpha = 1.0;
@@ -103,9 +108,9 @@
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
 //        self.labTitle.textColor = [UIColor blackColor] ;
-//        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
             self.labTitle.textColor = [UIColor whiteColor] ;
-//        }
+        }
     }
 }
 
