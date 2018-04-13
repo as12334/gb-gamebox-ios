@@ -1343,7 +1343,7 @@
 #define S        @"ce7767ba430031b73cdb0ebd7ed38c7a"
 #define SID        @"270"
 #define THEME    @"green.skin"
-#define THEMEV3             @"black"   //green,red,black,default .
+#define THEMEV3             @"green"   //green,red,black,default .
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7ybc //金沙娱乐城
