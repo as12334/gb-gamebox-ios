@@ -42,6 +42,21 @@
         }else if ([THEMEV3 isEqualToString:@"orange"]){
             self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Orange.CGColor;
             self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Orange;
+        }else if ([THEMEV3 isEqualToString:@"red_white"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Red_White.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Red_White;
+        }else if ([THEMEV3 isEqualToString:@"green_white"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Green_White.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Green_White;
+        }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Orange_White.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Coffee_White.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+            self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor_Coffee_Black.CGColor;
+            self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
         }else{
             self.segmentedControl.layer.borderColor= RH_NavigationBar_BackgroundColor.CGColor;
             self.segmentedControl.tintColor = RH_NavigationBar_BackgroundColor;

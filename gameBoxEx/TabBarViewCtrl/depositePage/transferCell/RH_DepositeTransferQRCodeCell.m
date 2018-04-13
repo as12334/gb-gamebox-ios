@@ -84,6 +84,18 @@
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         [self.saveTophoneBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange];
         [self.openAppBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange];
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        [self.saveTophoneBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Red_White];
+        [self.openAppBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Red_White];
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        [self.saveTophoneBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Green_White];
+        [self.openAppBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Green_White];
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        [self.saveTophoneBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange_White];
+        [self.openAppBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange_White];
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        [self.saveTophoneBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Coffee_White];
+        [self.openAppBtn setBackgroundColor:RH_NavigationBar_BackgroundColor_Coffee_White];
     }else{
         [self.saveTophoneBtn setBackgroundColor:colorWithRGB(23, 102, 203)];
         [self.openAppBtn setBackgroundColor:colorWithRGB(23, 102, 203)];

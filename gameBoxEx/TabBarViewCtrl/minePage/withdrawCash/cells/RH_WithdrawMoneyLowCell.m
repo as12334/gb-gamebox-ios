@@ -56,6 +56,16 @@
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
     }

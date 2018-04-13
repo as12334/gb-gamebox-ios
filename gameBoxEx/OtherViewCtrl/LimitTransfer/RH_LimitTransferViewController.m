@@ -93,6 +93,14 @@
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -110,6 +118,14 @@
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -132,7 +148,6 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
 
 - (void)setupInfo
 {
@@ -192,6 +207,36 @@
         
         oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Orange;
         oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Orange.CGColor;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        oneStepRecoryBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red_White;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red_White.CGColor;
+        
+        oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Red_White;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Red_White.CGColor;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        oneStepRecoryBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Green_White;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Green_White.CGColor;
+        
+        oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Green_White;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Green_White.CGColor;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        oneStepRecoryBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Orange_White;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Orange_White.CGColor;
+        
+        oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Orange_White;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Orange_White.CGColor;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        oneStepRecoryBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Coffee_White;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Coffee_White.CGColor;
+        
+        oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Coffee_White;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Coffee_White.CGColor;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        oneStepRecoryBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Coffee_Black;
+        oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Coffee_Black.CGColor;
+        
+        oneStepRefreshBtn.backgroundColor =RH_NavigationBar_BackgroundColor_Coffee_Black;
+        oneStepRefreshBtn.layer.borderColor = RH_NavigationBar_BackgroundColor_Coffee_Black.CGColor;
     }else{
         oneStepRecoryBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         oneStepRecoryBtn.layer.borderColor = RH_NavigationBar_BackgroundColor.CGColor;

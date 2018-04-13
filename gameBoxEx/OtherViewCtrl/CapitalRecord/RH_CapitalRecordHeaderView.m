@@ -76,6 +76,21 @@
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
         self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.serachBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+        self.btnQuickSelect.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.serachBtn.backgroundColor = ColorWithNumberRGB(0x1b75d9);
         self.btnQuickSelect.backgroundColor = ColorWithNumberRGB(0x1bd986);

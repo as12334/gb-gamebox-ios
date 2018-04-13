@@ -30,6 +30,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.webView.frame = self.view.frame;
 }
 
 -(BOOL)tabBarHidden
