@@ -1076,5 +1076,9 @@
 #pragma mark - V3 获取SID
 #define RH_API_NAME_LOADSIDSTR   @"mobile-api/origin/getHttpCookie.html"
 
+#pragma mark - v3 获取客服接口
+#define RH_API_NAME_CUSTOMSERVICE       @"mobile-api/origin/getCustomerService.html"
+
+
 #endif /* RH_API_h */
 

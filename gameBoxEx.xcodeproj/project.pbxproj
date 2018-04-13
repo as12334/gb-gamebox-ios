@@ -628,6 +628,7 @@
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
 		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
+		F6680377207F3E240080E63A /* RH_TestSafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6680376207F3E240080E63A /* RH_TestSafariViewController.m */; };
 		F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */; };
 		F681D2522019762A00A7C449 /* RH_CapitalRecordBlackLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D2512019762A00A7C449 /* RH_CapitalRecordBlackLabel.m */; };
 		F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F681D254201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m */; };
@@ -1830,6 +1831,8 @@
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
 		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
 		F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferChannelModel.m; sourceTree = "<group>"; };
+		F6680375207F3E240080E63A /* RH_TestSafariViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_TestSafariViewController.h; sourceTree = "<group>"; };
+		F6680376207F3E240080E63A /* RH_TestSafariViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_TestSafariViewController.m; sourceTree = "<group>"; };
 		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
 		F681D24D2019729000A7C449 /* RH_CapitalRecordNameLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordNameLabel.h; sourceTree = "<group>"; };
 		F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordNameLabel.m; sourceTree = "<group>"; };
@@ -2526,6 +2529,8 @@
 				A0E53DBF1F984DCA00CE69E4 /* RH_IMMessageModel.m */,
 				A001B3F41F8F018600309EA4 /* RH_CustomServicePageViewController.h */,
 				A001B3F51F8F018600309EA4 /* RH_CustomServicePageViewController.m */,
+				F6680375207F3E240080E63A /* RH_TestSafariViewController.h */,
+				F6680376207F3E240080E63A /* RH_TestSafariViewController.m */,
 				A0E53DA81F974CAA00CE69E4 /* RH_ChatInputBar.h */,
 				A0E53DA91F974CAA00CE69E4 /* RH_ChatInputBar.m */,
 			);
@@ -5342,6 +5347,7 @@
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
 				F6FB6393200F851300EEED4E /* RH_GameNoticeDetailCell.m in Sources */,
+				F6680377207F3E240080E63A /* RH_TestSafariViewController.m in Sources */,
 				F69E353E2063D2290028D3A1 /* RH_DepositeTransferPayWayCell.m in Sources */,
 				A0109F921F8787E4004E6EF4 /* CLBasicDeclineMenuContentView.m in Sources */,
 				A0109F931F8787E4004E6EF4 /* CLDeclineMenuContainerView.m in Sources */,
@@ -5469,7 +5475,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_cwad=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5493,8 +5499,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_cwad=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
