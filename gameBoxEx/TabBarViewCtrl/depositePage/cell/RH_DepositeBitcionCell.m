@@ -87,6 +87,18 @@ static NSString *content =  @"温馨提示：\n* 为了方便系统快速完成�
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
         self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
     }else{
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
         self.savePhoneBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;

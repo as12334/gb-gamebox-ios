@@ -105,6 +105,18 @@
         self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
         self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
         self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
     }else{
         self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;

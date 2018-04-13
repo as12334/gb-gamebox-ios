@@ -37,7 +37,6 @@
     [self.webView setScalesPageToFit:NO];
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.webView.frame = self.view.frame;
-    
 }
 
 -(BOOL)tabBarHidden
@@ -118,7 +117,7 @@
     if (type==ServiceRequestTypeV3CustomService) {
         self.urlString = [[data objectForKey:@"data"]objectForKey:@"customerUrl"];
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
-        self.statusMark=false;
+//        self.statusMark=false;
         if (self.statusMark==true ) {
             self.webURL = [NSURL URLWithString:self.urlString];
         }

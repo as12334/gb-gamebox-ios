@@ -50,6 +50,16 @@
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else if ([THEMEV3 isEqualToString:@"default"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }

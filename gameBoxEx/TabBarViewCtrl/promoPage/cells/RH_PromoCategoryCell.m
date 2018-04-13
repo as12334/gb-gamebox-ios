@@ -59,6 +59,21 @@
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Orange:colorWithRGB(255, 255, 255) ;
         //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Red_White:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Green_White:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Orange_White:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Coffee_White:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor_Coffee_Black:colorWithRGB(255, 255, 255) ;
+        //        self.labTitle.textColor = selected?colorWithRGB(38, 131, 242):[UIColor whiteColor] ;
     }else{
         self.borderView.backgroundColor = selected?RH_NavigationBar_BackgroundColor:colorWithRGB(255, 255, 255) ;
     }

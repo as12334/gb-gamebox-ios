@@ -2106,6 +2106,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"blue"]){
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"default"]){
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
             [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }
@@ -2294,6 +2296,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }else{
                 *reslutData = @(NO) ;
             }
+            
         }else{
             *error = [NSError resultDataNoJSONError] ;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -2306,6 +2309,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                         }] ;
             });
         }
+        
         return YES ;
         
     }else if (type == ServiceRequestTypeGetCustomService){
@@ -2426,7 +2430,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         switch (type) {
             case ServiceRequestTypeDomainList:
             {
+               
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+            
             }
                 break ;
                 
