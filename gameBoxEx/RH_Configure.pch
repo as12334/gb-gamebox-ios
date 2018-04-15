@@ -1204,11 +1204,8 @@
 #define S        @"82c01fa2f5c8ef697e80e0d92af8c853"
 #define SID        @"257"
 #define THEME    @"default.skin"
-<<<<<<< HEAD
-#define THEMEV3             @"green"   //green,red,black,default .
-=======
 #define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
->>>>>>> origin/dev_sam
+
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7rda //澳门威尼斯人
@@ -1324,11 +1321,8 @@
 #define S        @"d0d5771115ac221bb153a07d98996d60"
 #define SID        @"266"
 #define THEME    @"default.skin"
-<<<<<<< HEAD
-#define THEMEV3             @"red"   //green,red,black,default .
-=======
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
->>>>>>> origin/dev_sam
+
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _q1mv //bet365
@@ -2317,13 +2311,11 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-<<<<<<< HEAD
 #elif _uvvu //澳门银河娱乐城
 
 #define CODE    @"uvvu"
 #define S        @"620fcc14a88a86e10188ef8c41184d11"
 #define SID        @"522"
-=======
 #elif _mmrx //澳门威尼斯人
 
 #define CODE    @"mmrx"

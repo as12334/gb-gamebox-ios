@@ -61,9 +61,9 @@
         
         [self addSubview:self.pickView];
         self.pickView.whc_TopSpaceToView(5, line).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
-        selectedDay = 1;
+        selectedDay = 01;
         selectedYear = 1918;
-        selectedMonth = 1;
+        selectedMonth = 01;
     }
     return self;
 }
@@ -80,7 +80,7 @@
 - (void)confirm {
     ifRespondsSelector(self.delegate, @selector(RH_RegistrationSelectViewDidConfirmButtonTapedwith:)){
         if ([mType isEqualToString:@"birthday"]) {
-            [self.delegate RH_RegistrationSelectViewDidConfirmButtonTapedwith:[NSString stringWithFormat:@"%ld-%ld-%ld", (long)selectedYear, (long)selectedMonth, (long)selectedDay]] ;
+            [self.delegate RH_RegistrationSelectViewDidConfirmButtonTapedwith:[NSString stringWithFormat:@"%02ld-%02ld-%02ld", (long)selectedYear, (long)selectedMonth,selectedDay]] ;
         }else {
             id s = @"";
             if ([list[selectedRow] isKindOfClass:[SexModel class]]) {

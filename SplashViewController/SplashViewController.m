@@ -196,7 +196,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
    [self.concurrentServicesManager startManagerRequests];
 }
-
+#pragma mark ==============重复请求================
+-(void)repetitionStartReqSiteInfo{
+    _talk = @"/__check" ;
+    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
+    {
+#ifdef TEST_DOMAIN
+        _urlArray = @[TEST_DOMAIN] ;
+        [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:0])] ;
+#endif
+    }
+    
+    self.needObserveNetStatusChanged = YES ;
+    [self netStatusChangedHandle] ;
+    self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
+    [self initView] ;
+}
 -(NSMutableArray *)checkDomainServices
 {
     if (!_checkDomainServices){
@@ -341,13 +356,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (errors.count==RH_API_MAIN_URL.count){
         [self.contentLoadingIndicateView hiddenView] ;
         NSError *error = errors.allValues[0] ;
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-//            [self startReqSiteInfo];
-//        }];
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+            [self repetitionStartReqSiteInfo];
+        }];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+//         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
     }
 }
 
@@ -518,13 +533,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self splashViewComplete] ;
 #endif
                 }else{
-//                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"没有检测到可用的主域名!"preferredStyle:UIAlertControllerStyleAlert];
-//                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-//                        [self startReqSiteInfo];
-//                    }];
-//                    [alert addAction:defaultAction];
-//                    [self presentViewController:alert animated:YES completion:nil];
-                    showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"没有检测到可用的主域名!"preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+                        [self repetitionStartReqSiteInfo];
+                    }];
+                    [alert addAction:defaultAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+//                    showAlertView(@"系统提示", @"没有检测到可用的主域名!");
                 }
             }
         });
