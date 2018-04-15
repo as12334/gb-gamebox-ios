@@ -431,10 +431,11 @@
         RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[index] ;
         return lotteryApiModel.mGameItems ;
     }else{
-        if (self.selectedCategoryModel.mSiteApis.count==1){//中间只有一层分类信息
-            return self.selectedCategoryModel.mSiteApis[0].mGameItems ;
+        if (((RH_LotteryAPIInfoModel*)self.selectedCategoryModel.mSiteApis[0]).mGameItems.count==0){//中间只有一层分类信息
+            return self.selectedCategoryModel.mSiteApis ;
         }
-        return self.selectedCategoryModel.mSiteApis ;
+         return ((RH_LotteryAPIInfoModel*)self.selectedCategoryModel.mSiteApis[0]).mGameItems ;
+        
     }
 }
 
