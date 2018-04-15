@@ -2991,6 +2991,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
             NSString *errorMessage = [error.localizedDescription copy] ;
+            NSLog(@"errorMessage==%@",errorMessage);
             [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
                                                                                     RH_SP_COLLECTAPPERROR_CODE:errorCode,
                                                                                     RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
