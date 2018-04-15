@@ -62,6 +62,20 @@
 		228B931D20272A0F008C8313 /* tab_v3_service_selected_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 228B931C20272A0F008C8313 /* tab_v3_service_selected_black@3x.png */; };
 		228B931F20272A7E008C8313 /* tab_v3_my_selected_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 228B931E20272A7E008C8313 /* tab_v3_my_selected_black@3x.png */; };
 		228B932120272ACE008C8313 /* tab_v3_promo_selected_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 228B932020272ACE008C8313 /* tab_v3_promo_selected_black@3x.png */; };
+		22AB9921208098D9001A6203 /* login_touxiang_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB991F208098D8001A6203 /* login_touxiang_coffee@3x.png */; };
+		22AB9922208098D9001A6203 /* login_touxiang_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB9920208098D8001A6203 /* login_touxiang_coffee@2x.png */; };
+		22AB992620809941001A6203 /* tab_v3_home_selected_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB992420809941001A6203 /* tab_v3_home_selected_coffee@2x.png */; };
+		22AB992720809941001A6203 /* tab_v3_home_selected_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB992520809941001A6203 /* tab_v3_home_selected_coffee@3x.png */; };
+		22AB992A2080997F001A6203 /* tab_v3_deposit_selected_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB99282080997F001A6203 /* tab_v3_deposit_selected_coffee@3x.png */; };
+		22AB992B2080997F001A6203 /* tab_v3_deposit_selected_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB99292080997F001A6203 /* tab_v3_deposit_selected_coffee@2x.png */; };
+		22AB992E208099AC001A6203 /* tab_v3_promo_selected_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB992C208099AC001A6203 /* tab_v3_promo_selected_coffee@3x.png */; };
+		22AB992F208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB992D208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png */; };
+		22AB9932208099E3001A6203 /* tab_v3_service_selected_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB9930208099E3001A6203 /* tab_v3_service_selected_coffee@3x.png */; };
+		22AB9933208099E3001A6203 /* tab_v3_service_selected_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB9931208099E3001A6203 /* tab_v3_service_selected_coffee@2x.png */; };
+		22AB993620809A0E001A6203 /* tab_v3_my_selected_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993420809A0D001A6203 /* tab_v3_my_selected_coffee@3x.png */; };
+		22AB993720809A0E001A6203 /* tab_v3_my_selected_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993520809A0D001A6203 /* tab_v3_my_selected_coffee@2x.png */; };
+		22AB993A20809A3D001A6203 /* home_announce_close_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993820809A3C001A6203 /* home_announce_close_coffee@3x.png */; };
+		22AB993B20809A3D001A6203 /* home_announce_close_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */; };
 		22C2E1482026F8AF008C0C06 /* home_announce_close_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */; };
 		22C2E1492026F8AF008C0C06 /* home_announce_close_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */; };
 		22C2E14C2026F93B008C0C06 /* home_announce_close_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */; };
@@ -835,6 +849,20 @@
 		228B931C20272A0F008C8313 /* tab_v3_service_selected_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected_black@3x.png"; sourceTree = "<group>"; };
 		228B931E20272A7E008C8313 /* tab_v3_my_selected_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_black@3x.png"; sourceTree = "<group>"; };
 		228B932020272ACE008C8313 /* tab_v3_promo_selected_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected_black@3x.png"; sourceTree = "<group>"; };
+		22AB991F208098D8001A6203 /* login_touxiang_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB9920208098D8001A6203 /* login_touxiang_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_coffee@2x.png"; sourceTree = "<group>"; };
+		22AB992420809941001A6203 /* tab_v3_home_selected_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_coffee@2x.png"; sourceTree = "<group>"; };
+		22AB992520809941001A6203 /* tab_v3_home_selected_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB99282080997F001A6203 /* tab_v3_deposit_selected_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB99292080997F001A6203 /* tab_v3_deposit_selected_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_deposit_selected_coffee@2x.png"; sourceTree = "<group>"; };
+		22AB992C208099AC001A6203 /* tab_v3_promo_selected_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB992D208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_promo_selected_coffee@2x.png"; sourceTree = "<group>"; };
+		22AB9930208099E3001A6203 /* tab_v3_service_selected_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB9931208099E3001A6203 /* tab_v3_service_selected_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_service_selected_coffee@2x.png"; sourceTree = "<group>"; };
+		22AB993420809A0D001A6203 /* tab_v3_my_selected_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB993520809A0D001A6203 /* tab_v3_my_selected_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_coffee@2x.png"; sourceTree = "<group>"; };
+		22AB993820809A3C001A6203 /* home_announce_close_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_coffee@3x.png"; sourceTree = "<group>"; };
+		22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_coffee@2x.png"; sourceTree = "<group>"; };
 		22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@2x.png"; sourceTree = "<group>"; };
 		22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@3x.png"; sourceTree = "<group>"; };
 		22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_default@3x.png"; sourceTree = "<group>"; };
@@ -2171,6 +2199,23 @@
 			path = balck;
 			sourceTree = "<group>";
 		};
+		22AB9923208098EF001A6203 /* coffee */ = {
+			isa = PBXGroup;
+			children = (
+				22AB992420809941001A6203 /* tab_v3_home_selected_coffee@2x.png */,
+				22AB992520809941001A6203 /* tab_v3_home_selected_coffee@3x.png */,
+				22AB99292080997F001A6203 /* tab_v3_deposit_selected_coffee@2x.png */,
+				22AB99282080997F001A6203 /* tab_v3_deposit_selected_coffee@3x.png */,
+				22AB992D208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png */,
+				22AB992C208099AC001A6203 /* tab_v3_promo_selected_coffee@3x.png */,
+				22AB9931208099E3001A6203 /* tab_v3_service_selected_coffee@2x.png */,
+				22AB9930208099E3001A6203 /* tab_v3_service_selected_coffee@3x.png */,
+				22AB993520809A0D001A6203 /* tab_v3_my_selected_coffee@2x.png */,
+				22AB993420809A0D001A6203 /* tab_v3_my_selected_coffee@3x.png */,
+			);
+			path = coffee;
+			sourceTree = "<group>";
+		};
 		22C2E1412026F7FD008C0C06 /* home_announce_close */ = {
 			isa = PBXGroup;
 			children = (
@@ -2184,6 +2229,8 @@
 				22F626A220566E3E00094564 /* home_announce_close_black@3x.png */,
 				221AE5AC207DF2ED008CD409 /* home_announce_close_orange@2x.png */,
 				221AE5AB207DF2ED008CD409 /* home_announce_close_orange@3x.png */,
+				22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */,
+				22AB993820809A3C001A6203 /* home_announce_close_coffee@3x.png */,
 			);
 			path = home_announce_close;
 			sourceTree = "<group>";
@@ -2201,6 +2248,8 @@
 				22F626A620566E5E00094564 /* login_touxiang_black@3x.png */,
 				221AE58B207DEE83008CD409 /* login_touxiang_orange@2x.png */,
 				221AE58C207DEE84008CD409 /* login_touxiang_orange@3x.png */,
+				22AB9920208098D8001A6203 /* login_touxiang_coffee@2x.png */,
+				22AB991F208098D8001A6203 /* login_touxiang_coffee@3x.png */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -3801,6 +3850,7 @@
 		A07AF4C32026DBE400D6D559 /* tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				22AB9923208098EF001A6203 /* coffee */,
 				221AE576207DED00008CD409 /* orange */,
 				22208B74207478A70028BBA3 /* blue */,
 				226BE37D20297C30003E98C9 /* balck */,
@@ -4672,6 +4722,7 @@
 				79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */,
 				F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
+				22AB9922208098D9001A6203 /* login_touxiang_coffee@2x.png in Resources */,
 				228B93112027287E008C8313 /* tab_v3_service_selected_green@2x.png in Resources */,
 				221AE5A9207DF2C4008CD409 /* home_announce_close_red@2x.png in Resources */,
 				221AE58A207DEE0F008CD409 /* tab_v3_my_selected_orange@2x.png in Resources */,
@@ -4692,6 +4743,7 @@
 				A0522A77200B41DB00A5A6E9 /* MineSafetyCenterInit.plist in Resources */,
 				F69E351220635B8C0028D3A1 /* RH_DepositeMoneyNumberCell.xib in Resources */,
 				22C2E15620271F5C008C0C06 /* login_touxiang_green@3x.png in Resources */,
+				22AB992B2080997F001A6203 /* tab_v3_deposit_selected_coffee@2x.png in Resources */,
 				228B931520272904008C8313 /* tab_v3_my_selected_green@2x.png in Resources */,
 				A07AF4ED2026DBE400D6D559 /* tab_blue_mid@2x.png in Resources */,
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
@@ -4711,6 +4763,7 @@
 				221AE5AD207DF2ED008CD409 /* home_announce_close_orange@3x.png in Resources */,
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
+				22AB992F208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png in Resources */,
 				B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */,
 				221AE585207DEDE0008CD409 /* tab_v3_service_selected_orange@2x.png in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
@@ -4723,6 +4776,7 @@
 				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
+				22AB993A20809A3D001A6203 /* home_announce_close_coffee@3x.png in Resources */,
 				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				79BB2DEC20346BC2000CDE6B /* RH_ShareSeletedDateView.xib in Resources */,
 				F69E353F2063D2290028D3A1 /* RH_DepositeTransferPayWayCell.xib in Resources */,
@@ -4743,9 +4797,11 @@
 				A001B3D21F8EF7CA00309EA4 /* tab_default_transfer@2x.png in Resources */,
 				A06E0F5C20119F6D00EF275A /* WithdrawInit.plist in Resources */,
 				A06E0F592010801B00EF275A /* BitCoinExist.plist in Resources */,
+				22AB9933208099E3001A6203 /* tab_v3_service_selected_coffee@2x.png in Resources */,
 				F6A2AD4A2005AAA20077CB92 /* RH_NormalActivithyView.xib in Resources */,
 				F6BD31811FFA0D9B000AC941 /* hongbao-02hover_04.png in Resources */,
 				A001B3D31F8EF7CA00309EA4 /* tab_green_deposit@2x.png in Resources */,
+				22AB993720809A0E001A6203 /* tab_v3_my_selected_coffee@2x.png in Resources */,
 				221AE57D207DED8A008CD409 /* tab_v3_deposit_selected_orange@2x.png in Resources */,
 				F6FB6396200F851300EEED4E /* RH_MPGameNoticeCell.xib in Resources */,
 				22C2E14D2026F93B008C0C06 /* home_announce_close_default@2x.png in Resources */,
@@ -4766,6 +4822,7 @@
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
 				A001B3D71F8EF7CA00309EA4 /* tab_green_transfer@2x.png in Resources */,
 				228B931B202729D4008C8313 /* tab_v3_deposit_selected_black@3x.png in Resources */,
+				22AB9932208099E3001A6203 /* tab_v3_service_selected_coffee@3x.png in Resources */,
 				A0AE8AB41FFCD57300836C1B /* RH_MineMoreCells.plist in Resources */,
 				A001B3D81F8EF7CA00309EA4 /* tab_bet_normal@2x.png in Resources */,
 				F69E352B2063A4470028D3A1 /* RH_DepositeSystemPlatformCell.xib in Resources */,
@@ -4790,9 +4847,12 @@
 				A07AF4DF2026DBE400D6D559 /* tab_v3_deposit@2x.png in Resources */,
 				A0B5A5731FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.xib in Resources */,
 				A001B3DA1F8EF7CA00309EA4 /* tab_hall_normal@2x.png in Resources */,
+				22AB992620809941001A6203 /* tab_v3_home_selected_coffee@2x.png in Resources */,
+				22AB992A2080997F001A6203 /* tab_v3_deposit_selected_coffee@3x.png in Resources */,
 				A001B3DB1F8EF7CA00309EA4 /* tab_hall_selected@2x.png in Resources */,
 				A07AF4E32026DBE400D6D559 /* tab_v3_promo_selected_black@2x.png in Resources */,
 				F69E351C20638F350028D3A1 /* RH_DepositeSubmitCircleView.xib in Resources */,
+				22AB993620809A0E001A6203 /* tab_v3_my_selected_coffee@3x.png in Resources */,
 				F6A2AD412005A84A0077CB92 /* hongbao-04.png in Resources */,
 				A001B3DC1F8EF7CA00309EA4 /* tab_lottery_deposit@2x.png in Resources */,
 				A001B3DD1F8EF7CA00309EA4 /* tab_lottery_deposit_selected@2x.png in Resources */,
@@ -4801,6 +4861,7 @@
 				F682020C2071DD34003593C9 /* RH_DepositeSubmitSucceedView.xib in Resources */,
 				22F626A420566E3E00094564 /* home_announce_close_black@3x.png in Resources */,
 				F6FB6388200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib in Resources */,
+				22AB992720809941001A6203 /* tab_v3_home_selected_coffee@3x.png in Resources */,
 				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
@@ -4852,12 +4913,14 @@
 				A07AF4E02026DBE400D6D559 /* tab_v3_service_selected_black@2x.png in Resources */,
 				A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */,
 				221AE59E207DEF7C008CD409 /* tab_v3_promo_selected_red@2x.png in Resources */,
+				22AB993B20809A3D001A6203 /* home_announce_close_coffee@2x.png in Resources */,
 				F69E35302063A5F10028D3A1 /* RH_DepositeSystemPlatformSubCell.xib in Resources */,
 				22C2E151202705D9008C0C06 /* login_touxiang_default@3x.png in Resources */,
 				189C13AD1FF9E99F00B14298 /* RH_MineAccountCell.xib in Resources */,
 				189C13B11FF9E99F00B14298 /* RH_MineRecordStaticCell.xib in Resources */,
 				A07AF4EC2026DBE400D6D559 /* tab_v3_my@2x.png in Resources */,
 				228B931420272904008C8313 /* tab_v3_my_selected_green@3x.png in Resources */,
+				22AB992E208099AC001A6203 /* tab_v3_promo_selected_coffee@3x.png in Resources */,
 				F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */,
 				A06E0F582010801B00EF275A /* BitCoinNone.plist in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
@@ -4884,6 +4947,7 @@
 				A0522A78200B41DB00A5A6E9 /* MineSafetyCenterOnlyBit.plist in Resources */,
 				A01EE2681F8878B30085717E /* SplashViewController.xib in Resources */,
 				A0AE8AB01FFCD57300836C1B /* RH_MineMoreLanguageCell.xib in Resources */,
+				22AB9921208098D9001A6203 /* login_touxiang_coffee@3x.png in Resources */,
 				A0522A5B2007358200A5A6E9 /* ModifySafetyNoPermission.plist in Resources */,
 				B84F946C201754A9003E40BC /* RH_GameCategoryCell.xib in Resources */,
 				A0B5A5711FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.xib in Resources */,
@@ -5494,13 +5558,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = 271;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-509";
+				APP_DISPLAY_NAME = UEDBET;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-119";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_5br6=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

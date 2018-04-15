@@ -203,13 +203,33 @@
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Red_White;
         }else if ([THEMEV3 isEqualToString:@"green_white"]){
-//            self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Green_White;
         }else if ([THEMEV3 isEqualToString:@"orange_white"]){
-//            self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Orange_White;
         }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
-//            self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Coffee_White;
         }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
-//            self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
         }else{
             saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

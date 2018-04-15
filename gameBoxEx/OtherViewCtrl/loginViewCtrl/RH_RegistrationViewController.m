@@ -288,6 +288,12 @@
         [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange];
     }else if ([THEMEV3 isEqualToString:@"red_white"]) {
         [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Red_White];
+    }else if ([THEMEV3 isEqualToString:@"green_white"]) {
+        [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Green_White];
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]) {
+        [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange_White];
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]) {
+        [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Coffee_White];
     }
     [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
 }

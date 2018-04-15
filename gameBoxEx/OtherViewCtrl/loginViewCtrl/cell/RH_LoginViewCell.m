@@ -105,6 +105,21 @@
         [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Red_White forState:UIControlStateNormal];
         [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Red_White forState:UIControlStateNormal] ;
         self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Red_White.CGColor ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.headImage.image = ImageWithName(@"login_touxiang_green");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Green_White forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Green_White forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Green_White.CGColor ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.headImage.image = ImageWithName(@"login_touxiang_orange");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange_White forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Orange_White forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Orange_White.CGColor ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.headImage.image = ImageWithName(@"login_touxiang_orange");
+        [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor_Orange_White forState:UIControlStateNormal];
+        [self.btnCreateUser setTitleColor:RH_NavigationBar_BackgroundColor_Orange_White forState:UIControlStateNormal] ;
+        self.btnCreateUser.layer.borderColor = RH_NavigationBar_BackgroundColor_Orange_White.CGColor ;
     }else{
         self.headImage.image = ImageWithName(@"login_touxiang_default");
         [self.btnLogin setBackgroundColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
@@ -183,6 +198,18 @@
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
         [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red_White forState:UIControlStateNormal];
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Green_White forState:UIControlStateNormal];
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Orange_White forState:UIControlStateNormal];
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        //设置开启颜色
+        self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+        [self.forgetPasswordBtn setTitleColor:RH_NavigationBar_BackgroundColor_Coffee_White forState:UIControlStateNormal];
     }else{
         //设置开启颜色
         self.rememberPwdSwitch.onTintColor = RH_NavigationBar_BackgroundColor ;
