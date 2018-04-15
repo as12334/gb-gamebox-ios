@@ -127,7 +127,7 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
@@ -136,6 +136,10 @@
 //#define TEST_DOMAIN           @"192.168.0.183"   //legend
 //#define TEST_DOMAIN           @"192.168.0.176"   //edon
 //#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN
+//#define TEST_DOMAIN         @"test1-expired.hongtubet.com"//过期证书域名
+//#define TEST_DOMAIN         @"test1.hongtubet.com"//正常证书域名
+//#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
+
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
@@ -276,7 +280,7 @@
 #define S        @"dc13b54c08dd423af954e4709e0fedaa"
 #define SID        @"118"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _nu9r //UEDBET
@@ -1200,7 +1204,11 @@
 #define S        @"82c01fa2f5c8ef697e80e0d92af8c853"
 #define SID        @"257"
 #define THEME    @"default.skin"
+<<<<<<< HEAD
+#define THEMEV3             @"green"   //green,red,black,default .
+=======
 #define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
+>>>>>>> origin/dev_sam
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7rda //澳门威尼斯人
@@ -1316,7 +1324,11 @@
 #define S        @"d0d5771115ac221bb153a07d98996d60"
 #define SID        @"266"
 #define THEME    @"default.skin"
+<<<<<<< HEAD
+#define THEMEV3             @"red"   //green,red,black,default .
+=======
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
+>>>>>>> origin/dev_sam
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _q1mv //bet365
@@ -2260,6 +2272,15 @@
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _aioz //九州国际
+
+#define CODE    @"aioz"
+#define S        @"54cf6901851b41953a4e44a4c24354c5"
+#define SID        @"512"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _ex57 //皇家娱乐城
 
 #define CODE    @"ex57"
@@ -2275,7 +2296,7 @@
 #define S        @"861ce7c81d29d7b0e69ab5cd2dcf9380"
 #define SID        @"517"
 #define THEME    @"default.skin"
-#define THEMEV3             @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _sa7t //亿豪国际娱乐城
@@ -2296,6 +2317,13 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+<<<<<<< HEAD
+#elif _uvvu //澳门银河娱乐城
+
+#define CODE    @"uvvu"
+#define S        @"620fcc14a88a86e10188ef8c41184d11"
+#define SID        @"522"
+=======
 #elif _mmrx //澳门威尼斯人
 
 #define CODE    @"mmrx"
@@ -2332,8 +2360,16 @@
 #define THEMEV3             @"default"
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _pvbs //大富豪娱乐城
+#elif _ma0e //澳门巴黎人
 
+#define CODE    @"ma0e"
+#define S        @"1b07b9228aee224cd1ebe70e3f0a9a48"
+#define SID        @"526"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default .
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _pvbs //大富豪娱乐城
 #define CODE    @"pvbs"
 #define S        @"47b46779b9b9ae4e98d3998d5e127d03"
 #define SID        @"528"
@@ -2347,7 +2383,7 @@
 #define S        @"ab99d8d4ab1908c89caba0d5e452a7ea"
 #define SID        @"530"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
+#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif

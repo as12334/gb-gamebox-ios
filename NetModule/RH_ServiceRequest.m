@@ -2015,7 +2015,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3GetPhoneCode
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============获取客服接口================
+-(void)startV3GetCustomService
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_CUSTOMSERVICE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CustomService
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2282,6 +2296,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }else{
                 *reslutData = @(NO) ;
             }
+            
         }else{
             *error = [NSError resultDataNoJSONError] ;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -2294,6 +2309,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                         }] ;
             });
         }
+        
         return YES ;
         
     }else if (type == ServiceRequestTypeGetCustomService){
@@ -2414,7 +2430,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         switch (type) {
             case ServiceRequestTypeDomainList:
             {
+               
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+            
             }
                 break ;
                 
