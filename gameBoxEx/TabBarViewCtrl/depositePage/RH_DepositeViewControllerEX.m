@@ -145,6 +145,8 @@
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
             }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -170,6 +172,8 @@
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
             }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }

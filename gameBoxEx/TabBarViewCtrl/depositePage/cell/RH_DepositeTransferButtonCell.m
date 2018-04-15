@@ -41,6 +41,8 @@
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_white"]) {
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         
     }

@@ -66,6 +66,8 @@
         self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
         self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.depositeBtn.backgroundColor = colorWithRGB(11, 102, 75);
     }

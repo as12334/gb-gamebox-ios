@@ -33,7 +33,7 @@
     
     self.labTitle.text = @"" ;
     self.labTitleValue.text = @"" ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.contentView.backgroundColor = colorWithRGB(68, 68, 68) ;
         self.labTitle.textColor = [UIColor whiteColor] ;
         self.labTitleValue.textColor = [UIColor whiteColor] ;
