@@ -217,11 +217,11 @@
             mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Orange_White;
         }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
-            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_coffee"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_coffee"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_coffee"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_coffee"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_coffee"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Coffee_White;
         }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
             saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_orange"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
