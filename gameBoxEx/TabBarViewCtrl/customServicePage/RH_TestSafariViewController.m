@@ -9,38 +9,60 @@
 #import "RH_TestSafariViewController.h"
 #import "RH_APPDelegate.h"
 #import "RH_LoginViewController.h"
-@interface RH_TestSafariViewController ()<UINavigationControllerDelegate>
-
+#import "coreLib.h"
+@interface RH_TestSafariViewController ()<UINavigationControllerDelegate,UIWebViewDelegate>
+@property(nonatomic,strong,readonly)UIWebView *webView;
+@property(nonatomic,strong)NSString *urlString;
+@property(nonatomic,strong)NSNumber *statusMark;
 @end
 
 @implementation RH_TestSafariViewController
-
+@synthesize  webView = _webView;
+-(BOOL)hasTopView
+{
+    return YES;
+}
+-(CGFloat)topViewHeight
+{
+    return 50;
+}
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBarHidden = YES;
-     [self.navigationController.toolbar setHidden:YES];
-    [self.navigationController setToolbarHidden:YES];
+    [self.serviceRequest startV3GetCustomService];
+}
+-(UIWebView *)webView
+{
+    if (!_webView) {
+        _webView = [[UIWebView alloc]initWithFrame:self.view.frame];
+        _webView.delegate = self;
+    }
+    return _webView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//     [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self.navigationController setToolbarHidden:YES];
+ 
+}
+-(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type==ServiceRequestTypeV3CustomService) {
+        self.urlString = [[data objectForKey:@"data"]objectForKey:@"customerUrl"];
+        self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
+        if ([self.statusMark isEqual:@0]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+        }
+        else if([self.statusMark isEqual:@1])
+        {
+           NSURL *webURL = [NSURL URLWithString:self.urlString];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
+            [self.contentView addSubview:self.webView];
+        }
+        
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidDisappear:(BOOL)animated
+{
+    self.tabBarController.selectedIndex = 0 ;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

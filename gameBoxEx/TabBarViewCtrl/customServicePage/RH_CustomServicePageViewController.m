@@ -13,7 +13,7 @@
 #import "RH_API.h"
 @interface RH_CustomServicePageViewController ()<RH_ServiceRequestDelegate>
 @property(nonatomic,strong)NSString *urlString;
-@property(nonatomic,assign)BOOL statusMark;
+@property(nonatomic,strong)NSNumber *statusMark;
 @end
 
 @implementation RH_CustomServicePageViewController
@@ -117,13 +117,12 @@
     if (type==ServiceRequestTypeV3CustomService) {
         self.urlString = [[data objectForKey:@"data"]objectForKey:@"customerUrl"];
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
-//        self.statusMark=false;
-        if (self.statusMark==true ) {
-            self.webURL = [NSURL URLWithString:self.urlString];
-        }
-        else
-        {
+        if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+        }
+        else if([self.statusMark isEqual:@1])
+        {
+            self.webURL = [NSURL URLWithString:self.urlString];
         }
         
     }

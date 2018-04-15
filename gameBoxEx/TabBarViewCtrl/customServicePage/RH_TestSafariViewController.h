@@ -6,8 +6,7 @@
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import <SafariServices/SafariServices.h>
-
-@interface RH_TestSafariViewController : SFSafariViewController
+#import "RH_BasicMainViewController.h"
+@interface RH_TestSafariViewController : RH_BasicMainViewController
 
 @end
