@@ -419,8 +419,6 @@
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
     if (homePageModel){
-        RH_LotteryCategoryModel *model = homePageModel.mLotteryCategoryList[self.homeCategoryCell.selectedIndex];
-        NSLog(@"mApiType=%ld",(long)model.mApiType);
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
     return nil ;
@@ -433,9 +431,9 @@
         RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[index] ;
         return lotteryApiModel.mGameItems ;
     }else{
-        if (self.selectedCategoryModel.mSiteApis.count==1){//中间只有一层分类信息
-            return self.selectedCategoryModel.mSiteApis[0].mGameItems ;
-        }
+//        if (self.selectedCategoryModel.mSiteApis.count==1){//中间只有一层分类信息
+//            return self.selectedCategoryModel.mSiteApis[0].mGameItems ;
+//        }
         return self.selectedCategoryModel.mSiteApis ;
     }
 }

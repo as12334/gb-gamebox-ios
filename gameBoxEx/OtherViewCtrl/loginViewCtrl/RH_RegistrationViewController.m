@@ -580,7 +580,8 @@
     }
     if (type == ServiceRequestTypeV3RegiestSubmit) {
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
-            NSLog(@"%@", dict);
+            NSLog(@"···%@", dict);
+        
         if ([dict[@"success"] isEqual:@true]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[self obtainContent:@"username"] forKey:@"account"];
@@ -592,6 +593,7 @@
                  [self.navigationController popToRootViewControllerAnimated:YES];
             });
         }
+        showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
     }
 
 }
