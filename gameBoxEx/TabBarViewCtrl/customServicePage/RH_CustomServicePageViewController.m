@@ -122,6 +122,7 @@
         }
         else if([self.statusMark isEqual:@1])
         {
+            
             self.webURL = [NSURL URLWithString:self.urlString];
         }
         

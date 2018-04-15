@@ -56,7 +56,6 @@
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
         }
-        
     }
 }
 
