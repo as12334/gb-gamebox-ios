@@ -201,11 +201,7 @@
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
-<<<<<<< HEAD
-#define THEMEV3    @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
-=======
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
->>>>>>> origin/dev_sam
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _XH5Z //澳门永利
@@ -1209,20 +1205,7 @@
 #define S        @"82c01fa2f5c8ef697e80e0d92af8c853"
 #define SID        @"257"
 #define THEME    @"default.skin"
-<<<<<<< HEAD
 #define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-=======
-<<<<<<< HEAD
-#define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
-
-=======
-<<<<<<< HEAD
-#define THEMEV3             @"green"   //green,red,black,default .
-=======
-#define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
->>>>>>> origin/dev_sam
->>>>>>> origin/dev_sam
->>>>>>> origin/dev_lewis
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7rda //澳门威尼斯人
