@@ -20,7 +20,7 @@
 @synthesize  webView = _webView;
 -(BOOL)hasTopView
 {
-    return YES;
+    return NO;
 }
 -(CGFloat)topViewHeight
 {
@@ -35,6 +35,7 @@
     if (!_webView) {
         _webView = [[UIWebView alloc]initWithFrame:self.view.frame];
         _webView.delegate = self;
+        [_webView setScalesPageToFit:NO];
     }
     return _webView;
 }
