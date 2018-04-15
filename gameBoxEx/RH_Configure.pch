@@ -1347,7 +1347,7 @@
 #define S        @"3933af7866fc4637b76771b662d1ffc4"
 #define SID        @"267"
 #define THEME    @"blue.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3      @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _57h0 //LOVEBET
@@ -1356,8 +1356,8 @@
 #define S        @"ce7767ba430031b73cdb0ebd7ed38c7a"
 #define SID        @"270"
 #define THEME    @"green.skin"
-#define THEMEV3             @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
+#define THEMEV3    @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integrated"
 
 #elif _7ybc //金沙娱乐城
 

@@ -20,7 +20,7 @@
 @synthesize  webView = _webView;
 -(BOOL)hasTopView
 {
-    return YES;
+    return NO;
 }
 -(CGFloat)topViewHeight
 {
