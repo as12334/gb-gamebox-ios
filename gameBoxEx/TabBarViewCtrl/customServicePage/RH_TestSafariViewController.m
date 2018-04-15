@@ -35,6 +35,7 @@
     if (!_webView) {
         _webView = [[UIWebView alloc]initWithFrame:self.view.frame];
         _webView.delegate = self;
+        [_webView setScalesPageToFit:NO];
     }
     return _webView;
 }
