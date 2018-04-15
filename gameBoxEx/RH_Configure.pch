@@ -127,7 +127,7 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 
-//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
@@ -196,11 +196,12 @@
 
 #elif _8l6r //超博娱乐
 //#define TEST_DOMAIN  @"test71.hongtubet.com"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
+#define THEMEV3    @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _XH5Z //澳门永利
