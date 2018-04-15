@@ -28,6 +28,7 @@
 #import "RH_DepositSuccessAlertView.h"
 #import "RH_CapitalRecordViewController.h"
 #import "RH_QuickChongZhiViewController.h"
+#import "RH_CustomServiceSubViewController.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -512,7 +513,9 @@
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
 {
-    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
 -(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel acounterModel:(NSArray *)acounterModel

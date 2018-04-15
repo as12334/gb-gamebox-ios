@@ -1,27 +1,32 @@
 //
-//  RH_TestSafariViewController.m
+//  RH_CustomServiceSubViewController.m
 //  gameBoxEx
 //
-//  Created by lewis on 2018/4/12.
+//  Created by lewis on 2018/4/15.
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
+#import "RH_CustomServiceSubViewController.h"
 #import "RH_TestSafariViewController.h"
 #import "RH_APPDelegate.h"
 #import "RH_LoginViewController.h"
 #import "coreLib.h"
-@interface RH_TestSafariViewController ()<UINavigationControllerDelegate,UIWebViewDelegate>
+@interface RH_CustomServiceSubViewController ()<UINavigationControllerDelegate,UIWebViewDelegate>
 @property(nonatomic,strong,readonly)UIWebView *webView;
 @property(nonatomic,strong)NSString *urlString;
 @property(nonatomic,strong)NSNumber *statusMark;
 @end
 
-@implementation RH_TestSafariViewController
+@implementation RH_CustomServiceSubViewController
 @synthesize  webView = _webView;
 //-(BOOL)isHiddenNavigationBar
 //{
 //    return YES;
 //}
+-(BOOL)isSubViewController
+{
+    return YES;
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     self.hiddenTabBar = NO;
@@ -113,7 +118,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"客服";
- 
+    
 }
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
@@ -125,7 +130,7 @@
         }
         else if([self.statusMark isEqual:@1])
         {
-           NSURL *webURL = [NSURL URLWithString:self.urlString];
+            NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
         }

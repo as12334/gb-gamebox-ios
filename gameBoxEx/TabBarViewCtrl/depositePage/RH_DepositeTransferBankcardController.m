@@ -23,6 +23,7 @@
 #import "RH_DepositeTransferPulldownView.h"
 #import "RH_DepositSuccessAlertView.h" //存款成功的弹窗
 #import "RH_CapitalRecordViewController.h" //资金记录
+#import "RH_CustomServiceSubViewController.h"
 @interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferQRCodeCellDelegate,DepositSuccessAlertViewDelegate,DepositeTransferPulldownViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -371,7 +372,10 @@
 #pragma mark --RH_DepositeTransferReminderCell的代理，点击进入客服界面
 -(void)touchTransferReminderTextViewPushCustomViewController:(RH_DepositeTransferReminderCell *)cell
 {
-    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    touchTransferReminderTextViewPushCustomViewController
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
