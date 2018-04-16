@@ -375,10 +375,10 @@
 #pragma mark --RH_DepositeTransferReminderCell的代理，点击进入客服界面
 -(void)touchTransferReminderTextViewPushCustomViewController:(RH_DepositeTransferReminderCell *)cell
 {
-    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
-    [self showViewController:customVC sender:self];
+//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+//    [self showViewController:customVC sender:self];
 //    touchTransferReminderTextViewPushCustomViewController
-//    [self.tabBarController setSelectedIndex:3];
+    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
