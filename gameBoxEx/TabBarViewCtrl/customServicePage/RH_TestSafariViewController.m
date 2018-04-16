@@ -114,7 +114,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"客服";
+    //增加login status changed notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
+    [self.webView setScalesPageToFit:NO];
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.webView.frame = self.view.frame;
  
+}
+-(BOOL)needLogin
+{
+    return NO;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+}
+
+-(void)handleNotification:(NSNotification*)nt
+{
+    if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
+        [self setNeedUpdateView] ;
+    }
+}
+
+-(void)updateView
+{
+    if (self.appDelegate.isLogin)
+    {
+        [self.webView stringByEvaluatingJavaScriptFromString:@"sessionStorage.is_login=true;"];
+        
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.webView stringByEvaluatingJavaScriptFromString:@"headInfo()"] ;
+        }else{
+            [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.getHeadInfo()"] ;//刷新webview 信息 ;
+        }
+    }
 }
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
@@ -146,18 +181,6 @@
         showErrorMessage(self.view, error, nil) ;
     }];
 }
--(void)viewDidDisappear:(BOOL)animated
-{
-    //清除cookies
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies])
-    {
-        [storage deleteCookie:cookie];
-    }
-    //清除UIWebView的缓存
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    [self.webView removeFromSuperview];
-}
+
 
 @end
