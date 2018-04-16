@@ -83,6 +83,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGA-9R-JBp">
+                                <rect key="frame" x="224" y="4" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="n2N-ev-8tH" firstAttribute="top" secondItem="PEt-DB-H52" secondAttribute="bottom" constant="11" id="90b-bn-Qqr"/>
@@ -90,6 +96,7 @@
                             <constraint firstItem="P6Z-xb-vJA" firstAttribute="leading" secondItem="3ZR-UB-Vfc" secondAttribute="leading" id="IPG-3P-xwB"/>
                             <constraint firstItem="Nbw-iR-5pS" firstAttribute="top" secondItem="3ZR-UB-Vfc" secondAttribute="top" constant="6" id="Lhv-xu-cVE"/>
                             <constraint firstAttribute="bottom" secondItem="SEd-m9-KyJ" secondAttribute="bottom" constant="20" id="Lyw-bo-py2"/>
+                            <constraint firstAttribute="trailing" secondItem="KGA-9R-JBp" secondAttribute="trailing" constant="16" id="OzY-ch-K2d"/>
                             <constraint firstItem="OIF-1y-D8x" firstAttribute="leading" secondItem="3ZR-UB-Vfc" secondAttribute="leading" constant="35" id="RUs-oU-uAp"/>
                             <constraint firstAttribute="trailing" secondItem="P6Z-xb-vJA" secondAttribute="trailing" id="RsW-SH-U2W"/>
                             <constraint firstItem="n2N-ev-8tH" firstAttribute="leading" secondItem="SEd-m9-KyJ" secondAttribute="trailing" constant="8" id="Si6-ih-1pC"/>
@@ -100,6 +107,7 @@
                             <constraint firstItem="3ka-cc-6VS" firstAttribute="leading" secondItem="3ZR-UB-Vfc" secondAttribute="leading" constant="35" id="gM9-be-mK5"/>
                             <constraint firstItem="PEt-DB-H52" firstAttribute="top" secondItem="P6Z-xb-vJA" secondAttribute="bottom" constant="17" id="lNe-mO-FK8"/>
                             <constraint firstItem="3ka-cc-6VS" firstAttribute="top" secondItem="P6Z-xb-vJA" secondAttribute="bottom" constant="19" id="pbN-zP-mXE"/>
+                            <constraint firstItem="KGA-9R-JBp" firstAttribute="top" secondItem="3ZR-UB-Vfc" secondAttribute="top" constant="4" id="rAK-31-M0R"/>
                             <constraint firstAttribute="width" constant="240" id="sNP-uu-dcm"/>
                             <constraint firstItem="Nbw-iR-5pS" firstAttribute="leading" secondItem="3ZR-UB-Vfc" secondAttribute="leading" constant="10" id="uU4-bI-bDV"/>
                             <constraint firstAttribute="trailing" secondItem="PEt-DB-H52" secondAttribute="trailing" constant="16" id="z87-bF-RxT"/>
@@ -143,6 +151,7 @@
                 <outlet property="accountInfoView" destination="3ZR-UB-Vfc" id="lFP-tT-veG"/>
                 <outlet property="bankIconImage" destination="Nbw-iR-5pS" id="rOe-Hp-Vz5"/>
                 <outlet property="colorView" destination="zPB-vc-cMh" id="Jy4-F9-dPx"/>
+                <outlet property="customBankLabel" destination="KGA-9R-JBp" id="g99-Y7-pob"/>
                 <outlet property="downLineView" destination="5d5-Dz-3rO" id="qex-k3-Cha"/>
                 <outlet property="personIdNumLabel" destination="3ka-cc-6VS" id="pfu-4l-kHG"/>
                 <outlet property="personNameLabel" destination="SEd-m9-KyJ" id="X8L-fv-dOR"/>

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *personNameLabel;
 @property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 @property (weak, nonatomic) IBOutlet UIView *colorView;
+@property (weak, nonatomic) IBOutlet UILabel *customBankLabel;
 
 @end
 @implementation RH_DepositeTransferWXinInfoCell
@@ -25,6 +26,7 @@
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.personIdNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount] ;
+    self.customBankLabel.text = listModel.mCustomBankName;
     if (listModel.mAccount.length>15) {
         self.personIdNumLabel.font = [UIFont systemFontOfSize:10.f];
     }
