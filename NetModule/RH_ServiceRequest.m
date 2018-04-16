@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeUpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============updateCheck================
 -(void)startV3UpdateCheck
 {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
@@ -188,7 +188,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3UpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============获取域名IP接口================
+//-(void)startV3customSysDomain
+//{
+//    [self _startServiceWithAPIName:self.appDelegate.domain
+//                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
+//                     pathArguments:nil
+//                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+//                                     @"User-Agent":@"app_ios, iPhone",
+//                                     @"Host":@"header",
+//                                     }
+//                    queryArguments:@{
+//                                     @"code":SID,
+//                                     @"type":@"ips",
+//                                     @"s":S,
+//                                     }
+//                     bodyArguments:nil
+//                          httpType:HTTPRequestTypePost
+//                       serviceType:ServiceRequestTypeV3BossSysDomain
+//                         scopeType:ServiceScopeTypePublic];
+//}
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -2030,6 +2049,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3CustomService
                          scopeType:ServiceScopeTypePublic];
 }
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2389,6 +2409,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
+//    else if (type == ServiceRequestTypeV3BossSysDomain){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject ;
+//        return YES ;
+//    }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;

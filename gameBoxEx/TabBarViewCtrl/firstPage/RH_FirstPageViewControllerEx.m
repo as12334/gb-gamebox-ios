@@ -490,6 +490,7 @@
 {
     [super viewWillDisappear:animated];
     [self.normalActivityView closeClick:self.normalActivityView];
+  
 }
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
@@ -688,6 +689,9 @@
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
+//    else if (type==ServiceRequestTypeV3BossSysDomain){
+//        
+//    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

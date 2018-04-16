@@ -127,7 +127,7 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
@@ -139,6 +139,7 @@
 //#define TEST_DOMAIN         @"test1-expired.hongtubet.com"//过期证书域名
 //#define TEST_DOMAIN         @"test1.hongtubet.com"//正常证书域名
 //#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
+#define TEST_DOMAIN           @"boss.test.so"
 
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
@@ -398,7 +399,7 @@
 #define S        @"7f2fd29cdb5fd604c287a62d18971f62"
 #define SID        @"136"
 #define THEME    @"default.skin"
-#define THEMEV3             @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _ix2i //澳门威尼斯人
