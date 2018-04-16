@@ -148,7 +148,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
-    
     if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
     {
 #ifdef TEST_DOMAIN
@@ -413,6 +412,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             }else{
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
                     [self.serviceRequest startV3UpdateCheck];
+//                    [self.serviceRequest startV3customSysDomain];
+                    
                 }else
                 {
                     [self.serviceRequest startUpdateCheck] ;
