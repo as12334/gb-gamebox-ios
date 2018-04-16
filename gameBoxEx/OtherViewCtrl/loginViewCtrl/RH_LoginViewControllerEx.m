@@ -342,6 +342,7 @@
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }
+                [self dismissViewControllerAnimated:YES completion:nil];
             }else{
                 showMessage(self.view, @"姓名验证失败", nil);
                 self.isNeedVerCode = true ;
