@@ -14,6 +14,7 @@
 #import "RH_DepositeSubmitCircleView.h"
 #import "RH_DepositSuccessAlertView.h" //存款成功的弹窗
 #import "RH_CapitalRecordViewController.h"
+#import "RH_CustomServiceSubViewController.h"
 
 @interface RH_DepositBitcionViewController ()<DepositeBitcionCellDelegate,DepositeSubmitCircleViewDelegate,PGDatePickerDelegate,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong)NSArray *listModelArray;
@@ -272,7 +273,9 @@
 #pragma mark --客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeBitcionCell *)cell
 {
-     [self.tabBarController setSelectedIndex:3];
+//     [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
 }
 #pragma mark 数据请求
 
