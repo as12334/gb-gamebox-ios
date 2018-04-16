@@ -243,17 +243,16 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES] ;
     }
-    
+
 }
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
-    if (loginViewContrller.presentingViewController){
-        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
-    }else{
-        [self.navigationController popViewControllerAnimated:YES] ;
-    }
-
+//    if (loginViewContrller.presentingViewController){
+//                [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+//    }else{
+//        [self.navigationController popViewControllerAnimated:YES] ;
+//    }
     if (bFlag==false){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *account = [defaults stringForKey:@"account"] ;

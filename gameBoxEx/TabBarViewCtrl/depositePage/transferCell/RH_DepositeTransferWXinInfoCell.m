@@ -49,15 +49,29 @@
     [self.personIdNumLabel setTextColor:colorWithRGB(51, 51, 51)];
 }
 - (IBAction)bankNumCopyClick:(id)sender {
+    if (self.personIdNumLabel.text.length==0) {
+        return;
+    }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.personIdNumLabel.text];
     showMessage(self, @"复制成功",nil);
     
 }
 - (IBAction)personNameCopyClick:(id)sender {
+    if (self.personNameLabel.text.length==0) {
+        return;
+    }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.personNameLabel.text];
     showMessage(self, @"复制成功",nil);
+}
+- (IBAction)customCopyBtn:(id)sender {
+    if (self.customBankLabel.text.length==0) {
+        return;
+    }
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    [pboard setString:self.customBankLabel.text];
+    showMessage(self, @"复制成功", nil);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

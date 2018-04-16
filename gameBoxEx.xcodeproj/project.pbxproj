@@ -5546,9 +5546,13 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
 <<<<<<< HEAD
+<<<<<<< HEAD
 				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 =======
 				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+>>>>>>> origin/dev_lewis
+=======
+				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
 >>>>>>> origin/dev_lewis
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -5573,8 +5577,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
+<<<<<<< HEAD
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_ma0e=1";
+=======
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
+>>>>>>> origin/dev_lewis
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
