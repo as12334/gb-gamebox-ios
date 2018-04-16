@@ -1962,7 +1962,7 @@
 #define S        @"84b458cd4cb4ca24d46e6a81bf4ece92"
 #define SID        @"379"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _n0pd //永利娱乐场
@@ -2339,7 +2339,7 @@
 #define S        @"1b07b9228aee224cd1ebe70e3f0a9a48"
 #define SID        @"526"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _mqsb //澳门威尼斯人
