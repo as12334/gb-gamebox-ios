@@ -87,23 +87,6 @@
 {
     [super viewWillAppear:animated] ;
     [self.contentTableView setContentOffset:CGPointMake(0,-64) animated:YES];
-    if ([self needLogin]){
-        //check whether login
-        if (!self.appDelegate.isLogin){
-            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                //push login viewController
-                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
-                loginViewCtrlEx.delegate = self ;
-                [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
-            }
-        }
-        else
-        {
-            self.numberCell.payMoneyNumLabel.text=nil;
-//            self.numberCell.payMoneyNumLabel.text.length=
-        }
-    }
-   
 }
 
 
@@ -202,6 +185,22 @@
 {
     if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
         [self setNeedUpdateView] ;
+        if ([self needLogin]){
+            //check whether login
+            if (!self.appDelegate.isLogin){
+                if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                    //push login viewController
+                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
+                    loginViewCtrlEx.delegate = self ;
+                    [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
+                }
+            }
+            else
+            {
+                self.numberCell.payMoneyNumLabel.text=nil;
+                //            self.numberCell.payMoneyNumLabel.text.length=
+            }
+        }
     }
 }
 -(void)updateView
@@ -248,11 +247,11 @@
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
-//    if (loginViewContrller.presentingViewController){
-//                [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
-//    }else{
-//        [self.navigationController popViewControllerAnimated:YES] ;
-//    }
+    if (loginViewContrller.presentingViewController){
+                [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
     if (bFlag==false){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *account = [defaults stringForKey:@"account"] ;

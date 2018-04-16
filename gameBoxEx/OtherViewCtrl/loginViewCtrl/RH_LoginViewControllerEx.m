@@ -224,17 +224,11 @@
 
 -(void)loginViewCellTouchCreateButton:(RH_LoginViewCell*)loginViewCell
 {
-//    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-//    appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
-//
-//    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+
     [self showViewController:[RH_RegistrationViewController viewController] sender:nil];
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
-//    RH_ForgetPasswordController *passwordVC = [[RH_ForgetPasswordController alloc]init];
-//    [self.navigationController pushViewController:passwordVC animated:YES];
-//    [self showViewController:[RH_ForgetPasswordController viewControllerWithContext:self] sender:self];
     [self.navigationController popToRootViewControllerAnimated:NO];
     self.myTabBarController.selectedIndex = 3 ;
 }
@@ -342,7 +336,6 @@
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }
-                [self dismissViewControllerAnimated:YES completion:nil];
             }else{
                 showMessage(self.view, @"姓名验证失败", nil);
                 self.isNeedVerCode = true ;
