@@ -31,7 +31,7 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  [UIColor blackColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
         self.backgroundColor = colorWithRGB(37, 37, 37) ;
     }else{
@@ -117,7 +117,11 @@
             self.indicatorImgView.alpha = 1.0;
         }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
-            self.indicatorImgView.alpha = 1.0;
+            //            self.lineView.backgroundColor = colorWithRGB(22, 141, 246);
+            self.imageB.image = ImageWithName(@"nav-hover-black-bg");
+            self.indicatorImgView.alpha = 0.0;
+            //            [self bringSubviewToFront:self.imgIcon];
+            self.labTitle.textColor = [UIColor whiteColor] ;
         }else{
             self.labTitle.textColor = RH_NavigationBar_BackgroundColor ;
             self.indicatorImgView.alpha = 1.0;
@@ -129,7 +133,7 @@
         [self.lineView removeFromSuperview] ;
         self.lineView = nil ;
 //        self.labTitle.textColor = [UIColor blackColor] ;
-        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
             self.labTitle.textColor = [UIColor whiteColor] ;
         }else{
             self.labTitle.textColor = [UIColor blackColor] ;

@@ -470,7 +470,7 @@
 #define S        @"ac7e059f25431b97787abfdaf8a2cd2f"
 #define SID        @"155"
 #define THEME    @"default.skin"
-#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _xmil //新葡京娱乐场
@@ -1029,7 +1029,7 @@
 #define S        @"774b8cdf5ccfa039b0ba7ea3b6efa48c"
 #define SID        @"227"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _idr9 //亚盈国际
@@ -1447,7 +1447,7 @@
 #define S        @"ee65478134fcdeba198c793a26d510b7"
 #define SID        @"306"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7dfu //云顶至尊娱乐城
@@ -1884,7 +1884,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _covy //老钱庄
+#elif _covy //皇冠娱乐城
 
 #define CODE    @"covy"
 #define S        @"56a9b81c0991acfdff36dad643a84bae"
@@ -2340,7 +2340,7 @@
 #define SID        @"526"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
+#define SITE_TYPE    @"integrated"
 
 #elif _mqsb //澳门威尼斯人
 
@@ -2374,7 +2374,7 @@
 #define S        @"ab99d8d4ab1908c89caba0d5e452a7ea"
 #define SID        @"530"
 #define THEME    @"default.skin"
-#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif

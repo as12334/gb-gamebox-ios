@@ -85,6 +85,10 @@
             //shaole
             [cancelButton setImage:ImageWithName(@"home_announce_close_orange") forState:UIControlStateNormal];
             sureBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+            //shaole
+            [cancelButton setImage:ImageWithName(@"home_announce_close_coffee") forState:UIControlStateNormal];
+            sureBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
         }else{
             [cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
             sureBtn.backgroundColor = RH_NavigationBar_BackgroundColor;

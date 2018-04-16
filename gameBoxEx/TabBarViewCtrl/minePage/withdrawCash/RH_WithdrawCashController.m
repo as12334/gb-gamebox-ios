@@ -119,6 +119,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
             }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -144,6 +146,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
             }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -253,6 +257,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }else if ([THEMEV3 isEqualToString:@"orange"]){
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Coffee_Black forState:UIControlStateNormal];
         }else{
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Orange forState:UIControlStateNormal];

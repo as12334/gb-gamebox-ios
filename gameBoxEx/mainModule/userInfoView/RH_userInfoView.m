@@ -24,7 +24,7 @@
     [super awakeFromNib] ;
     self.borderMask = CLBorderMarkAll ;
     self.borderColor = colorWithRGB(204, 204, 204) ;
-//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]) {
+//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
 //        self.borderColor = colorWithRGB(85, 85, 85) ;
 //    }
     self.borderWidth = PixelToPoint(1.0f) ;
@@ -60,6 +60,9 @@
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
     }else{
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
