@@ -136,5 +136,18 @@
         }
     }
 }
-
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self showProgressIndicatorViewWithAnimated:YES title:@"加载中"] ;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        showErrorMessage(self.view, error, nil) ;
+    }];
+}
 @end

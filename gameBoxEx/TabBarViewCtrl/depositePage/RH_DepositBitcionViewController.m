@@ -249,9 +249,9 @@
 #pragma mark --客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeBitcionCell *)cell
 {
-//     [self.tabBarController setSelectedIndex:3];
-    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
-    [self showViewController:customVC sender:self];
+     [self.tabBarController setSelectedIndex:3];
+//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+//    [self showViewController:customVC sender:self];
 }
 #pragma mark 数据请求
 

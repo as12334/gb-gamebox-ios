@@ -24,6 +24,7 @@
 //}
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
     [self.serviceRequest startV3GetCustomService];
 }
@@ -130,6 +131,33 @@
             [self.contentView addSubview:self.webView];
         }
     }
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self showProgressIndicatorViewWithAnimated:YES title:@"加载中"] ;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        showErrorMessage(self.view, error, nil) ;
+    }];
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    //清除cookies
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        [storage deleteCookie:cookie];
+    }
+    //清除UIWebView的缓存
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    [self.webView removeFromSuperview];
 }
 
 @end

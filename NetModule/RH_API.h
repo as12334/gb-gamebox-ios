@@ -1079,6 +1079,7 @@
 #pragma mark - v3 获取客服接口
 #define RH_API_NAME_CUSTOMSERVICE       @"mobile-api/origin/getCustomerService.html"
 
-
+#pragma mark -v3  获取IP和域名
+#define RH_API_NAME_BOSSSYSDOMAIN       @"boss/sys/domain/SiteDomainInfo.html"
 #endif /* RH_API_h */
 
