@@ -641,6 +641,7 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		F627E5412084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */; };
 		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
 		F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66394BC208396A800D37EDA /* RH_CustomServiceSubViewController.m */; };
 		F6680377207F3E240080E63A /* RH_TestSafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6680376207F3E240080E63A /* RH_TestSafariViewController.m */; };
@@ -1858,6 +1859,8 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		F627E53F2084DD7A00C9FAAC /* RH_DepositPaylinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositPaylinkViewController.h; sourceTree = "<group>"; };
+		F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositPaylinkViewController.m; sourceTree = "<group>"; };
 		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
 		F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferChannelModel.m; sourceTree = "<group>"; };
 		F66394BB208396A800D37EDA /* RH_CustomServiceSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomServiceSubViewController.h; sourceTree = "<group>"; };
@@ -3577,6 +3580,8 @@
 				F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */,
 				F6A0BC95206F8787006DB380 /* RH_DepositBitcionViewController.h */,
 				F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */,
+				F627E53F2084DD7A00C9FAAC /* RH_DepositPaylinkViewController.h */,
+				F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */,
 				F69E35352063C50E0028D3A1 /* transferCell */,
 				F69E35322063B2370028D3A1 /* RH_DepositeTransferBankcardController.h */,
 				F69E35332063B2370028D3A1 /* RH_DepositeTransferBankcardController.m */,
@@ -5086,6 +5091,7 @@
 				F6A2AD6620070D160077CB92 /* RH_CapitalPulldownListView.m in Sources */,
 				A010A0571F87999F004E6EF4 /* RH_BasicImageModel.m in Sources */,
 				A010A0591F87999F004E6EF4 /* RH_CommonInputContainerView.m in Sources */,
+				F627E5412084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m in Sources */,
 				A010A05C1F87999F004E6EF4 /* RH_LoadingIndicateTableViewCell.m in Sources */,
 				7937C4262072073B0010CD0C /* NSCalendar+PGCurrent.m in Sources */,
 				A010A05D1F87999F004E6EF4 /* RH_LoadingIndicateView.m in Sources */,
@@ -5545,7 +5551,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5570,7 +5576,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

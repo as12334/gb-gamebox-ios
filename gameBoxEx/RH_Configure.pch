@@ -132,21 +132,21 @@
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
-//#define TEST_DOMAIN           @"192.168.0.150"   //cherry
+#define TEST_DOMAIN           @"192.168.0.150"   //cherry
 //#define TEST_DOMAIN           @"192.168.0.183"   //legend
 //#define TEST_DOMAIN           @"192.168.0.176"   //edon
 //#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN
 //#define TEST_DOMAIN         @"test1-expired.hongtubet.com"//过期证书域名
 //#define TEST_DOMAIN         @"test1.hongtubet.com"//正常证书域名
 //#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
-#define TEST_DOMAIN           @"boss.test.so"
+//#define TEST_DOMAIN           @"boss.test.so"
 
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 
 #elif _1qkq //宏图娱乐

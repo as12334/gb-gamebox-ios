@@ -29,6 +29,7 @@
 #import "RH_CapitalRecordViewController.h"
 #import "RH_QuickChongZhiViewController.h"
 #import "RH_CustomServiceSubViewController.h"
+#import "RH_DepositPaylinkViewController.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -819,9 +820,13 @@
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-            }) ;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+//            }) ;
+//                RH_DepositPaylinkViewController *linkVC = [[RH_DepositPaylinkViewController alloc]init];
+//                linkVC.urlStr =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
+////                [self.navigationController showViewController:linkVC sender:self];
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[[data objectForKey:@"data"] objectForKey:@"payLink"]]];
         }] ;
         }else
         {

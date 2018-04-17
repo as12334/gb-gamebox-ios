@@ -23,7 +23,7 @@
     
     [self.payWayImage sd_setImageWithURL:[NSURL URLWithString:listModel.showCover]];
     if ([listModel.mAliasName isEqualToString:@""] ||listModel.mAliasName == nil ) {
-       self.payWayLabel.text = listModel.mCustomBankName;
+       self.payWayLabel.text = listModel.mPayName;
     }
     else{
     self.payWayLabel.text = listModel.mAliasName;

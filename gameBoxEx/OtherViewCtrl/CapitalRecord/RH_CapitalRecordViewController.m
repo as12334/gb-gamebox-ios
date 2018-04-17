@@ -309,12 +309,14 @@
     switch (row) {
         case 0:
             // 今天
-            date= [[NSDate date] dateWithMoveDay:0];
+//            date= [[NSDate date] dateWithMoveDay:0];
+            date = [NSDate date];
             _capitalRecordHeaderView.endDate = date;
             break;
         case 1:
             // 昨天
-            date= [[NSDate date] dateWithMoveDay:-1];
+//            date= [[NSDate date] dateWithMoveDay:-1];
+            date = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];
             _capitalRecordHeaderView.endDate = date;
             break;
         case 2:

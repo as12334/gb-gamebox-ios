@@ -120,7 +120,7 @@
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
-//    _isInitOk = YES ;
+    _isInitOk = YES ;
     [self setNeedUpdateView] ;
    //关闭键盘
     self.view.userInteractionEnabled = YES;
