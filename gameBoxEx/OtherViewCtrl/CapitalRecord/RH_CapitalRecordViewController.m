@@ -326,8 +326,8 @@
             break;
         case 3:
             //最近七天
-            date= [[NSDate date] dateWithMoveDay:-7];
-            _capitalRecordHeaderView.endDate = [date  dateWithMoveDay:+7];
+            date= [NSDate dateWithTimeInterval:-24*60*60*6 sinceDate:date];
+            _capitalRecordHeaderView.endDate = [NSDate dateWithTimeInterval:24*60*60*6 sinceDate:date];
             break;
         default:
             break;

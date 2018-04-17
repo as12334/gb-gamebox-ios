@@ -949,7 +949,7 @@
 #define S        @"5613daa85f182719c359efbd2332ce12"
 #define SID        @"217"
 #define THEME    @"default.skin"
-#define THEMEV3             @"red_white"   //green（绿黑）,red（红黑）,black（纯黑）,default（蓝白）,orange（橙黑）,blue（蓝黑）,red_white
+#define THEMEV3             @"red"   //green（绿黑）,red（红黑）,black（纯黑）,default（蓝白）,orange（橙黑）,blue（蓝黑）,red_white
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _osxg //永利娱乐城
