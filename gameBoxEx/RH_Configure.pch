@@ -1909,7 +1909,7 @@
 #define S        @"92aadf5a5d2983c63de760e80681ccf1"
 #define SID        @"372"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _sogq //太阳娱乐城

@@ -295,6 +295,7 @@
         }else {
             _webURL = nil;
         }
+        
         [self reloadWebView];
     }
 }
