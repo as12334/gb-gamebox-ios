@@ -1794,12 +1794,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString*)payAccountId
                                activityId:(NSString *)activityId
+                               mBankCode:(NSString *)mBankCode
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
      [dict setValue:amount forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
     [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
     [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
     [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+    [dict setValue:mBankCode forKey:RH_SP_ONLINEPAY_PAYERBSNK];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONLINEPAY
                      pathArguments:nil
@@ -2399,6 +2401,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
+        NSString *errorMessage = [response.description copy] ;
+        NSLog(@"errorMessage==%@",errorMessage);
         return YES ;
     }
     else if (type == ServiceRequestTypeV3RegiestSubmit){

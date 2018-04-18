@@ -570,6 +570,7 @@
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"alipay"]){
+        
         if (self.paywayCell.paywayString.length==0) {
             showMessage(self.view, @"请填写支付宝用户名", nil);
         }
@@ -675,7 +676,7 @@
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
-        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?[self.adressCell.adressStr integerValue]:12345  payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }

@@ -1025,6 +1025,7 @@
 #define RH_SP_ONLINEPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
 #define RH_SP_ONLINEPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_ONLINEPAY_ACTIVITYID                   @"activityId"           //优惠ID
+#define RH_SP_ONLINEPAY_PAYERBSNK                   @"result.payerBank"        //银行类型
 
 #pragma mark - V3 扫码支付提交存款
 #define RH_API_NAME_SCANPAY  @"mobile-api/depositOrigin/scanPay.html"

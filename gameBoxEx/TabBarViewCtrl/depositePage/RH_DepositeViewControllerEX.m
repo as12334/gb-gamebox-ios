@@ -655,9 +655,8 @@
 
     if ([self.depositeCode isEqualToString:@"online"]) {
          RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[self.bankSeletedIndex]) ;
-        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
-    }
-    else{
+        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId] mBankCode:onlineModel.mBankCode];
+    }else{
         [self.serviceRequest
          startV3ScanPayWithRechargeAmount:
          self.discountStr

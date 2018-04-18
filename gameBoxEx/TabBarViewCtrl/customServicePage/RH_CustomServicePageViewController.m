@@ -110,7 +110,6 @@
             [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"] ;
         }
     }
-    
 }
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
