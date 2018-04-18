@@ -96,8 +96,9 @@
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
-#define TEST_DOMAIN  @"test71.hongtubet.com"
+//#define TEST_DOMAIN  @"test71.hongtubet.com"
 //#define TEST_DOMAIN @"192.168.0.176"
+#define TEST_DOMAIN @"test.gbboss.com:1344/"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"
@@ -132,7 +133,7 @@
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
-#define TEST_DOMAIN           @"192.168.0.150"   //cherry
+//#define TEST_DOMAIN           @"192.168.0.150"   //cherry
 //#define TEST_DOMAIN           @"192.168.0.183"   //legend
 //#define TEST_DOMAIN           @"192.168.0.176"   //edon
 //#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN

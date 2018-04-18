@@ -647,7 +647,9 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
@@ -655,7 +657,7 @@
 
     if ([self.depositeCode isEqualToString:@"online"]) {
          RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[self.bankSeletedIndex]) ;
-        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
+        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]bankNameCode:onlineModel.mBankCode];
     }
     else{
         [self.serviceRequest
@@ -868,6 +870,7 @@
     [self.circleView removeFromSuperview];
     [self.closeBtn removeFromSuperview];
     [self.successAlertView removeFromSuperview];
+    [self.shadeView removeFromSuperview];
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {

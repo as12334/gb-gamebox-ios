@@ -210,6 +210,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
+    [self startReqSiteInfo];
 }
 -(NSMutableArray *)checkDomainServices
 {

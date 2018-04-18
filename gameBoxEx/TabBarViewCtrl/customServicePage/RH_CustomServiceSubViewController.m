@@ -109,8 +109,9 @@
 -(UIWebView *)webView
 {
     if (!_webView) {
-        _webView = [[UIWebView alloc]initWithFrame:self.view.frame];
+        _webView = [[UIWebView alloc]initWithFrame:self.contentView.frame];
         _webView.delegate = self;
+        _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0,44, 0);
         [_webView setScalesPageToFit:NO];
     }
     return _webView;
