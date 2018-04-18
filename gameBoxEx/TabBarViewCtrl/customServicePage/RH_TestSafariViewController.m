@@ -121,7 +121,12 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0,46, 0);
+    if (SID isEqualToString:@"119" || [SID isEqualToString:@"270"]) {
+        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    }else{
+        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 64, 0);
+    }
+    
     self.webView.frame = self.view.frame;
  
 }
