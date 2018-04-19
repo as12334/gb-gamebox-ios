@@ -1574,7 +1574,7 @@
 #define S        @"7ec0f9335f88b8176cdd5be3ffb2afd0"
 #define SID        @"323"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _djig //新澳门娱乐城
@@ -1829,7 +1829,7 @@
 #define S        @"0245625bcdb1642edc81eba7262d43da"
 #define SID        @"362"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _r4pf //胜益国际娱乐
@@ -1865,7 +1865,7 @@
 #define S        @"443110d6d974f61ab6ce1f23f27af7b5"
 #define SID        @"367"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _kgu6 //爵士城
