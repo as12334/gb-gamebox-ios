@@ -669,7 +669,7 @@
         [self.accountMuArray[2]isEqualToString:@"unionpay"]||[self.accountMuArray[2]isEqualToString:@"onecodepay"]||
         [self.accountMuArray[2]isEqualToString:@"other"]) {
         
-        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString activityId:self.activityId];
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
