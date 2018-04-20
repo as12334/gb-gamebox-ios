@@ -127,9 +127,9 @@
     }else if ([SID isEqualToString:@"500"]||[SID isEqualToString:@"501"]){
         self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 50, 0);
     }else{
-        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
     }
-    
+//    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
     self.webView.frame = self.view.frame;
  
 }
