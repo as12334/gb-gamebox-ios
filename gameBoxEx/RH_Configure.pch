@@ -2059,6 +2059,15 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _i63i //澳门新葡京
+
+#define CODE    @"i63i"
+#define S        @"bd5018e9d2342eb3916fd43047a7ffa3"
+#define SID        @"398"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _72wu //百乐赌场
 
 #define CODE    @"72wu"

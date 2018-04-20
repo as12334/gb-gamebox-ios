@@ -20,6 +20,7 @@
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isInitOk ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
+@property (nonatomic,assign) BOOL isLogin;
 @property (nonatomic,assign)CGRect frame;
 @property(nonatomic,strong)RH_OldUserVerifyView *oldUserVerifyView;
 @property(nonatomic,strong)UIView *OldUserVerifyViewBgView;
@@ -117,6 +118,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = self.backButtonItem ;
     self.title = @"登录" ;
+    self.isLogin = NO;
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
@@ -286,6 +288,7 @@
             if ([result boolValueForKey:@"success"]){
                 showMessage(self.view, @"登录成功", nil);
                 //登录成功后，记录用户名，密码，以便自动登录
+                self.isLogin = YES;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
@@ -385,10 +388,15 @@
 -(void)backBarButtonItemHandle
 {
     [self.loginViewCell endEditing:YES] ;
-
-    ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:BackToFirstPage:)){
-        [self.delegate loginViewViewControllerExTouchBack:self BackToFirstPage:_backToFirstPage];
+    if (self.isLogin) {
+        ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:BackToFirstPage:)){
+            [self.delegate loginViewViewControllerExTouchBack:self BackToFirstPage:_backToFirstPage];
+        }
+    }else{
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        self.myTabBarController.selectedIndex = 0 ;
     }
+    
 }
 
 #pragma mark-
