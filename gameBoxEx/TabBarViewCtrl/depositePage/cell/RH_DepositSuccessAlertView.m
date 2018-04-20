@@ -84,19 +84,19 @@
         [checkCapitalBtn addTarget:self action:@selector(checkCapitalBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         self.cancelButton = [[UIButton alloc] init];
-        if ([THEMEV3 isEqualToString:@"green"]){
+        if ([THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"green_white"]){
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_green") forState:UIControlStateNormal];
-            saveAgainBtn.backgroundColor = colorWithRGB(4, 109, 79) ;
-        }else if ([THEMEV3 isEqualToString:@"red"]){
+            
+        }else if ([THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"red_white"]){
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_red") forState:UIControlStateNormal];
             
         }else if ([THEMEV3 isEqualToString:@"black"]){
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_black") forState:UIControlStateNormal];
             
-        }else if ([THEMEV3 isEqualToString:@"orange"]){
+        }else if ([THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"orange_white"]){
             //shaole
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_orange") forState:UIControlStateNormal];
-        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]||[THEMEV3 isEqualToString:@"coffee_white"]){
             //shaole
             [self.cancelButton setImage:ImageWithName(@"home_announce_close_coffee") forState:UIControlStateNormal];
         }else{

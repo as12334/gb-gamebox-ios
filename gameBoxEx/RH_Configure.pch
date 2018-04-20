@@ -879,13 +879,13 @@
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _arau //大发OK
+#elif _arau //爱博
 
 #define CODE    @"arau"
 #define S        @"35968f38b0b8075eedbd08a21d37eded"
 #define SID        @"209"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _1lgt //威廉希尔
@@ -2119,7 +2119,7 @@
 #define S        @"0660d80d757222e0d6d411f2b7e9809b"
 #define SID        @"395"
 #define THEME    @"default.skin"
-#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _ptmx //世茂国际娱乐
@@ -2384,6 +2384,15 @@
 #define CODE    @"5br6"
 #define S        @"ab99d8d4ab1908c89caba0d5e452a7ea"
 #define SID        @"530"
+#define THEME    @"default.skin"
+#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _5jko //澳门金沙娱乐城
+
+#define CODE    @"5jko"
+#define S        @"df2aafeffbabaccf1d82ad67df7e6fb1"
+#define SID        @"531"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"

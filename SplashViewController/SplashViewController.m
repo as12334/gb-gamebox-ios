@@ -128,6 +128,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
 @property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
 @property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
+@property (nonatomic,assign) BOOL isCheckAllPortUrl;
 
 //获取 域名 list 并发请求管理器
 @property(nonatomic,strong,readonly) RH_ConcurrentServicesReqManager * concurrentServicesManager;
@@ -144,6 +145,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isCheckAllPortUrl = NO;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
@@ -209,6 +211,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.needObserveNetStatusChanged = YES ;
     [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
+    [self checkAllPortUrl];;
     [self initView] ;
 }
 -(NSMutableArray *)checkDomainServices
@@ -397,13 +400,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_once(&onceToken, ^{
             NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            
-            if (![data boolValue])//http protocol
-            {
-                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
+            if (self.isCheckAllPortUrl == YES) {
+                if (![data boolValue])//http protocol
+                {
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
+                }else{
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
+                }
             }else{
-                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
+                if (![data boolValue])//http protocol
+                {
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
+                }else{
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
+                }
             }
+            
             
             [self cancelAllDomainCheck] ;
         
@@ -564,7 +576,40 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             tmpServiceRequest.delegate = self ;
             [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
             [self.checkDomainServices addObject:tmpServiceRequest] ;
-            
+            tmpServiceRequest.timeOutInterval = 10.0f ;
+            [tmpServiceRequest startCheckDomain:tmpDomain] ;
+            [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
+        }
+        
+        //显示检测的域名 ---
+        [self.domainTableView reloadData] ;
+        
+    }else{
+        [self.contentLoadingIndicateView hiddenView] ;
+        showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
+                      NSLocalizedString(@"SPLASHVIEWCTRL_EMPTY_DOMAINLIST", nil)) ;
+    }
+}
+
+- (void)checkAllPortUrl{
+    self.isCheckAllPortUrl = YES;
+    if (_urlArray.count){
+        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
+                                                             detailText:@"checking domain"] ;
+        }
+        
+        for (int i=0; i<_urlArray.count; i++) {
+            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
+            if ([tmpDomain containsString:@"http"]) {
+                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@"8787"];
+            }else{
+                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@"8989"];
+            }
+            RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
+            tmpServiceRequest.delegate = self ;
+            [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
+            [self.checkDomainServices addObject:tmpServiceRequest] ;
             tmpServiceRequest.timeOutInterval = 10.0f ;
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
             [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
