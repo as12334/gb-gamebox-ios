@@ -121,6 +121,7 @@
     if (contents == nil) {
         contents = [[NSArray alloc] init];
     }
+  
     
     contents = [content copy];
 //    for (int i = 0; i < content.count; i++) {
