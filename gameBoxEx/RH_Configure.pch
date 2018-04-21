@@ -1393,7 +1393,7 @@
 #define S        @"90e974e3fbae299946d2f89935dc509a"
 #define SID        @"271"
 #define THEME    @"default.skin"
-#define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _1pff //太阳城集团
@@ -1728,7 +1728,7 @@
 #define S        @"ab86858b4cc1186ec020667039657aa8"
 #define SID        @"350"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _nnop //五环娱乐
