@@ -11,6 +11,7 @@
 #import "RH_APPDelegate.h"
 #import "RH_LoginViewController.h"
 #import "coreLib.h"
+#import "RH_API.h"
 @interface RH_CustomServiceSubViewController ()<UINavigationControllerDelegate,UIWebViewDelegate>
 @property(nonatomic,strong,readonly)UIWebView *webView;
 @property(nonatomic,strong)NSString *urlString;
@@ -29,12 +30,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.hiddenTabBar = NO;
     [self.serviceRequest startV3GetCustomService];
 }
 -(BOOL)tabBarHidden
 {
-    return NO ;
+    return YES ;
 }
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
@@ -111,7 +111,7 @@
     if (!_webView) {
         _webView = [[UIWebView alloc]initWithFrame:self.contentView.frame];
         _webView.delegate = self;
-        _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0,44, 0);
+        _webView.scrollView.contentInset = UIEdgeInsetsMake(44, 0,0, 0);
         [_webView setScalesPageToFit:NO];
     }
     return _webView;

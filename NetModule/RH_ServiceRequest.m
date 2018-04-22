@@ -2401,6 +2401,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
+        NSString *errorMessage = [response.description copy] ;
+        NSLog(@"errorMessage==%@",errorMessage);
         return YES ;
     }
     else if (type == ServiceRequestTypeV3RegiestSubmit){

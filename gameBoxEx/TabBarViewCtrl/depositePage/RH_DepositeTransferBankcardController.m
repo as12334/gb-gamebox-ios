@@ -375,10 +375,9 @@
 #pragma mark --RH_DepositeTransferReminderCell的代理，点击进入客服界面
 -(void)touchTransferReminderTextViewPushCustomViewController:(RH_DepositeTransferReminderCell *)cell
 {
-//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
-//    [self showViewController:customVC sender:self];
-//    touchTransferReminderTextViewPushCustomViewController
-    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -570,6 +569,7 @@
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"alipay"]){
+        
         if (self.paywayCell.paywayString.length==0) {
             showMessage(self.view, @"请填写支付宝用户名", nil);
         }
@@ -675,7 +675,7 @@
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
-        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?[self.adressCell.adressStr integerValue]:12345  payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }

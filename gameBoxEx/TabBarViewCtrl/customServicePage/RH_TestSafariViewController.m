@@ -18,6 +18,10 @@
 
 @implementation RH_TestSafariViewController
 @synthesize  webView = _webView;
+//-(BOOL)isSubViewController
+//{
+//    return YES;
+//}
 //-(BOOL)isHiddenNavigationBar
 //{
 //    return YES;
@@ -117,7 +121,7 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0,46, 0);
     self.webView.frame = self.view.frame;
  
 }

@@ -328,7 +328,7 @@
 #define S        @"e341dce6fb39b4b42973916d2d4a63d2"
 #define SID        @"124"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _bqmn //幸运彩票
@@ -373,7 +373,7 @@
 #define S        @"0accd87069ed4e9c5adff95abaa9ab11"
 #define SID        @"133"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _o7av //澳门威尼斯人
@@ -409,7 +409,7 @@
 #define S        @"bd13fc05b494390f5cfb4fbfc9efbd66"
 #define SID        @"140"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _hihk //BET365
@@ -1430,7 +1430,7 @@
 #define S        @"167b92cdc52238a737679bc01352c56b"
 #define SID        @"303"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _mpyz //澳门娱乐城
@@ -1458,7 +1458,7 @@
 #define S        @"2bb2c4538cf4ec9bef8fe2cbed393053"
 #define SID        @"307"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _whsl //澳门威尼斯人
@@ -1512,7 +1512,7 @@
 #define S        @"77b5741f647310a8e20da52717444794"
 #define SID        @"313"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _reft //澳门金沙
@@ -1521,7 +1521,7 @@
 #define S        @"0a87917f96eaabb2c6604d41e41bc6da"
 #define SID        @"315"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _iugy //澳门太阳城
@@ -1584,8 +1584,9 @@
 #define S        @"b6f963230122edeb138781837c76a808"
 #define SID        @"321"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
 
 #elif _xrql //TSV天时娱乐
 
@@ -1638,7 +1639,7 @@
 #define S        @"09a39312956823dc58c439c011edbe8d"
 #define SID        @"326"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _rb4b //澳门银河线上赌场
@@ -1665,7 +1666,7 @@
 #define S        @"a895535f5c2dbb0b0c3fd1eeb561cebe"
 #define SID        @"332"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _sy7u //恒大娱乐城
@@ -1856,7 +1857,7 @@
 #define S        @"fd7b632187397070a9110e6baacec702"
 #define SID        @"366"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _xc95 //星空娱乐城
@@ -1892,7 +1893,7 @@
 #define S        @"56a9b81c0991acfdff36dad643a84bae"
 #define SID        @"370"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _mppv //澳门新葡京娱乐城
@@ -2000,7 +2001,7 @@
 #define S        @"e0bad6dbd6a30ba8051f9a3b7f3651b8"
 #define SID        @"385"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _agfn //太阳城
