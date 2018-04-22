@@ -418,9 +418,17 @@
 -(RH_LotteryCategoryModel *)selectedCategoryModel
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-    if (homePageModel){
+    if (homePageModel&&homePageModel.mLotteryCategoryList.count>0){
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
+//    else if (homePageModel.mLotteryCategoryList.count==0){
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+//           [self.serviceRequest startV3HomeInfo] ;
+//        }];
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//    }
     return nil ;
 }
 
