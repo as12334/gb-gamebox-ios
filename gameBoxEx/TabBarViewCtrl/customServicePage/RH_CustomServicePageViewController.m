@@ -23,7 +23,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.serviceRequest startV3GetCustomService];
 }
 -(void)viewDidLoad
 {
@@ -37,6 +36,7 @@
     [self.webView setScalesPageToFit:NO];
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.webView.frame = self.view.frame;
+    [self.serviceRequest startV3GetCustomService];
 }
 
 -(BOOL)tabBarHidden

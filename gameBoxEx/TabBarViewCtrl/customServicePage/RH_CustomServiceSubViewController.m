@@ -30,7 +30,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.serviceRequest startV3GetCustomService];
+    
 }
 -(BOOL)tabBarHidden
 {
@@ -119,6 +119,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"客服";
+    [self.serviceRequest startV3GetCustomService];
     
 }
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data

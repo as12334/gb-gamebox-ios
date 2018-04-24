@@ -30,7 +30,7 @@
 {
     self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
-    [self.serviceRequest startV3GetCustomService];
+    
 }
 -(BOOL)tabBarHidden
 {
@@ -131,6 +131,7 @@
     }
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
     self.webView.frame = self.view.frame;
+    [self.serviceRequest startV3GetCustomService];
  
 }
 -(BOOL)needLogin
