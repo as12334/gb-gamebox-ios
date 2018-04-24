@@ -2393,6 +2393,44 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+
+#elif _13gs //威尼斯人娱乐城
+
+#define CODE    @"13gs"
+#define S        @"78058ea317d5d8729fdac9c54cd26594"
+#define SID        @"532"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ayzb //澳门威尼斯人
+
+#define CODE    @"ayzb"
+#define S        @"aa09524cfca3e7c72078306678097f10"
+#define SID        @"555"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _ava3 //多多博
+
+#define CODE    @"ava3"
+#define S        @"1435bb6617d9e65d2326943aac358dc8"
+#define SID        @"556"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _pqgn //云顶国际
+
+#define CODE    @"pqgn"
+#define S        @"8fce32a428f301b15142b26fbda2c35b"
+#define SID        @"557"
+#define THEME    @"default.skin"
+#define THEMEV3             @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */

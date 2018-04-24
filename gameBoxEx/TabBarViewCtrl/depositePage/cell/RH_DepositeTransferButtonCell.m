@@ -44,7 +44,7 @@
     }else if ([THEMEV3 isEqualToString:@"coffee_black"]) {
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
-        
+        [self.submitBtn setBackgroundColor:[UIColor blueColor]];
     }
 }
 - (IBAction)click:(id)sender {

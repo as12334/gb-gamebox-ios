@@ -63,7 +63,7 @@
                 }else if ([THEMEV3 isEqualToString:@"red"]){
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
                 }else if ([THEMEV3 isEqualToString:@"black"]){
-                    btn.backgroundColor =ColorWithNumberRGB(0x1766bb);
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
                 }else if ([THEMEV3 isEqualToString:@"blue"]){
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
                 }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -189,7 +189,7 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
             button.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            button.backgroundColor = ColorWithNumberRGB(0x1766bb);
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
         }else if ([THEMEV3 isEqualToString:@"blue"]){
             button.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
         }else if ([THEMEV3 isEqualToString:@"orange"]){

@@ -137,7 +137,7 @@
     RH_MineInfoModel *mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, context) ;
     if (mineInfoModel){
         self.labTBalanceValue.text = mineInfoModel.showTotalAssets ;
-        self.labTWalletValue.text = mineInfoModel.showWalletBalance ;
+        self.labTWalletValue.text = mineInfoModel.showTotalAssets ;
     }
 }
 
