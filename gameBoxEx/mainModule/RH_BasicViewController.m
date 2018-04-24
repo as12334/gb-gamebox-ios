@@ -191,7 +191,7 @@
 {
     if (!_mainNavigationView){
         _mainNavigationView = [RH_NavigationBarView createInstance] ;
-        _mainNavigationView.frame = CGRectMake(0, 0, self.view.boundWidth, heighNavigationBar+StatusBarHeight) ;
+        _mainNavigationView.frame = CGRectMake(0, 0, self.view.boundWidth, heighNavigationBar+heighStatusBar) ;
         _mainNavigationView.delegate = self ;
     }
     

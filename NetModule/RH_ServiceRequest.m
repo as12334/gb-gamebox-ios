@@ -2520,6 +2520,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                NSLog(@"homeinfo==%@",[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]);
             }
                 break ;
            

@@ -143,9 +143,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @synthesize domainCheckStatusList = _domainCheckStatusList ;
 @synthesize concurrentServicesManager = _concurrentServicesManager ;
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.isCheckAllPortUrl = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isCheckAllPortUrl = NO;
+    
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
@@ -411,9 +415,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             }else{
                 if (![data boolValue])//http protocol
                 {
-                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
                 }else{
-                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
                 }
             }
             
