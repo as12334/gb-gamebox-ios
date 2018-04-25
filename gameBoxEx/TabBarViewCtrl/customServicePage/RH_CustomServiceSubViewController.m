@@ -16,6 +16,7 @@
 @property(nonatomic,strong,readonly)UIWebView *webView;
 @property(nonatomic,strong)NSString *urlString;
 @property(nonatomic,strong)NSNumber *statusMark;
+@property(nonatomic,strong)NSNumber *urlMark;
 @end
 
 @implementation RH_CustomServiceSubViewController
@@ -30,7 +31,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.serviceRequest startV3GetCustomService];
+    if ([_urlMark isEqual:@1]) {
+        [self.serviceRequest startV3GetCustomService];
+    }
+    else;
 }
 -(BOOL)tabBarHidden
 {
@@ -119,7 +123,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"客服";
+    [self.serviceRequest startV3GetCustomService];
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
     
+}
+-(void)dismissFirstVC
+{
+    if ([_urlMark isEqual:@1]) {
+        [self.tabBarController setSelectedIndex:0];
+    }
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
@@ -128,12 +144,14 @@
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+            self.urlMark=@1;
         }
         else if([self.statusMark isEqual:@1])
         {
             NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
+            self.urlMark=0;
         }
     }
 }

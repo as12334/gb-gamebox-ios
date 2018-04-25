@@ -880,7 +880,7 @@
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _arau //爱博
+#elif _arau //lovebet爱博
 
 #define CODE    @"arau"
 #define S        @"35968f38b0b8075eedbd08a21d37eded"
@@ -2214,7 +2214,7 @@
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _jtet //澳门博彩控股
+#elif _jtet //新濠天地
 
 #define CODE    @"jtet"
 #define S        @"690999104d29bb013529e3316dad7d25"
@@ -2436,7 +2436,7 @@
 #define S        @"7cf8876ef85e242c1e405c551330188f"
 #define SID        @"535"
 #define THEME    @"default.skin"
-#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _xngr //大西洋娱乐城
@@ -2450,7 +2450,7 @@
 
 
 
-#elif _clfb //澳门鑫濠天地
+#elif _clfb //鑫濠天地
 
 #define CODE    @"clfb"
 #define S        @"418685c38cd8bbc0baa14780db932cfb"
@@ -2465,7 +2465,7 @@
 #define S        @"46e13ff2b91890b84034091b7a89701f"
 #define SID        @"538"
 #define THEME    @"default.skin"
-#define THEMEV3             @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _zbtq //威尼斯人

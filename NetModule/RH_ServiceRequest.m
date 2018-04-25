@@ -2304,9 +2304,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
          reslutData:(__autoreleasing id *)reslutData
               error:(NSError *__autoreleasing *)error
 {
+    
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
-
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2520,7 +2520,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
-                NSLog(@"homeinfo==%@",[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]);
+                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_CODE]);
+//                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
+//                                         response.statusCode,
+//                                         response.description,nil);
+                if (response.statusCode==605){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"IP被限制,连接VPN后重试", nil) ;
+                        return ;
+                    }) ;
+                }
             }
                 break ;
            

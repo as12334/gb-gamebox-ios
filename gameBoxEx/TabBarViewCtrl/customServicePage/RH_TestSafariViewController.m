@@ -14,6 +14,7 @@
 @property(nonatomic,strong,readonly)UIWebView *webView;
 @property(nonatomic,strong)NSString *urlString;
 @property(nonatomic,strong)NSNumber *statusMark;
+@property(nonatomic,strong)NSNumber *urlMark;
 @end
 
 @implementation RH_TestSafariViewController
@@ -30,7 +31,11 @@
 {
     self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
-    [self.serviceRequest startV3GetCustomService];
+    if ([_urlMark isEqual:@1]) {
+        [self.serviceRequest startV3GetCustomService];
+    }
+    else;
+    
 }
 -(BOOL)tabBarHidden
 {
@@ -131,7 +136,15 @@
     }
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
     self.webView.frame = self.view.frame;
- 
+    [self.serviceRequest startV3GetCustomService];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+-(void)dismissFirstVC
+{
+    if ([_urlMark isEqual:@1]) {
+        [self.tabBarController setSelectedIndex:0];
+    }
 }
 -(BOOL)needLogin
 {
@@ -170,12 +183,14 @@
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+            self.urlMark=@1;
         }
         else if([self.statusMark isEqual:@1])
         {
            NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
+            self.urlMark=@0;
         }
     }
 }
@@ -193,6 +208,10 @@
         showErrorMessage(self.view, error, nil) ;
     }];
 }
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    
+    
+}
 
 @end

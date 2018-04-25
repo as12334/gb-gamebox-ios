@@ -422,7 +422,7 @@
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
 //    else if (homePageModel.mLotteryCategoryList.count==0){
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"数据加载失败，请点击重试"preferredStyle:UIAlertControllerStyleAlert];
 //        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
 //           [self.serviceRequest startV3HomeInfo] ;
 //        }];

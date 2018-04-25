@@ -260,6 +260,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (BOOL)needRegister3DTouchShortcutItems {
     return NO;
 }
-
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    
+}
 
 @end
