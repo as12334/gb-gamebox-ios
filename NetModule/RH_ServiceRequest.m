@@ -2529,6 +2529,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         showAlertView(@"IP被限制,连接VPN后重试", nil) ;
                         return ;
                     }) ;
+                }else if (response.statusCode==502){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"运维服务问题", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==600){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"session过期", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==603){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"域名不存在", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==606){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"被强制踢出", nil) ;
+                        return ;
+                    });
                 }
             }
                 break ;
