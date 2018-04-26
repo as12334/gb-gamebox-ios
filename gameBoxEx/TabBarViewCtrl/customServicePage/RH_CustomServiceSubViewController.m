@@ -124,7 +124,7 @@
     [super viewDidLoad];
     self.title = @"客服";
     [self.serviceRequest startV3GetCustomService];
-     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
+//     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
     
 }
 -(void)dismissFirstVC
