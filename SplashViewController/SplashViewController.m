@@ -166,6 +166,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
+    
+    
 }
 
 - (void)initView{
@@ -218,6 +220,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self checkAllPortUrl];;
     [self initView] ;
     [self startReqSiteInfo];
+    
 }
 -(NSMutableArray *)checkDomainServices
 {
@@ -366,6 +369,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
             [self repetitionStartReqSiteInfo];
+            [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
         }];
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
@@ -551,9 +555,11 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self splashViewComplete] ;
 #endif
                 }else{
+                    
                     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"没有检测到可用的主域名!"preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
                         [self repetitionStartReqSiteInfo];
+                         [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
                     }];
                     [alert addAction:defaultAction];
                     [self presentViewController:alert animated:YES completion:nil];
@@ -584,6 +590,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             tmpServiceRequest.timeOutInterval = 10.0f ;
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
             [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
+            
         }
         
         //显示检测的域名 ---

@@ -31,6 +31,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
+#import "AFHTTPSessionManager.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -51,6 +52,7 @@
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
 @property (nonatomic,strong)UIView *shadeView;
 @property (nonatomic,strong)MBProgressHUD *hud;
+@property (nonatomic,strong)NSArray *array ;
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -83,6 +85,7 @@
     //自动登录
     [self autoLogin] ;
 }
+
 
 - (void)dealloc
 {

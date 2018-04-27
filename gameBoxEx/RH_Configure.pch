@@ -98,7 +98,7 @@
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN  @"test71.hongtubet.com"
 //#define TEST_DOMAIN @"192.168.0.176"
-#define TEST_DOMAIN @"test.gbboss.com:1344/"
+#define TEST_DOMAIN @"test.gbboss.com:1344/boss/"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"

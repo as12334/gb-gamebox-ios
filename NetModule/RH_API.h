@@ -455,6 +455,13 @@
 #define RH_SP_COLLECTAPPERROR_IP                          @"ip"
 #define RH_SP_COLLECTAPPERROR_ERRORMESSAGE                @"errorMessage"
 #define RH_SP_COLLECTAPPERROR_CODE                        @"code"
+#define RH_SP_COLLECTAPPERROR_MARK                        @"mark"
+#define RH_SP_COLLECTAPPERROR_TYPE                         @"type"
+#define RH_SP_COLLECTAPPERROR_VERSIONNAME                 @"versionName"
+#define RH_SP_COLLECTAPPERROR_CHANNEL                       @"channel"
+#define RH_SP_COLLECTAPPERROR_SYSCODE                       @"sysCode"
+#define RH_SP_COLLECTAPPERROR_BRANDS                        @"brands"
+#define RH_SP_COLLECTAPPERROR_MODEL                         @"model"
 
 
 #pragma mark - V3
@@ -1082,6 +1089,8 @@
 
 #pragma mark -v3  获取IP和域名
 #define RH_API_NAME_BOSSSYSDOMAIN       @"boss-api/app/line.html"
+
+
 
 #endif /* RH_API_h */
 
