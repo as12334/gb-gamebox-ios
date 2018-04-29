@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeUpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============updateCheck================
 -(void)startV3UpdateCheck
 {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
@@ -188,7 +188,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3UpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============获取域名IP接口================
+//-(void)startV3customSysDomain
+//{
+//    [self _startServiceWithAPIName:self.appDelegate.domain
+//                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
+//                     pathArguments:nil
+//                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+//                                     @"User-Agent":@"app_ios, iPhone",
+//                                     @"Host":@"header",
+//                                     }
+//                    queryArguments:@{
+//                                     @"code":SID,
+//                                     @"type":@"ips",
+//                                     @"s":S,
+//                                     }
+//                     bodyArguments:nil
+//                          httpType:HTTPRequestTypePost
+//                       serviceType:ServiceRequestTypeV3BossSysDomain
+//                         scopeType:ServiceScopeTypePublic];
+//}
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -1775,12 +1794,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString*)payAccountId
                                activityId:(NSString *)activityId
+                             bankNameCode:(NSString *)bankNameCode
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
      [dict setValue:amount forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
     [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
     [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
     [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+    [dict setValue:bankNameCode forKey:RH_SP_ONLINEPAY_PAYERBANK];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONLINEPAY
                      pathArguments:nil
@@ -2015,6 +2036,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3GetPhoneCode
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark ==============获取客服接口================
+-(void)startV3GetCustomService
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_CUSTOMSERVICE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CustomService
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
@@ -2092,6 +2128,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"blue"]){
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"default"]){
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }else{
             [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
         }
@@ -2280,6 +2318,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }else{
                 *reslutData = @(NO) ;
             }
+            
         }else{
             *error = [NSError resultDataNoJSONError] ;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -2292,6 +2331,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                         }] ;
             });
         }
+        
         return YES ;
         
     }else if (type == ServiceRequestTypeGetCustomService){
@@ -2347,7 +2387,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-    else if (type == ServiceRequestTypeV3OnlinePay){
+    else if (type == ServiceRequestTypeV3CustomService){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2355,6 +2395,32 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
+    else if (type == ServiceRequestTypeV3OnlinePay){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        NSString *errorMessage = [response.description copy] ;
+        NSLog(@"errorMessage==%@",errorMessage);
+        return YES ;
+    }
+    else if (type == ServiceRequestTypeV3RegiestSubmit){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
+//    else if (type == ServiceRequestTypeV3AddApplyDiscounts){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject ;
+//        return YES ;
+//    }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
         NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
@@ -2374,11 +2440,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (dataObject) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString11);
-    }
+//    if (dataObject) {
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",jsonString11);
+//    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
@@ -2412,7 +2478,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         switch (type) {
             case ServiceRequestTypeDomainList:
             {
+               
                 resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+            
             }
                 break ;
                 
@@ -2452,6 +2520,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                NSLog(@"homeinfo==%@",[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]);
             }
                 break ;
            
@@ -2963,6 +3032,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
             NSString *errorMessage = [error.localizedDescription copy] ;
+            NSLog(@"errorMessage==%@",errorMessage);
             [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
                                                                                     RH_SP_COLLECTAPPERROR_CODE:errorCode,
                                                                                     RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,

@@ -27,7 +27,7 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.labTitle.font = [UIFont systemFontOfSize:14.0f]    ;
     self.labTitle.textColor =  [UIColor blackColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.labTitle.textColor =  [UIColor whiteColor] ;
     }
     
@@ -62,7 +62,7 @@
 //    }
 //    NSLog(@"green2=%@",string);
 //    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:string]] ;
-    NSLog(@"green2=%@",self.lotteryApiModel.showCover);
+    NSLog(@"green2=%@",self.lotteryApiModel.mName);
     [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover]] ;
 }
 

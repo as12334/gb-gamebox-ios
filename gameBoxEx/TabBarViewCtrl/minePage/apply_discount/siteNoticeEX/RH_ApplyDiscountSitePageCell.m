@@ -63,11 +63,21 @@
                 }else if ([THEMEV3 isEqualToString:@"red"]){
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
                 }else if ([THEMEV3 isEqualToString:@"black"]){
-                    btn.backgroundColor =ColorWithNumberRGB(0x1766bb);
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
                 }else if ([THEMEV3 isEqualToString:@"blue"]){
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
                 }else if ([THEMEV3 isEqualToString:@"orange"]){
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+                }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+                }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+                }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+                }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+                }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                    btn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
                 }else{
                     btn.backgroundColor = RH_NavigationBar_BackgroundColor;
                 }
@@ -146,6 +156,16 @@
             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Blue;
         }else if ([THEMEV3 isEqualToString:@"orange"]){
             borderView.backgroundColor  = RH_NavigationBar_BackgroundColor_Orange;
+        }else if ([THEMEV3 isEqualToString:@"red_white"]){
+            borderView.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        }else if ([THEMEV3 isEqualToString:@"green_white"]){
+            borderView.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+            borderView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+            borderView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+            borderView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
         }else{
              borderView.backgroundColor  =  RH_NavigationBar_BackgroundColor;
         }
@@ -169,11 +189,21 @@
         }else if ([THEMEV3 isEqualToString:@"red"]){
             button.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         }else if ([THEMEV3 isEqualToString:@"black"]){
-            button.backgroundColor = ColorWithNumberRGB(0x1766bb);
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
         }else if ([THEMEV3 isEqualToString:@"blue"]){
             button.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
         }else if ([THEMEV3 isEqualToString:@"orange"]){
             button.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        }else if ([THEMEV3 isEqualToString:@"red_white"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        }else if ([THEMEV3 isEqualToString:@"green_white"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+            button.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
         }else{
             button.backgroundColor = RH_NavigationBar_BackgroundColor;
         }

@@ -269,7 +269,7 @@
 }
 -(void)gameSystemHeaderViewEndDateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    ifRespondsSelector(self.delegate, @selector(applyDiscountPageCellEndDateSelected:dateSelected:DefaultDate:)){
+    ifRespondsSelector(self.delegate, @selector(applyDiscountSystemEndDateSelected:dateSelected:DefaultDate:)){
         [self.delegate applyDiscountSystemEndDateSelected:self dateSelected:view DefaultDate:defaultDate];
     }
 }
@@ -298,12 +298,12 @@
     switch (row) {
         case 0:
             //今天
-            date= [[NSDate date] dateWithMoveDay:0];
+            date= [NSDate date];
             _headerView.endDate = date;
             break;
         case 1:
             //昨天
-            date= [[NSDate date] dateWithMoveDay:-1];
+            date = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];
             _headerView.endDate = date;
             break;
         case 2:
@@ -323,20 +323,20 @@
             break;
         case 5:
             //最近7天
-            date= [[NSDate date] dateWithMoveDay:-7];
-            _headerView.endDate = [date  dateWithMoveDay:+7];
+            date= [NSDate dateWithTimeInterval:-24*60*60*6 sinceDate:date];
+            _headerView.endDate = [NSDate dateWithTimeInterval:24*60*60*6 sinceDate:date];
             break;
         case 6:
             //最近三十天
-            date= [[NSDate date] dateWithMoveDay:-30];
-            _headerView.endDate = [date  dateWithMoveDay:+30];
+            date= [NSDate dateWithTimeInterval:-24*60*60*29 sinceDate:date];
+            _headerView.endDate = [NSDate dateWithTimeInterval:24*60*60*29 sinceDate:date];
             break;
             
         default:
             break;
     }
-    _headerView.startDate = date;
-    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd ");
+//    _headerView.startDate = date;
+    NSString *beforDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
     NSString *endDate = dateStringWithFormatter(_headerView.endDate, @"yyyy-MM-dd") ;
     return @[beforDate,endDate];
 }

@@ -50,6 +50,16 @@
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else if ([THEMEV3 isEqualToString:@"default"]){
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }
@@ -68,7 +78,7 @@
     self.separatorLineWidth = 1.0f ;
     
     self.contentView.backgroundColor = RH_NavigationBar_ForegroundColor;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.contentView.backgroundColor = colorWithRGB(21, 21, 21);
         self.separatorLineColor = [UIColor clearColor] ;
     }
@@ -108,7 +118,7 @@
     self.labScrollText.text = strTmp;
     self.labScrollText.font = [UIFont systemFontOfSize:14.f];
     self.labScrollText.textColor = colorWithRGB(51, 51, 51);
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.labScrollText.textColor = [UIColor whiteColor];
     }
 //    self.textSize = caculaterLabelTextDrawSize(self.labScrollText.text, self.labScrollText.font, 0.0f) ;

@@ -20,6 +20,7 @@
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isInitOk ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
+@property (nonatomic,assign) BOOL isLogin;
 @property (nonatomic,assign)CGRect frame;
 @property(nonatomic,strong)RH_OldUserVerifyView *oldUserVerifyView;
 @property(nonatomic,strong)UIView *OldUserVerifyViewBgView;
@@ -42,11 +43,19 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -59,11 +68,19 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -101,6 +118,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = self.backButtonItem ;
     self.title = @"登录" ;
+    self.isLogin = NO;
     self.needObserverTapGesture = YES ;
     self.needObserverKeyboard = YES ;
     [self setupUI] ;
@@ -208,17 +226,11 @@
 
 -(void)loginViewCellTouchCreateButton:(RH_LoginViewCell*)loginViewCell
 {
-//    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
-//    appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
-//
-//    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+
     [self showViewController:[RH_RegistrationViewController viewController] sender:nil];
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
-//    RH_ForgetPasswordController *passwordVC = [[RH_ForgetPasswordController alloc]init];
-//    [self.navigationController pushViewController:passwordVC animated:YES];
-//    [self showViewController:[RH_ForgetPasswordController viewControllerWithContext:self] sender:self];
     [self.navigationController popToRootViewControllerAnimated:NO];
     self.myTabBarController.selectedIndex = 3 ;
 }
@@ -276,6 +288,7 @@
             if ([result boolValueForKey:@"success"]){
                 showMessage(self.view, @"登录成功", nil);
                 //登录成功后，记录用户名，密码，以便自动登录
+                self.isLogin = YES;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
@@ -375,10 +388,15 @@
 -(void)backBarButtonItemHandle
 {
     [self.loginViewCell endEditing:YES] ;
-
-    ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:BackToFirstPage:)){
-        [self.delegate loginViewViewControllerExTouchBack:self BackToFirstPage:_backToFirstPage];
+    if (self.isLogin) {
+        ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExTouchBack:BackToFirstPage:)){
+            [self.delegate loginViewViewControllerExTouchBack:self BackToFirstPage:_backToFirstPage];
+        }
+    }else{
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        self.myTabBarController.selectedIndex = 0 ;
     }
+    
 }
 
 #pragma mark-

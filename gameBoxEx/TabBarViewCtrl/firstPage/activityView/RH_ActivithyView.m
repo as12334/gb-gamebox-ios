@@ -20,7 +20,11 @@
     [super awakeFromNib] ;
     self.backgroundColor = [UIColor clearColor] ;
     self.imgView.backgroundColor = [UIColor clearColor] ;
-    
+    if ([THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
+        [self.deleteButton setImage:ImageWithName(@"home_cancel_white_icon") forState:UIControlStateNormal];
+    }else{
+        [self.deleteButton setImage:ImageWithName(@"home_cancel_icon") forState:UIControlStateNormal];
+    }
     [self addTarget:self action:@selector(activityHandle) forControlEvents:UIControlEventTouchUpInside] ;
 }
 

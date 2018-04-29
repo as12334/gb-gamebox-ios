@@ -28,6 +28,8 @@
 #import "RH_DepositSuccessAlertView.h"
 #import "RH_CapitalRecordViewController.h"
 #import "RH_QuickChongZhiViewController.h"
+#import "RH_CustomServiceSubViewController.h"
+#import "RH_DepositPaylinkViewController.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -86,23 +88,6 @@
 {
     [super viewWillAppear:animated] ;
     [self.contentTableView setContentOffset:CGPointMake(0,-64) animated:YES];
-    if ([self needLogin]){
-        //check whether login
-        if (!self.appDelegate.isLogin){
-            if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                //push login viewController
-                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
-                loginViewCtrlEx.delegate = self ;
-                [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
-            }
-        }
-        else
-        {
-            self.numberCell.payMoneyNumLabel.text=nil;
-//            self.numberCell.payMoneyNumLabel.text.length=
-        }
-    }
-   
 }
 
 
@@ -132,11 +117,21 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -144,7 +139,29 @@
         {
             UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
             [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+            }else if ([THEMEV3 isEqualToString:@"blue"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+            }else if ([THEMEV3 isEqualToString:@"orange"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
         }
         
         navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
@@ -164,12 +181,27 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
 #pragma mark --检测是否登录
 -(void)handleNotification:(NSNotification*)nt
 {
     if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
         [self setNeedUpdateView] ;
+        if ([self needLogin]){
+            //check whether login
+            if (!self.appDelegate.isLogin){
+                if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                    //push login viewController
+                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
+                    loginViewCtrlEx.delegate = self ;
+                    [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
+                }
+            }
+            else
+            {
+                self.numberCell.payMoneyNumLabel.text=nil;
+                //            self.numberCell.payMoneyNumLabel.text.length=
+            }
+        }
     }
 }
 -(void)updateView
@@ -211,17 +243,16 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES] ;
     }
-    
+
 }
 
 -(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
 {
     if (loginViewContrller.presentingViewController){
-        [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
+                [loginViewContrller dismissViewControllerAnimated:YES completion:nil] ;
     }else{
         [self.navigationController popViewControllerAnimated:YES] ;
     }
-
     if (bFlag==false){
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *account = [defaults stringForKey:@"account"] ;
@@ -485,7 +516,9 @@
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
 {
-    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
 -(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel acounterModel:(NSArray *)acounterModel
@@ -614,7 +647,9 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
@@ -622,7 +657,7 @@
 
     if ([self.depositeCode isEqualToString:@"online"]) {
          RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[self.bankSeletedIndex]) ;
-        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
+        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]bankNameCode:onlineModel.mBankCode];
     }
     else{
         [self.serviceRequest
@@ -787,9 +822,13 @@
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-            }) ;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+//            }) ;
+//                RH_DepositPaylinkViewController *linkVC = [[RH_DepositPaylinkViewController alloc]init];
+//                linkVC.urlStr =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
+////                [self.navigationController showViewController:linkVC sender:self];
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[[data objectForKey:@"data"] objectForKey:@"payLink"]]];
         }] ;
         }else
         {
@@ -831,6 +870,7 @@
     [self.circleView removeFromSuperview];
     [self.closeBtn removeFromSuperview];
     [self.successAlertView removeFromSuperview];
+    [self.shadeView removeFromSuperview];
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {

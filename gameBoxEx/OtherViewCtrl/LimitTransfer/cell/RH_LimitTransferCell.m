@@ -53,6 +53,16 @@
         [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal] ;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal] ;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Red_White forState:UIControlStateNormal] ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Green_White forState:UIControlStateNormal] ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Orange_White forState:UIControlStateNormal] ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Coffee_White forState:UIControlStateNormal] ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Coffee_Black forState:UIControlStateNormal] ;
     }else{
         [refreshBtnAndrecycleBtn setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal] ;
     }

@@ -45,6 +45,16 @@
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
     }else{
         self.backgroundColor = RH_NavigationBar_BackgroundColor ;
     }

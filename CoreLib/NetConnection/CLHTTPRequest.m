@@ -311,7 +311,7 @@ isStart = NO;                                   \
                 [bodyData appendData:DataWithUTF8Code(tmpStr)];
             }
         }
-//        NSLog(@"body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]) ;
+        NSLog(@"body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]) ;
 //        HttpRequestDebugLog("body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
     }
     return bodyData;

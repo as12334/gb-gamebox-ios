@@ -79,14 +79,29 @@
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.confimBtn.backgroundColor = ColorWithNumberRGB(0x1766bb);
-        self.cancelBtn.backgroundColor = ColorWithNumberRGB(0x1766bb);
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
     }else if ([THEMEV3 isEqualToString:@"blue"]){
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+        self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.confimBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.cancelBtn.backgroundColor = RH_NavigationBar_BackgroundColor;

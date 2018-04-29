@@ -10,7 +10,7 @@
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
 #import "RH_BasicViewController.h"
-
+#import "RH_TestSafariViewController.h"
 @interface RH_MainTabBarControllerEx ()<CLStaticCollectionViewDelegate,CLStaticCollectionViewDataSource,CLMaskViewDataSource>
 //内容视图
 @property(nonatomic,strong) UIView * contentView;
@@ -233,7 +233,6 @@
         
         toVc.view.frame = self.contentView.frame;
         toVc.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
         if (toVc.parentViewController != self) {
             
             //加入成为子控制器
@@ -342,6 +341,7 @@
 
 - (void)_homeButtonHandle
 {
+    
 }
 
 #pragma mark -

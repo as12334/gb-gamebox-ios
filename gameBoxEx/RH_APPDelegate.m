@@ -125,6 +125,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     {
         showAlertView( @"提示", @"您正在使用的是测试环境");
     }
+    
 }
 
 - (void)completedShowMainWindow
@@ -259,6 +260,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (BOOL)needRegister3DTouchShortcutItems {
     return NO;
 }
-
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    
+}
 
 @end

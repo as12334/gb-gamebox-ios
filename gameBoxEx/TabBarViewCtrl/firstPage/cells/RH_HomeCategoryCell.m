@@ -78,8 +78,8 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     collectionView.collectionViewLayout = flowLayout ;
-//    collectionView.backgroundColor = colorWithRGB(247, 247, 247);
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    collectionView.backgroundColor = colorWithRGB(247, 247, 247);
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         collectionView.backgroundColor = colorWithRGB(37, 37, 37);
     }
     

@@ -228,7 +228,7 @@
     
     [self.contentView addSubview:self.contentTableView] ;
     self.contentTableView.backgroundColor = [UIColor whiteColor] ;
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"red"]) {
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.contentTableView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
     }
     
@@ -248,7 +248,7 @@
     label.font = [UIFont systemFontOfSize:9];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = colorWithRGB(51, 51, 51);
-    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"red"])
+    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"coffee_black"])
     {
         label.textColor = colorWithRGB(85, 85, 85);
         lineView.backgroundColor = colorWithRGB(37, 37, 37);
@@ -418,9 +418,17 @@
 -(RH_LotteryCategoryModel *)selectedCategoryModel
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-    if (homePageModel){
+    if (homePageModel&&homePageModel.mLotteryCategoryList.count>0){
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
+//    else if (homePageModel.mLotteryCategoryList.count==0){
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"数据加载失败，请点击重试"preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+//           [self.serviceRequest startV3HomeInfo] ;
+//        }];
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//    }
     return nil ;
 }
 
@@ -431,10 +439,11 @@
         RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[index] ;
         return lotteryApiModel.mGameItems ;
     }else{
-        if (self.selectedCategoryModel.mSiteApis.count==1){//中间只有一层分类信息
-            return self.selectedCategoryModel.mSiteApis[0].mGameItems ;
+        if (((RH_LotteryAPIInfoModel*)self.selectedCategoryModel.mSiteApis[0]).mGameItems.count==0){//中间只有一层分类信息
+            return self.selectedCategoryModel.mSiteApis ;
         }
-        return self.selectedCategoryModel.mSiteApis ;
+         return ((RH_LotteryAPIInfoModel*)self.selectedCategoryModel.mSiteApis[0]).mGameItems ;
+        
     }
 }
 
@@ -489,6 +498,7 @@
 {
     [super viewWillDisappear:animated];
     [self.normalActivityView closeClick:self.normalActivityView];
+  
 }
 #pragma mark 点击小图标关闭按钮
 -(void)activityViewDidTouchCloseActivityView:(RH_ActivithyView *)activityView
@@ -687,6 +697,9 @@
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
+//    else if (type==ServiceRequestTypeV3BossSysDomain){
+//        
+//    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error

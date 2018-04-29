@@ -51,6 +51,16 @@
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.kuaixuanBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
@@ -98,7 +108,7 @@
 -(void)setStartDate:(NSDate *)startDate
 {
     if (![_startDate isEqualToDate:startDate]){
-        _startDate = startDate;
+        _startDate = [NSDate dateWithTimeInterval:24*60*60 sinceDate:startDate];
         [self.startSeletedDateView updateUIWithDate:_startDate];
     }
 }

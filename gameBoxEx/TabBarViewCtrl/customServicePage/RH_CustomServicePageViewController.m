@@ -10,8 +10,10 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "RH_APPDelegate.h"
 #import "RH_LoginViewController.h"
-
-@interface RH_CustomServicePageViewController ()
+#import "RH_API.h"
+@interface RH_CustomServicePageViewController ()<RH_ServiceRequestDelegate>
+@property(nonatomic,strong)NSString *urlString;
+@property(nonatomic,strong)NSNumber *statusMark;
 @end
 
 @implementation RH_CustomServicePageViewController
@@ -19,17 +21,22 @@
     NSInteger _loadingCount ;
 //    RH_APPDelegate *_appDelegate;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+}
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
+    
     _loadingCount = 0 ;
     self.navigationItem.titleView = nil ;
-    self.webURL = [NSURL URLWithString:self.appDelegate.servicePath.trim];
+  
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.webView.frame = self.view.frame;
+    [self.serviceRequest startV3GetCustomService];
 }
 
 -(BOOL)tabBarHidden
@@ -72,6 +79,7 @@
 -(void)loginViewViewControllerLoginSuccessful:(RH_LoginViewController*)loginViewContrller
 {
     [loginViewContrller hideWithDesignatedWay:YES completedBlock:^{
+        
         [self reloadWebView] ;
     }] ;
 }
@@ -102,7 +110,20 @@
             [self.webView stringByEvaluatingJavaScriptFromString:@"window.page.refreshBetOrder()"] ;
         }
     }
-    
 }
-
+-(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type==ServiceRequestTypeV3CustomService) {
+        self.urlString = [[data objectForKey:@"data"]objectForKey:@"customerUrl"];
+        self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
+        if ([self.statusMark isEqual:@0]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+        }
+        else if([self.statusMark isEqual:@1])
+        {
+            self.webURL = [NSURL URLWithString:self.urlString];
+        }
+        
+    }
+}
 @end

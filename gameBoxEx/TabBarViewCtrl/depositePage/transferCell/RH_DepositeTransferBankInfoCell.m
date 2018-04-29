@@ -54,6 +54,9 @@
 }
 - (IBAction)cardNumCopySelect:(id)sender {
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    if (self.bankCardNumLabel.text.length==0) {
+        return;
+    }
     [pboard setString:self.bankCardNumLabel.text];
 //    pboard.string = self.bankCardNumLabel.text;
     showMessage(self, @"复制成功",nil);

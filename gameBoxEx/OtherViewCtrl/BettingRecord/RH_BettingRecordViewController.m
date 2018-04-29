@@ -97,11 +97,21 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -114,11 +124,21 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -141,8 +161,6 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
-
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     return self.loadingIndicateTableViewCell.loadingIndicateView ;

@@ -111,6 +111,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3CounterPay,             //柜台机存款
     ServiceRequestTypeV3GetPhoneCode,             //获取手机验证码
     ServiceRequestTypeV3CollectAppDomainError,   // 错误日志提交接口
+    ServiceRequestTypeV3CustomService,          //获取客服接口
+//    ServiceRequestTypeV3BossSysDomain,          //获取IP和域名
 };
 
 
@@ -546,7 +548,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3OnlinePayWithRechargeAmount:(NSString *)amount
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString *)payAccountId
-                               activityId:(NSString *)activityId ;
+                               activityId:(NSString *)activityId
+                            bankNameCode:(NSString *)bankNameCode;
 
 #pragma mark - V3 扫码支付提交存款
 -(void)startV3ScanPayWithRechargeAmount:(NSString *)amount
@@ -604,7 +607,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 获取手机验证码
 -(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber ;
-
+#pragma mark ==============获取客服接口================
+-(void)startV3GetCustomService;
+//#pragma mark =============获取IP和域名================
+//-(void)startV3customSysDomain;
 #pragma mark -
 /**
  * 取消所有服务

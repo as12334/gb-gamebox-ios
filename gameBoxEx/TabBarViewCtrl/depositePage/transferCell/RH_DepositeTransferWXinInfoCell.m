@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *personNameLabel;
 @property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 @property (weak, nonatomic) IBOutlet UIView *colorView;
+@property (weak, nonatomic) IBOutlet UILabel *customBankLabel;
 
 @end
 @implementation RH_DepositeTransferWXinInfoCell
@@ -25,6 +26,7 @@
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.personIdNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount] ;
+    self.customBankLabel.text = listModel.mCustomBankName;
     if (listModel.mAccount.length>15) {
         self.personIdNumLabel.font = [UIFont systemFontOfSize:10.f];
     }
@@ -47,15 +49,29 @@
     [self.personIdNumLabel setTextColor:colorWithRGB(51, 51, 51)];
 }
 - (IBAction)bankNumCopyClick:(id)sender {
+    if (self.personIdNumLabel.text.length==0) {
+        return;
+    }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.personIdNumLabel.text];
     showMessage(self, @"复制成功",nil);
     
 }
 - (IBAction)personNameCopyClick:(id)sender {
+    if (self.personNameLabel.text.length==0) {
+        return;
+    }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.personNameLabel.text];
     showMessage(self, @"复制成功",nil);
+}
+- (IBAction)customCopyBtn:(id)sender {
+    if (self.customBankLabel.text.length==0) {
+        return;
+    }
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    [pboard setString:self.customBankLabel.text];
+    showMessage(self, @"复制成功", nil);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

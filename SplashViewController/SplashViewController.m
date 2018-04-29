@@ -39,11 +39,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @interface _DoMainCheckStatusModel:NSObject
 @property(nonatomic,strong,readonly) NSString *doMain        ;
 @property(nonatomic,assign,readonly) DoMainStatus status        ;
+@property(nonatomic,strong,readonly)UIButton *padonBtn;
 -(instancetype)initWithDomain:(NSString*)domain Status:(DoMainStatus)status ;
 -(NSString*)showStatus ;
 @end
 
 @implementation _DoMainCheckStatusModel
+@synthesize padonBtn = _padonBtn;
 -(instancetype)initWithDomain:(NSString*)domain Status:(DoMainStatus)status
 {
     self = [super init] ;
@@ -80,7 +82,14 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }
     }
 }
-
+//#pragma mark ==============懒加载，重试按钮================
+//-(UIButton *)padonBtn
+//{
+//    if (!_padonBtn) {
+//        _padonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _padonBtn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+//    }
+//}
 -(NSString*)showStatus
 {
     switch (_status) {
@@ -119,6 +128,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
 @property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
 @property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
+@property (nonatomic,assign) BOOL isCheckAllPortUrl;
 
 //获取 域名 list 并发请求管理器
 @property(nonatomic,strong,readonly) RH_ConcurrentServicesReqManager * concurrentServicesManager;
@@ -133,13 +143,17 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @synthesize domainCheckStatusList = _domainCheckStatusList ;
 @synthesize concurrentServicesManager = _concurrentServicesManager ;
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.isCheckAllPortUrl = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
-    
     if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
     {
 #ifdef TEST_DOMAIN
@@ -185,10 +199,26 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
         }];
     }
-    
    [self.concurrentServicesManager startManagerRequests];
 }
-
+#pragma mark ==============重复请求================
+-(void)repetitionStartReqSiteInfo{
+    _talk = @"/__check" ;
+    if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
+    {
+#ifdef TEST_DOMAIN
+        _urlArray = @[TEST_DOMAIN] ;
+        [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:0])] ;
+#endif
+    }
+    
+    self.needObserveNetStatusChanged = YES ;
+    [self netStatusChangedHandle] ;
+    self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
+    [self checkAllPortUrl];;
+    [self initView] ;
+    [self startReqSiteInfo];
+}
 -(NSMutableArray *)checkDomainServices
 {
     if (!_checkDomainServices){
@@ -333,7 +363,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (errors.count==RH_API_MAIN_URL.count){
         [self.contentLoadingIndicateView hiddenView] ;
         NSError *error = errors.allValues[0] ;
-        showAlertView(error.localizedDescription, @"系统没有返回可用的域名列表") ;
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+            [self repetitionStartReqSiteInfo];
+        }];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+//         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
     }
 }
 
@@ -347,6 +383,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         static dispatch_once_t onceToken ;
         dispatch_once(&onceToken, ^{
             _urlArray = ConvertToClassPointer(NSArray, data) ;
+//            _urlArray = @[@"xaxaxa.com"];
             [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:key.intValue])] ;
             [self checkAllUrl] ;
         }) ;
@@ -368,13 +405,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_once(&onceToken, ^{
             NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            
-            if (![data boolValue])//http protocol
-            {
-                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"http://",strTmp]] ;
+            if (self.isCheckAllPortUrl == YES) {
+                if (![data boolValue])//http protocol
+                {
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
+                }else{
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
+                }
             }else{
-                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",strTmp]] ;
+                if (![data boolValue])//http protocol
+                {
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
+                }else{
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
+                }
             }
+            
             
             [self cancelAllDomainCheck] ;
         
@@ -383,6 +429,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             }else{
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
                     [self.serviceRequest startV3UpdateCheck];
+//                    [self.serviceRequest startV3customSysDomain];
+                    
                 }else
                 {
                     [self.serviceRequest startUpdateCheck] ;
@@ -438,7 +486,14 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     if (type == ServiceRequestTypeDomainList){
         [self.contentLoadingIndicateView hiddenView] ;
-        showAlertView(error.localizedDescription, @"系统没有返回可用的域名列表") ;
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+//            [self startReqSiteInfo];
+//        }];
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+        
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckFail
@@ -496,7 +551,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self splashViewComplete] ;
 #endif
                 }else{
-                    showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"没有检测到可用的主域名!"preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+                        [self repetitionStartReqSiteInfo];
+                    }];
+                    [alert addAction:defaultAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+//                    showAlertView(@"系统提示", @"没有检测到可用的主域名!");
                 }
             }
         });
@@ -506,7 +567,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         [self splashViewComplete] ;
     }
 }
-
 
 - (void)checkAllUrl{
     if (_urlArray.count){
@@ -521,7 +581,40 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             tmpServiceRequest.delegate = self ;
             [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
             [self.checkDomainServices addObject:tmpServiceRequest] ;
-            
+            tmpServiceRequest.timeOutInterval = 10.0f ;
+            [tmpServiceRequest startCheckDomain:tmpDomain] ;
+            [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
+        }
+        
+        //显示检测的域名 ---
+        [self.domainTableView reloadData] ;
+        
+    }else{
+        [self.contentLoadingIndicateView hiddenView] ;
+        showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
+                      NSLocalizedString(@"SPLASHVIEWCTRL_EMPTY_DOMAINLIST", nil)) ;
+    }
+}
+
+- (void)checkAllPortUrl{
+    self.isCheckAllPortUrl = YES;
+    if (_urlArray.count){
+        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
+                                                             detailText:@"checking domain"] ;
+        }
+        
+        for (int i=0; i<_urlArray.count; i++) {
+            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
+            if ([tmpDomain containsString:@"http"]) {
+                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@"8787"];
+            }else{
+                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@"8989"];
+            }
+            RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
+            tmpServiceRequest.delegate = self ;
+            [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
+            [self.checkDomainServices addObject:tmpServiceRequest] ;
             tmpServiceRequest.timeOutInterval = 10.0f ;
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
             [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;

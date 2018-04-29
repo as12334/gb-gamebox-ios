@@ -70,7 +70,7 @@
         }
         else{
             [weakSelf.serviceRequest startV3AddApplyDiscountsVerify];
-            [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:titleStr advisoryContent:contentStr code:codeStr];
+            [weakSelf.serviceRequest startV3AddApplyDiscountsWithAdvisoryType:weakSelf.typeStr advisoryTitle:[titleStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] advisoryContent:[contentStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] code:codeStr];
             [UIView animateWithDuration:0.5 animations:^{
                 weakSelf.contentScrollView.contentOffset = CGPointMake(0, 0);
             }];

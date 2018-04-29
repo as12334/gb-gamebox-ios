@@ -52,7 +52,7 @@
     self.hiddenNavigationBar = [self navigationBarHidden] ;
     self.navigationBarItem.rightBarButtonItems = nil ;
     //webView
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,heighStatusBar, self.contentView.frame.size.width, self.contentView.frame.size.height-heighStatusBar)];
     _webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _webView.backgroundColor  = [UIColor clearColor];
     _webView.opaque           = NO;
@@ -295,6 +295,7 @@
         }else {
             _webURL = nil;
         }
+        
         [self reloadWebView];
     }
 }

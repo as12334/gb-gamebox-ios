@@ -105,6 +105,25 @@
         self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
         self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
         self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+        self.labTBalanceValue.textColor =   colorWithRGB(23, 102, 187);
+        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
+        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
+        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
+        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
     }else{
         self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
@@ -118,7 +137,7 @@
     RH_MineInfoModel *mineInfoModel = ConvertToClassPointer(RH_MineInfoModel, context) ;
     if (mineInfoModel){
         self.labTBalanceValue.text = mineInfoModel.showTotalAssets ;
-        self.labTWalletValue.text = mineInfoModel.showWalletBalance ;
+        self.labTWalletValue.text = mineInfoModel.showTotalAssets ;
     }
 }
 

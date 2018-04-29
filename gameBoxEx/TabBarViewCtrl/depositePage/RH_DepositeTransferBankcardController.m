@@ -23,6 +23,7 @@
 #import "RH_DepositeTransferPulldownView.h"
 #import "RH_DepositSuccessAlertView.h" //存款成功的弹窗
 #import "RH_CapitalRecordViewController.h" //资金记录
+#import "RH_CustomServiceSubViewController.h"
 @interface RH_DepositeTransferBankcardController ()<DepositeTransferReminderCellDelegate,RH_ServiceRequestDelegate,DepositeTransferButtonCellDelegate,DepositeSubmitCircleViewDelegate,DepositeTransferPayWayCellDelegate,DepositeTransferOrderNumCellDelegate,DepositeTransferPayAdressCellDelegate,DepositeTransferQRCodeCellDelegate,DepositSuccessAlertViewDelegate,DepositeTransferPulldownViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -58,11 +59,21 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -75,11 +86,21 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -102,8 +123,6 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
-
 -(BOOL)isSubViewController
 {
     return YES;
@@ -356,7 +375,9 @@
 #pragma mark --RH_DepositeTransferReminderCell的代理，点击进入客服界面
 -(void)touchTransferReminderTextViewPushCustomViewController:(RH_DepositeTransferReminderCell *)cell
 {
-    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -548,6 +569,7 @@
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"alipay"]){
+        
         if (self.paywayCell.paywayString.length==0) {
             showMessage(self.view, @"请填写支付宝用户名", nil);
         }
@@ -646,14 +668,14 @@
         [self.accountMuArray[2]isEqualToString:@"unionpay"]||[self.accountMuArray[2]isEqualToString:@"onecodepay"]||
         [self.accountMuArray[2]isEqualToString:@"other"]) {
         
-        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString activityId:self.activityId];
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
-        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?[self.adressCell.adressStr integerValue]:12345  payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }

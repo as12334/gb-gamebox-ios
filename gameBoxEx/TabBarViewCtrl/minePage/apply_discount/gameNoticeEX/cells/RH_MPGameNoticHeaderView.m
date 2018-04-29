@@ -111,7 +111,7 @@
 -(void)setStartDate:(NSDate *)startDate
 {
     if (![_startDate isEqualToDate:startDate]){
-        _startDate = startDate;
+        _startDate = [NSDate dateWithTimeInterval:24*60*60 sinceDate:startDate];
         [self.startSeletedDateView updateUIWithDate:_startDate];
     }
 }

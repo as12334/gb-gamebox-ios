@@ -46,6 +46,12 @@
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
         self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+        self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.button_Reset.backgroundColor = RH_NavigationBar_BackgroundColor;
         self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
