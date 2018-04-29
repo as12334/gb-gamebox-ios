@@ -102,7 +102,7 @@
     NSIndexPath * indexPathForSelectedItem = [self.collectionTypeView.indexPathsForSelectedItems firstObject];
     for (NSIndexPath *indexPath in self.collectionTypeView.indexPathsForVisibleItems) {
         RH_GameCategoryCell *cell = ConvertToClassPointer(RH_GameCategoryCell, [self.collectionTypeView cellForItemAtIndexPath:indexPath]);
-        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
             [cell setTitleLabelTextColor:[UIColor whiteColor]];
         }else{
             [cell setTitleLabelTextColor:colorWithRGB(51, 51, 51)];
@@ -123,6 +123,8 @@
         
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Orange];
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        [cell setTitleLabelTextColor:RH_NavigationBar_BackgroundColor_Coffee_Black];
     }else{
         [cell setTitleLabelTextColor:colorWithRGB(23, 102, 187)];
     }
@@ -168,7 +170,7 @@
         _collectionTypeView.delegate = self ;
         _collectionTypeView.dataSource = self ;
         _collectionTypeView.backgroundColor = [UIColor clearColor] ;
-        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
             _collectionTypeView.backgroundColor = [UIColor blackColor] ;
         }
         
@@ -225,7 +227,7 @@
 {
     RH_GameCategoryCell *typeCell = [self.collectionTypeView dequeueReusableCellWithReuseIdentifier:[RH_GameCategoryCell defaultReuseIdentifier] forIndexPath:indexPath];
     [typeCell updateViewWithInfo:ConvertToClassPointer(NSDictionary, self.arrayTypeList[indexPath.item]) context:nil] ;
-    if (![THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]) {
+    if (![THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         typeCell.labTitle.textColor = [UIColor blackColor];
     }
     
