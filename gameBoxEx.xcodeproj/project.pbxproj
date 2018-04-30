@@ -76,6 +76,9 @@
 		22AB993720809A0E001A6203 /* tab_v3_my_selected_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993520809A0D001A6203 /* tab_v3_my_selected_coffee@2x.png */; };
 		22AB993A20809A3D001A6203 /* home_announce_close_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993820809A3C001A6203 /* home_announce_close_coffee@3x.png */; };
 		22AB993B20809A3D001A6203 /* home_announce_close_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */; };
+		22B8EED8209459B0001BFA08 /* ErrorstatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8EED7209459B0001BFA08 /* ErrorstatesVC.m */; };
+		22B8EEDA20945B25001BFA08 /* ErrorStateTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B8EED920945B25001BFA08 /* ErrorStateTopView.xib */; };
+		22B8EEDD20945B39001BFA08 /* ErrorStateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */; };
 		22C2E1482026F8AF008C0C06 /* home_announce_close_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */; };
 		22C2E1492026F8AF008C0C06 /* home_announce_close_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */; };
 		22C2E14C2026F93B008C0C06 /* home_announce_close_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */; };
@@ -865,6 +868,11 @@
 		22AB993520809A0D001A6203 /* tab_v3_my_selected_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_my_selected_coffee@2x.png"; sourceTree = "<group>"; };
 		22AB993820809A3C001A6203 /* home_announce_close_coffee@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_coffee@3x.png"; sourceTree = "<group>"; };
 		22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_coffee@2x.png"; sourceTree = "<group>"; };
+		22B8EED6209459B0001BFA08 /* ErrorstatesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorstatesVC.h; sourceTree = "<group>"; };
+		22B8EED7209459B0001BFA08 /* ErrorstatesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorstatesVC.m; sourceTree = "<group>"; };
+		22B8EED920945B25001BFA08 /* ErrorStateTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorStateTopView.xib; sourceTree = "<group>"; };
+		22B8EEDB20945B39001BFA08 /* ErrorStateTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorStateTopView.h; sourceTree = "<group>"; };
+		22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorStateTopView.m; sourceTree = "<group>"; };
 		22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@2x.png"; sourceTree = "<group>"; };
 		22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@3x.png"; sourceTree = "<group>"; };
 		22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_default@3x.png"; sourceTree = "<group>"; };
@@ -2220,6 +2228,18 @@
 				22AB993420809A0D001A6203 /* tab_v3_my_selected_coffee@3x.png */,
 			);
 			path = coffee;
+			sourceTree = "<group>";
+		};
+		22B8EED520945938001BFA08 /* errorStatesVC */ = {
+			isa = PBXGroup;
+			children = (
+				22B8EED6209459B0001BFA08 /* ErrorstatesVC.h */,
+				22B8EED7209459B0001BFA08 /* ErrorstatesVC.m */,
+				22B8EEDB20945B39001BFA08 /* ErrorStateTopView.h */,
+				22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */,
+				22B8EED920945B25001BFA08 /* ErrorStateTopView.xib */,
+			);
+			path = errorStatesVC;
 			sourceTree = "<group>";
 		};
 		22C2E1412026F7FD008C0C06 /* home_announce_close */ = {
@@ -3695,6 +3715,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				22B8EED520945938001BFA08 /* errorStatesVC */,
 				79595C6C207B0DD50052F472 /* 异常捕获 */,
 				F68201FE20707418003593C9 /* 滚轮选择器 */,
 				79FA652120674258000C7DB6 /* HelpCenter */,
@@ -4799,6 +4820,7 @@
 				221AE57E207DED8A008CD409 /* tab_v3_deposit_selected_orange@3x.png in Resources */,
 				22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */,
 				A0AE8AAE1FFCD57300836C1B /* RH_MineMoreNextCell.xib in Resources */,
+				22B8EEDA20945B25001BFA08 /* ErrorStateTopView.xib in Resources */,
 				F69E35262063A1300028D3A1 /* RH_DepositeMoneyBankCell.xib in Resources */,
 				F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */,
 				F6FB641120142C3400EEED4E /* RH_ForgetPasswordView.xib in Resources */,
@@ -5010,6 +5032,7 @@
 				79FA652A20674550000C7DB6 /* RH_HelpCenterModel.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
 				7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */,
+				22B8EEDD20945B39001BFA08 /* ErrorStateTopView.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */,
 				189C13B21FF9E99F00B14298 /* RH_MineRecordTableViewCell.m in Sources */,
@@ -5163,6 +5186,7 @@
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
 				F6FB6382200F851300EEED4E /* RH_SiteSendMessagePullDownView.m in Sources */,
 				B851139F20146CA300042ADE /* RH_WithdrawHasOrderCell.m in Sources */,
+				22B8EED8209459B0001BFA08 /* ErrorstatesVC.m in Sources */,
 				A058FF341FE8A6BC006EF279 /* CWLateralSlideAnimator.m in Sources */,
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
@@ -5576,7 +5600,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_ghng=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

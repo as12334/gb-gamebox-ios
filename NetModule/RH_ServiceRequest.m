@@ -2524,9 +2524,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
 //                                         response.statusCode,
 //                                         response.description,nil);
+                NSLog(@"response.statusCode=%ld",(long)response.statusCode);
+                
                 if (response.statusCode==605){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         showAlertView(@"IP被限制,连接VPN后重试", nil) ;
+                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"605",@"textOne",nil];
+                        //创建通知
+                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                        //通过通知中心发送通知
+                        [[NSNotificationCenter defaultCenter] postNotification:notification];
                         return ;
                     }) ;
                 }else if (response.statusCode==502){

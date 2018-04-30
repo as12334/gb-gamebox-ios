@@ -34,7 +34,6 @@
     if ([_urlMark isEqual:@1]) {
         [self.serviceRequest startV3GetCustomService];
     }
-    else;
     
 }
 -(BOOL)tabBarHidden
