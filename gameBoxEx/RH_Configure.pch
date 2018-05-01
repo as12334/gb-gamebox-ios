@@ -98,7 +98,7 @@
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN  @"test71.hongtubet.com"
 //#define TEST_DOMAIN @"192.168.0.176"
-#define TEST_DOMAIN @"test.gbboss.com:1344/"
+#define TEST_DOMAIN @"test.gbboss.com:1344/boss/"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"
@@ -198,7 +198,7 @@
 
 #elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define CODE    @"8l6r"w
+#define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
@@ -1357,6 +1357,7 @@
 #define S        @"ce7767ba430031b73cdb0ebd7ed38c7a"
 #define SID        @"270"
 #define THEME    @"green.skin"
+
 #define THEMEV3    @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 

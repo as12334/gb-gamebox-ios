@@ -30,10 +30,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    if ([_urlMark isEqual:@1]) {
-        [self.serviceRequest startV3GetCustomService];
-    }
-    else;
+//    if ([_urlMark isEqual:@1]) {
+//        [self.serviceRequest startV3GetCustomService];
+//    }
+//    else;
 }
 -(BOOL)tabBarHidden
 {
@@ -122,16 +122,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"客服";
-//    [self.serviceRequest startV3GetCustomService];
+    [self.serviceRequest startV3GetCustomService];
 //     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
     
 }
-//-(void)dismissFirstVC
-//{
-//    if ([_urlMark isEqual:@1]) {
-//        [self.tabBarController setSelectedIndex:0];
-//    }
-//}
+-(void)dismissFirstVC
+{
+    if ([_urlMark isEqual:@1]) {
+        [self.tabBarController setSelectedIndex:1];
+    }
+}
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
@@ -143,14 +143,14 @@
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
-            self.urlMark=@1;
+//            self.urlMark=@1;
         }
         else if([self.statusMark isEqual:@1])
         {
             NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
-            self.urlMark=0;
+//            self.urlMark=0;
         }
     }
 }

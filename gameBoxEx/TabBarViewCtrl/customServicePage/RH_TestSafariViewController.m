@@ -31,9 +31,16 @@
 {
     self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
+<<<<<<< HEAD
     if ([_urlMark isEqual:@1]) {
         [self.serviceRequest startV3GetCustomService];
     }
+=======
+//    if ([_urlMark isEqual:@1]) {
+//        [self.serviceRequest startV3GetCustomService];
+//    }
+//    else;
+>>>>>>> origin/dev_lewis
     
 }
 -(BOOL)tabBarHidden
@@ -137,7 +144,7 @@
     self.webView.frame = self.view.frame;
     [self.serviceRequest startV3GetCustomService];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 -(void)dismissFirstVC
 {
@@ -182,14 +189,14 @@
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
-            self.urlMark=@1;
+//            self.urlMark=@1;
         }
         else if([self.statusMark isEqual:@1])
         {
            NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
-            self.urlMark=@0;
+//            self.urlMark=@0;
         }
     }
 }

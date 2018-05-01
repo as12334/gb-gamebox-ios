@@ -31,7 +31,11 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
+<<<<<<< HEAD
 #import "ErrorstatesVC.h"
+=======
+#import "AFHTTPSessionManager.h"
+>>>>>>> origin/dev_lewis
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -52,6 +56,7 @@
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
 @property (nonatomic,strong)UIView *shadeView;
 @property (nonatomic,strong)MBProgressHUD *hud;
+@property (nonatomic,strong)NSArray *array ;
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -89,6 +94,7 @@
     [self autoLogin] ;
 }
 
+<<<<<<< HEAD
 -(void)tongzhi:(NSNotification *)text
 {
     NSLog(@"textOne==%@",text.userInfo[@"textOne"]);
@@ -96,6 +102,8 @@
         [self showViewController:[ErrorstatesVC viewController] sender:nil];
     });
 }
+=======
+>>>>>>> origin/dev_lewis
 
 - (void)dealloc
 {

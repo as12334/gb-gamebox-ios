@@ -974,7 +974,7 @@ BOOL openURL(NSString * url)
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 #import <net/if.h>
-
+#import "RH_Crash.h"
 #define IOS_CELLULAR    @"pdp_ip0"
 #define IOS_WIFI        @"en0"
 #define IOS_VPN         @"utun0"
@@ -1001,7 +1001,9 @@ BOOL isValidatIP(NSString * ipAddress)
             NSRange resultRange = [firstMatch rangeAtIndex:0];
             NSString *result=[ipAddress substringWithRange:resultRange];
             //输出结果
-            NSLog(@"%@",result);
+            NSLog(@"__%@",result);
+            RH_Crash *crash = [[RH_Crash alloc]init];
+            crash.ipStr = result;
             return YES;
         }
     }
@@ -1057,7 +1059,6 @@ NSString *getIPAddress(BOOL preferIPv4)
     
     NSDictionary *addresses = getIPAddresses() ;
     NSLog(@"addresses: %@", addresses);
-    
     __block NSString *address;
     [searchArray enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop)
     {

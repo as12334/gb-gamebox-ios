@@ -16,6 +16,7 @@
 
 #import "RH_MyUncaughtExceptionHandler.h"
 #import "RH_ServiceRequest.h"
+#import "RH_Crash.h"
 
 //----------------------------------------------------------
 
@@ -109,43 +110,11 @@
     //开始显示视图
     [self startShowView];
     
-#pragma mark -- 崩溃日志
-        [RH_MyUncaughtExceptionHandler setDefaultHandler];
-        // 发送崩溃日志
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *dataPath = [path stringByAppendingPathComponent:@"Exception.txt"];
-        NSData *data = [NSData dataWithContentsOfFile:dataPath];
-        if (data != nil) {
-            [self sendExceptionLogWithData:data path:dataPath];
-        }
-
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     return YES;
 }
 
-#pragma mark -- 发送崩溃日志
-- (void)sendExceptionLogWithData:(NSData *)data path:(NSString *)path {
-    
-    NSLog(@"123") ;
-    //    [self.serviceRequest startTestUrl:path];
-    //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //    manager.requestSerializer.timeoutInterval = 5.0f;
-    //    //告诉AFN，支持接受 text/xml 的数据
-    //    [AFJSONResponseSerializer serializer].acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-    //    NSString *urlString = @"后台地址";
-    //
-    //    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    //        [formData appendPartWithFileData:data name:@"file" fileName:@"Exception.txt" mimeType:@"txt"];
-    //    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    //        // 删除文件
-    //        NSFileManager *fileManger = [NSFileManager defaultManager];
-    //        [fileManger removeItemAtPath:path error:nil];
-    //
-    //    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-    //
-    //
-    //    }];
-    
-}
+
 
 -(RH_ServiceRequest *)serviceRequest
 {

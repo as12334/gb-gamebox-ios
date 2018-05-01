@@ -413,7 +413,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
 {
-    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
@@ -2038,6 +2038,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 #pragma mark ==============获取客服接口================
 -(void)startV3GetCustomService
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_CUSTOMSERVICE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CustomService
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============提交crash日志================
+-(void)startV3CollectAppDomainError:(NSString *)siteId userNameStr:(NSString *)userName lastLoginTime:(NSString *)lastLoginTime domain:(NSString *)domain ipStr:(NSString *)ip errorMessageStr:(NSString *)errorMessage codeStr:(NSString *)codeStr markStr:(NSString *)mark typeStr:(NSString *)typeStr versionName:(NSString *)versionName channelStr:(NSString *)channel sysCodeStr:(NSString *)sysCode brandsStr:(NSString *)brands modelStr:(NSString *)modelStr
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_CUSTOMSERVICE
