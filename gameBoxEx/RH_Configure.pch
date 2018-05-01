@@ -196,10 +196,9 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _8l6r //超博娱乐
-#define TEST_DOMAIN  @"test71.hongtubet.com"
+#elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define CODE    @"8l6r"
+#define CODE    @"8l6r"w
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
 #define THEME    @"default.skin"
@@ -2570,7 +2569,7 @@
 #define S        @"fc1e2df692c00cf80fcf20986ccbc7ab"
 #define SID        @"561"
 #define THEME    @"default.skin"
-#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
