@@ -70,13 +70,13 @@
     
     
     lab.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20).whc_Height(40).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
-    lab.text = @"No ACCESS";
+    lab.text = @"UNDER MAINTEMANCE";
     lab.textColor = [UIColor lightGrayColor];
     lab.textAlignment = NSTextAlignmentCenter;
     lab.font = [UIFont systemFontOfSize:MainScreenW/8.5];
     
     lab2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+40+10).whc_Height(40).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
-    lab2.text = @"您所在的地区禁止访问";
+    lab2.text = @"网站维护中，暂停访问";
 //    lab2.textColor = [UIColor lightGrayColor];
     lab2.textAlignment = NSTextAlignmentCenter;
     lab2.font = [UIFont systemFontOfSize:MainScreenW/16];
@@ -85,7 +85,8 @@
     lineView.backgroundColor = [UIColor lightGrayColor];
     
     lab4.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+40+40+10+8+8+1).whc_Height(85).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
-    lab4.text = @"由于您所在地不在我们的服务允许范围内，我们暂时无法为您服务，如果您有任何问题，请联系我们的客服。";
+//    lab4.text = @"由于您所在地不在我们的服务允许范围内，我们暂时无法为您服务，如果您有任何问题，请联系我们的客服。";
+    lab4.text = @"抱歉！本系统程序升级，将暂停访问，敬请期待。维护完成时间：于北京时间2018-05-20 08:30-13:00，如果有什么疑问，请联系我们的客服";
 //    lab4.textColor = [UIColor lightGrayColor];
     lab4.textAlignment = NSTextAlignmentCenter;
     lab4.font = [UIFont systemFontOfSize:MainScreenW/26];
@@ -94,15 +95,42 @@
     btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+40+40+10+18+18+1+85+8).whc_Height(44).whc_LeftSpace(MainScreenW/8.5);
     [btn1 setTitle:@"在线客服" forState:UIControlStateNormal];
     [btn1 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
-    [btn1 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
+    [btn1 addTarget:self action:@selector(onlineCUS) forControlEvents:UIControlEventTouchUpInside];
+//    [btn1 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
     btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+40+40+10+18+18+1+85+8).whc_Height(44).whc_RightSpace(MainScreenW/8.5);
     [btn2 setTitle:@"QQ客服" forState:UIControlStateNormal];
+    [btn2 addTarget:self action:@selector(qqCUS) forControlEvents:UIControlEventTouchUpInside];
     [btn2 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
-    [btn2 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
+//    [btn2 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
+    
+    if ([THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"red_white"]) {
+        btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+    }else if ([THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"green_white"]){
+        btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+    }else if ([THEMEV3 isEqualToString:@"default"]||[THEMEV3 isEqualToString:@"blue"]){
+        btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"orange_white"]){
+        btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]||[THEMEV3 isEqualToString:@"coffee_black"]){
+        btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+    }else{
+        btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+        btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
+    }
 }
 
--(void)aaa
+-(void)onlineCUS
+{
+    
+}
+
+-(void)qqCUS
 {
     
 }
