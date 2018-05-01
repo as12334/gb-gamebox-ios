@@ -31,10 +31,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    if ([_urlMark isEqual:@1]) {
-        [self.serviceRequest startV3GetCustomService];
-    }
-    else;
+//    if ([_urlMark isEqual:@1]) {
+//        [self.serviceRequest startV3GetCustomService];
+//    }
+//    else;
 }
 -(BOOL)tabBarHidden
 {
@@ -144,14 +144,14 @@
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
-            self.urlMark=@1;
+//            self.urlMark=@1;
         }
         else if([self.statusMark isEqual:@1])
         {
             NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
-            self.urlMark=0;
+//            self.urlMark=0;
         }
     }
 }
