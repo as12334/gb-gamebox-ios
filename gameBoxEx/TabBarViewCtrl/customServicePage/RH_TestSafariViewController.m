@@ -31,11 +31,9 @@
 {
     self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
-//    if ([_urlMark isEqual:@1]) {
-//        [self.serviceRequest startV3GetCustomService];
-//    }
-//    else;
-    
+    if ([_urlMark isEqual:@1]) {
+        [self.serviceRequest startV3GetCustomService];
+    }
 }
 -(BOOL)tabBarHidden
 {

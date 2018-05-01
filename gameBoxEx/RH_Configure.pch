@@ -128,7 +128,7 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
@@ -196,8 +196,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _8l6r //超博娱乐
-#define TEST_DOMAIN  @"test71.hongtubet.com"
+#elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
@@ -1773,6 +1772,7 @@
 #elif _wbzt //澳门美高梅
 
 #define CODE    @"wbzt"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define S        @"dcf3bec6f41a870e00212e7cc99606a7"
 #define SID        @"356"
 #define THEME    @"default.skin"
@@ -2400,7 +2400,7 @@
 #define S        @"ab99d8d4ab1908c89caba0d5e452a7ea"
 #define SID        @"530"
 #define THEME    @"default.skin"
-#define THEMEV3             @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _5jko //澳门金沙娱乐城
@@ -2563,6 +2563,16 @@
 #define THEME    @"default.skin"
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
+#elif _zekm //盈凤凰娱乐城
+
+#define CODE    @"zekm"
+#define S        @"fc1e2df692c00cf80fcf20986ccbc7ab"
+#define SID        @"561"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 
 #elif _cyej //澳门威尼斯人
 

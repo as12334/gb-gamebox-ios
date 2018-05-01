@@ -10,7 +10,6 @@
 #import "coreLib.h"
 #import "RH_APPDelegate.h"
 #import "RH_BasicViewController.h"
-#import "RH_TestSafariViewController.h"
 @interface RH_MainTabBarControllerEx ()<CLStaticCollectionViewDelegate,CLStaticCollectionViewDataSource,CLMaskViewDataSource>
 //内容视图
 @property(nonatomic,strong) UIView * contentView;

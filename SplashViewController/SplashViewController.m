@@ -546,6 +546,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
                     [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
                     [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
+                    NSLog(@"dictError====%@",dictError);
                     [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
                 }
                 
