@@ -10,7 +10,6 @@
 #import "RH_APPDelegate.h"
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
-#import "AFHTTPSessionManager.h"
 #import "RH_ServiceRequest.h"
 @implementation RH_Crash
 static RH_Crash*crashSelf = nil;

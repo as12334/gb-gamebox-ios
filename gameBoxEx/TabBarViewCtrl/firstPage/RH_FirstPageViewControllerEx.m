@@ -31,7 +31,6 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
-#import "AFHTTPSessionManager.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>

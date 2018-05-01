@@ -15,7 +15,6 @@
 #import "RH_GesturelLockController.h"
 #import "RH_MainNavigationController.h"
 #import "RH_GestureOpenLockView.h"
-#import "AFHTTPSessionManager.h"
 #import "RH_API.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
