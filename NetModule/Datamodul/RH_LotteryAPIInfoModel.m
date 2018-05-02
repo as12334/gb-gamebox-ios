@@ -60,6 +60,7 @@
 -(NSString *)showGameLink
 {
     if (!_showGameLink){
+       
         if (!_mAutoPay && _mGameLink.length && ![_mGameLink containsString:@"mobile-api"]) { //非免转 ，gamelink 作为 h5 link
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             if ([_mGameLink containsString:@"http:"] ||[_mGameLink containsString:@"https:"]) {

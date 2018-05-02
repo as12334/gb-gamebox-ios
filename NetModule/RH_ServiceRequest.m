@@ -897,6 +897,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark -  一键回收&单个回收
 -(void)startV3OneStepRecoverySearchId:(NSString *)searchId
 {
+    NSLog(@"self.appDelegate.domain===%@",self.appDelegate.domain);
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_ONESTEPRECOVERY_SEARCHAPIID];
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -2535,7 +2536,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
-                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_CODE]);
+                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_DATA]);
 //                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
 //                                         response.statusCode,
 //                                         response.description,nil);

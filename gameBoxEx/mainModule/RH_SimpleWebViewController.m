@@ -282,16 +282,17 @@
     }
 }
 
+
 #pragma mark -
 - (void)setWebURL:(NSURL *)webURL
 {
-    NSLog(@"webURL===%@",webURL);
+    
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
 //            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况 
-
+            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况
+            NSLog(@"URL===%@",URL);
         }else {
             _webURL = nil;
         }
