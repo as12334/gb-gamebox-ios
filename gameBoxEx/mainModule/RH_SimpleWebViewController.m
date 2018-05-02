@@ -24,6 +24,7 @@
 #import "RH_PromoListController.h"
 #import "RH_LoginViewControllerEx.h"
 #import "RH_MePageViewController.h"
+#import "RH_RegistrationViewController.h"
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
@@ -746,6 +747,13 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
     };
+    
+    jsContext[@"nativeGoToRegisterPage"] = ^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showViewController:[RH_RegistrationViewController viewController]
+                              sender:self];
+        });
+    };
 
     jsContext[@"loginState"] = ^(){
         NSLog(@"JSToOc :%@------ loginState",NSStringFromClass([self class])) ;
@@ -885,7 +893,7 @@
             NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:NO];
-                self.myTabBarController.selectedIndex = 0 ;
+                self.myTabBarController.selectedIndex = 1 ;
 //                [self reloadWebView];
             });
         };

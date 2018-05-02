@@ -97,14 +97,14 @@
     lab4.font = [UIFont systemFontOfSize:MainScreenW/26];
     lab4.numberOfLines = 4;
     
-    btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_RightSpaceToView(15, btn2).whc_LeftSpace(MainScreenW/8.5);
+    btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_RightSpaceToView(15, btn2).whc_Width(MainScreenW/4).whc_LeftSpace(MainScreenW/8.5);
     btn1.layer.cornerRadius = 5.0;
     [btn1 setTitle:@"在线客服" forState:UIControlStateNormal];
     [btn1 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(onlineCUS) forControlEvents:UIControlEventTouchUpInside];
 //    [btn1 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
-    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(15, btn1).whc_RightSpace(MainScreenW/8.5);
+    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(15, btn1).whc_Width(MainScreenW/4).whc_RightSpace(MainScreenW/8.5);
     btn2.layer.cornerRadius = 5.0;
     [btn2 setTitle:@"QQ客服" forState:UIControlStateNormal];
     [btn2 addTarget:self action:@selector(qqCUS) forControlEvents:UIControlEventTouchUpInside];
