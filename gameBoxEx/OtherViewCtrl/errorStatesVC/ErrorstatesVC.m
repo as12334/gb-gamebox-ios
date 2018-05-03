@@ -8,6 +8,7 @@
 
 #import "ErrorstatesVC.h"
 #import "ErrorStateTopView.h"
+#import "RH_TestSafariViewController.h"
 
 @interface ErrorstatesVC ()
 @property (nonatomic, strong) ErrorStateTopView *errorStateTopView;
@@ -90,21 +91,27 @@
     lineView.backgroundColor = [UIColor lightGrayColor];
     
     lab4.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+8+8+lineViewH).whc_Height(lab4H).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
+    lab3.textColor = [UIColor redColor];
+    lab3.text = @"";
 //    lab4.text = @"由于您所在地不在我们的服务允许范围内，我们暂时无法为您服务，如果您有任何问题，请联系我们的客服。";
     lab4.text = @"抱歉！本系统程序升级，将暂停访问，敬请期待。维护完成时间：于北京时间2018-05-20 08:30-13:00，如果有什么疑问，请联系我们的客服";
-//    lab4.textColor = [UIColor lightGrayColor];
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:lab4.text];
+    //设置：在单位长度内的内容显示成红色
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(34, 22)];
+    lab4.attributedText = str;
     lab4.textAlignment = NSTextAlignmentCenter;
     lab4.font = [UIFont systemFontOfSize:MainScreenW/26];
     lab4.numberOfLines = 4;
     
-    btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_RightSpaceToView(15, btn2).whc_Width(MainScreenW/4).whc_LeftSpace(MainScreenW/8.5);
+    btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_RightSpaceToView(MainScreenW/12, btn2).whc_Width(MainScreenW/3).whc_LeftSpace(MainScreenW/8.5);
     btn1.layer.cornerRadius = 5.0;
     [btn1 setTitle:@"在线客服" forState:UIControlStateNormal];
     [btn1 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(onlineCUS) forControlEvents:UIControlEventTouchUpInside];
 //    [btn1 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
-    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(15, btn1).whc_Width(MainScreenW/4).whc_RightSpace(MainScreenW/8.5);
+    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(MainScreenW/12, btn1).whc_Width(MainScreenW/3);
     btn2.layer.cornerRadius = 5.0;
     [btn2 setTitle:@"QQ客服" forState:UIControlStateNormal];
     [btn2 addTarget:self action:@selector(qqCUS) forControlEvents:UIControlEventTouchUpInside];
@@ -134,7 +141,7 @@
 
 -(void)onlineCUS
 {
-    
+    [self showViewController:[RH_TestSafariViewController viewController] sender:nil];
 }
 
 -(void)qqCUS

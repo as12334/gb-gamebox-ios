@@ -558,6 +558,20 @@
 #pragma mark-
 -(void)setupJSCallBackOC:(JSContext*)jsContext
 {
+//    jsContext[@"nativeGoToRegisterPage"] = ^(){
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self showViewController:[RH_RegistrationViewController viewController]
+//                              sender:self];
+//        });
+//    };
+    
+//    jsContext[@"nativeCloseCurrentPage"] = ^(){
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.navigationController popToRootViewControllerAnimated:NO];
+//            self.myTabBarController.selectedIndex = 0 ;
+//        });
+//    };
+    
     jsContext[@"share"] = ^() {
         NSLog(@"JSToOc :%@------ share",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
@@ -748,12 +762,7 @@
         [self.appDelegate updateLoginStatus:false] ;
     };
     
-    jsContext[@"nativeGoToRegisterPage"] = ^(){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showViewController:[RH_RegistrationViewController viewController]
-                              sender:self];
-        });
-    };
+   
 
     jsContext[@"loginState"] = ^(){
         NSLog(@"JSToOc :%@------ loginState",NSStringFromClass([self class])) ;
@@ -893,7 +902,7 @@
             NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:NO];
-                self.myTabBarController.selectedIndex = 1 ;
+                self.myTabBarController.selectedIndex = 0 ;
 //                [self reloadWebView];
             });
         };
