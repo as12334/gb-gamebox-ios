@@ -128,7 +128,7 @@
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 //#define TEST_DOMAIN  @"71.hongtubet.com"
-//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
@@ -147,7 +147,7 @@
 #define SID        @"21"
 #define THEME    @"default.skin"
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
+#define SITE_TYPE    @"integrated"
 
 
 #elif _1qkq //宏图娱乐
@@ -1639,7 +1639,7 @@
 #define S        @"09a39312956823dc58c439c011edbe8d"
 #define SID        @"326"
 #define THEME    @"default.skin"
-#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _rb4b //澳门银河线上赌场
@@ -2611,6 +2611,32 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 
+#elif _kizq //澳门葡京
+
+#define CODE    @"kizq"
+#define S        @"e3e53ce1e6962150d2f31cd4dd6ece91"
+#define SID        @"567"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _glym //太阳城集团
+
+#define CODE    @"glym"
+#define S        @"a239e02ad89d648b19335376958b3686"
+#define SID        @"568"
+#define THEME    @"default.skin"
+#define THEMEV3             @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _9sgz //彩盟娱乐
+
+#define CODE    @"9sgz"
+#define S        @"e4870da704a6b390f75b12ff1afe6539"
+#define SID        @"569"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 
 

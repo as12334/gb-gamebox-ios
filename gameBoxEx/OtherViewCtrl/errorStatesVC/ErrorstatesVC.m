@@ -47,6 +47,14 @@
 
 -(void)setUI
 {
+//    self.view.backgroundColor = [UIColor blackColor];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreenW/2, 35)];
+    UIImageView *titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, MainScreenW/2, 35)];
+    NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
+    titleImageView.image = ImageWithName(logoName);
+    [titleView addSubview:titleImageView];
+    self.navigationBarItem.titleView = titleView;
+    
     CGFloat labH = 30;
     CGFloat lab2H = 30;
     CGFloat lineViewH = 1;
@@ -73,6 +81,9 @@
     
     UIButton *btn2 = [UIButton new];
     [self.view addSubview:btn2];
+    
+    UIImageView *imageView = [UIImageView new];
+    [self.view addSubview:imageView];
     
     
     lab.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20).whc_Height(labH).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
@@ -118,6 +129,11 @@
     [btn2 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
 //    [btn2 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
+    
+   
+    imageView.image = ImageWithName(@"rectangle");
+    imageView.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8+44+40).whc_Height(10).whc_Width(MainScreenW);
+    
     if ([THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"red_white"]) {
         btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
         btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
@@ -137,6 +153,9 @@
         btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
         btn2.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
     }
+    
+    
+    
 }
 
 -(void)onlineCUS
