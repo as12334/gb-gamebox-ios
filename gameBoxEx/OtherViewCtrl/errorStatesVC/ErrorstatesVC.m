@@ -86,22 +86,22 @@
     [self.view addSubview:imageView];
     
     
-    lab.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20).whc_Height(labH).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
+    lab.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21).whc_Height(labH).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
     lab.text = @"UNDER MAINTEMANCE";
     lab.textColor = [UIColor lightGrayColor];
     lab.textAlignment = NSTextAlignmentCenter;
     lab.font = [UIFont systemFontOfSize:MainScreenW/15];
     
-    lab2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+10).whc_Height(lab2H).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
-    lab2.text = @"网站维护中，暂停访问";
+    lab2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+10).whc_Height(lab2H).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
+    lab2.text = @"网站维护中， 暂停访问";
 //    lab2.textColor = [UIColor lightGrayColor];
     lab2.textAlignment = NSTextAlignmentCenter;
     lab2.font = [UIFont systemFontOfSize:MainScreenW/16];
     
-    lineView.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+8).whc_Height(lineViewH).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
+    lineView.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+8).whc_Height(lineViewH).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
     lineView.backgroundColor = [UIColor lightGrayColor];
     
-    lab4.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+8+8+lineViewH).whc_Height(lab4H).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
+    lab4.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+8+8+lineViewH).whc_Height(lab4H).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
     lab3.textColor = [UIColor redColor];
     lab3.text = @"";
 //    lab4.text = @"由于您所在地不在我们的服务允许范围内，我们暂时无法为您服务，如果您有任何问题，请联系我们的客服。";
@@ -115,14 +115,14 @@
     lab4.font = [UIFont systemFontOfSize:MainScreenW/26];
     lab4.numberOfLines = 4;
     
-    btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_RightSpaceToView(MainScreenW/12, btn2).whc_Width(MainScreenW/3).whc_LeftSpace(MainScreenW/8.5);
+    btn1.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+MainScreenH/23+MainScreenH/23+lineViewH+lab4H+8).whc_Height(44).whc_RightSpaceToView(MainScreenW/12, btn2).whc_Width(MainScreenW/3).whc_LeftSpace(MainScreenW/8.5);
     btn1.layer.cornerRadius = 5.0;
     [btn1 setTitle:@"在线客服" forState:UIControlStateNormal];
     [btn1 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(onlineCUS) forControlEvents:UIControlEventTouchUpInside];
 //    [btn1 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
-    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(MainScreenW/12, btn1).whc_Width(MainScreenW/3);
+    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+MainScreenH/23+MainScreenH/23+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(MainScreenW/12, btn1).whc_Width(MainScreenW/3);
     btn2.layer.cornerRadius = 5.0;
     [btn2 setTitle:@"QQ客服" forState:UIControlStateNormal];
     [btn2 addTarget:self action:@selector(qqCUS) forControlEvents:UIControlEventTouchUpInside];
@@ -132,7 +132,7 @@
     
    
     imageView.image = ImageWithName(@"rectangle");
-    imageView.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+20+labH+lab2H+10+18+18+lineViewH+lab4H+8+44+40).whc_Height(10).whc_Width(MainScreenW);
+    imageView.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+MainScreenH/21+MainScreenH/21+lineViewH+lab4H+8+44+40).whc_Height(10).whc_Width(MainScreenW);
     
     if ([THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"red_white"]) {
         btn1.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
