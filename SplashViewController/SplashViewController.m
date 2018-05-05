@@ -615,9 +615,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         for (int i=0; i<_urlArray.count; i++) {
             NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
             if ([tmpDomain containsString:@"http"]) {
-                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@"8787"];
+                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@":8787"];
             }else{
-                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@"8989"];
+                tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@":8989"];
             }
             RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
             tmpServiceRequest.delegate = self ;

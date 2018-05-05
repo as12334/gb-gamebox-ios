@@ -64,9 +64,10 @@
         [contentView addSubview:sureBtn];
         sureBtn.whc_LeftSpace(39).whc_TopSpaceToView(15, contentWebView).whc_RightSpace(39).whc_Height(35) ;
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         sureBtn.layer.cornerRadius = 5;
         sureBtn.layer.masksToBounds = YES ;
+        sureBtn.backgroundColor = colorWithRGB(210, 210, 210);
         sureBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
         [sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
  
