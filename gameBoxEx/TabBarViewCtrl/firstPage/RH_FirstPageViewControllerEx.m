@@ -894,6 +894,7 @@
 {
     if (bannerModel.contentURL.length){
         self.appDelegate.customUrl = bannerModel.contentURL ;
+        NSLog(@"bannerModel.contentURL==%@",bannerModel.contentURL);
         [self showViewController:[RH_CustomViewController viewController] sender:self] ;
     }
 }

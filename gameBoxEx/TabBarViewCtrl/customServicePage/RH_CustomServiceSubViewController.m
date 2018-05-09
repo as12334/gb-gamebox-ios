@@ -20,10 +20,10 @@
 
 @implementation RH_CustomServiceSubViewController
 @synthesize  webView = _webView;
-//-(BOOL)isHiddenNavigationBar
-//{
-//    return YES;
-//}
+-(BOOL)isHiddenNavigationBar
+{
+    return NO;
+}
 -(BOOL)isSubViewController
 {
     return YES;

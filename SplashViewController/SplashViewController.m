@@ -419,9 +419,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             }else{
                 if (![data boolValue])//http protocol
                 {
-                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
                 }else{
-                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
+                    [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
                 }
             }
             
@@ -614,7 +614,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         
         for (int i=0; i<_urlArray.count; i++) {
             NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
-            if ([tmpDomain containsString:@"http"]) {
+            NSLog(@"tmpDomain==%@",tmpDomain);
+            if ([tmpDomain containsString:@"http://"]) {
                 tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@":8787"];
             }else{
                 tmpDomain = [NSString stringWithFormat:@"%@%@",tmpDomain,@":8989"];
@@ -623,7 +624,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             tmpServiceRequest.delegate = self ;
             [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
             [self.checkDomainServices addObject:tmpServiceRequest] ;
-            tmpServiceRequest.timeOutInterval = 10.0f ;
+            tmpServiceRequest.timeOutInterval = 60.0f ;
             [tmpServiceRequest startCheckDomain:tmpDomain] ;
             [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
         }

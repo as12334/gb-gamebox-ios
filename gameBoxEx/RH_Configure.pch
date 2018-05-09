@@ -2534,7 +2534,7 @@
 #define S        @"8fce32a428f301b15142b26fbda2c35b"
 #define SID        @"557"
 #define THEME    @"default.skin"
-#define THEMEV3             @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _f6gu //澳门新葡京娱乐城
@@ -2626,7 +2626,7 @@
 #define S        @"a239e02ad89d648b19335376958b3686"
 #define SID        @"568"
 #define THEME    @"default.skin"
-#define THEMEV3             @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _9sgz //彩盟娱乐
