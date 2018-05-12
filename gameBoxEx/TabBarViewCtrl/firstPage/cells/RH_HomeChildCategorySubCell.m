@@ -62,7 +62,7 @@
 //    }
 //    NSLog(@"green2=%@",string);
 //    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:string]] ;
-    NSLog(@"green2=%@",self.lotteryApiModel.mName);
+    NSLog(@"green2=%@",self.lotteryApiModel.showCover);
     [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover]] ;
 }
 

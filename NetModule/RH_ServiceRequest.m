@@ -145,17 +145,51 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startCheckDomain:(NSString*)doMain
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
-    [self _startServiceWithAPIName:nil
-                        pathFormat:@"http://%@/__check"
-                     pathArguments:@[doMain?:@""]
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
-                       serviceType:ServiceRequestTypeDomainCheck
-                         scopeType:ServiceScopeTypePublic];
+//    [self.appDelegate.apiDomain containsString:@"https://"]?(@"https://%@/__check"):(@"http://%@/__check")
+    if ([checkType isEqualToString:@"https+8989"]) {
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"https://%@:8989/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }else if([checkType isEqualToString:@"http+8787"]){
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"http://%@:8787/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }else if([checkType isEqualToString:@"https"]){
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"https://%@/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }else{
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"http://%@/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
 }
 
 -(void)startUpdateCheck
@@ -2570,6 +2604,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 }else if (response.statusCode==606){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         showAlertView(@"被强制踢出", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==607){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"站点维护", nil) ;
+                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
+                        //创建通知
+                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                        //通过通知中心发送通知
+                        [[NSNotificationCenter defaultCenter] postNotification:notification];
+                        return ;
                         return ;
                     });
                 }

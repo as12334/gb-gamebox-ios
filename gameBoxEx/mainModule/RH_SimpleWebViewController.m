@@ -530,7 +530,7 @@
               && ([reqUrl containsString:@"/login/commonLogin.html"] || [reqUrl containsString:@"/passport/login.html"] )){
 //        //跳转原生
 //        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
-//            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
+//            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]&&!self.appDelegate.isLogin){
 //            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
 //            loginViewCtrlEx.delegate = self ;
 //            [self showViewController:loginViewCtrlEx sender:self] ;
