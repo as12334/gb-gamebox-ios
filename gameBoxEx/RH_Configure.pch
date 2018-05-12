@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              0
+#define IS_TEST_SERVER_ENV                              1
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -2737,6 +2737,15 @@
 #define SID        @"569"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _mrle //盛乾娱乐城
+
+#define CODE    @"mrle"
+#define S        @"44f8913fd3f1921e37c64270231cf5dd"
+#define SID        @"572"
+#define THEME    @"default.skin"
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
