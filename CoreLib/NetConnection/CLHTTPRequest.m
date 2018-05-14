@@ -192,7 +192,7 @@
 //        if (![url containsString:@"http"]) {
 //            url = [NSString stringWithFormat:@"http://%@/%@",TEST_DOMAIN,url];
 //        }
-//        NSLog(@"url===%@",url);
+        NSLog(@"url===%@",url);
         if (!IS_HTTP_URL(url)) {
             @throw [[NSException alloc] initWithName:NSInvalidArgumentException
                                               reason:@"请求的URL必须为HTTP请求"
