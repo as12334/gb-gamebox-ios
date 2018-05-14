@@ -100,6 +100,12 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
+
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    //初始化 优惠类别信息
+//    [self loadingIndicateViewDidTap:nil] ;
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

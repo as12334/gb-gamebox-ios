@@ -46,6 +46,7 @@
 		221AE5AE207DF2ED008CD409 /* home_announce_close_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 221AE5AC207DF2ED008CD409 /* home_announce_close_orange@2x.png */; };
 		22208B71207476690028BBA3 /* tab_v3_home_selected_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22208B70207476690028BBA3 /* tab_v3_home_selected_green@2x.png */; };
 		22208B732074769D0028BBA3 /* tab_v3_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22208B722074769C0028BBA3 /* tab_v3_home_selected@2x.png */; };
+		222790D920A28BE10017F9F2 /* RH_BannerDetailVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 222790D820A28BE10017F9F2 /* RH_BannerDetailVCViewController.m */; };
 		22676E032068CCDC001BF4EB /* tab_v3_home_selected_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22676E012068CCDB001BF4EB /* tab_v3_home_selected_black@2x.png */; };
 		22676E042068CCDC001BF4EB /* tab_v3_home_selected_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22676E022068CCDC001BF4EB /* tab_v3_home_selected_black@3x.png */; };
 		226BE38020297D3F003E98C9 /* tabbar_mark_black_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 226BE37E20297D3F003E98C9 /* tabbar_mark_black_bg@2x.png */; };
@@ -839,6 +840,8 @@
 		221AE5AC207DF2ED008CD409 /* home_announce_close_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_orange@2x.png"; sourceTree = "<group>"; };
 		22208B70207476690028BBA3 /* tab_v3_home_selected_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_green@2x.png"; sourceTree = "<group>"; };
 		22208B722074769C0028BBA3 /* tab_v3_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected@2x.png"; sourceTree = "<group>"; };
+		222790D720A28BE10017F9F2 /* RH_BannerDetailVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BannerDetailVCViewController.h; sourceTree = "<group>"; };
+		222790D820A28BE10017F9F2 /* RH_BannerDetailVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BannerDetailVCViewController.m; sourceTree = "<group>"; };
 		22676E012068CCDB001BF4EB /* tab_v3_home_selected_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_black@2x.png"; sourceTree = "<group>"; };
 		22676E022068CCDC001BF4EB /* tab_v3_home_selected_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home_selected_black@3x.png"; sourceTree = "<group>"; };
 		226BE37E20297D3F003E98C9 /* tabbar_mark_black_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_mark_black_bg@2x.png"; sourceTree = "<group>"; };
@@ -2162,6 +2165,15 @@
 				A07AF4D72026DBE400D6D559 /* tab_blue_mid@2x.png */,
 			);
 			path = blue;
+			sourceTree = "<group>";
+		};
+		222790D620A28B900017F9F2 /* bannerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				222790D720A28BE10017F9F2 /* RH_BannerDetailVCViewController.h */,
+				222790D820A28BE10017F9F2 /* RH_BannerDetailVCViewController.m */,
+			);
+			path = bannerDetail;
 			sourceTree = "<group>";
 		};
 		226BE37B20297BF9003E98C9 /* green */ = {
@@ -3720,6 +3732,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				222790D620A28B900017F9F2 /* bannerDetail */,
 				22B8EED520945938001BFA08 /* errorStatesVC */,
 				79595C6C207B0DD50052F472 /* 异常捕获 */,
 				F68201FE20707418003593C9 /* 滚轮选择器 */,
@@ -5196,6 +5209,7 @@
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
+				222790D920A28BE10017F9F2 /* RH_BannerDetailVCViewController.m in Sources */,
 				7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */,
 				7937C4392072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m in Sources */,
 				A039BDA6200389710080D56F /* RH_UserSafetyCodeModel.m in Sources */,
@@ -5581,7 +5595,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_DEBUG1=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_x70n=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5606,7 +5620,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_DEBUG1=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_x70n=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5664,7 +5678,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_DEBUG1=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_x70n=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5689,7 +5703,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_DEBUG1=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_x70n=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
