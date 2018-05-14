@@ -593,7 +593,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 
                 if (IS_DEV_SERVER_ENV){
 #ifdef TEST_DOMAIN
-                    [self.appDelegate updateDomain:[NSString stringWithFormat:@"%@",TEST_DOMAIN]] ;
+                    [self.appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",TEST_DOMAIN]] ;
                     [self splashViewComplete] ;
 #endif
                 }else{
