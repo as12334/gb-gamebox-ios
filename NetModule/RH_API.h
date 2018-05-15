@@ -977,6 +977,7 @@
 #define RH_GP_DEPOSITEORIGINCHANNEL_HIDE                @"hide"
 #define RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT     @"multipleAccount"
 #define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG          @"accountImg"
+#define RH_GP_DEPOSITEORIGINCHANNEL_NEWACTIVITY         @"newActivity"
 
 #define RH_GP_DEPOSITECOUNTER_CODE                      @"code"
 #define RH_GP_DEPOSITECOUNTER_NAME                      @"name"

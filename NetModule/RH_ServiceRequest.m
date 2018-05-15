@@ -148,18 +148,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
 //    [self.appDelegate.apiDomain containsString:@"https://"]?(@"https://%@/__check"):(@"http://%@/__check")
-#ifdef TEST_DOMAIN
-    [self _startServiceWithAPIName:nil
-                        pathFormat:@"https://%@/__check"
-                     pathArguments:@[doMain?:@""]
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
-                       serviceType:ServiceRequestTypeDomainCheck
-                         scopeType:ServiceScopeTypePublic];
-#endif
-    
     if ([checkType isEqualToString:@"https+8989"]) {
         [self _startServiceWithAPIName:nil
                             pathFormat:@"https://%@:8989/__check"
@@ -2958,6 +2946,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
 //                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
                 resultSendData = [RH_DepositeTransferModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+                
+                
+                
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:
@@ -3060,6 +3051,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 case ServiceRequestTypeV3DepositeOriginChannel:
             {
                 resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                
             }
                 break;
 //                case ServiceRequestTypeV3ScanPay:

@@ -408,32 +408,39 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_once(&onceToken, ^{
             NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            NSLog(@"strTmp====%@",strTmp);
 //            if ([self.checkType isEqualToString:@"https+8989"]) {
                 if (![data boolValue])//http protocol
                 {
+                  
                     if ([self.checkType isEqualToString:@"https+8989"]) {
                         if ([data boolValue])//http protocol
                         {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
+//                            return ;
                         }
                     }else if ([self.checkType isEqualToString:@"http+8787"]){
                         if ([data boolValue])//http protocol
                         {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
+//                            return ;
                         }
                     }else if ([self.checkType isEqualToString:@"https"]){
                         if ([data boolValue])//http protocol
                         {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
+//                            return ;
                         }
                     }else{
                         if ([data boolValue])//http protocol
                         {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
+//                            return ;
                         }
                     }
                     
                 }else{
+                   
                     if ([self.checkType isEqualToString:@"https+8989"]) {
                         if ([data boolValue])//http protocol
                         {
@@ -593,7 +600,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 
                 if (IS_DEV_SERVER_ENV){
 #ifdef TEST_DOMAIN
-                    [self.appDelegate updateDomain:[NSString stringWithFormat:@"%@%@",@"https://",TEST_DOMAIN]] ;
+                    [self.appDelegate updateDomain:[NSString stringWithFormat:@"%@",TEST_DOMAIN]] ;
                     [self splashViewComplete] ;
 #endif
                 }else{
@@ -652,7 +659,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.windowLevel = [[UIApplication sharedApplication] keyWindow].windowLevel;
-
+    
     //建立的循环保留
     [self.window setRootViewController:self];
     [self.window makeKeyAndVisible];

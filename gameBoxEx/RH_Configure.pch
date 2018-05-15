@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -96,9 +96,10 @@
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
-//#define TEST_DOMAIN  @"test71.hongtubet.com"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN  @"test71.hongtubet.com"
 //#define TEST_DOMAIN @"192.168.0.176"
-#define TEST_DOMAIN @"test.gbboss.com:1344/boss/"
+//#define TEST_DOMAIN @"test.gbboss.com:1344/boss/"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"
@@ -153,6 +154,7 @@
 #elif _1qkq //宏图娱乐
 
 #define CODE    @"1qkq"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
 #define SID        @"65"
 #define THEME    @"default.skin"
@@ -2394,7 +2396,7 @@
 #define S        @"861ce7c81d29d7b0e69ab5cd2dcf9380"
 #define SID        @"517"
 #define THEME    @"default.skin"
-#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _sa7t //亿豪国际娱乐城
@@ -2547,7 +2549,7 @@
 #define S        @"9693d26d315c9871935daba2257167f4"
 #define SID        @"536"
 #define THEME    @"default.skin"
-#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
@@ -2739,15 +2741,23 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _xzqz //皇家娱乐城
+
+#define CODE    @"xzqz"
+#define S        @"fc735e392c5510c9a405f36a2afde4f9"
+#define SID        @"570"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _mrle //盛乾娱乐城
 
 #define CODE    @"mrle"
 #define S        @"44f8913fd3f1921e37c64270231cf5dd"
 #define SID        @"572"
 #define THEME    @"default.skin"
-#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
-
 
 
 #endif

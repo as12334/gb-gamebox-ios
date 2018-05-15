@@ -40,6 +40,7 @@
 @property(nonatomic,strong,readonly)RH_DepositeTransferPulldownView *pulldownView;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
+@property(nonatomic,strong)UIView *headerTitleView;
 //柜台机单独传type
 @property(nonatomic,strong)NSString *counterStr;
 @end
@@ -211,6 +212,24 @@
     else{
        _markArray =@[@0,@1,@2,@3,@4,@5];
     }
+   
+}
+-(void)setChannelModel:(RH_DepositeTransferChannelModel *)channelModel
+{
+    _channelModel = channelModel;
+    if (self.channelModel.mNewActivity==YES) {
+        self.headerTitleView = [[UIView alloc]initWithFrame:CGRectMake(0,NavigationBarHeight+heighStatusBar, self.contentView.frameWidth, 20)];
+        self.headerTitleView.backgroundColor = [UIColor yellowColor];
+        [self.view addSubview:self.headerTitleView];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, 20)];
+        lab.backgroundColor = [UIColor yellowColor];
+        [lab setTextColor:[UIColor lightGrayColor]];
+        lab.font = [UIFont systemFontOfSize:14.f];
+        lab.text = @"温馨提示：完成存款后，请前往活动大厅申请活动优惠。";
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.headerTitleView addSubview:lab];
+        self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
+    }
 }
 #pragma mark --视图
 -(void)setupUI{
@@ -235,7 +254,7 @@
 {
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
-        _circleView.frame = CGRectMake(0, 0, 295, 358);
+//        _circleView.frame = CGRectMake(0, 0, 295, 158);
         _circleView.center = self.contentView.center;
         _circleView.delegate = self;
     }
@@ -668,7 +687,7 @@
         [self.accountMuArray[2]isEqualToString:@"unionpay"]||[self.accountMuArray[2]isEqualToString:@"onecodepay"]||
         [self.accountMuArray[2]isEqualToString:@"other"]) {
         
-        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?[self.adressCell.adressStr integerValue]:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
