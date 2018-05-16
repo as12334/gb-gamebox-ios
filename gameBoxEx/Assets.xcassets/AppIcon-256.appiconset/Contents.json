@@ -48,13 +48,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "app_icon_256-120x120.png",
+      "filename" : "app_icon120-256.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "app_icon_256-180x180.png",
+      "filename" : "app_icon180-256.png",
       "scale" : "3x"
     },
     {

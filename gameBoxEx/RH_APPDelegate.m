@@ -11,8 +11,11 @@
 #import "SplashViewController.h"
 #import "RH_MainTabBarController.h"
 #import "coreLib.h"
-#import "coreLib.h"
-
+#import "RH_UserInfoManager.h"
+#import "RH_GesturelLockController.h"
+#import "RH_MainNavigationController.h"
+#import "RH_GestureOpenLockView.h"
+#import "RH_API.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -27,7 +30,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 @implementation RH_APPDelegate
 
-
 - (void)doSomethingWhenAppFirstLaunch
 {
     //清理缓存的临时和缓存数据数据
@@ -41,12 +43,22 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     NSLog(@"old agent :%@", oldAgent);
     //add my info to the new agent
-    NSString *newAgent = [oldAgent stringByAppendingString:@"app_ios, iPhone"];
+    NSLog(@"........%@",getDeviceModel()) ;//app_ios app_android
+    NSString *newAgent = nil ;
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        ////用于后台切换 v3 环境
+        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios,is_native True, %@",getDeviceModel()]];
+    }else{
+        newAgent = [oldAgent stringByAppendingString:[NSString stringWithFormat:@"app_ios, %@",getDeviceModel()]];
+    }
+    
     NSLog(@"new agent :%@", newAgent);
-    NSLog(@"熟悉Git1");
     //regist the new agent
-    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
+    NSMutableDictionary *dictionnary = [[NSMutableDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil] ;
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    
+    self.dictUserAgent = dictionnary ;
 }
 
 -(BOOL)needShowUserGuideView
@@ -98,7 +110,12 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] ;
     }
 
+#if 1
     self.window.rootViewController = [RH_MainTabBarController viewController] ;
+#else
+    self.window.rootViewController = [RH_MainTabBarControllerEx createInstanceEmbedInNavigationControllerWithContext:nil] ;
+#endif
+    
     [self.window makeKeyAndVisible] ;
 
     [self completedShowMainWindow];
@@ -106,6 +123,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     {
         showAlertView( @"提示", @"您正在使用的是测试环境");
     }
+    
 }
 
 - (void)completedShowMainWindow
@@ -122,12 +140,31 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 #pragma mark----
 -(void)updateLoginStatus:(BOOL)loginStatus
 {
-//    if (_isLogin !=loginStatus){
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if (_isLogin !=loginStatus){
+            NSLog(@"updateLoginStatus :%d",loginStatus) ;
+            _isLogin = loginStatus ;
+            
+            if (!_isLogin){
+                [[RH_UserInfoManager shareUserManager] setUserSafetyInfo:nil] ;
+                [[RH_UserInfoManager shareUserManager] setMineSettingInfo:nil] ;
+                [[RH_UserInfoManager shareUserManager] setUserWithDrawInfo:nil] ;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
+        }
+    }else{
         NSLog(@"updateLoginStatus :%d",loginStatus) ;
         _isLogin = loginStatus ;
 
         [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
-//    }
+    }
+}
+
+-(void)updateApiDomain:(NSString*)apiDomain
+{
+    if (_apiDomain.length==0){
+        _apiDomain = apiDomain ;
+    }
 }
 
 -(void)updateDomain:(NSString*)domain ;
@@ -140,19 +177,57 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     _domain = tmpStr ;
 }
 
+-(void)updateHeaderDomain:(NSString *)headerDomain
+{
+    if (_headerDomain.length==0) {
+        _headerDomain = headerDomain;
+    }
+}
+
 -(void)updateServicePath:(NSString*)servicePath
 {
-    NSString *tmpStr = servicePath.trim ;
-    tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
-    tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+    if (servicePath !=_servicePath){
+        NSString *tmpStr = servicePath.trim ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
 
-    _servicePath = tmpStr ;
+        _servicePath = tmpStr ;
+    }
+}
+
+-(void)setCustomUrl:(NSString *)customUrl
+{
+    if (customUrl !=_customUrl){
+        NSString *tmpStr = customUrl.trim ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+        
+        _customUrl = tmpStr ;
+    }
 }
 
 #pragma mark- For MeiQia---overload function
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [super applicationWillEnterForeground:application] ;
+
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        #define RH_GuseterLock            @"RH_GuseterLock"
+        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+        // [RH_UserInfoManager shareUserManager].screenLockPassword.length
+        if ([RH_UserInfoManager shareUserManager].isScreenLock && currentGuseterLockStr.length){
+            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController) ;
+            if (tabBarController){
+                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
+                                                                      animated:YES
+                                                                    completion:nil] ;
+//                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
+            }
+//            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
+//            [openLockView show] ;
+        }
+    }
 }
 
 //进入后台
@@ -164,20 +239,20 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 #pragma mark -
 
-- (void)applicationDidOpenURL:(NSURL *)url
-            sourceApplication:(NSString *)sourceApplication
-                   annotation:(id)annotation
-                        state:(CLApplicationOpenURLState)state
-{
-    //处理URL
-    if (![self _tryHandleURL:url context:nil]) {
-    }
-}
-
-- (BOOL)_tryHandleURL:(NSURL *)url context:(id)context
-{
-    return NO;
-}
+//- (void)applicationDidOpenURL:(NSURL *)url
+//            sourceApplication:(NSString *)sourceApplication
+//                   annotation:(id)annotation
+//                        state:(CLApplicationOpenURLState)state
+//{
+//    //处理URL
+//    if (![self _tryHandleURL:url context:nil]) {
+//    }
+//}
+//
+//- (BOOL)_tryHandleURL:(NSURL *)url context:(id)context
+//{
+//    return NO;
+//}
 
 #pragma mark -
 
@@ -190,7 +265,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (BOOL)needRegister3DTouchShortcutItems {
     return NO;
 }
-
-
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    
+}
 
 @end

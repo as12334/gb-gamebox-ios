@@ -13,7 +13,47 @@
 #import "RH_API.h"
 #import "coreLib.h"
 #import "RH_UpdatedVersionModel.h"
-
+#import "RH_APPDelegate.h"
+#import "RH_UserInfoManager.h"
+///-------DATA MODULE--------------------//
+#import "RH_HomePageModel.h"
+#import "RH_BettingInfoModel.h"
+#import "RH_OpenActivityModel.h"
+#import "RH_BettingDetailModel.h"
+#import "RH_CapitalInfoOverviewModel.h"
+#import "RH_CapitalDetailModel.h"
+#import "RH_CapitalTypeModel.h"
+#import "RH_BankCardModel.h"
+#import "RH_PromoInfoModel.h"
+#import "RH_SystemNoticeModel.h"
+#import "RH_SystemNoticeDetailModel.h"
+#import "RH_UserGroupInfoModel.h"
+#import "RH_GameNoticeModel.h"
+#import "RH_GameNoticeDetailModel.h"
+#import "RH_BitCodeModel.h"
+#import "RH_SiteMessageModel.h"
+#import "RH_SiteMyMessageModel.h"
+#import "RH_DiscountActivityTypeModel.h"
+#import "RH_DiscountActivityModel.h"
+#import "RH_SendMessageVerityModel.h"
+#import "RH_SiteMyMessageDetailModel.h"
+#import "RH_WithDrawModel.h"
+#import "RH_SiteMsgSysMsgModel.h"
+#import "RH_ActivityStatusModel.h"
+#import "RH_SiteMsgUnReadCountModel.h"
+#import "RH_SharePlayerRecommendModel.h"
+#import "RH_RegisetInitModel.h"
+#import "RH_DepositeTransferModel.h"
+#import "RH_DepositePayAccountModel.h"
+#import "RH_AboutUsModel.h" // 关于我们
+#import "RH_RegisterClauseModel.h" //注册条款
+#import "RH_HelpCenterModel.h" //帮助中心
+#import "RH_HelpCenterSecondModel.h" //帮助中心二级界面
+#import "RH_HelpCenterDetailModel.h"
+#import "RH_GetNoAutoTransferInfoModel.h"
+#import "RH_DepositOriginseachSaleModel.h"
+#import "RH_UserApiBalanceModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -21,6 +61,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     ServiceScopeTypePublic,
 };
 
+#define userInfo_manager   [RH_UserInfoManager shareUserManager]
 //----------------------------------------------------------
 
 //请求上下文
@@ -53,7 +94,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
     return self;
 }
-
 @end
 
 //------------------------------------------------------------------
@@ -66,6 +106,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //上下文
 @property(nonatomic,strong,readonly) NSMutableDictionary * contexts;
 @property(nonatomic,strong,readonly) NSMutableDictionary * doSometiongMasks;
+
+//
+@property (nonatomic,strong,readonly) RH_APPDelegate *appDelegate ;
 @end
 
 //------------------------------------------------------------------
@@ -76,55 +119,85 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 @synthesize uniqueID = _uniqueID;
 @synthesize contexts = _contexts;
 @synthesize doSometiongMasks = _doSometiongMasks;
+@synthesize appDelegate = _appDelegate ;
 
-#pragma mark-用户接口定义
-//- (void)startLogin:(NSString*)userName Password:(NSString*)password
-//{
-//    [self _startServiceWithAPIName:RH_API_MAIN_URL
-//                        pathFormat:RH_API_NAME_USERLOGIN
-//                     pathArguments:nil
-//                   headerArguments:nil
-//                    queryArguments:@{RH_SP_USERLOGIN_USERNAME:userName?:@"",
-//                                     RH_SP_USERLOGIN_PASSWORD:password?:@""}
-//                     bodyArguments:nil
-//                          httpType:HTTPRequestTypePost
-//                       serviceType:ServiceRequestTypeLogin
-//                         scopeType:ServiceScopeTypePublic] ;
-//}
 
--(void)startReqDomainList
+-(RH_APPDelegate *)appDelegate
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    if (!_appDelegate){
+        _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    }
+    
+    return _appDelegate ;
+}
+#pragma mark-用户接口定义
+-(void)startReqDomainListWithDomain:(NSString*)domain
+{
+    [self _startServiceWithAPIName:domain
                         pathFormat:@"app/line.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
-                                     RH_SP_COMMON_SITESEC:S}
+                                     RH_SP_COMMON_SITESEC:S,
+                                     RH_SP_COMMON_OSTYPE:@"ips",
+                                     }
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeDomainList
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startCheckDomain:(NSString*)doMain
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
-    [self _startServiceWithAPIName:nil
-                        pathFormat:(isIgnoreHTTPS(doMain) || IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)?@"http://%@/__check":@"https://%@/__check"
-                     pathArguments:@[doMain?:@""]
-                   headerArguments:nil
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
-                       serviceType:ServiceRequestTypeDomainCheck
-                         scopeType:ServiceScopeTypePublic];
+    if ([checkType isEqualToString:@"https+8989"]) {
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"https://%@:8989/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }else if([checkType isEqualToString:@"http+8787"]){
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"http://%@:8787/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }else if([checkType isEqualToString:@"https"]){
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"https://%@/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }else{
+        [self _startServiceWithAPIName:nil
+                            pathFormat:@"http://%@/__check"
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
+    }
 }
 
 -(void)startUpdateCheck
 {
-    [self _startServiceWithAPIName:RH_API_MAIN_URL
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
                                      RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
                                      }
@@ -133,10 +206,2475 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeUpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
+#pragma mark ==============updateCheck================
+-(void)startV3UpdateCheck
+{
+    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+                        pathFormat:@"app/update.html"
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{@"code":S,
+                                     @"type":@"ios",
+                                     @"siteId":SID
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3UpdateCheck
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============获取域名IP接口================
+//-(void)startV3customSysDomain
+//{
+//    [self _startServiceWithAPIName:self.appDelegate.domain
+//                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
+//                     pathArguments:nil
+//                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+//                                     @"User-Agent":@"app_ios, iPhone",
+//                                     @"Host":@"header",
+//                                     }
+//                    queryArguments:@{
+//                                     @"code":SID,
+//                                     @"type":@"ips",
+//                                     @"s":S,
+//                                     }
+//                     bodyArguments:nil
+//                          httpType:HTTPRequestTypePost
+//                       serviceType:ServiceRequestTypeV3BossSysDomain
+//                         scopeType:ServiceScopeTypePublic];
+//}
+-(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_LOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                         }
+                        queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                        @"password":password?:@"",
+                                                        @"captcha":verCode
+                                                        } :@{@"username":userName?:@"",
+                                                             @"password":password?:@""
+                                                             }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_LOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         }
+                        queryArguments:verCode.length?@{@"username":userName?:@"",
+                                                        @"password":password?:@"",
+                                                        @"captcha":verCode
+                                                        } :@{@"username":userName?:@"",
+                                                             @"password":password?:@""
+                                                             }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
 
+-(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_AUTOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"username":userName?:@"",
+                                         @"password":password?:@""
+                                         }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserAutoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_AUTOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone"
+                                         }
+                        queryArguments:@{@"username":userName?:@"",
+                                         @"password":password?:@""
+                                         }
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeUserAutoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
+}
+
+-(void)startGetVerifyCode
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
+}
+
+-(void)startGetSecurePasswordVerifyCode {
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_VERIFYCODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+    
+}
+
+-(void)startDemoLogin
+{
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_DEMOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeDemoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }else
+    {
+        [self _startServiceWithAPIName:self.appDelegate.domain
+                            pathFormat:RH_API_NAME_DEMOLOGIN
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone"
+                                         }
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeDemoLogin
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
+
+-(void)startGetCustomService
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETCUSTOMPATH
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeGetCustomService
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startAPIRetrive:(NSInteger)apiID
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_APIRETRIVE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:@{RH_SP_APIRETRIVE_APIID:@(apiID)}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeAPIRetrive
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_COLLECTAPPERROR
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                    queryArguments:errorDict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeCollectAPPError
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startTestUrl:(NSString*)testURL
+{
+    [self _startServiceWithAPIName:testURL
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:nil
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeTestUrl
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - v3 接口定义
+-(void)startV3HomeInfo
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_HOMEINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3HomeInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3UserInfo
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_USERINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UserInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3MineLinkInfo
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_MINEGROUPINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3MineGroupInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(void)startV3ActivityStaus:(NSString*)activityID
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ACTIVITYSTATUS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:@{RH_SP_ACTIVITYSTATUS_MESSAGEID:activityID?:@""}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ActivityStatus
+                         scopeType:ServiceScopeTypePublic];
+}
+-(void)startV3GameListWithApiID:(NSInteger)apiID
+                      ApiTypeID:(NSInteger)apiTypeID
+                     PageNumber:(NSInteger)pageNumber
+                       PageSize:(NSInteger)pageSize
+                     SearchName:(NSString*)searchName
+                          TagID:(NSString*)tagID;
+{
+//    NSString *str = @"";
+//    if ([self.appDelegate.domain containsString:@"https://"]) {
+//        str = @"https://";
+//    }else{
+//        str = @"http://";
+//    }
+//    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:@(apiID) forKey:RH_SP_APIGAMELIST_APIID] ;
+    [dictTmp setValue:@(apiTypeID) forKey:RH_SP_APIGAMELIST_APITYPEID] ;
+    [dictTmp setValue:@(pageNumber) forKey:RH_SP_APIGAMELIST_PAGENUMBER] ;
+    [dictTmp setValue:@(pageSize) forKey:RH_SP_APIGAMELIST_PAGESIZE] ;
+    if (searchName.length){
+        [dictTmp setValue:searchName forKey:RH_SP_APIGAMELIST_NAME] ;
+    }
+    if (tagID.length){
+        if ([tagID isEqualToString:@"all"]) {
+            [dictTmp setValue:@"" forKey:RH_SP_APIGAMELIST_TAGID] ;
+        }else
+        {
+            [dictTmp setValue:tagID forKey:RH_SP_APIGAMELIST_TAGID] ;
+        }
+    }
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_APIGAMELIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dictTmp
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3APIGameList
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -投注列表
+-(void)startV3BettingList:(NSString*)startDate EndDate:(NSString*)endDate
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize withIsStatistics:(BOOL)isShowStatistics
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_BETTINGLIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
+                                     RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
+                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
+                                     RH_SP_BETTINGLIST_PAGENUMBER:@(pageNumber),
+                                     RH_SP_BETTINGLIST_PAGESIZE:@(pageSize)
+                        
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BettingList
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -- 资金记录
+-(void)startV3DepositList:(NSString*)startDate
+                  EndDate:(NSString*)endDate
+               SearchType:(NSString*)type
+               PageNumber:(NSInteger)pageNumber
+                 PageSize:(NSInteger)pageSize
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:startDate?:@"" forKey:RH_SP_DEPOSITLIST_STARTDATE] ;
+    [dictTmp setValue:endDate?:@"" forKey:RH_SP_DEPOSITLIST_ENDDATE] ;
+    [dictTmp setValue:@(pageNumber) forKey:RH_SP_DEPOSITLIST_PAGENUMBER] ;
+    [dictTmp setValue:@(pageSize) forKey:RH_SP_DEPOSITLIST_PAGESIZE] ;
+//    if (type.length){
+//        [dictTmp setValue:startDate?:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
+//    }
+    [dictTmp setValue:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_DEPOSITLIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dictTmp
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositList
+                         scopeType:ServiceScopeTypePublic] ;
+}
+
+#pragma mark - 用户安全码初始化信息
+- (void)startV3UserSafetyInfo
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_USERSAFEINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UserSafeInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 设置真实名字
+- (void)startV3SetRealName:(NSString *)name
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SETREALNAME
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:@{@"realName":name?:@""}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SetRealName
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 修改安全密码
+- (void)startV3ModifySafePasswordWithRealName:(nullable NSString *)realName
+                               originPassword:(nullable NSString *)originPwd
+                                  newPassword:(nullable NSString *)pwd1
+                              confirmPassword:(nullable NSString *)pwd2
+                                   verifyCode:(nullable NSString *)code
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:realName?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_REALNAME] ;
+    [dictTmp setValue:originPwd?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_ORIGINPWD] ;
+    [dictTmp setValue:pwd1?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_NEWPWD] ;
+    [dictTmp setValue:pwd2?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_CONFIRMPWD] ;
+    if (code.length){
+        [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
+    }
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dictTmp
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UpdateSafePassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 修改登录密码
+- (void)startV3UpdateLoginPassword:(NSString *)password
+                       newPassword:(NSString *)newPassword
+                        verifyCode:(NSString *)code
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
+    [dictTmp setValue:password?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD] ;
+    [dictTmp setValue:newPassword?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_NEWPASSWORD] ;
+    if (code.length){
+        [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
+    }
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dictTmp
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UpdateLoginPassword
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark 拆红包
+-(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setValue:activityID forKey:RH_SP_OPENACTIVITY_MESSAGEID ];
+    [dict setValue:gbtoken forKey:RH_SP_OPENACTIVITY_TOKEN];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_OPENACTIVITY
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OpenActivity
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark 投注记录详情
+-(void)startV3BettingDetails:(NSInteger)listId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init] ;
+    [dict setValue:@(listId) forKey:RH_SP_BETTINGDETAILS_LISTID] ;
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_BETTINGDETAILS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BettingDetails
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 资金记录详情 根据ID进行查询
+-(void)startV3DepositListDetail:(NSString*)searchId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_DEPOSITLISTDETAILS_SEARCHID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositListDetails
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark 资金详情下拉列表
+-(void)startV3DepositPulldownList
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_DEPOSITPULLDOWNLIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositPullDownList
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 添加银行卡
+-(void)startV3addBankCarkbankcardMasterName:(NSString *)bankcardMasterName
+                                   bankName:(NSString *)bankName
+                             bankcardNumber:(NSString *)bankcardNumber
+                                bankDeposit:(NSString *)bankDeposit
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:bankcardMasterName forKey:RH_SP_BANKCARDMASTERNAME];
+    [dict setValue:bankName forKey:RH_SP_BANKNAME];
+    [dict setValue:bankcardNumber forKey:RH_SP_BANKCARDNUMBER];
+    [dict setValue:bankDeposit forKey:RH_SP_BANKDEPOSIT];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ADDBANKCARD
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddBankCard
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取系统公告
+-(void)startV3LoadSystemNoticeStartTime:(NSString *)startTime
+                                endTime:(NSString *)endTime
+                             pageNumber:(NSInteger)pageNumber
+                               pageSize:(NSInteger)pageSize
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    if (startDate > endDate) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime?:@"" forKey:RH_SP_SYSTEMNOTICE_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SYSTEMNOTICE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SYSTEMNOTICE_PAGESIZE];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SYSTEMNOTICE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SystemNotice
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取公告详情
+-(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_SYSTEMNOTICEDETAIL_SEARCHID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SystemNoticeDetail
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -  游戏公告
+-(void)startV3LoadGameNoticeStartTime:(NSString *)startTime
+                              endTime:(NSString *)endTime
+                           pageNumber:(NSInteger)pageNumber
+                             pageSize:(NSInteger)pageSize
+                                apiId:(NSInteger)apiId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime?:@"" forKey:RH_SP_GAMENOTICE_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_GAMENOTICE_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_GAMENOTICE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_GAMENOTICE_PAGESIZE];
+    if (apiId>0){
+        [dict setValue:@(apiId) forKey:RH_SP_GAMENOTICE_APIID];
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [dateFormatter dateFromString:startTime];
+    NSDate *endDate = [dateFormatter dateFromString:endTime];
+    if (startDate > endDate) {
+        showAlertView(@"提示", @"时间选择有误,请重试选择");
+    }
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_GAMENOTICE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GameNotice
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -  游戏公告详情
+-(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_GAMENOTICEDETAIL_SEARCHID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_GAMENOTICEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GameNoticeDetail
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+#pragma mark - 获取安全验证码
+-(void)startV3GetSafetyVerifyCode
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SAFETYCAPCHA
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:@{@"_t":timeStr}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyObtainVerifyCode
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -优惠记录列表
+-(void)startV3PromoList:(NSInteger)pageNumber
+               PageSize:(NSInteger)pageSize
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_PROMOLIST
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:@{RH_SP_PROMOLIST_PAGENUMBER:@(pageNumber),
+                                     RH_SP_PROMOLIST_PAGESIZE:@(pageSize)
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3PromoList
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -  一键回收&单个回收
+-(void)startV3OneStepRecoverySearchId:(NSString *)searchId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSLog(@"self.appDelegate.domain===%@",self.appDelegate.domain);
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_ONESTEPRECOVERY_SEARCHAPIID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ONESTEPRECOVERY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict?:@{}
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OneStepRecory
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - V3 添加/保存比特币
+-(void)startV3AddBtcWithNumber:(NSString *)bitNumber
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ADDBTC
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:(bitNumber?:@"")}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddBitCoin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息 - 系统消息
+-(void)startV3LoadSystemMessageWithpageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SITEMESSAGE_PAGINGPAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SITEMESSAGE_PAGINGPAGESIZE];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SiteMessage
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息 - 系统消息详情
+-(void)startV3LoadSystemMessageDetailWithSearchId:(NSString *)searchId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:searchId forKey:RH_SP_SITEMESSAGEDETAIL_SEARCHID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SiteMessageDetail
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息 - 系统消息标记已读
+-(void)startV3LoadSystemMessageReadYesWithIds:(NSString *)ids
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_SITEMESSAGEREDAYES_IDS];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGEREDAYES
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SystemMessageYes
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 站点信息 - 系统消息删除
+-(void)startV3LoadSystemMessageDeleteWithIds:(NSString *)ids
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_SITEMESSAGEDELETE_IDS];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGEDELETE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SystemMessageDelete
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 发送消息验证
+-(void)startV3AddApplyDiscountsVerify
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddApplyDiscountsVerify
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 消息中心 发送消息
+-(void)startV3AddApplyDiscountsWithAdvisoryType:(NSString *)advisoryType
+                                  advisoryTitle:(NSString *)advisoryTitle
+                                advisoryContent:(NSString *)advisoryContent
+                                           code:(NSString *)code
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:advisoryType forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE];
+    [dict setValue:advisoryTitle forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE];
+    [dict setValue:advisoryContent forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT];
+    [dict setObject:code forKey:RH_SP_ADDAPPLYDISCOUNTS_CODE];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AddApplyDiscounts
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - tabbar2 优惠活动主界面类型
+-(void)startV3LoadDiscountActivityType
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3PromoActivityType
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - tabbar2 优惠活动主界面列表
+-(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ACTIVITYDATALIST
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ActivityDetailList
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - 退出登录
+-(void)startV3UserLoginOut
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_LOGINOUT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3UserLoginOut
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 站点信息  我的消息
+-(void)startV3SiteMessageMyMessageWithpageNumber:(NSInteger)pageNumber
+                                        pageSize:(NSInteger)pageSize
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(pageNumber) forKey:RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SiteMessageMyMessage
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+#pragma mark - 站点信息  我的消息详情
+-(void)startV3SiteMessageMyMessageDetailWithID:(NSString *)mId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:mId forKey:RH_SP_SITEMESSAGE_MYMESSAGEDETAIL_ID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SiteMessageMyMessageDetail
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 站点信息 - 我的消息标记已读
+-(void)startV3LoadMyMessageReadYesWithIds:(NSString *)ids
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_MYMESSAGEREDAYES_IDS];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_MYMESSAGEREDAYES
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3MyMessageMyMessageReadYes
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 站点信息 - 我的消息删除
+-(void)startV3LoadMyMessageDeleteWithIds:(NSString *)ids
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:ids forKey:RH_SP_MYMESSAGEDELETE_IDS];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_MYMESSAGEDELETE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3MyMessageMyMessageDelete
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+-(void)startv3GetGamesLink:(NSInteger)apiID
+                 ApiTypeID:(NSInteger)apiTypeID
+                   GamesID:(NSString*)gamesID
+                 GamesCode:(NSString*)gamesCode
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(apiID) forKey:RH_SP_GAMESLINK_APIID];
+    [dict setValue:@(apiTypeID) forKey:RH_SP_GAMESLINK_APITYPEID];
+    if (gamesID){
+        [dict setValue:gamesID forKey:RH_SP_GAMESLINK_GAMEID];
+    }
+    
+    if (gamesCode){
+        [dict setValue:gamesCode forKey:RH_SP_GAMESLINK_GAMECODE];
+    }
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain]
+                        pathFormat:RH_API_NAME_GAMESLINK
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GameLink
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+
+#pragma mark - 获取games link for cheery
+-(void)startv3GetGamesLinkForCheeryLink:(NSString*)gamelink
+{
+    if (gamelink.length && [gamelink containsString:@"?"]) {
+        NSArray *tempArr = [gamelink componentsSeparatedByString:@"?"] ;
+        NSString *gameLinkUrl = [tempArr objectAtIndex:0] ;
+        NSArray *paraArr = [[tempArr objectAtIndex:1] componentsSeparatedByString:@"&"];
+        NSString *temStr = [[paraArr  componentsJoinedByString:@","] stringByReplacingOccurrencesOfString:@"=" withString:@","];
+        NSArray *temArr = [temStr componentsSeparatedByString:@","] ;
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionary] ;
+        for (int i= 0; i<temArr.count/2; i++) {
+            [mDic setObject:[temArr objectAtIndex:2*i+1] forKey:[temArr objectAtIndex:i*2]];
+        }
+        NSString *str = @"";
+        if ([self.appDelegate.domain containsString:@"https://"]) {
+            str = @"https://";
+        }else{
+            str = @"http://";
+        }
+        [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain]
+                            pathFormat:gameLinkUrl?:@""
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                        queryArguments:mDic
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeV3GameLinkForCheery
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
+
+#pragma mark - 获取取款接口
+-(void)startV3GetWithDraw
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_GETWITHDRAWUSERINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetWithDrawInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 提交取款信息
+/**
+ 提交取款信息
+ @param withdrawAmount 取款金额  Y
+ @param gbToken 防重验证  Y
+ */
+-(void)startV3SubmitWithdrawAmount:(float)withdrawAmount
+                         SafetyPwd:(NSString *)safetyPassword
+                           gbToken:(NSString *)gbToken
+                          CardType:(NSInteger)cardType  //（1：银行卡，2：比特币）
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
+    [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
+    [dict setObject:@(cardType) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY] ;
+    [dict setValue:safetyPassword?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_ORIGINPWD] ;
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SubmitWithdrawInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 获取游戏分类
+-(void)startV3LoadGameTypeWithApiId:(NSInteger)apiId searchApiTypeId:(NSInteger)apiTypeId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@(apiId) forKey:RH_SP_LOADGAMETYPE_SEARCH_APIID];
+    [dict setObject:@(apiTypeId) forKey:RH_SP_LOADGAMETYPE_SEARCH_APITYPEID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_LOADGAMETYPE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3LoadGameType
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 取款验证安全密码
+-(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:originPwd forKey:RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SafetyPasswordAutuentification
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取手续费信息得到最终取款金额
+-(void)startV3WithDrawFeeWithAmount:(CGFloat)amount
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:[NSString stringWithFormat:@"%.2f",amount] forKey:RH_SP_WITHDRWAFEE_AMOUNT];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_WITHDRWAFEE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeWithDrawFee
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取站点时区
+-(void)startV3SiteTimezone
+{
+//    NSString *str = @"";
+//    if ([self.appDelegate.domain containsString:@"https://"]) {
+//        str = @"https://";
+//    }else{
+//        str = @"http://";
+//    }
+//    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_TIMEZONEINFO
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeTimeZoneInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取站点消息-系统消息&&我的消息 未读消息的条数
+-(void)startV3LoadMessageCenterSiteMessageUnReadCount
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SITEMESSAGUNREADCOUNT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeSiteMessageUnReadCount
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 分享接口
+-(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
+                                        endTime:(NSString *)endTime
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_STARTTIME];
+    [dict setValue:endTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_ENDTIME];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SharePlayerRecommend
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -老用户验证登录
+/**
+ 老用户验证登录
+ 
+ @param token  登录返回的Token
+ @param resultRealName 输入框真实姓名
+ @param needRealName 默认传 YES
+ @param resultPlayerAccount 用户名
+ @param searchPlayerAccount 用户名
+ @param tempPass 密码
+ @param newPassword 密码
+ @param passLevel 默认传 20
+ */
+-(void)startV3verifyRealNameForAppWithToken:(NSString *)token
+                             resultRealName:(NSString *)resultRealName
+                               needRealName:(BOOL)needRealName
+                        resultPlayerAccount:(NSString *)resultPlayerAccount
+                        searchPlayerAccount:(NSString *)searchPlayerAccount
+                                   tempPass:(NSString *)tempPass
+                                newPassword:(NSString *)newPassword
+                                  passLevel:(NSInteger)passLevel
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:token forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN];
+    [dict setObject:resultRealName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTREALNAME];
+    [dict setObject:@(needRealName) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEEDREALNAME];
+    [dict setObject:resultPlayerAccount forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTPLAYERACCOUNT];
+    [dict setObject:searchPlayerAccount forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEARCHACCOUNT];
+    [dict setObject:tempPass forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS];
+    [dict setObject:newPassword forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD];
+    [dict setObject:@(passLevel) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3VerifyRealNameForApp
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取用户资产信息
+-(void)startV3GetUserAssertInfo
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_GETUSERASSERT
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GETUSERASSERT
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 防止用户掉线
+-(void)startV3RereshUserSessin
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
+                         pathArguments:nil
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RefreshSession
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
+
+#pragma mark - 用户登录是否开启验证码
+-(void)startV3IsOpenCodeVerifty
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ISOPENCODEVERIFTY
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3IsOpenCodeVerifty
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 通过GET请求登录接口获取SID
+-(void)startV3RequsetLoginWithGetLoadSid
+{
+        NSString *str = @"";
+        if ([self.appDelegate.domain containsString:@"https://"]) {
+            str = @"https://";
+        }else{
+            str = @"http://";
+        }
+        NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_LOADSIDSTR
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":@"",
+                                     @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3RequetLoginWithGetLoadSid
+                         scopeType:ServiceScopeTypePublic];
+    
+}
+-(void)startV3RequestDepositOrigin
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_DEPOSITE_DEPOSITEORIGIN
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositeOrigin
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 注册初始化
+-(void)startV3RegisetInit
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_REGISESTINIT
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RegiestInit
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 注册验证码
+-(void)startV3RegisetCaptchaCode
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+        NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+        [self _startServiceWithAPIName:domainStr
+                            pathFormat:RH_API_NAME_REGISESTCAPTCHACODE
+                         pathArguments:nil
+                       headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                         }
+                        queryArguments:@{@"_t":timeStr}
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypePost
+                           serviceType:ServiceRequestTypeV3RegiestCaptchaCode
+                             scopeType:ServiceScopeTypePublic];
+    }
+}
+
+#pragma mark - 注册提交
+/**
+ 注册提交
+ 
+ @param birth 生日
+ @param sex 性别
+ @param permissionPwd  安全码
+ @param defaultTimezone 时区
+ @param defaultLocale 默认语言
+ @param phone 手机号
+ @param realName 真实姓名
+ @param defaultCurrency   货币
+ @param password 密码
+ @param question1 问题
+ @param email 邮箱
+ @param qq qq
+ @param weixinValue 微信
+ @param userName 用户名
+ @param captchaCode 验证码
+ */
+-(void)startV3RegisetSubmitWithBirthday:(NSString *)birth
+                                    sex:(NSString *)sex
+                          permissionPwd:(NSString *)permissionPwd
+                        defaultTimezone:(NSString *)defaultTimezone
+                          defaultLocale:(NSString *)defaultLocale
+                      phonecontactValue:(NSString *)phone
+                               realName:(NSString *)realName
+                        defaultCurrency:(NSString *)defaultCurrency
+                               password:(NSString *)password
+                              question1:(NSString *)question1
+                             emailValue:(NSString *)email
+                                qqValue:(NSString *)qq
+                            weixinValue:(NSString *)weixinValue
+                               userName:(NSString *)userName
+                            captchaCode:(NSString *)captchaCode
+
+                  recommendRegisterCode:(NSString *)recommendRegisterCode
+                               editType:(NSString *)editType
+                 recommendUserInputCode:(NSString *)recommendUserInputCode
+                        confirmPassword:(NSString *)confirmPassword
+                   confirmPermissionPwd:(NSString *)confirmPermissionPwd
+                                answer1:(NSString *)answer1
+                         termsOfService:(NSString *)termsOfService
+                           requiredJson:(NSArray<NSString *> *)requiredJson
+                              phoneCode:(NSString *)phoneCode
+                             checkPhone:(NSString *)checkPhone
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:birth forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_BIRTHDAY];
+    [dict setObject:sex forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SEX];
+    [dict setObject:permissionPwd forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PERMISSIONPWD];
+    [dict setObject:defaultTimezone forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTTIMEZONE];
+    [dict setObject:phone forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PHONECONTACTVALUE];
+    [dict setObject:realName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_REALNAME];
+    [dict setObject:defaultLocale forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTLOCALE];
+    [dict setObject:defaultCurrency forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_DEFAULTCURRENCY];
+    [dict setObject:password forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSWORD];
+    [dict setObject:question1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QUESTION];
+    [dict setObject:email forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_EMAILCONTACTVALUE];
+    [dict setObject:qq forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_QQCONTACTVALUE];
+    [dict setObject:weixinValue forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_WEIXINCONTACTVALUE];
+    [dict setObject:userName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_USERNAME];
+    [dict setObject:captchaCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CAPCHACODE];
+    [dict setObject:recommendRegisterCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RECOMMENDREGISTERCODE];
+    [dict setObject:editType forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_EDITTYPE];
+    [dict setObject:recommendUserInputCode forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RECOMMENDUSERINPUTCODE];
+    [dict setObject:confirmPassword forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPASSWORD];
+    [dict setObject:confirmPermissionPwd forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_CONFIRMPERMISSIONPWD];
+    [dict setObject:answer1 forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_SYSUSERPROTECTIONANSWER];
+    [dict setObject:termsOfService forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TERMOFSERVICE];
+    [dict setObject:requiredJson forKey:@"requiredJson"];
+    [dict setObject:phoneCode forKey:@"phoneCode"];
+    [dict setObject:checkPhone forKey:@"checkPhone"];
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain]
+                        pathFormat:RH_API_NAME_REGISESTSUBMIT
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RegiestSubmit
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 注册条款 
+-(void)startV3RegisetTerm
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_REGISESTTERMS
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RegiestTerm
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  关于我们
+-(void)startV3AboutUs
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ABOUTUS
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AboutUs
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  常见问题父级分类
+-(void)startV3HelpFirstType
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_HELPFIRSTTYPE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3FirstHelpFirstTyp
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  常见问题二级分类
+-(void)startV3HelpSecondTypeWithSearchId:(NSString *)searchId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_HELPSECONDTYPE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3FirstHelpSecondTyp
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3  常见问题详情
+-(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_HELPDETAIL
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3HelpDetail
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark 存款优惠
+-(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
+    [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
+    [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_DEPOSITESEACHSALE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositOriginSeachSale
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark 比特币存款优惠
+-(void)startV3DepositOriginSeachSaleBittionRechargeAmount:(CGFloat)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay bittionTxid:(NSInteger)bankOrder PayAccountID:(NSString *)payAccountID
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:@(rechargeAmount) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBITAMOUNT];
+    [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
+    [dict setValue:@(bankOrder) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER];
+    [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_DEPOSITESEACHSALE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositOriginBittionSeachSale
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转额度转换初始化
+-(void)startV3GetNoAutoTransferInfoInit
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_GETNOAUTOTRANSFERINFO
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetNoAutoTransferInfo
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转额度转换提交
+-(void)startV3SubitTransfersMoneyToken:(NSString *)token
+                           transferOut:(NSString *)transferOut
+                          transferInto:(NSString *)transferInto
+                        transferAmount:(float)transferAmount
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN];
+    [dict setObject:transferOut forKey:RH_SP_SUBTRANSFERMONEY_TRANSFEROUT];
+    [dict setObject:transferInto forKey:RH_SP_SUBTRANSFERMONEY_TRANSFERINTO];
+    [dict setObject:@(transferAmount) forKey:RH_SP_SUBTRANSFERMONEY_TRANSFERAMOUNT];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SUBTRANSFERMONEY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SubmitTransfersMoney
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转额度转换异常再次请求
+-(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
+                                       withToken:(NSString *)token
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:transactionNo forKey:RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO];
+    [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN] ;
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_RECONNECTTRANSFER
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ReconnectTransfer
+                         scopeType:ServiceScopeTypePublic];
+}
+
+
+#pragma mark - V3  非免转刷新单个
+-(void)startV3RefreshApiWithApiId:(NSString *)apiId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:apiId forKey:RH_SP_REFRESHAPI_APIID];
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_REFRESHAPI
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3RefreshApi
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 线上支付提交存款
+-(void)startV3OnlinePayWithRechargeAmount:(NSString *)amount
+                             rechargeType:(NSString *)rechargeType
+                             payAccountId:(NSString*)payAccountId
+                               activityId:(NSString *)activityId
+                             bankNameCode:(NSString *)bankNameCode
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+     [dict setValue:amount forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
+    [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
+    [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
+    [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+    [dict setValue:bankNameCode forKey:RH_SP_ONLINEPAY_PAYERBANK];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ONLINEPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OnlinePay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 扫码支付提交存款
+-(void)startV3ScanPayWithRechargeAmount:(NSString *)amount
+                           rechargeType:(NSString *)rechargeType
+                           payAccountId:(NSInteger)payAccountId
+                          payerBankcard:(NSInteger)payerBankcard
+                             activityId:(NSInteger)activityId
+                               account:(NSString *)account
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:amount forKey:RH_SP_SCANPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_SCANPAY_RECHARGETYPE];
+//    [dict setObject:@(payAccountId) forKey:RH_SP_SCANPAY_PAYACCOUNTID];
+    [dict setObject:@(payerBankcard) forKey:RH_SP_SCANPAY_PAYERBANKCARD];
+    [dict setObject:@(activityId) forKey:RH_SP_SCANPAY_ACTIVITYID];
+    [dict setValue:account forKey:RH_SP_SCANPAY_PAYACCOUNTID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_SCANPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ScanPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark -  V3 网银支付提交存款
+-(void)startV3CompanyPayWithRechargeAmount:(NSString *)amount
+                              rechargeType:(NSString *)rechargeType
+                              payAccountId:(NSString *)payAccountId
+                                 payerName:(NSString *)payerName
+                                activityId:(NSInteger)activityId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
+    [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
+    [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_COMPANYPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CompanyPay
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark -  V3 柜台机支付提交存款
+-(void)startV3CounterPayWithRechargeAmount:(NSString *)amount
+                              rechargeType:(NSString *)rechargeType
+                              payAccountId:(NSString *)payAccountId
+                                 payerName:(NSString *)payerName
+                           rechargeAddress:(NSString *)rechargeAddress
+                                activityId:(NSInteger)activityId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject: amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
+    [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
+    [dict setObject:rechargeAddress forKey:RH_SP_COMPANYPAY_RECHARGEADDRESS];
+    [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_COMPANYPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CounterPay
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - V3 电子支付提交存款
+-(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
+                                 rechargeType:(NSString *)rechargeType
+                                 payAccountId:(NSString *)payAccountId
+                                    bankOrder:(NSInteger)bankOrder
+                                    payerName:(NSString *)payerName
+                                payerBankcard:(NSString *)payerBankcard
+                                   activityId:(NSInteger)activityId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
+    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
+    [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
+    [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ELECTRONICPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ElectronicPay
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - V3 支付宝电子支付提交存款
+-(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
+                                 rechargeType:(NSString *)rechargeType
+                                 payAccountId:(NSString *)payAccountId
+                                    bankOrder:(NSInteger)bankOrder
+                                    payerName:(NSString *)payerName
+                                payerBankcard:(NSString *)payerBankcard
+                                   activityId:(NSInteger)activityId
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
+    [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
+    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
+    [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
+    [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ELECTRONICPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3AlipayElectronicPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 比特币支付提交存款
+-(void)startV3BitcoinPayWithRechargeType:(NSString *)rechargeType
+                            payAccountId:(NSString *)payAccountId
+                              activityId:(NSInteger)activityId
+                              returnTime:(NSString *)returnTime
+                           payerBankcard:(NSString *)payerBankcard
+                               bitAmount:(float)bitAmount
+                           bankOrderTxID:(NSString *)bankOrder
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:rechargeType forKey:RH_SP_BITCOINPAY_RECHARGETYPE];
+    [dict setObject:payAccountId forKey:RH_SP_BITCOINPAY_PAYACCOUNTID];
+    [dict setObject:@(activityId) forKey:RH_SP_BITCOINPAY_ACTIVITYID];
+    [dict setObject:returnTime forKey:RH_SP_BITCOINPAY_RETURNTIME];
+    [dict setObject:payerBankcard forKey:RH_SP_BITCOINPAY_PAYERBANKCARD];
+    [dict setObject:@(bitAmount) forKey:RH_SP_BITCOINPAY_BITAMOUNT];
+    [dict setObject:bankOrder forKey:RH_SP_BITCOINPAY_BANKORDER];
+    
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_BITCOINPAY
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BitcoinPay
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - V3 一键刷新
+-(void)startV3OneStepRefresh
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_ONESTEPREFRESH
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3OneStepRefresh
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark - 存款渠道初始化
+-(void)startV3RequestDepositOriginChannel:(NSString *)httpCode
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSString *pathFormat = [NSString stringWithFormat:@"%@%@.html",RH_API_DEPOSITE_DEPOSITEORIGINCHANNEL,httpCode];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:pathFormat
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil 
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3DepositeOriginChannel
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 获取手机验证码
+-(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:phoneNumber forKey:@"phone"];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:@"mobile-api/origin/sendPhoneCode.html"
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetPhoneCode
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============获取客服接口================
+-(void)startV3GetCustomService
+{
+    NSString *str = @"";
+    if ([self.appDelegate.domain containsString:@"https://"]) {
+        str = @"https://";
+    }else{
+        str = @"http://";
+    }
+    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
+    [self _startServiceWithAPIName:domainStr
+                        pathFormat:RH_API_NAME_CUSTOMSERVICE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CustomService
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============提交crash日志================
+-(void)startV3CollectAppDomainError:(NSString *)siteId userNameStr:(NSString *)userName lastLoginTime:(NSString *)lastLoginTime domain:(NSString *)domain ipStr:(NSString *)ip errorMessageStr:(NSString *)errorMessage codeStr:(NSString *)codeStr markStr:(NSString *)mark typeStr:(NSString *)typeStr versionName:(NSString *)versionName channelStr:(NSString *)channel sysCodeStr:(NSString *)sysCode brandsStr:(NSString *)brands modelStr:(NSString *)modelStr
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_CUSTOMSERVICE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CustomService
+                         scopeType:ServiceScopeTypePublic];
+}
 
 #pragma mark -
-
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
 }
@@ -189,14 +2727,46 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      serviceType:(ServiceRequestType)type
                        scopeType:(ServiceScopeType)scopeType
 {
-
-//    NSMutableDictionary *queryArgs = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",RH_SP_OSTYPE,RH_CURRENT_VERSION,RH_SP_VERSION,getDeviceID(),RH_SP_DEVICEID, nil] ;
     NSMutableDictionary *queryArgs = [NSMutableDictionary dictionary] ;
-
+    
     if (queryArguments.count){
         [queryArgs addEntriesFromDictionary:queryArguments] ;
     }
 
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
+        [queryArgs setValue:@"True" forKey:RH_SP_COMMON_V3_ISNATIVE] ;
+        [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
+        [queryArgs setValue:@"zh_CN" forKey:RH_SP_COMMON_V3_LOCALE] ;//zh_CN,zh_TW,en_US,ja_JP
+        
+        ////white,black,blue,red
+        if ([THEMEV3 isEqualToString:@"green"]){
+            [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"red"]){
+            [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"black"]){
+            [queryArgs setValue:@"black" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"orange"]){
+            [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"blue"]){
+            [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else if ([THEMEV3 isEqualToString:@"default"]){
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }else{
+            [queryArgs setValue:@"blue" forKey:RH_SP_COMMON_V3_THEME] ;
+        }
+        
+        CLScreenSizeType screenType = mainScreenType();
+        switch (screenType) {
+            case CLScreenSizeTypeBig:
+                [queryArgs setValue:@"3x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
+                break;
+            default:
+                [queryArgs setValue:@"2x" forKey:RH_SP_COMMON_V3_RESOLUTION] ;
+                break;
+        }
+    }
+   
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:apiName
                                                                 pathFormat:pathFormat
                                                              pathArguments:pathArguments
@@ -204,7 +2774,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                            headerArguments:headerArguments
                                                              bodyArguments:bodyArguments
                                                                       type:httpType];
-
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
     //开始请求
     [self _startHttpRequest:httpRequest forType:type scopeType:scopeType];
 }
@@ -231,6 +2802,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                     pathArguments:pathArguments
                                                                    queryArguments:queryArgs
                                                                   headerArguments:headerArguments] ;
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
 
     for (id data in datas) {
         if ([data isKindOfClass:[NSData class]]) {
@@ -353,31 +2926,173 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
          reslutData:(__autoreleasing id *)reslutData
               error:(NSError *__autoreleasing *)error
 {
+    
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
-
-    if (type == ServiceRequestTypeDomainCheck) {//处理结果数据
+    if (type == ServiceRequestTypeDomainCheck)
+    {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
-        *reslutData = [tmpData mj_JSONString] ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
+            NSString* reqUrl = response.URL.absoluteString.lowercaseString;
+            if ([reqUrl hasPrefix:@"https://"]) {
+                *reslutData = @(YES) ;
+            }else{
+                *reslutData = @(NO) ;
+            }
+            
+        }else{
+            *error = [NSError resultDataNoJSONError] ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
+                NSString *errorCode = [NSString stringWithFormat:@"%ld",response.statusCode] ;
+                NSString *errorMessage = [response.description copy] ;
+                [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
+                                                                                        RH_SP_COLLECTAPPERROR_CODE:errorCode,
+                                                                                        RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
+                                                                                        }] ;
+            });
+        }
+        
+        return YES ;
+        
+    }else if (type == ServiceRequestTypeGetCustomService){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        if ([tmpResult.lowercaseString hasPrefix:@"http://"] || [tmpResult.lowercaseString hasPrefix:@"https://"]){
+            *reslutData = tmpResult ;
+            [self.appDelegate updateServicePath:[tmpResult stringByReplacingOccurrencesOfString:@"\n" withString:@""]] ;
+        }else{
+            *error = [NSError resultDataNoJSONError] ;
+        }
+        
+        return YES ;
+    }else if (type == ServiceRequestTypeDemoLogin){//处理结果数据
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        NSString *tmpResult = [tmpData mj_JSONString] ;
+        
+        if ([[tmpResult lowercaseString] containsString:@"true"]){ //域名响应ok
+            *reslutData = @(YES) ;
+            
+            if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                [self startV3UserInfo] ;
+            }
+        }else{
+            *reslutData = @(NO) ;
+        }
         return YES ;
     }
-
+    
+    else if (type == ServiceRequestTypeObtainVerifyCode ||
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
+              type == ServiceRequestTypeV3RegiestCaptchaCode){
+        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+        UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
+        *reslutData = image ;
+        return YES ;
+        
+    }else if (type == ServiceRequestTypeTestUrl){
+//        NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+//        NSString *tmpResult = [tmpData mj_JSONString] ;
+    }else if (type == ServiceRequestTypeAPIRetrive){ //游戏 回收api
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
+        return YES ;
+    }else if (type == ServiceRequestTypeCollectAPPError){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
+    else if (type == ServiceRequestTypeV3CustomService){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
+    else if (type == ServiceRequestTypeV3OnlinePay){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        NSString *errorMessage = [response.description copy] ;
+        NSLog(@"errorMessage==%@",errorMessage);
+        return YES ;
+    }
+    else if (type == ServiceRequestTypeV3RegiestSubmit){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
+//    else if (type == ServiceRequestTypeV3AddApplyDiscounts){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject ;
+//        return YES ;
+//    }
+    else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
+    {
+        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+        NSMutableArray *mArr = [NSMutableArray array] ;
+        if (isSidStr(responseStr)) {
+            [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+        }
+        if (mArr.count>0) {
+            userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+        }
+    }
+  
+//    
+   
     //json解析
     NSError * tempError = nil;
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (tempError) { //json解析错误
-        tempError = [NSError resultDataNoJSONError];
-    }
-//    else if ([dataObject integerValueForKey:RH_GP_SUCCESS defaultValue:-1]!=0) { //结果错误
-//        tempError = [NSError resultErrorWithResultInfo:dataObject];
+//    if (dataObject) {
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",jsonString11);
 //    }
-
+    if (tempError) { //json解析错误
+        if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
+                                     response.statusCode,
+                                     response.description,nil);
+        }else{
+            tempError = [NSError resultErrorWithURLResponse:response]?:[NSError resultDataNoJSONError];
+        }
+    }else{
+        if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList ){
+            if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
+                tempError = [NSError resultErrorWithResultInfo:dataObject];
+            }
+        }
+    }
+ 
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
+        (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
+        if (response.statusCode==302){
+            tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",dataObject);
+        }
+    }
+    
     if (error) {
         *error = tempError;
     }
-
     //结果成功，开始处理数据
     if (tempError == nil) {
 
@@ -385,38 +3100,582 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         switch (type) {
             case ServiceRequestTypeDomainList:
             {
-                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+               
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+            
             }
                 break ;
                 
             case ServiceRequestTypeUpdateCheck:
+            case ServiceRequestTypeV3UpdateCheck:
             {
                 resultSendData = [[RH_UpdatedVersionModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, dataObject)] ;
             }
                 break ;
+              
+           case ServiceRequestTypeUserLogin:
+           case ServiceRequestTypeUserAutoLogin:
+            {
+                NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+                NSMutableArray *mArr = [NSMutableArray array] ;
+                if (isSidStr(responseStr)) {
+                [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+                }
+                if (mArr.count>0) {
+                     userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+                }
+                NSLog(@"....SID INFO...get.sid:%@",responseStr) ;
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+                if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
+                    [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                   [self startV3UserInfo] ;
+                }
+            }
+                break ;
                 
-//            case ServiceRequestTypeFirstPage:
-//            {
-//                RH_FirstPageModel *firstPageModel = [[RH_FirstPageModel alloc] initWithInfoDic:[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]] ;
-//                NSArray *list = [RH_TaskModel dataArrayWithInfoArray:[[[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA]
-//                                                                       dictionaryValueForKey:RH_GP_HOMEPAGE_PAGELIST]
-//                                                                      arrayValueForKey:RH_GP_COMMON_DATALIST]] ;
-//
-//                NSInteger totalCount = [[[dataObject dictionaryValueForKey:RH_GP_COMMON_DATA] dictionaryValueForKey:RH_GP_HOMEPAGE_PAGELIST] integerValueForKey:RH_GP_COMMON_TOTALCOUNT] ;
-//                resultSendData = @{RH_GP_COMMON_DATALIST:list?:@[],
-//                                   RH_GP_COMMON_TOTALCOUNT:@(totalCount),
-//                                   RH_GP_COMMON_DATA:firstPageModel?:@""} ;
+           case ServiceRequestTypeTestUrl:
+            {
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+            }
+                break ;
+              
+           case ServiceRequestTypeV3HomeInfo:
+            {
+                resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_DATA]);
+//                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
+//                                         response.statusCode,
+//                                         response.description,nil);
+                NSLog(@"response.statusCode=%ld",(long)response.statusCode);
+                
+                if (response.statusCode==605){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"IP被限制,连接VPN后重试", nil) ;
+                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"605",@"textOne",nil];
+                        //创建通知
+                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                        //通过通知中心发送通知
+                        [[NSNotificationCenter defaultCenter] postNotification:notification];
+                        return ;
+                    }) ;
+                }else if (response.statusCode==502){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"运维服务问题", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==600){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"session过期", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==603){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"域名不存在", nil) ;
+                        return ;
+                    });
+                }else if (response.statusCode==606){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"被强制踢出", nil) ;
+                        return ;
+                    });
+                }
+            }
+                break ;
+           
+           case ServiceRequestTypeV3UserInfo:
+            {
+                resultSendData = [[RH_UserGroupInfoModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                RH_UserGroupInfoModel *userGroupModel = ConvertToClassPointer(RH_UserGroupInfoModel, resultSendData) ;
+                if (userGroupModel){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setMineSettingInfo:userGroupModel.mUserSetting] ;
+                    [userInfoManager setBankList:userGroupModel.mBankList] ;
+                }
+                [self startV3GetUserAssertInfo] ;
+            }
+                break ;
+            
+            case ServiceRequestTypeV3APIGameList:
+            {
+                NSArray *tmpArray = [RH_LotteryInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_APIGAMELIST_LIST]] ;
+                NSInteger total = [[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     dictionaryValueForKey:@"page"]  integerValueForKey:RH_GP_APIGAMELIST_TOTALCOUNT]   ;
+                
+                resultSendData = @{RH_GP_APIGAMELIST_LIST:tmpArray?:@[],
+                                   RH_GP_APIGAMELIST_TOTALCOUNT:@(total)
+                                   } ;
+            }
+                break ;
+            
+            case ServiceRequestTypeV3BettingList:
+            {
+                NSArray *tmpArray = [RH_BettingInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_BETTINGLIST_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] integerValueForKey:RH_GP_BETTINGLIST_TOTALCOUNT]   ;
+                
+                NSDictionary *statisticsDataDict = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] dictionaryValueForKey:RH_GP_BETTINGLIST_STATISTICSDATA] ;
+                resultSendData = @{RH_GP_BETTINGLIST_LIST:tmpArray?:@[],
+                                   RH_GP_BETTINGLIST_TOTALCOUNT:@(total),
+                                   RH_GP_BETTINGLIST_STATISTICSDATA:statisticsDataDict?:@{}
+                                   } ;
+            }
+                break ;
+            
+            case ServiceRequestTypeV3DepositList:
+            {
+                resultSendData = [[RH_CapitalInfoOverviewModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserSafeInfo:
+            {
+                resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                RH_UserSafetyCodeModel *userSafetyCodeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, resultSendData) ;
+                if (userSafetyCodeModel){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:userSafetyCodeModel] ;
+                }
+            }
+                break;
+                
+            case ServiceRequestTypeV3UpdateSafePassword:
+            {
+                resultSendData = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:resultSendData] ;
+                }
+            }
+                break ;
+                
+                case ServiceRequestTypeV3ActivityStatus:
+            {
+                resultSendData = [[RH_ActivityStatusModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
+                case ServiceRequestTypeV3OpenActivity:
+            {
+                resultSendData = [[RH_OpenActivityModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
+            case ServiceRequestTypeV3BettingDetails:
+            {
+                resultSendData = [[RH_BettingDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
+
+            case ServiceRequestTypeV3DepositListDetails:
+            {
+               resultSendData = [[RH_CapitalDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break ;
+            case ServiceRequestTypeV3DepositPullDownList:
+            {
+                resultSendData = [RH_CapitalTypeModel dataArrayWithDictInfo:[ConvertToClassPointer(NSDictionary, dataObject)dictionaryValueForKey:RH_GP_V3_DATA]];
+            }
+                break ;
+                
+           case ServiceRequestTypeV3PromoList:
+            {
+                NSArray *list = [RH_PromoInfoModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_PROMOLIST_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                     integerValueForKey:RH_GP_PROMOLIST_TOTALCOUNT]   ;
+                
+                resultSendData = @{RH_GP_PROMOLIST_LIST:list?:@[],
+                                   RH_GP_PROMOLIST_TOTALCOUNT:@(total)
+                                   } ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3SystemNotice:
+            {
+                NSArray *tmpArray = [RH_SystemNoticeModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                      integerValueForKey:RH_GP_SYSTEMNOTICE_TOTALNUM]   ;
+                resultSendData = @{RH_GP_SYSTEMNOTICE_LIST:tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
+                
+            }
+                break;
+                
+            case ServiceRequestTypeV3SystemNoticeDetail:
+            {
+                resultSendData = [[RH_SystemNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3GameNotice:
+            {
+                resultSendData = [[RH_GameNoticeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+            }
+                break;
+                case ServiceRequestTypeV3SystemMessageYes:
+            {
+              
+                
+            }
+                break;
+            case ServiceRequestTypeV3GameNoticeDetail:
+            {
+                resultSendData = [[RH_GameNoticeDetailModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+                
+            case ServiceRequestTypeV3OneStepRecory:
+            {
+                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
+                [self startV3UserInfo] ;
+            }
+                break;
+                
+            case ServiceRequestTypeV3AddBitCoin:
+            {
+                resultSendData = [[RH_BitCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager.mineSettingInfo updateBitCode:ConvertToClassPointer(RH_BitCodeModel, resultSendData)] ;
+                }
+            }
+                break;
+                
+            case ServiceRequestTypeV3SiteMessage:
+            {
+                NSArray *tmpArray = [RH_SiteMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_SYSTEMNOTICE_LIST]] ;
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:RH_GP_SITEMESSAGE_PAGETOTALNUM]   ;
+                resultSendData = @{RH_GP_SYSTEMNOTICE_LIST:tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
+            }
+                break;
+            case ServiceRequestTypeV3SiteMessageMyMessage:
+            {
+                NSArray *tmpArray = [RH_SiteMyMessageModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:@"dataList"]];
+                NSInteger total = [[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]
+                                   integerValueForKey:@"total"]   ;
+                resultSendData = @{@"dataList":tmpArray?:@[],
+                                   RH_GP_SYSTEMNOTICE_TOTALNUM:@(total)
+                                   } ;
+            }
+                break;
+                
+            case ServiceRequestTypeV3PromoActivityType:
+            {
+                NSArray *orginDataArr = [ConvertToClassPointer(NSDictionary, dataObject) arrayValueForKey:RH_GP_V3_DATA] ;
+                NSMutableArray *dataArr = [NSMutableArray array] ;
+                [dataArr insertObject:@{@"activityKey":@"all",@"activityTypeName":@"全部"} atIndex:0];
+                [dataArr addObjectsFromArray:orginDataArr];
+                NSArray *dataArr1 = [dataArr copy] ;
+                resultSendData =[RH_DiscountActivityTypeModel dataArrayWithInfoArray:dataArr1] ;
+            }
+                break;
+                
+            case ServiceRequestTypeV3ActivityDetailList:
+            {
+                resultSendData = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
+                
+            }
+                break;
+            case ServiceRequestTypeV3AddApplyDiscountsVerify:
+            {
+                resultSendData =[[RH_SendMessageVerityModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+                case ServiceRequestTypeV3AddApplyDiscounts:
+            {
+                
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+                
+            }
+                break;
+            case ServiceRequestTypeV3SiteMessageMyMessageDetail:
+            {
+                resultSendData = [RH_SiteMyMessageDetailModel dataArrayWithInfoArray:[ConvertToClassPointer(NSDictionary, dataObject)arrayValueForKey:RH_GP_V3_DATA]];
+            }
+                break;
+            
+            case ServiceRequestTypeV3MyMessageMyMessageReadYes:
+            {
+                
+            }
+                break;
+                
+             case ServiceRequestTypeV3SiteMessageDetail:
+            {
+                resultSendData =[[RH_SiteMsgSysMsgModel alloc]initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            case ServiceRequestTypeV3GameLink:
+            case ServiceRequestTypeV3GameLinkForCheery:
+            {
+                resultSendData =[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserLoginOut:
+            {
+                [self.appDelegate updateLoginStatus:NO] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3GetWithDrawInfo:
+            {
+                resultSendData = [[RH_WithDrawModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+            }
+                break;
+            
+           case ServiceRequestTypeV3AddBankCard:
+            {
+                resultSendData = [[RH_BankCardModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager.mineSettingInfo updateBankCard:ConvertToClassPointer(RH_BankCardModel, resultSendData)] ;
+                }
+                
+            }
+                break ;
+            case ServiceRequestTypeV3LoadGameType:
+            {
+                  resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+            }
+                break;
+            case ServiceRequestTypeV3SafetyPasswordAutuentification:
+            {
+                 resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break;
+            
+            case ServiceRequestTypeWithDrawFee:
+            {
+                resultSendData = [[AuditMapModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+           
+            case ServiceRequestTypeTimeZoneInfo:
+            {
+                resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) stringValueForKey:RH_GP_V3_DATA] ;
+                
+                if (resultSendData){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager updateTimeZone:resultSendData] ;
+                }
+            }
+                break ;
+                
+                case ServiceRequestTypeSiteMessageUnReadCount:
+            {
+                resultSendData = [[RH_SiteMsgUnReadCountModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+                
+                case ServiceRequestTypeV3SharePlayerRecommend:   //分享
+            {
+              resultSendData = [[RH_SharePlayerRecommendModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3VerifyRealNameForApp:  // 验证老用户登录
+            {
+                 resultSendData =ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA]);
+            }
+                break ;
+            case ServiceRequestTypeV3GETUSERASSERT:
+            {
+                resultSendData = [ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] ;
+//                if (MineSettingInfo){
+//                    [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
+//                }
+                  [MineSettingInfo updateUserBalanceInfo:ConvertToClassPointer(NSDictionary, resultSendData)] ;
+            }
+                break;
+            case ServiceRequestTypeV3RefreshSession:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
+                case ServiceRequestTypeV3IsOpenCodeVerifty:
+            {
+                resultSendData =ConvertToClassPointer(NSDictionary, dataObject);
+            }
+                break ;
+            case ServiceRequestTypeV3DepositeOrigin:
+            {
+//                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+                resultSendData = [RH_DepositeTransferModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+            }
+                break;
+            case ServiceRequestTypeV3RegiestInit:
+            {
+                NSLog(@"%@", dataObject);
+                resultSendData = [[RH_RegisetInitModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+            case ServiceRequestTypeV3AboutUs:
+            {
+                resultSendData = [[RH_AboutUsModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+            case ServiceRequestTypeV3RegiestTerm:
+            {
+                 resultSendData = [[RH_RegisterClauseModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+            case ServiceRequestTypeV3FirstHelpFirstTyp:
+            {
+                 resultSendData = ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA]) ;
+                resultSendData = [RH_HelpCenterModel dataArrayWithInfoArray:resultSendData] ;
+                
+            }
+                break ;
+            case ServiceRequestTypeV3FirstHelpSecondTyp:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
+                resultSendData = [RH_HelpCenterSecondModel dataArrayWithInfoArray:resultSendData] ;
+            }
+                break ;
+            case ServiceRequestTypeV3HelpDetail:
+            {
+                resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
+                resultSendData = [RH_HelpCenterDetailModel dataArrayWithInfoArray:resultSendData] ;
+
+            }
+                break ;
+                case ServiceRequestTypeV3DepositOriginSeachSale:
+            {
+                resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+                case ServiceRequestTypeV3DepositOriginBittionSeachSale:
+            {
+                resultSendData = [[RH_DepositOriginseachSaleModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+            case ServiceRequestTypeV3GetNoAutoTransferInfo:
+            {
+                resultSendData = [[RH_GetNoAutoTransferInfoModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break ;
+                case ServiceRequestTypeV3OnlinePay:
+            {
+                
+            }
+//                break;
+//            case ServiceRequestTypeV3CompanyPay:{
 //
 //            }
 //                break;
-
+//                case ServiceRequestTypeV3CounterPay:
+//            {
+//
+//            }
+//                break;
+//                case ServiceRequestTypeV3ElectronicPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3AlipayElectronicPay:
+//            {
+//                
+//            }
+//                break;
+//                case ServiceRequestTypeV3BitcoinPay:
+//            {
+//                
+//            }
+//                break;
+            case ServiceRequestTypeV3OneStepRefresh:
+            {
+                NSDictionary *dic = [dataObject objectForKey:RH_GP_V3_DATA] ;
+                resultSendData = [RH_UserApiBalanceModel dataArrayWithInfoArray:[dic objectForKey:@"apis"]] ;
+            }
+                break;
+            case ServiceRequestTypeV3RefreshApi:
+            {
+                resultSendData =  [[RH_UserApiBalanceModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                ConvertToClassPointer(RH_UserApiBalanceModel ,resultSendData) ;
+                RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                NSArray *daraArr =userInfoManager.mineSettingInfo.mApisBalanceList;
+                for (RH_UserApiBalanceModel *model in daraArr) {
+                     [model upApiMoneyWith:resultSendData] ;
+                }
+            }
+                break ;
+                case ServiceRequestTypeV3DepositeOriginChannel:
+            {
+                resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+//                case ServiceRequestTypeV3ScanPay:
+//            {
+//                
+//            }
+//                break;
             default:
                 resultSendData = dataObject ;
-
                 break;
         }
 
         *reslutData = resultSendData;
+    }else{
+        switch (type) {
+            case ServiceRequestTypeV3UpdateSafePassword:
+            {
+                RH_UserSafetyCodeModel *userSafetyCode = [[RH_UserSafetyCodeModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                
+                if (userSafetyCode){
+                    RH_UserInfoManager *userInfoManager = [RH_UserInfoManager shareUserManager] ;
+                    [userInfoManager setUserSafetyInfo:userSafetyCode] ;
+                }
+            }
+                break;
+            
+            case ServiceRequestTypeTimeZoneInfo:
+            {
+                //重新请求
+                [self performSelector:@selector(startV3SiteTimezone) withObject:self afterDelay:3.0f] ;
+            }
+                break ;
+                
+            case ServiceRequestTypeV3UserInfo:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }else{
+                    [self startV3UserInfo] ;
+                }
+            }
+                break ;
+                
+                case ServiceRequestTypeV3RefreshSession:
+            {
+                if (tempError.code==RH_API_ERRORCODE_USER_LOGOUT ||
+                    tempError.code==RH_API_ERRORCODE_SESSION_EXPIRED){
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }
+                if (tempError.code == RH_API_ERRORCODE_SESSION_TAKEOUT) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                         showAlertView(tempError.userInfo[@"NSLocalizedDescription"], nil) ;
+                    }) ;
+                    [self.appDelegate updateLoginStatus:FALSE] ;
+                }
+            }
+                break ;
+                case ServiceRequestTypeUserLogin:
+            {
+                
+            }
+                break ;
+                
+            default:
+                break;
+        }
     }
 
     return YES;
@@ -425,11 +3684,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 - (void)httpRequest:(id<CLHTTPRequestProtocol>)request response:(NSHTTPURLResponse *)response didFailedRequestWithError:(NSError *)error
 {
     RH_ServiceRequestContext * context = [request context];
-
+    
+    //此处收集域名 check fail 信息
+    if (context.serivceType==ServiceRequestTypeDomainCheck){
+        NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
+            NSString *errorMessage = [error.localizedDescription copy] ;
+            NSLog(@"errorMessage==%@",errorMessage);
+            [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
+                                                                                    RH_SP_COLLECTAPPERROR_CODE:errorCode,
+                                                                                    RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
+                                                                                    }] ;
+        });
+    }
+    
     //移除标记
     [self.httpRequests removeObjectForKey:@(context.serivceType)];
     [self.requestingMarks removeObjectForKey:@(context.serivceType)];
-
+    
     //发送通知
     [self _sendFailMsgWithError:error
                     serviceType:context.serivceType
@@ -450,7 +3723,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (self.failBlock) {
         self.failBlock(self, serviceType, error);
     }
-
+    
+    //特点  error 信息，统一处理 。
+    // error.code==RH_API_ERRORCODE_USER_LOGOUT ||
+    if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED ||
+          error.code==RH_API_ERRORCODE_USER_LOGOUT) &&
+        serviceType!=ServiceRequestTypeV3UserLoginOut &&
+        serviceType!=ServiceRequestTypeV3HomeInfo &&
+        serviceType!=ServiceRequestTypeV3UserInfo &&
+        serviceType!=ServiceRequestTypeV3RefreshSession &&
+        serviceType!=ServiceRequestTypeSiteMessageUnReadCount&&
+        serviceType!=ServiceRequestTypeV3GETUSERASSERT)
+    {
+        //session 过期 ,用户未登录
+        ifRespondsSelector(self.delegate, @selector(serviceRequest:serviceType:SpecifiedError:)){
+            [self.delegate serviceRequest:self serviceType:serviceType SpecifiedError:error] ;
+        }
+    }
+    
     //移除上下文
     [self removeContextForType:serviceType];
 }

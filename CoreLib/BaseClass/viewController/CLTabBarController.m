@@ -54,8 +54,10 @@
              completion:(void (^)(void))completionBlock
 {
     //系统版本在7.0以下且tabbar不是半透明不支持隐藏标题栏
-    if (!GreaterThanIOS7System || self.tabBar.translucent == NO) {
-        return;
+    if (![SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if (!GreaterThanIOS7System || self.tabBar.translucent == NO) {
+            return;
+        }
     }
 
     if (_tabBarHidden != hidden) {
@@ -66,7 +68,11 @@
         if (hidden) {
             tabBarRect.origin.y += CGRectGetHeight(tabBarRect);
         }else{
-            tabBarRect.origin.y -= CGRectGetHeight(tabBarRect);
+            if (GreaterThanIOS11System){
+                tabBarRect.origin.y = [UIScreen mainScreen].bounds.size.height - CGRectGetHeight(tabBarRect) ;
+            }else{
+                tabBarRect.origin.y -= CGRectGetHeight(tabBarRect);
+            }
         }
 
         self.tabBar.hidden = NO;

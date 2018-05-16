@@ -8,7 +8,7 @@
 
 #import "RH_LoadingIndicateView.h"
 #import "coreLib.h"
-
+#import "RH_ErrorCode.h"
 
 @implementation RH_LoadingIndicateView
 
@@ -49,6 +49,26 @@
                                detailText:@"点击页面重试"];
 }
 
+- (void)showDefaultNeedLoginStatus
+{
+    [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                    title:@"用户未登录"
+                               detailText:@"点击页面登录"];
+}
+
+- (void)showDefaultLoadingErrorStatus:(NSError*)error
+{
+    if (error.code==RH_API_ERRORCODE_NO_JSON_ERROR){
+        [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                        title:[NSString stringWithFormat:@"%@",error.localizedDescription]
+                                   detailText:@"点击页面重试"];
+    }else{
+        [self showLoadingErrorStatusWithImage:ImageWithName(@"icon_error_reload")
+                                        title:[NSString stringWithFormat:@"%@",error.localizedDescription]
+                                   detailText:@"点击页面重试"];
+    }
+}
+
 - (void)showNoNetworkStatus
 {
     [self showNoNetworkStatusWithImage:ImageWithName(@"icon_none_network")
@@ -70,9 +90,9 @@
 
 - (void)showSearchEmptyStatus
 {
-    [self showImageStatusWithImage:ImageWithName(@"icon_search_empty")
+    [self showImageStatusWithImage:ImageWithName(@"empty_searchRec_image")
                              title:nil
-                        detailText:@"没有找到您要的内容哦 〜"];
+                        detailText:@"您暂无相关数据记录"];
 }
 
 @end
