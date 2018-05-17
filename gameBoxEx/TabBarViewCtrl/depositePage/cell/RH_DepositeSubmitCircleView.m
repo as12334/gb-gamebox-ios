@@ -80,14 +80,18 @@
     _tabelView.backgroundColor = colorWithRGB(242, 242, 242);
     [_tabelView registerNib:[UINib nibWithNibName:@"RH_DepositeSubmitCircleCell" bundle:nil] forCellReuseIdentifier:@"circleCell"];
     
-    if (self.salesArray.count <= 0) {
-        self.tabelView.alpha = 0.0;
-        self.promoLab.alpha = 0.0;
-    }
+    
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.salesArray.count > 0) {
+        self.tabelView.alpha = 1.0;
+        self.promoLab.alpha = 1.0;
+    }else{
+        self.tabelView.alpha = 0.0;
+        self.promoLab.alpha = 0.0;
+    }
     return self.salesArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

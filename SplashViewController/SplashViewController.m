@@ -414,53 +414,53 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 {
                   
                     if ([self.checkType isEqualToString:@"https+8989"]) {
-                        if ([data boolValue])//http protocol
-                        {
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
 //                            return ;
-                        }
+//                        }
                     }else if ([self.checkType isEqualToString:@"http+8787"]){
-                        if ([data boolValue])//http protocol
-                        {
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
 //                            return ;
-                        }
+//                        }
                     }else if ([self.checkType isEqualToString:@"https"]){
-                        if ([data boolValue])//http protocol
-                        {
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
 //                            return ;
-                        }
-                    }else{
-                        if ([data boolValue])//http protocol
-                        {
+//                        }
+                    }else if ([self.checkType isEqualToString:@"http"]){
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
 //                            return ;
-                        }
+//                        }
                     }
                     
                 }else{
                    
                     if ([self.checkType isEqualToString:@"https+8989"]) {
-                        if ([data boolValue])//http protocol
-                        {
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
-                        }
+//                        }
                     }else if ([self.checkType isEqualToString:@"http+8787"]){
-                        if ([data boolValue])//http protocol
-                        {
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
-                        }
+//                        }
                     }else if ([self.checkType isEqualToString:@"https"]){
-                        if ([data boolValue])//http protocol
-                        {
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
-                        }
-                    }else{
-                        if ([data boolValue])//http protocol
-                        {
+//                        }
+                    }else if ([self.checkType isEqualToString:@"http"]){
+//                        if ([data boolValue])//http protocol
+//                        {
                             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
-                        }
+//                        }
                     }
                 }
 //            }

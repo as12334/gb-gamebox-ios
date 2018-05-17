@@ -1934,7 +1934,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId
@@ -1943,11 +1943,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
-    
+    NSLog(@"[====%@",dict);
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ELECTRONICPAY
                      pathArguments:nil
@@ -1964,7 +1964,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId
@@ -1973,7 +1973,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
@@ -2576,37 +2576,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //                                         response.description,nil);
                 NSLog(@"response.statusCode=%ld",(long)response.statusCode);
                 
-                if (response.statusCode==605){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"IP被限制,连接VPN后重试", nil) ;
-                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"605",@"textOne",nil];
-                        //创建通知
-                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
-                        //通过通知中心发送通知
-                        [[NSNotificationCenter defaultCenter] postNotification:notification];
-                        return ;
-                    }) ;
-                }else if (response.statusCode==502){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"运维服务问题", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==600){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"session过期", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==603){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"域名不存在", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==606){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"被强制踢出", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==607){
+                if (response.statusCode==607){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         showAlertView(@"站点维护", nil) ;
                         NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
@@ -2614,7 +2584,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
                         //通过通知中心发送通知
                         [[NSNotificationCenter defaultCenter] postNotification:notification];
-                        return ;
                         return ;
                     });
                 }

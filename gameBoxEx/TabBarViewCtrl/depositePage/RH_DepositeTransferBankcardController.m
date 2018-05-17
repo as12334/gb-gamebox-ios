@@ -598,18 +598,18 @@
             }
             else{
                 if (self.adressCell.adressStr.length!=5&&self.adressCell.adressStr.length!=0&&self.adressCell.adressStr!=nil) {
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入五位数订单号", nil);
                 }
-                else if(self.adressCell.adressStr.length!=0){
-                    NSString *regex = @"[0-9]*";
-                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
-                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
-                    }
-                    else{
-                        showMessage(self.view, @"请输入五位纯数字订单号", nil);
-                    }
-                }
+//                else if(self.adressCell.adressStr.length!=0){
+////                    NSString *regex = @"[0-9]*";
+////                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+////                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
+////                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+////                    }
+////                    else{
+//                        showMessage(self.view, @"请输入五位数订单号", nil);
+////                    }
+//                }
                 else{
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
@@ -686,15 +686,15 @@
         [self.accountMuArray[2]isEqualToString:@"bitcion"]||
         [self.accountMuArray[2]isEqualToString:@"unionpay"]||[self.accountMuArray[2]isEqualToString:@"onecodepay"]||
         [self.accountMuArray[2]isEqualToString:@"other"]) {
-        
-        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?[self.adressCell.adressStr integerValue]:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
+        NSLog(@"self.adressCell.adressStr===%@",self.adressCell.adressStr);
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?self.adressCell.adressStr:@"12345" payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
-        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?[self.adressCell.adressStr integerValue]:12345  payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?self.adressCell.adressStr:@"12345" payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }
