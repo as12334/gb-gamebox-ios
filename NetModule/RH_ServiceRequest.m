@@ -1947,7 +1947,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
-    NSLog(@"[====%@",dict);
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ELECTRONICPAY
                      pathArguments:nil
