@@ -30,7 +30,7 @@
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.listModel = listModel;
-    if (listModel.mCode) {
+    if (listModel.mHide) {
         [self.copBtn setTitle:@"联系客服" forState:UIControlStateNormal];
         self.copBtn.titleLabel.font = [UIFont systemFontOfSize:11];
         self.bankCardNumLabel.text = [NSString stringWithFormat:@"账号代码：%@",listModel.mCode];
@@ -63,7 +63,7 @@
 }
 - (IBAction)cardNumCopySelect:(id)sender {
     
-    if (self.listModel.mCode) {
+    if (self.listModel.mHide) {
         [self showViewController:[RH_CustomServiceSubViewController viewController]];
     }else{
         UIPasteboard *pboard = [UIPasteboard generalPasteboard];

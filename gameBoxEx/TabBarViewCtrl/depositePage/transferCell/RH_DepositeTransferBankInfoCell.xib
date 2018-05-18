@@ -191,7 +191,7 @@
                 <outlet property="copBtnTwo" destination="Kis-sr-kzK" id="rMp-aY-UhO"/>
                 <outlet property="infoImageView" destination="eet-ce-NFC" id="sMw-pv-dDn"/>
             </connections>
-            <point key="canvasLocation" x="62" y="155"/>
+            <point key="canvasLocation" x="-132" y="145"/>
         </tableViewCell>
     </objects>
     <resources>

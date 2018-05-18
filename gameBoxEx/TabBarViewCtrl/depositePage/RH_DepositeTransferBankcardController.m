@@ -165,6 +165,8 @@
 {
     self.accountMuArray = [NSMutableArray array];
     self.accountMuArray = ConvertToClassPointer(NSMutableArray, context);
+//    NSString *hide = ConvertToClassPointer(NSString , [context objectForKey:@"mHide"]);
+//    NSLog(@"hide==%@",hide);
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.accountMuArray[1]);
     self.listModel = listModel;
     if ([self.accountMuArray[2] isEqualToString:@"company"]) {

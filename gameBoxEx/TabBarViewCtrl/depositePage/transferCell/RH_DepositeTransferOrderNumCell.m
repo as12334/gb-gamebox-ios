@@ -6,6 +6,8 @@
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
+
+
 #import "RH_DepositeTransferOrderNumCell.h"
 #import "coreLib.h"
 #import "RH_DepositePayAccountModel.h"
@@ -21,6 +23,8 @@
     [super awakeFromNib];
     // Initialization code
     self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
+    
+    [self.orderNumTextfiled addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -66,6 +70,15 @@
     }
     
 }
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.orderNumTextfiled) {
+        if (textField.text.length > 5) {
+            textField.text = [textField.text substringToIndex:5];
+        }
+    }
+}
+
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.self.transferOrderString = self.orderNumTextfiled.text;
@@ -78,4 +91,6 @@
     }
     return YES;
 }
+
+
 @end

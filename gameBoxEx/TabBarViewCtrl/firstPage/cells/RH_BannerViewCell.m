@@ -129,11 +129,6 @@
     
     if (self.bannerModels.count > index) {
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
-//        if (index>0) {
-//            [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
-//                         placeholderImage:ImageWithName(@"default_banner.jpg")] ;
-//        }
-        NSLog(@"thumbURL==%@",[self.bannerModels[index] thumbURL]);
         if (![[self.bannerModels[index] thumbURL] containsString:@"gif"]) {
             [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
                          placeholderImage:ImageWithName(@"default_banner.jpg")] ;
