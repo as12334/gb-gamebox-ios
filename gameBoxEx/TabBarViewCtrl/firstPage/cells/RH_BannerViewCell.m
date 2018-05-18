@@ -96,35 +96,35 @@
     KIPageViewCell * cell = [pageView dequeueReusableCellWithIdentifier:defaultReuseDef];
     if (!cell) {
         cell = [[KIPageViewCell alloc] initWithIdentifier:defaultReuseDef];
-//        if ([[self.bannerModels[index] thumbURL] containsString:@"gif"]) {
-//            UIWebView *webViewBG = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 140)];
-//            webViewBG.delegate = self;
-//            webViewBG.scalesPageToFit = YES;
-//            webViewBG.backgroundColor = RH_Image_DefaultBackgroundColor;
-//            [cell addSubview:webViewBG];
-//            static dispatch_once_t onceToken ;
-//            dispatch_once(&onceToken, ^{
-//                NSURL *url = [NSURL URLWithString:[self.bannerModels[index] thumbURL]];
-//                NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//                //加载网页
-//                [webViewBG loadRequest:request];
-//            }) ;
-//        }else{
-//            UIImageView * imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
-//            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//            imageView.contentMode = UIViewContentModeScaleToFill;
-//            imageView.backgroundColor = [UIColor clearColor];
-//            imageView.clipsToBounds = YES;
-//            imageView.tag = TAGNUMBER ;
-//            [cell addSubview:imageView];
-//        }
-        UIImageView * imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.backgroundColor = [UIColor clearColor];
-        imageView.clipsToBounds = YES;
-        imageView.tag = TAGNUMBER ;
-        [cell addSubview:imageView];
+        if ([[self.bannerModels[index] thumbURL] containsString:@"gif"]) {
+            UIWebView *webViewBG = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 140)];
+            webViewBG.delegate = self;
+            webViewBG.scalesPageToFit = YES;
+            webViewBG.backgroundColor = RH_Image_DefaultBackgroundColor;
+            [cell addSubview:webViewBG];
+            static dispatch_once_t onceToken ;
+            dispatch_once(&onceToken, ^{
+                NSURL *url = [NSURL URLWithString:[self.bannerModels[index] thumbURL]];
+                NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                //加载网页
+                [webViewBG loadRequest:request];
+            }) ;
+        }else{
+            UIImageView * imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            imageView.contentMode = UIViewContentModeScaleToFill;
+            imageView.backgroundColor = [UIColor clearColor];
+            imageView.clipsToBounds = YES;
+            imageView.tag = TAGNUMBER ;
+            [cell addSubview:imageView];
+        }
+//        UIImageView * imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+//        imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//        imageView.contentMode = UIViewContentModeScaleToFill;
+//        imageView.backgroundColor = [UIColor clearColor];
+//        imageView.clipsToBounds = YES;
+//        imageView.tag = TAGNUMBER ;
+//        [cell addSubview:imageView];
     }
     
     if (self.bannerModels.count > index) {
@@ -133,8 +133,11 @@
 //            [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
 //                         placeholderImage:ImageWithName(@"default_banner.jpg")] ;
 //        }
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
-                     placeholderImage:ImageWithName(@"default_banner.jpg")] ;
+        NSLog(@"thumbURL==%@",[self.bannerModels[index] thumbURL]);
+        if (![[self.bannerModels[index] thumbURL] containsString:@"gif"]) {
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
+                         placeholderImage:ImageWithName(@"default_banner.jpg")] ;
+        }
     }else{
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
         [imageView setImage:ImageWithName(@"default_banner.jpg")] ;
