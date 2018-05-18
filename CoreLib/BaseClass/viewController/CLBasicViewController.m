@@ -148,7 +148,7 @@
 -(UINavigationBar*)navigationBar
 {
     if (!_navigationBar){
-        _navigationBar = [[UINavigationBar alloc] init] ;
+        _navigationBar = [[CLNavigationBar alloc] init] ;
         _navigationBar.tintColor = [UIColor whiteColor] ;
     }
 
@@ -267,12 +267,18 @@ static char TOPVIEW ;
     return 0.0 ;
 }
 
+-(BOOL)topViewIncludeStatusBar
+{
+    return false ;
+}
+
 -(void)updateTopView
 {
     if ([self hasTopView]){
         CGFloat height = MAX(0, [self topViewHeight]) ;
         CGRect frame = CGRectMake(0,
-                                 (self.isHiddenStatusBar?0.0:heighStatusBar)+(self.isHiddenNavigationBar?0.0:heighNavigationBar),
+                                  (self.isHiddenStatusBar?0.0:([self topViewIncludeStatusBar]?0.0:heighStatusBar))
+                                  +(self.isHiddenNavigationBar?0.0:heighNavigationBar),
                                  self.view.frameWidth, height) ;
 
         self.topView.frame = frame ;
@@ -324,7 +330,7 @@ static char BOTTOMVIEW ;
 
         self.bottomView.frame = frame ;
         [self.view addSubview:self.bottomView] ;
-        self.bottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
+        self.bottomView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
     }else{
         UIView *bottomView = objc_getAssociatedObject(self, &BOTTOMVIEW) ;
         if (bottomView){
@@ -358,13 +364,21 @@ static char CONTENTTABLEVIEW ;
     tableView.delegate = self ;
     tableView.dataSource = self ;
     tableView.backgroundColor = [UIColor clearColor] ;
-    tableView.contentInset = UIEdgeInsetsMake((self.isHiddenStatusBar?0:heighStatusBar) +
+    
+    tableView.contentInset = UIEdgeInsetsMake((self.isHiddenStatusBar?0:(GreaterThanIOS11System?0:heighStatusBar)) +
                                               (self.isHiddenNavigationBar?0:heighNavigationBar) +
-                                              ([self hasTopView]?MAX(0, [self topViewHeight]):0),
+                                              ([self hasTopView]?MAX(0, [self topViewHeight]) :0),
                                               0,
                                               (self.isHiddenTabBar?0:heighTabBar) +
                                               ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
                                               0) ;
+    
+    if ([self hasTopView] && [self topViewIncludeStatusBar]){ //存在 top view && top view include statusbar
+        UIEdgeInsets edgeInsets = tableView.contentInset ;
+        edgeInsets.top -= heighStatusBar ;
+        tableView.contentInset = edgeInsets ;
+    }
+    
     tableView.scrollIndicatorInsets = tableView.contentInset ;
 
     if (tableViewStyle==UITableViewStyleGrouped){
@@ -424,6 +438,7 @@ static char CONTENTCOLLECTIONVIEW ;
                                                    (self.isHiddenTabBar?0:heighTabBar) +
                                                    ([self hasBottomView]?MAX(0, [self bottomViewHeight]):0),
                                                    0) ;
+    
 
     if (bUpdateControl){
         [collectionView addSubview:self.updateRefreshCtrl] ;
@@ -758,7 +773,6 @@ static char TAPGESTURERECOGNIZER   ;
 {
     //do nothing
 }
-
 @end
 
 

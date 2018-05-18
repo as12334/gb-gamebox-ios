@@ -80,6 +80,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
 
 - (void)dealloc {
     SDDispatchQueueRelease(_barrierQueue);
+    
 }
 
 - (nullable id)addHandlersForProgress:(nullable SDWebImageDownloaderProgressBlock)progressBlock

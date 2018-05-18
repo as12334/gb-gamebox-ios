@@ -10,6 +10,7 @@
 #import "UIViewController+CLTabBarController.h"
 #import "CLTabBarController.h"
 #import <objc/runtime.h>
+#import "MacroDef.h"
 
 @interface CLViewController ()
 
@@ -25,7 +26,14 @@
     [self.myTabBarController setTabBarHidden:self.hiddenTabBar
                                     animated:animated
                                   animations:nil
-                                  completion:nil] ;
+                                  completion:^{
+                                      if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                                          if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                              //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                              self.view.frame = MainScreenBounds ;
+                                          }
+                                      }
+                                  }] ;
 
     //更新视图
     if (_needUpdateViewWhenViewAppear) {
@@ -54,8 +62,29 @@
         [self.myTabBarController setTabBarHidden:self.hiddenTabBar
                                         animated:YES
                                       animations:nil
-                                      completion:nil] ;
+                                      completion:^{
+                                          if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                                              if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                                  //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                                  self.view.frame = MainScreenBounds ;
+                                              }
+                                          }
+                                      }] ;
 
+    }
+}
+
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews] ;
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if (self.isHiddenTabBar && GreaterThanIOS10System){
+            //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+            if (CGSizeEqualToSize(self.view.frame.size, MainScreenBounds.size)==FALSE){
+                self.view.frame = MainScreenBounds ;
+            }
+        }
     }
 }
 
@@ -122,7 +151,7 @@ static char  HIDDENSTATUSBAR ;
     if (![self isViewShowing]) {
         _needUpdateViewWhenViewAppear = YES;
     }else{
-        [self updateView];
+        [self performSelectorOnMainThread:@selector(updateView) withObject:self waitUntilDone:NO] ;
     }
 }
 
@@ -223,7 +252,7 @@ static char PROGRESSINDICATORVIEW ;
     [self.progressIndicatorView show:animated] ;
 }
 
--(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)())completeBlock
+-(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)(void))completeBlock
 {
     if (self.progressIndicatorView.superview){
         self.progressIndicatorView.animationType = MBProgressHUDAnimationZoom ;

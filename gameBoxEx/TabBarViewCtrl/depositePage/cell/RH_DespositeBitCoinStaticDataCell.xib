@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Tmv-ui-Bdx" customClass="RH_DespositeBitCoinStaticDataCell">
+            <rect key="frame" x="0.0" y="0.0" width="202" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bP-kU-a9s" customClass="CLSelectionControl">
+                    <rect key="frame" x="0.0" y="11" width="202" height="18"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Gxm-4E-uwX">
+                            <rect key="frame" x="8" y="0.0" width="186" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Gxm-4E-uwX" firstAttribute="leading" secondItem="9bP-kU-a9s" secondAttribute="leadingMargin" id="7u6-xw-sEy"/>
+                        <constraint firstItem="Gxm-4E-uwX" firstAttribute="centerY" secondItem="9bP-kU-a9s" secondAttribute="centerY" id="HIh-kf-glN"/>
+                        <constraint firstItem="Gxm-4E-uwX" firstAttribute="top" secondItem="9bP-kU-a9s" secondAttribute="top" id="IOB-wP-7Ln"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gxm-4E-uwX" secondAttribute="trailing" constant="2" id="hAr-c5-dRh"/>
+                        <constraint firstItem="Gxm-4E-uwX" firstAttribute="trailing" secondItem="9bP-kU-a9s" secondAttribute="trailingMargin" id="r5q-7z-i02"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9bP-kU-a9s" firstAttribute="leading" secondItem="Tmv-ui-Bdx" secondAttribute="leading" id="LPa-3Q-R1W"/>
+                <constraint firstAttribute="trailing" secondItem="9bP-kU-a9s" secondAttribute="trailing" id="OwG-9C-akb"/>
+                <constraint firstItem="9bP-kU-a9s" firstAttribute="centerY" secondItem="Tmv-ui-Bdx" secondAttribute="centerY" id="Yoe-MH-4mN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="borderView" destination="9bP-kU-a9s" id="u5G-lg-atd"/>
+                <outlet property="labDate" destination="Gxm-4E-uwX" id="WXC-4E-Hw1"/>
+            </connections>
+            <point key="canvasLocation" x="-1494" y="-683"/>
+        </view>
+    </objects>
+</document>

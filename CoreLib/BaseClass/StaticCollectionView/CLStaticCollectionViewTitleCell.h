@@ -7,9 +7,10 @@
 //
 
 #import "CLStaticCollectionViewCell.h"
+#import "CLLabel.h"
 
 @interface CLStaticCollectionViewTitleCell : CLStaticCollectionViewCell
-@property(nonatomic,strong,readonly) UILabel *labTitle ;
+@property(nonatomic,strong,readonly) CLLabel *labTitle ;
 @property(nonatomic,strong) UIFont *titleFont ;
 @property(nonatomic,strong) UIColor *titleColor ;
 

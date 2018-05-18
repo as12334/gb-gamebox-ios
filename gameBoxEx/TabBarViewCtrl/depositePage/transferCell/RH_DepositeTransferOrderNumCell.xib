@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RH_DepositeTransferOrderNumCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存款方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omF-4i-5HN">
+                        <rect key="frame" x="16" y="17" width="53.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c9Z-gJ-fmY">
+                        <rect key="frame" x="109" y="6" width="195" height="36"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ney-1h-BqN" customClass="CLBorderView">
+                        <rect key="frame" x="0.0" y="49" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="cBh-cJ-ggF"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Ney-1h-BqN" secondAttribute="bottom" id="2Gq-OA-JFV"/>
+                    <constraint firstItem="c9Z-gJ-fmY" firstAttribute="leading" secondItem="omF-4i-5HN" secondAttribute="trailing" constant="39.5" id="3gv-hn-gCJ"/>
+                    <constraint firstItem="omF-4i-5HN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BYa-jY-bt3"/>
+                    <constraint firstItem="omF-4i-5HN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Gkp-9n-Hy8"/>
+                    <constraint firstItem="c9Z-gJ-fmY" firstAttribute="leading" secondItem="omF-4i-5HN" secondAttribute="trailing" constant="39.5" id="NNi-dd-9Zi"/>
+                    <constraint firstAttribute="bottom" secondItem="c9Z-gJ-fmY" secondAttribute="bottom" constant="7.5" id="aqR-PY-0jw"/>
+                    <constraint firstAttribute="trailing" secondItem="c9Z-gJ-fmY" secondAttribute="trailing" constant="16" id="eBe-xK-XP9"/>
+                    <constraint firstAttribute="trailing" secondItem="Ney-1h-BqN" secondAttribute="trailing" id="emo-Rz-LAr"/>
+                    <constraint firstItem="Ney-1h-BqN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tks-47-59L"/>
+                    <constraint firstItem="c9Z-gJ-fmY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="uea-pJ-J6q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="downLineView" destination="Ney-1h-BqN" id="s6Q-Je-Vt6"/>
+                <outlet property="orderNumTextfiled" destination="c9Z-gJ-fmY" id="Jyt-ba-Lck"/>
+                <outlet property="payforWayLabel" destination="omF-4i-5HN" id="G3U-ol-Ia6"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

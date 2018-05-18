@@ -13,6 +13,8 @@
 #import <objc/runtime.h>
 #import <mach/mach.h>
 #import "SAMKeychain.h"
+#import "sys/utsname.h"
+#import "RH_UserInfoManager.h"
 
 #pragma mark -
 NSString * const defaultReuseDef = @"defaultReuseDef";
@@ -72,27 +74,28 @@ double memorySizeForType(CLMemoryType type)
 #pragma MARK-
 void showNetworkActivityIndicator(BOOL bShow)
 {
-    static NSUInteger networkActivityIndicatorShowTimes = 0;
-
-    if (bShow) {
-
-        if (networkActivityIndicatorShowTimes == 0) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        static NSUInteger networkActivityIndicatorShowTimes = 0;
+        
+        if (bShow) {
+            
+            if (networkActivityIndicatorShowTimes == 0) {
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            }
+            
+            //显示次数+1
+            networkActivityIndicatorShowTimes ++ ;
+            
+        }else if (networkActivityIndicatorShowTimes > 0) {
+            
+            networkActivityIndicatorShowTimes -- ;
+            
+            //无显示次数，则隐藏
+            if (networkActivityIndicatorShowTimes == 0) {
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            }
         }
-
-        //显示次数+1
-        networkActivityIndicatorShowTimes ++ ;
-
-    }else if (networkActivityIndicatorShowTimes > 0) {
-
-        networkActivityIndicatorShowTimes -- ;
-
-        //无显示次数，则隐藏
-        if (networkActivityIndicatorShowTimes == 0) {
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }
-    }
-
+    }) ;
 }
 
 CAShapeLayer * createLineLayer(CGPoint startPoint,CGPoint endPoint,CGFloat lineWidth,UIColor * lineColor)
@@ -214,6 +217,56 @@ float systemVersion()
 
 
     return version;
+}
+
+NSString *getDeviceModel(void)
+{
+    static NSString *deviceName = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        struct utsname systemInfo;
+        uname(&systemInfo);
+//        deviceName = [[UIDevice currentDevice] systemName];
+        NSString * deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+        //iPhone
+        if ([deviceString isEqualToString:@"iPhone1,1"]){
+            deviceName =  @"iPhone 1G";
+        }else if ([deviceString isEqualToString:@"iPhone1,2"]){
+            deviceName =  @"iPhone 3G";
+        }else if ([deviceString isEqualToString:@"iPhone2,1"]){
+            deviceName =  @"iPhone 3GS";
+        }else if ([deviceString isEqualToString:@"iPhone3,1"]){
+            deviceName = @"iPhone 4";
+        }else if ([deviceString isEqualToString:@"iPhone3,2"]){
+            deviceName = @"Verizon iPhone 4";
+        }else if ([deviceString isEqualToString:@"iPhone4,1"]){
+            deviceName = @"iPhone 4S" ;
+        }else if ([deviceString isEqualToString:@"iPhone5,1"]){
+            deviceName = @"iPhone 5";
+        }else if ([deviceString isEqualToString:@"iPhone5,2"]){
+            deviceName = @"iPhone 5";
+        }else if ([deviceString isEqualToString:@"iPhone5,3"]){
+            deviceName = @"iPhone 5C";
+        }else if ([deviceString isEqualToString:@"iPhone5,4"]){
+            deviceName =  @"iPhone 5C";
+        }else if ([deviceString isEqualToString:@"iPhone6,1"]){
+            deviceName = @"iPhone 5S";
+        }else if ([deviceString isEqualToString:@"iPhone6,2"]){
+            deviceName = @"iPhone 5S";
+        }else if ([deviceString isEqualToString:@"iPhone7,1"]){
+            deviceName = @"iPhone 6 Plus";
+        }else if ([deviceString isEqualToString:@"iPhone7,2"]){
+            deviceName = @"iPhone 6";
+        }else if ([deviceString isEqualToString:@"iPhone8,1"]){
+            deviceName = @"iPhone 6s" ;
+        }else if ([deviceString isEqualToString:@"iPhone8,2"]){
+           deviceName = @"iPhone 6s Plus";
+        }else{
+            deviceName = @"iPhone" ;
+        }
+    });
+    
+    return deviceName;
 }
 
 CGSize screenSize()
@@ -726,7 +779,92 @@ BOOL isInteger(NSString * integerStr)
     NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", integerRegex];
     return [integerTest evaluateWithObject:integerStr];
 }
+//SID
+BOOL isSidStr(NSString *sidStr)
+{
+    NSString *sidStrRegex = @"SID=(.*?)";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", sidStrRegex];
+    return [integerTest evaluateWithObject:sidStr];
+}
 
+//SID 匹配数组
+NSArray * matchString(NSString *string)
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"SID=(.*?);" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    //match: 所有匹配到的字符,根据() 包含级
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSTextCheckingResult *match in matches) {
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            [array addObject:component];
+        }
+    }
+    return array;
+}
+
+//长SID 匹配数组
+NSArray * matchLongString(NSString *string)
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"SID=(.*?)," options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    //match: 所有匹配到的字符,根据() 包含级
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSTextCheckingResult *match in matches) {
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            [array addObject:component];
+        }
+    }
+    return array;
+}
+
+#pragma mark - 纯数字正则
+BOOL isNumberSecert(NSString *secPassword)
+{
+    NSString *passwordStrRegex = @"^[0-9]*$";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:secPassword];
+}
+
+BOOL isSimplePwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+#pragma mark -- 是否升序
+BOOL isAscendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+
+#pragma mark - 是否降序
+BOOL isDescendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5}\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+#pragma mark - 是否升降序
+BOOL isDescendingAndPwdisAscendingPwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5})\\d";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
+
+#pragma mark -连续三个以上重复数字
+BOOL isSameMoreThreePwd(NSString *password)
+{
+    NSString *passwordStrRegex = @"([\\d])\\1{2,}";
+    NSPredicate *integerTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passwordStrRegex];
+    return [integerTest evaluateWithObject:password];
+}
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
 {
@@ -737,13 +875,29 @@ NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
     static NSDateFormatter * dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        //        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     }
-
+    
+    if ([RH_UserInfoManager shareUserManager].timeZone){
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[RH_UserInfoManager shareUserManager].timeZone]] ;
+    }
+    
     dateFormatter.dateFormat = dateFormat;
     return [dateFormatter stringFromDate:date];
 }
 
+NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone)
+{
+    if (date == nil || dateFormat.length == 0) {
+        return nil;
+    }
+    
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:timezone]] ;
+    
+    dateFormatter.dateFormat = dateFormat;
+    return [dateFormatter stringFromDate:date];
+}
 
 #pragma mark-
 NSArray * indexPathsFromRange(NSInteger section,NSRange range) {
@@ -807,11 +961,139 @@ BOOL openURL(NSString * url)
     return NO;
 }
 
-BOOL isIgnoreHTTPS(NSString *domain)
+//BOOL isIgnoreHTTPS(NSString *domain)
+//{
+//    for (NSString * ignoreStr in RH_IgnoreHTTPS_LIST) {
+//        if ([domain containsString:ignoreStr])
+//            return TRUE ;
+//    }
+//    return FALSE ;
+//}
+
+#pragma mark--获取 设备 ip address
+#import <ifaddrs.h>
+#import <arpa/inet.h>
+#import <net/if.h>
+#import "RH_Crash.h"
+#define IOS_CELLULAR    @"pdp_ip0"
+#define IOS_WIFI        @"en0"
+#define IOS_VPN         @"utun0"
+#define IP_ADDR_IPv4    @"ipv4"
+#define IP_ADDR_IPv6    @"ipv6"
+
+BOOL isValidatIP(NSString * ipAddress)
 {
-    for (NSString * ignoreStr in RH_IgnoreHTTPS_LIST) {
-        if ([domain containsString:ignoreStr])
-            return TRUE ;
+    if (ipAddress.length == 0) {
+        return NO;
     }
-    return FALSE ;
+    NSString *urlRegEx = @"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+    
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlRegEx options:0 error:&error];
+    
+    if (regex != nil) {
+        NSTextCheckingResult *firstMatch=[regex firstMatchInString:ipAddress options:0 range:NSMakeRange(0, [ipAddress length])];
+        
+        if (firstMatch) {
+            NSRange resultRange = [firstMatch rangeAtIndex:0];
+            NSString *result=[ipAddress substringWithRange:resultRange];
+            //输出结果
+            NSLog(@"__%@",result);
+            RH_Crash *crash = [[RH_Crash alloc]init];
+            crash.ipStr = result;
+            return YES;
+        }
+    }
+    return NO;
 }
+
+NSDictionary * getIPAddresses()
+{
+    NSMutableDictionary *addresses = [NSMutableDictionary dictionaryWithCapacity:8];
+    
+    // retrieve the current interfaces - returns 0 on success
+    struct ifaddrs *interfaces;
+    if(!getifaddrs(&interfaces)) {
+        // Loop through linked list of interfaces
+        struct ifaddrs *interface;
+        for(interface=interfaces; interface; interface=interface->ifa_next) {
+            if(!(interface->ifa_flags & IFF_UP) /* || (interface->ifa_flags & IFF_LOOPBACK) */ ) {
+                continue; // deeply nested code harder to read
+            }
+            const struct sockaddr_in *addr = (const struct sockaddr_in*)interface->ifa_addr;
+            char addrBuf[ MAX(INET_ADDRSTRLEN, INET6_ADDRSTRLEN) ];
+            if(addr && (addr->sin_family==AF_INET || addr->sin_family==AF_INET6)) {
+                NSString *name = [NSString stringWithUTF8String:interface->ifa_name];
+                NSString *type;
+                if(addr->sin_family == AF_INET) {
+                    if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
+                        type = IP_ADDR_IPv4;
+                    }
+                } else {
+                    const struct sockaddr_in6 *addr6 = (const struct sockaddr_in6*)interface->ifa_addr;
+                    if(inet_ntop(AF_INET6, &addr6->sin6_addr, addrBuf, INET6_ADDRSTRLEN)) {
+                        type = IP_ADDR_IPv6;
+                    }
+                }
+                if(type) {
+                    NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
+                    addresses[key] = [NSString stringWithUTF8String:addrBuf];
+                }
+            }
+        }
+        // Free memory
+        freeifaddrs(interfaces);
+    }
+    return [addresses count] ? addresses : nil;
+}
+
+
+NSString *getIPAddress(BOOL preferIPv4)
+{
+    NSArray *searchArray = preferIPv4 ?
+    @[ IOS_VPN @"/" IP_ADDR_IPv4, IOS_VPN @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6 ] :
+    @[ IOS_VPN @"/" IP_ADDR_IPv6, IOS_VPN @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4 ] ;
+    
+    NSDictionary *addresses = getIPAddresses() ;
+    NSLog(@"addresses: %@", addresses);
+    __block NSString *address;
+    [searchArray enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop)
+    {
+         address = addresses[key];
+         //筛选出IP地址格式
+         if(isValidatIP(address)) *stop = YES;
+     } ];
+    return address ? address : @"0.0.0.0";
+}
+
+NSString *getLocalizedString(CLLanguageOption languageOption,NSString* key)
+{
+    NSString *keyPath = nil ;
+    switch (languageOption) {
+        case CLLanguageOptionZHhans:
+            keyPath = @"zh-Hans" ;
+            break;
+        
+        case CLLanguageOptionZHhant:
+            keyPath = @"zh-Hant" ;
+            break;
+        
+        case CLLanguageOptionEnglish:
+            keyPath = @"en" ;
+            break;
+        
+        case CLLanguageOptionJapanese:
+            keyPath = @"ja" ;
+            break;
+            
+        default:
+            keyPath = @"zh-Hant" ;
+            break;
+    }
+    
+    return [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:keyPath ofType:@"lproj"]] localizedStringForKey:(key) value:nil table:@"language"] ;
+}
+

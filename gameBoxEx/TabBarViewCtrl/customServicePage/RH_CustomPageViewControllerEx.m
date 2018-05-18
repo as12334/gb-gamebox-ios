@@ -71,6 +71,7 @@ static CGFloat const kChatViewInputBarHeight = 50.0;
 
 -(void)updateView
 {
+    
     [self.contentTableView reloadData] ;
     [self.contentTableView setScrollsToTop:NO] ;
 }
