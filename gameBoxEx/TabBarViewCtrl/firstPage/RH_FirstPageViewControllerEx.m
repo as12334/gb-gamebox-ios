@@ -32,6 +32,7 @@
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
 #import "ErrorstatesVC.h"
+#import "RH_BannerDetailVCViewController.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -73,7 +74,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
     
     
-    [self.serviceRequest startGetCustomService] ;
+//    [self.serviceRequest startGetCustomService] ;
     [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
@@ -896,6 +897,10 @@
         self.appDelegate.customUrl = bannerModel.contentURL ;
         NSLog(@"bannerModel.contentURL==%@",bannerModel.contentURL);
         [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        
+//        RH_BannerDetailVCViewController *banner = [RH_BannerDetailVCViewController viewControllerWithContext:nil];
+//        banner.urlStr = bannerModel.contentURL;
+//        [self showViewController:banner sender:self];
     }
 }
 

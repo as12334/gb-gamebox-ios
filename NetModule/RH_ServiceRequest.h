@@ -173,7 +173,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * DOMAIN CHECK
  */
--(void)startCheckDomain:(NSString*)doMain;
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType;
 
 /**
  * update CHECK

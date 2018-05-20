@@ -159,6 +159,106 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+
+#elif _1qkq1 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq2 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq3 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq4 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq5 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq6 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq7 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq8 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq9 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq10 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _1qkq11 //宏图娱乐
+
+#define CODE    @"1qkq"
+#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
+#define SID        @"65"
+#define THEME    @"default.skin"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _erln //太阳城集团
 
 #define CODE    @"erln"
@@ -198,6 +298,7 @@
 
 #elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN  @"test02.hongtubet.com"
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
@@ -1313,7 +1414,7 @@
 #define S        @"a3fe8abcdf5c2864c2a8f965b161106a"
 #define SID        @"265"
 #define THEME    @"default.skin"
-#define THEMEV3             @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _0ru7 //太阳城集团
@@ -1769,7 +1870,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _wbzt //澳门美高梅
+#elif _wbzt //澳门永利集团
 
 #define CODE    @"wbzt"
 #define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
@@ -2636,6 +2737,15 @@
 #define SID        @"569"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _mrle //盛乾娱乐城
+
+#define CODE    @"mrle"
+#define S        @"44f8913fd3f1921e37c64270231cf5dd"
+#define SID        @"572"
+#define THEME    @"default.skin"
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 

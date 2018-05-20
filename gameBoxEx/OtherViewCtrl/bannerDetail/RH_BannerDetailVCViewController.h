@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RH_BasicViewController.h"
 
-@interface RH_BannerDetailVCViewController : UIViewController
+@interface RH_BannerDetailVCViewController : RH_BasicViewController
 @property (nonatomic, strong) NSString *urlStr;
 @end

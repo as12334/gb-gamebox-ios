@@ -11,6 +11,7 @@
 #import "URLConnectionManager.h"
 #import "NSDictionary+CLCategory.h"
 #import "help.h"
+#import "RH_APPDelegate.h"
 
 #define HttpRequestDebugLog(_format,...)  DebugLog(MyHTTPRequestDomain,_format, ##__VA_ARGS__)
 
@@ -187,7 +188,11 @@
                url = [@"" stringByAppendingFormat:@"%@",[path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]]];
             }
         }
-
+//        //测试环境拼接路径才可以进入
+//        if (![url containsString:@"http"]) {
+//            url = [NSString stringWithFormat:@"http://%@/%@",TEST_DOMAIN,url];
+//        }
+        NSLog(@"url===%@",url);
         if (!IS_HTTP_URL(url)) {
             @throw [[NSException alloc] initWithName:NSInvalidArgumentException
                                               reason:@"请求的URL必须为HTTP请求"
