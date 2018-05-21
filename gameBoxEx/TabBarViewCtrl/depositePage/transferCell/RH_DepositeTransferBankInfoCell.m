@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_API.h"
 #import "RH_DepositeTransferChannelModel.h"
+#import "RH_CustomServiceSubViewController.h"
 @interface RH_DepositeTransferBankInfoCell()
 @property (weak, nonatomic) IBOutlet UIView *bankInfoView;
 @property (weak, nonatomic) IBOutlet UIButton *copBtn;
@@ -22,12 +23,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountInfoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
 
+@property(nonatomic,strong) RH_DepositeTransferListModel *listModel;
 @end
 @implementation RH_DepositeTransferBankInfoCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
-    self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
+    self.listModel = listModel;
+    if (listModel.mHide) {
+        [self.copBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+        self.copBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+        self.bankCardNumLabel.text = [NSString stringWithFormat:@"账号代码：%@",listModel.mCode];
+    }else{
+        self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
+    }
     self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
     [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
@@ -53,13 +62,20 @@
     // Configure the view for the selected state
 }
 - (IBAction)cardNumCopySelect:(id)sender {
-    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    if (self.bankCardNumLabel.text.length==0) {
-        return;
+    
+    if (self.listModel.mHide) {
+        [self showViewController:[RH_CustomServiceSubViewController viewController]];
+    }else{
+        UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+        if (self.bankCardNumLabel.text.length==0) {
+            return;
+        }
+        [pboard setString:self.bankCardNumLabel.text];
+        //    pboard.string = self.bankCardNumLabel.text;
+        showMessage(self, @"复制成功",nil);
     }
-    [pboard setString:self.bankCardNumLabel.text];
-//    pboard.string = self.bankCardNumLabel.text;
-    showMessage(self, @"复制成功",nil);
+    
+    
 
 }
 - (IBAction)pernameSelect:(id)sender {

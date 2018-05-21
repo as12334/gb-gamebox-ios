@@ -400,8 +400,15 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
         }
-        [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
-        [_mainSegmentControl insertSegmentWithTitle:@"比特币账户" atIndex:1 animated:YES];
+        if (self.withDrawModel.mIsBit==true) {
+            [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
+            [_mainSegmentControl insertSegmentWithTitle:@"比特币账户" atIndex:1 animated:YES];
+        }
+        else
+        {
+             [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
+        }
+        
         _mainSegmentControl.selectedSegmentIndex = 0;
         [_mainSegmentControl addTarget:self action:@selector(segmentControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
     }

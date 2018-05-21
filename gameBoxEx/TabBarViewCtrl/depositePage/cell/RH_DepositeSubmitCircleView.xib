@@ -108,9 +108,10 @@
                 <outlet property="chareLabel" destination="5fW-Jd-d1p" id="Dwx-fQ-M1P"/>
                 <outlet property="depositeBtn" destination="oRA-bm-CPQ" id="YIq-kl-ynl"/>
                 <outlet property="moneyNumLabel" destination="QeO-WE-TtN" id="eCa-hT-qWk"/>
+                <outlet property="promoLab" destination="ZJV-Fs-c9d" id="TBz-vv-rQG"/>
                 <outlet property="tabelView" destination="Rus-ZN-RSo" id="Arw-8k-GH0"/>
             </connections>
-            <point key="canvasLocation" x="-45.5" y="217"/>
+            <point key="canvasLocation" x="-233" y="216"/>
         </view>
     </objects>
 </document>

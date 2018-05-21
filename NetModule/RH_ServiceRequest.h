@@ -577,7 +577,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                               payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;
@@ -586,7 +586,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;
