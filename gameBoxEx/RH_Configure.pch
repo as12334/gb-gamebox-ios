@@ -2760,6 +2760,15 @@
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _91ea //皇冠娱乐城
+
+#define CODE    @"91ea"
+#define S        @"998793e33249fc64b329dfcdfc1b609a"
+#define SID        @"571"
+#define THEME    @"default.skin"
+#define THEMEV3             @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _mrle //盛乾娱乐城
 
 #define CODE    @"mrle"
