@@ -12,7 +12,6 @@
 #import "RH_LoginViewController.h"
 
 @interface RH_LotteryRecPageViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_LotteryRecPageViewController

@@ -19,15 +19,29 @@
 -(UILabel*)labTitle
 {
     if (!_labTitle){
-        _labTitle = [[UILabel alloc] init] ;
+        _labTitle = [[CLLabel alloc] init] ;
         _labTitle.translatesAutoresizingMaskIntoConstraints = NO ;
         _labTitle.numberOfLines = 0 ;
         _labTitle.textAlignment = NSTextAlignmentCenter ;
         _labTitle.adjustsFontSizeToFitWidth = YES ;
         _labTitle.minimumScaleFactor = 0.5 ;
         [self addSubview:_labTitle] ;
-//        setCenterConstraint(_labTitle, self) ;
-        setAllEdgeConstraint(_labTitle, self, 1.0) ;
+        setCenterConstraint(_labTitle, self) ;
+//        setAllEdgeConstraint(_labTitle, self, 1.0) ;
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_labTitle
+                                                         attribute:NSLayoutAttributeLeading
+                                                         relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeLeading
+                                                        multiplier:1.0 constant:1.0f]] ;
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self
+                                                         attribute:NSLayoutAttributeTrailing
+                                                         relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                            toItem:_labTitle
+                                                         attribute:NSLayoutAttributeTrailing
+                                                        multiplier:1.0 constant:1.0f]] ;
+        
     }
 
     return _labTitle ;

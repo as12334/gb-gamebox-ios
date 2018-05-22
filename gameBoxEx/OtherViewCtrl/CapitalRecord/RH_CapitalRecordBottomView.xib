@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RTF-OY-urB" customClass="RH_CapitalRecordBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4r-c1-H0C">
+                    <rect key="frame" x="20" y="10" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ux8-bN-pNz" customClass="CLStaticCollectionView">
+                    <rect key="frame" x="60.5" y="5" width="325.5" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ux8-bN-pNz" secondAttribute="trailing" constant="5" id="2QG-pT-ctc"/>
+                <constraint firstAttribute="bottom" secondItem="ux8-bN-pNz" secondAttribute="bottom" constant="5" id="5Y0-Ma-kqY"/>
+                <constraint firstItem="ux8-bN-pNz" firstAttribute="leading" secondItem="D4r-c1-H0C" secondAttribute="trailing" constant="5" id="FAm-Bq-iE7"/>
+                <constraint firstItem="D4r-c1-H0C" firstAttribute="top" secondItem="RTF-OY-urB" secondAttribute="top" constant="10" id="h4y-Co-TfI"/>
+                <constraint firstItem="ux8-bN-pNz" firstAttribute="top" secondItem="RTF-OY-urB" secondAttribute="top" constant="5" id="lpD-aB-hJq"/>
+                <constraint firstItem="D4r-c1-H0C" firstAttribute="leading" secondItem="RTF-OY-urB" secondAttribute="leading" constant="20" id="uQW-i3-8Yj"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="labSummer" destination="D4r-c1-H0C" id="8S4-Ij-CKq"/>
+                <outlet property="summerStaticView" destination="ux8-bN-pNz" id="0rR-8z-nbK"/>
+            </connections>
+            <point key="canvasLocation" x="-428.5" y="-816.5"/>
+        </view>
+    </objects>
+</document>

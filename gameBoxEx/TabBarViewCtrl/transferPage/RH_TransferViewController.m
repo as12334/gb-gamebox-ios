@@ -12,7 +12,6 @@
 #import "RH_TransferViewController.h"
 
 @interface RH_TransferViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_TransferViewController

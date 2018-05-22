@@ -69,7 +69,7 @@
 @interface CLViewController(MBMessage)
 @property(nonatomic,strong,readonly) MBProgressHUD *progressIndicatorView ; //进度提示view
 -(void)showProgressIndicatorViewWithAnimated:(BOOL)animated title:(NSString*)title ;
--(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)())completeBlock;
+-(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)(void))completeBlock;
 @end
 
 

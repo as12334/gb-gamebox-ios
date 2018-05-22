@@ -303,7 +303,7 @@ NSString * const RH_LocationManagerStatusDidChangeContextUserInfoKey = @"RH_Loca
     [self _sendLocationStatusChangeNotificationWithContext:error];
 }
 
-#pragma mark -
+#pragma mark -  
 //
 //- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestSerivceType)type didFailRequestWithError:(NSError *)error
 //{

@@ -11,6 +11,7 @@
 #import "URLConnectionManager.h"
 #import "NSDictionary+CLCategory.h"
 #import "help.h"
+#import "RH_APPDelegate.h"
 
 #define HttpRequestDebugLog(_format,...)  DebugLog(MyHTTPRequestDomain,_format, ##__VA_ARGS__)
 
@@ -32,6 +33,7 @@
 @synthesize requesting   = _requesting;
 @synthesize urlRequest   = _urlRequest;
 @synthesize context      = _context;
+@synthesize timeOutInterval = _timeOutInterval ;
 
 + (NSString *)_pathWithFormat:(NSString *)pathFormat arguments:(NSArray *)pathArguments
 {
@@ -139,6 +141,7 @@
     bodyArguments:(NSDictionary *)bodyArguments
              type:(HTTPRequestType)type
 {
+//    NSLog(@"body1参数为=%@",[[NSString alloc] initWithData:[CLHTTPRequest _dataWithBodyArguments:bodyArguments]  encoding:NSUTF8StringEncoding]);
     return [self initWithURL:url
                   pathFormat:pathFormat
                pathArguments:pathArguments
@@ -175,7 +178,8 @@
              type:(HTTPRequestType)type
 {
     if (self = [super init]) {
-
+        _type = type ;
+        
         //扩展路径
         if (path.length) { //移除头尾的/符
             if (url.length){
@@ -184,13 +188,28 @@
                url = [@"" stringByAppendingFormat:@"%@",[path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]]];
             }
         }
-
+        //测试环境拼接路径才可以进入
+//        if (![url containsString:@"http"]) {
+//            url = [NSString stringWithFormat:@"https://%@/%@",TEST_DOMAIN,url];
+//        }
+//        NSLog(@"url===%@",url);
+        
         if (!IS_HTTP_URL(url)) {
-            @throw [[NSException alloc] initWithName:NSInvalidArgumentException
-                                              reason:@"请求的URL必须为HTTP请求"
-                                            userInfo:nil];
+            if (IS_TEST_SERVER_ENV){
+#ifdef TEST_DOMAIN
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",TEST_DOMAIN,@""]] ;
+#endif
+            }else{
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",appDelegate.domain,@""]] ;
+//            @throw [[NSException alloc] initWithName:NSInvalidArgumentException
+//                                              reason:@"请求的URL必须为HTTP请求"
+//                                            userInfo:nil];
+            }
         }
-
+        
+        
         //生成查询参数
         NSString * queryArgumentStr = nil;
 
@@ -211,21 +230,51 @@
                 queryArgumentStr = [queryArgumentStrArrary componentsJoinedByString:@"&"];
             }
         }
-
-        //设置查询路径
-        if (queryArgumentStr) {
-            url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+        
+        //生成body data
+        NSMutableData *mutBodyData = [[NSMutableData alloc] init] ;
+        if (bodyData.length){
+            [mutBodyData appendData:bodyData] ;
         }
-
+        
+        switch (_type) {
+            case HTTPRequestTypeGet:
+            {
+                //设置查询路径
+                if (queryArgumentStr) {
+                    url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+                }
+            }
+                break;
+                
+            case HTTPRequestTypePost:
+            case HTTPRequestTypePut:
+            case HTTPRequestTypeDelete:
+            {
+                if (queryArguments.count) {
+                    [mutBodyData appendData:[CLHTTPRequest _dataWithBodyArguments:queryArguments]] ;
+                }
+            }
+                
+            default:
+                break;
+        }
+        
+        
+//        //设置查询路径
+//        if (queryArgumentStr) {
+//            url = [NSString stringWithFormat:@"%@?%@",url,queryArgumentStr];
+//        }
         _requestURL      = url;
         _headerArguments = headerArguments;
-        _bodyData        = bodyData;//type != HTTPRequestTypeGet ? bodyData : nil;
+        _bodyData        = mutBodyData ;//type != HTTPRequestTypeGet ? bodyData : nil;
         _type            = type;
 
     }
 
     return self;
 }
+
 
 + (NSData *)_dataWithBodyArguments:(NSDictionary *)bodyArguments
 {
@@ -236,17 +285,26 @@
         bodyData = [NSMutableData data];
 
         BOOL isStart = YES;
-
+        
         for (NSString * key in bodyArguments.allKeys) {
 
 
+//#define   addConnectChar()                              \
+//{                                                       \
+//if (!isStart) {                                     \
+//[bodyData appendData:DataWithUTF8Code(@"&")];   \
+//}else{                                              \
+//isStart = NO;                                   \
+//}                                                   \
+//}
 #define   addConnectChar()                              \
 {                                                       \
 if (!isStart) {                                     \
-[bodyData appendData:DataWithUTF8Code(@"&")];   \
+isStart = YES;\
 }else{                                              \
 isStart = NO;                                   \
 }                                                   \
+[bodyData appendData:DataWithUTF8Code(@"&")];    \
 }
             id value = bodyArguments[key];
 
@@ -268,19 +326,30 @@ isStart = NO;                                   \
                 [bodyData appendData:DataWithUTF8Code(tmpStr)];
             }
         }
-
+        NSLog(@"body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]) ;
 //        HttpRequestDebugLog("body参数为=%@",[[NSString alloc] initWithData:bodyData encoding:NSUTF8StringEncoding]);
     }
-
     return bodyData;
+}
+
+#pragma mark-timeout interval
+-(void)setTimeOutInterval:(NSTimeInterval)timeOutInterval
+{
+    _timeOutInterval = MAX(0.0, timeOutInterval) ;
+}
+
+-(NSTimeInterval)timeOutInterval
+{
+    if (_urlRequest) return _urlRequest.timeoutInterval ;
+    
+    return MAX(0, _timeOutInterval) ;
 }
 
 - (NSURLRequest *)urlRequest
 {
-    //lazy init
     if (!_urlRequest) {
 
-        //        HttpRequestDebugLog(@"URL = %@",_requestURL);
+                HttpRequestDebugLog(@"URL = %@",_requestURL);
 
         NSMutableURLRequest * tmpURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[_requestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 
@@ -311,16 +380,21 @@ isStart = NO;                                   \
         for (id key in _headerArguments.allKeys) {
             [tmpURLRequest addValue:[_headerArguments stringValueForKey:key] forHTTPHeaderField:[key isKindOfClass:[NSString class]] ? key : [key description]];
         }
-
         //设置body
         if (_bodyData) {
             [tmpURLRequest setHTTPBody:_bodyData];
         }
-
+        
+        if (_timeOutInterval>0){
+            tmpURLRequest.timeoutInterval = _timeOutInterval ;
+        }
+        
         _urlRequest = tmpURLRequest;
     }
     
-    NSLog(@"urlRequest:%@",_urlRequest.URL) ;
+    if (![_urlRequest.URL.absoluteString containsString:@"mineOrigin/alwaysRequest.html"]){
+        NSLog(@"urlRequest:%@",_urlRequest.URL) ;
+    }
     return _urlRequest;
 }
 
@@ -378,7 +452,7 @@ isStart = NO;                                   \
     }
 }
 
-- (void)    urlConnectionManager:(URLConnectionManager *)manager
+- (void)urlConnectionManager:(URLConnectionManager *)manager
                       connection:(NSURLConnection *)connection
        didSendHTTPBodyDataLength:(long long)sendDataLenght
               expectedDataLength:(long long)expectedDataLength

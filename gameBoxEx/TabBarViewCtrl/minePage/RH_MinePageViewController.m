@@ -12,7 +12,6 @@
 #import "RH_LoginViewController.h"
 
 @interface RH_MinePageViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_MinePageViewController
@@ -44,6 +43,7 @@
 -(void)handleNotification:(NSNotification*)nt
 {
     if ([nt.name isEqualToString:NT_LoginStatusChangedNotification]){
+//        [[NSURLCache sharedURLCache] removeAllCachedResponses];
         [self performSelectorOnMainThread:@selector(reloadWebView) withObject:nil waitUntilDone:NO] ;
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="RH_ActivithyView">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="126"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lrJ-n0-mJG">
+                    <rect key="frame" x="0.0" y="40" width="50" height="86"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oih-Vc-Ost">
+                    <rect key="frame" x="0.0" y="7" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="F3p-4y-sd0"/>
+                        <constraint firstAttribute="height" constant="25" id="kVF-yd-IR8"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="home_cancel_icon"/>
+                    <connections>
+                        <action selector="removeFromeSuperView:" destination="iN0-l3-epB" eventType="touchUpInside" id="FeG-TT-Vhz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lrJ-n0-mJG" firstAttribute="top" secondItem="oih-Vc-Ost" secondAttribute="bottom" constant="8" id="0IQ-zB-36H"/>
+                <constraint firstItem="oih-Vc-Ost" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Kol-k6-w0h"/>
+                <constraint firstAttribute="trailing" secondItem="lrJ-n0-mJG" secondAttribute="trailing" id="MYa-mD-kuk"/>
+                <constraint firstAttribute="bottom" secondItem="lrJ-n0-mJG" secondAttribute="bottom" id="N13-4s-Stt"/>
+                <constraint firstItem="lrJ-n0-mJG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hqb-TQ-nlF"/>
+                <constraint firstItem="lrJ-n0-mJG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="ttI-1B-JDq"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="deleteButton" destination="oih-Vc-Ost" id="aai-Tu-8rL"/>
+                <outlet property="imgView" destination="lrJ-n0-mJG" id="eA6-MY-cA5"/>
+            </connections>
+            <point key="canvasLocation" x="-295" y="-463"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="home_cancel_icon" width="24" height="24"/>
+    </resources>
+</document>

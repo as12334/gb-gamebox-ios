@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor grayColor];
     self.navigationBarHidden = YES;
 
     //导航过渡代理
@@ -40,7 +40,8 @@
 #pragma mark -
 
 - (BOOL)shouldAutorotate {
-    return [self.topViewController shouldAutorotate];
+//    return [self.topViewController shouldAutorotate];
+    return YES ;
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
@@ -49,7 +50,13 @@
 - (NSUInteger)supportedInterfaceOrientations
 #endif
 {
-    return [self.topViewController supportedInterfaceOrientations];
+//    return [self.topViewController supportedInterfaceOrientations];
+    return [self.viewControllers.lastObject supportedInterfaceOrientations];
+}
+
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{    // 返回nav栈中最后一个对象,坚持旋转的方向
+    return [self.viewControllers.lastObject preferredInterfaceOrientationForPresentation];
 }
 
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sectionsInfo</key>
+	<array>
+		<dict>
+			<key>rowsInfo</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>真实姓名</string>
+					<key>cellClass</key>
+					<string>RH_BankCardCell</string>
+					<key>detailTitle</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>detailTitle</key>
+					<string></string>
+					<key>title</key>
+					<string>银行</string>
+					<key>cellClass</key>
+					<string>RH_BankCardCell</string>
+				</dict>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_BankCardCell</string>
+					<key>title</key>
+					<string>卡号</string>
+					<key>detailTitle</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>detailTitle</key>
+					<string></string>
+					<key>title</key>
+					<string>开户行</string>
+					<key>cellClass</key>
+					<string>RH_BankCardCell</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>cellsExtraInfo</key>
+	<dict>
+		<key>isCustomHeight</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

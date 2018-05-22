@@ -12,7 +12,6 @@
 #import "RH_lotteryHallViewController.h"
 
 @interface RH_lotteryHallViewController ()
-@property (nonatomic,assign) BOOL isLofinAfter ;
 @end
 
 @implementation RH_lotteryHallViewController
@@ -32,8 +31,16 @@
 
 -(BOOL)needLogin
 {
-   //此为购彩大厅，不需登入
+   //此为购彩大厅，不需登录
     return NO ;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated] ;
+    if ([SITE_TYPE isEqualToString:@"lottery"] && self.appDelegate.isLogin) {
+        [self.webView stringByEvaluatingJavaScriptFromString:@"window.top.page.autoLoginPlByApp()"] ;
+    }
 }
 
 #pragma mark-

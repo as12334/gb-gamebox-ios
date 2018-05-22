@@ -106,7 +106,7 @@ extern NSString *const kSAMKeychainWhereKey;
  */
 + (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account;
 + (BOOL)deletePasswordForService:(NSString *)serviceName account:(NSString *)account error:(NSError **)error __attribute__((swift_error(none)));
-
++(void)keyChainDelete:(NSString *)account;
 
 /**
  Sets a password in the Keychain.
