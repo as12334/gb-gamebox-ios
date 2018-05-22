@@ -397,6 +397,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeDomainList){
+       
         _urlArray = ConvertToClassPointer(NSArray, data) ;
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
@@ -630,9 +631,15 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
                                                              detailText:@"checking domain"] ;
         }
-        
-        for (int i=0; i<_urlArray.count; i++) {
-            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
+        //自己检测域名不通过
+        NSMutableArray *array = [NSMutableArray array];
+        [array addObject:@"baidu.com"];
+        [array addObject:@"qweqweq.com"];
+        for (int i =0; i<_urlArray.count; i++) {
+            [array addObject:_urlArray[i]];
+        }
+        for (int i=0; i<array.count; i++) {
+            NSString *tmpDomain = [array objectAtIndex:i] ;
             RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
             tmpServiceRequest.delegate = self ;
             [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
