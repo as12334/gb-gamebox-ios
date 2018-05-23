@@ -70,13 +70,14 @@
     }
     
 }
+
 - (void)textFieldDidChange:(UITextField *)textField
 {
-    if (textField == self.orderNumTextfiled) {
-        if (textField.text.length > 5) {
-            textField.text = [textField.text substringToIndex:5];
-        }
-    }
+//    if (textField == self.orderNumTextfiled) {
+//        if (textField.text.length > 5) {
+//            textField.text = [textField.text substringToIndex:5];
+//        }
+//    }
 }
 
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
