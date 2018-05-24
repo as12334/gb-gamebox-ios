@@ -149,7 +149,7 @@
 #define SID        @"21"
 #define THEME    @"default.skin"
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 
 #elif _1qkq //宏图娱乐
@@ -2835,6 +2835,15 @@
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _xguf //澳门银河
+
+#define CODE    @"xguf"
+#define S        @"80dd80d64bf3e5df12aa66a7aaa0f568"
+#define SID        @"580"
+#define THEME    @"default.skin"
+#define THEMEV3             @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _ktal //众博国际
 
 #define CODE    @"ktal"
@@ -2877,6 +2886,15 @@
 #define CODE    @"taxv"
 #define S        @"116ae41ed0880f51203ae39b830babb8"
 #define SID        @"586"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _hpvl //星河国际
+
+#define CODE    @"hpvl"
+#define S        @"823201cd45e2e180c609bf56f4773aa8"
+#define SID        @"588"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
