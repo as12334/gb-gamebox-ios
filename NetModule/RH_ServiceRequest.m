@@ -147,7 +147,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startCheckDomain:(NSString*)doMain
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
     [self _startServiceWithAPIName:nil
                         pathFormat:@"https://%@:8989/__check"
@@ -417,7 +417,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
 {
-    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
@@ -929,6 +929,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark -  一键回收&单个回收
 -(void)startV3OneStepRecoverySearchId:(NSString *)searchId
 {
+    NSLog(@"self.appDelegate.domain===%@",self.appDelegate.domain);
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_ONESTEPRECOVERY_SEARCHAPIID];
     [self _startServiceWithAPIName:self.appDelegate.domain
@@ -1893,12 +1894,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString*)payAccountId
                                activityId:(NSString *)activityId
+                             bankNameCode:(NSString *)bankNameCode
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
      [dict setValue:amount forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
     [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
     [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
     [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
+    [dict setValue:bankNameCode forKey:RH_SP_ONLINEPAY_PAYERBANK];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONLINEPAY
                      pathArguments:nil
@@ -2000,7 +2003,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId
@@ -2009,11 +2012,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
-    
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ELECTRONICPAY
                      pathArguments:nil
@@ -2031,7 +2033,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId
@@ -2040,7 +2042,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
@@ -2152,6 +2154,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3CustomService
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============提交crash日志================
+-(void)startV3CollectAppDomainError:(NSString *)siteId userNameStr:(NSString *)userName lastLoginTime:(NSString *)lastLoginTime domain:(NSString *)domain ipStr:(NSString *)ip errorMessageStr:(NSString *)errorMessage codeStr:(NSString *)codeStr markStr:(NSString *)mark typeStr:(NSString *)typeStr versionName:(NSString *)versionName channelStr:(NSString *)channel sysCodeStr:(NSString *)sysCode brandsStr:(NSString *)brands modelStr:(NSString *)modelStr
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_CUSTOMSERVICE
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2412,9 +2429,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
          reslutData:(__autoreleasing id *)reslutData
               error:(NSError *__autoreleasing *)error
 {
+    
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
-
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2515,6 +2532,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
+        NSString *errorMessage = [response.description copy] ;
         return YES ;
     }
     else if (type == ServiceRequestTypeV3RegiestSubmit){
@@ -2568,8 +2586,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
     }else{
         if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList ){
-            if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
-                tempError = [NSError resultErrorWithResultInfo:dataObject];
+            if (dataObject != nil && ![dataObject isEqual:@""]) {
+                if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
+                    tempError = [NSError resultErrorWithResultInfo:dataObject];
+                }
             }
         }
     }
@@ -2633,6 +2653,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
+                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_DATA]);
+//                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
+//                                         response.statusCode,
+//                                         response.description,nil);
+                NSLog(@"response.statusCode=%ld",(long)response.statusCode);
+                
+                if (response.statusCode==607){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"站点维护", nil) ;
+                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
+                        //创建通知
+                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                        //通过通知中心发送通知
+                        [[NSNotificationCenter defaultCenter] postNotification:notification];
+                        return ;
+                    });
+                }
             }
                 break ;
            
@@ -2831,6 +2868,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3ActivityDetailList:
             {
                 resultSendData = [RH_DiscountActivityModel dataArrayWithInfoArray:[[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA] arrayValueForKey:RH_GP_ACTIVITYDATALIST_LIST]] ;
+                
             }
                 break;
             case ServiceRequestTypeV3AddApplyDiscountsVerify:
@@ -2960,6 +2998,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
 //                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
                 resultSendData = [RH_DepositeTransferModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+                
+                
+                
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:
@@ -3062,6 +3103,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 case ServiceRequestTypeV3DepositeOriginChannel:
             {
                 resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                
             }
                 break;
 //                case ServiceRequestTypeV3ScanPay:

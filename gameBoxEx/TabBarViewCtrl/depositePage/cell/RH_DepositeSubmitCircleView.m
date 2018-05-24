@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tabelView;
 
 @property (weak, nonatomic) IBOutlet UIButton *depositeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *promoLab;
 
 @property (weak, nonatomic) IBOutlet UILabel *chareLabel;
 @property (nonatomic,strong)NSArray *salesArray;
@@ -79,9 +80,18 @@
     _tabelView.backgroundColor = colorWithRGB(242, 242, 242);
     [_tabelView registerNib:[UINib nibWithNibName:@"RH_DepositeSubmitCircleCell" bundle:nil] forCellReuseIdentifier:@"circleCell"];
     
+    
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.salesArray.count > 0) {
+        self.tabelView.alpha = 1.0;
+        self.promoLab.alpha = 1.0;
+    }else{
+        self.tabelView.alpha = 0.0;
+        self.promoLab.alpha = 0.0;
+    }
     return self.salesArray.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

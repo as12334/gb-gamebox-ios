@@ -173,7 +173,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * DOMAIN CHECK
  */
--(void)startCheckDomain:(NSString*)doMain;
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType;
 
 /**
  * update CHECK
@@ -548,7 +548,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3OnlinePayWithRechargeAmount:(NSString *)amount
                              rechargeType:(NSString *)rechargeType
                              payAccountId:(NSString *)payAccountId
-                               activityId:(NSString *)activityId ;
+                               activityId:(NSString *)activityId
+                            bankNameCode:(NSString *)bankNameCode;
 
 #pragma mark - V3 扫码支付提交存款
 -(void)startV3ScanPayWithRechargeAmount:(NSString *)amount
@@ -576,7 +577,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                               payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;
@@ -585,7 +586,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;

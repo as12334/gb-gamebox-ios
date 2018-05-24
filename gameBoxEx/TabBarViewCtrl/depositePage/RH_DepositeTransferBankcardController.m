@@ -40,6 +40,7 @@
 @property(nonatomic,strong,readonly)RH_DepositeTransferPulldownView *pulldownView;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
+@property(nonatomic,strong)UIView *headerTitleView;
 //柜台机单独传type
 @property(nonatomic,strong)NSString *counterStr;
 @end
@@ -59,7 +60,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -86,7 +87,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -164,6 +165,8 @@
 {
     self.accountMuArray = [NSMutableArray array];
     self.accountMuArray = ConvertToClassPointer(NSMutableArray, context);
+//    NSString *hide = ConvertToClassPointer(NSString , [context objectForKey:@"mHide"]);
+//    NSLog(@"hide==%@",hide);
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.accountMuArray[1]);
     self.listModel = listModel;
     if ([self.accountMuArray[2] isEqualToString:@"company"]) {
@@ -211,6 +214,24 @@
     else{
        _markArray =@[@0,@1,@2,@3,@4,@5];
     }
+   
+}
+-(void)setChannelModel:(RH_DepositeTransferChannelModel *)channelModel
+{
+    _channelModel = channelModel;
+    if (self.channelModel.mNewActivity==YES) {
+        self.headerTitleView = [[UIView alloc]initWithFrame:CGRectMake(0,NavigationBarHeight+heighStatusBar, self.contentView.frameWidth, 20)];
+        self.headerTitleView.backgroundColor = [UIColor yellowColor];
+        [self.view addSubview:self.headerTitleView];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, 20)];
+        lab.backgroundColor = [UIColor yellowColor];
+        [lab setTextColor:[UIColor lightGrayColor]];
+        lab.font = [UIFont systemFontOfSize:14.f];
+        lab.text = @"温馨提示：完成存款后，请前往活动大厅申请活动优惠。";
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.headerTitleView addSubview:lab];
+        self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
+    }
 }
 #pragma mark --视图
 -(void)setupUI{
@@ -235,7 +256,7 @@
 {
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
-        _circleView.frame = CGRectMake(0, 0, 295, 358);
+//        _circleView.frame = CGRectMake(0, 0, 295, 158);
         _circleView.center = self.contentView.center;
         _circleView.delegate = self;
     }
@@ -375,10 +396,9 @@
 #pragma mark --RH_DepositeTransferReminderCell的代理，点击进入客服界面
 -(void)touchTransferReminderTextViewPushCustomViewController:(RH_DepositeTransferReminderCell *)cell
 {
-//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
-//    [self showViewController:customVC sender:self];
-//    touchTransferReminderTextViewPushCustomViewController
-    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --点击遮罩层，关闭遮罩层和弹框
 -(void)closeShadeView
@@ -570,6 +590,7 @@
         }
     }
     else if ([self.accountMuArray[2] isEqualToString:@"alipay"]){
+        
         if (self.paywayCell.paywayString.length==0) {
             showMessage(self.view, @"请填写支付宝用户名", nil);
         }
@@ -579,18 +600,18 @@
             }
             else{
                 if (self.adressCell.adressStr.length!=5&&self.adressCell.adressStr.length!=0&&self.adressCell.adressStr!=nil) {
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入五位数订单号", nil);
                 }
-                else if(self.adressCell.adressStr.length!=0){
-                    NSString *regex = @"[0-9]*";
-                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
-                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
-                    }
-                    else{
-                        showMessage(self.view, @"请输入五位纯数字订单号", nil);
-                    }
-                }
+//                else if(self.adressCell.adressStr.length!=0){
+////                    NSString *regex = @"[0-9]*";
+////                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+////                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
+////                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+////                    }
+////                    else{
+//                        showMessage(self.view, @"请输入五位数订单号", nil);
+////                    }
+//                }
                 else{
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
@@ -667,15 +688,14 @@
         [self.accountMuArray[2]isEqualToString:@"bitcion"]||
         [self.accountMuArray[2]isEqualToString:@"unionpay"]||[self.accountMuArray[2]isEqualToString:@"onecodepay"]||
         [self.accountMuArray[2]isEqualToString:@"other"]) {
-        
-        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:@"12" payerBankcard:self.paywayCell.paywayString activityId:self.activityId];
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.transferOrderCell.orderNumTextfiled.text integerValue]?self.transferOrderCell.orderNumTextfiled.text:@"12345" payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
-        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:12345 payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?self.adressCell.adressStr:@"12345" payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }

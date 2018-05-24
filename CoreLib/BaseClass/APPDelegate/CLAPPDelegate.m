@@ -16,6 +16,7 @@
 
 #import "RH_MyUncaughtExceptionHandler.h"
 #import "RH_ServiceRequest.h"
+#import "RH_Crash.h"
 
 //----------------------------------------------------------
 
@@ -109,19 +110,9 @@
     //开始显示视图
     [self startShowView];
     
-#pragma mark -- 崩溃日志
-        [RH_MyUncaughtExceptionHandler setDefaultHandler];
-        // 发送崩溃日志
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *dataPath = [path stringByAppendingPathComponent:@"Exception.txt"];
-        NSData *data = [NSData dataWithContentsOfFile:dataPath];
-        if (data != nil) {
-            [self sendExceptionLogWithData:data path:dataPath];
-        }
-
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     return YES;
 }
-
 #pragma mark -- 发送崩溃日志
 - (void)sendExceptionLogWithData:(NSData *)data path:(NSString *)path {
     

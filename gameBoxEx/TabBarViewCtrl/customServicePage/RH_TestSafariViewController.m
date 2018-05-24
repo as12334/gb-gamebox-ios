@@ -14,10 +14,15 @@
 @property(nonatomic,strong,readonly)UIWebView *webView;
 @property(nonatomic,strong)NSString *urlString;
 @property(nonatomic,strong)NSNumber *statusMark;
+@property(nonatomic,strong)NSNumber *urlMark;
 @end
 
 @implementation RH_TestSafariViewController
 @synthesize  webView = _webView;
+//-(BOOL)isSubViewController
+//{
+//    return YES;
+//}
 //-(BOOL)isHiddenNavigationBar
 //{
 //    return YES;
@@ -26,7 +31,9 @@
 {
     self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
-    [self.serviceRequest startV3GetCustomService];
+    if ([_urlMark isEqual:@1]) {
+        [self.serviceRequest startV3GetCustomService];
+    }
 }
 -(BOOL)tabBarHidden
 {
@@ -42,7 +49,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -67,7 +74,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -117,9 +124,25 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(MainScreenH==812?20.0:0.0, 0, self.isHiddenTabBar?0:49+heighStatusBar, 0);
+//    if ([SID isEqualToString:@"119"] || [SID isEqualToString:@"270"]|| [SID isEqualToString:@"511"]) {
+//        self.webView.scrollView.contentInset = UIEdgeInsetsMake(MainScreenH==812?20.0:0.0, 0, self.isHiddenTabBar?0:49+heighStatusBar, 0);
+//    }else if ([SID isEqualToString:@"500"]||[SID isEqualToString:@"501"]){
+//        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, 50, 0);
+//    }else{
+//        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
+//    }
+//    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
     self.webView.frame = self.view.frame;
- 
+    [self.serviceRequest startV3GetCustomService];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+-(void)dismissFirstVC
+{
+    if ([_urlMark isEqual:@1]) {
+        [self.tabBarController setSelectedIndex:0];
+    }
 }
 -(BOOL)needLogin
 {
@@ -158,12 +181,14 @@
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];
+            self.urlMark=@1;
         }
         else if([self.statusMark isEqual:@1])
         {
            NSURL *webURL = [NSURL URLWithString:self.urlString];
             [self.webView loadRequest:[NSURLRequest requestWithURL:webURL]];
             [self.contentView addSubview:self.webView];
+            self.urlMark=@0;
         }
     }
 }
@@ -181,6 +206,10 @@
         showErrorMessage(self.view, error, nil) ;
     }];
 }
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    
+    
+}
 
 @end

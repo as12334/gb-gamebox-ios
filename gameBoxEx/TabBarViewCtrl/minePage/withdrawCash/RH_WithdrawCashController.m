@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -133,7 +133,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -400,8 +400,15 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
             [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
         }
-        [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
-        [_mainSegmentControl insertSegmentWithTitle:@"比特币账户" atIndex:1 animated:YES];
+        if (self.withDrawModel.mIsBit==true) {
+            [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
+            [_mainSegmentControl insertSegmentWithTitle:@"比特币账户" atIndex:1 animated:YES];
+        }
+        else
+        {
+             [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
+        }
+        
         _mainSegmentControl.selectedSegmentIndex = 0;
         [_mainSegmentControl addTarget:self action:@selector(segmentControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
     }

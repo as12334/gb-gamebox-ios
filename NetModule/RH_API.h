@@ -455,6 +455,13 @@
 #define RH_SP_COLLECTAPPERROR_IP                          @"ip"
 #define RH_SP_COLLECTAPPERROR_ERRORMESSAGE                @"errorMessage"
 #define RH_SP_COLLECTAPPERROR_CODE                        @"code"
+#define RH_SP_COLLECTAPPERROR_MARK                        @"mark"
+#define RH_SP_COLLECTAPPERROR_TYPE                         @"type"
+#define RH_SP_COLLECTAPPERROR_VERSIONNAME                 @"versionName"
+#define RH_SP_COLLECTAPPERROR_CHANNEL                       @"channel"
+#define RH_SP_COLLECTAPPERROR_SYSCODE                       @"sysCode"
+#define RH_SP_COLLECTAPPERROR_BRANDS                        @"brands"
+#define RH_SP_COLLECTAPPERROR_MODEL                         @"model"
 
 
 #pragma mark - V3
@@ -967,9 +974,10 @@
 #define RH_GP_DEPOSITEORIGINCHANNEL_IMGURL              @"imgUrl"
 #define RH_GP_DEPOSITEORIGINCHANNEL_QUICKMONEYS         @"quickMoneys"
 #define RH_GP_DEPOSITEORIGINCHANNEL_PAYERBANKCARD       @"payerBankcard"
-#define RH_GP_DEPOSITEORIGINCHANNEL_HIDE                @"hide"
+#define RH_GP_DEPOSITEORIGINCHANNEL_HIDE                @"mHide"
 #define RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT     @"multipleAccount"
 #define RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG          @"accountImg"
+#define RH_GP_DEPOSITEORIGINCHANNEL_NEWACTIVITY         @"newActivity"
 
 #define RH_GP_DEPOSITECOUNTER_CODE                      @"code"
 #define RH_GP_DEPOSITECOUNTER_NAME                      @"name"
@@ -1025,6 +1033,7 @@
 #define RH_SP_ONLINEPAY_RECHARGETYPE                 @"result.rechargeType"  //充值类型
 #define RH_SP_ONLINEPAY_PAYACCOUNTID                 @"account"  //存款渠道ID
 #define RH_SP_ONLINEPAY_ACTIVITYID                   @"activityId"           //优惠ID
+#define RH_SP_ONLINEPAY_PAYERBANK                     @"result.payerBank"
 
 #pragma mark - V3 扫码支付提交存款
 #define RH_API_NAME_SCANPAY  @"mobile-api/depositOrigin/scanPay.html"
@@ -1080,7 +1089,13 @@
 #define RH_API_NAME_CUSTOMSERVICE       @"mobile-api/origin/getCustomerService.html"
 
 #pragma mark -v3  获取IP和域名
+//<<<<<<< HEAD
 #define RH_API_NAME_BOSSSYSDOMAIN       @"/app/line.html"
+//=======
+//#define RH_API_NAME_BOSSSYSDOMAIN       @"boss-api/app/line.html"
+//
+//
+//>>>>>>> origin/dev_lewis
 
 #endif /* RH_API_h */
 

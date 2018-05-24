@@ -42,6 +42,9 @@
         _mSearchId = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SEARCHID];
         _mImgUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_IMGURL];
         _mAccountImg = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG];
+        
+        _mHide = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_HIDE];
+        
     }
     return self;
 }
@@ -108,6 +111,7 @@
         _mPayerBankcard = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_PAYERBANKCARD];
         _mHide = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_HIDE];
         _mMultipleAccount = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_MULTIPLEACCOUNT];
+        _mNewActivity = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_NEWACTIVITY];
         if (![[info objectForKey:RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES]isKindOfClass:[NSNull class]]) {
          _mAounterModel = [RH_DepositeTansferCounterModel dataArrayWithInfoArray:[info adaptationValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_COUNTERRECHARGETYPES]];
         }

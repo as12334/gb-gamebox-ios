@@ -11,13 +11,11 @@
 #import "SplashViewController.h"
 #import "RH_MainTabBarController.h"
 #import "coreLib.h"
-#import "coreLib.h"
 #import "RH_UserInfoManager.h"
 #import "RH_GesturelLockController.h"
 #import "RH_MainNavigationController.h"
 #import "RH_GestureOpenLockView.h"
-
-
+#import "RH_API.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -265,6 +263,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (BOOL)needRegister3DTouchShortcutItems {
     return NO;
 }
-
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    
+}
 
 @end

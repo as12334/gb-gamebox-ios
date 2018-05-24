@@ -31,6 +31,8 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
+#import "ErrorstatesVC.h"
+#import "RH_BannerDetailVCViewController.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -51,6 +53,7 @@
 @property (nonatomic,strong,readonly) RH_NormalActivithyView *normalActivityView;
 @property (nonatomic,strong)UIView *shadeView;
 @property (nonatomic,strong)MBProgressHUD *hud;
+@property (nonatomic,strong)NSArray *array ;
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -67,7 +70,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
-    [self.serviceRequest startGetCustomService] ;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
+    
+    
+//    [self.serviceRequest startGetCustomService] ;
     [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
@@ -82,6 +89,14 @@
     [self.serviceRequest startV3SiteTimezone] ;
     //自动登录
     [self autoLogin] ;
+}
+
+-(void)tongzhi:(NSNotification *)text
+{
+    NSLog(@"textOne==%@",text.userInfo[@"textOne"]);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showViewController:[ErrorstatesVC viewController] sender:nil];
+    });
 }
 
 - (void)dealloc
@@ -418,9 +433,17 @@
 -(RH_LotteryCategoryModel *)selectedCategoryModel
 {
     RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
-    if (homePageModel){
+    if (homePageModel&&homePageModel.mLotteryCategoryList.count>0){
         return [homePageModel.mLotteryCategoryList objectAtIndex:self.homeCategoryCell.selectedIndex] ;
     }
+//    else if (homePageModel.mLotteryCategoryList.count==0){
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"数据加载失败，请点击重试"preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+//           [self.serviceRequest startV3HomeInfo] ;
+//        }];
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//    }
     return nil ;
 }
 
@@ -872,7 +895,12 @@
 {
     if (bannerModel.contentURL.length){
         self.appDelegate.customUrl = bannerModel.contentURL ;
+        NSLog(@"bannerModel.contentURL==%@",bannerModel.contentURL);
         [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        
+//        RH_BannerDetailVCViewController *banner = [RH_BannerDetailVCViewController viewControllerWithContext:nil];
+//        banner.urlStr = bannerModel.contentURL;
+//        [self showViewController:banner sender:self];
     }
 }
 

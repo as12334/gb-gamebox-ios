@@ -36,7 +36,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -49,6 +49,8 @@
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
             }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -61,7 +63,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -74,6 +76,8 @@
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
             }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
             }else{
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
             }
@@ -96,6 +100,12 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
+
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    //初始化 优惠类别信息
+//    [self loadingIndicateViewDidTap:nil] ;
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -143,8 +153,8 @@
 
 -(void)updateLayout
 {
-    self.typeTopView.whc_TopSpace(StatusBarHeight+NavigationBarHeight).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(self.typeTopView.viewHeight) ;
-    self.pageView.whc_TopSpace(StatusBarHeight + NavigationBarHeight + self.typeTopView.viewHeight +10).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(TabBarHeight) ;
+    self.typeTopView.whc_TopSpace(heighStatusBar+NavigationBarHeight).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(self.typeTopView.viewHeight) ;
+    self.pageView.whc_TopSpace(heighStatusBar + NavigationBarHeight + self.typeTopView.viewHeight +10).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(TabBarHeight) ;
    
 }
 

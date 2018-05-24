@@ -64,14 +64,15 @@
         [contentView addSubview:sureBtn];
         sureBtn.whc_LeftSpace(39).whc_TopSpaceToView(15, contentWebView).whc_RightSpace(39).whc_Height(35) ;
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         sureBtn.layer.cornerRadius = 5;
         sureBtn.layer.masksToBounds = YES ;
+        sureBtn.backgroundColor = colorWithRGB(210, 210, 210);
         sureBtn.titleLabel.font = [UIFont systemFontOfSize:14.f] ;
         [sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
  
         cancelButton = [[UIButton alloc] init];
-        if ([THEMEV3 isEqualToString:@"green"]){
+        if ([THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"green_white"]){
             [cancelButton setImage:ImageWithName(@"home_announce_close_green") forState:UIControlStateNormal];
             sureBtn.backgroundColor = colorWithRGB(4, 109, 79);
         }else if ([THEMEV3 isEqualToString:@"red"]){
@@ -81,11 +82,11 @@
         }else if ([THEMEV3 isEqualToString:@"black"]){
             //shaole
             [cancelButton setImage:ImageWithName(@"home_announce_close_black") forState:UIControlStateNormal];
-        }else if ([THEMEV3 isEqualToString:@"orange"]){
+        }else if ([THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"orange_white"]){
             //shaole
             [cancelButton setImage:ImageWithName(@"home_announce_close_orange") forState:UIControlStateNormal];
             sureBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
-        }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        }else if ([THEMEV3 isEqualToString:@"coffee_black"]||[THEMEV3 isEqualToString:@"coffee_white"]){
             //shaole
             [cancelButton setImage:ImageWithName(@"home_announce_close_coffee") forState:UIControlStateNormal];
             sureBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
@@ -93,6 +94,7 @@
             [cancelButton setImage:ImageWithName(@"home_announce_close_default") forState:UIControlStateNormal];
             sureBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
         }
+        
         [self addSubview:cancelButton];
         cancelButton.whc_TopSpaceToView(5, contentView).whc_CenterX(0).whc_Width(70).whc_Height(70);
         cancelButton.layer.cornerRadius = 35;

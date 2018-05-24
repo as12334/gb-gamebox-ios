@@ -21,7 +21,9 @@
     [super awakeFromNib];
     // Initialization code
     self.downLineView.backgroundColor =colorWithRGB(242, 242, 242);
+    [self.payTextfield addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
+
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     NSString *nameStr = ConvertToClassPointer(NSString, context);
@@ -64,6 +66,16 @@
     }
     
 }
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.payTextfield && [self.payLabel.text isEqualToString:@"订单号后五位"]) {
+        if (textField.text.length > 5) {
+            textField.text = [textField.text substringToIndex:5];
+        }
+    }
+}
+
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     self.adressStr = self.payTextfield.text;

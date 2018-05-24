@@ -24,6 +24,8 @@
 #import "RH_PromoListController.h"
 #import "RH_LoginViewControllerEx.h"
 #import "RH_MePageViewController.h"
+#import "RH_RegistrationViewController.h"
+#import "RH_CustomServiceSubViewController.h"
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>
@@ -45,7 +47,7 @@
     if (self.appDelegate.servicePath.length<1){
         [self.serviceRequest startGetCustomService] ;
     }
-
+    
     [self setHiddenStatusBar:NO];
     
     self.hiddenTabBar = [self tabBarHidden] ;
@@ -282,16 +284,17 @@
     }
 }
 
+
 #pragma mark -
 - (void)setWebURL:(NSURL *)webURL
 {
-    NSLog(@"webURL===%@",webURL);
+    
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
 //            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况 
-
+            _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况
+            NSLog(@"URL===%@",URL);
         }else {
             _webURL = nil;
         }
@@ -525,13 +528,13 @@
         //bSucc是否成功调起支付宝
     }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])
               && ([reqUrl containsString:@"/login/commonLogin.html"] || [reqUrl containsString:@"/passport/login.html"] )){
-        //跳转原生
-        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
-            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
-            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
-            loginViewCtrlEx.delegate = self ;
-            [self showViewController:loginViewCtrlEx sender:self] ;
-        }
+//        //跳转原生
+//        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
+//            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]&&!self.appDelegate.isLogin){
+//            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+//            loginViewCtrlEx.delegate = self ;
+//            [self showViewController:loginViewCtrlEx sender:self] ;
+//        }
 
         return NO ;
     }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||
@@ -556,6 +559,20 @@
 #pragma mark-
 -(void)setupJSCallBackOC:(JSContext*)jsContext
 {
+    jsContext[@"nativeGoToRegisterPage"] = ^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showViewController:[RH_RegistrationViewController viewController]
+                              sender:self];
+        });
+    };
+    
+    jsContext[@"nativeCloseCurrentPage"] = ^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 0 ;
+        });
+    };
+    
     jsContext[@"share"] = ^() {
         NSLog(@"JSToOc :%@------ share",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
@@ -745,6 +762,8 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
     };
+    
+   
 
     jsContext[@"loginState"] = ^(){
         NSLog(@"JSToOc :%@------ loginState",NSStringFromClass([self class])) ;
@@ -884,7 +903,7 @@
             NSLog(@"JSToOc :%@------ gotoDepositPage",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:NO];
-                self.myTabBarController.selectedIndex = 0 ;
+                self.myTabBarController.selectedIndex = 1 ;
 //                [self reloadWebView];
             });
         };
@@ -1006,7 +1025,7 @@
         jsContext[@"nativeGoToCustomerPage"] = ^(){/*** 存款点击在线客服页面跳转）*/
             NSLog(@"JSToOc :%@------ nativeGoToCustomerPage",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.myTabBarController.selectedIndex = 3 ;
+                [self showViewController:[RH_CustomServiceSubViewController viewController] sender:nil];
             });
         };
         

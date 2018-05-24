@@ -52,18 +52,20 @@
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
     
     if (_apiInfoModel){//需请求加载的link
-        if (_apiInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = _apiInfoModel.showGameLink ;
-            [self setupInfo] ;
-        }else{
+       
+//        if (_apiInfoModel.showGameLink.length){ //已获取的请求链接
+//            self.appDelegate.customUrl = _apiInfoModel.showGameLink ;
+//            [self setupInfo] ;
+//        }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
             [self.serviceRequest startv3GetGamesLinkForCheeryLink:_apiInfoModel.mGameLink] ;
 //            [self.serviceRequest startv3GetGamesLink:_apiInfoModel.mApiID
 //                                           ApiTypeID:_apiInfoModel.mApiTypeID
 //                                             GamesID:nil
 //                                           GamesCode:nil] ;
-        }
+//        }
     }else if (_lotteryInfoModel){//
+       
         if (_lotteryInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
             [self setupInfo] ;

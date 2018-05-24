@@ -30,6 +30,7 @@
 #import "RH_QuickChongZhiViewController.h"
 #import "RH_CustomServiceSubViewController.h"
 #import "RH_DepositPaylinkViewController.h"
+#import "RH_TestSafariViewController.h"
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -66,6 +67,7 @@
 @property(nonatomic,strong)NSString *discountStr;
 //将平台和通道一并传给提示文案的cell
 @property(nonatomic,strong)NSMutableArray *reminderArray;
+@property(nonatomic,strong)UIView *headerTitleView;
 
 @end
 
@@ -117,7 +119,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = ColorWithNumberRGB(0x1766bb) ;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -144,7 +146,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = ColorWithNumberRGB(0x1766bb) ;
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -267,6 +269,8 @@
 }
 #pragma mark --视图
 -(void)setupUI{
+    self.headerTitleView = [[UIView alloc]initWithFrame:CGRectMake(0,NavigationBarHeight+heighStatusBar, self.contentView.frameWidth, 20)];
+    self.headerTitleView.backgroundColor = [UIColor yellowColor];
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
@@ -516,9 +520,9 @@
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
 {
-//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
-//    [self showViewController:customVC sender:self];
-    [self.tabBarController setSelectedIndex:3];
+    RH_TestSafariViewController *customVC = [[RH_TestSafariViewController alloc]init];
+    [self showViewController:customVC sender:self];
+//    [self.tabBarController setSelectedIndex:3];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
 -(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel acounterModel:(NSArray *)acounterModel
@@ -612,6 +616,7 @@
                               [mutableArray addObject:self.counterArray];
                             }
                             RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+                            transferVC.channelModel =self.channelModel;
                             [self showViewController:transferVC sender:self];
                         }
                         else{
@@ -647,7 +652,9 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma mark -- 点击弹框里面的提交按钮
 -(void)depositeSubmitCircleViewTransferMoney:(RH_DepositeSubmitCircleView *)circleView
@@ -655,7 +662,7 @@
 
     if ([self.depositeCode isEqualToString:@"online"]) {
          RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[self.bankSeletedIndex]) ;
-        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]];
+        [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]bankNameCode:onlineModel.mBankCode];
     }
     else{
         [self.serviceRequest
@@ -779,6 +786,17 @@
             else if ([self.depositeCode isEqualToString:@"online"]) {
                 self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
             }
+            if (channelModel.mNewActivity==YES) {
+                [self.view addSubview:self.headerTitleView];
+                UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, 20)];
+                lab.backgroundColor = [UIColor yellowColor];
+                [lab setTextColor:[UIColor lightGrayColor]];
+                lab.font = [UIFont systemFontOfSize:14.f];
+                lab.text = @"温馨提示：完成存款后，请前往活动大厅申请活动优惠。";
+                lab.textAlignment = NSTextAlignmentCenter;
+                [self.headerTitleView addSubview:lab];
+                self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
+            }
             [self.contentTableView reloadData];
         }] ;
     }
@@ -868,6 +886,7 @@
     [self.circleView removeFromSuperview];
     [self.closeBtn removeFromSuperview];
     [self.successAlertView removeFromSuperview];
+    [self.shadeView removeFromSuperview];
 }
 - (void)keyboardWillBeHiden:(NSNotification *)notification
 {
