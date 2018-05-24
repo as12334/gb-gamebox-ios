@@ -168,7 +168,12 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _apiDomain = apiDomain ;
     }
 }
-
+-(void)updateHeaderDomain:(NSString *)headerDomain
+{
+    if (_headerDomain.length==0) {
+        _headerDomain = headerDomain;
+    }
+}
 -(void)updateDomain:(NSString*)domain ;
 {
     NSString *tmpStr = domain.trim ;

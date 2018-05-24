@@ -10,9 +10,10 @@
 #import "RH_RegistrationViewItem.h"
 #import "coreLib.h"
 #import "RH_ServiceRequest.h"
-
+#import "RH_UserInfoManager.h"
 @interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate,RH_ServiceRequestDelegate>
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @end
 @implementation RH_RegistrationViewItem
 {
@@ -74,7 +75,7 @@
     }
     return self;
 }
-
+@synthesize serviceRequest = _serviceRequest ;
 
 - (BOOL)isRequire {
     if ([fieldModel.isRequired isEqualToString:@"2"]) {
@@ -82,7 +83,15 @@
     }
     return YES;
 }
-
+-(RH_ServiceRequest *)serviceRequest
+{
+    if (!_serviceRequest){
+        _serviceRequest = [[RH_ServiceRequest alloc] init] ;
+        _serviceRequest.delegate = self ;
+    }
+    
+    return _serviceRequest ;
+}
 - (NSString *)contentType {
     return fieldModel.name;
 }
@@ -540,24 +549,34 @@
 
 - (void)setVerifyCodeLayout {
     textField.whc_RightSpace(150);
-//    imageView_VerifyCode = [UIImageView new];
-//    [self addSubview:imageView_VerifyCode];
-//    imageView_VerifyCode.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
-//    imageView_VerifyCode.backgroundColor = [UIColor redColor];
-    UIWebView *webView = [UIWebView new];
-    [self addSubview:webView];
-    webView.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
-    webView.backgroundColor = [UIColor redColor];
-    RH_APPDelegate *app = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/captcha/pmregister.html", app.domain]];
-    [webView loadRequest:[NSURLRequest requestWithURL:url]];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(webViewTapHandle:)];
-    tap.cancelsTouchesInView = NO;
-    tap.delegate = self;
-    [webView addGestureRecognizer:tap];
-    webView.multipleTouchEnabled = NO;
-    webView.scrollView.bounces = NO;
-    webView.scrollView.scrollEnabled = NO;
+    imageView_VerifyCode = [UIImageView new];
+    [self addSubview:imageView_VerifyCode];
+    imageView_VerifyCode.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
+    imageView_VerifyCode.backgroundColor = [UIColor redColor];
+    [self.serviceRequest startV3RegisetCaptchaCode];
+    imageView_VerifyCode.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeImageView_VerfyCode)];
+    [imageView_VerifyCode addGestureRecognizer:tap];
+//    UIWebView *webView = [UIWebView new];
+//    [self addSubview:webView];
+//    webView.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
+//    webView.backgroundColor = [UIColor redColor];
+////    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
+////    NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
+//    RH_APPDelegate *app = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/captcha/pmregister.html",app.headerDomain]];
+//    [webView loadRequest:[NSURLRequest requestWithURL:url]];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(webViewTapHandle:)];
+//    tap.cancelsTouchesInView = NO;
+//    tap.delegate = self;
+//    [webView addGestureRecognizer:tap];
+//    webView.multipleTouchEnabled = NO;
+//    webView.scrollView.bounces = NO;
+//    webView.scrollView.scrollEnabled = NO;
+}
+-(void)changeImageView_VerfyCode
+{
+    [self.serviceRequest startV3RegisetCaptchaCode];
 }
 - (void)webViewTapHandle:(UITapGestureRecognizer *)tap {
     UIWebView *webView = (UIWebView *)tap.view;
@@ -616,11 +635,16 @@
                 });
             }
     }
+    else if (type==ServiceRequestTypeV3RegiestCaptchaCode){
+        imageView_VerifyCode.image = ConvertToClassPointer(UIImage, data);
+    }
 }
 
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3GetPhoneCode) {
+        showErrorMessage(self.window, error, nil);
+    }else if (type == ServiceRequestTypeV3RegiestCaptchaCode){
         showErrorMessage(self.window, error, nil);
     }
 

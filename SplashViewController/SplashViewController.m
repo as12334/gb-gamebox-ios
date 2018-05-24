@@ -144,7 +144,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _talk = @"/__check" ;
+    _talk = @":8787/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
@@ -160,6 +160,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
+    [self startReqSiteInfo];
 }
 
 - (void)initView{
@@ -210,6 +211,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
+    [self startReqSiteInfo];
 }
 -(NSMutableArray *)checkDomainServices
 {
@@ -374,9 +376,11 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         static dispatch_once_t onceToken ;
         dispatch_once(&onceToken, ^{
-            _urlArray = ConvertToClassPointer(NSArray, data) ;
-//            _urlArray = @[@"xaxaxa.com"];
+            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+            _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
             [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:key.intValue])] ;
+            [self.appDelegate updateHeaderDomain:ConvertToClassPointer(NSString, [data objectForKey:@"domain"])];
+            
             [self checkAllUrl] ;
         }) ;
     }
@@ -386,7 +390,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeDomainList){
-        _urlArray = ConvertToClassPointer(NSArray, data) ;
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+        _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
     {

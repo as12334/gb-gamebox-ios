@@ -126,6 +126,7 @@
 - (void)sendExceptionLogWithData:(NSData *)data path:(NSString *)path {
     
     NSLog(@"123") ;
+    
     //    [self.serviceRequest startTestUrl:path];
     //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //    manager.requestSerializer.timeoutInterval = 5.0f;

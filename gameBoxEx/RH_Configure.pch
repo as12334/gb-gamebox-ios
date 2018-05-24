@@ -30,7 +30,7 @@
 #if  IS_TEST_SERVER_ENV
 #define RH_APP_VERCODE                  @"3"
 //API的主URL
-#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss"]
+#define RH_API_MAIN_URL                         @[@"https://test.gbboss.com:1344"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
@@ -96,8 +96,9 @@
 
 #ifdef _DEBUG //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test02.ampinplayopt0matrix.com"
-#define TEST_DOMAIN  @"test71.hongtubet.com"
+//#define TEST_DOMAIN  @"test71.hongtubet.com"
 //#define TEST_DOMAIN @"192.168.0.176"
+#define TEST_DOMAIN @"test.gbboss.com:1344"
 #define CODE    @"rf80"
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"71"
@@ -124,15 +125,25 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _DEBUG71 //超博娱乐
+//#define TEST_DOMAIN  @"test.gbboss.com:1344"
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define CODE    @"8l6r"
+#define S        @"6bf3b743e414045e5123fc317fb9b535"
+#define SID        @"71"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _rf80 //TEST01[21]  V3原生
 //#define TEST_DOMAIN         @"test01.ccenter.test.so"
 
-//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"192.168.0.92"
 //#define TEST_DOMAIN         @"pro.gbboss.com"
-#define TEST_DOMAIN           @"192.168.0.150"   //cherry
+//#define TEST_DOMAIN           @"192.168.0.150"   //cherry
 //#define TEST_DOMAIN           @"192.168.0.183"   //legend
 //#define TEST_DOMAIN           @"192.168.0.176"   //edon
 //#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN

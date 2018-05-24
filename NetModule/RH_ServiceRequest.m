@@ -134,11 +134,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startReqDomainListWithDomain:(NSString*)domain
 {
     [self _startServiceWithAPIName:domain
-                        pathFormat:@"app/line.html"
+                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
-                                     RH_SP_COMMON_SITESEC:S}
+                                     RH_SP_COMMON_SITESEC:S,
+                                     RH_SP_COMMON_OSTYPE:@"ips",
+                                     }
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeDomainList
@@ -148,12 +150,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain
 {
     [self _startServiceWithAPIName:nil
-                        pathFormat:@"http://%@/__check"
+                        pathFormat:@"https://%@:8989/__check"
                      pathArguments:@[doMain?:@""]
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain,
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeDomainCheck
                          scopeType:ServiceScopeTypePublic];
 }
@@ -163,7 +167,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
                                      RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
                                      }
@@ -178,7 +184,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{@"code":S,
                                      @"type":@"ios",
                                      @"siteId":SID
@@ -188,26 +196,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3UpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark ==============获取域名IP接口================
-//-(void)startV3customSysDomain
-//{
-//    [self _startServiceWithAPIName:self.appDelegate.domain
-//                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
-//                     pathArguments:nil
-//                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-//                                     @"User-Agent":@"app_ios, iPhone",
-//                                     @"Host":@"header",
-//                                     }
-//                    queryArguments:@{
-//                                     @"code":SID,
-//                                     @"type":@"ips",
-//                                     @"s":S,
-//                                     }
-//                     bodyArguments:nil
-//                          httpType:HTTPRequestTypePost
-//                       serviceType:ServiceRequestTypeV3BossSysDomain
-//                         scopeType:ServiceScopeTypePublic];
-//}
+
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -216,7 +205,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:verCode.length?@{@"username":userName?:@"",
                                                         @"password":password?:@"",
@@ -235,6 +225,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:verCode.length?@{@"username":userName?:@"",
                                                         @"password":password?:@"",
@@ -256,7 +247,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_AUTOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@""
+                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"username":userName?:@"",
                                          @"password":password?:@""
@@ -271,7 +263,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_AUTOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone"
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"username":userName?:@"",
                                          @"password":password?:@""
@@ -294,7 +287,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -310,6 +304,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -329,7 +324,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain,
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -344,7 +340,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_VERIFYCODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone",                                         }
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain,
+                                         }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
                               httpType:HTTPRequestTypePost
@@ -362,6 +360,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain,
                                          @"Cookie":userInfo_manager.sidString?:@""
                                          }
                         queryArguments:nil
@@ -375,7 +374,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_DEMOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone"
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:nil
                          bodyArguments:nil
@@ -390,7 +390,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETCUSTOMPATH
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
@@ -403,7 +405,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_APIRETRIVE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_APIRETRIVE_APIID:@(apiID)}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -416,7 +420,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:errorDict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -443,7 +449,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HOMEINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -457,7 +465,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -471,7 +480,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEGROUPINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -484,7 +495,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYSTATUS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_ACTIVITYSTATUS_MESSAGEID:activityID?:@""}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -518,7 +531,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_APIGAMELIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -534,7 +549,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
                                      RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
@@ -569,7 +585,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_DEPOSITLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
                      bodyArguments:nil
@@ -585,7 +602,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_USERSAFEINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -601,7 +619,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SETREALNAME
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{@"realName":name?:@""}
                      bodyArguments:nil
@@ -629,7 +648,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
                      bodyArguments:nil
@@ -653,7 +673,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
                      bodyArguments:nil
@@ -673,7 +694,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_OPENACTIVITY
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -691,7 +713,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_BETTINGDETAILS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -709,7 +732,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -725,7 +749,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_DEPOSITPULLDOWNLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -749,7 +774,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ADDBANKCARD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -780,7 +806,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SYSTEMNOTICE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -797,7 +824,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -832,7 +860,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_GAMENOTICE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -849,7 +878,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_GAMENOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -868,7 +898,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{@"_t":timeStr}
                      bodyArguments:nil
@@ -884,7 +915,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_PROMOLIST
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_PROMOLIST_PAGENUMBER:@(pageNumber),
                                      RH_SP_PROMOLIST_PAGESIZE:@(pageSize)
@@ -904,7 +936,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict?:@{}
@@ -919,7 +952,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:(bitNumber?:@"")}
                      bodyArguments:nil
@@ -938,7 +972,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SITEMESSAGE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -956,7 +991,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SITEMESSAGEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -974,7 +1010,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SITEMESSAGEREDAYES
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -991,7 +1028,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SITEMESSAGEDELETE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1006,7 +1044,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1029,7 +1068,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1044,7 +1084,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1058,7 +1100,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
                                      }
                      bodyArguments:nil
@@ -1074,7 +1118,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOGINOUT
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1093,7 +1139,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1110,7 +1157,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1125,7 +1174,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MYMESSAGEREDAYES
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1140,7 +1191,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MYMESSAGEDELETE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1167,7 +1220,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMESLINK
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1192,7 +1247,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:gameLinkUrl?:@""
                          pathArguments:nil
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
+                                         }
                         queryArguments:mDic
                          bodyArguments:nil
                               httpType:HTTPRequestTypeGet
@@ -1207,7 +1264,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETWITHDRAWUSERINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1234,7 +1293,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1250,7 +1311,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOADGAMETYPE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:dict
                           httpType:HTTPRequestTypePost
@@ -1266,7 +1329,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1282,7 +1347,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_WITHDRWAFEE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1296,7 +1363,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_TIMEZONEINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1310,7 +1379,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGUNREADCOUNT
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1328,7 +1399,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1370,7 +1443,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1385,6 +1460,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_GETUSERASSERT
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1400,7 +1476,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
                          pathArguments:nil
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
+                                         }
                         queryArguments:nil
                          bodyArguments:nil
                               httpType:HTTPRequestTypePost
@@ -1415,7 +1493,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ISOPENCODEVERIFTY
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1431,7 +1511,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":@""
+                                     @"Cookie":@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1446,7 +1527,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_DEPOSITE_DEPOSITEORIGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone"}
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1462,6 +1545,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1476,12 +1560,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:self.appDelegate.domain
+        [self _startServiceWithAPIName:[NSString stringWithFormat:@"https://%@:8989",self.appDelegate.headerDomain]
                             pathFormat:RH_API_NAME_REGISESTCAPTCHACODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -1567,11 +1652,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTSUBMIT
                      pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                   headerArguments:@{@"Content-Type":@"application/x-www-form-urlencoded; charset=utf-8",
+                                     @"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain,
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString
                                      }
-                    queryArguments:nil
-                     bodyArguments:dict
+                    queryArguments:dict
+                     bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3RegiestSubmit
                          scopeType:ServiceScopeTypePublic];
@@ -1584,6 +1672,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1600,6 +1689,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1616,6 +1706,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1634,6 +1725,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1652,6 +1744,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1673,6 +1766,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1695,6 +1789,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1712,7 +1807,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
 
                     queryArguments:nil
@@ -1739,7 +1835,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1761,6 +1858,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1781,6 +1879,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1805,6 +1904,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1833,6 +1933,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1859,6 +1960,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1886,6 +1988,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1916,6 +2019,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1946,6 +2050,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1977,6 +2082,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -1993,6 +2099,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2009,6 +2116,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil 
                      bodyArguments:nil
@@ -2027,6 +2135,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2042,6 +2151,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2108,14 +2218,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (queryArguments.count){
         [queryArgs addEntriesFromDictionary:queryArguments] ;
     }
-
+   
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
         [queryArgs setValue:@"True" forKey:RH_SP_COMMON_V3_ISNATIVE] ;
         [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
         [queryArgs setValue:@"zh_CN" forKey:RH_SP_COMMON_V3_LOCALE] ;//zh_CN,zh_TW,en_US,ja_JP
         
-        ////white,black,blue,red
+        //white,black,blue,red
         if ([THEMEV3 isEqualToString:@"green"]){
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
@@ -2358,10 +2468,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         return YES ;
     }
-    
+    else if (type==ServiceRequestTypeV3UpdateCheck){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
     else if (type == ServiceRequestTypeObtainVerifyCode ||
-              type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
-              type == ServiceRequestTypeV3RegiestCaptchaCode){
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode||type== ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
         *reslutData = image ;
@@ -2409,7 +2525,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3AddApplyDiscounts){
+//    else if (type == ServiceRequestTypeDomainList){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2427,6 +2543,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         if (mArr.count>0) {
             userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
         }
+        
     }
   
 //    
@@ -2436,11 +2553,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (dataObject) {
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString11);
-    }
+//    if (dataObject) {
+//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",jsonString11);
+//    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
@@ -2472,12 +2589,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
         id resultSendData = nil;
         switch (type) {
-            case ServiceRequestTypeDomainList:
-            {
-               
-                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
-            
-            }
+//            case ServiceRequestTypeDomainList:
+//            {
+//
+//                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+//
+//            }
                 break ;
                 
             case ServiceRequestTypeUpdateCheck:

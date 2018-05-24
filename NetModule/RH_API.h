@@ -1080,7 +1080,7 @@
 #define RH_API_NAME_CUSTOMSERVICE       @"mobile-api/origin/getCustomerService.html"
 
 #pragma mark -v3  获取IP和域名
-#define RH_API_NAME_BOSSSYSDOMAIN       @"/boss-api/app/line.html"
+#define RH_API_NAME_BOSSSYSDOMAIN       @"/app/line.html"
 
 #endif /* RH_API_h */
 
