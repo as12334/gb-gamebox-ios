@@ -2952,6 +2952,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3HelpDetail:
             {
                 resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
+                //增加特殊字符转义
+                for (NSDictionary *resultDic in resultSendData) {
+                    NSString *helpContent = [resultDic objectForKey:@"helpContent"];
+                    helpContent = [helpContent stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+                    helpContent = [helpContent stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+                    [resultDic setValue:helpContent forKey:@"helpContent"];
+                }
                 resultSendData = [RH_HelpCenterDetailModel dataArrayWithInfoArray:resultSendData] ;
 
             }
