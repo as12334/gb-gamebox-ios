@@ -2890,6 +2890,15 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _jkkx //世界城国际娱乐城
+
+#define CODE    @"jkkx"
+#define S        @"d7d6d1167cc592efb792602e59116f4f"
+#define SID        @"587"
+#define THEME    @"default.skin"
+#define THEMEV3             @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _hpvl //星河国际
 
 #define CODE    @"hpvl"
@@ -2897,6 +2906,15 @@
 #define SID        @"588"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _vygf //bet365
+
+#define CODE    @"vygf"
+#define S        @"903a2421bffa390de617bdfdfc567ce9"
+#define SID        @"589"
+#define THEME    @"default.skin"
+#define THEMEV3             @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif
