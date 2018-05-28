@@ -198,7 +198,10 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _customUrl = tmpStr ;
     }
 }
-
+-(void)setWhetherNewSystemNotice:(NSString *)whetherNewSystemNotice
+{
+    _whetherNewSystemNotice = whetherNewSystemNotice;
+}
 #pragma mark- For MeiQia---overload function
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {

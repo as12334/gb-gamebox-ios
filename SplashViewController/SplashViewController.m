@@ -82,14 +82,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }
     }
 }
-//#pragma mark ==============懒加载，重试按钮================
-//-(UIButton *)padonBtn
-//{
-//    if (!_padonBtn) {
-//        _padonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _padonBtn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//    }
-//}
 -(NSString*)showStatus
 {
     switch (_status) {
@@ -145,7 +137,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.checkType = @"https+8989";
+    self.checkType = @"http";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -185,8 +177,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     [self.domainTableView registerCellWithClass:[RH_DomainTableCell class]] ;
     self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
-//    self.domainTableView.dataSource = self ;
-//    self.domainTableView.delegate = self ;
     self.domainTableView.hidden = YES ;
 }
 
@@ -196,8 +186,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self.concurrentServicesManager cancleAllServices] ;
     for (int i=0; i<RH_API_MAIN_URL.count; i++) {
         NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
-        [self.concurrentServicesManager createServiceRequestAddToManagerWithKey:[NSString stringWithFormat:@"%d",i]
-                                                                   requestBlock:^(RH_ServiceRequest *serviceRequest) {
+        [self.concurrentServicesManager createServiceRequestAddToManagerWithKey:[NSString stringWithFormat:@"%d",i]requestBlock:^(RH_ServiceRequest *serviceRequest) {
             [serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
         }];
     }
@@ -205,7 +194,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 #pragma mark ==============重复请求================
 -(void)repetitionStartReqSiteInfo{
-    _talk = @"/__check" ;
+//    _talk = @"/__check" ;
     if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
     {
 #ifdef TEST_DOMAIN
@@ -226,7 +215,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (!_checkDomainServices){
         _checkDomainServices = [[NSMutableArray alloc] init] ;
     }
-    
     return _checkDomainServices ;
 }
 
@@ -236,7 +224,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         RH_ServiceRequest *tmpServiceRequest = ConvertToClassPointer(RH_ServiceRequest, [self.checkDomainServices objectAtIndex:i]) ;
         [tmpServiceRequest cancleAllServices] ;
     }
-    
     [self.checkDomainServices removeAllObjects] ;
 }
 
@@ -246,7 +233,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (!_domainCheckStatusList){
         _domainCheckStatusList = [NSMutableArray array] ;
     }
-    
     return _domainCheckStatusList ;
 }
 
@@ -386,7 +372,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         static dispatch_once_t onceToken ;
         dispatch_once(&onceToken, ^{
             _urlArray = ConvertToClassPointer(NSArray, data) ;
-//            _urlArray = @[@"xaxaxa.com"];
             [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:key.intValue])] ;
             [self checkAllUrl] ;
         }) ;
@@ -397,7 +382,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeDomainList){
-       
         _urlArray = ConvertToClassPointer(NSArray, data) ;
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
