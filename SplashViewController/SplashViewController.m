@@ -145,7 +145,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.checkType = @"https+8989";
+    self.checkType = @"http";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
