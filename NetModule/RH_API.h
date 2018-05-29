@@ -1089,13 +1089,10 @@
 #define RH_API_NAME_CUSTOMSERVICE       @"mobile-api/origin/getCustomerService.html"
 
 #pragma mark -v3  获取IP和域名
-//<<<<<<< HEAD
-#define RH_API_NAME_BOSSSYSDOMAIN       @"/app/line.html"
-//=======
-//#define RH_API_NAME_BOSSSYSDOMAIN       @"boss-api/app/line.html"
-//
-//
-//>>>>>>> origin/dev_lewis
 
+#define RH_API_NAME_BOSSSYSDOMAIN       @"/app/line.html"
+
+#pragma mark ==============消息公告弹窗================
+#define RH_API_NAME_WEBSOCKETMDCETER    @"/mdcenter/websocket/msite?localeType=zh_CN"
 #endif /* RH_API_h */
 

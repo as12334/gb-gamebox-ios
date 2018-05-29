@@ -19,7 +19,7 @@
 #import "RH_ApplyDiscountViewController.h"
 #import "RH_MineRecordTableViewCell.h"
 #import "RH_LimitTransferViewController.h" // 额度转换原生
-
+#import "RH_WebsocketManagar.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -248,8 +248,31 @@
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
     [self.tableViewManagement reloadData] ;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(100, 100, 50, 50);
+    btn.backgroundColor = [UIColor yellowColor];
+    [btn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+}
+-(void)click
+{
+    //测试websocket
+    [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://192.168.0.236:8080/ws/websocket"]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+}
+#pragma mark ==============test webSocket================
+- (void)SRWebSocketDidOpen {
+    NSLog(@"开启成功");
+    //在成功后需要做的操作。。。
 }
 
+- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
+    //收到服务端发送过来的消息
+    NSString * message = note.object;
+    NSLog(@"message===%@",message);
+}
 #pragma mark-
 -(void)updateView
 {

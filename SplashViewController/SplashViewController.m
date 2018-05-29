@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _talk = @":8787/__check" ;
+    _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
@@ -408,11 +408,16 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_once(&onceToken, ^{
             NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@:8787",@"http://",strTmp]] ;
+            }else{
+                [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@:8989",@"https://",strTmp]] ;
+            }
             NSLog(@"strTmp====%@",strTmp);
 //            if ([self.checkType isEqualToString:@"https+8989"]) {
                 if (![data boolValue])//http protocol
                 {
-                  
+
                     if ([self.checkType isEqualToString:@"https+8989"]) {
 //                        if ([data boolValue])//http protocol
 //                        {
@@ -438,9 +443,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 //                            return ;
 //                        }
                     }
-                    
+
                 }else{
-                   
+
                     if ([self.checkType isEqualToString:@"https+8989"]) {
 //                        if ([data boolValue])//http protocol
 //                        {
@@ -464,8 +469,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     }
                 }
 //            }
-            
-            
+
+//
             [self cancelAllDomainCheck] ;
         
             if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){

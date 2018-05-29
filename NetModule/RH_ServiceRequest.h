@@ -113,6 +113,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3CollectAppDomainError,   // 错误日志提交接口
     ServiceRequestTypeV3CustomService,          //获取客服接口
 //    ServiceRequestTypeV3BossSysDomain,          //获取IP和域名
+    ServiceRequestTypeV3NoticePopup,            //公告弹框
 };
 
 
@@ -609,6 +610,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber ;
 #pragma mark ==============获取客服接口================
 -(void)startV3GetCustomService;
+#pragma mark ==============获得消息公告弹窗================
+-(void)startV3NoticePopup;
 #pragma mark -
 /**
  * 取消所有服务

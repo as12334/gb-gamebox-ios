@@ -2176,7 +2176,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3CustomService
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============系统公告弹框================
+-(void)startV3NoticePopup
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_WEBSOCKETMDCETER
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3NoticePopup
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2511,6 +2526,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = @([dataObject boolValueForKey:@"isSuccess"]) ;
         return YES ;
     }else if (type == ServiceRequestTypeCollectAPPError){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
+    
+    else if (type == ServiceRequestTypeV3NoticePopup){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers

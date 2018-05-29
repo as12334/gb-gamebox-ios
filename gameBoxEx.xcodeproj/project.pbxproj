@@ -645,6 +645,11 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		F61D9FF620BAAD2A00E55BAB /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D9FF320BAAD2A00E55BAB /* SRWebSocket.m */; };
+		F61D9FF820BAADE100E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FF720BAADE100E55BAB /* libicucore.tbd */; };
+		F61D9FFA20BAADEB00E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FF920BAADEB00E55BAB /* CFNetwork.framework */; };
+		F61D9FFC20BAADFD00E55BAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FFB20BAADFD00E55BAB /* Foundation.framework */; };
+		F61DA00020BAAE8100E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */; };
 		F627E5412084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */; };
 		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
 		F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66394BC208396A800D37EDA /* RH_CustomServiceSubViewController.m */; };
@@ -1871,6 +1876,14 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		F61D9FF320BAAD2A00E55BAB /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		F61D9FF420BAAD2A00E55BAB /* SocketRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocket.h; sourceTree = "<group>"; };
+		F61D9FF520BAAD2A00E55BAB /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		F61D9FF720BAADE100E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		F61D9FF920BAADEB00E55BAB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F61D9FFB20BAADFD00E55BAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F61D9FFE20BAAE8100E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
+		F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F627E53F2084DD7A00C9FAAC /* RH_DepositPaylinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositPaylinkViewController.h; sourceTree = "<group>"; };
 		F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositPaylinkViewController.m; sourceTree = "<group>"; };
 		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
@@ -2102,6 +2115,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F61D9FFC20BAADFD00E55BAB /* Foundation.framework in Frameworks */,
+				F61D9FFA20BAADEB00E55BAB /* CFNetwork.framework in Frameworks */,
+				F61D9FF820BAADE100E55BAB /* libicucore.tbd in Frameworks */,
 				A058FF3F1FE8BE3A006EF279 /* WebKit.framework in Frameworks */,
 				A0109C9F1F8782A7004E6EF4 /* JavaScriptCore.framework in Frameworks */,
 				A0109C9D1F87829E004E6EF4 /* Security.framework in Frameworks */,
@@ -3732,6 +3748,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				F61D9FFD20BAAE2900E55BAB /* websocketVC */,
 				222790D620A28B900017F9F2 /* bannerDetail */,
 				22B8EED520945938001BFA08 /* errorStatesVC */,
 				79595C6C207B0DD50052F472 /* 异常捕获 */,
@@ -3867,6 +3884,9 @@
 		A058FF3D1FE8BE39006EF279 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F61D9FFB20BAADFD00E55BAB /* Foundation.framework */,
+				F61D9FF920BAADEB00E55BAB /* CFNetwork.framework */,
+				F61D9FF720BAADE100E55BAB /* libicucore.tbd */,
 				A058FF3E1FE8BE39006EF279 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -4104,6 +4124,7 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				F61D9FF220BAAD2A00E55BAB /* SocketRocket */,
 			);
 			path = thirdPart;
 			sourceTree = "<group>";
@@ -4332,6 +4353,26 @@
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
+			sourceTree = "<group>";
+		};
+		F61D9FF220BAAD2A00E55BAB /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				F61D9FF320BAAD2A00E55BAB /* SRWebSocket.m */,
+				F61D9FF420BAAD2A00E55BAB /* SocketRocket.h */,
+				F61D9FF520BAAD2A00E55BAB /* SRWebSocket.h */,
+			);
+			name = SocketRocket;
+			path = "../../../../Downloads/SJWebSocketDemo-master/WebSocketDemo/Pods/SocketRocket/SocketRocket";
+			sourceTree = "<group>";
+		};
+		F61D9FFD20BAAE2900E55BAB /* websocketVC */ = {
+			isa = PBXGroup;
+			children = (
+				F61D9FFE20BAAE8100E55BAB /* RH_WebsocketManagar.h */,
+				F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */,
+			);
+			path = websocketVC;
 			sourceTree = "<group>";
 		};
 		F68201FE20707418003593C9 /* 滚轮选择器 */ = {
@@ -5278,6 +5319,7 @@
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
+				F61DA00020BAAE8100E55BAB /* RH_WebsocketManagar.m in Sources */,
 				A0109FD31F8788FF004E6EF4 /* DNImagePickerController.m in Sources */,
 				A0109FD41F8788FF004E6EF4 /* DNPhotoBrowser.m in Sources */,
 				A0109FD51F8788FF004E6EF4 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
@@ -5341,6 +5383,7 @@
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
 				A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */,
 				79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */,
+				F61D9FF620BAAD2A00E55BAB /* SRWebSocket.m in Sources */,
 				A0109FED1F8788FF004E6EF4 /* MKAnnotationView+WebCache.m in Sources */,
 				797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */,
 				A01181721FFCAB21008F6D1E /* CALayer+WHC_Frame.m in Sources */,
@@ -5595,7 +5638,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_rb4b=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_p0a7=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5620,7 +5663,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_rb4b=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_p0a7=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5678,7 +5721,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_rf80=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_p0a7=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5703,7 +5746,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_p0a7=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
