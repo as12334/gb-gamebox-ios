@@ -69,8 +69,8 @@
                             <action selector="saveToPhone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gPX-ME-Bur"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d07-np-Gul">
-                        <rect key="frame" x="16" y="136.5" width="31" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d07-np-Gul">
+                        <rect key="frame" x="16" y="137" width="288" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -78,7 +78,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="d07-np-Gul" secondAttribute="bottom" constant="8.5" id="1wN-qT-Qki"/>
+                    <constraint firstItem="d07-np-Gul" firstAttribute="top" secondItem="Xdg-jN-7Uh" secondAttribute="bottom" constant="6" id="DzP-At-7ak"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RFt-9j-Bfs"/>
+                    <constraint firstAttribute="trailing" secondItem="d07-np-Gul" secondAttribute="trailing" constant="16" id="bQg-FK-Xzv"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="dYB-rr-DF2"/>
                     <constraint firstItem="Xdg-jN-7Uh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ghl-Xc-i8f"/>
                     <constraint firstItem="d07-np-Gul" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="quQ-YV-ug4"/>

@@ -314,7 +314,8 @@
     }
     else if (indexPath.item==[_markArray[2] integerValue])
     {
-        return 160.f;
+//        return 160.f;
+        return [RH_DepositeTransferQRCodeCell heightForCellWithInfo:nil tableView:tableView context:self.listModel];
     }
     else if (indexPath.item==[_markArray[3] integerValue])
     {
