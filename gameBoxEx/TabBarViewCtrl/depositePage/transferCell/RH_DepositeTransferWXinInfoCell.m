@@ -34,7 +34,8 @@
         self.personIdNumLabel.font = [UIFont systemFontOfSize:14.f];
     }
     self.personNameLabel.text = listModel.mFullName;
-    [self.bankIconImage sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
+//    [self.bankIconImage sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
+    [self.bankIconImage sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

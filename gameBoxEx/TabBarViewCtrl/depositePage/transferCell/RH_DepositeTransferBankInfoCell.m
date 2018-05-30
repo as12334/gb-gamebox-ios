@@ -39,7 +39,9 @@
     }
     self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
-    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
+//    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
+     [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+    
 }
 
 - (void)awakeFromNib {
