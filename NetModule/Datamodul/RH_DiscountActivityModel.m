@@ -63,7 +63,7 @@
              _showLink = [NSString stringWithFormat:@"%@",_mUrl] ;
         }else
         {
-             _showLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mUrl] ;
+             _showLink = [NSString stringWithFormat:@"%@",_mUrl] ;
         }
        
     }
