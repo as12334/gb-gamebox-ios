@@ -645,13 +645,6 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
-		F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */; };
-		F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00520BBAEBB00E55BAB /* libicucore.tbd */; };
-		F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00720BBAEC200E55BAB /* CFNetwork.framework */; };
-		F61DA00A20BBAECA00E55BAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00920BBAECA00E55BAB /* Foundation.framework */; };
-		F61DA00F20BBAF2800E55BAB /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00C20BBAF2800E55BAB /* SRWebSocket.m */; };
-		F61DA01320BBF6D100E55BAB /* SplashViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA01120BBF6D000E55BAB /* SplashViewControllerEX.m */; };
-		F61DA01420BBF6D100E55BAB /* SplashViewControllerEX.xib in Resources */ = {isa = PBXBuildFile; fileRef = F61DA01220BBF6D000E55BAB /* SplashViewControllerEX.xib */; };
 		F627E5412084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */; };
 		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
 		F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66394BC208396A800D37EDA /* RH_CustomServiceSubViewController.m */; };
@@ -1878,17 +1871,6 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
-		F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
-		F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
-		F61DA00520BBAEBB00E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		F61DA00720BBAEC200E55BAB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		F61DA00920BBAECA00E55BAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F61DA00C20BBAF2800E55BAB /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
-		F61DA00D20BBAF2800E55BAB /* SocketRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocket.h; sourceTree = "<group>"; };
-		F61DA00E20BBAF2800E55BAB /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
-		F61DA01020BBF6D000E55BAB /* SplashViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewControllerEX.h; sourceTree = "<group>"; };
-		F61DA01120BBF6D000E55BAB /* SplashViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SplashViewControllerEX.m; sourceTree = "<group>"; };
-		F61DA01220BBF6D000E55BAB /* SplashViewControllerEX.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewControllerEX.xib; sourceTree = "<group>"; };
 		F627E53F2084DD7A00C9FAAC /* RH_DepositPaylinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositPaylinkViewController.h; sourceTree = "<group>"; };
 		F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositPaylinkViewController.m; sourceTree = "<group>"; };
 		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
@@ -2120,9 +2102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F61DA00A20BBAECA00E55BAB /* Foundation.framework in Frameworks */,
-				F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */,
-				F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */,
 				A058FF3F1FE8BE3A006EF279 /* WebKit.framework in Frameworks */,
 				A0109C9F1F8782A7004E6EF4 /* JavaScriptCore.framework in Frameworks */,
 				A0109C9D1F87829E004E6EF4 /* Security.framework in Frameworks */,
@@ -3595,9 +3574,6 @@
 				A01EE2641F8878B30085717E /* SplashViewController.h */,
 				A01EE2651F8878B30085717E /* SplashViewController.m */,
 				A01EE2661F8878B30085717E /* SplashViewController.xib */,
-				F61DA01020BBF6D000E55BAB /* SplashViewControllerEX.h */,
-				F61DA01120BBF6D000E55BAB /* SplashViewControllerEX.m */,
-				F61DA01220BBF6D000E55BAB /* SplashViewControllerEX.xib */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -3756,7 +3732,6 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
-				F61DA00120BBAE1C00E55BAB /* websocketVC */,
 				222790D620A28B900017F9F2 /* bannerDetail */,
 				22B8EED520945938001BFA08 /* errorStatesVC */,
 				79595C6C207B0DD50052F472 /* 异常捕获 */,
@@ -3892,9 +3867,6 @@
 		A058FF3D1FE8BE39006EF279 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F61DA00920BBAECA00E55BAB /* Foundation.framework */,
-				F61DA00720BBAEC200E55BAB /* CFNetwork.framework */,
-				F61DA00520BBAEBB00E55BAB /* libicucore.tbd */,
 				A058FF3E1FE8BE39006EF279 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -4132,7 +4104,6 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				F61DA00B20BBAF2800E55BAB /* SocketRocket */,
 			);
 			path = thirdPart;
 			sourceTree = "<group>";
@@ -4361,25 +4332,6 @@
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
-			sourceTree = "<group>";
-		};
-		F61DA00120BBAE1C00E55BAB /* websocketVC */ = {
-			isa = PBXGroup;
-			children = (
-				F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */,
-				F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */,
-			);
-			path = websocketVC;
-			sourceTree = "<group>";
-		};
-		F61DA00B20BBAF2800E55BAB /* SocketRocket */ = {
-			isa = PBXGroup;
-			children = (
-				F61DA00C20BBAF2800E55BAB /* SRWebSocket.m */,
-				F61DA00D20BBAF2800E55BAB /* SocketRocket.h */,
-				F61DA00E20BBAF2800E55BAB /* SRWebSocket.h */,
-			);
-			path = SocketRocket;
 			sourceTree = "<group>";
 		};
 		F68201FE20707418003593C9 /* 滚轮选择器 */ = {
@@ -4821,7 +4773,6 @@
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				22AB9922208098D9001A6203 /* login_touxiang_coffee@2x.png in Resources */,
 				228B93112027287E008C8313 /* tab_v3_service_selected_green@2x.png in Resources */,
-				F61DA01420BBF6D100E55BAB /* SplashViewControllerEX.xib in Resources */,
 				221AE5A9207DF2C4008CD409 /* home_announce_close_red@2x.png in Resources */,
 				221AE58A207DEE0F008CD409 /* tab_v3_my_selected_orange@2x.png in Resources */,
 				221AE579207DED56008CD409 /* tab_v3_home_selected_orange@3x.png in Resources */,
@@ -5229,7 +5180,6 @@
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
 				79D8640F206CD1E400E527B7 /* RH_AdvertisementView.m in Sources */,
-				F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */,
 				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
 				B84A33D22067A63D00A8BFEE /* RH_RegistrationSelectView.m in Sources */,
 				A0109FAF1F8788FF004E6EF4 /* NSURL+CLCategory.m in Sources */,
@@ -5407,7 +5357,6 @@
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
-				F61DA01320BBF6D100E55BAB /* SplashViewControllerEX.m in Sources */,
 				F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -5533,7 +5482,6 @@
 				A0109F981F8787E4004E6EF4 /* CLStaticCollectionViewCell.m in Sources */,
 				A0109F991F8787E4004E6EF4 /* CLStaticCollectionViewTitleCell.m in Sources */,
 				A0109F9A1F8787E4004E6EF4 /* CLContentTextInputView.m in Sources */,
-				F61DA00F20BBAF2800E55BAB /* SRWebSocket.m in Sources */,
 				A0109F9B1F8787E4004E6EF4 /* CLTextView.m in Sources */,
 				A0109F9C1F8787E4004E6EF4 /* CLUserGuidePageManager.m in Sources */,
 				A0109F9D1F8787E4004E6EF4 /* CLUserGuideView.m in Sources */,
@@ -5647,7 +5595,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_opmi=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5658,7 +5606,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid21;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid357;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5666,13 +5614,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-21";
+				APP_DISPLAY_NAME = "永利娱乐城";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-357";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_98ph=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5682,7 +5630,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid21;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid357;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5730,7 +5678,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_opmi=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5741,7 +5689,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid21;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid357;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -5749,13 +5697,13 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-21";
+				APP_DISPLAY_NAME = "永利娱乐城";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-357";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_98ph=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5765,7 +5713,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid21;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid357;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

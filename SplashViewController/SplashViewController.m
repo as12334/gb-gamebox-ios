@@ -528,6 +528,10 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                             self.checkType = @"http";
                             _httpsMark = NO;
                         }
+                        else
+                        {
+                            showMessage(self.view, @"", @"未检测到可用主域名");
+                        }
                         [self checkAllUrl] ;
                 }
             }
@@ -649,10 +653,11 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
         bRet = [self.delegate splashViewControllerWillHidden:self];
     }
-
     if (bRet) {
         [self hide:YES completedBlock:nil];
     }
+    //check过了，就把通知释放掉
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
 }
 
 #pragma mark -

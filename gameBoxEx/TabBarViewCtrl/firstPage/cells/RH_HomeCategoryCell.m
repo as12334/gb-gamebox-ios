@@ -73,12 +73,13 @@
     UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 0.f;
     flowLayout.minimumInteritemSpacing = 0.f;
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 8.f, 0.0f, 0.f);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, -2.f, 0.0f, -2.f);
     flowLayout.itemSize = CGSizeMake(HomeCategoryCellWidth, HomeCategoryCellHeight) ;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     collectionView.collectionViewLayout = flowLayout ;
     collectionView.backgroundColor = colorWithRGB(247, 247, 247);
+    collectionView.bounces = NO;
     if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         collectionView.backgroundColor = colorWithRGB(37, 37, 37);
     }
