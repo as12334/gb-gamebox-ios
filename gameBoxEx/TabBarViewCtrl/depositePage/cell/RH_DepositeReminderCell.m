@@ -13,7 +13,6 @@
 @property (nonatomic,strong)NSString *content;
 @end
 @implementation RH_DepositeReminderCell
-//static NSString *content = @"温馨提示\n*为了提高对账速度及成功率，当前支付方式已开通随机额度，请输入整数存款金额，将随机增加0.11~0.99元。\n*请保留好转账单据以便核对证明。\n*如果出现充值失败或充值未到账的情况，请联系在线客服寻求帮助。点击联系在线客服";
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.content = @"";
@@ -84,13 +83,13 @@
 }
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     NSRange range = [self.content rangeOfString:@"点击联系在线客服"];
-    if (characterRange.location == range.location) {
+//    if (characterRange.location == range.location) {
         // 做你想做的事
         ifRespondsSelector(self.delegate, @selector(touchTextViewCustomPushCustomViewController:)){
             [self.delegate touchTextViewCustomPushCustomViewController:self];
         }
         
-    }
+//    }
     return YES;
 }
 @end

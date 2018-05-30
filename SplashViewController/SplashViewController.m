@@ -152,7 +152,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.checkType = @"https+8989";
+    
     _https8989Mark = YES;
     _http8787Mark = YES;
     _httpsMark = YES;
@@ -160,6 +160,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.checkType = @"https+8989";
     i = 0;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
@@ -555,12 +556,31 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_group_async(group, queue, ^{
 //            for (i; i<_urlArray.count; i++) {
+            
+            if (IS_TEST_SERVER_ENV==1) {
+                //check域名
+                NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
+                self.checkDominStr = tmpDomain;
+                self.serviceRequest.timeOutInterval = 10.f;
+                self.checkType = @"http";
+                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
+            }else if(i<_urlArray.count||i==_urlArray.count){
+                //check域名
                 NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
                 self.checkDominStr = tmpDomain;
                 self.serviceRequest.timeOutInterval = 10.f;
-                //check域名
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
-//            }
+            }
+            else
+            {
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+                    [self repetitionStartReqSiteInfo];
+                    [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
+                }];
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
         });
     }else{
         [self.contentLoadingIndicateView hiddenView] ;

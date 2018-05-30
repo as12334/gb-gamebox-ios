@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="137" id="KGk-i7-Jjw" customClass="RH_DepositeTransferQRCodeCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="160" id="KGk-i7-Jjw" customClass="RH_DepositeTransferQRCodeCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="136.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwY-mh-JrK">
@@ -28,21 +28,38 @@
                                     <constraint firstAttribute="width" constant="72" id="iSl-H1-6sf"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-DJ-Ru0">
+                                <rect key="frame" x="163" y="48" width="110" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="Gut-35-BsU"/>
+                                    <constraint firstAttribute="height" constant="30" id="sLA-Ij-qDv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="启动微信APP支付">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="openOtherAppClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="x4n-gr-puk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nCs-3U-bxg" firstAttribute="centerX" secondItem="xwY-mh-JrK" secondAttribute="centerX" id="9r1-K8-cpd"/>
                             <constraint firstAttribute="height" constant="86" id="Gsc-6p-r3i"/>
                             <constraint firstItem="nCs-3U-bxg" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="top" constant="7" id="JWU-UR-cCS"/>
+                            <constraint firstItem="jUS-DJ-Ru0" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="-38" id="a1L-dO-Scp"/>
+                            <constraint firstItem="jUS-DJ-Ru0" firstAttribute="trailing" secondItem="xwY-mh-JrK" secondAttribute="trailing" constant="49" id="ibe-BA-wMi"/>
                             <constraint firstAttribute="width" constant="224" id="k2s-Qt-0zD"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdg-jN-7Uh">
-                        <rect key="frame" x="48" y="100" width="110" height="30"/>
+                        <rect key="frame" x="105" y="101" width="110" height="30"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="7Oy-cg-Zdb"/>
-                            <constraint firstAttribute="width" constant="110" id="yZY-d9-JAb"/>
+                            <constraint firstAttribute="width" constant="110" id="GhT-kM-1Hs"/>
+                            <constraint firstAttribute="height" constant="30" id="nH1-t8-eQQ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="保存到手机">
@@ -52,38 +69,30 @@
                             <action selector="saveToPhone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gPX-ME-Bur"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-DJ-Ru0">
-                        <rect key="frame" x="162" y="100" width="110" height="30"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="110" id="Gut-35-BsU"/>
-                            <constraint firstAttribute="height" constant="30" id="sLA-Ij-qDv"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d07-np-Gul">
+                        <rect key="frame" x="16" y="136.5" width="31" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="启动微信APP支付">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <connections>
-                            <action selector="openOtherAppClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="x4n-gr-puk"/>
-                        </connections>
-                    </button>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="d07-np-Gul" secondAttribute="bottom" constant="8.5" id="1wN-qT-Qki"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RFt-9j-Bfs"/>
-                    <constraint firstItem="jUS-DJ-Ru0" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="7" id="UXy-3T-dnx"/>
-                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="7" id="Z8E-EJ-Iga"/>
-                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="leading" secondItem="xwY-mh-JrK" secondAttribute="leading" id="aB4-OL-pbw"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="dYB-rr-DF2"/>
-                    <constraint firstItem="jUS-DJ-Ru0" firstAttribute="trailing" secondItem="xwY-mh-JrK" secondAttribute="trailing" id="v9g-C2-1EO"/>
+                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ghl-Xc-i8f"/>
+                    <constraint firstItem="d07-np-Gul" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="quQ-YV-ug4"/>
+                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="8" id="tQW-Fs-hxc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="noticeLabel" destination="d07-np-Gul" id="VV4-az-VJV"/>
                 <outlet property="openAppBtn" destination="jUS-DJ-Ru0" id="bvU-QW-Kyi"/>
                 <outlet property="qrbackView" destination="xwY-mh-JrK" id="wdL-iu-nIl"/>
                 <outlet property="qrurlImage" destination="nCs-3U-bxg" id="06X-YV-6be"/>
                 <outlet property="saveTophoneBtn" destination="Xdg-jN-7Uh" id="x1v-L0-hST"/>
             </connections>
-            <point key="canvasLocation" x="25" y="98.5"/>
+            <point key="canvasLocation" x="25" y="110"/>
         </tableViewCell>
     </objects>
     <resources>
