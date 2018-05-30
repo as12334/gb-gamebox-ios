@@ -549,7 +549,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
                                                              detailText:@"checking domain"] ;
         }
-        //自己检测域名不通过
         //1.创建队列组
         dispatch_group_t group = dispatch_group_create();
         //2.创建队列
@@ -563,7 +562,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
 //            }
         });
-       
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
