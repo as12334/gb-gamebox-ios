@@ -147,49 +147,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
-//    [self.appDelegate.apiDomain containsString:@"https://"]?(@"https://%@/__check"):(@"http://%@/__check")
-    if ([checkType isEqualToString:@"https+8989"]) {
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"https://%@:8989/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
-    }else if([checkType isEqualToString:@"http+8787"]){
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"http://%@:8787/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
-    }else if([checkType isEqualToString:@"https"]){
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"https://%@/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
-    }else{
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"http://%@/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
+    NSString *urlStr;
+    if ([checkType isEqualToString:@"https"]) {
+        urlStr = @"https://%@/__check";
     }
-    
+    else if ([checkType isEqualToString:@"http"]){
+        urlStr = @"http://%@/__check";
+    }
+    else if ([checkType isEqualToString:@"https+8989"]){
+        urlStr = @"https://%@:8989/__check";
+    }
+    else if ([checkType isEqualToString:@"http+8787"]){
+        urlStr = @"http://%@:8787/__check";
+    }
+        [self _startServiceWithAPIName:nil
+                            pathFormat:urlStr
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
 }
 
 -(void)startUpdateCheck
@@ -2469,7 +2448,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3AddApplyDiscounts){
+//    else if (type == ServiceRequestTypeV3HomeInfo){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -3123,6 +3102,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                     RH_SP_COLLECTAPPERROR_CODE:errorCode,
                                                                                     RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
                                                                                     }] ;
+            //通知告诉splashViewController ,你特么没check成功，换下一个域名在check
+            // 1.创建通知打开通知
+            NSNotification *notificationClose =[NSNotification notificationWithName:@"youAreNotCheckSuccess" object:nil userInfo:nil];
+            // 2.通过 通知中心 发送 通知
+            [[NSNotificationCenter defaultCenter] postNotification:notificationClose];
         });
     }
     

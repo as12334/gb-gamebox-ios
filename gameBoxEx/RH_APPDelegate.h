@@ -12,8 +12,8 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 
 @interface RH_APPDelegate : CLAPPDelegate
 @property(nonatomic,readonly,strong) NSString *apiDomain ;//获取子域名list 的api 域名
-@property(nonatomic,readonly,strong)  NSString *domain  ;
-@property(nonatomic,readonly,strong)  NSString *servicePath ;//客服url ;
+@property(nonatomic,readonly,strong) NSString *domain  ;
+@property(nonatomic,readonly,strong) NSString *servicePath ;//客服url ;
 @property(strong,nonatomic)  NSString *customUrl;
 @property(strong,nonatomic)  NSString *logoutUrl ;
 @property(strong,nonatomic)  NSString *goBackURL;
