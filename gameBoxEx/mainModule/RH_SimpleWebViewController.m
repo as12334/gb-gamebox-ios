@@ -518,9 +518,9 @@
 {
     NSString* reqUrl = request.URL.absoluteString;
    
-//    if ([reqUrl isEqualToString:@"https://777.ampinplayopt0matrix.com/m/new/#/game"]) {
-//        reqUrl = @"http://777.ampinplayopt0matrix.com/m/new/#/game";
-//    }
+    if ([reqUrl isEqualToString:@"https://777.ampinplayopt0matrix.com/m/new/#/game"]) {
+        reqUrl = @"http://777.ampinplayopt0matrix.com/m/new/#/game";
+    }
     
     if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"alipay://"]) {
         [[UIApplication sharedApplication]openURL:request.URL];

@@ -632,14 +632,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                                                              detailText:@"checking domain"] ;
         }
         //自己检测域名不通过
-        NSMutableArray *array = [NSMutableArray array];
-        [array addObject:@"baidu.com"];
-        [array addObject:@"qweqweq.com"];
-        for (int i =0; i<_urlArray.count; i++) {
-            [array addObject:_urlArray[i]];
-        }
-        for (int i=0; i<array.count; i++) {
-            NSString *tmpDomain = [array objectAtIndex:i] ;
+        for (int i=0; i<_urlArray.count; i++) {
+            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
             RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
             tmpServiceRequest.delegate = self ;
             [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
