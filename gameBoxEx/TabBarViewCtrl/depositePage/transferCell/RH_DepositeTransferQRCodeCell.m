@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveTophoneBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *openAppBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @end
 @implementation RH_DepositeTransferQRCodeCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -48,7 +50,7 @@
     else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
         [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
     }
-
+    self.noticeLabel.text = listmodel.mRemark;
 }
 - (IBAction)saveToPhone:(id)sender {
     ifRespondsSelector(self.delegate, @selector(depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:)){

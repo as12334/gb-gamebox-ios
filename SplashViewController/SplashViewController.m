@@ -152,7 +152,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.checkType = @"https+8989";
+    
     _https8989Mark = YES;
     _http8787Mark = YES;
     _httpsMark = YES;
@@ -160,6 +160,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.checkType = @"https+8989";
     i = 0;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
@@ -561,6 +562,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
                 self.checkDominStr = tmpDomain;
                 self.serviceRequest.timeOutInterval = 10.f;
+                self.checkType = @"http";
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
             }else if(i<_urlArray.count||i==_urlArray.count){
                 //check域名
