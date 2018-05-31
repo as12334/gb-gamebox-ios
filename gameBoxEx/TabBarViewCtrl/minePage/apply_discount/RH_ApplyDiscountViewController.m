@@ -229,8 +229,8 @@
 #pragma mark cell的代理
 -(void)applyDiscountPageCellStartDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView*)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
 
     [self showCalendarView:@"设置开始日期"
             initDateString:defaultDateStr1?:defaultDateStr2
@@ -246,8 +246,8 @@
 }
 -(void)applyDiscountPageCellEndDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置结束日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date]dateWithMoveDay:-30]
@@ -265,8 +265,8 @@
 #pragma mark --
 -(void)applyDiscountSystemStartDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置开始日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date]dateWithMoveDay:-30]
@@ -281,8 +281,8 @@
 }
 -(void)applyDiscountSystemEndDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置结束日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date]dateWithMoveDay:-30]

@@ -113,7 +113,7 @@
     if (_defaultDate!=defaultDate){
         _defaultDate = defaultDate ;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
         NSDate *date = [dateFormatter dateFromString:defaultDate] ;
         if (date){
             [self.datePicker setDate:date animated:NO] ;
