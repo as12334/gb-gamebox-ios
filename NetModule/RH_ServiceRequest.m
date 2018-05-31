@@ -567,7 +567,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                      }
                     queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
                                      RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
-                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
+                                    RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
                                      RH_SP_BETTINGLIST_PAGENUMBER:@(pageNumber),
                                      RH_SP_BETTINGLIST_PAGESIZE:@(pageSize)
                         

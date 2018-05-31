@@ -89,7 +89,7 @@
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
     }else{
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.appDelegate.customUrl.trim]] ;
     }
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){

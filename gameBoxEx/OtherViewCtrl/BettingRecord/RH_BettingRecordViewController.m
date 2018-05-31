@@ -16,7 +16,8 @@
 #import "RH_BettingRecordDetailController.h"
 #import "RH_BettingInfoModel.h"
 #import "RH_CustomViewController.h"
-
+#import "RH_TestViewController.h"
+#import "RH_BettingDetailWebController.h"
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;

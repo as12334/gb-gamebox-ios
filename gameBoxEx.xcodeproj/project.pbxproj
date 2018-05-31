@@ -650,6 +650,7 @@
 		F61D9FFA20BAADEB00E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FF920BAADEB00E55BAB /* CFNetwork.framework */; };
 		F61D9FFC20BAADFD00E55BAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FFB20BAADFD00E55BAB /* Foundation.framework */; };
 		F61DA00020BAAE8100E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */; };
+		F61DA05520BFE01E00E55BAB /* RH_BettingDetailWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA05420BFE01E00E55BAB /* RH_BettingDetailWebController.m */; };
 		F627E5412084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */; };
 		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
 		F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66394BC208396A800D37EDA /* RH_CustomServiceSubViewController.m */; };
@@ -1884,6 +1885,8 @@
 		F61D9FFB20BAADFD00E55BAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F61D9FFE20BAAE8100E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
 		F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
+		F61DA05320BFE01E00E55BAB /* RH_BettingDetailWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingDetailWebController.h; sourceTree = "<group>"; };
+		F61DA05420BFE01E00E55BAB /* RH_BettingDetailWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingDetailWebController.m; sourceTree = "<group>"; };
 		F627E53F2084DD7A00C9FAAC /* RH_DepositPaylinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositPaylinkViewController.h; sourceTree = "<group>"; };
 		F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositPaylinkViewController.m; sourceTree = "<group>"; };
 		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
@@ -2514,13 +2517,6 @@
 				79E38664203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m */,
 			);
 			path = moreInfoDetail;
-			sourceTree = "<group>";
-		};
-		79E38669203CFE98002BF767 /* PromoDetail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PromoDetail;
 			sourceTree = "<group>";
 		};
 		79FA651720673B90000C7DB6 /* RegisterClause */ = {
@@ -4246,7 +4242,6 @@
 		B87A6B1A2006191600C9788F /* promoList */ = {
 			isa = PBXGroup;
 			children = (
-				79E38669203CFE98002BF767 /* PromoDetail */,
 				B87A6B1E2006405800C9788F /* cells */,
 				B87A6B1B2006405100C9788F /* RH_PromoListController.h */,
 				B87A6B1C2006405100C9788F /* RH_PromoListController.m */,
@@ -4477,6 +4472,8 @@
 				F6A2ACC5200457980077CB92 /* RH_BettingRecordDetailCell.h */,
 				F6A2ACC6200457980077CB92 /* RH_BettingRecordDetailCell.m */,
 				F6A2ACC7200457980077CB92 /* RH_BettingRecordDetailCell.xib */,
+				F61DA05320BFE01E00E55BAB /* RH_BettingDetailWebController.h */,
+				F61DA05420BFE01E00E55BAB /* RH_BettingDetailWebController.m */,
 			);
 			path = bettingRecordDetail;
 			sourceTree = "<group>";
@@ -5133,6 +5130,7 @@
 				A04E60551F8DB05600098A65 /* RH_FirstPageViewController.h in Sources */,
 				79FA6527206742B9000C7DB6 /* RH_HelpCenterViewCell.m in Sources */,
 				A04E60561F8DB05600098A65 /* RH_FirstPageViewController.m in Sources */,
+				F61DA05520BFE01E00E55BAB /* RH_BettingDetailWebController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				7937C444207209720010CD0C /* PGPickerView.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
@@ -5638,7 +5636,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5663,7 +5661,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5721,7 +5719,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5746,7 +5744,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_1qkq=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

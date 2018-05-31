@@ -342,7 +342,8 @@
 ////        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
 //        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
 //    }
-    [urlRequest setValue:@"application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    [urlRequest setValue:@"application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:[RH_UserInfoManager shareUserManager].sidString forHTTPHeaderField:@"Cookie"];
     [self.webView loadRequest:urlRequest];
 }
 
