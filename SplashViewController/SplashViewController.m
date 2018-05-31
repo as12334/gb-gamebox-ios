@@ -141,11 +141,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     NSArray *_urlArray ;
     NSString *_talk ;
-    //记录四种状态
-    bool _https8989Mark;
-    bool _http8787Mark;
-    bool _httpsMark;
-    bool _httpMark;
     int i;
 }
 @synthesize checkDomainServices = _checkDomainServices ;
@@ -501,26 +496,20 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self splashViewComplete] ;
 #endif
                 }else{
-                    showMessage(self.view, @"", @"正在检测线路");
-                    if ([self.checkType isEqualToString:@"https+8989"]&&_https8989Mark==YES) {
+                    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
+                    if ([self.checkType isEqualToString:@"https+8989"]) {
                         self.checkType = @"http+8787";
-                        _https8989Mark=NO;
                     }
-                    else if ([self.checkType isEqualToString:@"http+8787"]&&_http8787Mark==YES){
-                        self.checkType = @"https+8989";
-                        _http8787Mark = NO;
-                    }
-                    else if ([self.checkType isEqualToString:@"http"]||(_https8989Mark==NO&&_http8787Mark==NO&&_httpMark==YES)){
+                    else if ([self.checkType isEqualToString:@"http+8787"]){
                         self.checkType = @"https";
-                        _httpMark = NO;
                     }
-                    else if ([self.checkType isEqualToString:@"https"]||(_https8989Mark==NO&&_http8787Mark==NO&&_httpsMark==YES)){
+                    else if ([self.checkType isEqualToString:@"https"]){
                         self.checkType = @"http";
-                        _httpsMark = NO;
                     }
                     else
                     {
-                        showMessage(self.view, @"", @"未检测到可用主域名");
+                        i++;
+                        self.checkType = @"https+8989";
                     }
                     [self checkAllUrl] ;
                 }
@@ -546,7 +535,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 self.serviceRequest.timeOutInterval = 10.f;
                 self.checkType = @"http";
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
-            }else if(i<_urlArray.count||i==_urlArray.count){
+            }else if(i<_urlArray.count){
                 //check域名
                 NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
                 self.checkDominStr = tmpDomain;
@@ -571,7 +560,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 #pragma mark ==============通知================
 -(void)notCheckDominSuccess:(NSNotification*)notification{
-    i++;
     [self checkAllUrl];
 }
 
