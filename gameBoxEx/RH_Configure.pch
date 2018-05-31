@@ -128,7 +128,7 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _rf80 //TEST01[21]  V3原生
-#define TEST_DOMAIN         @"test01.ccenter.test.so"
+//#define TEST_DOMAIN         @"test01.ccenter.test.so"
 //#define TEST_DOMAIN  @"71.hongtubet.com"
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
@@ -141,7 +141,7 @@
 //#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN
 //#define TEST_DOMAIN         @"test1-expired.hongtubet.com"//过期证书域名
 //#define TEST_DOMAIN         @"test1.hongtubet.com"//正常证书域名
-//#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
+#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
 //#define TEST_DOMAIN           @"boss.test.so"
 
 #define CODE    @"rf80"
