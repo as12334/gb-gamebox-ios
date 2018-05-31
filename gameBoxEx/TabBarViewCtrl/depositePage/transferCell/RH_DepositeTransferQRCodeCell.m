@@ -23,6 +23,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @end
 @implementation RH_DepositeTransferQRCodeCell
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:17.0]};//指定字号
+    CGRect rect = [listmodel.mRemark boundingRectWithSize:CGSizeMake(MainScreenW - 30, 0)/*计算高度要先指定宽度*/ options:NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:dic context:nil];
+    return 140+rect.size.height;
+}
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);

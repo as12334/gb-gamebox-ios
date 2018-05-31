@@ -253,7 +253,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
     self.domainTableView.hidden = YES ;
     
-    //注册打开投注界面的通知
+    //注册打开是否check成功的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
 }
 
@@ -550,38 +550,30 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
                                                              detailText:@"checking domain"] ;
         }
-        //1.创建队列组
-        dispatch_group_t group = dispatch_group_create();
-        //2.创建队列
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_group_async(group, queue, ^{
-//            for (i; i<_urlArray.count; i++) {
-            
-            if (IS_TEST_SERVER_ENV==1) {
-                //check域名
-                NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
-                self.checkDominStr = tmpDomain;
-                self.serviceRequest.timeOutInterval = 10.f;
-                self.checkType = @"http";
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
-            }else if(i<_urlArray.count||i==_urlArray.count){
-                //check域名
-                NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
-                self.checkDominStr = tmpDomain;
-                self.serviceRequest.timeOutInterval = 10.f;
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
-            }
-            else
-            {
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-                    [self repetitionStartReqSiteInfo];
-                    [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
-                }];
-                [alert addAction:defaultAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        });
+        if (IS_TEST_SERVER_ENV==1) {
+            //check域名
+            NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
+            self.checkDominStr = tmpDomain;
+            self.serviceRequest.timeOutInterval = 10.f;
+            self.checkType = @"http+8787";
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
+        }else if(i<_urlArray.count||i==_urlArray.count){
+            //check域名
+            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
+            self.checkDominStr = tmpDomain;
+            self.serviceRequest.timeOutInterval = 10.f;
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
+        }
+        else
+        {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+                [self repetitionStartReqSiteInfo];
+                [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
+            }];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
