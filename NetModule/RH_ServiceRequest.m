@@ -150,7 +150,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
     NSString *urlStr;
-//    doMain = @"iwin7788.com";
     if ([checkType isEqualToString:@"https"]) {
         urlStr = @"https://%@/__check";
     }
