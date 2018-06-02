@@ -239,9 +239,7 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
                   [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 -(void)applyDiscountPageCellEndDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
@@ -254,10 +252,6 @@
                    MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
-                  cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
-                  [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 
@@ -274,9 +268,8 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
+                  //                  [cell startUpdateData];
                   [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 -(void)applyDiscountSystemEndDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
@@ -290,9 +283,7 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
                   [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 

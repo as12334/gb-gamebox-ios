@@ -457,8 +457,8 @@
 #pragma mark - CapitalRecordHeaderViewDelegate
 -(void)capitalRecordHeaderViewWillSelectedStartDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(_capitalRecordHeaderView.startDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_capitalRecordHeaderView.startDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置开始日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date] dateWithMoveDay:-7]
@@ -469,8 +469,8 @@
 }
 -(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(_capitalRecordHeaderView.endDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_capitalRecordHeaderView.endDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置截止日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date] dateWithMoveDay:-7]

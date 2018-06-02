@@ -2927,6 +2927,15 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _atrf //拉斯维加斯
+
+#define CODE    @"atrf"
+#define S        @"7ca16ed02569b037f028e8d35b38a434"
+#define SID        @"591"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _mc2v //澳门御匾会
 
 #define CODE    @"mc2v"

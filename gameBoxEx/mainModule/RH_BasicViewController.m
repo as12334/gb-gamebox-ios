@@ -567,7 +567,7 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
 {
     if (!dateStr.length){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
         dateStr = [dateFormatter stringFromDate:[NSDate date]] ;
     }
 
