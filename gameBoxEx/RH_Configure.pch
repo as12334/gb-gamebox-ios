@@ -2954,6 +2954,24 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _wopw //金沙娱乐城
+
+#define CODE    @"wopw"
+#define S        @"318b1b35afb2c84531e3627b0d2a827c"
+#define SID        @"596"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _yyvd //易 博
+
+#define CODE    @"yyvd"
+#define S        @"b3e6117adb0e4cd3308e1eceba2b1c74"
+#define SID        @"597"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
