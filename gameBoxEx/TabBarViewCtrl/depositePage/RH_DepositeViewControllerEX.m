@@ -520,9 +520,11 @@
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
 {
-    RH_TestSafariViewController *customVC = [[RH_TestSafariViewController alloc]init];
-    [self showViewController:customVC sender:self];
+//    RH_TestSafariViewController *customVC = [[RH_TestSafariViewController alloc]init];
+//    [self showViewController:customVC sender:self];
 //    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
 -(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel acounterModel:(NSArray *)acounterModel

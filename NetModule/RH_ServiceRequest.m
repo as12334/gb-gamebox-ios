@@ -545,6 +545,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_APIGAMELIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"",
                                      @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
@@ -1262,7 +1263,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:gameLinkUrl?:@""
                          pathArguments:nil
                        headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                         @"Host":self.appDelegate.headerDomain
+                                         @"Host":self.appDelegate.headerDomain,
+                                         @"Cookie":userInfo_manager.sidString?:@""
                                          }
                         queryArguments:mDic
                          bodyArguments:nil
@@ -1326,10 +1328,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_LOADGAMETYPE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"",
                                      @"Host":self.appDelegate.headerDomain
                                      }
-                    queryArguments:nil
-                     bodyArguments:dict
+                    queryArguments:dict
+                     bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3LoadGameType
                          scopeType:ServiceScopeTypePublic];
@@ -2608,11 +2611,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-//    if (dataObject) {
-//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@",jsonString11);
-//    }
+    if (dataObject) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",jsonString11);
+    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,

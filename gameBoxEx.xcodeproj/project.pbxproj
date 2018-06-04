@@ -651,6 +651,7 @@
 		F61D9FFC20BAADFD00E55BAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FFB20BAADFD00E55BAB /* Foundation.framework */; };
 		F61DA00020BAAE8100E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */; };
 		F61DA05520BFE01E00E55BAB /* RH_BettingDetailWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA05420BFE01E00E55BAB /* RH_BettingDetailWebController.m */; };
+		F61DA05E20C128E900E55BAB /* RH_DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA05D20C128E900E55BAB /* RH_DatePickerView.m */; };
 		F627E5412084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */; };
 		F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F647934A206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m */; };
 		F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66394BC208396A800D37EDA /* RH_CustomServiceSubViewController.m */; };
@@ -1887,6 +1888,8 @@
 		F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F61DA05320BFE01E00E55BAB /* RH_BettingDetailWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BettingDetailWebController.h; sourceTree = "<group>"; };
 		F61DA05420BFE01E00E55BAB /* RH_BettingDetailWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BettingDetailWebController.m; sourceTree = "<group>"; };
+		F61DA05C20C128E900E55BAB /* RH_DatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DatePickerView.h; sourceTree = "<group>"; };
+		F61DA05D20C128E900E55BAB /* RH_DatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DatePickerView.m; sourceTree = "<group>"; };
 		F627E53F2084DD7A00C9FAAC /* RH_DepositPaylinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositPaylinkViewController.h; sourceTree = "<group>"; };
 		F627E5402084DD7A00C9FAAC /* RH_DepositPaylinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositPaylinkViewController.m; sourceTree = "<group>"; };
 		F6479349206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferChannelModel.h; sourceTree = "<group>"; };
@@ -3744,6 +3747,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				F61DA05B20C1286A00E55BAB /* datePicker */,
 				F61D9FFD20BAAE2900E55BAB /* websocketVC */,
 				222790D620A28B900017F9F2 /* bannerDetail */,
 				22B8EED520945938001BFA08 /* errorStatesVC */,
@@ -4368,6 +4372,15 @@
 				F61D9FFF20BAAE8100E55BAB /* RH_WebsocketManagar.m */,
 			);
 			path = websocketVC;
+			sourceTree = "<group>";
+		};
+		F61DA05B20C1286A00E55BAB /* datePicker */ = {
+			isa = PBXGroup;
+			children = (
+				F61DA05C20C128E900E55BAB /* RH_DatePickerView.h */,
+				F61DA05D20C128E900E55BAB /* RH_DatePickerView.m */,
+			);
+			path = datePicker;
 			sourceTree = "<group>";
 		};
 		F68201FE20707418003593C9 /* 滚轮选择器 */ = {
@@ -5421,6 +5434,7 @@
 				A0109FFD1F8788FF004E6EF4 /* UIImageView+WebCache.m in Sources */,
 				A0109FFE1F8788FF004E6EF4 /* UIView+WebCache.m in Sources */,
 				7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */,
+				F61DA05E20C128E900E55BAB /* RH_DatePickerView.m in Sources */,
 				F6A0BC9B206F87B3006DB380 /* RH_DepositeBitcionCell.m in Sources */,
 				A0109FFF1F8788FF004E6EF4 /* UIView+WebCacheOperation.m in Sources */,
 				F6FB63B72010C60300EEED4E /* RH_ApplyDiscountSystemPageCell.m in Sources */,

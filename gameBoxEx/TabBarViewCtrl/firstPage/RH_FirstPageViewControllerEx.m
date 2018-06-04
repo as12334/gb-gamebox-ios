@@ -204,7 +204,7 @@
 -(void)advertisementViewDidTouchSureBtn:(RH_AdvertisementView *)advertisementView DataModel:(RH_PhoneDialogModel *)phoneModel
 {
     [advertisementView hideAdvertisementView] ;
-    self.appDelegate.customUrl = phoneModel.link ;
+    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
     [self showViewController:[RH_CustomViewController viewController] sender:self] ;
     return ;
 }
@@ -368,7 +368,7 @@
 
 -(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel
 {
-    if (HasLogin)
+    if (self.appDelegate.isLogin)
     {
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
