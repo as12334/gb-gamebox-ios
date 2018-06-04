@@ -15,11 +15,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *qrurlImage;
 @property(nonatomic,strong)RH_DepositeTransferListModel *transferModel ;
 @property (weak, nonatomic) IBOutlet UIView *qrbackView;
-
 @property (weak, nonatomic) IBOutlet UIButton *saveTophoneBtn;
-
 @property (weak, nonatomic) IBOutlet UIButton *openAppBtn;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
+//第三方平台的地址
+@property (nonatomic,strong)NSString *mobileStr;
 @end
 @implementation RH_DepositeTransferQRCodeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -39,24 +39,29 @@
     
     if ([listmodel.mBankCode isEqualToString:@"qqwallet"]) {
         [self.openAppBtn setTitle:@"启动QQ支付" forState:UIControlStateNormal];
+        self.mobileStr = @"mqq://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"bdwallet"]) {
         [self.openAppBtn setTitle:@"启动百度支付" forState:UIControlStateNormal];
+        self.mobileStr = @"baidu://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"other"]) {
         [self.openAppBtn setTitle:@"启动其他方式支付" forState:UIControlStateNormal];
     }
     else if ([listmodel.mBankCode isEqualToString:@"alipay"]) {
         [self.openAppBtn setTitle:@"启动支付宝支付" forState:UIControlStateNormal];
+        self.mobileStr = @"alipay://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"wechatpay"]) {
         [self.openAppBtn setTitle:@"启动微信支付" forState:UIControlStateNormal];
+        self.mobileStr = @"weixin://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"onecodepay"]) {
         [self.openAppBtn setTitle:@"启动一码付支付" forState:UIControlStateNormal];
     }
     else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
         [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
+        self.mobileStr = @"openapp.jdmoble";
     }
     self.remarkLabel.text = listmodel.mRemark;
 
@@ -67,7 +72,13 @@
     }
 }
 - (IBAction)openOtherAppClick:(id)sender {
-    showMessage(self, @"功能暂未开放", nil);
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.mobileStr]]) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.mobileStr]];
+    }
+    else
+    {
+        showMessage(self, @"提示", @"未安装相关软件");
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

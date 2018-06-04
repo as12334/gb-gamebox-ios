@@ -6,45 +6,64 @@
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
-#import "RH_TestViewController.h"
+#import "RH_ElecGameViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "RH_APPDelegate.h"
-
-@interface RH_TestViewController ()
+#import "RH_LotteryInfoModel.h"
+#import "coreLib.h"
+#import "RH_API.h"
+@interface RH_ElecGameViewController ()<RH_ServiceRequestDelegate,UIWebViewDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
 @property(nonatomic,strong)CLButton * backBack;
+@property(nonatomic,strong)UIWebView *gameWebView;
+@property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
+@property(nonatomic,strong)RH_LotteryInfoModel *lotteryInfoModel;
+//游戏地址
+@property(nonatomic,strong)NSString *urlStr;
 @end
 
-@implementation RH_TestViewController
+@implementation RH_ElecGameViewController
 @synthesize gameBgImage = _gameBgImage              ;
 @synthesize imageFirstPage = _imageFirstPage    ;
+@synthesize serviceRequest = _serviceRequest ;
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.autoShowWebTitle = NO ;
+    self.gameWebView =[[UIWebView alloc]initWithFrame:self.view.bounds];
+    self.gameWebView.delegate = self;
+    [self.view addSubview:self.gameWebView];
     
-    if([self.appDelegate.customUrl containsString:@"http"]){
-        self.webURL = [NSURL URLWithString:self.appDelegate.customUrl] ;
-    }else{
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl]] ;
-    }
-    
-//    [self reloadWebView] ;
-    [self.contentView addSubview:self.gameBgImage];
-    [self.contentView bringSubviewToFront:self.gameBgImage] ;
+    [self.view addSubview:self.gameBgImage];
+    [self.view bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
     [self.gameBgImage setUserInteractionEnabled:YES];//开启图片控件的用户交互
     [self.gameBgImage addGestureRecognizer:pan];
-    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.contentView, -0.0f) ;
-    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.contentView, -60.0f) ;
+    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.view, -0.0f) ;
+    setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
+    if (self.lotteryInfoModel.showGameLink.length){ //已获取的请求链接
+        self.urlStr = self.lotteryInfoModel.showGameLink ;
+        
+    }else{
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
+    }
 
 }
-
--(BOOL)isHiddenStatusBar
+-(RH_ServiceRequest *)serviceRequest
 {
-    return YES ;
+    if (!_serviceRequest) {
+        _serviceRequest = [[RH_ServiceRequest alloc]init];
+        _serviceRequest.delegate = self;
+    }
+    return _serviceRequest;
+}
+-(void)setupViewContext:(id)context
+{
+    RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, context);
+    self.lotteryInfoModel = lotteryInfoModel;
+    
 }
 
 -(void)handlePan:(UIPanGestureRecognizer *)pan
@@ -53,9 +72,12 @@
     NSLog(@"%f,%f",point.x,point.y);
     pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
-    [pan setTranslation:CGPointMake(0, 0) inView:self.contentView];
+    [pan setTranslation:CGPointMake(0, 0) inView:self.view];
 }
-
+-(BOOL)isHiddenStatusBar
+{
+    return YES ;
+}
 - (UIImageView *)gameBgImage
 {
     if (!_gameBgImage) {
@@ -104,7 +126,11 @@
 
 -(void)_backBackHandle
 {
-    [self backBarButtonItemHandle] ;
+    if (self.presentingViewController){
+        [self dismissViewControllerAnimated:YES completion:nil] ;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
 }
 +(void)configureNavigationBar:(UINavigationBar*)navigationBar
 {
@@ -136,59 +162,16 @@
 #pragma mark-
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-//    NSLog(@"-webView finish ---:",webView);
-//    [self _setContentShowState:RH_WebViewContentShowStateShowed];
-//    [self _setLoading:NO];
-//    NSString *url = webView.request.URL.absoluteString;
-//    ////账号密码自动填充
-//    if([url containsString:@"/login/commonLogin.html"] || [url containsString:@"/passport/login.html"]){
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        NSString *account = [defaults objectForKey:@"account"];
-//        NSString *password = [defaults objectForKey:@"password"];
-//
-//        NSLog(@"%@%@",account,password);
-//
-//        if(account != NULL && ![account isEqualToString: @""]){
-//            account = [NSString stringWithFormat:@"document.getElementById('username').value='%@'",account];
-//            [self.webView stringByEvaluatingJavaScriptFromString:account];
-//
-//            if(password != NULL && ![password isEqualToString: @""]){
-//                password = [NSString stringWithFormat:@"document.getElementById('password').value='%@'",password];
-//                [self.webView stringByEvaluatingJavaScriptFromString:password];
-//            }
-//        }
-//    }
-//
-//    //增加通用 js 处理
-//    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"] ;
-//    [self setupJSCallBackOC:jsContext] ;
-    [self webViewDidEndLoad:nil];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
-
-#pragma mark-
--(void)webViewDidEndLoad:(NSError *)error
-{
-    [super webViewDidEndLoad:error] ;
-
-    if (!error){
-        NSString *url = self.webView.request.URL.absoluteString;
-        NSString *qqWallet = @"https://myun.tenpay.com/";
-        NSString *alipay = @"https://ds.alipay.com/";
-        NSString *weixin = @"weixin";
-
-        if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
-            NSLog(@"浏览器加载支付地址：%@", url);
-            NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
-            [[UIApplication sharedApplication] openURL:cleanURL];
-        }
-    }
-}
-
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    if  (error.code==101){//忽略不处理 。
-    }else{
-        [super webView:webView didFailLoadWithError:error] ;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeV3GameLinkForCheery) {
+        [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
     }
 }
 

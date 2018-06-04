@@ -15,7 +15,6 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
-#import "RH_TestViewController.h"
 #import "CLTabBarController.h"
 #import "MacroDef.h"
 #import "RH_API.h"

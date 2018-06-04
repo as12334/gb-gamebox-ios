@@ -37,10 +37,13 @@
                             <constraint firstAttribute="width" constant="224" id="k2s-Qt-0zD"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-DJ-Ru0">
-                        <rect key="frame" x="210" y="42" width="110" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-DJ-Ru0">
+                        <rect key="frame" x="162" y="101" width="110" height="27"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="XkX-q9-3Xd"/>
+                            <constraint firstAttribute="height" constant="27" id="x13-VO-vzU"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="启动微信APP支付">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,7 +59,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdg-jN-7Uh">
-                        <rect key="frame" x="105" y="101" width="110" height="27"/>
+                        <rect key="frame" x="48" y="101" width="110" height="27"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="87V-73-vyv"/>
@@ -73,12 +76,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RFt-9j-Bfs"/>
+                    <constraint firstItem="jUS-DJ-Ru0" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="8" id="SQm-GZ-gv6"/>
                     <constraint firstItem="Yd0-fI-A21" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="VZg-ob-VkF"/>
                     <constraint firstItem="Xdg-jN-7Uh" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="8" id="Z6x-VH-Tak"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="dYB-rr-DF2"/>
                     <constraint firstAttribute="trailing" secondItem="Yd0-fI-A21" secondAttribute="trailing" constant="16" id="fWS-6I-B15"/>
+                    <constraint firstItem="jUS-DJ-Ru0" firstAttribute="leading" secondItem="Xdg-jN-7Uh" secondAttribute="trailing" constant="4" id="j3g-qR-Yhy"/>
                     <constraint firstAttribute="bottom" secondItem="Yd0-fI-A21" secondAttribute="bottom" constant="10.5" id="sB1-Im-9bv"/>
-                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ucN-VS-zru"/>
+                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-57" id="ucN-VS-zru"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

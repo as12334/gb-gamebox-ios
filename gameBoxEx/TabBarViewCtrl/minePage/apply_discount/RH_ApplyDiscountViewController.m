@@ -179,11 +179,11 @@
 {
     if (!_pageView) {
         if ([getDeviceModel() isEqualToString:@"iPhone"]) {
-           _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,50+NavigationBarHeight+44 +10, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+           _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,50+NavigationBarHeight+44 +25, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
         }
         else
         {
-            _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,63+NavigationBarHeight + 10, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+            _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,63+NavigationBarHeight +25, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
         }
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
