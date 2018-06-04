@@ -128,7 +128,7 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _rf80 //TEST01[21]  V3原生
-//#define TEST_DOMAIN         @"test01.ccenter.test.so"
+#define TEST_DOMAIN         @"test01.ccenter.test.so"
 //#define TEST_DOMAIN  @"71.hongtubet.com"
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
@@ -141,7 +141,7 @@
 //#define TEST_DOMAIN           @"192.168.0.141"      //GAVIN
 //#define TEST_DOMAIN         @"test1-expired.hongtubet.com"//过期证书域名
 //#define TEST_DOMAIN         @"test1.hongtubet.com"//正常证书域名
-#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
+//#define TEST_DOMAIN         @"test1-http.hongtubet.com"//没有证书的域名
 //#define TEST_DOMAIN           @"boss.test.so"
 
 #define CODE    @"rf80"
@@ -1720,8 +1720,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _9tjq //全民体育
-
+#elif _9tjq //bet365
 #define CODE    @"9tjq"
 #define S        @"508df917ddab2f47ac33713d44cf7a42"
 #define SID        @"328"
@@ -2952,6 +2951,69 @@
 #define SID        @"593"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _wopw //金沙娱乐城
+
+#define CODE    @"wopw"
+#define S        @"318b1b35afb2c84531e3627b0d2a827c"
+#define SID        @"596"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _yyvd //易 博
+
+#define CODE    @"yyvd"
+#define S        @"b3e6117adb0e4cd3308e1eceba2b1c74"
+#define SID        @"597"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _s90r //戰神國際
+
+#define CODE    @"s90r"
+#define S        @"2578dfd960cf5fa3c7c623b3fc7eac64"
+#define SID        @"598"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _udpt //澳门新葡京
+
+#define CODE    @"udpt"
+#define S        @"42eebed071aff197e42fa377385392ff"
+#define SID        @"599"
+#define THEME    @"default.skin"
+#define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _35vx //鸿盛国际
+
+#define CODE    @"35vx"
+#define S        @"10c36d720230ab735a439364dce5ac13"
+#define SID        @"601"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ulub //澳门新葡京
+
+#define CODE    @"ulub"
+#define S        @"ead77c487878c728ebb7e90e0963d88f"
+#define SID        @"602"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ra3c //澳门星际娱乐
+
+#define CODE    @"ra3c"
+#define S        @"c3d7eb03c86becb26588804bb8eaac55"
+#define SID        @"603"
+#define THEME    @"default.skin"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif
