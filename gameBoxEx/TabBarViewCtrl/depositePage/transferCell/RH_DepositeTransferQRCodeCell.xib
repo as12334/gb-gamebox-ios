@@ -38,7 +38,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdg-jN-7Uh">
-                        <rect key="frame" x="34" y="101" width="110" height="30"/>
+                        <rect key="frame" x="105" y="101" width="110" height="30"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="GhT-kM-1Hs"/>
@@ -58,49 +58,20 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-Mg-LmH">
-                        <rect key="frame" x="176" y="101" width="110" height="30"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="110" id="jWS-Ci-o2B"/>
-                            <constraint firstAttribute="height" constant="30" id="xBm-hK-CMh"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="保存到手机">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <connections>
-                            <action selector="openOtherAppClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="giT-Zf-7fT"/>
-                        </connections>
-                    </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hX-gI-bxg">
-                        <rect key="frame" x="159.5" y="101" width="1" height="30"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="1" id="och-rb-CTW"/>
-                            <constraint firstAttribute="height" constant="30" id="sGf-xb-EbB"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="d07-np-Gul" secondAttribute="bottom" constant="8.5" id="1wN-qT-Qki"/>
-                    <constraint firstItem="0hX-gI-bxg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6lp-e7-7Q9"/>
-                    <constraint firstItem="kcb-Mg-LmH" firstAttribute="leading" secondItem="0hX-gI-bxg" secondAttribute="trailing" constant="15.5" id="8ZL-Jt-wv6"/>
+                    <constraint firstItem="Xdg-jN-7Uh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9yD-4H-Vc1"/>
                     <constraint firstItem="d07-np-Gul" firstAttribute="top" secondItem="Xdg-jN-7Uh" secondAttribute="bottom" constant="6" id="DzP-At-7ak"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RFt-9j-Bfs"/>
-                    <constraint firstItem="d07-np-Gul" firstAttribute="top" secondItem="0hX-gI-bxg" secondAttribute="bottom" constant="6" id="UDa-mf-RXN"/>
                     <constraint firstAttribute="trailing" secondItem="d07-np-Gul" secondAttribute="trailing" constant="16" id="bQg-FK-Xzv"/>
                     <constraint firstItem="xwY-mh-JrK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="dYB-rr-DF2"/>
-                    <constraint firstItem="kcb-Mg-LmH" firstAttribute="centerY" secondItem="Xdg-jN-7Uh" secondAttribute="centerY" id="fuS-ga-Jvs"/>
-                    <constraint firstItem="0hX-gI-bxg" firstAttribute="leading" secondItem="Xdg-jN-7Uh" secondAttribute="trailing" constant="15.5" id="nBW-v7-SLR"/>
                     <constraint firstItem="d07-np-Gul" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="quQ-YV-ug4"/>
                     <constraint firstItem="Xdg-jN-7Uh" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="8" id="tQW-Fs-hxc"/>
-                    <constraint firstItem="0hX-gI-bxg" firstAttribute="top" secondItem="xwY-mh-JrK" secondAttribute="bottom" constant="8" id="wyy-Yc-wSt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="noticeLabel" destination="d07-np-Gul" id="VV4-az-VJV"/>
-                <outlet property="openAppBtn" destination="kcb-Mg-LmH" id="SUh-D4-MYR"/>
                 <outlet property="qrbackView" destination="xwY-mh-JrK" id="wdL-iu-nIl"/>
                 <outlet property="qrurlImage" destination="nCs-3U-bxg" id="06X-YV-6be"/>
                 <outlet property="saveTophoneBtn" destination="Xdg-jN-7Uh" id="x1v-L0-hST"/>
