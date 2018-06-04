@@ -120,7 +120,7 @@
                 textField.placeholder = @"请输入6-20个字母数字或字符"; break ;
             }
             if ([obj isEqualToString:@"password2"]) {
-                label_Title.text = @"请再次输入密码";
+                label_Title.text = @"请再次输入密码⭐️";
                 textField.placeholder = @"请再次输入登录密码"; break ;
             }
             if ([obj isEqualToString:@"verificationCode"]) {
@@ -209,7 +209,7 @@
         [self setPasswordLayout];
     }
     if ([model.name isEqualToString:@"password2"]) {
-        label_Title.text = @"请再次输入密码";
+        label_Title.text = @"请再次输入密码⭐️";
         textField.placeholder = @"请再次输入登录密码";
         [self setPasswordLayout];
     }
