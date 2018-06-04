@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         case doMainStatus_None:
             return @"等待检测中..." ;
             break;
-        
+            
         case doMainStatus_Checking:
             return @"检测中..." ;
             break;
@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
     
     self.needObserveNetStatusChanged = YES ;
-    [self netStatusChangedHandle] ;
+    //    [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
     [self startReqSiteInfo];
@@ -182,7 +182,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     //设置启动页logo
     NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
     [self.splashLogo setImage:ImageWithName(logoName)];
-
+    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
@@ -202,6 +202,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
     //    [self.concurrentServicesManager cancleAllServices] ;
+    
     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     for (int i=0; i<RH_API_MAIN_URL.count; i++) {
         NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
@@ -249,25 +250,25 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     NSString *network = @"网络不可用";
     NSString *wifiing = @"正在使用Wifi";
-//    NSString *wifi = @"Wifi已开启";
+    //    NSString *wifi = @"Wifi已开启";
     NSString *flow = @"你现在使用的流量";
     NSString *unknown = @"你现在使用的未知网络";
-
+    
     //    if ([@"185" isEqualToString:SID]) {
-//        network = @"ネット使用不可";
-//        wifiing = @"WiFi使用中";
-//        wifi = @"WiFiオープン";
-//        flow = @"パケット使用中";
-//        unknown = @"不明のネット使用中";
-//    }
-
+    //        network = @"ネット使用不可";
+    //        wifiing = @"WiFi使用中";
+    //        wifi = @"WiFiオープン";
+    //        flow = @"パケット使用中";
+    //        unknown = @"不明のネット使用中";
+    //    }
+    
     switch (CurrentNetStatus()) {
         case NotReachable:
         {
             [self addToastWithString:network inView:self.view];
         }
             break;
-
+            
         case ReachableViaWiFi:
         {
             self.labIPAddr.text = getIPAddress(TRUE) ;
@@ -279,36 +280,36 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             }
         }
             break ;
-
+            
         case ReachableViaWWAN:
         {
             self.labIPAddr.text = getIPAddress(TRUE) ;
             [self addToastWithString:flow inView:self.view];
-             if (_urlArray.count<1){
-                 [self startReqSiteInfo];
-             }else{
-                 [self checkAllUrl] ;
-             }
+            if (_urlArray.count<1){
+                [self startReqSiteInfo];
+            }else{
+                [self checkAllUrl] ;
+            }
         }
             break ;
-
+            
         default:
         {
             [self addToastWithString:unknown inView:self.view];
-             if (_urlArray.count<1){
-                 [self startReqSiteInfo];
-             }else{
-                 [self checkAllUrl] ;
-             }
+            if (_urlArray.count<1){
+                [self startReqSiteInfo];
+            }else{
+                [self checkAllUrl] ;
+            }
         }
             break;
     }
-
+    
 }
 
 //showToast
 - (void) addToastWithString:(NSString *)string inView:(UIView *)view {
-
+    
     CGRect initRect = CGRectMake(0, STATUS_BAR_HEIGHT + 44, aiScreenWidth, 0);
     CGRect rect = CGRectMake(0, STATUS_BAR_HEIGHT + 44, aiScreenWidth, 22);
     UILabel* label = [[UILabel alloc] initWithFrame:initRect];
@@ -317,14 +318,14 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:14];
     label.backgroundColor = [UIColor colorWithRed:0 green:0.6 blue:0.9 alpha:0.6];
-
+    
     [view addSubview:label];
-
+    
     //弹出label
     [UIView animateWithDuration:0.5 animations:^{
-
+        
         label.frame = rect;
-
+        
     } completion:^ (BOOL finished){
         //弹出后持续1s
         [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(removeToastWithView:) userInfo:label repeats:NO];
@@ -364,7 +365,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",self.checkDominStr,@""]] ;
         }
         
-        if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
+        if (IS_TEST_SERVER_ENV){
             [self splashViewComplete] ;
         }else{
             if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
@@ -377,44 +378,71 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }
     }else if (type == ServiceRequestTypeUpdateCheck || type == ServiceRequestTypeV3UpdateCheck){
         RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
-        
-        if(checkVersion.mVersionCode<=[RH_APP_VERCODE integerValue]){
-            [self splashViewComplete] ;
-            return;
-        }
-        
         //检查今天是否已提醒
         NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
         NSDate *dateTmp = ConvertToClassPointer(NSDate, [userDefaults objectForKey:kUpdateAPPDatePrompt]) ;
         NSDate *dateCurr = [NSDate date] ;
-        
-        if (dateTmp==nil ||
-            [dateCurr timeIntervalSinceDate:dateTmp]>OneDayTotalInterval){
-            UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if(alertView.firstOtherButtonIndex == buttonIndex){
-                    NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
-                    if (openURL(downLoadIpaUrl)==false){
+        if(checkVersion.mVersionCode<=[RH_APP_VERCODE integerValue]&&[checkVersion.mForceVersion integerValue]<=[RH_APP_VERCODE integerValue]){
+            [self splashViewComplete] ;
+            return;
+        }
+        else if (checkVersion.mVersionCode>[RH_APP_VERCODE integerValue]&&[checkVersion.mForceVersion integerValue]<=[RH_APP_VERCODE integerValue]){
+            if (dateTmp==nil ||
+                [dateCurr timeIntervalSinceDate:dateTmp]>OneDayTotalInterval){
+                UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if(alertView.firstOtherButtonIndex == buttonIndex){
+                        NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
+                        if (openURL(downLoadIpaUrl)==false){
+                            [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
+                            [self splashViewComplete] ;
+                        }else{
+                            exit(0) ;
+                        }
+                    }else{
                         [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
                         [self splashViewComplete] ;
-                    }else{
-                        exit(0) ;
                     }
-                }else{
-                    [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
-                    [self splashViewComplete] ;
+                    
                 }
-                
-            }
                                                                     title:@"检测到新版本"
-                                                                  message:checkVersion.mMemo
-                                                         cancelButtonName:@"暂不更新"
-                                                        otherButtonTitles:@"立即更新", nil
-                                       ];
-            
-            [alertView show];
-        }else{
-            [self splashViewComplete] ;
-        } 
+                                                                    message:checkVersion.mMemo
+                                                             cancelButtonName:@"暂不更新"
+                                                            otherButtonTitles:@"立即更新", nil
+                                           ];
+                
+                [alertView show];
+            }else{
+                [self splashViewComplete] ;
+            }
+        }
+        else if (checkVersion.mVersionCode>[RH_APP_VERCODE integerValue]&&[checkVersion.mForceVersion integerValue]>[RH_APP_VERCODE integerValue])
+        {
+            if (dateTmp==nil ||
+                [dateCurr timeIntervalSinceDate:dateTmp]>OneDayTotalInterval){
+                UIAlertView * alertView = [UIAlertView alertWithCallBackBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if(alertView.firstOtherButtonIndex == buttonIndex){
+                        NSString *downLoadIpaUrl = [NSString stringWithFormat:@"itms-services://?action=download-manifest&url=https://%@%@/%@/app_%@_%@.plist",checkVersion.mAppUrl,checkVersion.mVersionName,CODE,CODE,checkVersion.mVersionName];
+                        if (openURL(downLoadIpaUrl)==false){
+                            [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
+                            [self splashViewComplete] ;
+                        }else{
+                            exit(0) ;
+                        }
+                    }else{
+                        exit(0);
+                    }
+                    
+                }
+                                                                        title:@"检测到新版本"
+                                                            message:checkVersion.mMemo
+                                                             cancelButtonName:@"退出"
+                                                            otherButtonTitles:@"立即更新", nil
+                                           ];
+                [alertView show];
+            }else{
+                [self splashViewComplete] ;
+            }
+        }
     }
 }
 
@@ -422,22 +450,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     if (type == ServiceRequestTypeDomainList){
         [self.contentLoadingIndicateView hiddenView] ;
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-//            [self startReqSiteInfo];
-//        }];
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
-//        showMessage(self.view, @"", @"正在检测线路");
-//        if ([self.checkType isEqualToString:@"https+8989"]) {
-//            self.checkType = @"http+8787";
-//        }else if ([self.checkType isEqualToString:@"http+8787"]){
-//            self.checkType = @"https";
-//        }else if ([self.checkType isEqualToString:@"https"]){
-//            self.checkType = @"http";
-//        }
-//        [self checkAllUrl] ;
+        //        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+        //        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+        //            [self startReqSiteInfo];
+        //        }];
+        //        [alert addAction:defaultAction];
+        //        [self presentViewController:alert animated:YES completion:nil];
+        showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+        //        showMessage(self.view, @"", @"正在检测线路");
+        //        if ([self.checkType isEqualToString:@"https+8989"]) {
+        //            self.checkType = @"http+8787";
+        //        }else if ([self.checkType isEqualToString:@"http+8787"]){
+        //            self.checkType = @"https";
+        //        }else if ([self.checkType isEqualToString:@"https"]){
+        //            self.checkType = @"http";
+        //        }
+        //        [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckFail
@@ -528,30 +556,30 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
                                                              detailText:@"checking domain"] ;
         }
-            if (IS_TEST_SERVER_ENV==1) {
-                //check域名
-                NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
-                self.checkDominStr = tmpDomain;
-                self.serviceRequest.timeOutInterval = 10.f;
-                self.checkType = @"http";
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
-            }else if(i<_urlArray.count){
-                //check域名
-                NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
-                self.checkDominStr = tmpDomain;
-                self.serviceRequest.timeOutInterval = 10.f;
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
-            }
-            else
-            {
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-                    [self repetitionStartReqSiteInfo];
-                    [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
-                }];
-                [alert addAction:defaultAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
+        if (IS_TEST_SERVER_ENV==1||IS_DEV_SERVER_ENV==1) {
+            //check域名
+            NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
+            self.checkDominStr = tmpDomain;
+            self.serviceRequest.timeOutInterval = 10.f;
+            self.checkType = @"http";
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
+        }else if(i<_urlArray.count){
+            //check域名
+            NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
+            self.checkDominStr = tmpDomain;
+            self.serviceRequest.timeOutInterval = 10.f;
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
+        }
+        else
+        {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+                [self repetitionStartReqSiteInfo];
+                [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
+            }];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
@@ -572,23 +600,23 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     //建立的循环保留
     [self.window setRootViewController:self];
     [self.window makeKeyAndVisible];
-
+    
     if (animated) {
         self.window.alpha = 0.f;
         [UIView animateWithDuration:0.8f
                          animations:^{
                              self.window.alpha = 1.f;
                          } completion:^(BOOL finished) {
-
+                             
                              [self statusBarAppearanceUpdate];
-
+                             
                              if (completedBlock) {
                                  completedBlock();
                              }
                          }];
     }else {
         [self statusBarAppearanceUpdate];
-
+        
         if (completedBlock) {
             completedBlock();
         }
@@ -600,37 +628,36 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (!self.window) {
         return;
     }
-
+    
     if (animated) {
-
+        
         [UIView animateWithDuration:1.5f animations:^{
-
             //放大并消失
             self.window.alpha = 0.f;
             self.window.transform = CGAffineTransformMakeScale(2.f, 2.f);
-
+            
         } completion:^(BOOL finished){
-
+            
             [self.window setHidden:YES];
             [self.window setRootViewController:nil];
             self.window = nil;
-
+            
             if (completedBlock) {
                 completedBlock();
             }
         }];
-
+        
     }else{
-
+        
         [self.window setHidden:YES];
         [self.window setRootViewController:nil];
         self.window = nil;
-
+        
         if (completedBlock) {
             completedBlock();
         }
     }
-
+    
 }
 
 #pragma mark -tableview delegate
@@ -663,7 +690,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
         bRet = [self.delegate splashViewControllerWillHidden:self];
     }
-
+    
     if (bRet) {
         [self hide:YES completedBlock:nil];
     }

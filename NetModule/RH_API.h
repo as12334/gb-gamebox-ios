@@ -60,7 +60,7 @@
 #define RH_GP_CHECKVERSION_MEMO                                     @"memo"
 #define RH_GP_CHECKVERSION_UPDATETIME                               @"updateTime"
 #define RH_GP_CHECKVERSION_MD5                                      @"md5"
-
+#define RH_GP_CHECKVERSION_FORCEVERSION                             @"forceVersion"
 
 #pragma mark- Page list
 #define RH_API_PAGE_SIGNUP                                          @"/signUp/index.html"

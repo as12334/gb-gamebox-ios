@@ -18,24 +18,24 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               0
+#define IS_DEV_SERVER_ENV                               1
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_APP_VERCODE                  @"3"
-#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss"]
+#define RH_APP_VERCODE                  @"1"
+#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss-api/"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
-#define RH_APP_VERCODE                  @"3"
+#define RH_APP_VERCODE                  @"1"
 //API的主URL
-#define RH_API_MAIN_URL                         @[@"https://test.gbboss.com:1344"]
+#define RH_API_MAIN_URL                        @[@"https://test.gbboss.com:1344"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"6"
+#define RH_APP_VERCODE                  @"1"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -109,10 +109,11 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 
-#elif _DEBUG1 //开发环境 V3  H5  test 01
-#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define CODE    @"rf80"
-#define S        @"632fbc122abfffdec078a665a76a1c16"
+#elif _wjbn //开发环境 V3  H5  test 01
+//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+#define TEST_DOMAIN         @"http://192.168.0.92/boss-api/"
+#define CODE    @"wjbn"
+#define S        @"f0581a9da25c2476d18f7675362f596c"
 #define SID        @"21"
 #define THEME    @"default.skin"
 #define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
@@ -170,106 +171,6 @@
 #define SID        @"65"
 #define THEME    @"default.skin"
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-
-#elif _1qkq1 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq2 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq3 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq4 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq5 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq6 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq7 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq8 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq9 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq10 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-#elif _1qkq11 //宏图娱乐
-
-#define CODE    @"1qkq"
-#define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
-#define SID        @"65"
-#define THEME    @"default.skin"
-#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _erln //太阳城集团

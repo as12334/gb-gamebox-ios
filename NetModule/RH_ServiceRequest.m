@@ -2516,14 +2516,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         return YES ;
     }
-    else if (type==ServiceRequestTypeV3UpdateCheck){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *reslutData = dataObject ;
-        return YES ;
-    }
+//    else if (type==ServiceRequestTypeV3UpdateCheck){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject;
+//
+//        return YES ;
+//    }
     else if (type == ServiceRequestTypeObtainVerifyCode ||
               type == ServiceRequestTypeV3SafetyObtainVerifyCode||type== ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;

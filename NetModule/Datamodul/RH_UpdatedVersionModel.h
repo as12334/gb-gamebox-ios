@@ -18,5 +18,6 @@
 @property(nonatomic,readonly,strong) NSDate   *mUpdateTime ;
 @property(nonatomic,readonly,assign) NSInteger mVersionCode ;
 @property(nonatomic,readonly,strong) NSString *mVersionName ;
+@property(nonatomic,readonly,strong) NSString *mForceVersion;
 @end
 
