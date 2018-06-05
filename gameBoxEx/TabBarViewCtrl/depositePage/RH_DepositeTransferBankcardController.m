@@ -481,7 +481,7 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[A-Za-z0-9]*";
@@ -504,7 +504,7 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[A-Za-z0-9]*";
@@ -527,7 +527,7 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[A-Za-z0-9]*";
@@ -550,7 +550,7 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[A-Za-z0-9]*";
@@ -573,7 +573,7 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
                 NSString *regex = @"[A-Za-z0-9]*";
@@ -632,7 +632,7 @@
     else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"])
     {
         if (self.paywayCell.paywayString.length!=5&&self.paywayCell.paywayString.length!=0&&self.paywayCell.paywayString!=nil) {
-            showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+            showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
         }
         else if(self.paywayCell.paywayString.length!=0){
             NSString *regex = @"[A-Za-z0-9]*";
