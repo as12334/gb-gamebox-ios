@@ -13,7 +13,7 @@
 #import "RH_LotteryAPIInfoModel.h"
 #import "RH_CustomViewController.h"
 #import "RH_UserInfoManager.h"
-
+#import "RH_ElecGameViewController.h"
 @interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) RH_GameListHeaderView *typeTopView;
@@ -204,7 +204,8 @@
 {
     if (HasLogin)
     {
-        [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+//        [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+        [self showViewController:[RH_ElecGameViewController viewControllerWithContext:lotteryInfoModel] sender:self];
         return ;
     }else{
         [self loginButtonItemHandle] ;
