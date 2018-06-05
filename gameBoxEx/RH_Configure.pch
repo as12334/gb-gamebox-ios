@@ -2953,6 +2953,15 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _elsd //龙 e
+
+#define CODE    @"elsd"
+#define S        @"d1ca20af10f9e82cabde50f745bfec45"
+#define SID        @"595"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _wopw //金沙娱乐城
 
 #define CODE    @"wopw"
