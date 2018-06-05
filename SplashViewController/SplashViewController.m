@@ -82,14 +82,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }
     }
 }
-//#pragma mark ==============懒加载，重试按钮================
-//-(UIButton *)padonBtn
-//{
-//    if (!_padonBtn) {
-//        _padonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _padonBtn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//    }
-//}
 -(NSString*)showStatus
 {
     switch (_status) {
@@ -131,9 +123,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong) NSString *checkType;
 //check到的域名
 @property (nonatomic,strong)NSString *checkDominStr;
-
-//获取 域名 list 并发请求管理器
-//@property(nonatomic,strong,readonly) RH_ConcurrentServicesReqManager * concurrentServicesManager;
+//启动页进度条
+@property(nonatomic,strong,readonly)UIProgressView *progressView;
 @property(nonatomic,readonly,strong)RH_ServiceRequest *serviceRequest;
 @end
 
@@ -145,8 +136,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 @synthesize checkDomainServices = _checkDomainServices ;
 @synthesize domainCheckStatusList = _domainCheckStatusList ;
-//@synthesize concurrentServicesManager = _concurrentServicesManager ;
 @synthesize serviceRequest = _serviceRequest;
+@synthesize progressView = _progressView;
 -(RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest) {
@@ -154,6 +145,20 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         _serviceRequest.delegate = self;
     }
     return _serviceRequest;
+}
+-(UIProgressView *)progressView
+{
+    if (!_progressView) {
+        _progressView = [[UIProgressView alloc]init];
+        _progressView.frame = CGRectMake((MainScreenW-200)/2,MainScreenH-50, 200, 10);
+        //进度条颜色
+        _progressView.progressTintColor = [UIColor blueColor];
+        //进度条未完成颜色
+        _progressView.trackTintColor = [UIColor lightGrayColor];
+        _progressView.progress = 0;
+        _progressView.progressViewStyle = UIProgressViewStyleDefault;
+    }
+    return _progressView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -170,19 +175,21 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:0])] ;
 #endif
     }
-    
     self.needObserveNetStatusChanged = YES ;
-    //    [self netStatusChangedHandle] ;
+//        [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
     [self startReqSiteInfo];
+    //注册打开是否check成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
+    //加入进度条
+    [self.view addSubview:self.progressView];
 }
 
 - (void)initView{
     //设置启动页logo
     NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
     [self.splashLogo setImage:ImageWithName(logoName)];
-    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
@@ -190,12 +197,10 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     [self.bottomText setText:[NSString stringWithFormat:@"Copyrihgt © %@ Reserved.",app_Name]];
     [self.bottomText2 setText:[NSString stringWithFormat:@"v%@",app_Version]];
-    
     [self.domainTableView registerCellWithClass:[RH_DomainTableCell class]] ;
     self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
     self.domainTableView.hidden = YES ;
-    //注册打开是否check成功的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
+
 }
 
 -(void)startReqSiteInfo
@@ -209,6 +214,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         [self.serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
         [appDelegate updateApiDomain:strTmp];
     }
+    
 }
 #pragma mark ==============重复请求================
 -(void)repetitionStartReqSiteInfo{
@@ -349,8 +355,10 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
+//        _urlArray = @[@"19.0.4.5",@"123.45.23.6",@"54.56.87.4",@"192.168.0.92",];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
+//        self.progressView.progress = 0.3;
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
@@ -364,7 +372,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }else if ([self.checkType isEqualToString:@"http"]){
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",self.checkDominStr,@""]] ;
         }
-        
+        self.progressView.progress = 1.0;
         if (IS_TEST_SERVER_ENV){
             [self splashViewComplete] ;
         }else{
@@ -537,6 +545,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     else
                     {
                         i++;
+                        self.progressView.progress+=(1/_urlArray.count);
                         self.checkType = @"https+8989";
                     }
                     [self checkAllUrl] ;
@@ -690,8 +699,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
         bRet = [self.delegate splashViewControllerWillHidden:self];
     }
-    
     if (bRet) {
+        //启动页加载完成后跳转
         [self hide:YES completedBlock:nil];
     }
     //check过了，就把通知释放掉
