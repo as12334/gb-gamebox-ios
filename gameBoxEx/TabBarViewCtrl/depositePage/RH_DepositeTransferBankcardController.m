@@ -343,9 +343,8 @@
     
     if (indexPath.item==[_markArray[0] integerValue]) {
         RH_DepositeTransferBankInfoCell *bankInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferBankInfoCell defaultReuseIdentifier]] ;
-//        payforWayCell.delegate = self;
-        [bankInfoCell updateCellWithInfo:nil context:self.listModel];
-        
+        NSArray *array = @[self.listModel,@(self.channelModel.mHide)];
+        [bankInfoCell updateCellWithInfo:nil context:array];
         return bankInfoCell ;
     }
     else if (indexPath.item==[_markArray[1]integerValue]){

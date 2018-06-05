@@ -29,7 +29,7 @@
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
-#define RH_APP_VERCODE                  @"3"
+#define RH_APP_VERCODE                  @"1"
 //API的主URL
 #define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="

@@ -546,8 +546,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
             self.checkDominStr = tmpDomain;
             self.serviceRequest.timeOutInterval = 10.f;
-            self.checkType = @"http+8787";
-            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
+            self.checkType = @"http";
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
         }else if(i<_urlArray.count){
             //check域名
             NSString *tmpDomain = [_urlArray objectAtIndex:i] ;

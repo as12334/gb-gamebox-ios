@@ -564,7 +564,7 @@
 		A0B5A5781FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B5A5761FFF7B7700E2CDD8 /* RH_LoadingIndicaterCollectionViewCell.m */; };
 		A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */; };
 		A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */; };
-		A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */; };
+		A0C3B7C51FD4F14000162B98 /* RH_ElecGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B7C41FD4F14000162B98 /* RH_ElecGameViewController.m */; };
 		A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */; };
 		A0C914FE201F541600EA71E6 /* default_banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A0C914FD201F541600EA71E6 /* default_banner.jpg */; };
 		A0D3CABC1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CABB1FA312E3002CC1A8 /* RH_UpdatedVersionModel.m */; };
@@ -1743,8 +1743,8 @@
 		A0B609C21FBB096B00A44B37 /* RH_PromoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_PromoViewController.m; sourceTree = "<group>"; };
 		A0B86B9B20063E250009AB25 /* RH_CapitalInfoOverviewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalInfoOverviewModel.m; sourceTree = "<group>"; };
 		A0B86B9C20063E250009AB25 /* RH_CapitalInfoOverviewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CapitalInfoOverviewModel.h; sourceTree = "<group>"; };
-		A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_TestViewController.h; sourceTree = "<group>"; };
-		A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_TestViewController.m; sourceTree = "<group>"; };
+		A0C3B7C31FD4F14000162B98 /* RH_ElecGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_ElecGameViewController.h; sourceTree = "<group>"; };
+		A0C3B7C41FD4F14000162B98 /* RH_ElecGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_ElecGameViewController.m; sourceTree = "<group>"; };
 		A0C894E71FBACDE0002F743F /* RH_CustomTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomTabBar.h; sourceTree = "<group>"; };
 		A0C894E81FBACDE0002F743F /* RH_CustomTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomTabBar.m; sourceTree = "<group>"; };
 		A0C914FD201F541600EA71E6 /* default_banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_banner.jpg; sourceTree = "<group>"; };
@@ -3784,8 +3784,8 @@
 				A0E368161F95FF5700758033 /* RH_GamesViewController.m */,
 				A0E367AF1F9069F600758033 /* RH_CustomViewController.h */,
 				A0E367B01F9069F700758033 /* RH_CustomViewController.m */,
-				A0C3B7C31FD4F14000162B98 /* RH_TestViewController.h */,
-				A0C3B7C41FD4F14000162B98 /* RH_TestViewController.m */,
+				A0C3B7C31FD4F14000162B98 /* RH_ElecGameViewController.h */,
+				A0C3B7C41FD4F14000162B98 /* RH_ElecGameViewController.m */,
 			);
 			path = OtherViewCtrl;
 			sourceTree = "<group>";
@@ -5445,7 +5445,7 @@
 				F69E351120635B8C0028D3A1 /* RH_DepositeMoneyNumberCell.m in Sources */,
 				79BB2D9C203130B0000CDE6B /* RH_ShareNavBarView.m in Sources */,
 				F69E350C206355AD0028D3A1 /* RH_DepositeChooseMoneySubCell.m in Sources */,
-				A0C3B7C51FD4F14000162B98 /* RH_TestViewController.m in Sources */,
+				A0C3B7C51FD4F14000162B98 /* RH_ElecGameViewController.m in Sources */,
 				A0B5A5721FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.m in Sources */,
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
 				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
