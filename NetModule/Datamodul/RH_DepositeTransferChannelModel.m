@@ -41,10 +41,7 @@
         _mPayType = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_PAYTYPE];
         _mSearchId = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_SEARCHID];
         _mImgUrl = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_IMGURL];
-        _mAccountImg = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG];
-        
-        _mHide = [info boolValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_HIDE];
-        
+        _mAccountImg = [info stringValueForKey:RH_GP_DEPOSITEORIGINCHANNEL_ACCOUNTIMG];        
     }
     return self;
 }
