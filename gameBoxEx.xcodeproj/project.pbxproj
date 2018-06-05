@@ -93,6 +93,7 @@
 		22F626A720566E5E00094564 /* login_touxiang_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A520566E5E00094564 /* login_touxiang_black@2x.png */; };
 		22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A620566E5E00094564 /* login_touxiang_black@3x.png */; };
 		22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */; };
+		545B302E20C6216C0040129B /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B302B20C6216C0040129B /* SRWebSocket.m */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -645,7 +646,6 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
-		F61D9FF620BAAD2A00E55BAB /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D9FF320BAAD2A00E55BAB /* SRWebSocket.m */; };
 		F61D9FF820BAADE100E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FF720BAADE100E55BAB /* libicucore.tbd */; };
 		F61D9FFA20BAADEB00E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FF920BAADEB00E55BAB /* CFNetwork.framework */; };
 		F61D9FFC20BAADFD00E55BAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61D9FFB20BAADFD00E55BAB /* Foundation.framework */; };
@@ -897,6 +897,9 @@
 		22F626A520566E5E00094564 /* login_touxiang_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@2x.png"; sourceTree = "<group>"; };
 		22F626A620566E5E00094564 /* login_touxiang_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@3x.png"; sourceTree = "<group>"; };
 		22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
+		545B302B20C6216C0040129B /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		545B302C20C6216C0040129B /* SocketRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocket.h; sourceTree = "<group>"; };
+		545B302D20C6216C0040129B /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -1878,9 +1881,6 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
-		F61D9FF320BAAD2A00E55BAB /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
-		F61D9FF420BAAD2A00E55BAB /* SocketRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocket.h; sourceTree = "<group>"; };
-		F61D9FF520BAAD2A00E55BAB /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		F61D9FF720BAADE100E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		F61D9FF920BAADEB00E55BAB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F61D9FFB20BAADFD00E55BAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2315,6 +2315,16 @@
 				22AB991F208098D8001A6203 /* login_touxiang_coffee@3x.png */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		545B302A20C6216C0040129B /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				545B302B20C6216C0040129B /* SRWebSocket.m */,
+				545B302C20C6216C0040129B /* SocketRocket.h */,
+				545B302D20C6216C0040129B /* SRWebSocket.h */,
+			);
+			path = SocketRocket;
 			sourceTree = "<group>";
 		};
 		790743082063542400A4543A /* LimitTransfer */ = {
@@ -4124,7 +4134,7 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				F61D9FF220BAAD2A00E55BAB /* SocketRocket */,
+				545B302A20C6216C0040129B /* SocketRocket */,
 			);
 			path = thirdPart;
 			sourceTree = "<group>";
@@ -4352,17 +4362,6 @@
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
-			sourceTree = "<group>";
-		};
-		F61D9FF220BAAD2A00E55BAB /* SocketRocket */ = {
-			isa = PBXGroup;
-			children = (
-				F61D9FF320BAAD2A00E55BAB /* SRWebSocket.m */,
-				F61D9FF420BAAD2A00E55BAB /* SocketRocket.h */,
-				F61D9FF520BAAD2A00E55BAB /* SRWebSocket.h */,
-			);
-			name = SocketRocket;
-			path = "../../../../Downloads/SJWebSocketDemo-master/WebSocketDemo/Pods/SocketRocket/SocketRocket";
 			sourceTree = "<group>";
 		};
 		F61D9FFD20BAAE2900E55BAB /* websocketVC */ = {
@@ -5108,6 +5107,7 @@
 				F6942E10206503AC009A5573 /* RH_DepositePayAccountModel.m in Sources */,
 				A0522A622007818600A5A6E9 /* RH_BankCardModel.m in Sources */,
 				A0E3680C1F94815600758033 /* RH_lotteryHallViewController.h in Sources */,
+				545B302E20C6216C0040129B /* SRWebSocket.m in Sources */,
 				189C13AC1FF9E99F00B14298 /* RH_MineAccountCell.m in Sources */,
 				B84F946B201754A9003E40BC /* RH_GameCategoryCell.m in Sources */,
 				A0E368091F945ADE00758033 /* RH_lotteryHallViewController.m in Sources */,
@@ -5394,7 +5394,6 @@
 				A0109FEC1F8788FF004E6EF4 /* SAMKeychainQuery.m in Sources */,
 				A01CB4AD1FFA131C00447130 /* RH_UserApiBalanceModel.m in Sources */,
 				79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */,
-				F61D9FF620BAAD2A00E55BAB /* SRWebSocket.m in Sources */,
 				A0109FED1F8788FF004E6EF4 /* MKAnnotationView+WebCache.m in Sources */,
 				797F6798200B789B009E3FAB /* RH_SiteMessageModel.m in Sources */,
 				A01181721FFCAB21008F6D1E /* CALayer+WHC_Frame.m in Sources */,
