@@ -8,10 +8,12 @@
 
 #import "RH_MineRecordStaticCell.h"
 #import "coreLib.h"
+#import "RH_SiteMsgUnReadCountModel.h"
 @interface RH_MineRecordStaticCell()
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (weak, nonatomic) IBOutlet UILabel *explainLab;
+@property (weak, nonatomic) IBOutlet UIView *readCountMarkView;
 
 @end
 @implementation RH_MineRecordStaticCell
@@ -35,6 +37,10 @@
     self.cellImageView.whc_TopSpace(15).whc_LeftSpace(22);
     self.titleLab.whc_TopSpaceEqualView(self.cellImageView).whc_LeftSpaceToView(17, self.cellImageView);
     self.explainLab.whc_TopSpaceToView(5, self.titleLab).whc_LeftSpaceEqualView(self.titleLab);
+    
+    self.readCountMarkView.layer.cornerRadius = 5;
+    self.readCountMarkView.layer.masksToBounds = YES;
+    self.readCountMarkView.hidden = YES;
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -42,5 +48,14 @@
     self.cellImageView.image = info.myImage ;
     self.titleLab.text = info.myTitle ;
     self.explainLab.text = info.myDetailTitle;
+    NSLog(@"----%@",info);
+    RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, context);
+    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||model.sysMsgUnreadCount>0||model.mineMsgUnreadCount>0)) {
+        self.readCountMarkView.hidden = NO;
+    }
+    else
+    {
+        self.readCountMarkView.hidden = YES;
+    }
 }
 @end

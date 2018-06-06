@@ -24,6 +24,8 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 
 //wkweb cookie
 @property (nonatomic,strong) NSDictionary *dictUserAgent ;
+//check type
+@property (nonatomic,strong)NSString *checkType;
 
 -(void)updateApiDomain:(NSString*)apiDomain ;
 -(void)updateDomain:(NSString*)domain ;

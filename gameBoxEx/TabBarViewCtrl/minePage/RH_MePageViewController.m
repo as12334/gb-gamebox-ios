@@ -20,11 +20,13 @@
 #import "RH_MineRecordTableViewCell.h"
 #import "RH_LimitTransferViewController.h" // 额度转换原生
 #import "RH_WebsocketManagar.h"
+#import "RH_SiteMsgUnReadCountModel.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement ;
+@property(nonatomic,strong)RH_SiteMsgUnReadCountModel *readCountModel;
 @end
 
 @implementation RH_MePageViewController
@@ -35,8 +37,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
-    if (HasLogin) {
+    if (self.appDelegate.isLogin) {
         [self.serviceRequest startV3GetUserAssertInfo] ;
+        //消息未读条数
+        [self.serviceRequest startV3LoadMessageCenterSiteMessageUnReadCount];
     }else
     {
         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
@@ -341,6 +345,7 @@
     }
     
     RH_MineRecordTableViewCell *mineRecordTableCell = ConvertToClassPointer(RH_MineRecordTableViewCell, cell) ;
+    mineRecordTableCell.readCountModel = self.readCountModel;
     if (mineRecordTableCell){
         mineRecordTableCell.delegate = self ;
     }
@@ -438,6 +443,10 @@
         RH_UserSafetyCodeModel *codeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, data) ;
         manager.isSetSafetySecertPwd = codeModel.mHasPersimmionPwd ;
         
+    }
+    else if (type==ServiceRequestTypeSiteMessageUnReadCount){
+        RH_SiteMsgUnReadCountModel *readCountModel = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, data);
+        self.readCountModel = readCountModel;
     }
 }
 
