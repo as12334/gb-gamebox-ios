@@ -1463,7 +1463,7 @@
 #define SID        @"270"
 #define THEME    @"green.skin"
 
-#define THEMEV3    @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3    @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _7ybc //金沙娱乐城
