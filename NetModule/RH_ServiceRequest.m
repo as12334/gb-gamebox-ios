@@ -197,8 +197,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"
                                      }
                     queryArguments:@{@"code":S,
                                      @"type":@"ios",
@@ -2474,6 +2473,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }else{
                 *reslutData = @(NO) ;
             }
+            if ([reqUrl containsString:@"https"]&&[reqUrl containsString:@"8989"]) {
+                self.appDelegate.checkType = @"https+8989";
+            }
+            else if ([reqUrl containsString:@"http"]&&[reqUrl containsString:@"8787"]){
+                self.appDelegate.checkType = @"http+8787";
+            }
+            else
+            {
+                if ([reqUrl containsString:@"https"]) {
+                    self.appDelegate.checkType = @"https";
+                }
+                else {
+                    self.appDelegate.checkType = @"http";
+                }
+            }
+            
             
         }else{
             *error = [NSError resultDataNoJSONError] ;

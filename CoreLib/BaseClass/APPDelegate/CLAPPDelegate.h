@@ -79,6 +79,7 @@ typedef NS_ENUM(NSInteger, CLAppScoreAlertViewResult) {
 //crash掉上传日子
 @property(nonatomic,strong)NSDictionary *errorDict;
 
+
 //                app的点击次数信息
 //-----------------------------------------------------
 

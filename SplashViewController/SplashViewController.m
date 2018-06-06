@@ -16,6 +16,7 @@
 #import "RH_DomainTableCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_ConcurrentServicesReqManager.h"
+#import "RH_AdvertisingView.h"
 
 #define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
 #define RHNT_DomainCheckFail                @"DomainCheckFail "
@@ -125,6 +126,10 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong)NSString *checkDominStr;
 //启动页进度条
 @property(nonatomic,strong,readonly)UIProgressView *progressView;
+//显示进度条进度
+@property(nonatomic,strong,readonly)UILabel *scheduleLabel;
+//check的状态
+@property(nonatomic,strong,readonly)UILabel *checkStatusLabel;
 @property(nonatomic,readonly,strong)RH_ServiceRequest *serviceRequest;
 @end
 
@@ -138,6 +143,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @synthesize domainCheckStatusList = _domainCheckStatusList ;
 @synthesize serviceRequest = _serviceRequest;
 @synthesize progressView = _progressView;
+@synthesize scheduleLabel = _scheduleLabel;
+@synthesize checkStatusLabel = _checkStatusLabel;
 -(RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest) {
@@ -160,9 +167,33 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
     return _progressView;
 }
+-(UILabel *)scheduleLabel
+{
+    if (!_scheduleLabel) {
+        _scheduleLabel = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-50)/2,MainScreenH-70, 50, 10)];
+        _scheduleLabel.textColor = [UIColor clearColor];
+        _scheduleLabel.text = @"0%";
+        _scheduleLabel.font = [UIFont systemFontOfSize:10];
+        _scheduleLabel.textColor = [UIColor cyanColor];
+        _scheduleLabel.textAlignment=NSTextAlignmentCenter;
+    }
+    return _scheduleLabel;
+}
+-(UILabel *)checkStatusLabel
+{
+    if (!_checkStatusLabel) {
+        _checkStatusLabel = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-100)/2,MainScreenH-90, 100, 10)];
+        _checkStatusLabel.textColor = [UIColor clearColor];
+        _checkStatusLabel.text = @"正在匹配服务器，请稍后...";
+        _checkStatusLabel.font = [UIFont systemFontOfSize:10];
+        _checkStatusLabel.textColor = [UIColor cyanColor];
+        _checkStatusLabel.textAlignment=NSTextAlignmentCenter;
+    }
+    return _checkStatusLabel;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.checkType = @"https+8989";
+//    self.checkType = @"https+8989";
     i = 0;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
@@ -184,6 +215,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
     //加入进度条
     [self.view addSubview:self.progressView];
+    //
+    [self.view addSubview:self.scheduleLabel];
 }
 
 - (void)initView{
@@ -355,24 +388,24 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
-//        _urlArray = @[@"19.0.4.5",@"123.45.23.6",@"54.56.87.4",@"192.168.0.92",];
+//        _urlArray = @[@"19.0.4.5",@"123.45.23.6",@"54.56.87.4",@"192.168.0.9",@"1.32.208.63"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
-//        self.progressView.progress = 0.3;
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
+        self.progressView.progress = 1.0;
+        self.scheduleLabel.text = @"100%";
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        if ([self.checkType isEqualToString:@"https+8989"]) {
+        if ([appDelegate.checkType isEqualToString:@"https+8989"]) {
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",self.checkDominStr,@":8989"]] ;
-        }else if ([self.checkType isEqualToString:@"http+8787"]){
+        }else if ([appDelegate.checkType isEqualToString:@"http+8787"]){
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",self.checkDominStr,@":8787"]] ;
-        }else if ([self.checkType isEqualToString:@"https"]){
+        }else if ([appDelegate.checkType isEqualToString:@"https"]){
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",self.checkDominStr,@""]] ;
-        }else if ([self.checkType isEqualToString:@"http"]){
+        }else if ([appDelegate.checkType isEqualToString:@"http"]){
             [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",self.checkDominStr,@""]] ;
         }
-        self.progressView.progress = 1.0;
         if (IS_TEST_SERVER_ENV){
             [self splashViewComplete] ;
         }else{
@@ -481,10 +514,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         static int totalFail = 0 ;
         dispatch_async(dispatch_get_main_queue(), ^{
             totalFail ++ ;
-            
             if (totalFail>=_urlArray.count){
                 [self.contentLoadingIndicateView hiddenView] ;
-                
                 if (![SITE_TYPE isEqualToString:@"integratedv3oc"])
                 {
                     //上传错误信息
@@ -532,23 +563,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self splashViewComplete] ;
 #endif
                 }else{
-                    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
-                    if ([self.checkType isEqualToString:@"https+8989"]) {
-                        self.checkType = @"http+8787";
-                    }
-                    else if ([self.checkType isEqualToString:@"http+8787"]){
-                        self.checkType = @"https";
-                    }
-                    else if ([self.checkType isEqualToString:@"https"]){
-                        self.checkType = @"http";
-                    }
-                    else
-                    {
-                        i++;
-                        self.progressView.progress+=(1/_urlArray.count);
-                        self.checkType = @"https+8989";
-                    }
-                    [self checkAllUrl] ;
+                    
                 }
             }
         });
@@ -577,7 +592,21 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
             self.checkDominStr = tmpDomain;
             self.serviceRequest.timeOutInterval = 10.f;
-            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
+            dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            //2.添加任务到队列中，就可以执行任务
+            //异步函数：具备开启新线程的能力
+            dispatch_async(queue, ^{
+               [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https+8989"];
+            });
+            dispatch_async(queue, ^{
+                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
+            });
+            dispatch_async(queue, ^{
+               [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https"];
+            });
+            dispatch_async(queue, ^{
+                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
+            });
         }
         else
         {
@@ -597,6 +626,11 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 #pragma mark ==============通知================
 -(void)notCheckDominSuccess:(NSNotification*)notification{
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
+    i++;
+    self.progressView.progress+=(1.0/_urlArray.count);
+    self.scheduleLabel.text = [NSString stringWithFormat:@"%0.f%%",self.progressView.progress*100];
+//    [self checkAllUrl] ;
     [self checkAllUrl];
 }
 
@@ -695,14 +729,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 - (void)splashViewComplete
 {
     [self.contentLoadingIndicateView hiddenView] ;
-    BOOL bRet = YES;
-    ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
-        bRet = [self.delegate splashViewControllerWillHidden:self];
-    }
-    if (bRet) {
-        //启动页加载完成后跳转
-        [self hide:YES completedBlock:nil];
-    }
+    
+    
+    __block SplashViewController *weakSelf = self;
+    RH_AdvertisingView *advertising = [RH_AdvertisingView ceareAdvertisingView:@"https://www.baidu.com"];
+    [self.view addSubview:advertising];
+    advertising.block = ^{
+        BOOL bRet = YES;
+        ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
+            bRet = [weakSelf.delegate splashViewControllerWillHidden:self];
+        }
+        if (bRet) {
+            //启动页加载完成后跳转
+            [weakSelf hide:YES completedBlock:nil];
+        }
+    };
+    
     //check过了，就把通知释放掉
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
 }

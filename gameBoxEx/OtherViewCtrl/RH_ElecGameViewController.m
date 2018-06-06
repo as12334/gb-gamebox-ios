@@ -12,12 +12,15 @@
 #import "RH_LotteryInfoModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
-@interface RH_ElecGameViewController ()<RH_ServiceRequestDelegate,UIWebViewDelegate>
+#import <AVFoundation/AVFoundation.h>
+#import <WebKit/WebKit.h>
+@interface RH_ElecGameViewController ()<RH_ServiceRequestDelegate,UIWebViewDelegate,WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
 @property(nonatomic,strong)CLButton * backBack;
-@property(nonatomic,strong)UIWebView *gameWebView;
+@property(nonatomic,strong)WKWebView *gameWebView;
+@property(nonatomic,strong)WKUserContentController *userContentController;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong)RH_LotteryInfoModel *lotteryInfoModel;
 //游戏地址
@@ -31,8 +34,18 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.gameWebView =[[UIWebView alloc]initWithFrame:self.view.bounds];
-    self.gameWebView.delegate = self;
+    WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
+    self.userContentController =[[WKUserContentController alloc]init];
+    configuration.userContentController = self.userContentController;
+    self.gameWebView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:configuration];
+    //注册方法
+//    [self.userContentController addScriptMessageHandler:self  name:@"sayhello"];//注册一个name为sayhello的js方法
+    
+    [self.view addSubview:self.gameWebView];
+    self.gameWebView.UIDelegate = self;
+    self.gameWebView.navigationDelegate = self;
+    
+    self.gameWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:self.gameWebView];
     
     [self.view addSubview:self.gameBgImage];
@@ -49,7 +62,6 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
     }
-
 }
 -(RH_ServiceRequest *)serviceRequest
 {
@@ -132,17 +144,17 @@
         [self.navigationController popViewControllerAnimated:YES] ;
     }
 }
-+(void)configureNavigationBar:(UINavigationBar*)navigationBar
-{
-    if (navigationBar){
-        navigationBar.tintColor = [UIColor whiteColor] ;
-        navigationBar.barTintColor = [UIColor redColor] ;
-        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:19],
-                                              NSForegroundColorAttributeName:[UIColor whiteColor]};
-    }
-
-    return ;
-}
+//+(void)configureNavigationBar:(UINavigationBar*)navigationBar
+//{
+//    if (navigationBar){
+//        navigationBar.tintColor = [UIColor whiteColor] ;
+//        navigationBar.barTintColor = [UIColor redColor] ;
+//        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+//                                              NSForegroundColorAttributeName:[UIColor whiteColor]};
+//    }
+//
+//    return ;
+//}
 
 -(BOOL)navigationBarHidden
 {
@@ -160,14 +172,22 @@
 }
 
 #pragma mark-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+-(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//}
+//-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+//{
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//}
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3GameLinkForCheery) {
@@ -187,5 +207,4 @@
     //支持哪些转屏方向
     return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
 }
-
 @end

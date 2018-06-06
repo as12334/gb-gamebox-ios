@@ -7,8 +7,9 @@
 //
 
 #import "CLTableViewCell.h"
-
+#import "RH_SiteMsgUnReadCountModel.h"
 @class RH_MineRecordTableViewCell ;
+
 @protocol MineRecordTableViewCellProtocol
 @optional
 -(void)mineRecordTableViewCellDidTouchCell:(RH_MineRecordTableViewCell*)mineRecordTableCell CellInfo:(NSDictionary*)dictInfo ;
@@ -19,4 +20,5 @@
 
 @property(nonatomic,assign)NSInteger numberSection;
 @property(nonatomic,assign)NSInteger numberItems;
+@property(nonatomic,strong)RH_SiteMsgUnReadCountModel *readCountModel;
 @end

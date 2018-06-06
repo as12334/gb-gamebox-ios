@@ -9,6 +9,6 @@
 #import "RH_BasicViewController.h"
 #import "RH_SimpleWebViewController.h"
 
-@interface RH_ElecGameViewController :UIViewController
+@interface RH_ElecGameViewController :RH_BasicSubViewController
 
 @end
