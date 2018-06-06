@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *qrbackView;
 @property (weak, nonatomic) IBOutlet UIButton *saveTophoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *openAppBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *saveToPhoneCenterX;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 //第三方平台的地址
 @property (nonatomic,strong)NSString *mobileStr;
@@ -47,6 +48,8 @@
     }
     else if ([listmodel.mBankCode isEqualToString:@"other"]) {
         [self.openAppBtn setTitle:@"启动其他方式支付" forState:UIControlStateNormal];
+        self.openAppBtn.hidden = YES;
+        self.saveToPhoneCenterX.constant = 0;
     }
     else if ([listmodel.mBankCode isEqualToString:@"alipay"]) {
         [self.openAppBtn setTitle:@"启动支付宝支付" forState:UIControlStateNormal];
@@ -58,10 +61,12 @@
     }
     else if ([listmodel.mBankCode isEqualToString:@"onecodepay"]) {
         [self.openAppBtn setTitle:@"启动一码付支付" forState:UIControlStateNormal];
+        self.openAppBtn.hidden = YES;
+        self.saveToPhoneCenterX.constant = 0;
     }
     else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
         [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
-        self.mobileStr = @"openapp.jdmoble";
+        self.mobileStr = @"openapp.jdmoble://";
     }
     self.remarkLabel.text = listmodel.mRemark;
 
