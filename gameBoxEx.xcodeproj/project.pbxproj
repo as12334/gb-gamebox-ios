@@ -94,6 +94,7 @@
 		22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A620566E5E00094564 /* login_touxiang_black@3x.png */; };
 		22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */; };
 		545B302E20C6216C0040129B /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B302B20C6216C0040129B /* SRWebSocket.m */; };
+		545B303520C6B1140040129B /* CLRefreshBaseControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B303320C6B1140040129B /* CLRefreshBaseControl.m */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -900,6 +901,8 @@
 		545B302B20C6216C0040129B /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		545B302C20C6216C0040129B /* SocketRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocket.h; sourceTree = "<group>"; };
 		545B302D20C6216C0040129B /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		545B303320C6B1140040129B /* CLRefreshBaseControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRefreshBaseControl.m; sourceTree = "<group>"; };
+		545B303420C6B1140040129B /* CLRefreshBaseControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRefreshBaseControl.h; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -2327,6 +2330,15 @@
 			path = SocketRocket;
 			sourceTree = "<group>";
 		};
+		545B303220C6B1090040129B /* RefrshBaseControl */ = {
+			isa = PBXGroup;
+			children = (
+				545B303420C6B1140040129B /* CLRefreshBaseControl.h */,
+				545B303320C6B1140040129B /* CLRefreshBaseControl.m */,
+			);
+			path = RefrshBaseControl;
+			sourceTree = "<group>";
+		};
 		790743082063542400A4543A /* LimitTransfer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2732,6 +2744,7 @@
 		A0109E081F87852F004E6EF4 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				545B303220C6B1090040129B /* RefrshBaseControl */,
 				A08578511FB9BE9C00E002B1 /* UINavigationBar */,
 				A0109E091F87852F004E6EF4 /* APPDelegate */,
 				A0109E0C1F87852F004E6EF4 /* BasicClasses */,
@@ -5304,6 +5317,7 @@
 				F6FB6387200F851300EEED4E /* RH_MPSiteSystemNoticeCell.m in Sources */,
 				A0109FC91F8788FF004E6EF4 /* CLFormDataHTTPRequest.m in Sources */,
 				A0109FCA1F8788FF004E6EF4 /* CLHTTPRequest.m in Sources */,
+				545B303520C6B1140040129B /* CLRefreshBaseControl.m in Sources */,
 				A02142711FBD2968007E565E /* CLImageTitleStaticCollectionViewCell.m in Sources */,
 				79BB2DA420318A7D000CDE6B /* RH_ShareCountTableViewCell.m in Sources */,
 				A0109FCB1F8788FF004E6EF4 /* CLNetReachability.m in Sources */,

@@ -15,12 +15,12 @@
 #import "RH_UserInfoManager.h"
 #import "RH_ElecGameViewController.h"
 
-@interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol>
+@interface RH_GameListViewController ()<CLPageViewDelegate, CLPageViewDatasource, GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol,UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) RH_GameListHeaderView *typeTopView;
 @property (nonatomic, strong,readonly) CLPageView            *pageView;
 @property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ; //存储 pagecell data content ;
-
+@property (nonatomic, strong) UITableView *listTable;
 
 @end
 
@@ -124,29 +124,38 @@
     [self loadingIndicateViewDidTap:nil] ;
 }
 
+- (UITableView *)listTable
+{
+    if (_listTable == nil)
+    {
+        _listTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+(MainScreenH==812?20.0:0.0), self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+        _listTable.dataSource = self;
+        _listTable.delegate = self;
+        // 设置表视图的分割线的颜色
+        _listTable.separatorColor = [UIColor clearColor];
+        // 设置表视图的分割线的风格
+        _listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.contentView addSubview:_listTable];
+    }
+    return _listTable;
+}
+
 - (void)setupInfo {
-    
-    [self.contentView addSubview:self.searchView];
-    self.searchView.whc_TopSpace(64+(MainScreenH==812?20.0:0.0)).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(55);
-//    self.typeTopView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, 40.0);
-    self.typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
-    [self.contentView addSubview:self.typeTopView];
-    self.typeTopView.backgroundColor = [UIColor whiteColor];
-    self.typeTopView.selectedIndex = 0;
-    self.typeTopView.whc_TopSpaceToView(0, self.searchView).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(40);
-    
-//    self.pageView.frame = CGRectMake(10,
-//                                     self.typeTopView.frameY + self.typeTopView.frameHeigh + 10,
-//                                     MainScreenW-20,
-//                                     MainScreenH - (self.typeTopView.frameY + self.typeTopView.frameHeigh + 10)) ;
-//    self.pageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin| UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin ;
-    [self.contentView addSubview:self.pageView];
-    self.pageView.whc_TopSpaceToView(2, self.typeTopView).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
-    //注册复用
-    [self.pageView registerCellForPage:[RH_GameListContentPageCell class]] ;
-    //设置索引
-    self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
-    
+//    [self.contentView addSubview:self.searchView];
+//    self.searchView.whc_TopSpace(64+(MainScreenH==812?20.0:0.0)).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(55);
+//    self.typeTopView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
+//    [self.contentView addSubview:self.typeTopView];
+//    self.typeTopView.backgroundColor = [UIColor whiteColor];
+//    self.typeTopView.selectedIndex = 0;
+//    self.typeTopView.whc_TopSpaceToView(0, self.searchView).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(40);
+//
+//    [self.contentView addSubview:self.pageView];
+//    self.pageView.whc_TopSpaceToView(2, self.typeTopView).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
+//    //注册复用
+//    [self.pageView registerCellForPage:[RH_GameListContentPageCell class]] ;
+//    //设置索引
+//    self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
+    [self.listTable reloadData];
 }
 
 #pragma mark - typeTopView
@@ -243,6 +252,48 @@
 - (void)pageViewWillReloadPages:(CLPageView *)pageView {
 }
 
+#pragma mark - UITableViewDataSource M
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] ;
+    }
+    
+    [self.pageView registerCellForPage:[RH_GameListContentPageCell class]] ;
+    self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
+    [cell addSubview:self.pageView];
+    
+    self.pageView.whc_TopSpaceToView(2, cell).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.view.bounds.size.height-40-(64+(MainScreenH==812?20.0:0.0));
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    self.typeTopView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
+    self.typeTopView.backgroundColor = [UIColor whiteColor];
+    self.typeTopView.selectedIndex = 0;
+
+    return self.typeTopView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0;
+}
 
 #pragma mark -
 -(NSMutableDictionary *)dictPageCellDataContext
