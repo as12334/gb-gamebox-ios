@@ -10,6 +10,10 @@
 #import "RH_GameItemView.h"
 #import "WHC_AutoLayout.h"
 #import "RH_LotteryAPIInfoModel.h"
+#import "MacroDef.h"
+
+@interface RH_GameItemsCell () <RH_GameItemViewDelegate>
+@end
 
 @implementation RH_GameItemsCell
 
@@ -42,8 +46,18 @@
         RH_GameItemView *item = [[[NSBundle mainBundle] loadNibNamed:@"RH_GameItemView" owner:nil options:nil] lastObject];
         item.model = _itemsArr[i];
         item.typeModel = self.typeModel;
+        item.delegate = self;
         [self addSubview:item];
         item.whc_TopSpaceToView(temp, self).whc_LeftSpace(i*w+(i*2+1)*temp).whc_Width(w).whc_Height(h);
+    }
+}
+
+#pragma mark - RH_GameItemViewDelegate M
+
+- (void)gameItemView:(RH_GameItemView *)view didSelect:(RH_LotteryInfoModel *)model
+{
+    ifRespondsSelector(self.delegate, @selector(gameItemsCell:didSelect:)){
+        [self.delegate gameItemsCell:self didSelect:model];
     }
 }
 

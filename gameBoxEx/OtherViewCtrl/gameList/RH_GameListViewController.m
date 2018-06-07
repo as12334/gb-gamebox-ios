@@ -23,7 +23,7 @@
 #import "CLPageView.h"
 #import "CLRefreshControl.h"
 
-@interface RH_GameListViewController ()<GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_TypeSelectViewDelegate, RH_GameListScrollViewDatasource>
+@interface RH_GameListViewController ()<GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_TypeSelectViewDelegate, RH_GameListScrollViewDatasource, RH_GameItemsCellDelegate>
 
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) RH_GameListHeaderView *typeTopView;
@@ -384,6 +384,7 @@
             [cell.layer addSublayer:gradientLayer];
         }
         cell.typeModel = _lotteryApiModel;
+        cell.delegate = self;
         
         int i = (int)indexPath.row;
         int numOfRow = 3;//每行显示3个
@@ -471,6 +472,13 @@
         _lotteryApiModel = self.categoryModel.mSiteApis[self.currentCategoryIndex];
         [self loadingIndicateViewDidTap:nil] ;
     }
+}
+
+#pragma mark - RH_GameItemsCellDelegate M
+
+- (void)gameItemsCell:(id)view didSelect:(RH_LotteryInfoModel *)model
+{
+    [self openGame:model];
 }
 
 #pragma mark  - LotteryGameListTopViewDelegate M
