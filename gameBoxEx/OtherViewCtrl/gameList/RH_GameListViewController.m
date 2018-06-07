@@ -321,7 +321,7 @@
 /**
  * 点击方法
  */
--(void)gameListContentPageCellDidTouchCell:(RH_GameListContentPageCell*)gameListContentPageCell CellModel:(RH_LotteryInfoModel*)lotteryInfoModel
+-(void)openGame:(RH_LotteryInfoModel*)lotteryInfoModel
 {
     if (HasLogin)
     {
@@ -429,6 +429,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40.0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isListMode) {
+        [self openGame:self.gameListArray[indexPath.row]];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate M

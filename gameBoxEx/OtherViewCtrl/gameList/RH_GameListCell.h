@@ -11,6 +11,7 @@
 
 @class RH_LotteryInfoModel;
 @class RH_LotteryAPIInfoModel;
+
 @interface RH_GameListCell : CLTableViewCell
 
 @property (nonatomic, strong) RH_LotteryInfoModel *model;
