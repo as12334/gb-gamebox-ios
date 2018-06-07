@@ -15,7 +15,7 @@
 
 @interface RH_NavigationBarView ()
 @property(nonatomic,weak) IBOutlet UILabel *labTitle    ;
-@property(nonatomic,weak) IBOutlet UIImageView *logoImageView ;
+
 @property(nonatomic,weak) IBOutlet UIView *navigationBarView ;
 
 @property (nonatomic,weak) IBOutlet NSLayoutConstraint *layoutImageWidth ;

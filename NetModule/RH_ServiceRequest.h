@@ -79,6 +79,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeTimeZoneInfo , //获取站点时区
     ServiceRequestTypeSiteMessageUnReadCount , //获取站点信息-未读消息的条数
     ServiceRequestTypeV3SharePlayerRecommend ,   // 分享
+    ServiceRequestTypeV3SharePlayerRecord,//分享记录
+    
     ServiceRequestTypeV3VerifyRealNameForApp ,   // 老用户验证登录
     ServiceRequestTypeV3GETUSERASSERT ,   // 获取用户资产信息
     ServiceRequestTypeV3RefreshSession ,   // 防止长时间未操作掉线
@@ -421,8 +423,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadMessageCenterSiteMessageUnReadCount ;
 
 #pragma mark - 分享接口
--(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
-                                        endTime:(NSString *)endTime;
+-(void)startV3LoadSharePlayerRecommend;
 
 #pragma mark -老用户验证登录
 /**
@@ -612,6 +613,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3GetCustomService;
 #pragma mark ==============获得消息公告弹窗================
 -(void)startV3NoticePopup;
+#pragma mark ==============分享好友记录================
+-(void)startV3SharePlayerRecordStartTime:(NSString *)startTime endTime:(NSString *)endTime pageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;
 #pragma mark -
 /**
  * 取消所有服务

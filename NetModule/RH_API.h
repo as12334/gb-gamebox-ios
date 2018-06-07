@@ -840,9 +840,6 @@
 
 #pragma mark -- V3 分享
 #define RH_API_NAME_SHAREPLAYERRECOMMEND          @"mobile-api/mineOrigin/getUserPlayerRecommend.html"
-//请求参数
-#define RH_SP_SHAREPLAYERRECOMMEND_STARTTIME           @"search.startTime"
-#define RH_SP_SHAREPLAYERRECOMMEND_ENDTIME             @"search.endTime"
 
 //返回参数
 #define RH_GP_SHAREPLAYERRECOMMEND_REWARD              @"reward"
@@ -863,6 +860,21 @@
 #define RH_GP_SHAREPLAYERRECOMMEND_PROPORTION           @"proportion"
 #define RH_GP_SHAREPLAYERRECOMMEND_PLAYERNUM            @"playerNum"
 #define RH_GP_SHAREPLAYERRECOMMEND_ACTIVITYRULES        @"activityRules"
+
+#pragma mark ==============分享好友记录================
+#define RH_API_NAME_GETPLAYERRECOMMENDRECORD          @"mobile-api/mineOrigin/getPlayerRecommendRecord.html"
+//请求参数
+#define RH_SP_GETPLAYERRECOMMENDRECORD_STARTTIME           @"search.startTime"
+#define RH_SP_GETPLAYERRECOMMENDRECORD_ENDTIME             @"search.endTime"
+#define RH_SP_GETPLAYERRECOMMENDRECORD_PAGENUMBER          @"paging.pageNumber"
+#define RH_SP_GETPLAYERRECOMMENDRECORD_PAGESIZE            @"paging.pageSize"
+//返回参数
+#define RH_GP_GETPLAYERRECOMMENDRECORD_COMMAND              @"command"
+#define RH_GP_GETPLAYERRECOMMENDRECORD_RECOMMENDUSERNAME    @"recommendUserName"
+#define RH_GP_GETPLAYERRECOMMENDRECORD_CREATETIME           @"createTime"
+#define RH_GP_GETPLAYERRECOMMENDRECORD_STATUS               @"status"
+#define RH_GP_GETPLAYERRECOMMENDRECORD_REWARDAMOUNT         @"rewardAmount"
+
 
 
 #pragma mark - V3 老用户登录验证

@@ -78,7 +78,7 @@
     [self configUI] ;
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
-    [self.serviceRequest startV3LoadSharePlayerRecommendStartTime:nil endTime:nil] ;
+    [self.serviceRequest startV3LoadSharePlayerRecommend] ;
     _dataDic = [NSMutableDictionary dictionary];
 }
 
@@ -171,7 +171,6 @@
 #pragma mark -公告按钮
 -(void)shareNaviBarViewDidTouchSettingButton:(RH_ShareNavBarView *)shareNaviBarView
 {
-//    RH_HomePageModel *homePageModel = ConvertToClassPointer(RH_HomePageModel, [self.pageLoadManager dataAtIndex:0]) ;
     if (self.announceView.superview == nil) {
         _announceView = [RH_ShareAnnounceView createInstance] ;
         self.announceView.alpha = 0;
@@ -227,7 +226,9 @@
     }else if (indexPath.row == 4){
         return 300.f/375*screenSize().width ;
     }
-    return 80.f ;
+    else{
+        return 80.f ;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -250,6 +251,8 @@
         return nonCell ;
     }else if (indexPath.row == 4){
         RH_FirstBigViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_FirstBigViewCell defaultReuseIdentifier]] ;
+        cell.backgroundColor = [UIColor clearColor];
+        [cell updateCellWithInfo:nil context:self.model];
         return cell ;
     }
     return nil;

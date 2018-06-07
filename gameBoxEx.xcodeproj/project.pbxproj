@@ -156,7 +156,6 @@
 		79BB2DAC2032775B000CDE6B /* RH_NonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DAB2032775B000CDE6B /* RH_NonTableViewCell.m */; };
 		79BB2DAF2032BA8E000CDE6B /* RH_FirstBigViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DAE2032BA8E000CDE6B /* RH_FirstBigViewCell.m */; };
 		79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DB12032BAE8000CDE6B /* RH_FirstBigCellHeadView.m */; };
-		79BB2DB52032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DB42032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m */; };
 		79BB2DB82032CFE8000CDE6B /* RH_ShareRecordCollectionPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DB72032CFE8000CDE6B /* RH_ShareRecordCollectionPageCell.m */; };
 		79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DBA2032D151000CDE6B /* RH_RewardRuleTableViewCell.m */; };
 		79BB2DBE2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BB2DBD2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m */; };
@@ -681,6 +680,8 @@
 		F696B83F2068F9970038D1C5 /* RH_DepositOriginseachSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B83E2068F9970038D1C5 /* RH_DepositOriginseachSaleModel.m */; };
 		F696B843206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F696B841206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m */; };
 		F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F696B842206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib */; };
+		F69E1E9820C77DF2006F9185 /* RH_MineMoreClearStorageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E1E9620C77DF2006F9185 /* RH_MineMoreClearStorageCell.m */; };
+		F69E1E9920C77DF2006F9185 /* RH_MineMoreClearStorageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E1E9720C77DF2006F9185 /* RH_MineMoreClearStorageCell.xib */; };
 		F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */; };
 		F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E34FB20634C070028D3A1 /* RH_DepositePayforWayCell.m */; };
 		F69E34FE20634C070028D3A1 /* RH_DepositePayforWayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E34FC20634C070028D3A1 /* RH_DepositePayforWayCell.xib */; };
@@ -1024,8 +1025,6 @@
 		79BB2DAE2032BA8E000CDE6B /* RH_FirstBigViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FirstBigViewCell.m; sourceTree = "<group>"; };
 		79BB2DB02032BAE8000CDE6B /* RH_FirstBigCellHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FirstBigCellHeadView.h; sourceTree = "<group>"; };
 		79BB2DB12032BAE8000CDE6B /* RH_FirstBigCellHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FirstBigCellHeadView.m; sourceTree = "<group>"; };
-		79BB2DB32032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AwardRuleCollectionPageCell.h; sourceTree = "<group>"; };
-		79BB2DB42032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AwardRuleCollectionPageCell.m; sourceTree = "<group>"; };
 		79BB2DB62032CFE8000CDE6B /* RH_ShareRecordCollectionPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ShareRecordCollectionPageCell.h; sourceTree = "<group>"; };
 		79BB2DB72032CFE8000CDE6B /* RH_ShareRecordCollectionPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ShareRecordCollectionPageCell.m; sourceTree = "<group>"; };
 		79BB2DB92032D151000CDE6B /* RH_RewardRuleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RewardRuleTableViewCell.h; sourceTree = "<group>"; };
@@ -1941,6 +1940,9 @@
 		F696B840206BC9690038D1C5 /* RH_DepositeTransferButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferButtonCell.h; sourceTree = "<group>"; };
 		F696B841206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferButtonCell.m; sourceTree = "<group>"; };
 		F696B842206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferButtonCell.xib; sourceTree = "<group>"; };
+		F69E1E9520C77DF2006F9185 /* RH_MineMoreClearStorageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineMoreClearStorageCell.h; sourceTree = "<group>"; };
+		F69E1E9620C77DF2006F9185 /* RH_MineMoreClearStorageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineMoreClearStorageCell.m; sourceTree = "<group>"; };
+		F69E1E9720C77DF2006F9185 /* RH_MineMoreClearStorageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MineMoreClearStorageCell.xib; sourceTree = "<group>"; };
 		F69E34F6206274930028D3A1 /* RH_DepositeViewControllerEX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeViewControllerEX.h; sourceTree = "<group>"; };
 		F69E34F7206274930028D3A1 /* RH_DepositeViewControllerEX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeViewControllerEX.m; sourceTree = "<group>"; };
 		F69E34FA20634C070028D3A1 /* RH_DepositePayforWayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositePayforWayCell.h; sourceTree = "<group>"; };
@@ -2494,8 +2496,6 @@
 		79BB2DF62036B984000CDE6B /* RewardRuleCell */ = {
 			isa = PBXGroup;
 			children = (
-				79BB2DB32032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.h */,
-				79BB2DB42032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m */,
 				79BB2DB92032D151000CDE6B /* RH_RewardRuleTableViewCell.h */,
 				79BB2DBA2032D151000CDE6B /* RH_RewardRuleTableViewCell.m */,
 				79E386592039A0CE002BF767 /* RH_RewardRuleBottomViewCell.h */,
@@ -4052,6 +4052,9 @@
 				A0AE8AA31FFCD57300836C1B /* RH_MineMoreLanguageCell.h */,
 				A0AE8AA91FFCD57300836C1B /* RH_MineMoreLanguageCell.m */,
 				A0AE8AA61FFCD57300836C1B /* RH_MineMoreLanguageCell.xib */,
+				F69E1E9520C77DF2006F9185 /* RH_MineMoreClearStorageCell.h */,
+				F69E1E9620C77DF2006F9185 /* RH_MineMoreClearStorageCell.m */,
+				F69E1E9720C77DF2006F9185 /* RH_MineMoreClearStorageCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -4825,6 +4828,7 @@
 				F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */,
 				221AE5AA207DF2C4008CD409 /* home_announce_close_red@3x.png in Resources */,
 				221AE58D207DEE84008CD409 /* login_touxiang_orange@2x.png in Resources */,
+				F69E1E9920C77DF2006F9185 /* RH_MineMoreClearStorageCell.xib in Resources */,
 				79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */,
 				A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */,
 				F681D25A201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.xib in Resources */,
@@ -5315,7 +5319,6 @@
 				7937C4312072073B0010CD0C /* PGDatePicker+DateAndTime.m in Sources */,
 				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
-				79BB2DB52032CFD9000CDE6B /* RH_AwardRuleCollectionPageCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
@@ -5457,6 +5460,7 @@
 				A0109F741F8787E4004E6EF4 /* CLLineLayer.m in Sources */,
 				A0109F751F8787E4004E6EF4 /* CLMaskView.m in Sources */,
 				A05747BE1FF4F7500068D0E4 /* RH_LotteryCategoryModel.m in Sources */,
+				F69E1E9820C77DF2006F9185 /* RH_MineMoreClearStorageCell.m in Sources */,
 				A0109F761F8787E4004E6EF4 /* CLSectionControl.m in Sources */,
 				B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */,
 				F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */,
@@ -5641,7 +5645,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5666,7 +5670,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5724,7 +5728,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5749,7 +5753,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

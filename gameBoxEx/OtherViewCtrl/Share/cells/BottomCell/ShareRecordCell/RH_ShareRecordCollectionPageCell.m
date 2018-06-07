@@ -101,7 +101,7 @@
 #pragma mark-  请求数据
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3LoadSharePlayerRecommendStartTime:self.startDate endTime:self.endDate] ;
+    [self.serviceRequest startV3LoadSharePlayerRecommend] ;
 }
 #pragma mark - 搜索
 -(void)shareRecordTableViewSearchBtnDidTouch:(RH_ShareRecordTableViewCell *)shareRecordTableViewCell

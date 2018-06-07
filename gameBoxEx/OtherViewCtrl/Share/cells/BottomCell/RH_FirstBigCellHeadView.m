@@ -9,11 +9,9 @@
 #import "RH_FirstBigCellHeadView.h"
 #import "coreLib.h"
 @interface RH_FirstBigCellHeadView ()
-@property (nonatomic,strong) NSArray *arrayTypeList ;
+@property (strong, nonatomic)UISegmentedControl *segmentedControl;
 @end
 @implementation RH_FirstBigCellHeadView
-@synthesize selectedIndex = _selectedIndex ;
-
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -39,6 +37,7 @@
         self.segmentedControl.layer.masksToBounds=YES;
         self.segmentedControl.layer.cornerRadius=6;
         //添加到视图
+        self.segmentedControl.selectedSegmentIndex = 0;
         [self addSubview:self.segmentedControl];
         //设置frame
         self.segmentedControl.whc_CenterX(0).whc_TopSpace(15).whc_Width(154) ;
@@ -57,38 +56,9 @@
     return self ;
 }
 
--(void)updateView:(NSArray*)typeList
-{
-    self.arrayTypeList = ConvertToClassPointer(NSArray, typeList) ;
-    self.segmentedControl.selectedSegmentIndex = _selectedIndex;
-}
-
--(RH_SharePlayerRecommendModel *)typeModelWithIndex:(NSInteger)index 
-{
-    if (index>=0 && index <self.arrayTypeList.count){
-        return self.arrayTypeList[index] ;
-    }
-    return nil ;
-}
 #pragma mark-
--(NSInteger)allTypes
-{
-    return self.arrayTypeList.count ;
-}
 
--(NSInteger)selectedIndex
-{
-    return _selectedIndex ;
-}
-
--(void)setSelectedIndex:(NSInteger)selectedIndex
-{
-    if (_selectedIndex!=selectedIndex){
-        _selectedIndex = selectedIndex ;
-    }
-}
 - (void)segmentSelectedClick:(id)sender {
-    [self setSelectedIndex:self.segmentedControl.selectedSegmentIndex] ;
     ifRespondsSelector(self.delegate, @selector(firstBigCellHeadViewDidChangedSelectedIndex:SelectedIndex:)){
         [self.delegate firstBigCellHeadViewDidChangedSelectedIndex:self SelectedIndex:self.segmentedControl.selectedSegmentIndex] ;
     }

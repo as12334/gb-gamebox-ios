@@ -1406,12 +1406,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 分享接口
--(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
-                                        endTime:(NSString *)endTime
+-(void)startV3LoadSharePlayerRecommend
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:startTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_STARTTIME];
-    [dict setValue:endTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_ENDTIME];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
                      pathArguments:nil
@@ -2205,6 +2201,27 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3NoticePopup
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============分享好友记录================
+-(void)startV3SharePlayerRecordStartTime:(NSString *)startTime endTime:(NSString *)endTime pageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime forKey:RH_SP_GETPLAYERRECOMMENDRECORD_STARTTIME];
+    [dict setValue:endTime forKey:RH_SP_GETPLAYERRECOMMENDRECORD_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_GETPLAYERRECOMMENDRECORD_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_GETPLAYERRECOMMENDRECORD_PAGESIZE];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETPLAYERRECOMMENDRECORD
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString
+                                     }
+                    queryArguments:nil
+                     bodyArguments:dict
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SharePlayerRecord
                          scopeType:ServiceScopeTypePublic];
 }
 #pragma mark -
@@ -3159,6 +3176,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 case ServiceRequestTypeV3DepositeOriginChannel:
             {
                 resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                
+            }
+                break;
+                case ServiceRequestTypeV3SharePlayerRecord:
+            {
                 
             }
                 break;

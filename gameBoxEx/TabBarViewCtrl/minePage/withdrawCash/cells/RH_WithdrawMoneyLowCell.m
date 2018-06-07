@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_Notice;
 
 @property (weak, nonatomic) IBOutlet UIButton *button_Save;
+@property (weak, nonatomic) IBOutlet UIButton *button_Recycle;
 
 @end
 
@@ -32,7 +33,9 @@
     imageC.image = ImageWithName(@"icon-text");
     
     self.label_Notice.whc_TopSpaceToView(12, imageC).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(60);
-    self.button_Save.whc_TopSpaceToView(20, self.label_Notice).whc_CenterX(0).whc_Width(100).whc_Height(44);
+    self.button_Recycle.whc_TopSpaceToView(20, self.label_Notice).whc_CenterX(0).whc_Width(100).whc_Height(44);
+    
+    self.button_Save.whc_TopSpaceToView(20, self.button_Recycle).whc_CenterX(0).whc_Width(100).whc_Height(44);
     self.label_Notice.text = @"取款金额至少为100.00元\n您当前钱包余额不足!";
     self.label_Notice.textColor = RH_Label_DefaultTextColor;
     NSDictionary *dic = @{NSKernAttributeName:@1.f,
@@ -45,32 +48,47 @@
     [self.label_Notice setAttributedText:attributedString];
     self.label_Notice.textAlignment = NSTextAlignmentCenter;
     self.button_Save.layer.cornerRadius = 5.0;
+    self.button_Recycle.layer.cornerRadius = 5.0;
     if ([THEMEV3 isEqualToString:@"green"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
         self.button_Save.backgroundColor = colorWithRGB(11, 102, 75);
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
+        self.button_Recycle.backgroundColor = colorWithRGB(11, 102, 75);
     }else if ([THEMEV3 isEqualToString:@"red"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
     }else if ([THEMEV3 isEqualToString:@"black"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor;
     }else if ([THEMEV3 isEqualToString:@"blue"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
     }else if ([THEMEV3 isEqualToString:@"red_white"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
+
     }else if ([THEMEV3 isEqualToString:@"green_white"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
     }else if ([THEMEV3 isEqualToString:@"orange_white"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
     }else{
         self.button_Save.backgroundColor = RH_NavigationBar_BackgroundColor;
+        self.button_Recycle.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
     self.clipsToBounds = YES;
     [self.button_Save addTarget:self action:@selector(buttonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.button_Recycle addTarget:self action:@selector(buttonRecycleClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
@@ -90,5 +108,11 @@
         [self.delegate withdrawMoneyLowCellDidTouchQuickButton:self] ;
     }
 }
-
+//一键回收
+-(void)buttonRecycleClick
+{
+    ifRespondsSelector(self.delegate, @selector(withdrawMoneyLowCellDidTouchRecycleButton:)){
+        [self.delegate withdrawMoneyLowCellDidTouchRecycleButton:self];
+    }
+}
 @end

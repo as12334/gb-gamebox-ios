@@ -21,7 +21,7 @@
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_BankCardController.h"
 #import "RH_WithdrawCashThreeCell.h"
-
+#import "RH_NavigationUserInfoView.h"
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0    ,
     WithdrawCashStatus_NotEnoughCash            ,
@@ -38,9 +38,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 @property (nonatomic, strong) UIButton *button_Check;
 @property (nonatomic,strong) RH_WithDrawModel *withDrawModel ;
 @property (nonatomic, strong) RH_WithdrawCashTwoCell *cashCell;
+@property (nonatomic,strong) RH_NavigationUserInfoView *userInfoBtnView ;
 @end
 
 @implementation RH_WithdrawCashController
+
 {
     WithdrawCashStatus _withdrawCashStatus ;
     
@@ -50,17 +52,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     NSString *_withDrawMinMoneyStr ;  //在钱包没有钱的情况下返回的提示
     AuditMapModel *auditMap ;
 }
-
+@synthesize userInfoBtnView = _userInfoBtnView ;
 @synthesize tableViewManagement = _tableViewManagement;
 @synthesize mainSegmentControl = _mainSegmentControl  ;
 @synthesize footerView = _footerView;
 @synthesize cashCell = _cashCell;
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
+    self.navigationBarItem.rightBarButtonItem = itembar;
     self.title = @"取款";
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
@@ -95,6 +96,18 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     self.contentTableView.tableFooterView = [self footerView];
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
     self.contentTableView.tableFooterView = nil;
+}
+#pragma mark - userInfoView
+-(RH_NavigationUserInfoView *)userInfoBtnView
+{
+    if (!_userInfoBtnView){
+        _userInfoBtnView = [RH_NavigationUserInfoView createInstance] ;
+//        [_userInfoBtnView.buttonCover addTarget:self
+//                                         action:@selector(_userInfoBtnViewHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _userInfoBtnView.frame = CGRectMake(0, 0, _userInfoBtnView.labBalance.frame.size.width + 20, 40.0f) ;
+    }
+    
+    return _userInfoBtnView ;
 }
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
@@ -540,7 +553,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     [self backBarButtonItemHandle] ;
     self.myTabBarController.selectedIndex = 1 ;
 }
-
+#pragma mark ==============一键回收================
+-(void)withdrawMoneyLowCellDidTouchRecycleButton:(RH_WithdrawMoneyLowCell *)withdrawLowCell
+{
+    [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
+    [self.serviceRequest startV3OneStepRecoverySearchId:nil]  ;
+}
 #pragma mark- tableview Managentment
 - (CLTableViewManagement *)tableViewManagement {
     if (_tableViewManagement == nil) {
@@ -700,6 +718,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             [self.withDrawModel.withDrawFeeDict setObject:data forKey:self.cashCell.textField.text.trim?:@""] ;
             [self setNeedUpdateView] ;
         }
+    }
+    else if (type ==ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", [data objectForKey:@"message"]) ;
+            [self.serviceRequest startV3GetUserAssertInfo] ;
+        }] ;
+    }
+    else if (type==ServiceRequestTypeV3GETUSERASSERT){
+        _withdrawCashStatus = WithdrawCashStatus_EnterCash;
+        [self updateView];
     }
 }
 

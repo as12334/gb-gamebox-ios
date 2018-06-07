@@ -17,11 +17,4 @@
 @end
 @interface RH_FirstBigCellHeadView : UIView
 @property (nonatomic,weak) id<firstBigCellHeadViewDelegate> delegate ;
-
-@property (nonatomic,assign,readonly) NSInteger allTypes ;
-@property (nonatomic,assign) NSInteger selectedIndex ;
-@property (nonatomic,assign,readonly) CGFloat viewHeight ;
-@property (strong, nonatomic)UISegmentedControl *segmentedControl;
--(void)updateView:(NSArray*)typeList ;
--(RH_SharePlayerRecommendModel *)typeModelWithIndex:(NSInteger)index ;
 @end

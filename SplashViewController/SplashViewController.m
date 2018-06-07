@@ -130,6 +130,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property(nonatomic,strong,readonly)UILabel *scheduleLabel;
 //check的状态
 @property(nonatomic,strong,readonly)UILabel *checkStatusLabel;
+//重新check的按钮
+@property(nonatomic,strong)UIButton *againBtn;
 @property(nonatomic,readonly,strong)RH_ServiceRequest *serviceRequest;
 @end
 
@@ -182,7 +184,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 -(UILabel *)checkStatusLabel
 {
     if (!_checkStatusLabel) {
-        _checkStatusLabel = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-100)/2,MainScreenH-90, 100, 10)];
+        _checkStatusLabel = [[UILabel alloc]initWithFrame:CGRectMake((MainScreenW-150)/2,MainScreenH-90, 150, 10)];
         _checkStatusLabel.textColor = [UIColor clearColor];
         _checkStatusLabel.text = @"正在匹配服务器，请稍后...";
         _checkStatusLabel.font = [UIFont systemFontOfSize:10];
@@ -193,7 +195,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.checkType = @"https+8989";
     i = 0;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
@@ -217,6 +218,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self.view addSubview:self.progressView];
     //
     [self.view addSubview:self.scheduleLabel];
+    //加载说明
+    [self.view addSubview:self.checkStatusLabel];
 }
 
 - (void)initView{
@@ -261,7 +264,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
     
     self.needObserveNetStatusChanged = YES ;
-    [self netStatusChangedHandle] ;
+//    [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
     [self startReqSiteInfo];
@@ -388,7 +391,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
-//        _urlArray = @[@"19.0.4.5",@"123.45.23.6",@"54.56.87.4",@"192.168.0.9",@"1.32.208.63"];
+//        _urlArray = @[@"19.0.4.5",@"123.45.23.6",@"54.56.87.4",@"192.168.0.9"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
@@ -491,22 +494,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     if (type == ServiceRequestTypeDomainList){
         [self.contentLoadingIndicateView hiddenView] ;
-        //        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
-        //        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-        //            [self startReqSiteInfo];
-        //        }];
-        //        [alert addAction:defaultAction];
-        //        [self presentViewController:alert animated:YES completion:nil];
         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
-        //        showMessage(self.view, @"", @"正在检测线路");
-        //        if ([self.checkType isEqualToString:@"https+8989"]) {
-        //            self.checkType = @"http+8787";
-        //        }else if ([self.checkType isEqualToString:@"http+8787"]){
-        //            self.checkType = @"https";
-        //        }else if ([self.checkType isEqualToString:@"https"]){
-        //            self.checkType = @"http";
-        //        }
-        //        [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckFail
@@ -515,7 +503,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_async(dispatch_get_main_queue(), ^{
             totalFail ++ ;
             if (totalFail>=_urlArray.count){
-                [self.contentLoadingIndicateView hiddenView] ;
                 if (![SITE_TYPE isEqualToString:@"integratedv3oc"])
                 {
                     //上传错误信息
@@ -610,13 +597,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }
         else
         {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-                [self repetitionStartReqSiteInfo];
-                [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
-            }];
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
+             [self.contentLoadingIndicateView hiddenView] ;
+            //隐藏进度条
+           [self.progressView removeFromSuperview];
+            //
+            [self.scheduleLabel removeFromSuperview];
+            //加载说明
+            [self.checkStatusLabel setText:@"匹配服务器失败"];
+            _againBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            _againBtn.frame = CGRectMake((MainScreenW-100)/2, MainScreenH-60, 100, 40);
+            _againBtn.backgroundColor = [UIColor yellowColor];
+            [_againBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [_againBtn setTitle:@"重新匹配" forState:UIControlStateNormal];
+            _againBtn.layer.cornerRadius = 10.f;
+            _againBtn.layer.masksToBounds = YES;
+            [_againBtn addTarget:self action:@selector(againCheckClick) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:_againBtn];
         }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
@@ -630,10 +626,25 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     i++;
     self.progressView.progress+=(1.0/_urlArray.count);
     self.scheduleLabel.text = [NSString stringWithFormat:@"%0.f%%",self.progressView.progress*100];
-//    [self checkAllUrl] ;
     [self checkAllUrl];
 }
-
+-(void)againCheckClick
+{
+    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
+                                                     detailText:@"正在检查线路,请稍后"];
+    //加入进度条
+    [self.view addSubview:self.progressView];
+    self.progressView.progress = 0.f;
+    //
+    [self.view addSubview:self.scheduleLabel];
+    [self.scheduleLabel setText:@"0%"];
+    //加载说明
+    [self.checkStatusLabel setText:@"正在匹配服务器，请稍后..."];
+    [self.againBtn removeFromSuperview];
+    i= 0;
+    [self repetitionStartReqSiteInfo];
+    
+}
 #pragma mark-
 - (void)show:(BOOL)animated completedBlock:(void(^)(void))completedBlock
 {
@@ -729,8 +740,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 - (void)splashViewComplete
 {
     [self.contentLoadingIndicateView hiddenView] ;
-    
-    
     __block SplashViewController *weakSelf = self;
     RH_AdvertisingView *advertising = [RH_AdvertisingView ceareAdvertisingView:@"https://www.baidu.com"];
     [self.view addSubview:advertising];
