@@ -12,7 +12,7 @@
 @class RH_HomeCategoryItemsCell ;
 @protocol HomeCategoryItemsCellDelegate
 @optional
--(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel ;
+-(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel index:(NSInteger)index;
 @end
 
 @interface RH_HomeCategoryItemsCell : CLTableViewCell
