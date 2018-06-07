@@ -17,10 +17,16 @@
 @property(nonatomic,strong) UILabel *shareRedLab ;
 @end
 @implementation RH_RewardRuleTableViewCell
-
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    return 200;
+}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        CGRect frame = self.frame;
+        frame.size.height = 300;
+        self.frame = frame;
         self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
         UIView *topView = [[UIView alloc] init];
         topView.backgroundColor = colorWithRGB(242, 242, 242) ;

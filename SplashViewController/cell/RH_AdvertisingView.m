@@ -11,7 +11,7 @@
 #import "RH_API.h"
 @interface RH_AdvertisingView()<UIWebViewDelegate>
 @property(nonatomic,strong)NSString *urlString;
-@property(nonatomic,strong)UILabel *timerLab;
+@property(nonatomic,strong)UIButton *timerBtn;
 @property(nonatomic,strong)UIWebView *webView;
 @property(nonatomic,assign)int timerNum;
 @property(nonatomic,strong)dispatch_source_t sourceTimer;
@@ -42,24 +42,24 @@
 //    [super layoutSubviews];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
     _webView.delegate = self;
-    self.timerLab.text = [NSString stringWithFormat:@"%d",self.timerNum];
+    [self.timerBtn setTitle:[NSString stringWithFormat:@"%d",self.timerNum] forState:UIControlStateNormal];
 }
 
 
 -(void)createUI{
     _webView = [[UIWebView alloc]initWithFrame:self.bounds];
     [self addSubview:_webView];
-    self.timerLab = [[UILabel alloc]initWithFrame:CGRectMake(self.frameWidth-100,30,50, 12)];
-    self.timerLab.backgroundColor = [UIColor cyanColor];
-    self.timerLab.alpha = 0.8;
-    self.timerLab.textColor = [UIColor grayColor];
-    self.timerLab.textAlignment = NSTextAlignmentCenter;
-    self.timerLab.font = [UIFont systemFontOfSize:12.f];
+    self.timerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.timerBtn.frame = CGRectMake(self.frameWidth-100, 30, 50, 20);
+    self.timerBtn.backgroundColor = [UIColor cyanColor];
+    self.timerBtn.alpha = 0.8;
+    [self.timerBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.timerBtn addTarget:self action:@selector(closeAdvertising) forControlEvents:UIControlEventTouchUpInside];
 }
 #pragma mark ==============webview delegate================
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [self addSubview:self.timerLab];
+    [self addSubview:self.timerBtn];
     [self createDispatch_source_t];
 }
 //dispatch_source_t
@@ -86,7 +86,7 @@
     //执行事件
     dispatch_source_set_event_handler(_sourceTimer,^{
         self.timerNum--;
-        self.timerLab.text = [NSString stringWithFormat:@"%d",self.timerNum];
+        [self.timerBtn setTitle:[NSString stringWithFormat:@"%d",self.timerNum] forState:UIControlStateNormal];
         //销毁定时器
         //dispatch_source_cancel(_myTimer);
         if (self.timerNum<0) {
@@ -98,5 +98,9 @@
     //启动计时器
     dispatch_resume(_sourceTimer);
 }
-
+-(void)closeAdvertising
+{
+    dispatch_source_cancel(_sourceTimer);
+    self.block();
+}
 @end

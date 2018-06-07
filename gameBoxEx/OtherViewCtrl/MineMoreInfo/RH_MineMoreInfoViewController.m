@@ -18,8 +18,9 @@
 #import "RH_AboutUsViewController.h"
 #import "RH_RegisterClauseViewController.h" //注册条款
 #import "RH_HelpCenterViewController.h"
-
-
+#import "coreLib.h"
+#import "SDImageCache.h"
+#import "RH_MineMoreClearStorageCell.h"
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement ;
 @end
@@ -129,26 +130,57 @@
     
     return _tableViewManagement ;
 }
+-(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
+{
+    if (indexPath.item==4) {
+        RH_MineMoreClearStorageCell *clearStorgeCell = ConvertToClassPointer(RH_MineMoreClearStorageCell, cell);
+        [clearStorgeCell updateCellWithInfo:nil context:nil];
+        __block RH_MineMoreInfoViewController *weakSelf = self;
+        clearStorgeCell.block = ^{
+            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                showMessage(weakSelf.view,@"清除缓存完成", nil);
+            }];
+        };
+    }
+}
 -(BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
 
     if (indexPath.row == 0) {
-//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:QuestionsURL]
-//                                             animated:YES] ;
          [self.navigationController pushViewController:[RH_HelpCenterViewController viewController] animated:YES] ;
         
     }else if (indexPath.row == 1)
     {
-//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:RegisterProtocol]
-//                                             animated:YES] ;
         [self.navigationController pushViewController:[RH_RegisterClauseViewController viewController] animated:YES] ;
     }else if (indexPath.row== 2)
     {
-//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:AboutUs]
-//                                             animated:YES] ;
         [self.navigationController pushViewController:[RH_AboutUsViewController viewController] animated:YES] ;
     }
-
+    else if (indexPath.row==4){
+        [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
+       //清除缓存文件
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        NSString *path = [paths lastObject];
+        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:path];
+        for (NSString *p in files) {
+            NSError *error;
+            NSString *Path = [path stringByAppendingPathComponent:p];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:Path]) {
+                //清理缓存，保留Preference，里面含有NSUserDefaults保存的信息
+                if (![Path containsString:@"Preferences"]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:Path error:&error];
+                    //清除sdimage缓存图片
+                    [[SDImageCache sharedImageCache]clearMemory];
+//                    if ([SDImageCache sharedImageCache].getDiskCount==0) {
+                        [self.tableViewManagement reloadData];
+//                    }
+                }
+            }else{
+                
+            }
+        }
+        
+    }
     return YES;
 }
 @end

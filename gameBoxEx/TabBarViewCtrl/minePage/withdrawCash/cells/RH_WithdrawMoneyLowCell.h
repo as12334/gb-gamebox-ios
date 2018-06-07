@@ -12,6 +12,7 @@
 @protocol WithdrawMoneyLowCellDelegate
 @optional
 -(void)withdrawMoneyLowCellDidTouchQuickButton:(RH_WithdrawMoneyLowCell*)withdrawLowCell ;
+-(void)withdrawMoneyLowCellDidTouchRecycleButton:(RH_WithdrawMoneyLowCell *)withdrawLowCell;
 @end
 
 @interface RH_WithdrawMoneyLowCell : CLTableViewCell

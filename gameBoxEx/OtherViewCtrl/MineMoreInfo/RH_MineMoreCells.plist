@@ -37,6 +37,10 @@
 					<key>title</key>
 					<string>语言选择</string>
 				</dict>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineMoreClearStorageCell</string>
+				</dict>
 			</array>
 		</dict>
 	</array>
