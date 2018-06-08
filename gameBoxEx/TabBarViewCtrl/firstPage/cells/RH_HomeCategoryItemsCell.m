@@ -119,8 +119,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ifRespondsSelector(self.delegate, @selector(homeCategoryItemsCellDidTouchItemCell:DataModel:)){
-        [self.delegate homeCategoryItemsCellDidTouchItemCell:self DataModel:self.itemsList[indexPath.section*3+indexPath.item]] ;
+    ifRespondsSelector(self.delegate, @selector(homeCategoryItemsCellDidTouchItemCell:DataModel:index:)){
+        [self.delegate homeCategoryItemsCellDidTouchItemCell:self DataModel:self.itemsList[indexPath.section*3+indexPath.item] index:indexPath.section*3+indexPath.item] ;
     }
 }
 

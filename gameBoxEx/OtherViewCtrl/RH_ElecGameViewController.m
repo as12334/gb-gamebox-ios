@@ -192,7 +192,7 @@
 {
     if (type == ServiceRequestTypeV3GameLinkForCheery) {
         if (IS_DEV_SERVER_ENV||IS_TEST_SERVER_ENV) {
-            [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameMsg"]]]];
+            [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
         }
         else{
             [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];

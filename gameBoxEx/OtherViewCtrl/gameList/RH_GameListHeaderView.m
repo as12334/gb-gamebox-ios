@@ -46,7 +46,11 @@
     [self.collectionTypeView selectItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]
                                           animated:YES
                                     scrollPosition:UICollectionViewScrollPositionCenteredHorizontally] ;
-    
+    [self setSelectedIndex:0] ;
+    [self _updateSelectionIndicater:YES] ;
+    ifRespondsSelector(self.delegate, @selector(gameListHeaderViewDidChangedSelectedIndex:SelectedIndex:)){
+        [self.delegate gameListHeaderViewDidChangedSelectedIndex:self SelectedIndex:_selectedIndex] ;
+    }
 }
 
 -(NSDictionary *)typeModelWithIndex:(NSInteger)index

@@ -55,6 +55,8 @@
 @property (nonatomic,strong)UIView *shadeView;
 @property (nonatomic,strong)MBProgressHUD *hud;
 @property (nonatomic,strong)NSArray *array ;
+@property (nonatomic, assign) NSInteger currentCategoryIndex;
+
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -324,7 +326,7 @@
     return _homeCategoryCell ;
 }
 
--(void)homeCategoryCellDidChangedSelectedIndex:(RH_HomeCategoryCell*)homeCategoryCell
+-(void)homeCategoryCellDidChangedSelected:(RH_HomeCategoryCell*)homeCategoryCell index:(NSInteger)index
 {
     [self.contentTableView reloadData] ;
 }
@@ -357,14 +359,15 @@
     return _homeCategoryItemsCell ;
 }
 
--(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel
+-(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel index:(NSInteger)index
 {
+    self.currentCategoryIndex = index;
     if (self.appDelegate.isLogin)
     {
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
             if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
-                [self showViewController:[RH_GameListViewController viewControllerWithContext:lotteryAPIInfoModel]
+                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
                                   sender:self] ;
                 return ;
             }else if (lotteryAPIInfoModel.mAutoPay){//免转
@@ -410,8 +413,9 @@
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
             if (lotteryAPIInfoModel.mApiTypeID==2){ //进入 电子游戏 列表 。。。
-                [self showViewController:[RH_GameListViewController viewControllerWithContext:lotteryAPIInfoModel]
+                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
                                   sender:self] ;
+                //lotteryAPIInfoModel
                 return ;
             }
         }
