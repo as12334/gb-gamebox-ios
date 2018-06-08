@@ -1688,7 +1688,7 @@
 #define S        @"b6f963230122edeb138781837c76a808"
 #define SID        @"321"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
@@ -2871,6 +2871,37 @@
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
+#elif _jkkx //世界城国际娱乐城
+
+#define CODE    @"jkkx"
+#define S        @"d7d6d1167cc592efb792602e59116f4f"
+#define SID        @"587"
+#define THEME    @"default.skin"
+#define THEMEV3             @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
+#elif _s90r //戰神國際
+
+#define CODE    @"s90r"
+#define S        @"2578dfd960cf5fa3c7c623b3fc7eac64"
+#define SID        @"598"
+#define THEME    @"default.skin"
+#define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _81m3 //澳门美高梅娱乐城
+
+#define CODE    @"81m3"
+#define S        @"8656ca8ca164b923502c77ec11453a41"
+#define SID        @"600"
+#define THEME    @"default.skin"
+#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 #endif
 
