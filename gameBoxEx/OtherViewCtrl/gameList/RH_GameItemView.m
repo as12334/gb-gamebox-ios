@@ -51,7 +51,7 @@
     [self.typeMarkIMG sd_setImageWithURL:[NSURL URLWithString:_typeModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     ifRespondsSelector(self.delegate, @selector(gameItemView:didSelect:)){
         [self.delegate gameItemView:self didSelect:self.model];

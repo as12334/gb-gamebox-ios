@@ -7,7 +7,6 @@
 //
 
 #import "RH_GameListViewController.h"
-#import "RH_GameListHeaderView.h"
 #import "RH_LotteryGameListTopView.h"
 #import "RH_GameListContentPageCell.h"
 #import "RH_LotteryAPIInfoModel.h"
@@ -22,15 +21,15 @@
 #import "RH_GameListCell.h"
 #import "CLPageView.h"
 #import "CLRefreshControl.h"
+#import "HTHorizontalSelectionList.h"
 
-@interface RH_GameListViewController ()<GameListHeaderViewDelegate, RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,GameListContentPageCellProtocol,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_TypeSelectViewDelegate, RH_GameListScrollViewDatasource, RH_GameItemsCellDelegate>
+@interface RH_GameListViewController ()<RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_TypeSelectViewDelegate, RH_GameItemsCellDelegate,HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
 
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
-@property (nonatomic, strong) RH_GameListHeaderView *typeTopView;
 @property (nonatomic, strong) UITableView *listTable;
 @property (nonatomic, strong) CLRefreshBaseControl *typeControl;
 @property (nonatomic, strong) RH_TypeSelectView *typeSelectView;
-@property (nonatomic, assign) NSInteger currentCategoryIndex;
+@property (nonatomic, assign) NSInteger currentCategoryIndex;//大分类index
 @property (nonatomic, strong) RH_LotteryCategoryModel *categoryModel;
 @property (nonatomic, assign) BOOL isListMode;//列表模式 默认为false
 @property (nonatomic, strong) NSMutableArray *gameListArray;//游戏列表数组
@@ -38,6 +37,8 @@
 @property (nonatomic, strong) NSDictionary *currentTypeModel;//当前小分类信息
 @property (nonatomic, assign) NSInteger currentSubTypeIndex;//当前小分类信息index
 @property (nonatomic, strong) CLRefreshControl *bottomLoadControl;
+@property (nonatomic, strong) HTHorizontalSelectionList *subTypeControl;//子分类选择器
+@property (nonatomic, strong) NSMutableArray *subTypeArray;
 
 @end
 
@@ -45,8 +46,6 @@
 {
     RH_LotteryAPIInfoModel *_lotteryApiModel ;
 }
-
-@synthesize typeTopView = _typeTopView;
 
 -(void)setupViewContext:(id)context
 {
@@ -171,6 +170,34 @@
     self.navigationBarItem.rightBarButtonItems = @[itemTypeBtItem,listTypeBtItem,searchBtItem];
 }
 
+- (NSMutableArray *)subTypeArray
+{
+    if (_subTypeArray == nil) {
+        _subTypeArray = [NSMutableArray array];
+    }
+    return _subTypeArray;
+}
+
+- (HTHorizontalSelectionList *)subTypeControl
+{
+    if (_subTypeControl == nil) {
+        _subTypeControl = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+        _subTypeControl.delegate = self;
+        _subTypeControl.dataSource = self;
+        
+        _subTypeControl.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeLightBounce;
+        _subTypeControl.showsEdgeFadeEffect = YES;
+        
+        _subTypeControl.selectionIndicatorColor = colorWithRGB(49, 102, 181);
+        
+        [_subTypeControl setTitleColor:colorWithRGB(51, 51, 51) forState:UIControlStateHighlighted];
+        [_subTypeControl setTitleFont:[UIFont systemFontOfSize:13] forState:UIControlStateNormal];
+        [_subTypeControl setTitleFont:[UIFont boldSystemFontOfSize:13] forState:UIControlStateSelected];
+        [_subTypeControl setTitleFont:[UIFont boldSystemFontOfSize:13] forState:UIControlStateHighlighted];
+    }
+    return _subTypeControl;
+}
+
 - (CLRefreshControl *)bottomLoadControl
 {
     if (!_bottomLoadControl) {
@@ -209,7 +236,7 @@
 - (CLRefreshBaseControl *)typeControl
 {
     if (_typeControl == nil) {
-        _typeControl = [[CLRefreshBaseControl alloc] initWithThreshold:100 height:100 animationView:self.typeSelectView];
+        _typeControl = [[CLRefreshBaseControl alloc] initWithThreshold:40 height:100 animationView:self.typeSelectView];
     }
     return _typeControl;
 }
@@ -233,10 +260,22 @@
 }
 
 - (void)setupInfo {
-    [self.listTable reloadData];
     self.title = _lotteryApiModel.mName?:@"列表" ;
     self.searchView.hidden = YES;
     self.searchView.whc_TopSpace(64+(MainScreenH==812?20.0:0.0)).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(55);
+    
+    [self.gameListArray removeAllObjects];//清空之前的数据
+    self.currentGameListPageIndex = 1;//重置为1
+    self.currentSubTypeIndex = 0;
+    self.currentTypeModel = self.subTypeArray[self.currentSubTypeIndex];
+    self.subTypeControl.selectedButtonIndex = 0;
+    [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
+                                        ApiTypeID:_lotteryApiModel.mApiTypeID
+                                       PageNumber:self.currentGameListPageIndex
+                                         PageSize:18
+                                       SearchName:@""
+                                            TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
+
 }
 
 //加载下一页
@@ -268,30 +307,6 @@
     self.searchView.hidden = !self.searchView.hidden;
 }
 
-#pragma mark - typeTopView
-- (RH_GameListHeaderView *)typeTopView {
-    if (_typeTopView == nil) {
-        _typeTopView = [RH_GameListHeaderView createInstance];
-        _typeTopView.delegate = self;
-    }
-    return _typeTopView;
-}
-
--(void)gameListHeaderViewDidChangedSelectedIndex:(RH_GameListHeaderView*)gameListHeaderView SelectedIndex:(NSInteger)selectedIndex
-{
-    self.currentSubTypeIndex = selectedIndex;
-    [self.gameListArray removeAllObjects];//清空之前的数据
-    self.currentGameListPageIndex = 1;//重置为1
-    self.currentTypeModel = [self.typeTopView typeModelWithIndex:selectedIndex];
-    [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
-                                        ApiTypeID:_lotteryApiModel.mApiTypeID
-                                       PageNumber:self.currentGameListPageIndex
-                                         PageSize:18
-                                       SearchName:@""
-                                            TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
-
-}
-
 #pragma mark searchView
 -(RH_LotteryGameListTopView *)searchView
 {
@@ -309,13 +324,6 @@
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"数据请求中" detailText:@"请稍等"];
     [self.serviceRequest startV3LoadGameTypeWithApiId:_lotteryApiModel.mApiID searchApiTypeId:_lotteryApiModel.mApiTypeID];
-}
-
-#pragma mark - RH_GameListScrollViewDatasource M
-
-- (NSInteger)numberOfPagesInScrollView:(RH_GameListScrollView *)view
-{
-    return self.typeTopView.allTypes;
 }
 
 /**
@@ -420,11 +428,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    self.typeTopView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
-    self.typeTopView.backgroundColor = [UIColor whiteColor];
-    self.typeTopView.selectedIndex = self.currentSubTypeIndex;
-
-    return self.typeTopView;
+    self.subTypeControl.selectedButtonIndex = self.currentSubTypeIndex;
+    return self.subTypeControl;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -437,6 +442,32 @@
     if (self.isListMode) {
         [self openGame:self.gameListArray[indexPath.row]];
     }
+}
+
+#pragma mark - HTHorizontalSelectionListDataSource M
+
+- (NSInteger)numberOfItemsInSelectionList:(HTHorizontalSelectionList *)selectionList {
+    return self.subTypeArray.count;
+}
+
+- (NSString *)selectionList:(HTHorizontalSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index {
+    return [self.subTypeArray[index] objectForKey:@"value"];
+}
+
+#pragma mark - HTHorizontalSelectionListDelegate M
+
+- (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index {
+    self.currentSubTypeIndex = index;
+    [self.gameListArray removeAllObjects];//清空之前的数据
+    self.currentGameListPageIndex = 1;//重置为1
+    self.currentTypeModel = self.subTypeArray[index];
+    [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
+                                        ApiTypeID:_lotteryApiModel.mApiTypeID
+                                       PageNumber:self.currentGameListPageIndex
+                                         PageSize:18
+                                       SearchName:@""
+                                            TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
+
 }
 
 #pragma mark - UIScrollViewDelegate M
@@ -468,9 +499,19 @@
     if (self.currentCategoryIndex != index) {
         self.currentSubTypeIndex = 0;
         self.currentCategoryIndex = index;
-        self.typeTopView.selectedIndex = 0;
+        self.subTypeControl.selectedButtonIndex = 0;
         _lotteryApiModel = self.categoryModel.mSiteApis[self.currentCategoryIndex];
         [self loadingIndicateViewDidTap:nil] ;
+        
+//        [self.gameListArray removeAllObjects];//清空之前的数据
+//        self.currentGameListPageIndex = 1;//重置为1
+//        self.currentTypeModel = self.subTypeArray[self.currentSubTypeIndex];
+//        [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
+//                                            ApiTypeID:_lotteryApiModel.mApiTypeID
+//                                           PageNumber:self.currentGameListPageIndex
+//                                             PageSize:18
+//                                           SearchName:@""
+//                                                TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
     }
 }
 
@@ -486,7 +527,7 @@
 {
     [self.gameListArray removeAllObjects];//清空之前的数据
     self.currentGameListPageIndex = 1;//重置为1
-    self.currentTypeModel = [self.typeTopView typeModelWithIndex:self.currentSubTypeIndex];
+    self.currentTypeModel = self.subTypeArray[self.currentSubTypeIndex];
     [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
                                         ApiTypeID:_lotteryApiModel.mApiTypeID
                                        PageNumber:self.currentGameListPageIndex
@@ -511,8 +552,9 @@
         if (arr1.count == 0) {
             [self.contentLoadingIndicateView showInfoInInvalidWithTitle:@"" detailText:@""] ;
         }else{
-            self.typeTopView.selectedIndex = 0;
-            [self.typeTopView updateView:arr1];
+            [self.subTypeArray removeAllObjects];
+            [self.subTypeArray addObjectsFromArray:arr1];
+            [self.subTypeControl reloadData];
             [self setupInfo];
         }
     }
