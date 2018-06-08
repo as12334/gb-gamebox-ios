@@ -19,8 +19,18 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveTophoneBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *openAppBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @end
 @implementation RH_DepositeTransferQRCodeCell
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:17.0]};//指定字号
+    CGRect rect = [listmodel.mRemark boundingRectWithSize:CGSizeMake(MainScreenW - 30, 0)/*计算高度要先指定宽度*/ options:NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:dic context:nil];
+    return 140+rect.size.height;
+}
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
@@ -48,7 +58,7 @@
     else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
         [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
     }
-
+    self.noticeLabel.text = listmodel.mRemark;
 }
 - (IBAction)saveToPhone:(id)sender {
     ifRespondsSelector(self.delegate, @selector(depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:)){
@@ -56,7 +66,35 @@
     }
 }
 - (IBAction)openOtherAppClick:(id)sender {
-    showMessage(self, @"功能暂未开放", nil);
+    NSString *urlSchemes = @"";
+    NSString *appName = @"";
+    if ([self.transferModel.mBankCode isEqualToString:@"qqwallet"]) {
+        urlSchemes = @"mqq://";
+        appName = @"QQ";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"bdwallet"]) {
+        urlSchemes = @"bdwallet://";
+        appName = @"百度钱包";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"alipay"]) {
+        urlSchemes = @"alipay://";
+        appName = @"支付宝";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"wechatpay"]) {
+        urlSchemes = @"weixin://";
+        appName = @"微信";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"jdwallet"]) {
+        urlSchemes = @"jdpay://";
+        appName = @"京东钱包";
+    }
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlSchemes]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlSchemes]];
+    }
+    else
+    {
+        showMessage(self, [NSString stringWithFormat:@"请先安装%@",appName], nil);
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

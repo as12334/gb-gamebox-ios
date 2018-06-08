@@ -28,9 +28,12 @@
 @implementation RH_DepositeTransferBankInfoCell
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    NSArray *array = ConvertToClassPointer(NSArray, context);
+    bool mHide = [array[1] boolValue];
+    
+    RH_DepositeTransferListModel *listModel =array[0];
     self.listModel = listModel;
-    if (listModel.mHide) {
+    if (mHide) {
         [self.copBtn setTitle:@"联系客服" forState:UIControlStateNormal];
         self.copBtn.titleLabel.font = [UIFont systemFontOfSize:11];
         self.bankCardNumLabel.text = [NSString stringWithFormat:@"账号代码：%@",listModel.mCode];
@@ -39,7 +42,7 @@
     }
     self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
-    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
+    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 - (void)awakeFromNib {

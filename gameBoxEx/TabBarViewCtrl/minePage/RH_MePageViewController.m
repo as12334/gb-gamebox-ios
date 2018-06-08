@@ -19,7 +19,7 @@
 #import "RH_ApplyDiscountViewController.h"
 #import "RH_MineRecordTableViewCell.h"
 #import "RH_LimitTransferViewController.h" // 额度转换原生
-
+#import "RH_WebsocketManagar.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -249,7 +249,6 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.tableViewManagement reloadData] ;
 }
-
 #pragma mark-
 -(void)updateView
 {

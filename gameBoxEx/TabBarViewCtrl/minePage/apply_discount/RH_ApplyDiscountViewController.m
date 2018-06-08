@@ -178,7 +178,13 @@
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 63+NavigationBarHeight + 10 + 15, MainScreenW, MainScreenH-63-NavigationBarHeight-StatusBarHeight)];
+        if ([getDeviceModel() isEqualToString:@"iPhone"]) {
+            _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,50+NavigationBarHeight+44 +10, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+        }
+        else
+        {
+            _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,63+NavigationBarHeight + 10, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+        }
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
@@ -239,9 +245,7 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
                   [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 -(void)applyDiscountPageCellEndDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
@@ -254,10 +258,6 @@
                    MaxDate:[NSDate date]
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
-                  cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
-                  [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 
@@ -274,9 +274,8 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.startDate = returnDate ;
                   cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
+                  //                  [cell startUpdateData];
                   [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 -(void)applyDiscountSystemEndDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
@@ -290,9 +289,7 @@
               comfirmBlock:^(NSDate *returnDate) {
                   view.endDate = returnDate ;
                   cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
                   [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
               }] ;
 }
 

@@ -314,7 +314,8 @@
     }
     else if (indexPath.item==[_markArray[2] integerValue])
     {
-        return 137.f;
+//        return 160.f;
+        return [RH_DepositeTransferQRCodeCell heightForCellWithInfo:nil tableView:tableView context:self.listModel];
     }
     else if (indexPath.item==[_markArray[3] integerValue])
     {
@@ -330,7 +331,7 @@
         return 80.f;
     }
     else if (indexPath.item==[_markArray[7]integerValue]){
-        return 200.f;
+        return 250.f;
     }
     
     return 0.f ;
@@ -342,8 +343,8 @@
     
     if (indexPath.item==[_markArray[0] integerValue]) {
         RH_DepositeTransferBankInfoCell *bankInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferBankInfoCell defaultReuseIdentifier]] ;
-//        payforWayCell.delegate = self;
-        [bankInfoCell updateCellWithInfo:nil context:self.listModel];
+        NSArray *array = @[self.listModel,@(self.channelModel.mHide)];
+        [bankInfoCell updateCellWithInfo:nil context:array];
         return bankInfoCell ;
     }
     else if (indexPath.item==[_markArray[1]integerValue]){
@@ -480,16 +481,16 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
-                NSString *regex = @"[0-9]*";
+                NSString *regex = @"[A-Za-z0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
                      [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
                 else{
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
                 }
             }
             else{
@@ -503,16 +504,16 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
-                NSString *regex = @"[0-9]*";
+                NSString *regex = @"[A-Za-z0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
                 else{
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
                 }
             }
             else{
@@ -526,16 +527,16 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
-                NSString *regex = @"[0-9]*";
+                NSString *regex = @"[A-Za-z0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
                 else{
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
                 }
             }
             else{
@@ -549,16 +550,16 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
-                NSString *regex = @"[0-9]*";
+                NSString *regex = @"[A-Za-z0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
                 else{
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
                 }
             }
             else{
@@ -572,16 +573,16 @@
         }
         else{
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
-                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
             else if(self.transferOrderCell.transferOrderString.length!=0){
-                NSString *regex = @"[0-9]*";
+                NSString *regex = @"[A-Za-z0-9]*";
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
                 if ([pred evaluateWithObject:self.transferOrderCell.transferOrderString]) {
                     [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
                 }
                 else{
-                    showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                    showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
                 }
             }
             else{
@@ -600,7 +601,7 @@
             }
             else{
                 if (self.adressCell.adressStr.length!=5&&self.adressCell.adressStr.length!=0&&self.adressCell.adressStr!=nil) {
-                    showMessage(self.view, @"请输入五位数订单号", nil);
+                    showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
                 }
 //                else if(self.adressCell.adressStr.length!=0){
 ////                    NSString *regex = @"[0-9]*";
@@ -613,7 +614,15 @@
 ////                    }
 //                }
                 else{
-                    [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                    NSString *regex = @"[A-Za-z0-9]*";
+                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
+                        [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                    }
+                    else
+                    {
+                        showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                    }
                 }
             }
         }
@@ -623,16 +632,16 @@
     else if ([self.accountMuArray[2] isEqualToString:@"onecodepay"])
     {
         if (self.paywayCell.paywayString.length!=5&&self.paywayCell.paywayString.length!=0&&self.paywayCell.paywayString!=nil) {
-            showMessage(self.view, @"请输入五位纯数字订单号", nil);
+            showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
         }
         else if(self.paywayCell.paywayString.length!=0){
-            NSString *regex = @"[0-9]*";
+            NSString *regex = @"[A-Za-z0-9]*";
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
             if ([pred evaluateWithObject:self.paywayCell.paywayString]) {
                 [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
             }
             else{
-                showMessage(self.view, @"请输入五位纯数字订单号", nil);
+                showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
             }
         }
         else{
@@ -688,14 +697,14 @@
         [self.accountMuArray[2]isEqualToString:@"bitcion"]||
         [self.accountMuArray[2]isEqualToString:@"unionpay"]||[self.accountMuArray[2]isEqualToString:@"onecodepay"]||
         [self.accountMuArray[2]isEqualToString:@"other"]) {
-        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.transferOrderCell.orderNumTextfiled.text integerValue]?self.transferOrderCell.orderNumTextfiled.text:@"12345" payerName:@"12" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
+        [self.serviceRequest startV3ElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:self.transferOrderCell.orderNumTextfiled.text payerName:@"" payerBankcard:self.paywayCell.paywayString?self.paywayCell.paywayString:@"" activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
         
     }
     else if ([self.accountMuArray[2]isEqualToString:@"alipay"])
     {
-        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:[self.adressCell.adressStr integerValue]?self.adressCell.adressStr:@"12345" payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
+        [self.serviceRequest startV3AlipayElectronicPayWithRechargeAmount:self.accountMuArray[0] rechargeType:self.listModel.mRechargeType payAccountId:self.listModel.mSearchId bankOrder:self.adressCell.adressStr payerName:self.paywayCell.paywayString payerBankcard:self.transferOrderCell.transferOrderString activityId:self.activityId];
         [self closeShadeView] ;
         [self showProgressIndicatorViewWithAnimated:YES title:@"存款提交中"] ;
     }

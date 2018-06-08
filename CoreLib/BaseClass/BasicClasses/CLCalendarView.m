@@ -44,10 +44,6 @@
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        _shareCalendarView = [[CLCalendarView alloc] initWithFrame:CGRectMake(114*BXScreenW/414/2,
-//                                                                              100*BXScreenW/414,
-//                                                                              340*BXScreenW/414,
-//                                                                              350*BXScreenH/736)] ;
         _shareCalendarView = [[CLCalendarView alloc] initWithFrame:CGRectMake(0,
                                                                               BXScreenH - (350*BXScreenH/736),
                                                                               BXScreenW,
@@ -113,7 +109,7 @@
     if (_defaultDate!=defaultDate){
         _defaultDate = defaultDate ;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
         NSDate *date = [dateFormatter dateFromString:defaultDate] ;
         if (date){
             [self.datePicker setDate:date animated:NO] ;

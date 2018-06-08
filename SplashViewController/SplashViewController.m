@@ -52,7 +52,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (self){
         _doMain = domain ;
         _status = status ;
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
                                                      name:RHNT_DomainCheckSuccessful
                                                    object:nil] ;
@@ -60,7 +59,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                                                      name:RHNT_DomainCheckFail
                                                    object:nil] ;
     }
-    
     return self ;
 }
 
@@ -82,14 +80,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         }
     }
 }
-//#pragma mark ==============懒加载，重试按钮================
-//-(UIButton *)padonBtn
-//{
-//    if (!_padonBtn) {
-//        _padonBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _padonBtn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//    }
-//}
 -(NSString*)showStatus
 {
     switch (_status) {
@@ -118,7 +108,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @end
 
 
-@interface SplashViewController ()<RH_ServiceRequestDelegate,RH_ConcurrentServicesReqManagerDelegate>
+@interface SplashViewController ()<RH_ServiceRequestDelegate,RH_ConcurrentServicesReqManagerDelegate,RH_ServiceRequestDelegate>
 @property(nonatomic,strong) UIWindow * window;
 @property (weak, nonatomic) IBOutlet UIImageView *splashLogo;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
@@ -126,30 +116,39 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong) IBOutlet UILabel *labIPAddr ;
 @property (nonatomic,strong) IBOutlet UILabel *labMark ;
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
+@property (weak, nonatomic) IBOutlet UIImageView *startImge;
 @property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
-@property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
 @property (nonatomic,strong) NSString *checkType;
-
+//check到的域名
+@property (nonatomic,strong)NSString *checkDominStr;
 //获取 域名 list 并发请求管理器
-@property(nonatomic,strong,readonly) RH_ConcurrentServicesReqManager * concurrentServicesManager;
+//@property(nonatomic,strong,readonly) RH_ConcurrentServicesReqManager * concurrentServicesManager;
+@property(nonatomic,readonly,strong)RH_ServiceRequest *serviceRequest;
 @end
 
 @implementation SplashViewController
 {
     NSArray *_urlArray ;
     NSString *_talk ;
+    int i;
 }
 @synthesize checkDomainServices = _checkDomainServices ;
-@synthesize domainCheckStatusList = _domainCheckStatusList ;
-@synthesize concurrentServicesManager = _concurrentServicesManager ;
 
--(void)viewWillAppear:(BOOL)animated
+//@synthesize concurrentServicesManager = _concurrentServicesManager ;
+@synthesize serviceRequest = _serviceRequest;
+
+-(RH_ServiceRequest *)serviceRequest
 {
-    self.checkType = @"https+8989";
+    if (!_serviceRequest) {
+        _serviceRequest = [[RH_ServiceRequest alloc]init];
+        _serviceRequest.delegate = self;
+    }
+    return _serviceRequest;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.checkType = @"https+8989";
+    i = 0;
     _talk = @"/__check" ;
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
@@ -163,18 +162,83 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
     
     self.needObserveNetStatusChanged = YES ;
+    //检测网络状态和加载UI -----步骤一
     [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
-    
-    
 }
 
+#pragma mark-  检测网络，如果是WiFi或4G就可以检测线路 ---步骤二
+-(void)netStatusChangedHandle
+{
+    NSString *network = @"网络不可用";
+    NSString *wifiing = @"正在使用Wifi";
+    //    NSString *wifi = @"Wifi已开启";
+    NSString *flow = @"你现在使用的流量";
+    NSString *unknown = @"你现在使用的未知网络";
+    //    if ([@"185" isEqualToString:SID]) {
+    //        network = @"ネット使用不可";
+    //        wifiing = @"WiFi使用中";
+    //        wifi = @"WiFiオープン";
+    //        flow = @"パケット使用中";
+    //        unknown = @"不明のネット使用中";
+    //    }
+    switch (CurrentNetStatus()) {
+        case NotReachable:
+        {
+            [self addToastWithString:network inView:self.view];
+        }
+            break;
+        case ReachableViaWiFi:
+        {
+            self.labIPAddr.text = getIPAddress(TRUE) ;
+            [self addToastWithString:wifiing inView:self.view];
+            if (_urlArray.count<1){
+                [self startReqSiteInfo];
+            }else{
+                [self checkAllUrl] ;
+            }
+        }
+            break ;
+        case ReachableViaWWAN:
+        {
+            self.labIPAddr.text = getIPAddress(TRUE) ;
+            [self addToastWithString:flow inView:self.view];
+            if (_urlArray.count<1){
+                [self startReqSiteInfo];
+            }else{
+                [self checkAllUrl] ;
+            }
+        }
+            break ;
+        default:
+        {
+            [self addToastWithString:unknown inView:self.view];
+            if (_urlArray.count<1){
+                [self startReqSiteInfo];
+            }else{
+                [self checkAllUrl] ;
+            }
+        }
+            break;
+    }
+}
 - (void)initView{
     //设置启动页logo
     NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
     [self.splashLogo setImage:ImageWithName(logoName)];
-
+    /**
+     * 119 特殊处理
+     */
+    if ([SID isEqualToString:@"119"]) {
+        self.splashLogo.hidden = YES;
+        [self.startImge setImage:ImageWithName(@"startImage_119")];
+    }
+    else if ([SID isEqualToString:@"270"]){
+        self.splashLogo.hidden = YES;
+        [self.startImge setImage:ImageWithName(@"270startpage_1242x2209.jpg")];
+    }
+    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
@@ -185,23 +249,22 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     [self.domainTableView registerCellWithClass:[RH_DomainTableCell class]] ;
     self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
-//    self.domainTableView.dataSource = self ;
-//    self.domainTableView.delegate = self ;
     self.domainTableView.hidden = YES ;
+    
+    //注册打开是否check成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
 }
 
 -(void)startReqSiteInfo
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
-    [self.concurrentServicesManager cancleAllServices] ;
+//    [self.concurrentServicesManager cancleAllServices] ;
+     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     for (int i=0; i<RH_API_MAIN_URL.count; i++) {
         NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
-        [self.concurrentServicesManager createServiceRequestAddToManagerWithKey:[NSString stringWithFormat:@"%d",i]
-                                                                   requestBlock:^(RH_ServiceRequest *serviceRequest) {
-            [serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
-        }];
+        [self.serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
+        [appDelegate updateApiDomain:strTmp];
     }
-   [self.concurrentServicesManager startManagerRequests];
 }
 #pragma mark ==============重复请求================
 -(void)repetitionStartReqSiteInfo{
@@ -226,7 +289,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (!_checkDomainServices){
         _checkDomainServices = [[NSMutableArray alloc] init] ;
     }
-    
     return _checkDomainServices ;
 }
 
@@ -236,80 +298,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         RH_ServiceRequest *tmpServiceRequest = ConvertToClassPointer(RH_ServiceRequest, [self.checkDomainServices objectAtIndex:i]) ;
         [tmpServiceRequest cancleAllServices] ;
     }
-    
     [self.checkDomainServices removeAllObjects] ;
-}
-
-#pragma mark -
--(NSMutableArray *)domainCheckStatusList
-{
-    if (!_domainCheckStatusList){
-        _domainCheckStatusList = [NSMutableArray array] ;
-    }
-    
-    return _domainCheckStatusList ;
-}
-
-#pragma mark-
--(void)netStatusChangedHandle
-{
-    NSString *network = @"网络不可用";
-    NSString *wifiing = @"正在使用Wifi";
-//    NSString *wifi = @"Wifi已开启";
-    NSString *flow = @"你现在使用的流量";
-    NSString *unknown = @"你现在使用的未知网络";
-
-    //    if ([@"185" isEqualToString:SID]) {
-//        network = @"ネット使用不可";
-//        wifiing = @"WiFi使用中";
-//        wifi = @"WiFiオープン";
-//        flow = @"パケット使用中";
-//        unknown = @"不明のネット使用中";
-//    }
-
-    switch (CurrentNetStatus()) {
-        case NotReachable:
-        {
-            [self addToastWithString:network inView:self.view];
-        }
-            break;
-
-        case ReachableViaWiFi:
-        {
-            self.labIPAddr.text = getIPAddress(TRUE) ;
-            [self addToastWithString:wifiing inView:self.view];
-            if (_urlArray.count<1){
-                [self startReqSiteInfo];
-            }else{
-                [self checkAllUrl] ;
-            }
-        }
-            break ;
-
-        case ReachableViaWWAN:
-        {
-            self.labIPAddr.text = getIPAddress(TRUE) ;
-            [self addToastWithString:flow inView:self.view];
-             if (_urlArray.count<1){
-                 [self startReqSiteInfo];
-             }else{
-                 [self checkAllUrl] ;
-             }
-        }
-            break ;
-
-        default:
-        {
-            [self addToastWithString:unknown inView:self.view];
-             if (_urlArray.count<1){
-                 [self startReqSiteInfo];
-             }else{
-                 [self checkAllUrl] ;
-             }
-        }
-            break;
-    }
-
 }
 
 //showToast
@@ -350,15 +339,15 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 }
 
 #pragma mark - 获取 域名 list 并发请求管理器
-- (RH_ConcurrentServicesReqManager *)concurrentServicesManager
-{
-    if (!_concurrentServicesManager) {
-        _concurrentServicesManager = [[RH_ConcurrentServicesReqManager alloc] init];
-        _concurrentServicesManager.delegate = self;
-    }
-    
-    return _concurrentServicesManager;
-}
+//- (RH_ConcurrentServicesReqManager *)concurrentServicesManager
+//{
+//    if (!_concurrentServicesManager) {
+//        _concurrentServicesManager = [[RH_ConcurrentServicesReqManager alloc] init];
+//        _concurrentServicesManager.delegate = self;
+//    }
+//
+//    return _concurrentServicesManager;
+//}
 
 - (void)concurrentServicesManager:(RH_ConcurrentServicesReqManager *)concurrentServicesManager didCompletedAllServiceWithDatas:(NSDictionary *)datas errors:(NSDictionary *)errors
 {
@@ -376,122 +365,45 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
 }
 
-- (void)concurrentServicesManager:(RH_ConcurrentServicesReqManager *)concurrentServicesManager
-                   serviceRequest:(RH_ServiceRequest *)serviceRequest
-                              key:(NSString *)key
-                      serviceType:(ServiceRequestType)type
-        didSuccessRequestWithData:(id)data
-{
-    if (type == ServiceRequestTypeDomainList){
-        static dispatch_once_t onceToken ;
-        dispatch_once(&onceToken, ^{
-            _urlArray = ConvertToClassPointer(NSArray, data) ;
-//            _urlArray = @[@"xaxaxa.com"];
-            [self.appDelegate updateApiDomain:ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:key.intValue])] ;
-            [self checkAllUrl] ;
-        }) ;
-    }
-}
-
 #pragma mark-
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeDomainList){
         _urlArray = ConvertToClassPointer(NSArray, data) ;
         [self checkAllUrl] ;
-    }else if (type == ServiceRequestTypeDomainCheck)
+    }
+    //check 域名成功进入回调
+    else if (type == ServiceRequestTypeDomainCheck)
     {
         [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckSuccessful
-                                                            object:[ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy]] ;
-        static dispatch_once_t onceToken ;
-        dispatch_once(&onceToken, ^{
-            NSString *strTmp =  [ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy] ;
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            NSLog(@"strTmp====%@",strTmp);
-//            if ([self.checkType isEqualToString:@"https+8989"]) {
-                if (![data boolValue])//http protocol
-                {
-                  
                     if ([self.checkType isEqualToString:@"https+8989"]) {
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
-//                            return ;
-//                        }
+                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",self.checkDominStr,@":8989"]] ;
                     }else if ([self.checkType isEqualToString:@"http+8787"]){
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
-//                            return ;
-//                        }
+                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",self.checkDominStr,@":8787"]] ;
                     }else if ([self.checkType isEqualToString:@"https"]){
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
-//                            return ;
-//                        }
+                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",self.checkDominStr,@""]] ;
                     }else if ([self.checkType isEqualToString:@"http"]){
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
-//                            return ;
-//                        }
+                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",self.checkDominStr,@""]] ;
                     }
-                    
-                }else{
-                   
-                    if ([self.checkType isEqualToString:@"https+8989"]) {
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@":8989"]] ;
-//                        }
-                    }else if ([self.checkType isEqualToString:@"http+8787"]){
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@":8787"]] ;
-//                        }
-                    }else if ([self.checkType isEqualToString:@"https"]){
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",strTmp,@""]] ;
-//                        }
-                    }else if ([self.checkType isEqualToString:@"http"]){
-//                        if ([data boolValue])//http protocol
-//                        {
-                            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"http://",strTmp,@""]] ;
-//                        }
-                    }
-                }
-//            }
-            
-            
-            [self cancelAllDomainCheck] ;
-        
             if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
                 [self splashViewComplete] ;
-            }else{
+            }
+            else{
                 if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
                     [self.serviceRequest startV3UpdateCheck];
-//                    [self.serviceRequest startV3customSysDomain];
-                    
                 }else
                 {
                     [self.serviceRequest startUpdateCheck] ;
                 }
                 
             }
-        }) ;
-        
-        [self.domainTableView reloadData] ;
     }else if (type == ServiceRequestTypeUpdateCheck || type == ServiceRequestTypeV3UpdateCheck){
         RH_UpdatedVersionModel *checkVersion = ConvertToClassPointer(RH_UpdatedVersionModel, data) ;
-        
         if(checkVersion.mVersionCode<=[RH_APP_VERCODE integerValue]){
             [self splashViewComplete] ;
             return;
         }
-        
         //检查今天是否已提醒
         NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
         NSDate *dateTmp = ConvertToClassPointer(NSDate, [userDefaults objectForKey:kUpdateAPPDatePrompt]) ;
@@ -517,7 +429,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                                                                     title:@"检测到新版本"
                                                                   message:checkVersion.mMemo
                                                          cancelButtonName:@"暂不更新"
-                                                        otherButtonTitles:@"立即更新", nil];
+                                                        otherButtonTitles:@"立即更新", nil
+                                       ];
             
             [alertView show];
         }else{
@@ -530,23 +443,15 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     if (type == ServiceRequestTypeDomainList){
         [self.contentLoadingIndicateView hiddenView] ;
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-//            [self startReqSiteInfo];
-//        }];
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-//         showAlertView(@"系统提示", @"没有检测到可用的主域名!");
-        showMessage(self.view, @"", @"正在检测线路");
-        if ([self.checkType isEqualToString:@"https+8989"]) {
-            self.checkType = @"http+8787";
-        }else if ([self.checkType isEqualToString:@"http+8787"]){
-            self.checkType = @"https";
-        }else if ([self.checkType isEqualToString:@"https"]){
-            self.checkType = @"http";
-        }
-        [self checkAllUrl] ;
-    }else if (type == ServiceRequestTypeDomainCheck)
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名列表"preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+            [self startReqSiteInfo];
+        }];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    //check域名失败进入的回调
+    else if (type == ServiceRequestTypeDomainCheck)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:RHNT_DomainCheckFail
                                                             object:[ConvertToClassPointer(NSString, [serviceRequest contextForType:ServiceRequestTypeDomainCheck]) copy]] ;
@@ -604,56 +509,72 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     [self splashViewComplete] ;
 #endif
                 }else{
-                    
-                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"没有检测到可用的主域名!"preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
-                        [self repetitionStartReqSiteInfo];
-                         [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
-                    }];
-                    [alert addAction:defaultAction];
-                    [self presentViewController:alert animated:YES completion:nil];
-//                    showAlertView(@"系统提示", @"没有检测到可用的主域名!");
+                    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
+                    if ([self.checkType isEqualToString:@"https+8989"]) {
+                        self.checkType = @"http+8787";
+                    }
+                    else if ([self.checkType isEqualToString:@"http+8787"]){
+                        self.checkType = @"https";
+                    }
+                    else if ([self.checkType isEqualToString:@"https"]){
+                        self.checkType = @"http";
+                    }
+                    else
+                    {
+                        i++;
+                        self.checkType = @"https+8989";
+                    }
+                    [self checkAllUrl] ;
                 }
             }
         });
-        
-        [self.domainTableView reloadData] ;
     }else if (type == ServiceRequestTypeUpdateCheck){
         [self splashViewComplete] ;
     }
+    else if (type ==ServiceRequestTypeV3UpdateCheck){
+        
+    }
 }
-
 - (void)checkAllUrl{
     if (_urlArray.count){
         if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
                                                              detailText:@"checking domain"] ;
         }
-        
-        for (int i=0; i<_urlArray.count; i++) {
+        if (IS_TEST_SERVER_ENV==1) {
+            //check域名
+            NSString *tmpDomain = [_urlArray objectAtIndex:0] ;
+            self.checkDominStr = tmpDomain;
+            self.serviceRequest.timeOutInterval = 10.f;
+            self.checkType = @"http";
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
+        }else if(i<_urlArray.count){
+            //check域名
             NSString *tmpDomain = [_urlArray objectAtIndex:i] ;
-            RH_ServiceRequest *tmpServiceRequest = [[RH_ServiceRequest alloc] init] ;
-            tmpServiceRequest.delegate = self ;
-            [tmpServiceRequest setContext:tmpDomain forType:ServiceRequestTypeDomainCheck] ;
-            [self.checkDomainServices addObject:tmpServiceRequest] ;
-            tmpServiceRequest.timeOutInterval = 10.0f ;
-            
-            [tmpServiceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType] ;
-            [self.domainCheckStatusList addObject:[[_DoMainCheckStatusModel alloc] initWithDomain:tmpDomain Status:doMainStatus_Checking]] ;
-            
+            self.checkDominStr = tmpDomain;
+            self.serviceRequest.timeOutInterval = 10.f;
+            [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:self.checkType];
         }
-        
-        //显示检测的域名 ---
-        [self.domainTableView reloadData] ;
-        
+        else
+        {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"系统没有返回可用的域名"preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"点击重试" style:UIAlertActionStyleDefault                  handler:^(UIAlertAction * action) { //响应事件
+                [self repetitionStartReqSiteInfo];
+                [self.serviceRequest startUploadAPPErrorMessge:@{@"haha":@"qweqwe"}];
+            }];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
         showAlertView( NSLocalizedString(@"ALERT_LOGIN_PROMPT_TITLE", nil), _urlArray.count?NSLocalizedString(@"SPLASHVIEWCTRL_INVALID_DOMAIN", nil):
                       NSLocalizedString(@"SPLASHVIEWCTRL_EMPTY_DOMAINLIST", nil)) ;
     }
 }
-
-
+#pragma mark ==============通知================
+-(void)notCheckDominSuccess:(NSNotification*)notification{
+    [self checkAllUrl];
+}
 #pragma mark-
 - (void)show:(BOOL)animated completedBlock:(void(^)(void))completedBlock
 {
@@ -724,28 +645,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 }
 
-#pragma mark -tableview delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.domainCheckStatusList.count ;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [RH_DomainTableCell heightForCellWithInfo:nil tableView:nil context:nil] ;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    _DoMainCheckStatusModel *checkModel = self.domainCheckStatusList[indexPath.item] ;
-    RH_DomainTableCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_DomainTableCell defaultReuseIdentifier]] ;
-    [cell updateCellWithInfo:@{@"title":checkModel.doMain,
-                               @"detailTitle":checkModel.showStatus}
-                     context:nil] ;
-    
-    return cell ;
-}
-
 #pragma mark -
 - (void)splashViewComplete
 {
@@ -754,10 +653,11 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
         bRet = [self.delegate splashViewControllerWillHidden:self];
     }
-
     if (bRet) {
         [self hide:YES completedBlock:nil];
     }
+    //check过了，就把通知释放掉
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
 }
 
 #pragma mark -

@@ -158,9 +158,7 @@
 //        }
 //    }
 //
-//    NSLog(@"green1=%@",string);
-//    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:string]] ;
-    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryCategoryModel.showCover]] ;
+    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryCategoryModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 @end
