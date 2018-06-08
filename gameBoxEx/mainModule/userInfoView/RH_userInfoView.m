@@ -29,7 +29,6 @@
 //    }
     self.borderWidth = PixelToPoint(1.0f) ;
     self.layer.masksToBounds = YES ;
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
     [self.tableView registerCellWithClass:[RH_UserInfoTotalCell class]] ;
     [self.tableView registerCellWithClass:[RH_UserInfoGengeralCell class]] ;

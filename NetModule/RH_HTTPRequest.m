@@ -172,7 +172,7 @@
     _requesting = NO;
 
     [self _sendErrorMsgWithError:[NSError netErrorWithError:error] response:response];
-
+    
     _context = nil;
 }
 

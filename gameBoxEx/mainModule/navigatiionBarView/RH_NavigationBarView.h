@@ -19,5 +19,6 @@
 
 @interface RH_NavigationBarView : UIView
 @property(nonatomic,weak) id<RH_NavigationBarViewDelegate> delegate ;
+@property(nonatomic,weak) IBOutlet UIImageView *logoImageView ;
 -(void)updateTitle:(NSString*)title ;
 @end

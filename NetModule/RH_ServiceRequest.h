@@ -79,6 +79,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeTimeZoneInfo , //获取站点时区
     ServiceRequestTypeSiteMessageUnReadCount , //获取站点信息-未读消息的条数
     ServiceRequestTypeV3SharePlayerRecommend ,   // 分享
+    ServiceRequestTypeV3SharePlayerRecord,//分享记录
+    
     ServiceRequestTypeV3VerifyRealNameForApp ,   // 老用户验证登录
     ServiceRequestTypeV3GETUSERASSERT ,   // 获取用户资产信息
     ServiceRequestTypeV3RefreshSession ,   // 防止长时间未操作掉线
@@ -113,6 +115,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3CollectAppDomainError,   // 错误日志提交接口
     ServiceRequestTypeV3CustomService,          //获取客服接口
 //    ServiceRequestTypeV3BossSysDomain,          //获取IP和域名
+    ServiceRequestTypeV3NoticePopup,            //公告弹框
 };
 
 
@@ -420,8 +423,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3LoadMessageCenterSiteMessageUnReadCount ;
 
 #pragma mark - 分享接口
--(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
-                                        endTime:(NSString *)endTime;
+-(void)startV3LoadSharePlayerRecommend;
 
 #pragma mark -老用户验证登录
 /**
@@ -577,7 +579,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                               payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;
@@ -586,7 +588,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId ;
@@ -609,10 +611,10 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber ;
 #pragma mark ==============获取客服接口================
 -(void)startV3GetCustomService;
-
-
-
-//-(void)startV3customSysDomain;
+#pragma mark ==============获得消息公告弹窗================
+-(void)startV3NoticePopup;
+#pragma mark ==============分享好友记录================
+-(void)startV3SharePlayerRecordStartTime:(NSString *)startTime endTime:(NSString *)endTime pageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;
 #pragma mark -
 /**
  * 取消所有服务

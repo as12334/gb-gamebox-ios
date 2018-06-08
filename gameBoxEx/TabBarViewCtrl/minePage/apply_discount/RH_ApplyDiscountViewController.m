@@ -13,7 +13,7 @@
 #import "RH_ApplyDiscountSystemPageCell.h"
 #import "RH_ApplyDiscountSitePageCell.h"
 #import "RH_SiteMessageModel.h"
-
+#import "RH_DatePickerView.h"
 @interface RH_ApplyDiscountViewController ()<CLPageViewDelegate,CLPageViewDatasource,discountTypeHeaderViewDelegate,ApplyDiscountPageCellDelegate,ApplyDiscountSystemPageCellDelegate>
 @property(nonatomic,strong,readonly)RH_ApplyDiscountHeaderView *headerView;
 @property(nonatomic,strong,readonly) CLPageView *pageView ;
@@ -178,7 +178,13 @@
 -(CLPageView *)pageView
 {
     if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0, 63+NavigationBarHeight + 10 + 15, MainScreenW, MainScreenH-63-NavigationBarHeight-StatusBarHeight)];
+        if ([getDeviceModel() isEqualToString:@"iPhone"]) {
+           _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,50+NavigationBarHeight+44 +25, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+        }
+        else
+        {
+            _pageView = [[CLPageView alloc] initWithFrame:CGRectMake(0,63+NavigationBarHeight +25, MainScreenW, MainScreenH-50-NavigationBarHeight-StatusBarHeight)];
+        }
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ;
         _pageView.delegate = self ;
         _pageView.dataSource = self ;
@@ -229,71 +235,54 @@
 #pragma mark cell的代理
 -(void)applyDiscountPageCellStartDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView*)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
-
-    [self showCalendarView:@"设置开始日期"
-            initDateString:defaultDateStr1?:defaultDateStr2
-                   MinDate:[[NSDate date]dateWithMoveDay:-30]
-                   MaxDate:[NSDate date]
-              comfirmBlock:^(NSDate *returnDate) {
-                  view.startDate = returnDate ;
-                  cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
-                  [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
-              }] ;
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置开始日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        view.startDate = date;
+        cell.startDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        [cell startUpdateData:NO];
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
 -(void)applyDiscountPageCellEndDateSelected:(RH_ApplyDiscountPageCell *)cell dateSelected:(RH_MPGameNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
-    [self showCalendarView:@"设置结束日期"
-            initDateString:defaultDateStr1?:defaultDateStr2
-                   MinDate:[[NSDate date]dateWithMoveDay:-30]
-                   MaxDate:[NSDate date]
-              comfirmBlock:^(NSDate *returnDate) {
-                  view.endDate = returnDate ;
-                  cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
-                  [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
-              }] ;
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置结束日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        view.endDate = date;
+        cell.endDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        [cell startUpdateData:NO];
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
 
 
 #pragma mark --
 -(void)applyDiscountSystemStartDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.startDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
-    [self showCalendarView:@"设置开始日期"
-            initDateString:defaultDateStr1?:defaultDateStr2
-                   MinDate:[[NSDate date]dateWithMoveDay:-30]
-                   MaxDate:[NSDate date]
-              comfirmBlock:^(NSDate *returnDate) {
-                  view.startDate = returnDate ;
-                  cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
-                  [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
-              }] ;
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置开始日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        view.startDate = date;
+        cell.startDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        [cell startUpdateData:NO];
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
 -(void)applyDiscountSystemEndDateSelected:(RH_ApplyDiscountSystemPageCell *)cell dateSelected:(RH_MPSystemNoticHeaderView *)view DefaultDate:(NSDate *)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(view.endDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
-    [self showCalendarView:@"设置结束日期"
-            initDateString:defaultDateStr1?:defaultDateStr2
-                   MinDate:[[NSDate date]dateWithMoveDay:-30]
-                   MaxDate:[NSDate date]
-              comfirmBlock:^(NSDate *returnDate) {
-                  view.endDate = returnDate ;
-                  cell.endDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-//                  [cell startUpdateData];
-                  [cell startUpdateData:NO];
-//                  [self showProgressIndicatorViewWithAnimated:YES title:nil];
-              }] ;
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置结束日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        view.endDate = date;
+        cell.endDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        [cell startUpdateData:NO];
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
 
 #pragma mark -- 滑动

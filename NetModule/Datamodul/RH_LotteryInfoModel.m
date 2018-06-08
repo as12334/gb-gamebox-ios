@@ -50,14 +50,7 @@
             _showCover = [NSString stringWithFormat:@"%@",_mCover] ;
         }else
         {
-            NSString *str = @"";
-            if ([appDelegate.domain containsString:@"https:"]) {
-                str = @"https://";
-            }else{
-                str = @"http://";
-            }
-            _showCover = [NSString stringWithFormat:@"%@%@/%@",str,appDelegate.headerDomain,_mCover] ;
-//            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
+            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
         }
         
     }
@@ -74,14 +67,7 @@
                 _showGameLink = [NSString stringWithFormat:@"%@",_mGameLink] ;
             }else
             {
-                NSString *str = @"";
-                if ([appDelegate.domain containsString:@"https:"]) {
-                    str = @"https://";
-                }else{
-                    str = @"http://";
-                }
-                _showGameLink = [NSString stringWithFormat:@"%@%@/%@",str,appDelegate.headerDomain,_mGameLink] ;
-//                _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
+                _showGameLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mGameLink] ;
             }
         }
     }

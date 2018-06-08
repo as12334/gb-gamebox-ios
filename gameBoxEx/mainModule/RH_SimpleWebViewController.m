@@ -15,7 +15,6 @@
 #import "RH_LoginViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_GamesViewController.h"
-#import "RH_TestViewController.h"
 #import "CLTabBarController.h"
 #import "MacroDef.h"
 #import "RH_API.h"
@@ -43,17 +42,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _domain = self.appDelegate.domain.trim ;
-//    NSString *httpStr = @"";
-//    if ([self.appDelegate.domain.trim containsString:@"https://"]) {
-//        httpStr = @"https://";
-//    }else{
-//        httpStr = @"http://";
-//    }
-//    _domain = [NSString stringWithFormat:@"%@%@",httpStr,self.appDelegate.headerDomain.trim] ;
+    
     if (self.appDelegate.servicePath.length<1){
         [self.serviceRequest startGetCustomService] ;
     }
-
+    
     [self setHiddenStatusBar:NO];
     
     self.hiddenTabBar = [self tabBarHidden] ;
@@ -298,25 +291,9 @@
     if (_webURL != webURL && ![_webURL isEqual:webURL]) {
         if (webURL) {
             NSString * URL = webURL.absoluteString;
-            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//            _webURL = [NSURL URLWithString:[URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             _webURL = [NSURL URLWithString:URL] ; //解决 按NSUTF8StringEncoding转换会多出一些其它字符的情况
-            
-            if (  [URL containsString:self.domain]) {
-                NSString *httpStr = @"";
-                if ([self.appDelegate.domain.trim containsString:@"https://"]) {
-                    httpStr = @"https://";
-                }else{
-                    httpStr = @"http://";
-                }
-                NSLog(@"_webURL12===%@",_webURL);
-                URL=[URL stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@",self.domain] withString:[NSString stringWithFormat:@"%@%@",httpStr,self.appDelegate.headerDomain.trim]];
-                _webURL = [NSURL URLWithString:URL];
-
-            }else{
-                NSLog(@"_webURL===%@",_webURL);
-                NSString * URL = webURL.absoluteString;
-                _webURL = [NSURL URLWithString:URL];
-            }
+            NSLog(@"URL===%@",URL);
         }else {
             _webURL = nil;
         }
@@ -364,7 +341,8 @@
 ////        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
 //        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
 //    }
-    [urlRequest setValue:@"application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    [urlRequest setValue:@"application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:[RH_UserInfoManager shareUserManager].sidString forHTTPHeaderField:@"Cookie"];
     [self.webView loadRequest:urlRequest];
 }
 
@@ -550,13 +528,13 @@
         //bSucc是否成功调起支付宝
     }else if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])
               && ([reqUrl containsString:@"/login/commonLogin.html"] || [reqUrl containsString:@"/passport/login.html"] )){
-        //跳转原生
-        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
-            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]){
-            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
-            loginViewCtrlEx.delegate = self ;
-            [self showViewController:loginViewCtrlEx sender:self] ;
-        }
+//        //跳转原生
+//        if (![self.navigationController.topViewController isKindOfClass:[RH_LoginViewControllerEx class]] &&
+//            ![self.navigationController.presentedViewController isKindOfClass:[RH_LoginViewControllerEx class]]&&!self.appDelegate.isLogin){
+//            RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+//            loginViewCtrlEx.delegate = self ;
+//            [self showViewController:loginViewCtrlEx sender:self] ;
+//        }
 
         return NO ;
     }else if ([reqUrl.lowercaseString isEqualToString:self.domain.lowercaseString] ||

@@ -18,10 +18,13 @@
 #import "RH_AboutUsViewController.h"
 #import "RH_RegisterClauseViewController.h" //注册条款
 #import "RH_HelpCenterViewController.h"
-
-
+#import "coreLib.h"
+#import "SDImageCache.h"
+#import "RH_MineMoreClearStorageCell.h"
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement ;
+//缓存数据
+@property(nonatomic,assign)CGFloat mbCache;
 @end
 
 @implementation RH_MineMoreInfoViewController
@@ -109,7 +112,37 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
+#pragma mark ==============计算缓存================
+-(void)viewWillAppear:(BOOL)animated
+{
+    //计算缓存
+    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    CGFloat fileSize=[self folderSizeAtPath:libPath];
+    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+    float mbCache = bytesCache/1000/1000 + fileSize;
+//    self.detailLabel.text = [NSString stringWithFormat:@"%.2fM",mbCache];
+    self.mbCache = mbCache;
+    
+}
+- (float ) folderSizeAtPath:(NSString*) folderPath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString* fileName;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    return folderSize/(1024.0*1024.0);
+}
+- (long long)fileSizeAtPath:(NSString *)filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
 -(void)setupInfo
 {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
@@ -129,26 +162,59 @@
     
     return _tableViewManagement ;
 }
+-(void)tableViewManagement:(CLTableViewManagement *)tableViewManagement IndexPath:(NSIndexPath *)indexPath Cell:(UITableViewCell*)cell
+{
+    if (indexPath.item==4) {
+        RH_MineMoreClearStorageCell *clearStorgeCell = ConvertToClassPointer(RH_MineMoreClearStorageCell, cell);
+        [clearStorgeCell updateCellWithInfo:nil context:@(self.mbCache)];
+       
+    }
+}
 -(BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
 
     if (indexPath.row == 0) {
-//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:QuestionsURL]
-//                                             animated:YES] ;
          [self.navigationController pushViewController:[RH_HelpCenterViewController viewController] animated:YES] ;
         
     }else if (indexPath.row == 1)
     {
-//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:RegisterProtocol]
-//                                             animated:YES] ;
         [self.navigationController pushViewController:[RH_RegisterClauseViewController viewController] animated:YES] ;
     }else if (indexPath.row== 2)
     {
-//        [self.navigationController pushViewController:[RH_MineMoreDetailWebViewController viewControllerWithContext:AboutUs]
-//                                             animated:YES] ;
         [self.navigationController pushViewController:[RH_AboutUsViewController viewController] animated:YES] ;
     }
-
+    else if (indexPath.row==4){
+        [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
+       //清除缓存文件
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        NSString *path = [paths lastObject];
+        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:path];
+        for (NSString *p in files) {
+            NSError *error;
+            NSString *Path = [path stringByAppendingPathComponent:p];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:Path]) {
+                //清理缓存，保留Preference，里面含有NSUserDefaults保存的信息
+                if (![Path containsString:@"Preferences"]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:Path error:&error];
+                    //清除sdimage缓存图片
+                    [[SDImageCache sharedImageCache]clearMemory];
+                    //计算缓存
+                    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+                    CGFloat fileSize=[self folderSizeAtPath:libPath];
+                    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+                    float mbCache = bytesCache/1000/1000 + fileSize;
+                    self.mbCache = mbCache;
+                    [self.tableViewManagement reloadData];
+                    [self.contentTableView reloadData];
+                    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                        showMessage(self.view, @"缓存已清除", nil);
+                    }];
+                }
+            }else{
+                
+            }
+        }
+    }
     return YES;
 }
 @end

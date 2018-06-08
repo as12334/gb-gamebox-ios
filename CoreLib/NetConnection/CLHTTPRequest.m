@@ -11,6 +11,7 @@
 #import "URLConnectionManager.h"
 #import "NSDictionary+CLCategory.h"
 #import "help.h"
+#import "RH_APPDelegate.h"
 
 #define HttpRequestDebugLog(_format,...)  DebugLog(MyHTTPRequestDomain,_format, ##__VA_ARGS__)
 
@@ -187,11 +188,25 @@
                url = [@"" stringByAppendingFormat:@"%@",[path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]]];
             }
         }
-
+        //测试环境拼接路径才可以进入
+//        if (![url containsString:@"http"]) {
+//            url = [NSString stringWithFormat:@"https://%@/%@",TEST_DOMAIN,url];
+//        }
+//        NSLog(@"url===%@",url);
+        
         if (!IS_HTTP_URL(url)) {
-            @throw [[NSException alloc] initWithName:NSInvalidArgumentException
-                                              reason:@"请求的URL必须为HTTP请求"
-                                            userInfo:nil];
+            if (IS_TEST_SERVER_ENV){
+#ifdef TEST_DOMAIN
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",TEST_DOMAIN,@""]] ;
+#endif
+            }else{
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",appDelegate.domain,@""]] ;
+//            @throw [[NSException alloc] initWithName:NSInvalidArgumentException
+//                                              reason:@"请求的URL必须为HTTP请求"
+//                                            userInfo:nil];
+            }
         }
         
         
@@ -378,7 +393,6 @@ isStart = NO;                                   \
     }
     
     if (![_urlRequest.URL.absoluteString containsString:@"mineOrigin/alwaysRequest.html"]){
-       
         NSLog(@"urlRequest:%@",_urlRequest.URL) ;
     }
     return _urlRequest;
@@ -461,7 +475,6 @@ isStart = NO;                                   \
 {
     MyAssert([response isKindOfClass:[NSHTTPURLResponse class]]);
     HttpRequestDebugLog(@"response = %@",response);
-
     id<CLHTTPRequestDelegate> delegate = _delegate;
     ifRespondsSelector(delegate, @selector(httpRequest:didReceiveResponse:)){
         [delegate httpRequest:self didReceiveResponse:(id)response];

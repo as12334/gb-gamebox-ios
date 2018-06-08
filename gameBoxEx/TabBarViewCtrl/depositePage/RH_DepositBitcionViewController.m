@@ -24,6 +24,7 @@
 @property(nonatomic,assign)NSInteger activityId;
 @property(nonatomic,strong)RH_DepositeTransferListModel *listModel;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
+@property(nonatomic,strong)UIView *headerTitleView;
 
 @end
 
@@ -121,6 +122,19 @@
     self.listModelArray = ConvertToClassPointer(NSArray, channelModel.mArrayListModel);
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, channelModel.mArrayListModel[0]);
     self.listModel = listModel;
+    if (channelModel.mNewActivity==YES) {
+        self.headerTitleView = [[UIView alloc]initWithFrame:CGRectMake(0,NavigationBarHeight+heighStatusBar, self.contentView.frameWidth, 20)];
+        self.headerTitleView.backgroundColor = [UIColor yellowColor];
+        [self.view addSubview:self.headerTitleView];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, 20)];
+        lab.backgroundColor = [UIColor yellowColor];
+        [lab setTextColor:[UIColor lightGrayColor]];
+        lab.font = [UIFont systemFontOfSize:14.f];
+        lab.text = @"温馨提示：完成存款后，请前往活动大厅申请活动优惠。";
+        lab.textAlignment = NSTextAlignmentCenter;
+        [self.headerTitleView addSubview:lab];
+        self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
+    }
     
 }
 #pragma mark --视图

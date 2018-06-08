@@ -7,7 +7,7 @@
 //
 
 #import "RH_BasicPageLoadViewController.h"
-
+#import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeTransferBankcardController : RH_BasicPageLoadViewController
-
+@property(nonatomic,strong)RH_DepositeTransferChannelModel *channelModel;
 @end

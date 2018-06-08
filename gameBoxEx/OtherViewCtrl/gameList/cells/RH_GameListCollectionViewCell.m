@@ -49,6 +49,9 @@
     RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, context) ;
     self.labName.text = lotteryInfoModel.mName ;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:lotteryInfoModel.showCover]] ;
+    
+     [self.imageView sd_setImageWithURL:[NSURL URLWithString:lotteryInfoModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+    NSLog(@"++++++===%@",lotteryInfoModel.showCover);
 }
 
 @end

@@ -54,6 +54,7 @@
         [scanner scanUpToString:@">" intoString:&text];
         html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
     }
+    html = [html stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
     return html;
 }
 

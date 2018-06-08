@@ -39,13 +39,7 @@
             _showPhoto = [NSString stringWithFormat:@"%@",_mPhoto] ;
         }else
         {
-            NSString *str = @"";
-            if ([appDelegate.domain containsString:@"https://"]) {
-                str = @"https://";
-            }else{
-                str = @"http://";
-            }
-             _showPhoto = [NSString stringWithFormat:@"%@%@/%@",str,appDelegate.headerDomain,_mPhoto] ;
+             _showPhoto = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mPhoto] ;
         }
        
     }
@@ -69,7 +63,7 @@
              _showLink = [NSString stringWithFormat:@"%@",_mUrl] ;
         }else
         {
-             _showLink = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mUrl] ;
+             _showLink = [NSString stringWithFormat:@"%@",_mUrl] ;
         }
        
     }

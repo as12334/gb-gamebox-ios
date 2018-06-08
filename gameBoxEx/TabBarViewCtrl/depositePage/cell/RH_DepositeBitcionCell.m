@@ -40,9 +40,12 @@ static NSString *content =  @"温馨提示：\n* 为了方便系统快速完成�
 {
     RH_DepositeTransferListModel *listeModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.listModel = listeModel;
-    [self.bitcoinIcon sd_setImageWithURL:[NSURL URLWithString:self.listModel.accountImgCover]];
+//    [self.bitcoinIcon sd_setImageWithURL:[NSURL URLWithString:self.listModel.accountImgCover]];
+    [self.bitcoinIcon sd_setImageWithURL:[NSURL URLWithString:self.listModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+    
     self.personNameLabel.text = self.listModel.mFullName;
-    [self.qrImageView sd_setImageWithURL:[NSURL URLWithString:self.listModel.qrShowCover]];
+//    [self.qrImageView sd_setImageWithURL:[NSURL URLWithString:self.listModel.qrShowCover]];
+    [self.qrImageView sd_setImageWithURL:[NSURL URLWithString:self.listModel.qrShowCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {

@@ -31,7 +31,8 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
-#import "ErrorstatesVC.h"
+#import "RH_BannerDetailVCViewController.h"
+#import "RH_MainTabBarController.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -53,6 +54,8 @@
 @property (nonatomic,strong)UIView *shadeView;
 @property (nonatomic,strong)MBProgressHUD *hud;
 @property (nonatomic,strong)NSArray *array ;
+@property (nonatomic, assign) NSInteger currentCategoryIndex;
+
 @end
 
 @implementation RH_FirstPageViewControllerEx
@@ -69,11 +72,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
-    
-    
-    [self.serviceRequest startGetCustomService] ;
+//    [self.serviceRequest startGetCustomService] ;
     [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
@@ -90,13 +89,7 @@
     [self autoLogin] ;
 }
 
--(void)tongzhi:(NSNotification *)text
-{
-    NSLog(@"textOne==%@",text.userInfo[@"textOne"]);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self showViewController:[ErrorstatesVC viewController] sender:nil];
-    });
-}
+
 
 - (void)dealloc
 {
@@ -203,7 +196,7 @@
 -(void)advertisementViewDidTouchSureBtn:(RH_AdvertisementView *)advertisementView DataModel:(RH_PhoneDialogModel *)phoneModel
 {
     [advertisementView hideAdvertisementView] ;
-    self.appDelegate.customUrl = phoneModel.link ;
+    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
     [self showViewController:[RH_CustomViewController viewController] sender:self] ;
     return ;
 }
@@ -332,7 +325,7 @@
     return _homeCategoryCell ;
 }
 
--(void)homeCategoryCellDidChangedSelectedIndex:(RH_HomeCategoryCell*)homeCategoryCell
+-(void)homeCategoryCellDidChangedSelected:(RH_HomeCategoryCell*)homeCategoryCell index:(NSInteger)index
 {
     [self.contentTableView reloadData] ;
 }
@@ -365,14 +358,15 @@
     return _homeCategoryItemsCell ;
 }
 
--(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel
+-(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel index:(NSInteger)index
 {
-    if (HasLogin)
+    self.currentCategoryIndex = index;
+    if (self.appDelegate.isLogin)
     {
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
             if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
-                [self showViewController:[RH_GameListViewController viewControllerWithContext:lotteryAPIInfoModel]
+                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
                                   sender:self] ;
                 return ;
             }else if (lotteryAPIInfoModel.mAutoPay){//免转
@@ -418,8 +412,9 @@
         if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
             RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
             if (lotteryAPIInfoModel.mApiTypeID==2){ //进入 电子游戏 列表 。。。
-                [self showViewController:[RH_GameListViewController viewControllerWithContext:lotteryAPIInfoModel]
+                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
                                   sender:self] ;
+                //lotteryAPIInfoModel
                 return ;
             }
         }
@@ -894,7 +889,12 @@
 {
     if (bannerModel.contentURL.length){
         self.appDelegate.customUrl = bannerModel.contentURL ;
+        NSLog(@"bannerModel.contentURL==%@",bannerModel.contentURL);
         [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        
+//        RH_BannerDetailVCViewController *banner = [RH_BannerDetailVCViewController viewControllerWithContext:nil];
+//        banner.urlStr = bannerModel.contentURL;
+//        [self showViewController:banner sender:self];
     }
 }
 

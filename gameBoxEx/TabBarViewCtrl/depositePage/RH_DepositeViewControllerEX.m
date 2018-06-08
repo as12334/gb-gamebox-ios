@@ -67,6 +67,7 @@
 @property(nonatomic,strong)NSString *discountStr;
 //将平台和通道一并传给提示文案的cell
 @property(nonatomic,strong)NSMutableArray *reminderArray;
+@property(nonatomic,strong)UIView *headerTitleView;
 
 @end
 
@@ -268,6 +269,8 @@
 }
 #pragma mark --视图
 -(void)setupUI{
+    self.headerTitleView = [[UIView alloc]initWithFrame:CGRectMake(0,NavigationBarHeight+heighStatusBar, self.contentView.frameWidth, 20)];
+    self.headerTitleView.backgroundColor = [UIColor yellowColor];
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
@@ -517,9 +520,11 @@
 #pragma mark --depositeReminder的代理,跳转到客服
 -(void)touchTextViewCustomPushCustomViewController:(RH_DepositeReminderCell *)cell
 {
-    RH_TestSafariViewController *customVC = [[RH_TestSafariViewController alloc]init];
-    [self showViewController:customVC sender:self];
+//    RH_TestSafariViewController *customVC = [[RH_TestSafariViewController alloc]init];
+//    [self showViewController:customVC sender:self];
 //    [self.tabBarController setSelectedIndex:3];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [self showViewController:customVC sender:self];
 }
 #pragma mark --RH_DepositeSystemPlatformCell的代理，选择不同的平台进行跳转
 -(void)depositeSystemPlatformCellDidtouch:(RH_DepositeSystemPlatformCell *)cell payTypeString:(NSString *)payType accountModel:(id)accountModel acounterModel:(NSArray *)acounterModel
@@ -544,6 +549,7 @@
 {
     NSInteger sum =  [self.numberCell.payMoneyNumLabel.text integerValue]+moneyNumber;
     self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",moneyNumber];
+    
 }
 #pragma mark --提交按钮的代理
 -(void)selectedDepositeTransferButton:(RH_DepositeTransferButtonCell *)cell
@@ -612,6 +618,7 @@
                               [mutableArray addObject:self.counterArray];
                             }
                             RH_DepositeTransferBankcardController *transferVC = [RH_DepositeTransferBankcardController viewControllerWithContext:mutableArray];
+                            transferVC.channelModel =self.channelModel;
                             [self showViewController:transferVC sender:self];
                         }
                         else{
@@ -780,6 +787,17 @@
             }
             else if ([self.depositeCode isEqualToString:@"online"]) {
                 self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
+            }
+            if (channelModel.mNewActivity==YES) {
+                [self.view addSubview:self.headerTitleView];
+                UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, 20)];
+                lab.backgroundColor = [UIColor yellowColor];
+                [lab setTextColor:[UIColor lightGrayColor]];
+                lab.font = [UIFont systemFontOfSize:14.f];
+                lab.text = @"温馨提示：完成存款后，请前往活动大厅申请活动优惠。";
+                lab.textAlignment = NSTextAlignmentCenter;
+                [self.headerTitleView addSubview:lab];
+                self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
             }
             [self.contentTableView reloadData];
         }] ;

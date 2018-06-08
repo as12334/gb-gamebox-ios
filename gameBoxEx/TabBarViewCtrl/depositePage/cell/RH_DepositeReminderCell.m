@@ -83,13 +83,13 @@
 }
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     NSRange range = [self.content rangeOfString:@"点击联系在线客服"];
-    if (characterRange.location == range.location) {
+//    if (characterRange.location == range.location) {
         // 做你想做的事
         ifRespondsSelector(self.delegate, @selector(touchTextViewCustomPushCustomViewController:)){
             [self.delegate touchTextViewCustomPushCustomViewController:self];
         }
         
-    }
+//    }
     return YES;
 }
 @end

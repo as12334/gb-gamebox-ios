@@ -107,9 +107,9 @@
             }else
             {
                 if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
-                    _showDetailUrl = [NSString stringWithFormat:@"%@%@",appDelegate.domain,_mURL] ;
+                    _showDetailUrl = [NSString stringWithFormat:@"http://%@%@",appDelegate.headerDomain,_mURL] ;
                 }else {
-                    _showDetailUrl = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mURL] ;
+                    _showDetailUrl = [NSString stringWithFormat:@"https://%@:8989/%@",appDelegate.headerDomain,_mURL] ;
                 }
             }
            

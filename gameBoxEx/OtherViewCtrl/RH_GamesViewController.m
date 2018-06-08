@@ -58,7 +58,6 @@
 //            [self setupInfo] ;
 //        }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-        NSLog(@"_apiInfoModel.mGameLink==%@",_apiInfoModel.mGameLink);
             [self.serviceRequest startv3GetGamesLinkForCheeryLink:_apiInfoModel.mGameLink] ;
 //            [self.serviceRequest startv3GetGamesLink:_apiInfoModel.mApiID
 //                                           ApiTypeID:_apiInfoModel.mApiTypeID
@@ -84,10 +83,8 @@
 {
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl] ;
-        NSLog(@"self.webURL==%@",self.webURL);
     }else{
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl]] ;
-        NSLog(@"self.webURL1==%@",self.webURL);
     }
 }
 

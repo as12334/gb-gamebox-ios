@@ -9,185 +9,145 @@
 #import "RH_FirstBigViewCell.h"
 #import "coreLib.h"
 #import "RH_FirstBigCellHeadView.h"
-#import "RH_AwardRuleCollectionPageCell.h"
-#import "RH_ShareRecordCollectionPageCell.h"
-
-@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource>
+#import "RH_RewardRuleTableViewCell.h"
+#import "RH_ShareRecordTableViewCell.h"
+#import "RH_SharePlayerRecommendModel.h"
+#import "RH_ShareRecordModel.h"
+#import "RH_DatePickerView.h"
+@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource,UITableViewDelegate,UITableViewDataSource,RH_ShareRecordTableViewCellDelegate>
 @property(nonatomic,strong,readonly)RH_FirstBigCellHeadView *headView ;
-@property(nonatomic,strong,readonly) CLPageView *pageView ;
-@property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
-
+@property(nonatomic,strong)RH_SharePlayerRecommendModel *recommendModel;
+@property(nonatomic,strong)RH_ShareRecordModel *shareRecordModel;
+@property(nonatomic,strong)UITableView *bigTableView;
+@property(nonatomic,assign)NSInteger selectIndex;
 @end
 @implementation RH_FirstBigViewCell
 @synthesize headView = _headView ;
-@synthesize pageView = _pageView ;
-@synthesize dictPageCellDataContext = _dictPageCellDataContext ;
-
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = [UIColor clearColor] ;
-        self.contentView.backgroundColor = [UIColor clearColor] ;
-        UIView *bgView = [[UIView alloc] init ];
-        [self.contentView addSubview:bgView];
-        bgView.layer.cornerRadius = 5.f;
-        bgView.layer.masksToBounds = YES ;
-        bgView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
-        bgView.backgroundColor = colorWithRGB(242, 242, 242) ;
-
-        [bgView addSubview:self.headView];
-        self.headView.whc_TopSpace(0).whc_Width(MainScreenW).whc_CenterX(0).whc_Height(63) ;
-        
-        NSArray *typeList =@[[UIColor redColor],[UIColor yellowColor]];
-        [self.headView updateView:typeList] ;
-        //分页视图
-        [bgView addSubview:self.pageView];
-        self.pageView.whc_LeftSpace(0).whc_TopSpace(60).whc_RightSpace(0).whc_BottomSpace(0) ;
-        //注册复用
-        [self.pageView registerCellForPage:[RH_AwardRuleCollectionPageCell class] andReuseIdentifier:[RH_AwardRuleCollectionPageCell defaultReuseIdentifier]] ;
-        [self.pageView registerCellForPage:[RH_ShareRecordCollectionPageCell class] andReuseIdentifier:[RH_ShareRecordCollectionPageCell defaultReuseIdentifier]] ;
-        
-        //设置索引
-        self.pageView.dispalyPageIndex =  _selectedIndex ;
+        [self createUI];
     }
     return self;
 }
--(void)layoutSubviews
+#pragma mark ==============获取数据================
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    [super layoutSubviews];
-    CGRect frame = self.backgroundView.frame;
-    frame.origin.x += 20;
-    frame.size.width -= 40;
-    self.backgroundView.frame = frame;
-    frame = self.contentView.frame;
-    frame.origin.x += 20;
-    frame.size.width -= 40;
-    self.contentView.frame = frame;
+    NSArray *array = ConvertToClassPointer(NSArray, context);
+    
+    self.recommendModel = array[0];
+    self.shareRecordModel = array[1];
+    [self.bigTableView reloadData];
 }
+#pragma mark ==============创建UI================
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+-(void)createUI{
+    [self.contentView addSubview:self.headView];
+    self.bigTableView = [[UITableView alloc] initWithFrame:CGRectMake(20, self.headView.frameHeigh+20,MainScreenW-40,300.f/375*screenSize().width-self.headView.frameHeigh+30) style:UITableViewStylePlain];
+    self.bigTableView.delegate = self   ;
+    self.bigTableView.dataSource = self ;
+    self.bigTableView.sectionFooterHeight = 10.0f;
+    self.bigTableView.sectionHeaderHeight = 10.0f ;
+    self.bigTableView.backgroundColor = [UIColor clearColor];
+    self.bigTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.bigTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frameWidth, 0.1f)] ;
+    self.bigTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frameWidth, 0.1f)] ;
+    self.bigTableView.layer.cornerRadius = 5.f;
+    self.bigTableView.scrollEnabled = NO;
+    [self.contentView addSubview:self.bigTableView];
 }
-
-
-#pragma mark --- 头视图
--(RH_FirstBigCellHeadView *)headView
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!_headView) {
-        _headView = [RH_FirstBigCellHeadView createInstance];
-        _headView.delegate= self;
-        _headView.selectedIndex = self.selectedIndex;
+    if (tableView==_bigTableView) {
+        return 300;
     }
-    return _headView;
-}
-#pragma mark 分页视图
--(CLPageView *)pageView
-{
-    if (!_pageView) {
-        _pageView = [[CLPageView alloc] initWithFrame:CGRectZero];
-        _pageView.delegate = self ;
-        _pageView.dataSource = self ;
-        _pageView.pageMargin = 5.0f;
-    }
-    return _pageView;
-}
-#pragma mark --初始化字典
--(NSMutableDictionary *)dictPageCellDataContext
-{
-    if (!_dictPageCellDataContext){
-        _dictPageCellDataContext = [[NSMutableDictionary alloc] init] ;
+    else
+    {
+        return 300;
     }
     
-    return _dictPageCellDataContext ;
 }
-- (NSUInteger)numberOfPagesInPageView:(CLPageView *)pageView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2  ;
+    return 1;
 }
-
-- (UICollectionViewCell *)pageView:(CLPageView *)pageView cellForPageAtIndex:(NSUInteger)pageIndex
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (pageIndex ==0)
-    {
-        RH_AwardRuleCollectionPageCell * cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_AwardRuleCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
-        [cell updateViewWithType:[self.headView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.selectIndex==0) {
+        static NSString *ID = @"cellID";
+        RH_RewardRuleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell) {
+            cell = [[RH_RewardRuleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        [cell updateCellWithInfo:nil context:self.recommendModel];
+        cell.layer.cornerRadius = 5.f;
+        cell.contentView.layer.cornerRadius= 5.f;
         return cell;
     }
-    else if (pageIndex==1){
-        RH_ShareRecordCollectionPageCell* cell = [pageView dequeueReusableCellWithReuseIdentifier:[RH_ShareRecordCollectionPageCell defaultReuseIdentifier] forPageIndex:pageIndex];
-        [cell updateViewWithType:[self.headView typeModelWithIndex:pageIndex] Context:[self _pageLoadDatasContextForPageAtIndex:pageIndex]] ;
+    else if(self.selectIndex==1){
+        static NSString *ID = @"cell";
+        RH_ShareRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell) {
+            cell = [[RH_ShareRecordTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        [cell updateCellWithInfo:nil context:self.shareRecordModel];
+        cell.layer.cornerRadius = 5.f;
+        cell.contentView.layer.cornerRadius= 5.f;
+        cell.delegate = self;
         return cell;
     }
     return nil;
     
 }
 
-- (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
+#pragma mark --- 头视图
+-(RH_FirstBigCellHeadView *)headView
 {
-    self.headView.segmentedControl.selectedSegmentIndex = pageIndex;
-}
-
-- (void)pageView:(CLPageView *)pageView didEndDisplayPageAtIndex:(NSUInteger)pageIndex
-{
-    // self.headView.segmentedControl.selectedSegmentIndex = pageIndex;
-}
-
-- (void)pageViewWillReloadPages:(CLPageView *)pageView {
-    
-}
-
-
-#pragma mark-pageload context
-- (CLPageLoadDatasContext *)_pageLoadDatasContextForPageAtIndex:(NSUInteger)pageIndex
-{
-    NSString *key = [NSString stringWithFormat:@"%ld",pageIndex] ;
-    CLPageLoadDatasContext * context = self.dictPageCellDataContext[key];
-    if (context == nil) {
-        context = [[CLPageLoadDatasContext alloc] initWithDatas:nil context:nil];
+    if (!_headView) {
+        _headView = [[RH_FirstBigCellHeadView alloc]initWithFrame:CGRectMake(0, 10,MainScreenW, 50)];
+        _headView.delegate= self;
     }
-    
-    return context;
-}
-
-- (void)_savePageLoadDatasContextAtPageIndex:(NSUInteger)pageIndex
-{
-    RH_AwardRuleCollectionPageCell * awardRulecell = [self.pageView cellForPageAtIndex:0];
-    RH_ShareRecordCollectionPageCell *shareRecordCell = [self.pageView cellForPageAtIndex:1];
-   
-    if (awardRulecell != nil) {
-        CLPageLoadDatasContext * context = (id)[awardRulecell currentPageContext];
-        NSString *key = [NSString stringWithFormat:@"%ld",pageIndex] ;
-        if (context) {
-            [self.dictPageCellDataContext setObject:context forKey:key] ;
-        }else {
-            [self.dictPageCellDataContext removeObjectForKey:key];
-        }
-    }
-    else if (shareRecordCell != nil) {
-        CLPageLoadDatasContext * context = (id)[shareRecordCell currentPageContext];
-        NSString *key = [NSString stringWithFormat:@"%ld",pageIndex] ;
-        if (context) {
-            [self.dictPageCellDataContext setObject:context forKey:key] ;
-        }else {
-            [self.dictPageCellDataContext removeObjectForKey:key];
-        }
-    }
+    return _headView;
 }
 
 #pragma mark - firstBigCellHeadViewDelegate
 -(void)firstBigCellHeadViewDidChangedSelectedIndex:(RH_FirstBigCellHeadView *)firstBigCellHeadView SelectedIndex:(NSInteger)selectedIndex
 {
-    self.pageView.dispalyPageIndex = selectedIndex ;
+    self.selectIndex= selectedIndex ;
+    [self.bigTableView reloadData];
 }
-
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+#pragma mark ==============shareRecordDlegate================
+-(void)shareRecordTableViewWillSelectedStartDate:(RH_ShareRecordTableViewCell *)shareRecordTableView DefaultDate:(NSDate *)defaultDate
+{
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置开始日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        shareRecordTableView.startDate = date;
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
-
+-(void)shareRecordTableViewWillSelectedEndDate:(RH_ShareRecordTableViewCell *)shareRecordTableView DefaultDate:(NSDate *)defaultDate
+{
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置结束日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        shareRecordTableView.endDate = date;
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
+}
+#pragma mark ==============searchDelegate================
+-(void)shareRecordTableViewSearchBtnDidTouch:(RH_ShareRecordTableViewCell *)shareRecordTableViewCell
+{
+ifRespondsSelector(self.delegate, @selector(firstBigViewCellSearchSharelist:endDate:))
+    {
+        [self.delegate firstBigViewCellSearchSharelist:shareRecordTableViewCell.startDate endDate:shareRecordTableViewCell.endDate];
+    }
+}
 @end

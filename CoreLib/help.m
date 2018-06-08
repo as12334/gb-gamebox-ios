@@ -261,7 +261,19 @@ NSString *getDeviceModel(void)
             deviceName = @"iPhone 6s" ;
         }else if ([deviceString isEqualToString:@"iPhone8,2"]){
            deviceName = @"iPhone 6s Plus";
-        }else{
+        }else if ([deviceString isEqualToString:@"iPhone9,1"]){
+            deviceName = @"iPhone 7";
+        }
+        else if ([deviceString isEqualToString:@"iPhone9,2"]){
+            deviceName = @"iPhone 7 Plus";
+        }
+        else if ([deviceString isEqualToString:@"iPhone10,1"]){
+            deviceName = @"iPhone 8";
+        }
+        else if ([deviceString isEqualToString:@"iPhone10,2"]){
+            deviceName = @"iPhone 8 Plus";
+        }
+        else{
             deviceName = @"iPhone" ;
         }
     });

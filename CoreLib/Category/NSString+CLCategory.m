@@ -63,7 +63,7 @@
 }
 
 //截取字符串前后空格
-- (NSString *) trim
+- (NSString *)trim
 {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }

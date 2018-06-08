@@ -157,7 +157,6 @@
     self.pageView.whc_TopSpace(heighStatusBar + NavigationBarHeight + self.typeTopView.viewHeight +10).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(TabBarHeight) ;
    
 }
-
 #pragma mark -
 -(NSMutableDictionary *)dictPageCellDataContext
 {

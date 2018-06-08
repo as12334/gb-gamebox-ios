@@ -16,7 +16,7 @@
 #import "RH_CapitalPulldownListView.h"
 #import "RH_CapitalQuickSelectView.h"
 #import "RH_API.h"
-
+#import "RH_DatePickerView.h"
 @interface RH_CapitalRecordViewController ()<CapitalRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_CapitalRecordHeaderView *capitalRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_CapitalRecordBottomView *capitalBottomView ;
@@ -466,6 +466,14 @@
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.startDate = returnDate ;
               }] ;
+    //如果线上的时间选择有问题，那么就使用下面这个时间选择
+//    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置开始日期" defaultDate:nil];
+//    ;
+//    datePickerView.chooseDateBlock = ^(NSDate *date) {
+//        CapitalRecordHeaderView.startDate = date;
+//    };
+//    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
 -(void)capitalRecordHeaderViewWillSelectedEndDate:(RH_CapitalRecordHeaderView *)CapitalRecordHeaderView DefaultDate:(NSDate *)defaultDate
 {
@@ -478,6 +486,13 @@
               comfirmBlock:^(NSDate *returnDate) {
                   CapitalRecordHeaderView.endDate = returnDate ;
               }] ;
+//    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置结束日期" defaultDate:nil];
+//    ;
+//    datePickerView.chooseDateBlock = ^(NSDate *date) {
+//        CapitalRecordHeaderView.endDate = date;
+//    };
+//    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
 #pragma mark --- 搜索按钮点击
 -(void)capitalRecordHeaderViewTouchSearchButton:(RH_CapitalRecordHeaderView *)capitalRecordHeaderView
@@ -567,9 +582,8 @@
         }
        
     }
-    NSLog(@"self.capitalRecordHeaderView.startDate==%@",self.capitalRecordHeaderView.startDate);
-    [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd 00:00")
-                                    EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd 00:00")
+    [self.serviceRequest startV3DepositList:dateStringWithFormatter(self.capitalRecordHeaderView.startDate, @"yyyy-MM-dd")
+                                    EndDate:dateStringWithFormatter(self.capitalRecordHeaderView.endDate, @"yyyy-MM-dd")
                                  SearchType:typeIdstr
                                  PageNumber:page+1
                                    PageSize:pageSize] ;

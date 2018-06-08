@@ -49,7 +49,7 @@
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
         if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain,lotteryInfoModel.showGameLink] ;
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
@@ -89,7 +89,7 @@
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
     }else{
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain,self.appDelegate.customUrl.trim]] ;
     }
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
@@ -220,10 +220,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
                 [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
-                //跳转原生
-                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
-                loginViewCtrlEx.delegate = self ;
-                [self showViewController:loginViewCtrlEx sender:self] ;
+//                //跳转原生
+//                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+//                loginViewCtrlEx.delegate = self ;
+//                [self showViewController:loginViewCtrlEx sender:self] ;
             }else
             {
                 self.webURL = nil ;
@@ -315,7 +315,7 @@
         NSString *gameLink = lotteryInfoModel.showGameLink ;
         NSString *gameMessage = lotteryInfoModel.mGameMsg ;
         if (gameLink.length){
-            self.appDelegate.customUrl = gameLink ;
+            self.appDelegate.customUrl =[NSString stringWithFormat:@"%@",gameLink]  ;
             [self setupURL] ;
         }else{
             showAlertView(@"温馨提示", gameMessage);

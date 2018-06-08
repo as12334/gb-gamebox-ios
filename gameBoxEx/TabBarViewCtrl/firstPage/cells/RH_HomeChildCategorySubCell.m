@@ -62,9 +62,9 @@
 //    }
 //    NSLog(@"green2=%@",string);
 //    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:string]] ;
-    NSLog(@"green2=%@",self.lotteryApiModel.mName);
-    NSLog(@"showCover==%@",self.lotteryApiModel.showCover);
-    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover]] ;
+//    NSLog(@"green2=%@",self.lotteryApiModel.mName);
+//    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover]] ;
+    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 @end

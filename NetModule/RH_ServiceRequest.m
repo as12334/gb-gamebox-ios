@@ -54,6 +54,7 @@
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_UserApiBalanceModel.h"
 #import "RH_DepositeTransferChannelModel.h"
+#import "RH_ShareRecordModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -134,7 +135,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startReqDomainListWithDomain:(NSString*)domain
 {
     [self _startServiceWithAPIName:domain
-                        pathFormat:@"app/line.html"
+                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
                     queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
@@ -149,47 +150,30 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
-    if ([checkType isEqualToString:@"https+8989"]) {
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"https://%@:8989/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
-    }else if([checkType isEqualToString:@"http+8787"]){
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"http://%@:8787/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
-    }else if([checkType isEqualToString:@"https"]){
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"https://%@/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
-    }else{
-        [self _startServiceWithAPIName:nil
-                            pathFormat:@"http://%@/__check"
-                         pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
-                        queryArguments:nil
-                         bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
-                           serviceType:ServiceRequestTypeDomainCheck
-                             scopeType:ServiceScopeTypePublic];
+    NSString *urlStr;
+    if ([checkType isEqualToString:@"https"]) {
+        urlStr = @"https://%@/__check";
     }
+    else if ([checkType isEqualToString:@"http"]){
+        urlStr = @"http://%@/__check";
+    }
+    else if ([checkType isEqualToString:@"https+8989"]){
+        urlStr = @"https://%@:8989/__check";
+    }
+    else if ([checkType isEqualToString:@"http+8787"]){
+        urlStr = @"http://%@:8787/__check";
+    }
+    [self _startServiceWithAPIName:nil
+                        pathFormat:urlStr
+                     pathArguments:@[doMain?:@""]
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain,
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeDomainCheck
+                         scopeType:ServiceScopeTypePublic];
 }
 
 -(void)startUpdateCheck
@@ -197,7 +181,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
                                      RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
                                      }
@@ -212,7 +198,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.apiDomain
                         pathFormat:@"app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"
+                                     }
                     queryArguments:@{@"code":S,
                                      @"type":@"ios",
                                      @"siteId":SID
@@ -222,42 +209,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3UpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
-#pragma mark ==============获取域名IP接口================
-//-(void)startV3customSysDomain
-//{
-//    [self _startServiceWithAPIName:self.appDelegate.domain
-//                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
-//                     pathArguments:nil
-//                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-//                                     @"User-Agent":@"app_ios, iPhone",
-//                                     @"Host":@"header",
-//                                     }
-//                    queryArguments:@{
-//                                     @"code":SID,
-//                                     @"type":@"ips",
-//                                     @"s":S,
-//                                     }
-//                     bodyArguments:nil
-//                          httpType:HTTPRequestTypePost
-//                       serviceType:ServiceRequestTypeV3BossSysDomain
-//                         scopeType:ServiceScopeTypePublic];
-//}
+
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_LOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:verCode.length?@{@"username":userName?:@"",
                                                         @"password":password?:@"",
@@ -276,6 +238,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:verCode.length?@{@"username":userName?:@"",
                                                         @"password":password?:@"",
@@ -292,19 +255,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_AUTOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@""
+                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"username":userName?:@"",
                                          @"password":password?:@""
@@ -315,11 +272,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              scopeType:ServiceScopeTypePublic];
     }else
     {
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_AUTOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone"
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"username":userName?:@"",
                                          @"password":password?:@""
@@ -334,22 +292,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startGetVerifyCode
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_VERIFYCODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -360,11 +312,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     {
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_VERIFYCODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -376,22 +329,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 -(void)startGetSecurePasswordVerifyCode {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_VERIFYCODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain,
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -402,11 +349,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     {
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_VERIFYCODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone",                                         }
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain,
+                                         }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
                               httpType:HTTPRequestTypePost
@@ -424,6 +373,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain,
                                          @"Cookie":userInfo_manager.sidString?:@""
                                          }
                         queryArguments:nil
@@ -437,7 +387,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_DEMOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone"
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:nil
                          bodyArguments:nil
@@ -452,7 +403,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETCUSTOMPATH
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
@@ -465,7 +418,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_APIRETRIVE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_APIRETRIVE_APIID:@(apiID)}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -478,7 +433,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:errorDict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -502,17 +459,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - v3 接口定义
 -(void)startV3HomeInfo
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HOMEINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -522,18 +474,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3UserInfo
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -544,17 +490,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3MineLinkInfo
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEGROUPINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -564,17 +505,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startV3ActivityStaus:(NSString*)activityID
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYSTATUS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_ACTIVITYSTATUS_MESSAGEID:activityID?:@""}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -588,13 +524,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      SearchName:(NSString*)searchName
                           TagID:(NSString*)tagID;
 {
-//    NSString *str = @"";
-//    if ([self.appDelegate.domain containsString:@"https://"]) {
-//        str = @"https://";
-//    }else{
-//        str = @"http://";
-//    }
-//    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:@(apiID) forKey:RH_SP_APIGAMELIST_APIID] ;
     [dictTmp setValue:@(apiTypeID) forKey:RH_SP_APIGAMELIST_APITYPEID] ;
@@ -615,7 +544,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_APIGAMELIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dictTmp
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -627,22 +559,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize withIsStatistics:(BOOL)isShowStatistics
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_BETTINGLIST_STARTDATE:startDate?:@"",
                                      RH_SP_BETTINGLIST_ENDDATE:endDate?:@"",
-                                     RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
+                                    RH_SP_BETTINGLIST_ISSHOWSTATISTICS:@(isShowStatistics),
                                      RH_SP_BETTINGLIST_PAGENUMBER:@(pageNumber),
                                      RH_SP_BETTINGLIST_PAGESIZE:@(pageSize)
                         
@@ -659,13 +585,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                PageNumber:(NSInteger)pageNumber
                  PageSize:(NSInteger)pageSize
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:startDate?:@"" forKey:RH_SP_DEPOSITLIST_STARTDATE] ;
     [dictTmp setValue:endDate?:@"" forKey:RH_SP_DEPOSITLIST_ENDDATE] ;
@@ -676,12 +595,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //    }
     [dictTmp setValue:type forKey:RH_SP_DEPOSITLIST_TYPE] ;
     
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
                                       @"Cookie":userInfo_manager.sidString?:@"",
-                                     @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
                      bodyArguments:nil
@@ -693,18 +612,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 用户安全码初始化信息
 - (void)startV3UserSafetyInfo
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_USERSAFEINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -716,18 +629,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 设置真实名字
 - (void)startV3SetRealName:(NSString *)name
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SETREALNAME
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{@"realName":name?:@""}
                      bodyArguments:nil
@@ -743,13 +650,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                               confirmPassword:(nullable NSString *)pwd2
                                    verifyCode:(nullable NSString *)code
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:realName?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_REALNAME] ;
     [dictTmp setValue:originPwd?:@"" forKey:RH_SP_UPDATESAFEPASSWORD_ORIGINPWD] ;
@@ -758,11 +658,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (code.length){
         [dictTmp setValue:code forKey:RH_SP_UPDATESAFEPASSWORD_VERIFYCODE] ;
     }
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_UPDATESAFEPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
                      bodyArguments:nil
@@ -776,24 +677,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        newPassword:(NSString *)newPassword
                         verifyCode:(NSString *)code
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dictTmp = [[NSMutableDictionary alloc] init] ;
     [dictTmp setValue:password?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_OLDPASSWORD] ;
     [dictTmp setValue:newPassword?:@"" forKey:RH_SP_MINEMODIFYPASSWORD_NEWPASSWORD] ;
     if (code.length){
         [dictTmp setValue:code forKey:RH_SP_MINEMODIFYPASSWORD_PASSWORDCODE] ;
     }
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MINEMODIFYPASSWORD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dictTmp
                      bodyArguments:nil
@@ -806,21 +701,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 拆红包
 -(void)startV3OpenActivity:(NSString *)activityID andGBtoken:(NSString *)gbtoken
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     [dict setValue:activityID forKey:RH_SP_OPENACTIVITY_MESSAGEID ];
     [dict setValue:gbtoken forKey:RH_SP_OPENACTIVITY_TOKEN];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_OPENACTIVITY
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -832,20 +721,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 投注记录详情
 -(void)startV3BettingDetails:(NSInteger)listId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init] ;
     [dict setValue:@(listId) forKey:RH_SP_BETTINGDETAILS_LISTID] ;
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BETTINGDETAILS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -857,20 +740,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 资金记录详情 根据ID进行查询
 -(void)startV3DepositListDetail:(NSString*)searchId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_DEPOSITLISTDETAILS_SEARCHID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITLISTDETAILS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -882,18 +759,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 资金详情下拉列表
 -(void)startV3DepositPulldownList
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITPULLDOWNLIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -908,23 +779,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              bankcardNumber:(NSString *)bankcardNumber
                                 bankDeposit:(NSString *)bankDeposit
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:bankcardMasterName forKey:RH_SP_BANKCARDMASTERNAME];
     [dict setValue:bankName forKey:RH_SP_BANKNAME];
     [dict setValue:bankcardNumber forKey:RH_SP_BANKCARDNUMBER];
     [dict setValue:bankDeposit forKey:RH_SP_BANKDEPOSIT];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBANKCARD
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -939,13 +804,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              pageNumber:(NSInteger)pageNumber
                                pageSize:(NSInteger)pageSize
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *startDate = [dateFormatter dateFromString:startTime];
@@ -958,11 +816,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setValue:endTime?:@"" forKey:RH_SP_SYSTEMNOTICE_ENDTIME];
     [dict setValue:@(pageNumber) forKey:RH_SP_SYSTEMNOTICE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_SYSTEMNOTICE_PAGESIZE];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -973,20 +832,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - 获取公告详情
 -(void)startV3LoadSystemNoticeDetailSearchId:(NSString *)searchId{
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_SYSTEMNOTICEDETAIL_SEARCHID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SYSTEMNOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1002,13 +855,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              pageSize:(NSInteger)pageSize
                                 apiId:(NSInteger)apiId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:startTime?:@"" forKey:RH_SP_GAMENOTICE_STARTTIME];
     [dict setValue:endTime?:@"" forKey:RH_SP_GAMENOTICE_ENDTIME];
@@ -1024,11 +870,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (startDate > endDate) {
         showAlertView(@"提示", @"时间选择有误,请重试选择");
     }
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1039,20 +886,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark -  游戏公告详情
 -(void)startV3LoadGameNoticeDetailSearchId:(NSString *)searchId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_GAMENOTICEDETAIL_SEARCHID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMENOTICEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1064,21 +905,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取安全验证码
 -(void)startV3GetSafetyVerifyCode
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
     NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SAFETYCAPCHA
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{@"_t":timeStr}
                      bodyArguments:nil
@@ -1090,18 +925,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3PromoList:(NSInteger)pageNumber
                PageSize:(NSInteger)pageSize
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_PROMOLIST
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_PROMOLIST_PAGENUMBER:@(pageNumber),
                                      RH_SP_PROMOLIST_PAGESIZE:@(pageSize)
@@ -1114,22 +943,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark -  一键回收&单个回收
 -(void)startV3OneStepRecoverySearchId:(NSString *)searchId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSLog(@"self.appDelegate.domain===%@",self.appDelegate.domain);
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_ONESTEPRECOVERY_SEARCHAPIID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONESTEPRECOVERY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict?:@{}
@@ -1140,18 +963,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3 添加/保存比特币
 -(void)startV3AddBtcWithNumber:(NSString *)bitNumber
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDBTC
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_ADDBTC_BANKCARDNUMBER:(bitNumber?:@"")}
                      bodyArguments:nil
@@ -1163,21 +980,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息 - 系统消息
 -(void)startV3LoadSystemMessageWithpageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:@(pageNumber) forKey:RH_SP_SITEMESSAGE_PAGINGPAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_SITEMESSAGE_PAGINGPAGESIZE];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1189,20 +1000,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息 - 系统消息详情
 -(void)startV3LoadSystemMessageDetailWithSearchId:(NSString *)searchId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:searchId forKey:RH_SP_SITEMESSAGEDETAIL_SEARCHID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGEDETAIL
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                      @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1214,20 +1019,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息 - 系统消息标记已读
 -(void)startV3LoadSystemMessageReadYesWithIds:(NSString *)ids
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:ids forKey:RH_SP_SITEMESSAGEREDAYES_IDS];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGEREDAYES
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1238,20 +1037,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息 - 系统消息删除
 -(void)startV3LoadSystemMessageDeleteWithIds:(NSString *)ids
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:ids forKey:RH_SP_SITEMESSAGEDELETE_IDS];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGEDELETE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1262,18 +1055,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 发送消息验证
 -(void)startV3AddApplyDiscountsVerify
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTSVERIFY
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1287,23 +1074,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                 advisoryContent:(NSString *)advisoryContent
                                            code:(NSString *)code
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:advisoryType forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTYPE];
     [dict setValue:advisoryTitle forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYTITLE];
     [dict setValue:advisoryContent forKey:RH_SP_ADDAPPLYDISCOUNTS_RESULTADVISORYCONTENT];
     [dict setObject:code forKey:RH_SP_ADDAPPLYDISCOUNTS_CODE];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ADDAPPLYDISCOUNTS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1315,17 +1096,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - tabbar2 优惠活动主界面类型
 -(void)startV3LoadDiscountActivityType
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1336,17 +1112,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - tabbar2 优惠活动主界面列表
 -(void)startV3LoadDiscountActivityTypeListWithKey:(NSString *)mKey
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
                                      }
                      bodyArguments:nil
@@ -1359,17 +1131,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 退出登录
 -(void)startV3UserLoginOut
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOGINOUT
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1381,21 +1148,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3SiteMessageMyMessageWithpageNumber:(NSInteger)pageNumber
                                         pageSize:(NSInteger)pageSize
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:@(pageNumber) forKey:RH_SP_SITEMESSAGE_MYMESSAGE_PAGENUMBER];
     [dict setValue:@(pageSize) forKey:RH_SP_SITEMESSAGE_MYMESSAGE_PAGESIZE];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGE
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -1407,19 +1168,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息  我的消息详情
 -(void)startV3SiteMessageMyMessageDetailWithID:(NSString *)mId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:mId forKey:RH_SP_SITEMESSAGE_MYMESSAGEDETAIL_ID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGE_MYMESSAGEDETAIL
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1429,19 +1185,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息 - 我的消息标记已读
 -(void)startV3LoadMyMessageReadYesWithIds:(NSString *)ids
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:ids forKey:RH_SP_MYMESSAGEREDAYES_IDS];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MYMESSAGEREDAYES
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1451,19 +1202,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 站点信息 - 我的消息删除
 -(void)startV3LoadMyMessageDeleteWithIds:(NSString *)ids
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:ids forKey:RH_SP_MYMESSAGEDELETE_IDS];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_MYMESSAGEDELETE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1487,16 +1233,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (gamesCode){
         [dict setValue:gamesCode forKey:RH_SP_GAMESLINK_GAMECODE];
     }
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain]
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GAMESLINK
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1518,16 +1260,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         for (int i= 0; i<temArr.count/2; i++) {
             [mDic setObject:[temArr objectAtIndex:2*i+1] forKey:[temArr objectAtIndex:i*2]];
         }
-        NSString *str = @"";
-        if ([self.appDelegate.domain containsString:@"https://"]) {
-            str = @"https://";
-        }else{
-            str = @"http://";
-        }
-        [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain]
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:gameLinkUrl?:@""
                          pathArguments:nil
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain,
+                                         @"Cookie":userInfo_manager.sidString?:@""
+                                         }
                         queryArguments:mDic
                          bodyArguments:nil
                               httpType:HTTPRequestTypeGet
@@ -1539,17 +1278,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取取款接口
 -(void)startV3GetWithDraw
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETWITHDRAWUSERINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1568,22 +1302,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                            gbToken:(NSString *)gbToken
                           CardType:(NSInteger)cardType  //（1：银行卡，2：比特币）
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(withdrawAmount) forKey:RH_SP_SUBMITWITHDRAWINFO_WITHDRAWAMOUNT];
     [dict setObject:gbToken?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_GBTOKEN];
     [dict setObject:@(cardType) forKey:RH_SP_SUBMITWITHDRAWINFO_REMITTANCEWAY] ;
     [dict setValue:safetyPassword?:@"" forKey:RH_SP_SUBMITWITHDRAWINFO_ORIGINPWD] ;
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBMITWITHDRAWINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1593,22 +1322,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取游戏分类
 -(void)startV3LoadGameTypeWithApiId:(NSInteger)apiId searchApiTypeId:(NSInteger)apiTypeId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@(apiId) forKey:RH_SP_LOADGAMETYPE_SEARCH_APIID];
     [dict setObject:@(apiTypeId) forKey:RH_SP_LOADGAMETYPE_SEARCH_APITYPEID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOADGAMETYPE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
-                    queryArguments:nil
-                     bodyArguments:dict
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3LoadGameType
                          scopeType:ServiceScopeTypePublic];
@@ -1617,19 +1342,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 取款验证安全密码
 -(void)startV3WithDrwaSafetyPasswordAuthentificationOriginPwd:(NSString *)originPwd
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:originPwd forKey:RH_GP_WITHDRWASAFETYPASSWORDAUTH_SAFETYPASSWORD];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_WITHDRWASAFETYPASSWORDAUTH
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1640,19 +1360,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取手续费信息得到最终取款金额
 -(void)startV3WithDrawFeeWithAmount:(CGFloat)amount
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:[NSString stringWithFormat:@"%.2f",amount] forKey:RH_SP_WITHDRWAFEE_AMOUNT];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_WITHDRWAFEE
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1663,17 +1378,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取站点时区
 -(void)startV3SiteTimezone
 {
-//    NSString *str = @"";
-//    if ([self.appDelegate.domain containsString:@"https://"]) {
-//        str = @"https://";
-//    }else{
-//        str = @"http://";
-//    }
-//    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_TIMEZONEINFO
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1684,17 +1394,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取站点消息-系统消息&&我的消息 未读消息的条数
 -(void)startV3LoadMessageCenterSiteMessageUnReadCount
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SITEMESSAGUNREADCOUNT
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1703,23 +1408,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 
 #pragma mark - 分享接口
--(void)startV3LoadSharePlayerRecommendStartTime:(NSString *)startTime
-                                        endTime:(NSString *)endTime
+-(void)startV3LoadSharePlayerRecommend
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setValue:startTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_STARTTIME];
-    [dict setValue:endTime?:@"" forKey:RH_SP_SHAREPLAYERRECOMMEND_ENDTIME];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SHAREPLAYERRECOMMEND
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1749,13 +1445,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                 newPassword:(NSString *)newPassword
                                   passLevel:(NSInteger)passLevel
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:token forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TOKEN];
     [dict setObject:resultRealName forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_RESULTREALNAME];
@@ -1765,10 +1454,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:tempPass forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_TEMPPASS];
     [dict setObject:newPassword forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_NEWPASSWORD];
     [dict setObject:@(passLevel) forKey:RH_SP_OLDUSERVERIFYREALNAMEFORAPP_PASSLEVEL];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_OLDUSERVERIFYREALNAMEFORAPP
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:dict
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1779,17 +1470,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取用户资产信息
 -(void)startV3GetUserAssertInfo
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETUSERASSERT
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1801,18 +1486,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 防止用户掉线
 -(void)startV3RereshUserSessin
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] || [SITE_TYPE isEqualToString:@"integratedv3"]) {
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
                          pathArguments:nil
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
+                                         }
                         queryArguments:nil
                          bodyArguments:nil
                               httpType:HTTPRequestTypePost
@@ -1824,17 +1504,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 用户登录是否开启验证码
 -(void)startV3IsOpenCodeVerifty
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ISOPENCODEVERIFTY
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1845,20 +1520,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 通过GET请求登录接口获取SID
 -(void)startV3RequsetLoginWithGetLoadSid
 {
-        NSString *str = @"";
-        if ([self.appDelegate.domain containsString:@"https://"]) {
-            str = @"https://";
-        }else{
-            str = @"http://";
-        }
-        NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_LOADSIDSTR
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
                                      @"Cookie":@"",
-                                     @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1869,18 +1537,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 }
 -(void)startV3RequestDepositOrigin
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_DEPOSITE_DEPOSITEORIGIN
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""}
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
                     queryArguments:nil
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
@@ -1891,18 +1554,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 注册初始化
 -(void)startV3RegisetInit
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTINIT
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1914,22 +1571,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 注册验证码
 -(void)startV3RegisetCaptchaCode
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:domainStr
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_REGISESTCAPTCHACODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                          @"User-Agent":@"app_ios, iPhone",
-                                         @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                         @"Cookie":userInfo_manager.sidString?:@"",
+                                         @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"_t":timeStr}
                          bodyArguments:nil
@@ -2012,20 +1663,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:requiredJson forKey:@"requiredJson"];
     [dict setObject:phoneCode forKey:@"phoneCode"];
     [dict setObject:checkPhone forKey:@"checkPhone"];
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    [self _startServiceWithAPIName:[NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain]
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTSUBMIT
                      pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                   headerArguments:@{@"Content-Type":@"application/x-www-form-urlencoded; charset=utf-8",
+                                     @"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain,
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString
                                      }
-                    queryArguments:nil
-                     bodyArguments:dict
+                    queryArguments:dict
+                     bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3RegiestSubmit
                          scopeType:ServiceScopeTypePublic];
@@ -2033,18 +1681,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 注册条款 
 -(void)startV3RegisetTerm
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REGISESTTERMS
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2056,18 +1698,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3  关于我们
 -(void)startV3AboutUs
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ABOUTUS
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2079,18 +1715,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3  常见问题父级分类
 -(void)startV3HelpFirstType
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HELPFIRSTTYPE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2102,20 +1732,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3  常见问题二级分类
 -(void)startV3HelpSecondTypeWithSearchId:(NSString *)searchId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HELPSECONDTYPE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -2127,20 +1751,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3  常见问题详情
 -(void)startV3HelpDetailTypeWithSearchId:(NSString *)searchId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:searchId forKey:RH_SP_HELPSECONDTYPE_SEARCHID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_HELPDETAIL
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -2152,23 +1770,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark 存款优惠
 -(void)startV3DepositOriginSeachSaleRechargeAmount:(NSString *)rechargeAmount PayAccountDepositWay:(NSString *)payAccountDepositWay PayAccountID:(NSString *)payAccountID
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:rechargeAmount forKey:RH_SP_DEPOSITESEACHSALE_RECHARGEAMOUNT];
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
     [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
     
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITESEACHSALE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -2184,19 +1796,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setValue:payAccountDepositWay forKey:RH_SP_DEPOSITESEACHSALE_DEPOSITEWAY];
     [dict setValue:@(bankOrder) forKey:RH_SP_DEPOSITESEACHSALE_RESULTBANKORDER];
     [dict setValue:payAccountID forKey:RH_SP_DEPOSITESEACHSALE_PAYACCOUNTID];
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     
-    [self _startServiceWithAPIName:domainStr
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_DEPOSITESEACHSALE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:dict
                      bodyArguments:nil
@@ -2209,19 +1816,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3  非免转额度转换初始化
 -(void)startV3GetNoAutoTransferInfoInit
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETNOAUTOTRANSFERINFO
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
 
                     queryArguments:nil
@@ -2238,24 +1839,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           transferInto:(NSString *)transferInto
                         transferAmount:(float)transferAmount
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN];
     [dict setObject:transferOut forKey:RH_SP_SUBTRANSFERMONEY_TRANSFEROUT];
     [dict setObject:transferInto forKey:RH_SP_SUBTRANSFERMONEY_TRANSFERINTO];
     [dict setObject:@(transferAmount) forKey:RH_SP_SUBTRANSFERMONEY_TRANSFERAMOUNT];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SUBTRANSFERMONEY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":userInfo_manager.sidString?:@"", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2269,21 +1864,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3ReconnectTransferWithTransactionNo:(NSString *)transactionNo
                                        withToken:(NSString *)token
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:transactionNo forKey:RH_SP_SUBTRANSFERMONEY_TRANSACTIONNO];
     [dict setObject:token forKey:RH_SP_SUBTRANSFERMONEY_TOKEN] ;
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_RECONNECTTRANSFER
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2296,21 +1885,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3  非免转刷新单个
 -(void)startV3RefreshApiWithApiId:(NSString *)apiId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:apiId forKey:RH_SP_REFRESHAPI_APIID];
     
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_REFRESHAPI
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2326,24 +1909,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                activityId:(NSString *)activityId
                              bankNameCode:(NSString *)bankNameCode
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
      [dict setValue:amount forKey:RH_SP_ONLINEPAY_RECHARGEAMOUNT];
     [dict setValue:rechargeType forKey:RH_SP_ONLINEPAY_RECHARGETYPE];
     [dict setValue:payAccountId forKey:RH_SP_ONLINEPAY_PAYACCOUNTID];
     [dict setValue:activityId forKey:RH_SP_ONLINEPAY_ACTIVITYID];
     [dict setValue:bankNameCode forKey:RH_SP_ONLINEPAY_PAYERBANK];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONLINEPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2360,13 +1937,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              activityId:(NSInteger)activityId
                                account:(NSString *)account
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:amount forKey:RH_SP_SCANPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_SCANPAY_RECHARGETYPE];
@@ -2374,11 +1944,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:@(payerBankcard) forKey:RH_SP_SCANPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_SCANPAY_ACTIVITYID];
     [dict setValue:account forKey:RH_SP_SCANPAY_PAYACCOUNTID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_SCANPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2394,24 +1965,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                  payerName:(NSString *)payerName
                                 activityId:(NSInteger)activityId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_COMPANYPAY_PAYACCOUNTID];
     [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
     [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_COMPANYPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2427,13 +1992,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                            rechargeAddress:(NSString *)rechargeAddress
                                 activityId:(NSInteger)activityId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject: amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
@@ -2441,11 +1999,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:payerName forKey:RH_SP_COMPANYPAY_PAYERNAME];
     [dict setObject:rechargeAddress forKey:RH_SP_COMPANYPAY_RECHARGEADDRESS];
     [dict setObject:@(activityId) forKey:RH_SP_COMPANYPAY_ACTIVITYID];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_COMPANYPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2457,32 +2016,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3ElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
-    
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ELECTRONICPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2494,32 +2046,26 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startV3AlipayElectronicPayWithRechargeAmount:(NSString *)amount
                                  rechargeType:(NSString *)rechargeType
                                  payAccountId:(NSString *)payAccountId
-                                    bankOrder:(NSInteger)bankOrder
+                                    bankOrder:(NSString *)bankOrder
                                     payerName:(NSString *)payerName
                                 payerBankcard:(NSString *)payerBankcard
                                    activityId:(NSInteger)activityId
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:@(bankOrder) forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
     
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ELECTRONICPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2537,13 +2083,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                bitAmount:(float)bitAmount
                            bankOrderTxID:(NSString *)bankOrder
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:rechargeType forKey:RH_SP_BITCOINPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_BITCOINPAY_PAYACCOUNTID];
@@ -2553,11 +2092,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:@(bitAmount) forKey:RH_SP_BITCOINPAY_BITAMOUNT];
     [dict setObject:bankOrder forKey:RH_SP_BITCOINPAY_BANKORDER];
     
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_BITCOINPAY
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2569,18 +2109,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - V3 一键刷新
 -(void)startV3OneStepRefresh
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_ONESTEPREFRESH
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2591,19 +2125,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 存款渠道初始化
 -(void)startV3RequestDepositOriginChannel:(NSString *)httpCode
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSString *pathFormat = [NSString stringWithFormat:@"%@%@.html",RH_API_DEPOSITE_DEPOSITEORIGINCHANNEL,httpCode];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:pathFormat
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil 
                      bodyArguments:nil
@@ -2615,20 +2143,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark - 获取手机验证码
 -(void)startV3GetPhoneCodeWithPhoneNumber:(NSString *)phoneNumber
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:phoneNumber forKey:@"phone"];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:@"mobile-api/origin/sendPhoneCode.html"
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:dict
@@ -2639,18 +2161,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark ==============获取客服接口================
 -(void)startV3GetCustomService
 {
-    NSString *str = @"";
-    if ([self.appDelegate.domain containsString:@"https://"]) {
-        str = @"https://";
-    }else{
-        str = @"http://";
-    }
-    NSString *domainStr = [NSString stringWithFormat:@"%@%@",str,self.appDelegate.headerDomain];
-    [self _startServiceWithAPIName:domainStr
+    [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_CUSTOMSERVICE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2665,7 +2181,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_CUSTOMSERVICE
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                     @"User-Agent":@"app_ios, iPhone", @"Host":self.appDelegate.headerDomain?:@""
+                                     @"User-Agent":@"app_ios, iPhone",
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2673,7 +2189,46 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3CustomService
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark ==============系统公告弹框================
+-(void)startV3NoticePopup
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_WEBSOCKETMDCETER
+                     pathArguments:nil
+                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3NoticePopup
+                         scopeType:ServiceScopeTypePublic];
+}
+#pragma mark ==============分享好友记录================
+-(void)startV3SharePlayerRecordStartTime:(NSString *)startTime endTime:(NSString *)endTime pageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:startTime forKey:RH_SP_GETPLAYERRECOMMENDRECORD_STARTTIME];
+    [dict setValue:endTime forKey:RH_SP_GETPLAYERRECOMMENDRECORD_ENDTIME];
+    [dict setValue:@(pageNumber) forKey:RH_SP_GETPLAYERRECOMMENDRECORD_PAGENUMBER];
+    [dict setValue:@(pageSize) forKey:RH_SP_GETPLAYERRECOMMENDRECORD_PAGESIZE];
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_GETPLAYERRECOMMENDRECORD
+                     pathArguments:nil
+                   headerArguments:@{
+//                                     @"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:dict
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3SharePlayerRecord
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2732,14 +2287,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (queryArguments.count){
         [queryArgs addEntriesFromDictionary:queryArguments] ;
     }
-
+   
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [queryArgs setValue:@"app_ios" forKey:RH_SP_COMMON_V3_OSTYPE] ;
         [queryArgs setValue:@"True" forKey:RH_SP_COMMON_V3_ISNATIVE] ;
         [queryArgs setValue:RH_SP_COMMON_V3_VERSION_VALUE forKey:RH_SP_COMMON_V3_VERSION] ;
         [queryArgs setValue:@"zh_CN" forKey:RH_SP_COMMON_V3_LOCALE] ;//zh_CN,zh_TW,en_US,ja_JP
         
-        ////white,black,blue,red
+        //white,black,blue,red
         if ([THEMEV3 isEqualToString:@"green"]){
             [queryArgs setValue:@"green" forKey:RH_SP_COMMON_V3_THEME] ;
         }else if ([THEMEV3 isEqualToString:@"red"]){
@@ -2940,6 +2495,32 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             }else{
                 *reslutData = @(NO) ;
             }
+            if ([reqUrl containsString:@"https"]&&[reqUrl containsString:@"8989"]) {
+                self.appDelegate.checkType = @"https+8989";
+            }
+            else if ([reqUrl containsString:@"http"]&&[reqUrl containsString:@"8787"]){
+                self.appDelegate.checkType = @"http+8787";
+            }
+            else
+            {
+                if ([reqUrl containsString:@"https"]) {
+                    self.appDelegate.checkType = @"https";
+                }
+                else {
+                    self.appDelegate.checkType = @"http";
+                }
+            }
+//            if (response.statusCode==607){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showAlertView(@"站点维护", nil) ;
+                    NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
+                    //创建通知
+                    NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                    //通过通知中心发送通知
+                    [[NSNotificationCenter defaultCenter] postNotification:notification];
+                    return ;
+                });
+//            }
             
         }else{
             *error = [NSError resultDataNoJSONError] ;
@@ -2982,10 +2563,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         return YES ;
     }
-    
+//    else if (type==ServiceRequestTypeV3UpdateCheck){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject;
+//
+//        return YES ;
+//    }
     else if (type == ServiceRequestTypeObtainVerifyCode ||
-              type == ServiceRequestTypeV3SafetyObtainVerifyCode ||
-              type == ServiceRequestTypeV3RegiestCaptchaCode){
+              type == ServiceRequestTypeV3SafetyObtainVerifyCode||type== ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
         UIImage *image = [[UIImage alloc] initWithData:tmpData] ;
         *reslutData = image ;
@@ -3009,7 +2597,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-    else if (type == ServiceRequestTypeV3CustomService){
+    
+    else if (type == ServiceRequestTypeV3NoticePopup){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -3024,7 +2613,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                       error:&tempError] : @{};
         *reslutData = dataObject ;
         NSString *errorMessage = [response.description copy] ;
-        NSLog(@"errorMessage==%@",errorMessage);
         return YES ;
     }
     else if (type == ServiceRequestTypeV3RegiestSubmit){
@@ -3035,7 +2623,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeV3AddApplyDiscounts){
+//    else if (type == ServiceRequestTypeDomainList){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -3053,6 +2641,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         if (mArr.count>0) {
             userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
         }
+        
     }
   
 //    
@@ -3062,11 +2651,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-//    if (dataObject) {
-//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
-//        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@",jsonString11);
-//    }
+    if (dataObject) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",jsonString11);
+    }
     if (tempError) { //json解析错误
         if (type==ServiceRequestTypeDomainList){ //当主域名 获取失败时 直接显示系统的 response 信息。
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
@@ -3077,8 +2666,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
     }else{
         if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && type != ServiceRequestTypeDomainList ){
-            if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
-                tempError = [NSError resultErrorWithResultInfo:dataObject];
+            if (dataObject != nil && ![dataObject isEqual:@""]) {
+                if ([dataObject integerValueForKey:RH_GP_V3_ERROR defaultValue:0]!=0) { //结果错误
+                    tempError = [NSError resultErrorWithResultInfo:dataObject];
+                }
             }
         }
     }
@@ -3098,13 +2689,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
         id resultSendData = nil;
         switch (type) {
-            case ServiceRequestTypeDomainList:
-            {
-               
-                resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
-            
-            }
-                break ;
+//            case ServiceRequestTypeDomainList:
+//            {
+//
+//                resultSendData = ConvertToClassPointer(NSArray, dataObject) ;
+//
+//            }
+//                break ;
                 
             case ServiceRequestTypeUpdateCheck:
             case ServiceRequestTypeV3UpdateCheck:
@@ -3142,43 +2733,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
-                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_DATA]);
-//                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
-//                                         response.statusCode,
-//                                         response.description,nil);
-                NSLog(@"response.statusCode=%ld",(long)response.statusCode);
                 
-                if (response.statusCode==605){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"IP被限制,连接VPN后重试", nil) ;
-                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"605",@"textOne",nil];
-                        //创建通知
-                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
-                        //通过通知中心发送通知
-                        [[NSNotificationCenter defaultCenter] postNotification:notification];
-                        return ;
-                    }) ;
-                }else if (response.statusCode==502){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"运维服务问题", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==600){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"session过期", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==603){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"域名不存在", nil) ;
-                        return ;
-                    });
-                }else if (response.statusCode==606){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"被强制踢出", nil) ;
-                        return ;
-                    });
-                }
             }
                 break ;
            
@@ -3507,6 +3062,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
 //                resultSendData = [[RH_DepositeTransferModel alloc]initWithInfoDic:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
                 resultSendData = [RH_DepositeTransferModel dataArrayWithInfoArray:ConvertToClassPointer(NSArray, [dataObject objectForKey:RH_GP_V3_DATA])];
+                
+                
+                
             }
                 break;
             case ServiceRequestTypeV3RegiestInit:
@@ -3609,6 +3167,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 case ServiceRequestTypeV3DepositeOriginChannel:
             {
                 resultSendData =  [[RH_DepositeTransferChannelModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+                
+            }
+                break;
+                case ServiceRequestTypeV3SharePlayerRecord:
+            {
+                resultSendData =  [[RH_ShareRecordModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
 //                case ServiceRequestTypeV3ScanPay:
@@ -3696,6 +3260,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                                                                     RH_SP_COLLECTAPPERROR_CODE:errorCode,
                                                                                     RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
                                                                                     }] ;
+            //通知告诉splashViewController ,你特么没check成功，换下一个域名在check
+            // 1.创建通知打开通知
+            NSNotification *notificationClose =[NSNotification notificationWithName:@"youAreNotCheckSuccess" object:nil userInfo:nil];
+            // 2.通过 通知中心 发送 通知
+            [[NSNotificationCenter defaultCenter] postNotification:notificationClose];
         });
     }
     

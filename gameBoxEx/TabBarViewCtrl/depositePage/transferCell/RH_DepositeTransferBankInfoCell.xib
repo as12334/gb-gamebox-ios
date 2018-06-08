@@ -57,7 +57,7 @@
                                     <constraint firstAttribute="height" constant="25" id="3PG-3w-9vO"/>
                                     <constraint firstAttribute="width" constant="46" id="WYJ-xt-TKR"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <state key="normal" title="复制"/>
                                 <connections>
                                     <action selector="cardNumCopySelect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZNF-p7-gPk"/>
@@ -191,7 +191,7 @@
                 <outlet property="copBtnTwo" destination="Kis-sr-kzK" id="rMp-aY-UhO"/>
                 <outlet property="infoImageView" destination="eet-ce-NFC" id="sMw-pv-dDn"/>
             </connections>
-            <point key="canvasLocation" x="62" y="155"/>
+            <point key="canvasLocation" x="-132" y="145"/>
         </tableViewCell>
     </objects>
     <resources>

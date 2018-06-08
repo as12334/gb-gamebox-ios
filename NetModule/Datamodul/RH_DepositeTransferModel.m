@@ -30,14 +30,7 @@
             _showCover = [NSString stringWithFormat:@"%@",_mIconUrl] ;
         }else
         {
-            NSString *str = @"";
-            if ([appDelegate.domain containsString:@"https:"]) {
-                str = @"https://";
-            }else{
-                str = @"http://";
-            }
-            _showCover = [NSString stringWithFormat:@"%@%@/%@",str,appDelegate.headerDomain,_mIconUrl] ;
-//            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mIconUrl] ;
+            _showCover = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mIconUrl] ;
         }
     }
     

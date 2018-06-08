@@ -12,7 +12,7 @@
 @class RH_HomeCategoryCell ;
 @protocol HomeCategoryCellDelegate
 @optional
--(void)homeCategoryCellDidChangedSelectedIndex:(RH_HomeCategoryCell*)homeCategoryCell ;
+-(void)homeCategoryCellDidChangedSelected:(RH_HomeCategoryCell*)homeCategoryCell index:(NSInteger)index;
 @end
 
 @interface RH_HomeCategoryCell : CLTableViewCell

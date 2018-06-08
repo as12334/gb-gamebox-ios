@@ -33,6 +33,7 @@
 @property(nonatomic,strong,readonly)NSString *mSearchId;
 @property(nonatomic,strong,readonly)NSString *mImgUrl;
 @property(nonatomic,strong,readonly)NSString *mAccountImg;
+@property(nonatomic,assign,readonly)bool mHide;
 
 
 @property(nonatomic,strong,readonly)NSString *showCover ;
@@ -51,6 +52,7 @@
 @property(nonatomic,strong,readonly)NSArray<RH_DepositeTansferCounterModel *>*mAounterModel;
 @property(nonatomic,strong,readonly)NSArray *mQuickMoneys;
 @property(nonatomic,strong,readonly)NSString *mPayerBankcard;
+@property(nonatomic,assign,readonly)bool mNewActivity;
 @property(nonatomic,assign,readonly)bool mHide;
 @property(nonatomic,assign,readonly)bool mMultipleAccount;
 @end

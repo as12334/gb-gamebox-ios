@@ -15,7 +15,7 @@
 #import "RH_LoginViewControllerEx.h"
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
-
+#import "ErrorStateTopView.h"
 
 @interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate,RH_NavigationBarViewDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
@@ -123,8 +123,15 @@
     
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
+    //基类检测网站是不是挂维护
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
 }
-
+#pragma mark ==============通知================
+-(void)tongzhi:(NSNotification *)notification
+{
+    ErrorStateTopView *errorView = [[ErrorStateTopView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:errorView];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

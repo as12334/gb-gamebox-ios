@@ -86,7 +86,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //显示界面，用于获取DOMAIN.
     SplashViewController * splashViewController = [SplashViewController viewController];
     splashViewController.delegate = self ;
-
     self.window.alpha = 0.f;
     [splashViewController show:YES completedBlock:^{
         self.window.alpha = 1.f;
@@ -166,7 +165,12 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _apiDomain = apiDomain ;
     }
 }
-
+-(void)updateHeaderDomain:(NSString *)headerDomain
+{
+    if (_headerDomain.length==0) {
+        _headerDomain = headerDomain;
+    }
+}
 -(void)updateDomain:(NSString*)domain ;
 {
     NSString *tmpStr = domain.trim ;
@@ -175,13 +179,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     
     NSLog(@".....domain:%@",tmpStr) ;
     _domain = tmpStr ;
-}
-
--(void)updateHeaderDomain:(NSString *)headerDomain
-{
-    if (_headerDomain.length==0) {
-        _headerDomain = headerDomain;
-    }
 }
 
 -(void)updateServicePath:(NSString*)servicePath

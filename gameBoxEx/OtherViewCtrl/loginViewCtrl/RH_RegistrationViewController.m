@@ -120,6 +120,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
     self.title = @"免费注册";
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在加载..." detailText:@"请稍候"];
     animate_Item_Index = 1;
@@ -127,6 +128,9 @@
     
     [self.serviceRequest startV3RegisetInit];
     isAgreedServiceTerm = YES;
+    //获取验证码
+    [self.serviceRequest startV3RegisetCaptchaCode];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -524,7 +528,6 @@
         
     }
     NSString *verificationCode = [self obtainContent:@"verificationCode"];
-    NSLog(@"verificationCode=%@",verificationCode);
     if (verificationCode.length == 0) {
         showMessage(self.contentView, @"请输入验证码", @"");
         return;}

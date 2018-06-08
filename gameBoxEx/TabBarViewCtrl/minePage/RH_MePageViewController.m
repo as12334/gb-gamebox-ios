@@ -19,12 +19,14 @@
 #import "RH_ApplyDiscountViewController.h"
 #import "RH_MineRecordTableViewCell.h"
 #import "RH_LimitTransferViewController.h" // 额度转换原生
-
+#import "RH_WebsocketManagar.h"
+#import "RH_SiteMsgUnReadCountModel.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom ;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement ;
+@property(nonatomic,strong)RH_SiteMsgUnReadCountModel *readCountModel;
 @end
 
 @implementation RH_MePageViewController
@@ -35,8 +37,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
-    if (HasLogin) {
+    if (self.appDelegate.isLogin) {
         [self.serviceRequest startV3GetUserAssertInfo] ;
+        //消息未读条数
+        [self.serviceRequest startV3LoadMessageCenterSiteMessageUnReadCount];
     }else
     {
         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
@@ -249,7 +253,24 @@
     [self.contentView addSubview:self.contentTableView] ;
     [self.tableViewManagement reloadData] ;
 }
+-(void)click
+{
+    //测试websocket
+    [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://192.168.0.236:8080/ws/websocket"]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+}
+#pragma mark ==============test webSocket================
+- (void)SRWebSocketDidOpen {
+    NSLog(@"开启成功");
+    //在成功后需要做的操作。。。
+}
 
+- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
+    //收到服务端发送过来的消息
+    NSString * message = note.object;
+    NSLog(@"message===%@",message);
+}
 #pragma mark-
 -(void)updateView
 {
@@ -324,6 +345,7 @@
     }
     
     RH_MineRecordTableViewCell *mineRecordTableCell = ConvertToClassPointer(RH_MineRecordTableViewCell, cell) ;
+    mineRecordTableCell.readCountModel = self.readCountModel;
     if (mineRecordTableCell){
         mineRecordTableCell.delegate = self ;
     }
@@ -421,6 +443,10 @@
         RH_UserSafetyCodeModel *codeModel = ConvertToClassPointer(RH_UserSafetyCodeModel, data) ;
         manager.isSetSafetySecertPwd = codeModel.mHasPersimmionPwd ;
         
+    }
+    else if (type==ServiceRequestTypeSiteMessageUnReadCount){
+        RH_SiteMsgUnReadCountModel *readCountModel = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, data);
+        self.readCountModel = readCountModel;
     }
 }
 

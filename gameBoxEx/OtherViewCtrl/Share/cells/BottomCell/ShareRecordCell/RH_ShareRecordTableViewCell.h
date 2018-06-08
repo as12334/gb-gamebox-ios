@@ -14,8 +14,6 @@
 -(void)shareRecordTableViewWillSelectedStartDate:(RH_ShareRecordTableViewCell*)shareRecordTableView DefaultDate:(NSDate*)defaultDate ;
 -(void)shareRecordTableViewWillSelectedEndDate:(RH_ShareRecordTableViewCell*)shareRecordTableView DefaultDate:(NSDate*)defaultDate ;
 @end
-
-
 @interface RH_ShareRecordTableViewCell : CLTableViewCell
 @property(nonatomic,weak)id<RH_ShareRecordTableViewCellDelegate> delegate ;
 @property (nonatomic,strong) NSDate *startDate ;

@@ -15,39 +15,60 @@
 @property (weak, nonatomic) IBOutlet UIImageView *qrurlImage;
 @property(nonatomic,strong)RH_DepositeTransferListModel *transferModel ;
 @property (weak, nonatomic) IBOutlet UIView *qrbackView;
-
 @property (weak, nonatomic) IBOutlet UIButton *saveTophoneBtn;
-
 @property (weak, nonatomic) IBOutlet UIButton *openAppBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *saveToPhoneCenterX;
+@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
+//第三方平台的地址
+@property (nonatomic,strong)NSString *mobileStr;
 @end
 @implementation RH_DepositeTransferQRCodeCell
++(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
+{
+    RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
+    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:17.0]};//指定字号
+    CGRect rect = [listmodel.mRemark boundingRectWithSize:CGSizeMake(MainScreenW - 30, 0)/*计算高度要先指定宽度*/ options:NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:dic context:nil];
+    return 140+rect.size.height;
+}
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.transferModel = listmodel ;
-    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover]];
+//    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover]];
+    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
     
     if ([listmodel.mBankCode isEqualToString:@"qqwallet"]) {
         [self.openAppBtn setTitle:@"启动QQ支付" forState:UIControlStateNormal];
+        self.mobileStr = @"mqq://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"bdwallet"]) {
         [self.openAppBtn setTitle:@"启动百度支付" forState:UIControlStateNormal];
+        self.mobileStr = @"baidu://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"other"]) {
         [self.openAppBtn setTitle:@"启动其他方式支付" forState:UIControlStateNormal];
+        self.openAppBtn.hidden = YES;
+        self.saveToPhoneCenterX.constant = 0;
     }
     else if ([listmodel.mBankCode isEqualToString:@"alipay"]) {
         [self.openAppBtn setTitle:@"启动支付宝支付" forState:UIControlStateNormal];
+        self.mobileStr = @"alipay://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"wechatpay"]) {
         [self.openAppBtn setTitle:@"启动微信支付" forState:UIControlStateNormal];
+        self.mobileStr = @"weixin://";
     }
     else if ([listmodel.mBankCode isEqualToString:@"onecodepay"]) {
         [self.openAppBtn setTitle:@"启动一码付支付" forState:UIControlStateNormal];
+        self.openAppBtn.hidden = YES;
+        self.saveToPhoneCenterX.constant = 0;
     }
     else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
         [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
+        self.mobileStr = @"openapp.jdmoble://";
     }
+    self.remarkLabel.text = listmodel.mRemark;
 
 }
 - (IBAction)saveToPhone:(id)sender {
@@ -56,7 +77,13 @@
     }
 }
 - (IBAction)openOtherAppClick:(id)sender {
-    showMessage(self, @"功能暂未开放", nil);
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.mobileStr]]) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.mobileStr]];
+    }
+    else
+    {
+        showMessage(self, @"提示", @"未安装相关软件");
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

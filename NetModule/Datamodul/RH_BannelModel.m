@@ -47,15 +47,7 @@
              _thumbURL = [NSString stringWithFormat:@"%@",_mCover] ;
         }else
         {
-            NSString *str = @"";
-            if ([appDelegate.domain containsString:@"https:"]) {
-                str = @"https://";
-            }else{
-                str = @"http://";
-            }
-            _thumbURL = [NSString stringWithFormat:@"%@%@/%@",str,appDelegate.headerDomain,_mCover] ;
-//             _thumbURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
-            NSLog(@"_thumbURL==%@",_thumbURL);
+             _thumbURL = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mCover] ;
         }
     }
     return _thumbURL ;
