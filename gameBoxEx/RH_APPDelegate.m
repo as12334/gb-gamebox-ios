@@ -86,7 +86,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //显示界面，用于获取DOMAIN.
     SplashViewController * splashViewController = [SplashViewController viewController];
     splashViewController.delegate = self ;
-
     self.window.alpha = 0.f;
     [splashViewController show:YES completedBlock:^{
         self.window.alpha = 1.f;

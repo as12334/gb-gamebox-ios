@@ -17,7 +17,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_ConcurrentServicesReqManager.h"
 #import "RH_AdvertisingView.h"
-
+#import "ErrorstatesVC.h"
 #define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
 #define RHNT_DomainCheckFail                @"DomainCheckFail "
 
@@ -208,9 +208,10 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 #endif
     }
     self.needObserveNetStatusChanged = YES ;
-//        [self netStatusChangedHandle] ;
+//    [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
+//    [self performSelector:@selector(startReqSiteInfo) withObject:nil afterDelay:1];
     [self startReqSiteInfo];
     //注册打开是否check成功的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
@@ -220,6 +221,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self.view addSubview:self.scheduleLabel];
     //加载说明
     [self.view addSubview:self.checkStatusLabel];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
 }
 
 - (void)initView{
@@ -242,8 +244,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 -(void)startReqSiteInfo
 {
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
-    //    [self.concurrentServicesManager cancleAllServices] ;
-    
     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     for (int i=0; i<RH_API_MAIN_URL.count; i++) {
         NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
@@ -565,7 +565,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (_urlArray.count){
         if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV){
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil
-                                                             detailText:@"checking domain"] ;
+                                                             detailText:@"正在检查线路,请稍候"] ;
         }
         if (IS_TEST_SERVER_ENV==1||IS_DEV_SERVER_ENV==1) {
             //check域名
@@ -757,7 +757,13 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     //check过了，就把通知释放掉
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
 }
-
+#pragma mark ==============通知================
+-(void)tongzhi:(NSNotification *)notification
+{
+    
+//    [self showViewController:[ErrorstatesVC viewController] sender:self];
+//    return;
+}
 #pragma mark -
 - (BOOL)shouldAutorotate {
     return NO;

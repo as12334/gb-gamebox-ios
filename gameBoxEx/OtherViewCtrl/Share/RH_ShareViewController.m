@@ -15,26 +15,20 @@
 #import "RH_FirstBigViewCell.h"
 #import "RH_SharePlayerRecommendModel.h"
 #import "RH_ShareAnnounceView.h"
-
-#import "RH_ShareRecordCollectionPageCell.h"
 #import "RH_ShareRecordTableViewCell.h"
+#import "RH_ShareRecordModel.h"
 
 
-
-@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate>
+@interface RH_ShareViewController ()<RH_ShareNaviBarViewDelegate,RH_ShareToFriendTableViewCellDelegate,FirstBigViewCellDelegate>
 @property(nonatomic,  strong, readonly)RH_ShareNavBarView *shareNavView ;
 @property(nonatomic,strong,readonly)UITableView *tableView ;
 @property(nonatomic,strong) RH_SharePlayerRecommendModel *model;
 @property (nonatomic,strong,readonly) RH_ShareAnnounceView *announceView ;
-
-
-@property(nonatomic,strong)NSDictionary *dataDic ;
-
+@property(nonatomic,strong)RH_ShareRecordModel *shareRecordModel;
 @end
 @implementation RH_ShareViewController
 @synthesize shareNavView = _shareNavView ;
 @synthesize tableView = _tableView ;
-//@synthesize model = _model;
 @synthesize announceView = _announceView ;
 
 
@@ -72,14 +66,16 @@
 {
     return StatusBarHeight+NavigationBarHeight;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI] ;
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
     [self.serviceRequest startV3LoadSharePlayerRecommend] ;
-    _dataDic = [NSMutableDictionary dictionary];
+    NSDate *startDate = [[NSDate alloc]init];
+    [startDate dateWithMoveDay:-30];
+    NSDate *endDate = [[NSDate alloc]init];
+    [self.serviceRequest startV3SharePlayerRecordStartTime:dateStringWithFormatter([startDate dateWithMoveDay:-30], @"yyyy-MM-dd") endTime:dateStringWithFormatter(endDate, @"yyyy-MM-dd") pageNumber:0 pageSize:20];
 }
 
 
@@ -98,32 +94,6 @@
     [self.view addSubview:self.topView];
     [self.topView addSubview:self.shareNavView];
     self.shareNavView.whc_LeftSpace(0).whc_TopSpace(20).whc_BottomSpace(0).whc_RightSpace(0) ;
-    [[NSNotificationCenter defaultCenter]addObserverForName:@"RH_ShareRecodStartDate_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        RH_ShareRecordCollectionPageCell *cell = note.object[0];
-        RH_ShareRecordTableViewCell *viewCell = note.object[1];
-        NSDate *defaultDate = note.object[2];
-        [self showCalendarView:@"设置开始日期"
-                initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                       MinDate:nil
-                       MaxDate:[NSDate date]
-                  comfirmBlock:^(NSDate *returnDate) {
-                      viewCell.startDate = returnDate ;
-                      cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-                  }] ;
-    }];
-    [[NSNotificationCenter defaultCenter]addObserverForName:@"RH_ShareRecodEndDate_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        RH_ShareRecordCollectionPageCell *cell = note.object[0];
-        RH_ShareRecordTableViewCell *viewCell = note.object[1];
-        NSDate *defaultDate = note.object[2];
-        [self showCalendarView:@"设置截止日期"
-                initDateString:dateStringWithFormatter(defaultDate, @"yyyy-MM-dd")
-                       MinDate:nil
-                       MaxDate:[NSDate date]
-                  comfirmBlock:^(NSDate *returnDate) {
-                      viewCell.startDate = returnDate ;
-                      cell.startDate = dateStringWithFormatter(returnDate, @"yyyy-MM-dd");
-                  }] ;
-    }];
 }
 
 -(UITableView *)tableView
@@ -198,6 +168,19 @@
         _model = data;
         [self.tableView reloadData];
     }
+    else if (type==ServiceRequestTypeV3SharePlayerRecord){
+        self.shareRecordModel = ConvertToClassPointer(RH_ShareRecordModel, data);
+        [self.tableView reloadData];
+        // 1.创建通知打开settingView的通知
+        NSNotification *notificationClose =[NSNotification notificationWithName:@"loadShareRecordTableView" object:nil userInfo:nil];
+        // 2.通过 通知中心 发送 通知
+        [[NSNotificationCenter defaultCenter] postNotification:notificationClose];
+    }
+}
+//移除通知
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"loadShareRecordTableView" object:nil];
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error {
@@ -252,7 +235,10 @@
     }else if (indexPath.row == 4){
         RH_FirstBigViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_FirstBigViewCell defaultReuseIdentifier]] ;
         cell.backgroundColor = [UIColor clearColor];
-        [cell updateCellWithInfo:nil context:self.model];
+        if (self.model!=nil&&self.shareRecordModel!=nil) {
+            [cell updateCellWithInfo:nil context:@[self.model,self.shareRecordModel]];
+        }
+        cell.delegate = self;
         return cell ;
     }
     return nil;
@@ -262,23 +248,17 @@
 {
     showAlertView(@"提示", @"复制成功");
 }
-
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark ==============searchbtn delegate================
+-(void)firstBigViewCellSearchSharelist:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    if ([startDate compare:endDate]==NSOrderedDescending) {
+        showMessage(self.view, @"选择的日期不对，请重新选择", nil);
+        return;
+    }
+    NSString *startDateStr =dateStringWithFormatter(startDate, @"yyyy-MM-dd");
+    NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd");
+    [self.serviceRequest startV3SharePlayerRecordStartTime:startDateStr endTime:endDateStr pageNumber:0 pageSize:50];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

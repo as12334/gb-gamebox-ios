@@ -54,6 +54,7 @@
 #import "RH_DepositOriginseachSaleModel.h"
 #import "RH_UserApiBalanceModel.h"
 #import "RH_DepositeTransferChannelModel.h"
+#import "RH_ShareRecordModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2195,7 +2196,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      pathArguments:nil
                    headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2214,12 +2216,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_NAME_GETPLAYERRECOMMENDRECORD
                      pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                   headerArguments:@{
+//                                     @"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
                                      }
-                    queryArguments:nil
-                     bodyArguments:dict
+                    queryArguments:dict
+                     bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3SharePlayerRecord
                          scopeType:ServiceScopeTypePublic];
@@ -2505,7 +2509,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     self.appDelegate.checkType = @"http";
                 }
             }
-            
+            if (response.statusCode==607){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showAlertView(@"站点维护", nil) ;
+                    NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
+                    //创建通知
+                    NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                    //通过通知中心发送通知
+                    [[NSNotificationCenter defaultCenter] postNotification:notification];
+                    return ;
+                });
+            }
             
         }else{
             *error = [NSError resultDataNoJSONError] ;
@@ -2584,14 +2598,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     }
     
     else if (type == ServiceRequestTypeV3NoticePopup){
-        NSError * tempError = nil;
-        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-                                                                                      error:&tempError] : @{};
-        *reslutData = dataObject ;
-        return YES ;
-    }
-    else if (type == ServiceRequestTypeV3CustomService){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2726,23 +2732,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeV3HomeInfo:
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
-                NSLog(@"homeinfo==%@",[dataObject objectForKey:RH_GP_V3_DATA]);
-//                tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,
-//                                         response.statusCode,
-//                                         response.description,nil);
-                NSLog(@"response.statusCode=%ld",(long)response.statusCode);
                 
-                if (response.statusCode==607){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"站点维护", nil) ;
-                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
-                        //创建通知
-                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
-                        //通过通知中心发送通知
-                        [[NSNotificationCenter defaultCenter] postNotification:notification];
-                        return ;
-                    });
-                }
             }
                 break ;
            
@@ -3181,7 +3171,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 break;
                 case ServiceRequestTypeV3SharePlayerRecord:
             {
-                
+                resultSendData =  [[RH_ShareRecordModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
 //                case ServiceRequestTypeV3ScanPay:

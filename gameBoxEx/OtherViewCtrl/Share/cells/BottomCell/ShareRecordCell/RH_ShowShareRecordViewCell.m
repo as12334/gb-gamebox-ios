@@ -9,7 +9,7 @@
 #import "RH_ShowShareRecordViewCell.h"
 #import "coreLib.h"
 #import "RH_SharePlayerRecommendModel.h"
-
+#import "RH_ShareRecordModel.h"
 @interface RH_ShowShareRecordViewCell()
 //竖线
 @property(nonatomic,strong)UILabel *line1 ;
@@ -32,7 +32,7 @@
         [self.contentView addSubview:_topView];
         _topView.layer.borderWidth = 1.f ;
         _topView.layer.borderColor = [UIColor whiteColor].CGColor;
-        _topView.whc_TopSpace(0).whc_RightSpace(10).whc_LeftSpace(10).whc_Height(35);
+        _topView.whc_TopSpace(0).whc_RightSpace(0).whc_LeftSpace(0).whc_Height(35);
         //竖线
         _line1 = [[UILabel alloc] init];
         [_topView addSubview:_line1];
@@ -52,28 +52,28 @@
         [_topView addSubview:_contentLab1];
         _contentLab1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpaceToView(0, _line1).whc_BottomSpace(0) ;
         _contentLab1.textColor = colorWithRGB(68, 68, 68) ;
-        _contentLab1.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab1.font = [UIFont systemFontOfSize:12.f] ;
         _contentLab1.textAlignment = NSTextAlignmentCenter ;
         
         _contentLab2 = [[UILabel alloc] init];
         [_topView addSubview:_contentLab2];
         _contentLab2.whc_LeftSpaceToView(0, _line1).whc_TopSpace(0).whc_RightSpaceToView(0, _line2).whc_BottomSpace(0) ;
         _contentLab2.textColor = colorWithRGB(68, 68, 68) ;
-        _contentLab2.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab2.font = [UIFont systemFontOfSize:12.f] ;
         _contentLab2.textAlignment = NSTextAlignmentCenter ;
         
         _contentLab3 = [[UILabel alloc] init];
         [_topView addSubview:_contentLab3];
         _contentLab3.whc_LeftSpaceToView(0, _line2).whc_TopSpace(0).whc_RightSpaceToView(0, _line3).whc_BottomSpace(0) ;
         _contentLab3.textColor = colorWithRGB(68, 68, 68) ;
-        _contentLab3.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab3.font = [UIFont systemFontOfSize:12.f] ;
         _contentLab3.textAlignment = NSTextAlignmentCenter ;
         
         _contentLab4 = [[UILabel alloc] init];
         [_topView addSubview:_contentLab4];
         _contentLab4.whc_LeftSpaceToView(0, _line3).whc_TopSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
         _contentLab4.textColor = colorWithRGB(68, 68, 68) ;
-        _contentLab4.font = [UIFont systemFontOfSize:14.f] ;
+        _contentLab4.font = [UIFont systemFontOfSize:12.f] ;
         _contentLab4.textAlignment = NSTextAlignmentCenter ;
     }
     return self ;
@@ -81,11 +81,14 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    RH_SharePlayerRecommendModel *recommendModel = ConvertToClassPointer(RH_SharePlayerRecommendModel, context) ;
-//    _contentLab1.text = [NSString stringWithFormat:@"111"];
-//    _contentLab2.text = [NSString stringWithFormat:@"222"];
-//    _contentLab3.text = [NSString stringWithFormat:@"333"];
-//    _contentLab4.text = [NSString stringWithFormat:@"444"];
+    RH_ShareRecordDetailModel *detailModel = ConvertToClassPointer(RH_ShareRecordDetailModel, context) ;
+    self.contentLab1.text = detailModel.mRecommendUserName;
+    NSTimeInterval interval    =[detailModel.mCreateTime doubleValue] / 1000.0;
+    NSDate *date               = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSString *createTime = dateStringWithFormatter(date, @"yyyy-MM-dd");
+    self.contentLab2.text = createTime;
+    self.contentLab3.text = detailModel.mRewardAmount;
+    self.contentLab4.text = detailModel.mStatus;
 }
 
 - (void)awakeFromNib {

@@ -9,24 +9,22 @@
 #import "RH_RewardRuleTableViewCell.h"
 #import "coreLib.h"
 #import "RH_SharePlayerRecommendModel.h"
+#import "RH_RewardRuleBottomViewCell.h"
 
-@interface RH_RewardRuleTableViewCell()
+@interface RH_RewardRuleTableViewCell()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UILabel *contentLab1;
 @property(nonatomic,strong)UILabel *contentLab2;
 @property(nonatomic,strong) UIView *bottomView ;
 @property(nonatomic,strong) UILabel *shareRedLab ;
+@property(nonatomic,strong)NSArray *gradientListModelArray;
+//将来规则列表
+@property(nonatomic,strong,readonly)UITableView *ruleTableView;
 @end
 @implementation RH_RewardRuleTableViewCell
-+(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
-{
-    return 200;
-}
+@synthesize ruleTableView = _ruleTableView;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        CGRect frame = self.frame;
-        frame.size.height = 300;
-        self.frame = frame;
         self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
         UIView *topView = [[UIView alloc] init];
         topView.backgroundColor = colorWithRGB(242, 242, 242) ;
@@ -120,7 +118,7 @@
         rightLab1.text = @"分享红利比例";
         rightLab1.textAlignment = NSTextAlignmentCenter ;
         
-        
+        [self.contentView addSubview:self.ruleTableView];
         if ([THEMEV3 isEqualToString:@"green"]){
              _shareRedLab.textColor = RH_NavigationBar_BackgroundColor_Green;
              huhuiLab.textColor = RH_NavigationBar_BackgroundColor_Green;
@@ -138,7 +136,47 @@
      }
     return self ;
 }
-
+-(UITableView *)ruleTableView
+{
+    if (!_ruleTableView) {
+        _ruleTableView =  [[UITableView alloc]initWithFrame:CGRectMake(10,180,MainScreenW-60, 100) style:UITableViewStylePlain];
+        _ruleTableView.delegate = self;
+        _ruleTableView.dataSource= self;
+    }
+    return _ruleTableView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView ==_ruleTableView) {
+        return 30;
+    }
+    else
+    {
+        return 300;
+    }
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.gradientListModelArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *ID = @"cellID";
+    RH_RewardRuleBottomViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[RH_RewardRuleBottomViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    if (self.gradientListModelArray.count>0) {
+       [cell updateCellWithInfo:nil context:self.gradientListModelArray[indexPath.item]];
+    }
+    cell.layer.cornerRadius = 5.f;
+    cell.contentView.layer.cornerRadius= 5.f;
+    return cell;
+}
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_SharePlayerRecommendModel *model = ConvertToClassPointer(RH_SharePlayerRecommendModel, context) ;
@@ -163,19 +201,8 @@
         _shareRedLab.hidden = NO;
         _bottomView.hidden = NO ;
     }
-        
+    self.gradientListModelArray=model.mGradientListModel;
+    [self.ruleTableView reloadData];
     
 }
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

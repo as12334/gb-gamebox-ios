@@ -9,19 +9,20 @@
 #import "RH_FirstBigViewCell.h"
 #import "coreLib.h"
 #import "RH_FirstBigCellHeadView.h"
-#import "RH_ShareRecordCollectionPageCell.h"
 #import "RH_RewardRuleTableViewCell.h"
+#import "RH_ShareRecordTableViewCell.h"
 #import "RH_SharePlayerRecommendModel.h"
-@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource,UITableViewDelegate,UITableViewDataSource>
+#import "RH_ShareRecordModel.h"
+#import "RH_DatePickerView.h"
+@interface RH_FirstBigViewCell ()<firstBigCellHeadViewDelegate,CLPageViewDelegate,CLPageViewDatasource,UITableViewDelegate,UITableViewDataSource,RH_ShareRecordTableViewCellDelegate>
 @property(nonatomic,strong,readonly)RH_FirstBigCellHeadView *headView ;
-@property(nonatomic,strong,readonly) CLPageView *pageView ;
-@property(nonatomic,strong,readonly) NSMutableDictionary *dictPageCellDataContext ;
 @property(nonatomic,strong)RH_SharePlayerRecommendModel *recommendModel;
-@property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)RH_ShareRecordModel *shareRecordModel;
+@property(nonatomic,strong)UITableView *bigTableView;
+@property(nonatomic,assign)NSInteger selectIndex;
 @end
 @implementation RH_FirstBigViewCell
 @synthesize headView = _headView ;
-@synthesize dictPageCellDataContext = _dictPageCellDataContext ;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,32 +34,39 @@
 #pragma mark ==============获取数据================
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.recommendModel = ConvertToClassPointer(RH_SharePlayerRecommendModel, context);
-    [self.tableView reloadData];
+    NSArray *array = ConvertToClassPointer(NSArray, context);
+    
+    self.recommendModel = array[0];
+    self.shareRecordModel = array[1];
+    [self.bigTableView reloadData];
 }
 #pragma mark ==============创建UI================
 
 -(void)createUI{
     [self.contentView addSubview:self.headView];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, self.headView.frameHeigh+20,MainScreenW-40,300.f/375*screenSize().width-self.headView.frameHeigh-20) style:UITableViewStylePlain];
-    self.tableView.delegate = self   ;
-    self.tableView.dataSource = self ;
-    self.tableView.sectionFooterHeight = 10.0f;
-    self.tableView.sectionHeaderHeight = 10.0f ;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frameWidth, 0.1f)] ;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frameWidth, 0.1f)] ;
-    self.tableView.layer.cornerRadius = 5.f;
-    [self.contentView addSubview:self.tableView];
+    self.bigTableView = [[UITableView alloc] initWithFrame:CGRectMake(20, self.headView.frameHeigh+20,MainScreenW-40,300.f/375*screenSize().width-self.headView.frameHeigh+30) style:UITableViewStylePlain];
+    self.bigTableView.delegate = self   ;
+    self.bigTableView.dataSource = self ;
+    self.bigTableView.sectionFooterHeight = 10.0f;
+    self.bigTableView.sectionHeaderHeight = 10.0f ;
+    self.bigTableView.backgroundColor = [UIColor clearColor];
+    self.bigTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.bigTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frameWidth, 0.1f)] ;
+    self.bigTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.frameWidth, 0.1f)] ;
+    self.bigTableView.layer.cornerRadius = 5.f;
+    self.bigTableView.scrollEnabled = NO;
+    [self.contentView addSubview:self.bigTableView];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView==self.tableView) {
+    if (tableView==_bigTableView) {
         return 300;
     }
-    return 300;
+    else
+    {
+        return 300;
+    }
+    
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -70,27 +78,32 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"cellID";
-    RH_RewardRuleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[RH_RewardRuleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    if (self.selectIndex==0) {
+        static NSString *ID = @"cellID";
+        RH_RewardRuleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell) {
+            cell = [[RH_RewardRuleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        [cell updateCellWithInfo:nil context:self.recommendModel];
+        cell.layer.cornerRadius = 5.f;
+        cell.contentView.layer.cornerRadius= 5.f;
+        return cell;
     }
-    [cell updateCellWithInfo:nil context:self.recommendModel];
-    cell.layer.cornerRadius = 5.f;
-    cell.contentView.layer.cornerRadius= 5.f;
-    return cell;
+    else if(self.selectIndex==1){
+        static NSString *ID = @"cell";
+        RH_ShareRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell) {
+            cell = [[RH_ShareRecordTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        [cell updateCellWithInfo:nil context:self.shareRecordModel];
+        cell.layer.cornerRadius = 5.f;
+        cell.contentView.layer.cornerRadius= 5.f;
+        cell.delegate = self;
+        return cell;
+    }
+    return nil;
+    
 }
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-  
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 
 #pragma mark --- 头视图
 -(RH_FirstBigCellHeadView *)headView
@@ -101,28 +114,40 @@
     }
     return _headView;
 }
-#pragma mark --初始化字典
--(NSMutableDictionary *)dictPageCellDataContext
-{
-    if (!_dictPageCellDataContext){
-        _dictPageCellDataContext = [[NSMutableDictionary alloc] init] ;
-    }
-    
-    return _dictPageCellDataContext ;
-}
 
 #pragma mark - firstBigCellHeadViewDelegate
 -(void)firstBigCellHeadViewDidChangedSelectedIndex:(RH_FirstBigCellHeadView *)firstBigCellHeadView SelectedIndex:(NSInteger)selectedIndex
 {
-    self.pageView.dispalyPageIndex = selectedIndex ;
+    self.selectIndex= selectedIndex ;
+    [self.bigTableView reloadData];
 }
-
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+#pragma mark ==============shareRecordDlegate================
+-(void)shareRecordTableViewWillSelectedStartDate:(RH_ShareRecordTableViewCell *)shareRecordTableView DefaultDate:(NSDate *)defaultDate
+{
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置开始日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        shareRecordTableView.startDate = date;
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
-
+-(void)shareRecordTableViewWillSelectedEndDate:(RH_ShareRecordTableViewCell *)shareRecordTableView DefaultDate:(NSDate *)defaultDate
+{
+    RH_DatePickerView *datePickerView = [RH_DatePickerView shareCalendarView:@"设置结束日期" defaultDate:nil];
+    ;
+    datePickerView.chooseDateBlock = ^(NSDate *date) {
+        shareRecordTableView.endDate = date;
+    };
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
+    [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
+}
+#pragma mark ==============searchDelegate================
+-(void)shareRecordTableViewSearchBtnDidTouch:(RH_ShareRecordTableViewCell *)shareRecordTableViewCell
+{
+ifRespondsSelector(self.delegate, @selector(firstBigViewCellSearchSharelist:endDate:))
+    {
+        [self.delegate firstBigViewCellSearchSharelist:shareRecordTableViewCell.startDate endDate:shareRecordTableViewCell.endDate];
+    }
+}
 @end

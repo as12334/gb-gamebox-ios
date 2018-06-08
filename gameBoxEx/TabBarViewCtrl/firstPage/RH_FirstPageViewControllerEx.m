@@ -33,6 +33,7 @@
 #import <SafariServices/SafariServices.h>
 #import "ErrorstatesVC.h"
 #import "RH_BannerDetailVCViewController.h"
+#import "RH_MainTabBarController.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -70,10 +71,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
-    
-    
 //    [self.serviceRequest startGetCustomService] ;
     [self.topView addSubview:self.mainNavigationView] ;
     
@@ -91,13 +88,7 @@
     [self autoLogin] ;
 }
 
--(void)tongzhi:(NSNotification *)text
-{
-    NSLog(@"textOne==%@",text.userInfo[@"textOne"]);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self showViewController:[ErrorstatesVC viewController] sender:nil];
-    });
-}
+
 
 - (void)dealloc
 {

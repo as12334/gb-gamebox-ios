@@ -475,7 +475,6 @@ isStart = NO;                                   \
 {
     MyAssert([response isKindOfClass:[NSHTTPURLResponse class]]);
     HttpRequestDebugLog(@"response = %@",response);
-
     id<CLHTTPRequestDelegate> delegate = _delegate;
     ifRespondsSelector(delegate, @selector(httpRequest:didReceiveResponse:)){
         [delegate httpRequest:self didReceiveResponse:(id)response];

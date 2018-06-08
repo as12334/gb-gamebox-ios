@@ -94,7 +94,6 @@
     
     lab2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+10).whc_Height(lab2H).whc_LeftSpace(MainScreenW/8.5).whc_RightSpace(MainScreenW/8.5);
     lab2.text = @"网站维护中， 暂停访问";
-//    lab2.textColor = [UIColor lightGrayColor];
     lab2.textAlignment = NSTextAlignmentCenter;
     lab2.font = [UIFont systemFontOfSize:MainScreenW/16];
     

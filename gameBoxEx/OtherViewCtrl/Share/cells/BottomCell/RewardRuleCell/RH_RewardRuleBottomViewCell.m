@@ -9,7 +9,6 @@
 #import "RH_RewardRuleBottomViewCell.h"
 #import "coreLib.h"
 #import "RH_SharePlayerRecommendModel.h"
-
 @interface RH_RewardRuleBottomViewCell()
 @property(nonatomic,strong)UILabel *leftLab ;
 @property(nonatomic,strong)UILabel *rightLab ;
@@ -22,7 +21,7 @@
         self.contentView.backgroundColor = colorWithRGB(242, 242, 242) ;
         UIView *bgView = [[UIView alloc] init];
         [self.contentView addSubview:bgView];
-        bgView.whc_LeftSpace(20).whc_RightSpace(20).whc_TopSpace(10).whc_Height(30) ;
+        bgView.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(0).whc_Height(30) ;
         bgView.backgroundColor =  colorWithRGB(242, 242, 242) ;
         bgView.layer.borderWidth = 0.5f ;
         bgView.layer.borderColor = [UIColor whiteColor].CGColor ;
@@ -65,24 +64,9 @@
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    NSArray *arr = ConvertToClassPointer(NSArray , context) ;
-    for (RH_GradientTempArrayListModel *model in arr) {
-          _rightLab.text = [[NSString stringWithFormat:@"%@",model.mProportion] stringByAppendingString:@"%"];
-         _leftLab.text = [NSString stringWithFormat:@"%@以上",model.mPlayerNum] ;
-    }
-}
-
-
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    RH_GradientTempArrayListModel *model = ConvertToClassPointer(RH_GradientTempArrayListModel , context) ;
+    _rightLab.text = [[NSString stringWithFormat:@"%@",model.mProportion] stringByAppendingString:@"%"];
+    _leftLab.text = [NSString stringWithFormat:@"%@以上",model.mPlayerNum] ;
 }
 
 @end
