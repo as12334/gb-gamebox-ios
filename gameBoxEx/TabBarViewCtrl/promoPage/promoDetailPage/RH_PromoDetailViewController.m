@@ -37,10 +37,15 @@
 //    if([self.appDelegate.customUrl containsString:@"http"]){
 //        self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
 //    }else{
-    self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"https://",self.appDelegate.headerDomain.trim,@":8989",self.appDelegate.customUrl.trim]] ;
+    NSString *urlStr;
+    if ([self.appDelegate.checkType isEqualToString:@"https+8989"]) {
+        urlStr = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.headerDomain,self.appDelegate.customUrl.trim];
+    }
+    self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://test01.ccenter.test.so/promo/promoDetail.html?searchId=fe2c29a116d7df64b3adf7bf1a249463"]] ;
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
         [self reloadWebView] ;//预防两次url 一样，不加载情况
     }
+
 }
 
 -(BOOL)tabBarHidden

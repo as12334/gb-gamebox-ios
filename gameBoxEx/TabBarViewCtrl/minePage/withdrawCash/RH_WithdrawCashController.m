@@ -762,6 +762,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             showErrorMessage(self.view, error, @"费率计算失败") ;
         }] ;
     }
+    else if (type==ServiceRequestTypeV3OneStepRecory){
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showErrorMessage(self.view, error,nil);
+        }];
+    }
 }
 
 @end

@@ -531,18 +531,18 @@
     button_Check.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(25);
 //    button_Check.backgroundColor = [UIColor blueColor];
     textField.secureTextEntry = YES;
-    [button_Check setImage:ImageWithName(@"eye") forState:UIControlStateNormal];
+    [button_Check setImage:ImageWithName(@"eyeclose") forState:UIControlStateNormal];
     [button_Check addTarget:self action:@selector(button_CheckHandle:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)button_CheckHandle:(UIButton *)button {
     if ([button isSelected]) {
         [button setSelected:NO];
-        [button setImage:ImageWithName(@"eye") forState:UIControlStateNormal];
+        [button setImage:ImageWithName(@"eyeclose") forState:UIControlStateNormal];
         textField.secureTextEntry = YES;
     }else {
         [button setSelected:YES];
-        [button setImage:ImageWithName(@"eyeclose") forState:UIControlStateNormal];
+        [button setImage:ImageWithName(@"eye") forState:UIControlStateNormal];
         textField.secureTextEntry = NO;
     }
 }

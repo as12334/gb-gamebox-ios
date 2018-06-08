@@ -17,7 +17,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_ConcurrentServicesReqManager.h"
 #import "RH_AdvertisingView.h"
-#import "ErrorstatesVC.h"
+#import "ErrorStateTopView.h"
 #define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
 #define RHNT_DomainCheckFail                @"DomainCheckFail "
 
@@ -221,7 +221,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self.view addSubview:self.scheduleLabel];
     //加载说明
     [self.view addSubview:self.checkStatusLabel];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
 }
 
 - (void)initView{
@@ -740,30 +739,25 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 - (void)splashViewComplete
 {
     [self.contentLoadingIndicateView hiddenView] ;
-    __block SplashViewController *weakSelf = self;
-    RH_AdvertisingView *advertising = [RH_AdvertisingView ceareAdvertisingView:@"https://www.baidu.com"];
-    [self.view addSubview:advertising];
-    advertising.block = ^{
-        BOOL bRet = YES;
-        ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
-            bRet = [weakSelf.delegate splashViewControllerWillHidden:self];
-        }
-        if (bRet) {
-            //启动页加载完成后跳转
-            [weakSelf hide:YES completedBlock:nil];
-        }
-    };
-    
-    //check过了，就把通知释放掉
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
+    if (self.isMaintain==NO) {
+        __block SplashViewController *weakSelf = self;
+        RH_AdvertisingView *advertising = [RH_AdvertisingView ceareAdvertisingView:@"https://www.baidu.com"];
+        [self.view addSubview:advertising];
+        advertising.block = ^{
+            BOOL bRet = YES;
+            ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
+                bRet = [weakSelf.delegate splashViewControllerWillHidden:self];
+            }
+            if (bRet) {
+                //启动页加载完成后跳转
+                [weakSelf hide:YES completedBlock:nil];
+            }
+        };
+        //check过了，就把通知释放掉
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
+    }
 }
-#pragma mark ==============通知================
--(void)tongzhi:(NSNotification *)notification
-{
-    
-//    [self showViewController:[ErrorstatesVC viewController] sender:self];
-//    return;
-}
+
 #pragma mark -
 - (BOOL)shouldAutorotate {
     return NO;

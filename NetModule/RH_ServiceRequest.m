@@ -1100,7 +1100,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_TABBAR2_GETACTIVITYTYPE_DISCOUNTS
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                                     @"Host":self.appDelegate.headerDomain,
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1116,7 +1117,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                                     @"Host":self.appDelegate.headerDomain,
+                                     @"Cookie":userInfo_manager.sidString?:@"",
                                      }
                     queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
                                      }

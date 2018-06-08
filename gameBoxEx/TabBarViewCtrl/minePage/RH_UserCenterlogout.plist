@@ -167,7 +167,7 @@
 							<key>detailTitle</key>
 							<string>分享给好友</string>
 							<key>targetKey</key>
-							<string>RH_ShareViewController</string>
+							<string>RH_LoginViewControllerEx</string>
 							<key>image</key>
 							<string>mine_page_sharefriends</string>
 							<key>freeLogin</key>

@@ -160,12 +160,6 @@
             [self.stackView addSubview:item];
         }
     }
-//    if (registrationInitModel.registCodeField) {
-//
-//        FieldModel *field = [[FieldModel alloc] init];
-//        field.name = @"regCode";
-//
-//    }
     for (FieldModel *field in registrationInitModel.fieldModel) {
         if ([field.name isEqualToString:@"regCode"]) {
             continue;

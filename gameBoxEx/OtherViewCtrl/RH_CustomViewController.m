@@ -15,7 +15,7 @@
 #import "RH_LotteryInfoModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_LotteryAPIInfoModel.h"
-
+#import "RH_BettingInfoModel.h"
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
@@ -32,6 +32,7 @@
 -(void)setupViewContext:(id)context
 {
     self.context = context ;
+    
 }
 
 -(void)viewDidLoad
@@ -64,7 +65,14 @@
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
             [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
         }
-    }else{
+    }else if ([self.context isKindOfClass:[RH_BettingInfoModel class]]){
+        RH_BettingInfoModel *bettingModel = ConvertToClassPointer(RH_BettingInfoModel, self.context);
+//        self.appDelegate.customUrl = bettingModel.showDetailUrl ;
+        self.appDelegate.customUrl = [bettingModel.showDetailUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self setupURL] ;
+    }
+    
+    else{
         [self setupURL] ;
     }
     

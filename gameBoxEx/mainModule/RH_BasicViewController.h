@@ -33,6 +33,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
     BOOL _supportSavaData  ;
     id _observeForSavaData ;
     NSMutableSet           * _needSavaDataKeys;
+    
 }
 
 @property(nonatomic,readonly,strong) RH_ServiceRequest *serviceRequest ;
@@ -49,7 +50,8 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @property(nonatomic,readonly,strong) UIBarButtonItem *userInfoButtonItem    ;
 @property (nonatomic,strong,readonly) RH_userInfoView *userInfoView ;
 @property (nonatomic,strong,readonly) RH_NavigationBarView *mainNavigationView ;
-
+//是否维护
+@property(nonatomic,assign)bool isMaintain ;
 //-(void)mainMenuButtonItemHandle ;
 
 -(CGPoint)contentLoadingIndicateViewAdditionalOffset ;

@@ -31,7 +31,6 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
-#import "ErrorstatesVC.h"
 #import "RH_BannerDetailVCViewController.h"
 #import "RH_MainTabBarController.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
