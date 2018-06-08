@@ -258,14 +258,14 @@
         [self.contentView addSubview:_listTable];
         [_listTable addSubview:self.typeControl];
         [_listTable addSubview:self.bottomLoadControl];
+        
+        self.searchView.hidden = YES;
     }
     return _listTable;
 }
 
 - (void)setupInfo {
     self.title = _lotteryApiModel.mName?:@"列表" ;
-    self.searchView.hidden = YES;
-    self.searchView.whc_TopSpace(64+(MainScreenH==812?20.0:0.0)).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(55);
     
     [self.gameListArray removeAllObjects];//清空之前的数据
     self.currentGameListPageIndex = 1;//重置为1
@@ -318,6 +318,7 @@
         _searchView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 35);
         _searchView.delegate=self;
         [self.contentView addSubview:_searchView];
+        _searchView.whc_TopSpace(64+(MainScreenH==812?20.0:0.0)).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(55);
     }
     return _searchView;
 }
@@ -595,6 +596,7 @@
         NSArray *gameListArr = ConvertToClassPointer(NSArray, [gameListDic objectForKey:@"casinoGames"]);
         [self.gameListArray addObjectsFromArray:gameListArr];
         [self.listTable reloadData];
+        
         [self.bottomLoadControl endRefreshing];
     }
 }
