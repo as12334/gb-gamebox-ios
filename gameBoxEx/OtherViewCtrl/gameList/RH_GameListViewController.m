@@ -14,7 +14,6 @@
 #import "RH_UserInfoManager.h"
 #import "RH_ElecGameViewController.h"
 #import "CLRefreshBaseControl.h"
-#import "RH_TypeSelectView.h"
 #import "RH_LotteryCategoryModel.h"
 #import "RH_GameItemsCell.h"
 #import "RH_GameListScrollView.h"
@@ -22,13 +21,15 @@
 #import "CLPageView.h"
 #import "CLRefreshControl.h"
 #import "HTHorizontalSelectionList.h"
+#import "RH_GameListCategoryScrollView.h"
+#import "RH_GameEmptyDataCell.h"
 
-@interface RH_GameListViewController ()<RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_TypeSelectViewDelegate, RH_GameItemsCellDelegate,HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
+@interface RH_GameListViewController ()<RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_GameItemsCellDelegate,HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource,RH_GameListCategoryScrollViewDelegate>
 
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) UITableView *listTable;
 @property (nonatomic, strong) CLRefreshBaseControl *typeControl;
-@property (nonatomic, strong) RH_TypeSelectView *typeSelectView;
+@property (nonatomic, strong) RH_GameListCategoryScrollView *typeSelectView;
 @property (nonatomic, assign) NSInteger currentCategoryIndex;//大分类index
 @property (nonatomic, strong) RH_LotteryCategoryModel *categoryModel;
 @property (nonatomic, assign) BOOL isListMode;//列表模式 默认为false
@@ -53,6 +54,7 @@
     self.categoryModel = [info firstObject];
     self.currentCategoryIndex = [[info lastObject] integerValue];
     _lotteryApiModel = self.categoryModel.mSiteApis[self.currentCategoryIndex];
+    self.typeSelectView.selectedIndex = (int)self.currentCategoryIndex;
     self.typeSelectView.categoryModel = self.categoryModel;
 }
 
@@ -223,10 +225,10 @@
     return _gameListArray;
 }
 
-- (RH_TypeSelectView *)typeSelectView
+- (RH_GameListCategoryScrollView *)typeSelectView
 {
     if (_typeSelectView == nil) {
-        _typeSelectView = [[RH_TypeSelectView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 100)];
+        _typeSelectView = [[RH_GameListCategoryScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
         _typeSelectView.backgroundColor = [UIColor whiteColor];
         _typeSelectView.delegate = self;
     }
@@ -236,7 +238,7 @@
 - (CLRefreshBaseControl *)typeControl
 {
     if (_typeControl == nil) {
-        _typeControl = [[CLRefreshBaseControl alloc] initWithThreshold:40 height:100 animationView:self.typeSelectView];
+        _typeControl = [[CLRefreshBaseControl alloc] initWithThreshold:40 height:120 animationView:self.typeSelectView];
     }
     return _typeControl;
 }
@@ -251,6 +253,7 @@
         _listTable.separatorColor = [UIColor clearColor];
         _listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_listTable registerNib:[UINib nibWithNibName:@"RH_GameListCell" bundle:nil] forCellReuseIdentifier:@"listIdentifier"];
+        [_listTable registerNib:[UINib nibWithNibName:@"RH_GameEmptyDataCell" bundle:nil] forCellReuseIdentifier:@"emptyIdentifier"];
 
         [self.contentView addSubview:_listTable];
         [_listTable addSubview:self.typeControl];
@@ -344,85 +347,108 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.isListMode) {
-        return self.gameListArray.count;
+    if (self.gameListArray.count == 0) {
+        return 1;
     }
     else
     {
-        int numOfRow = 3;//每行显示3个
-        return self.gameListArray.count/numOfRow+(self.gameListArray.count%numOfRow==0 ? 0 : 1);
+        if (self.isListMode) {
+            return self.gameListArray.count;
+        }
+        else
+        {
+            int numOfRow = 3;//每行显示3个
+            return self.gameListArray.count/numOfRow+(self.gameListArray.count%numOfRow==0 ? 0 : 1);
+        }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isListMode) {
-        static NSString *cellIdentifier = @"listIdentifier";
-        RH_GameListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (self.gameListArray.count == 0) {
+        static NSString *cellIdentifier = @"emptyIdentifier";
+        RH_GameEmptyDataCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"RH_GameListCell" owner:nil options:nil] firstObject] ;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RH_GameEmptyDataCell" owner:nil options:nil] firstObject] ;
         }
-        cell.typeModel = _lotteryApiModel;
-        cell.model = self.gameListArray[indexPath.row];
-        cell.type = _lotteryApiModel.mName;
-        cell.subType = [self.currentTypeModel stringValueForKey:@"value"];
-        cell.backgroundColor = indexPath.row%2 == 0 ? colorWithRGB(242, 242, 242) : [UIColor whiteColor];
         return cell;
     }
     else
     {
-        static NSString *cellIdentifier = @"itemsCell";
-        RH_GameItemsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[RH_GameItemsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] ;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-            gradientLayer.colors = @[(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)ColorWithRGBA(240, 240, 240, 1).CGColor];
-            gradientLayer.locations = @[@0.5, @1.0];
-            gradientLayer.startPoint = CGPointMake(0, 0);
-            gradientLayer.endPoint = CGPointMake(0, 1);
-            
-            int numOfRow = 3;//每行显示3个
-            CGFloat temp = 10.0;
-            CGFloat w = ([UIScreen mainScreen].bounds.size.width-temp*numOfRow*2)/numOfRow;
-            CGFloat h = 1.2*w+temp+5;
-            gradientLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, h);
-            [cell.layer addSublayer:gradientLayer];
-        }
-        cell.typeModel = _lotteryApiModel;
-        cell.delegate = self;
-        
-        int i = (int)indexPath.row;
-        int numOfRow = 3;//每行显示3个
-        if (numOfRow * (i+1) >= self.gameListArray.count) {
-            //是最后一行
-            NSArray *cellArr = [self.gameListArray subarrayWithRange:NSMakeRange(i*numOfRow, self.gameListArray.count%numOfRow==0 ? numOfRow : self.gameListArray.count%numOfRow)];
-            cell.itemsArr = cellArr;
+        if (self.isListMode) {
+            static NSString *cellIdentifier = @"listIdentifier";
+            RH_GameListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"RH_GameListCell" owner:nil options:nil] firstObject] ;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            cell.typeModel = _lotteryApiModel;
+            cell.model = self.gameListArray[indexPath.row];
+            cell.type = _lotteryApiModel.mName;
+            cell.subType = [self.currentTypeModel stringValueForKey:@"value"];
+            cell.backgroundColor = indexPath.row%2 == 0 ? colorWithRGB(242, 242, 242) : [UIColor whiteColor];
+            return cell;
         }
         else
         {
-            //不是最后一行
-            NSArray *cellArr = [self.gameListArray subarrayWithRange:NSMakeRange(i*numOfRow, numOfRow)];
-            cell.itemsArr = cellArr;
+            static NSString *cellIdentifier = @"itemsCell";
+            RH_GameItemsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[RH_GameItemsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] ;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+                gradientLayer.colors = @[(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)ColorWithRGBA(240, 240, 240, 1).CGColor];
+                gradientLayer.locations = @[@0.5, @1.0];
+                gradientLayer.startPoint = CGPointMake(0, 0);
+                gradientLayer.endPoint = CGPointMake(0, 1);
+                
+                int numOfRow = 3;//每行显示3个
+                CGFloat temp = 10.0;
+                CGFloat w = ([UIScreen mainScreen].bounds.size.width-temp*numOfRow*2)/numOfRow;
+                CGFloat h = 1.2*w+temp+5;
+                gradientLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, h);
+                [cell.layer addSublayer:gradientLayer];
+            }
+            cell.typeModel = _lotteryApiModel;
+            cell.delegate = self;
+            
+            int i = (int)indexPath.row;
+            int numOfRow = 3;//每行显示3个
+            if (numOfRow * (i+1) >= self.gameListArray.count) {
+                //是最后一行
+                NSArray *cellArr = [self.gameListArray subarrayWithRange:NSMakeRange(i*numOfRow, self.gameListArray.count%numOfRow==0 ? numOfRow : self.gameListArray.count%numOfRow)];
+                cell.itemsArr = cellArr;
+            }
+            else
+            {
+                //不是最后一行
+                NSArray *cellArr = [self.gameListArray subarrayWithRange:NSMakeRange(i*numOfRow, numOfRow)];
+                cell.itemsArr = cellArr;
+            }
+            return cell;
         }
-        return cell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isListMode) {
-        return 100.0f;
+    if (self.gameListArray.count == 0) {
+        return self.view.frame.size.height-(64+(MainScreenH==812?20.0:0.0));
     }
     else
     {
-        int numOfRow = 3;//每行显示3个
-        CGFloat temp = 10.0;
-        CGFloat w = ([UIScreen mainScreen].bounds.size.width-temp*numOfRow*2)/numOfRow;
-        CGFloat h = 1.2*w+temp+5;
-        return h;
+        if (self.isListMode) {
+            return 100.0f;
+        }
+        else
+        {
+            int numOfRow = 3;//每行显示3个
+            CGFloat temp = 10.0;
+            CGFloat w = ([UIScreen mainScreen].bounds.size.width-temp*numOfRow*2)/numOfRow;
+            CGFloat h = 1.2*w+temp+5;
+            return h;
+        }
     }
 }
 
@@ -439,8 +465,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isListMode) {
-        [self openGame:self.gameListArray[indexPath.row]];
+    if (self.gameListArray.count == 0) {
+        [self.gameListArray removeAllObjects];//清空之前的数据
+        self.currentGameListPageIndex = 1;//重置为1
+        self.currentTypeModel = self.subTypeArray[self.currentSubTypeIndex];
+        [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
+                                            ApiTypeID:_lotteryApiModel.mApiTypeID
+                                           PageNumber:self.currentGameListPageIndex
+                                             PageSize:18
+                                           SearchName:@""
+                                                TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
+    }
+    else
+    {
+        if (self.isListMode) {
+            [self openGame:self.gameListArray[indexPath.row]];
+        }
     }
 }
 
@@ -492,9 +532,9 @@
     }
 }
 
-#pragma mark - RH_TypeSelectViewDelegate M
+#pragma mark - RH_GameListCategoryScrollViewDelegate M
 
-- (void)typeSelectView:(RH_TypeSelectView *)view didSelect:(NSInteger)index
+- (void)gameListCategoryScrollView:(RH_GameListCategoryScrollView *)view didSelect:(NSInteger)index
 {
     if (self.currentCategoryIndex != index) {
         self.currentSubTypeIndex = 0;
@@ -502,16 +542,6 @@
         self.subTypeControl.selectedButtonIndex = 0;
         _lotteryApiModel = self.categoryModel.mSiteApis[self.currentCategoryIndex];
         [self loadingIndicateViewDidTap:nil] ;
-        
-//        [self.gameListArray removeAllObjects];//清空之前的数据
-//        self.currentGameListPageIndex = 1;//重置为1
-//        self.currentTypeModel = self.subTypeArray[self.currentSubTypeIndex];
-//        [self.serviceRequest startV3GameListWithApiID:_lotteryApiModel.mApiID
-//                                            ApiTypeID:_lotteryApiModel.mApiTypeID
-//                                           PageNumber:self.currentGameListPageIndex
-//                                             PageSize:18
-//                                           SearchName:@""
-//                                                TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
     }
 }
 
