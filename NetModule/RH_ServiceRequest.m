@@ -1282,7 +1282,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_GETWITHDRAWUSERINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                                     @"Host":self.appDelegate.headerDomain,
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -2979,6 +2979,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3GetWithDrawInfo:
             {
+                
                 resultSendData = [[RH_WithDrawModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;

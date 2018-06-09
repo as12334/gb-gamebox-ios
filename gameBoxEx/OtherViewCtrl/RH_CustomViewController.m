@@ -49,7 +49,8 @@
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
         if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain,lotteryInfoModel.showGameLink] ;
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@",lotteryInfoModel.showGameLink] ;
+//            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain,lotteryInfoModel.showGameLink] ;
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
@@ -88,6 +89,7 @@
 {
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
+        
     }else{
         self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain,self.appDelegate.customUrl.trim]] ;
     }
