@@ -9,6 +9,7 @@
 #import "RH_GameListCategoryView.h"
 #import "RH_LotteryAPIInfoModel.h"
 #import "UIImageView+WebCache.h"
+#import "MacroDef.h"
 
 @interface RH_GameListCategoryView ()
 @property (weak, nonatomic) IBOutlet UIImageView *categoryIMG;
@@ -33,4 +34,13 @@
     [self.categoryIMG sd_setImageWithURL:[NSURL URLWithString:_model.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 
 }
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    ifRespondsSelector(self.delegate, @selector(gameListCategoryViewDidSelect:))
+    {
+        [self.delegate gameListCategoryViewDidSelect:self];
+    }
+}
+
 @end

@@ -231,9 +231,9 @@
 {
     RH_GameCategoryCell *typeCell = [self.collectionTypeView dequeueReusableCellWithReuseIdentifier:[RH_GameCategoryCell defaultReuseIdentifier] forIndexPath:indexPath];
     [typeCell updateViewWithInfo:ConvertToClassPointer(NSDictionary, self.arrayTypeList[indexPath.item]) context:nil] ;
-    if (![THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
-        typeCell.labTitle.textColor = [UIColor blackColor];
-    }
+//    if (![THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
+//        typeCell.labTitle.textColor = [UIColor whiteColor];
+//    }
     
     return typeCell;
 }

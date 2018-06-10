@@ -93,8 +93,6 @@
 		22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */; };
 		545B302E20C6216C0040129B /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B302B20C6216C0040129B /* SRWebSocket.m */; };
 		545B303520C6B1140040129B /* CLRefreshBaseControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B303320C6B1140040129B /* CLRefreshBaseControl.m */; };
-		5469BFAE20C777B2006080D1 /* RH_TypeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFAD20C777B2006080D1 /* RH_TypeSelectView.m */; };
-		5469BFD720C7B800006080D1 /* CLHorizontalScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFD520C7B800006080D1 /* CLHorizontalScroller.m */; };
 		5469BFDA20C7CC49006080D1 /* RH_GameListCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFD920C7CC49006080D1 /* RH_GameListCategoryView.m */; };
 		5469BFDC20C7CC53006080D1 /* RH_GameListCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469BFDB20C7CC53006080D1 /* RH_GameListCategoryView.xib */; };
 		5469BFDF20C7FA88006080D1 /* RH_GameItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFDE20C7FA88006080D1 /* RH_GameItemView.m */; };
@@ -103,6 +101,14 @@
 		5469BFE720C80801006080D1 /* RH_GameListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFE620C80801006080D1 /* RH_GameListScrollView.m */; };
 		5469BFEB20C8E44C006080D1 /* RH_GameListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFE920C8E44B006080D1 /* RH_GameListCell.m */; };
 		5469BFEC20C8E44C006080D1 /* RH_GameListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469BFEA20C8E44C006080D1 /* RH_GameListCell.xib */; };
+		546CE6E920CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6DE20CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m */; };
+		546CE6EA20CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6E120CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.m */; };
+		546CE6EB20CA2A5300273C40 /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6E320CA2A5300273C40 /* HTHorizontalSelectionList.m */; };
+		546CE6EC20CA2A5300273C40 /* M13BadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6E720CA2A5300273C40 /* M13BadgeView.m */; };
+		546CE6ED20CA2A5300273C40 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 546CE6E820CA2A5300273C40 /* README.md */; };
+		546CE6F020CA5BFD00273C40 /* RH_GameListCategoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6EF20CA5BFD00273C40 /* RH_GameListCategoryScrollView.m */; };
+		546CE6FA20CA6CDB00273C40 /* RH_GameEmptyDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6F820CA6CDB00273C40 /* RH_GameEmptyDataCell.m */; };
+		546CE6FB20CA6CDB00273C40 /* RH_GameEmptyDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE6F920CA6CDB00273C40 /* RH_GameEmptyDataCell.xib */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -911,10 +917,6 @@
 		545B302D20C6216C0040129B /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		545B303320C6B1140040129B /* CLRefreshBaseControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRefreshBaseControl.m; sourceTree = "<group>"; };
 		545B303420C6B1140040129B /* CLRefreshBaseControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRefreshBaseControl.h; sourceTree = "<group>"; };
-		5469BFAC20C777B2006080D1 /* RH_TypeSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_TypeSelectView.h; sourceTree = "<group>"; };
-		5469BFAD20C777B2006080D1 /* RH_TypeSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_TypeSelectView.m; sourceTree = "<group>"; };
-		5469BFD520C7B800006080D1 /* CLHorizontalScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLHorizontalScroller.m; sourceTree = "<group>"; };
-		5469BFD620C7B800006080D1 /* CLHorizontalScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLHorizontalScroller.h; sourceTree = "<group>"; };
 		5469BFD820C7CC49006080D1 /* RH_GameListCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListCategoryView.h; sourceTree = "<group>"; };
 		5469BFD920C7CC49006080D1 /* RH_GameListCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListCategoryView.m; sourceTree = "<group>"; };
 		5469BFDB20C7CC53006080D1 /* RH_GameListCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameListCategoryView.xib; sourceTree = "<group>"; };
@@ -928,6 +930,21 @@
 		5469BFE820C8E44B006080D1 /* RH_GameListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListCell.h; sourceTree = "<group>"; };
 		5469BFE920C8E44B006080D1 /* RH_GameListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListCell.m; sourceTree = "<group>"; };
 		5469BFEA20C8E44C006080D1 /* RH_GameListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameListCell.xib; sourceTree = "<group>"; };
+		546CE6DD20CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
+		546CE6DE20CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
+		546CE6DF20CA2A5300273C40 /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
+		546CE6E020CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
+		546CE6E120CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
+		546CE6E220CA2A5300273C40 /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
+		546CE6E320CA2A5300273C40 /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
+		546CE6E620CA2A5300273C40 /* M13BadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13BadgeView.h; sourceTree = "<group>"; };
+		546CE6E720CA2A5300273C40 /* M13BadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13BadgeView.m; sourceTree = "<group>"; };
+		546CE6E820CA2A5300273C40 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		546CE6EE20CA5BFD00273C40 /* RH_GameListCategoryScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListCategoryScrollView.h; sourceTree = "<group>"; };
+		546CE6EF20CA5BFD00273C40 /* RH_GameListCategoryScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameListCategoryScrollView.m; sourceTree = "<group>"; };
+		546CE6F720CA6CDB00273C40 /* RH_GameEmptyDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameEmptyDataCell.h; sourceTree = "<group>"; };
+		546CE6F820CA6CDB00273C40 /* RH_GameEmptyDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameEmptyDataCell.m; sourceTree = "<group>"; };
+		546CE6F920CA6CDB00273C40 /* RH_GameEmptyDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameEmptyDataCell.xib; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -2357,13 +2374,45 @@
 			path = RefrshBaseControl;
 			sourceTree = "<group>";
 		};
-		5469BFD420C7B7F4006080D1 /* HorizontalScroller */ = {
+		546CE6DB20CA2A3E00273C40 /* TextSelectionList */ = {
 			isa = PBXGroup;
 			children = (
-				5469BFD620C7B800006080D1 /* CLHorizontalScroller.h */,
-				5469BFD520C7B800006080D1 /* CLHorizontalScroller.m */,
+				546CE6DC20CA2A5300273C40 /* Cells */,
+				546CE6E220CA2A5300273C40 /* HTHorizontalSelectionList.h */,
+				546CE6E320CA2A5300273C40 /* HTHorizontalSelectionList.m */,
+				546CE6E420CA2A5300273C40 /* M13BadgeView */,
 			);
-			path = HorizontalScroller;
+			path = TextSelectionList;
+			sourceTree = "<group>";
+		};
+		546CE6DC20CA2A5300273C40 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				546CE6DD20CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.h */,
+				546CE6DE20CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m */,
+				546CE6DF20CA2A5300273C40 /* HTHorizontalSelectionListCell.h */,
+				546CE6E020CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.h */,
+				546CE6E120CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		546CE6E420CA2A5300273C40 /* M13BadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				546CE6E520CA2A5300273C40 /* Classes */,
+				546CE6E820CA2A5300273C40 /* README.md */,
+			);
+			path = M13BadgeView;
+			sourceTree = "<group>";
+		};
+		546CE6E520CA2A5300273C40 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				546CE6E620CA2A5300273C40 /* M13BadgeView.h */,
+				546CE6E720CA2A5300273C40 /* M13BadgeView.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		790743082063542400A4543A /* LimitTransfer */ = {
@@ -2767,7 +2816,6 @@
 		A0109E081F87852F004E6EF4 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
-				5469BFD420C7B7F4006080D1 /* HorizontalScroller */,
 				545B303220C6B1090040129B /* RefrshBaseControl */,
 				A08578511FB9BE9C00E002B1 /* UINavigationBar */,
 				A0109E091F87852F004E6EF4 /* APPDelegate */,
@@ -4104,6 +4152,7 @@
 		A0B5A5651FFF6C1300E2CDD8 /* gameList */ = {
 			isa = PBXGroup;
 			children = (
+				546CE6DB20CA2A3E00273C40 /* TextSelectionList */,
 				A0B5A5661FFF6C1300E2CDD8 /* cells */,
 				B84F946520174F01003E40BC /* RH_GameListHeaderView.h */,
 				B84F946620174F01003E40BC /* RH_GameListHeaderView.m */,
@@ -4117,8 +4166,6 @@
 				B84F94632017319F003E40BC /* RH_GameListContentPageCell.m */,
 				A06E0F6020181BD500EF275A /* RH_GameListViewController.h */,
 				A06E0F6120181BD600EF275A /* RH_GameListViewController.m */,
-				5469BFAC20C777B2006080D1 /* RH_TypeSelectView.h */,
-				5469BFAD20C777B2006080D1 /* RH_TypeSelectView.m */,
 				5469BFD820C7CC49006080D1 /* RH_GameListCategoryView.h */,
 				5469BFD920C7CC49006080D1 /* RH_GameListCategoryView.m */,
 				5469BFDB20C7CC53006080D1 /* RH_GameListCategoryView.xib */,
@@ -4132,6 +4179,11 @@
 				5469BFEA20C8E44C006080D1 /* RH_GameListCell.xib */,
 				5469BFE520C80801006080D1 /* RH_GameListScrollView.h */,
 				5469BFE620C80801006080D1 /* RH_GameListScrollView.m */,
+				546CE6EE20CA5BFD00273C40 /* RH_GameListCategoryScrollView.h */,
+				546CE6EF20CA5BFD00273C40 /* RH_GameListCategoryScrollView.m */,
+				546CE6F720CA6CDB00273C40 /* RH_GameEmptyDataCell.h */,
+				546CE6F820CA6CDB00273C40 /* RH_GameEmptyDataCell.m */,
+				546CE6F920CA6CDB00273C40 /* RH_GameEmptyDataCell.xib */,
 			);
 			path = gameList;
 			sourceTree = "<group>";
@@ -4862,6 +4914,7 @@
 				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
 				226BE38120297D3F003E98C9 /* tabbar_mark_black_bg@3x.png in Resources */,
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,
+				546CE6ED20CA2A5300273C40 /* README.md in Resources */,
 				221AE58E207DEE84008CD409 /* login_touxiang_orange@3x.png in Resources */,
 				228B932120272ACE008C8313 /* tab_v3_promo_selected_black@3x.png in Resources */,
 				F69E35172063613B0028D3A1 /* RH_DepositeReminderCell.xib in Resources */,
@@ -4900,6 +4953,7 @@
 				B87A6B192005EA8100C9788F /* RH_ModifyPasswordCodeCell.xib in Resources */,
 				F6FB6416201430A800EEED4E /* RH_MinePageLoginoutBannarCell.xib in Resources */,
 				A039BDA220036B2C0080D56F /* RH_BettingRecordCell.xib in Resources */,
+				546CE6FB20CA6CDB00273C40 /* RH_GameEmptyDataCell.xib in Resources */,
 				7937C4332072073B0010CD0C /* PGDatePicker.bundle in Resources */,
 				A001B3CA1F8EF7CA00309EA4 /* tab_blue_home@2x.png in Resources */,
 				F681D262201ACDB200A7C449 /* RH_SiteSystemDetailCell.xib in Resources */,
@@ -5218,6 +5272,7 @@
 				7937C449207212F80010CD0C /* RH_DepositSuccessAlertView.m in Sources */,
 				A010A08C1F879B23004E6EF4 /* RH_BasicViewController.m in Sources */,
 				A010A08D1F879B23004E6EF4 /* RH_MainNavigationController.m in Sources */,
+				546CE6FA20CA6CDB00273C40 /* RH_GameEmptyDataCell.m in Sources */,
 				A07DCEB91FEBA0690006FAE4 /* RH_HomeCategoryCell.m in Sources */,
 				F6FB638C200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m in Sources */,
 				F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */,
@@ -5225,6 +5280,7 @@
 				F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */,
 				F682020A2071DD26003593C9 /* RH_DepositeSubmitSucceedView.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
+				546CE6EC20CA2A5300273C40 /* M13BadgeView.m in Sources */,
 				F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */,
 				F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */,
 				79BB2DBE2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m in Sources */,
@@ -5328,7 +5384,6 @@
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
 				F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */,
-				5469BFD720C7B800006080D1 /* CLHorizontalScroller.m in Sources */,
 				A0109FBB1F8788FF004E6EF4 /* UIImage+Tint.m in Sources */,
 				A0109FBC1F8788FF004E6EF4 /* UIImage+UPload.m in Sources */,
 				F6FB639A200F851300EEED4E /* RH_MPGameSeletedDateView.m in Sources */,
@@ -5406,6 +5461,8 @@
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
 				7937C4252072073B0010CD0C /* PGDatePicker+DateHour.m in Sources */,
 				F69E350220634C6F0028D3A1 /* RH_DepositePayforWaySubCell.m in Sources */,
+				546CE6F020CA5BFD00273C40 /* RH_GameListCategoryScrollView.m in Sources */,
+				546CE6EB20CA2A5300273C40 /* HTHorizontalSelectionList.m in Sources */,
 				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
 				F6FB63A92010386100EEED4E /* RH_ApplyDiscountHeaderView.m in Sources */,
 				79BA36AD20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m in Sources */,
@@ -5529,6 +5586,7 @@
 				B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */,
 				F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */,
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
+				546CE6E920CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */,
 				A01460DF2021AAFD008928D1 /* RH_SafetyNaviBarView.m in Sources */,
@@ -5560,7 +5618,6 @@
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
 				F69F800C20C667A700B6CE1A /* RH_AdvertisingView.m in Sources */,
-				5469BFAE20C777B2006080D1 /* RH_TypeSelectView.m in Sources */,
 				A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */,
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				79595C73207B9DB90052F472 /* RH_PromoDetailViewController.m in Sources */,
@@ -5623,6 +5680,7 @@
 				A05747A71FF2879E0068D0E4 /* RH_LotteryInfoModel.m in Sources */,
 				F6FB6415201430A800EEED4E /* RH_MinePageLoginoutBannarCell.m in Sources */,
 				F681D261201ACDB200A7C449 /* RH_SiteSystemDetailCell.m in Sources */,
+				546CE6EA20CA2A5300273C40 /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
 				A0109FA31F8787E4004E6EF4 /* CLTabBarController.m in Sources */,
 				7991A3B120649CAF00133F74 /* RH_RegisetInitModel.m in Sources */,
 				F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */,
@@ -5736,7 +5794,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5819,7 +5877,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
