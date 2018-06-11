@@ -116,6 +116,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3CustomService,          //获取客服接口
 //    ServiceRequestTypeV3BossSysDomain,          //获取IP和域名
     ServiceRequestTypeV3NoticePopup,            //公告弹框
+    ServiceRequestTypeV3INITAD            //初始化广告
 };
 
 
@@ -615,6 +616,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3NoticePopup;
 #pragma mark ==============分享好友记录================
 -(void)startV3SharePlayerRecordStartTime:(NSString *)startTime endTime:(NSString *)endTime pageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;
+#pragma mark ==============初始化广告================
+-(void)startV3InitAd;
+
 #pragma mark -
 /**
  * 取消所有服务

@@ -55,6 +55,7 @@
 #import "RH_UserApiBalanceModel.h"
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_ShareRecordModel.h"
+#import "RH_InitAdModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2232,6 +2233,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SharePlayerRecord
                          scopeType:ServiceScopeTypePublic];
 }
+
+-(void)startV3InitAd
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_INITAD
+                     pathArguments:nil
+                   headerArguments:@{
+                                     //                                     @"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3INITAD
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -3179,6 +3199,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =  [[RH_ShareRecordModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
+            case ServiceRequestTypeV3INITAD:
+            {
+                resultSendData =  [[RH_InitAdModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+                
 //                case ServiceRequestTypeV3ScanPay:
 //            {
 //                

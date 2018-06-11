@@ -595,6 +595,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             dispatch_async(queue, ^{
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
             });
+            
         }
         else
         {
@@ -769,6 +770,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 bRet = [weakSelf.delegate splashViewControllerWillHidden:self];
             }
             if (bRet) {
+                
                 //启动页加载完成后跳转
                 [weakSelf hide:YES completedBlock:nil];
             }
