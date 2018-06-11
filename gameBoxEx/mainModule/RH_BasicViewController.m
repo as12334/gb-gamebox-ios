@@ -146,7 +146,7 @@
 //    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
 //    [UIApplication sharedApplication].keyWindow.rootViewController = customVC;
 //    [self presentViewController:customVC animated:YES completion:nil];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -140,6 +140,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     NSArray *_urlArray ;
     NSString *_talk ;
     int i;
+    bool isMaintain ;
 }
 @synthesize checkDomainServices = _checkDomainServices ;
 @synthesize domainCheckStatusList = _domainCheckStatusList ;
@@ -200,6 +201,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.hiddenNavigationBar = YES ;
     self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES ;
+    isMaintain = NO;
     if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
     {
 #ifdef TEST_DOMAIN
@@ -469,7 +471,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                             [userDefaults setObject:[NSDate date] forKey:kUpdateAPPDatePrompt] ;
                             [self splashViewComplete] ;
                         }else{
-                            exit(0) ;
+                            exit(0);
                         }
                     }else{
                         exit(0);
@@ -734,7 +736,25 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     return cell ;
 }
-
+#pragma mark ==============是否有广告页================
+#if 1
+-(void)splashViewComplete
+{
+    [self.contentLoadingIndicateView hiddenView] ;
+    if (self.isMaintain==NO) {
+        BOOL bRet = YES;
+        ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
+            bRet = [self.delegate splashViewControllerWillHidden:self];
+        }
+        if (bRet) {
+            //启动页加载完成后跳转
+            [self hide:YES completedBlock:nil];
+        }
+        //check过了，就把通知释放掉
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
+    }
+}
+#elif 0
 #pragma mark -
 - (void)splashViewComplete
 {
@@ -757,7 +777,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
     }
 }
-
+#endif
 #pragma mark -
 - (BOOL)shouldAutorotate {
     return NO;

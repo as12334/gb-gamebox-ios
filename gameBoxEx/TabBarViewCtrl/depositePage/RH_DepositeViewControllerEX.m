@@ -90,6 +90,7 @@
 {
     [super viewWillAppear:animated] ;
     [self.contentTableView setContentOffset:CGPointMake(0,-64) animated:YES];
+    [self.contentTableView reloadData];
 }
 
 

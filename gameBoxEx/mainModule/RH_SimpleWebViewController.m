@@ -337,11 +337,10 @@
 {
     //开始加载网页内容
     NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
-//    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-////        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
-//        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
-//    }
-//    [urlRequest setValue:@"application/javascript; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+//        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
+        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
+    }
     [urlRequest setValue:[RH_UserInfoManager shareUserManager].sidString forHTTPHeaderField:@"Cookie"];
     [self.webView loadRequest:urlRequest];
 }
@@ -769,8 +768,6 @@
         NSLog(@"JSToOc :%@------ loginState",NSStringFromClass([self class])) ;
         NSArray *args = [JSContext currentArguments];
         NSString *isLogin = [args[0] toString];
-
-        NSLog(@"isLogin:%@",isLogin);
         if([isLogin isEqualToString:@"true"]){
             [self.appDelegate updateLoginStatus:true] ;
         }else{
@@ -811,7 +808,6 @@
             [self.appDelegate updateLoginStatus:true] ;
         }else{
             [self.appDelegate updateLoginStatus:false] ;
-//            self.appDelegate.loginId ++;
             self.tabBarController.selectedIndex = 0;
         }
     };

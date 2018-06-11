@@ -1117,8 +1117,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_ACTIVITYDATALIST
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain,
                                      @"Cookie":userInfo_manager.sidString?:@"",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{RH_SP_ACTIVITYDATALIST_SEARCHKEY:mKey?:@""
                                      }
@@ -1270,7 +1270,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                          }
                         queryArguments:mDic
                          bodyArguments:nil
-                              httpType:HTTPRequestTypeGet
+                              httpType:HTTPRequestTypePost
                            serviceType:ServiceRequestTypeV3GameLinkForCheery
                              scopeType:ServiceScopeTypePublic];
     }
@@ -1283,7 +1283,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_GETWITHDRAWUSERINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                                     @"Host":self.appDelegate.headerDomain,
                                      }
                     queryArguments:nil
                      bodyArguments:nil
@@ -1575,7 +1575,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] ;
         NSString *timeStr = [NSString stringWithFormat:@"%.0f",timeInterval*1000] ;
-        [self _startServiceWithAPIName:[NSString stringWithFormat:@"https://%@:8989",self.appDelegate.headerDomain]
+        [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_REGISESTCAPTCHACODE
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
@@ -2130,9 +2130,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:pathFormat
                      pathArguments:nil
-                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+                   headerArguments:@{
+                                     @"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                                     @"Host":self.appDelegate.headerDomain,
+                                      @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil 
                      bodyArguments:nil
@@ -2980,6 +2982,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
             case ServiceRequestTypeV3GetWithDrawInfo:
             {
+                
                 resultSendData = [[RH_WithDrawModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
             }
                 break;
