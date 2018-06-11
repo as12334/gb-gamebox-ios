@@ -33,6 +33,7 @@
 
 -(void)setupViewContext:(id)context
 {
+   
     if ([context isKindOfClass:[RH_LotteryAPIInfoModel class]]){
         _apiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
     }else if ([context isKindOfClass:[RH_LotteryInfoModel class]]){
@@ -205,6 +206,7 @@
 
 #pragma mark -
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView {
+    
     if (self.subUrl.absoluteString.length){
         [self reloadWebView];
     }
@@ -245,6 +247,7 @@
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+   
     if  (error.code==101){//忽略不处理 。
     }
     else{
@@ -255,6 +258,7 @@
 #pragma mark- service request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
+  
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
         if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
@@ -297,6 +301,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
+    
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self.appDelegate updateLoginStatus:false] ;
     }else if (type==ServiceRequestTypeDemoLogin){
@@ -311,12 +316,21 @@
 }
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
+    NSLog(@"webView.URL===%@",[NSString stringWithFormat:@"%@",webView.URL]);
+    
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
         showMessage(self.view, @"即将进入...", nil);
     }];
+    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"test01.ccenter.test.so"]||[[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        self.myTabBarController.selectedIndex = 0 ;
+    }
+
 }
 -(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
+   
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
         showErrorMessage(self.view,error,@"加载失败");
     }];
