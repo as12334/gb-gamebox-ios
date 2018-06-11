@@ -16,6 +16,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_LotteryAPIInfoModel.h"
 #import "RH_BettingInfoModel.h"
+#import "RH_WithDrawModel.h"
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
@@ -51,7 +52,6 @@
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
         if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
             self.appDelegate.customUrl = [NSString stringWithFormat:@"%@",lotteryInfoModel.showGameLink] ;
-//            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain,lotteryInfoModel.showGameLink] ;
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
@@ -72,7 +72,24 @@
         self.appDelegate.customUrl = [bettingModel.showDetailUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self setupURL] ;
     }
-    
+    else if ([self.context isKindOfClass:[RH_WithDrawModel class]]){
+        RH_WithDrawModel *drawModel = ConvertToClassPointer(RH_WithDrawModel, self.context);
+        self.appDelegate.customUrl = drawModel.mAuditLogUrl ;
+        if ([self.appDelegate.checkType isEqualToString:@"https+8989"]) {
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989%@",self.appDelegate.headerDomain,self.appDelegate.customUrl];
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"http+8787"]) {
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"http://%@:8787%@",self.appDelegate.headerDomain,self.appDelegate.customUrl];
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"https"]) {
+            self.appDelegate.customUrl =[NSString stringWithFormat:@"https://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl] ;
+            
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"http"]) {
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"http://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl] ;
+        }
+        [self setupURL];
+    }
     else{
         [self setupURL] ;
     }

@@ -94,7 +94,7 @@
             
         }
        else if ([self.appDelegate.checkType isEqualToString:@"http"]) {
-            self.subUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
+            self.subUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
         }
         
     }

@@ -292,7 +292,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 - (void)buttonCheckHandle {
     
     self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
-    [self showViewController:[RH_CustomViewController viewController] sender:nil];
+    [self showViewController:[RH_CustomViewController viewControllerWithContext:self.withDrawModel] sender:nil];
 }
 
 - (void)buttonConfirmHandle {
