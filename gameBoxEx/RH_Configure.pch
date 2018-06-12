@@ -127,8 +127,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black#define SITE_TYPE    @"integratedv3oc"
 
 #elif _DEBUG71 //超博娱乐
 //#define TEST_DOMAIN  @"test.gbboss.com:1344"
