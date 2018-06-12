@@ -20,9 +20,7 @@
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
-    
-//    [self.payWayImage sd_setImageWithURL:[NSURL URLWithString:listModel.showCover]];
-    [self.payWayImage sd_setImageWithURL:[NSURL URLWithString:listModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+     [self.payWayImage sd_setImageWithURL:[NSURL URLWithString:listModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
     if ([listModel.mAliasName isEqualToString:@""] ||listModel.mAliasName == nil ) {
        self.payWayLabel.text = listModel.mPayName;
     }

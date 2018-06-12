@@ -312,7 +312,8 @@
     }
     else if (indexPath.item==[_markArray[2] integerValue])
     {
-       return [RH_DepositeTransferQRCodeCell heightForCellWithInfo:nil tableView:tableView context:self.listModel];
+//        return 160.f;
+        return [RH_DepositeTransferQRCodeCell heightForCellWithInfo:nil tableView:tableView context:self.listModel];
     }
     else if (indexPath.item==[_markArray[3] integerValue])
     {
@@ -328,7 +329,7 @@
         return 80.f;
     }
     else if (indexPath.item==[_markArray[7]integerValue]){
-        return 200.f;
+        return 250.f;
     }
     
     return 0.f ;
@@ -340,7 +341,6 @@
     
     if (indexPath.item==[_markArray[0] integerValue]) {
         RH_DepositeTransferBankInfoCell *bankInfoCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeTransferBankInfoCell defaultReuseIdentifier]] ;
-//        payforWayCell.delegate = self;
         NSArray *array = @[self.listModel,@(self.channelModel.mHide)];
         [bankInfoCell updateCellWithInfo:nil context:array];
         return bankInfoCell ;

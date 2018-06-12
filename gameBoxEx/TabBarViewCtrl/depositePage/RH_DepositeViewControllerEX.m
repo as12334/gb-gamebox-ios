@@ -357,7 +357,7 @@
         return 80;
     }
     else if (indexPath.item ==[_markArray[6] integerValue]){
-        return 160.f;
+        return 200.f;
     }
     return 0.0f ;
 }
@@ -523,7 +523,6 @@
 {
 //    RH_TestSafariViewController *customVC = [[RH_TestSafariViewController alloc]init];
 //    [self showViewController:customVC sender:self];
-//    [self.tabBarController setSelectedIndex:3];
     RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
     [self showViewController:customVC sender:self];
 }
@@ -841,12 +840,6 @@
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-//            }) ;
-//                RH_DepositPaylinkViewController *linkVC = [[RH_DepositPaylinkViewController alloc]init];
-//                linkVC.urlStr =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
-////                [self.navigationController showViewController:linkVC sender:self];
                 [[UIApplication sharedApplication]openURL:[NSURL URLWithString:[[data objectForKey:@"data"] objectForKey:@"payLink"]]];
         }] ;
         }else
@@ -872,6 +865,13 @@
     }
     else if (type==ServiceRequestTypeV3ScanPay){
         showErrorMessage(self.circleView, error, @"存款失败");
+    }
+    else if (type==ServiceRequestTypeV3DepositeOriginChannel){
+        self.channelModel=nil;
+        [self.contentTableView reloadData];
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showAlertView(@"无收款账户，请选择其他存款方式！", nil);
+        }];
     }
 }
 #pragma mark -键盘监听方法

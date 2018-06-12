@@ -12,15 +12,12 @@
 #import "RH_LotteryInfoModel.h"
 #import "coreLib.h"
 #import "RH_API.h"
-#import <AVFoundation/AVFoundation.h>
-#import <WebKit/WebKit.h>
-@interface RH_ElecGameViewController ()<RH_ServiceRequestDelegate,UIWebViewDelegate,WKUIDelegate,WKNavigationDelegate>
+@interface RH_ElecGameViewController ()<RH_ServiceRequestDelegate,UIWebViewDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
 @property(nonatomic,strong)CLButton * backBack;
-@property(nonatomic,strong)WKWebView *gameWebView;
-@property(nonatomic,strong)WKUserContentController *userContentController;
+@property(nonatomic,strong)UIWebView *gameWebView;
 @property(nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @property(nonatomic,strong)RH_LotteryInfoModel *lotteryInfoModel;
 //游戏地址
@@ -31,20 +28,15 @@
 @synthesize gameBgImage = _gameBgImage              ;
 @synthesize imageFirstPage = _imageFirstPage    ;
 @synthesize serviceRequest = _serviceRequest ;
+
+
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
-    self.userContentController =[[WKUserContentController alloc]init];
-    configuration.userContentController = self.userContentController;
-    self.gameWebView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:configuration];
-    //注册方法
-//    [self.userContentController addScriptMessageHandler:self  name:@"sayhello"];//注册一个name为sayhello的js方法
     
-    self.gameWebView.UIDelegate = self;
-    self.gameWebView.navigationDelegate = self;
     
-    self.gameWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    self.gameWebView =[[UIWebView alloc]initWithFrame:self.view.bounds];
+    self.gameWebView.delegate = self;
     [self.view addSubview:self.gameWebView];
     
     [self.view addSubview:self.gameBgImage];
@@ -74,7 +66,11 @@
 {
     RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, context);
     self.lotteryInfoModel = lotteryInfoModel;
-    
+   
+}
+-(BOOL)isHiddenStatusBar
+{
+    return YES ;
 }
 
 -(void)handlePan:(UIPanGestureRecognizer *)pan
@@ -85,10 +81,7 @@
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
     [pan setTranslation:CGPointMake(0, 0) inView:self.view];
 }
--(BOOL)isHiddenStatusBar
-{
-    return YES ;
-}
+
 - (UIImageView *)gameBgImage
 {
     if (!_gameBgImage) {
@@ -129,7 +122,7 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES] ;
     if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
-        self.myTabBarController.selectedIndex = 2 ;
+        self.myTabBarController.selectedIndex = 0 ;
     }else{
         self.myTabBarController.selectedIndex = 0 ;
     }
@@ -143,17 +136,17 @@
         [self.navigationController popViewControllerAnimated:YES] ;
     }
 }
-//+(void)configureNavigationBar:(UINavigationBar*)navigationBar
-//{
-//    if (navigationBar){
-//        navigationBar.tintColor = [UIColor whiteColor] ;
-//        navigationBar.barTintColor = [UIColor redColor] ;
-//        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:19],
-//                                              NSForegroundColorAttributeName:[UIColor whiteColor]};
-//    }
-//
-//    return ;
-//}
++(void)configureNavigationBar:(UINavigationBar*)navigationBar
+{
+    if (navigationBar){
+        navigationBar.tintColor = [UIColor whiteColor] ;
+        navigationBar.barTintColor = [UIColor redColor] ;
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+                                              NSForegroundColorAttributeName:[UIColor whiteColor]};
+    }
+
+    return ;
+}
 
 -(BOOL)navigationBarHidden
 {
@@ -171,43 +164,17 @@
 }
 
 #pragma mark-
--(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+- (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
--(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
-{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
-//- (void)webViewDidFinishLoad:(UIWebView *)webView
-//{
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
-//}
-//-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-//{
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
-//}
+
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3GameLinkForCheery) {
-        if (IS_DEV_SERVER_ENV||IS_TEST_SERVER_ENV) {
-            if (![[data objectForKey:@"gameMsg"] isKindOfClass:[NSNull class]]) {
-                if ([[data objectForKey:@"gameMsg"] containsString:@"暂时无法登录"]) {
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    showAlertView(@"", @"暂时无法登录,请稍后再试!");
-                    return;
-                }
-                [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameMsg"]]]];
-            }else{
-                [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
-            }
-        }
-        else{
-            [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
-        }
+          [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
     }
 }
-
 #pragma mark-
 - (BOOL)shouldAutorotate
 {
@@ -220,4 +187,5 @@
     //支持哪些转屏方向
     return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
 }
+
 @end

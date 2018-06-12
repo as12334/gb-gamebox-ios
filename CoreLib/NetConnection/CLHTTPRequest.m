@@ -194,20 +194,20 @@
 //        }
 //        NSLog(@"url===%@",url);
         
-        if (!IS_HTTP_URL(url)) {
-            if (IS_TEST_SERVER_ENV){
-#ifdef TEST_DOMAIN
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",TEST_DOMAIN,@""]] ;
-#endif
-            }else{
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",appDelegate.domain,@""]] ;
+//        if (!IS_HTTP_URL(url)) {
+//            if (IS_TEST_SERVER_ENV){
+//#ifdef TEST_DOMAIN
+//            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+//            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",TEST_DOMAIN,@""]] ;
+//#endif
+//            }else{
+//            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+//            [appDelegate updateDomain:[NSString stringWithFormat:@"%@%@%@",@"https://",appDelegate.domain,@""]] ;
 //            @throw [[NSException alloc] initWithName:NSInvalidArgumentException
 //                                              reason:@"请求的URL必须为HTTP请求"
 //                                            userInfo:nil];
-            }
-        }
+//            }
+//        }
         
         
         //生成查询参数

@@ -9,6 +9,7 @@
 #import "RH_APPDelegate.h"
 #import "RH_ServiceRequest.h"
 #import "SplashViewController.h"
+#import "SplashViewControllerEX.h"
 #import "RH_MainTabBarController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
@@ -90,6 +91,11 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     [splashViewController show:YES completedBlock:^{
         self.window.alpha = 1.f;
     }];
+//    SplashViewControllerEX *splashVC = [SplashViewControllerEX viewController];
+//    splashVC.delegate = self;
+//    self.window.alpha = 0.f;
+//    [splashVC ]
+    
 }
 
 - (BOOL)splashViewControllerWillHidden:(SplashViewController *)viewController
@@ -202,7 +208,10 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _customUrl = tmpStr ;
     }
 }
-
+-(void)setWhetherNewSystemNotice:(NSString *)whetherNewSystemNotice
+{
+    _whetherNewSystemNotice = whetherNewSystemNotice;
+}
 #pragma mark- For MeiQia---overload function
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {

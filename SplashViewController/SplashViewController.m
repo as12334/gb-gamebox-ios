@@ -210,10 +210,10 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 #endif
     }
     self.needObserveNetStatusChanged = YES ;
-//    [self netStatusChangedHandle] ;
+    //    [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
-//    [self performSelector:@selector(startReqSiteInfo) withObject:nil afterDelay:1];
+    //    [self performSelector:@selector(startReqSiteInfo) withObject:nil afterDelay:1];
     [self startReqSiteInfo];
     //注册打开是否check成功的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notCheckDominSuccess:) name:@"youAreNotCheckSuccess" object:nil];
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     [self.domainTableView registerCellWithClass:[RH_DomainTableCell class]] ;
     self.domainTableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
     self.domainTableView.hidden = YES ;
-
+    
 }
 
 -(void)startReqSiteInfo
@@ -265,7 +265,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     }
     
     self.needObserveNetStatusChanged = YES ;
-//    [self netStatusChangedHandle] ;
+    //    [self netStatusChangedHandle] ;
     self.labMark.text = dateStringWithFormatter([NSDate date], @"HHmmss") ;
     [self initView] ;
     [self startReqSiteInfo];
@@ -392,7 +392,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
-//        _urlArray = @[@"192.168.0.236"];
+        //        _urlArray = @[@"192.168.0.236"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
@@ -449,8 +449,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     }
                     
                 }
-                                                                    title:@"检测到新版本"
-                                                                    message:checkVersion.mMemo
+                                                                        title:@"检测到新版本"
+                                                                      message:checkVersion.mMemo
                                                              cancelButtonName:@"暂不更新"
                                                             otherButtonTitles:@"立即更新", nil
                                            ];
@@ -479,7 +479,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                     
                 }
                                                                         title:@"检测到新版本"
-                                                            message:checkVersion.mMemo
+                                                                      message:checkVersion.mMemo
                                                              cancelButtonName:@"退出"
                                                             otherButtonTitles:@"立即更新", nil
                                            ];
@@ -584,23 +584,24 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             //2.添加任务到队列中，就可以执行任务
             //异步函数：具备开启新线程的能力
             dispatch_async(queue, ^{
-               [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https+8989"];
+                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https+8989"];
             });
             dispatch_async(queue, ^{
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
             });
             dispatch_async(queue, ^{
-               [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https"];
+                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https"];
             });
             dispatch_async(queue, ^{
                 [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
             });
+            
         }
         else
         {
-             [self.contentLoadingIndicateView hiddenView] ;
+            [self.contentLoadingIndicateView hiddenView] ;
             //隐藏进度条
-           [self.progressView removeFromSuperview];
+            [self.progressView removeFromSuperview];
             //
             [self.scheduleLabel removeFromSuperview];
             //加载说明
@@ -769,6 +770,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
                 bRet = [weakSelf.delegate splashViewControllerWillHidden:self];
             }
             if (bRet) {
+                
                 //启动页加载完成后跳转
                 [weakSelf hide:YES completedBlock:nil];
             }

@@ -53,17 +53,6 @@
 {
     self.lotteryApiModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
     self.labTitle.text = self.lotteryApiModel.mName ;
-    
-//    NSString * string=@"";
-//    if ([self.lotteryApiModel.showCover containsString:@"mobile-api/ios/themes/blue"]) {
-//        if ([THEMEV3 isEqualToString:@"green"]) {
-//            string=[self.lotteryApiModel.showCover stringByReplacingOccurrencesOfString:@"blue"withString:@"green"];
-//        }
-//    }
-//    NSLog(@"green2=%@",string);
-//    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:string]] ;
-//    NSLog(@"green2=%@",self.lotteryApiModel.mName);
-//    [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover]] ;
     [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryApiModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 

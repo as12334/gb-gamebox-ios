@@ -135,7 +135,7 @@
 {
     if (![_startDate isEqualToDate:startDate]){
         _startDate = startDate ;
-        [self.startBettingDateCell updateUIWithDate:_startDate] ;
+        [self.startBettingDateCell updateUIWithDate:startDate] ;
     }
 }
 

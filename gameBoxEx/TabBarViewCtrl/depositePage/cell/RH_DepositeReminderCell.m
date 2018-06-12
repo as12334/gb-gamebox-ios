@@ -13,7 +13,6 @@
 @property (nonatomic,strong)NSString *content;
 @end
 @implementation RH_DepositeReminderCell
-//static NSString *content = @"温馨提示\n*为了提高对账速度及成功率，当前支付方式已开通随机额度，请输入整数存款金额，将随机增加0.11~0.99元。\n*请保留好转账单据以便核对证明。\n*如果出现充值失败或充值未到账的情况，请联系在线客服寻求帮助。点击联系在线客服";
 - (void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.content = @"";
@@ -24,32 +23,33 @@
          typeCode = reminderArray[1];
     }
     if ([nameStr isEqualToString:@"online"]) {
-        self.content = @"温馨提示\n* 为了提高对账速度及成功率，当前支付方式已开随机额度，请输入整数存款金额，将随机增加0.11~0.99元！\n* 请保留好转账单据作为核对证明。\n* 如出现充值失败或充值后未到账等情况，请联系在线客服获取帮助。点击联系在线客服";
+        self.content = @"温馨提示：\n• 为了提高对账速度及成功率，当前支付方式已开随机额度，请输入整数存款金额，将随机增加0.11~0.99元！\n• 请保留好转账单据作为核对证明。\n• 如出现充值失败或充值后未到账等情况，请联系在线客服获取帮助。 点击联系在线客服";
     }
-    else if ([nameStr isEqualToString:@"company"]) {
-        self.content = @"温馨提示：\n* 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。";
-    }
-    else if ([nameStr isEqualToString:@"wechat"]||[nameStr isEqualToString:@"alipay"]||[nameStr isEqualToString:@"qq"]||[nameStr isEqualToString:@"jd"]||[nameStr isEqualToString:@"bd"]) {
+    else if ([nameStr isEqualToString:@"wechat"]||[nameStr isEqualToString:@"alipay"]||[nameStr isEqualToString:@"qq"]||[nameStr isEqualToString:@"jd"]||[nameStr isEqualToString:@"bd"]||[nameStr isEqualToString:@"unionpay"]) {
             if ([typeCode isEqualToString:@"1"]) {
-                self.content =@"温馨提示：\n* 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。";
+                self.content =@"温馨提示：\n• 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。\n• 如有任何疑问，请联系在线客服获取帮助。点击联系在线客服";
             }
             else if ([typeCode isEqualToString:@"2"]){
-                self.content = @"温馨提示：\n* 为了提高对账速度及成功率，当前支付方式已开随机额度，请输入整数存款金额，将随机增加0.11~0.99元！\n* 支付成功后，请等待几秒钟，提示「支付成功」按确认键后再关闭支付窗口。\n* 如出现充值失败或充值后未到账等情况，请联系在线客服获取帮助。点击联系在线客服";
+                self.content = @"温馨提示：\n• 为了提高对账速度及成功率，当前支付方式已开随机额度，请输入整数存款金额，将随机增加0.11~0.99元！\n• 支付成功后，请等待几秒钟，提示「支付成功」按确认键后再关闭支付窗口。\n• 如出现充值失败或充值后未到账等情况，请联系在线客服获取帮助。 点击联系在线客服";
             }
         
     }
     else if ([nameStr isEqualToString:@"onecodepay"]) {
-        self.content = @"温馨提示：\n* 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。";
+        self.content = @"温馨提示：\n• 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。\n• 如有任何疑问，请联系在线客服获取帮助。点击联系在线客服";
     }
     else if ([nameStr isEqualToString:@"company"]) {
-        self.content = @"温馨提示：\n* 为了提高对账速度及成功率，当前支付方式已开随机额度，请输入整数存款金额，将随机增加0.11~0.99元！\n* 支付成功后，请等待几秒钟，提示「支付成功」按确认键后再关闭支付窗口。\n* 如出现充值失败或充值后未到账等情况，请联系在线客服获取帮助。点击联系在线客服";
+        self.content = @"温馨提示：\n• 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。\n• 如有任何疑问，请联系在线客服获取帮助。点击联系在线客服";
     }
     else if ([nameStr isEqualToString:@"counter"]) {
-        self.content = @"温馨提示：\n* 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。";
+        self.content = @"温馨提示：\n• 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。\n• 如有任何疑问，请联系在线客服获取帮助。点击联系在线客服";
     }
     else if ([nameStr isEqualToString:@"other"]) {
-        self.content = @"温馨提示：\n* 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。";
+        self.content = @"温馨提示：\n• 存款金额请加以小数点或尾数，以便区别。如充值200元，请输入201元或200.1之类小数。\n• 如有任何疑问，请联系在线客服获取帮助。点击联系在线客服";
     }
+    else if ([nameStr isEqualToString:@"easy"]) {
+        self.content = @"温馨提示：\n• 当前支付额度必须精确到小数点，请严格核对您的转账金额精确到分，如：100.51，否则无法提高对账速度及成功率，谢谢您的配合。\n• 如有任何疑问，请联系在线客服获取帮助。点击联系在线客服";
+    }
+
     [self setupUI];
 }
 - (void)awakeFromNib {

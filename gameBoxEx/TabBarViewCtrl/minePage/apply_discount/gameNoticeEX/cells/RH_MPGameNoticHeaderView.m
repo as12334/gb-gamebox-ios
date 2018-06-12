@@ -80,7 +80,7 @@
     if (!_startSeletedDateView) {
         _startSeletedDateView = [RH_MPGameSeletedDateView createInstance];
         _startSeletedDateView.frame = CGRectMake(0, 0, self.startDateView.frame.size.width, self.startDateView.frame.size.height);
-        [_startSeletedDateView updateUIWithDate:_startDate];
+//        [_startSeletedDateView updateUIWithDate:_startDate];
         [_startSeletedDateView addTarget:self Selector:@selector(startDateHandle)];
     }
     return _startSeletedDateView;
@@ -90,7 +90,7 @@
     if (!_endSeletedDateView) {
         _endSeletedDateView = [RH_MPGameSeletedDateView createInstance];
         _endSeletedDateView.frame = CGRectMake(0, 0, self.ennDateView.frame.size.width, self.ennDateView.frame.size.height);
-        [_endSeletedDateView updateUIWithDate:_endDate];
+//        [_endSeletedDateView updateUIWithDate:_endDate];
         [_endSeletedDateView addTarget:self Selector:@selector(endDateHandle)];
     }
     return _endSeletedDateView;

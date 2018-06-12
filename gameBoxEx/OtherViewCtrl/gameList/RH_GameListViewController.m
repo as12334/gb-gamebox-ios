@@ -25,7 +25,6 @@
 #import "RH_GameEmptyDataCell.h"
 
 @interface RH_GameListViewController ()<RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_GameItemsCellDelegate,HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource,RH_GameListCategoryScrollViewDelegate>
-
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
 @property (nonatomic, strong) UITableView *listTable;
 @property (nonatomic, strong) CLRefreshBaseControl *typeControl;

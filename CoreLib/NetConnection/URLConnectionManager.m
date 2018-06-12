@@ -214,7 +214,7 @@
 
 #pragma mark -
 
-//移除连接数据
+//记录连接数据
 #define AddConnectionData(connectionData)                                                         \
 {                                                                                                 \
 [_urlConnectionToDataMap setObject:connectionData forKey:NSNumberWithPointer(urlConnection)]; \

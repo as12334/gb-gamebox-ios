@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *colorView;
 @property (weak, nonatomic) IBOutlet UILabel *accountInfoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *payNameLabel;
 
 @property(nonatomic,strong) RH_DepositeTransferListModel *listModel;
 @end
@@ -30,7 +31,6 @@
 {
     NSArray *array = ConvertToClassPointer(NSArray, context);
    bool mHide = [array[1] boolValue];
-    
     RH_DepositeTransferListModel *listModel =array[0];
     self.listModel = listModel;
     if (mHide) {
@@ -42,9 +42,8 @@
     }
     self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
-//    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover]];
-     [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.accountImgCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
-    
+    self.payNameLabel.text = listModel.mPayName;
+    [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 - (void)awakeFromNib {

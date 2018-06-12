@@ -151,29 +151,27 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
     NSString *urlStr;
-//    if ([checkType isEqualToString:@"https"]) {
-//        urlStr = @"https://%@/__check";
-//    }
-//    else if ([checkType isEqualToString:@"http"]){
-//        urlStr = @"http://%@/__check";
-//    }
-//    else if ([checkType isEqualToString:@"https+8989"]){
+    if ([checkType isEqualToString:@"https"]) {
+        urlStr = @"https://%@/__check";
+    }
+    else if ([checkType isEqualToString:@"http"]){
+        urlStr = @"http://%@/__check";
+    }
+    else if ([checkType isEqualToString:@"https+8989"]){
         urlStr = @"https://%@:8989/__check";
-//    }
-//    else if ([checkType isEqualToString:@"http+8787"]){
-//        urlStr = @"http://%@:8787/__check";
-//    }
-    [self _startServiceWithAPIName:nil
-                        pathFormat:urlStr
-                     pathArguments:@[doMain?:@""]
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain,
-                                     }
-                    queryArguments:nil
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypePost
-                       serviceType:ServiceRequestTypeDomainCheck
-                         scopeType:ServiceScopeTypePublic];
+    }
+    else if ([checkType isEqualToString:@"http+8787"]){
+        urlStr = @"http://%@:8787/__check";
+    }
+        [self _startServiceWithAPIName:nil
+                            pathFormat:urlStr
+                         pathArguments:@[doMain?:@""]
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                        queryArguments:nil
+                         bodyArguments:nil
+                              httpType:HTTPRequestTypeGet
+                           serviceType:ServiceRequestTypeDomainCheck
+                             scopeType:ServiceScopeTypePublic];
 }
 
 -(void)startUpdateCheck
@@ -2719,7 +2717,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-    else if (type == ServiceRequestTypeV3NoticePopup){
+//    else if (type == ServiceRequestTypeV3NoticePopup){
+//    else if (type == ServiceRequestTypeV3DepositeOriginChannel){
+//        NSError * tempError = nil;
+//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+//                                                                                      error:&tempError] : @{};
+//        *reslutData = dataObject ;
+//        return YES ;
+//    }
+    else if (type == ServiceRequestTypeV3CustomService){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -2744,7 +2751,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         *reslutData = dataObject ;
         return YES ;
     }
-//    else if (type == ServiceRequestTypeDomainList){
 //        NSError * tempError = nil;
 //        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
 //                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
@@ -3221,6 +3227,13 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             case ServiceRequestTypeV3HelpDetail:
             {
                 resultSendData = ConvertToClassPointer(NSArray, [[dataObject objectForKey:RH_GP_V3_DATA] objectForKey:@"list"]) ;
+                //增加特殊字符转义
+                for (NSDictionary *resultDic in resultSendData) {
+                    NSString *helpContent = [resultDic objectForKey:@"helpContent"];
+                    helpContent = [helpContent stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+                    helpContent = [helpContent stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+                    [resultDic setValue:helpContent forKey:@"helpContent"];
+                }
                 resultSendData = [RH_HelpCenterDetailModel dataArrayWithInfoArray:resultSendData] ;
 
             }

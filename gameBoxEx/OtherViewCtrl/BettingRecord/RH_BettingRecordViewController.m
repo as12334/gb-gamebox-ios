@@ -16,7 +16,7 @@
 #import "RH_BettingRecordDetailController.h"
 #import "RH_BettingInfoModel.h"
 #import "RH_CustomViewController.h"
-#import "RH_BettingDetailWebController.h"
+//#import "RH_BettingDetailWebController.h"
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
 @property(nonatomic,strong,readonly) RH_BettingTableHeaderView *bettingTableHeaderView ;
@@ -200,8 +200,8 @@
 
 -(void)bettingRecordHeaderViewWillSelectedStartDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.startDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.startDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置开始日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date] dateWithMoveDay:-30]
@@ -213,8 +213,8 @@
 
 -(void)bettingRecordHeaderViewWillSelectedEndDate:(RH_BettingRecordHeaderView*)bettingRecordHeaderView DefaultDate:(NSDate*)defaultDate
 {
-    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.endDate, @"yyyy-MM-dd 00:00");
-    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd 00:00");
+    NSString *defaultDateStr1 =  dateStringWithFormatter(_bettingRecordHeaderView.endDate, @"yyyy-MM-dd");
+    NSString *defaultDateStr2 =  dateStringWithFormatter(defaultDate, @"yyyy-MM-dd");
     [self showCalendarView:@"设置截止日期"
             initDateString:defaultDateStr1?:defaultDateStr2
                    MinDate:[[NSDate date] dateWithMoveDay:-30]

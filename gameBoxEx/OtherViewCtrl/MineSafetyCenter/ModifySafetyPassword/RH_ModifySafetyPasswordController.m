@@ -55,14 +55,13 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
-     [self.serviceRequest startV3GetWithDraw] ;
+    [self.serviceRequest startV3GetWithDraw] ;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = _titleStr?:@"修改安全密码";
     [self setupInfo];
-    [self setNeedUpdateView] ;
     self.needObserverTapGesture = YES ;
     self.isInitSuccess = NO ;
 }
@@ -169,7 +168,6 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         return ;
     }else{
         [self.contentLoadingIndicateView hiddenView] ;
-
         if (UserSafetyInfo.mHasRealName==FALSE){
             _modifySafetyStatus = ModifySafetyStatus_SetRealName ;
             showAlertView(@"用户姓名未设置", @"请先设置姓名") ;

@@ -152,7 +152,6 @@
     self.lotteryCategoryModel = ConvertToClassPointer(RH_LotteryCategoryModel, context) ;
     self.labTitle.text = self.lotteryCategoryModel.mApiTypeName ;
     [self.imgIcon sd_setImageWithURL:[NSURL URLWithString:self.lotteryCategoryModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
-    NSLog(@"--%@",self.lotteryCategoryModel.showCover);
 }
 
 @end

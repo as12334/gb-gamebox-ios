@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 //第三方平台的地址
 @property (nonatomic,strong)NSString *mobileStr;
+
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @end
 @implementation RH_DepositeTransferQRCodeCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -68,8 +70,7 @@
         [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
         self.mobileStr = @"openapp.jdmoble://";
     }
-    self.remarkLabel.text = listmodel.mRemark;
-
+    self.noticeLabel.text = listmodel.mRemark;
 }
 - (IBAction)saveToPhone:(id)sender {
     ifRespondsSelector(self.delegate, @selector(depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:)){
@@ -77,12 +78,35 @@
     }
 }
 - (IBAction)openOtherAppClick:(id)sender {
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.mobileStr]]) {
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.mobileStr]];
+
+    NSString *urlSchemes = @"";
+    NSString *appName = @"";
+    if ([self.transferModel.mBankCode isEqualToString:@"qqwallet"]) {
+        urlSchemes = @"mqq://";
+        appName = @"QQ";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"bdwallet"]) {
+        urlSchemes = @"bdwallet://";
+        appName = @"百度钱包";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"alipay"]) {
+        urlSchemes = @"alipay://";
+        appName = @"支付宝";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"wechatpay"]) {
+        urlSchemes = @"weixin://";
+        appName = @"微信";
+    }
+    else if ([self.transferModel.mBankCode isEqualToString:@"jdwallet"]) {
+        urlSchemes = @"jdpay://";
+        appName = @"京东钱包";
+    }
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlSchemes]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlSchemes]];
     }
     else
     {
-        showMessage(self, @"提示", @"未安装相关软件");
+        showMessage(self, [NSString stringWithFormat:@"请先安装%@",appName], nil);
     }
 }
 - (void)awakeFromNib {
