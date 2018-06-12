@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ErrorStateTopView;
+@protocol ErrorStateTopViewDelegate<NSObject>
+@optional
+-(void)errorStatusOpenOnlinecustom:(ErrorStateTopView *)errorView;
+-(void)errorStatusQQcustom:(ErrorStateTopView *)errorView;
+@end
 @interface ErrorStateTopView : UIView
-
+@property(nonatomic,weak)id<ErrorStateTopViewDelegate>delegate;
 @end

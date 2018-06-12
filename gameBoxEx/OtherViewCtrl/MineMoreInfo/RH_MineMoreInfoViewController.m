@@ -23,6 +23,8 @@
 #import "RH_MineMoreClearStorageCell.h"
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement ;
+//缓存数据
+@property(nonatomic,assign)CGFloat mbCache;
 @end
 
 @implementation RH_MineMoreInfoViewController
@@ -110,7 +112,37 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
+#pragma mark ==============计算缓存================
+-(void)viewWillAppear:(BOOL)animated
+{
+    //计算缓存
+    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    CGFloat fileSize=[self folderSizeAtPath:libPath];
+    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+    float mbCache = bytesCache/1000/1000 + fileSize;
+//    self.detailLabel.text = [NSString stringWithFormat:@"%.2fM",mbCache];
+    self.mbCache = mbCache;
+    
+}
+- (float ) folderSizeAtPath:(NSString*) folderPath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString* fileName;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    return folderSize/(1024.0*1024.0);
+}
+- (long long)fileSizeAtPath:(NSString *)filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
 -(void)setupInfo
 {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
@@ -134,13 +166,8 @@
 {
     if (indexPath.item==4) {
         RH_MineMoreClearStorageCell *clearStorgeCell = ConvertToClassPointer(RH_MineMoreClearStorageCell, cell);
-        [clearStorgeCell updateCellWithInfo:nil context:nil];
-        __block RH_MineMoreInfoViewController *weakSelf = self;
-        clearStorgeCell.block = ^{
-            [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                showMessage(weakSelf.view,@"清除缓存完成", nil);
-            }];
-        };
+        [clearStorgeCell updateCellWithInfo:nil context:@(self.mbCache)];
+       
     }
 }
 -(BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath
@@ -171,9 +198,17 @@
                     [[NSFileManager defaultManager] removeItemAtPath:Path error:&error];
                     //清除sdimage缓存图片
                     [[SDImageCache sharedImageCache]clearMemory];
-//                    if ([SDImageCache sharedImageCache].getDiskCount==0) {
-                        [self.tableViewManagement reloadData];
-//                    }
+                    //计算缓存
+                    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+                    CGFloat fileSize=[self folderSizeAtPath:libPath];
+                    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+                    float mbCache = bytesCache/1000/1000 + fileSize;
+                    self.mbCache = mbCache;
+                    [self.tableViewManagement reloadData];
+                    [self.contentTableView reloadData];
+                    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                        showMessage(self.view, @"缓存已清除", nil);
+                    }];
                 }
             }else{
                 

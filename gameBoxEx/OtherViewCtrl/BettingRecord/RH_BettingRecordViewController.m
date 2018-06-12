@@ -381,7 +381,7 @@
 #else
         RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
         self.appDelegate.customUrl = bettingInfoModel.showDetailUrl ;
-        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        [self showViewController:[RH_CustomViewController viewControllerWithContext:bettingInfoModel] sender:self] ;
 #endif
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO] ;

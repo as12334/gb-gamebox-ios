@@ -15,9 +15,9 @@
 #import "RH_LoginViewControllerEx.h"
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
-
-
-@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate,RH_NavigationBarViewDelegate>
+#import "ErrorStateTopView.h"
+#import "RH_CustomServiceSubViewController.h"
+@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate,RH_NavigationBarViewDelegate,ErrorStateTopViewDelegate>
 @property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
 @end
 
@@ -123,8 +123,31 @@
     
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
+    //基类检测网站是不是挂维护
+    self.isMaintain=NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
+}
+#pragma mark ==============通知================
+-(void)tongzhi:(NSNotification *)notification
+{
+    ErrorStateTopView *errorView = [[ErrorStateTopView alloc]initWithFrame:self.view.bounds];
+    errorView.delegate = self;
+    self.isMaintain=YES;
+    [self.view addSubview:errorView];
+    [self.view bringSubviewToFront:errorView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:errorView];
 }
 
+/**
+ *  维护页面的delegate
+ */
+-(void)errorStatusOpenOnlinecustom:(ErrorStateTopView *)errorView
+{
+//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+//    [UIApplication sharedApplication].keyWindow.rootViewController = customVC;
+//    [self presentViewController:customVC animated:YES completion:nil];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -281,6 +304,7 @@
 
 -(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
 {
+    
     [self.navigationController popToRootViewControllerAnimated:YES] ;
 }
 

@@ -41,7 +41,6 @@
     //注册方法
 //    [self.userContentController addScriptMessageHandler:self  name:@"sayhello"];//注册一个name为sayhello的js方法
     
-    [self.view addSubview:self.gameWebView];
     self.gameWebView.UIDelegate = self;
     self.gameWebView.navigationDelegate = self;
     
@@ -192,7 +191,16 @@
 {
     if (type == ServiceRequestTypeV3GameLinkForCheery) {
         if (IS_DEV_SERVER_ENV||IS_TEST_SERVER_ENV) {
-            [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
+            if (![[data objectForKey:@"gameMsg"] isKindOfClass:[NSNull class]]) {
+                if ([[data objectForKey:@"gameMsg"] containsString:@"暂时无法登录"]) {
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    showAlertView(@"", @"暂时无法登录,请稍后再试!");
+                    return;
+                }
+                [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameMsg"]]]];
+            }else{
+                [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
+            }
         }
         else{
             [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];

@@ -7,13 +7,14 @@
 //
 
 #import "RH_QuickChongZhiViewController.h"
-
-@interface RH_QuickChongZhiViewController ()<UIWebViewDelegate>
+#import <WebKit/WebKit.h>
+@interface RH_QuickChongZhiViewController ()<WKUIDelegate,WKNavigationDelegate>
 {
     NSString *_urlStr ;
     NSString *_title ;
-    UIWebView *_webView ;
 }
+@property(nonatomic,strong)WKWebView *gameWebView;
+@property(nonatomic,strong)WKUserContentController *userContentController;
 @end
 
 @implementation RH_QuickChongZhiViewController
@@ -110,10 +111,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = _title;
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, NavigationBarHeight +StatusBarHeight, screenSize().width, screenSize().height-NavigationBarHeight -StatusBarHeight)] ;
-    _webView.delegate = self ;
-    [self.view addSubview:_webView];
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
+    WKWebViewConfiguration * configuration = [[WKWebViewConfiguration alloc]init];
+    self.userContentController =[[WKUserContentController alloc]init];
+    configuration.userContentController = self.userContentController;
+    self.gameWebView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:configuration];
+    
+    if ([getDeviceModel() isEqualToString:@"iPhone"]) {
+        self.gameWebView.frame = CGRectMake(0, NavigationBarHeight +StatusBarHeight+25, screenSize().width, screenSize().height-NavigationBarHeight -StatusBarHeight);
+    }
+    else
+    {
+      self.gameWebView.frame = CGRectMake(0, NavigationBarHeight +StatusBarHeight, screenSize().width, screenSize().height-NavigationBarHeight -StatusBarHeight);
+    }
+    self.gameWebView.UIDelegate = self;
+    self.gameWebView.navigationDelegate = self;
+    self.gameWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    [self.view addSubview:self.gameWebView];
+      [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
+   
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationTyp:(UIWebViewNavigationType)navigationType

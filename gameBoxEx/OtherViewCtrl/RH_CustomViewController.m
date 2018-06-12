@@ -15,7 +15,8 @@
 #import "RH_LotteryInfoModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_LotteryAPIInfoModel.h"
-
+#import "RH_BettingInfoModel.h"
+#import "RH_WithDrawModel.h"
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
@@ -32,6 +33,7 @@
 -(void)setupViewContext:(id)context
 {
     self.context = context ;
+    
 }
 
 -(void)viewDidLoad
@@ -49,7 +51,7 @@
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
         if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@%@",self.appDelegate.domain,lotteryInfoModel.showGameLink] ;
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@",lotteryInfoModel.showGameLink] ;
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
@@ -64,7 +66,31 @@
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
             [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
         }
-    }else{
+    }else if ([self.context isKindOfClass:[RH_BettingInfoModel class]]){
+        RH_BettingInfoModel *bettingModel = ConvertToClassPointer(RH_BettingInfoModel, self.context);
+//        self.appDelegate.customUrl = bettingModel.showDetailUrl ;
+        self.appDelegate.customUrl = [bettingModel.showDetailUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self setupURL] ;
+    }
+    else if ([self.context isKindOfClass:[RH_WithDrawModel class]]){
+        RH_WithDrawModel *drawModel = ConvertToClassPointer(RH_WithDrawModel, self.context);
+        self.appDelegate.customUrl = drawModel.mAuditLogUrl ;
+        if ([self.appDelegate.checkType isEqualToString:@"https+8989"]) {
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989%@",self.appDelegate.headerDomain,self.appDelegate.customUrl];
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"http+8787"]) {
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"http://%@:8787%@",self.appDelegate.headerDomain,self.appDelegate.customUrl];
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"https"]) {
+            self.appDelegate.customUrl =[NSString stringWithFormat:@"https://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl] ;
+            
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"http"]) {
+            self.appDelegate.customUrl = [NSString stringWithFormat:@"http://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl] ;
+        }
+        [self setupURL];
+    }
+    else{
         [self setupURL] ;
     }
     
@@ -88,8 +114,9 @@
 {
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
+        
     }else{
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",self.appDelegate.customUrl.trim]] ;
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain,self.appDelegate.customUrl.trim]] ;
     }
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
@@ -315,7 +342,7 @@
         NSString *gameLink = lotteryInfoModel.showGameLink ;
         NSString *gameMessage = lotteryInfoModel.mGameMsg ;
         if (gameLink.length){
-            self.appDelegate.customUrl =[NSString stringWithFormat:@"http://%@/%@",self.appDelegate.headerDomain,gameLink]  ;
+            self.appDelegate.customUrl =[NSString stringWithFormat:@"%@",gameLink]  ;
             [self setupURL] ;
         }else{
             showAlertView(@"温馨提示", gameMessage);

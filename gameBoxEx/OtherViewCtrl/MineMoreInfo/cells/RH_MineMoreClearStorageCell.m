@@ -37,35 +37,10 @@
 }
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    //计算缓存
-    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-    CGFloat fileSize=[self folderSizeAtPath:libPath];
-    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
-    float mbCache = bytesCache/1000/1000 + fileSize;
+    CGFloat mbCache = [ConvertToClassPointer(NSNumber, context) floatValue];
     self.detailLabel.text = [NSString stringWithFormat:@"%.2fM",mbCache];
-    if ([self.detailLabel.text isEqualToString:@"0.00M"]) {
-        self.block();
-    }
 }
-- (float ) folderSizeAtPath:(NSString*) folderPath{
-    NSFileManager* manager = [NSFileManager defaultManager];
-    if (![manager fileExistsAtPath:folderPath]) return 0;
-    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
-    NSString* fileName;
-    long long folderSize = 0;
-    while ((fileName = [childFilesEnumerator nextObject]) != nil){
-        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-        folderSize += [self fileSizeAtPath:fileAbsolutePath];
-    }
-    return folderSize/(1024.0*1024.0);
-}
-- (long long)fileSizeAtPath:(NSString *)filePath{
-    NSFileManager* manager = [NSFileManager defaultManager];
-    if ([manager fileExistsAtPath:filePath]){
-        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
-    }
-    return 0;
-}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

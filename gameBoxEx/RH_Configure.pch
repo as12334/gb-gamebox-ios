@@ -36,7 +36,7 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"6"
+#define RH_APP_VERCODE                  @"7"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -2809,6 +2809,15 @@
 #define CODE    @"hpvl"
 #define S        @"823201cd45e2e180c609bf56f4773aa8"
 #define SID        @"588"
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _jktb //恒 利
+
+#define CODE    @"jktb"
+#define S        @"d0e4eebb67579d5b08170aa9cefc5abe"
+#define SID        @"607"
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"

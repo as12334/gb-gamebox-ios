@@ -31,7 +31,6 @@
 #import "RH_UserInfoManager.h"
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
-#import "ErrorstatesVC.h"
 #import "RH_BannerDetailVCViewController.h"
 #import "RH_MainTabBarController.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
@@ -391,7 +390,7 @@
         }else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]]){
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, cellItemModel) ;
             if (lotteryInfoModel.mAutoPay){ //免转
-                [self showViewController:[RH_CustomViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                 return ;
             }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
                 if (lotteryInfoModel.mGameLink.length){
@@ -399,8 +398,9 @@
                         [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                         return ;
                     }else{
-                        self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+//                        self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+//                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
                         return ;
                     }
                 }else{
