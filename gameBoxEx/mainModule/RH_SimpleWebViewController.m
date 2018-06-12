@@ -354,8 +354,8 @@
     NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
-
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+    [request setValue:self.appDelegate.headerDomain forHTTPHeaderField:@"Host"];
     [self.webView loadRequest:request];
 }
 
