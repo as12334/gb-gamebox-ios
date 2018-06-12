@@ -15,8 +15,7 @@
 #import "RH_LotteryInfoModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_LotteryAPIInfoModel.h"
-#import "RH_BettingInfoModel.h"
-#import "RH_WithDrawModel.h"
+
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
@@ -33,7 +32,6 @@
 -(void)setupViewContext:(id)context
 {
     self.context = context ;
-    
 }
 
 -(void)viewDidLoad
@@ -51,7 +49,7 @@
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
         if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = [NSString stringWithFormat:@"%@",lotteryInfoModel.showGameLink] ;
+            self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
             [self setupURL] ;
         }else{
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
@@ -66,31 +64,7 @@
             [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
             [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
         }
-    }else if ([self.context isKindOfClass:[RH_BettingInfoModel class]]){
-        RH_BettingInfoModel *bettingModel = ConvertToClassPointer(RH_BettingInfoModel, self.context);
-//        self.appDelegate.customUrl = bettingModel.showDetailUrl ;
-        self.appDelegate.customUrl = [bettingModel.showDetailUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [self setupURL] ;
-    }
-    else if ([self.context isKindOfClass:[RH_WithDrawModel class]]){
-        RH_WithDrawModel *drawModel = ConvertToClassPointer(RH_WithDrawModel, self.context);
-        self.appDelegate.customUrl = drawModel.mAuditLogUrl ;
-        if ([self.appDelegate.checkType isEqualToString:@"https+8989"]) {
-            self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989%@",self.appDelegate.headerDomain,self.appDelegate.customUrl];
-        }
-        else if ([self.appDelegate.checkType isEqualToString:@"http+8787"]) {
-            self.appDelegate.customUrl = [NSString stringWithFormat:@"http://%@:8787%@",self.appDelegate.headerDomain,self.appDelegate.customUrl];
-        }
-        else if ([self.appDelegate.checkType isEqualToString:@"https"]) {
-            self.appDelegate.customUrl =[NSString stringWithFormat:@"https://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl] ;
-            
-        }
-        else if ([self.appDelegate.checkType isEqualToString:@"http"]) {
-            self.appDelegate.customUrl = [NSString stringWithFormat:@"http://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl] ;
-        }
-        [self setupURL];
-    }
-    else{
+    }else{
         [self setupURL] ;
     }
     
@@ -104,7 +78,7 @@
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {
     CGPoint point=[pan translationInView:self.view];
-//    NSLog(@"%f,%f",point.x,point.y);
+    //    NSLog(@"%f,%f",point.x,point.y);
     pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
     [pan setTranslation:CGPointMake(0, 0) inView:self.view];
@@ -114,9 +88,8 @@
 {
     if([self.appDelegate.customUrl containsString:@"http"]){
         self.webURL = [NSURL URLWithString:self.appDelegate.customUrl.trim] ;
-        
     }else{
-        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain,self.appDelegate.customUrl.trim]] ;
+        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl.trim]] ;
     }
     
     if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
@@ -166,30 +139,30 @@
         _gameBgImage.contentMode = UIViewContentModeScaleAspectFill;
         _gameBgImage.clipsToBounds = YES;
         _gameBgImage.userInteractionEnabled = YES;
-
-       _homeBack = [[CLButton alloc] initWithFrame:CGRectMake(0, 0, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
+        
+        _homeBack = [[CLButton alloc] initWithFrame:CGRectMake(0, 0, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
         _homeBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         [_homeBack setBackgroundColor:BlackColorWithAlpha(0.2f)
-                                  forState:UIControlStateHighlighted];
+                             forState:UIControlStateHighlighted];
         [_homeBack setBackgroundImage:ImageWithName(@"icon_home") forState:UIControlStateNormal] ;
         [_homeBack addTarget:self
-                           action:@selector(_homeBackHandle)
-                 forControlEvents:UIControlEventTouchUpInside];
+                      action:@selector(_homeBackHandle)
+            forControlEvents:UIControlEventTouchUpInside];
         [_gameBgImage addSubview:_homeBack];
-
-
+        
+        
         _backBack = [[CLButton alloc] initWithFrame:CGRectMake(0, floor(_gameBgImage.boundHeigh/2.0)+1, _gameBgImage.boundWidth, floor(_gameBgImage.boundHeigh/2.0))];
         _backBack.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         [_backBack setBackgroundColor:BlackColorWithAlpha(0.2f)
-                            forState:UIControlStateHighlighted];
+                             forState:UIControlStateHighlighted];
         [_backBack setBackgroundImage:ImageWithName(@"title_back") forState:UIControlStateNormal] ;
         [_backBack addTarget:self
-                     action:@selector(_backBackHandle)
-           forControlEvents:UIControlEventTouchUpInside];
+                      action:@selector(_backBackHandle)
+            forControlEvents:UIControlEventTouchUpInside];
         [_gameBgImage addSubview:_backBack];
-
+        
     }
-
+    
     return _gameBgImage;
 }
 
@@ -239,7 +212,7 @@
             customUrl = jsVal;
             NSLog(@"jsVal==%@", jsVal.toString);
         }
-
+        
         if (args[0] != NULL) {
             self.appDelegate.customUrl = customUrl.toString;
         }
@@ -247,10 +220,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]) &&
                 [self.appDelegate.customUrl containsString:@"/login/commonLogin.html"]){
-//                //跳转原生
-//                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
-//                loginViewCtrlEx.delegate = self ;
-//                [self showViewController:loginViewCtrlEx sender:self] ;
+                //跳转原生
+                RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewController] ;
+                loginViewCtrlEx.delegate = self ;
+                [self showViewController:loginViewCtrlEx sender:self] ;
             }else
             {
                 self.webURL = nil ;
@@ -258,11 +231,11 @@
             }
         }) ;
     } ;
-
+    
     jsContext[@"loginOut"] = ^(){
         NSLog(@"JSToOc :%@------ loginOut",NSStringFromClass([self class])) ;
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
+        //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+        //        [[NSUserDefaults standardUserDefaults] synchronize];
         [self.appDelegate updateLoginStatus:false] ;
         
         if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -342,7 +315,7 @@
         NSString *gameLink = lotteryInfoModel.showGameLink ;
         NSString *gameMessage = lotteryInfoModel.mGameMsg ;
         if (gameLink.length){
-            self.appDelegate.customUrl =[NSString stringWithFormat:@"%@",gameLink]  ;
+            self.appDelegate.customUrl = gameLink ;
             [self setupURL] ;
         }else{
             showAlertView(@"温馨提示", gameMessage);
@@ -372,16 +345,16 @@
     [super webViewDidEndLoad:error] ;
     if (error){
         [self.webView stringByEvaluatingJavaScriptFromString:@"$('.mui-inner-wrap').height();"];//防止白屏
-
+        
         //账号退出
         if([self.appDelegate.customUrl isEqualToString:@"/passport/logout.html"]){
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }
-
+        
         NSArray* filterUrls = [[NSArray alloc] initWithObjects:@"/login/commonLogin.",@"/signUp/index.",@"/passport/logout.",@"/help/",@"/promoDetail.",@"/lottery/mainIndex.",@"/lottery/",@"/index.",@"/lotteryResultHistory/",nil];
         //判断是否需要登录判断
-
+        
         if([filterUrls containsObject: self.webURL.absoluteString] == 1){
             [self.webView stringByEvaluatingJavaScriptFromString:@"loginState(isLogin);"];
         }
@@ -402,8 +375,5 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
 }
-
-
-
 
 @end

@@ -151,18 +151,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
 {
     NSString *urlStr;
-    if ([checkType isEqualToString:@"https"]) {
-        urlStr = @"https://%@/__check";
-    }
-    else if ([checkType isEqualToString:@"http"]){
-        urlStr = @"http://%@/__check";
-    }
-    else if ([checkType isEqualToString:@"https+8989"]){
+//    if ([checkType isEqualToString:@"https"]) {
+//        urlStr = @"https://%@/__check";
+//    }
+//    else if ([checkType isEqualToString:@"http"]){
+//        urlStr = @"http://%@/__check";
+//    }
+//    else if ([checkType isEqualToString:@"https+8989"]){
         urlStr = @"https://%@:8989/__check";
-    }
-    else if ([checkType isEqualToString:@"http+8787"]){
-        urlStr = @"http://%@:8787/__check";
-    }
+//    }
+//    else if ([checkType isEqualToString:@"http+8787"]){
+//        urlStr = @"http://%@:8787/__check";
+//    }
     [self _startServiceWithAPIName:nil
                         pathFormat:urlStr
                      pathArguments:@[doMain?:@""]
@@ -260,7 +260,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_AUTOLOGIN
                          pathArguments:nil
                        headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
-                                         @"User-Agent":@"app_ios, iPhone",@"Cookie":userInfo_manager.sidString?:@"",
+                                         @"User-Agent":@"app_ios, iPhone",
+                                         @"Cookie":userInfo_manager.sidString?:@"",
                                          @"Host":self.appDelegate.headerDomain
                                          }
                         queryArguments:@{@"username":userName?:@"",
@@ -463,7 +464,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_HOMEINFO
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+                                     @"Host":self.appDelegate.headerDomain,
+                                     @"Cookie":userInfo_manager.sidString?:@""
                                      }
                     queryArguments:nil
                      bodyArguments:nil

@@ -672,7 +672,6 @@
             }else{
                 [self.appDelegate updateLoginStatus:false] ;
             }
-            
         }else{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
@@ -707,9 +706,9 @@
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }
-//    else if (type==ServiceRequestTypeV3BossSysDomain){
-//        
-//    }
+    else if (type==ServiceRequestTypeV3GETUSERASSERT){
+        
+    }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
