@@ -516,7 +516,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
-    
     static BOOL ended = NO;
     CGPoint translatedPoint = [scrollView.panGestureRecognizer translationInView:scrollView];
     if(translatedPoint.y < 0)
@@ -530,7 +529,7 @@
     if(translatedPoint.y > 0)
     {
         ended = NO;
-    }
+    }    
 }
 
 #pragma mark - RH_GameListCategoryScrollViewDelegate M

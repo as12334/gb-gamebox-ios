@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RH_ChangePswSuccessView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDv-8Z-j2J">
+                    <rect key="frame" x="66.5" y="155" width="241" height="357"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmE-3q-HEp">
+                            <rect key="frame" x="0.5" y="0.0" width="240" height="281"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="findbackpsw_biaoqing" translatesAutoresizingMaskIntoConstraints="NO" id="avp-sq-Nep">
+                                    <rect key="frame" x="64" y="58" width="112" height="100"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="112" id="WST-48-Zns"/>
+                                        <constraint firstAttribute="height" constant="100" id="b0v-vQ-szI"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码设置成功，请牢记" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bg-fY-8P9">
+                                    <rect key="frame" x="41.5" y="192" width="157.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="281" id="Fm6-uv-MW2"/>
+                                <constraint firstItem="avp-sq-Nep" firstAttribute="centerX" secondItem="xmE-3q-HEp" secondAttribute="centerX" id="Q6v-D5-NWp"/>
+                                <constraint firstItem="7bg-fY-8P9" firstAttribute="top" secondItem="avp-sq-Nep" secondAttribute="bottom" constant="34" id="cVk-ME-gye"/>
+                                <constraint firstItem="7bg-fY-8P9" firstAttribute="centerX" secondItem="xmE-3q-HEp" secondAttribute="centerX" id="qV4-j7-L36"/>
+                                <constraint firstItem="avp-sq-Nep" firstAttribute="top" secondItem="xmE-3q-HEp" secondAttribute="top" constant="58" id="ylM-3g-EjJ"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwH-uL-jCu">
+                            <rect key="frame" x="95" y="306" width="52" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="52" id="mBd-hX-Bzh"/>
+                                <constraint firstAttribute="height" constant="52" id="sv5-GA-fcE"/>
+                            </constraints>
+                            <state key="normal" image="findbackpsw_close"/>
+                            <connections>
+                                <action selector="close:" destination="iN0-l3-epB" eventType="touchUpInside" id="sP9-8A-eMM"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="xmE-3q-HEp" firstAttribute="leading" secondItem="oDv-8Z-j2J" secondAttribute="leading" id="4YH-0J-x0W"/>
+                        <constraint firstItem="xmE-3q-HEp" firstAttribute="top" secondItem="oDv-8Z-j2J" secondAttribute="top" id="BJr-H6-4k2"/>
+                        <constraint firstAttribute="width" constant="241" id="Fxm-7g-YHO"/>
+                        <constraint firstAttribute="trailing" secondItem="xmE-3q-HEp" secondAttribute="trailing" id="eln-C1-cVP"/>
+                        <constraint firstItem="SwH-uL-jCu" firstAttribute="centerX" secondItem="oDv-8Z-j2J" secondAttribute="centerX" id="g0l-wo-9jA"/>
+                        <constraint firstItem="SwH-uL-jCu" firstAttribute="top" secondItem="xmE-3q-HEp" secondAttribute="bottom" constant="25" id="gIa-AA-rzA"/>
+                        <constraint firstAttribute="height" constant="357" id="t0E-De-UAL"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="oDv-8Z-j2J" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9Pe-SJ-srq"/>
+                <constraint firstItem="oDv-8Z-j2J" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YTM-TH-eQT"/>
+            </constraints>
+            <connections>
+                <outlet property="cornerView" destination="xmE-3q-HEp" id="cdA-ob-pPA"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="findbackpsw_biaoqing" width="112" height="100"/>
+        <image name="findbackpsw_close" width="52" height="52"/>
+    </resources>
+</document>

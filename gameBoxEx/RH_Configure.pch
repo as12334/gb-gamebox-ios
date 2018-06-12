@@ -25,6 +25,7 @@
 #if  IS_DEV_SERVER_ENV
 #define RH_APP_VERCODE                  @"6"
 #define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss-api/"]
+
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //测试环境
@@ -112,6 +113,7 @@
 #elif _wjbn //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 #define TEST_DOMAIN         @"http://192.168.0.92/boss-api/"
+//#define TEST_DOMAIN         @"http://192.168.0.236/boss-api/"
 #define CODE    @"wjbn"
 #define S        @"f0581a9da25c2476d18f7675362f596c"
 #define SID        @"21"
@@ -125,8 +127,7 @@
 #define S        @"632fbc122abfffdec078a665a76a1c16"
 #define SID        @"21"
 #define THEME    @"default.skin"
-#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black#define SITE_TYPE    @"integratedv3oc"
 
 #elif _DEBUG71 //超博娱乐
 //#define TEST_DOMAIN  @"test.gbboss.com:1344"

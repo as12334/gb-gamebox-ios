@@ -11,19 +11,11 @@
 #import "RH_APPDelegate.h"
 #import "RH_LotteryAPIInfoModel.h"
 #import "RH_LotteryInfoModel.h"
-#import <WebKit/WebKit.h>
-#import "coreLib.h"
-#import "RH_UserInfoManager.h"
-#import "RH_HTTPRequest.h"
-@interface RH_GamesViewController ()<WKUIDelegate,WKNavigationDelegate,UIWebViewDelegate,RH_ServiceRequestDelegate>
+@interface RH_GamesViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
 @property(nonatomic,strong)CLButton * backBack;
-@property(nonatomic,strong)NSURL *subUrl;
-@property(nonatomic,strong)UIWebView *gameWebView;
-@property(nonatomic,strong)RH_ServiceRequest *serviceRequest;
-@property(nonatomic,strong)RH_APPDelegate *appDelegate;
 @end
 
 @implementation RH_GamesViewController{
@@ -48,16 +40,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.serviceRequest = [[RH_ServiceRequest alloc]init];
-    self.serviceRequest.delegate= self;
-//    self.autoShowWebTitle = NO ;
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    self.appDelegate = appDelegate;
-    self.gameWebView =[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frameWidth, self.view.frameHeigh-100)];
-    self.gameWebView.delegate = self;
-    self.gameWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
-    
+    self.autoShowWebTitle = NO ;
     [self.view addSubview:self.gameBgImage];
     [self.view bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
@@ -65,70 +48,59 @@
     [self.gameBgImage addGestureRecognizer:pan];
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.view, -0.0f) ;
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
-//    [self showProgressIndicatorViewWithAnimated:YES title:@"加载中"];
     if (_apiInfoModel){//需请求加载的link
+        
+        //        if (_apiInfoModel.showGameLink.length){ //已获取的请求链接
+        //            self.appDelegate.customUrl = _apiInfoModel.showGameLink ;
+        //            [self setupInfo] ;
+        //        }else{
+        [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
         [self.serviceRequest startv3GetGamesLinkForCheeryLink:_apiInfoModel.mGameLink] ;
-
+        //            [self.serviceRequest startv3GetGamesLink:_apiInfoModel.mApiID
+        //                                           ApiTypeID:_apiInfoModel.mApiTypeID
+        //                                             GamesID:nil
+        //                                           GamesCode:nil] ;
+        //        }
     }else if (_lotteryInfoModel){//
-        if (_lotteryInfoModel.showGameLink.length>0){ //已获取的请求链接
-            appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
+        if (_lotteryInfoModel.showGameLink.length){ //已获取的请求链接
+            self.appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
             [self setupInfo] ;
         }else{
+            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
             [self.serviceRequest startv3GetGamesLinkForCheeryLink:_lotteryInfoModel.mGameLink] ;
+            
         }
+    }else{
+        [self setupInfo] ;
     }
 }
 
 -(void)setupInfo
 {
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    if([appDelegate.customUrl containsString:@"http"]){
-        self.subUrl = [NSURL URLWithString:appDelegate.customUrl] ;
+//    if([self.appDelegate.customUrl containsString:@"http"]){
+//        self.webURL = [NSURL URLWithString:self.appDelegate.customUrl] ;
+//    }else{
+//        self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",self.appDelegate.domain.trim,self.appDelegate.customUrl]] ;
+//    }
+    
+    if([self.appDelegate.customUrl containsString:@"http"]){
+        self.webURL = [NSURL URLWithString:self.appDelegate.customUrl] ;
     }
     else{
-//        if ([self.appDelegate.checkType isEqualToString:@"https+8989"]) {
-//            self.subUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@:8989%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
-//        }
-//        else if ([self.appDelegate.checkType isEqualToString:@"http+8787"]) {
-//            self.subUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8787%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
-//        }
-//        else if ([self.appDelegate.checkType isEqualToString:@"https"]) {
-            self.subUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@%@",appDelegate.headerDomain,appDelegate.customUrl]] ;
-//
-//        }
-//       else if ([self.appDelegate.checkType isEqualToString:@"http"]) {
-//            self.subUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
-//        }
-    
+        if ([self.appDelegate.checkType isEqualToString:@"https+8989"]) {
+            self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@:8989%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"http+8787"]) {
+            self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8787%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"https"]) {
+            self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
+            
+        }
+        else if ([self.appDelegate.checkType isEqualToString:@"http"]) {
+            self.webURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",self.appDelegate.headerDomain,self.appDelegate.customUrl]] ;
+        }
     }
-//    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:self.subUrl];
-//    NSArray *sidArray =[[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
-//    [request addValue:[RH_UserInfoManager shareUserManager].sidString forHTTPHeaderField:@"Cookie"];
-    
-//    NSHTTPCookieStorage * nCookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-//    NSArray* cookiesURL = [nCookies cookiesForURL:self.subUrl];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.subUrl];
-//    [request setHTTPMethod: @"POST"];
-//    NSDictionary *dic = @{@"Cookie":[NSString stringWithFormat:@"%@",[RH_UserInfoManager shareUserManager].sidString],@"Host":appDelegate.headerDomain};
-//    [request setAllHTTPHeaderFields:dic];
-//    [request addValue:@"customCookieName=1314521;" forHTTPHeaderField:@"Set-Cookie"];
-//    [request setValue:[NSString stringWithFormat:@"%@",[RH_UserInfoManager shareUserManager].sidString] forHTTPHeaderField:@"Cookie"];
-//    [request setValue:appDelegate.headerDomain forHTTPHeaderField:@"Host"];
-//    NSString *body = [NSString stringWithFormat:@"Cookie=%@,Host=%@",[RH_UserInfoManager shareUserManager].sidString,appDelegate.headerDomain];
-//    [request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-    RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:[NSString stringWithFormat:@"https://%@",appDelegate.headerDomain]  pathFormat:appDelegate.customUrl
-                                                             pathArguments:nil
-                                                            queryArguments:nil
-                                                           headerArguments:@{
-                                                                             @"User-Agent":@"app_ios, iPhone",
-                                                                    @"Host":self.appDelegate.headerDomain,
-                                                                             @"Cookie":[RH_UserInfoManager shareUserManager].sidString
-                                                                             }
-                                                             bodyArguments:nil
-                                                                      type:HTTPRequestTypePost];
-
-    [self.gameWebView loadRequest:httpRequest.urlRequest];
-    [self.view addSubview:self.gameWebView];
 }
 -(BOOL)isHiddenStatusBar
 {
@@ -138,7 +110,7 @@
 -(void)handlePan:(UIPanGestureRecognizer *)pan
 {
     CGPoint point=[pan translationInView:self.view];
-//    NSLog(@"%f,%f",point.x,point.y);
+    //    NSLog(@"%f,%f",point.x,point.y);
     pan.view.center=CGPointMake(pan.view.center.x+point.x, pan.view.center.y+point.y);
     //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
     [pan setTranslation:CGPointMake(0, 0) inView:self.view];
@@ -212,7 +184,7 @@
         navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:19],
                                               NSForegroundColorAttributeName:[UIColor whiteColor]};
     }
-
+    
     return ;
 }
 
@@ -233,8 +205,8 @@
 
 #pragma mark -
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView {
-    if (self.subUrl.absoluteString.length){
-//        [self reloadWebView];
+    if (self.webURL.absoluteString.length){
+        [self reloadWebView];
     }
 }
 
@@ -255,14 +227,14 @@
 #pragma mark-
 -(void)webViewDidEndLoad:(NSError *)error
 {
-//    [super webViewDidEndLoad:error] ;
+    [super webViewDidEndLoad:error] ; 
     
     if (!error){
-        NSString *url = self.gameWebView.request.URL.absoluteString;
+        NSString *url = self.webView.request.URL.absoluteString;
         NSString *qqWallet = @"https://myun.tenpay.com/";
         NSString *alipay = @"https://ds.alipay.com/";
         NSString *weixin = @"weixin";
-
+        
         if ([url.lowercaseString containsString:qqWallet] || [url.lowercaseString containsString:alipay] || [url.lowercaseString containsString:weixin]) {
             NSLog(@"浏览器加载支付地址：%@", url);
             NSURL *cleanURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", url]];
@@ -270,10 +242,7 @@
         }
     }
 }
--(void)webViewDidClose:(WKWebView *)webView
-{
-    
-}
+
 //- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 //{
 //    NSString *url = navigationAction.request.URL.absoluteString;
@@ -286,6 +255,9 @@
 {
     if  (error.code==101){//忽略不处理 。
     }
+    //    else if (error.code==-999){
+    //        return;
+    //    }
     else{
 //        [super webView:webView didFailLoadWithError:error] ;
     }
@@ -323,6 +295,7 @@
         }else {
             [_lotteryInfoModel updateShowGameLink:gameLinkDict] ;
         }
+        
         NSString *gameLink = _apiInfoModel.showGameLink?:_lotteryInfoModel.showGameLink ;
         NSString *gameMessage = _apiInfoModel.mGameMsg?:_lotteryInfoModel.mGameMsg ;
         if (gameLink.length){
@@ -349,18 +322,6 @@
 //        [self.contentLoadingIndicateView showDefaultLoadingErrorStatus:error] ;
     }
 }
-//-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-//{
-//    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-//        showMessage(self.view, @"即将进入...", nil);
-//    }];
-//}
-//-(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
-//{
-//    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-//        showErrorMessage(self.view,error,@"加载失败");
-//    }];
-//}
 #pragma mark-
 - (BOOL)shouldAutorotate
 {

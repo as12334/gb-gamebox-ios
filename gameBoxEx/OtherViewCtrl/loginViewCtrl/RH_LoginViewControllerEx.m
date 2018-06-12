@@ -15,6 +15,7 @@
 #import "RH_ForgetPasswordController.h"
 #import "RH_UserInfoManager.h"
 #import "RH_OldUserVerifyView.h"//老用户验证
+#import "RH_FindbackPswWaysViewController.h"
 
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
@@ -235,8 +236,7 @@
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    self.myTabBarController.selectedIndex = 3 ;
+    [self showViewController:[RH_FindbackPswWaysViewController viewController] sender:nil];
 }
 #pragma mark-
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
