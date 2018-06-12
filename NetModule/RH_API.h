@@ -1104,6 +1104,14 @@
 
 #define RH_API_NAME_BOSSSYSDOMAIN       @"/app/line.html"
 
+
+#pragma mark -v3  初始化广告
+
+#define RH_API_NAME_INITAD       @"mobile-api/origin/getIntoAppAd.html"
+//返回参数
+#define RH_GP_INITAD_APPAD                 @"initAppAd"
+
+
 #pragma mark ==============消息公告弹窗================
 #define RH_API_NAME_WEBSOCKETMDCETER    @"/mdcenter/websocket/msite?localeType=zh_CN"
 

@@ -11,7 +11,9 @@
 #import "RH_APPDelegate.h"
 #import "RH_LotteryAPIInfoModel.h"
 #import "RH_LotteryInfoModel.h"
-@interface RH_GamesViewController ()
+#import <WebKit/WebKit.h>
+#import "coreLib.h"
+@interface RH_GamesViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
@@ -28,6 +30,7 @@
 
 -(void)setupViewContext:(id)context
 {
+   
     if ([context isKindOfClass:[RH_LotteryAPIInfoModel class]]){
         _apiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
     }else if ([context isKindOfClass:[RH_LotteryInfoModel class]]){
@@ -205,6 +208,7 @@
 
 #pragma mark -
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView {
+
     if (self.webURL.absoluteString.length){
         [self reloadWebView];
     }
@@ -253,6 +257,7 @@
 //}
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+   
     if  (error.code==101){//忽略不处理 。
     }
     //    else if (error.code==-999){
@@ -266,7 +271,6 @@
 #pragma mark- service request
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
         if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
@@ -310,6 +314,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest  serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
+    
     if (type == ServiceRequestTypeUserAutoLogin || type == ServiceRequestTypeUserLogin){
         [self.appDelegate updateLoginStatus:false] ;
     }else if (type==ServiceRequestTypeDemoLogin){

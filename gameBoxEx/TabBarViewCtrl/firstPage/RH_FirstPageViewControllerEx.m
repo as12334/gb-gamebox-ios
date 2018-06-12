@@ -33,6 +33,7 @@
 #import <SafariServices/SafariServices.h>
 #import "RH_BannerDetailVCViewController.h"
 #import "RH_MainTabBarController.h"
+#import "RH_InitAdModel.h"
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -301,6 +302,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+    
     if (self.appDelegate.isLogin){
         [self.serviceRequest startV3GetUserAssertInfo] ;
     }
@@ -616,6 +618,7 @@
     if (self.appDelegate.isLogin) {
         [self.serviceRequest startV3GetUserAssertInfo] ;
         [self.serviceRequest startV3RereshUserSessin] ;
+        [self.serviceRequest startV3InitAd];
     }
 }
 
@@ -705,9 +708,9 @@
             showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
-    }
-    else if (type==ServiceRequestTypeV3GETUSERASSERT){
-        
+    }else if (type == ServiceRequestTypeV3INITAD){
+        RH_InitAdModel *model = ConvertToClassPointer(RH_InitAdModel, data);
+        NSLog(@"mInitAppAd==%@",model.mInitAppAd);
     }
 }
 
@@ -743,6 +746,8 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(nil, error, @"资金刷新失败") ;
         }] ;
+    }else if (type == ServiceRequestTypeV3INITAD){
+        
     }
 }
 

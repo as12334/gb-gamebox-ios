@@ -172,7 +172,18 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3GameLinkForCheery) {
-          [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
+        if (IS_DEV_SERVER_ENV||IS_TEST_SERVER_ENV) {
+            if (![[data objectForKey:@"gameMsg"] isKindOfClass:[NSNull class]]) {
+//                if ([[data objectForKey:@"gameMsg"] containsString:@"暂时无法登录"]) {
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    showAlertView(@"", [data objectForKey:@"gameMsg"]);
+            }else{
+                [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
+            }
+        }
+        else{
+            [self.gameWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[data objectForKey:@"gameLink"]]]];
+        }
     }
 }
 #pragma mark-

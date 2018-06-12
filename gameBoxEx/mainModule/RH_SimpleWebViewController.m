@@ -110,6 +110,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated] ;
     if ([self needLogin]){
         //check whether login
@@ -572,6 +573,7 @@
 #pragma mark-
 -(void)setupJSCallBackOC:(JSContext*)jsContext
 {
+   
     jsContext[@"nativeGoToRegisterPage"] = ^(){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self showViewController:[RH_RegistrationViewController viewController]

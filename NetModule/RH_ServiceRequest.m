@@ -55,6 +55,7 @@
 #import "RH_UserApiBalanceModel.h"
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_ShareRecordModel.h"
+#import "RH_InitAdModel.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2233,6 +2234,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+
+-(void)startV3InitAd
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_INITAD
+                     pathArguments:nil
+                   headerArguments:@{
+                                     //                                     @"X-Requested-With":@"XMLHttpRequest",
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeV3INITAD
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark - 找回密码
 
 - (void)findUserPhone:(NSString *)username
@@ -3310,6 +3330,17 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =  [[RH_ShareRecordModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
+            case ServiceRequestTypeV3INITAD:
+            {
+                resultSendData =  [[RH_InitAdModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
+            }
+                break;
+                
+//                case ServiceRequestTypeV3ScanPay:
+//            {
+//                
+//            }
+//                break;
                 case ServiceRequestTypeV3FindUserPhone:
             {
                 
