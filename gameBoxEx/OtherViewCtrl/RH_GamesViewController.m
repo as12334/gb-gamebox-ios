@@ -321,12 +321,16 @@
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
         showMessage(self.view, @"即将进入...", nil);
     }];
-    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"test01.ccenter.test.so"]||[[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
+//    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"test01.ccenter.test.so"]||[[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
+//
+//        [self.navigationController popViewControllerAnimated:YES];
+//        self.myTabBarController.selectedIndex = 0 ;
+//    }
+    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
         
         [self.navigationController popViewControllerAnimated:YES];
         self.myTabBarController.selectedIndex = 0 ;
     }
-
 }
 -(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
