@@ -167,7 +167,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         [self _startServiceWithAPIName:nil
                             pathFormat:urlStr
                          pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":@"app_ios, iPhone"}
+                       headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                         @"Host":self.appDelegate.headerDomain
+                                         }
                         queryArguments:nil
                          bodyArguments:nil
                               httpType:HTTPRequestTypeGet

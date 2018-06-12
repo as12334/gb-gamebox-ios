@@ -141,11 +141,6 @@
 
 #elif _rf80 //TEST01[21]  V3原生
 #define TEST_DOMAIN         @"test01.ccenter.test.so"
-<<<<<<< HEAD
-
-=======
-//#define TEST_DOMAIN  @"71.hongtubet.com"
->>>>>>> origin/dev_sam
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN           @"beebet777.com"
 //#define TEST_DOMAIN         @"test71.hongtubet.com"
@@ -218,11 +213,7 @@
 #elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN  @"test02.hongtubet.com"
-<<<<<<< HEAD
 #define TEST_DOMAIN  @"71.hongtubet.com"
-=======
-#define TEST_DOMAIN  @"test71.hongtubet.com"
->>>>>>> origin/dev_sam
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
@@ -2903,13 +2894,9 @@
 #define CODE    @"yyvd"
 #define S        @"b3e6117adb0e4cd3308e1eceba2b1c74"
 #define SID        @"597"
->>>>>>> origin/dev_sam
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
-
-<<<<<<< HEAD
-=======
 #elif _s90r //戰神國際
 
 #define CODE    @"s90r"
@@ -2981,10 +2968,6 @@
 #define THEME    @"default.skin"
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
-
-
-
->>>>>>> origin/dev_sam
 #endif
 
 #endif /* RH_Configure_h */
