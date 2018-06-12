@@ -336,26 +336,30 @@
 - (void)_startLoadWebView
 {
     //开始加载网页内容
-//    NSMutableURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.webURL];
-//    if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-////        [dictionnary setValue:@"v3.0" forKey:@"app_version"] ;//用于后台切换 v3 环境
-//        [urlRequest setValue:@"3.0" forHTTPHeaderField:@"app_version 3.0"] ;
-//    }
-//    [urlRequest setValue:[RH_UserInfoManager shareUserManager].sidString forHTTPHeaderField:@"Cookie"];
-    
-    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
-    [cookieProperties setObject:self.appDelegate.headerDomain forKey:NSHTTPCookieDomain];
-    [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
-    [cookieProperties setObject:@"SID" forKey:NSHTTPCookieName];
-    NSArray *sidStringCompArr = [[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
-    NSArray *sidInfoArr = [[sidStringCompArr firstObject] componentsSeparatedByString:@"="];
-    [cookieProperties setObject:sidInfoArr[1] forKey:NSHTTPCookieValue];
-    NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
-    [request setValue:self.appDelegate.headerDomain forHTTPHeaderField:@"Host"];
-    [self.webView loadRequest:request];
+    //我们自己的游戏需要传入SID
+    //第三方游戏不需要传入SID
+    if ([self.webURL.absoluteString containsString:self.appDelegate.headerDomain]) {
+        NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+        [cookieProperties setObject:self.appDelegate.headerDomain forKey:NSHTTPCookieDomain];
+        [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
+        [cookieProperties setObject:@"SID" forKey:NSHTTPCookieName];
+        NSArray *sidStringCompArr = [[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
+        NSArray *sidInfoArr = [[sidStringCompArr firstObject] componentsSeparatedByString:@"="];
+        [cookieProperties setObject:sidInfoArr[1] forKey:NSHTTPCookieValue];
+        NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+        [request setValue:self.appDelegate.headerDomain forHTTPHeaderField:@"Host"];
+        
+        [self.webView loadRequest:request];
+    }
+    else
+    {
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+        [self.webView loadRequest:request];
+    }
+
 }
 
 - (UIBarButtonItem *)loadingBarButtonItem
