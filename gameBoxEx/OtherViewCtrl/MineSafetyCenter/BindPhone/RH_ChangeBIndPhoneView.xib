@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RH_ChangeBIndPhoneView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiU-3M-Nz6">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您已绑定手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQu-Xo-gJC">
+                            <rect key="frame" x="137.5" y="31" width="100" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="hgv-6v-LWc"/>
+                                <constraint firstAttribute="height" constant="17" id="wPo-3q-rVP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="152****6666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1q-cj-vDf">
+                            <rect key="frame" x="138" y="67" width="99" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="99" id="3tM-0D-EaM"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="lNs-Qr-hnr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="f1q-cj-vDf" firstAttribute="top" secondItem="VQu-Xo-gJC" secondAttribute="bottom" constant="19" id="49M-4n-yiC"/>
+                        <constraint firstItem="VQu-Xo-gJC" firstAttribute="centerX" secondItem="TiU-3M-Nz6" secondAttribute="centerX" id="9m2-ye-SyE"/>
+                        <constraint firstAttribute="height" constant="111" id="QX3-j6-ssI"/>
+                        <constraint firstItem="VQu-Xo-gJC" firstAttribute="top" secondItem="TiU-3M-Nz6" secondAttribute="top" constant="31" id="VXl-ab-qIJ"/>
+                        <constraint firstItem="f1q-cj-vDf" firstAttribute="centerX" secondItem="TiU-3M-Nz6" secondAttribute="centerX" id="uUb-cK-Xwy"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAs-Ja-TWg">
+                    <rect key="frame" x="0.0" y="111" width="375" height="556"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vP7-we-o4d">
+                            <rect key="frame" x="10" y="40" width="355" height="40"/>
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="x8U-Db-NlW"/>
+                            </constraints>
+                            <state key="normal" title="立即更换">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="changeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ohp-9b-aap"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PaO-TH-bcZ">
+                            <rect key="frame" x="16" y="109" width="343" height="200"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="wzL-KV-2jm"/>
+                            </constraints>
+                            <string key="text">温馨提示
+1.忘记密码时可以通过手机找回;
+2.运营商发送短信可能有延迟，请耐心等待几分钟;
+3.若几分钟后仍未收到验证码，请您重新获取或联系在线客服。</string>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PaO-TH-bcZ" secondAttribute="trailing" constant="16" id="CJS-2e-3Q9"/>
+                        <constraint firstItem="vP7-we-o4d" firstAttribute="leading" secondItem="wAs-Ja-TWg" secondAttribute="leading" constant="10" id="IKM-EW-kqU"/>
+                        <constraint firstItem="vP7-we-o4d" firstAttribute="top" secondItem="wAs-Ja-TWg" secondAttribute="top" constant="40" id="gBh-7g-rXy"/>
+                        <constraint firstAttribute="trailing" secondItem="vP7-we-o4d" secondAttribute="trailing" constant="10" id="h0u-tO-W5B"/>
+                        <constraint firstItem="PaO-TH-bcZ" firstAttribute="leading" secondItem="wAs-Ja-TWg" secondAttribute="leading" constant="16" id="mqG-82-cis"/>
+                        <constraint firstItem="PaO-TH-bcZ" firstAttribute="top" secondItem="vP7-we-o4d" secondAttribute="bottom" constant="29" id="wt7-ar-sgF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wAs-Ja-TWg" firstAttribute="top" secondItem="TiU-3M-Nz6" secondAttribute="bottom" id="1f6-bV-Tcd"/>
+                <constraint firstAttribute="bottom" secondItem="wAs-Ja-TWg" secondAttribute="bottom" id="7Bx-OB-452"/>
+                <constraint firstAttribute="trailing" secondItem="wAs-Ja-TWg" secondAttribute="trailing" id="Ldc-aj-JJC"/>
+                <constraint firstItem="TiU-3M-Nz6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bXy-OW-eR3"/>
+                <constraint firstItem="TiU-3M-Nz6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oOi-SQ-WbM"/>
+                <constraint firstAttribute="trailing" secondItem="TiU-3M-Nz6" secondAttribute="trailing" id="pqa-Ej-OGu"/>
+                <constraint firstItem="wAs-Ja-TWg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rJ9-st-3Rz"/>
+            </constraints>
+            <connections>
+                <outlet property="changeBindBT" destination="vP7-we-o4d" id="OMZ-GJ-2Qq"/>
+                <outlet property="noticeLB" destination="PaO-TH-bcZ" id="PZo-JT-SFa"/>
+                <outlet property="phoneNumLB" destination="f1q-cj-vDf" id="ADg-g3-6xA"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

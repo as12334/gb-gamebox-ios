@@ -18,13 +18,14 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               0
+#define IS_DEV_SERVER_ENV                               1
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
 #define RH_APP_VERCODE                  @"6"
 #define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss-api/"]
+
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //测试环境
@@ -111,7 +112,8 @@
 
 #elif _wjbn //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define TEST_DOMAIN         @"http://192.168.0.92/boss-api/"
+//#define TEST_DOMAIN         @"http://192.168.0.92/boss-api/"
+#define TEST_DOMAIN         @"http://192.168.0.236/boss-api/"
 #define CODE    @"wjbn"
 #define S        @"f0581a9da25c2476d18f7675362f596c"
 #define SID        @"21"

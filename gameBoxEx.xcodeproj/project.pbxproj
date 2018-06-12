@@ -111,6 +111,27 @@
 		546CE6F020CA5BFD00273C40 /* RH_GameListCategoryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6EF20CA5BFD00273C40 /* RH_GameListCategoryScrollView.m */; };
 		546CE6FA20CA6CDB00273C40 /* RH_GameEmptyDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6F820CA6CDB00273C40 /* RH_GameEmptyDataCell.m */; };
 		546CE6FB20CA6CDB00273C40 /* RH_GameEmptyDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE6F920CA6CDB00273C40 /* RH_GameEmptyDataCell.xib */; };
+		546CE6FF20CA778D00273C40 /* RH_BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE6FE20CA778D00273C40 /* RH_BindPhoneViewController.m */; };
+		546CE71620CA985C00273C40 /* RH_BindUserPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE71520CA985C00273C40 /* RH_BindUserPhone.m */; };
+		546CE71820CA986700273C40 /* RH_BindUserPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71720CA986700273C40 /* RH_BindUserPhone.xib */; };
+		546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */; };
+		546CE71F20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */; };
+		54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */; };
+		54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */; };
+		54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */; };
+		54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6E20CBB8D60080EB68 /* RH_FindbackPswWayView.m */; };
+		54CDEF7120CBB8E00080EB68 /* RH_FindbackPswWayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF7020CBB8E00080EB68 /* RH_FindbackPswWayView.xib */; };
+		54CDEF7420CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF7320CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.m */; };
+		54CDEF7720CBC3FA0080EB68 /* RH_InputAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF7620CBC3FA0080EB68 /* RH_InputAccountView.m */; };
+		54CDEF7920CBC4020080EB68 /* RH_InputAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF7820CBC4020080EB68 /* RH_InputAccountView.xib */; };
+		54CDEF7C20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF7B20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m */; };
+		54CDEF7F20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF7E20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m */; };
+		54CDEF8120CBC9FD0080EB68 /* RH_FindbackPswSendPhoneCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8020CBC9FD0080EB68 /* RH_FindbackPswSendPhoneCodeView.xib */; };
+		54CDEF8420CBD35A0080EB68 /* RH_FBPChangePswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8320CBD35A0080EB68 /* RH_FBPChangePswViewController.m */; };
+		54CDEF8720CBD3A60080EB68 /* RH_FBPChangePwView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8620CBD3A60080EB68 /* RH_FBPChangePwView.m */; };
+		54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */; };
+		54CDEF8C20CBD6B70080EB68 /* RH_ChangePswSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */; };
+		54CDEF8E20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -950,6 +971,40 @@
 		546CE6F720CA6CDB00273C40 /* RH_GameEmptyDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameEmptyDataCell.h; sourceTree = "<group>"; };
 		546CE6F820CA6CDB00273C40 /* RH_GameEmptyDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GameEmptyDataCell.m; sourceTree = "<group>"; };
 		546CE6F920CA6CDB00273C40 /* RH_GameEmptyDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_GameEmptyDataCell.xib; sourceTree = "<group>"; };
+		546CE6FD20CA778D00273C40 /* RH_BindPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindPhoneViewController.h; sourceTree = "<group>"; };
+		546CE6FE20CA778D00273C40 /* RH_BindPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindPhoneViewController.m; sourceTree = "<group>"; };
+		546CE71420CA985C00273C40 /* RH_BindUserPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindUserPhone.h; sourceTree = "<group>"; };
+		546CE71520CA985C00273C40 /* RH_BindUserPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindUserPhone.m; sourceTree = "<group>"; };
+		546CE71720CA986700273C40 /* RH_BindUserPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindUserPhone.xib; sourceTree = "<group>"; };
+		546CE71B20CAB1E400273C40 /* RH_ChangeBIndPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangeBIndPhoneView.h; sourceTree = "<group>"; };
+		546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangeBIndPhoneView.m; sourceTree = "<group>"; };
+		546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangeBIndPhoneView.xib; sourceTree = "<group>"; };
+		54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindNewPhoneView.h; sourceTree = "<group>"; };
+		54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindNewPhoneView.m; sourceTree = "<group>"; };
+		54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindNewPhoneView.xib; sourceTree = "<group>"; };
+		54CDEF6820CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FindbackPswWaysViewController.h; sourceTree = "<group>"; };
+		54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FindbackPswWaysViewController.m; sourceTree = "<group>"; };
+		54CDEF6D20CBB8D60080EB68 /* RH_FindbackPswWayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FindbackPswWayView.h; sourceTree = "<group>"; };
+		54CDEF6E20CBB8D60080EB68 /* RH_FindbackPswWayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FindbackPswWayView.m; sourceTree = "<group>"; };
+		54CDEF7020CBB8E00080EB68 /* RH_FindbackPswWayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_FindbackPswWayView.xib; sourceTree = "<group>"; };
+		54CDEF7220CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FindbackPswInputAccountViewController.h; sourceTree = "<group>"; };
+		54CDEF7320CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FindbackPswInputAccountViewController.m; sourceTree = "<group>"; };
+		54CDEF7520CBC3FA0080EB68 /* RH_InputAccountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_InputAccountView.h; sourceTree = "<group>"; };
+		54CDEF7620CBC3FA0080EB68 /* RH_InputAccountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_InputAccountView.m; sourceTree = "<group>"; };
+		54CDEF7820CBC4020080EB68 /* RH_InputAccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_InputAccountView.xib; sourceTree = "<group>"; };
+		54CDEF7A20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FindbackPswSendCodeViewController.h; sourceTree = "<group>"; };
+		54CDEF7B20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FindbackPswSendCodeViewController.m; sourceTree = "<group>"; };
+		54CDEF7D20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FindbackPswSendPhoneCodeView.h; sourceTree = "<group>"; };
+		54CDEF7E20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FindbackPswSendPhoneCodeView.m; sourceTree = "<group>"; };
+		54CDEF8020CBC9FD0080EB68 /* RH_FindbackPswSendPhoneCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_FindbackPswSendPhoneCodeView.xib; sourceTree = "<group>"; };
+		54CDEF8220CBD35A0080EB68 /* RH_FBPChangePswViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FBPChangePswViewController.h; sourceTree = "<group>"; };
+		54CDEF8320CBD35A0080EB68 /* RH_FBPChangePswViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FBPChangePswViewController.m; sourceTree = "<group>"; };
+		54CDEF8520CBD3A60080EB68 /* RH_FBPChangePwView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FBPChangePwView.h; sourceTree = "<group>"; };
+		54CDEF8620CBD3A60080EB68 /* RH_FBPChangePwView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FBPChangePwView.m; sourceTree = "<group>"; };
+		54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_FBPChangePwView.xib; sourceTree = "<group>"; };
+		54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangePswSuccessView.h; sourceTree = "<group>"; };
+		54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangePswSuccessView.m; sourceTree = "<group>"; };
+		54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangePswSuccessView.xib; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -2421,6 +2476,54 @@
 				546CE6E720CA2A5300273C40 /* M13BadgeView.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		546CE6FC20CA776800273C40 /* BindPhone */ = {
+			isa = PBXGroup;
+			children = (
+				546CE6FD20CA778D00273C40 /* RH_BindPhoneViewController.h */,
+				546CE6FE20CA778D00273C40 /* RH_BindPhoneViewController.m */,
+				546CE71420CA985C00273C40 /* RH_BindUserPhone.h */,
+				546CE71520CA985C00273C40 /* RH_BindUserPhone.m */,
+				546CE71720CA986700273C40 /* RH_BindUserPhone.xib */,
+				546CE71B20CAB1E400273C40 /* RH_ChangeBIndPhoneView.h */,
+				546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */,
+				546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */,
+				54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */,
+				54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */,
+				54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */,
+			);
+			path = BindPhone;
+			sourceTree = "<group>";
+		};
+		54CDEF6420CBB2DC0080EB68 /* ForgotPsw */ = {
+			isa = PBXGroup;
+			children = (
+				54CDEF6820CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.h */,
+				54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */,
+				54CDEF6D20CBB8D60080EB68 /* RH_FindbackPswWayView.h */,
+				54CDEF6E20CBB8D60080EB68 /* RH_FindbackPswWayView.m */,
+				54CDEF7020CBB8E00080EB68 /* RH_FindbackPswWayView.xib */,
+				54CDEF7220CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.h */,
+				54CDEF7320CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.m */,
+				54CDEF7520CBC3FA0080EB68 /* RH_InputAccountView.h */,
+				54CDEF7620CBC3FA0080EB68 /* RH_InputAccountView.m */,
+				54CDEF7820CBC4020080EB68 /* RH_InputAccountView.xib */,
+				54CDEF7A20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.h */,
+				54CDEF7B20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m */,
+				54CDEF7D20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.h */,
+				54CDEF7E20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m */,
+				54CDEF8020CBC9FD0080EB68 /* RH_FindbackPswSendPhoneCodeView.xib */,
+				54CDEF8220CBD35A0080EB68 /* RH_FBPChangePswViewController.h */,
+				54CDEF8320CBD35A0080EB68 /* RH_FBPChangePswViewController.m */,
+				54CDEF8520CBD3A60080EB68 /* RH_FBPChangePwView.h */,
+				54CDEF8620CBD3A60080EB68 /* RH_FBPChangePwView.m */,
+				54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */,
+				54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */,
+				54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */,
+				54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */,
+			);
+			path = ForgotPsw;
 			sourceTree = "<group>";
 		};
 		790743082063542400A4543A /* LimitTransfer */ = {
@@ -4047,6 +4150,7 @@
 		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				54CDEF6420CBB2DC0080EB68 /* ForgotPsw */,
 				F6FB640920142BB000EEED4E /* forgetPassword */,
 				A06B64A71FD6910700323C12 /* cell */,
 				A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */,
@@ -4288,6 +4392,7 @@
 		B8107AB01FFDB86B0086DDC3 /* MineSafetyCenter */ = {
 			isa = PBXGroup;
 			children = (
+				546CE6FC20CA776800273C40 /* BindPhone */,
 				B8107AB41FFDBAF80086DDC3 /* cells */,
 				A0522A55200706F500A5A6E9 /* ModifySafetyPassword */,
 				A0522A532007069B00A5A6E9 /* ModifyPassword */,
@@ -4932,11 +5037,13 @@
 				228B93102027287E008C8313 /* tab_v3_service_selected_green@3x.png in Resources */,
 				79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */,
 				F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */,
+				54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */,
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				22AB9922208098D9001A6203 /* login_touxiang_coffee@2x.png in Resources */,
 				228B93112027287E008C8313 /* tab_v3_service_selected_green@2x.png in Resources */,
 				221AE5A9207DF2C4008CD409 /* home_announce_close_red@2x.png in Resources */,
 				221AE58A207DEE0F008CD409 /* tab_v3_my_selected_orange@2x.png in Resources */,
+				546CE71820CA986700273C40 /* RH_BindUserPhone.xib in Resources */,
 				221AE579207DED56008CD409 /* tab_v3_home_selected_orange@3x.png in Resources */,
 				F6FB64182014323600EEED4E /* RH_UserCenterlogout.plist in Resources */,
 				A0522A93200C922E00A5A6E9 /* RH_PromoTypeHeaderView.xib in Resources */,
@@ -4990,6 +5097,7 @@
 				A001B3CE1F8EF7CA00309EA4 /* tab_default_deposit@2x.png in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
 				22AB993A20809A3D001A6203 /* home_announce_close_coffee@3x.png in Resources */,
+				54CDEF7120CBB8E00080EB68 /* RH_FindbackPswWayView.xib in Resources */,
 				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				79BB2DEC20346BC2000CDE6B /* RH_ShareSeletedDateView.xib in Resources */,
 				F69E353F2063D2290028D3A1 /* RH_DepositeTransferPayWayCell.xib in Resources */,
@@ -5023,6 +5131,7 @@
 				22C2E14D2026F93B008C0C06 /* home_announce_close_default@2x.png in Resources */,
 				221AE596207DEF15008CD409 /* tab_v3_home_selected_red@3x.png in Resources */,
 				221AE59D207DEF7C008CD409 /* tab_v3_promo_selected_red@3x.png in Resources */,
+				54CDEF7920CBC4020080EB68 /* RH_InputAccountView.xib in Resources */,
 				A07AF4EB2026DBE400D6D559 /* tab_v3_my_selected_black@2x.png in Resources */,
 				B87A6B23200646C800C9788F /* RH_PreferentialListCell.xib in Resources */,
 				A001B3D41F8EF7CA00309EA4 /* tab_green_home@2x.png in Resources */,
@@ -5035,6 +5144,7 @@
 				F69E353A2063C8E10028D3A1 /* RH_DepositeTransferBankInfoCell.xib in Resources */,
 				A001B3D61F8EF7CA00309EA4 /* tab_green_service@2x.png in Resources */,
 				F6A2AD592006EE7A0077CB92 /* button-can'topen.png in Resources */,
+				54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */,
 				A05747C81FF63A9A0068D0E4 /* RH_HomeChildCategorySubCell.xib in Resources */,
 				A001B3D71F8EF7CA00309EA4 /* tab_green_transfer@2x.png in Resources */,
 				228B931B202729D4008C8313 /* tab_v3_deposit_selected_black@3x.png in Resources */,
@@ -5056,6 +5166,7 @@
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
 				221AE589207DEE0F008CD409 /* tab_v3_my_selected_orange@3x.png in Resources */,
 				221AE582207DEDB7008CD409 /* tab_v3_promo_selected_orange@3x.png in Resources */,
+				54CDEF8E20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib in Resources */,
 				221AE591207DEECB008CD409 /* login_touxiang_red@2x.png in Resources */,
 				22C2E1482026F8AF008C0C06 /* home_announce_close_green@2x.png in Resources */,
 				F69E35492063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib in Resources */,
@@ -5097,6 +5208,7 @@
 				A001B3E21F8EF7CA00309EA4 /* tab_lottery_service@2x.png in Resources */,
 				F6FB6399200F851300EEED4E /* RH_MPGameNoticHeaderView.xib in Resources */,
 				F6942E0820648EDD009A5573 /* RH_DepositeTransferQRCodeCell.xib in Resources */,
+				54CDEF8120CBC9FD0080EB68 /* RH_FindbackPswSendPhoneCodeView.xib in Resources */,
 				A0522A7A200B42E500A5A6E9 /* MineSafetyCenterBoth.plist in Resources */,
 				A001B3E31F8EF7CA00309EA4 /* tab_lottery_withdraw@2x.png in Resources */,
 				A093D4A3201D642000B89820 /* RH_NavigationBarView.xib in Resources */,
@@ -5141,6 +5253,7 @@
 				F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */,
 				A06E0F582010801B00EF275A /* BitCoinNone.plist in Resources */,
 				A001B3E91F8EF7CA00309EA4 /* tab_deposit@2x.png in Resources */,
+				546CE71F20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib in Resources */,
 				221AE599207DEF4A008CD409 /* tab_v3_deposit_selected_red@2x.png in Resources */,
 				A0522A592007350A00A5A6E9 /* ModifySafetyNoRealName.plist in Resources */,
 				A01181581FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.xib in Resources */,
@@ -5238,6 +5351,7 @@
 				794429FA203FC18C006F5A20 /* RH_VeriftyCloseViewController.m in Sources */,
 				7907FCC62075062C00DA971C /* RH_QuickChongZhiViewController.m in Sources */,
 				A0E367AE1F9061E500758033 /* RH_PayViewController.h in Sources */,
+				54CDEF8420CBD35A0080EB68 /* RH_FBPChangePswViewController.m in Sources */,
 				F6FB63CA2011CEBA00EEED4E /* RH_ApplyDiscountSiteMineCell.m in Sources */,
 				79BB2DA9203270D2000CDE6B /* RH_ShareToFriendTableViewCell.m in Sources */,
 				A0E3679E1F8F91D700758033 /* RH_BasicModel.h in Sources */,
@@ -5264,6 +5378,7 @@
 				F61DA05520BFE01E00E55BAB /* RH_BettingDetailWebController.m in Sources */,
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				7937C444207209720010CD0C /* PGPickerView.m in Sources */,
+				546CE71620CA985C00273C40 /* RH_BindUserPhone.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
 				B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */,
 				79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */,
@@ -5290,6 +5405,7 @@
 				F682020A2071DD26003593C9 /* RH_DepositeSubmitSucceedView.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
 				546CE6EC20CA2A5300273C40 /* M13BadgeView.m in Sources */,
+				54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */,
 				F681D25D201ACD6E00A7C449 /* RH_SiteSystemDetailController.m in Sources */,
 				F681D255201AB81A00A7C449 /* RH_SiteMineNoticeDetailController.m in Sources */,
 				79BB2DBE2032D16A000CDE6B /* RH_ShareRecordTableViewCell.m in Sources */,
@@ -5327,6 +5443,7 @@
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
 				A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */,
 				A010A02B1F8795AC004E6EF4 /* RH_HTTPRequest.m in Sources */,
+				54CDEF7F20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m in Sources */,
 				A010A02C1F8795AC004E6EF4 /* RH_ServiceRequest.m in Sources */,
 				A001B3C71F8E130F00309EA4 /* RH_LoginViewController.m in Sources */,
 				A0109FA71F8788FF004E6EF4 /* NSData+Base64.m in Sources */,
@@ -5348,6 +5465,7 @@
 				7937C4382072073B0010CD0C /* PGDatePicker+Date.m in Sources */,
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
+				546CE6FF20CA778D00273C40 /* RH_BindPhoneViewController.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
 				7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
@@ -5434,6 +5552,7 @@
 				B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */,
 				F696B8362068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m in Sources */,
 				79BB2D9820312F4B000CDE6B /* RH_ShareViewController.m in Sources */,
+				54CDEF8C20CBD6B70080EB68 /* RH_ChangePswSuccessView.m in Sources */,
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
@@ -5449,6 +5568,7 @@
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
+				54CDEF8720CBD3A60080EB68 /* RH_FBPChangePwView.m in Sources */,
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
 				F61DA00020BAAE8100E55BAB /* RH_WebsocketManagar.m in Sources */,
@@ -5489,6 +5609,7 @@
 				7937C4322072073B0010CD0C /* PGDatePicker+DateHourMinuteSecond.m in Sources */,
 				79E3865B2039A0CE002BF767 /* RH_RewardRuleBottomViewCell.m in Sources */,
 				79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */,
+				54CDEF7420CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.m in Sources */,
 				79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */,
 				A0109FE01F8788FF004E6EF4 /* MJExtensionConst.m in Sources */,
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
@@ -5508,6 +5629,7 @@
 				B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */,
 				7937C4282072073B0010CD0C /* PGDatePicker+Logic.m in Sources */,
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
+				54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
@@ -5570,6 +5692,7 @@
 				7937C42C2072073B0010CD0C /* PGDatePicker+Year.m in Sources */,
 				B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */,
 				A0109F6C1F8787E4004E6EF4 /* CLBorderView.m in Sources */,
+				546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */,
 				F69E351120635B8C0028D3A1 /* RH_DepositeMoneyNumberCell.m in Sources */,
 				79BB2D9C203130B0000CDE6B /* RH_ShareNavBarView.m in Sources */,
 				F69E350C206355AD0028D3A1 /* RH_DepositeChooseMoneySubCell.m in Sources */,
@@ -5637,10 +5760,12 @@
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
+				54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
 				B860F92A201DB699000EE66A /* RH_StaticAlertView.m in Sources */,
 				F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */,
 				A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */,
+				54CDEF7C20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m in Sources */,
 				F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
@@ -5655,6 +5780,7 @@
 				F681D259201AB87800A7C449 /* RH_SiteMineNoticeDetailCell.m in Sources */,
 				B87A6B59200DB01F00C9788F /* RH_WithdrawCashThreeCell.m in Sources */,
 				7937C42B2072073B0010CD0C /* PGDatePicker+YearAndMonth.m in Sources */,
+				54CDEF7720CBC3FA0080EB68 /* RH_InputAccountView.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
@@ -5804,7 +5930,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5887,7 +6013,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

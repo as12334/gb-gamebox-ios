@@ -2228,6 +2228,123 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3SharePlayerRecord
                          scopeType:ServiceScopeTypePublic];
 }
+
+#pragma mark - 找回密码
+
+- (void)findUserPhone:(NSString *)username
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_ForgetPsw_FINDPHONE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"username":username}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3FindUserPhone
+                         scopeType:ServiceScopeTypePublic];
+}
+
+- (void)forgetPswSendCode:(NSString *)encryptedId
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_ForgetPsw_SendCode
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"encryptedId":encryptedId}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ForgetPswSendCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
+- (void)forgetPswCheckCode:(NSString *)code
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_ForgetPsw_CheckCode
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"code":code}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ForgetPswCheckCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
+- (void)finbackLoginPsw:(NSString *)username psw:(NSString *)psw
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_ForgetPsw_FindbackPsw
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"username":username,@"newPassword":psw}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ForgetPswFindbackPsw
+                         scopeType:ServiceScopeTypePublic];
+}
+
+#pragma mark - 绑定手机
+
+- (void)getUserPhone
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_BINDPHONE_GETPHONE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3GetUserPhone
+                         scopeType:ServiceScopeTypePublic];
+}
+
+- (void)bindPhoneSendCode:(NSString *)phone
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_BINDPHONE_SENDCODE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"phone":phone}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BindSendCode
+                         scopeType:ServiceScopeTypePublic];
+}
+
+- (void)bindPhone:(NSString *)phone code:(NSString *)code
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_BINDPHONE_BINDPHONE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"search.contactValue":phone,@"code":code}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3BindPhone
+                         scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2562,15 +2679,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
         return YES ;
     }
-//    else if (type==ServiceRequestTypeV3UpdateCheck){
-//        NSError * tempError = nil;
-//        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
-//                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
-//                                                                                      error:&tempError] : @{};
-//        *reslutData = dataObject;
-//
-//        return YES ;
-//    }
     else if (type == ServiceRequestTypeObtainVerifyCode ||
               type == ServiceRequestTypeV3SafetyObtainVerifyCode||type== ServiceRequestTypeV3RegiestCaptchaCode){
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2597,6 +2705,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
     }
     
+    else if (type == ServiceRequestTypeV3FindUserPhone){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
     else if (type == ServiceRequestTypeV3NoticePopup){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
@@ -3174,11 +3290,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 resultSendData =  [[RH_ShareRecordModel alloc] initWithInfoDic:ConvertToClassPointer(NSDictionary, [dataObject objectForKey:RH_GP_V3_DATA])] ;
             }
                 break;
-//                case ServiceRequestTypeV3ScanPay:
-//            {
-//                
-//            }
-//                break;
+                case ServiceRequestTypeV3FindUserPhone:
+            {
+                
+            }
+                break;
             default:
                 resultSendData = dataObject ;
                 break;

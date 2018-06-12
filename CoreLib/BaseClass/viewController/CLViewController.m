@@ -261,6 +261,35 @@ static char PROGRESSINDICATORVIEW ;
     }
 }
 
+- (UIColor *)themeColor
+{
+    if ([THEMEV3 isEqualToString:@"green"]){
+        return RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        return RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        return ColorWithNumberRGB(0x168df6) ;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        return RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        return RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"default"]){
+        return RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        return RH_NavigationBar_BackgroundColor_Red_White ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        return RH_NavigationBar_BackgroundColor_Green_White ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        return RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        return RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        return RH_NavigationBar_BackgroundColor_Coffee_Black;
+    }else{
+        return RH_NavigationBar_BackgroundColor ;
+    }
+
+}
 @end
 
 
