@@ -3052,6 +3052,15 @@
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _tjyo //朝盈集团
+
+#define CODE    @"tjyo"
+#define S        @"f45b8cbf1f1c810f74761ab615992124"
+#define SID        @"608"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
