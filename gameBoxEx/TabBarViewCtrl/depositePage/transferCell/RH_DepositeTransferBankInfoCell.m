@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountInfoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *payNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 
 @property(nonatomic,strong) RH_DepositeTransferListModel *listModel;
 @end
@@ -44,6 +45,10 @@
     self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
     self.payNameLabel.text = listModel.mPayName;
+    if (listModel.mRemark) {
+        self.remarkLabel.text = listModel.mRemark;
+    }
+    
     [self.infoImageView sd_setImageWithURL:[NSURL URLWithString:listModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
 
