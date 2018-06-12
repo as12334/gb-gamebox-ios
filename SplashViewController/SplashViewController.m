@@ -392,7 +392,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
-//        _urlArray = @[@"19.0.4.5",@"123.45.23.6",@"54.56.87.4",@"192.168.0.9"];
+//        _urlArray = @[@"192.168.0.236"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)

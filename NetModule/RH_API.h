@@ -1114,5 +1114,19 @@
 
 #pragma mark ==============消息公告弹窗================
 #define RH_API_NAME_WEBSOCKETMDCETER    @"/mdcenter/websocket/msite?localeType=zh_CN"
+
+#pragma mark - v3 找回密码
+#define RH_API_ForgetPsw_FINDPHONE         @"mobile-api/findPasswordOrigin/findUserPhone.html" //查询用户是否绑定了手机号
+#define RH_API_ForgetPsw_SendCode         @"mobile-api/origin/sendFindPasswordPhone.html" //找回密码发送验证码
+#define RH_API_ForgetPsw_CheckCode         @"mobile-api/findPasswordOrigin/checkPhoneCode.html" //找回密码验证验证码
+#define RH_API_ForgetPsw_FindbackPsw         @"mobile-api/findPasswordOrigin/findLoginPassword.html" //设置新密码
+
+#pragma mark - v3 绑定手机
+#define RH_API_BINDPHONE_GETPHONE         @"mobile-api/mineOrigin/getUserPhone.html" //获取用户手机号
+#define RH_API_BINDPHONE_UPDATEUSERPHONE         @"mobile-api/mineOrigin/updateUserPhone.html" //绑定用户手机号
+#define RH_API_BINDPHONE_SENDCODE         @"mobile-api/origin/sendPhoneCode.html" //发送验证码
+#define RH_API_BINDPHONE_BINDPHONE         @"mobile-api/mineOrigin/updateUserPhone.html" //绑定手机
+
+
 #endif /* RH_API_h */
 

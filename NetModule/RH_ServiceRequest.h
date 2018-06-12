@@ -116,7 +116,17 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3CustomService,          //获取客服接口
 //    ServiceRequestTypeV3BossSysDomain,          //获取IP和域名
     ServiceRequestTypeV3NoticePopup,            //公告弹框
+    
+    ServiceRequestTypeV3FindUserPhone   ,  // 判断用户是否绑定手机号
+    ServiceRequestTypeV3GetUserPhone   ,  // 获取用户手机
+    ServiceRequestTypeV3BindSendCode   ,  // 绑定手机的发送验证码
+    ServiceRequestTypeV3BindPhone,  //绑定手机
+    ServiceRequestTypeV3ForgetPswSendCode,  //忘记密码的发送验证码
+    ServiceRequestTypeV3ForgetPswCheckCode, //忘记密码验证验证码
+    ServiceRequestTypeV3ForgetPswFindbackPsw,   //找回密码
+    
     ServiceRequestTypeV3INITAD            //初始化广告
+
 };
 
 
@@ -616,8 +626,21 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 -(void)startV3NoticePopup;
 #pragma mark ==============分享好友记录================
 -(void)startV3SharePlayerRecordStartTime:(NSString *)startTime endTime:(NSString *)endTime pageNumber:(NSInteger)pageNumber pageSize:(NSInteger)pageSize;
+
 #pragma mark ==============初始化广告================
 -(void)startV3InitAd;
+
+#pragma mark - V3忘记密码
+- (void)findUserPhone:(NSString *)username;
+- (void)forgetPswSendCode:(NSString *)encryptedId;
+- (void)forgetPswCheckCode:(NSString *)code;
+- (void)finbackLoginPsw:(NSString *)username psw:(NSString *)psw;
+
+#pragma mark - V3绑定手机
+- (void)getUserPhone;
+- (void)bindPhoneSendCode:(NSString *)phone;
+- (void)bindPhone:(NSString *)phone code:(NSString *)code;
+
 
 #pragma mark -
 /**

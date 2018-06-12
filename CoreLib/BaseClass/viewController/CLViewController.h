@@ -19,6 +19,10 @@
 @property(nonatomic,readonly,getter=isViewShowing) BOOL viewShowing ;
 //tabbar hidden
 @property(nonatomic,getter=isHiddenTabBar) BOOL hiddenTabBar  ;
+
+//返回主题颜色
+- (UIColor *)themeColor;
+
 @end
 
 //======================================

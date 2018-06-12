@@ -38,6 +38,16 @@
 					<key>detailTitle</key>
 					<string>设置</string>
 					<key>targetKey</key>
+					<string>RH_BindPhoneViewController</string>
+					<key>cellClass</key>
+					<string>RH_MineSafetyCenterCell</string>
+					<key>title</key>
+					<string>绑定手机号</string>
+				</dict>
+				<dict>
+					<key>detailTitle</key>
+					<string>设置</string>
+					<key>targetKey</key>
 					<string>RH_BankCardController</string>
 					<key>cellClass</key>
 					<string>RH_MineSafetyCenterBankCell</string>
