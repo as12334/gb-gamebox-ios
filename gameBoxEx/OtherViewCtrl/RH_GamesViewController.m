@@ -11,8 +11,9 @@
 #import "RH_APPDelegate.h"
 #import "RH_LotteryAPIInfoModel.h"
 #import "RH_LotteryInfoModel.h"
-
-@interface RH_GamesViewController ()
+#import <WebKit/WebKit.h>
+#import "coreLib.h"
+@interface RH_GamesViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
 @property(nonatomic,strong)CLButton * homeBack;
@@ -324,31 +325,31 @@
     }
 }
 
-//-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-//{
-//    NSLog(@"webView.URL===%@",[NSString stringWithFormat:@"%@",webView.URL]);
-//
-//    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-//        showMessage(self.view, @"即将进入...", nil);
-//    }];
-////    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"test01.ccenter.test.so"]||[[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
-////
-////        [self.navigationController popViewControllerAnimated:YES];
-////        self.myTabBarController.selectedIndex = 0 ;
-////    }
-//    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    NSLog(@"webView.URL===%@",[NSString stringWithFormat:@"%@",webView.URL]);
+
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        showMessage(self.view, @"即将进入...", nil);
+    }];
+//    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"test01.ccenter.test.so"]||[[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
 //
 //        [self.navigationController popViewControllerAnimated:YES];
 //        self.myTabBarController.selectedIndex = 0 ;
 //    }
-//}
-//-(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
-//{
-//
-//    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-//        showErrorMessage(self.view,error,@"加载失败");
-//    }];
-//}
+    if ([[NSString stringWithFormat:@"%@",webView.URL] containsString:@"mainIndex.html"]) {
+
+        [self.navigationController popViewControllerAnimated:YES];
+        self.myTabBarController.selectedIndex = 0 ;
+    }
+}
+-(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+
+    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+        showErrorMessage(self.view,error,@"加载失败");
+    }];
+}
 
 
 #pragma mark-
