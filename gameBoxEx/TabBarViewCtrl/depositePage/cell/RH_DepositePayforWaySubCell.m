@@ -26,6 +26,7 @@
 {
     self.transferModel = ConvertToClassPointer(RH_DepositeTransferModel, context);
     self.payforTitle.text = self.transferModel.mName;
+    NSLog(@"transferModel===%@",self.transferModel.mName);
 //    [self.payforIcon sd_setImageWithURL:[NSURL URLWithString:self.transferModel.showCover]];
     [self.payforIcon sd_setImageWithURL:[NSURL URLWithString:self.transferModel.showCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
 }
