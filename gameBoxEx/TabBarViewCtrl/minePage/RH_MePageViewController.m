@@ -251,6 +251,8 @@
     self.view.backgroundColor = colorWithRGB(242, 242, 242);
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click)];
+//    [self.contentTableView addGestureRecognizer:tap];
     [self.tableViewManagement reloadData] ;
 }
 -(void)click
@@ -258,7 +260,7 @@
     //测试websocket
     [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://192.168.0.236:8080/ws/websocket"]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
 }
 #pragma mark ==============test webSocket================
 - (void)SRWebSocketDidOpen {

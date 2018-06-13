@@ -709,8 +709,8 @@
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }else if (type == ServiceRequestTypeV3INITAD){
-        RH_InitAdModel *model = ConvertToClassPointer(RH_InitAdModel, data);
-        NSLog(@"mInitAppAd==%@",model.mInitAppAd);
+//        RH_InitAdModel *model = ConvertToClassPointer(RH_InitAdModel, data);
+//        NSLog(@"mInitAppAd==%@",model.mInitAppAd);
     }
 }
 

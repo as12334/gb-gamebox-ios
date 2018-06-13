@@ -308,7 +308,7 @@
                 //登录成功后测试websocket
                 [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://test01.ccenter.test.so/mdcenter/websocket/msite?localeType=zh_CN"]];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
@@ -349,7 +349,7 @@
                 //登录成功后测试websocket
                 [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://test01.ccenter.test.so/mdcenter/websocket/msite?localeType=zh_CN"]];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketDidCloseNote object:nil];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];

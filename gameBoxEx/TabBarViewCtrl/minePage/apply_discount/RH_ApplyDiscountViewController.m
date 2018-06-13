@@ -239,6 +239,7 @@
     ;
     datePickerView.chooseDateBlock = ^(NSDate *date) {
         view.startDate = date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         cell.startDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
         [cell startUpdateData:NO];
     };
@@ -284,7 +285,6 @@
     [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
     [[UIApplication sharedApplication].keyWindow addSubview:datePickerView];
 }
-
 #pragma mark -- 滑动
 - (void)pageView:(CLPageView *)pageView didDisplayPageAtIndex:(NSUInteger)pageIndex
 {
