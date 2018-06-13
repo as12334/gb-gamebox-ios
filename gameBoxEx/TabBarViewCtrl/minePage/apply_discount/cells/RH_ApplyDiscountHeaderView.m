@@ -101,6 +101,7 @@
             }else
             {
                 badgeLab.hidden = YES ;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"NotUnReadMsg_NT" object:self];
             }
         }];
         

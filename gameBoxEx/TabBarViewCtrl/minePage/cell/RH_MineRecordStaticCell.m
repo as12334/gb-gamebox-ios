@@ -51,12 +51,17 @@
     NSLog(@"----%@",info);
     //消息中心提示
     RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, context);
-    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||model.sysMsgUnreadCount>0||model.mineMsgUnreadCount>0)) {
+    
+    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||model.sysMsgUnreadCount>0||model.mineMsgUnreadCount>0)&&([NSString stringWithFormat:@"%ld",(long)model.siteMsgUnReadCount] != nil || [NSString stringWithFormat:@"%ld",(long)model.sysMsgUnreadCount] != nil || [NSString stringWithFormat:@"%ld",(long)model.mineMsgUnreadCount] != nil)) {
         self.readCountMarkView.hidden = NO;
     }
     else
     {
         self.readCountMarkView.hidden = YES;
     }
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"NotUnReadMsg_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+//        RH_SiteMsgUnReadCountModel *model = note.object ;
+        self.readCountMarkView.hidden = YES;
+    }];
 }
 @end
