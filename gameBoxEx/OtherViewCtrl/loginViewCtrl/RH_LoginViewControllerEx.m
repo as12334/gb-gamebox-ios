@@ -236,7 +236,12 @@
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
-    [self showViewController:[RH_FindbackPswWaysViewController viewController] sender:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.myTabBarController.selectedIndex = 3 ;
+    });
+
+//    [self showViewController:[RH_FindbackPswWaysViewController viewController] sender:nil];
 }
 #pragma mark-
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
