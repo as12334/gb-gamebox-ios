@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property(nonatomic,strong,readonly) NSString *doMain        ;
 @property(nonatomic,assign,readonly) DoMainStatus status        ;
 @property(nonatomic,strong,readonly)UIButton *padonBtn;
+@property(nonatomic,weak)dispatch_queue_t queue;
 -(instancetype)initWithDomain:(NSString*)domain Status:(DoMainStatus)status ;
 -(NSString*)showStatus ;
 @end
@@ -392,6 +393,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
+//        _urlArray = @[@"2.2.2.2",@"3.3.3.3",@"4.4.4.4"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
     }else if (type == ServiceRequestTypeDomainCheck)
@@ -581,20 +583,24 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             self.serviceRequest.timeOutInterval = 10.f;
             dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             //2.添加任务到队列中，就可以执行任务
-            //异步函数：具备开启新线程的能力
-            dispatch_async(queue, ^{
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https+8989"];
+            //同步任务（优先执行https+8989或http+8787）
+            dispatch_sync(queue, ^{
+                //并行队列
+                dispatch_async(queue, ^{
+                    [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https+8989"];
+                });
+                dispatch_async(queue, ^{
+                    [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
+                });
             });
-            dispatch_async(queue, ^{
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
+            dispatch_sync(queue, ^{
+                dispatch_async(queue, ^{
+                    [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https"];
+                });
+                dispatch_async(queue, ^{
+                    [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
+                });
             });
-            dispatch_async(queue, ^{
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https"];
-            });
-            dispatch_async(queue, ^{
-                [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
-            });
-            
         }
         else
         {
@@ -628,6 +634,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.progressView.progress+=(1.0/_urlArray.count);
     self.scheduleLabel.text = [NSString stringWithFormat:@"%0.f%%",self.progressView.progress*100];
     [self checkAllUrl];
+
 }
 -(void)againCheckClick
 {

@@ -340,7 +340,7 @@
     //开始加载网页内容
     //我们自己的游戏需要传入SID
     //第三方游戏不需要传入SID
-    if ([self.webURL.absoluteString containsString:self.appDelegate.headerDomain]) {
+    if ([self.webURL.absoluteString containsString:self.appDelegate.headerDomain] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
         NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
         [cookieProperties setObject:self.appDelegate.headerDomain forKey:NSHTTPCookieDomain];
         [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];

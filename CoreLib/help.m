@@ -890,10 +890,11 @@ NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat)
         dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     }
     
-    if ([RH_UserInfoManager shareUserManager].timeZone){
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[RH_UserInfoManager shareUserManager].timeZone]] ;
-    }
-    
+//    if ([RH_UserInfoManager shareUserManager].timeZone){
+//        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:[RH_UserInfoManager shareUserManager].timeZone]] ;
+//    }
+    NSTimeZone *sourceTimeZone = [NSTimeZone systemTimeZone];
+    dateFormatter.timeZone = sourceTimeZone;
     dateFormatter.dateFormat = dateFormat;
     return [dateFormatter stringFromDate:date];
 }

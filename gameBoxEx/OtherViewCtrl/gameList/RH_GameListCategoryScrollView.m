@@ -82,25 +82,28 @@
 
 - (void)gameListCategoryViewDidSelect:(RH_GameListCategoryView *)view
 {
-    self.markImg.frame = CGRectMake(view.frame.origin.x+RH_GameListCategoryView_Width/2.0-self.markImg.frame.size.width/2.0, self.markImg.frame.origin.y, self.markImg.frame.size.width, self.markImg.frame.size.height);
-    
-    for (int i = 0; i < self.categoryModel.mSiteApis.count; i++) {
-        RH_GameListCategoryView *subItem = [self.scroll viewWithTag:1024+i];
-        if (view.tag-1024 == i) {
-            CGAffineTransform viewsOriginalTransform = view.transform;
-            subItem.transform = CGAffineTransformScale(viewsOriginalTransform, 1.2, 1.2);
-            subItem.alpha = 1.0;
+    if (self.selectedIndex != view.tag-1024) {
+        self.selectedIndex = (int)(view.tag-1024);
+        self.markImg.frame = CGRectMake(view.frame.origin.x+RH_GameListCategoryView_Width/2.0-self.markImg.frame.size.width/2.0, self.markImg.frame.origin.y, self.markImg.frame.size.width, self.markImg.frame.size.height);
+        
+        for (int i = 0; i < self.categoryModel.mSiteApis.count; i++) {
+            RH_GameListCategoryView *subItem = [self.scroll viewWithTag:1024+i];
+            if (view.tag-1024 == i) {
+                CGAffineTransform viewsOriginalTransform = view.transform;
+                subItem.transform = CGAffineTransformScale(viewsOriginalTransform, 1.2, 1.2);
+                subItem.alpha = 1.0;
+            }
+            else
+            {
+                subItem.transform = CGAffineTransformIdentity;
+                subItem.alpha = 0.8;
+            }
         }
-        else
+        
+        ifRespondsSelector(self.delegate, @selector(gameListCategoryScrollView:didSelect:))
         {
-            subItem.transform = CGAffineTransformIdentity;
-            subItem.alpha = 0.8;
+            [self.delegate gameListCategoryScrollView:self didSelect:view.tag-1024];
         }
-    }
-    
-    ifRespondsSelector(self.delegate, @selector(gameListCategoryScrollView:didSelect:))
-    {
-        [self.delegate gameListCategoryScrollView:self didSelect:view.tag-1024];
     }
 }
 

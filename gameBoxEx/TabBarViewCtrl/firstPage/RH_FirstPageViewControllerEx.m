@@ -329,6 +329,7 @@
 
 -(void)homeCategoryCellDidChangedSelected:(RH_HomeCategoryCell*)homeCategoryCell index:(NSInteger)index
 {
+    self.homeChildCatetoryCell.selectedIndex = 0;
     [self.contentTableView reloadData] ;
 }
 
@@ -447,8 +448,7 @@
 -(NSArray *)currentCategoryItemsList
 {
     if (self.selectedCategoryModel.isExistSubCategory){
-        NSInteger index = self.homeChildCatetoryCell.selectedIndex ;
-        RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[index] ;
+        RH_LotteryAPIInfoModel *lotteryApiModel = self.selectedCategoryModel.mSiteApis[self.homeChildCatetoryCell.selectedIndex] ;
         return lotteryApiModel.mGameItems ;
     }else{
         if (((RH_LotteryAPIInfoModel*)self.selectedCategoryModel.mSiteApis[0]).mGameItems.count==0){//中间只有一层分类信息
@@ -709,8 +709,8 @@
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }else if (type == ServiceRequestTypeV3INITAD){
-        RH_InitAdModel *model = ConvertToClassPointer(RH_InitAdModel, data);
-        NSLog(@"mInitAppAd==%@",model.mInitAppAd);
+//        RH_InitAdModel *model = ConvertToClassPointer(RH_InitAdModel, data);
+//        NSLog(@"mInitAppAd==%@",model.mInitAppAd);
     }
 }
 
