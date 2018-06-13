@@ -1962,6 +1962,37 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+//#pragma mark - V3 易收付
+//-(void)startV3EasyWithRechargeAmount:(NSString *)amount
+//                                 cid:(NSString *)cid
+//                                 uid:(NSString *)uid
+//                                time:(NSString *)time
+//                            order_id:(NSString *)order_id
+//                                  ip:(NSString *)ip
+//                                sign:(NSString *)sign
+//{
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    [dict setObject:amount forKey:RH_SP_EASYPAY_AMOUNT];
+//    [dict setObject:cid forKey:RH_SP_EASYPAY_CID];
+//    [dict setObject:uid forKey:RH_SP_EASYPAY_UID];
+//    [dict setObject:time forKey:RH_SP_EASYPAY_TIME];
+//    [dict setObject:order_id forKey:RH_SP_EASYPAY_ORDER_ID];
+//    [dict setValue:ip forKey:RH_SP_EASYPAY_IP];
+//    [dict setValue:sign forKey:RH_SP_EASYPAY_SIGN];
+//    [self _startServiceWithAPIName:nil
+//                        pathFormat:RH_API_NAME_EASYPAY
+//                     pathArguments:nil
+//                   headerArguments:@{@"X-Requested-With":@"XMLHttpRequest",
+//                                     @"User-Agent":@"app_ios, iPhone",
+//                                     @"Host":self.appDelegate.headerDomain
+//                                     }
+//                    queryArguments:nil
+//                     bodyArguments:dict
+//                          httpType:HTTPRequestTypePost
+//                       serviceType:ServiceRequestTypeV3ScanPay
+//                         scopeType:ServiceScopeTypePublic];
+//}
+
 #pragma mark -  V3 网银支付提交存款
 -(void)startV3CompanyPayWithRechargeAmount:(NSString *)amount
                               rechargeType:(NSString *)rechargeType
@@ -2059,7 +2090,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder?:@"" forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];

@@ -74,8 +74,6 @@
                 <outlet property="noticeLabel" destination="d07-np-Gul" id="VV4-az-VJV"/>
                 <outlet property="qrbackView" destination="xwY-mh-JrK" id="wdL-iu-nIl"/>
                 <outlet property="qrurlImage" destination="nCs-3U-bxg" id="06X-YV-6be"/>
-                <outlet property="remarkLabel" destination="Yd0-fI-A21" id="HKW-u4-9he"/>
-                <outlet property="saveToPhoneCenterX" destination="ucN-VS-zru" id="tRc-dK-PH5"/>
                 <outlet property="saveTophoneBtn" destination="Xdg-jN-7Uh" id="x1v-L0-hST"/>
             </connections>
             <point key="canvasLocation" x="25" y="110"/>

@@ -612,14 +612,18 @@
 ////                    }
 //                }
                 else{
-                    NSString *regex = @"[A-Za-z0-9]*";
-                    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-                    if ([pred evaluateWithObject:self.adressCell.adressStr]) {
+                    if (self.adressCell.adressStr == nil) {
                         [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
-                    }
-                    else
-                    {
-                        showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                    }else{
+                        NSString *regex = @"[A-Za-z0-9]*";
+                        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+                        if ([pred evaluateWithObject:self.adressCell.adressStr]) {
+                            [self.serviceRequest startV3DepositOriginSeachSaleRechargeAmount:self.accountMuArray[0]  PayAccountDepositWay:self.listModel.mDepositWay PayAccountID:self.listModel.mSearchId];
+                        }
+                        else
+                        {
+                            showMessage(self.view, @"请输入只含数字、字母的订单号", nil);
+                        }
                     }
                 }
             }

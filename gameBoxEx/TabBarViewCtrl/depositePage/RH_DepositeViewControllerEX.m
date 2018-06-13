@@ -293,6 +293,7 @@
 #pragma mark --点击提交按钮弹框
 -(RH_DepositeSubmitCircleView *)circleView
 {
+   
     if (!_circleView) {
         _circleView = [RH_DepositeSubmitCircleView createInstance];
         _circleView.frame = CGRectMake(0, 0, 295, 358);
@@ -666,6 +667,9 @@
          RH_DepositeTransferListModel *onlineModel = ConvertToClassPointer(RH_DepositeTransferListModel, self.channelModel.mArrayListModel[self.bankSeletedIndex]) ;
         [self.serviceRequest startV3OnlinePayWithRechargeAmount:self.discountStr rechargeType:onlineModel.mRechargeType payAccountId:onlineModel.mSearchId activityId:[NSString stringWithFormat:@"%ld",self.activityId]bankNameCode:onlineModel.mBankCode];
     }
+//    else if ([self.depositeCode isEqualToString:@"easy"]){
+//        [self.serviceRequest startV3EasyWithRechargeAmount:self.discountStr cid:@"" uid:@"" time:@"" order_id:@"" ip:@"" sign:@""];
+//    }
     else{
         [self.serviceRequest
          startV3ScanPayWithRechargeAmount:

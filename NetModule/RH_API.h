@@ -1056,6 +1056,16 @@
 #define RH_SP_SCANPAY_PAYERBANKCARD                @"Result.payerBankcard"  //授权码（只针对反扫）
 #define RH_SP_SCANPAY_ACTIVITYID                   @"activityId"           //优惠ID
 
+//#pragma mark - V3 易收付提交存款
+//#define RH_API_NAME_EASYPAY  @"https://www.dsdfpay.com/dsdf/api/place_order"
+////请求参数
+//#define RH_SP_EASYPAY_CID            @"cid"  //
+//#define RH_SP_EASYPAY_UID               @"uid"  //
+//#define RH_SP_EASYPAY_TIME               @"time"  //
+//#define RH_SP_EASYPAY_AMOUNT               @"amount"  //
+//#define RH_SP_EASYPAY_ORDER_ID               @"order_id"  //
+//#define RH_SP_EASYPAY_IP               @"ip"  //
+//#define RH_SP_EASYPAY_SIGN               @"sign"  //
 
 #pragma mark -  V3 网银支付提交存款
 #define RH_API_NAME_COMPANYPAY  @"mobile-api/depositOrigin/companyPay.html"

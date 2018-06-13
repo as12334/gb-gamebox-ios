@@ -572,6 +572,15 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
                              activityId:(NSInteger)activityId
                                account:(NSString *)account;
 
+//#pragma mark - V3 易收付
+//-(void)startV3EasyWithRechargeAmount:(NSString *)amount
+//                           cid:(NSString *)cid
+//                           uid:(NSString *)uid
+//                          time:(NSString *)time
+//                             order_id:(NSString *)order_id
+//                                ip:(NSString *)ip
+//                                sign:(NSString *)sign;
+
 #pragma mark -  V3 网银支付提交存款
 -(void)startV3CompanyPayWithRechargeAmount:(NSString *)amount
                               rechargeType:(NSString *)rechargeType

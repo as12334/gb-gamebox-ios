@@ -50,13 +50,13 @@
     self.explainLab.text = info.myDetailTitle;
     NSLog(@"----%@",info);
     //消息中心提示
-//    RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, context);
-//    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||model.sysMsgUnreadCount>0||model.mineMsgUnreadCount>0)) {
-//        self.readCountMarkView.hidden = NO;
-//    }
-//    else
-//    {
+    RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, context);
+    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||model.sysMsgUnreadCount>0||model.mineMsgUnreadCount>0)) {
+        self.readCountMarkView.hidden = NO;
+    }
+    else
+    {
         self.readCountMarkView.hidden = YES;
-//    }
+    }
 }
 @end
