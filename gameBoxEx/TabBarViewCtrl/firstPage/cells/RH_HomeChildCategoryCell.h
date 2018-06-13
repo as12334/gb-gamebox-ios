@@ -17,5 +17,5 @@
 
 @interface RH_HomeChildCategoryCell : CLTableViewCell
 @property (nonatomic,weak) id<HomeChildCategoryCellDelegate> delegate ;
-@property(nonatomic,readonly,assign) NSInteger selectedIndex ;
+@property(nonatomic,assign) NSInteger selectedIndex ;
 @end

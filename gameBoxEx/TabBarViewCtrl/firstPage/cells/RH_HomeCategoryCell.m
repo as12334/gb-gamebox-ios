@@ -111,6 +111,7 @@
         [item setSelected:YES];
     }
     _selectedIndex = indexPath.item ;
+    
     ifRespondsSelector(self.delegate, @selector(homeCategoryCellDidChangedSelected:index:)){
         [self.delegate homeCategoryCellDidChangedSelected:self index:indexPath.item] ;
     }

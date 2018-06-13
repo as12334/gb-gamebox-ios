@@ -73,6 +73,14 @@
     return _selectedIndex ;
 }
 
+- (void)setSelectedIndex:(NSInteger)selectedIndex
+{
+    _selectedIndex = selectedIndex;
+    
+    RH_HomeChildCategorySubCell * cell = (RH_HomeChildCategorySubCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_selectedIndex inSection:0]];
+    cell.selected = YES;
+}
+
 #pragma mark -
 -(void)layoutSubviews
 {
