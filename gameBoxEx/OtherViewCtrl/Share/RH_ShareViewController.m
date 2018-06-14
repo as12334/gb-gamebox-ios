@@ -207,7 +207,8 @@
     }else if (indexPath.row == 3){
         return 10.f ;
     }else if (indexPath.row == 4){
-        return 300.f/375*screenSize().width ;
+//        return 300.f/375*screenSize().width ;
+        return screenSize().height/7*4 ;
     }
     else{
         return 80.f ;
