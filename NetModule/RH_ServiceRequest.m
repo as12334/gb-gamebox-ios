@@ -2000,6 +2000,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                  payerName:(NSString *)payerName
                                 activityId:(NSInteger)activityId
 {
+    payerName = [payerName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:amount forKey:RH_SP_COMPANYPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_COMPANYPAY_RECHARGETYPE];
