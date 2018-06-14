@@ -3040,7 +3040,7 @@
 #define S        @"958ec9fdbfe64ff713da1b321769e445"
 #define SID        @"605"
 #define THEME    @"default.skin"
-#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _pf6g //天美娱乐

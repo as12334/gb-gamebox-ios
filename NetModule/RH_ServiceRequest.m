@@ -1922,7 +1922,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     [dict setObject:amount forKey:RH_SP_ELECTRONICPAY_RECHARGEAMOUNT];
     [dict setObject:rechargeType forKey:RH_SP_ELECTRONICPAY_RECHARGETYPE];
     [dict setObject:payAccountId forKey:RH_SP_ELECTRONICPAY_PAYACCOUNTID];
-    [dict setObject:bankOrder forKey:RH_SP_ELECTRONICPAY_BANKORDER];
+    [dict setObject:bankOrder?:@"" forKey:RH_SP_ELECTRONICPAY_BANKORDER];
     [dict setObject:payerName forKey:RH_SP_ELECTRONICPAY_PAYERNAME];
     [dict setObject:payerBankcard forKey:RH_SP_ELECTRONICPAY_PAYERBANKCARD];
     [dict setObject:@(activityId) forKey:RH_SP_ELECTRONICPAY_ACTIVITYID];
@@ -2573,6 +2573,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         [[NSNotificationCenter defaultCenter] postNotification:notification];
                         return ;
                     });
+                }else if (response.statusCode==605){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"ip被限制", nil) ;
+                        return ;
+                    });
+                   
                 }
             }
                 break ;
