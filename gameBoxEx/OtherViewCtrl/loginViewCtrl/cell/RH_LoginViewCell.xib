@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,7 +104,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-Cq-Auz">
-                                <rect key="frame" x="46" y="5" width="259" height="30"/>
+                                <rect key="frame" x="46" y="5" width="96" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -134,21 +134,16 @@
                                     <constraint firstAttribute="width" constant="20" id="4q9-1D-8CV"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9op-bu-WOp" customClass="UIControl">
-                                <rect key="frame" x="308" y="0.0" width="90" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="uUB-OI-3Y7"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Om-Ao-9Pe">
+                                <rect key="frame" x="313" y="5" width="80" height="30"/>
                                 <connections>
-                                    <action selector="btn_obtainVerifyCode:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hty-XK-NGr"/>
+                                    <action selector="btn_obtainVerifyCode:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pzp-p7-7TD"/>
                                 </connections>
-                            </view>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="KDw-9Y-fT5" secondAttribute="bottom" constant="12.5" id="0Zh-ck-FKm"/>
-                            <constraint firstItem="9op-bu-WOp" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="top" id="2AE-BI-Zyb"/>
                             <constraint firstItem="Aq3-FQ-PaN" firstAttribute="leading" secondItem="uze-dM-Gi9" secondAttribute="leading" constant="10" id="8aP-4l-eGC"/>
                             <constraint firstAttribute="bottom" secondItem="GFx-Cq-Auz" secondAttribute="bottom" constant="5" id="9Kf-mO-Mfa"/>
                             <constraint firstItem="GFx-Cq-Auz" firstAttribute="leading" secondItem="Aq3-FQ-PaN" secondAttribute="trailing" constant="10" id="F1w-va-oAy"/>
@@ -156,16 +151,17 @@
                             <constraint firstAttribute="trailing" secondItem="nOF-NX-Jy1" secondAttribute="trailing" constant="8" id="IeL-2U-amZ"/>
                             <constraint firstItem="KDw-9Y-fT5" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="top" constant="13" id="JIz-jb-0qU"/>
                             <constraint firstAttribute="bottom" secondItem="ajo-Rr-qR6" secondAttribute="bottom" constant="10" id="LtO-Jv-RHj"/>
-                            <constraint firstAttribute="trailing" secondItem="9op-bu-WOp" secondAttribute="trailing" constant="3" id="OAq-ZA-UmI"/>
                             <constraint firstItem="GFx-Cq-Auz" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="top" constant="5" id="RDe-IV-JxD"/>
-                            <constraint firstAttribute="bottom" secondItem="9op-bu-WOp" secondAttribute="bottom" id="Rn7-Mp-ui2"/>
+                            <constraint firstItem="9Om-Ao-9Pe" firstAttribute="bottom" secondItem="nOF-NX-Jy1" secondAttribute="bottom" id="XYw-qb-ouX"/>
+                            <constraint firstItem="9Om-Ao-9Pe" firstAttribute="top" secondItem="nOF-NX-Jy1" secondAttribute="top" id="YTm-jZ-6js"/>
                             <constraint firstAttribute="bottom" secondItem="nOF-NX-Jy1" secondAttribute="bottom" constant="5" id="a8l-cr-1fU"/>
                             <constraint firstItem="ajo-Rr-qR6" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="top" constant="10" id="d6s-J1-s85"/>
                             <constraint firstAttribute="bottom" secondItem="Aq3-FQ-PaN" secondAttribute="bottom" constant="7" id="eyk-xS-wtq"/>
+                            <constraint firstItem="9Om-Ao-9Pe" firstAttribute="leading" secondItem="nOF-NX-Jy1" secondAttribute="leading" id="giw-wZ-hWk"/>
                             <constraint firstItem="KDw-9Y-fT5" firstAttribute="leading" secondItem="ajo-Rr-qR6" secondAttribute="trailing" constant="8" id="hs1-13-fPI"/>
                             <constraint firstItem="nOF-NX-Jy1" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="top" constant="5" id="iCu-78-rNX"/>
                             <constraint firstItem="Aq3-FQ-PaN" firstAttribute="top" secondItem="uze-dM-Gi9" secondAttribute="top" constant="7" id="iPo-uY-ed5"/>
-                            <constraint firstItem="9op-bu-WOp" firstAttribute="leading" secondItem="GFx-Cq-Auz" secondAttribute="trailing" constant="3" id="vGG-wF-ojG"/>
+                            <constraint firstItem="9Om-Ao-9Pe" firstAttribute="trailing" secondItem="nOF-NX-Jy1" secondAttribute="trailing" id="jS6-3p-ohp"/>
                             <constraint firstAttribute="height" constant="40" id="xWC-nB-9nQ"/>
                         </constraints>
                         <connections>
@@ -307,7 +303,7 @@
                 <outlet property="verifyCodeView" destination="uze-dM-Gi9" id="glX-bJ-rhE"/>
                 <outlet property="verifyTextfield" destination="GFx-Cq-Auz" id="Fs6-7s-Kxe"/>
             </connections>
-            <point key="canvasLocation" x="-2346" y="-208"/>
+            <point key="canvasLocation" x="-2346.5" y="-208.5"/>
         </tableViewCell>
     </objects>
     <resources>

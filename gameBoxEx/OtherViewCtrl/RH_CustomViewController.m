@@ -48,22 +48,28 @@
     
     if ([self.context isKindOfClass:[RH_LotteryInfoModel class]]){ //需要请求 link
         RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, self.context) ;
-        if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-            [self setupURL] ;
-        }else{
-            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink] ;
-        }
+        //by shin
+//        if (lotteryInfoModel.showGameLink.length){ //已获取的请求链接
+//            self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+//            [self setupURL] ;
+//        }else{
+//            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+//            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink] ;
+//        }
+        [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+        [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink] ;
     }else if ([self.context isKindOfClass:[RH_LotteryAPIInfoModel class]]){ //需要请求 link
         RH_LotteryAPIInfoModel *lotteryApiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, self.context) ;
-        if (lotteryApiInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = lotteryApiInfoModel.showGameLink ;
-            [self setupURL] ;
-        }else{
-            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
-        }
+        //by shin
+//        if (lotteryApiInfoModel.showGameLink.length){ //已获取的请求链接
+//            self.appDelegate.customUrl = lotteryApiInfoModel.showGameLink ;
+//            [self setupURL] ;
+//        }else{
+//            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+//            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
+//        }
+        [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+        [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryApiInfoModel.mGameLink] ;
     }else{
         [self setupURL] ;
     }

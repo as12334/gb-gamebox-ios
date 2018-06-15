@@ -121,6 +121,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 @property (nonatomic,strong) IBOutlet UILabel *labIPAddr ;
 @property (nonatomic,strong) IBOutlet UILabel *labMark ;
 @property (nonatomic,strong,readonly) NSMutableArray *checkDomainServices ;
+@property (weak, nonatomic) IBOutlet UIImageView *startImge;
 @property (weak, nonatomic) IBOutlet UITableView *domainTableView   ;
 @property (nonatomic,strong,readonly) NSMutableArray *domainCheckStatusList ;
 @property (nonatomic,strong) NSString *checkType;
@@ -231,6 +232,18 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     //设置启动页logo
     NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
     [self.splashLogo setImage:ImageWithName(logoName)];
+    /**
+     * 119 特殊处理
+     */
+    if ([SID isEqualToString:@"119"]) {
+        self.splashLogo.hidden = YES;
+        [self.startImge setImage:ImageWithName(@"startImage_119")];
+    }
+    else if ([SID isEqualToString:@"270"]){
+        self.splashLogo.hidden = YES;
+        [self.startImge setImage:ImageWithName(@"startImage_270")];
+    }
+    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
