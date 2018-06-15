@@ -28,6 +28,11 @@
 @synthesize gameBgImage = _gameBgImage              ;
 @synthesize imageFirstPage = _imageFirstPage        ;
 
+- (void)dealloc
+{
+    
+}
+
 -(void)setupViewContext:(id)context
 {
    
@@ -64,15 +69,20 @@
         //                                             GamesID:nil
         //                                           GamesCode:nil] ;
         //        }
-    }else if (_lotteryInfoModel){//
-        if (_lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-            self.appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
-            [self setupInfo] ;
-        }else{
-            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
-            [self.serviceRequest startv3GetGamesLinkForCheeryLink:_lotteryInfoModel.mGameLink] ;
-            
-        }
+    }
+    else if (_lotteryInfoModel){//
+        //by shin
+//        if (_lotteryInfoModel.showGameLink.length){ //已获取的请求链接
+//            self.appDelegate.customUrl = _lotteryInfoModel.showGameLink ;
+//            [self setupInfo] ;
+//        }else{
+//            [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+//            [self.serviceRequest startv3GetGamesLinkForCheeryLink:_lotteryInfoModel.mGameLink] ;
+//
+//        }
+        [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在请求信息" detailText:@"请稍等"] ;
+        [self.serviceRequest startv3GetGamesLinkForCheeryLink:_lotteryInfoModel.mGameLink] ;
+
     }else{
         [self setupInfo] ;
     }
@@ -171,7 +181,7 @@
         self.myTabBarController.selectedIndex = 0 ;
     }else{
         self.myTabBarController.selectedIndex = 0 ;
-    }
+    }    
 }
 
 -(void)_backBackHandle
