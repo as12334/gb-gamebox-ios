@@ -302,7 +302,8 @@
 #elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
 //#define TEST_DOMAIN  @"test02.hongtubet.com"
-#define TEST_DOMAIN  @"test71.hongtubet.com"
+#define TEST_DOMAIN  @"test2.hongtubet.com"
+//#define TEST_DOMAIN  @"test71.hongtubet.com"
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
@@ -3061,11 +3062,31 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _k5sg //新葡京
+
+#define CODE    @"k5sg"
+#define S        @"c3d3c50270414d0b104db62f46f74cf6"
+#define SID        @"609"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #elif _2d4n //九五至尊
 
 #define CODE    @"2d4n"
 #define S        @"f0d5c4147eb905e306a5781eb891bc26"
 #define SID        @"610"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _tdlt //金沙娱乐城
+
+#define CODE    @"tdlt"
+#define S        @"74ff7d8ec1479e2c36056ebd6ca7be88"
+#define SID        @"615"
 #define THEME    @"default.skin"
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"

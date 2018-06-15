@@ -223,6 +223,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //}
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
+    
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_LOGIN
@@ -264,6 +265,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
 {
+   
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_AUTOLOGIN
@@ -2500,6 +2502,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
         (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
+        
         if (response.statusCode==302){
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",dataObject);
         }
