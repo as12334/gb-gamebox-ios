@@ -16,6 +16,7 @@
 @end
 @interface RH_DepositeTransferPayWayCell : CLTableViewCell
 @property (nonatomic,strong)NSString *paywayString;
+@property (weak, nonatomic) IBOutlet UITextField *transferTextField;
 @property (weak, nonatomic) IBOutlet UITextField *payNumTextfield;
 @property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *transferLabel;

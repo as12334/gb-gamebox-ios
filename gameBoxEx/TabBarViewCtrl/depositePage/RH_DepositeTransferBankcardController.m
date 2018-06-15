@@ -663,11 +663,13 @@
 {
     if (!self.pulldownView.superview) {
         CGRect framm = frame;
-        framm.origin.y+=340;
+        framm.origin.y=screenSize().height/5*2.26;
         framm.size.height+=100;
         framm.size.width=150;
         framm.origin.x = self.contentView.frameWidth-160;
+        self.contentView.backgroundColor = [UIColor clearColor];
         self.pulldownView.frame =framm;
+        self.pulldownView.backgroundColor = [UIColor redColor];
         UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
         shadeView.backgroundColor = [UIColor lightGrayColor];
         shadeView.alpha = 0.7f;
@@ -682,7 +684,6 @@
 #pragma mark --点击柜台存款方式
 -(void)depositeTransferChooseCunterCelected:(RH_DepositeTansferCounterModel *)cunterModel
 {
- 
     self.paywayCell.transferLabel.text = cunterModel.mName;
     self.counterStr = cunterModel.mCode;
     [self.pulldownView removeFromSuperview];

@@ -92,15 +92,27 @@
             RH_SiteMsgUnReadCountModel *model = note.object ;
             if (model.siteMsgUnReadCount && model.siteMsgUnReadCount >0) {
                 badgeLab.hidden = NO ;
+                NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"NO",@"NotUnReadMsg",nil];
+                //创建通知
+                NSNotification *notification =[NSNotification notificationWithName:@"NotUnReadMsg_NT" object:nil userInfo:dict];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
                 if (model.siteMsgUnReadCount > 99) {
                     badgeLab.text = @"99+" ;
                 }else
                 {
-                     badgeLab.text = [NSString stringWithFormat:@"%ld",model.siteMsgUnReadCount] ;
+                    badgeLab.text = [NSString stringWithFormat:@"%ld",model.siteMsgUnReadCount] ;
                 }
             }else
             {
                 badgeLab.hidden = YES ;
+                
+                NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"YES",@"NotUnReadMsg",nil];
+                //创建通知
+                NSNotification *notification =[NSNotification notificationWithName:@"NotUnReadMsg_NT" object:nil userInfo:dict];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
+            
             }
         }];
         

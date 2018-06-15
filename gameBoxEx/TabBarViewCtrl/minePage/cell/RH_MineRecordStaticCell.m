@@ -51,12 +51,35 @@
     NSLog(@"----%@",info);
     //消息中心提示
     RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, context);
-    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||model.sysMsgUnreadCount>0||model.mineMsgUnreadCount>0)) {
+//    if ([[NSString stringWithFormat:@"%ld",(long)model.siteMsgUnReadCount] isEqualToString:@"0"]&&[[NSString stringWithFormat:@"%ld",(long)model.sysMsgUnreadCount] isEqualToString:@"0"]&&[[NSString stringWithFormat:@"%ld",(long)model.mineMsgUnreadCount] isEqualToString:@"0"]) {
+//        self.readCountMarkView.hidden = YES;
+//        return;
+//    }
+    if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||[model.sysMsgUnreadCount intValue]>0||[model.mineMsgUnreadCount intValue]>0)) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"NotUnReadMsg_NT" object:nil];
         self.readCountMarkView.hidden = NO;
     }
     else
     {
         self.readCountMarkView.hidden = YES;
     }
+    
+    
+//    [[NSNotificationCenter defaultCenter] addObserverForName:@"NotUnReadMsg_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+////        RH_SiteMsgUnReadCountModel *model = note.object ;
+//        self.readCountMarkView.hidden = YES;
+//    }];
+}
+
+-(void)tongzhi:(NSNotification *)notification
+{
+    if ([notification.userInfo[@"NotUnReadMsg"] isEqualToString:@"YES"]) {
+         self.readCountMarkView.hidden = YES;
+    }else{
+         self.readCountMarkView.hidden = NO;
+    }
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end
