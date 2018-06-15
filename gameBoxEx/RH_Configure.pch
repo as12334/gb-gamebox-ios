@@ -166,7 +166,7 @@
 #elif _1qkq //宏图娱乐
 
 #define CODE    @"1qkq"
-//#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
+//#define TEST_DOMAIN         @https://103.240.143.56:8989/mobile-api/origin/mainIndex.html"test01.ampinplayopt0matrix.com"
 #define S        @"b4bfa56b52af7e71aa01c972b83cb0c7"
 #define SID        @"65"
 #define THEME    @"default.skin"
@@ -2819,13 +2819,16 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-<<<<<<< HEAD
 #elif _jktb //恒 利
 
 #define CODE    @"jktb"
 #define S        @"d0e4eebb67579d5b08170aa9cefc5abe"
 #define SID        @"607"
-=======
+#define THEME    @"default.skin"
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
 #elif _vygf //bet365
 
 #define CODE    @"vygf"

@@ -514,6 +514,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             if (totalFail>=_urlArray.count){
                 if (![SITE_TYPE isEqualToString:@"integratedv3oc"])
                 {
+                    NSLog(@"self.labIPAddr.text==%@",self.labIPAddr.text);
                     //上传错误信息
                     NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
                     [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;

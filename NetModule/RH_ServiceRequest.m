@@ -2693,6 +2693,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     [[NSNotificationCenter defaultCenter] postNotification:notification];
                     return ;
                 });
+            }else if (response.statusCode==605){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    showAlertView(@"ip被限制", nil) ;
+                    return ;
+                });
             }
             
         }else{
