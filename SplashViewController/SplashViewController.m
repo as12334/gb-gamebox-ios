@@ -18,6 +18,7 @@
 #import "RH_ConcurrentServicesReqManager.h"
 #import "RH_AdvertisingView.h"
 #import "ErrorStateTopView.h"
+#import "RH_InitAdModel.h"
 #define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
 #define RHNT_DomainCheckFail                @"DomainCheckFail "
 
@@ -396,9 +397,15 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 //        _urlArray = @[@"2.2.2.2",@"3.3.3.3",@"4.4.4.4"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
-    }else if (type == ServiceRequestTypeDomainCheck)
+    }
+//    else if (type == ServiceRequestTypeV3INITAD){
+//        RH_InitAdModel *model = ConvertToClassPointer(RH_InitAdModel, data);
+//        NSLog(@"mInitAppAd==%@",model.mInitAppAd);
+//    }
+    else if (type == ServiceRequestTypeDomainCheck)
     {
         [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"检查完成,即将进入"];
+//        [self.serviceRequest startV3InitAd];
         self.progressView.progress = 1.0;
         self.scheduleLabel.text = @"100%";
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;

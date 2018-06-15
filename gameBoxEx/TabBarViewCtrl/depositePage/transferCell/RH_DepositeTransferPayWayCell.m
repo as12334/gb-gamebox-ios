@@ -15,7 +15,7 @@
 @interface RH_DepositeTransferPayWayCell()<UITextFieldDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UITextField *transferTextField;
+
 @property (weak, nonatomic) IBOutlet CLBorderView *upLineView;
 @property (weak, nonatomic) IBOutlet CLBorderView *downLineView;
 @property (nonatomic,strong)NSString *nameString;
@@ -62,7 +62,9 @@
     else if ([self.nameString isEqualToString:@"counter"]){
         self.payWayLabel.text = @"存款方式";
         self.payNumTextfield.placeholder = ((RH_DepositeTansferCounterModel *)(array[3][0])).mName;
-        self.transferLabel.text =((RH_DepositeTansferCounterModel *)(array[3][0])).mName;
+        if ([self.transferLabel.text isEqualToString:@""]) {
+            self.transferLabel.text =((RH_DepositeTansferCounterModel *)(array[3][0])).mName;
+        }
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pulldownListView)];
         self.transferLabel.userInteractionEnabled = YES;
         [self.transferLabel addGestureRecognizer:tap];
