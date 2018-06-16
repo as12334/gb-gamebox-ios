@@ -3091,6 +3091,26 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _kdli //环球娱乐
+
+#define CODE    @"kdli"
+#define S        @"edc535ff8f4cfa9fcb12dee9b89060ea"
+#define SID        @"616"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _cepa //博赢彩票
+
+#define CODE    @"cepa"
+#define S        @"5215c56a6e7efd6d4d547a135248fc0d"
+#define SID        @"617"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 
 #endif
