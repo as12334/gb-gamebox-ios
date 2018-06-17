@@ -238,6 +238,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         self.splashLogo.hidden = YES;
         [self.startImge setImage:ImageWithName(@"270startpage_1242x2209.jpg")];
     }
+    else if ([SID isEqualToString:@"206"]){
+        self.splashLogo.hidden = YES;
+    }
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
