@@ -114,6 +114,7 @@
 		546CE71820CA986700273C40 /* RH_BindUserPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71720CA986700273C40 /* RH_BindUserPhone.xib */; };
 		546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */; };
 		546CE71F20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */; };
+		54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */; };
 		54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */; };
 		54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */; };
 		54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */; };
@@ -974,6 +975,8 @@
 		546CE71B20CAB1E400273C40 /* RH_ChangeBIndPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangeBIndPhoneView.h; sourceTree = "<group>"; };
 		546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangeBIndPhoneView.m; sourceTree = "<group>"; };
 		546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangeBIndPhoneView.xib; sourceTree = "<group>"; };
+		54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPsCacheManager.h; sourceTree = "<group>"; };
+		54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPsCacheManager.m; sourceTree = "<group>"; };
 		54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindNewPhoneView.h; sourceTree = "<group>"; };
 		54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindNewPhoneView.m; sourceTree = "<group>"; };
 		54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindNewPhoneView.xib; sourceTree = "<group>"; };
@@ -2905,6 +2908,8 @@
 				A0109EF01F87852F004E6EF4 /* OtherLib */,
 				A0109F671F87852F004E6EF4 /* ScreenAdaptation.h */,
 				A0109F681F87852F004E6EF4 /* ScreenAdaptation.m */,
+				54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */,
+				54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */,
 			);
 			path = CoreLib;
 			sourceTree = "<group>";
@@ -5535,6 +5540,7 @@
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,
 				A044437D200E3250004F942B /* PXAlertView.m in Sources */,
 				A0109FC61F8788FF004E6EF4 /* UIViewController+DesignatedShow.m in Sources */,
+				54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */,
 				A0ADD31E1FEB613400B24B51 /* RH_DaynamicLabelCell.m in Sources */,
 				A0109FC71F8788FF004E6EF4 /* UIViewController+Instance.m in Sources */,
 				A0109FC81F8788FF004E6EF4 /* help.m in Sources */,
@@ -5928,7 +5934,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_oiqg=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6011,7 +6017,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_oiqg=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

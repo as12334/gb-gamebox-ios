@@ -19,6 +19,8 @@
 #import "RH_AdvertisingView.h"
 #import "ErrorStateTopView.h"
 #import "RH_InitAdModel.h"
+#import "IPsCacheManager.h"
+
 #define RHNT_DomainCheckSuccessful          @"DomainCheckSuccessful"
 #define RHNT_DomainCheckFail                @"DomainCheckFail "
 
@@ -259,14 +261,26 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 -(void)startReqSiteInfo
 {
-    [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    for (int i=0; i<RH_API_MAIN_URL.count; i++) {
-        NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
-        [self.serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
-        [appDelegate updateApiDomain:strTmp];
+    //首先读取缓存的域名列表
+    BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
+    if (isIPsValid) {
+        //如果还有效 则直接check缓存的ip
+        NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
+        _urlArray = ConvertToClassPointer(NSArray, [ips objectForKey:@"ips"]);
+        [self.appDelegate updateHeaderDomain:[ips objectForKey:@"domain"]];
+        [self checkAllUrl] ;
     }
-    
+    else
+    {
+        //如果无效 则去拉去最新的ip列表
+        [self.contentLoadingIndicateView showLoadingStatusWithTitle:nil detailText:@"正在检查线路,请稍候"] ;
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        for (int i=0; i<RH_API_MAIN_URL.count; i++) {
+            NSString *strTmp = ConvertToClassPointer(NSString, [RH_API_MAIN_URL objectAtIndex:i]) ;
+            [self.serviceRequest startReqDomainListWithDomain:strTmp.trim] ;
+            [appDelegate updateApiDomain:strTmp];
+        }
+    }
 }
 #pragma mark ==============重复请求================
 -(void)repetitionStartReqSiteInfo{
@@ -406,8 +420,12 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 {
     if (type == ServiceRequestTypeDomainList){
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+//        dict = @{@"domain":@"6614777.com",@"ips":@[@"2.2.2.2",@"3.2.2.2",@"4.2.2.2",]};
+        //更新缓存的ips
+        [[IPsCacheManager sharedManager] updateIPsList:dict];
+        
+        //再做check
         _urlArray = ConvertToClassPointer(NSArray, [dict objectForKey:@"ips"]);
-//        _urlArray = @[@"2.2.2.2",@"3.3.3.3",@"4.4.4.4"];
         [self.appDelegate updateHeaderDomain:[data objectForKey:@"domain"]];
         [self checkAllUrl] ;
     }
@@ -525,6 +543,9 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         dispatch_async(dispatch_get_main_queue(), ^{
             totalFail ++ ;
             if (totalFail>=_urlArray.count){
+                //将缓存清空
+                [[IPsCacheManager sharedManager] clearCaches];
+
                 if (![SITE_TYPE isEqualToString:@"integratedv3oc"])
                 {
                     //上传错误信息
@@ -654,7 +675,6 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     self.progressView.progress+=(1.0/_urlArray.count);
     self.scheduleLabel.text = [NSString stringWithFormat:@"%0.f%%",self.progressView.progress*100];
     [self checkAllUrl];
-
 }
 -(void)againCheckClick
 {
