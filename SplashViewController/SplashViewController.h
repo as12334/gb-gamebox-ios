@@ -16,7 +16,7 @@
 @end
 
 
-@interface SplashViewController : RH_BasicViewController
+@interface SplashViewController :RH_BasicViewController
 //代理
 @property(nonatomic, weak) id<SplashViewControllerDelegate> delegate;
 //显示

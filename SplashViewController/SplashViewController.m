@@ -266,8 +266,11 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     if (isIPsValid) {
         //如果还有效 则直接check缓存的ip
         NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
-        _urlArray = ConvertToClassPointer(NSArray, [ips objectForKey:@"ips"]);
-        [self.appDelegate updateHeaderDomain:[ips objectForKey:@"domain"]];
+        _urlArray = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+
+        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
+        [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
         [self checkAllUrl] ;
     }
     else
@@ -628,17 +631,21 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
             dispatch_sync(queue, ^{
                 //并行队列
                 dispatch_async(queue, ^{
+                    NSLog(@">>>>>>>>>>>check https+8989");
                     [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https+8989"];
                 });
                 dispatch_async(queue, ^{
+                    NSLog(@">>>>>>>>>>>check http+8787");
                     [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http+8787"];
                 });
             });
             dispatch_sync(queue, ^{
                 dispatch_async(queue, ^{
+                    NSLog(@">>>>>>>>>>>check https");
                     [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"https"];
                 });
                 dispatch_async(queue, ^{
+                    NSLog(@">>>>>>>>>>>check http");
                     [self.serviceRequest startCheckDomain:tmpDomain WithCheckType:@"http"];
                 });
             });

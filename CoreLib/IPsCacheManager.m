@@ -7,6 +7,7 @@
 //
 
 #import "IPsCacheManager.h"
+#import "RH_APPDelegate.h"
 
 #define GB_IPS_VALID_CACHE_TIME 1*24*60*60 //有效期一天
 
@@ -55,10 +56,12 @@
 {
     if (ips != nil) {
         //记录当前时间戳
+        RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
         NSTimeInterval cachingTime =  [[NSDate date] timeIntervalSince1970];
         NSDictionary *ipsCacheDic = @{
                                       @"ips":ips,
-                                      @"cachingTime":@(cachingTime)
+                                      @"cachingTime":@(cachingTime),
+                                      @"apiDomain":appDelegate.apiDomain
                                       };
         [[NSUserDefaults standardUserDefaults] setObject:ipsCacheDic forKey:@"GB_IPS_CACHE_DATA"];
         [[NSUserDefaults standardUserDefaults] synchronize];
