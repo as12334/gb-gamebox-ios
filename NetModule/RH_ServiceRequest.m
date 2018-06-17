@@ -3452,31 +3452,32 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 - (void)httpRequest:(id<CLHTTPRequestProtocol>)request response:(NSHTTPURLResponse *)response didFailedRequestWithError:(NSError *)error
 {
+    //by shin
     RH_ServiceRequestContext * context = [request context];
-    
-    //此处收集域名 check fail 信息
-    if (context.serivceType==ServiceRequestTypeDomainCheck){
-        NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
-            NSString *errorMessage = [error.localizedDescription copy] ;
-            NSLog(@"errorMessage==%@",errorMessage);
-            [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
-                                                                                    RH_SP_COLLECTAPPERROR_CODE:errorCode,
-                                                                                    RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
-                                                                                    }] ;
-            //通知告诉splashViewController ,你特么没check成功，换下一个域名在check
-            // 1.创建通知打开通知
-            NSNotification *notificationClose =[NSNotification notificationWithName:@"youAreNotCheckSuccess" object:nil userInfo:nil];
-            // 2.通过 通知中心 发送 通知
-            [[NSNotificationCenter defaultCenter] postNotification:notificationClose];
-        });
-    }
-    
+
+//    //此处收集域名 check fail 信息
+//    if (context.serivceType==ServiceRequestTypeDomainCheck){
+//        NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
+//            NSString *errorMessage = [error.localizedDescription copy] ;
+//            NSLog(@"errorMessage==%@",errorMessage);
+//            [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
+//                                                                                    RH_SP_COLLECTAPPERROR_CODE:errorCode,
+//                                                                                    RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
+//                                                                                    }] ;
+//            //通知告诉splashViewController ,你特么没check成功，换下一个域名在check
+//            // 1.创建通知打开通知
+//            NSNotification *notificationClose =[NSNotification notificationWithName:@"youAreNotCheckSuccess" object:nil userInfo:nil];
+//            // 2.通过 通知中心 发送 通知
+//            [[NSNotificationCenter defaultCenter] postNotification:notificationClose];
+//        });
+//    }
+
     //移除标记
     [self.httpRequests removeObjectForKey:@(context.serivceType)];
     [self.requestingMarks removeObjectForKey:@(context.serivceType)];
-    
+
     //发送通知
     [self _sendFailMsgWithError:error
                     serviceType:context.serivceType

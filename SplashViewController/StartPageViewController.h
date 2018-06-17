@@ -1,0 +1,36 @@
+//
+//  StartPageViewController.h
+//  gameBoxEx
+//
+//  Created by shin on 2018/6/17.
+//  Copyright © 2018年 luis. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "RH_BasicViewController.h"
+
+typedef void(^GBFetchIPsComplete)(NSDictionary *ips);
+typedef void(^GBFetchIPsFailed)(void);
+
+typedef void(^GBFetchIPListComplete)(NSDictionary *ips);
+typedef void(^GBFetchIPListFailed)(void);
+
+typedef void(^GBCheckIPFullTypeComplete)(NSString *ip, NSString *type);
+typedef void(^GBCheckIPFullTypeFailed)(void);
+
+typedef void(^GBCheckIPComplete)(NSString *type);
+typedef void(^GBCheckIPFailed)(void);
+
+@class StartPageViewController;
+@protocol StartPageViewControllerDelegate
+
+@optional
+
+- (void)startPageViewControllerShowMainPage:(StartPageViewController *)controller;
+@end
+
+@interface StartPageViewController : RH_BasicViewController
+
+@property (nonatomic, weak) id <StartPageViewControllerDelegate> delegate;
+
+@end

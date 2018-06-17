@@ -115,6 +115,8 @@
 		546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */; };
 		546CE71F20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */; };
 		54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */; };
+		54C4F84C20D6348C00CCAD47 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */; };
+		54C4F84D20D6348C00CCAD47 /* StartPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */; };
 		54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */; };
 		54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */; };
 		54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */; };
@@ -977,6 +979,9 @@
 		546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangeBIndPhoneView.xib; sourceTree = "<group>"; };
 		54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPsCacheManager.h; sourceTree = "<group>"; };
 		54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPsCacheManager.m; sourceTree = "<group>"; };
+		54C4F84920D6348C00CCAD47 /* StartPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
+		54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
+		54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartPageViewController.xib; sourceTree = "<group>"; };
 		54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindNewPhoneView.h; sourceTree = "<group>"; };
 		54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindNewPhoneView.m; sourceTree = "<group>"; };
 		54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindNewPhoneView.xib; sourceTree = "<group>"; };
@@ -3792,6 +3797,9 @@
 				F61DA01020BBF6D000E55BAB /* SplashViewControllerEX.h */,
 				F61DA01120BBF6D000E55BAB /* SplashViewControllerEX.m */,
 				F61DA01220BBF6D000E55BAB /* SplashViewControllerEX.xib */,
+				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
+				54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */,
+				54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -5038,6 +5046,7 @@
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
 				F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */,
 				228B93102027287E008C8313 /* tab_v3_service_selected_green@3x.png in Resources */,
+				54C4F84D20D6348C00CCAD47 /* StartPageViewController.xib in Resources */,
 				79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */,
 				F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */,
 				54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */,
@@ -5380,6 +5389,7 @@
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				7937C444207209720010CD0C /* PGPickerView.m in Sources */,
 				546CE71620CA985C00273C40 /* RH_BindUserPhone.m in Sources */,
+				54C4F84C20D6348C00CCAD47 /* StartPageViewController.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
 				B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */,
 				79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */,

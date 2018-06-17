@@ -268,9 +268,8 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
         _urlArray = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-
-        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
         [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
+        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
         [self checkAllUrl] ;
     }
     else

@@ -1,0 +1,352 @@
+//
+//  StartPageViewController.m
+//  gameBoxEx
+//
+//  Created by shin on 2018/6/17.
+//  Copyright © 2018年 luis. All rights reserved.
+//
+
+#import "StartPageViewController.h"
+#import "IPsCacheManager.h"
+#import "RH_ServiceRequest.h"
+#import "RH_APPDelegate.h"
+#import "MacroDef.h"
+#import "RH_UpdatedVersionModel.h"
+#import "coreLib.h"
+
+@interface StartPageViewController ()
+
+@property (nonatomic, strong) NSString *progressNote;
+@property (nonatomic, assign) CGFloat progress;
+
+@property (weak, nonatomic) IBOutlet UIImageView *launchImageView;
+@property (weak, nonatomic) IBOutlet UILabel *cRightsLB;
+@property (weak, nonatomic) IBOutlet UILabel *versionLB;
+@property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+
+@end
+
+@implementation StartPageViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self setupUI];
+    //先检测缓存中的ips
+    //todo
+    BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
+    if (isIPsValid) {
+        self.progress = 0.3;
+        //如果还有效 则直接check缓存的ip
+        NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
+        NSArray *ipList = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
+        
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
+        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
+        
+        //check iplist
+        self.progressNote = @"正在匹配服务器...";
+        [self checkAllIP:ipList];
+        return;
+    }
+
+    self.progressNote = @"正在检查线路,请稍候";
+    //从固定域名列表依次尝试获取ip列表
+    [self fetchIPs:RH_API_MAIN_URL complete:^(NSDictionary *ips) {
+        self.progress = 0.3;
+
+        //从某个固定域名列表获取到了ip列表
+        //根据优先级并发check
+        /**
+         * 优先级
+         * 1 https+8989
+         * 2 http+8787
+         * 3 https
+         * 4 http
+         */
+        NSString *resultDomain = [ips objectForKey:@"domain"];
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        [appDelegate updateHeaderDomain:resultDomain];
+        
+        NSArray *ipList = [ips objectForKey:@"ips"];
+        
+        //多ip地址【异步并发】check 但check的优先级是【串行】的
+        //使用NSOperationQueue 方便取消后续执行
+
+        //check iplist
+        self.progressNote = @"正在匹配服务器...";
+        [self checkAllIP:ipList];
+    } failed:^{
+        //从所有的固定域名列表没有获取到ip列表
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private M
+
+- (void)setupUI
+{
+    self.hiddenStatusBar = YES;
+    self.hiddenNavigationBar = YES;
+
+    /**
+     * 119 270 特殊处理
+     */
+    [self.launchImageView setImage:ImageWithName(@"startImage")];
+
+    if ([SID isEqualToString:@"119"]) {
+        [self.launchImageView setImage:ImageWithName(@"startImage_119")];
+    }
+    else if ([SID isEqualToString:@"270"]){
+        [self.launchImageView setImage:ImageWithName(@"startImage_270")];
+    }
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    // app名称
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    [self.cRightsLB setText:[NSString stringWithFormat:@"Copyrihgt © %@ Reserved.",app_Name]];
+    [self.versionLB setText:[NSString stringWithFormat:@"v%@",app_Version]];
+}
+
+- (void)setProgressNote:(NSString *)progressNote
+{
+    _progressNote = progressNote;
+    self.progressNoteLB.text = _progressNote;
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    _progress = progress;
+    self.progressView.progress = _progress;
+}
+
+/**
+ * 从固定的域名列表【串行】尝试获取ip列表
+
+ @param domains 固定的域名
+ */
+- (void)fetchIPs:(NSArray *)domains complete:(GBFetchIPsComplete)complete failed:(GBFetchIPsFailed)failed
+{
+    __weak typeof(self) weakSelf = self;
+    __block NSDictionary *resultIPs;
+    
+    //是否需要通过下一个固定域名请求ips
+    //当前域名获取ips失败时需要从下一个获取
+    __block BOOL doNext = YES;
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("gb_fetchIPs_queue", NULL);
+    dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+
+    for (NSString *domain in domains) {
+        dispatch_group_async(group, queue, ^{
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            if (doNext != YES) {
+                //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                dispatch_semaphore_signal(sema);
+                return ;
+            }
+            NSLog(@">>>start fetch url from %@",domain);
+            [weakSelf fetchIPListFrom:domain complete:^(NSDictionary *ips) {
+            NSLog(@"已从%@获取到ip，执行回调",domain);
+                resultIPs = ips;
+                doNext = NO;//已经获取到ip 不需要继续执行其他的线程
+                
+                ///
+                //缓存ips和apiDomain
+                RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                [appDelegate updateApiDomain:domain];
+                
+                [[IPsCacheManager sharedManager] updateIPsList:resultIPs];
+                
+                dispatch_semaphore_signal(sema);
+            } failed:^{
+                NSLog(@"从%@未获取到ip，继续下一次获取...",domain);
+                doNext = YES;//未获取到ip 需要继续执行其他的线程
+                dispatch_semaphore_signal(sema);
+            }];
+        });
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
+        //得到ip列表后先缓存
+        //todo
+
+        if (resultIPs != nil) {
+            if (complete) {
+                complete(resultIPs);
+            }
+        }
+        else
+        {
+            if (failed) {
+                failed();
+            }
+        }
+    });
+
+}
+
+/**
+ 从固定的域名获取ip列表
+
+ @param domain 固定的域名 正式环境有三个备份域名
+ */
+- (void)fetchIPListFrom:(NSString *)domain complete:(GBFetchIPListComplete)complete failed:(GBFetchIPListFailed)failed
+{
+    [self.serviceRequest startReqDomainListWithDomain:domain];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        if (type == ServiceRequestTypeDomainList) {
+            if (data != nil) {
+                if (complete) {
+                    complete(data);
+                }
+            }
+            else
+            {
+                if (failed) {
+                    failed();
+                }
+            }
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        if (type == ServiceRequestTypeDomainList) {
+            if (failed) {
+                failed();
+            }
+        }
+    };
+}
+
+/**
+ 【串行】check相应的ip
+
+ @param ip IP地址
+ @param complete check完成回调 有一种类型check成功 则认定check成功
+ @param failed check失败回调 当4种类型均check失败则认定为失败
+ */
+
+- (void)checkIP:(NSString *)ip complete:(GBCheckIPFullTypeComplete)complete failed:(GBCheckIPFullTypeFailed)failed
+{
+    NSArray *checkTypes = @[@"https+8989",@"http+8787",@"https",@"http"];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    //是否需要check下一个类型
+    //当前check失败时需要check下一个类型
+    __block BOOL doNext = YES;
+    dispatch_group_t group = dispatch_group_create();
+    NSString *queueName = [NSString stringWithFormat:@"gb_checkIP_with_type_queue_%@",ip];
+    dispatch_queue_t queue = dispatch_queue_create([queueName UTF8String], NULL);
+    dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+    
+    for (int i = 0; i < checkTypes.count; i++) {
+        NSString *checkType = checkTypes[i];
+        
+        dispatch_group_async(group, queue, ^{
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            if (doNext != YES) {
+                //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                return ;
+            }
+            NSLog(@">>>start check ip:%@ type:%@",ip,checkType);
+            [weakSelf checkIP:ip checkType:checkType complete:^(NSString *type) {
+                NSLog(@"ip:%@check成功 type:%@", ip, type);
+                doNext = NO;//已经获取到ip 不需要继续执行其他的线程
+                dispatch_semaphore_signal(sema);
+                NSLog(@">>>ip:%@check完毕",ip);
+                if (complete) {
+                    complete(ip, type);
+                }
+            } failed:^{
+                self.progress += 0.05;
+                
+                NSLog(@"ip:%@check失败 type:%@ 继续【串行】check下一类型...", ip, checkType);
+                NSLog(@"%i",i);
+                doNext = YES;//未获取到ip 需要继续执行其他的线程
+                dispatch_semaphore_signal(sema);
+                if (i == 3) {
+                    //检测到最后一次依然失败 则判断失败
+                    NSLog(@"ip:%@全部类型检测都失败",ip);
+                    if (failed) {
+                        failed();
+                    }
+                }
+            }];
+        });
+    }
+}
+
+- (void)checkIP:(NSString *)ip checkType:(NSString *)checkType complete:(GBCheckIPComplete)complete failed:(GBCheckIPFailed)failed
+{
+    [self.serviceRequest startCheckDomain:ip WithCheckType:checkType];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        if (type == ServiceRequestTypeDomainCheck) {
+            if (complete) {
+                complete(checkType);
+            }
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        if (type == ServiceRequestTypeDomainCheck) {
+            if (failed) {
+                failed();
+            }
+        }
+    };
+}
+
+- (void)checkAllIP:(NSArray *)ipList
+{
+    __weak typeof(self) weakSelf = self;
+    for (NSString *ip in ipList) {
+        //在此做【串行】check
+        [self checkIP:ip complete:^(NSString *ip, NSString *type) {
+            //有某个类型check完毕
+            self.progress += 0.2;
+            
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            appDelegate.checkType = type;
+            
+            NSArray *checkTypeComponents = [type componentsSeparatedByString:@"+"];
+            [appDelegate updateDomain:[NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]]] ;
+            
+            //update check
+            [self.serviceRequest startV3UpdateCheck];
+            self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+                [weakSelf startPageComplete];
+            };
+            self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+            };
+        } failed:^{
+            //全部check失败
+            
+            //清空缓存
+            [[IPsCacheManager sharedManager] clearCaches];
+        }];
+    }
+}
+
+- (void)startPageComplete
+{
+    self.progressNote = @"检查完成,即将进入";
+    self.progress = 1.0;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        ifRespondsSelector(self.delegate, @selector(startPageViewControllerShowMainPage:))
+        {
+            [self.delegate startPageViewControllerShowMainPage:self];
+        }
+    });
+}
+
+@end

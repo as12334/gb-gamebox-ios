@@ -17,6 +17,7 @@
 #import "RH_MainNavigationController.h"
 #import "RH_GestureOpenLockView.h"
 #import "RH_API.h"
+#import "StartPageViewController.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -25,7 +26,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 //----------------------------------------------------------
 
-@interface RH_APPDelegate ()<SplashViewControllerDelegate>
+@interface RH_APPDelegate ()<SplashViewControllerDelegate, StartPageViewControllerDelegate>
 
 @end
 
@@ -85,17 +86,21 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)showUserGuideView
 {
     //显示界面，用于获取DOMAIN.
-    SplashViewController * splashViewController = [SplashViewController viewController];
-    splashViewController.delegate = self ;
-    self.window.alpha = 0.f;
-    [splashViewController show:YES completedBlock:^{
-        self.window.alpha = 1.f;
-    }];
-//    SplashViewControllerEX *splashVC = [SplashViewControllerEX viewController];
-//    splashVC.delegate = self;
+//    SplashViewController * splashViewController = [SplashViewController viewController];
+//    splashViewController.delegate = self ;
 //    self.window.alpha = 0.f;
-//    [splashVC ]
+//    [splashViewController show:YES completedBlock:^{
+//        self.window.alpha = 1.f;
+//    }];
+
+    StartPageViewController *startPageVC = [[StartPageViewController alloc] initWithNibName:@"StartPageViewController" bundle:nil];
+    startPageVC.delegate = self;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.windowLevel = [[UIApplication sharedApplication] keyWindow].windowLevel;
     
+    //建立的循环保留
+    [self.window setRootViewController:startPageVC];
+    [self.window makeKeyAndVisible];
 }
 
 - (BOOL)splashViewControllerWillHidden:(SplashViewController *)viewController
@@ -274,6 +279,13 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
     
+}
+
+#pragma mark - StartPageViewControllerDelegate M
+
+- (void)startPageViewControllerShowMainPage:(id)controller
+{
+    [self showMainWindow];
 }
 
 @end
