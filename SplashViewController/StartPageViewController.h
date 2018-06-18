@@ -21,6 +21,8 @@ typedef void(^GBCheckIPFullTypeFailed)(void);
 typedef void(^GBCheckIPComplete)(NSString *type);
 typedef void(^GBCheckIPFailed)(void);
 
+typedef void(^GBCheckAllIPsComplete)(void);
+
 @class StartPageViewController;
 @protocol StartPageViewControllerDelegate
 

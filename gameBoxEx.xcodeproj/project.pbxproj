@@ -117,6 +117,7 @@
 		54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */; };
 		54C4F84C20D6348C00CCAD47 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */; };
 		54C4F84D20D6348C00CCAD47 /* StartPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */; };
+		54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */; };
 		54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */; };
 		54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */; };
 		54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */; };
@@ -982,6 +983,8 @@
 		54C4F84920D6348C00CCAD47 /* StartPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
 		54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
 		54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartPageViewController.xib; sourceTree = "<group>"; };
+		54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateStatusCacheManager.h; sourceTree = "<group>"; };
+		54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateStatusCacheManager.m; sourceTree = "<group>"; };
 		54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindNewPhoneView.h; sourceTree = "<group>"; };
 		54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindNewPhoneView.m; sourceTree = "<group>"; };
 		54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindNewPhoneView.xib; sourceTree = "<group>"; };
@@ -2915,6 +2918,8 @@
 				A0109F681F87852F004E6EF4 /* ScreenAdaptation.m */,
 				54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */,
 				54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */,
+				54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */,
+				54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */,
 			);
 			path = CoreLib;
 			sourceTree = "<group>";
@@ -5538,6 +5543,7 @@
 				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
 				7937C446207209720010CD0C /* PGPickerColumnCell.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
+				54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
 				223ED04F20CE94D300209110 /* RH_InitAdModel.m in Sources */,
