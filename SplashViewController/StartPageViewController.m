@@ -272,7 +272,7 @@
 
 - (void)checkIP:(NSArray *)ips complete:(GBCheckIPFullTypeComplete)complete failed:(GBCheckIPFullTypeFailed)failed
 {
-    NSArray *checkTypes = @[@"https+8989",@"http+8787"];
+    NSArray *checkTypes = @[@"https+8989",@"http+8787",@"https",@"http"];
     
     __weak typeof(self) weakSelf = self;
     
