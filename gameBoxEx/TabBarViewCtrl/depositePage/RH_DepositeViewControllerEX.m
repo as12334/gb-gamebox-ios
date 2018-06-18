@@ -468,13 +468,13 @@
         _markArray = @[@0];
     }
     else{
-        if ([depositeName isEqualToString:@"在线支付"]) {
-            _markArray = @[@0,@6,@1,@2,@3,@4,@5];
-            self.bankCell.bankNameLabel.text=@"请选择支付银行";
-        }
-        else {
-            _markArray = @[@0,@1,@2,@3,@6,@4,@5];
-        }
+//        if ([depositeName isEqualToString:@"在线支付"]) {
+//            _markArray = @[@0,@6,@1,@2,@3,@4,@5];
+//            self.bankCell.bankNameLabel.text=@"请选择支付银行";
+//        }
+//        else {
+//            _markArray = @[@0,@1,@2,@3,@6,@4,@5];
+//        }
     }
     //初始化的平台的cell做处理
     self.payforCell.selectedBtnIndex = 0;

@@ -55,6 +55,7 @@
 //        self.readCountMarkView.hidden = YES;
 //        return;
 //    }
+    self.readCountMarkView.hidden = YES;
     if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||[model.sysMsgUnreadCount intValue]>0||[model.mineMsgUnreadCount intValue]>0)) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"NotUnReadMsg_NT" object:nil];
         self.readCountMarkView.hidden = NO;
