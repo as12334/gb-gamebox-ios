@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionLB;
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) UIButton *doitAgainBT;
 
 @end
 
@@ -33,59 +34,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setupUI];
-    //先检测缓存中的ips
-    //todo
-    BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
-    if (isIPsValid) {
-        self.progress = 0.3;
-        //如果还有效 则直接check缓存的ip
-        NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
-        NSArray *ipList = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
-        
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
-        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
-        
-        //check iplist
-        self.progressNote = @"正在匹配服务器...";
-        [self checkAllIP:ipList];
-        return;
-    }
-
-    self.progressNote = @"正在检查线路,请稍候";
-    //从固定域名列表依次尝试获取ip列表
-    [self fetchIPs:RH_API_MAIN_URL complete:^(NSDictionary *ips) {
-        self.progress = 0.3;
-
-        //从某个固定域名列表获取到了ip列表
-        //根据优先级并发check
-        /**
-         * 优先级
-         * 1 https+8989
-         * 2 http+8787
-         * 3 https
-         * 4 http
-         */
-        NSString *resultDomain = [ips objectForKey:@"domain"];
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        [appDelegate updateHeaderDomain:resultDomain];
-        
-        NSArray *ipList = [ips objectForKey:@"ips"];
-        
-        //多ip地址【异步并发】check 但check的优先级是【串行】的
-        //使用NSOperationQueue 方便取消后续执行
-
-        //check iplist
-        self.progressNote = @"正在匹配服务器...";
-        [self checkAllIP:ipList];
-    } failed:^{
-        //从所有的固定域名列表没有获取到ip列表
-    }];
+    [self doRequest];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)doItAgainAction:(id)sender {
+    [self doRequest];
 }
 
 #pragma mark - Private M
@@ -114,6 +72,9 @@
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     [self.cRightsLB setText:[NSString stringWithFormat:@"Copyrihgt © %@ Reserved.",app_Name]];
     [self.versionLB setText:[NSString stringWithFormat:@"v%@",app_Version]];
+    
+    self.doitAgainBT.layer.cornerRadius = 10.0;
+    self.doitAgainBT.clipsToBounds = YES;
 }
 
 - (void)setProgressNote:(NSString *)progressNote
@@ -125,7 +86,81 @@
 - (void)setProgress:(CGFloat)progress
 {
     _progress = progress;
+    self.progressView.hidden = (_progress == 0);
+    self.doitAgainBT.hidden = (_progress != 0);
     self.progressView.progress = _progress;
+    if (_progress == 0) {
+        self.progressNote = @"";
+    }
+}
+
+- (UIButton *)doitAgainBT
+{
+    if (_doitAgainBT == nil) {
+        _doitAgainBT = [UIButton buttonWithType:UIButtonTypeCustom];
+        _doitAgainBT.backgroundColor = [UIColor yellowColor];
+        [_doitAgainBT setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];        [_doitAgainBT setTitleColor:colorWithRGB(0, 122, 255) forState:UIControlStateNormal];
+        _doitAgainBT.frame = CGRectMake(0, 0, 100, 33);
+        _doitAgainBT.titleLabel.font = [UIFont systemFontOfSize:15];
+        [self.view addSubview:_doitAgainBT];
+        [self.view bringSubviewToFront:_doitAgainBT];
+
+        _doitAgainBT.center = self.progressView.center;
+        [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _doitAgainBT;
+}
+
+- (void)doRequest
+{
+    //先检测缓存中的ips
+    BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
+    if (isIPsValid) {
+        self.progress = 0.3;
+        //如果还有效 则直接check缓存的ip
+        NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
+        NSArray *ipList = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
+        
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
+        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
+        
+        //check iplist
+        self.progressNote = @"正在匹配服务器...";
+        [self checkAllIP:ipList];
+        return;
+    }
+    
+    self.progressNote = @"正在检查线路,请稍候";
+    //从固定域名列表依次尝试获取ip列表
+    [self fetchIPs:RH_API_MAIN_URL complete:^(NSDictionary *ips) {
+        self.progress = 0.3;
+        
+        //从某个固定域名列表获取到了ip列表
+        //根据优先级并发check
+        /**
+         * 优先级
+         * 1 https+8989
+         * 2 http+8787
+         * 3 https
+         * 4 http
+         */
+        NSString *resultDomain = [ips objectForKey:@"domain"];
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        [appDelegate updateHeaderDomain:resultDomain];
+        
+        NSArray *ipList = [ips objectForKey:@"ips"];
+        
+        //多ip地址【异步并发】check 但check的优先级是【串行】的
+        //使用NSOperationQueue 方便取消后续执行
+        
+        //check iplist
+        self.progressNote = @"正在匹配服务器...";
+        [self checkAllIP:ipList];
+    } failed:^{
+        //从所有的固定域名列表没有获取到ip列表
+    }];
 }
 
 /**
@@ -155,7 +190,8 @@
             }
             NSLog(@">>>start fetch url from %@",domain);
             [weakSelf fetchIPListFrom:domain complete:^(NSDictionary *ips) {
-            NSLog(@"已从%@获取到ip，执行回调",domain);
+                NSLog(@"已从%@获取到ip，执行回调",domain);
+                ips = @{@"domain":@"xxxx.com",@"ips":@[@"1.1.1.1"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -168,6 +204,7 @@
                 
                 dispatch_semaphore_signal(sema);
             } failed:^{
+                self.progress += 0.05;
                 NSLog(@"从%@未获取到ip，继续下一次获取...",domain);
                 doNext = YES;//未获取到ip 需要继续执行其他的线程
                 dispatch_semaphore_signal(sema);
@@ -177,8 +214,6 @@
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
-        //得到ip列表后先缓存
-        //todo
 
         if (resultIPs != nil) {
             if (complete) {
@@ -331,6 +366,7 @@
             //全部check失败
             
             //清空缓存
+            self.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
         }];
     }
@@ -341,10 +377,12 @@
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
+    __weak typeof(self) weakSelf = self;
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        ifRespondsSelector(self.delegate, @selector(startPageViewControllerShowMainPage:))
+        ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
         {
-            [self.delegate startPageViewControllerShowMainPage:self];
+            [weakSelf.delegate startPageViewControllerShowMainPage:self];
         }
     });
 }
