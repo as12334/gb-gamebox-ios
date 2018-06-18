@@ -115,6 +115,7 @@
 
 - (void)doRequest
 {
+    self.serviceRequest.timeOutInterval = 5.0;
     //先检测缓存中的ips
     BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
     if (isIPsValid) {
@@ -194,7 +195,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"xxxx.com",@"ips":@[@"1.1.1.1",@"2.2.2.2"]};
+//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1",@"14.215.171.197",@"2.2.2.2",@"3.3.3.3"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -227,23 +228,6 @@
             }];
         });
     }
-    
-//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-//        NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
-//
-//        if (resultIPs != nil) {
-//            if (complete) {
-//                complete(resultIPs);
-//            }
-//        }
-//        else
-//        {
-//            if (failed) {
-//                failed();
-//            }
-//        }
-//    });
-
 }
 
 /**
@@ -281,14 +265,14 @@
 /**
  【串行】check相应的ip
 
- @param ip IP地址
+ @param ips IP地址列表
  @param complete check完成回调 有一种类型check成功 则认定check成功
  @param failed check失败回调 当4种类型均check失败则认定为失败
  */
 
-- (void)checkIP:(NSString *)ip complete:(GBCheckIPFullTypeComplete)complete failed:(GBCheckIPFullTypeFailed)failed
+- (void)checkIP:(NSArray *)ips complete:(GBCheckIPFullTypeComplete)complete failed:(GBCheckIPFullTypeFailed)failed
 {
-    NSArray *checkTypes = @[@"https+8989",@"http+8787",@"https",@"http"];
+    NSArray *checkTypes = @[@"https+8989",@"http+8787"];
     
     __weak typeof(self) weakSelf = self;
     
@@ -296,45 +280,46 @@
     //当前check失败时需要check下一个类型
     __block BOOL doNext = YES;
     dispatch_group_t group = dispatch_group_create();
-    NSString *queueName = [NSString stringWithFormat:@"gb_checkIP_with_type_queue_%@",ip];
-    dispatch_queue_t queue = dispatch_queue_create([queueName UTF8String], NULL);
+    dispatch_queue_t queue = dispatch_queue_create("gb_checkIP_with_type_queue", NULL);
     dispatch_semaphore_t sema = dispatch_semaphore_create(1);
     
-    for (int i = 0; i < checkTypes.count; i++) {
-        NSString *checkType = checkTypes[i];
-        
-        dispatch_group_async(group, queue, ^{
-            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-            if (doNext != YES) {
-                //先检测是否需要继续执行 不需要执行则直接跳过本线程
-                dispatch_semaphore_signal(sema);
-                return ;
-            }
-            NSLog(@">>>start check ip:%@ type:%@",ip,checkType);
-            [weakSelf checkIP:ip checkType:checkType complete:^(NSString *type) {
-                NSLog(@"ip:%@check成功 type:%@", ip, type);
-                doNext = NO;//已经获取到ip 不需要继续执行其他的线程
-                dispatch_semaphore_signal(sema);
-                NSLog(@">>>ip:%@check完毕",ip);
-                if (complete) {
-                    complete(ip, type);
+    for (NSString *ip in ips) {
+        for (int i = 0; i < checkTypes.count; i++) {
+            NSString *checkType = checkTypes[i];
+            
+            dispatch_group_async(group, queue, ^{
+                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+                if (doNext != YES) {
+                    //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                    dispatch_semaphore_signal(sema);
+                    return ;
                 }
-            } failed:^{
-                self.progress += 0.05;
-                
-                NSLog(@"ip:%@check失败 type:%@ 继续【串行】check下一类型...", ip, checkType);
-                NSLog(@"%i",i);
-                doNext = YES;//未获取到ip 需要继续执行其他的线程
-                dispatch_semaphore_signal(sema);
-                if (i == 3) {
-                    //检测到最后一次依然失败 则判断失败
-                    NSLog(@"ip:%@全部类型检测都失败",ip);
-                    if (failed) {
-                        failed();
+                NSLog(@">>>start check ip:%@ type:%@",ip,checkType);
+                [weakSelf checkIP:ip checkType:checkType complete:^(NSString *type) {
+                    NSLog(@"ip:%@check成功 type:%@", ip, type);
+                    doNext = NO;//已经获取到ip 不需要继续执行其他的线程
+                    dispatch_semaphore_signal(sema);
+                    NSLog(@">>>ip:%@check完毕",ip);
+                    if (complete) {
+                        complete(ip, type);
                     }
-                }
-            }];
-        });
+                } failed:^{
+                    self.progress += 0.05;
+                    
+                    NSLog(@"ip:%@check失败 type:%@ 继续【串行】check下一类型...", ip, checkType);
+                    NSLog(@"%i",i);
+                    doNext = YES;//未获取到ip 需要继续执行其他的线程
+                    dispatch_semaphore_signal(sema);
+                    if (i == (checkTypes.count-1)) {
+                        //检测到最后一次依然失败 则判断失败
+                        NSLog(@"ip:%@全部类型检测都失败",ip);
+                        if (failed) {
+                            failed();
+                        }
+                    }
+                }];
+            });
+        }
     }
 }
 
@@ -360,33 +345,37 @@
 - (void)checkAllIP:(NSArray *)ipList
 {
     __weak typeof(self) weakSelf = self;
-    for (NSString *ip in ipList) {
-        //在此做【串行】check
-        [self checkIP:ip complete:^(NSString *ip, NSString *type) {
-            //有某个类型check完毕
-            self.progress += 0.2;
-            
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            appDelegate.checkType = type;
-            
-            NSArray *checkTypeComponents = [type componentsSeparatedByString:@"+"];
-            [appDelegate updateDomain:[NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]]] ;
-            
-            //update check
-            [self.serviceRequest startV3UpdateCheck];
-            self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-                [weakSelf startPageComplete];
-            };
-            self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-            };
-        } failed:^{
-            //全部check失败
-            
+    __block int failedTimes = 0;
+    
+    [self checkIP:ipList complete:^(NSString *ip, NSString *type) {
+        //有某个类型check完毕
+        self.progress += 0.2;
+        
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        appDelegate.checkType = type;
+        
+        NSArray *checkTypeComponents = [type componentsSeparatedByString:@"+"];
+        [appDelegate updateDomain:[NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]]] ;
+        
+        //update check
+        [self.serviceRequest startV3UpdateCheck];
+        self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+            [weakSelf startPageComplete];
+        };
+        self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        };
+    } failed:^{
+        //某条ip全部类型check失败
+        //失败次数累加
+        
+        failedTimes ++;
+        if (failedTimes == ipList.count) {
+            //所有的ip及所有类型检测失败
             //清空缓存
             self.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
-        }];
-    }
+        }
+    }];
 }
 
 - (void)startPageComplete
