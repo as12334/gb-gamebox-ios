@@ -36,7 +36,6 @@
     // Do any additional setup after loading the view from its nib.
     [self setupUI];
     [self doRequest];
-    NSLog(@"");
 }
 
 - (void)didReceiveMemoryWarning {
