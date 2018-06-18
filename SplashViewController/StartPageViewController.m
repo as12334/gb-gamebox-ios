@@ -191,7 +191,6 @@
             NSLog(@">>>start fetch url from %@",domain);
             [weakSelf fetchIPListFrom:domain complete:^(NSDictionary *ips) {
                 NSLog(@"已从%@获取到ip，执行回调",domain);
-                ips = @{@"domain":@"xxxx.com",@"ips":@[@"1.1.1.1"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
