@@ -103,6 +103,7 @@
         [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];        [_doitAgainBT setTitleColor:colorWithRGB(0, 122, 255) forState:UIControlStateNormal];
         _doitAgainBT.frame = CGRectMake(0, 0, 100, 33);
         _doitAgainBT.titleLabel.font = [UIFont systemFontOfSize:15];
+        _doitAgainBT.hidden = YES;
         [self.view addSubview:_doitAgainBT];
         [self.view bringSubviewToFront:_doitAgainBT];
 
@@ -191,6 +192,9 @@
             NSLog(@">>>start fetch url from %@",domain);
             [weakSelf fetchIPListFrom:domain complete:^(NSDictionary *ips) {
                 NSLog(@"已从%@获取到ip，执行回调",domain);
+                //todo
+                //test data
+//                ips = @{@"domain":@"xxxx.com",@"ips":@[@"1.1.1.1",@"2.2.2.2"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -201,6 +205,19 @@
                 
                 [[IPsCacheManager sharedManager] updateIPsList:resultIPs];
                 
+                NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
+                if (resultIPs != nil) {
+                    if (complete) {
+                        complete(resultIPs);
+                    }
+                }
+                else
+                {
+                    if (failed) {
+                        failed();
+                    }
+                }
+
                 dispatch_semaphore_signal(sema);
             } failed:^{
                 self.progress += 0.05;
@@ -211,21 +228,21 @@
         });
     }
     
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
-
-        if (resultIPs != nil) {
-            if (complete) {
-                complete(resultIPs);
-            }
-        }
-        else
-        {
-            if (failed) {
-                failed();
-            }
-        }
-    });
+//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+//        NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
+//
+//        if (resultIPs != nil) {
+//            if (complete) {
+//                complete(resultIPs);
+//            }
+//        }
+//        else
+//        {
+//            if (failed) {
+//                failed();
+//            }
+//        }
+//    });
 
 }
 
@@ -290,6 +307,7 @@
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
             if (doNext != YES) {
                 //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                dispatch_semaphore_signal(sema);
                 return ;
             }
             NSLog(@">>>start check ip:%@ type:%@",ip,checkType);
