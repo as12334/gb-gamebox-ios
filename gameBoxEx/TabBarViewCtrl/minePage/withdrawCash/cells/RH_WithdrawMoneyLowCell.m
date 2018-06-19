@@ -37,11 +37,6 @@
     
     self.button_Save.whc_TopSpaceToView(20, self.button_Recycle).whc_CenterX(0).whc_Width(100).whc_Height(44);
     self.label_Notice.text = @"取款金额至少为100.00元\n您当前钱包余额不足!";
-    if ([self.label_Notice.text containsString:@"余额不足"]) {
-        self.button_Recycle.alpha = 0.0;
-    }else{
-        self.button_Recycle.alpha = 1.0;
-    }
     self.label_Notice.textColor = RH_Label_DefaultTextColor;
     NSDictionary *dic = @{NSKernAttributeName:@1.f,
                           
@@ -100,11 +95,6 @@
 {
     NSString *textStr = ConvertToClassPointer(NSString, context) ;
     self.label_Notice.text = [NSString stringWithFormat:@"%@\n您当前钱包余额不足!",textStr];
-    if ([self.label_Notice.text containsString:@"余额不足"]) {
-        self.button_Recycle.alpha = 0.0;
-    }else{
-        self.button_Recycle.alpha = 1.0;
-    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

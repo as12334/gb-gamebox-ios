@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *explainLab;
 @property (weak, nonatomic) IBOutlet UIView *readCountMarkView;
 
+@property (nonatomic, strong) NSString *title;
+
 @end
 @implementation RH_MineRecordStaticCell
 -(void)awakeFromNib
@@ -55,7 +57,7 @@
 //        self.readCountMarkView.hidden = YES;
 //        return;
 //    }
-    self.readCountMarkView.hidden = YES;
+    self.title = [info objectForKey:@"title"];
     if ([[info objectForKey:@"title"] isEqualToString:@"消息中心"]&&(model.siteMsgUnReadCount>0||[model.sysMsgUnreadCount intValue]>0||[model.mineMsgUnreadCount intValue]>0)) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"NotUnReadMsg_NT" object:nil];
         self.readCountMarkView.hidden = NO;
@@ -77,7 +79,13 @@
     if ([notification.userInfo[@"NotUnReadMsg"] isEqualToString:@"YES"]) {
          self.readCountMarkView.hidden = YES;
     }else{
-         self.readCountMarkView.hidden = NO;
+        if ([self.title isEqualToString:@"消息中心"]) {
+            self.readCountMarkView.hidden = NO;
+        }
+        else
+        {
+            self.readCountMarkView.hidden = YES;
+        }
     }
 }
 -(void)dealloc{

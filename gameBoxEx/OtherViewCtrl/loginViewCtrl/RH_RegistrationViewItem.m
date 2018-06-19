@@ -646,6 +646,7 @@
         showErrorMessage(self.window, error, nil);
     }else if (type == ServiceRequestTypeV3RegiestCaptchaCode){
         showErrorMessage(self.window, error, nil);
+        [self.serviceRequest startV3RegisetCaptchaCode];
     }
 
 }
