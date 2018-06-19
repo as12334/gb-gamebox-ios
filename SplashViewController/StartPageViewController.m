@@ -58,13 +58,6 @@
      * 119 270 特殊处理
      */
     [self.launchImageView setImage:ImageWithName(@"startImage")];
-
-    if ([SID isEqualToString:@"119"]) {
-        [self.launchImageView setImage:ImageWithName(@"startImage_119")];
-    }
-    else if ([SID isEqualToString:@"270"]){
-        [self.launchImageView setImage:ImageWithName(@"startImage_270")];
-    }
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
