@@ -96,5 +96,26 @@ do
          mv Contents.json.tmp Contents.json
      fi
   done
+
+  for fileDir in "${all_res_path}"/*; do
+     folder=${fileDir##*/} #截取得到sid文件夹名称
+     if [[ ${folder} == ${sid} ]]; then
+         #找到需要替换的sid资源目录
+         /bin/cp -rf "${project_path}/temp_json_file/startimage_750x1134.jpg" "${assets_path}/startImage.imageset"
+         /bin/cp -rf "${project_path}/temp_json_file/startimage_1242x2290.jpg" "${assets_path}/startImage.imageset"
+
+         cd ${fileDir}
+         for subfileDir in "${fileDir}"/*; do
+            subFile=${subfileDir##*/} #截取得到sid文件夹名称
+            if [[ ${subFile} == "startimage_750x1134.jpg" ]]; then
+                /bin/cp -rf "startimage_750x1134.jpg" "${assets_path}/startImage.imageset"
+            fi
+
+            if [[ ${subFile} == "startimage_1242x2290.jpg" ]]; then
+                /bin/cp -rf "startimage_1242x2290.jpg" "${assets_path}/startImage.imageset"
+            fi
+         done
+     fi
+  done
 done
 
