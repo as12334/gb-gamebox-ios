@@ -133,6 +133,24 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     return _appDelegate ;
 }
 #pragma mark-用户接口定义
+-(void)startReqDomainListWithIP:(NSString*)ip Host:(NSString *)host
+{
+    [self _startServiceWithAPIName:ip
+                        pathFormat:RH_API_NAME_BOSSSYSDOMAIN
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":host
+                                     }
+                    queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
+                                     RH_SP_COMMON_SITESEC:S,
+                                     RH_SP_COMMON_OSTYPE:@"ips",
+                                     }
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeDomainList
+                         scopeType:ServiceScopeTypePublic];
+}
+
 -(void)startReqDomainListWithDomain:(NSString*)domain
 {
     [self _startServiceWithAPIName:domain
@@ -2403,6 +2421,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+#pragma mark - 获取动态IP列表 该IP列表用于获取check ips
+
+- (void)fetchHost:(NSString *)url
+{
+    RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:url
+                                                                pathFormat:nil
+                                                             pathArguments:nil
+                                                            queryArguments:nil
+                                                           headerArguments:nil
+                                                             bodyArguments:nil
+                                                                      type:HTTPRequestTypeGet];
+    
+    httpRequest.timeOutInterval = _timeOutInterval ;
+    //开始请求
+    [self _startHttpRequest:httpRequest forType:ServiceRequestTypeFetchHost scopeType:ServiceScopeTypePublic];
+}
+
 #pragma mark -
 - (NSMutableDictionary *)doSometiongMasks {
     return _doSometiongMasks ?: (_doSometiongMasks = [NSMutableDictionary dictionary]);
@@ -2444,7 +2479,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 - (NSString *)_keyForSerivceType:(ServiceRequestType)type {
     return [NSString stringWithFormat:@"%@_%d",self.uniqueID,(int)type];
 }
-
 
 - (void)_startServiceWithAPIName:(NSString *)apiName
                       pathFormat:(NSString *)pathFormat

@@ -12,7 +12,7 @@
 #import "MacroDef.h"
 #import "coreLib.h"
 
-#define GB_UpdateStatus_VALID_CACHE_TIME 1*24*60*60 //有效期一天
+#define GB_UpdateStatus_VALID_CACHE_TIME 1*60*60 //有效期小时
 
 @interface UpdateStatusCacheManager ()
 
