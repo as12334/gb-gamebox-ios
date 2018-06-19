@@ -64,6 +64,8 @@
     }
     else if ([SID isEqualToString:@"270"]){
         [self.launchImageView setImage:ImageWithName(@"startImage_270")];
+    }else if ([SID isEqualToString:@"206"]){
+        [self.launchImageView setImage:ImageWithName(@"startImage-206")];
     }
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
