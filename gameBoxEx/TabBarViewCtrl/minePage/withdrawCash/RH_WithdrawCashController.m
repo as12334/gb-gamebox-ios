@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    _withdrawCashStatus = WithdrawCashStatus_Init ;
+    _withdrawCashStatus = WithdrawCashStatus_HasOrder ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
     [self updateView];
