@@ -288,58 +288,6 @@
         }];
     } failed:^{
     }];
-    
-//    //先检测缓存中的ips
-//    BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
-//    if (isIPsValid) {
-//        self.progress = 0.3;
-//        //如果还有效 则直接check缓存的ip
-//        NSDictionary *ips = [[IPsCacheManager sharedManager] ips];
-//        NSArray *ipList = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
-//
-//        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-//        [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
-//        [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
-//
-//        //check iplist
-//        self.progressNote = @"正在匹配服务器...";
-//        [self checkAllIP:ipList complete:^{
-//            [weakSelf shoudShowUpdateAlert];
-//        }];
-//        return;
-//    }
-//
-//    self.progressNote = @"正在检查线路,请稍候";
-//    //从固定域名列表依次尝试获取ip列表
-//    [self fetchIPs:RH_API_MAIN_URL complete:^(NSDictionary *ips) {
-//        self.progress = 0.3;
-//
-//        //从某个固定域名列表获取到了ip列表
-//        //根据优先级并发check
-//        /**
-//         * 优先级
-//         * 1 https+8989
-//         * 2 http+8787
-//         * 3 https
-//         * 4 http
-//         */
-//        NSString *resultDomain = [ips objectForKey:@"domain"];
-//        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-//        [appDelegate updateHeaderDomain:resultDomain];
-//
-//        NSArray *ipList = [ips objectForKey:@"ips"];
-//
-//        //多ip地址【异步并发】check 但check的优先级是【串行】的
-//        //使用NSOperationQueue 方便取消后续执行
-//
-//        //check iplist
-//        self.progressNote = @"正在匹配服务器...";
-//        [self checkAllIP:ipList complete:^{
-//            [weakSelf shoudShowUpdateAlert];
-//        }];
-//    } failed:^{
-//        //从所有的固定域名列表没有获取到ip列表
-//    }];
 }
 
 /**
