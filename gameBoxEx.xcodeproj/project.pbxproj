@@ -118,6 +118,8 @@
 		54C4F84C20D6348C00CCAD47 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */; };
 		54C4F84D20D6348C00CCAD47 /* StartPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */; };
 		54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */; };
+		54C4F87520D7CED000CCAD47 /* dores.sh in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F87320D7CECF00CCAD47 /* dores.sh */; };
+		54C4F87620D7CED000CCAD47 /* sid in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F87420D7CED000CCAD47 /* sid */; };
 		54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */; };
 		54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */; };
 		54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */; };
@@ -985,6 +987,8 @@
 		54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartPageViewController.xib; sourceTree = "<group>"; };
 		54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateStatusCacheManager.h; sourceTree = "<group>"; };
 		54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateStatusCacheManager.m; sourceTree = "<group>"; };
+		54C4F87320D7CECF00CCAD47 /* dores.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dores.sh; sourceTree = "<group>"; };
+		54C4F87420D7CED000CCAD47 /* sid */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sid; sourceTree = "<group>"; };
 		54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindNewPhoneView.h; sourceTree = "<group>"; };
 		54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindNewPhoneView.m; sourceTree = "<group>"; };
 		54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindNewPhoneView.xib; sourceTree = "<group>"; };
@@ -2849,6 +2853,8 @@
 			isa = PBXGroup;
 			children = (
 				F67B30961FA742B600C63829 /* sitelist.sh */,
+				54C4F87320D7CECF00CCAD47 /* dores.sh */,
+				54C4F87420D7CED000CCAD47 /* sid */,
 				A0E53D681F97411F00CE69E4 /* thirdPart */,
 				A0109E071F87852F004E6EF4 /* CoreLib */,
 				A010A0021F878B67004E6EF4 /* NetModule */,
@@ -4969,6 +4975,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0109C8E1F878199004E6EF4 /* Build configuration list for PBXNativeTarget "gameBoxEx" */;
 			buildPhases = (
+				54C4F87720D7D07B00CCAD47 /* ShellScript */,
 				A0109C5E1F878199004E6EF4 /* Sources */,
 				A0109C5F1F878199004E6EF4 /* Frameworks */,
 				A0109C601F878199004E6EF4 /* Resources */,
@@ -5095,6 +5102,8 @@
 				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
 				A07AF4EE2026DBE400D6D559 /* tab_v3_deposit_selected_black@2x.png in Resources */,
 				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
+				54C4F87620D7CED000CCAD47 /* sid in Resources */,
+				54C4F87520D7CED000CCAD47 /* dores.sh in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				221AE592207DEECB008CD409 /* login_touxiang_red@3x.png in Resources */,
 				221AE57A207DED56008CD409 /* tab_v3_home_selected_orange@2x.png in Resources */,
@@ -5306,6 +5315,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54C4F87720D7D07B00CCAD47 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/dores.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A0109C5E1F878199004E6EF4 /* Sources */ = {
@@ -5945,7 +5970,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APP_DISPLAY_NAME = test;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-226";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
@@ -6028,7 +6053,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APP_DISPLAY_NAME = test;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-226";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
