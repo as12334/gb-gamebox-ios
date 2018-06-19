@@ -13,6 +13,7 @@
 #import "MacroDef.h"
 #import "RH_UpdatedVersionModel.h"
 #import "coreLib.h"
+#import "UpdateStatusCacheManager.h"
 
 @interface StartPageViewController ()
 
@@ -115,6 +116,7 @@
 
 - (void)doRequest
 {
+    __weak typeof(self) weakSelf = self;
     self.serviceRequest.timeOutInterval = 5.0;
     //先检测缓存中的ips
     BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
@@ -130,7 +132,9 @@
         
         //check iplist
         self.progressNote = @"正在匹配服务器...";
-        [self checkAllIP:ipList];
+        [self checkAllIP:ipList complete:^{
+            [weakSelf shoudShowUpdateAlert];
+        }];
         return;
     }
     
@@ -159,7 +163,9 @@
         
         //check iplist
         self.progressNote = @"正在匹配服务器...";
-        [self checkAllIP:ipList];
+        [self checkAllIP:ipList complete:^{
+            [weakSelf shoudShowUpdateAlert];
+        }];
     } failed:^{
         //从所有的固定域名列表没有获取到ip列表
     }];
@@ -342,14 +348,14 @@
     };
 }
 
-- (void)checkAllIP:(NSArray *)ipList
+- (void)checkAllIP:(NSArray *)ipList complete:(GBCheckAllIPsComplete)complete
 {
     __weak typeof(self) weakSelf = self;
     __block int failedTimes = 0;
     
     [self checkIP:ipList complete:^(NSString *ip, NSString *type) {
         //有某个类型check完毕
-        self.progress += 0.2;
+        weakSelf.progress += 0.2;
         
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         appDelegate.checkType = type;
@@ -357,13 +363,9 @@
         NSArray *checkTypeComponents = [type componentsSeparatedByString:@"+"];
         [appDelegate updateDomain:[NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]]] ;
         
-        //update check
-        [self.serviceRequest startV3UpdateCheck];
-        self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-            [weakSelf startPageComplete];
-        };
-        self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-        };
+        if (complete) {
+            complete();
+        }
     } failed:^{
         //某条ip全部类型check失败
         //失败次数累加
@@ -372,10 +374,28 @@
         if (failedTimes == ipList.count) {
             //所有的ip及所有类型检测失败
             //清空缓存
-            self.progress = 0;
+            weakSelf.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
         }
     }];
+}
+
+- (void)shoudShowUpdateAlert
+{
+    __weak typeof(self) weakSelf = self;
+    //检测更新
+    BOOL isUpdateStatusValid = [[UpdateStatusCacheManager sharedManager] isUpdateStatusValid];
+    if (isUpdateStatusValid) {
+        //依然有效 则直接进入游戏
+        [self startPageComplete];
+    }
+    else
+    {
+        [[UpdateStatusCacheManager sharedManager] showUpdateAlert:^{
+            //不是强制更新 且 点击了跳过更新按钮
+            [weakSelf startPageComplete];
+        }];
+    }
 }
 
 - (void)startPageComplete
