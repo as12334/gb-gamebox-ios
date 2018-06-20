@@ -88,6 +88,7 @@
         badgeLab.textAlignment = NSTextAlignmentCenter;
         badgeLab.hidden = YES;
         [self addSubview:badgeLab];
+        
         [[NSNotificationCenter defaultCenter] addObserverForName:@"UnReadSiteMsgCount_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
             RH_SiteMsgUnReadCountModel *model = note.object ;
             if (model.siteMsgUnReadCount && model.siteMsgUnReadCount >0) {

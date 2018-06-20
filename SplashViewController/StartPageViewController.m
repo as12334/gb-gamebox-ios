@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     [self setupUI];
     [self doRequest];
 }
@@ -58,13 +59,6 @@
      * 119 270 特殊处理
      */
     [self.launchImageView setImage:ImageWithName(@"startImage")];
-
-    if ([SID isEqualToString:@"119"]) {
-        [self.launchImageView setImage:ImageWithName(@"startImage_119")];
-    }
-    else if ([SID isEqualToString:@"270"]){
-        [self.launchImageView setImage:ImageWithName(@"startImage_270")];
-    }
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
@@ -114,10 +108,107 @@
     return _doitAgainBT;
 }
 
+//先从三个固定的链接获取动态ip地址
+//该动态ip地址用于获取check ip列表
+//以此减轻服务端压力
+
+- (void)fetchHost:(GBFetchHostComplete)complete failed:(GBFetchHostFailed)failed
+{
+    NSArray *hosts = @[@"http://203.107.1.33/194768/d?host=apiplay.info",
+                       @"http://203.107.1.33/194768/d?host=hpdbtopgolddesign.com",
+                       @"http://203.107.1.33/194768/d?host=agpicdance.info"
+                       ];
+    //将此数据随机打乱 减轻服务器压力
+    hosts = [hosts sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        int seed = arc4random_uniform(2);
+        if (seed) {
+            return [str1 compare:str2];
+        } else {
+            return [str2 compare:str1];
+        }
+    }];
+    
+    //【串行】获取动态host
+    __weak typeof(self) weakSelf = self;
+    __block BOOL doNext = YES;
+    __block int failTimes = 0;
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("gb_fetchHost_queue", NULL);
+    dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+    
+    for (NSString *host in hosts) {
+        dispatch_group_async(group, queue, ^{
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            if (doNext != YES) {
+                //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                dispatch_semaphore_signal(sema);
+                return ;
+            }
+            NSLog(@">>>start fetch Host from %@",host);
+            
+            [weakSelf.serviceRequest fetchHost:host];
+            weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+                if (type == ServiceRequestTypeFetchHost) {
+                    if (data) {
+                        //已从%@获取到HOST，执行回调
+                        NSDictionary *hostDic = ConvertToClassPointer(NSDictionary, data);
+                        if (hostDic) {
+                            NSLog(@"已从%@获取到HOST，执行回调",host);
+                            if (complete) {
+                                complete(hostDic);
+                            }
+                            doNext = NO;
+                        }
+                        else
+                        {
+                            NSLog(@"从%@未获取到Host，继续下一次获取...",host);
+                            doNext = YES;
+                            failTimes++;
+                            if (failTimes == hosts.count) {
+                                if (failed) {
+                                    failed();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NSLog(@"从%@未获取到Host，继续下一次获取...",host);
+                        doNext = YES;
+                        failTimes++;
+                        if (failTimes == hosts.count) {
+                            if (failed) {
+                                failed();
+                            }
+                        }
+                    }
+                    dispatch_semaphore_signal(sema);
+                }
+            };
+            weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+                if (type == ServiceRequestTypeFetchHost) {
+                    NSLog(@"从%@未获取到Host，继续下一次获取...",host);
+                    doNext = YES;
+                    failTimes++;
+                    if (failTimes == hosts.count) {
+                        if (failed) {
+                            failed();
+                        }
+                    }
+                    dispatch_semaphore_signal(sema);
+                }
+            };
+        });
+    }
+
+    NSLog(@"");
+}
+
 - (void)doRequest
 {
     __weak typeof(self) weakSelf = self;
     self.serviceRequest.timeOutInterval = 5.0;
+    
     //先检测缓存中的ips
     BOOL isIPsValid = [[IPsCacheManager sharedManager] isIPsValid];
     if (isIPsValid) {
@@ -138,45 +229,73 @@
         return;
     }
     
-    self.progressNote = @"正在检查线路,请稍候";
-    //从固定域名列表依次尝试获取ip列表
-    [self fetchIPs:RH_API_MAIN_URL complete:^(NSDictionary *ips) {
-        self.progress = 0.3;
+    //先从获取动态HOST
+    [self fetchHost:^(NSDictionary *host) {
+        NSString *hostName = [host objectForKey:@"host"];
         
-        //从某个固定域名列表获取到了ip列表
-        //根据优先级并发check
-        /**
-         * 优先级
-         * 1 https+8989
-         * 2 http+8787
-         * 3 https
-         * 4 http
-         */
-        NSString *resultDomain = [ips objectForKey:@"domain"];
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        [appDelegate updateHeaderDomain:resultDomain];
+        //将此数据随机打乱 减轻服务器压力
+        NSArray *hostips = [host objectForKey:@"ips"];
+        hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+            int seed = arc4random_uniform(2);
+            if (seed) {
+                return [str1 compare:str2];
+            } else {
+                return [str2 compare:str1];
+            }
+        }];
         
-        NSArray *ipList = [ips objectForKey:@"ips"];
+        NSMutableArray *hostUrlArr = [NSMutableArray array];
+        for (NSString *hostip in hostips) {
+            NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
+            [hostUrlArr addObject:hostUrl];
+        }
         
-        //多ip地址【异步并发】check 但check的优先级是【串行】的
-        //使用NSOperationQueue 方便取消后续执行
+        //测试环境使用配置的固定域名
+        if (IS_DEV_SERVER_ENV) {
+            hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
+        }
         
-        //check iplist
-        self.progressNote = @"正在匹配服务器...";
-        [self checkAllIP:ipList complete:^{
-            [weakSelf shoudShowUpdateAlert];
+        self.progressNote = @"正在检查线路,请稍候";
+        //从动态域名列表依次尝试获取ip列表
+        [self fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+            self.progress = 0.3;
+            
+            //从某个固定域名列表获取到了ip列表
+            //根据优先级并发check
+            /**
+             * 优先级
+             * 1 https+8989
+             * 2 http+8787
+             * 3 https
+             * 4 http
+             */
+            NSString *resultDomain = [ips objectForKey:@"domain"];
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateHeaderDomain:resultDomain];
+            
+            NSArray *ipList = [ips objectForKey:@"ips"];
+            
+            //多ip地址【异步并发】check 但check的优先级是【串行】的
+            //使用NSOperationQueue 方便取消后续执行
+            
+            //check iplist
+            self.progressNote = @"正在匹配服务器...";
+            [self checkAllIP:ipList complete:^{
+                [weakSelf shoudShowUpdateAlert];
+            }];
+        } failed:^{
+            //从所有的固定域名列表没有获取到ip列表
         }];
     } failed:^{
-        //从所有的固定域名列表没有获取到ip列表
     }];
 }
 
 /**
  * 从固定的域名列表【串行】尝试获取ip列表
 
- @param domains 固定的域名
+ @param domains 动态的域名
  */
-- (void)fetchIPs:(NSArray *)domains complete:(GBFetchIPsComplete)complete failed:(GBFetchIPsFailed)failed
+- (void)fetchIPs:(NSArray *)domains host:(NSString *)host complete:(GBFetchIPsComplete)complete failed:(GBFetchIPsFailed)failed
 {
     __weak typeof(self) weakSelf = self;
     __block NSDictionary *resultIPs;
@@ -197,7 +316,7 @@
                 return ;
             }
             NSLog(@">>>start fetch url from %@",domain);
-            [weakSelf fetchIPListFrom:domain complete:^(NSDictionary *ips) {
+            [weakSelf fetchIPListFrom:domain host:host complete:^(NSDictionary *ips) {
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
@@ -241,9 +360,9 @@
 
  @param domain 固定的域名 正式环境有三个备份域名
  */
-- (void)fetchIPListFrom:(NSString *)domain complete:(GBFetchIPListComplete)complete failed:(GBFetchIPListFailed)failed
+- (void)fetchIPListFrom:(NSString *)domain host:(NSString *)host complete:(GBFetchIPListComplete)complete failed:(GBFetchIPListFailed)failed
 {
-    [self.serviceRequest startReqDomainListWithDomain:domain];
+    [self.serviceRequest startReqDomainListWithIP:domain Host:host];
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeDomainList) {
             if (data != nil) {

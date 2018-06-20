@@ -125,8 +125,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3ForgetPswCheckCode, //忘记密码验证验证码
     ServiceRequestTypeV3ForgetPswFindbackPsw,   //找回密码
     
-    ServiceRequestTypeV3INITAD            //初始化广告
-
+    ServiceRequestTypeV3INITAD,            //初始化广告
+    ServiceRequestTypeFetchHost,        //获取动态HOST
 };
 
 
@@ -179,6 +179,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 @interface RH_ServiceRequest : NSObject
 
 #pragma mark-接口定义
+
+-(void)startReqDomainListWithIP:(NSString*)ip Host:(NSString *)host;
+
 /**
  * 获取站点 DOMAIN 列表
  */
@@ -650,6 +653,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)bindPhoneSendCode:(NSString *)phone;
 - (void)bindPhone:(NSString *)phone code:(NSString *)code;
 
+
+#pragma mark - 动态获取HOST
+- (void)fetchHost:(NSString *)url;
 
 #pragma mark -
 /**
