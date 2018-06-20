@@ -212,7 +212,7 @@
 
 #elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define TEST_DOMAIN  @"test71.hongtubet.com"
+//#define TEST_DOMAIN  @"test71.hongtubet.com"
 //#define TEST_DOMAIN         @"https://test2.hongtubet.com/lottery.html"
 //#define TEST_DOMAIN  @"71.hongtubet.com"
 #define CODE    @"8l6r"
