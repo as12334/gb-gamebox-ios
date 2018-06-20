@@ -23,6 +23,7 @@
 #define  kUpdateAPPDatePrompt                           @"kUpdateAPPDatePrompt"
 #define  OneDayTotalInterval                             (24*60*60)
 
+
 @interface SplashViewController ()
 @property(nonatomic,strong) UIWindow * window;
 @property (weak, nonatomic) IBOutlet UIImageView *splashLogo;
