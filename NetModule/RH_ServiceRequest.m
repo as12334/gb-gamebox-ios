@@ -214,17 +214,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark ==============updateCheck================
 -(void)startV3UpdateCheck
 {
-    [self _startServiceWithAPIName:self.appDelegate.apiDomain
-                        pathFormat:@"app/update.html"
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:@"mobile-api/app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{@"code":S,
                                      @"type":@"ios",
                                      @"siteId":SID
                                      }
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3UpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
