@@ -14,6 +14,8 @@
 #import "RH_UpdatedVersionModel.h"
 #import "coreLib.h"
 #import "UpdateStatusCacheManager.h"
+#import "RH_StartPageADView.h"
+#import "RH_InitAdModel.h"
 
 @interface StartPageViewController ()
 
@@ -26,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) UIButton *doitAgainBT;
-@property (strong, nonatomic) NSString *checkedIP;
+@property (strong, nonatomic) RH_StartPageADView *adView;
 
 @end
 
@@ -107,6 +109,43 @@
         [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _doitAgainBT;
+}
+
+- (RH_StartPageADView *)adView
+{
+    if (_adView == nil) {
+        _adView = [[[NSBundle mainBundle] loadNibNamed:@"RH_StartPageADView" owner:nil options:nil] lastObject];
+        _adView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [self.view addSubview:_adView];
+    }
+    return _adView;
+}
+
+- (void)fetchAdInfo
+{
+    __weak typeof(self) weakSelf = self;
+
+    [self.serviceRequest startV3InitAd];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        RH_InitAdModel *adModel =ConvertToClassPointer(RH_InitAdModel, data);
+        if (adModel && adModel.mInitAppAd != nil && ![adModel.mInitAppAd isEqualToString:@""]) {
+            //有广告则显示广告
+            weakSelf.adView.adImageUrl = [NSString stringWithFormat:@"%@%@",weakSelf.appDelegate.domain,adModel.mInitAppAd];
+            [weakSelf.adView show:^{
+                //广告显示完成 进入主页面
+                [weakSelf startPageComplete];
+            }];
+        }
+        else
+        {
+            //无广告 则直接进入首页
+            [weakSelf startPageComplete];
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        //广告获取失败 进入主页面
+        [weakSelf startPageComplete];
+    };
 }
 
 //先从三个固定的链接获取动态ip地址
@@ -225,7 +264,9 @@
         //check iplist
         self.progressNote = @"正在匹配服务器...";
         [self checkAllIP:ipList complete:^{
-            [weakSelf shoudShowUpdateAlert];
+            self.progressNote = @"检查完成,即将进入";
+            self.progress = 1.0;
+            [weakSelf fetchAdInfo];
         }];
         return;
     }
@@ -283,7 +324,9 @@
             //check iplist
             self.progressNote = @"正在匹配服务器...";
             [self checkAllIP:ipList complete:^{
-                [weakSelf shoudShowUpdateAlert];
+                self.progressNote = @"检查完成,即将进入";
+                self.progress = 1.0;
+                [weakSelf fetchAdInfo];
             }];
         } failed:^{
             //从所有的固定域名列表没有获取到ip列表
@@ -504,37 +547,12 @@
     }];
 }
 
-- (void)shoudShowUpdateAlert
-{
-    __weak typeof(self) weakSelf = self;
-    //检测更新
-    BOOL isUpdateStatusValid = [[UpdateStatusCacheManager sharedManager] isUpdateStatusValid];
-    if (isUpdateStatusValid) {
-        //依然有效 则直接进入游戏
-        [self startPageComplete];
-    }
-    else
-    {
-        [[UpdateStatusCacheManager sharedManager] showUpdateAlert:^{
-            //不是强制更新 且 点击了跳过更新按钮
-            [weakSelf startPageComplete];
-        }];
-    }
-}
-
 - (void)startPageComplete
 {
-    self.progressNote = @"检查完成,即将进入";
-    self.progress = 1.0;
-    
-    __weak typeof(self) weakSelf = self;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
-        {
-            [weakSelf.delegate startPageViewControllerShowMainPage:self];
-        }
-    });
+    ifRespondsSelector(self.delegate, @selector(startPageViewControllerShowMainPage:))
+    {
+        [self.delegate startPageViewControllerShowMainPage:self];
+    }
 }
 
 @end
