@@ -230,6 +230,9 @@
 //    self.rememberPwdSwitch.tintColor = colorWithRGB(242, 242, 242) ;
     //设置圆形按钮颜色
     self.rememberPwdSwitch.thumbTintColor = [UIColor whiteColor] ;
+    
+    //检测是否打开该功能
+    [self.serviceRequest checkForgetPswStatus];
 }
 
 
@@ -278,6 +281,29 @@
         self.imgVerifyCode.hidden = NO;
         self.imgVerifyCode.image = ConvertToClassPointer(UIImage, data) ;
     }
+    else if (type == ServiceRequestTypeV3ForgetPswCheckStatus)
+    {
+        if (data) {
+            int code = [[data objectForKey:@"code"] intValue];
+            if (code == 0) {
+                int switchStatus = [[data objectForKey:@"data"] intValue];
+                if (switchStatus == 1) {
+                    //打开
+                    self.forgetPasswordBtn.hidden = NO;
+                }
+                else
+                {
+                    //关闭
+                    self.forgetPasswordBtn.hidden = YES;
+                }
+            }
+        }
+        else
+        {
+            //关闭
+            self.forgetPasswordBtn.hidden = YES;
+        }
+    }
 }
 
 
@@ -286,6 +312,10 @@
     if (type == ServiceRequestTypeObtainVerifyCode){
         [self.activityIndicatorView stopAnimating];
         self.labVerifyCode.text = @"" ;
+    }
+    else if (type == ServiceRequestTypeV3ForgetPswCheckStatus)
+    {
+        self.forgetPasswordBtn.hidden = YES;
     }
 }
 

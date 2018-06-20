@@ -214,17 +214,18 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark ==============updateCheck================
 -(void)startV3UpdateCheck
 {
-    [self _startServiceWithAPIName:self.appDelegate.apiDomain
-                        pathFormat:@"app/update.html"
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:@"mobile-api/app/update.html"
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone"
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:@{@"code":S,
                                      @"type":@"ios",
                                      @"siteId":SID
                                      }
                      bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
+                          httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3UpdateCheck
                          scopeType:ServiceScopeTypePublic];
 }
@@ -2369,6 +2370,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3ForgetPswFindbackPsw
                          scopeType:ServiceScopeTypePublic];
+}
+
+- (void)checkForgetPswStatus
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_ForgetPsw_CheckStatus
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ForgetPswCheckStatus
+                         scopeType:ServiceScopeTypePublic];
+
 }
 
 #pragma mark - 绑定手机

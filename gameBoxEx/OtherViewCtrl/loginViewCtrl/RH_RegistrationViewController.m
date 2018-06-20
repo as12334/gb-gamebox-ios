@@ -592,6 +592,9 @@
             });
         }
         showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
+        if ([[dict objectForKey:@"message"] isEqualToString:@"验证码输入错误"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeImageView_VerfyCode" object:self];
+        }
     }
 
 }

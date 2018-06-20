@@ -72,6 +72,8 @@
         serverRequest = [[RH_ServiceRequest alloc] init] ;
         serverRequest.delegate = self ;
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeImageView_VerfyCode1) name:@"changeImageView_VerfyCode" object:nil];
+        
     }
     return self;
 }
@@ -578,6 +580,10 @@
 {
     [self.serviceRequest startV3RegisetCaptchaCode];
 }
+-(void)changeImageView_VerfyCode1
+{
+    [self.serviceRequest startV3RegisetCaptchaCode];
+}
 - (void)webViewTapHandle:(UITapGestureRecognizer *)tap {
     UIWebView *webView = (UIWebView *)tap.view;
     [webView reload];
@@ -749,4 +755,7 @@
     return res;
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"changeImageView_VerfyCode" object:self];
+}
 @end

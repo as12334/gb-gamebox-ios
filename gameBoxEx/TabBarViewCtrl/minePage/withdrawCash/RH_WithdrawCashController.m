@@ -58,19 +58,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 @synthesize footerView = _footerView;
 @synthesize cashCell = _cashCell;
 
--(void)viewWillAppear:(BOOL)animated
-{
-    _withdrawCashStatus = WithdrawCashStatus_HasOrder ;
-    [self setNeedUpdateView] ;
-    [self setupInfo] ;
-    [self updateView];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
-                                                 name:RHNT_AlreadySuccessAddBankCardInfo object:nil] ;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:RHNT_AlreadySuccessfulAddBitCoinInfo object:nil] ;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:)
-                                                 name:UITextFieldTextDidChangeNotification
-                                               object:nil] ;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

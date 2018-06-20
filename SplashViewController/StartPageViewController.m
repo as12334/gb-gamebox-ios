@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) UIButton *doitAgainBT;
+@property (strong, nonatomic) NSString *checkedIP;
 
 @end
 
