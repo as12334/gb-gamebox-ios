@@ -755,7 +755,6 @@
 		F69E35442063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E35422063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib */; };
 		F69E35482063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */; };
 		F69E35492063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */; };
-		F69F800C20C667A700B6CE1A /* RH_AdvertisingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F69F800B20C667A700B6CE1A /* RH_AdvertisingView.m */; };
 		F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */; };
 		F6A0BC9B206F87B3006DB380 /* RH_DepositeBitcionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */; };
 		F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */; };
@@ -2102,8 +2101,6 @@
 		F69E35452063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferWXinInfoCell.h; sourceTree = "<group>"; };
 		F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferWXinInfoCell.m; sourceTree = "<group>"; };
 		F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferWXinInfoCell.xib; sourceTree = "<group>"; };
-		F69F800A20C667A700B6CE1A /* RH_AdvertisingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AdvertisingView.h; sourceTree = "<group>"; };
-		F69F800B20C667A700B6CE1A /* RH_AdvertisingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AdvertisingView.m; sourceTree = "<group>"; };
 		F6A0BC95206F8787006DB380 /* RH_DepositBitcionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositBitcionViewController.h; sourceTree = "<group>"; };
 		F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositBitcionViewController.m; sourceTree = "<group>"; };
 		F6A0BC98206F87B3006DB380 /* RH_DepositeBitcionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeBitcionCell.h; sourceTree = "<group>"; };
@@ -4391,8 +4388,6 @@
 				A0E782761FFE5C12007BFBF3 /* RH_DomainTableCell.xib */,
 				A0E782781FFE5C12007BFBF3 /* RH_DomainTableCell.h */,
 				A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */,
-				F69F800A20C667A700B6CE1A /* RH_AdvertisingView.h */,
-				F69F800B20C667A700B6CE1A /* RH_AdvertisingView.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -5769,7 +5764,6 @@
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
-				F69F800C20C667A700B6CE1A /* RH_AdvertisingView.m in Sources */,
 				A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */,
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				79595C73207B9DB90052F472 /* RH_PromoDetailViewController.m in Sources */,

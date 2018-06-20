@@ -16,7 +16,6 @@
 #import "RH_DomainTableCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_ConcurrentServicesReqManager.h"
-#import "RH_AdvertisingView.h"
 #import "ErrorStateTopView.h"
 #import "RH_InitAdModel.h"
 #import "IPsCacheManager.h"
@@ -790,8 +789,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
     
     return cell ;
 }
-#pragma mark ==============是否有广告页================
-#if 1
+
 -(void)splashViewComplete
 {
     [self.contentLoadingIndicateView hiddenView] ;
@@ -808,31 +806,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
     }
 }
-#elif 0
-#pragma mark -
-- (void)splashViewComplete
-{
-    [self.contentLoadingIndicateView hiddenView] ;
-    if (self.isMaintain==NO) {
-        __block SplashViewController *weakSelf = self;
-        RH_AdvertisingView *advertising = [RH_AdvertisingView ceareAdvertisingView:@"https://www.baidu.com"];
-        [self.view addSubview:advertising];
-        advertising.block = ^{
-            BOOL bRet = YES;
-            ifRespondsSelector(self.delegate, @selector(splashViewControllerWillHidden:)) {
-                bRet = [weakSelf.delegate splashViewControllerWillHidden:self];
-            }
-            if (bRet) {
-                
-                //启动页加载完成后跳转
-                [weakSelf hide:YES completedBlock:nil];
-            }
-        };
-        //check过了，就把通知释放掉
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"youAreNotCheckSuccess" object:nil];
-    }
-}
-#endif
+
 #pragma mark -
 - (BOOL)shouldAutorotate {
     return NO;
