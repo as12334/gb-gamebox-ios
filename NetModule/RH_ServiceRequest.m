@@ -2372,6 +2372,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
+- (void)checkForgetPswStatus
+{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_ForgetPsw_CheckStatus
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
+                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeV3ForgetPswCheckStatus
+                         scopeType:ServiceScopeTypePublic];
+
+}
+
 #pragma mark - 绑定手机
 
 - (void)getUserPhone

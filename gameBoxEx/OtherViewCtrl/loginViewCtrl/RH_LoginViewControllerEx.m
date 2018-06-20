@@ -134,6 +134,7 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
     [self.view addGestureRecognizer:singleTap];
 }
+
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     [self.view endEditing:YES];
