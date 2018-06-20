@@ -27,6 +27,7 @@
     RH_DepositeTransferListModel *listModel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.personIdNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount] ;
     self.customBankLabel.text = listModel.mCustomBankName;
+    listModel.mAliasName;
     if (listModel.mAccount.length>15) {
         self.personIdNumLabel.font = [UIFont systemFontOfSize:10.f];
     }

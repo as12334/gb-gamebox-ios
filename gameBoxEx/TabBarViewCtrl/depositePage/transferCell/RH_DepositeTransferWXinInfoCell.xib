@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -157,12 +158,14 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="3ZR-UB-Vfc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="6tn-5a-Kcy"/>
                     <constraint firstItem="3ZR-UB-Vfc" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8zf-g1-Wyl"/>
                     <constraint firstItem="zPB-vc-cMh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Hqb-pG-hyY"/>
                     <constraint firstAttribute="trailing" secondItem="5d5-Dz-3rO" secondAttribute="trailing" id="Mwo-cn-sIj"/>
                     <constraint firstItem="Lib-6h-kE9" firstAttribute="centerY" secondItem="zPB-vc-cMh" secondAttribute="centerY" id="awj-Fl-2pP"/>
                     <constraint firstAttribute="bottom" secondItem="5d5-Dz-3rO" secondAttribute="bottom" id="jna-28-43d"/>
                     <constraint firstItem="Lib-6h-kE9" firstAttribute="leading" secondItem="zPB-vc-cMh" secondAttribute="trailing" constant="8" id="ljq-4u-sCI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3ZR-UB-Vfc" secondAttribute="trailing" constant="24" id="sWQ-tN-oef"/>
                     <constraint firstItem="zPB-vc-cMh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="uWo-an-bdf"/>
                     <constraint firstItem="5d5-Dz-3rO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vBC-tP-v5s"/>
                     <constraint firstItem="3ZR-UB-Vfc" firstAttribute="top" secondItem="Lib-6h-kE9" secondAttribute="bottom" constant="15" id="wOq-uM-jOQ"/>
@@ -177,7 +180,7 @@
                 <outlet property="personIdNumLabel" destination="3ka-cc-6VS" id="pfu-4l-kHG"/>
                 <outlet property="personNameLabel" destination="SEd-m9-KyJ" id="X8L-fv-dOR"/>
             </connections>
-            <point key="canvasLocation" x="43" y="144.5"/>
+            <point key="canvasLocation" x="-253" y="132"/>
         </tableViewCell>
     </objects>
     <resources>

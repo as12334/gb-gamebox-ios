@@ -129,7 +129,7 @@
     [self.serviceRequest startV3RegisetInit];
     isAgreedServiceTerm = YES;
     //获取验证码
-    [self.serviceRequest startV3RegisetCaptchaCode];
+//    [self.serviceRequest startV3RegisetCaptchaCode];
     
 }
 

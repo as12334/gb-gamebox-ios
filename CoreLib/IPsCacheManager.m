@@ -31,14 +31,16 @@
     if (ips != nil) {
         NSTimeInterval cachingTime = [[ips objectForKey:@"cachingTime"] doubleValue];
         NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
-        if (currentTime-cachingTime > GB_IPS_VALID_CACHE_TIME) {
-            //过期了
-            return NO;
+        
+        NSString *code = [ips objectForKey:@"code"];
+        if ([code isEqualToString:CODE] && currentTime-cachingTime <= GB_IPS_VALID_CACHE_TIME) {
+            //依然有效
+            return YES;
         }
         else
         {
-            //依然有效
-            return YES;
+            //过期了
+            return NO;
         }
     }
     
@@ -61,7 +63,8 @@
         NSDictionary *ipsCacheDic = @{
                                       @"ips":ips,
                                       @"cachingTime":@(cachingTime),
-                                      @"apiDomain":appDelegate.apiDomain
+                                      @"apiDomain":appDelegate.apiDomain,
+                                      @"code":CODE
                                       };
         [[NSUserDefaults standardUserDefaults] setObject:ipsCacheDic forKey:@"GB_IPS_CACHE_DATA"];
         [[NSUserDefaults standardUserDefaults] synchronize];
