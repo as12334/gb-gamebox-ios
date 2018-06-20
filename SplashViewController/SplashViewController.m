@@ -115,6 +115,7 @@ typedef NS_ENUM(NSInteger, DoMainStatus) {
 
 
 @interface SplashViewController ()<RH_ServiceRequestDelegate,RH_ConcurrentServicesReqManagerDelegate,RH_ServiceRequestDelegate>
+
 @property(nonatomic,strong) UIWindow * window;
 @property (weak, nonatomic) IBOutlet UIImageView *splashLogo;
 @property (weak, nonatomic) IBOutlet UILabel *bottomText;
