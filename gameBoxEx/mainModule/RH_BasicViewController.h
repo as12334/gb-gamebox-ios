@@ -11,7 +11,11 @@
 #import "RH_ServiceRequest.h"
 #import "RH_LoadingIndicateView.h"
 #import "RH_LoadingIndicateTableViewCell.h"
+#import "RH_LoadingIndicaterCollectionViewCell.h"
 #import "RH_ErrorCode.h"
+#import "RH_APPDelegate.h"
+#import "RH_userInfoView.h"
+#import "RH_NavigationBarView.h"
 
 typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 
@@ -21,6 +25,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
     CalendaCompleteBlock _calendarCompleteBlock ;
     RH_LoadingIndicateView *_contentLoadingIndicateView ;
     RH_LoadingIndicateTableViewCell *_loadingIndicateTableViewCell ;
+    RH_LoadingIndicaterCollectionViewCell *_loadingIndicateCollectionViewCell ;
 
     CLScanImageView __weak * _scanImageView;
 
@@ -28,23 +33,44 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
     BOOL _supportSavaData  ;
     id _observeForSavaData ;
     NSMutableSet           * _needSavaDataKeys;
+    
 }
 
 @property(nonatomic,readonly,strong) RH_ServiceRequest *serviceRequest ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateView *contentLoadingIndicateView ;
 @property(nonatomic,readonly,strong) RH_LoadingIndicateTableViewCell *loadingIndicateTableViewCell ;
+@property(nonatomic,readonly,strong) RH_LoadingIndicaterCollectionViewCell *loadingIndicateCollectionViewCell ;
+@property(nonatomic,readonly,weak)  RH_APPDelegate *appDelegate ;
 
 @property(nonatomic,readonly,strong) UIBarButtonItem *backButtonItem       ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *loginButtonItem       ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *tryLoginButtonItem    ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *signButtonItem        ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *logoButtonItem        ;
+@property(nonatomic,readonly,strong) UIBarButtonItem *userInfoButtonItem    ;
+@property (nonatomic,strong,readonly) RH_userInfoView *userInfoView ;
+@property (nonatomic,strong,readonly) RH_NavigationBarView *mainNavigationView ;
+//是否维护
+@property(nonatomic,assign)bool isMaintain ;
+//-(void)mainMenuButtonItemHandle ;
 
 -(CGPoint)contentLoadingIndicateViewAdditionalOffset ;
 -(void)configureContentLoadingIndicateView:(RH_LoadingIndicateView*)contentLoadingIndicateView ;
 -(void)backBarButtonItemHandle      ;
+-(void)userInfoButtonItemHandle ;
+
+#pragma mark-
+-(void)tryLoginButtonItemHandle ;
+-(void)loginButtonItemHandle    ;
+-(void)signButtonItemHandle     ;
 @end
 
 
 @interface RH_BasicViewController (ShowCalendar)<CLCalendarViewDelegate>
 -(void)showCalendarView:(NSString*)title
          initDateString:(NSString*)dateStr
+                MinDate:(NSDate*)minDate
+                MaxDate:(NSDate*)maxDate
            comfirmBlock:(CalendaCompleteBlock)completeBlock;
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated ;
@@ -70,7 +96,7 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 @interface RH_BasicViewController(IntervalAnimation)
 
 - (void)startDefaultShowIntervalAnimation;
-- (void)startDefaultShowIntervalAnimation_async:(void(^)())block;
+- (void)startDefaultShowIntervalAnimation_async:(void(^)(void))block;
 
 - (void)startIntervalAnimationWithDirection:(CLMoveAnimtedDirection)moveAnimtedDirection
                              completedBlock:(void(^)(BOOL finished))completedBlock;
@@ -132,4 +158,11 @@ typedef void(^CalendaCompleteBlock)(NSDate *returnDate) ;
 - (BOOL)needTempSaveDataForKey:(NSString *)key;
 
 @end
+
+
+/*
+ */
+//@interface UIViewController (MainTabBarControllerEx)
+//- (RH_MainTabBarControllerEx *)myTabBarControllerEx ;
+//@end
 

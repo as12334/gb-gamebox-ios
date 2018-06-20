@@ -10,7 +10,7 @@
 #import "coreLib.h"
 
 
-@interface RH_BasicPageLoadViewController ()
+@interface RH_BasicPageLoadViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @end
 
 @implementation RH_BasicPageLoadViewController
@@ -401,11 +401,12 @@
     if (![self showLoadDataErrorIndicaterForError:error]) {
 
         if (![self loadingIndicateView].isHidden) {
-
-#if DEBUG
-            showErrorMessage(self.view, error, @"获取数据失败");
-#endif
-            [[self loadingIndicateView] showDefaultLoadingErrorStatus];
+            if ([SITE_TYPE isEqualToString:@"integratedv3oc"])
+            {
+                [[self loadingIndicateView] showDefaultLoadingErrorStatus:error];
+            }else{
+                [[self loadingIndicateView] showDefaultLoadingErrorStatus];
+            }
         }else{
             showErrorMessage(self.view, error, @"获取数据失败");
         }
@@ -583,6 +584,47 @@
     }
 
     return [super needAnimatedObjectsWithDirection:moveAnimtedDirection forShow:show context:context];
+}
+
+- (void)saveImageToPhotos:(UIImage*)savedImage
+
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancel];
+            
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+        }] ;
+    }else{
+        msg = @"保存图片成功!请到相册里查看" ;
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        /* 照片是否可以编辑 */
+        picker.allowsEditing = YES;
+        picker.delegate = self;
+        /* 根据照片来源确定AlertAction */
+        //        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        /* 判断相册是否可以访问 */
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片保存成功,请前往相册进行查看！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+            }
+        }] ;
+        
+        
+    }
 }
 
 

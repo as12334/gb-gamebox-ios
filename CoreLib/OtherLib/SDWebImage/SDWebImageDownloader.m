@@ -9,7 +9,7 @@
 #import "SDWebImageDownloader.h"
 #import "SDWebImageDownloaderOperation.h"
 #import <ImageIO/ImageIO.h>
-
+#import "RH_APPDelegate.h"
 @implementation SDWebImageDownloadToken
 @end
 
@@ -26,11 +26,12 @@
 
 // The session in which data tasks will run
 @property (strong, nonatomic) NSURLSession *session;
+//appdelegate
+@property(nonatomic,strong)RH_APPDelegate *appDelegate;
 
 @end
 
 @implementation SDWebImageDownloader
-
 + (void)initialize {
     // Bind SDNetworkActivityIndicator if available (download it here: http://github.com/rs/SDNetworkActivityIndicator )
     // To use it, just add #import "SDNetworkActivityIndicator.h" in addition to the SDWebImage import
@@ -62,7 +63,6 @@
     });
     return instance;
 }
-
 - (nonnull instancetype)init {
     return [self initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 }
@@ -163,7 +163,8 @@
         }
 
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:cachePolicy timeoutInterval:timeoutInterval];
-
+         RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+        [request setValue:appDelegate.headerDomain forHTTPHeaderField:@"Host"];
         request.HTTPShouldHandleCookies = (options & SDWebImageDownloaderHandleCookies);
         request.HTTPShouldUsePipelining = YES;
         if (sself.headersFilter) {

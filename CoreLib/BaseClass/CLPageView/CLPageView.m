@@ -375,6 +375,8 @@ UICollectionViewDataSource >
     id delegate = self.delegate;
     if ([delegate respondsToSelector:anInvocation.selector]) {
         [anInvocation invokeWithTarget:delegate];
+    }else{
+        [super forwardInvocation:anInvocation] ;
     }
 }
 

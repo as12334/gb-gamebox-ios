@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RH_MinePageLoginoutBannarCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="123.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_accountback" translatesAutoresizingMaskIntoConstraints="NO" id="AcX-Yz-1ss">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYA-QN-l5z">
+                        <rect key="frame" x="100" y="46" width="86" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="登录/注册">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="loginClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="a1t-DM-SnV"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xao-CD-hLm">
+                        <rect key="frame" x="16" y="22" width="76" height="91"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwo-br-hcD">
+                                <rect key="frame" x="8" y="20" width="60" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="4qe-TO-8aL"/>
+                    <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="BIE-AX-hFc"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ca0-yZ-9Cg"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HJ5-Bd-SLy"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JZb-6N-zdf"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="K8v-Yv-hMg"/>
+                    <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="OBO-Cv-ym6"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Q4y-XP-ZY3"/>
+                    <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="XXV-5A-uIW"/>
+                    <constraint firstItem="AcX-Yz-1ss" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ry2-XY-A3x"/>
+                    <constraint firstAttribute="trailing" secondItem="AcX-Yz-1ss" secondAttribute="trailing" id="vUN-3k-yDI"/>
+                    <constraint firstAttribute="bottom" secondItem="AcX-Yz-1ss" secondAttribute="bottom" id="zOz-wL-C51"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headIconBgView" destination="Xao-CD-hLm" id="Mbk-Sw-GtF"/>
+                <outlet property="headIconImageView" destination="uwo-br-hcD" id="WlU-re-hC7"/>
+                <outlet property="headImageView" destination="AcX-Yz-1ss" id="Mc8-UH-aDC"/>
+                <outlet property="loginAndRegiest" destination="FYA-QN-l5z" id="eAi-6V-za8"/>
+            </connections>
+            <point key="canvasLocation" x="-345" y="-63"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="mine_page_accountback" width="375" height="125"/>
+    </resources>
+</document>

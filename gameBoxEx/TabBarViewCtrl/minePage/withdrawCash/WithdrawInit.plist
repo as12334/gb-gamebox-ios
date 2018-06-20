@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sectionsInfo</key>
+	<array>
+		<dict>
+			<key>rowsInfo</key>
+			<array>
+				<dict>
+					<key>isCustomCell</key>
+					<true/>
+				</dict>
+			</array>
+			<key>sectionHeaderHeight</key>
+			<string>0</string>
+		</dict>
+	</array>
+	<key>cellsExtraInfo</key>
+	<dict>
+		<key>isCustomHeight</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

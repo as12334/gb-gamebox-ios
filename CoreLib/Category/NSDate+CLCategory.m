@@ -139,6 +139,13 @@
     return nil;
 }
 
++(NSDate *)dateWithSince1990:(NSTimeInterval)timeInterval
+{
+    NSDate *baseDate = [NSDate dateWithYear:1990 month:01 day:01] ;
+    return [NSDate dateWithTimeInterval:timeInterval
+                              sinceDate:baseDate] ;
+}
+
 #pragma mark -
 
 - (NSInteger)era {

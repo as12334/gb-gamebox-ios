@@ -19,6 +19,10 @@
 @property(nonatomic,readonly,getter=isViewShowing) BOOL viewShowing ;
 //tabbar hidden
 @property(nonatomic,getter=isHiddenTabBar) BOOL hiddenTabBar  ;
+
+//返回主题颜色
+- (UIColor *)themeColor;
+
 @end
 
 //======================================
@@ -69,7 +73,7 @@
 @interface CLViewController(MBMessage)
 @property(nonatomic,strong,readonly) MBProgressHUD *progressIndicatorView ; //进度提示view
 -(void)showProgressIndicatorViewWithAnimated:(BOOL)animated title:(NSString*)title ;
--(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)())completeBlock;
+-(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)(void))completeBlock;
 @end
 
 

@@ -1,0 +1,124 @@
+//
+//  RH_ModifyPasswordCodeCell.m
+//  gameBoxEx
+//
+//  Created by Lenny on 2018/1/10.
+//  Copyright © 2018年 luis. All rights reserved.
+//
+
+#import "RH_ModifyPasswordCodeCell.h"
+#import "RH_ServiceRequest.h"
+#import "coreLib.h"
+
+@interface RH_ModifyPasswordCodeCell ()<RH_ServiceRequestDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *loginVerifyCodeImage;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (weak, nonatomic) IBOutlet UILabel *label_indicator;
+@property (weak, nonatomic) IBOutlet UIImageView *codeImage;
+@property (nonatomic,strong,readonly) RH_ServiceRequest *serviceRequest ;
+@end
+
+
+@implementation RH_ModifyPasswordCodeCell
+@synthesize serviceRequest = _serviceRequest ;
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    
+    self.label_indicator.text = @"" ;
+    [self.indicator setHidden:YES];
+    self.textField.delegate = self;
+}
+
+-(BOOL)isEditing
+{
+    return self.textField.isEditing ;
+}
+
+-(BOOL)endEditing:(BOOL)force
+{
+    if (self.textField.isEditing){
+        [self.textField resignFirstResponder] ;
+    }
+    
+    return YES ;
+}
+
+-(NSString *)passwordCode
+{
+    return [self.textField.text copy] ;
+}
+-(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
+    [self startVerifyCode] ;
+}
+
+#pragma mark -TextFieldDelegate
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    return [self validateNumber:string];
+//}
+
+//- (BOOL)validateNumber:(NSString*)number {
+//    BOOL res = YES;
+//    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+//    int i = 0;
+//    while (i < number.length) {
+//        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+//        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+//        if (range.length == 0) {
+//            res = NO;
+//            break;
+//        }
+//        i++;
+//    }
+//    return res;
+//}
+#pragma mark-
+-(IBAction)btn_obtainVerifyCode:(id)sender
+{
+    [self startVerifyCode] ;
+}
+
+#pragma mark-
+-(void)startVerifyCode
+{
+    self.codeImage.hidden = YES ;
+    [self.indicator startAnimating] ;
+    self.label_indicator.text = @"正在获取验证码" ;
+    
+    [self.serviceRequest startGetVerifyCode] ;
+}
+
+-(RH_ServiceRequest *)serviceRequest
+{
+    if (!_serviceRequest){
+        _serviceRequest = [[RH_ServiceRequest alloc] init] ;
+        _serviceRequest.delegate = self ;
+    }
+    
+    return _serviceRequest ;
+}
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
+{
+    if (type == ServiceRequestTypeObtainVerifyCode){
+        [self.indicator stopAnimating];
+        self.label_indicator.text = @"" ;
+        self.codeImage.hidden = NO;
+        self.codeImage.image = ConvertToClassPointer(UIImage, data) ;
+    }
+}
+
+
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
+{
+    if (type == ServiceRequestTypeV3SafetyObtainVerifyCode){
+        [self.indicator stopAnimating];
+        self.label_indicator.text = @"" ;
+    }
+}
+
+
+@end

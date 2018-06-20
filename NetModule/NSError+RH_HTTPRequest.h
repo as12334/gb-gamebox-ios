@@ -30,6 +30,7 @@ extern NSString * const HTTPRequestResultErrorDomin         ;
 @interface NSError (RH_HTTPRequest)
 + (NSError *)netErrorWithError:(NSError *)error;
 
++ (NSError *)resultErrorWithURLResponse:(NSHTTPURLResponse *)response ;
 + (NSError *)resultDataNoJSONError;
 + (NSError *)resultErrorWithResultInfo:(NSDictionary *)info;
 

@@ -14,6 +14,10 @@
 #import "UIAlertView+Block.h"
 #import "CLNetReachability.h"
 
+#import "RH_MyUncaughtExceptionHandler.h"
+#import "RH_ServiceRequest.h"
+#import "RH_Crash.h"
+
 //----------------------------------------------------------
 
 #define MyKAppID                        @"AppID"                      //app的ID
@@ -35,6 +39,8 @@
 
 //网络状态改变的观察者
 @property(nonatomic,strong) id networkStatusChangeNotificationObsever;
+
+@property(nonatomic,strong)RH_ServiceRequest *serviceRequest ;
 
 
 @end
@@ -103,8 +109,42 @@
 
     //开始显示视图
     [self startShowView];
-
+    
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     return YES;
+}
+#pragma mark -- 发送崩溃日志
+- (void)sendExceptionLogWithData:(NSData *)data path:(NSString *)path {
+    
+    NSLog(@"123") ;
+    
+    //    [self.serviceRequest startTestUrl:path];
+    //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //    manager.requestSerializer.timeoutInterval = 5.0f;
+    //    //告诉AFN，支持接受 text/xml 的数据
+    //    [AFJSONResponseSerializer serializer].acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    //    NSString *urlString = @"后台地址";
+    //
+    //    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    //        [formData appendPartWithFileData:data name:@"file" fileName:@"Exception.txt" mimeType:@"txt"];
+    //    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    //        // 删除文件
+    //        NSFileManager *fileManger = [NSFileManager defaultManager];
+    //        [fileManger removeItemAtPath:path error:nil];
+    //
+    //    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+    //
+    //
+    //    }];
+    
+}
+
+-(RH_ServiceRequest *)serviceRequest
+{
+    if (!_serviceRequest) {
+        _serviceRequest = [[RH_ServiceRequest alloc] init];
+    }
+    return _serviceRequest ;
 }
 
 //进入前台
@@ -366,9 +406,9 @@
         }else if(alertView.firstOtherButtonIndex == buttonIndex){
             result = CLAppScoreAlertViewResultGoto;
         }
-
+        
         [self scoreAlertViewCompletedShowWithResult:result];
-
+        
     }
                                                             title:@"给我们评价"
                                                           message:[self scoreAlertViewContentText]

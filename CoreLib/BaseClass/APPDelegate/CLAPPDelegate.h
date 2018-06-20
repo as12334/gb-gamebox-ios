@@ -76,6 +76,9 @@ typedef NS_ENUM(NSInteger, CLAppScoreAlertViewResult) {
 @property(nonatomic,strong,readonly) NSString * appBundleIdentifier;
 //应用身份信息，由appBundleIdentifier和appID合成
 @property(nonatomic,strong,readonly) NSString * appIdentifier;
+//crash掉上传日子
+@property(nonatomic,strong)NSDictionary *errorDict;
+
 
 //                app的点击次数信息
 //-----------------------------------------------------
@@ -211,7 +214,7 @@ typedef NS_ENUM(NSInteger, CLAppScoreAlertViewResult) {
 
 //                实现的代理函数,子类实现时需调用
 //-----------------------------------------------------
-
+-(void)sendExceptionLogWithData:(NSData*)data path:(NSString*)dataPath;
 //状态相关
 //加载
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;

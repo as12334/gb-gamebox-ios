@@ -6,17 +6,32 @@
 //  Copyright © 2017年 jinguihua. All rights reserved.
 //
 
+#import "RH_RegistrationViewController.h"
 #import "RH_BasicViewController.h"
 #import <objc/runtime.h>
 #import "RH_ImagePickerViewController.h"
-
-@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate>
+#import "UIViewController+CWLateralSlide.h"
+#import "RH_NavigationUserInfoView.h"
+#import "RH_LoginViewControllerEx.h"
+#import "RH_CustomViewController.h"
+#import "RH_API.h"
+#import "ErrorStateTopView.h"
+#import "RH_CustomServiceSubViewController.h"
+@interface RH_BasicViewController ()<RH_ServiceRequestDelegate,CLLoadingIndicateViewDelegate,LoginViewControllerExDelegate,UserInfoViewDelegate,RH_NavigationBarViewDelegate,ErrorStateTopViewDelegate>
+@property (nonatomic,strong,readonly) RH_NavigationUserInfoView *navigationUserInfoView ;
 @end
 
 @implementation RH_BasicViewController
-@synthesize serviceRequest = _serviceRequest                ;
-
-@synthesize backButtonItem = _backButtonItem                ;
+@synthesize serviceRequest = _serviceRequest                  ;
+@synthesize backButtonItem = _backButtonItem                  ;
+@synthesize loginButtonItem = _loginButtonItem                ;
+@synthesize tryLoginButtonItem = _tryLoginButtonItem          ;
+@synthesize signButtonItem  = _signButtonItem                 ;
+@synthesize logoButtonItem  = _logoButtonItem                 ;
+@synthesize userInfoButtonItem = _userInfoButtonItem          ;
+@synthesize navigationUserInfoView = _navigationUserInfoView  ;
+@synthesize userInfoView = _userInfoView                      ;
+@synthesize mainNavigationView = _mainNavigationView          ;
 
 -(BOOL)hasNavigationBar
 {
@@ -30,30 +45,109 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        return UIStatusBarStyleLightContent ;
+    }
     return UIStatusBarStyleLightContent ;
 }
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
-    navigationBar.barStyle = UIBarStyleDefault ;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
-    [navigationBar insertSubview:backgroundView atIndex:0] ;
-    backgroundView.backgroundColor = [UIColor clearColor] ;
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        navigationBar.barStyle = UIBarStyleDefault ;
+        if (GreaterThanIOS11System){
+            if ([THEMEV3 isEqualToString:@"green"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black;
+            }else{
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor;
+            }
+        }else
+        {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+            [navigationBar insertSubview:backgroundView atIndex:0] ;
+            if ([THEMEV3 isEqualToString:@"green"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+            }else if ([THEMEV3 isEqualToString:@"red"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+            }else if ([THEMEV3 isEqualToString:@"black"]){
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }else{
+                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+            }
+        }
+
+        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+    }else{
+        navigationBar.barStyle = UIBarStyleDefault ;
+        UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+        [navigationBar insertSubview:backgroundView atIndex:0] ;
+        backgroundView.backgroundColor = [UIColor clearColor] ;
+    }
 //    navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBarTitleFontSize,
 //                                          NSForegroundColorAttributeName:[UIColor whiteColor]} ;
-
+    
+//    UINavigationBar *bar = [super navigationBar];
+//    if (bar) {
+//        CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
+//        [bar.layer insertSublayer:gradientLayer atIndex:1];
+//        gradientLayer.frame = CGRectMake(0, -20, bar.bounds.size.width, 64);
+//        gradientLayer.locations = @[@(0.2), @(0.5), @(0.8)];
+//
+//        gradientLayer.colors =  @[(__bridge id)[UIColor redColor].CGColor,
+//                                  (__bridge id)[UIColor blueColor].CGColor,
+//                                  (__bridge id)[UIColor purpleColor].CGColor,
+//                                  (__bridge id)[UIColor orangeColor].CGColor];
+//        gradientLayer.startPoint = CGPointMake(0, 0);
+//        gradientLayer.endPoint = CGPointMake(1, 1);
+//
+//    }
+//    return bar;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    
     self.needObserveNetStatusChanged = YES ;
-    self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        self.view.backgroundColor = RH_View_DefaultBackgroundColor ;
+    }else{
+        self.view.backgroundColor = ColorWithNumberRGB(0xf2f2f2) ;
+    }
+    
     self.navigationBarItem.leftBarButtonItem = nil ;
     self.navigationBarItem.rightBarButtonItems = nil ;
-//    self.navigationBarItem.titleView = self.mainNavigationView ;
+    //基类检测网站是不是挂维护
+    self.isMaintain=NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tongzhi:)name:@"tongzhi" object:nil];
+}
+#pragma mark ==============通知================
+-(void)tongzhi:(NSNotification *)notification
+{
+    ErrorStateTopView *errorView = [[ErrorStateTopView alloc]initWithFrame:self.view.bounds];
+    errorView.delegate = self;
+    self.isMaintain=YES;
+    [self.view addSubview:errorView];
+    [self.view bringSubviewToFront:errorView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:errorView];
 }
 
+/**
+ *  维护页面的delegate
+ */
+-(void)errorStatusOpenOnlinecustom:(ErrorStateTopView *)errorView
+{
+//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+//    [UIApplication sharedApplication].keyWindow.rootViewController = customVC;
+//    [self presentViewController:customVC animated:YES completion:nil];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -61,7 +155,11 @@
 
 -(void)setTitle:(NSString *)title
 {
-    self.navigationBarItem.title = title ;
+    if (_mainNavigationView.superview){
+        [self.mainNavigationView updateTitle:title];
+    }else{
+        self.navigationBarItem.title = title ;
+    }
 }
 
 -(void)dealloc
@@ -89,6 +187,272 @@
     //do nothing ;
 }
 
+//#pragma mark-
+//-(UIBarButtonItem *)mainMenuButtonItem
+//{
+//    if (!_mainMenuButtonItem){
+//        UIImage *menuImage = ImageWithName(@"ic_navigationBar_home");
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+//        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
+//        [button addTarget:self action:@selector(mainMenuButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+//        _mainMenuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+//    }
+//    
+//    return  _mainMenuButtonItem ;
+//}
+//
+//-(void)mainMenuButtonItemHandle
+//{
+////    [self cw_showDrawerViewController:[RH_SlideMenuViewController viewController]
+////                        animationType:CWDrawerAnimationTypeDefault
+////                        configuration:nil] ;
+//}
+
+#pragma mark-
+-(RH_NavigationBarView *)mainNavigationView
+{
+    if (!_mainNavigationView){
+        _mainNavigationView = [RH_NavigationBarView createInstance] ;
+        _mainNavigationView.frame = CGRectMake(0, 0, self.view.boundWidth, heighNavigationBar+heighStatusBar) ;
+        _mainNavigationView.delegate = self ;
+    }
+    
+    return _mainNavigationView ;
+}
+
+-(void)navigationBarViewDidTouchLoginButton:(RH_NavigationBarView*)navigationBarView
+{
+    [self loginButtonItemHandle] ;
+}
+
+-(void)navigationBarViewDidTouchSignButton:(RH_NavigationBarView*)navigationBarView
+{
+    [self signButtonItemHandle] ;
+}
+
+-(void)navigationBarViewDidTouchUserInfoButton:(RH_NavigationBarView*)navigationBarView
+{
+    [self userInfoButtonItemHandle] ;
+}
+
+
+#pragma mark-
+-(UIBarButtonItem *)tryLoginButtonItem
+{
+    if (!_tryLoginButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(177, 52, 207) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"试玩" forState:UIControlStateNormal] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        [button addTarget:self action:@selector(tryLoginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _tryLoginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _tryLoginButtonItem ;
+}
+
+-(void)tryLoginButtonItemHandle
+{
+    [self showProgressIndicatorViewWithAnimated:YES title:@"试玩请求中..."] ;
+    [self.serviceRequest startDemoLogin] ;
+}
+
+#pragma mark-  loginButton Item
+-(UIBarButtonItem *)loginButtonItem
+{
+    if (!_loginButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(29, 194, 142) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"登录" forState:UIControlStateNormal] ;
+        [button addTarget:self action:@selector(loginButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        _loginButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _loginButtonItem ;
+}
+
+-(void)loginButtonItemHandle
+{
+    RH_LoginViewControllerEx *loginViewControllerEx = [RH_LoginViewControllerEx viewControllerWithContext:nil] ;
+    loginViewControllerEx.delegate = self ;
+    [self showViewController:loginViewControllerEx sender:self] ;
+}
+
+-(void)loginViewViewControllerExTouchBack:(RH_LoginViewControllerEx *)loginViewContrller BackToFirstPage:(BOOL)bFirstPage
+{
+    [loginViewContrller hideWithDesignatedWay:YES completedBlock:nil] ;
+    
+    if (bFirstPage){
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            self.myTabBarController.selectedIndex = 2 ;
+        }else{
+            self.myTabBarController.selectedIndex = 0 ;
+        }
+    }
+}
+
+-(void)loginViewViewControllerExLoginSuccessful:(RH_LoginViewControllerEx *)loginViewContrller
+{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES] ;
+}
+
+-(void)loginViewViewControllerExSignSuccessful:(RH_LoginViewControllerEx *)loginViewContrller SignFlag:(BOOL)bFlag
+{
+    [self.navigationController popViewControllerAnimated:YES] ;
+    if (bFlag==false){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *account = [defaults stringForKey:@"account"] ;
+        NSString *password = [defaults stringForKey:@"password"] ;
+        
+        [self showProgressIndicatorViewWithAnimated:YES title:@"自动登录..."] ;
+        if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            [self.serviceRequest startAutoLoginWithUserName:account Password:password] ;
+        }else{
+            [self.serviceRequest startLoginWithUserName:account Password:password VerifyCode:nil] ;
+        }
+    }
+}
+
+
+#pragma mark-
+-(UIBarButtonItem *)signButtonItem
+{
+    if (!_signButtonItem){
+        CLButton *button = [CLButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 40,30);
+        [button setBackgroundColor:colorWithRGB(240, 175, 1) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+        [button setTitle:@"注册" forState:UIControlStateNormal] ;
+        [button addTarget:self action:@selector(signButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        button.layer.cornerRadius = 4.0f ;
+        button.layer.masksToBounds = YES ;
+        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]] ;
+        _signButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button] ;
+    }
+    
+    return  _signButtonItem ;
+}
+
+-(void)signButtonItemHandle
+{
+    self.appDelegate.customUrl = RH_API_PAGE_SIGNUP ;
+//    [self showViewController:[RH_CustomViewController viewControllerWithContext:self] sender:self] ;
+    [self showViewController:[RH_RegistrationViewController viewController] sender:nil];
+}
+
+#pragma mark-
+-(UIBarButtonItem *)logoButtonItem
+{
+    if (!_logoButtonItem){
+        NSString *logoName = [NSString stringWithFormat:@"app_logo_%@",SID] ;
+        UIImage *menuImage = ImageWithName(logoName);
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:menuImage];
+        
+        imageView.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
+        _logoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView] ;
+    }
+    
+    return  _logoButtonItem ;
+}
+
+#pragma mark-
+-(RH_NavigationUserInfoView *)navigationUserInfoView
+{
+    if (!_navigationUserInfoView){
+        _navigationUserInfoView = [RH_NavigationUserInfoView createInstance] ;
+//        [_navigationUserInfoView addTarget:self
+//                                    action:@selector(userInfoButtonItemHandle)
+//                          forControlEvents:UIControlEventTouchUpInside] ;
+        [_navigationUserInfoView.buttonCover addTarget:self
+                                                action:@selector(userInfoButtonItemHandle) forControlEvents:UIControlEventTouchUpInside] ;
+        _navigationUserInfoView.frame = CGRectMake(0, 0, 60.f, 40.0f) ;
+    }
+    
+    return _navigationUserInfoView ;
+}
+
+-(UIBarButtonItem *)userInfoButtonItem
+{
+    if (!_userInfoButtonItem){
+        _userInfoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navigationUserInfoView] ;
+    }
+    
+    return  _userInfoButtonItem ;
+}
+
+#pragma mark - userInfoView
+-(RH_userInfoView *)userInfoView
+{
+    if (!_userInfoView){
+        _userInfoView = [RH_userInfoView createInstance] ;
+        _userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
+                                         64,
+                                         userInfoViewWidth,
+                                         0);
+        if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"coffee_black"]||[THEMEV3 isEqualToString:@"orange"]) {
+            _userInfoView.backgroundColor = colorWithRGB(68, 68, 68);
+        }
+        _userInfoView.delegate = self ;
+    }
+
+    return _userInfoView ;
+}
+
+-(void)userInfoViewDidTouchOneStepRecoryButton:(RH_userInfoView*)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"数据处理中"] ;
+    [self.serviceRequest startV3OneStepRecoverySearchId:nil]  ;
+}
+-(void)userInfoViewDidTouchOneStepRefreshButton:(RH_userInfoView *)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    [self showProgressIndicatorViewWithAnimated:YES title:@"数据刷新中"] ;
+    [self.serviceRequest startV3OneStepRefresh]  ;
+}
+
+-(void)userInfoViewDidTouchOneStepDepositeButton:(RH_userInfoView*)userInfoView
+{
+    [self userInfoButtonItemHandle] ;
+    self.myTabBarController.selectedIndex = 1 ;
+}
+
+-(void)userInfoButtonItemHandle
+{
+    if (self.userInfoView.superview==nil) { //展现动画
+        [self.view addSubview:self.userInfoView] ;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
+                                                 64,
+                                                 userInfoViewWidth,
+                                                 userInfoViewHeigh);
+        } completion:^(BOOL finished) {
+            
+        }] ;
+    }else {//移出动画
+        [UIView animateWithDuration:0.5 animations:^{
+            self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
+                                                 64,
+                                                 userInfoViewWidth,
+                                                 0);
+        } completion:^(BOOL finished) {
+            [self.userInfoView removeFromSuperview] ;
+        }] ;
+    }
+}
+
 #pragma mark-
 -(RH_ServiceRequest*)serviceRequest
 {
@@ -100,6 +464,18 @@
     return _serviceRequest ;
 }
 
+- (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type SpecifiedError:(NSError *)error
+{
+    if (error.code==RH_API_ERRORCODE_SESSION_EXPIRED || error.code==RH_API_ERRORCODE_USER_LOGOUT){
+//        if (type!=ServiceRequestTypeV3SiteMessageMyMessageDetail){
+//            showMessage(nil, error.code==RH_API_ERRORCODE_SESSION_EXPIRED?@"session过期":@"该帐号已在另一设备登录", @"请重新登录...");
+//        }
+        [self.appDelegate updateLoginStatus:NO] ;
+        [self loginButtonItemHandle] ;
+    }
+}
+
+#pragma mark -
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
     if (!_contentLoadingIndicateView){
@@ -142,6 +518,34 @@
     //do nothing
 }
 
+#pragma mark- RH_LoadingIndicaterCollectionViewCell
+-(RH_LoadingIndicaterCollectionViewCell*)loadingIndicateCollectionViewCell
+{
+    if (!_loadingIndicateCollectionViewCell) {
+        _loadingIndicateCollectionViewCell = [self.contentCollectionView dequeueReusableCellWithReuseIdentifier:[RH_LoadingIndicaterCollectionViewCell defaultReuseIdentifier] forIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]]  ;
+        _loadingIndicateCollectionViewCell.backgroundColor = [UIColor clearColor];
+        _loadingIndicateCollectionViewCell.contentInset = UIEdgeInsetsMake(5.f, 0.f, 5.f, 0.f);
+        _loadingIndicateCollectionViewCell.loadingIndicateView.backgroundColor = [UIColor whiteColor];
+        _loadingIndicateCollectionViewCell.loadingIndicateView.delegate = self;
+    }
+    
+    return _loadingIndicateCollectionViewCell;
+}
+
+
+#pragma mark--
+- (BOOL)shouldAutorotate
+{
+    //是否支持转屏
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    //支持哪些转屏方向
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end
 
 
@@ -174,7 +578,6 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     return backgroundView ;
 }
 
-
 -(void)_calendarBackgroupViewTapGestureHandle
 {
     [self hideCalendarViewWithAnimated:YES] ;
@@ -182,15 +585,19 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
 
 -(void)showCalendarView:(NSString*)title
          initDateString:(NSString*)dateStr
+                MinDate:(NSDate*)minDate
+                MaxDate:(NSDate*)maxDate
            comfirmBlock:(CalendaCompleteBlock)completeBlock;
 {
     if (!dateStr.length){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
         dateStr = [dateFormatter stringFromDate:[NSDate date]] ;
     }
 
-    CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr] ;
+    CLCalendarView *shareCalendarView = [CLCalendarView shareCalendarView:title defaultDate:dateStr
+                                                                  MinDate:minDate
+                                                                  MaxDate:maxDate] ;
     [self hideCalendarViewWithAnimated:NO] ;
 
     _calendarCompleteBlock = completeBlock ;
@@ -200,21 +607,28 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     [self.calendarBackgroundView removeFromSuperview] ;
     [shareCalendarView removeFromSuperview] ;
 
-
-    shareCalendarView.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height -shareCalendarView.boundHeigh-(self.isHiddenTabBar?0.0f:TabBarHeight),
-                                         shareCalendarView.boundWidth, shareCalendarView.boundHeigh) ;
+    CGRect finalFrame = CGRectMake(0,
+                                   [UIScreen mainScreen].bounds.size.height -shareCalendarView.boundHeigh-(self.isHiddenTabBar?0.0f:TabBarHeight),
+                                   shareCalendarView.boundWidth,
+                                   shareCalendarView.boundHeigh) ;
 
     if (!shareCalendarView.superview){
         [self.calendarBackgroundView addSubview:shareCalendarView] ;
-//        shareCalendarView.center = self.calendarBackgroundView.center ;
     }
-
+    
+    [self.view addSubview:self.calendarBackgroundView] ;
+    shareCalendarView.frame = CGRectMake(0,
+                                         MainScreenH,
+                                         shareCalendarView.boundWidth,
+                                         0) ;
+    
     [UIView animateWithDuration:UINavigationControllerHideShowBarDuration
                      animations:^{
-                         [self.view addSubview:self.calendarBackgroundView] ;
-                         [self.view bringSubviewToFront:self.calendarBackgroundView] ;
+                         shareCalendarView.frame = finalFrame ;
                      } completion:^(BOOL finished) {
+                         [self.view bringSubviewToFront:self.calendarBackgroundView] ;
                      }] ;
+    
 }
 
 -(void)hideCalendarViewWithAnimated:(BOOL)bAnimated
@@ -224,8 +638,9 @@ static char CALENDARBACKGROUNDVIEWTAPGESTURE ;
     if (bAnimated){
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration
                          animations:^{
-                             [self.calendarBackgroundView removeFromSuperview] ;
+                             
         } completion:^(BOOL finished) {
+             [self.calendarBackgroundView removeFromSuperview] ;
         }] ;
     }else{
         [self.calendarBackgroundView removeFromSuperview] ;
@@ -624,4 +1039,15 @@ _ACCESSOR(isSupportSavaData, BOOL, _supportSavaData);
 @end
 
 
+//@implementation UIViewController (MainTabBarControllerEx)
+//- (RH_MainTabBarControllerEx *)myTabBarControllerEx
+//{
+//    if ([self isKindOfClass:[RH_MainTabBarControllerEx class]]) {
+//        return (RH_MainTabBarControllerEx *)self;
+//    }else{
+//        UIViewController *topViewCtrl = self.navigationController.viewControllers[0] ;
+//        return [topViewCtrl myTabBarControllerEx];
+//    }
+//}
+//@end
 

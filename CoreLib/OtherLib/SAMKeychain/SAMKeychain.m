@@ -61,8 +61,27 @@ NSString *const kSAMKeychainWhereKey = @"svce";
 	query.service = serviceName;
 	query.account = account;
 	return [query deleteItem:error];
+    
+    
 }
 
++ (void)keyChainDelete:(NSString *)account{
+    [self delete:account];
+}
+
++ (void)delete:(NSString *)service {
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    SecItemDelete((CFDictionaryRef)keychainQuery);
+}
+
++ (NSMutableDictionary *)getKeychainQuery:(NSString *)service {
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            (id)kSecClassGenericPassword,(id)kSecClass,
+            service, (id)kSecAttrService,
+            service, (id)kSecAttrAccount,
+            (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,
+            nil];
+}
 
 + (BOOL)setPassword:(NSString *)password forService:(NSString *)serviceName account:(NSString *)account {
 	return [self setPassword:password forService:serviceName account:account error:nil];

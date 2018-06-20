@@ -151,5 +151,7 @@ typedef NS_ENUM(NSInteger, CL_DatasFilterType) {
 //是否是子视图控制器
 - (BOOL)isSubViewController;
 -(void)backBarButtonItemHandle ;
+//保存图片
+- (void)saveImageToPhotos:(UIImage*)savedImage ;
 @end
 

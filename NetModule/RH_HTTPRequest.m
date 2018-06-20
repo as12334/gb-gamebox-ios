@@ -21,6 +21,7 @@
 
     //处理数据的上下文
     NSString * _handleDataContext;
+    
 }
 
 
@@ -44,7 +45,6 @@
                  type:(HTTPRequestType)type
 {
 //    MyAssert(apiName.length);
-
     self = [super init];
 
     if (self) {
@@ -67,6 +67,20 @@
 
 - (void)dealloc {
     [self cancleRequest];
+}
+
+-(void)setTimeOutInterval:(NSTimeInterval)timeOutInterval
+{
+    if (_httpRequest){
+        _httpRequest.timeOutInterval = MAX(0, timeOutInterval) ;
+    }
+}
+
+-(NSTimeInterval)timeOutInterval
+{
+    if (_httpRequest) return _httpRequest.timeOutInterval ;
+    
+    return 0.0 ;
 }
 
 #pragma mark -
@@ -158,7 +172,7 @@
     _requesting = NO;
 
     [self _sendErrorMsgWithError:[NSError netErrorWithError:error] response:response];
-
+    
     _context = nil;
 }
 
@@ -239,6 +253,8 @@
 
     });
 }
+
+@synthesize timeOutInterval;
 
 @end
 

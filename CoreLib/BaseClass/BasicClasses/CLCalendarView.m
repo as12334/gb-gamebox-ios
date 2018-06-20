@@ -22,6 +22,8 @@
 @property(nonatomic,readonly,strong) UIDatePicker *datePicker  ;
 @property(nonatomic,readonly,strong) UIButton *confirmButton ;
 @property(nonatomic,readonly,strong) UIButton *cancelButton ;
+@property(nonatomic,strong) NSDate *minDate ;
+@property(nonatomic,strong) NSDate *maxDate ;
 
 @property(nonatomic,strong) NSString *defaultDate       ;
 
@@ -36,15 +38,12 @@
 @synthesize cancelButton = _cancelButton                ;
 
 +(CLCalendarView*)shareCalendarView:(NSString*)title defaultDate:(NSString*)defaultDate
+                            MinDate:(NSDate*)minDate MaxDate:(NSDate*)maxDate
 {
     static CLCalendarView* _shareCalendarView = nil;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        _shareCalendarView = [[CLCalendarView alloc] initWithFrame:CGRectMake(114*BXScreenW/414/2,
-//                                                                              100*BXScreenW/414,
-//                                                                              340*BXScreenW/414,
-//                                                                              350*BXScreenH/736)] ;
         _shareCalendarView = [[CLCalendarView alloc] initWithFrame:CGRectMake(0,
                                                                               BXScreenH - (350*BXScreenH/736),
                                                                               BXScreenW,
@@ -55,6 +54,8 @@
 
     _shareCalendarView.labTitle.text = title?:@"日期设置" ;
     _shareCalendarView.defaultDate = defaultDate ;
+    _shareCalendarView.minDate = minDate ;
+    _shareCalendarView.maxDate = maxDate ;
     return _shareCalendarView;
 }
 
@@ -86,6 +87,7 @@
     setEdgeConstraint(self.labTitle, NSLayoutAttributeLeft, self, 15.0f) ;
 
     [self addSubview:self.datePicker];
+
     setRelatedCommonAttrConstraint(self.datePicker, NSLayoutAttributeCenterX, self,1.f,0.f);
 
     [self addSubview:self.confirmButton];
@@ -101,18 +103,35 @@
 //    setSizeConstraint(self.cancelButton, NSLayoutAttributeHeight, 30.0f );
 }
 
-#pragma mark-
+#pragma mark-  修改默认时间
 -(void)setDefaultDate:(NSString *)defaultDate
 {
     if (_defaultDate!=defaultDate){
         _defaultDate = defaultDate ;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"] ;
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"] ;
         NSDate *date = [dateFormatter dateFromString:defaultDate] ;
         if (date){
             [self.datePicker setDate:date animated:NO] ;
+        }else{
+            NSDate *date = [dateFormatter dateFromString:[dateFormatter stringFromDate:[NSDate date]]] ;
+            [self.datePicker setDate:date animated:NO] ;
         }
     }
+}
+
+#pragma mark-  设置最小日期
+-(void)setMinDate:(NSDate *)minDate
+{
+    _minDate = minDate;
+    self.datePicker.minimumDate = _minDate;
+}
+
+#pragma mark-  设置最大日期
+-(void)setMaxDate:(NSDate *)maxDate
+{
+    _maxDate = maxDate;
+    self.datePicker.maximumDate = _maxDate;
 }
 
 -(UILabel*)labTitle
@@ -185,13 +204,20 @@
 //                                                                       200*BXScreenH/736)];
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0,40,BXScreenW,
                                                                     self.boundHeigh - 40.0f)];
-
-        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+//        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+//        fmt.dateFormat = @"yyyy-MM-dd";
+//        NSDate *minDate = [fmt dateFromString:@"2018-1-20"];
+//        //设置日期最小值
+//        _datePicker.minimumDate = self.minDate;
+//        _datePicker.maximumDate = self.maxDate ;
+        
 //        [_datePicker addTarget:self action:@selector(datePickerChangedHandle:) forControlEvents: UIControlEventValueChanged];
     }
-
     return _datePicker ;
 }
+
+
 
 - (void)datePickerChangedHandle:(UIDatePicker *)senser{
 //    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];

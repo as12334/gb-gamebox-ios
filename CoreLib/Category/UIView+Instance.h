@@ -21,5 +21,9 @@
 
 - (id)initWithContext:(id)context;
 - (void)setupViewWithContext:(id)context ;
+- (void)showViewController:(UIViewController*)viewController ;
+- (void)presentViewController:(UIViewController*)viewController animated: (BOOL)flag
+                   completion:(void (^ __nullable)(void))completion NS_AVAILABLE_IOS(5_0) ;
 
 @end
+

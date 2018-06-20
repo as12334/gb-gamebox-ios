@@ -25,8 +25,10 @@ static char tabBarInteractiveEnabledkey,gestureHiddenTabBarEnabledKey;
         UITabBarController * tabBarController = self.tabBarController;
         if (tabBarController && [tabBarController isKindOfClass:[CLTabBarController class]]) {
             return (CLTabBarController *)tabBarController;
-        }else{
+        }else if (self.parentViewController){
             return [self.parentViewController myTabBarController];
+        }else{
+            return [[UIApplication sharedApplication].keyWindow.rootViewController myTabBarController] ;
         }
     }
 }

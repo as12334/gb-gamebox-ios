@@ -24,7 +24,8 @@
         _mVersionName = [info stringValueForKey:RH_GP_CHECKVERSION_VERSIONNAME] ;
         _mMemo = [info stringValueForKey:RH_GP_CHECKVERSION_MEMO];
         _mMD5 = [info stringValueForKey:RH_GP_CHECKVERSION_MD5];
-        _mUpdateTime = [NSDate dateWithTimeIntervalSince1970:[info integerValueForKey:RH_GP_CHECKVERSION_UPDATETIME]];
+        _mUpdateTime = [NSDate dateWithTimeIntervalSince1970:[info doubleValueForKey:RH_GP_CHECKVERSION_UPDATETIME]/1000.0];
+        _mForceVersion = [info stringValueForKey:RH_GP_CHECKVERSION_FORCEVERSION];
     }
     
     return self ;

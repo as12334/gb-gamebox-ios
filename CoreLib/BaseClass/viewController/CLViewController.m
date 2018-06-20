@@ -10,6 +10,7 @@
 #import "UIViewController+CLTabBarController.h"
 #import "CLTabBarController.h"
 #import <objc/runtime.h>
+#import "MacroDef.h"
 
 @interface CLViewController ()
 
@@ -25,7 +26,14 @@
     [self.myTabBarController setTabBarHidden:self.hiddenTabBar
                                     animated:animated
                                   animations:nil
-                                  completion:nil] ;
+                                  completion:^{
+                                      if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                                          if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                              //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                              self.view.frame = MainScreenBounds ;
+                                          }
+                                      }
+                                  }] ;
 
     //更新视图
     if (_needUpdateViewWhenViewAppear) {
@@ -54,8 +62,29 @@
         [self.myTabBarController setTabBarHidden:self.hiddenTabBar
                                         animated:YES
                                       animations:nil
-                                      completion:nil] ;
+                                      completion:^{
+                                          if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+                                              if (self.isHiddenTabBar && GreaterThanIOS10System){
+                                                  //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+                                                  self.view.frame = MainScreenBounds ;
+                                              }
+                                          }
+                                      }] ;
 
+    }
+}
+
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews] ;
+    
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+        if (self.isHiddenTabBar && GreaterThanIOS10System){
+            //fix ios 10以上 tabbar 隐藏时,view 不能全屏大小
+            if (CGSizeEqualToSize(self.view.frame.size, MainScreenBounds.size)==FALSE){
+                self.view.frame = MainScreenBounds ;
+            }
+        }
     }
 }
 
@@ -122,7 +151,7 @@ static char  HIDDENSTATUSBAR ;
     if (![self isViewShowing]) {
         _needUpdateViewWhenViewAppear = YES;
     }else{
-        [self updateView];
+        [self performSelectorOnMainThread:@selector(updateView) withObject:self waitUntilDone:NO] ;
     }
 }
 
@@ -223,7 +252,7 @@ static char PROGRESSINDICATORVIEW ;
     [self.progressIndicatorView show:animated] ;
 }
 
--(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)())completeBlock
+-(void)hideProgressIndicatorViewWithAnimated:(BOOL)animated completedBlock:(void(^)(void))completeBlock
 {
     if (self.progressIndicatorView.superview){
         self.progressIndicatorView.animationType = MBProgressHUDAnimationZoom ;
@@ -232,6 +261,35 @@ static char PROGRESSINDICATORVIEW ;
     }
 }
 
+- (UIColor *)themeColor
+{
+    if ([THEMEV3 isEqualToString:@"green"]){
+        return RH_NavigationBar_BackgroundColor_Green ;
+    }else if ([THEMEV3 isEqualToString:@"red"]){
+        return RH_NavigationBar_BackgroundColor_Red ;
+    }else if ([THEMEV3 isEqualToString:@"black"]){
+        return ColorWithNumberRGB(0x168df6) ;
+    }else if ([THEMEV3 isEqualToString:@"blue"]){
+        return RH_NavigationBar_BackgroundColor_Blue;
+    }else if ([THEMEV3 isEqualToString:@"orange"]){
+        return RH_NavigationBar_BackgroundColor_Orange;
+    }else if ([THEMEV3 isEqualToString:@"default"]){
+        return RH_NavigationBar_BackgroundColor;
+    }else if ([THEMEV3 isEqualToString:@"red_white"]){
+        return RH_NavigationBar_BackgroundColor_Red_White ;
+    }else if ([THEMEV3 isEqualToString:@"green_white"]){
+        return RH_NavigationBar_BackgroundColor_Green_White ;
+    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+        return RH_NavigationBar_BackgroundColor_Orange_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+        return RH_NavigationBar_BackgroundColor_Coffee_White;
+    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+        return RH_NavigationBar_BackgroundColor_Coffee_Black;
+    }else{
+        return RH_NavigationBar_BackgroundColor ;
+    }
+
+}
 @end
 
 
