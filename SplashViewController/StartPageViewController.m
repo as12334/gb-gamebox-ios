@@ -257,6 +257,7 @@
         }
         
         self.progressNote = @"正在检查线路,请稍候";
+        
         //从动态域名列表依次尝试获取ip列表
         [self fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
             self.progress = 0.3;
@@ -286,8 +287,10 @@
             }];
         } failed:^{
             //从所有的固定域名列表没有获取到ip列表
+            weakSelf.progress = 0;
         }];
     } failed:^{
+        weakSelf.progress = 0;
     }];
 }
 
@@ -300,6 +303,7 @@
 {
     __weak typeof(self) weakSelf = self;
     __block NSDictionary *resultIPs;
+    __block int failedTimes = 0;//失败次数
     
     //是否需要通过下一个固定域名请求ips
     //当前域名获取ips失败时需要从下一个获取
@@ -338,18 +342,18 @@
                         complete(resultIPs);
                     }
                 }
-                else
-                {
-                    if (failed) {
-                        failed();
-                    }
-                }
 
                 dispatch_semaphore_signal(sema);
             } failed:^{
                 self.progress += 0.05;
                 NSLog(@"从%@未获取到ip，继续下一次获取...",domain);
                 doNext = YES;//未获取到ip 需要继续执行其他的线程
+                failedTimes ++;
+                if (failedTimes == domains.count) {
+                    if (failed) {
+                        failed();
+                    }
+                }
                 dispatch_semaphore_signal(sema);
             }];
         });
