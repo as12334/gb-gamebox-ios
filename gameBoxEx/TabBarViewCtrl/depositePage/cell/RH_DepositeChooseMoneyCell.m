@@ -35,7 +35,7 @@
     self.separatorLineWidth = PixelToPoint(1.0f) ;
     [self.collectionView reloadData] ;
     //图片名称数组
-    _picNameArray = @[@"100",@"200",@"500",@"1000",@"5000"];
+    _picNameArray = @[@"101",@"302",@"504",@"1006",@"4998"];
     [self setupUI];
 }
 
@@ -94,19 +94,19 @@
 {
     ifRespondsSelector(self.delegate, @selector(depositeChooseMoneyCell:)){
         if (indexPath.item==0) {
-            [self.delegate depositeChooseMoneyCell:100] ;
+            [self.delegate depositeChooseMoneyCell:101] ;
         }
         else if (indexPath.item==1) {
-            [self.delegate depositeChooseMoneyCell:200] ;
+            [self.delegate depositeChooseMoneyCell:302] ;
         }
         else if (indexPath.item==2) {
-            [self.delegate depositeChooseMoneyCell:500] ;
+            [self.delegate depositeChooseMoneyCell:504] ;
         }
        else if (indexPath.item==3) {
-            [self.delegate depositeChooseMoneyCell:1000] ;
+            [self.delegate depositeChooseMoneyCell:1006] ;
         }
        else if (indexPath.item==4) {
-            [self.delegate depositeChooseMoneyCell:5000] ;
+            [self.delegate depositeChooseMoneyCell:4998] ;
         }
     }
 }
