@@ -2972,6 +2972,118 @@
 #define THEME    @"default.skin"
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
+#elif _tjyo //朝盈集团
+
+#define CODE    @"tjyo"
+#define S        @"f45b8cbf1f1c810f74761ab615992124"
+#define SID        @"608"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _k5sg //新葡京
+
+#define CODE    @"k5sg"
+#define S        @"c3d3c50270414d0b104db62f46f74cf6"
+#define SID        @"609"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _2d4n //九五至尊
+
+#define CODE    @"2d4n"
+#define S        @"f0d5c4147eb905e306a5781eb891bc26"
+#define SID        @"610"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _pse0 //万博体育
+
+#define CODE    @"pse0"
+#define S        @"508f3384b53b2b35adba5603c0cc4a24"
+#define SID        @"611"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _qlms //新葡京娱乐城
+
+#define CODE    @"qlms"
+#define S        @"5c563cc890fde6da9092e1fd10f70b75"
+#define SID        @"612"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _tdlt //金沙娱乐城
+
+#define CODE    @"tdlt"
+#define S        @"74ff7d8ec1479e2c36056ebd6ca7be88"
+#define SID        @"615"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _kdli //环球娱乐
+
+#define CODE    @"kdli"
+#define S        @"edc535ff8f4cfa9fcb12dee9b89060ea"
+#define SID        @"616"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _3hld //手中世界
+
+#define CODE    @"3hld"
+#define S        @"23ba37e42586c925fd53d29283756fde"
+#define SID        @"613"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _cepa //博赢彩票
+
+#define CODE    @"cepa"
+#define S        @"5215c56a6e7efd6d4d547a135248fc0d"
+#define SID        @"617"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _4bzo //永利娱乐城
+
+#define CODE    @"4bzo"
+#define S        @"cf665e4d03f897d6dbe8946cdfa1896c"
+#define SID        @"619"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _aba6 //天宏娱乐
+
+#define CODE    @"aba6"
+#define S        @"6046d851484858a29b6e17d71ae0ac37"
+#define SID        @"620"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _q9uv //万发娱乐
+
+#define CODE    @"q9uv"
+#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
+#define SID        @"618"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
