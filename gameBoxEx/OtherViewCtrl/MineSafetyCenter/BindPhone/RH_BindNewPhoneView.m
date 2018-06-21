@@ -103,10 +103,10 @@
     __block int i = 0;
     dispatch_source_set_event_handler(timer, ^() {
         i++;
-        if (i<30) {
+        if (i<90) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.sendBt.enabled = NO;
-                [weakSelf.sendBt setTitle:[NSString stringWithFormat:@"%i秒后重试", 30-i] forState:UIControlStateNormal];
+                [weakSelf.sendBt setTitle:[NSString stringWithFormat:@"%i秒后重试", 90-i] forState:UIControlStateNormal];
             });
         }
         else

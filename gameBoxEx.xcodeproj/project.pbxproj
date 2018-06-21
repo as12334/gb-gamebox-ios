@@ -136,6 +136,8 @@
 		54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */; };
 		54CDEF8C20CBD6B70080EB68 /* RH_ChangePswSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */; };
 		54CDEF8E20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */; };
+		54EA6C0920DA2A9D00C0C74F /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */; };
+		54EA6C0B20DA2AA800C0C74F /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -1014,6 +1016,9 @@
 		54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangePswSuccessView.h; sourceTree = "<group>"; };
 		54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangePswSuccessView.m; sourceTree = "<group>"; };
 		54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangePswSuccessView.xib; sourceTree = "<group>"; };
+		54EA6C0720DA2A9D00C0C74F /* RH_StartPageADView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
+		54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
+		54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -3806,6 +3811,9 @@
 				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
 				54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */,
 				54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */,
+				54EA6C0720DA2A9D00C0C74F /* RH_StartPageADView.h */,
+				54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */,
+				54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -5248,6 +5256,7 @@
 				B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
+				54EA6C0B20DA2AA800C0C74F /* RH_StartPageADView.xib in Resources */,
 				F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */,
 				22208B71207476690028BBA3 /* tab_v3_home_selected_green@2x.png in Resources */,
 				22208B732074769D0028BBA3 /* tab_v3_home_selected@2x.png in Resources */,
@@ -5669,6 +5678,7 @@
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
 				54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
+				54EA6C0920DA2A9D00C0C74F /* RH_StartPageADView.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
@@ -5943,7 +5953,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5954,7 +5964,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid270;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5962,13 +5972,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = LOVEBET;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5978,7 +5988,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid270;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6027,7 +6037,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6038,7 +6048,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid270;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6046,13 +6056,13 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = LOVEBET;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6062,7 +6072,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid270;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

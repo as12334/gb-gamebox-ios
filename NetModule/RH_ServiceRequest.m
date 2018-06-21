@@ -2294,9 +2294,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                         pathFormat:RH_API_NAME_INITAD
                      pathArguments:nil
                    headerArguments:@{
-                                     //                                     @"X-Requested-With":@"XMLHttpRequest",
                                      @"User-Agent":@"app_ios, iPhone",
-                                     @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
                                      @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:nil
