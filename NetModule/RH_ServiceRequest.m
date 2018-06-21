@@ -2695,6 +2695,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
+    
+//    NSData *tmpDatas = ConvertToClassPointer(NSData, data) ;
+//    NSString *tmpResults = [tmpDatas mj_JSONString] ;
+
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2721,6 +2725,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     self.appDelegate.checkType = @"http";
                 }
             }
+            
             if (response.statusCode==607){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     showAlertView(@"站点维护", nil) ;
