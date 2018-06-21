@@ -74,6 +74,12 @@
                 [self showViewController:[RH_FindbackPswSendCodeViewController viewControllerWithContext:@{@"phone":[dataDic objectForKey:@"phone"],@"encryptedId":[dataDic objectForKey:@"encryptedId"],@"username":self.username}] sender:nil];
             }
         }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"该账号未绑定手机号，请联系客服找回密码" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"联系客服", nil];
+            alert.delegate = self;
+            [alert show];
+        }
     }
 }
 
