@@ -215,10 +215,7 @@
 //#define TEST_DOMAIN  @"test02.hongtubet.com"
 #define TEST_DOMAIN  @"test2.hongtubet.com"
 //#define TEST_DOMAIN  @"test71.hongtubet.com"
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/dev_shin_ip
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
@@ -3080,7 +3077,6 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _q9uv //万发娱乐
-<<<<<<< HEAD
 
 #define CODE    @"q9uv"
 #define S        @"447cacd6d721a6d0722c8804bc0e15fe"
@@ -3089,8 +3085,6 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-=======
->>>>>>> origin/dev_shin_ip
 
 #define CODE    @"q9uv"
 #define S        @"447cacd6d721a6d0722c8804bc0e15fe"
