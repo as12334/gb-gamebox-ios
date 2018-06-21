@@ -212,9 +212,9 @@
 
 #elif _8l6r //超博娱乐、
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define TEST_DOMAIN  @"test71.hongtubet.com"
-//#define TEST_DOMAIN         @"https://test2.hongtubet.com/lottery.html"
-//#define TEST_DOMAIN  @"71.hongtubet.com"
+//#define TEST_DOMAIN  @"test02.hongtubet.com"
+#define TEST_DOMAIN  @"test2.hongtubet.com"
+//#define TEST_DOMAIN  @"test71.hongtubet.com"
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
@@ -2961,7 +2961,7 @@
 #define S        @"958ec9fdbfe64ff713da1b321769e445"
 #define SID        @"605"
 #define THEME    @"default.skin"
-#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _pf6g //天美娱乐
@@ -3037,6 +3037,7 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+
 #elif _3hld //手中世界
 
 #define CODE    @"3hld"
@@ -3053,7 +3054,6 @@
 #define SID        @"617"
 #define THEME    @"default.skin"
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _4bzo //永利娱乐城

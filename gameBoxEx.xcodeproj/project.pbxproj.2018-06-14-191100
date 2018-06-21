@@ -114,12 +114,6 @@
 		546CE71820CA986700273C40 /* RH_BindUserPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71720CA986700273C40 /* RH_BindUserPhone.xib */; };
 		546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */; };
 		546CE71F20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */; };
-		54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */; };
-		54C4F84C20D6348C00CCAD47 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */; };
-		54C4F84D20D6348C00CCAD47 /* StartPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */; };
-		54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */; };
-		54C4F87520D7CED000CCAD47 /* dores.sh in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F87320D7CECF00CCAD47 /* dores.sh */; };
-		54C4F87620D7CED000CCAD47 /* sid in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F87420D7CED000CCAD47 /* sid */; };
 		54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */; };
 		54CDEF5F20CB64380080EB68 /* RH_BindNewPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */; };
 		54CDEF6B20CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF6920CBB4BF0080EB68 /* RH_FindbackPswWaysViewController.m */; };
@@ -136,8 +130,6 @@
 		54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */; };
 		54CDEF8C20CBD6B70080EB68 /* RH_ChangePswSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */; };
 		54CDEF8E20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */; };
-		54EA6C0920DA2A9D00C0C74F /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */; };
-		54EA6C0B20DA2AA800C0C74F /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -759,6 +751,7 @@
 		F69E35442063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E35422063D6CF0028D3A1 /* RH_DepositeTransferReminderCell.xib */; };
 		F69E35482063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */; };
 		F69E35492063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */; };
+		F69F800C20C667A700B6CE1A /* RH_AdvertisingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F69F800B20C667A700B6CE1A /* RH_AdvertisingView.m */; };
 		F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */; };
 		F6A0BC9B206F87B3006DB380 /* RH_DepositeBitcionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A0BC99206F87B3006DB380 /* RH_DepositeBitcionCell.m */; };
 		F6A0BC9C206F87B3006DB380 /* RH_DepositeBitcionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6A0BC9A206F87B3006DB380 /* RH_DepositeBitcionCell.xib */; };
@@ -981,15 +974,6 @@
 		546CE71B20CAB1E400273C40 /* RH_ChangeBIndPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangeBIndPhoneView.h; sourceTree = "<group>"; };
 		546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangeBIndPhoneView.m; sourceTree = "<group>"; };
 		546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangeBIndPhoneView.xib; sourceTree = "<group>"; };
-		54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPsCacheManager.h; sourceTree = "<group>"; };
-		54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPsCacheManager.m; sourceTree = "<group>"; };
-		54C4F84920D6348C00CCAD47 /* StartPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
-		54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
-		54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartPageViewController.xib; sourceTree = "<group>"; };
-		54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateStatusCacheManager.h; sourceTree = "<group>"; };
-		54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateStatusCacheManager.m; sourceTree = "<group>"; };
-		54C4F87320D7CECF00CCAD47 /* dores.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dores.sh; sourceTree = "<group>"; };
-		54C4F87420D7CED000CCAD47 /* sid */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sid; sourceTree = "<group>"; };
 		54CDEF5B20CB64240080EB68 /* RH_BindNewPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_BindNewPhoneView.h; sourceTree = "<group>"; };
 		54CDEF5C20CB64240080EB68 /* RH_BindNewPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_BindNewPhoneView.m; sourceTree = "<group>"; };
 		54CDEF5E20CB64380080EB68 /* RH_BindNewPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_BindNewPhoneView.xib; sourceTree = "<group>"; };
@@ -1016,9 +1000,6 @@
 		54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangePswSuccessView.h; sourceTree = "<group>"; };
 		54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangePswSuccessView.m; sourceTree = "<group>"; };
 		54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangePswSuccessView.xib; sourceTree = "<group>"; };
-		54EA6C0720DA2A9D00C0C74F /* RH_StartPageADView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
-		54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
-		54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -2015,6 +1996,7 @@
 		F66394BC208396A800D37EDA /* RH_CustomServiceSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomServiceSubViewController.m; sourceTree = "<group>"; };
 		F6680375207F3E240080E63A /* RH_TestSafariViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_TestSafariViewController.h; sourceTree = "<group>"; };
 		F6680376207F3E240080E63A /* RH_TestSafariViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_TestSafariViewController.m; sourceTree = "<group>"; };
+		F67B30961FA742B600C63829 /* sitelist.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sitelist.sh; sourceTree = "<group>"; };
 		F681D24D2019729000A7C449 /* RH_CapitalRecordNameLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordNameLabel.h; sourceTree = "<group>"; };
 		F681D24E2019729000A7C449 /* RH_CapitalRecordNameLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordNameLabel.m; sourceTree = "<group>"; };
 		F681D2502019762A00A7C449 /* RH_CapitalRecordBlackLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordBlackLabel.h; sourceTree = "<group>"; };
@@ -2109,6 +2091,8 @@
 		F69E35452063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeTransferWXinInfoCell.h; sourceTree = "<group>"; };
 		F69E35462063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeTransferWXinInfoCell.m; sourceTree = "<group>"; };
 		F69E35472063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_DepositeTransferWXinInfoCell.xib; sourceTree = "<group>"; };
+		F69F800A20C667A700B6CE1A /* RH_AdvertisingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_AdvertisingView.h; sourceTree = "<group>"; };
+		F69F800B20C667A700B6CE1A /* RH_AdvertisingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_AdvertisingView.m; sourceTree = "<group>"; };
 		F6A0BC95206F8787006DB380 /* RH_DepositBitcionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositBitcionViewController.h; sourceTree = "<group>"; };
 		F6A0BC96206F8787006DB380 /* RH_DepositBitcionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositBitcionViewController.m; sourceTree = "<group>"; };
 		F6A0BC98206F87B3006DB380 /* RH_DepositeBitcionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeBitcionCell.h; sourceTree = "<group>"; };
@@ -2853,8 +2837,7 @@
 		A0109C591F878199004E6EF4 = {
 			isa = PBXGroup;
 			children = (
-				54C4F87320D7CECF00CCAD47 /* dores.sh */,
-				54C4F87420D7CED000CCAD47 /* sid */,
+				F67B30961FA742B600C63829 /* sitelist.sh */,
 				A0E53D681F97411F00CE69E4 /* thirdPart */,
 				A0109E071F87852F004E6EF4 /* CoreLib */,
 				A010A0021F878B67004E6EF4 /* NetModule */,
@@ -2922,10 +2905,6 @@
 				A0109EF01F87852F004E6EF4 /* OtherLib */,
 				A0109F671F87852F004E6EF4 /* ScreenAdaptation.h */,
 				A0109F681F87852F004E6EF4 /* ScreenAdaptation.m */,
-				54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */,
-				54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */,
-				54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */,
-				54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */,
 			);
 			path = CoreLib;
 			sourceTree = "<group>";
@@ -3808,12 +3787,6 @@
 				F61DA01020BBF6D000E55BAB /* SplashViewControllerEX.h */,
 				F61DA01120BBF6D000E55BAB /* SplashViewControllerEX.m */,
 				F61DA01220BBF6D000E55BAB /* SplashViewControllerEX.xib */,
-				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
-				54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */,
-				54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */,
-				54EA6C0720DA2A9D00C0C74F /* RH_StartPageADView.h */,
-				54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */,
-				54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -4400,6 +4373,8 @@
 				A0E782761FFE5C12007BFBF3 /* RH_DomainTableCell.xib */,
 				A0E782781FFE5C12007BFBF3 /* RH_DomainTableCell.h */,
 				A0E782771FFE5C12007BFBF3 /* RH_DomainTableCell.m */,
+				F69F800A20C667A700B6CE1A /* RH_AdvertisingView.h */,
+				F69F800B20C667A700B6CE1A /* RH_AdvertisingView.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -4976,7 +4951,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0109C8E1F878199004E6EF4 /* Build configuration list for PBXNativeTarget "gameBoxEx" */;
 			buildPhases = (
-				54C4F87720D7D07B00CCAD47 /* ShellScript */,
 				A0109C5E1F878199004E6EF4 /* Sources */,
 				A0109C5F1F878199004E6EF4 /* Frameworks */,
 				A0109C601F878199004E6EF4 /* Resources */,
@@ -5059,7 +5033,6 @@
 				A01CB49A1FF9C81800447130 /* RH_ActivithyView.xib in Resources */,
 				F6FB637F200F851300EEED4E /* RH_SiteMineNoticeCell.xib in Resources */,
 				228B93102027287E008C8313 /* tab_v3_service_selected_green@3x.png in Resources */,
-				54C4F84D20D6348C00CCAD47 /* StartPageViewController.xib in Resources */,
 				79BB2D9E203130CE000CDE6B /* RH_ShareNavBarView.xib in Resources */,
 				F696B844206BC9690038D1C5 /* RH_DepositeTransferButtonCell.xib in Resources */,
 				54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */,
@@ -5103,8 +5076,6 @@
 				79FB816D1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib in Resources */,
 				A07AF4EE2026DBE400D6D559 /* tab_v3_deposit_selected_black@2x.png in Resources */,
 				F6FB6386200F851300EEED4E /* RH_MPSiteMessageHeaderView.xib in Resources */,
-				54C4F87620D7CED000CCAD47 /* sid in Resources */,
-				54C4F87520D7CED000CCAD47 /* dores.sh in Resources */,
 				A011815A1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.xib in Resources */,
 				221AE592207DEECB008CD409 /* login_touxiang_red@3x.png in Resources */,
 				221AE57A207DED56008CD409 /* tab_v3_home_selected_orange@2x.png in Resources */,
@@ -5256,7 +5227,6 @@
 				B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
-				54EA6C0B20DA2AA800C0C74F /* RH_StartPageADView.xib in Resources */,
 				F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */,
 				22208B71207476690028BBA3 /* tab_v3_home_selected_green@2x.png in Resources */,
 				22208B732074769D0028BBA3 /* tab_v3_home_selected@2x.png in Resources */,
@@ -5317,23 +5287,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		54C4F87720D7D07B00CCAD47 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/myfile",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/dores.sh";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A0109C5E1F878199004E6EF4 /* Sources */ = {
@@ -5422,7 +5375,6 @@
 				A04E5FC41F8CF3D300098A65 /* MacroDef.h in Sources */,
 				7937C444207209720010CD0C /* PGPickerView.m in Sources */,
 				546CE71620CA985C00273C40 /* RH_BindUserPhone.m in Sources */,
-				54C4F84C20D6348C00CCAD47 /* StartPageViewController.m in Sources */,
 				A01EE25B1F8860F50085717E /* MBProgressHUD.h in Sources */,
 				B87A6B53200DAD4E00C9788F /* RH_WithdrawCashOneCell.m in Sources */,
 				79BB2DBB2032D151000CDE6B /* RH_RewardRuleTableViewCell.m in Sources */,
@@ -5571,7 +5523,6 @@
 				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
 				7937C446207209720010CD0C /* PGPickerColumnCell.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
-				54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
 				223ED04F20CE94D300209110 /* RH_InitAdModel.m in Sources */,
@@ -5584,7 +5535,6 @@
 				A0109FC51F8788FF004E6EF4 /* UIViewController+CLTabBarController.m in Sources */,
 				A044437D200E3250004F942B /* PXAlertView.m in Sources */,
 				A0109FC61F8788FF004E6EF4 /* UIViewController+DesignatedShow.m in Sources */,
-				54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */,
 				A0ADD31E1FEB613400B24B51 /* RH_DaynamicLabelCell.m in Sources */,
 				A0109FC71F8788FF004E6EF4 /* UIViewController+Instance.m in Sources */,
 				A0109FC81F8788FF004E6EF4 /* help.m in Sources */,
@@ -5678,7 +5628,6 @@
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
 				54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
-				54EA6C0920DA2A9D00C0C74F /* RH_StartPageADView.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
@@ -5798,6 +5747,7 @@
 				A0109F871F8787E4004E6EF4 /* CLPageLoadContentPageCell.m in Sources */,
 				A0109F881F8787E4004E6EF4 /* CLPageView.m in Sources */,
 				A0109F891F8787E4004E6EF4 /* CLScrollContentPageCell.m in Sources */,
+				F69F800C20C667A700B6CE1A /* RH_AdvertisingView.m in Sources */,
 				A0522A70200B001500A5A6E9 /* RH_UserGroupInfoModel.m in Sources */,
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				79595C73207B9DB90052F472 /* RH_PromoDetailViewController.m in Sources */,
@@ -5953,7 +5903,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_cepa=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5964,7 +5914,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid617;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid380;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5972,13 +5922,13 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "博赢彩票";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_DISPLAY_NAME = 21;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-567";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_i63i=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5988,11 +5938,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid617;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid380;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -6037,7 +5986,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_cepa=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6048,7 +5997,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid617;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid380;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6056,13 +6005,13 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "博赢彩票";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_DISPLAY_NAME = 21;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-567";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_i63i=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6072,11 +6021,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid617;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid380;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = debug;
 		};
