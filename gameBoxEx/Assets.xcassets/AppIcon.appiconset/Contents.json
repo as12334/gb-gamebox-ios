@@ -49,20 +49,28 @@
       "size" : "60x60",
       "idiom" : "iphone",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "filename" : "app_icon_21_120x120.png",
 =======
       "filename" : "app_icon_620_120x120.png",
 >>>>>>> origin/dev_shin_ip
+=======
+      "filename" : "app_icon_71_120x120.png",
+>>>>>>> origin/dev_sam_deatures
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "filename" : "app_icon_21_180x180.png",
 =======
       "filename" : "app_icon_620_180x180.png",
 >>>>>>> origin/dev_shin_ip
+=======
+      "filename" : "app_icon_71_180x180.png",
+>>>>>>> origin/dev_sam_deatures
       "scale" : "3x"
     },
     {
