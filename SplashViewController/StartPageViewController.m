@@ -57,7 +57,7 @@
     self.hiddenNavigationBar = YES;
 
     /**
-     * 119 270 特殊处理
+     * 119 270 206特殊处理
      */
     [self.launchImageView setImage:ImageWithName(@"startImage")];
     
