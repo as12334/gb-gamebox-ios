@@ -118,7 +118,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK0-KA-P6H">
                     <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAZ-0y-ZXN">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAZ-0y-ZXN">
                             <rect key="frame" x="10" y="40" width="355" height="40"/>
                             <color key="backgroundColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
