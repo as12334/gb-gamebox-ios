@@ -35,10 +35,11 @@
     [super viewDidLoad] ;
     
     
-    self.gameWebView =[[UIWebView alloc]initWithFrame:self.view.bounds];
+    self.gameWebView =[[UIWebView alloc]initWithFrame:CGRectMake(0,0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     self.gameWebView.delegate = self;
     [self.view addSubview:self.gameWebView];
-    
+    self.gameWebView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
+
     [self.view addSubview:self.gameBgImage];
     [self.view bringSubviewToFront:self.gameBgImage] ;
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
