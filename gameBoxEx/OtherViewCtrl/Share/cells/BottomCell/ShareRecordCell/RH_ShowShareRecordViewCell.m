@@ -87,8 +87,8 @@
     NSDate *date               = [NSDate dateWithTimeIntervalSince1970:interval];
     NSString *createTime = dateStringWithFormatter(date, @"yyyy-MM-dd");
     self.contentLab2.text = createTime;
-    self.contentLab3.text = detailModel.mRewardAmount;
-    self.contentLab4.text = detailModel.mStatus;
+    self.contentLab3.text = detailModel.mStatus;
+    self.contentLab4.text = detailModel.mRewardAmount;
 }
 
 - (void)awakeFromNib {

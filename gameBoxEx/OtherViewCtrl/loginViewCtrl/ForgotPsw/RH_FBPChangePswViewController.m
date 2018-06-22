@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"忘记密码";
+    self.title = @"设置登录密码";
     [self.view addSubview:self.changePwView];
 }
 
