@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               1
+#define IS_DEV_SERVER_ENV                               0
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
@@ -36,7 +36,7 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"22"
+#define RH_APP_VERCODE                  @"35"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -2917,7 +2917,7 @@
 #define S        @"8656ca8ca164b923502c77ec11453a41"
 #define SID        @"600"
 #define THEME    @"default.skin"
-#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _udpt //澳门新葡京
