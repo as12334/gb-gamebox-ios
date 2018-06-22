@@ -59,7 +59,7 @@
     self.hiddenNavigationBar = YES;
 
     /**
-     * 119 270 特殊处理
+     * 119 270 206特殊处理
      */
     [self.launchImageView setImage:ImageWithName(@"startImage")];
     
@@ -274,7 +274,7 @@
     //先从获取动态HOST
     [self fetchHost:^(NSDictionary *host) {
         NSString *hostName = [host objectForKey:@"host"];
-        
+
         //将此数据随机打乱 减轻服务器压力
         NSArray *hostips = [host objectForKey:@"ips"];
         hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {

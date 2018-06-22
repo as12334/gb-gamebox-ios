@@ -232,6 +232,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startLoginWithUserName:(NSString*)userName Password:(NSString*)password VerifyCode:(NSString*)verCode
 {
+    
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_LOGIN
@@ -275,6 +276,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startAutoLoginWithUserName:(NSString*)userName Password:(NSString*)password
 {
+   
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
         [self _startServiceWithAPIName:self.appDelegate.domain
                             pathFormat:RH_API_NAME_AUTOLOGIN
@@ -2708,6 +2710,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
+    
+//    NSData *tmpDatas = ConvertToClassPointer(NSData, data) ;
+//    NSString *tmpResults = [tmpDatas mj_JSONString] ;
+
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2734,6 +2740,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     self.appDelegate.checkType = @"http";
                 }
             }
+            
             if (response.statusCode==607){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     showAlertView(@"站点维护", nil) ;
@@ -2912,6 +2919,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
  
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] &&
         (type==ServiceRequestTypeUserLogin || type == ServiceRequestTypeUserAutoLogin)){//针对原生 ，检测http 302 错误
+        
         if (response.statusCode==302){
             tempError = ERROR_CREATE(HTTPRequestResultErrorDomin,302,@"login fail",dataObject);
         }
@@ -2970,6 +2978,23 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
             {
                 resultSendData = [[RH_HomePageModel alloc] initWithInfoDic:[ConvertToClassPointer(NSDictionary, dataObject) dictionaryValueForKey:RH_GP_V3_DATA]] ;
                 
+                if (response.statusCode==607){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"站点维护", nil) ;
+                        NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
+                        //创建通知
+                        NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                        //通过通知中心发送通知
+                        [[NSNotificationCenter defaultCenter] postNotification:notification];
+                        return ;
+                    });
+                }else if (response.statusCode==605){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        showAlertView(@"ip被限制", nil) ;
+                        return ;
+                    });
+                   
+                }
             }
                 break ;
            
