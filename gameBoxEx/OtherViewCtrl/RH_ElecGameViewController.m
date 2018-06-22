@@ -188,16 +188,17 @@
     }
 }
 #pragma mark-
-- (BOOL)shouldAutorotate
-{
-    //是否支持转屏
-    return YES;
+// 允许自动旋转
+-(BOOL)shouldAutorotate{
+    return NO;
 }
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+//    return UIInterfaceOrientationMaskAll;
+//}
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    //支持哪些转屏方向
-    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
-}
+////3.返回进入界面默认显示方向
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+//    return UIInterfaceOrientationPortrait;
+//}
 
 @end

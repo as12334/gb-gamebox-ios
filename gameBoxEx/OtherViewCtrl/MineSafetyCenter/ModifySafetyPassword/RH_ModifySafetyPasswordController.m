@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger,ModifySafetyStatus ) {
         [self.contentLoadingIndicateView hiddenView] ;
         if (UserSafetyInfo.mHasRealName==FALSE){
             _modifySafetyStatus = ModifySafetyStatus_SetRealName ;
-            showAlertView(@"用户姓名未设置", @"请先设置姓名") ;
+            showMessage(self.view, @"请先设置用户真实姓名", @"");
             [self.tableViewManagement reloadDataWithPlistName:@"ModifySafetyNoRealName"] ;
             RH_ModifyPasswordCell *cell = [self.contentTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.textField.secureTextEntry = NO;

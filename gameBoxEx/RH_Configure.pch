@@ -215,6 +215,7 @@
 //#define TEST_DOMAIN  @"test02.hongtubet.com"
 #define TEST_DOMAIN  @"test2.hongtubet.com"
 //#define TEST_DOMAIN  @"test71.hongtubet.com"
+
 #define CODE    @"8l6r"
 #define S        @"6bf3b743e414045e5123fc317fb9b535"
 #define SID        @"71"
@@ -2916,7 +2917,7 @@
 #define S        @"8656ca8ca164b923502c77ec11453a41"
 #define SID        @"600"
 #define THEME    @"default.skin"
-#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _udpt //澳门新葡京
@@ -3076,6 +3077,14 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _q9uv //万发娱乐
+
+#define CODE    @"q9uv"
+#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
+#define SID        @"618"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 
 #define CODE    @"q9uv"
 #define S        @"447cacd6d721a6d0722c8804bc0e15fe"

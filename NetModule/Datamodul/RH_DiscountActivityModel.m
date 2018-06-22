@@ -49,8 +49,8 @@
             {
                 host = appDelegate.domain;
             }
-
-             _showPhoto = [NSString stringWithFormat:@"%@/%@",host,_mPhoto] ;
+            
+            _showPhoto = [NSString stringWithFormat:@"%@/%@",host,_mPhoto] ;
         }
        
     }
