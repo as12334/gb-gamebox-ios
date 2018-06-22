@@ -72,10 +72,14 @@
     self.view.backgroundColor = colorWithRGB(255, 255, 255);
     [self setNeedUpdateView] ;
     [self.serviceRequest startV3LoadSharePlayerRecommend] ;
-    NSDate *startDate = [[NSDate alloc]init];
-    [startDate dateWithMoveDay:-30];
-    NSDate *endDate = [[NSDate alloc]init];
-    [self.serviceRequest startV3SharePlayerRecordStartTime:dateStringWithFormatter([startDate dateWithMoveDay:-30], @"yyyy-MM-dd") endTime:dateStringWithFormatter(endDate, @"yyyy-MM-dd") pageNumber:0 pageSize:20];
+//    NSDate *startDate = [[NSDate alloc]init];
+//    [startDate dateWithMoveDay:-30];
+//    NSDate *endDate = [[NSDate alloc]init];
+//    [self.serviceRequest startV3SharePlayerRecordStartTime:dateStringWithFormatter([startDate dateWithMoveDay:-30], @"yyyy-MM-dd") endTime:dateStringWithFormatter(endDate, @"yyyy-MM-dd") pageNumber:0 pageSize:20];
+    
+    [self.serviceRequest startV3SharePlayerRecordStartTime:[self getCurrentTimes] endTime:[self getCurrentTimes] pageNumber:0 pageSize:20];
+    
+    
 }
 
 
@@ -94,6 +98,29 @@
     [self.view addSubview:self.topView];
     [self.topView addSubview:self.shareNavView];
     self.shareNavView.whc_LeftSpace(0).whc_TopSpace(20).whc_BottomSpace(0).whc_RightSpace(0) ;
+}
+
+#pragma 获取当天日期
+-(NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    
+    //现在时间,你可以输出来看下是什么格式
+    
+    NSDate *datenow = [NSDate date];
+    
+    //----------将nsdate按formatter格式转成nsstring
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    NSLog(@"currentTimeString =  %@",formatter);
+    
+    return currentTimeString;
+    
 }
 
 -(UITableView *)tableView
@@ -257,7 +284,7 @@
         return;
     }
     NSString *startDateStr =dateStringWithFormatter(startDate, @"yyyy-MM-dd");
-    NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd");
+    NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd HH:mm:ss");
     [self.serviceRequest startV3SharePlayerRecordStartTime:startDateStr endTime:endDateStr pageNumber:0 pageSize:50];
 }
 
