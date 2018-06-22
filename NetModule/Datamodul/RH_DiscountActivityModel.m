@@ -39,7 +39,18 @@
             _showPhoto = [NSString stringWithFormat:@"%@",_mPhoto] ;
         }else
         {
-             _showPhoto = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,_mPhoto] ;
+            //静态资源的访问使用http+8787
+            NSString *host = [NSString string];
+            if ([appDelegate.domain containsString:@"https"] && [appDelegate.domain containsString:@":8989"]) {
+                host = [appDelegate.domain stringByReplacingOccurrencesOfString:@"https" withString:@"http"];
+                host = [host stringByReplacingOccurrencesOfString:@"8989" withString:@"8787"];
+            }
+            else
+            {
+                host = appDelegate.domain;
+            }
+
+             _showPhoto = [NSString stringWithFormat:@"%@/%@",host,_mPhoto] ;
         }
        
     }
