@@ -284,7 +284,9 @@
         return;
     }
     NSString *startDateStr =dateStringWithFormatter(startDate, @"yyyy-MM-dd");
-    NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd HH:mm:ss");
+    NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd");
+    startDateStr = [startDateStr stringByAppendingString:@" 00:00:01"];
+    endDateStr = [endDateStr stringByAppendingString:@" 23:59:59"];
     [self.serviceRequest startV3SharePlayerRecordStartTime:startDateStr endTime:endDateStr pageNumber:0 pageSize:50];
 }
 
