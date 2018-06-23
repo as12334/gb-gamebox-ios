@@ -192,13 +192,13 @@
 -(BOOL)shouldAutorotate{
     return NO;
 }
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-//    return UIInterfaceOrientationMaskAll;
-//}
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll;
+}
 
-////3.返回进入界面默认显示方向
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-//    return UIInterfaceOrientationPortrait;
-//}
+//3.返回进入界面默认显示方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
 
 @end
