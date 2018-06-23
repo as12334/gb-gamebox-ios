@@ -487,6 +487,10 @@
         _selectInfoModel = ConvertToClassPointer(RH_GetNoAutoTransferInfoModel, data) ;
         [self.tableTopView topViewUpdataTopDateWithModel:_selectInfoModel];
         [self.contentTableView reloadData] ;
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            showSuccessMessage(self.view, @"提示信息", @"额度转换成功") ;
+        }] ;
+        
     }else if (type == ServiceRequestTypeV3SubmitTransfersMoney){
         // 额度转换提交
         if (data) {
@@ -502,6 +506,7 @@
                 [self.contentTableView reloadData] ;
             }else if ([[[data objectForKey:@"data"] objectForKey:@"result"] integerValue] == 1)
             {
+                
                 [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
                     showSuccessMessage(self.view, @"提示信息", @"额度转换失败") ;
                 }] ;
@@ -528,6 +533,7 @@
          [self.contentTableView reloadData] ;
     }else if (type == ServiceRequestTypeV3OneStepRefresh)
     {
+        
         if ([data count] > 0 ) {
             [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
                 showSuccessMessage(self.view, @"提示信息", @"刷新成功") ;
@@ -580,6 +586,8 @@
         [_tableTopView topViewUpdataAmountText:@""] ;
     }else if (type == ServiceRequestTypeV3OneStepRefresh)
     {
+
+      
         showErrorMessage(nil, error, nil) ;
     }else if (type == ServiceRequestTypeV3ReconnectTransfer)
     {

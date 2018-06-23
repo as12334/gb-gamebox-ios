@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *payNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 
+@property (assign, nonatomic)BOOL mHide;
+
 @property(nonatomic,strong) RH_DepositeTransferListModel *listModel;
 @end
 @implementation RH_DepositeTransferBankInfoCell
@@ -32,6 +34,7 @@
 {
     NSArray *array = ConvertToClassPointer(NSArray, context);
    bool mHide = [array[1] boolValue];
+    self.mHide = mHide;
     RH_DepositeTransferListModel *listModel =array[0];
     self.listModel = listModel;
     if (mHide) {
@@ -64,6 +67,7 @@
     self.copBtnTwo.layer.masksToBounds = YES;
     self.copBtnThr.layer.cornerRadius = 5.f;
     self.copBtnThr.layer.masksToBounds = YES;
+    self.mHide = NO;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -72,7 +76,7 @@
 }
 - (IBAction)cardNumCopySelect:(id)sender {
     
-    if (self.listModel.mHide) {
+    if (self.mHide) {
         [self showViewController:[RH_CustomServiceSubViewController viewController]];
     }else{
         UIPasteboard *pboard = [UIPasteboard generalPasteboard];
