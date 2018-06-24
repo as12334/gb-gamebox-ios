@@ -22,7 +22,6 @@
 #import "RH_UserInfoManager.h"
 #import "RH_CapitalRecordViewController.h"
 #import "RH_PromoListController.h"
-#import "RH_LoginViewControllerEx.h"
 #import "RH_MePageViewController.h"
 #import "RH_RegistrationViewController.h"
 #import "RH_CustomServiceSubViewController.h"
