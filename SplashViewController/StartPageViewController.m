@@ -354,7 +354,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
+//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -574,7 +574,7 @@
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSString *ip = [self localIPAddress];
-    NSString *msg = [NSString stringWithFormat:@"\n错误代码:%@\n当前ip:%@\n当前版本:%@\n线路检测出错了,很抱歉,将此信息反馈至客服以便能更快处理线路问题",code, ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
+    NSString *msg = [NSString stringWithFormat:@"\n错误代码:%@\n本机ip:%@\n当前版本:%@\n线路检测出错了,很抱歉,将此信息反馈至客服以便能更快处理线路问题",code, ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"线路检测出错" message:msg preferredStyle:UIAlertControllerStyleAlert];
     
     NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:msg];
