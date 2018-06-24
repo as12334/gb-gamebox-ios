@@ -26,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) UIButton *doitAgainBT;
-@property (strong, nonatomic) NSString *checkedIP;
+@property (strong, nonatomic) UIButton *errDetailBT;
+@property (strong, nonatomic) NSString *currentErrCode;
 
 @end
 
@@ -49,6 +50,10 @@
     [self doRequest];
 }
 
+- (void)errDetailAction:(id)sender {
+    [self showErrAlertWithErrCode:self.currentErrCode otherInfo:nil];
+}
+
 #pragma mark - Private M
 
 - (void)setupUI
@@ -68,6 +73,8 @@
     
     self.doitAgainBT.layer.cornerRadius = 10.0;
     self.doitAgainBT.clipsToBounds = YES;
+    self.errDetailBT.layer.cornerRadius = 10.0;
+    self.errDetailBT.clipsToBounds = YES;
 }
 
 - (void)setProgressNote:(NSString *)progressNote
@@ -81,6 +88,7 @@
     _progress = progress;
     self.progressView.hidden = (_progress == 0);
     self.doitAgainBT.hidden = (_progress != 0);
+    self.errDetailBT.hidden = (_progress != 0);
     self.progressView.progress = _progress;
     if (_progress == 0) {
         self.progressNote = @"";
@@ -91,19 +99,39 @@
 {
     if (_doitAgainBT == nil) {
         _doitAgainBT = [UIButton buttonWithType:UIButtonTypeCustom];
-        _doitAgainBT.backgroundColor = colorWithRGB(228, 195, 105);
-        [_doitAgainBT setTitleColor:colorWithRGB(50, 50, 50) forState:UIControlStateNormal];
+        _doitAgainBT.backgroundColor = colorWithRGB(68, 162, 45);
+        [_doitAgainBT setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
         [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];
         _doitAgainBT.frame = CGRectMake(0, 0, 100, 33);
         _doitAgainBT.titleLabel.font = [UIFont systemFontOfSize:15];
         _doitAgainBT.hidden = YES;
         [self.view addSubview:_doitAgainBT];
         [self.view bringSubviewToFront:_doitAgainBT];
+        _doitAgainBT.whc_CenterYToView(10, self.progressView).whc_CenterXToView(-55, self.view).whc_Width(100).whc_Height(33);
 
         _doitAgainBT.center = self.progressView.center;
         [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _doitAgainBT;
+}
+
+- (UIButton *)errDetailBT
+{
+    if (_errDetailBT == nil) {
+        _errDetailBT = [UIButton buttonWithType:UIButtonTypeCustom];
+        _errDetailBT.backgroundColor = colorWithRGB(68, 162, 45);
+        [_errDetailBT setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
+        [_errDetailBT setTitle:@"错误详情" forState:UIControlStateNormal];
+        _errDetailBT.titleLabel.font = [UIFont systemFontOfSize:15];
+        _errDetailBT.hidden = YES;
+        [self.view addSubview:_errDetailBT];
+        [self.view bringSubviewToFront:_errDetailBT];
+        _errDetailBT.whc_CenterYToView(0, self.doitAgainBT).whc_LeftSpaceToView(10, self.doitAgainBT).whc_Width(100).whc_Height(33);
+        
+        _errDetailBT.center = self.progressView.center;
+        [_errDetailBT addTarget:self action:@selector(errDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _errDetailBT;
 }
 
 //先从三个固定的链接获取动态ip地址
@@ -222,7 +250,7 @@
         [self checkAllIP:ipList complete:^{
             [weakSelf shoudShowUpdateAlert];
         } failed:^{
-            [weakSelf showErrAlertWithErrCode:@"003" otherInfo:[ips objectForKey:@"ips"]];
+            weakSelf.currentErrCode = @"003";
         }];
         return;
     }
@@ -282,16 +310,16 @@
             [self checkAllIP:ipList complete:^{
                 [weakSelf shoudShowUpdateAlert];
             } failed:^{
-                [weakSelf showErrAlertWithErrCode:@"003" otherInfo:ips];
+                weakSelf.currentErrCode = @"003";
             }];
         } failed:^{
             //从所有的固定域名列表没有获取到ip列表
             weakSelf.progress = 0;
-            [weakSelf showErrAlertWithErrCode:@"002" otherInfo:nil];
+            weakSelf.currentErrCode = @"002";
         }];
     } failed:^{
         weakSelf.progress = 0;
-        [weakSelf showErrAlertWithErrCode:@"001" otherInfo:nil];
+        weakSelf.currentErrCode = @"001";
     }];
 }
 
@@ -326,7 +354,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
+                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -545,10 +573,9 @@
 {
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
-    NSString *title = [NSString stringWithFormat:@"iOS v%@.%@",appVersion,RH_APP_VERCODE];
     NSString *ip = [self localIPAddress];
-    NSString *msg = [NSString stringWithFormat:@"线路检测出错了！如果多次重试还有问题，请将以下信息反馈至客服\n错误代码:%@\n当前ip:%@\n%@",code, ip,otherInfo==nil ? @"" : [NSString stringWithFormat:@"其他信息:\n%@",otherInfo]];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+    NSString *msg = [NSString stringWithFormat:@"\n错误代码:%@\n当前ip:%@\n当前版本:%@\n线路检测出错了,很抱歉,将此信息反馈至客服以便能更快处理线路问题",code, ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"线路检测出错" message:msg preferredStyle:UIAlertControllerStyleAlert];
     
     NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:msg];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
