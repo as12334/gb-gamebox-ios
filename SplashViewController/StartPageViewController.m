@@ -56,9 +56,6 @@
     self.hiddenStatusBar = YES;
     self.hiddenNavigationBar = YES;
 
-    /**
-     * 119 270 206特殊处理
-     */
     [self.launchImageView setImage:ImageWithName(@"startImage")];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -94,9 +91,9 @@
 {
     if (_doitAgainBT == nil) {
         _doitAgainBT = [UIButton buttonWithType:UIButtonTypeCustom];
-        _doitAgainBT.backgroundColor = [UIColor yellowColor];
-        [_doitAgainBT setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];        [_doitAgainBT setTitleColor:colorWithRGB(0, 122, 255) forState:UIControlStateNormal];
+        _doitAgainBT.backgroundColor = colorWithRGB(228, 195, 105);
+        [_doitAgainBT setTitleColor:colorWithRGB(50, 50, 50) forState:UIControlStateNormal];
+        [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];
         _doitAgainBT.frame = CGRectMake(0, 0, 100, 33);
         _doitAgainBT.titleLabel.font = [UIFont systemFontOfSize:15];
         _doitAgainBT.hidden = YES;
@@ -201,8 +198,6 @@
             };
         });
     }
-
-    NSLog(@"");
 }
 
 - (void)doRequest
@@ -226,6 +221,8 @@
         self.progressNote = @"正在匹配服务器...";
         [self checkAllIP:ipList complete:^{
             [weakSelf shoudShowUpdateAlert];
+        } failed:^{
+            [weakSelf showErrAlertWithErrCode:@"003" otherInfo:[ips objectForKey:@"ips"]];
         }];
         return;
     }
@@ -284,13 +281,17 @@
             self.progressNote = @"正在匹配服务器...";
             [self checkAllIP:ipList complete:^{
                 [weakSelf shoudShowUpdateAlert];
+            } failed:^{
+                [weakSelf showErrAlertWithErrCode:@"003" otherInfo:ips];
             }];
         } failed:^{
             //从所有的固定域名列表没有获取到ip列表
             weakSelf.progress = 0;
+            [weakSelf showErrAlertWithErrCode:@"002" otherInfo:nil];
         }];
     } failed:^{
         weakSelf.progress = 0;
+        [weakSelf showErrAlertWithErrCode:@"001" otherInfo:nil];
     }];
 }
 
@@ -325,7 +326,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1",@"14.215.171.197",@"2.2.2.2",@"3.3.3.3"]};
+//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -472,7 +473,7 @@
     };
 }
 
-- (void)checkAllIP:(NSArray *)ipList complete:(GBCheckAllIPsComplete)complete
+- (void)checkAllIP:(NSArray *)ipList complete:(GBCheckAllIPsComplete)complete failed:(GBCheckAllIPsFailed)failed
 {
     __weak typeof(self) weakSelf = self;
     __block int failedTimes = 0;
@@ -500,6 +501,9 @@
             //清空缓存
             weakSelf.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
+            if (failed) {
+                failed();
+            }
         }
     }];
 }
@@ -535,6 +539,48 @@
             [weakSelf.delegate startPageViewControllerShowMainPage:self];
         }
     });
+}
+
+- (void)showErrAlertWithErrCode:(NSString *)code otherInfo:(NSDictionary *)otherInfo
+{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    NSString *title = [NSString stringWithFormat:@"iOS v%@.%@",appVersion,RH_APP_VERCODE];
+    NSString *ip = [self localIPAddress];
+    NSString *msg = [NSString stringWithFormat:@"线路检测出错了！如果多次重试还有问题，请将以下信息反馈至客服\n错误代码:%@\n当前ip:%@\n%@",code, ip,otherInfo==nil ? @"" : [NSString stringWithFormat:@"其他信息:\n%@",otherInfo]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+    
+    NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:msg];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    [messageText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, msg.length)];
+    [alert setValue:messageText forKey:@"attributedMessage"];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+//获取设备IP地址
+- (NSString *)localIPAddress
+{
+    NSError *error;
+    NSURL *ipURL = [NSURL URLWithString:@"http://pv.sohu.com/cityjson?ie=utf-8"];
+    NSMutableString *ip = [NSMutableString stringWithContentsOfURL:ipURL encoding:NSUTF8StringEncoding error:&error];
+    //判断返回字符串是否为所需数据
+    if ([ip hasPrefix:@"var returnCitySN = "]) {
+        //对字符串进行处理，然后进行json解析
+        //删除字符串多余字符串
+        NSRange range = NSMakeRange(0, 19);
+        [ip deleteCharactersInRange:range];
+        NSString * nowIp =[ip substringToIndex:ip.length-1];
+        //将字符串转换成二进制进行Json解析
+        NSData * data = [nowIp dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        return dict[@"cip"] ? dict[@"cip"] : @"";
+    }
+    return @"";
 }
 
 @end
