@@ -414,6 +414,8 @@
     }
     
 }
+
+
 #pragma mark ==============test webSocket================
 - (void)SRWebSocketDidOpen {
     NSLog(@"开启成功");
