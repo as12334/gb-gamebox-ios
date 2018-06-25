@@ -398,7 +398,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
+//                ips = @{@"domain":@"test01.ampinplayopt0matrix.com",@"ips":@[@"61.28.172.6"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
