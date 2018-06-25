@@ -287,11 +287,11 @@
             hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
         }
         
-        self.progressNote = @"正在检查线路,请稍候";
+        weakSelf.progressNote = @"正在检查线路,请稍候";
         
         //从动态域名列表依次尝试获取ip列表
-        [self fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
-            self.progress = 0.3;
+        [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+            weakSelf.progress = 0.3;
             
             //从某个固定域名列表获取到了ip列表
             //根据优先级并发check
@@ -312,8 +312,8 @@
             //使用NSOperationQueue 方便取消后续执行
             
             //check iplist
-            self.progressNote = @"正在匹配服务器...";
-            [self checkAllIP:ipList complete:^{
+            weakSelf.progressNote = @"正在匹配服务器...";
+            [weakSelf checkAllIP:ipList complete:^{
                 [weakSelf shoudShowUpdateAlert];
             } failed:^{
                 weakSelf.currentErrCode = @"003";
@@ -380,7 +380,7 @@
 
                 dispatch_semaphore_signal(sema);
             } failed:^{
-                self.progress += 0.05;
+                weakSelf.progress += 0.05;
                 NSLog(@"从%@未获取到ip，继续下一次获取...",domain);
                 doNext = YES;//未获取到ip 需要继续执行其他的线程
                 failedTimes ++;
