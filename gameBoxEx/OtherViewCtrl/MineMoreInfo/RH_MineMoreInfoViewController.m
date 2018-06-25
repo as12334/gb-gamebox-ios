@@ -21,6 +21,8 @@
 #import "coreLib.h"
 #import "SDImageCache.h"
 #import "RH_MineMoreClearStorageCell.h"
+#import "IPsCacheManager.h"
+
 @interface RH_MineMoreInfoViewController ()<CLTableViewManagementDelegate>
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement ;
 //缓存数据
@@ -186,6 +188,8 @@
     else if (indexPath.row==4){
         [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
        //清除缓存文件
+        [[IPsCacheManager sharedManager] clearCaches];
+        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
         NSString *path = [paths lastObject];
         NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:path];

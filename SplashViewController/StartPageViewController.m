@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) UIButton *doitAgainBT;
 @property (strong, nonatomic) RH_StartPageADView *adView;
+@property (strong, nonatomic) UIButton *errDetailBT;
+@property (strong, nonatomic) NSString *currentErrCode;
 
 @end
 
@@ -51,6 +53,10 @@
     [self doRequest];
 }
 
+- (void)errDetailAction:(id)sender {
+    [self showErrAlertWithErrCode:self.currentErrCode otherInfo:nil];
+}
+
 #pragma mark - Private M
 
 - (void)setupUI
@@ -58,9 +64,6 @@
     self.hiddenStatusBar = YES;
     self.hiddenNavigationBar = YES;
 
-    /**
-     * 119 270 206特殊处理
-     */
     [self.launchImageView setImage:ImageWithName(@"startImage")];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -73,6 +76,8 @@
     
     self.doitAgainBT.layer.cornerRadius = 10.0;
     self.doitAgainBT.clipsToBounds = YES;
+    self.errDetailBT.layer.cornerRadius = 10.0;
+    self.errDetailBT.clipsToBounds = YES;
 }
 
 - (void)setProgressNote:(NSString *)progressNote
@@ -86,6 +91,7 @@
     _progress = progress;
     self.progressView.hidden = (_progress == 0);
     self.doitAgainBT.hidden = (_progress != 0);
+    self.errDetailBT.hidden = (_progress != 0);
     self.progressView.progress = _progress;
     if (_progress == 0) {
         self.progressNote = @"";
@@ -96,14 +102,15 @@
 {
     if (_doitAgainBT == nil) {
         _doitAgainBT = [UIButton buttonWithType:UIButtonTypeCustom];
-        _doitAgainBT.backgroundColor = [UIColor yellowColor];
-        [_doitAgainBT setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];        [_doitAgainBT setTitleColor:colorWithRGB(0, 122, 255) forState:UIControlStateNormal];
+        _doitAgainBT.backgroundColor = colorWithRGB(68, 162, 45);
+        [_doitAgainBT setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
+        [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];
         _doitAgainBT.frame = CGRectMake(0, 0, 100, 33);
         _doitAgainBT.titleLabel.font = [UIFont systemFontOfSize:15];
         _doitAgainBT.hidden = YES;
         [self.view addSubview:_doitAgainBT];
         [self.view bringSubviewToFront:_doitAgainBT];
+        _doitAgainBT.whc_CenterYToView(10, self.progressView).whc_CenterXToView(-55, self.view).whc_Width(100).whc_Height(33);
 
         _doitAgainBT.center = self.progressView.center;
         [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -146,6 +153,25 @@
         //广告获取失败 进入主页面
         [weakSelf startPageComplete];
     };
+}
+
+- (UIButton *)errDetailBT
+{
+    if (_errDetailBT == nil) {
+        _errDetailBT = [UIButton buttonWithType:UIButtonTypeCustom];
+        _errDetailBT.backgroundColor = colorWithRGB(68, 162, 45);
+        [_errDetailBT setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
+        [_errDetailBT setTitle:@"错误详情" forState:UIControlStateNormal];
+        _errDetailBT.titleLabel.font = [UIFont systemFontOfSize:15];
+        _errDetailBT.hidden = YES;
+        [self.view addSubview:_errDetailBT];
+        [self.view bringSubviewToFront:_errDetailBT];
+        _errDetailBT.whc_CenterYToView(0, self.doitAgainBT).whc_LeftSpaceToView(10, self.doitAgainBT).whc_Width(100).whc_Height(33);
+        
+        _errDetailBT.center = self.progressView.center;
+        [_errDetailBT addTarget:self action:@selector(errDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _errDetailBT;
 }
 
 //先从三个固定的链接获取动态ip地址
@@ -240,8 +266,6 @@
             };
         });
     }
-
-    NSLog(@"");
 }
 
 - (void)doRequest
@@ -267,6 +291,8 @@
             self.progressNote = @"检查完成,即将进入";
             self.progress = 1.0;
             [weakSelf fetchAdInfo];
+        } failed:^{
+            weakSelf.currentErrCode = @"003";
         }];
         return;
     }
@@ -327,13 +353,17 @@
                 self.progressNote = @"检查完成,即将进入";
                 self.progress = 1.0;
                 [weakSelf fetchAdInfo];
+            } failed:^{
+                weakSelf.currentErrCode = @"003";
             }];
         } failed:^{
             //从所有的固定域名列表没有获取到ip列表
             weakSelf.progress = 0;
+            weakSelf.currentErrCode = @"002";
         }];
     } failed:^{
         weakSelf.progress = 0;
+        weakSelf.currentErrCode = @"001";
     }];
 }
 
@@ -368,7 +398,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1",@"14.215.171.197",@"2.2.2.2",@"3.3.3.3"]};
+//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -515,7 +545,7 @@
     };
 }
 
-- (void)checkAllIP:(NSArray *)ipList complete:(GBCheckAllIPsComplete)complete
+- (void)checkAllIP:(NSArray *)ipList complete:(GBCheckAllIPsComplete)complete failed:(GBCheckAllIPsFailed)failed
 {
     __weak typeof(self) weakSelf = self;
     __block int failedTimes = 0;
@@ -543,16 +573,67 @@
             //清空缓存
             weakSelf.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
+            if (failed) {
+                failed();
+            }
         }
     }];
 }
 
 - (void)startPageComplete
 {
-    ifRespondsSelector(self.delegate, @selector(startPageViewControllerShowMainPage:))
-    {
-        [self.delegate startPageViewControllerShowMainPage:self];
+    self.progressNote = @"检查完成,即将进入";
+    self.progress = 1.0;
+    
+    __weak typeof(self) weakSelf = self;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
+        {
+            [weakSelf.delegate startPageViewControllerShowMainPage:self];
+        }
+    });
+}
+
+- (void)showErrAlertWithErrCode:(NSString *)code otherInfo:(NSDictionary *)otherInfo
+{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    NSString *ip = [self localIPAddress];
+    NSString *msg = [NSString stringWithFormat:@"\n错误代码:%@\n本机ip:%@\n当前版本:%@\n线路检测出错了,很抱歉,将此信息反馈至客服以便能更快处理线路问题",code, ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"线路检测出错" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    
+    NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:msg];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = NSTextAlignmentLeft;
+    [messageText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, msg.length)];
+    [alert setValue:messageText forKey:@"attributedMessage"];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+//获取设备IP地址
+- (NSString *)localIPAddress
+{
+    NSError *error;
+    NSURL *ipURL = [NSURL URLWithString:@"http://pv.sohu.com/cityjson?ie=utf-8"];
+    NSMutableString *ip = [NSMutableString stringWithContentsOfURL:ipURL encoding:NSUTF8StringEncoding error:&error];
+    //判断返回字符串是否为所需数据
+    if ([ip hasPrefix:@"var returnCitySN = "]) {
+        //对字符串进行处理，然后进行json解析
+        //删除字符串多余字符串
+        NSRange range = NSMakeRange(0, 19);
+        [ip deleteCharactersInRange:range];
+        NSString * nowIp =[ip substringToIndex:ip.length-1];
+        //将字符串转换成二进制进行Json解析
+        NSData * data = [nowIp dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        return dict[@"cip"] ? dict[@"cip"] : @"";
     }
+    return @"";
 }
 
 @end
