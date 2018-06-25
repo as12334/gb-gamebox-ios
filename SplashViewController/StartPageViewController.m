@@ -101,13 +101,13 @@
         _doitAgainBT = [UIButton buttonWithType:UIButtonTypeCustom];
         _doitAgainBT.backgroundColor = colorWithRGB(68, 162, 45);
         [_doitAgainBT setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
-        [_doitAgainBT setTitle:@"重新匹配" forState:UIControlStateNormal];
+        [_doitAgainBT setTitle:@"线路检测" forState:UIControlStateNormal];
         _doitAgainBT.frame = CGRectMake(0, 0, 100, 33);
         _doitAgainBT.titleLabel.font = [UIFont systemFontOfSize:15];
         _doitAgainBT.hidden = YES;
         [self.view addSubview:_doitAgainBT];
         [self.view bringSubviewToFront:_doitAgainBT];
-        _doitAgainBT.whc_CenterYToView(10, self.progressView).whc_CenterXToView(-55, self.view).whc_Width(100).whc_Height(33);
+        _doitAgainBT.whc_CenterYToView(0, self.progressView).whc_CenterXToView(-55, self.view).whc_Width(100).whc_Height(33);
 
         _doitAgainBT.center = self.progressView.center;
         [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -121,7 +121,7 @@
         _errDetailBT = [UIButton buttonWithType:UIButtonTypeCustom];
         _errDetailBT.backgroundColor = colorWithRGB(68, 162, 45);
         [_errDetailBT setTitleColor:colorWithRGB(255, 255, 255) forState:UIControlStateNormal];
-        [_errDetailBT setTitle:@"错误详情" forState:UIControlStateNormal];
+        [_errDetailBT setTitle:@"检测结果" forState:UIControlStateNormal];
         _errDetailBT.titleLabel.font = [UIFont systemFontOfSize:15];
         _errDetailBT.hidden = YES;
         [self.view addSubview:_errDetailBT];
@@ -140,6 +140,8 @@
 
 - (void)fetchHost:(GBFetchHostComplete)complete failed:(GBFetchHostFailed)failed
 {
+    self.progressNote = @"正在获取服务器列表...";
+    self.progress += 0.1;
     NSArray *hosts = @[@"http://203.107.1.33/194768/d?host=apiplay.info",
                        @"http://203.107.1.33/194768/d?host=hpdbtopgolddesign.com",
                        @"http://203.107.1.33/194768/d?host=agpicdance.info"
@@ -184,12 +186,14 @@
                                 complete(hostDic);
                             }
                             doNext = NO;
+                            weakSelf.progress += 0.1;
                         }
                         else
                         {
                             NSLog(@"从%@未获取到Host，继续下一次获取...",host);
                             doNext = YES;
                             failTimes++;
+                            weakSelf.progress += 0.1;
                             if (failTimes == hosts.count) {
                                 if (failed) {
                                     failed();
@@ -202,6 +206,7 @@
                         NSLog(@"从%@未获取到Host，继续下一次获取...",host);
                         doNext = YES;
                         failTimes++;
+                        weakSelf.progress += 0.1;
                         if (failTimes == hosts.count) {
                             if (failed) {
                                 failed();
@@ -215,6 +220,7 @@
                 if (type == ServiceRequestTypeFetchHost) {
                     NSLog(@"从%@未获取到Host，继续下一次获取...",host);
                     doNext = YES;
+                    weakSelf.progress += 0.1;
                     failTimes++;
                     if (failTimes == hosts.count) {
                         if (failed) {
@@ -574,8 +580,8 @@
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSString *ip = [self localIPAddress];
-    NSString *msg = [NSString stringWithFormat:@"\n错误代码:%@\n本机ip:%@\n当前版本:%@\n线路检测出错了,很抱歉,将此信息反馈至客服以便能更快处理线路问题",code, ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"线路检测出错" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    NSString *msg = [NSString stringWithFormat:@"\n错误码:%@\n当前ip:%@\n版本号:%@\n很抱歉,请联系客服并提供以上信息",code, ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"线路检测失败" message:msg preferredStyle:UIAlertControllerStyleAlert];
     
     NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:msg];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
