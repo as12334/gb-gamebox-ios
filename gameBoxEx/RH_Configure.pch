@@ -1569,7 +1569,7 @@
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _0chi //威尼斯人娱乐城
+#elif _0chi //葡京娱乐城
 
 #define CODE    @"0chi"
 #define S        @"133b05b6e1d7835cf34ad05409885151"
@@ -1577,6 +1577,8 @@
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
+
 
 #elif _huih //澳门新葡京赌场
 
