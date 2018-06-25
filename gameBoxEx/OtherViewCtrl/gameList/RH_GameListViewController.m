@@ -338,8 +338,8 @@
     if (HasLogin)
     {
         //by shin
-//        [self showViewController:[RH_ElecGameViewController viewControllerWithContext:lotteryInfoModel] sender:self];
-        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self];
+        [self showViewController:[RH_ElecGameViewController viewControllerWithContext:lotteryInfoModel] sender:self];
+//        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self];
         return ;
     }else{
         [self loginButtonItemHandle] ;
