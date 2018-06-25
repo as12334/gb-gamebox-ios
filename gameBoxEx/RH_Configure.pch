@@ -3057,6 +3057,15 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _q9uv //万发娱乐
+
+#define CODE    @"q9uv"
+#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
+#define SID        @"618"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _4bzo //永利娱乐城
 
 #define CODE    @"4bzo"
@@ -3076,22 +3085,7 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _q9uv //万发娱乐
 
-#define CODE    @"q9uv"
-#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
-#define SID        @"618"
-#define THEME    @"default.skin"
-#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
-
-
-#define CODE    @"q9uv"
-#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
-#define SID        @"618"
-#define THEME    @"default.skin"
-#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
