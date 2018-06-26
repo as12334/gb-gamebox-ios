@@ -17,24 +17,24 @@
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
     NSString *numStr = ConvertToClassPointer(NSString, context);
-    if ([numStr isEqualToString:@"100"]) {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"100"];
+    if ([numStr isEqualToString:@"101"]) {
+        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-101"];
     }
-    else if ([numStr isEqualToString:@"200"])
+    else if ([numStr isEqualToString:@"302"])
     {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"200"];
+        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-302"];
     }
-    else if ([numStr isEqualToString:@"500"])
+    else if ([numStr isEqualToString:@"504"])
     {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"500"];
+        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-504"];
     }
-    else if ([numStr isEqualToString:@"1000"])
+    else if ([numStr isEqualToString:@"1006"])
     {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"1000"];
+        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-1006"];
     }
-    else if ([numStr isEqualToString:@"5000"])
+    else if ([numStr isEqualToString:@"4998"])
     {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"5000"];
+        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-4998"];
     }
 }
 - (void)awakeFromNib {

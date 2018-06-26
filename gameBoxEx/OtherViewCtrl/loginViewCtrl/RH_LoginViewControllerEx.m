@@ -134,6 +134,7 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
     [self.view addGestureRecognizer:singleTap];
 }
+
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     [self.view endEditing:YES];
@@ -236,12 +237,7 @@
 }
 -(void)loginViewCellTouchForgetPasswordButton:(RH_LoginViewCell *)loginViewCell
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.myTabBarController.selectedIndex = 3 ;
-    });
-
-//    [self showViewController:[RH_FindbackPswWaysViewController viewController] sender:nil];
+    [self showViewController:[RH_FindbackPswWaysViewController viewController] sender:nil];
 }
 #pragma mark-
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -418,6 +414,8 @@
     }
     
 }
+
+
 #pragma mark ==============test webSocket================
 - (void)SRWebSocketDidOpen {
     NSLog(@"开启成功");

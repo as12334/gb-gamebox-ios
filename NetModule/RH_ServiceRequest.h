@@ -124,7 +124,8 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3ForgetPswSendCode,  //忘记密码的发送验证码
     ServiceRequestTypeV3ForgetPswCheckCode, //忘记密码验证验证码
     ServiceRequestTypeV3ForgetPswFindbackPsw,   //找回密码
-    
+    ServiceRequestTypeV3ForgetPswCheckStatus,   //检查该功能是否开启
+
     ServiceRequestTypeV3INITAD,            //初始化广告
     ServiceRequestTypeFetchHost,        //获取动态HOST
 };
@@ -647,6 +648,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)forgetPswSendCode:(NSString *)encryptedId;
 - (void)forgetPswCheckCode:(NSString *)code;
 - (void)finbackLoginPsw:(NSString *)username psw:(NSString *)psw;
+- (void)checkForgetPswStatus;
 
 #pragma mark - V3绑定手机
 - (void)getUserPhone;

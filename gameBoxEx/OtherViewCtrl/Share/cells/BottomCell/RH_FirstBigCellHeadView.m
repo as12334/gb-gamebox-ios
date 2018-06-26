@@ -51,6 +51,10 @@
         UIColor *noSelectTitleColor = colorWithRGB(93, 95, 103);
         NSDictionary *colorAttr = [NSDictionary dictionaryWithObject:noSelectTitleColor forKey:NSForegroundColorAttributeName];
         [self.segmentedControl setTitleTextAttributes:colorAttr forState:UIControlStateNormal];
+        
+        UIColor *selectTitleColor = [UIColor whiteColor];
+        NSDictionary *colorAttri = [NSDictionary dictionaryWithObject:selectTitleColor forKey:NSForegroundColorAttributeName];
+        [self.segmentedControl setTitleTextAttributes:colorAttri forState:UIControlStateSelected];
   
     }
     return self ;

@@ -1130,6 +1130,7 @@
 #define RH_API_ForgetPsw_SendCode         @"mobile-api/origin/sendFindPasswordPhone.html" //找回密码发送验证码
 #define RH_API_ForgetPsw_CheckCode         @"mobile-api/findPasswordOrigin/checkPhoneCode.html" //找回密码验证验证码
 #define RH_API_ForgetPsw_FindbackPsw         @"mobile-api/findPasswordOrigin/findLoginPassword.html" //设置新密码
+#define RH_API_ForgetPsw_CheckStatus @"mobile-api/findPasswordOrigin/openFindByPhone.html"//检查该功能是否开启
 
 #pragma mark - v3 绑定手机
 #define RH_API_BINDPHONE_GETPHONE         @"mobile-api/mineOrigin/getUserPhone.html" //获取用户手机号

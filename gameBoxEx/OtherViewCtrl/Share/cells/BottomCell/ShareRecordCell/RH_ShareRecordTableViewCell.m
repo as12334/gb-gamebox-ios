@@ -40,7 +40,7 @@
         UILabel *touzhuLab = [[UILabel alloc] init];
         [topView addSubview:touzhuLab];
         touzhuLab.whc_LeftSpace(10).whc_CenterY(0).whc_Height(30).whc_WidthAuto();
-        touzhuLab.text = @"投注日期:";
+        touzhuLab.text = @"注册时间:";
         touzhuLab.textColor = colorWithRGB(51, 51, 51) ;
         touzhuLab.font = [UIFont systemFontOfSize:12.f] ;
         
@@ -103,7 +103,7 @@
         [bottomView addSubview:line3];
         line3.backgroundColor = [UIColor whiteColor] ;
         line3.whc_LeftSpaceToView((screenSize().width-60)/4.0, line2).whc_TopSpace(0).whc_BottomSpace(0).whc_Width(1) ;
-        
+
         UILabel *titleLba1 = [[UILabel alloc] init ];
         [bottomView addSubview:titleLba1];
         titleLba1.whc_LeftSpace(0).whc_TopSpace(0).whc_RightSpaceToView(0, line1).whc_Height(30) ;
@@ -116,7 +116,7 @@
         UILabel *titleLba2 = [[UILabel alloc] init ];
         [bottomView addSubview:titleLba2];
         titleLba2.whc_LeftSpaceToView(0, line1).whc_TopSpace(0).whc_RightSpaceToView(0, line2).whc_Height(30) ;
-        titleLba2.text = @"有效投注";
+        titleLba2.text = @"注册时间";
         titleLba2.textColor = colorWithRGB(68, 68, 68) ;
         titleLba2.backgroundColor = colorWithRGB(228, 247, 231) ;
         titleLba2.font = [UIFont systemFontOfSize:14.f] ;
@@ -125,7 +125,7 @@
         UILabel *titleLba3 = [[UILabel alloc] init ];
         [bottomView addSubview:titleLba3];
         titleLba3.whc_LeftSpaceToView(0, line2).whc_TopSpace(0).whc_RightSpaceToView(0, line3).whc_Height(30) ;
-        titleLba3.text = @"红利";
+        titleLba3.text = @"状态";
         titleLba3.textColor = colorWithRGB(68, 68, 68) ;
         titleLba3.backgroundColor = colorWithRGB(228, 247, 231) ;
         titleLba3.font = [UIFont systemFontOfSize:14.f] ;
@@ -135,7 +135,7 @@
         UILabel *titleLba4 = [[UILabel alloc] init ];
         [bottomView addSubview:titleLba4];
         titleLba4.whc_LeftSpaceToView(0, line3).whc_RightSpace(0).whc_TopSpace(0).whc_Height(30) ;
-        titleLba4.text = @"互惠奖励";
+        titleLba4.text = @"推荐奖励";
         titleLba4.textColor = colorWithRGB(68, 68, 68) ;
         titleLba4.backgroundColor = colorWithRGB(228, 247, 231) ;
         titleLba4.font = [UIFont systemFontOfSize:14.f] ;

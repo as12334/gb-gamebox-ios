@@ -14,6 +14,8 @@
 #import "RH_UpdatedVersionModel.h"
 #import "coreLib.h"
 #import "UpdateStatusCacheManager.h"
+#import "RH_StartPageADView.h"
+#import "RH_InitAdModel.h"
 
 @interface StartPageViewController ()
 
@@ -26,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) UIButton *doitAgainBT;
+@property (strong, nonatomic) RH_StartPageADView *adView;
 @property (strong, nonatomic) UIButton *errDetailBT;
 @property (strong, nonatomic) NSString *currentErrCode;
 
@@ -113,6 +116,43 @@
         [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _doitAgainBT;
+}
+
+- (RH_StartPageADView *)adView
+{
+    if (_adView == nil) {
+        _adView = [[[NSBundle mainBundle] loadNibNamed:@"RH_StartPageADView" owner:nil options:nil] lastObject];
+        _adView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [self.view addSubview:_adView];
+    }
+    return _adView;
+}
+
+- (void)fetchAdInfo
+{
+    __weak typeof(self) weakSelf = self;
+
+    [self.serviceRequest startV3InitAd];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        RH_InitAdModel *adModel =ConvertToClassPointer(RH_InitAdModel, data);
+        if (adModel && adModel.mInitAppAd != nil && ![adModel.mInitAppAd isEqualToString:@""]) {
+            //有广告则显示广告
+            weakSelf.adView.adImageUrl = [NSString stringWithFormat:@"%@%@",weakSelf.appDelegate.domain,adModel.mInitAppAd];
+            [weakSelf.adView show:^{
+                //广告显示完成 进入主页面
+                [weakSelf startPageComplete];
+            }];
+        }
+        else
+        {
+            //无广告 则直接进入首页
+            [weakSelf startPageComplete];
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        //广告获取失败 进入主页面
+        [weakSelf startPageComplete];
+    };
 }
 
 - (UIButton *)errDetailBT
@@ -254,7 +294,9 @@
         //check iplist
         self.progressNote = @"正在匹配服务器...";
         [self checkAllIP:ipList complete:^{
-            [weakSelf shoudShowUpdateAlert];
+            weakSelf.progressNote = @"检查完成,即将进入";
+            weakSelf.progress = 1.0;
+            [weakSelf fetchAdInfo];
         } failed:^{
             weakSelf.currentErrCode = @"003";
         }];
@@ -292,7 +334,9 @@
             //check iplist
             weakSelf.progressNote = @"正在匹配服务器...";
             [weakSelf checkAllIP:ipList complete:^{
-                [weakSelf shoudShowUpdateAlert];
+                weakSelf.progressNote = @"检查完成,即将进入";
+                weakSelf.progress = 1.0;
+                [weakSelf fetchAdInfo];
             } failed:^{
                 weakSelf.currentErrCode = @"003";
             }];
@@ -352,7 +396,9 @@
                 //check iplist
                 weakSelf.progressNote = @"正在匹配服务器...";
                 [weakSelf checkAllIP:ipList complete:^{
-                    [weakSelf shoudShowUpdateAlert];
+                    weakSelf.progressNote = @"检查完成,即将进入";
+                    weakSelf.progress = 1.0;
+                    [weakSelf fetchAdInfo];
                 } failed:^{
                     weakSelf.currentErrCode = @"003";
                 }];
@@ -508,7 +554,7 @@
                         complete(ip, type);
                     }
                 } failed:^{
-                    self.progress += 0.05;
+                    weakSelf.progress += 0.05;
                     
                     NSLog(@"ip:%@check失败 type:%@ 继续【串行】check下一类型...", ip, checkType);
                     NSLog(@"%i",i);
@@ -579,24 +625,6 @@
             }
         }
     }];
-}
-
-- (void)shoudShowUpdateAlert
-{
-    __weak typeof(self) weakSelf = self;
-    //检测更新
-    BOOL isUpdateStatusValid = [[UpdateStatusCacheManager sharedManager] isUpdateStatusValid];
-    if (isUpdateStatusValid) {
-        //依然有效 则直接进入游戏
-        [self startPageComplete];
-    }
-    else
-    {
-        [[UpdateStatusCacheManager sharedManager] showUpdateAlert:^{
-            //不是强制更新 且 点击了跳过更新按钮
-            [weakSelf startPageComplete];
-        }];
-    }
 }
 
 - (void)startPageComplete
