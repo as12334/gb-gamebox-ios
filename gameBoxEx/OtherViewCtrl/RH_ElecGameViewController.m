@@ -47,13 +47,17 @@
     [self.gameBgImage addGestureRecognizer:pan];
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.view, -0.0f) ;
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
-    if (self.lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-        self.urlStr = self.lotteryInfoModel.showGameLink ;
-        
-    }else{
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
-    }
+//    if (self.lotteryInfoModel.showGameLink.length){ //已获取的请求链接
+//        self.urlStr = self.lotteryInfoModel.showGameLink ;
+//
+//    }else{
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
+//    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
+
 }
 -(RH_ServiceRequest *)serviceRequest
 {

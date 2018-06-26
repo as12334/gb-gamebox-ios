@@ -23,6 +23,7 @@
 #import "HTHorizontalSelectionList.h"
 #import "RH_GameListCategoryScrollView.h"
 #import "RH_GameEmptyDataCell.h"
+#import "RH_GamesViewController.h"
 
 @interface RH_GameListViewController ()<RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_GameItemsCellDelegate,HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource,RH_GameListCategoryScrollViewDelegate>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
@@ -336,7 +337,9 @@
 {
     if (HasLogin)
     {
+        //by shin
         [self showViewController:[RH_ElecGameViewController viewControllerWithContext:lotteryInfoModel] sender:self];
+//        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self];
         return ;
     }else{
         [self loginButtonItemHandle] ;
