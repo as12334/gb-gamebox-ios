@@ -36,7 +36,7 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"35"
+#define RH_APP_VERCODE                  @"39"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -3085,6 +3085,15 @@
 #define SID        @"620"
 #define THEME    @"default.skin"
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _7zn0 //新盈博国际
+
+#define CODE    @"7zn0"
+#define S        @"74375211885617c45ccae01550acc1df"
+#define SID        @"622"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
