@@ -135,12 +135,12 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 #pragma mark-用户接口定义
 -(void)startReqDomainListWithIP:(NSString*)ip Host:(NSString *)host
 {
+    NSDictionary *headerArg = (host == nil || [host isEqualToString:@""]) ? @{@"User-Agent":@"app_ios, iPhone"} : @{@"User-Agent":@"app_ios, iPhone", @"Host":host};
+    
     [self _startServiceWithAPIName:ip
                         pathFormat:RH_API_NAME_BOSSSYSDOMAIN
                      pathArguments:nil
-                   headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":host
-                                     }
+                   headerArguments:headerArg
                     queryArguments:@{RH_SP_COMMON_SITECODE:CODE,
                                      RH_SP_COMMON_SITESEC:S,
                                      RH_SP_COMMON_OSTYPE:@"ips",
