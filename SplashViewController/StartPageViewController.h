@@ -25,6 +25,7 @@ typedef void(^GBFetchHostComplete)(NSDictionary *host);
 typedef void(^GBFetchHostFailed)(void);
 
 typedef void(^GBCheckAllIPsComplete)(void);
+typedef void(^GBCheckAllIPsFailed)(void);
 
 @class StartPageViewController;
 @protocol StartPageViewControllerDelegate

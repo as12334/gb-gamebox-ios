@@ -47,13 +47,17 @@
     [self.gameBgImage addGestureRecognizer:pan];
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeTrailing, self.view, -0.0f) ;
     setEdgeConstraint(self.gameBgImage, NSLayoutAttributeBottom, self.view, -60.0f) ;
-    if (self.lotteryInfoModel.showGameLink.length){ //已获取的请求链接
-        self.urlStr = self.lotteryInfoModel.showGameLink ;
-        
-    }else{
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
-    }
+//    if (self.lotteryInfoModel.showGameLink.length){ //已获取的请求链接
+//        self.urlStr = self.lotteryInfoModel.showGameLink ;
+//
+//    }else{
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
+//    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.serviceRequest startv3GetGamesLinkForCheeryLink:self.lotteryInfoModel.mGameLink] ;
+
 }
 -(RH_ServiceRequest *)serviceRequest
 {
@@ -188,16 +192,17 @@
     }
 }
 #pragma mark-
-- (BOOL)shouldAutorotate
-{
-    //是否支持转屏
-    return YES;
+// 允许自动旋转
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    //支持哪些转屏方向
-    return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
+//3.返回进入界面默认显示方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
 }
 
 @end
