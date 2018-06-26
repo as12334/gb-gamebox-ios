@@ -325,12 +325,7 @@
                 NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
                 [hostUrlArr addObject:hostUrl];
             }
-            
-            //测试环境使用配置的固定域名
-            if (IS_DEV_SERVER_ENV) {
-                hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
-            }
-            
+                        
             weakSelf.progressNote = @"正在检查线路,请稍候";
             
             //从动态域名列表依次尝试获取ip列表
