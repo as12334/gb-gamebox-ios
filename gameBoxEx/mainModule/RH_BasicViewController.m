@@ -133,9 +133,9 @@
     ErrorStateTopView *errorView = [[ErrorStateTopView alloc]initWithFrame:self.view.bounds];
     errorView.delegate = self;
     self.isMaintain=YES;
-    [self.view addSubview:errorView];
-    [self.view bringSubviewToFront:errorView];
-//    [[UIApplication sharedApplication].keyWindow addSubview:errorView];
+//    [self.view addSubview:errorView];
+//    [self.view bringSubviewToFront:errorView];
+    [[UIApplication sharedApplication].keyWindow addSubview:errorView];
 }
 
 /**
@@ -143,10 +143,12 @@
  */
 -(void)errorStatusOpenOnlinecustom:(ErrorStateTopView *)errorView
 {
-//    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
-//    [UIApplication sharedApplication].keyWindow.rootViewController = customVC;
-//    [self presentViewController:customVC animated:YES completion:nil];
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    RH_CustomServiceSubViewController *customVC = [[RH_CustomServiceSubViewController alloc]init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = customVC;
+    [self presentViewController:customVC animated:YES completion:nil];
+    if ([SID isEqual:@"317"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://kf1.learnsaas.com/chat/chatClient/chatbox.jsp?companyID=664264&configID=55932&jid=3519593787&s=1"]];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

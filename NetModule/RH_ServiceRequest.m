@@ -56,6 +56,7 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_ShareRecordModel.h"
 #import "RH_InitAdModel.h"
+#import "No_AccessView.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2707,9 +2708,25 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
          reslutData:(__autoreleasing id *)reslutData
               error:(NSError *__autoreleasing *)error
 {
+    NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+    NSString *tmpResult = [tmpData mj_JSONString] ;
+    NSLog(@"tmpResult==%@",tmpResult);
+    
     
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
+    if (type == ServiceRequestTypeUserAutoLogin) {
+        if ([tmpResult containsString:@"站点维护"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
+                //创建通知
+                NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                return ;
+            });
+        }
+    }
     
 //    NSData *tmpDatas = ConvertToClassPointer(NSData, data) ;
 //    NSString *tmpResults = [tmpDatas mj_JSONString] ;
@@ -2740,18 +2757,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     self.appDelegate.checkType = @"http";
                 }
             }
-            
-            if (response.statusCode==607){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    showAlertView(@"站点维护", nil) ;
-                    NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
-                    //创建通知
-                    NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
-                    //通过通知中心发送通知
-                    [[NSNotificationCenter defaultCenter] postNotification:notification];
-                    return ;
-                });
-            }else if (response.statusCode==605){
+            if (response.statusCode==605){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     showAlertView(@"ip被限制", nil) ;
                     return ;
@@ -2980,7 +2986,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if (response.statusCode==607){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"站点维护", nil) ;
+//                        showAlertView(@"站点维护", nil) ;
                         NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
                         //创建通知
                         NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
@@ -2990,7 +2996,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     });
                 }else if (response.statusCode==605){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"ip被限制", nil) ;
+//                        showAlertView(@"ip被限制", nil) ;
+                        No_AccessView *accessView = [[No_AccessView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+                        [[UIApplication sharedApplication].keyWindow addSubview:accessView];
                         return ;
                     });
                    
@@ -3573,7 +3581,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (self.failBlock) {
         self.failBlock(self, serviceType, error);
     }
-    
+    if (serviceType==ServiceRequestTypeV3HomeInfo) {
+        
+    }
     //特点  error 信息，统一处理 。
     // error.code==RH_API_ERRORCODE_USER_LOGOUT ||
     if (( error.code==RH_API_ERRORCODE_SESSION_EXPIRED ||
