@@ -303,36 +303,14 @@
         return;
     }
     
-    //先从获取动态HOST
-    [self fetchHost:^(NSDictionary *host) {
-        NSString *hostName = [host objectForKey:@"host"];
-
-        //将此数据随机打乱 减轻服务器压力
-        NSArray *hostips = [host objectForKey:@"ips"];
-        hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
-            int seed = arc4random_uniform(2);
-            if (seed) {
-                return [str1 compare:str2];
-            } else {
-                return [str2 compare:str1];
-            }
-        }];
-        
-        NSMutableArray *hostUrlArr = [NSMutableArray array];
-        for (NSString *hostip in hostips) {
-            NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
-            [hostUrlArr addObject:hostUrl];
-        }
-        
-        //测试环境使用配置的固定域名
-        if (IS_DEV_SERVER_ENV) {
-            hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
-        }
-        
-        weakSelf.progressNote = @"正在检查线路,请稍候";
+    //测试环境使用配置的固定域名
+    //不需要去DNS获取动态bossapi
+    if (IS_DEV_SERVER_ENV) {
+        NSMutableArray *hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
+        self.progressNote = @"正在检查线路,请稍候";
         
         //从动态域名列表依次尝试获取ip列表
-        [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+        [self fetchIPs:hostUrlArr host:@"" complete:^(NSDictionary *ips) {
             weakSelf.progress = 0.3;
             
             //从某个固定域名列表获取到了ip列表
@@ -367,10 +345,73 @@
             weakSelf.progress = 0;
             weakSelf.currentErrCode = @"002";
         }];
-    } failed:^{
-        weakSelf.progress = 0;
-        weakSelf.currentErrCode = @"001";
-    }];
+    }
+    else
+    {
+        //先从获取动态HOST
+        [self fetchHost:^(NSDictionary *host) {
+            NSString *hostName = [host objectForKey:@"host"];
+            
+            //将此数据随机打乱 减轻服务器压力
+            NSArray *hostips = [host objectForKey:@"ips"];
+            hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+                int seed = arc4random_uniform(2);
+                if (seed) {
+                    return [str1 compare:str2];
+                } else {
+                    return [str2 compare:str1];
+                }
+            }];
+            
+            NSMutableArray *hostUrlArr = [NSMutableArray array];
+            for (NSString *hostip in hostips) {
+                NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
+                [hostUrlArr addObject:hostUrl];
+            }
+            
+            weakSelf.progressNote = @"正在检查线路,请稍候";
+            
+            //从动态域名列表依次尝试获取ip列表
+            [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+                weakSelf.progress = 0.3;
+                
+                //从某个固定域名列表获取到了ip列表
+                //根据优先级并发check
+                /**
+                 * 优先级
+                 * 1 https+8989
+                 * 2 http+8787
+                 * 3 https
+                 * 4 http
+                 */
+                NSString *resultDomain = [ips objectForKey:@"domain"];
+                RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                [appDelegate updateHeaderDomain:resultDomain];
+                
+                NSArray *ipList = [ips objectForKey:@"ips"];
+                
+                //多ip地址【异步并发】check 但check的优先级是【串行】的
+                //使用NSOperationQueue 方便取消后续执行
+                
+                //check iplist
+                weakSelf.progressNote = @"正在匹配服务器...";
+                [weakSelf checkAllIP:ipList complete:^{
+                    weakSelf.progressNote = @"检查完成,即将进入";
+                    weakSelf.progress = 1.0;
+                    [weakSelf fetchAdInfo];
+                } failed:^{
+                    weakSelf.currentErrCode = @"003";
+                }];
+            } failed:^{
+                //从所有的固定域名列表没有获取到ip列表
+                weakSelf.progress = 0;
+                weakSelf.currentErrCode = @"002";
+            }];
+        } failed:^{
+            weakSelf.progress = 0;
+            weakSelf.currentErrCode = @"001";
+        }];
+    }
 }
 
 /**
@@ -404,7 +445,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"test01.ampinplayopt0matrix.com",@"ips":@[@"61.28.172.6"]};
+                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 

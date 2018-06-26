@@ -23,8 +23,8 @@
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_APP_VERCODE                  @"502"
-#define RH_API_MAIN_URL                         @[@"http://boss-api-test.gbboss.com/boss-api/"]//@[@"http://192.168.0.92/boss-api/"]
+#define RH_APP_VERCODE                  @"5021"
+#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss-api/"]
 
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
