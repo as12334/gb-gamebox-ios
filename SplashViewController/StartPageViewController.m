@@ -280,7 +280,6 @@
              * 3 https
              * 4 http
              */
-            ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
             NSString *resultDomain = [ips objectForKey:@"domain"];
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             [appDelegate updateHeaderDomain:resultDomain];
@@ -324,11 +323,6 @@
             for (NSString *hostip in hostips) {
                 NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
                 [hostUrlArr addObject:hostUrl];
-            }
-            
-            //测试环境使用配置的固定域名
-            if (IS_DEV_SERVER_ENV) {
-                hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
             }
             
             weakSelf.progressNote = @"正在检查线路,请稍候";
@@ -405,7 +399,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"6614777.com",@"ips":@[@"1.1.1.1"]};
+                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
