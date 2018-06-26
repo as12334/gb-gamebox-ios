@@ -399,7 +399,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
+//                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
