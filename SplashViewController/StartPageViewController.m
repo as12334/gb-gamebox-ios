@@ -368,11 +368,14 @@
                 [hostUrlArr addObject:hostUrl];
             }
             
+<<<<<<< HEAD
             //测试环境使用配置的固定域名
             if (IS_DEV_SERVER_ENV) {
                 hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
             }
             
+=======
+>>>>>>> origin/dev_ip_features
             weakSelf.progressNote = @"正在检查线路,请稍候";
             
             //从动态域名列表依次尝试获取ip列表
@@ -400,7 +403,13 @@
                 //check iplist
                 weakSelf.progressNote = @"正在匹配服务器...";
                 [weakSelf checkAllIP:ipList complete:^{
+<<<<<<< HEAD
                     [weakSelf shoudShowUpdateAlert];
+=======
+                    weakSelf.progressNote = @"检查完成,即将进入";
+                    weakSelf.progress = 1.0;
+                    [weakSelf fetchAdInfo];
+>>>>>>> origin/dev_ip_features
                 } failed:^{
                     weakSelf.currentErrCode = @"003";
                 }];
@@ -414,6 +423,7 @@
             weakSelf.currentErrCode = @"001";
         }];
     }
+<<<<<<< HEAD
 }
 
 - (void)shoudShowUpdateAlert
@@ -432,6 +442,8 @@
             [weakSelf startPageComplete];
         }];
     }
+=======
+>>>>>>> origin/dev_ip_features
 }
 
 /**
@@ -465,7 +477,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"test01.ampinplayopt0matrix.com",@"ips":@[@"61.28.172.6"]};
+                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
