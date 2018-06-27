@@ -20,8 +20,7 @@
      */
     BOOL _startAtButton;
 }
-/** 解锁时手指经过的所有的btn集合*/
-@property (nonatomic,strong)NSMutableArray * btnsArray;
+
 /**
     记录一开始创建的九个按钮的数组
  */
@@ -41,6 +40,7 @@
     }
     return _btnsArray;
 }
+
 -(NSMutableArray *)nineBtnArray
 {
     if (_nineBtnArray==nil) {
@@ -48,7 +48,8 @@
     }
     return _nineBtnArray;
 }
--(instancetype)initWithFrame:(CGRect)frame WithMode:(PwdState) mode{
+-(instancetype)initWithFrame:(CGRect)frame WithMode:(PwdState) mode
+{
     self = [super initWithFrame: frame];
     if (self) {
         Amode = mode;
@@ -73,7 +74,8 @@
     }
     return self;
 }
--(void)layoutSubviews{
+-(void)layoutSubviews
+{
     for (int index = 0; index<self.subviews.count; index ++) {
         //        拿到每个btn
         UIButton *btn = self.subviews[index];
@@ -89,12 +91,13 @@
     }
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     for (UIButton *button in self.nineBtnArray) {
         if (CGRectContainsPoint(button.frame,[[touches anyObject] locationInView:self])) {
             _startAtButton = YES;
             //创建贝塞尔曲线
-            UIBezierPath *path = [[UIBezierPath alloc]init];
+            UIBezierPath *path = [[UIBezierPath alloc] init];
             path.lineCapStyle = kCGLineCapRound; //线条拐角
             path.lineJoinStyle = kCGLineCapRound; //终点处理
             path.lineWidth = 1;
@@ -123,7 +126,8 @@
     }
 }
 
--(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     if (_startAtButton==YES) {
         
         CGPoint movePoint = [self getCurrentTouch:touches];
@@ -142,6 +146,7 @@
     }
     
 }
+
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if (_startAtButton==YES) {
     for (UIButton *btn in self.subviews) {
@@ -151,8 +156,8 @@
     for (UIButton *btn in self.btnsArray) {
         [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
     }
-    if (self.btnsArray.count > 3) {//如果选中的点大于3个才判断是不是正确密码
-        
+//    if (self.btnsArray.count > 3) {//如果选中的点大于3个才判断是不是正确密码
+       
         //        判断是设置密码还是解锁密码
         switch (Amode) {
             case PwdStateResult:
@@ -190,7 +195,7 @@
     [_slayer removeFromSuperlayer];
         _startAtButton = NO;
     }
-}
+//}
 
 
 -(void)ErrorShow{  // 密码不正确处理方式
@@ -217,7 +222,8 @@
     });
 }
 
--(void)clear{//清空上下文
+-(void)clear
+{//清空上下文
     [self.btnsArray removeAllObjects];
     self.currentPoint = CGPointZero;
     [self setNeedsDisplay];
@@ -226,7 +232,8 @@
 }
 
 //获取触摸的点
--(CGPoint)getCurrentTouch:(NSSet<UITouch *> *)touches{
+-(CGPoint)getCurrentTouch:(NSSet<UITouch *> *)touches
+{
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:touch.view];
     return point;
@@ -239,7 +246,8 @@
  
  @return 触摸到的btn
  */
--(UIButton *)getCurrentBtnWithPoint:(CGPoint) currentPoint{
+-(UIButton *)getCurrentBtnWithPoint:(CGPoint) currentPoint
+{
     for (UIButton *btn in self.subviews) {
         if (CGRectContainsPoint(btn.frame, currentPoint)) {
             [btn setBackgroundImage:self.btnSelectdImgae forState:UIControlStateNormal];
