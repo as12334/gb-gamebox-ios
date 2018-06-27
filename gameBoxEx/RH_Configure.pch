@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               1
+#define IS_DEV_SERVER_ENV                               0
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
@@ -3105,6 +3105,14 @@
 #define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _drxn //易胜博
+
+#define CODE    @"drxn"
+#define S        @"3ae1a55c3c52f15b50cd1f53331a2f01"
+#define SID        @"628"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 
 #endif
