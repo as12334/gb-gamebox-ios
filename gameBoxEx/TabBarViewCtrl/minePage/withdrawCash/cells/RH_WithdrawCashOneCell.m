@@ -37,7 +37,6 @@
 {
     if (!_bankIconImageView) {
         _bankIconImageView = [[UIImageView alloc] init];
-        _bankIconImageView.backgroundColor = [UIColor greenColor];
     }
     return _bankIconImageView;
 }
@@ -48,7 +47,6 @@
         _bankUserNameLb = [[UILabel alloc] init];
         _bankUserNameLb.font = [UIFont systemFontOfSize:14.f];
         _bankUserNameLb.textColor = colorWithRGB(68, 68, 68);
-        _bankUserNameLb.backgroundColor = [UIColor redColor];
         
     }
     return _bankUserNameLb;
@@ -60,7 +58,6 @@
         _bankCardLab = [[UILabel alloc] init];
         _bankCardLab.font = [UIFont systemFontOfSize:14.f];
         _bankCardLab.textColor = colorWithRGB(68, 68, 68);
-        _bankCardLab.backgroundColor = [UIColor orangeColor];
     }
     return _bankCardLab;
 }
