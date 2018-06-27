@@ -324,7 +324,6 @@
              * 3 https
              * 4 http
              */
-            ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
             NSString *resultDomain = [ips objectForKey:@"domain"];
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             [appDelegate updateHeaderDomain:resultDomain];
@@ -448,7 +447,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
+//                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
