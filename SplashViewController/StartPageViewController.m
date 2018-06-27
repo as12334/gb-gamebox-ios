@@ -368,14 +368,6 @@
                 [hostUrlArr addObject:hostUrl];
             }
             
-<<<<<<< HEAD
-            //测试环境使用配置的固定域名
-            if (IS_DEV_SERVER_ENV) {
-                hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
-            }
-            
-=======
->>>>>>> origin/dev_ip_features
             weakSelf.progressNote = @"正在检查线路,请稍候";
             
             //从动态域名列表依次尝试获取ip列表
@@ -403,13 +395,9 @@
                 //check iplist
                 weakSelf.progressNote = @"正在匹配服务器...";
                 [weakSelf checkAllIP:ipList complete:^{
-<<<<<<< HEAD
-                    [weakSelf shoudShowUpdateAlert];
-=======
                     weakSelf.progressNote = @"检查完成,即将进入";
                     weakSelf.progress = 1.0;
                     [weakSelf fetchAdInfo];
->>>>>>> origin/dev_ip_features
                 } failed:^{
                     weakSelf.currentErrCode = @"003";
                 }];
@@ -423,27 +411,6 @@
             weakSelf.currentErrCode = @"001";
         }];
     }
-<<<<<<< HEAD
-}
-
-- (void)shoudShowUpdateAlert
-{
-    __weak typeof(self) weakSelf = self;
-    //检测更新
-    BOOL isUpdateStatusValid = [[UpdateStatusCacheManager sharedManager] isUpdateStatusValid];
-    if (isUpdateStatusValid) {
-        //依然有效 则直接进入游戏
-        [self startPageComplete];
-    }
-    else
-    {
-        [[UpdateStatusCacheManager sharedManager] showUpdateAlert:^{
-            //不是强制更新 且 点击了跳过更新按钮
-            [weakSelf startPageComplete];
-        }];
-    }
-=======
->>>>>>> origin/dev_ip_features
 }
 
 /**
