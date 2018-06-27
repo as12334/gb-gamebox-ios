@@ -17,6 +17,7 @@
 #import "RH_OldUserVerifyView.h"//老用户验证
 #import "RH_FindbackPswWaysViewController.h"
 #import "RH_WebsocketManagar.h"
+#import "RH_GesturelLockController.h"
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isInitOk ;
@@ -310,7 +311,11 @@
                 [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://test01.ccenter.test.so/mdcenter/websocket/msite?localeType=zh_CN"]];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
-                
+                NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;
+                if (savePwd.length > 0) {
+                    RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
+                    [self cw_pushViewController:verifyCloseView];
+                }
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
                 if (![[result objectForKey:@"message"] isEqual:[NSNull null]]) {
