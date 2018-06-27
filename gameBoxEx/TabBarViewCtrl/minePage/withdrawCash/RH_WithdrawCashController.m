@@ -92,11 +92,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)setupInfo {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
+    
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
     self.contentTableView.tableFooterView = [self footerView];
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
-    self.contentTableView.tableFooterView = nil;
+//    self.contentTableView.tableFooterView = nil;
 }
 #pragma mark - userInfoView
 -(RH_NavigationUserInfoView *)userInfoBtnView
@@ -577,7 +578,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         withDrawLowCell.delegate  = self ;
     }else if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
         RH_WithdrawCashThreeCell *three = ConvertToClassPointer(RH_WithdrawCashThreeCell, cell);
-        three.separatorInset = UIEdgeInsetsMake(0, 0, 00, 0);
+        three.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }else if ([cell isKindOfClass:[RH_WithdrawCashTwoCell class]]) {
         RH_WithdrawCashTwoCell *withDrawCell = ConvertToClassPointer(RH_WithdrawCashTwoCell, cell);
         withDrawCell.delegate = self ;
