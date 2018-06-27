@@ -322,6 +322,7 @@
              * 3 https
              * 4 http
              */
+            ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
             NSString *resultDomain = [ips objectForKey:@"domain"];
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             [appDelegate updateHeaderDomain:resultDomain];

@@ -56,6 +56,7 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_ShareRecordModel.h"
 #import "RH_InitAdModel.h"
+#import "No_AccessView.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2985,7 +2986,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if (response.statusCode==607){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"站点维护", nil) ;
+//                        showAlertView(@"站点维护", nil) ;
                         NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
                         //创建通知
                         NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
@@ -2995,7 +2996,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     });
                 }else if (response.statusCode==605){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"ip被限制", nil) ;
+//                        showAlertView(@"ip被限制", nil) ;
+                        No_AccessView *accessView = [[No_AccessView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+                        [[UIApplication sharedApplication].keyWindow addSubview:accessView];
                         return ;
                     });
                    
