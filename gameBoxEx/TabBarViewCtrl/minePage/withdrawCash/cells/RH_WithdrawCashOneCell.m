@@ -9,8 +9,6 @@
 #import "RH_WithdrawCashOneCell.h"
 #import "coreLib.h"
 #import "RH_WithDrawModel.h"
-#import "RH_UserInfoManager.h"
-
 @interface RH_WithdrawCashOneCell ()
 @property(nonatomic,strong) UIImageView *bankIconImageView ;
 @property(nonatomic,strong) UILabel *bankUserNameLb ;
@@ -19,9 +17,7 @@
 @end
 
 @implementation RH_WithdrawCashOneCell
-+ (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
-    return 40;
-}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

@@ -18,6 +18,7 @@
 #import "RH_InitAdModel.h"
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
+#import <sys/utsname.h>
 
 @interface StartPageViewController ()
 
@@ -705,7 +706,7 @@
 {
     NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
     [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
-    [dictError setValue:[self localIPAddress]?[self localIPAddress]:@"" forKey:RH_SP_COLLECTAPPERROR_MARK] ;
+    [dictError setValue:[self randomMark] forKey:RH_SP_COLLECTAPPERROR_MARK] ;
     [dictError setValue:[self localIPAddress]?[self localIPAddress]:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
     if ([RH_UserInfoManager shareUserManager].loginUserName.length){
         [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
@@ -737,6 +738,20 @@
     [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
     [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
     [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
+    [dictError setValue:@"1" forKey:RH_SP_COLLECTAPPERROR_TYPE];
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    [dictError setValue:appVersion forKey:RH_SP_COLLECTAPPERROR_VERSIONNAME];
+    NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
+    [dictError setValue:sysVersion forKey:RH_SP_COLLECTAPPERROR_SYSCODE];
+    [dictError setValue:@"iOS" forKey:RH_SP_COLLECTAPPERROR_CHANNEL];
+    NSString *deviceBrands = [[UIDevice currentDevice] model];
+    [dictError setValue:deviceBrands forKey:RH_SP_COLLECTAPPERROR_BRANDS];
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    [dictError setValue:deviceModel forKey:RH_SP_COLLECTAPPERROR_MODEL];
+
     [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         //
@@ -746,4 +761,18 @@
     };
 }
 
+- (NSString *)randomMark
+{
+    static int kNumber = 6;
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *resultStr = [[NSMutableString alloc] init];
+    srand((unsigned)time(0));
+    for (int i = 0; i < kNumber; i++)
+    {
+        unsigned index = rand() % [sourceStr length];
+        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+        [resultStr appendString:oneStr];
+    }
+    return resultStr;
+}
 @end
