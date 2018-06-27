@@ -33,6 +33,7 @@
 @property (strong, nonatomic) RH_StartPageADView *adView;
 @property (strong, nonatomic) UIButton *errDetailBT;
 @property (strong, nonatomic) NSString *currentErrCode;
+@property (strong, nonatomic) NSMutableArray *ipCheckErrorList;
 
 @end
 
@@ -82,6 +83,14 @@
     self.doitAgainBT.clipsToBounds = YES;
     self.errDetailBT.layer.cornerRadius = 10.0;
     self.errDetailBT.clipsToBounds = YES;
+}
+
+- (NSMutableArray *)ipCheckErrorList
+{
+    if (_ipCheckErrorList == nil) {
+        _ipCheckErrorList = [NSMutableArray array];
+    }
+    return _ipCheckErrorList;
 }
 
 - (void)setProgressNote:(NSString *)progressNote
@@ -327,7 +336,6 @@
              * 3 https
              * 4 http
              */
-            ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
             NSString *resultDomain = [ips objectForKey:@"domain"];
             RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
             [appDelegate updateHeaderDomain:resultDomain];
@@ -451,7 +459,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-//                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
+//                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -581,6 +589,7 @@
 
 - (void)checkIP:(NSString *)ip checkType:(NSString *)checkType complete:(GBCheckIPComplete)complete failed:(GBCheckIPFailed)failed
 {
+    __weak typeof(self) weakSelf = self;
     [self.serviceRequest startCheckDomain:ip WithCheckType:checkType];
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeDomainCheck) {
@@ -590,6 +599,11 @@
         }
     };
     self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        NSArray *checkTypeComponents = [checkType componentsSeparatedByString:@"+"];
+        NSString *checkDomian = [NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]];
+        //记录错误日志
+        [weakSelf.ipCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomian,RH_SP_COLLECTAPPERROR_CODE:@"0",RH_SP_COLLECTAPPERROR_ERRORMESSAGE:error.description}];
+        
         if (type == ServiceRequestTypeDomainCheck) {
             if (failed) {
                 failed();
@@ -694,8 +708,8 @@
 {
     NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
     [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
-    [dictError setValue:[self localIPAddress]?:@"" forKey:RH_SP_COLLECTAPPERROR_MARK] ;
-    [dictError setValue:[self localIPAddress]?:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
+    [dictError setValue:[self localIPAddress]?[self localIPAddress]:@"" forKey:RH_SP_COLLECTAPPERROR_MARK] ;
+    [dictError setValue:[self localIPAddress]?[self localIPAddress]:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
     if ([RH_UserInfoManager shareUserManager].loginUserName.length){
         [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
                      forKey:RH_SP_COLLECTAPPERROR_USERNAME] ;
@@ -705,7 +719,7 @@
     NSMutableString *domainList = [[NSMutableString alloc] init] ;
     NSMutableString *errorCodeList = [[NSMutableString alloc] init] ;
     NSMutableString *errorMessageList = [[NSMutableString alloc] init] ;
-    for (NSDictionary *dictTmp in [RH_UserInfoManager shareUserManager].domainCheckErrorList) {
+    for (NSDictionary *dictTmp in self.ipCheckErrorList) {
         if (domainList.length){
             [domainList appendString:@";"] ;
         }
@@ -726,7 +740,6 @@
     [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
     [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
     [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
-    NSLog(@"dictError====%@",dictError);
     [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         //
