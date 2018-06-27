@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_HasOrder                 ,
 };
 
-@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate,WithdrawCashTwoCellDelegate>
+@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate,WithdrawCashTwoCellDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic,strong,readonly) UISegmentedControl *mainSegmentControl ;
 @property (nonatomic, strong, readonly) UIView  *footerView;
@@ -78,13 +78,20 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     //关闭键盘
     self.view.userInteractionEnabled = YES;
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
     [self.view addGestureRecognizer:singleTap];
 }
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     [self.view endEditing:YES];
 }
-
+//会影响cell的点击
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {//判断如果点击的是tableView的cell，就把手势给关闭了
+        return NO;//关闭手势
+    }//否则手势存在
+    return YES;
+}
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
