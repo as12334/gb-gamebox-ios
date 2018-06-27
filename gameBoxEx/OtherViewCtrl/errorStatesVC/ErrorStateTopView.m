@@ -57,7 +57,7 @@
     
     
     UIButton *btn2 = [UIButton new];
-    [self addSubview:btn2];
+//    [self addSubview:btn2];
     
     UIImageView *imageView = [UIImageView new];
     [self addSubview:imageView];
@@ -81,7 +81,7 @@
     lab3.textColor = [UIColor redColor];
     lab3.text = @"";
     //    lab4.text = @"由于您所在地不在我们的服务允许范围内，我们暂时无法为您服务，如果您有任何问题，请联系我们的客服。";
-    lab4.text = @"抱歉！本系统程序升级，将暂停访问，敬请期待。维护完成时间：于北京时间2018-05-20 08:30-13:00，如果有什么疑问，请联系我们的客服";
+    lab4.text = @"抱歉！本系统程序升级，将暂停访问，敬请期待！如果有什么疑问，请联系我们的客服。";
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:lab4.text];
     //设置：在单位长度内的内容显示成红色
@@ -98,11 +98,11 @@
     [btn1 addTarget:self action:@selector(onlineCUS) forControlEvents:UIControlEventTouchUpInside];
     //    [btn1 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
-    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+MainScreenH/23+MainScreenH/23+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(MainScreenW/12, btn1).whc_Width(MainScreenW/3);
-    btn2.layer.cornerRadius = 5.0;
-    [btn2 setTitle:@"QQ客服" forState:UIControlStateNormal];
-    [btn2 addTarget:self action:@selector(qqCUS) forControlEvents:UIControlEventTouchUpInside];
-    [btn2 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
+//    btn2.whc_TopSpace(MainScreenH/3.5+20+NavigationBarHeight+MainScreenH/21+labH+lab2H+10+MainScreenH/23+MainScreenH/23+lineViewH+lab4H+8).whc_Height(44).whc_LeftSpaceToView(MainScreenW/12, btn1).whc_Width(MainScreenW/3);
+//    btn2.layer.cornerRadius = 5.0;
+//    [btn2 setTitle:@"QQ客服" forState:UIControlStateNormal];
+//    [btn2 addTarget:self action:@selector(qqCUS) forControlEvents:UIControlEventTouchUpInside];
+//    [btn2 setImage:ImageWithName(@"cs-white") forState:UIControlStateNormal];
     //    [btn2 setBackgroundImage:ImageWithName(@"cs_btn_bg") forState:UIControlStateNormal];
     
     
