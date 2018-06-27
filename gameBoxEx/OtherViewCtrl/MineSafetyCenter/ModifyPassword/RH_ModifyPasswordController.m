@@ -349,7 +349,6 @@
             [self.tableViewManagement reloadDataWithPlistName:@"RH_ModifyPasswordUsercode"] ;
             _infoManager.updateUserVeifyCode = YES ;
         }
-        NSLog(@"剩余次数====%ld",(long)[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]);
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
             self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
         }

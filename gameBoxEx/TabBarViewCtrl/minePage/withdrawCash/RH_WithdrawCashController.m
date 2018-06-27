@@ -600,7 +600,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     return YES;
 }
 
-
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_withdrawCashStatus == WithdrawCashStatus_EnterCash || _withdrawCashStatus ==  WithdrawCashStatus_EnterBitCoin){
@@ -727,7 +726,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }] ;
     }
     else if (type==ServiceRequestTypeV3GETUSERASSERT){
-        _withdrawCashStatus = WithdrawCashStatus_EnterCash;
+        NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
+        float balance = [dic[@"balance"] floatValue];
+        if (balance < 100) {
+            _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash;
+        }else{
+            _withdrawCashStatus  = WithdrawCashStatus_EnterCash ;
+        }
+        
         [self updateView];
     }
 }
