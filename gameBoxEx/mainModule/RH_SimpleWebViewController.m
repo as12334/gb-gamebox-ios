@@ -339,7 +339,11 @@
     //开始加载网页内容
     //我们自己的游戏需要传入SID
     //第三方游戏不需要传入SID
-    if ([self.webURL.absoluteString containsString:self.appDelegate.headerDomain] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
+    
+    NSArray *checkTypeComponents = [self.appDelegate.checkType componentsSeparatedByString:@"+"];
+    NSString *preUrl = [NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],self.appDelegate.headerDomain,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]];
+    
+    if ([self.webURL.absoluteString hasPrefix:preUrl] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
         NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
         [cookieProperties setObject:self.appDelegate.headerDomain forKey:NSHTTPCookieDomain];
         [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
@@ -357,8 +361,7 @@
     }
     else
     {
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
-        [self.webView loadRequest:request];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:self.webURL]];
     }
 
 }
