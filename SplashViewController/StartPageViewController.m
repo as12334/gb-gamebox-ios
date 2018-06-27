@@ -16,6 +16,8 @@
 #import "UpdateStatusCacheManager.h"
 #import "RH_StartPageADView.h"
 #import "RH_InitAdModel.h"
+#import "RH_API.h"
+#import "RH_UserInfoManager.h"
 
 @interface StartPageViewController ()
 
@@ -446,7 +448,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
+//                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -621,6 +623,7 @@
             //清空缓存
             weakSelf.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
+            [weakSelf uploadLineCheckErr];
             if (failed) {
                 failed();
             }
@@ -682,6 +685,52 @@
         return dict[@"cip"] ? dict[@"cip"] : @"";
     }
     return @"";
+}
+
+- (void)uploadLineCheckErr
+{
+    NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
+    [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
+    [dictError setValue:[self localIPAddress]?:@"" forKey:RH_SP_COLLECTAPPERROR_MARK] ;
+    [dictError setValue:[self localIPAddress]?:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
+    if ([RH_UserInfoManager shareUserManager].loginUserName.length){
+        [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
+                     forKey:RH_SP_COLLECTAPPERROR_USERNAME] ;
+        [dictError setValue:[RH_UserInfoManager shareUserManager].loginTime
+                     forKey:RH_SP_COLLECTAPPERROR_LASTLOGINTIME] ;
+    }
+    NSMutableString *domainList = [[NSMutableString alloc] init] ;
+    NSMutableString *errorCodeList = [[NSMutableString alloc] init] ;
+    NSMutableString *errorMessageList = [[NSMutableString alloc] init] ;
+    for (NSDictionary *dictTmp in [RH_UserInfoManager shareUserManager].domainCheckErrorList) {
+        if (domainList.length){
+            [domainList appendString:@";"] ;
+        }
+        
+        if (errorCodeList.length){
+            [errorCodeList appendString:@";"] ;
+        }
+        
+        if (errorMessageList.length){
+            [errorMessageList appendString:@";"] ;
+        }
+        
+        [domainList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_DOMAIN]] ;
+        [errorCodeList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_CODE]] ;
+        [errorMessageList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE]] ;
+    }
+    
+    [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
+    [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
+    [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
+    NSLog(@"dictError====%@",dictError);
+    [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        //
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        //
+    };
 }
 
 @end

@@ -20,10 +20,15 @@
     BOOL isFirst;
     UILabel *label ;
 }
+
+@property (nonatomic, strong) UIView *errorView;
+@property (nonatomic, strong) UILabel *errorLbl;
 @end
 
 @implementation RH_LockSetPWDController
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
@@ -40,8 +45,12 @@
     [self.view addSubview:label];
     
     isFirst = YES;
+
+
 }
--(void)setupUI{
+
+-(void)setupUI
+{
     self.view.backgroundColor = [UIColor whiteColor];
     RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]  initWithFrame:CGRectMake(0,220,MainScreenW,MainScreenH - StatusBarHeight - NavigationBarHeight) WithMode:PwdStateSetting];
     lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
@@ -54,7 +63,30 @@
         if (isFirst == YES) {
             pwdStr1 = resultPwd;
             isFirst = NO;
-            label.text = @"请滑动绘制新手势" ;
+            label.text = @"请滑动绘制新手势";
+            
+            if (resultPwd.length < 4) {
+                self.errorView = [[UIView alloc] init];
+                self.errorView.frame = CGRectMake(120, 600, 135, 28);
+                self.errorView.backgroundColor = [UIColor blackColor];
+                self.errorView.alpha = 0.5;
+                [self.view addSubview:self.errorView];
+                
+                self.errorLbl = [[UILabel alloc] init];
+                self.errorLbl.frame = CGRectMake(125, 600, 120, 25);
+                self.errorLbl.textColor = [UIColor whiteColor];
+                self.errorLbl.font = [UIFont systemFontOfSize:14.0];
+                self.errorLbl.text = @"请输入至少四个点";
+                self.errorLbl.textAlignment = NSTextAlignmentCenter;
+                [self.errorView addSubview:self.errorLbl];
+                [self.view addSubview:self.errorLbl];
+                
+                [UIView animateWithDuration:3.0 animations:^{
+                    self.errorView.alpha = 0.0f;
+                    self.errorLbl.alpha = 0.0f;
+                }];
+            }
+            
             return;
         }else{
             pwdStr2 = resultPwd;

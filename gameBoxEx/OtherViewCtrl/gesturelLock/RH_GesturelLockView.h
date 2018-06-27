@@ -33,7 +33,8 @@ typedef enum {
 /** 设置密码的时候调用的Block (无返回值，直接将密码写到本地)*/
 @property(nonatomic,copy) void(^setPwdData)(NSString *NewPwdStr);
 
-
+/** 解锁时手指经过的所有的btn集合*/
+@property (nonatomic,strong)NSMutableArray * btnsArray;
 
 
 -(instancetype)initWithFrame:(CGRect)frame WithMode:(PwdState) mode;
