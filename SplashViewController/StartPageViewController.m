@@ -335,7 +335,9 @@
             //check iplist
             weakSelf.progressNote = @"正在匹配服务器...";
             [weakSelf checkAllIP:ipList complete:^{
-                [weakSelf shoudShowUpdateAlert];
+                weakSelf.progressNote = @"检查完成,即将进入";
+                weakSelf.progress = 1.0;
+                [weakSelf fetchAdInfo];
             } failed:^{
                 weakSelf.currentErrCode = @"003";
             }];
