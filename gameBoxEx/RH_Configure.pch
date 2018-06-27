@@ -23,8 +23,8 @@
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_APP_VERCODE                  @"5021"
-#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss-api/"]
+#define RH_APP_VERCODE                  @"5020"
+#define RH_API_MAIN_URL                 @[@"http://192.168.0.92/boss-api/"]
 
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
@@ -112,7 +112,7 @@
 
 #elif _wjbn //开发环境 V3  H5  test 01
 //#define TEST_DOMAIN         @"test01.ampinplayopt0matrix.com"
-#define TEST_DOMAIN         @"http://192.168.0.92/boss-api/"
+#define TEST_DOMAIN         @"http://192.168.0.211/boss-api/"
 //#define TEST_DOMAIN         @"http://192.168.0.236/boss-api/"
 #define CODE    @"wjbn"
 #define S        @"f0581a9da25c2476d18f7675362f596c"
@@ -1569,7 +1569,7 @@
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _0chi //威尼斯人娱乐城
+#elif _0chi //葡京娱乐城
 
 #define CODE    @"0chi"
 #define S        @"133b05b6e1d7835cf34ad05409885151"
@@ -1577,6 +1577,8 @@
 #define THEME    @"default.skin"
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
+
 
 #elif _huih //澳门新葡京赌场
 
@@ -3057,6 +3059,15 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _q9uv //万发娱乐
+
+#define CODE    @"q9uv"
+#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
+#define SID        @"618"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _4bzo //永利娱乐城
 
 #define CODE    @"4bzo"
@@ -3076,22 +3087,16 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _q9uv //万发娱乐
+#elif _7zn0 //新盈博国际
 
-#define CODE    @"q9uv"
-#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
-#define SID        @"618"
+#define CODE    @"7zn0"
+#define S        @"74375211885617c45ccae01550acc1df"
+#define SID        @"622"
 #define THEME    @"default.skin"
-#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
-#define CODE    @"q9uv"
-#define S        @"447cacd6d721a6d0722c8804bc0e15fe"
-#define SID        @"618"
-#define THEME    @"default.skin"
-#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
