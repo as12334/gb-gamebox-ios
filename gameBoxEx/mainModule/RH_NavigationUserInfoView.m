@@ -34,7 +34,6 @@
     self.labUserName.font = [UIFont systemFontOfSize:10.0f] ;
     self.labBalance.textColor = RH_NavigationBar_ForegroundColor ;
     self.labBalance.font = [UIFont systemFontOfSize:10.0f] ;
-    
     self.labUserName.text = @"";
     self.labBalance.text = @"" ;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -55,7 +54,7 @@
         self.labUserName.text = userInfoModel.mUserName ;
         self.labBalance.whc_RightSpaceToView(3, self.moreImageView).whc_TopSpaceToView(0, self.labUserName).whc_WidthAuto().whc_Height(15);
         self.leftImageView.whc_RightSpaceToView(2, self.labBalance).whc_TopSpaceToView(4, self.labUserName).whc_Width(6).whc_Height(6);
-        self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userInfoModel.mCurrency,userInfoModel.showTotalAssets] ;
+        self.labBalance.text =  [NSString stringWithFormat:@"%@%@",userInfoModel.mCurrency,userInfoModel.showWalletBalance] ;
     }
 }
 

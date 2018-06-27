@@ -10,7 +10,6 @@
 #import "RH_MinePageBannarCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_MineSettingsViewController.h"
-#import "RH_UserInfoManager.h"
 #import "RH_MineAccountCell.h"
 #import "RH_CustomViewController.h"
 #import "RH_WithdrawCashController.h"
@@ -427,9 +426,9 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
-                [self.appDelegate updateLoginStatus:true] ;
+                [self.appDelegate updateLoginStatus:YES] ;
             }else{
-                [self.appDelegate updateLoginStatus:false] ;
+                [self.appDelegate updateLoginStatus:NO] ;
             }
         }] ;
     }else if (type == ServiceRequestTypeV3UserLoginOut){

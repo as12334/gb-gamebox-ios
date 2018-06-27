@@ -3097,6 +3097,15 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _3qzt //金沙娱乐城
+
+#define CODE    @"3qzt"
+#define S        @"189ba1fde0b97467ca976eb521a3480e"
+#define SID        @"623"
+#define THEME    @"default.skin"
+#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif

@@ -93,7 +93,7 @@
              _textFiled.text  = [NSString stringWithFormat:@"%@",model.mCode] ;
         }else
         {
-             _textFiled.text  = [NSString stringWithFormat:@"%@/%@",appDelegate.domain,model.mCode] ;
+             _textFiled.text  = [NSString stringWithFormat:@"%@/%@",appDelegate.headerDomain,model.mCode] ;
         }
     }
 }
