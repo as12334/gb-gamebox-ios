@@ -48,13 +48,21 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
+<<<<<<< HEAD
       "filename" : "app_icon_535_120x120.png",
+=======
+      "filename" : "app_icon_21_120x120.png",
+>>>>>>> origin/dev_jun_ip
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
+<<<<<<< HEAD
       "filename" : "app_icon_535_180x180.png",
+=======
+      "filename" : "app_icon_21_180x180.png",
+>>>>>>> origin/dev_jun_ip
       "scale" : "3x"
     },
     {
