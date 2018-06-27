@@ -201,7 +201,7 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 1
+#if 0
         //注释设置按钮  改成退出
 //        UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -213,7 +213,7 @@
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
 #else
-        _barButtonSetting = [[UIBarButtonItem alloc] initWithTitle:@"退出"
+        _barButtonSetting = [[UIBarButtonItem alloc] initWithTitle:@"设置"
                                                              style:UIBarButtonItemStylePlain
                                                             target:self
                                                             action:@selector(_barButtonSettingHandle)] ;
