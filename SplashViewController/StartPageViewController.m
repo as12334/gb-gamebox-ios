@@ -52,6 +52,8 @@
 }
 
 - (void)doItAgainAction:(id)sender {
+#pragma 防止连续点两次闪退
+    _doitAgainBT.userInteractionEnabled = NO;
     [self doRequest];
 }
 
@@ -300,6 +302,7 @@
             weakSelf.progress = 1.0;
             [weakSelf fetchAdInfo];
         } failed:^{
+            _doitAgainBT.userInteractionEnabled = YES;
             weakSelf.currentErrCode = @"003";
         }];
         return;
