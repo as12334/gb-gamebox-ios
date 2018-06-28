@@ -63,7 +63,7 @@
         if (isFirst == YES) {
             pwdStr1 = resultPwd;
             isFirst = NO;
-//          label.text = @"请滑动绘制新手势";
+            label.text = @"请滑动绘制新手势";
             
             if (pwdStr1.length < 4) {
                 self.errorView = [[UIView alloc] init];
