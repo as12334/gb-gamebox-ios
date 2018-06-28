@@ -33,7 +33,7 @@
 
 -(RH_VerifyCloseView *)verifyCloseView {
     if (!_verifyCloseView) {
-        _verifyCloseView = [[RH_VerifyCloseView alloc]initWithFrame:self.view.bounds];
+        _verifyCloseView = [[RH_VerifyCloseView alloc] initWithFrame:self.view.bounds];
         _verifyCloseView.delegate = self ;
     }
     return _verifyCloseView ;

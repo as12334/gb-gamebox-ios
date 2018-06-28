@@ -93,17 +93,20 @@
             label.text = @"请再次绘制确认手势";
         }
        
+        if (pwdStr1.length < 4) {
+            return;
+        }
         
         #define RH_GuseterLock            @"RH_GuseterLock"
         if ([pwdStr1 isEqualToString:pwdStr2]) {
             [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:pwdStr1];
             [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES];
-             label.text = @"锁屏手势设置成功！";
+            label.text = @"锁屏手势设置成功！";
             [self backBarButtonItemHandle];
             
         }else{
             showAlertView(@"请重新设置 ", @"两次绘制的锁屏手势不一致");
-             [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO];
+            [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO];
             isFirst = YES;
             pwdStr2 = @"";
             pwdStr1 = @"";

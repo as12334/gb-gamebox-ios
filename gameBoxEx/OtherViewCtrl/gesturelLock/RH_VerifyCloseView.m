@@ -19,6 +19,7 @@
 @interface RH_VerifyCloseView()
 @property(nonatomic,strong)MBProgressHUD *hud;
 @end
+
 @implementation RH_VerifyCloseView
 {
     BOOL _boolMark;
