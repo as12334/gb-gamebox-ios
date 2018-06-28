@@ -200,23 +200,12 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 1
-        //注释设置按钮  改成退出
-//        UIImage *menuImage = ImageWithName(@"mine_page_settings");
+        UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
-        button.frame = CGRectMake(0, 0, 50, 30) ;
-//        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
-        [button setTitle:@"退出" forState:UIControlStateNormal] ;
-        button.titleLabel.font = [UIFont systemFontOfSize:15.f] ;
+        button.frame = CGRectMake(0, 0, 44, 44) ;
+        [button setImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
-#else
-        _barButtonSetting = [[UIBarButtonItem alloc] initWithTitle:@"设置"
-                                                             style:UIBarButtonItemStylePlain
-                                                            target:self
-                                                            action:@selector(_barButtonSettingHandle)] ;
-#endif
     }
     
     return _barButtonSetting ;

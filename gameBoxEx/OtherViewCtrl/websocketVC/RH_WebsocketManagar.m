@@ -66,7 +66,8 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     [self.socket open];     //开始连接
 }
 
--(void)SRWebSocketClose{
+-(void)SRWebSocketClose
+{
     if (self.socket){
         [self.socket close];
         self.socket = nil;

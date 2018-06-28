@@ -10,6 +10,7 @@
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
 #import "RH_GetNoAutoTransferInfoModel.h"
+
 @interface RH_BankPickerSelectView()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIPickerView *pickView;
@@ -22,6 +23,7 @@
     NSArray *_list;
 }
 @synthesize pickView = _pickView;
+
 - (UIPickerView *)pickView {
     
     if (_pickView == nil) {
@@ -104,6 +106,7 @@
 {
     selectedRow = row;
 }
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1 ;
 }

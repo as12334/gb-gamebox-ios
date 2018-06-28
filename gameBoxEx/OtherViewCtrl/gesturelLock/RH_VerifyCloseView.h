@@ -15,4 +15,5 @@
 @end
 
 @interface RH_VerifyCloseView : UIView
-@property (nonatomic,weak) id<VerifyCloseViewDelegate> delegate ;@end
+@property (nonatomic,weak) id<VerifyCloseViewDelegate> delegate ;
+@end

@@ -44,7 +44,8 @@
     return YES ;
 }
 
-- (UITextField *)textField {
+- (UITextField *)textField
+{
     if (_textField == nil) {
         _textField = [[UITextField alloc] init];
         _textField.borderStyle = UITextBorderStyleNone;
@@ -56,7 +57,8 @@
     return _textField;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
     if (self) {
         self.detailTextLabel.textColor = colorWithRGB(153, 153, 153);
@@ -78,7 +80,8 @@
     return self;
 }
 
-- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
+- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
 }
@@ -87,7 +90,8 @@
 //    return [self validateNumber:string];
 //}
 
-- (BOOL)validateNumber:(NSString*)number {
+- (BOOL)validateNumber:(NSString*)number
+{
     BOOL res = YES;
     NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     int i = 0;

@@ -13,6 +13,7 @@
 #define BXScreenH [UIScreen mainScreen].bounds.size.height
 #define BXScreenW [UIScreen mainScreen].bounds.size.width
 #define BXScreenBounds [UIScreen mainScreen].bounds
+
 @interface RH_DatePickerView()
 //时间选择器
 @property(nonatomic,strong,readonly)UIDatePicker *datePicker;
@@ -29,17 +30,20 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize confirmBtn = _confirmBtn;
 @synthesize coverView = _coverView;
+
 +(RH_DatePickerView *)shareCalendarView:(NSString *)title defaultDate:(NSDate *)date
 {
     static RH_DatePickerView *datePickerView = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        datePickerView = [[RH_DatePickerView alloc]initWithFrame:CGRectMake(0,BXScreenH-250, BXScreenW, 250)];
+        datePickerView = [[RH_DatePickerView alloc] initWithFrame:CGRectMake(0,BXScreenH-250, BXScreenW, 250)];
         datePickerView.backgroundColor = [UIColor whiteColor];
     });
+   
     datePickerView.titleLabel.text = title;
     return datePickerView;
 }
+
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -47,6 +51,7 @@
     }
     return self;
 }
+
 #pragma mark ==============creatUI================
 -(void)creatUI{
     [[UIApplication sharedApplication].keyWindow addSubview:self.coverView];
@@ -55,6 +60,7 @@
     [self addSubview:self.confirmBtn];
     [[UIApplication sharedApplication].keyWindow addSubview:self];
 }
+
 /**
  *  datePicker
  */
@@ -73,19 +79,21 @@
     }
     return _datePicker;
 }
+
 /**
  *  titleLabel
  */
 -(UILabel *)titleLabel
 {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,10 , 150, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10 , 150, 20)];
         _titleLabel.font = [UIFont systemFontOfSize:15.f];
         _titleLabel.textColor = [UIColor lightGrayColor];
         _titleLabel.text = @"请选择日期";
     }
     return _titleLabel;
 }
+
 /**
  *  confirmBtn
  */
@@ -100,6 +108,7 @@
     }
     return _confirmBtn;
 }
+
 /**
  *  遮罩层
  */
@@ -115,11 +124,13 @@
     }
     return _coverView;
 }
+
 #pragma mark ==============事件处理================
 -(void)dateChange:(UIDatePicker *)datePicker
 {
     self.date = datePicker.date;
 }
+
 /**
  *  点击确定按钮
  */
@@ -132,4 +143,5 @@
     [self removeFromSuperview];
     [self.coverView removeFromSuperview];
 }
+
 @end
