@@ -32,13 +32,12 @@
     return self ;
 }
 
-
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-    self.textLabel.text = info.myTitle ;
+    self.textLabel.text = info.myTitle;
     RH_MineInfoModel *infoModel = [RH_UserInfoManager shareUserManager].mineSettingInfo;
     RH_BankCardModel *bankModek = infoModel.mBankCard;
-    self.detailTextLabel.text = ConvertToClassPointer(NSString, context) ;
+    self.detailTextLabel.text = ConvertToClassPointer(NSString, context);
 }
 
 

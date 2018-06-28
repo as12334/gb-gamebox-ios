@@ -33,7 +33,7 @@
     return self;
 }
 
--(void)createUI{
+-(void)createUI {
     //    self.backgroundColor = RH_NavigationBar_BackgroundColor;
     //解锁界面
     RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]initWithFrame:CGRectMake(0, 220,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateVerityClose];
@@ -45,7 +45,7 @@
     
     //解锁手势完成之后判断密码是否正确
     _hud = [[MBProgressHUD alloc]init];
-    lockView.sendReaultData = ^(NSString *resultPwd){
+    lockView.sendReaultData = ^(NSString *resultPwd) {
         //        从本地获取保存的密码
         #define RH_GuseterLock  @"RH_GuseterLock"
         NSString * savePwd = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
@@ -78,7 +78,6 @@
     };
 }
 
-
 -(void)hideProgressHUD
 {
     if (_boolMark == YES) {
@@ -93,7 +92,6 @@
         
     }
     [_hud hide:YES];
-    
 }
 
 

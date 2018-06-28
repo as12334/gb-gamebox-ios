@@ -156,15 +156,18 @@
     return dictRows ;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.sectionsInfo.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [self _sectionInfoInSection:section].rowsInfo.count ;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     CGFloat tmp = [[self _sectionInfoInSection:section] sectionHeaderHeight:tableView.sectionHeaderHeight] ;
     if ([[self _sectionInfoInSection:section] isPixelUnit]){
         tmp = PixelToPoint(tmp) ;
@@ -211,7 +214,7 @@
         UIView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionDict.sectionHeaderViewClassName] ;
         if (headerView){
             ifRespondsSelector(self.delegate, @selector(tableViewManagement:Section:HeaderView:)){
-                [self.delegate tableViewManagement:self Section:section HeaderView:headerView] ;
+                [self.delegate tableViewManagement:self Section:section HeaderView:headerView];
             }
         }
         
@@ -248,17 +251,17 @@
     
     id cellContent = nil ;
     ifRespondsSelector(self.delegate, @selector(tableViewManagement:cellContextAtIndexPath:)){
-        cellContent = [self.delegate tableViewManagement:self cellContextAtIndexPath:indexPath] ;
+        cellContent = [self.delegate tableViewManagement:self cellContextAtIndexPath:indexPath];
     }
     
     if (rowInfo.isCustomCell){
         ifRespondsSelector(self.delegate, @selector(tableViewManagement:customCellAtIndexPath:)){
-            cell = [self.delegate tableViewManagement:self customCellAtIndexPath:indexPath] ;
+            cell = [self.delegate tableViewManagement:self customCellAtIndexPath:indexPath];
         }
     }
     
     if (cell==nil){ //生成实例
-        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath] ;
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     }
     
     ifRespondsSelector(cell, @selector(updateCellWithInfo:context:)){

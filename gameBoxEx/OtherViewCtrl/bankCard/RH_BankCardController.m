@@ -14,6 +14,7 @@
 #import "RH_BankPickerSelectView.h"
 #import "RH_BankCardRealNameCell.h"
 #import "RH_BankCardLocationCell.h"
+
 typedef NS_ENUM(NSInteger,BankCardStatus ) {
     BankCardStatus_Init                        ,
     BankCardStatus_None                        ,
@@ -129,7 +130,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
                                               NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
     }else{
         navigationBar.barStyle = UIBarStyleDefault ;
-        if (GreaterThanIOS11System){
+        if (GreaterThanIOS11System) {
             navigationBar.barTintColor = [UIColor blackColor];
         }else
         {
@@ -142,6 +143,7 @@ typedef NS_ENUM(NSInteger,BankCardStatus ) {
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
+
 -(void)updateView
 {
     if (!self.isInitOk){

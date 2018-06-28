@@ -35,7 +35,7 @@
 -(RH_GestureOpenLockView *)openLockView
 {
     if (!_openLockView) {
-        _openLockView = [[RH_GestureOpenLockView alloc]initWithFrame:self.view.bounds];
+        _openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.view.bounds];
         _openLockView.delegate = self ;
         
     }
