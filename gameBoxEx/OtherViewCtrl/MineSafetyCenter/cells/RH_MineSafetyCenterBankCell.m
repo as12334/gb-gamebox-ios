@@ -42,8 +42,9 @@
     }
     
     self.bankImage.whc_LeftSpaceToView(10, self.leftBankTitle).whc_CenterY(0).whc_Width(80).whc_Height(20);
-    self.bankCardNumber.whc_LeftSpaceToView(10, self.bankImage).whc_CenterY(0).whc_Width(60).whc_TopSpace(12);
+    self.bankCardNumber.whc_LeftSpaceToView(10, self.bankImage).whc_CenterY(0).whc_WidthAuto().whc_TopSpace(12);
     self.noBankLabel.whc_LeftSpaceToView(0, self.leftBankTitle).whc_TopSpace(12).whc_Width(100).whc_Height(20);
+    self.bankCardNumber.font = [UIFont systemFontOfSize:12 * screenSize().width/375.0];
 
 }
 
@@ -52,7 +53,6 @@
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
     if (bankModel.mBankCardNumber) {
         [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.showBankURL]]];
-        if (bankModel.mBankCardNumber.length >9) {
             self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
             if ([THEMEV3 isEqualToString:@"green"]){
                 self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor_Green;
@@ -63,10 +63,7 @@
             }else{
                 self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor;
             }
-        }else
-        {
             self.bankCardNumber.text =  [NSString stringWithFormat:@"%@",bankModel.mBankCardNumber ];
-        }
         self.noBankLabel.hidden = YES;
         self.rightLab.text = @"查看" ;
     }else
