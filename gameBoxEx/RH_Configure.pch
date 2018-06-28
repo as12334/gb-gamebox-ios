@@ -3115,6 +3115,23 @@
 #define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _vqxy //马来西亚云顶赌场
+
+#define CODE    @"vqxy"
+#define S        @"461a98e924bf708ef486d8f2f32061ec"
+#define SID        @"621"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _orng //金沙娱乐场
+
+#define CODE    @"orng"
+#define S        @"219e7ad8024e527a439ce4f589558385"
+#define SID        @"625"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
