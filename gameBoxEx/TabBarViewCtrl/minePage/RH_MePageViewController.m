@@ -200,23 +200,12 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 1
-        //注释设置按钮  改成退出
-//        UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
         button.frame = CGRectMake(0, 0, 50, 30) ;
-//        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
         [button setTitle:@"退出" forState:UIControlStateNormal] ;
         button.titleLabel.font = [UIFont systemFontOfSize:15.f] ;
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
-#else
-        _barButtonSetting = [[UIBarButtonItem alloc] initWithTitle:@"设置"
-                                                             style:UIBarButtonItemStylePlain
-                                                            target:self
-                                                            action:@selector(_barButtonSettingHandle)] ;
-#endif
     }
     
     return _barButtonSetting ;
@@ -224,9 +213,6 @@
 
 -(void)_barButtonSettingHandle
 {
-#if 0
-    [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
-#else
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"点击取消");
@@ -236,7 +222,6 @@
         [self.serviceRequest startV3UserLoginOut];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
-#endif
 }
 
 #pragma mark-
