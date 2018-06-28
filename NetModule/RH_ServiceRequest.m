@@ -453,11 +453,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
+    [self _startServiceWithAPIName:@"https://apiplay.info:1344/boss-api"
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+//                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:errorDict
                      bodyArguments:nil
