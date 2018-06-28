@@ -158,7 +158,7 @@
         {
             self.subFourthTitleLab.text =  detailModel.mTransactionMoney;
         }
-        self.subThirdTitleLab.text = detailModel.mTransactionWayName;
+        self.subThirdTitleLab.text = detailModel.mTransactionWayName?detailModel.mTransactionWayName:@"无";
         self.subFivethTitleLab.text = detailModel.mStatusName;
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"存款"]  ||[infoModel.mTransaction_typeName isEqualToString:@"deposit"] ) {
