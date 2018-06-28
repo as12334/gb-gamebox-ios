@@ -213,19 +213,7 @@
 
 -(void)_barButtonSettingHandle
 {
-#if 1
     [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
-#else
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击取消");
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showProgressIndicatorViewWithAnimated:YES title:@"退出中..."] ;
-        [self.serviceRequest startV3UserLoginOut];
-    }]];
-    [self presentViewController:alertController animated:YES completion:nil];
-#endif
 }
 
 #pragma mark-
