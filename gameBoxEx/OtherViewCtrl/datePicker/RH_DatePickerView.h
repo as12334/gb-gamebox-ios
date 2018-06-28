@@ -12,6 +12,6 @@ typedef void (^chooseDateFinishBlock)(NSDate *date);
 @interface RH_DatePickerView : UIView
 @property(nonatomic,copy)chooseDateFinishBlock chooseDateBlock;
 //遮罩层
-@property(nonatomic,strong,readonly)UIView *coverView;
+@property(nonatomic,strong,readonly) UIView *coverView;
 +(RH_DatePickerView *)shareCalendarView:(NSString *)title defaultDate:(NSDate*)date;
 @end

@@ -47,7 +47,7 @@
     [self addSubview:lockView];
      [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
     //解锁手势完成之后判断密码是否正确
-    _hud = [[MBProgressHUD alloc]init];
+    _hud = [[MBProgressHUD alloc] init];
     lockView.sendReaultData = ^(NSString *resultPwd){
         //        从本地获取保存的密码
         NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;

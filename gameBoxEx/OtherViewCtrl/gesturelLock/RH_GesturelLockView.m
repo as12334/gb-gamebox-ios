@@ -24,17 +24,19 @@
 /**
     记录一开始创建的九个按钮的数组
  */
-@property(nonatomic,strong)NSMutableArray *nineBtnArray;
+@property(nonatomic,strong) NSMutableArray *nineBtnArray;
 /** 手指当前的触摸位置*/
-@property (nonatomic,assign)CGPoint currentPoint;
+@property (nonatomic,assign) CGPoint currentPoint;
 /** */
-@property (nonatomic, strong)UIBezierPath * path;
-@property (nonatomic, strong)CAShapeLayer * slayer;
-@property (nonatomic,strong)UIView *bigView;
+@property (nonatomic, strong) UIBezierPath * path;
+@property (nonatomic, strong) CAShapeLayer * slayer;
+@property (nonatomic,strong) UIView *bigView;
 @end
+
 @implementation RH_GesturelLockView
 
--(NSMutableArray *)btnsArray{
+-(NSMutableArray *)btnsArray
+{
     if (_btnsArray == nil) {
         _btnsArray = [NSMutableArray array];
     }
@@ -48,9 +50,10 @@
     }
     return _nineBtnArray;
 }
--(instancetype)initWithFrame:(CGRect)frame WithMode:(PwdState) mode
+
+-(instancetype)initWithFrame:(CGRect)frame WithMode:(PwdState)mode
 {
-    self = [super initWithFrame: frame];
+    self = [super initWithFrame:frame];
     if (self) {
         Amode = mode;
         _startAtButton = NO;
@@ -74,9 +77,10 @@
     }
     return self;
 }
+
 -(void)layoutSubviews
 {
-    for (int index = 0; index<self.subviews.count; index ++) {
+    for (int index = 0; index < self.subviews.count; index ++) {
         //        拿到每个btn
         UIButton *btn = self.subviews[index];
         [btn setBackgroundImage:self.btnImage forState:UIControlStateNormal];
@@ -108,7 +112,7 @@
             slayer.fillColor = [UIColor clearColor].CGColor;
             slayer.lineCap = kCALineCapRound;
             slayer.lineJoin = kCALineJoinRound;
-            slayer.strokeColor =colorWithRGB(35, 120, 214).CGColor;
+            slayer.strokeColor = colorWithRGB(35, 120, 214).CGColor;
             slayer.lineWidth = path.lineWidth;
 //            slayer.fillRule = kCAFillRuleEvenOdd;
             [self.layer insertSublayer:slayer atIndex:0];
@@ -147,7 +151,8 @@
     
 }
 
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     if (_startAtButton==YES) {
     for (UIButton *btn in self.subviews) {
         [btn setSelected:NO];
@@ -156,8 +161,13 @@
     for (UIButton *btn in self.btnsArray) {
         [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
     }
-//    if (self.btnsArray.count > 3) {//如果选中的点大于3个才判断是不是正确密码
-       
+    
+        if (self.btnsArray.count < 4) {
+            self.setPwdData(result);
+        }
+        
+        else if (self.btnsArray.count >= 4) {//如果选中的点大于等于4才判断是不是正确的密码
+        
         //        判断是设置密码还是解锁密码
         switch (Amode) {
             case PwdStateResult:
@@ -195,10 +205,10 @@
     [_slayer removeFromSuperlayer];
         _startAtButton = NO;
     }
-//}
+}
 
-
--(void)ErrorShow{  // 密码不正确处理方式
+-(void)ErrorShow
+{  // 密码不正确处理方式
     
     // 1. 重绘成红色效果
     // 1.1 把selectedButtons中的每个按钮的selected = NO, enabled = NO
@@ -246,7 +256,7 @@
  
  @return 触摸到的btn
  */
--(UIButton *)getCurrentBtnWithPoint:(CGPoint) currentPoint
+-(UIButton *)getCurrentBtnWithPoint:(CGPoint)currentPoint
 {
     for (UIButton *btn in self.subviews) {
         if (CGRectContainsPoint(btn.frame, currentPoint)) {

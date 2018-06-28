@@ -77,10 +77,10 @@
     return self;
 }
 
-- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context {
+- (void)updateCellWithInfo:(NSDictionary *)info context:(id)context
+{
     self.textLabel.text = info[@"title"];
     self.textField.placeholder = info[@"detailTitle"];
-    
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
