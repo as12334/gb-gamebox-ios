@@ -9,8 +9,6 @@
 #import "RH_WithdrawCashOneCell.h"
 #import "coreLib.h"
 #import "RH_WithDrawModel.h"
-#import "RH_UserInfoManager.h"
-
 @interface RH_WithdrawCashOneCell ()
 @property(nonatomic,strong) UIImageView *bankIconImageView ;
 @property(nonatomic,strong) UILabel *bankUserNameLb ;
@@ -19,9 +17,7 @@
 @end
 
 @implementation RH_WithdrawCashOneCell
-+ (CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context {
-    return 40;
-}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -37,7 +33,6 @@
 {
     if (!_bankIconImageView) {
         _bankIconImageView = [[UIImageView alloc] init];
-        _bankIconImageView.backgroundColor = [UIColor greenColor];
     }
     return _bankIconImageView;
 }
@@ -48,7 +43,6 @@
         _bankUserNameLb = [[UILabel alloc] init];
         _bankUserNameLb.font = [UIFont systemFontOfSize:14.f];
         _bankUserNameLb.textColor = colorWithRGB(68, 68, 68);
-        _bankUserNameLb.backgroundColor = [UIColor redColor];
         
     }
     return _bankUserNameLb;
@@ -60,7 +54,6 @@
         _bankCardLab = [[UILabel alloc] init];
         _bankCardLab.font = [UIFont systemFontOfSize:14.f];
         _bankCardLab.textColor = colorWithRGB(68, 68, 68);
-        _bankCardLab.backgroundColor = [UIColor orangeColor];
     }
     return _bankCardLab;
 }
