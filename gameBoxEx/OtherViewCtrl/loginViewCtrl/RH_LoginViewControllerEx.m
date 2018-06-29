@@ -308,7 +308,8 @@
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }
                 //登录成功后测试websocket
-                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://test01.ccenter.test.so/mdcenter/websocket/msite?localeType=zh_CN"]];
+                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
+
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;
@@ -353,7 +354,7 @@
                                                                          LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
                 
                 //登录成功后测试websocket
-                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://test01.ccenter.test.so/mdcenter/websocket/msite?localeType=zh_CN"]];
+                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 
