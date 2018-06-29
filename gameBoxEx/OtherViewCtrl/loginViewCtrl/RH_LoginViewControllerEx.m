@@ -313,7 +313,7 @@
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;
-                if (savePwd.length > 0) {
+                if (savePwd.length > 0 && savePwd != nil) {
                     RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
                     [self cw_pushViewController:verifyCloseView];
                 }
