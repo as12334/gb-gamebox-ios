@@ -8,6 +8,8 @@
 
 #import "RH_WebsocketManagar.h"
 #import "RH_UserInfoManager.h"
+#import "RH_APPDelegate.h"
+
 #define dispatch_main_async_safe(block)\
 if ([NSThread isMainThread]) {\
 block();\
@@ -45,6 +47,12 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
 
 #pragma mark - **************** public methods
 -(void)SRWebSocketOpenWithURLString:(NSString *)urlString {
+    NSString *wsType = @"wss";//默认wss
+    NSArray *comp = [urlString componentsSeparatedByString:@"://"];
+    if ([comp[0] isEqualToString:@"http"]) {
+        wsType = @"ws";
+    }
+    NSString *wsUrl = [NSString stringWithFormat:@"%@://%@/mdcenter/websocket/msite?localeType=zh_CN",wsType,comp[1]];
     
     //如果是同一个url return
     if (self.socket) {
@@ -56,12 +64,14 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     }
     
     //设置请求头
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:wsUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request addValue:[NSString stringWithFormat:@"%@",[RH_UserInfoManager shareUserManager].sidString] forHTTPHeaderField:@"Cookie"];
     [request addValue:@"app_ios, iPhone" forHTTPHeaderField:@"User-Agent"];
+    RH_APPDelegate *appDelegate = (RH_APPDelegate*)[UIApplication sharedApplication].delegate ;
+    [request addValue:appDelegate.headerDomain forHTTPHeaderField:@"Host"];
+
     self.urlString = urlString;
-    self.socket = [[SRWebSocket alloc] initWithURLRequest:
-                   request];
+    self.socket = [[SRWebSocket alloc] initWithURLRequest:request protocols:nil allowsUntrustedSSLCertificates:YES];
     self.socket.delegate = self;   //SRWebSocketDelegate 协议
     [self.socket open];     //开始连接
 }
