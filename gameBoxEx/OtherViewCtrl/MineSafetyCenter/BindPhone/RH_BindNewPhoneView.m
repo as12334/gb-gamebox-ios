@@ -141,9 +141,9 @@
         return;
     }
 
-    ifRespondsSelector(self.delegate, @selector(bindNewPhoneViewBind:phone:code:))
+    ifRespondsSelector(self.delegate, @selector(bindNewPhoneViewBind:phone:originalPhone:code:))
     {
-        [self.delegate bindNewPhoneViewBind:sender phone:self.currentPhoneTF.text code:self.verifyCodeTF.text];
+        [self.delegate bindNewPhoneViewBind:sender phone:self.currentPhoneTF.text originalPhone:self.formerPhoneTF.text code:self.verifyCodeTF.text];
     }
 }
 

@@ -109,7 +109,7 @@
 
 - (void)bindUserPhoneBind:(RH_BindUserPhone *)view phone:(NSString *)phone code:(NSString *)code
 {
-    [self.serviceRequest bindPhone:phone code:code];
+    [self.serviceRequest bindPhone:phone originalPhone:@"" code:code];
 }
 
 #pragma mark - RH_ChangeBIndPhoneViewDelegate M
@@ -144,9 +144,9 @@
     [self.serviceRequest bindPhoneSendCode:phone];
 }
 
-- (void)bindNewPhoneViewBind:(RH_BindNewPhoneView *)view phone:(NSString *)phone code:(NSString *)code
+- (void)bindNewPhoneViewBind:(RH_BindNewPhoneView *)view phone:(NSString *)phone originalPhone:(NSString *)originalPhone code:(NSString *)code
 {
-    [self.serviceRequest bindPhone:phone code:code];
+    [self.serviceRequest bindPhone:phone originalPhone:originalPhone code:code];
 }
 
 #pragma mark - service request

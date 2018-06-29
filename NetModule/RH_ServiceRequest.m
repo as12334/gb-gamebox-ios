@@ -2424,7 +2424,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-- (void)bindPhone:(NSString *)phone code:(NSString *)code
+- (void)bindPhone:(NSString *)phone originalPhone:(NSString *)originalPhone code:(NSString *)code
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_BINDPHONE_BINDPHONE
@@ -2433,7 +2433,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                      @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
                                      @"Host":self.appDelegate.headerDomain
                                      }
-                    queryArguments:@{@"search.contactValue":phone,@"code":code}
+                    queryArguments:@{@"search.contactValue":phone,@"code":code,@"oldPhone":originalPhone}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3BindPhone
