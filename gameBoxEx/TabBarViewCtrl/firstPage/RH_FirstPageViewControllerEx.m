@@ -34,6 +34,8 @@
 #import "RH_BannerDetailVCViewController.h"
 #import "RH_MainTabBarController.h"
 #import "RH_InitAdModel.h"
+#import "UpdateStatusCacheManager.h"
+
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
         HomeCategoryItemsCellDelegate,RH_NormalActivithyViewDelegate,AdvertisementViewDelegate,SFSafariViewControllerDelegate>
@@ -88,9 +90,19 @@
     [self.serviceRequest startV3SiteTimezone] ;
     //自动登录
     [self autoLogin] ;
+    [self shoudShowUpdateAlert];
 }
 
-
+- (void)shoudShowUpdateAlert
+{
+    //检测更新
+    BOOL isUpdateStatusValid = [[UpdateStatusCacheManager sharedManager] isUpdateStatusValid];
+    if (!isUpdateStatusValid) {
+        [[UpdateStatusCacheManager sharedManager] showUpdateAlert:^{
+            //不是强制更新 且 点击了跳过更新按钮
+        }];
+    }
+}
 
 - (void)dealloc
 {

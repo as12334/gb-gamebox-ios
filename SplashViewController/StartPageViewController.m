@@ -266,7 +266,7 @@
         //check iplist
         self.progressNote = @"正在匹配服务器...";
         [self checkAllIP:ipList complete:^{
-            [weakSelf shoudShowUpdateAlert];
+            [weakSelf startPageComplete];
         } failed:^{
             weakSelf.currentErrCode = @"003";
         }];
@@ -304,7 +304,7 @@
             //check iplist
             weakSelf.progressNote = @"正在匹配服务器...";
             [weakSelf checkAllIP:ipList complete:^{
-                [weakSelf shoudShowUpdateAlert];
+                [weakSelf startPageComplete];
             } failed:^{
                 weakSelf.currentErrCode = @"003";
             }];
@@ -364,7 +364,7 @@
                 //check iplist
                 weakSelf.progressNote = @"正在匹配服务器...";
                 [weakSelf checkAllIP:ipList complete:^{
-                    [weakSelf shoudShowUpdateAlert];
+                    [weakSelf startPageComplete];
                 } failed:^{
                     weakSelf.currentErrCode = @"003";
                 }];
@@ -598,24 +598,6 @@
             }
         }
     }];
-}
-
-- (void)shoudShowUpdateAlert
-{
-    __weak typeof(self) weakSelf = self;
-    //检测更新
-    BOOL isUpdateStatusValid = [[UpdateStatusCacheManager sharedManager] isUpdateStatusValid];
-    if (isUpdateStatusValid) {
-        //依然有效 则直接进入游戏
-        [self startPageComplete];
-    }
-    else
-    {
-        [[UpdateStatusCacheManager sharedManager] showUpdateAlert:^{
-            //不是强制更新 且 点击了跳过更新按钮
-            [weakSelf startPageComplete];
-        }];
-    }
 }
 
 - (void)startPageComplete
