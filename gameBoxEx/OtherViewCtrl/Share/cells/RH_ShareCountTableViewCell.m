@@ -99,7 +99,6 @@
     self.myShareAwardLab.text = [NSString stringWithFormat:@"我的分享奖励%@元",model.mRemmendModel.mSingle] ;
     self.friendReciprocalCountLab.text = [NSString stringWithFormat:@"我的奖励%@次",model.mRemmendModel.mCount] ;
     self.myShareBonusLab.text =  [NSString stringWithFormat:@"我的分享红利%@次",model.mRemmendModel.mBonus] ;
-    NSLog(@"分红 == %@",model.mRemmendModel.mBonus);
 
 }
 
