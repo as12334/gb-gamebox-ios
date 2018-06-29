@@ -53,7 +53,6 @@
     RH_BankCardModel *bankModel = ConvertToClassPointer(RH_BankCardModel, context);
     if (bankModel.mBankCardNumber) {
         [self.bankImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",bankModel.showBankURL]]];
-            self.bankCardNumber.text = [NSString stringWithFormat:@"%@",[bankModel.mBankCardNumber substringFromIndex:bankModel.mBankCardNumber.length-9]];
             if ([THEMEV3 isEqualToString:@"green"]){
                 self.bankCardNumber.textColor = RH_NavigationBar_BackgroundColor_Green;
             }else if ([THEMEV3 isEqualToString:@"red"]){
