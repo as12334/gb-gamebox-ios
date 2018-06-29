@@ -8,8 +8,6 @@
 
 #import "RH_APPDelegate.h"
 #import "RH_ServiceRequest.h"
-#import "SplashViewController.h"
-#import "SplashViewControllerEX.h"
 #import "RH_MainTabBarController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
@@ -26,7 +24,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 //----------------------------------------------------------
 
-@interface RH_APPDelegate ()<SplashViewControllerDelegate, StartPageViewControllerDelegate>
+@interface RH_APPDelegate ()<StartPageViewControllerDelegate>
 
 @end
 
@@ -101,12 +99,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //建立的循环保留
     [self.window setRootViewController:startPageVC];
     [self.window makeKeyAndVisible];
-}
-
-- (BOOL)splashViewControllerWillHidden:(SplashViewController *)viewController
-{
-    [self showMainWindow] ;
-    return YES;
 }
 
 - (void)showMainWindow
