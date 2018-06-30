@@ -307,13 +307,7 @@
         //check iplist
         self.progressNote = @"正在匹配服务器...";
         [self checkAllIP:ipList complete:^{
-<<<<<<< HEAD
-            weakSelf.progressNote = @"检查完成,即将进入";
-            weakSelf.progress = 1.0;
-            [weakSelf fetchAdInfo];
-=======
             [weakSelf startPageComplete];
->>>>>>> origin/dev_shin_ip
         } failed:^{
             _doitAgainBT.userInteractionEnabled = YES;
             weakSelf.currentErrCode = @"003";
@@ -352,13 +346,7 @@
             //check iplist
             weakSelf.progressNote = @"正在匹配服务器...";
             [weakSelf checkAllIP:ipList complete:^{
-<<<<<<< HEAD
-                weakSelf.progressNote = @"检查完成,即将进入";
-                weakSelf.progress = 1.0;
-                [weakSelf fetchAdInfo];
-=======
                 [weakSelf startPageComplete];
->>>>>>> origin/dev_shin_ip
             } failed:^{
                 weakSelf.currentErrCode = @"003";
             }];
@@ -418,13 +406,7 @@
                 //check iplist
                 weakSelf.progressNote = @"正在匹配服务器...";
                 [weakSelf checkAllIP:ipList complete:^{
-<<<<<<< HEAD
-                    weakSelf.progressNote = @"检查完成,即将进入";
-                    weakSelf.progress = 1.0;
-                    [weakSelf fetchAdInfo];
-=======
                     [weakSelf startPageComplete];
->>>>>>> origin/dev_shin_ip
                 } failed:^{
                     weakSelf.currentErrCode = @"003";
                 }];

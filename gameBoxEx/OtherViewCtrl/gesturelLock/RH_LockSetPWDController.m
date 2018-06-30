@@ -21,9 +21,6 @@
     BOOL isFirst;
     UILabel *label ;
 }
-
-@property (nonatomic, strong) UIView *errorView;
-@property (nonatomic, strong) UILabel *errorLbl;
 @end
 
 @implementation RH_LockSetPWDController
@@ -65,26 +62,10 @@
             isFirst = NO;
             label.text = @"请滑动绘制新手势";
             
-            if (pwdStr1.length < 4) {
-                self.errorView = [[UIView alloc] init];
-                self.errorView.frame = CGRectMake(120, 600, 135, 28);
-                self.errorView.backgroundColor = [UIColor blackColor];
-                self.errorView.alpha = 0.5;
-                [self.view addSubview:self.errorView];
-
-                self.errorLbl = [[UILabel alloc] init];
-                self.errorLbl.frame = CGRectMake(125, 600, 120, 25);
-                self.errorLbl.textColor = [UIColor whiteColor];
-                self.errorLbl.font = [UIFont systemFontOfSize:14.0];
-                self.errorLbl.text = @"请输入至少四个点";
-                self.errorLbl.textAlignment = NSTextAlignmentCenter;
-                [self.errorView addSubview:self.errorLbl];
-                [self.view addSubview:self.errorLbl];
-
-                [UIView animateWithDuration:3.0 animations:^{
-                    self.errorView.alpha = 0.0f;
-                    self.errorLbl.alpha = 0.0f;
-                }];
+            if (resultPwd.length < 4) {
+                showMessage(self.view, @"请输入至少四个点", nil);
+                isFirst = YES;
+                pwdStr1 = @"";
             }
             
             return;
