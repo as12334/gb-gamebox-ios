@@ -653,8 +653,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - V3绑定手机
 - (void)getUserPhone;
 - (void)bindPhoneSendCode:(NSString *)phone;
-- (void)bindPhone:(NSString *)phone code:(NSString *)code;
-
+- (void)bindPhone:(NSString *)phone originalPhone:(NSString *)originalPhone code:(NSString *)code;
 
 #pragma mark - 动态获取HOST
 - (void)fetchHost:(NSString *)url;

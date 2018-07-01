@@ -56,6 +56,7 @@
 #import "RH_DepositeTransferChannelModel.h"
 #import "RH_ShareRecordModel.h"
 #import "RH_InitAdModel.h"
+#import "No_AccessView.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -454,11 +455,11 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startUploadAPPErrorMessge:(NSDictionary*)errorDict
 {
-    [self _startServiceWithAPIName:self.appDelegate.domain
+    [self _startServiceWithAPIName:@"https://apiplay.info:1344/boss-api"
                         pathFormat:RH_API_NAME_COLLECTAPPERROR
                      pathArguments:nil
                    headerArguments:@{@"User-Agent":@"app_ios, iPhone",
-                                     @"Host":self.appDelegate.headerDomain
+//                                     @"Host":self.appDelegate.headerDomain
                                      }
                     queryArguments:errorDict
                      bodyArguments:nil
@@ -2425,7 +2426,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
-- (void)bindPhone:(NSString *)phone code:(NSString *)code
+- (void)bindPhone:(NSString *)phone originalPhone:(NSString *)originalPhone code:(NSString *)code
 {
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:RH_API_BINDPHONE_BINDPHONE
@@ -2434,7 +2435,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                                      @"Cookie":[RH_UserInfoManager shareUserManager].sidString,
                                      @"Host":self.appDelegate.headerDomain
                                      }
-                    queryArguments:@{@"search.contactValue":phone,@"code":code}
+                    queryArguments:@{@"search.contactValue":phone,@"code":code,@"oldPhone":originalPhone}
                      bodyArguments:nil
                           httpType:HTTPRequestTypePost
                        serviceType:ServiceRequestTypeV3BindPhone
@@ -2901,7 +2902,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                 options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                   error:&tempError] : @{};
-    if (dataObject) {
+    if (dataObject&&![dataObject isEqual:@""]) {
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataObject options:NSJSONWritingPrettyPrinted error:&error];
         NSString *jsonString11 = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSLog(@"%@",jsonString11);
@@ -2987,7 +2988,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 
                 if (response.statusCode==607){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"站点维护", nil) ;
+//                        showAlertView(@"站点维护", nil) ;
                         NSDictionary *dict =[[NSDictionary alloc]initWithObjectsAndKeys:@"607",@"textOne",nil];
                         //创建通知
                         NSNotification *notification =[NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
@@ -2997,7 +2998,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                     });
                 }else if (response.statusCode==605){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        showAlertView(@"ip被限制", nil) ;
+//                        showAlertView(@"ip被限制", nil) ;
+                        No_AccessView *accessView = [[No_AccessView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+                        [[UIApplication sharedApplication].keyWindow addSubview:accessView];
                         return ;
                     });
                    

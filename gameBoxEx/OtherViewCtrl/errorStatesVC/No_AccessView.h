@@ -1,0 +1,13 @@
+//
+//  No_AccessView.h
+//  gameBoxEx
+//
+//  Created by sam on 2018/6/26.
+//  Copyright © 2018年 luis. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface No_AccessView : UIView
+
+@end

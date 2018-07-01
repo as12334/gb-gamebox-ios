@@ -13,7 +13,7 @@
 
 - (void)bindNewPhoneViewContact:(RH_BindNewPhoneView *)view;
 - (void)bindNewPhoneViewSendCode:(RH_BindNewPhoneView *)view phone:(NSString *)phone;
-- (void)bindNewPhoneViewBind:(RH_BindNewPhoneView *)view phone:(NSString *)phone code:(NSString *)code;
+- (void)bindNewPhoneViewBind:(RH_BindNewPhoneView *)view phone:(NSString *)phone originalPhone:(NSString *)originalPhone code:(NSString *)code;
 
 @end
 

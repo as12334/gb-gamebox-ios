@@ -350,10 +350,10 @@
             _infoManager.updateUserVeifyCode = YES ;
         }
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]) {
-            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]+1] ;
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有 %ld 次机会",[userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES]] ;
         }
         if ([userInfo integerValueForKey:RH_GP_MINEMODIFYPASSWORD_REMAINTIMES] == 5) {
-            self.label_Notice.text = [NSString stringWithFormat:@"你还有1次机会"] ;
+            self.label_Notice.text = [NSString stringWithFormat:@"你还有0次机会"] ;
         }else
         {
              self.label_Notice.hidden = NO ;

@@ -23,8 +23,9 @@
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
-#define RH_APP_VERCODE                  @"5021"
-#define RH_API_MAIN_URL                         @[@"http://192.168.0.92/boss-api/"]
+#define RH_APP_VERCODE                  @"5020"
+#define RH_API_MAIN_URL                 @[@"http://boss-api-test.gbboss.com/boss-api/"]
+//@[@"http://192.168.0.92/boss-api/"]
 
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
@@ -3096,7 +3097,41 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _3qzt //金沙娱乐城
 
+#define CODE    @"3qzt"
+#define S        @"189ba1fde0b97467ca976eb521a3480e"
+#define SID        @"623"
+#define THEME    @"default.skin"
+#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _drxn //易胜博
+
+#define CODE    @"drxn"
+#define S        @"3ae1a55c3c52f15b50cd1f53331a2f01"
+#define SID        @"628"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _vqxy //马来西亚云顶赌场
+
+#define CODE    @"vqxy"
+#define S        @"461a98e924bf708ef486d8f2f32061ec"
+#define SID        @"621"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _orng //金沙娱乐场
+
+#define CODE    @"orng"
+#define S        @"219e7ad8024e527a439ce4f589558385"
+#define SID        @"625"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 

@@ -10,7 +10,6 @@
 #import "RH_MinePageBannarCell.h"
 #import "RH_UserInfoManager.h"
 #import "RH_MineSettingsViewController.h"
-#import "RH_UserInfoManager.h"
 #import "RH_MineAccountCell.h"
 #import "RH_CustomViewController.h"
 #import "RH_WithdrawCashController.h"
@@ -19,7 +18,6 @@
 #import "RH_ApplyDiscountViewController.h"
 #import "RH_MineRecordTableViewCell.h"
 #import "RH_LimitTransferViewController.h" // 额度转换原生
-#import "RH_WebsocketManagar.h"
 #import "RH_SiteMsgUnReadCountModel.h"
 
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
@@ -202,23 +200,12 @@
 -(UIBarButtonItem *)barButtonSetting
 {
     if (!_barButtonSetting){
-#if 0
-        //注释设置按钮  改成退出
-//        UIImage *menuImage = ImageWithName(@"mine_page_settings");
+        UIImage *menuImage = ImageWithName(@"mine_page_settings");
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.frame = CGRectMake(0, 0, menuImage.size.width, menuImage.size.height);
-        button.frame = CGRectMake(0, 0, 50, 30) ;
-//        [button setBackgroundImage:menuImage forState:UIControlStateNormal];
-        [button setTitle:@"退出" forState:UIControlStateNormal] ;
-        button.titleLabel.font = [UIFont systemFontOfSize:15.f] ;
+        button.frame = CGRectMake(0, 0, 44, 44) ;
+        [button setImage:menuImage forState:UIControlStateNormal];
         [button addTarget:self action:@selector(_barButtonSettingHandle) forControlEvents:UIControlEventTouchUpInside] ;
         _barButtonSetting = [[UIBarButtonItem alloc] initWithCustomView:button] ;
-#else
-        _barButtonSetting = [[UIBarButtonItem alloc] initWithTitle:@"设置"
-                                                             style:UIBarButtonItemStylePlain
-                                                            target:self
-                                                            action:@selector(_barButtonSettingHandle)] ;
-#endif
     }
     
     return _barButtonSetting ;
@@ -226,19 +213,7 @@
 
 -(void)_barButtonSettingHandle
 {
-#if 1
     [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
-#else
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否退出账号" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击取消");
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showProgressIndicatorViewWithAnimated:YES title:@"退出中..."] ;
-        [self.serviceRequest startV3UserLoginOut];
-    }]];
-    [self presentViewController:alertController animated:YES completion:nil];
-#endif
 }
 
 #pragma mark-
@@ -252,28 +227,9 @@
     self.view.backgroundColor = colorWithRGB(242, 242, 242);
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click)];
-//    [self.contentTableView addGestureRecognizer:tap];
     [self.tableViewManagement reloadData] ;
 }
--(void)click
-{
-    //测试websocket
-    [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:[NSString stringWithFormat:@"ws://192.168.0.236:8080/ws/websocket"]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
-}
-#pragma mark ==============test webSocket================
-- (void)SRWebSocketDidOpen {
-    NSLog(@"开启成功");
-    //在成功后需要做的操作。。。
-}
 
-- (void)SRWebSocketDidReceiveMsg:(NSNotification *)note {
-    //收到服务端发送过来的消息
-    NSString * message = note.object;
-    NSLog(@"message===%@",message);
-}
 #pragma mark-
 -(void)updateView
 {
@@ -428,9 +384,9 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
-                [self.appDelegate updateLoginStatus:true] ;
+                [self.appDelegate updateLoginStatus:YES] ;
             }else{
-                [self.appDelegate updateLoginStatus:false] ;
+                [self.appDelegate updateLoginStatus:NO] ;
             }
         }] ;
     }else if (type == ServiceRequestTypeV3UserLoginOut){

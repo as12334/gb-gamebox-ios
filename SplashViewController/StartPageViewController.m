@@ -14,11 +14,11 @@
 #import "RH_UpdatedVersionModel.h"
 #import "coreLib.h"
 #import "UpdateStatusCacheManager.h"
-#import "RH_StartPageADView.h"
-#import "RH_InitAdModel.h"
+#import "RH_API.h"
+#import "RH_UserInfoManager.h"
+#import <sys/utsname.h>
 
 @interface StartPageViewController ()
-
 @property (nonatomic, strong) NSString *progressNote;
 @property (nonatomic, assign) CGFloat progress;
 
@@ -28,9 +28,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) UIButton *doitAgainBT;
-@property (strong, nonatomic) RH_StartPageADView *adView;
 @property (strong, nonatomic) UIButton *errDetailBT;
 @property (strong, nonatomic) NSString *currentErrCode;
+@property (strong, nonatomic) NSMutableArray *ipCheckErrorList;
 
 @end
 
@@ -63,7 +63,7 @@
 {
     self.hiddenStatusBar = YES;
     self.hiddenNavigationBar = YES;
-
+    
     [self.launchImageView setImage:ImageWithName(@"startImage")];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -78,6 +78,14 @@
     self.doitAgainBT.clipsToBounds = YES;
     self.errDetailBT.layer.cornerRadius = 10.0;
     self.errDetailBT.clipsToBounds = YES;
+}
+
+- (NSMutableArray *)ipCheckErrorList
+{
+    if (_ipCheckErrorList == nil) {
+        _ipCheckErrorList = [NSMutableArray array];
+    }
+    return _ipCheckErrorList;
 }
 
 - (void)setProgressNote:(NSString *)progressNote
@@ -111,48 +119,11 @@
         [self.view addSubview:_doitAgainBT];
         [self.view bringSubviewToFront:_doitAgainBT];
         _doitAgainBT.whc_CenterYToView(0, self.progressView).whc_CenterXToView(-55, self.view).whc_Width(100).whc_Height(33);
-
+        
         _doitAgainBT.center = self.progressView.center;
         [_doitAgainBT addTarget:self action:@selector(doItAgainAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _doitAgainBT;
-}
-
-- (RH_StartPageADView *)adView
-{
-    if (_adView == nil) {
-        _adView = [[[NSBundle mainBundle] loadNibNamed:@"RH_StartPageADView" owner:nil options:nil] lastObject];
-        _adView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        [self.view addSubview:_adView];
-    }
-    return _adView;
-}
-
-- (void)fetchAdInfo
-{
-    __weak typeof(self) weakSelf = self;
-
-    [self.serviceRequest startV3InitAd];
-    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-        RH_InitAdModel *adModel =ConvertToClassPointer(RH_InitAdModel, data);
-        if (adModel && adModel.mInitAppAd != nil && ![adModel.mInitAppAd isEqualToString:@""]) {
-            //有广告则显示广告
-            weakSelf.adView.adImageUrl = [NSString stringWithFormat:@"%@%@",weakSelf.appDelegate.domain,adModel.mInitAppAd];
-            [weakSelf.adView show:^{
-                //广告显示完成 进入主页面
-                [weakSelf startPageComplete];
-            }];
-        }
-        else
-        {
-            //无广告 则直接进入首页
-            [weakSelf startPageComplete];
-        }
-    };
-    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-        //广告获取失败 进入主页面
-        [weakSelf startPageComplete];
-    };
 }
 
 - (UIButton *)errDetailBT
@@ -294,9 +265,7 @@
         //check iplist
         self.progressNote = @"正在匹配服务器...";
         [self checkAllIP:ipList complete:^{
-            weakSelf.progressNote = @"检查完成,即将进入";
-            weakSelf.progress = 1.0;
-            [weakSelf fetchAdInfo];
+            [weakSelf startPageComplete];
         } failed:^{
             weakSelf.currentErrCode = @"003";
         }];
@@ -334,9 +303,7 @@
             //check iplist
             weakSelf.progressNote = @"正在匹配服务器...";
             [weakSelf checkAllIP:ipList complete:^{
-                weakSelf.progressNote = @"检查完成,即将进入";
-                weakSelf.progress = 1.0;
-                [weakSelf fetchAdInfo];
+                [weakSelf startPageComplete];
             } failed:^{
                 weakSelf.currentErrCode = @"003";
             }];
@@ -396,9 +363,7 @@
                 //check iplist
                 weakSelf.progressNote = @"正在匹配服务器...";
                 [weakSelf checkAllIP:ipList complete:^{
-                    weakSelf.progressNote = @"检查完成,即将进入";
-                    weakSelf.progress = 1.0;
-                    [weakSelf fetchAdInfo];
+                    [weakSelf startPageComplete];
                 } failed:^{
                     weakSelf.currentErrCode = @"003";
                 }];
@@ -416,7 +381,7 @@
 
 /**
  * 从固定的域名列表【串行】尝试获取ip列表
-
+ 
  @param domains 动态的域名
  */
 - (void)fetchIPs:(NSArray *)domains host:(NSString *)host complete:(GBFetchIPsComplete)complete failed:(GBFetchIPsFailed)failed
@@ -431,7 +396,7 @@
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_queue_create("gb_fetchIPs_queue", NULL);
     dispatch_semaphore_t sema = dispatch_semaphore_create(1);
-
+    
     for (NSString *domain in domains) {
         dispatch_group_async(group, queue, ^{
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
@@ -445,7 +410,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
-                ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
+                //                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -462,7 +427,7 @@
                         complete(resultIPs);
                     }
                 }
-
+                
                 dispatch_semaphore_signal(sema);
             } failed:^{
                 weakSelf.progress += 0.05;
@@ -482,7 +447,7 @@
 
 /**
  从固定的域名获取ip列表
-
+ 
  @param domain 固定的域名 正式环境有三个备份域名
  */
 - (void)fetchIPListFrom:(NSString *)domain host:(NSString *)host complete:(GBFetchIPListComplete)complete failed:(GBFetchIPListFailed)failed
@@ -514,7 +479,7 @@
 
 /**
  【串行】check相应的ip
-
+ 
  @param ips IP地址列表
  @param complete check完成回调 有一种类型check成功 则认定check成功
  @param failed check失败回调 当4种类型均check失败则认定为失败
@@ -554,7 +519,7 @@
                         complete(ip, type);
                     }
                 } failed:^{
-                    weakSelf.progress += 0.05;
+                    self.progress += 0.05;
                     
                     NSLog(@"ip:%@check失败 type:%@ 继续【串行】check下一类型...", ip, checkType);
                     NSLog(@"%i",i);
@@ -575,6 +540,7 @@
 
 - (void)checkIP:(NSString *)ip checkType:(NSString *)checkType complete:(GBCheckIPComplete)complete failed:(GBCheckIPFailed)failed
 {
+    __weak typeof(self) weakSelf = self;
     [self.serviceRequest startCheckDomain:ip WithCheckType:checkType];
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeDomainCheck) {
@@ -584,6 +550,11 @@
         }
     };
     self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        NSArray *checkTypeComponents = [checkType componentsSeparatedByString:@"+"];
+        NSString *checkDomian = [NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]];
+        //记录错误日志
+        [weakSelf.ipCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomian,RH_SP_COLLECTAPPERROR_CODE:@"0",RH_SP_COLLECTAPPERROR_ERRORMESSAGE:error.description}];
+        
         if (type == ServiceRequestTypeDomainCheck) {
             if (failed) {
                 failed();
@@ -620,6 +591,7 @@
             //清空缓存
             weakSelf.progress = 0;
             [[IPsCacheManager sharedManager] clearCaches];
+            [weakSelf uploadLineCheckErr];
             if (failed) {
                 failed();
             }
@@ -629,11 +601,12 @@
 
 - (void)startPageComplete
 {
+    NSTimer *timer= [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
     __weak typeof(self) weakSelf = self;
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
         {
@@ -655,10 +628,10 @@
     paragraphStyle.alignment = NSTextAlignmentLeft;
     [messageText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, msg.length)];
     [alert setValue:messageText forKey:@"attributedMessage"];
-
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
-
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -683,4 +656,172 @@
     return @"";
 }
 
+- (void)uploadLineCheckErr
+{
+    NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
+    [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
+    [dictError setValue:[self randomMark] forKey:RH_SP_COLLECTAPPERROR_MARK] ;
+    [dictError setValue:[self localIPAddress]?[self localIPAddress]:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
+    if ([RH_UserInfoManager shareUserManager].loginUserName.length){
+        [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
+                     forKey:RH_SP_COLLECTAPPERROR_USERNAME] ;
+        [dictError setValue:[RH_UserInfoManager shareUserManager].loginTime
+                     forKey:RH_SP_COLLECTAPPERROR_LASTLOGINTIME] ;
+    }
+    NSMutableString *domainList = [[NSMutableString alloc] init] ;
+    NSMutableString *errorCodeList = [[NSMutableString alloc] init] ;
+    NSMutableString *errorMessageList = [[NSMutableString alloc] init] ;
+    for (NSDictionary *dictTmp in self.ipCheckErrorList) {
+        if (domainList.length){
+            [domainList appendString:@";"] ;
+        }
+        
+        if (errorCodeList.length){
+            [errorCodeList appendString:@";"] ;
+        }
+        
+        if (errorMessageList.length){
+            [errorMessageList appendString:@";"] ;
+        }
+        
+        [domainList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_DOMAIN]] ;
+        [errorCodeList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_CODE]] ;
+        [errorMessageList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE]] ;
+    }
+    
+    [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
+    [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
+    [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
+    [dictError setValue:@"1" forKey:RH_SP_COLLECTAPPERROR_TYPE];
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    [dictError setValue:appVersion forKey:RH_SP_COLLECTAPPERROR_VERSIONNAME];
+    NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
+    [dictError setValue:sysVersion forKey:RH_SP_COLLECTAPPERROR_SYSCODE];
+    [dictError setValue:@"iOS" forKey:RH_SP_COLLECTAPPERROR_CHANNEL];
+    NSString *deviceBrands = [[UIDevice currentDevice] model];
+    [dictError setValue:deviceBrands forKey:RH_SP_COLLECTAPPERROR_BRANDS];
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    [dictError setValue:deviceModel forKey:RH_SP_COLLECTAPPERROR_MODEL];
+    
+    [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        //
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        //
+    };
+}
+
+- (NSString *)randomMark
+{
+    static int kNumber = 6;
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *resultStr = [[NSMutableString alloc] init];
+    srand((unsigned)time(0));
+    for (int i = 0; i < kNumber; i++)
+    {
+        unsigned index = rand() % [sourceStr length];
+        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+        [resultStr appendString:oneStr];
+    }
+    return resultStr;
+}
+
+- (void)refreshLineCheck
+{
+    __weak typeof(self) weakSelf = self;
+    //测试环境使用配置的固定域名
+    //不需要去DNS获取动态bossapi
+    if (IS_DEV_SERVER_ENV) {
+        NSMutableArray *hostUrlArr = [NSMutableArray arrayWithArray:RH_API_MAIN_URL] ;
+        //从动态域名列表依次尝试获取ip列表
+        [self fetchIPs:hostUrlArr host:@"" complete:^(NSDictionary *ips) {
+            
+            //从某个固定域名列表获取到了ip列表
+            //根据优先级并发check
+            /**
+             * 优先级
+             * 1 https+8989
+             * 2 http+8787
+             * 3 https
+             * 4 http
+             */
+            NSString *resultDomain = [ips objectForKey:@"domain"];
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateHeaderDomain:resultDomain];
+            
+            NSArray *ipList = [ips objectForKey:@"ips"];
+            
+            //多ip地址【异步并发】check 但check的优先级是【串行】的
+            //使用NSOperationQueue 方便取消后续执行
+            
+            //check iplist
+            [weakSelf checkAllIP:ipList complete:^{
+                //check完成
+            } failed:^{
+            }];
+        } failed:^{
+        }];
+    }
+    else
+    {
+        //先从获取动态HOST
+        [self fetchHost:^(NSDictionary *host) {
+            NSString *hostName = [host objectForKey:@"host"];
+            
+            //将此数据随机打乱 减轻服务器压力
+            NSArray *hostips = [host objectForKey:@"ips"];
+            hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+                int seed = arc4random_uniform(2);
+                if (seed) {
+                    return [str1 compare:str2];
+                } else {
+                    return [str2 compare:str1];
+                }
+            }];
+            
+            NSMutableArray *hostUrlArr = [NSMutableArray array];
+            for (NSString *hostip in hostips) {
+                NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
+                [hostUrlArr addObject:hostUrl];
+            }
+            
+            //从动态域名列表依次尝试获取ip列表
+            [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+                
+                //从某个固定域名列表获取到了ip列表
+                //根据优先级并发check
+                /**
+                 * 优先级
+                 * 1 https+8989
+                 * 2 http+8787
+                 * 3 https
+                 * 4 http
+                 */
+                NSString *resultDomain = [ips objectForKey:@"domain"];
+                RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                [appDelegate updateHeaderDomain:resultDomain];
+                
+                NSArray *ipList = [ips objectForKey:@"ips"];
+                
+                //多ip地址【异步并发】check 但check的优先级是【串行】的
+                //使用NSOperationQueue 方便取消后续执行
+                
+                //check iplist
+                [weakSelf checkAllIP:ipList complete:^{
+                    //check完成
+                } failed:^{
+                }];
+            } failed:^{
+                //从所有的固定域名列表没有获取到ip列表
+            }];
+        } failed:^{
+        }];
+    }
+}
+
 @end
+

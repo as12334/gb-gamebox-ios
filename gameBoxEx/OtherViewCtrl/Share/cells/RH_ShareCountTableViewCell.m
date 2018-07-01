@@ -97,8 +97,9 @@
     RH_SharePlayerRecommendModel *model = ConvertToClassPointer(RH_SharePlayerRecommendModel, context) ;
     self.myShareFriendCountLab.text = [NSString stringWithFormat:@"我分享的好友数%@人",model.mRemmendModel.mUser] ;
     self.myShareAwardLab.text = [NSString stringWithFormat:@"我的分享奖励%@元",model.mRemmendModel.mSingle] ;
-    self.friendReciprocalCountLab.text = [NSString stringWithFormat:@"我的奖励%@次",model.mRemmendModel.mCount] ;
-    self.myShareBonusLab.text =  [NSString stringWithFormat:@"我的分享红利%@次",model.mRemmendModel.mBonus] ;
+    self.friendReciprocalCountLab.text = [NSString stringWithFormat:@"我的奖励次数%@次",model.mRemmendModel.mCount] ;
+    self.myShareBonusLab.text =  [NSString stringWithFormat:@"我的分享红利%@元",model.mRemmendModel.mBonus] ;
+    NSLog(@"分红 == %@",model.mRemmendModel.mBonus);
 
 }
 

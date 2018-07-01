@@ -35,6 +35,7 @@
 #import "RH_MainTabBarController.h"
 #import "RH_InitAdModel.h"
 #import "UpdateStatusCacheManager.h"
+#import "RH_StartPageADView.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -58,6 +59,7 @@
 @property (nonatomic,strong)MBProgressHUD *hud;
 @property (nonatomic,strong)NSArray *array ;
 @property (nonatomic, assign) NSInteger currentCategoryIndex;
+@property (strong, nonatomic) RH_StartPageADView *adView;
 
 @end
 
@@ -91,6 +93,7 @@
     //自动登录
     [self autoLogin] ;
     [self shoudShowUpdateAlert];
+    [self fetchAdInfo];
 }
 
 - (void)shoudShowUpdateAlert
@@ -185,6 +188,17 @@
 //
 //    return _labDomain ;
 //}
+
+- (RH_StartPageADView *)adView
+{
+    if (_adView == nil) {
+        _adView = [[[NSBundle mainBundle] loadNibNamed:@"RH_StartPageADView" owner:nil options:nil] lastObject];
+        _adView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:_adView];
+    }
+    return _adView;
+}
 
 #pragma mark - rhAlertView
 -(RH_BasicAlertView *)rhAlertView
@@ -913,6 +927,35 @@
 //        banner.urlStr = bannerModel.contentURL;
 //        [self showViewController:banner sender:self];
     }
+}
+
+- (void)fetchAdInfo
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [self.serviceRequest startV3InitAd];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        if (type == ServiceRequestTypeV3INITAD) {
+            RH_InitAdModel *adModel =ConvertToClassPointer(RH_InitAdModel, data);
+            if (adModel && adModel.mInitAppAd != nil && ![adModel.mInitAppAd isEqualToString:@""]) {
+                //有广告则显示广告
+                weakSelf.adView.adImageUrl = [NSString stringWithFormat:@"%@%@",weakSelf.appDelegate.domain,adModel.mInitAppAd];
+                [weakSelf.adView show:^{
+                    //广告显示完成 进入主页面
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf.adView removeFromSuperview];
+                    });
+                }];
+            }
+            else
+            {
+                //无广告 则直接进入首页
+            }
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        //广告获取失败 进入主页面
+    };
 }
 
 @end

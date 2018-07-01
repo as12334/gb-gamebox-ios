@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_HasOrder                 ,
 };
 
-@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate,WithdrawCashTwoCellDelegate>
+@interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate,WithdrawCashTwoCellDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property (nonatomic,strong,readonly) UISegmentedControl *mainSegmentControl ;
 @property (nonatomic, strong, readonly) UIView  *footerView;
@@ -78,13 +78,20 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     //关闭键盘
     self.view.userInteractionEnabled = YES;
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
     [self.view addGestureRecognizer:singleTap];
 }
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     [self.view endEditing:YES];
 }
-
+//会影响cell的点击
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {//判断如果点击的是tableView的cell，就把手势给关闭了
+        return NO;//关闭手势
+    }//否则手势存在
+    return YES;
+}
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
@@ -92,11 +99,12 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)setupInfo {
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
+    
     [self.contentView addSubview:self.contentTableView];
     [self.tableViewManagement reloadData];
     self.contentTableView.tableFooterView = [self footerView];
     self.contentView.backgroundColor = colorWithRGB(242, 242, 242);
-    self.contentTableView.tableFooterView = nil;
+//    self.contentTableView.tableFooterView = nil;
 }
 #pragma mark - userInfoView
 -(RH_NavigationUserInfoView *)userInfoBtnView
@@ -577,7 +585,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         withDrawLowCell.delegate  = self ;
     }else if ([cell isKindOfClass:[RH_WithdrawCashThreeCell class]] && indexPath.row == 3) {
         RH_WithdrawCashThreeCell *three = ConvertToClassPointer(RH_WithdrawCashThreeCell, cell);
-        three.separatorInset = UIEdgeInsetsMake(0, 0, 00, 0);
+        three.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }else if ([cell isKindOfClass:[RH_WithdrawCashTwoCell class]]) {
         RH_WithdrawCashTwoCell *withDrawCell = ConvertToClassPointer(RH_WithdrawCashTwoCell, cell);
         withDrawCell.delegate = self ;
@@ -599,7 +607,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     return YES;
 }
-
 
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -727,7 +734,14 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }] ;
     }
     else if (type==ServiceRequestTypeV3GETUSERASSERT){
-        _withdrawCashStatus = WithdrawCashStatus_EnterCash;
+        NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
+        float balance = [dic[@"balance"] floatValue];
+        if (balance < 100) {
+            _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash;
+        }else{
+            _withdrawCashStatus  = WithdrawCashStatus_EnterCash ;
+        }
+        
         [self updateView];
     }
 }
