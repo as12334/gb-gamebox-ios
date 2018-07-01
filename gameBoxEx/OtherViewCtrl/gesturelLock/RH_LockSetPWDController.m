@@ -56,7 +56,7 @@
     lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
     
-     [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
+    [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO];
 
     lockView.setPwdData = ^(NSString *resultPwd){
         

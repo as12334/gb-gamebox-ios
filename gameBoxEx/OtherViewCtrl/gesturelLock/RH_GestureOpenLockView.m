@@ -17,7 +17,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 @interface RH_GestureOpenLockView()
-@property(nonatomic,strong)MBProgressHUD *hud;
+@property (nonatomic,strong) MBProgressHUD *hud;
 //@property(nonatomic,strong,readonly)UIWindow *subwindow;
 @end
 
@@ -36,40 +36,41 @@
     return self;
 }
 
--(void)createUI{
+-(void)createUI
+{
 //    self.backgroundColor = RH_NavigationBar_BackgroundColor;
     //解锁界面
-    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc]initWithFrame:CGRectMake(0, 220,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateResult];
+    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc] initWithFrame:CGRectMake(0, 220,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateResult];
     lockView.center = self.center;
     lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
     lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
     [self addSubview:lockView];
-     [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO] ;
+    [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:NO];
     //解锁手势完成之后判断密码是否正确
     _hud = [[MBProgressHUD alloc] init];
     lockView.sendReaultData = ^(NSString *resultPwd){
         //        从本地获取保存的密码
-        NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;
+        NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword;
         if ([savePwd isEqualToString:resultPwd]) {//密码相同，解锁成功
             _hud.labelText = @"解锁成功";
             [self addSubview:_hud];
             _hud.mode = MBProgressHUDModeText;
             _hud.labelColor = [UIColor blueColor];
-            _boolMark =YES;
+            _boolMark = YES;
             [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1];
             [_hud show:YES];
-            ifRespondsSelector(self.delegate, @selector(gestureOpenLockViewOpenLockSuccessful:)){
-                [self.delegate gestureOpenLockViewOpenLockSuccessful:self] ;
+            ifRespondsSelector(self.delegate, @selector(gestureOpenLockViewOpenLockSuccessful:)) {
+                [self.delegate gestureOpenLockViewOpenLockSuccessful:self];
             }
+            
             return YES;
         }else{
-            
             _hud.labelText = @"解锁失败";
             [self addSubview:_hud];
             _hud.mode = MBProgressHUDModeText;
             _hud.labelColor = [UIColor redColor];
-            _boolMark =NO;
+            _boolMark = NO;
             [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1];
             [_hud show:YES];
             return NO;
@@ -92,7 +93,6 @@
         
     }
     [_hud hide:YES];
-
 }
 
 

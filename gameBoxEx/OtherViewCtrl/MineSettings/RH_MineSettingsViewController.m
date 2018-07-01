@@ -57,7 +57,7 @@
 
 - (void)setupInfo {
     [[NSNotificationCenter defaultCenter] addObserverForName:@"OpenLock_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-       NSArray *tempArr = note.object ;
+       NSArray *tempArr = note.object;
         if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && [tempArr[0] boolValue] == YES){
 
             RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;

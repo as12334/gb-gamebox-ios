@@ -30,7 +30,8 @@
     return 95.0f ;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     // Initialization code
     

@@ -22,16 +22,19 @@
 
 @implementation RH_VeriftyCloseViewController
 @synthesize verifyCloseView = _verifyCloseView;
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 //    self.hiddenStatusBar = YES ;
-    self.hiddenTabBar = YES ;
+    self.hiddenTabBar = YES;
 //    self.hiddenNavigationBar = YES ;
     
     [self.view addSubview:self.verifyCloseView];
 }
 
--(RH_VerifyCloseView *)verifyCloseView {
+-(RH_VerifyCloseView *)verifyCloseView
+{
     if (!_verifyCloseView) {
         _verifyCloseView = [[RH_VerifyCloseView alloc] initWithFrame:self.view.bounds];
         _verifyCloseView.delegate = self ;
@@ -41,7 +44,7 @@
 
 -(void)VerifyCloseViewVerifySuccessful:(RH_VerifyCloseView *)VerifyCloseView
 {
-    if (self.presentingViewController){
+    if (self.presentingViewController) {
         [self dismissViewControllerAnimated:YES completion:nil] ;
     }else{
         [self.navigationController popViewControllerAnimated:YES] ;

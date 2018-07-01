@@ -8,6 +8,9 @@
 
 #import "RH_GesturelLockView.h"
 #import "coreLib.h"
+#import "RH_VerifyCloseView.h"
+#import "RH_LockSetPWDController.h"
+
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -157,15 +160,18 @@
     for (UIButton *btn in self.subviews) {
         [btn setSelected:NO];
     }
+    
     NSMutableString *result = [NSMutableString string];
     for (UIButton *btn in self.btnsArray) {
         [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
     }
     
+        
         if (self.btnsArray.count < 4) {
+       
             self.setPwdData(result);
         }
-        
+
         else if (self.btnsArray.count >= 4) {//如果选中的点大于等于4才判断是不是正确的密码
         
         //        判断是设置密码还是解锁密码

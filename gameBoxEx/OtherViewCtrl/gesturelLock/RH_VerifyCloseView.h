@@ -11,9 +11,9 @@
 
 @protocol VerifyCloseViewDelegate
 @optional
--(void)VerifyCloseViewVerifySuccessful:(RH_VerifyCloseView*)VerifyCloseView ;
+-(void)VerifyCloseViewVerifySuccessful:(RH_VerifyCloseView*)VerifyCloseView;
 @end
 
 @interface RH_VerifyCloseView : UIView
-@property (nonatomic,weak) id<VerifyCloseViewDelegate> delegate ;
+@property (nonatomic,weak) id<VerifyCloseViewDelegate> delegate;
 @end
