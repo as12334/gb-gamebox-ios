@@ -72,7 +72,7 @@
         serverRequest = [[RH_ServiceRequest alloc] init] ;
         serverRequest.delegate = self ;
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeImageView_VerfyCode1) name:@"changeImageView_VerfyCode" object:nil];
+        
         
     }
     return self;
@@ -90,6 +90,7 @@
     if (!_serviceRequest){
         _serviceRequest = [[RH_ServiceRequest alloc] init] ;
         _serviceRequest.delegate = self ;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeImageView_VerfyCode1) name:@"changeImageView_VerfyCode" object:nil];
     }
     
     return _serviceRequest ;

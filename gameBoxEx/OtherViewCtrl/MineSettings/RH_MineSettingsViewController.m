@@ -134,6 +134,7 @@
 //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
 //                [defaults removeObjectForKey:@"password"];
 //                [defaults synchronize] ;
+                [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:@""];
                 [self backBarButtonItemHandle] ;
             });
         }] ;
