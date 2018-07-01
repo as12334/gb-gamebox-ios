@@ -218,17 +218,17 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
     
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
-//        #define RH_GuseterLock            @"RH_GuseterLock"
-//        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" " account:RH_GuseterLock];
-        // [RH_UserInfoManager shareUserManager].screenLockPassword.length
-//        if ([RH_UserInfoManager shareUserManager].isScreenLock && currentGuseterLockStr.length) {
+        #define RH_GuseterLock            @"RH_GuseterLock"
+        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" " account:RH_GuseterLock];
+//         [RH_UserInfoManager shareUserManager].screenLockPassword.length
+        if (currentGuseterLockStr.length) {
             RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
             if (tabBarController) {
                 [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
                                                                       animated:YES
                                                                     completion:nil];
 //                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
-//            }
+            }
 //            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
 //            [openLockView show] ;
         }

@@ -166,44 +166,38 @@
         [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
     }
         
-    if (self.btnsArray.count < 4) {
-   
-        self.setPwdData(result);
-    }
-    else if (self.btnsArray.count >= 4) {//如果选中的点大于等于4才判断是不是正确的密码
-        //        判断是设置密码还是解锁密码
-        switch (Amode) {
-            case PwdStateResult:
-                if (self.sendReaultData){
-                    if (self.sendReaultData(result) == YES) {
-                        
-                        [self clear];
-                    }else{
-                        [self ErrorShow];
-                    }
-                }
-                break;
-            case PwdStateSetting:
-                //如果是设置密码的话，直接调用Block传值
-                if (self.setPwdData) {
-                    self.setPwdData(result);
+    switch (Amode) {
+        case PwdStateResult:
+            if (self.sendReaultData){
+                if (self.sendReaultData(result) == YES) {
+                    
                     [self clear];
+                }else{
+                    [self ErrorShow];
                 }
-                break;
-            case PwdStateVerityClose:
-                if (self.sendReaultData){
-                    if (self.sendReaultData(result) == YES) {
-                        
-                        [self clear];
-                    }else{
-                        [self ErrorShow];
-                    }
-                }                break;
-            default:
-                NSLog(@"不执行操作，类型不对");
-                break;
-        }
+            }
+            break;
+        case PwdStateSetting:
+            //如果是设置密码的话，直接调用Block传值
+            if (self.setPwdData) {
+                self.setPwdData(result);
+                [self clear];
+            }
+            break;
+        case PwdStateVerityClose:
+            if (self.sendReaultData){
+                if (self.sendReaultData(result) == YES) {
+                    
+                    [self clear];
+                }else{
+                    [self ErrorShow];
+                }
+            }                break;
+        default:
+            NSLog(@"不执行操作，类型不对");
+            break;
     }
+
     [_slayer removeFromSuperlayer];
         _startAtButton = NO;
     }
