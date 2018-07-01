@@ -18,13 +18,16 @@
 {
     return YES ;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"投注记录详情";
     [self createUI];
 }
--(void)createUI{
+
+-(void)createUI
+{
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
@@ -36,9 +39,10 @@
     self.contentTableView.backgroundColor = RH_View_DefaultBackgroundColor ;
 //    [self setupPageLoadManager] ;
 }
+
 -(RH_LoadingIndicateView*)contentLoadingIndicateView
 {
-    return self.loadingIndicateTableViewCell.loadingIndicateView ;
+    return self.loadingIndicateTableViewCell.loadingIndicateView;
 }
 
 
@@ -56,10 +60,11 @@
 {
     [self.loadingIndicateView showNothingWithImage:ImageWithName(@"empty_searchRec_image")
                                              title:nil
-                                        detailText:@"您暂无相关数据记录"] ;
+                                        detailText:@"您暂无相关数据记录"];
     return YES ;
     
 }
+
 #pragma mark-
 -(void)netStatusChangedHandle
 {
@@ -67,11 +72,13 @@
         [self startUpdateData] ;
     }
 }
+
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
     [self.serviceRequest startV3BettingDetails:4866637] ;
 }
+
 -(void)cancelLoadDataHandle
 {
     [self.serviceRequest cancleAllServices] ;
@@ -82,7 +89,6 @@
 {
     [self startUpdateData] ;
 }
-
 
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data

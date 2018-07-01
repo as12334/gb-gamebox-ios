@@ -235,7 +235,7 @@
 -(void)updateScreenLockFlag:(BOOL)lock
 {
     #define RH_updateScreenLockFlag            @"updateScreenLockFlag"
-    [SAMKeychain setPassword:lock?@"1":@"0" forService:@" " account:RH_updateScreenLockFlag] ;
+    [SAMKeychain setPassword:lock?@"1":@"0" forService:@" " account:RH_updateScreenLockFlag];
 }
 
 #pragma mark-

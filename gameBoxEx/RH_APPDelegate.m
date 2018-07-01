@@ -205,28 +205,30 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _customUrl = tmpStr ;
     }
 }
+
 -(void)setWhetherNewSystemNotice:(NSString *)whetherNewSystemNotice
 {
     _whetherNewSystemNotice = whetherNewSystemNotice;
 }
+
 #pragma mark- For MeiQia---overload function
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [super applicationWillEnterForeground:application] ;
 
     
-    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        #define RH_GuseterLock            @"RH_GuseterLock"
-        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" "account:RH_GuseterLock];
+    if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
+//        #define RH_GuseterLock            @"RH_GuseterLock"
+//        NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" " account:RH_GuseterLock];
         // [RH_UserInfoManager shareUserManager].screenLockPassword.length
-        if ([RH_UserInfoManager shareUserManager].isScreenLock && currentGuseterLockStr.length){
-            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController) ;
-            if (tabBarController){
+//        if ([RH_UserInfoManager shareUserManager].isScreenLock && currentGuseterLockStr.length) {
+            RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
+            if (tabBarController) {
                 [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
                                                                       animated:YES
-                                                                    completion:nil] ;
+                                                                    completion:nil];
 //                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
-            }
+//            }
 //            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
 //            [openLockView show] ;
         }
