@@ -109,16 +109,16 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
     //显示主界面
     if (self.window==nil){
-        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] ;
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
 
 #if 1
-    self.window.rootViewController = [RH_MainTabBarController viewController] ;
+    self.window.rootViewController = [RH_MainTabBarController viewController];
 #else
-    self.window.rootViewController = [RH_MainTabBarControllerEx createInstanceEmbedInNavigationControllerWithContext:nil] ;
+    self.window.rootViewController = [RH_MainTabBarControllerEx createInstanceEmbedInNavigationControllerWithContext:nil];
 #endif
     
-    [self.window makeKeyAndVisible] ;
+    [self.window makeKeyAndVisible];
 
     [self completedShowMainWindow];
     if (IS_DEV_SERVER_ENV || IS_TEST_SERVER_ENV)
@@ -144,28 +144,28 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         if (_isLogin !=loginStatus){
-            NSLog(@"updateLoginStatus :%d",loginStatus) ;
-            _isLogin = loginStatus ;
+            NSLog(@"updateLoginStatus :%d",loginStatus);
+            _isLogin = loginStatus;
             
             if (!_isLogin){
-                [[RH_UserInfoManager shareUserManager] setUserSafetyInfo:nil] ;
-                [[RH_UserInfoManager shareUserManager] setMineSettingInfo:nil] ;
-                [[RH_UserInfoManager shareUserManager] setUserWithDrawInfo:nil] ;
+                [[RH_UserInfoManager shareUserManager] setUserSafetyInfo:nil];
+                [[RH_UserInfoManager shareUserManager] setMineSettingInfo:nil];
+                [[RH_UserInfoManager shareUserManager] setUserWithDrawInfo:nil];
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil];
         }
     }else{
-        NSLog(@"updateLoginStatus :%d",loginStatus) ;
-        _isLogin = loginStatus ;
+        NSLog(@"updateLoginStatus :%d",loginStatus);
+        _isLogin = loginStatus;
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil] ;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NT_LoginStatusChangedNotification object:nil];
     }
 }
 
 -(void)updateApiDomain:(NSString*)apiDomain
 {
     if (_apiDomain.length==0){
-        _apiDomain = apiDomain ;
+        _apiDomain = apiDomain;
     }
 }
 -(void)updateHeaderDomain:(NSString *)headerDomain
@@ -174,35 +174,35 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         _headerDomain = headerDomain;
     }
 }
--(void)updateDomain:(NSString*)domain ;
+-(void)updateDomain:(NSString*)domain;
 {
-    NSString *tmpStr = domain.trim ;
+    NSString *tmpStr = domain.trim;
     tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
     tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
     
-    NSLog(@".....domain:%@",tmpStr) ;
-    _domain = tmpStr ;
+    NSLog(@".....domain:%@",tmpStr);
+    _domain = tmpStr;
 }
 
 -(void)updateServicePath:(NSString*)servicePath
 {
     if (servicePath !=_servicePath){
-        NSString *tmpStr = servicePath.trim ;
-        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
-        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+        NSString *tmpStr = servicePath.trim;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""];
 
-        _servicePath = tmpStr ;
+        _servicePath = tmpStr;
     }
 }
 
 -(void)setCustomUrl:(NSString *)customUrl
 {
     if (customUrl !=_customUrl){
-        NSString *tmpStr = customUrl.trim ;
-        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
-        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""] ;
+        NSString *tmpStr = customUrl.trim;
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\r" withString:@""];
         
-        _customUrl = tmpStr ;
+        _customUrl = tmpStr;
     }
 }
 
@@ -214,7 +214,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 #pragma mark- For MeiQia---overload function
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [super applicationWillEnterForeground:application] ;
+    [super applicationWillEnterForeground:application];
 
     
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {

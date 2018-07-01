@@ -10,11 +10,11 @@
 #import "RH_SharePlayerRecommendModel.h"
 
 
-@class RH_FirstBigCellHeadView ;
+@class RH_FirstBigCellHeadView;
 @protocol firstBigCellHeadViewDelegate<NSObject>
 @optional
--(void)firstBigCellHeadViewDidChangedSelectedIndex:(RH_FirstBigCellHeadView*)firstBigCellHeadView SelectedIndex:(NSInteger)selectedIndex ;
+-(void)firstBigCellHeadViewDidChangedSelectedIndex:(RH_FirstBigCellHeadView*)firstBigCellHeadView SelectedIndex:(NSInteger)selectedIndex;
 @end
 @interface RH_FirstBigCellHeadView : UIView
-@property (nonatomic,weak) id<firstBigCellHeadViewDelegate> delegate ;
+@property (nonatomic,weak) id<firstBigCellHeadViewDelegate> delegate;
 @end

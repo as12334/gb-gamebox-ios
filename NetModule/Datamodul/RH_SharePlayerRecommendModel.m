@@ -28,10 +28,10 @@
 -(id)initWithInfoDic:(NSDictionary *)info
 {
     if (self = [super initWithInfoDic:info]) {
-        _mCount = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_COUNT] ;
-        _mUser = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_USER] ;
-        _mSingle = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_SINGLE] ;
-        _mBonus = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_BOUNDS] ;
+        _mCount = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_COUNT];
+        _mUser = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_USER];
+        _mSingle = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_SINGLE];
+        _mBonus = [info stringValueForKey:RH_GP_SHAREPLAYERRECOMMEND_BOUNDS];
     }
     return self;
 }
