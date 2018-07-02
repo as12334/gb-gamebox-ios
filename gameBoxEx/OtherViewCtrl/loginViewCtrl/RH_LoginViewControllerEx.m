@@ -143,13 +143,6 @@
 
 -(void)setupUI{
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults objectForKey:@"account"]) {
-        self.loginViewCell.usernameTextfield.text = [defaults objectForKey:@"account"];
-        self.loginViewCell.passwordTextfield.text = [defaults objectForKey:@"password"];
-    }
-    
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self ;
     self.contentTableView.dataSource = self ;

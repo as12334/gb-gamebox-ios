@@ -28,7 +28,8 @@
 @property (nonatomic,strong) IBOutlet UIImageView *imgVerifyCode ;
 @property (weak, nonatomic) IBOutlet UILabel *usernameNotice;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
-
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *codeLab;
 @property (weak, nonatomic) IBOutlet UITextField *verifyTextfield;
