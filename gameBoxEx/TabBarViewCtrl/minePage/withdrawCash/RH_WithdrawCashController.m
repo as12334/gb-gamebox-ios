@@ -739,7 +739,8 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         if (balance < 100) {
             _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash;
         }else{
-            _withdrawCashStatus  = WithdrawCashStatus_EnterCash ;
+            //重新请求数据
+            _withdrawCashStatus  = WithdrawCashStatus_Init;
         }
         
         [self updateView];
