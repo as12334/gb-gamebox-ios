@@ -415,7 +415,12 @@
             [self.delegate loginViewViewControllerExTouchBack:self BackToFirstPage:_backToFirstPage];
         }
     }else{
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        if (self.presentingViewController) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+             [self.navigationController popToRootViewControllerAnimated:NO];
+        }
+       
         self.myTabBarController.selectedIndex = 0 ;
     }
     
