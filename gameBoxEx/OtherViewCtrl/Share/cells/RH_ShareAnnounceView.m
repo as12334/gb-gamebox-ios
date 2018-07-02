@@ -66,7 +66,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17];
         label.textColor = colorWithRGB(51, 51, 51);
-        label.text = @"活动公告";
+        label.text = @"活动规则";
         self.cancelButton = [[UIButton alloc] init];
         
         if ([THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"green_white"]){
