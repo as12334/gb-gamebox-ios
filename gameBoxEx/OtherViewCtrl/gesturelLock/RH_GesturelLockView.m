@@ -165,7 +165,6 @@
     for (UIButton *btn in self.btnsArray) {
         [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
     }
-        
     switch (Amode) {
         case PwdStateResult:
             if (self.sendReaultData){
@@ -192,7 +191,8 @@
                 }else{
                     [self ErrorShow];
                 }
-            }                break;
+            }
+            break;
         default:
             NSLog(@"不执行操作，类型不对");
             break;

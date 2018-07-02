@@ -65,6 +65,8 @@
     return NO ;
 }
 
+
+
 #pragma mark -
 - (void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView {
     if (self.webURL.absoluteString.length){
