@@ -283,8 +283,8 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     [self showMainWindow];
 }
 - (void)applicationWillTerminate:(UIApplication *)application {
-    if (!self.isLogin) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults objectForKey:@"loginIsRemberPassword"]) {
         [defaults removeObjectForKey:@"password"];
         [defaults removeObjectForKey:@"account"];
         [defaults removeObjectForKey:@"loginIsRemberPassword"];
