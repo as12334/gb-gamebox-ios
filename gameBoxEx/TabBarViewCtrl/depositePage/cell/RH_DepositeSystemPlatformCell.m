@@ -81,7 +81,6 @@
 {
     [self.collectionView setCollectionViewLayout:self.flowLayout];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
     self.collectionView.backgroundColor = [UIColor whiteColor] ;
     self.collectionView.scrollEnabled = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
