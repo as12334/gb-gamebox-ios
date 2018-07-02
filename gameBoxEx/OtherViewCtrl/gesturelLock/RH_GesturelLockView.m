@@ -165,12 +165,6 @@
     for (UIButton *btn in self.btnsArray) {
         [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
     }
-        
-    if (self.btnsArray.count < 4) {
-   
-        self.setPwdData(result);
-    }
-    else if (self.btnsArray.count >= 4) {//如果选中的点大于等于4才判断是不是正确的密码
         //        判断是设置密码还是解锁密码
         switch (Amode) {
             case PwdStateResult:
@@ -203,7 +197,6 @@
                 NSLog(@"不执行操作，类型不对");
                 break;
         }
-    }
     [_slayer removeFromSuperlayer];
         _startAtButton = NO;
     }
