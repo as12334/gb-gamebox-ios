@@ -72,29 +72,29 @@
         timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
         dispatch_source_set_timer(timer, DISPATCH_TIME_NOW,
                                   1.0 * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
-    }
-    __weak typeof(self) weakSelf = self;
-    __block int i = 0;
-    dispatch_source_set_event_handler(timer, ^() {
-        i++;
-
-        if (i<4) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.skipBt setTitle:[NSString stringWithFormat:@"%i秒后跳过", 4-i] forState:UIControlStateNormal];
-            });
-        }
-        else
-        {
-            dispatch_suspend(timer);
-            [weakSelf clearTimer];
-            //结束显示
-            if (weakSelf.complete) {
-                weakSelf.complete();
+        __weak typeof(self) weakSelf = self;
+        __block int i = 0;
+        dispatch_source_set_event_handler(timer, ^() {
+            i++;
+            
+            if (i<4) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.skipBt setTitle:[NSString stringWithFormat:@"%i秒后跳过", 4-i] forState:UIControlStateNormal];
+                });
             }
-        }
-    });
-    
-    dispatch_resume(timer);
+            else
+            {
+                dispatch_suspend(timer);
+                [weakSelf clearTimer];
+                //结束显示
+                if (weakSelf.complete) {
+                    weakSelf.complete();
+                }
+            }
+        });
+        
+        dispatch_resume(timer);
+    }
 }
 
 - (IBAction)skip:(id)sender {
