@@ -20,6 +20,7 @@
 @property (nonatomic,assign)NSInteger cellStatusIndex;
 @property (nonatomic,strong)RH_DepositeTansferCounterModel *counterModel;
 @property (nonatomic,strong)NSArray *counterArray;
+@property(nonatomic,strong)UICollectionViewFlowLayout *flowLayout;
 @end
 
 @implementation RH_DepositeSystemPlatformCell
@@ -63,32 +64,30 @@
 }
 #pragma mark--
 #pragma mark--lazy
-- (UICollectionView *)collectionView{
-    if (!_collectionView) {
-        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumLineSpacing = 19.f;
-        flowLayout.minimumInteritemSpacing = 5.0f ;
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
-        flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+- (UICollectionViewFlowLayout *)flowLayout{
+    if (!_flowLayout) {
+        _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        _flowLayout.minimumLineSpacing = 19.f;
+        _flowLayout.minimumInteritemSpacing = 5.0f ;
+        _flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
+        _flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
+        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         //    flowLayout.itemSize =CGSizeMake(170, 40);
-        [_collectionView setCollectionViewLayout:flowLayout];
-        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        _collectionView.backgroundColor = [UIColor whiteColor] ;
-        _collectionView.scrollEnabled = NO;
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.showsVerticalScrollIndicator = NO;
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 19, 10) ;
     }
-    return _collectionView;
+    return _flowLayout;
 }
 #pragma mark-
 -(void)setupUI
 {
-  
+    [self.collectionView setCollectionViewLayout:self.flowLayout];
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.collectionView.backgroundColor = [UIColor whiteColor] ;
+    self.collectionView.scrollEnabled = NO;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 19, 10) ;
     [self.collectionView registerCellWithClass:[RH_DepositeSystemPlatformSubCell class]];
 }
 
