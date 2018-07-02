@@ -42,7 +42,12 @@
     }
     else if ([nameStr isEqualToString:@"alipay"]){
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填入“商户订单号”(非必填)";
+        if ([SID isEqualToString:@"119"]|| [SID isEqualToString:@"270"]) {
+            self.payTextfield.placeholder = @"请填入“商户订单号”(必填)";
+        }else{
+            self.payTextfield.placeholder = @"请填入“商户订单号”(非必填)";
+        }
+        
     }
     else if ([nameStr isEqualToString:@"qq"]){
         self.payLabel.text = @"订单号后五位";
