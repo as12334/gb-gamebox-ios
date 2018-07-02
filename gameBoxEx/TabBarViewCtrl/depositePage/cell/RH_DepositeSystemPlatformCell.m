@@ -23,8 +23,6 @@
 @end
 
 @implementation RH_DepositeSystemPlatformCell
-@synthesize collectionView = _collectionView ;
-
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     NSArray *array = ConvertToClassPointer(NSArray, context);
@@ -48,6 +46,7 @@
 {
     [self awakeFromNib];
 }
+
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
@@ -62,28 +61,35 @@
        [self.collectionView reloadData] ;
     }
 }
-
+#pragma mark--
+#pragma mark--lazy
+- (UICollectionView *)collectionView{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.minimumLineSpacing = 19.f;
+        flowLayout.minimumInteritemSpacing = 5.0f ;
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
+        flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        //    flowLayout.itemSize =CGSizeMake(170, 40);
+        [_collectionView setCollectionViewLayout:flowLayout];
+        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        _collectionView.backgroundColor = [UIColor whiteColor] ;
+        _collectionView.scrollEnabled = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 19, 10) ;
+    }
+    return _collectionView;
+}
 #pragma mark-
 -(void)setupUI
 {
-    UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 19.f;
-    flowLayout.minimumInteritemSpacing = 5.0f ;
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0.f, 5, 0.f);
-    flowLayout.itemSize = CGSizeMake(HomeCategoryItemsCellWidth, HomeCategoryItemsCellHeight) ;
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//    flowLayout.itemSize =CGSizeMake(170, 40);
-    [_collectionView setCollectionViewLayout:flowLayout];
-    _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    _collectionView.backgroundColor = [UIColor whiteColor] ;
-    _collectionView.scrollEnabled = NO;
-    _collectionView.showsHorizontalScrollIndicator = NO;
-    _collectionView.showsVerticalScrollIndicator = NO;
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 19, 10) ;
-    [_collectionView registerCellWithClass:[RH_DepositeSystemPlatformSubCell class]];
+  
+    [self.collectionView registerCellWithClass:[RH_DepositeSystemPlatformSubCell class]];
 }
 
 #pragma mark -
