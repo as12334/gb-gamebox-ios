@@ -42,7 +42,11 @@
     }
     else if ([nameStr isEqualToString:@"wechat"]){
         self.payforWayLabel.text = @"订单号后五位";
-        self.orderNumTextfiled.placeholder = @"请填写“商户订单号”(非必填)";
+        if ([SID isEqualToString:@"119"]|| [SID isEqualToString:@"270"]) {
+            self.orderNumTextfiled.placeholder = @"请填入“商户订单号”(必填)";
+        }else{
+            self.orderNumTextfiled.placeholder = @"请填入“商户订单号”(非必填)";
+        }
     }
     else if ([nameStr isEqualToString:@"alipay"]){
         self.payforWayLabel.text = @"您的支付宝账号";
