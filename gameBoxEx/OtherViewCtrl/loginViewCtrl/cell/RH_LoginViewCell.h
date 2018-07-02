@@ -20,5 +20,7 @@
 @property(nonatomic,readonly,strong) NSString *userName ;
 @property(nonatomic,readonly,strong) NSString *userPassword ;
 @property(nonatomic,readonly,strong) NSString *verifyCode ;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 @property(nonatomic,assign,readonly) BOOL isRemberPassword ;
 @end
