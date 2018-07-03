@@ -50,6 +50,8 @@
 }
 
 - (void)doItAgainAction:(id)sender {
+    self.doitAgainBT.enabled = NO;
+    self.errDetailBT.enabled = NO;
     [self doRequest];
 }
 
@@ -100,6 +102,8 @@
     self.progressView.hidden = (_progress == 0);
     self.doitAgainBT.hidden = (_progress != 0);
     self.errDetailBT.hidden = (_progress != 0);
+    self.doitAgainBT.enabled = (_progress == 0);
+    self.errDetailBT.enabled = (_progress == 0);
     self.progressView.progress = _progress;
     if (_progress == 0) {
         self.progressNote = @"";
