@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="cRightsLB" destination="fTd-vS-hVz" id="aDl-oi-0US"/>
                 <outlet property="launchImageView" destination="tmK-xH-9JN" id="k1e-EP-hCX"/>
+                <outlet property="logoImg" destination="F3h-7F-Qat" id="fAl-kJ-1sm"/>
                 <outlet property="progressNoteLB" destination="ksO-Cp-aqj" id="2fh-tu-00a"/>
                 <outlet property="progressView" destination="RGm-Bq-Y0U" id="8Xz-mP-Af3"/>
                 <outlet property="versionLB" destination="teE-8w-hFk" id="IPB-iZ-gAq"/>
@@ -34,7 +35,7 @@
                         <constraint firstAttribute="height" constant="18" id="xap-4b-87m"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teE-8w-hFk">
@@ -44,7 +45,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="zN4-yV-jVd"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksO-Cp-aqj">
@@ -54,7 +55,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="bHW-am-wCT"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RGm-Bq-Y0U">
@@ -64,6 +65,13 @@
                         <constraint firstAttribute="width" constant="150" id="gm9-hy-c71"/>
                     </constraints>
                 </progressView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-7F-Qat">
+                    <rect key="frame" x="117" y="304" width="140" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="KCM-u1-RRR"/>
+                        <constraint firstAttribute="width" constant="140" id="k5o-S7-ULH"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -73,12 +81,14 @@
                 <constraint firstItem="teE-8w-hFk" firstAttribute="top" secondItem="fTd-vS-hVz" secondAttribute="bottom" constant="10" id="DJy-k0-zic"/>
                 <constraint firstItem="teE-8w-hFk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HC9-yb-Ak5"/>
                 <constraint firstAttribute="bottom" secondItem="tmK-xH-9JN" secondAttribute="bottom" id="LC3-hD-ghH"/>
+                <constraint firstItem="F3h-7F-Qat" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Pv5-kR-jKY"/>
                 <constraint firstItem="fTd-vS-hVz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ati-3q-w0N"/>
                 <constraint firstItem="RGm-Bq-Y0U" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h2y-JM-LT8"/>
                 <constraint firstItem="tmK-xH-9JN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hHK-Y6-HfW"/>
                 <constraint firstAttribute="bottom" secondItem="teE-8w-hFk" secondAttribute="bottom" constant="15" id="ok0-bo-B4R"/>
                 <constraint firstItem="fTd-vS-hVz" firstAttribute="top" secondItem="ksO-Cp-aqj" secondAttribute="bottom" constant="50" id="yum-Bt-ksG"/>
                 <constraint firstItem="tmK-xH-9JN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zXA-td-BcP"/>
+                <constraint firstItem="F3h-7F-Qat" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="zfK-jx-XH9"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
