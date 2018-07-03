@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionLB;
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImg;
+
 @property (strong, nonatomic) UIButton *doitAgainBT;
 @property (strong, nonatomic) UIButton *errDetailBT;
 @property (strong, nonatomic) NSString *currentErrCode;
@@ -70,7 +72,7 @@
     self.hiddenNavigationBar = YES;
     
     [self.launchImageView setImage:ImageWithName(@"startImage")];
-    
+    [self.logoImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"app_logo_%@",SID]]];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
