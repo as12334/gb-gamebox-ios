@@ -186,36 +186,39 @@
         [self.navigationController pushViewController:[RH_AboutUsViewController viewController] animated:YES] ;
     }
     else if (indexPath.row==4){
-        [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
-       //清除缓存文件
-        [[IPsCacheManager sharedManager] clearCaches];
-        
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-        NSString *path = [paths lastObject];
-        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:path];
-        for (NSString *p in files) {
-            NSError *error;
-            NSString *Path = [path stringByAppendingPathComponent:p];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:Path]) {
-                //清理缓存，保留Preference，里面含有NSUserDefaults保存的信息
-                if (![Path containsString:@"Preferences"]) {
-                    [[NSFileManager defaultManager] removeItemAtPath:Path error:&error];
-                    //清除sdimage缓存图片
-                    [[SDImageCache sharedImageCache]clearMemory];
-                    //计算缓存
-                    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-                    CGFloat fileSize=[self folderSizeAtPath:libPath];
-                    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
-                    float mbCache = bytesCache/1000/1000 + fileSize;
-                    self.mbCache = mbCache;
-                    [self.tableViewManagement reloadData];
-                    [self.contentTableView reloadData];
-                    [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
-                        showMessage(self.view, @"缓存已清除", nil);
-                    }];
+        if ([[NSString stringWithFormat:@"%.2f",self.mbCache] isEqualToString:@"0.00"]) {
+            showMessage(self.view, @"当前无缓存数据!", nil) ;
+        }else
+        {
+            [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
+            //清除缓存文件
+            [[IPsCacheManager sharedManager] clearCaches];
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *path = [paths lastObject];
+            NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:path];
+            for (NSString *p in files) {
+                NSError *error;
+                NSString *Path = [path stringByAppendingPathComponent:p];
+                if ([[NSFileManager defaultManager] fileExistsAtPath:Path]) {
+                    //清理缓存，保留Preference，里面含有NSUserDefaults保存的信息
+                    if (![Path containsString:@"Preferences"]) {
+                        [[NSFileManager defaultManager] removeItemAtPath:Path error:&error];
+                        //清除sdimage缓存图片
+                        [[SDImageCache sharedImageCache]clearMemory];
+                        //计算缓存
+                        NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+                        CGFloat fileSize=[self folderSizeAtPath:libPath];
+                        NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+                        float mbCache = bytesCache/1000/1000 + fileSize;
+                        self.mbCache = mbCache;
+                        [self.tableViewManagement reloadData];
+                        [self.contentTableView reloadData];
+                        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                            showMessage(self.view, @"缓存已清除", nil);
+                        }];
+                    }
                 }
-            }else{
-                
             }
         }
     }
