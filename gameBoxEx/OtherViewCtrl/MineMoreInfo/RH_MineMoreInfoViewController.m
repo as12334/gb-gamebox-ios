@@ -188,6 +188,7 @@
     else if (indexPath.row==4){
         if ([[NSString stringWithFormat:@"%.2f",self.mbCache] isEqualToString:@"0.00"]) {
             showMessage(self.view, @"当前无缓存数据!", nil) ;
+            return YES;
         }else
         {
             [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
