@@ -13,6 +13,8 @@
 #import "RH_LotteryInfoModel.h"
 #import <WebKit/WebKit.h>
 #import "coreLib.h"
+#import "RH_BettingInfoModel.h"
+
 @interface RH_GamesViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;
 @property(nonatomic,strong,readonly) UIImageView *imageFirstPage ;
@@ -24,6 +26,7 @@
     NSInteger _apiID  ;
     RH_LotteryAPIInfoModel *_apiInfoModel  ;
     RH_LotteryInfoModel *_lotteryInfoModel ;
+    RH_BettingInfoModel *_bettingInfoModel  ;
 }
 @synthesize gameBgImage = _gameBgImage              ;
 @synthesize imageFirstPage = _imageFirstPage        ;
@@ -40,7 +43,12 @@
         _apiInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, context) ;
     }else if ([context isKindOfClass:[RH_LotteryInfoModel class]]){
         _lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, context) ;
-    }else{
+    }
+    else if ([context isKindOfClass:[RH_BettingInfoModel class]])
+    {
+        _bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, context);
+    }
+    else{
         _apiID = [context integerValue] ;
     }
 }
@@ -84,6 +92,7 @@
         [self.serviceRequest startv3GetGamesLinkForCheeryLink:_lotteryInfoModel.mGameLink] ;
 
     }else{
+        self.appDelegate.customUrl = _bettingInfoModel.showDetailUrl;
         [self setupInfo] ;
     }
 }
