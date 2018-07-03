@@ -155,53 +155,60 @@
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    if (_startAtButton==YES) {
-    for (UIButton *btn in self.subviews) {
-        [btn setSelected:NO];
-    }
-    
-    NSMutableString *result = [NSMutableString string];
-    for (UIButton *btn in self.btnsArray) {
-        [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
-    }
-    switch (Amode) {
-        case PwdStateResult:
-            if (self.sendReaultData){
-                if (self.sendReaultData(result) == YES) {
-                    
-                    [self clear];
-                }else{
-                    [self ErrorShow];
+    {
+        if (_startAtButton==YES) {
+            for (UIButton *btn in self.subviews) {
+                [btn setSelected:NO];
+            }
+            CGPoint movePoint = [self getCurrentTouch:touches];
+            UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
+            if (btn){
+                [self.btnsArray addObject:btn];
+            }
+            
+            
+            NSMutableString *result = [NSMutableString string];
+            for (UIButton *btn in self.btnsArray) {
+                [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];
+            }
+            NSLog(@"result===%@",result);
+            switch (Amode) {
+                case PwdStateResult:
+                if (self.sendReaultData){
+                    if (self.sendReaultData(result) == YES) {
+                        
+                        [self clear];
+                    }else{
+                        [self ErrorShow];
+                    }
                 }
-            }
-            break;
-        case PwdStateSetting:
-            //如果是设置密码的话，直接调用Block传值
-            if (self.setPwdData) {
-                self.setPwdData(result);
-                [self clear];
-            }
-            break;
-        case PwdStateVerityClose:
-            if (self.sendReaultData){
-                if (self.sendReaultData(result) == YES) {
-                    
+                break;
+                case PwdStateSetting:
+                //如果是设置密码的话，直接调用Block传值
+                if (self.setPwdData) {
+                    self.setPwdData(result);
                     [self clear];
-                }else{
-                    [self ErrorShow];
                 }
+                break;
+                case PwdStateVerityClose:
+                if (self.sendReaultData){
+                    if (self.sendReaultData(result) == YES) {
+                        
+                        [self clear];
+                    }else{
+                        [self ErrorShow];
+                    }
+                }
+                break;
+                default:
+                NSLog(@"不执行操作，类型不对");
+                break;
             }
-            break;
-        default:
-            NSLog(@"不执行操作，类型不对");
-            break;
+            
+            [_slayer removeFromSuperlayer];
+            _startAtButton = NO;
+        }
     }
-
-    [_slayer removeFromSuperlayer];
-        _startAtButton = NO;
-    }
-}
 
 -(void)ErrorShow
 {  // 密码不正确处理方式
