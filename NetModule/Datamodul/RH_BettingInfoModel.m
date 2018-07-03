@@ -106,11 +106,9 @@
                  _showDetailUrl = [NSString stringWithFormat:@"%@",_mURL] ;
             }else
             {
-                if ([[_mURL substringToIndex:1] isEqualToString:@"/"]){
-                    _showDetailUrl = [NSString stringWithFormat:@"http://%@%@",appDelegate.headerDomain,_mURL] ;
-                }else {
-                    _showDetailUrl = [NSString stringWithFormat:@"https://%@:8989/%@",appDelegate.headerDomain,_mURL] ;
-                }
+                NSArray *checkTypeCom = [appDelegate.checkType componentsSeparatedByString:@"+"];
+                _showDetailUrl = [NSString stringWithFormat:@"%@://%@%@%@",checkTypeCom[0],appDelegate.headerDomain,checkTypeCom.count == 2 ? [NSString stringWithFormat:@":%@",checkTypeCom[1]] : @"",_mURL];
+                NSLog(@"");
             }
            
         }
