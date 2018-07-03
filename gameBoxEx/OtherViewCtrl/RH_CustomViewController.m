@@ -396,5 +396,8 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
 }
-
+- (void)dealloc
+{
+    
+}
 @end
