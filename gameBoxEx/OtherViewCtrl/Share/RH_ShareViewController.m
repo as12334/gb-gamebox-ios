@@ -282,6 +282,9 @@
     
     
     NSString *startDateStr =dateStringWithFormatter(startDate, @"yyyy-MM-dd");
+    if (startDateStr == nil) {
+        startDateStr = @"2018-7-4";
+    }
     NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd");
     if ([startDateStr compare:endDateStr]==NSOrderedDescending) {
         showMessage(self.view, @"选择的日期不对，请重新选择", nil);
