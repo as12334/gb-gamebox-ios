@@ -80,7 +80,7 @@
         
         #define RH_GuseterLock            @"RH_GuseterLock"
         if ([pwdStr1 isEqualToString:pwdStr2]) {
-            [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:pwdStr1];
+            [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:resultPwd];
             [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES];
             label.text = @"锁屏手势设置成功！";
 //            [self backBarButtonItemHandle];

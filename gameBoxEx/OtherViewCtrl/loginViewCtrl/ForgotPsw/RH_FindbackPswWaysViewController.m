@@ -28,6 +28,41 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"忘记密码";
     [self.view addSubview:self.findbackPswWayView];
+    __weak typeof(self) weakSelf = self;
+
+    //检测是否打开该功能
+    [self.serviceRequest checkForgetPswStatus];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        if (type == ServiceRequestTypeV3ForgetPswCheckStatus)
+        {
+            if (data) {
+                int code = [[data objectForKey:@"code"] intValue];
+                if (code == 0) {
+                    int switchStatus = [[data objectForKey:@"data"] intValue];
+                    if (switchStatus == 1) {
+                        //打开
+                        weakSelf.findbackPswWayView.findbackPswH.constant = 50;
+                    }
+                    else
+                    {
+                        //关闭
+                        weakSelf.findbackPswWayView.findbackPswH.constant = 0;
+                    }
+                }
+            }
+            else
+            {
+                //关闭
+                weakSelf.findbackPswWayView.findbackPswH.constant = 0;
+            }
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        if (type == ServiceRequestTypeV3ForgetPswCheckStatus)
+        {
+            weakSelf.findbackPswWayView.findbackPswH.constant = 0;
+        }
+    };
 }
 
 - (void)didReceiveMemoryWarning {

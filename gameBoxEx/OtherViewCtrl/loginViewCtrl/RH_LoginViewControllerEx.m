@@ -296,11 +296,7 @@
                 showMessage(self.view, @"登录成功", nil);
                 //登录成功后，记录用户名，密码，以便自动登录
                 self.isLogin = YES;
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:self.loginViewCell.userName forKey:@"account"];
-                [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
-                [defaults setObject:@(self.loginViewCell.isRemberPassword) forKey:@"loginIsRemberPassword"] ;
-                [defaults synchronize];
+                
                 [appDelegate updateLoginStatus:YES] ;
                 
                 [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName
@@ -313,11 +309,18 @@
 
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
-                NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword ;
-                if (savePwd.length > 0 && savePwd != nil) {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSString *account = [defaults stringForKey:@"account"] ;
+                if ([self.loginViewCell.userName isEqualToString:account]) {
                     RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
                     [self cw_pushViewController:verifyCloseView];
+                }else{
+                    [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:@""];
                 }
+                [defaults setObject:self.loginViewCell.userName forKey:@"account"];
+                [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
+                [defaults setObject:@(self.loginViewCell.isRemberPassword) forKey:@"loginIsRemberPassword"] ;
+                [defaults synchronize];
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
                 if (![[result objectForKey:@"message"] isEqual:[NSNull null]]) {
