@@ -76,6 +76,7 @@
             <connections>
                 <outlet property="cornerView" destination="xmE-3q-HEp" id="cdA-ob-pPA"/>
             </connections>
+            <point key="canvasLocation" x="-132" y="36"/>
         </view>
     </objects>
     <resources>

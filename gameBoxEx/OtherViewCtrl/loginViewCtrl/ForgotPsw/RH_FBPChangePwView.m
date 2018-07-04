@@ -8,11 +8,13 @@
 
 #import "RH_FBPChangePwView.h"
 #import "MacroDef.h"
+//#import "MBProgressHUD.h"
+
 
 @interface RH_FBPChangePwView ()
 
-@property (weak, nonatomic) IBOutlet UITextField *pswTF;
-@property (weak, nonatomic) IBOutlet UITextField *verifyPswTF;
+//@property (weak, nonatomic) IBOutlet UITextField *pswTF;
+//@property (weak, nonatomic) IBOutlet UITextField *verifyPswTF;
 @property (weak, nonatomic) IBOutlet UIButton *changeBt;
 
 @end
@@ -34,7 +36,7 @@
 
 - (IBAction)changeAction:(id)sender {
     if ([self.pswTF.text isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"请输入新密码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"请输入新密" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         return;
     }
@@ -43,6 +45,9 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"请再次输入新密码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         return;
+    } else if (self.verifyPswTF.text.length < 6) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"请输入至少6-20个字母、数字或字符" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
     
     if (![self.pswTF.text isEqualToString:self.verifyPswTF.text]) {
@@ -52,10 +57,15 @@
 
     }
     
-    ifRespondsSelector(self.delegate, @selector(changePwViewSubmit:psw:))
-    {
-        [self.delegate changePwViewSubmit:self psw:self.verifyPswTF.text];
+    if (self.pswTF.text.length >= 6 && self.verifyPswTF.text.length >= 6) {
+        
+        ifRespondsSelector(self.delegate, @selector(changePwViewSubmit:psw:))
+        {
+            [self.delegate changePwViewSubmit:self psw:self.verifyPswTF.text];
+        }
     }
+    
+
 }
 
 

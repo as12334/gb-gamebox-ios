@@ -79,6 +79,7 @@
                 <outlet property="textF" destination="hnq-OM-uGK" id="db0-Hi-8U7"/>
                 <outlet property="titleLab" destination="tTK-XK-SZH" id="S07-Ba-alA"/>
             </connections>
+            <point key="canvasLocation" x="-564" y="-22"/>
         </view>
     </objects>
 </document>

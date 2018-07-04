@@ -81,7 +81,7 @@
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3ForgetPswFindbackPsw){
+    if (type == ServiceRequestTypeV3ForgetPswFindbackPsw) {
         int code = [[data objectForKey:@"code"] intValue];
         if (code == 0) {
             [self.view addSubview:self.successView];

@@ -20,5 +20,6 @@
 
 @property (nonatomic, strong) UIColor *themeColor;
 @property (nonatomic, weak) id <RH_FBPChangePwViewDelegate> delegate;
-
+@property (weak, nonatomic) IBOutlet UITextField *pswTF;
+@property (weak, nonatomic) IBOutlet UITextField *verifyPswTF;
 @end

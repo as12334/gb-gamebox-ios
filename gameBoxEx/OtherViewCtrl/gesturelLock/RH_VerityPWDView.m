@@ -15,11 +15,14 @@
 @end
 @implementation RH_VerityPWDView
 
-- (void)awakeFromNib{
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.num = 5;
 }
-- (IBAction)netBtnClick:(id)sender {
+
+- (IBAction)netBtnClick:(id)sender
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *passWord = [defaults objectForKey:@"password"];
     if (self.textF.text.length != 0) {
@@ -27,7 +30,7 @@
             //成功
             #define RH_GuseterLock  @"RH_GuseterLock"
             [SAMKeychain deletePasswordForService:@" " account:RH_GuseterLock];
-#define RH_updateScreenLockFlag            @"updateScreenLockFlag"
+            #define RH_updateScreenLockFlag  @"updateScreenLockFlag"
             [SAMKeychain deletePasswordForService:@" " account:RH_updateScreenLockFlag];
             [self.delegate setPSW];
         }else{
@@ -47,6 +50,7 @@
     }
   
 }
+
 - (IBAction)forgetBtnClick:(id)sender {
     [self.delegate forgetPSWBtnClick];
 }

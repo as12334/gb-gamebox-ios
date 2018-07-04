@@ -141,6 +141,7 @@
                 <outlet property="pswTF" destination="Np1-iC-kQe" id="h3J-cq-LqE"/>
                 <outlet property="verifyPswTF" destination="ELv-pi-6M7" id="aNK-Np-ns5"/>
             </connections>
+            <point key="canvasLocation" x="-172" y="-19"/>
         </view>
     </objects>
 </document>
