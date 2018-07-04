@@ -93,6 +93,9 @@
 		22F626A720566E5E00094564 /* login_touxiang_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A520566E5E00094564 /* login_touxiang_black@2x.png */; };
 		22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A620566E5E00094564 /* login_touxiang_black@3x.png */; };
 		22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */; };
+		5401C52020EC720D0027246D /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401C51C20EC720B0027246D /* RH_VerityPWDView.m */; };
+		5401C52120EC720D0027246D /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401C51D20EC720C0027246D /* RH_VeriftyLoginPWDViewController.m */; };
+		5401C52220EC720D0027246D /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5401C51E20EC720C0027246D /* RH_VerityPWDView.xib */; };
 		545B303520C6B1140040129B /* CLRefreshBaseControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B303320C6B1140040129B /* CLRefreshBaseControl.m */; };
 		5469BFDA20C7CC49006080D1 /* RH_GameListCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFD920C7CC49006080D1 /* RH_GameListCategoryView.m */; };
 		5469BFDC20C7CC53006080D1 /* RH_GameListCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469BFDB20C7CC53006080D1 /* RH_GameListCategoryView.xib */; };
@@ -685,9 +688,6 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
-		BF18951620EB7B140015B27E /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF18951520EB7B140015B27E /* RH_VeriftyLoginPWDViewController.m */; };
-		BF18951920EB7B980015B27E /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF18951820EB7B980015B27E /* RH_VerityPWDView.m */; };
-		BF18951B20EB7BA50015B27E /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF18951A20EB7BA50015B27E /* RH_VerityPWDView.xib */; };
 		F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */; };
 		F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00520BBAEBB00E55BAB /* libicucore.tbd */; };
 		F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00720BBAEC200E55BAB /* CFNetwork.framework */; };
@@ -943,6 +943,11 @@
 		22F626A520566E5E00094564 /* login_touxiang_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@2x.png"; sourceTree = "<group>"; };
 		22F626A620566E5E00094564 /* login_touxiang_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@3x.png"; sourceTree = "<group>"; };
 		22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
+		5401C51B20EC72080027246D /* RH_VeriftyLoginPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyLoginPWDViewController.h; sourceTree = "<group>"; };
+		5401C51C20EC720B0027246D /* RH_VerityPWDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
+		5401C51D20EC720C0027246D /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
+		5401C51E20EC720C0027246D /* RH_VerityPWDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_VerityPWDView.xib; sourceTree = "<group>"; };
+		5401C51F20EC720D0027246D /* RH_VerityPWDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VerityPWDView.h; sourceTree = "<group>"; };
 		545B303320C6B1140040129B /* CLRefreshBaseControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRefreshBaseControl.m; sourceTree = "<group>"; };
 		545B303420C6B1140040129B /* CLRefreshBaseControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRefreshBaseControl.h; sourceTree = "<group>"; };
 		5469BFD820C7CC49006080D1 /* RH_GameListCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListCategoryView.h; sourceTree = "<group>"; };
@@ -1988,11 +1993,6 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
-		BF18951420EB7B140015B27E /* RH_VeriftyLoginPWDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyLoginPWDViewController.h; sourceTree = "<group>"; };
-		BF18951520EB7B140015B27E /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
-		BF18951720EB7B980015B27E /* RH_VerityPWDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_VerityPWDView.h; sourceTree = "<group>"; };
-		BF18951820EB7B980015B27E /* RH_VerityPWDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
-		BF18951A20EB7BA50015B27E /* RH_VerityPWDView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_VerityPWDView.xib; sourceTree = "<group>"; };
 		F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
 		F61DA00520BBAEBB00E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -4749,6 +4749,11 @@
 		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
 			isa = PBXGroup;
 			children = (
+				5401C51B20EC72080027246D /* RH_VeriftyLoginPWDViewController.h */,
+				5401C51D20EC720C0027246D /* RH_VeriftyLoginPWDViewController.m */,
+				5401C51F20EC720D0027246D /* RH_VerityPWDView.h */,
+				5401C51C20EC720B0027246D /* RH_VerityPWDView.m */,
+				5401C51E20EC720C0027246D /* RH_VerityPWDView.xib */,
 				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
 				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
 				F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */,
@@ -4759,13 +4764,8 @@
 				F6E402072001F0B200C52B97 /* RH_GestureOpenLockView.m */,
 				794429F8203FC18C006F5A20 /* RH_VeriftyCloseViewController.h */,
 				794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */,
-				BF18951420EB7B140015B27E /* RH_VeriftyLoginPWDViewController.h */,
-				BF18951520EB7B140015B27E /* RH_VeriftyLoginPWDViewController.m */,
 				794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */,
 				794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */,
-				BF18951720EB7B980015B27E /* RH_VerityPWDView.h */,
-				BF18951820EB7B980015B27E /* RH_VerityPWDView.m */,
-				BF18951A20EB7BA50015B27E /* RH_VerityPWDView.xib */,
 			);
 			path = gesturelLock;
 			sourceTree = "<group>";
@@ -5124,7 +5124,7 @@
 				22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */,
 				A0AE8AAE1FFCD57300836C1B /* RH_MineMoreNextCell.xib in Resources */,
 				5469BFEC20C8E44C006080D1 /* RH_GameListCell.xib in Resources */,
-				BF18951B20EB7BA50015B27E /* RH_VerityPWDView.xib in Resources */,
+				5401C52220EC720D0027246D /* RH_VerityPWDView.xib in Resources */,
 				F69E35262063A1300028D3A1 /* RH_DepositeMoneyBankCell.xib in Resources */,
 				F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */,
 				F6FB641120142C3400EEED4E /* RH_ForgetPasswordView.xib in Resources */,
@@ -5495,6 +5495,7 @@
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				546CE6FF20CA778D00273C40 /* RH_BindPhoneViewController.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
+				5401C52120EC720D0027246D /* RH_VeriftyLoginPWDViewController.m in Sources */,
 				7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
@@ -5528,7 +5529,6 @@
 				B8107AB91FFDCB780086DDC3 /* RH_MineSafetyCenterCell.m in Sources */,
 				A0109FB71F8788FF004E6EF4 /* UIImage+ImageEffects.m in Sources */,
 				A0109FB81F8788FF004E6EF4 /* UIImage+Orientation.m in Sources */,
-				BF18951920EB7B980015B27E /* RH_VerityPWDView.m in Sources */,
 				222790D920A28BE10017F9F2 /* RH_BannerDetailVCViewController.m in Sources */,
 				7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */,
 				7937C4392072073B0010CD0C /* PGDatePicker+MinuteAndSecond.m in Sources */,
@@ -5601,7 +5601,6 @@
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
 				54CDEF8720CBD3A60080EB68 /* RH_FBPChangePwView.m in Sources */,
-				BF18951620EB7B140015B27E /* RH_VeriftyLoginPWDViewController.m in Sources */,
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
 				A0109FD31F8788FF004E6EF4 /* DNImagePickerController.m in Sources */,
@@ -5749,6 +5748,7 @@
 				F69E1E9820C77DF2006F9185 /* RH_MineMoreClearStorageCell.m in Sources */,
 				A0109F761F8787E4004E6EF4 /* CLSectionControl.m in Sources */,
 				B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */,
+				5401C52020EC720D0027246D /* RH_VerityPWDView.m in Sources */,
 				F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */,
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				546CE6E920CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m in Sources */,
