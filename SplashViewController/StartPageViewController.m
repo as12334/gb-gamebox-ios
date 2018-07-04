@@ -17,6 +17,8 @@
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
 #import <sys/utsname.h>
+#import "RH_InitAdModel.h"
+#import "RH_StartPageADView.h"
 
 @interface StartPageViewController ()
 @property (nonatomic, strong) NSString *progressNote;
@@ -27,10 +29,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionLB;
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImg;
+
 @property (strong, nonatomic) UIButton *doitAgainBT;
 @property (strong, nonatomic) UIButton *errDetailBT;
 @property (strong, nonatomic) NSString *currentErrCode;
 @property (strong, nonatomic) NSMutableArray *ipCheckErrorList;
+@property (strong, nonatomic) RH_StartPageADView *adView;
 
 @end
 
@@ -50,6 +55,8 @@
 }
 
 - (void)doItAgainAction:(id)sender {
+    self.doitAgainBT.enabled = NO;
+    self.errDetailBT.enabled = NO;
     [self doRequest];
 }
 
@@ -65,7 +72,7 @@
     self.hiddenNavigationBar = YES;
     
     [self.launchImageView setImage:ImageWithName(@"startImage")];
-    
+    [self.logoImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"app_logo_%@",SID]]];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
@@ -78,6 +85,16 @@
     self.doitAgainBT.clipsToBounds = YES;
     self.errDetailBT.layer.cornerRadius = 10.0;
     self.errDetailBT.clipsToBounds = YES;
+}
+
+- (RH_StartPageADView *)adView
+{
+    if (_adView == nil) {
+        _adView = [[[NSBundle mainBundle] loadNibNamed:@"RH_StartPageADView" owner:nil options:nil] lastObject];
+        _adView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [self.view addSubview:_adView];
+    }
+    return _adView;
 }
 
 - (NSMutableArray *)ipCheckErrorList
@@ -100,6 +117,8 @@
     self.progressView.hidden = (_progress == 0);
     self.doitAgainBT.hidden = (_progress != 0);
     self.errDetailBT.hidden = (_progress != 0);
+    self.doitAgainBT.enabled = (_progress == 0);
+    self.errDetailBT.enabled = (_progress == 0);
     self.progressView.progress = _progress;
     if (_progress == 0) {
         self.progressNote = @"";
@@ -601,18 +620,19 @@
 
 - (void)startPageComplete
 {
-    NSTimer *timer= [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
     __weak typeof(self) weakSelf = self;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
-        {
-            [weakSelf.delegate startPageViewControllerShowMainPage:self];
-        }
-    });
+    [self fetchAdInfo:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
+            {
+                [weakSelf.delegate startPageViewControllerShowMainPage:self];
+            }
+        });
+    }];
 }
 
 - (void)showErrAlertWithErrCode:(NSString *)code otherInfo:(NSDictionary *)otherInfo
@@ -821,6 +841,41 @@
         } failed:^{
         }];
     }
+}
+
+- (void)fetchAdInfo:(GBShowAdComplete)complete
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [self.serviceRequest startV3InitAd];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        if (type == ServiceRequestTypeV3INITAD) {
+            RH_InitAdModel *adModel =ConvertToClassPointer(RH_InitAdModel, data);
+            if (adModel && adModel.mInitAppAd != nil && ![adModel.mInitAppAd isEqualToString:@""]) {
+                //有广告则显示广告
+                weakSelf.adView.adImageUrl = [NSString stringWithFormat:@"%@%@",weakSelf.appDelegate.domain,adModel.mInitAppAd];
+                [weakSelf.adView show:^{
+                    //广告显示完成 进入主页面
+                    if (complete) {
+                        complete();
+                    }
+                }];
+            }
+            else
+            {
+                //无广告 则直接进入首页
+                if (complete) {
+                    complete();
+                }
+            }
+        }
+    };
+    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        //广告获取失败 进入主页面
+        if (complete) {
+            complete();
+        }
+    };
 }
 
 @end

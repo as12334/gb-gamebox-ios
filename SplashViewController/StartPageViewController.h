@@ -27,6 +27,8 @@ typedef void(^GBFetchHostFailed)(void);
 typedef void(^GBCheckAllIPsComplete)(void);
 typedef void(^GBCheckAllIPsFailed)(void);
 
+typedef void(^GBShowAdComplete)(void);
+
 @class StartPageViewController;
 @protocol StartPageViewControllerDelegate
 

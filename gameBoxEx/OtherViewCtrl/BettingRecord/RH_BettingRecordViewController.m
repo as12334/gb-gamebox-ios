@@ -15,7 +15,8 @@
 #import "coreLib.h"
 #import "RH_BettingRecordDetailController.h"
 #import "RH_BettingInfoModel.h"
-#import "RH_CustomViewController.h"
+#import "RH_GamesViewController.h"
+
 //#import "RH_BettingDetailWebController.h"
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
 @property(nonatomic,strong,readonly) RH_BettingRecordHeaderView *bettingRecordHeaderView ;
@@ -375,14 +376,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
-#if 0
-        [self showViewController:[RH_BettingRecordDetailController viewControllerWithContext:[self.pageLoadManager dataAtIndexPath:indexPath]]
-                          sender:self] ;
-#else
         RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
         self.appDelegate.customUrl = bettingInfoModel.showDetailUrl ;
-        [self showViewController:[RH_CustomViewController viewControllerWithContext:bettingInfoModel] sender:self] ;
-#endif
+        [self showViewController:[RH_GamesViewController viewControllerWithContext:bettingInfoModel] sender:self] ;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
 }
