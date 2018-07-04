@@ -12,7 +12,8 @@ DerivedData/*
   
 # Exclude OS X folder attributes   
  
-.DS_Store  
+.DS_Store
+**/.DS_Store  
   
 # Exclude user-specific XCode 3 and 4 files   
   
