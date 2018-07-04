@@ -8,7 +8,6 @@
 
 #import "RH_LockSetPWDController.h"
 #import "RH_GesturelLockView.h"
-#import "RH_GesturelLockController.h"
 #import "RH_UserInfoManager.h"
 #import "coreLib.h"
 #import "SAMKeychain.h"

@@ -78,8 +78,18 @@
             return NO;
         }
     };
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"忘记手势密码？" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, (self.frame.size.height + SCREEN_WIDTH)/2.0 , SCREEN_WIDTH, 30);
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btn];
 }
-
+-(void)btnClick{
+    [self.delegate forgetGesturePWD];
+}
 
 -(void)hideProgressHUD
 {

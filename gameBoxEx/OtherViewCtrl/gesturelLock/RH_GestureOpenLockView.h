@@ -13,6 +13,7 @@
 @protocol GestureOpenLockViewDelegate
 @optional
 -(void)gestureOpenLockViewOpenLockSuccessful:(RH_GestureOpenLockView*)gestureOpenLockView;
+-(void)forgetGesturePWD;
 @end
 
 @interface RH_GestureOpenLockView : UIView

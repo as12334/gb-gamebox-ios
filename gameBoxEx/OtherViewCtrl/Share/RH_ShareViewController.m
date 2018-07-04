@@ -279,21 +279,23 @@
 #pragma mark ==============searchbtn delegate================
 -(void)firstBigViewCellSearchSharelist:(NSDate *)startDate endDate:(NSDate *)endDate
 {
-    
-    
     NSString *startDateStr =dateStringWithFormatter(startDate, @"yyyy-MM-dd");
-    if (startDateStr == nil) {
-        startDateStr = @"2018-7-4";
-    }
     NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd");
-    if ([startDateStr compare:endDateStr]==NSOrderedDescending) {
-        showMessage(self.view, @"选择的日期不对，请重新选择", nil);
-        return;
+   
+    if (startDateStr == nil && endDateStr == nil) {
+         [self getCurrentTimes];
+    }else {
+        if ([startDateStr compare:endDateStr]==NSOrderedDescending) {
+            showMessage(self.view, @"选择的日期不对，请重新选择", nil);
+            return;
+        }
     }
+    
     startDateStr = [startDateStr stringByAppendingString:@" 00:00:01"];
     endDateStr = [endDateStr stringByAppendingString:@" 23:59:59"];
     [self.serviceRequest startV3SharePlayerRecordStartTime:startDateStr endTime:endDateStr pageNumber:0 pageSize:50];
 }
+
 
 
 @end

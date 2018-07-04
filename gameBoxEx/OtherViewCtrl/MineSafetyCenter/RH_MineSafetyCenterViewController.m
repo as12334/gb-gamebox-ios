@@ -12,7 +12,6 @@
 #import "RH_ModifyPasswordController.h"
 #import "RH_ModifySafetyPasswordController.h"
 #import "RH_BankCardController.h"
-#import "RH_GesturelLockController.h"
 #import "coreLib.h"
 #import "RH_UserInfoManager.h"
 #import "RH_UserGroupInfoModel.h"

@@ -8,6 +8,7 @@
 
 #import "RH_ChangePswSuccessView.h"
 #import "MacroDef.h"
+#import "RH_FBPChangePwView.h"
 
 @interface RH_ChangePswSuccessView ()
 @property (weak, nonatomic) IBOutlet UIView *cornerView;
@@ -23,11 +24,16 @@
     self.cornerView.clipsToBounds = YES;
 }
 
-- (IBAction)close:(id)sender {
-    ifRespondsSelector(self.delegate, @selector(changePswSuccessViewClose:))
-    {
-        [self.delegate changePswSuccessViewClose:self];
-    }
+- (IBAction)close:(id)sender
+{
+   
+        ifRespondsSelector(self.delegate, @selector(changePswSuccessViewClose:))
+        {
+            [self.delegate changePswSuccessViewClose:self];
+        }
+    
+    
+   
 }
 
 

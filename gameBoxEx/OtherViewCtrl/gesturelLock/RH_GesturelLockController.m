@@ -11,6 +11,7 @@
 #import "RH_LockSetPWDController.h"
 #import "MBProgressHUD.h"
 #import "RH_GestureOpenLockView.h"
+#import "RH_VeriftyLoginPWDViewController.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -52,5 +53,8 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
-
+- (void)forgetGesturePWD{
+    RH_VeriftyLoginPWDViewController *vc = [[RH_VeriftyLoginPWDViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end
