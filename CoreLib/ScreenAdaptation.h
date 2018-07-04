@@ -13,6 +13,7 @@
 #define StatusBarHoldHeight     (GreaterThanIOS7System ? StatusBarHeight : 0.f)
 #define NavigationBarHeight     44.f
 #define TabBarHeight            49.f
+#define STATUS_HEIGHT  [[UIApplication  sharedApplication] statusBarFrame].size.height
 
 //---------------------------------------------
 

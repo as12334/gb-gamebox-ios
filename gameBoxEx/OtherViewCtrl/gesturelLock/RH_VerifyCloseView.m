@@ -37,9 +37,13 @@
 -(void)createUI
 {
     //    self.backgroundColor = RH_NavigationBar_BackgroundColor;
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, (self.frame.size.height - SCREEN_WIDTH)/2.0-40, SCREEN_WIDTH, 20)];
+    lab.text = @"请绘制解锁图案";
+    lab.font = [UIFont systemFontOfSize:20];
+    lab.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:lab];
     //解锁界面
-    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc] initWithFrame:CGRectMake(0, 220,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateVerityClose];
-    lockView.center = self.center;
+    RH_GesturelLockView *lockView = [[RH_GesturelLockView alloc] initWithFrame:CGRectMake(0, (self.frame.size.height - SCREEN_WIDTH)/2.0,SCREEN_WIDTH,SCREEN_WIDTH) WithMode:PwdStateVerityClose];
     lockView.btnSelectdImgae = [UIImage imageNamed:@"gesturelLock_Selected"];
     lockView.btnImage = [UIImage imageNamed:@"gesturelLock_normal"];
     lockView.btnErrorImage = [UIImage imageNamed:@"gesturelLock_error"];
@@ -80,6 +84,13 @@
             }
 //        }
     };
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"忘记手势密码？" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, (self.frame.size.height + SCREEN_WIDTH)/2.0 , SCREEN_WIDTH, 30);
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btn];
 }
 
 -(void)hideProgressHUD
@@ -98,5 +109,9 @@
     [_hud hide:YES];
 }
 
-
+-(void)btnClick{
+    ifRespondsSelector(self.delegate, @selector(fogetPassWordBtnClick)){
+        [self.delegate fogetPassWordBtnClick];
+    }
+}
 @end

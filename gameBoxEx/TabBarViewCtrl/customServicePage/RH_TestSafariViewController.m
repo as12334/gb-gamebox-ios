@@ -29,6 +29,7 @@
 //}
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.hiddenNavigationBar = YES;
     self.hiddenTabBar = NO;
     if ([_urlMark isEqual:@1]) {

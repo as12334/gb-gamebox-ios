@@ -60,21 +60,22 @@
        NSArray *tempArr = note.object;
         if ([SITE_TYPE isEqualToString:@"integratedv3oc"] && [tempArr[0] boolValue] == YES){
 
-            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
-            if (tabBarController){
-                [tabBarController.selectedViewController presentViewController:[RH_LockSetPWDController viewController]
-                                                                      animated:YES
-                                                                    completion:nil] ;
-            }
+//            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
+//            if (tabBarController){
+//                [tabBarController.selectedViewController presentViewController:[RH_LockSetPWDController viewController]
+//                                                                      animated:YES
+//                                                                    completion:nil] ;
+//            }
+             [self.navigationController pushViewController:[RH_LockSetPWDController viewController] animated:YES];
         }else if([SITE_TYPE isEqualToString:@"integratedv3oc"] && [tempArr[0] boolValue] == NO){
             
-            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
-            if (tabBarController){
-                [tabBarController.selectedViewController presentViewController:[RH_VeriftyCloseViewController viewController]
-                                                                      animated:YES
-                                                                    completion:nil] ;
-            }
-         
+//            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
+//            if (tabBarController){
+//                [tabBarController.selectedViewController presentViewController:[RH_VeriftyCloseViewController viewController]
+//                                                                      animated:YES
+//                                                                    completion:nil] ;
+//            }
+            [self.navigationController pushViewController:[RH_VeriftyCloseViewController viewController] animated:YES];
 
         }
     }];

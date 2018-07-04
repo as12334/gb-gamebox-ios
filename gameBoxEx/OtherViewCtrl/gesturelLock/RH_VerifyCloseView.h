@@ -12,6 +12,7 @@
 @protocol VerifyCloseViewDelegate
 @optional
 -(void)VerifyCloseViewVerifySuccessful:(RH_VerifyCloseView*)VerifyCloseView;
+-(void)fogetPassWordBtnClick;
 @end
 
 @interface RH_VerifyCloseView : UIView
