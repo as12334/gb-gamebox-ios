@@ -20,6 +20,7 @@
 
 @interface RH_FindbackPswWayView : UIView
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *findbackPswH;
 @property (nonatomic, strong) UIColor *themeColor;
 @property (nonatomic, weak) id <RH_FindbackPswWayViewDelegate> delegate;
 
