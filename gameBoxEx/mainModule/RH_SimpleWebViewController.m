@@ -1226,7 +1226,11 @@
     {
         [self.webView goBack];
     }else {
-        [self backBarButtonItemHandle] ;
+        if (self.presentingViewController){
+            [self dismissViewControllerAnimated:YES completion:nil] ;
+        }else{
+            [self.navigationController popViewControllerAnimated:YES] ;
+        }
     }
 }
 
