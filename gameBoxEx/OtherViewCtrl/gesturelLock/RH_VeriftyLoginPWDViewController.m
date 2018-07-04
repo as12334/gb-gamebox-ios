@@ -34,6 +34,7 @@
 #pragma mark--
 #pragma mark--忘记密码点击事件
 - (void)forgetPSWBtnClick{
+  
     UITabBarController *tab = self.tabBarController;
     [self.navigationController popToRootViewControllerAnimated:NO];
     [tab setSelectedIndex:3];

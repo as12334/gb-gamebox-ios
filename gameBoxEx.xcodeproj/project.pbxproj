@@ -87,15 +87,11 @@
 		22C2E152202705D9008C0C06 /* login_touxiang_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */; };
 		22C2E15520271F5C008C0C06 /* login_touxiang_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15320271F5B008C0C06 /* login_touxiang_green@2x.png */; };
 		22C2E15620271F5C008C0C06 /* login_touxiang_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E15420271F5B008C0C06 /* login_touxiang_green@3x.png */; };
-		22F1554520E2552800980446 /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F1554320E2552700980446 /* No_AccessView.m */; };
 		22F626A320566E3E00094564 /* home_announce_close_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A120566E3E00094564 /* home_announce_close_black@2x.png */; };
 		22F626A420566E3E00094564 /* home_announce_close_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A220566E3E00094564 /* home_announce_close_black@3x.png */; };
 		22F626A720566E5E00094564 /* login_touxiang_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A520566E5E00094564 /* login_touxiang_black@2x.png */; };
 		22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F626A620566E5E00094564 /* login_touxiang_black@3x.png */; };
 		22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */; };
-		5401C52020EC720D0027246D /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401C51C20EC720B0027246D /* RH_VerityPWDView.m */; };
-		5401C52120EC720D0027246D /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5401C51D20EC720C0027246D /* RH_VeriftyLoginPWDViewController.m */; };
-		5401C52220EC720D0027246D /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5401C51E20EC720C0027246D /* RH_VerityPWDView.xib */; };
 		545B303520C6B1140040129B /* CLRefreshBaseControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 545B303320C6B1140040129B /* CLRefreshBaseControl.m */; };
 		5469BFDA20C7CC49006080D1 /* RH_GameListCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5469BFD920C7CC49006080D1 /* RH_GameListCategoryView.m */; };
 		5469BFDC20C7CC53006080D1 /* RH_GameListCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5469BFDB20C7CC53006080D1 /* RH_GameListCategoryView.xib */; };
@@ -140,8 +136,6 @@
 		54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */; };
 		54CDEF8C20CBD6B70080EB68 /* RH_ChangePswSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */; };
 		54CDEF8E20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */; };
-		54EA6C0920DA2A9D00C0C74F /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */; };
-		54EA6C0B20DA2AA800C0C74F /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -688,6 +682,12 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		BFF3845520ECC99500ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845420ECC99500ED3ACB /* No_AccessView.m */; };
+		BFF3845B20ECC9EE00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3845820ECC9ED00ED3ACB /* RH_VerityPWDView.xib */; };
+		BFF3845C20ECC9EE00ED3ACB /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845920ECC9ED00ED3ACB /* RH_VerityPWDView.m */; };
+		BFF3845D20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845A20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m */; };
+		BFF3846120ECCA8F00ED3ACB /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845F20ECCA8F00ED3ACB /* RH_StartPageADView.m */; };
+		BFF3846220ECCA8F00ED3ACB /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846020ECCA8F00ED3ACB /* RH_StartPageADView.xib */; };
 		F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */; };
 		F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00520BBAEBB00E55BAB /* libicucore.tbd */; };
 		F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00720BBAEC200E55BAB /* CFNetwork.framework */; };
@@ -936,18 +936,11 @@
 		22C2E150202705D9008C0C06 /* login_touxiang_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_default@2x.png"; sourceTree = "<group>"; };
 		22C2E15320271F5B008C0C06 /* login_touxiang_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_green@2x.png"; sourceTree = "<group>"; };
 		22C2E15420271F5B008C0C06 /* login_touxiang_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_green@3x.png"; sourceTree = "<group>"; };
-		22F1554320E2552700980446 /* No_AccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = No_AccessView.m; sourceTree = "<group>"; };
-		22F1554420E2552700980446 /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
 		22F626A120566E3E00094564 /* home_announce_close_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_black@2x.png"; sourceTree = "<group>"; };
 		22F626A220566E3E00094564 /* home_announce_close_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_black@3x.png"; sourceTree = "<group>"; };
 		22F626A520566E5E00094564 /* login_touxiang_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@2x.png"; sourceTree = "<group>"; };
 		22F626A620566E5E00094564 /* login_touxiang_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@3x.png"; sourceTree = "<group>"; };
 		22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
-		5401C51B20EC72080027246D /* RH_VeriftyLoginPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyLoginPWDViewController.h; sourceTree = "<group>"; };
-		5401C51C20EC720B0027246D /* RH_VerityPWDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
-		5401C51D20EC720C0027246D /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
-		5401C51E20EC720C0027246D /* RH_VerityPWDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_VerityPWDView.xib; sourceTree = "<group>"; };
-		5401C51F20EC720D0027246D /* RH_VerityPWDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VerityPWDView.h; sourceTree = "<group>"; };
 		545B303320C6B1140040129B /* CLRefreshBaseControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRefreshBaseControl.m; sourceTree = "<group>"; };
 		545B303420C6B1140040129B /* CLRefreshBaseControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRefreshBaseControl.h; sourceTree = "<group>"; };
 		5469BFD820C7CC49006080D1 /* RH_GameListCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListCategoryView.h; sourceTree = "<group>"; };
@@ -1021,9 +1014,6 @@
 		54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangePswSuccessView.h; sourceTree = "<group>"; };
 		54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangePswSuccessView.m; sourceTree = "<group>"; };
 		54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangePswSuccessView.xib; sourceTree = "<group>"; };
-		54EA6C0720DA2A9D00C0C74F /* RH_StartPageADView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
-		54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
-		54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -1993,6 +1983,16 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		BFF3845320ECC98100ED3ACB /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
+		BFF3845420ECC99500ED3ACB /* No_AccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = No_AccessView.m; sourceTree = "<group>"; };
+		BFF3845620ECC9ED00ED3ACB /* RH_VeriftyLoginPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyLoginPWDViewController.h; sourceTree = "<group>"; };
+		BFF3845720ECC9ED00ED3ACB /* RH_VerityPWDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VerityPWDView.h; sourceTree = "<group>"; };
+		BFF3845820ECC9ED00ED3ACB /* RH_VerityPWDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_VerityPWDView.xib; sourceTree = "<group>"; };
+		BFF3845920ECC9ED00ED3ACB /* RH_VerityPWDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
+		BFF3845A20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
+		BFF3845E20ECCA8F00ED3ACB /* RH_StartPageADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
+		BFF3845F20ECCA8F00ED3ACB /* RH_StartPageADView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
+		BFF3846020ECCA8F00ED3ACB /* RH_StartPageADView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
 		F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
 		F61DA00520BBAEBB00E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -2381,10 +2381,10 @@
 		22B8EED520945938001BFA08 /* errorStatesVC */ = {
 			isa = PBXGroup;
 			children = (
+				BFF3845320ECC98100ED3ACB /* No_AccessView.h */,
+				BFF3845420ECC99500ED3ACB /* No_AccessView.m */,
 				22B8EEDB20945B39001BFA08 /* ErrorStateTopView.h */,
 				22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */,
-				22F1554420E2552700980446 /* No_AccessView.h */,
-				22F1554320E2552700980446 /* No_AccessView.m */,
 			);
 			path = errorStatesVC;
 			sourceTree = "<group>";
@@ -3799,12 +3799,12 @@
 		A01EE2631F88784A0085717E /* SplashViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BFF3845E20ECCA8F00ED3ACB /* RH_StartPageADView.h */,
+				BFF3845F20ECCA8F00ED3ACB /* RH_StartPageADView.m */,
+				BFF3846020ECCA8F00ED3ACB /* RH_StartPageADView.xib */,
 				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
 				54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */,
 				54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */,
-				54EA6C0720DA2A9D00C0C74F /* RH_StartPageADView.h */,
-				54EA6C0820DA2A9D00C0C74F /* RH_StartPageADView.m */,
-				54EA6C0A20DA2AA800C0C74F /* RH_StartPageADView.xib */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -4749,15 +4749,15 @@
 		F6E401FC2001BDC900C52B97 /* gesturelLock */ = {
 			isa = PBXGroup;
 			children = (
-				5401C51B20EC72080027246D /* RH_VeriftyLoginPWDViewController.h */,
-				5401C51D20EC720C0027246D /* RH_VeriftyLoginPWDViewController.m */,
-				5401C51F20EC720D0027246D /* RH_VerityPWDView.h */,
-				5401C51C20EC720B0027246D /* RH_VerityPWDView.m */,
-				5401C51E20EC720C0027246D /* RH_VerityPWDView.xib */,
 				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
 				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
 				F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */,
 				F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */,
+				BFF3845620ECC9ED00ED3ACB /* RH_VeriftyLoginPWDViewController.h */,
+				BFF3845A20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m */,
+				BFF3845720ECC9ED00ED3ACB /* RH_VerityPWDView.h */,
+				BFF3845920ECC9ED00ED3ACB /* RH_VerityPWDView.m */,
+				BFF3845820ECC9ED00ED3ACB /* RH_VerityPWDView.xib */,
 				F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */,
 				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
 				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
@@ -5096,6 +5096,7 @@
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
 				22AB992F208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png in Resources */,
+				BFF3846220ECCA8F00ED3ACB /* RH_StartPageADView.xib in Resources */,
 				B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */,
 				221AE585207DEDE0008CD409 /* tab_v3_service_selected_orange@2x.png in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
@@ -5124,7 +5125,6 @@
 				22F9BDC9206A775B009A7994 /* tab_v3_home@2x.png in Resources */,
 				A0AE8AAE1FFCD57300836C1B /* RH_MineMoreNextCell.xib in Resources */,
 				5469BFEC20C8E44C006080D1 /* RH_GameListCell.xib in Resources */,
-				5401C52220EC720D0027246D /* RH_VerityPWDView.xib in Resources */,
 				F69E35262063A1300028D3A1 /* RH_DepositeMoneyBankCell.xib in Resources */,
 				F6FB639B200F851300EEED4E /* RH_MPGameSeletedDateView.xib in Resources */,
 				F6FB641120142C3400EEED4E /* RH_ForgetPasswordView.xib in Resources */,
@@ -5173,6 +5173,7 @@
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */,
 				221AE5A2207DF09D008CD409 /* tab_v3_service_selected_red@3x.png in Resources */,
+				BFF3845B20ECC9EE00ED3ACB /* RH_VerityPWDView.xib in Resources */,
 				B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
@@ -5241,7 +5242,6 @@
 				B87A6B332008ADCF00C9788F /* BankCardNone.plist in Resources */,
 				A001B3E71F8EF7CA00309EA4 /* tab_pink_service@2x.png in Resources */,
 				A07DCEBA1FEBA0690006FAE4 /* RH_HomeCategoryCell.xib in Resources */,
-				54EA6C0B20DA2AA800C0C74F /* RH_StartPageADView.xib in Resources */,
 				F6FB6384200F851300EEED4E /* RH_SiteSendMessageView.xib in Resources */,
 				22208B71207476690028BBA3 /* tab_v3_home_selected_green@2x.png in Resources */,
 				22208B732074769D0028BBA3 /* tab_v3_home_selected@2x.png in Resources */,
@@ -5495,7 +5495,6 @@
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
 				546CE6FF20CA778D00273C40 /* RH_BindPhoneViewController.m in Sources */,
 				A0109FAD1F8788FF004E6EF4 /* NSString+CLCategory.m in Sources */,
-				5401C52120EC720D0027246D /* RH_VeriftyLoginPWDViewController.m in Sources */,
 				7953D02D206505C100760FEB /* RH_AboutUsModel.m in Sources */,
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
@@ -5520,6 +5519,7 @@
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
 				A0AE8AB21FFCD57300836C1B /* RH_MineMoreNextCell.m in Sources */,
 				B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */,
+				BFF3845C20ECC9EE00ED3ACB /* RH_VerityPWDView.m in Sources */,
 				7937C4342072073B0010CD0C /* NSDate+PGCategory.m in Sources */,
 				79E3865820392DFF002BF767 /* RH_ShareAnnounceView.m in Sources */,
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
@@ -5600,6 +5600,7 @@
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
+				BFF3845D20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */,
 				54CDEF8720CBD3A60080EB68 /* RH_FBPChangePwView.m in Sources */,
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
@@ -5661,7 +5662,7 @@
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
 				54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
-				54EA6C0920DA2A9D00C0C74F /* RH_StartPageADView.m in Sources */,
+				BFF3846120ECCA8F00ED3ACB /* RH_StartPageADView.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
@@ -5725,7 +5726,6 @@
 				546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */,
 				F69E351120635B8C0028D3A1 /* RH_DepositeMoneyNumberCell.m in Sources */,
 				79BB2D9C203130B0000CDE6B /* RH_ShareNavBarView.m in Sources */,
-				22F1554520E2552800980446 /* No_AccessView.m in Sources */,
 				F69E350C206355AD0028D3A1 /* RH_DepositeChooseMoneySubCell.m in Sources */,
 				A0C3B7C51FD4F14000162B98 /* RH_ElecGameViewController.m in Sources */,
 				A0B5A5721FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.m in Sources */,
@@ -5748,7 +5748,6 @@
 				F69E1E9820C77DF2006F9185 /* RH_MineMoreClearStorageCell.m in Sources */,
 				A0109F761F8787E4004E6EF4 /* CLSectionControl.m in Sources */,
 				B87A6B22200646C800C9788F /* RH_PreferentialListCell.m in Sources */,
-				5401C52020EC720D0027246D /* RH_VerityPWDView.m in Sources */,
 				F6942E0D2064DE67009A5573 /* RH_DepositeTransferModel.m in Sources */,
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				546CE6E920CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m in Sources */,
@@ -5771,6 +5770,7 @@
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
 				A0109F831F8787E4004E6EF4 /* CLArrayPageLoadController.m in Sources */,
+				BFF3845520ECC99500ED3ACB /* No_AccessView.m in Sources */,
 				B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */,
 				A0109F841F8787E4004E6EF4 /* CLBasicPageLoadController.m in Sources */,
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
@@ -5937,7 +5937,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_yodd=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5948,7 +5948,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5962,8 +5962,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -5973,7 +5973,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6022,7 +6022,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_57h0=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_yodd=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6033,7 +6033,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6047,8 +6047,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6058,7 +6058,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -224,10 +224,13 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         if (currentGuseterLockStr.length) {
             
             RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
+            
             if (tabBarController) {
-                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
-                                                                      animated:YES
-                                                                    completion:nil];
+                UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.childViewControllers[0]);
+                [nvc pushViewController:[[RH_GesturelLockController alloc]init] animated:YES];
+//                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
+//                                                                      animated:YES
+//                                                                    completion:nil];
 //                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
             }
 //            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
