@@ -52,6 +52,8 @@
     lockView.sendReaultData = ^(NSString *resultPwd){
         //        从本地获取保存的密码
         NSString *savePwd = [RH_UserInfoManager shareUserManager].screenLockPassword;
+        
+        
         if ([savePwd isEqualToString:resultPwd]) {//密码相同，解锁成功
             _hud.labelText = @"解锁成功";
             [self addSubview:_hud];
