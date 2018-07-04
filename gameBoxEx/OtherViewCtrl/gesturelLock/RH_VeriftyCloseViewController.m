@@ -12,6 +12,7 @@
 #import "RH_LockSetPWDController.h"
 #import "MBProgressHUD.h"
 #import "RH_GestureOpenLockView.h"
+#import "RH_VeriftyLoginPWDViewController.h"
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -29,14 +30,17 @@
 //    self.hiddenStatusBar = YES ;
     self.hiddenTabBar = YES;
 //    self.hiddenNavigationBar = YES ;
+    self.title = @"清空手势密码";
     
     [self.view addSubview:self.verifyCloseView];
 }
-
+- (BOOL)isSubViewController {
+    return YES;
+}
 -(RH_VerifyCloseView *)verifyCloseView
 {
     if (!_verifyCloseView) {
-        _verifyCloseView = [[RH_VerifyCloseView alloc] initWithFrame:self.view.bounds];
+        _verifyCloseView = [[RH_VerifyCloseView alloc] initWithFrame:CGRectMake(0, STATUS_HEIGHT+NavigationBarHeight, self.view.frame.size.width, self.view.frame.size.height - STATUS_HEIGHT-NavigationBarHeight)];
         _verifyCloseView.delegate = self ;
     }
     return _verifyCloseView ;
@@ -50,7 +54,11 @@
         [self.navigationController popViewControllerAnimated:YES] ;
     }
 }
-
+- (void)fogetPassWordBtnClick{
+    //忘记手势密码按钮点击事件
+    RH_VeriftyLoginPWDViewController *vc = [[RH_VeriftyLoginPWDViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end

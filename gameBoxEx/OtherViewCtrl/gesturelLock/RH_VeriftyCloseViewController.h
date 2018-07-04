@@ -6,8 +6,8 @@
 //  Copyright © 2018年 luis. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "RH_BasicViewController.h"
+#import "RH_BasicPageLoadViewController.h"
 
-@interface RH_VeriftyCloseViewController : RH_BasicViewController
+@interface RH_VeriftyCloseViewController : RH_BasicPageLoadViewController
 
 @end

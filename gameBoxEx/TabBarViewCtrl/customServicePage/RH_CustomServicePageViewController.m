@@ -21,9 +21,7 @@
     NSInteger _loadingCount ;
 //    RH_APPDelegate *_appDelegate;
 }
--(void)viewWillAppear:(BOOL)animated
-{
-}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad] ;
