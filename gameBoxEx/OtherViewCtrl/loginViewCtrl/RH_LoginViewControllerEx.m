@@ -311,12 +311,15 @@
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *account = [defaults stringForKey:@"account"] ;
-                if ([self.loginViewCell.userName isEqualToString:account]) {
-                    RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
-                    [self cw_pushViewController:verifyCloseView];
-                }else{
-                    [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:@""];
+                if ([RH_UserInfoManager shareUserManager].isScreenLock){
+                    if ([self.loginViewCell.userName isEqualToString:account]) {
+                        RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
+                        [self cw_pushViewController:verifyCloseView];
+                    }else{
+                        [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:@""];
+                    }
                 }
+                
                 [defaults setObject:self.loginViewCell.userName forKey:@"account"];
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
                 [defaults setObject:@(self.loginViewCell.isRemberPassword) forKey:@"loginIsRemberPassword"] ;
