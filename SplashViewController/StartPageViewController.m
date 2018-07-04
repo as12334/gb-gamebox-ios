@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *versionLB;
 @property (weak, nonatomic) IBOutlet UILabel *progressNoteLB;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImg;
+
 @property (strong, nonatomic) UIButton *doitAgainBT;
 @property (strong, nonatomic) UIButton *errDetailBT;
 @property (strong, nonatomic) NSString *currentErrCode;
@@ -50,6 +52,8 @@
 }
 
 - (void)doItAgainAction:(id)sender {
+    self.doitAgainBT.enabled = NO;
+    self.errDetailBT.enabled = NO;
     [self doRequest];
 }
 
@@ -65,7 +69,7 @@
     self.hiddenNavigationBar = YES;
 
     [self.launchImageView setImage:ImageWithName(@"startImage")];
-    
+    [self.logoImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"app_logo_%@",SID]]];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
@@ -100,6 +104,8 @@
     self.progressView.hidden = (_progress == 0);
     self.doitAgainBT.hidden = (_progress != 0);
     self.errDetailBT.hidden = (_progress != 0);
+    self.doitAgainBT.enabled = (_progress == 0);
+    self.errDetailBT.enabled = (_progress == 0);
     self.progressView.progress = _progress;
     if (_progress == 0) {
         self.progressNote = @"";
@@ -601,7 +607,7 @@
 
 - (void)startPageComplete
 {
-    NSTimer *timer= [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
