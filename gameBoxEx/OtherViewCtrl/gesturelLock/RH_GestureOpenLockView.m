@@ -10,7 +10,7 @@
 #import "RH_GesturelLockView.h"
 #import "MBProgressHUD.h"
 #import "coreLib.h"
-#import "RH_LockSetPWDController.h"
+
 #import "RH_UserInfoManager.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width

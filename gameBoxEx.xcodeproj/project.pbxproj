@@ -682,12 +682,13 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
-		BFF3845520ECC99500ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845420ECC99500ED3ACB /* No_AccessView.m */; };
-		BFF3845B20ECC9EE00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3845820ECC9ED00ED3ACB /* RH_VerityPWDView.xib */; };
-		BFF3845C20ECC9EE00ED3ACB /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845920ECC9ED00ED3ACB /* RH_VerityPWDView.m */; };
-		BFF3845D20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845A20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m */; };
-		BFF3846120ECCA8F00ED3ACB /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3845F20ECCA8F00ED3ACB /* RH_StartPageADView.m */; };
-		BFF3846220ECCA8F00ED3ACB /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846020ECCA8F00ED3ACB /* RH_StartPageADView.xib */; };
+		BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */; };
+		BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846420EE07D300ED3ACB /* No_AccessView.m */; };
+		BFF3846B20EE083D00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */; };
+		BFF3846C20EE083D00ED3ACB /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846920EE083D00ED3ACB /* RH_VerityPWDView.m */; };
+		BFF3846D20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846A20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m */; };
+		BFF3847120EE088500ED3ACB /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846F20EE088500ED3ACB /* RH_StartPageADView.m */; };
+		BFF3847220EE088500ED3ACB /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3847020EE088500ED3ACB /* RH_StartPageADView.xib */; };
 		F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */; };
 		F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00520BBAEBB00E55BAB /* libicucore.tbd */; };
 		F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00720BBAEC200E55BAB /* CFNetwork.framework */; };
@@ -1983,16 +1984,18 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
-		BFF3845320ECC98100ED3ACB /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
-		BFF3845420ECC99500ED3ACB /* No_AccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = No_AccessView.m; sourceTree = "<group>"; };
-		BFF3845620ECC9ED00ED3ACB /* RH_VeriftyLoginPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyLoginPWDViewController.h; sourceTree = "<group>"; };
-		BFF3845720ECC9ED00ED3ACB /* RH_VerityPWDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VerityPWDView.h; sourceTree = "<group>"; };
-		BFF3845820ECC9ED00ED3ACB /* RH_VerityPWDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_VerityPWDView.xib; sourceTree = "<group>"; };
-		BFF3845920ECC9ED00ED3ACB /* RH_VerityPWDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
-		BFF3845A20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
-		BFF3845E20ECCA8F00ED3ACB /* RH_StartPageADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
-		BFF3845F20ECCA8F00ED3ACB /* RH_StartPageADView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
-		BFF3846020ECCA8F00ED3ACB /* RH_StartPageADView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
+		BFCA3EE120EE139C0043F4EF /* RH_GestureLockMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureLockMainView.h; sourceTree = "<group>"; };
+		BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GestureLockMainView.m; sourceTree = "<group>"; };
+		BFF3846320EE07D000ED3ACB /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
+		BFF3846420EE07D300ED3ACB /* No_AccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = No_AccessView.m; sourceTree = "<group>"; };
+		BFF3846620EE083C00ED3ACB /* RH_VeriftyLoginPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VeriftyLoginPWDViewController.h; sourceTree = "<group>"; };
+		BFF3846720EE083D00ED3ACB /* RH_VerityPWDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_VerityPWDView.h; sourceTree = "<group>"; };
+		BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_VerityPWDView.xib; sourceTree = "<group>"; };
+		BFF3846920EE083D00ED3ACB /* RH_VerityPWDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
+		BFF3846A20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
+		BFF3846E20EE088500ED3ACB /* RH_StartPageADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
+		BFF3846F20EE088500ED3ACB /* RH_StartPageADView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
+		BFF3847020EE088500ED3ACB /* RH_StartPageADView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
 		F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
 		F61DA00520BBAEBB00E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -2381,10 +2384,10 @@
 		22B8EED520945938001BFA08 /* errorStatesVC */ = {
 			isa = PBXGroup;
 			children = (
-				BFF3845320ECC98100ED3ACB /* No_AccessView.h */,
-				BFF3845420ECC99500ED3ACB /* No_AccessView.m */,
 				22B8EEDB20945B39001BFA08 /* ErrorStateTopView.h */,
 				22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */,
+				BFF3846320EE07D000ED3ACB /* No_AccessView.h */,
+				BFF3846420EE07D300ED3ACB /* No_AccessView.m */,
 			);
 			path = errorStatesVC;
 			sourceTree = "<group>";
@@ -3799,12 +3802,12 @@
 		A01EE2631F88784A0085717E /* SplashViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BFF3845E20ECCA8F00ED3ACB /* RH_StartPageADView.h */,
-				BFF3845F20ECCA8F00ED3ACB /* RH_StartPageADView.m */,
-				BFF3846020ECCA8F00ED3ACB /* RH_StartPageADView.xib */,
 				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
 				54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */,
 				54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */,
+				BFF3846E20EE088500ED3ACB /* RH_StartPageADView.h */,
+				BFF3846F20EE088500ED3ACB /* RH_StartPageADView.m */,
+				BFF3847020EE088500ED3ACB /* RH_StartPageADView.xib */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -4751,13 +4754,10 @@
 			children = (
 				F6E401FD2001BDC900C52B97 /* RH_GesturelLockController.h */,
 				F6E401FE2001BDC900C52B97 /* RH_GesturelLockController.m */,
+				BFCA3EE120EE139C0043F4EF /* RH_GestureLockMainView.h */,
+				BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */,
 				F6E401FF2001BDC900C52B97 /* RH_LockSetPWDController.h */,
 				F6E402002001BDC900C52B97 /* RH_LockSetPWDController.m */,
-				BFF3845620ECC9ED00ED3ACB /* RH_VeriftyLoginPWDViewController.h */,
-				BFF3845A20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m */,
-				BFF3845720ECC9ED00ED3ACB /* RH_VerityPWDView.h */,
-				BFF3845920ECC9ED00ED3ACB /* RH_VerityPWDView.m */,
-				BFF3845820ECC9ED00ED3ACB /* RH_VerityPWDView.xib */,
 				F6E402012001BDC900C52B97 /* RH_GesturelLockView.h */,
 				F6E402022001BDC900C52B97 /* RH_GesturelLockView.m */,
 				F6E402062001F0B200C52B97 /* RH_GestureOpenLockView.h */,
@@ -4766,6 +4766,11 @@
 				794429F9203FC18C006F5A20 /* RH_VeriftyCloseViewController.m */,
 				794429FB203FC6A2006F5A20 /* RH_VerifyCloseView.h */,
 				794429FC203FC6A2006F5A20 /* RH_VerifyCloseView.m */,
+				BFF3846620EE083C00ED3ACB /* RH_VeriftyLoginPWDViewController.h */,
+				BFF3846A20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m */,
+				BFF3846720EE083D00ED3ACB /* RH_VerityPWDView.h */,
+				BFF3846920EE083D00ED3ACB /* RH_VerityPWDView.m */,
+				BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */,
 			);
 			path = gesturelLock;
 			sourceTree = "<group>";
@@ -5096,7 +5101,7 @@
 				A001B3CC1F8EF7CA00309EA4 /* tab_blue_service@2x.png in Resources */,
 				A07FE3751FEF799500D5DF71 /* RH_NavigationUserInfoView.xib in Resources */,
 				22AB992F208099AC001A6203 /* tab_v3_promo_selected_coffee@2x.png in Resources */,
-				BFF3846220ECCA8F00ED3ACB /* RH_StartPageADView.xib in Resources */,
+				BFF3847220EE088500ED3ACB /* RH_StartPageADView.xib in Resources */,
 				B87A6B5B200DD38100C9788F /* WithdrawCashBitCoin.plist in Resources */,
 				221AE585207DEDE0008CD409 /* tab_v3_service_selected_orange@2x.png in Resources */,
 				A001B3CD1F8EF7CA00309EA4 /* tab_blue_transfer@2x.png in Resources */,
@@ -5173,7 +5178,7 @@
 				F6A2AD572006EE7A0077CB92 /* button-02.png in Resources */,
 				A0522A8E200C89A000A5A6E9 /* RH_PromoTableCell.xib in Resources */,
 				221AE5A2207DF09D008CD409 /* tab_v3_service_selected_red@3x.png in Resources */,
-				BFF3845B20ECC9EE00ED3ACB /* RH_VerityPWDView.xib in Resources */,
+				BFF3846B20EE083D00ED3ACB /* RH_VerityPWDView.xib in Resources */,
 				B85113A020146CA300042ADE /* RH_WithdrawHasOrderCell.xib in Resources */,
 				A0522A5D2007649600A5A6E9 /* ModifySafetyNoPermissionUsedCode.plist in Resources */,
 				79FB81601FFE092600325BF3 /* RH_CapitalStaticDataCell.xib in Resources */,
@@ -5519,7 +5524,7 @@
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
 				A0AE8AB21FFCD57300836C1B /* RH_MineMoreNextCell.m in Sources */,
 				B87A6B3020089CE500C9788F /* RH_BankCardCell.m in Sources */,
-				BFF3845C20ECC9EE00ED3ACB /* RH_VerityPWDView.m in Sources */,
+				BFF3846C20EE083D00ED3ACB /* RH_VerityPWDView.m in Sources */,
 				7937C4342072073B0010CD0C /* NSDate+PGCategory.m in Sources */,
 				79E3865820392DFF002BF767 /* RH_ShareAnnounceView.m in Sources */,
 				F6A2ACC8200457980077CB92 /* RH_BettingRecordDetailCell.m in Sources */,
@@ -5600,7 +5605,7 @@
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
 				A0109FD11F8788FF004E6EF4 /* DNAsset.m in Sources */,
 				A0109FD21F8788FF004E6EF4 /* DNImageFlowViewController.m in Sources */,
-				BFF3845D20ECC9EE00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */,
+				BFF3846D20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */,
 				54CDEF8720CBD3A60080EB68 /* RH_FBPChangePwView.m in Sources */,
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
@@ -5662,7 +5667,7 @@
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
 				54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
-				BFF3846120ECCA8F00ED3ACB /* RH_StartPageADView.m in Sources */,
+				BFF3847120EE088500ED3ACB /* RH_StartPageADView.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
 				A0109FE91F8788FF004E6EF4 /* NSString+MJExtension.m in Sources */,
 				A0109FEA1F8788FF004E6EF4 /* Reachability.m in Sources */,
@@ -5760,6 +5765,7 @@
 				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
+				BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */,
 				79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
 				F6A2ACD1200495940077CB92 /* RH_CapitalRecordDetailsCell.m in Sources */,
@@ -5770,7 +5776,7 @@
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
 				A0109F831F8787E4004E6EF4 /* CLArrayPageLoadController.m in Sources */,
-				BFF3845520ECC99500ED3ACB /* No_AccessView.m in Sources */,
+				BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */,
 				B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */,
 				A0109F841F8787E4004E6EF4 /* CLBasicPageLoadController.m in Sources */,
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
@@ -5937,7 +5943,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_91ea=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_yodd=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5948,7 +5954,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5962,7 +5968,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -5973,7 +5979,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6022,7 +6028,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_91ea=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_yodd=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6033,7 +6039,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6047,7 +6053,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -6058,7 +6064,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid559;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

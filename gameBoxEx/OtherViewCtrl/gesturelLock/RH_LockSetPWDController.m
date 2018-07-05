@@ -83,7 +83,12 @@
             [[RH_UserInfoManager shareUserManager] updateScreenLockFlag:YES];
             label.text = @"锁屏手势设置成功！";
 //            [self backBarButtonItemHandle];
-            [self.navigationController popToRootViewControllerAnimated:NO];
+            //dismiss到根控制器
+            UIViewController *vc = self;
+            while (vc.presentingViewController) {
+                vc = vc.presentingViewController;
+            }
+            [vc dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             showAlertView(@"请重新设置 ", @"两次绘制的锁屏手势不一致");

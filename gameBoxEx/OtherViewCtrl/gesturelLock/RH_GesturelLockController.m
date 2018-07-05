@@ -7,8 +7,6 @@
 //
 
 #import "RH_GesturelLockController.h"
-#import "RH_GesturelLockView.h"
-#import "RH_LockSetPWDController.h"
 #import "MBProgressHUD.h"
 #import "RH_GestureOpenLockView.h"
 #import "RH_VeriftyLoginPWDViewController.h"

@@ -10,6 +10,7 @@
 #import "RH_VerityPWDView.h"
 #import "RH_LoginViewControllerEx.h"
 #import "RH_LockSetPWDController.h"
+#import "RH_TestSafariViewController.h"
 @interface RH_VeriftyLoginPWDViewController ()<RH_VerityPWDViewDelegate>
 
 @end
@@ -34,20 +35,30 @@
 #pragma mark--
 #pragma mark--忘记密码点击事件
 - (void)forgetPSWBtnClick{
-    NSLog(@"childs == %@",self.navigationController.childViewControllers);
-    UITabBarController *tab = self.tabBarController;
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    [tab setSelectedIndex:3];
+
+
+    UITabBarController *tab =  ConvertToClassPointer(UITabBarController, [UIApplication sharedApplication].keyWindow.rootViewController);
+//    [self.navigationController pushViewController:[[RH_TestSafariViewController alloc]init] animated:YES];
+//    UITabBarController *tab = self.tabBarController;
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+    tab.selectedIndex = 3;
+   
+    //dismiss到根控制器
+    UIViewController *vc = self;
+    while (vc.presentingViewController) {
+        vc = vc.presentingViewController;
+    }
+    [vc dismissViewControllerAnimated:NO completion:nil];
     
 }
 - (void)jumpTologin{
     RH_LoginViewControllerEx *vc = [[RH_LoginViewControllerEx alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 - (void)setPSW{
     //重新设置手势
     RH_LockSetPWDController *vc = [[RH_LockSetPWDController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

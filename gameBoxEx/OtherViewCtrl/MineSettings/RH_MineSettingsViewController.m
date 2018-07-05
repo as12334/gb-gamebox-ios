@@ -66,7 +66,8 @@
 //                                                                      animated:YES
 //                                                                    completion:nil] ;
 //            }
-             [self.navigationController pushViewController:[RH_LockSetPWDController viewController] animated:YES];
+            [self presentViewController:[RH_LockSetPWDController viewController] animated:YES completion:nil];
+          
         }else if([SITE_TYPE isEqualToString:@"integratedv3oc"] && [tempArr[0] boolValue] == NO){
             
 //            RH_MainTabBarController *tabBarController =  ConvertToClassPointer(RH_MainTabBarController, [UIApplication sharedApplication].keyWindow.rootViewController) ;
@@ -75,7 +76,8 @@
 //                                                                      animated:YES
 //                                                                    completion:nil] ;
 //            }
-            [self.navigationController pushViewController:[RH_VeriftyCloseViewController viewController] animated:YES];
+//            [self.navigationController pushViewController:[RH_VeriftyCloseViewController viewController] animated:YES];
+            [self presentViewController:[RH_VeriftyCloseViewController viewController] animated:YES completion:nil];
 
         }
     }];
