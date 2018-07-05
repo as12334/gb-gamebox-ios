@@ -34,10 +34,11 @@
 #pragma mark--
 #pragma mark--忘记密码点击事件
 - (void)forgetPSWBtnClick{
-  
+    NSLog(@"childs == %@",self.navigationController.childViewControllers);
     UITabBarController *tab = self.tabBarController;
     [self.navigationController popToRootViewControllerAnimated:NO];
     [tab setSelectedIndex:3];
+    
 }
 - (void)jumpTologin{
     RH_LoginViewControllerEx *vc = [[RH_LoginViewControllerEx alloc]init];

@@ -9,5 +9,4 @@
 #import "RH_BasicPageLoadViewController.h"
 
 @interface RH_VeriftyLoginPWDViewController : RH_BasicPageLoadViewController
-
 @end

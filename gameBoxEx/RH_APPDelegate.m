@@ -222,12 +222,15 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" " account:RH_GuseterLock];
 //         [RH_UserInfoManager shareUserManager].screenLockPassword.length
         if (currentGuseterLockStr.length) {
+            if (self.isLogin) {
+                RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
+                NSLog(@"test == %@",tabBarController.selectedViewController);
+                if (tabBarController) {
+                    UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.selectedViewController);
+                    [nvc pushViewController:[[RH_GesturelLockController alloc]init] animated:YES];
+            }
             
-            RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
-            
-            if (tabBarController) {
-                UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.childViewControllers[0]);
-                [nvc pushViewController:[[RH_GesturelLockController alloc]init] animated:YES];
+         
 //                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
 //                                                                      animated:YES
 //                                                                    completion:nil];
