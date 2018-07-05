@@ -587,6 +587,16 @@
     __weak typeof(self) weakSelf = self;
     __block int failedTimes = 0;
     
+    //ip打乱再check
+    ipList = [ipList sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        int seed = arc4random_uniform(2);
+        if (seed) {
+            return [str1 compare:str2];
+        } else {
+            return [str2 compare:str1];
+        }
+    }];
+    
     [self checkIP:ipList complete:^(NSString *ip, NSString *type) {
         //有某个类型check完毕
         weakSelf.progress += 0.2;

@@ -279,6 +279,7 @@ BOOL isDescendingAndPwdisAscendingPwd(NSString *password) ;
 BOOL isSameMoreThreePwd(NSString *password) ;
 
 NSString * dateStringWithFormatter(NSDate * date,NSString * dateFormat) ;
+NSString * dateString(NSDate * date,NSString * dateFormat) ;//这里主要处理时间选择器的，因为时间选择器不用转换时区
 NSString * dateStringWithFormatterWithTimezone(NSDate * date,NSString * dateFormat,NSString *timezone) ;
 
 #pragma mark-

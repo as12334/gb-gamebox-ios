@@ -19,7 +19,7 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.dateLabel.textColor = colorWithRGB(51, 51, 51) ;
     self.dateLabel.font = [UIFont systemFontOfSize:10.0f] ;
-    self.dateLabel.text = dateStringWithFormatter([NSDate date], @"yyyy-MM-dd") ;
+    self.dateLabel.text = dateString([NSDate date], @"yyyy-MM-dd") ;
 }
 
 #pragma mark-
@@ -31,7 +31,7 @@
 -(void)updateUIWithDate:(NSDate*)date
 {
     if (date){
-        self.dateLabel.text = dateStringWithFormatter(date, @"yyyy-MM-dd") ;
+        self.dateLabel.text = dateString(date, @"yyyy-MM-dd");
     }
 }
 
