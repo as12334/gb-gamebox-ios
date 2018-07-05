@@ -349,8 +349,8 @@
         [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
         [cookieProperties setObject:@"SID" forKey:NSHTTPCookieName];
         NSArray *sidStringCompArr = [[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
-        NSArray *sidInfoArr = [[sidStringCompArr firstObject] componentsSeparatedByString:@"="];
-        [cookieProperties setObject:sidInfoArr[1] forKey:NSHTTPCookieValue];
+        NSString *sid = [[sidStringCompArr firstObject] stringByReplacingOccurrencesOfString:@"SID=" withString:@""];
+        [cookieProperties setObject:sid forKey:NSHTTPCookieValue];
         NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
