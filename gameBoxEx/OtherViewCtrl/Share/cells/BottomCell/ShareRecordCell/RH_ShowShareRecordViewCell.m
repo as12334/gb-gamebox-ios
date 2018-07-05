@@ -88,7 +88,11 @@
     NSString *createTime = dateStringWithFormatter(date, @"yyyy-MM-dd");
     self.contentLab2.text = createTime;
     self.contentLab3.text = detailModel.mStatus;
-    self.contentLab4.text = detailModel.mRewardAmount;
+    if (detailModel.mRewardAmount == nil) {
+        self.contentLab4.text = @"0";
+    }else{
+        self.contentLab4.text = detailModel.mRewardAmount;
+    }
 }
 
 - (void)awakeFromNib {

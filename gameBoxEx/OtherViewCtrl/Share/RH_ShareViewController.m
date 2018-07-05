@@ -283,8 +283,16 @@
     NSString *endDateStr = dateStringWithFormatter(endDate, @"yyyy-MM-dd");
    
     if (startDateStr == nil && endDateStr == nil) {
-         [self getCurrentTimes];
-    }else {
+        startDateStr = [self getCurrentTimes];
+        endDateStr = [self getCurrentTimes];
+    }else if (startDateStr == nil && endDateStr){
+        startDateStr = [self getCurrentTimes];
+        if ([startDateStr compare:endDateStr]==NSOrderedDescending) {
+            showMessage(self.view, @"选择的日期不对，请重新选择", nil);
+            return;
+        }
+    }else if (startDateStr && endDateStr == nil){
+        endDateStr = [self getCurrentTimes];
         if ([startDateStr compare:endDateStr]==NSOrderedDescending) {
             showMessage(self.view, @"选择的日期不对，请重新选择", nil);
             return;
