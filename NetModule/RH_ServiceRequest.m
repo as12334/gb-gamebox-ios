@@ -2533,11 +2533,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
     }
    
+    NSMutableDictionary *headerArg = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"close",@"Connection", nil];
+    if (headerArguments) {
+        [headerArg addEntriesFromDictionary:headerArguments];
+    }
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:apiName
                                                                 pathFormat:pathFormat
                                                              pathArguments:pathArguments
                                                             queryArguments:queryArgs
-                                                           headerArguments:headerArguments
+                                                           headerArguments:headerArg
                                                              bodyArguments:bodyArguments
                                                                       type:httpType];
     
