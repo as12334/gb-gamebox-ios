@@ -476,8 +476,15 @@
     else if ([self.accountMuArray[2] isEqualToString:@"wechat"]){
         if (self.paywayCell.paywayString.length==0||self.paywayCell.paywayString==nil) {
             showMessage(self.view, @"请填写微信昵称", nil);
+            return;
         }
         else{
+            if ([SID isEqualToString:@"119"] || [SID isEqualToString:@"270"]) {
+                if (self.transferOrderCell.transferOrderString.length == 0 || self.transferOrderCell.transferOrderString==nil) {
+                    showMessage(self.view, @"请输入订单号", nil);
+                    return;
+                }
+            }
             if (self.transferOrderCell.transferOrderString.length!=5&&self.transferOrderCell.transferOrderString.length!=0&&self.transferOrderCell.transferOrderString!=nil) {
                 showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
             }
@@ -598,6 +605,12 @@
                 showMessage(self.view, @"请输入支付宝账号", nil);
             }
             else{
+                if ([SID isEqualToString:@"119"] || [SID isEqualToString:@"270"]) {
+                    if (self.adressCell.adressStr.length == 0 || self.adressCell.adressStr==nil) {
+                        showMessage(self.view, @"请输入订单号", nil);
+                        return;
+                    }
+                }
                 if (self.adressCell.adressStr.length!=5&&self.adressCell.adressStr.length!=0&&self.adressCell.adressStr!=nil) {
                     showMessage(self.view, @"请输入五位只含数字、字母的订单号", nil);
                 }
