@@ -33,7 +33,7 @@
 -(void)updateUIWithDate:(NSDate*)date
 {
     if (date){
-        self.dateLabel.text = dateStringWithFormatter(date, @"yyyy-MM-dd") ;
+        self.dateLabel.text = dateString(date, @"yyyy-MM-dd") ;
     }
 }
 

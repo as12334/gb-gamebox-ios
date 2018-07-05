@@ -45,10 +45,7 @@
 -(void)updateUIWithDate:(NSDate*)date
 {
     if (date){
-        NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-        formatter.dateFormat=@"yyyy-MM-dd";
-        NSString *timeStr=[formatter stringFromDate:date];        
-        self.labDate.text = timeStr;
+        self.labDate.text = dateString(date, @"yyyy-MM-dd");
     }
 }
 @end

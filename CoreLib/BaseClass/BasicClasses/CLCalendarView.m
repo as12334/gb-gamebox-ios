@@ -205,6 +205,9 @@
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0,40,BXScreenW,
                                                                     self.boundHeigh - 40.0f)];
         _datePicker.datePickerMode = UIDatePickerModeDate;
+        //时区
+        [_datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"]];
+         [_datePicker setCalendar:[NSCalendar currentCalendar]];
 //        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
 //        fmt.dateFormat = @"yyyy-MM-dd";
 //        NSDate *minDate = [fmt dateFromString:@"2018-1-20"];
@@ -230,7 +233,7 @@
 -(void)confirmButtonHandle:(id)sender
 {
     ifRespondsSelector(self.delegate, @selector(calendarViewTouchConfirmButton:SelectDate:)){
-        [self.delegate calendarViewTouchConfirmButton:self SelectDate:_datePicker.date] ;
+        [self.delegate calendarViewTouchConfirmButton:self SelectDate:self.datePicker.date] ;
     }
 }
 
