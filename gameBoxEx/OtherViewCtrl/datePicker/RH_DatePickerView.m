@@ -63,7 +63,7 @@
     if (!_datePicker) {
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, 40, BXScreenW, 210)];
         //时区
-        [_datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_Hans_CN"]];
+        [_datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_CN"]];
         //默认为当天
         [_datePicker setCalendar:[NSCalendar currentCalendar]];
         //设置日期选择的模

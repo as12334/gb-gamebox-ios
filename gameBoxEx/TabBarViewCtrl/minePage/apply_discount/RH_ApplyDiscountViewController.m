@@ -239,8 +239,7 @@
     ;
     datePickerView.chooseDateBlock = ^(NSDate *date) {
         view.startDate = date;
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        cell.startDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        cell.startDate = dateString(date, @"yyyy-MM-dd");
         [cell startUpdateData:NO];
     };
     [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
@@ -252,7 +251,7 @@
     ;
     datePickerView.chooseDateBlock = ^(NSDate *date) {
         view.endDate = date;
-        cell.endDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        cell.endDate = dateString(date, @"yyyy-MM-dd");
         [cell startUpdateData:NO];
     };
     [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
@@ -267,7 +266,7 @@
     ;
     datePickerView.chooseDateBlock = ^(NSDate *date) {
         view.startDate = date;
-        cell.startDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        cell.startDate = dateString(date, @"yyyy-MM-dd");
         [cell startUpdateData:NO];
     };
     [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
@@ -279,7 +278,7 @@
     ;
     datePickerView.chooseDateBlock = ^(NSDate *date) {
         view.endDate = date;
-        cell.endDate = dateStringWithFormatter(date, @"yyyy-MM-dd");
+        cell.endDate = dateString(date, @"yyyy-MM-dd");
         [cell startUpdateData:NO];
     };
     [[UIApplication sharedApplication].keyWindow addSubview:datePickerView.coverView];
