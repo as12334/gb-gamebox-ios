@@ -338,7 +338,7 @@
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type == ServiceRequestTypeV3RefreshSession) {
-        [self performSelector:@selector(updateSession) withObject:self afterDelay:5.0f] ;
+        [self performSelector:@selector(updateSession) withObject:self afterDelay:300.0f] ;
     }
 }
 
