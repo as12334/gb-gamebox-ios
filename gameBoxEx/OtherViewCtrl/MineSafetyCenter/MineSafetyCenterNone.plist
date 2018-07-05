@@ -34,6 +34,16 @@
 					<key>title</key>
 					<string>修改安全密码</string>
 				</dict>
+				<dict>
+					<key>detailTitle</key>
+					<string>设置</string>
+					<key>targetKey</key>
+					<string>RH_BindPhoneViewController</string>
+					<key>cellClass</key>
+					<string>RH_MineSafetyCenterCell</string>
+					<key>title</key>
+					<string>绑定手机</string>
+				</dict>
 			</array>
 		</dict>
 	</array>
