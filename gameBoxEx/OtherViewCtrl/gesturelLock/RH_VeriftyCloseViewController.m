@@ -9,7 +9,6 @@
 #import "RH_VeriftyCloseViewController.h"
 //#import "RH_GesturelLockView.h"
 #import "RH_VerifyCloseView.h"
-#import "RH_LockSetPWDController.h"
 #import "MBProgressHUD.h"
 #import "RH_GestureOpenLockView.h"
 #import "RH_VeriftyLoginPWDViewController.h"
@@ -49,7 +48,12 @@
 -(void)VerifyCloseViewVerifySuccessful:(RH_VerifyCloseView *)VerifyCloseView
 {
     if (self.presentingViewController) {
-        [self dismissViewControllerAnimated:YES completion:nil] ;
+        //dismiss到根控制器
+        UIViewController *vc = self;
+        while (vc.presentingViewController) {
+            vc = vc.presentingViewController;
+        }
+        [vc dismissViewControllerAnimated:YES completion:nil];
     }else{
         [self.navigationController popViewControllerAnimated:YES] ;
     }
@@ -57,7 +61,8 @@
 - (void)fogetPassWordBtnClick{
     //忘记手势密码按钮点击事件
     RH_VeriftyLoginPWDViewController *vc = [[RH_VeriftyLoginPWDViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 

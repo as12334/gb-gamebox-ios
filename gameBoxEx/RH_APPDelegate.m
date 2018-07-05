@@ -16,6 +16,7 @@
 #import "RH_GestureOpenLockView.h"
 #import "RH_API.h"
 #import "StartPageViewController.h"
+#import "RH_GestureLockMainView.h"
 
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
@@ -24,8 +25,8 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 //----------------------------------------------------------
 
-@interface RH_APPDelegate ()<StartPageViewControllerDelegate>
-
+@interface RH_APPDelegate ()<StartPageViewControllerDelegate,RH_GestureLockMainViewDelegate>
+@property(nonatomic,strong)RH_GestureLockMainView *gestureView;
 @end
 
 @implementation RH_APPDelegate
@@ -221,13 +222,16 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         #define RH_GuseterLock            @"RH_GuseterLock"
         NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" " account:RH_GuseterLock];
 //         [RH_UserInfoManager shareUserManager].screenLockPassword.length
-        if (currentGuseterLockStr.length) {
+        if (currentGuseterLockStr.length > 0) {
             if (self.isLogin) {
-                RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
-                NSLog(@"test == %@",tabBarController.selectedViewController);
-                if (tabBarController) {
-                    UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.selectedViewController);
-                    [nvc pushViewController:[[RH_GesturelLockController alloc]init] animated:YES];
+                 RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
+                 UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.selectedViewController);
+                [self.gestureView gestureViewShowWithController:nvc.childViewControllers.lastObject];
+               
+//                NSLog(@"test == %@",tabBarController.selectedViewController);
+//                if (tabBarController) {
+//
+//                    [nvc pushViewController:[[RH_GesturelLockController alloc]init] animated:YES];
             }
             
          
@@ -239,9 +243,21 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 //            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
 //            [openLockView show] ;
         }
-    }
 }
-
+#pragma mark--
+#pragma mark--lazy
+- (RH_GestureLockMainView *)gestureView{
+    if (!_gestureView) {
+        _gestureView = [[RH_GestureLockMainView alloc]initWithFrame:CGRectMake(0, screenSize().height, screenSize().width, screenSize().height)];
+        _gestureView.delegate = self;
+        [self.window addSubview:_gestureView];
+    }
+    return _gestureView;
+}
+- (void)RH_GestureLockMainViewSeccussful{
+    [self.gestureView removeFromSuperview];
+    self.gestureView = nil;
+}
 //进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {

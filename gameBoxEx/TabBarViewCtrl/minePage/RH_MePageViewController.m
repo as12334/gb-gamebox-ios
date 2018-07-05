@@ -213,7 +213,8 @@
 
 -(void)_barButtonSettingHandle
 {
-    [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
+//    [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
+    [self presentViewController:[RH_MineSettingsViewController viewController] animated:YES completion:nil];
 }
 
 #pragma mark-

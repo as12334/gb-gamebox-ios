@@ -17,8 +17,9 @@
 #import "RH_OldUserVerifyView.h"//老用户验证
 #import "RH_FindbackPswWaysViewController.h"
 #import "RH_WebsocketManagar.h"
-#import "RH_GesturelLockController.h"
-@interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate>
+//#import "RH_GesturelLockController.h"
+#import "RH_GestureLockMainView.h"
+@interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate,RH_GestureLockMainViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isInitOk ;
 @property (nonatomic,assign) BOOL isNeedVerCode ;
@@ -27,6 +28,7 @@
 @property(nonatomic,strong)RH_OldUserVerifyView *oldUserVerifyView;
 @property(nonatomic,strong)UIView *OldUserVerifyViewBgView;
 @property(nonatomic,strong)NSString *token ;
+@property(nonatomic,strong)RH_GestureLockMainView *gestureView;
 @end
 
 @implementation RH_LoginViewControllerEx
@@ -313,8 +315,9 @@
                 NSString *account = [defaults stringForKey:@"account"] ;
                 if ([RH_UserInfoManager shareUserManager].isScreenLock){
                     if ([self.loginViewCell.userName isEqualToString:account]) {
-                        RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
-                        [self cw_pushViewController:verifyCloseView];
+//                        RH_GesturelLockController *verifyCloseView = [[RH_GesturelLockController alloc]init];
+                        [self cw_pushViewController:nil];
+                        [self.gestureView gestureViewShowWithController:self];
                     }else{
                         [[RH_UserInfoManager shareUserManager] updateScreenLockPassword:@""];
                     }
@@ -324,6 +327,14 @@
                 [defaults setObject:self.loginViewCell.userPassword forKey:@"password"];
                 [defaults setObject:@(self.loginViewCell.isRemberPassword) forKey:@"loginIsRemberPassword"] ;
                 [defaults synchronize];
+                if (self.presentationController) {
+                    UIViewController *vc = self;
+                    while (vc.presentingViewController) {
+                        vc = vc.presentingViewController;
+                    }
+                    [vc dismissViewControllerAnimated:NO completion:nil];
+                }
+             
             }else{
                 self.isNeedVerCode = [result boolValueForKey:@"isOpenCaptcha"] ;
                 if (![[result objectForKey:@"message"] isEqual:[NSNull null]]) {
@@ -486,7 +497,20 @@
         }
     }];
 }
-
+#pragma mark--
+#pragma mark--lazy
+- (RH_GestureLockMainView *)gestureView{
+    if (!_gestureView) {
+        _gestureView = [[RH_GestureLockMainView alloc]initWithFrame:CGRectMake(0, screenSize().height, screenSize().width, screenSize().height)];
+        _gestureView.delegate = self;
+        [self.view addSubview:_gestureView];
+    }
+    return _gestureView;
+}
+- (void)RH_GestureLockMainViewSeccussful{
+    [self.gestureView removeFromSuperview];
+    self.gestureView = nil;
+}
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RHNT_SignOKNotification object:nil] ;

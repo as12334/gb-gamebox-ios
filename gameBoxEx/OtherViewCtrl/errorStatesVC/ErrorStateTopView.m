@@ -85,7 +85,8 @@
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:lab4.text];
     //设置：在单位长度内的内容显示成红色
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(34, 22)];
+    NSRange range = [lab4.text rangeOfString:@"请联系我们的客服"];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
     lab4.attributedText = str;
     lab4.textAlignment = NSTextAlignmentCenter;
     lab4.font = [UIFont systemFontOfSize:MainScreenW/26];

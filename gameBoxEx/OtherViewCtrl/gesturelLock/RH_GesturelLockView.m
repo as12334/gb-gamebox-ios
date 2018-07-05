@@ -9,7 +9,7 @@
 #import "RH_GesturelLockView.h"
 #import "coreLib.h"
 #import "RH_VerifyCloseView.h"
-#import "RH_LockSetPWDController.h"
+
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
