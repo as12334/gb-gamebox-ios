@@ -2812,7 +2812,7 @@
 #define S        @"d7d6d1167cc592efb792602e59116f4f"
 #define SID        @"587"
 #define THEME    @"default.skin"
-#define THEMEV3             @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _hpvl //星河国际
