@@ -156,17 +156,17 @@
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
     {
+        CGPoint movePoint = [self getCurrentTouch:touches];
+        UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
+        if (btn){
+            if (![self.btnsArray containsObject:btn]) {
+                [self.btnsArray addObject:btn];
+            }
+        }
         if (_startAtButton==YES) {
             for (UIButton *btn in self.subviews) {
                 [btn setSelected:NO];
             }
-            CGPoint movePoint = [self getCurrentTouch:touches];
-            UIButton *btn = [self getCurrentBtnWithPoint:movePoint];
-            if (btn){
-                [self.btnsArray addObject:btn];
-            }
-            
-            
             NSMutableString *result = [NSMutableString string];
             for (UIButton *btn in self.btnsArray) {
                 [result appendString: [NSString stringWithFormat:@"%ld",(long)btn.tag]];

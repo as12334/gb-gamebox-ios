@@ -8,14 +8,6 @@
 			<key>rowsInfo</key>
 			<array>
 				<dict>
-					<key>id</key>
-					<string>0</string>
-					<key>cellClass</key>
-					<string>RH_MineSettingsCell</string>
-					<key>title</key>
-					<string>声音</string>
-				</dict>
-				<dict>
 					<key>cellClass</key>
 					<string>RH_MineSettingsCell</string>
 					<key>id</key>
