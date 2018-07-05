@@ -1040,7 +1040,7 @@
             NSLog(@"JSToOc :%@------ gotoHomePage",NSStringFromClass([self class])) ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:NO];
-                self.myTabBarController.selectedIndex = 2 ;
+                self.myTabBarController.selectedIndex = 0 ;
             });
 //            [self.serviceRequest startV3UserInfo];
             [self.serviceRequest startV3GetUserAssertInfo] ;
