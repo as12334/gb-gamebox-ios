@@ -157,16 +157,6 @@
 							<key>title</key>
 							<string>查看更多</string>
 						</dict>
-						<dict>
-							<key>detailTitle</key>
-							<string>分享内容给朋友</string>
-							<key>targetKey</key>
-							<string>RH_ShareViewController</string>
-							<key>image</key>
-							<string>mine_page_sharefriends</string>
-							<key>title</key>
-							<string>分享朋友</string>
-						</dict>
 					</array>
 				</dict>
 			</array>
