@@ -336,6 +336,9 @@
     {
         //先从获取动态HOST
         [self fetchHost:^(NSDictionary *host) {
+            //缓存bossApi
+            [[IPsCacheManager sharedManager] updateBossApiList:host];
+            
             NSString *hostName = [host objectForKey:@"host"];
             
             //将此数据随机打乱 减轻服务器压力
@@ -798,8 +801,8 @@
     }
     else
     {
-        //先从获取动态HOST
-        [self fetchHost:^(NSDictionary *host) {
+        NSDictionary *host = [[IPsCacheManager sharedManager] bossApis];
+        if (host) {
             NSString *hostName = [host objectForKey:@"host"];
             
             //将此数据随机打乱 减轻服务器压力
@@ -848,8 +851,7 @@
             } failed:^{
                 //从所有的固定域名列表没有获取到ip列表
             }];
-        } failed:^{
-        }];
+        }
     }
 }
 
