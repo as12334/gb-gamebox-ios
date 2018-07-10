@@ -38,7 +38,7 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"42"
+#define RH_APP_VERCODE                  @"43"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -3179,9 +3179,6 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-<<<<<<< HEAD
-#elif _avz3 //皇冠国际
-=======
 #elif _1kdc //太阳城娱乐城
 
 #define CODE    @"1kdc"
@@ -3211,7 +3208,7 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
->>>>>>> e37441fb20b9d39acc765db3fc607bb7881beeeb
+#elif _avz3 //皇冠国际
 
 #define CODE    @"avz3"
 #define S        @"f3cdf337b96fc6ad4d330faa1519d7f6"
