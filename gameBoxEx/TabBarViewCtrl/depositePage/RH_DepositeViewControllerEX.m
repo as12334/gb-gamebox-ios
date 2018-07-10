@@ -384,6 +384,7 @@
         }
         else if (indexPath.item == [_markArray[2]integerValue]){
             RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
+            [moneyCell updateCellWithInfo:nil context:self.channelModel.mQuickMoneys];
             moneyCell.delegate = self;
             
             return moneyCell ;

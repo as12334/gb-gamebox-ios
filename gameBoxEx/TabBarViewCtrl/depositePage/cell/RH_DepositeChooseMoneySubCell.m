@@ -11,31 +11,18 @@
 #import "RH_API.h"
 @interface RH_DepositeChooseMoneySubCell()
 @property (weak, nonatomic) IBOutlet UIImageView *chooseMoneyIcon;
+@property (weak, nonatomic) IBOutlet UILabel *numLab;
 
 @end
 @implementation RH_DepositeChooseMoneySubCell
 -(void)updateViewWithInfo:(NSDictionary *)info context:(id)context
 {
-    NSString *numStr = ConvertToClassPointer(NSString, context);
-    if ([numStr isEqualToString:@"101"]) {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-101"];
-    }
-    else if ([numStr isEqualToString:@"302"])
-    {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-302"];
-    }
-    else if ([numStr isEqualToString:@"504"])
-    {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-504"];
-    }
-    else if ([numStr isEqualToString:@"1006"])
-    {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-1006"];
-    }
-    else if ([numStr isEqualToString:@"4998"])
-    {
-        self.chooseMoneyIcon.image = [UIImage imageNamed:@"chip-4998"];
-    }
+    NSDictionary *dic = ConvertToClassPointer(NSDictionary, context);
+    NSString *num = dic[@"num"];
+    NSString *imageName = dic[@"imageName"];
+    self.chooseMoneyIcon.image = [UIImage imageNamed:imageName];
+    self.numLab.text = [NSString stringWithFormat:@"%@",num];
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

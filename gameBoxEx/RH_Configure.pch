@@ -19,7 +19,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               0
+#define IS_DEV_SERVER_ENV                               1
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
@@ -3143,7 +3143,14 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _avz3 //皇冠国际
 
+#define CODE    @"avz3"
+#define S        @"f3cdf337b96fc6ad4d330faa1519d7f6"
+#define SID        @"626"
+#define THEME    @"default.skin"
+#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
