@@ -16,7 +16,7 @@
 //@property (nonatomic,strong,readonly) UICollectionView *collectionView ;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 //@property (nonatomic,strong) RH_DepositePaydataModel *dataModel;
-@property (nonatomic,strong)NSArray *picNameArray;
+@property(nonatomic,strong)NSMutableArray *dataArray;
 @end
 @implementation RH_DepositeChooseMoneyCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -34,15 +34,26 @@
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
     [self.collectionView reloadData] ;
-    //图片名称数组
-    _picNameArray = @[@"101",@"302",@"504",@"1006",@"4998"];
+    
     [self setupUI];
 }
 
 #pragma mark -
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
-//    self.dataModel = ConvertToClassPointer(RH_DepositePaydataModel, context);
+    self.dataArray = [NSMutableArray array];
+    NSArray *array = ConvertToClassPointer(NSArray, context);
+    //图片名称数组
+    NSArray *picNameArray = @[@"chip-blue",@"chip-red",@"chip-yellow",@"chip-green",@"chip-black"];
+    if (array.count == picNameArray.count) {
+        for (int i = 0; i < picNameArray.count; i++) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+            [dic setObject:array[i] forKey:@"num"];
+            [dic setObject:picNameArray[i] forKey:@"imageName"];
+            [self.dataArray addObject:dic];
+        }
+    }
+    
     [self.collectionView reloadData];
 }
 
@@ -80,34 +91,20 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeChooseMoneySubCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[RH_DepositeChooseMoneySubCell defaultReuseIdentifier] forIndexPath:indexPath];
-    [cell updateViewWithInfo:nil context:self.picNameArray[indexPath.item]];
+    [cell updateViewWithInfo:nil context:self.dataArray[indexPath.item]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ifRespondsSelector(self.delegate, @selector(depositeChooseMoneyCell:)){
-        if (indexPath.item==0) {
-            [self.delegate depositeChooseMoneyCell:101] ;
-        }
-        else if (indexPath.item==1) {
-            [self.delegate depositeChooseMoneyCell:302] ;
-        }
-        else if (indexPath.item==2) {
-            [self.delegate depositeChooseMoneyCell:504] ;
-        }
-       else if (indexPath.item==3) {
-            [self.delegate depositeChooseMoneyCell:1006] ;
-        }
-       else if (indexPath.item==4) {
-            [self.delegate depositeChooseMoneyCell:4998] ;
-        }
+       [self.delegate depositeChooseMoneyCell:[self.dataArray[indexPath.item][@"num"] integerValue]] ;
     }
 }
 
