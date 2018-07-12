@@ -3116,6 +3116,15 @@
 #define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _vywq //新葡京娱乐城
+
+#define CODE    @"vywq"
+#define S        @"5d4117395f9dfe983b51bb4852c94a1b"
+#define SID         @"629"
+#define THEME        @"default.skin"
+#define THEMEV3      @"black"
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _vqxy //马来西亚云顶赌场
 
 #define CODE    @"vqxy"
