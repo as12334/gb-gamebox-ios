@@ -47,15 +47,7 @@
 - (void)setAdImageUrl:(NSString *)adImageUrl
 {
     _adImageUrl = adImageUrl;
-    if ([_adImageUrl containsString:@"https"] && [_adImageUrl containsString:@"8989"]) {
-        _adImageUrl = [_adImageUrl stringByReplacingOccurrencesOfString:@"https" withString:@"http"];
-        _adImageUrl = [_adImageUrl stringByReplacingOccurrencesOfString:@"8989" withString:@"8787"];
-    }
-    else if ([_adImageUrl containsString:@"https"])
-    {
-        _adImageUrl = [_adImageUrl stringByReplacingOccurrencesOfString:@"https" withString:@"http"];
-    }
-    [self.adIMG sd_setImageWithURL:[NSURL URLWithString:_adImageUrl]];
+    [self.adIMG sd_setImageWithURL:[NSURL URLWithString:_adImageUrl] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
     
     [self counter];
 }

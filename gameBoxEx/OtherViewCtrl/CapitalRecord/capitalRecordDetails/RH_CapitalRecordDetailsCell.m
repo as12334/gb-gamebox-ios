@@ -216,7 +216,7 @@
             self.subFirstTitleLab.text = detailModel.mTransactionNo;
             self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");
             self.subThirdTitleLab.text = detailModel.mTransactionWayName;
-            [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
+            [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
             self.realNameLab.text = detailModel.mRealName;
             self.youhuiLab.text = detailModel.mRechargeAmount;
         }
@@ -232,7 +232,7 @@
              _BottomView2.whc_TopSpaceToView(36, self.thirdView).whc_LeftSpace(15).whc_RightSpace(15).whc_HeightAuto();
             self.realNameLab1.text = detailModel.mRealName?:MineSettingInfo.mRealName;
             if (detailModel.showBankURL.length > 0) {
-                 [self.TypeImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
+                 [self.TypeImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
             }else
             {
                 self.typeTitleLab.text = detailModel.mBankCodeName;
@@ -248,7 +248,7 @@
         
     }
     if ([infoModel.mTransaction_typeName isEqualToString:@"取款"]) {
-        [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL]];
+        [self.bankImageView sd_setImageWithURL:[NSURL URLWithString:detailModel.showBankURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
         self.thirdTitleLab.text = @"描述";
         self.subFirstTitleLab.text = detailModel.mTransactionNo;
         self.subSecondTitleLab.text = dateStringWithFormatter(detailModel.mCreateTime, @"yyyy-MM-dd HH:mm:ss");

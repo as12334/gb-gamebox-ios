@@ -90,7 +90,7 @@
     BankcardMapModel *bankcardModel = ConvertToClassPointer(BankcardMapModel, context) ;
     if (bankcardModel.mBankcardNumber.length){
         self.bankCardLab.textColor = colorWithRGB(68, 68, 68);
-        [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL]];
+        [self.bankIconImageView sd_setImageWithURL:[NSURL URLWithString:bankcardModel.showBankURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
         self.bankUserNameLb.text =  bankcardModel.mBankcardMasterName;
         self.bankCardLab.text = bankcardModel.mBankcardNumber;
     }else{

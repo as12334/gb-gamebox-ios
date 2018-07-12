@@ -43,7 +43,10 @@
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_black"]) {
         self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
-    }else{
+    }else if ([THEMEV3 isEqualToString:@"default"]) {
+        self.submitBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
+    else{
         [self.submitBtn setBackgroundColor:[UIColor blueColor]];
     }
 }

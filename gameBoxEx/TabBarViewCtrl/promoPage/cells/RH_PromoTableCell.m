@@ -77,7 +77,7 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.discountActivityModel = ConvertToClassPointer(RH_DiscountActivityModel, context) ;
-    [self.activeImageView sd_setImageWithURL:[NSURL URLWithString:self.discountActivityModel.showPhoto]
+    [self.activeImageView sd_setImageWithURL:[NSURL URLWithString:self.discountActivityModel.showPhoto] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates
                                    completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                        if (image){
                                            [self.discountActivityModel updateImageSize:image.size] ;
