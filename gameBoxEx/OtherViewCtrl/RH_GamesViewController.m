@@ -244,7 +244,7 @@
 //    self.webURL = [NSURL URLWithString:@""] ;
 //    [self reloadWebView] ;
 //
-//    [super backBarButtonItemHandle] ;
+    [super backBarButtonItemHandle] ;
 }
 
 #pragma mark-
