@@ -131,7 +131,8 @@
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
         if (![[self.bannerModels[index] thumbURL] containsString:@"gif"]) {
             [imageView sd_setImageWithURL:[NSURL URLWithString:[self.bannerModels[index] thumbURL]]
-                         placeholderImage:ImageWithName(@"default_banner.jpg")] ;
+                         placeholderImage:ImageWithName(@"default_banner.jpg") options:SDWebImageAllowInvalidSSLCertificates] ;
+
         }
     }else{
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];

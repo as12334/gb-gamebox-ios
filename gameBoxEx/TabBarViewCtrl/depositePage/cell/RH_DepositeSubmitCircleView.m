@@ -69,7 +69,12 @@
         self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
         self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
-    }else{
+    }
+    else if ([THEMEV3 isEqualToString:@"default"])
+    {
+        self.depositeBtn.backgroundColor = RH_NavigationBar_BackgroundColor;
+    }
+    else{
         self.depositeBtn.backgroundColor = colorWithRGB(11, 102, 75);
     }
     _tabelView.delegate = self;
