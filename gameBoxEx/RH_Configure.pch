@@ -3116,6 +3116,15 @@
 #define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _vywq //新葡京娱乐城
+
+#define CODE    @"vywq"
+#define S        @"5d4117395f9dfe983b51bb4852c94a1b"
+#define SID         @"629"
+#define THEME        @"default.skin"
+#define THEMEV3      @"black"
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _vqxy //马来西亚云顶赌场
 
 #define CODE    @"vqxy"
@@ -3188,6 +3197,15 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _nbyt //新葡京娱乐城
+
+#define CODE    @"nbyt"
+#define S        @"e7f80c736e58788a504f2c1ff66fe119"
+#define SID        @"637"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #elif _kzpl //澳门国际
@@ -3208,6 +3226,16 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _sftj //新葡京娱乐场
+
+#define CODE    @"sftj"
+#define S        @"376f2e7efecc47673ce261628f9c4dce"
+#define SID        @"650"
+#define THEME    @"default.skin"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
 #elif _avz3 //皇冠国际
 
 #define CODE    @"avz3"
@@ -3215,6 +3243,15 @@
 #define SID        @"626"
 #define THEME    @"default.skin"
 #define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _fdhc //澳门银河
+
+#define CODE    @"fdhc"
+#define S        @"86a68da943c369178984a79eab6b3723"
+#define SID        @"652"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif
