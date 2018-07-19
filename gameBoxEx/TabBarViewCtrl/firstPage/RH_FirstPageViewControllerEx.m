@@ -35,6 +35,8 @@
 #import "RH_MainTabBarController.h"
 #import "RH_InitAdModel.h"
 #import "UpdateStatusCacheManager.h"
+#import "SH_WKGameViewController.h"
+#import "GameWebViewController.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -209,8 +211,15 @@
 -(void)advertisementViewDidTouchSureBtn:(RH_AdvertisementView *)advertisementView DataModel:(RH_PhoneDialogModel *)phoneModel
 {
     [advertisementView hideAdvertisementView] ;
-    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
-    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    
+    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+    NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,phoneModel.link];
+    [self.navigationController pushViewController:gameViewController animated:YES];
+
+//    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
+//    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+    
     return ;
 }
 
@@ -375,6 +384,8 @@
 
 -(void)homeCategoryItemsCellDidTouchItemCell:(RH_HomeCategoryItemsCell*)homeCategoryItem DataModel:(id)cellItemModel index:(NSInteger)index
 {
+    __weak typeof(self) weakSelf = self;
+
     self.currentCategoryIndex = index;
     if (self.appDelegate.isLogin)
     {
@@ -383,60 +394,112 @@
             if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
                 [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
                                   sender:self] ;
-                return ;
-            }else if (lotteryAPIInfoModel.mAutoPay){//免转
-                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
-                return ;
-            }else{ //非免转 ---跳到额度转换里 自已转钱入游戏 。
-                if (lotteryAPIInfoModel.mGameLink.length){
-                    if ([lotteryAPIInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
-                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
-                        return ;
-                    }else{
-                        self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
-                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                        return ;
-                    }
-                }else{
-                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
-                    return ;
-                }
             }
-        }else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]]){
+            else
+            {
+                [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryAPIInfoModel.mGameLink];
+            }
+        }
+        else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]])
+        {
             RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, cellItemModel) ;
-            if (lotteryInfoModel.mAutoPay){ //免转
-                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
-                return ;
-            }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
-                if (lotteryInfoModel.mGameLink.length){
-                    if ([lotteryInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
-                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
-                        return ;
-                    }else{
-//                        self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
-//                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
-                        return ;
-                    }
-                }else{
-                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
-                    return ;
+            [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink];
+        }
+        [self.serviceRequest setSuccessBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+            if (type == ServiceRequestTypeV3GameLinkForCheery) {
+                if (![[data objectForKey:@"gameLink"] hasPrefix:@"http"]) {
+                    //是自己的游戏 需要传SID 则使用UIWebView
+                    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+                    NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+                    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
+                    [gameViewController close:^{
+                        //调用一次回收额度
+                        [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
+                    }];
+                    [gameViewController closeAndShowLogin:^{
+                        [weakSelf loginButtonItemHandle];
+                    }];
+                    [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                }
+                else
+                {
+                    //其他的使用WKWebView
+                    SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+                    [gameViewController close:^{
+                        //调用一次回收额度
+                        [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
+                    }];
+                    gameViewController.url = [data objectForKey:@"gameLink"];
+                    [weakSelf.navigationController pushViewController:gameViewController animated:YES];
                 }
             }
-        }
-    }else{
-        if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
-            RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
-            if (lotteryAPIInfoModel.mApiTypeID==2){ //进入 电子游戏 列表 。。。
-                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
-                                  sender:self] ;
-                //lotteryAPIInfoModel
-                return ;
+        }];
+        
+        [self.serviceRequest setFailBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+            if (type == ServiceRequestTypeV3GameLinkForCheery) {
+                NSLog(@"");
             }
-        }
-        //进入登录界面
-        [self loginButtonItemHandle] ;
+        }];
     }
+//        if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
+//            RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
+//            if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
+//                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
+//                                  sender:self] ;
+//                return ;
+//            }else if (lotteryAPIInfoModel.mAutoPay){//免转
+//                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
+//                return ;
+//            }else{ //非免转 ---跳到额度转换里 自已转钱入游戏 。
+//                if (lotteryAPIInfoModel.mGameLink.length){
+//                    if ([lotteryAPIInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
+//                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryAPIInfoModel] sender:self] ;
+//                        return ;
+//                    }else{
+//                        self.appDelegate.customUrl = lotteryAPIInfoModel.showGameLink ;
+//                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+//                        return ;
+//                    }
+//                }else{
+//                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
+//                    return ;
+//                }
+//            }
+//        }else if ([cellItemModel isKindOfClass:[RH_LotteryInfoModel class]]){
+//            RH_LotteryInfoModel *lotteryInfoModel = ConvertToClassPointer(RH_LotteryInfoModel, cellItemModel) ;
+//            if (lotteryInfoModel.mAutoPay){ //免转
+//                [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+//                return ;
+//            }else { //非免转 ---跳到额度转换里 自已转钱入游戏 。
+//                if (lotteryInfoModel.mGameLink.length){
+//                    if ([lotteryInfoModel.mGameLink containsString:@"mobile-api"]){//通过gamelink请求url
+//                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+//                        return ;
+//                    }else{
+////                        self.appDelegate.customUrl = lotteryInfoModel.showGameLink ;
+////                        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+//                        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self] ;
+//                        return ;
+//                    }
+//                }else{
+//                    showAlertView(@"提示信息",@"数据异常,请联系客服!") ;
+//                    return ;
+//                }
+//            }
+//        }
+//    }else{
+//        if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
+//            RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
+//            if (lotteryAPIInfoModel.mApiTypeID==2){ //进入 电子游戏 列表 。。。
+//                [self showViewController:[RH_GameListViewController viewControllerWithContext:@[self.selectedCategoryModel,@(self.currentCategoryIndex)]]
+//                                  sender:self] ;
+//                //lotteryAPIInfoModel
+//                return ;
+//            }
+//        }
+//        //进入登录界面
+//        [self loginButtonItemHandle] ;
+//    }
 }
 
 #pragma mark- selectedCategoryModel
@@ -905,9 +968,13 @@
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
     if (bannerModel.contentURL.length){
-        self.appDelegate.customUrl = bannerModel.contentURL ;
-        NSLog(@"bannerModel.contentURL==%@",bannerModel.contentURL);
-        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+        SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+        gameViewController.url = bannerModel.contentURL;
+        [self.navigationController pushViewController:gameViewController animated:YES];
+
+//        self.appDelegate.customUrl = bannerModel.contentURL ;
+//        NSLog(@"bannerModel.contentURL==%@",bannerModel.contentURL);
+//        [self showViewController:[RH_CustomViewController viewController] sender:self] ;
         
 //        RH_BannerDetailVCViewController *banner = [RH_BannerDetailVCViewController viewControllerWithContext:nil];
 //        banner.urlStr = bannerModel.contentURL;

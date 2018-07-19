@@ -167,12 +167,6 @@
 //    [WebView stopLoading];
     [self.webView stopLoading];
     _webURL = nil;
-    
-    if (!([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"])){
-    // 每次退出 都清除一下缓存被
-        [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    }
-      
 }
 
 #pragma mark--
@@ -354,7 +348,7 @@
         NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
         [request setValue:self.appDelegate.headerDomain forHTTPHeaderField:@"Host"];
         
         [self.webView loadRequest:request];
@@ -366,7 +360,7 @@
         NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:cookieProperties];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
         
         [self.webView loadRequest:request];
     }

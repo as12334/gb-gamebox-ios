@@ -31,6 +31,8 @@
 #import "RH_CustomServiceSubViewController.h"
 #import "RH_DepositPaylinkViewController.h"
 #import "RH_TestSafariViewController.h"
+#import "SH_WKGameViewController.h"
+
 @interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
@@ -828,11 +830,15 @@
     }
     else if (type==ServiceRequestTypeV3OnlinePay){
         if ([data objectForKey:@"data"]) {
-            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-            appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                 [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-            }) ;
+            SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+            gameViewController.url = [[data objectForKey:@"data"] objectForKey:@"payLink"];
+            [self.navigationController pushViewController:gameViewController animated:YES];
+
+//            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+//            appDelegate.customUrl =[[data objectForKey:@"data"] objectForKey:@"payLink"] ;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                 [self showViewController:[RH_CustomViewController viewController] sender:self] ;
+//            }) ;
            
         }else
         {

@@ -16,6 +16,7 @@
 #import "RH_BettingRecordDetailController.h"
 #import "RH_BettingInfoModel.h"
 #import "RH_GamesViewController.h"
+#import "GameWebViewController.h"
 
 //#import "RH_BettingDetailWebController.h"
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
@@ -377,8 +378,14 @@
 {
     if (self.pageLoadManager.currentDataCount){
         RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-        self.appDelegate.customUrl = bettingInfoModel.showDetailUrl ;
-        [self showViewController:[RH_GamesViewController viewControllerWithContext:bettingInfoModel] sender:self] ;
+        
+        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+        NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,bettingInfoModel.mURL];
+        [self.navigationController pushViewController:gameViewController animated:YES];
+
+//        self.appDelegate.customUrl = bettingInfoModel.showDetailUrl ;
+//        [self showViewController:[RH_GamesViewController viewControllerWithContext:bettingInfoModel] sender:self] ;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
 }
