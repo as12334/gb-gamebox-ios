@@ -305,7 +305,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.item==[_markArray[0] integerValue]) {
-        return 226.0f ;
+        return 240.0f ;
     }
     else if (indexPath.item==[_markArray[1] integerValue]){
         return 190.f;

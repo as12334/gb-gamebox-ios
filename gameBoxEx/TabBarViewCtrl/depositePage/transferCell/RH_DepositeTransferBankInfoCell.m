@@ -46,7 +46,7 @@
     }
     self.bankCardNameLabel.text = listModel.mFullName;
     self.bankAdressLabel.text = listModel.mOpenAcountName;
-    self.payNameLabel.text = listModel.mPayName;
+    self.payNameLabel.text = listModel.mAliasName;
     if (listModel.mRemark) {
         self.remarkLabel.text = listModel.mRemark;
     }
