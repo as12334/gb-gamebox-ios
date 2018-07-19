@@ -98,7 +98,16 @@
     }];
     
     [_dragableMenuView gobackAction:^{
-        [weakSelf.webview goBack];
+        if ([weakSelf.webview canGoBack]) {
+            [weakSelf.webview goBack];
+        }
+        else
+        {
+            [weakSelf.navigationController popViewControllerAnimated:NO];
+            if (weakSelf.closeBlock) {
+                weakSelf.closeBlock();
+            }
+        }
     }];
 }
 
