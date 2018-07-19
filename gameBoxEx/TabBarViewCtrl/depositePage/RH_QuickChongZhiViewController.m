@@ -101,6 +101,7 @@
 -(void)setupViewContext:(id)context
 {
     NSArray *dataArr = ConvertToClassPointer(NSArray, context) ;
+    NSLog(@"dataArra == %@",dataArr);
     if (dataArr.count > 0) {
         _urlStr = dataArr[0] ;
         _title = dataArr[1] ;

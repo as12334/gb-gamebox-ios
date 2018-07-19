@@ -43,8 +43,6 @@
      [self setupUI];
 }
 -(void)setupUI{
-    
-   
     self.layer.cornerRadius = 5.f;
     self.layer.masksToBounds = YES;
     self.depositeBtn.layer.cornerRadius = 5.f;
