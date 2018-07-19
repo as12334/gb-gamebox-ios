@@ -19,7 +19,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               0
+#define IS_DEV_SERVER_ENV                               1
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
@@ -2362,7 +2362,7 @@
 #define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _2x6s //大 发
+#elif _2x6s //澳门威尼斯
 
 #define CODE    @"2x6s"
 #define S        @"144799c80f96c3abcd2303e00c7e21ac"
@@ -3253,6 +3253,17 @@
 #define THEME    @"default.skin"
 #define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
+
+#elif _u1o1 //众乐娱乐
+
+#define CODE    @"u1o1"
+#define S        @"66fa0e94a1b15bf835569faf2a68c1e5"
+#define SID        @"656"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 #endif
 
