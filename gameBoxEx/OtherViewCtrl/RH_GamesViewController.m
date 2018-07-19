@@ -177,9 +177,7 @@
 
 -(void)_homeBackHandle
 {
-    if (_apiID>0){
-        [self.serviceRequest startAPIRetrive:_apiID] ;
-    }
+    [self refreshApi];
     
     //clear 音效
 //    self.webURL = [NSURL URLWithString:@""] ;
@@ -195,6 +193,7 @@
 
 -(void)_backBackHandle
 {
+    [self refreshApi];
     [self backBarButtonItemHandle] ;
 }
 
@@ -244,7 +243,7 @@
 //    self.webURL = [NSURL URLWithString:@""] ;
 //    [self reloadWebView] ;
 //
-//    [super backBarButtonItemHandle] ;
+    [super backBarButtonItemHandle] ;
 }
 
 #pragma mark-
@@ -357,6 +356,24 @@
 {
     //支持哪些转屏方向
     return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
+}
+
+- (void)refreshApi
+{
+    NSInteger apiId = 0;
+    if (_apiInfoModel){
+        apiId = _apiInfoModel.mApiID;
+    }else if (_lotteryInfoModel){
+        apiId = _lotteryInfoModel.mApiID;
+    }
+    else if (_bettingInfoModel)
+    {
+        apiId = _bettingInfoModel.mApiID;
+    }
+    else{
+        apiId = _apiID;
+    }
+    [self.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)apiId]];
 }
 
 @end

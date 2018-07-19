@@ -97,7 +97,7 @@
     self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mWalletBalance];
     self.label_TimeLast.text = MineSettingInfo.mLoginTime ;
     [self.imageUserAvator sd_setImageWithURL:[NSURL URLWithString:MineSettingInfo.showAvatalURL]
-                            placeholderImage:ImageWithName(@"touxiang")] ;
+                            placeholderImage:ImageWithName(@"touxiang") options:SDWebImageAllowInvalidSSLCertificates] ;
 }
 
 @end
