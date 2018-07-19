@@ -13,11 +13,14 @@
 #import "ScreenAdaptation.h"
 #import "UITableView+Register.h"
 #import "UIView+Instance.h"
+#import "RH_ServiceRequest.h"
+#import "RH_APPDelegate.h"
 
 @interface CLTableViewManagement()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong,readonly) UITableView *tableView ;
 @property (nonatomic,strong) NSArray *sectionsInfo           ;
 @property (nonatomic,strong) NSDictionary *cellsExtraInfo    ;
+
 @end
 
 @implementation CLTableViewManagement
@@ -44,7 +47,24 @@
 
 -(void)_initTableViewWithPlistName:(NSString*)plistFile bundle:(NSBundle*)bundleOrNil
 {
-    NSDictionary * configurationInfo = [NSDictionary dictionaryWithContentsOfFile:PlistResourceFilePathInBundle(bundleOrNil,plistFile)];
+    NSMutableDictionary * configurationInfo = [NSMutableDictionary dictionaryWithContentsOfFile:PlistResourceFilePathInBundle(bundleOrNil,plistFile)];
+    if ([plistFile isEqualToString:@"MineSafetyCenterNone"] || [plistFile isEqualToString:@"MineSafetyCenterOnlyBit"] || [plistFile isEqualToString:@"MineSafetyCenterOnlyCard"] || [plistFile isEqualToString:@"MineSafetyCenterBoth"] ) {
+        NSArray *sectionsInfo = [configurationInfo objectForKey:@"sectionsInfo"];
+        NSMutableArray *rowsInfo = [NSMutableArray arrayWithArray:[[sectionsInfo firstObject] objectForKey:@"rowsInfo"]];
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        
+        for (int i = 0; i < rowsInfo.count; i++) {
+            NSDictionary *rowsInfoDic = rowsInfo[i];
+            NSString *targetKey = [rowsInfoDic objectForKey:@"targetKey"];
+            if ([targetKey isEqualToString:@"RH_BindPhoneViewController"] && !appDelegate.openForgetPsw) {
+                [rowsInfo removeObjectAtIndex:i];
+                break;
+            }
+        }
+        
+        [configurationInfo setObject:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:rowsInfo,@"rowsInfo", nil]] forKey:@"sectionsInfo"];
+    }
+    
     _sectionsInfo = configurationInfo.sectionsInfo ;
     _cellsExtraInfo = configurationInfo.cellsExtraInfo ;
     

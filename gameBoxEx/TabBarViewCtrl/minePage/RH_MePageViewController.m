@@ -50,6 +50,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"我的";
+    __weak typeof(self) weakSelf = self;
+
     [self setupUI];
     [self setNeedUpdateView] ;
     [self setupPageLoadManager] ;
@@ -58,6 +60,22 @@
                                                  name:NT_LoginStatusChangedNotification object:nil] ;
     if (self.appDelegate.isLogin) {
         [self.serviceRequest startV3UserSafetyInfo] ;
+        [self.serviceRequest checkForgetPswStatus];
+        self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+            if (type == ServiceRequestTypeV3ForgetPswCheckStatus)
+            {
+                if (data) {
+                    int code = [[data objectForKey:@"code"] intValue];
+                    if (code == 0) {
+                        int switchStatus = [[data objectForKey:@"data"] intValue];
+                        if (switchStatus == 1) {
+                            //打开
+                            weakSelf.appDelegate.openForgetPsw = YES;
+                        }
+                    }
+                }
+            }
+        };
     }
 }
 
