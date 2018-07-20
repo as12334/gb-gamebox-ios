@@ -3263,7 +3263,14 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _mz0n //添好运
 
+#define CODE    @"mz0n"
+#define S        @"1bffd74a7dd3137bf9e7bfba64f98281"
+#define SID        @"655"
+#define THEME    @"default.skin"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 

@@ -45,6 +45,11 @@
                                                    object:nil];
     }
 
+    [self setHiddenStatusBar:YES];
+    
+    self.hiddenTabBar = YES;
+    self.hiddenNavigationBar = YES;
+
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     _wkWebView = [[WKWebView alloc]initWithFrame:CGRectZero configuration:config];
     [self.view addSubview:_wkWebView];
