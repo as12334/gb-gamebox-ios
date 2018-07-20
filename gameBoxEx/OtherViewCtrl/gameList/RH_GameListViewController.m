@@ -24,6 +24,7 @@
 #import "RH_GameListCategoryScrollView.h"
 #import "RH_GameEmptyDataCell.h"
 #import "RH_GamesViewController.h"
+#import "SH_WKGameViewController.h"
 
 @interface RH_GameListViewController ()<RH_ServiceRequestDelegate, LotteryGameListTopViewDelegate,UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RH_GameItemsCellDelegate,HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource,RH_GameListCategoryScrollViewDelegate>
 @property (nonatomic, strong) RH_LotteryGameListTopView *searchView;
@@ -335,12 +336,31 @@
  */
 -(void)openGame:(RH_LotteryInfoModel*)lotteryInfoModel
 {
+    __weak typeof(self) weakSelf = self;
+
     if (HasLogin)
     {
-        //by shin
-//        [self showViewController:[RH_ElecGameViewController viewControllerWithContext:lotteryInfoModel] sender:self];
-        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self];
-        return ;
+//        [self showViewController:[RH_GamesViewController viewControllerWithContext:lotteryInfoModel] sender:self];
+        
+        [self.serviceRequest startv3GetGamesLinkForCheeryLink:lotteryInfoModel.mGameLink];
+
+        [self.serviceRequest setSuccessBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+            if (type == ServiceRequestTypeV3GameLinkForCheery) {
+                SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+                gameViewController.url = [data objectForKey:@"gameLink"];
+                [gameViewController close:^{
+                    //调用一次回收额度
+                    [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)lotteryInfoModel.mApiID]];
+                }];
+                [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+            }
+        }];
+        
+        [self.serviceRequest setFailBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+            if (type == ServiceRequestTypeV3GameLinkForCheery) {
+                NSLog(@"");
+            }
+        }];
     }else{
         [self loginButtonItemHandle] ;
     }

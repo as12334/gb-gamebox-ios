@@ -81,6 +81,9 @@
     _tabelView.layer.cornerRadius = 5.f;
     _tabelView.layer.masksToBounds = YES;
     _tabelView.backgroundColor = colorWithRGB(242, 242, 242);
+    _tabelView.estimatedRowHeight=40.0f;
+    _tabelView.rowHeight=UITableViewAutomaticDimension;
+
     [_tabelView registerNib:[UINib nibWithNibName:@"RH_DepositeSubmitCircleCell" bundle:nil] forCellReuseIdentifier:@"circleCell"];
     
     
@@ -101,10 +104,11 @@
 {
     return 1;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 40.f;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 40.f;
+//}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_DepositeSubmitCircleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"circleCell"];

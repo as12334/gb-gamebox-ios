@@ -22,6 +22,8 @@
 #import "RH_BankCardController.h"
 #import "RH_WithdrawCashThreeCell.h"
 #import "RH_NavigationUserInfoView.h"
+#import "GameWebViewController.h"
+
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0    ,
     WithdrawCashStatus_NotEnoughCash            ,
@@ -300,8 +302,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonCheckHandle {
     
-    self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
-    [self showViewController:[RH_CustomViewController viewControllerWithContext:self.withDrawModel] sender:nil];
+    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+    NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,_withDrawModel.mAuditLogUrl];
+    [self.navigationController pushViewController:gameViewController animated:YES];
+
+//    self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
+//    [self showViewController:[RH_CustomViewController viewControllerWithContext:self.withDrawModel] sender:nil];
 }
 
 - (void)buttonConfirmHandle {
