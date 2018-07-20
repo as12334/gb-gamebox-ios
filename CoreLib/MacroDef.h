@@ -9,6 +9,7 @@
 #ifndef MacroDef_h
 #define MacroDef_h
 
+#define iPhoneX  ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 //系统版本
 #define SystemVersion systemVersion()

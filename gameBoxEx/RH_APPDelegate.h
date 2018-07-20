@@ -28,6 +28,7 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 @property (nonatomic,strong) NSDictionary *dictUserAgent ;
 //check type
 @property (nonatomic,strong)NSString *checkType;
+@property(assign,nonatomic)  BOOL openForgetPsw;
 
 -(void)updateApiDomain:(NSString*)apiDomain ;
 -(void)updateDomain:(NSString*)domain ;
