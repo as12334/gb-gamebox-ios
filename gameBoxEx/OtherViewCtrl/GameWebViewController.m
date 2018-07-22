@@ -63,6 +63,9 @@
                                                      name:UIApplicationDidChangeStatusBarOrientationNotification
                                                    object:nil];
     }
+    
+    [self setHiddenStatusBar:YES];
+
     _webview = [[UIWebView alloc]initWithFrame:CGRectZero];
     [self.view addSubview:_webview];
     _webview.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;

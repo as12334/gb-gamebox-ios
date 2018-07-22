@@ -2637,7 +2637,7 @@
 #define S        @"59233a9ed5d9a18567222169c1d0450b"
 #define SID        @"566"
 #define THEME    @"default.skin"
-#define THEMEV3             @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
 
@@ -3254,6 +3254,17 @@
 #define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+
+
+#elif _eiz9 //澳门美高梅娱乐场
+
+#define CODE    @"eiz9"
+#define S        @"246e3adb12db1ec047809bebf41182d6"
+#define SID        @"653"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _u1o1 //众乐娱乐
 
 #define CODE    @"u1o1"
@@ -3263,7 +3274,32 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _mz0n //添好运
 
+#define CODE    @"mz0n"
+#define S        @"1bffd74a7dd3137bf9e7bfba64f98281"
+#define SID        @"655"
+#define THEME    @"default.skin"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _b8gi //星际娱乐城
+
+#define CODE    @"b8gi"
+#define S        @"84e3e801d917ed451bd5363d5b5959b6"
+#define SID        @"659"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _y0hn //电子娱乐
+
+#define CODE    @"y0hn"
+#define S        @"4645472372f1b02b13f86001dfe192eb"
+#define SID        @"660"
+#define THEME    @"default.skin"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
