@@ -3292,6 +3292,24 @@
 #define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+<<<<<<< HEAD
+
+#elif _i1bh //博赢-国际
+
+#define CODE    @"i1bh"
+#define S        @"b024d2922898f1bd491b1d3213b0e423"
+#define SID        @"661"
+=======
+#elif _y0hn //电子娱乐
+
+#define CODE    @"y0hn"
+#define S        @"4645472372f1b02b13f86001dfe192eb"
+#define SID        @"660"
+>>>>>>> 15c9e1ba81e136667e46c4a748e3adfd68090c4e
+#define THEME    @"default.skin"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
