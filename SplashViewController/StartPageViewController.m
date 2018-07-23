@@ -73,10 +73,7 @@
     
     [self.launchImageView setImage:ImageWithName(@"startImage")];
     [self.logoImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"app_logo_%@",SID]]];
-    if ([SID intValue] == 119
-        || [SID intValue] == 270
-        || [SID intValue] == 211
-        ) {
+    if ([SID intValue] == 119 || [SID intValue] == 270 || [SID intValue] == 136 || [SID intValue] == 211) {
         self.logoImg.hidden = YES;
     }
     else
