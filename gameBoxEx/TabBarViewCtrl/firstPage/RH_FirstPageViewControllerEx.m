@@ -434,7 +434,7 @@
                 }
             }
         }];
-        
+
         [self.serviceRequest setFailBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
             if (type == ServiceRequestTypeV3GameLinkForCheery) {
                 NSLog(@"");
@@ -445,6 +445,7 @@
     {
         [self loginButtonItemHandle] ;
     }
+    
 //        if ([cellItemModel isKindOfClass:[RH_LotteryAPIInfoModel class]]){
 //            RH_LotteryAPIInfoModel *lotteryAPIInfoModel = ConvertToClassPointer(RH_LotteryAPIInfoModel, cellItemModel) ;
 //            if (lotteryAPIInfoModel.mApiTypeID==2){ ////进入 电子游戏 列表 。。。
