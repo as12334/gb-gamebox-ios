@@ -782,7 +782,7 @@
             [self.serviceRequest startV3GetUserAssertInfo] ;
         }] ;
     }else if (type == ServiceRequestTypeV3RefreshSession){
-        
+        NSLog(@"");
     }else if (type == ServiceRequestTypeV3OneStepRefresh){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showSuccessMessage(self.view, @"提示信息", @"资金刷新成功") ;
@@ -822,6 +822,7 @@
         [self.shadeView removeFromSuperview];
         [self.hud hide: YES];
     }else if (type == ServiceRequestTypeV3RefreshSession){
+        NSLog(@"");
     }else if (type == ServiceRequestTypeV3OneStepRefresh){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             showErrorMessage(nil, error, @"资金刷新失败") ;
