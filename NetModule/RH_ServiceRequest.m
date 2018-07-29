@@ -1519,7 +1519,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                             pathFormat:RH_API_NAME_REFRESHLOGINSTATUS
                          pathArguments:nil
                        headerArguments:@{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE],
-                                         @"Host":self.appDelegate.headerDomain
+                                         @"Host":self.appDelegate.headerDomain,
+                                         @"Cookie":userInfo_manager.sidString
                                          }
                         queryArguments:nil
                          bodyArguments:nil

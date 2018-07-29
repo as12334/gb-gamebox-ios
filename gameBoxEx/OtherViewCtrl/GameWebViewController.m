@@ -230,7 +230,7 @@
         //跳到login界面
         [weakSelf loginButtonItemHandle] ;
     };
-
+    
     jsContext[@"gotoCustom"] = ^(){
         NSArray *args = [JSContext currentArguments];
         JSValue *customUrl;
