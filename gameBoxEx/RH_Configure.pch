@@ -3330,8 +3330,14 @@
 #define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _dvzh //澳门银河赌场
 
-
+#define CODE    @"dvzh"
+#define S        @"05d01509c201e04f860841a36e099bee"
+#define SID        @"662"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integrated"
 #endif
 
 #endif /* RH_Configure_h */
