@@ -346,13 +346,20 @@
 
         [self.serviceRequest setSuccessBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
             if (type == ServiceRequestTypeV3GameLinkForCheery) {
-                SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
-                gameViewController.url = [data objectForKey:@"gameLink"];
-                [gameViewController close:^{
-                    //调用一次回收额度
-                    [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)lotteryInfoModel.mApiID]];
-                }];
-                [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                NSString *gameMsg = [data objectForKey:@"gameMsg"];
+                if (gameMsg == nil || [gameMsg isEqual:[NSNull null]] || [gameMsg isEqualToString:@""]) {
+                    SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+                    gameViewController.url = [data objectForKey:@"gameLink"];
+                    [gameViewController close:^{
+                        //调用一次回收额度
+                        [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)lotteryInfoModel.mApiID]];
+                    }];
+                    [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                }
+                else
+                {
+                    showErrorMessage(weakSelf.view, nil, gameMsg);
+                }
             }
         }];
         

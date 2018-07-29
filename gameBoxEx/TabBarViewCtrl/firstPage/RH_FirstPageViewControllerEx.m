@@ -407,30 +407,37 @@
         }
         [self.serviceRequest setSuccessBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
             if (type == ServiceRequestTypeV3GameLinkForCheery) {
-                if (![[data objectForKey:@"gameLink"] hasPrefix:@"http"]) {
-                    //是自己的游戏 需要传SID 则使用UIWebView
-                    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-                    NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-                    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
-                    [gameViewController close:^{
-                        //调用一次回收额度
-                        [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
-                    }];
-                    [gameViewController closeAndShowLogin:^{
-                        [weakSelf loginButtonItemHandle];
-                    }];
-                    [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                NSString *gameMsg = [data objectForKey:@"gameMsg"];
+                if (gameMsg == nil || [gameMsg isEqual:[NSNull null]] || [gameMsg isEqualToString:@""]) {
+                    if (![[data objectForKey:@"gameLink"] hasPrefix:@"http"]) {
+                        //是自己的游戏 需要传SID 则使用UIWebView
+                        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+                        NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+                        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
+                        [gameViewController close:^{
+                            //调用一次回收额度
+                            [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
+                        }];
+                        [gameViewController closeAndShowLogin:^{
+                            [weakSelf loginButtonItemHandle];
+                        }];
+                        [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                    }
+                    else
+                    {
+                        //其他的使用WKWebView
+                        SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+                        [gameViewController close:^{
+                            //调用一次回收额度
+                            [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
+                        }];
+                        gameViewController.url = [data objectForKey:@"gameLink"];
+                        [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                    }
                 }
                 else
                 {
-                    //其他的使用WKWebView
-                    SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
-                    [gameViewController close:^{
-                        //调用一次回收额度
-                        [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
-                    }];
-                    gameViewController.url = [data objectForKey:@"gameLink"];
-                    [weakSelf.navigationController pushViewController:gameViewController animated:YES];
+                    showErrorMessage(weakSelf.view, nil, gameMsg);
                 }
             }
         }];
