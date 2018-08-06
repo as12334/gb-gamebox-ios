@@ -293,7 +293,9 @@ configuration_list=(  \
     # '_wscm^663^"威尼斯娱乐城"' \
     # '_ehe0^658^"钜星亚博"' \
     # '_2mxu^669^"佳盈国际"' \
+    # '_wj9a^673^"E博国际"' \
     '_wj9a^673^"E博国际"' \
+
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
