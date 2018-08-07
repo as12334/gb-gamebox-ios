@@ -92,7 +92,7 @@
     _dragableMenuView.hidden = self.hideMenuView;
     [self.view addSubview:_dragableMenuView];
     UIInterfaceOrientation oriention = [UIApplication sharedApplication].statusBarOrientation;
-    _dragableMenuView.whc_TopSpace(60).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
+    _dragableMenuView.whc_TopSpace(470).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
     [_dragableMenuView closeAction:^{
         [weakSelf.navigationController popViewControllerAnimated:NO];
         if (weakSelf.closeBlock) {

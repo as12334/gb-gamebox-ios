@@ -178,7 +178,7 @@
 -(void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
     if (type==ServiceRequestTypeV3CustomService) {
-        self.urlString = [[data objectForKey:@"data"]objectForKey:@"customerUrl"];
+        self.urlString = [[[data objectForKey:@"data"]objectForKey:@"customerUrl"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.statusMark = [[data objectForKey:@"data"]objectForKey:@"isInlay"];
         if ([self.statusMark isEqual:@0]) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.urlString]];

@@ -3337,7 +3337,46 @@
 #define SID        @"662"
 #define THEME    @"default.skin"
 #define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _wscm //威尼斯娱乐城
+
+#define CODE    @"wscm"
+#define S        @"8f8abdbfe1d768c7547ea633c3654ee1"
+#define SID        @"663"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ehe0 //钜星亚博
+
+#define CODE    @"ehe0"
+#define S        @"ee7e2dc0588755a3482a511ed3ad41c4"
+#define SID        @"658"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _2mxu //佳盈国际
+
+#define CODE    @"2mxu"
+#define S        @"bc90236eca1c2184f2789c4fc98949cf"
+#define SID        @"669"
+#define THEME    @"default.skin"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _wj9a //E博国际
+
+#define CODE    @"wj9a"
+#define S        @"b6817fdb54a102b458bf15c5f3430ddb"
+#define SID        @"673"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
