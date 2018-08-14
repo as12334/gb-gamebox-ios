@@ -3375,7 +3375,14 @@
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _wj4a //E博国际
 
+#define CODE    @"wj3a"
+#define S        @"b6817fdb54a102b458bf15c5f3430ddb"
+#define SID        @"902"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 

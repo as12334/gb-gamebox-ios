@@ -295,7 +295,7 @@ configuration_list=(  \
     # '_2mxu^669^"佳盈国际"' \
     # '_wj9a^673^"E博国际"' \
     '_wj9a^673^"E博国际"' \
-
+    
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
