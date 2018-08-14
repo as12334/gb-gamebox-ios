@@ -3393,6 +3393,24 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _efd8 //盈丰娛樂
+
+#define CODE    @"efd8"
+#define S        @"d0d84fbb3611b8360c89ae128fcc1767"
+#define SID        @"683"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _njtk //永利娱乐城
+
+#define CODE    @"njtk"
+#define S        @"ef16d4629a453e4826ffcba53d44d993"
+#define SID        @"635"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
