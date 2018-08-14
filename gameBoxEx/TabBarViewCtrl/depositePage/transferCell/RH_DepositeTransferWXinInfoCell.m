@@ -46,7 +46,7 @@
     self.accountInfoView.layer.cornerRadius = 10.f;
     self.accountInfoView.layer.masksToBounds = YES;
     self.accountInfoView.backgroundColor = colorWithRGB(242, 242, 242);
-     self.colorView.backgroundColor = colorWithRGB(23, 102, 204);
+    self.colorView.backgroundColor = colorWithRGB(23, 102, 204);
     self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
     [self.personIdNumLabel setTextColor:colorWithRGB(51, 51, 51)];
 }

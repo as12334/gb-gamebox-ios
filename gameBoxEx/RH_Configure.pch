@@ -3382,6 +3382,23 @@
 #define SID        @"902"
 #define THEME    @"default.skin"
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+
+#elif _rtyw //万通国际
+
+#define CODE    @"rtyw"
+#define S        @"438e949e813874333719134df8be3d75"
+#define SID        @"681"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _mqau //澳门威尼斯人
+
+#define CODE    @"mqau"
+#define S        @"56935c1d0712905a3aba8fb97d8bae79"
+#define SID        @"678"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
 #endif
