@@ -69,7 +69,7 @@
     
     //注册复用
     [self.pageView registerCellForPage:[RH_ApplyDiscountPageCell class] andReuseIdentifier:[RH_ApplyDiscountPageCell defaultReuseIdentifier]] ;
-     [self.pageView registerCellForPage:[RH_ApplyDiscountSystemPageCell class] andReuseIdentifier:[RH_ApplyDiscountSystemPageCell defaultReuseIdentifier]] ;
+    [self.pageView registerCellForPage:[RH_ApplyDiscountSystemPageCell class] andReuseIdentifier:[RH_ApplyDiscountSystemPageCell defaultReuseIdentifier]] ;
     [self.pageView registerCellForPage:[RH_ApplyDiscountSitePageCell class] andReuseIdentifier:[RH_ApplyDiscountSitePageCell defaultReuseIdentifier]];
     //设置索引
     self.pageView.dispalyPageIndex =  _selectedIndex ;//self.headerView.segmentedControl.selectedSegmentIndex;

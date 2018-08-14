@@ -15,5 +15,5 @@
 - (id)initWithInfoDic:(NSDictionary *)info;
 - (NSInteger)ID;
 
--(BOOL)isEqual:(id)object ;
+-(BOOL)isEqual:(id)object;
 @end

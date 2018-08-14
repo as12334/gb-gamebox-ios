@@ -41,7 +41,7 @@
                 <outlet property="adIMG" destination="Ipm-I9-PbL" id="wuY-Or-Y0C"/>
                 <outlet property="skipBt" destination="oCW-fw-427" id="Q9s-pz-rWc"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="90.5"/>
+            <point key="canvasLocation" x="111" y="55"/>
         </view>
     </objects>
 </document>

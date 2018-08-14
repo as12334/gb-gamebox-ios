@@ -42,7 +42,7 @@
     if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.contentView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
         self.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
-         self.lineView.backgroundColor = colorWithRGB(102, 102, 102) ;
+        self.lineView.backgroundColor = colorWithRGB(102, 102, 102) ;
     }
     
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;

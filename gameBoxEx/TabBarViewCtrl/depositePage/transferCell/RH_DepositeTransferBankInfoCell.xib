@@ -223,7 +223,7 @@
                 <outlet property="payNameLabel" destination="Uvf-aK-9CB" id="PZR-Q5-ZvA"/>
                 <outlet property="remarkLabel" destination="rnU-Vh-QVG" id="4DW-le-dfO"/>
             </connections>
-            <point key="canvasLocation" x="-589" y="189"/>
+            <point key="canvasLocation" x="-147" y="28"/>
         </tableViewCell>
     </objects>
     <resources>

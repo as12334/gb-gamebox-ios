@@ -978,6 +978,7 @@
 //    return array;
 //}
 #pragma mark- Banner Cells Delegate
+//触碰轮播图跳转到webView
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
     if (bannerModel.contentURL.length){
