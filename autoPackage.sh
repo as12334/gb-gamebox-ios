@@ -299,8 +299,6 @@ configuration_list=(  \
     # '_mqau^678^"澳门威尼斯人"' \
     # '_efd8^683^"盈丰娛樂d"' \
       '_njtk^635^"永利娱乐城"' \
-
-
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
