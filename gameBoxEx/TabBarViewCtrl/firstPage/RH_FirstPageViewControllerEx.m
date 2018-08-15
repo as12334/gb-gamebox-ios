@@ -133,7 +133,7 @@
 
 #pragma mark - autoLogin
 - (void) autoLogin{
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *account ;
     NSString *password ;
     //判断是否记住密码进行自动登录
@@ -978,6 +978,7 @@
 //    return array;
 //}
 #pragma mark- Banner Cells Delegate
+//触碰轮播图跳转到webView
 - (void)object:(id)object wantToShowBannerDetail:(id<RH_BannerModelProtocol>)bannerModel
 {
     if (bannerModel.contentURL.length){
