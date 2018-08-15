@@ -19,7 +19,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               0
+#define IS_DEV_SERVER_ENV                               1
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
@@ -3371,6 +3371,15 @@
 #define CODE    @"wj9a"
 #define S        @"b6817fdb54a102b458bf15c5f3430ddb"
 #define SID        @"673"
+#define THEME    @"default.skin"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _0fh3 //乾宝国际娱乐
+
+#define CODE    @"0fh3"
+#define S        @"baeb8ae52bbfcaeefc60430ee2c54090"
+#define SID        @"651"
 #define THEME    @"default.skin"
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
