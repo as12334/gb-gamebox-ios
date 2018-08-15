@@ -651,9 +651,52 @@
             ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
             {
                 [weakSelf.delegate startPageViewControllerShowMainPage:self];
+                
+                //
+                    [weakSelf.serviceRequest fetchH5ip];
+                    weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+                        if (type == ServiceRequestTypeFetchH5Ip) {
+                            NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
+                            NSArray *ips = dic[@"data"];
+                            dispatch_group_t group = dispatch_group_create();
+                            dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
+                            dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+                             __block BOOL doNext = YES;
+                 
+                            for (NSString *ip in ips) {
+                                dispatch_group_async(group, queue, ^{
+                                    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+                                    if (doNext != YES) {
+                                        //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                                        dispatch_semaphore_signal(sema);
+                                        return ;
+                                    }
+                                    [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
+                                        
+                                        NSLog(@"chengong == %@",ip);
+                                        doNext = NO;//已经获取到ip 不需要继续执行其他的线程
+                                        dispatch_semaphore_signal(sema);
+                                        
+                                    } failed:^{
+                                        
+                                        NSLog(@"shibai");
+                                        doNext = YES;//未获取到ip 需要继续执行其他的线程
+                                        dispatch_semaphore_signal(sema);
+                                        
+                                    }];
+                                });
+                            
+                            }
+                          
+                        }
+                    };
+                    weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+                
+                    };
             }
         });
     }];
+
 }
 
 - (void)showErrAlertWithErrCode:(NSString *)code otherInfo:(NSDictionary *)otherInfo

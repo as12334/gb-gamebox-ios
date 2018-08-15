@@ -130,6 +130,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
 
     ServiceRequestTypeV3INITAD,            //初始化广告
     ServiceRequestTypeFetchHost,        //获取动态HOST
+    ServiceRequestTypeFetchH5Ip,        //获取特殊ip
 };
 
 
@@ -659,6 +660,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 
 #pragma mark - 动态获取HOST
 - (void)fetchHost:(NSString *)url;
+#pragma mark--
+#pragma mark--获取H5ip
+-(void)fetchH5ip;
 
 #pragma mark -
 /**

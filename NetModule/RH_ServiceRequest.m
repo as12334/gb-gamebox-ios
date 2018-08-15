@@ -57,6 +57,7 @@
 #import "RH_ShareRecordModel.h"
 #import "RH_InitAdModel.h"
 #import "No_AccessView.h"
+#import "CheckTimeManager.h"
 //----------------------------------------------------------
 //访问权限
 typedef NS_ENUM(NSInteger,ServiceScopeType) {
@@ -2458,6 +2459,28 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     httpRequest.timeOutInterval = _timeOutInterval ;
     //开始请求
     [self _startHttpRequest:httpRequest forType:ServiceRequestTypeFetchHost scopeType:ServiceScopeTypePublic];
+}
+- (void)fetchH5ip{
+    if ([CheckTimeManager shared].times) {
+        NSInteger num = [[CheckTimeManager shared].times integerValue];
+        NSInteger index = num+1;
+        [CheckTimeManager shared].times = [NSString stringWithFormat:@"%ld",(long)index];
+    }else{
+        [CheckTimeManager shared].times = @"0";
+    }
+    
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:@"mobile-api/app/getHost.html"
+                     pathArguments:nil
+                   headerArguments:@{
+                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:@{@"times":[CheckTimeManager shared].times}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeFetchH5Ip
+                         scopeType:ServiceScopeTypePublic];
 }
 
 #pragma mark -
