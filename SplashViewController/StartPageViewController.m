@@ -19,6 +19,7 @@
 #import <sys/utsname.h>
 #import "RH_InitAdModel.h"
 #import "RH_StartPageADView.h"
+#import "CheckTimeManager.h"
 
 @interface StartPageViewController ()
 @property (nonatomic, strong) NSString *progressNote;
@@ -658,6 +659,7 @@
                         if (type == ServiceRequestTypeFetchH5Ip) {
                             NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
                             NSArray *ips = dic[@"data"];
+                            NSLog(@"ips====%@",ips);
                             dispatch_group_t group = dispatch_group_create();
                             dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
                             dispatch_semaphore_t sema = dispatch_semaphore_create(1);
@@ -672,8 +674,10 @@
                                         return ;
                                     }
                                     [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
-                                        
+                                       
                                         NSLog(@"chengong == %@",ip);
+                                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                                        [appDelegate updateDomainName:ip];
                                         doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                                         dispatch_semaphore_signal(sema);
                                         
@@ -691,7 +695,7 @@
                         }
                     };
                     weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-                
+                         [weakSelf.serviceRequest fetchH5ip];
                     };
             }
         });

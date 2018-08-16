@@ -37,6 +37,7 @@
 #import "UpdateStatusCacheManager.h"
 #import "SH_WKGameViewController.h"
 #import "GameWebViewController.h"
+#import "CheckTimeManager.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -413,7 +414,14 @@
                         //是自己的游戏 需要传SID 则使用UIWebView
                         GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
                         NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-                        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
+                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+
+                        if (appDelegate.demainName.length > 0) {
+                            gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,appDelegate.demainName,[data objectForKey:@"gameLink"]];
+                        } else {
+                            gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
+                        }
+                        
                         [gameViewController close:^{
                             //调用一次回收额度
                             [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
