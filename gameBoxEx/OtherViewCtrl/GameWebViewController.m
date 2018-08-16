@@ -52,6 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"url===%@",self.url);
     // Do any additional setup after loading the view from its nib.
     //开始加载网页内容
     //我们自己的游戏需要传入SID
