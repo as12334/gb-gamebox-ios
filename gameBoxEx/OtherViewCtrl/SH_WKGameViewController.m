@@ -11,7 +11,7 @@
 #import "SH_DragableMenuView.h"
 #import "MacroDef.h"
 #import "WHC_AutoLayout.h"
-
+#import "RH_UserInfoManager.h"
 @interface SH_WKGameViewController ()<WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate>
 
 @property (nonatomic, strong) WKWebView *wkWebView;
@@ -56,9 +56,15 @@
     _wkWebView.UIDelegate = self;
     [self.view addSubview:_wkWebView];
     _wkWebView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
-
-    [_wkWebView loadRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60]];
-    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    NSDictionary *headFields = request.allHTTPHeaderFields;
+    NSString *    cookie = headFields[@"SID"];
+    NSArray *sidStringCompArr = [[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
+    NSString *sid = [[sidStringCompArr firstObject] stringByReplacingOccurrencesOfString:@"SID=" withString:@""];
+    if (cookie == nil) {
+        [request addValue:[NSString stringWithFormat:@"SID=%@",sid] forHTTPHeaderField:@"Cookie"];
+    }
+    [_wkWebView loadRequest:request];
     // KVO，监听webView属性值得变化(estimatedProgress)
     [_wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
