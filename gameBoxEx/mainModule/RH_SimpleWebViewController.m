@@ -350,7 +350,6 @@
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.webURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
         [request setValue:self.appDelegate.headerDomain forHTTPHeaderField:@"Host"];
-        
         [self.webView loadRequest:request];
     }
     else
