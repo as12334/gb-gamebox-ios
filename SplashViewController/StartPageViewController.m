@@ -662,7 +662,7 @@
                             NSLog(@"ips====%@",ips);
                             dispatch_group_t group = dispatch_group_create();
                             dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
-                            dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+                            dispatch_semaphore_t sema = dispatch_semaphore_create(10);
                              __block BOOL doNext = YES;
                  
                             for (NSString *ip in ips) {
