@@ -52,6 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"url===%@",self.url);
     // Do any additional setup after loading the view from its nib.
     //开始加载网页内容
     //我们自己的游戏需要传入SID
@@ -268,12 +269,19 @@
 
 - (void)loadWithUrl:(NSString *)url
 {
+    NSString *domain;
+    //如果有新的域名检测过了就是用新的域名
+    if (self.appDelegate.demainName.length > 0) {
+        domain = self.appDelegate.demainName;
+    } else {
+        domain = self.appDelegate.headerDomain;
+    }
     NSArray *checkTypeComponents = [self.appDelegate.checkType componentsSeparatedByString:@"+"];
-    NSString *preUrl = [NSString stringWithFormat:@"%@://%@",checkTypeComponents[0],self.appDelegate.headerDomain];
+    NSString *preUrl = [NSString stringWithFormat:@"%@://%@",checkTypeComponents[0],domain];
     
     if ([url hasPrefix:preUrl] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
         NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
-        [cookieProperties setObject:self.appDelegate.headerDomain forKey:NSHTTPCookieDomain];
+        [cookieProperties setObject:domain forKey:NSHTTPCookieDomain];
         [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
         [cookieProperties setObject:@"SID" forKey:NSHTTPCookieName];
         NSArray *sidStringCompArr = [[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
@@ -283,7 +291,7 @@
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-        [request setValue:self.appDelegate.headerDomain forHTTPHeaderField:@"Host"];
+        [request setValue:domain forHTTPHeaderField:@"Host"];
         
         [self.webview loadRequest:request];
     }

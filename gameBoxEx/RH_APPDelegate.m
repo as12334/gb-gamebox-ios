@@ -185,6 +185,12 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     _domain = tmpStr;
 }
 
+-(void)updateDomainName:(NSString *)domainName {
+    if (_demainName == 0) {
+        _demainName = domainName;
+    }
+}
+
 -(void)updateServicePath:(NSString*)servicePath
 {
     if (servicePath !=_servicePath){

@@ -196,7 +196,13 @@
     GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.hideMenuView = YES;
     NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,discountActivityModel.mUrl];
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    if (appDelegate.demainName.length > 0) {
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,discountActivityModel.mUrl];
+    } else {
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,discountActivityModel.mUrl];
+    }
+    
     [self.navigationController pushViewController:gameViewController animated:YES];
 
 //    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;

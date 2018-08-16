@@ -14,6 +14,7 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 @property(nonatomic,readonly,strong) NSString *apiDomain ;//获取子域名list 的api 域名
 @property(nonatomic,readonly,strong)  NSString *domain  ;
 @property(nonatomic,readonly,strong)NSString *headerDomain;
+@property(nonatomic,readonly,strong)NSString *demainName;//保存检测通过的域名
 @property(nonatomic,readonly,strong)  NSString *servicePath ;//客服url ;
 @property(strong,nonatomic)  NSString *customUrl;
 @property(strong,nonatomic)  NSString *logoutUrl ;
@@ -35,6 +36,6 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 -(void)updateServicePath:(NSString*)servicePath ;
 -(void)updateLoginStatus:(BOOL)loginStatus ;
 -(void)updateHeaderDomain:(NSString *)headerDomain;
-
+-(void)updateDomainName:(NSString *)domainName;
 @end
 

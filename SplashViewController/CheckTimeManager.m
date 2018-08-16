@@ -18,4 +18,5 @@ static CheckTimeManager *_manager;
     });
     return _manager;
 }
+
 @end
