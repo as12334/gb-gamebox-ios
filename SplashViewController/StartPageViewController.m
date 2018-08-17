@@ -652,55 +652,58 @@
             ifRespondsSelector(weakSelf.delegate, @selector(startPageViewControllerShowMainPage:))
             {
                 [weakSelf.delegate startPageViewControllerShowMainPage:self];
+                [self checkH5Ip];
                 
-                //
-                    [weakSelf.serviceRequest fetchH5ip];
-                    weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-                        if (type == ServiceRequestTypeFetchH5Ip) {
-                            NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
-                            NSArray *ips = dic[@"data"];
-                            NSLog(@"ips====%@",ips);
-                            dispatch_group_t group = dispatch_group_create();
-                            dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
-                            dispatch_semaphore_t sema = dispatch_semaphore_create(10);
-                             __block BOOL doNext = YES;
-                 
-                            for (NSString *ip in ips) {
-                                dispatch_group_async(group, queue, ^{
-                                    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                                    if (doNext != YES) {
-                                        //先检测是否需要继续执行 不需要执行则直接跳过本线程
-                                        dispatch_semaphore_signal(sema);
-                                        return ;
-                                    }
-                                    [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
-                                       
-                                        NSLog(@"chengong == %@",ip);
-                                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                                        [appDelegate updateDomainName:ip];
-                                        doNext = NO;//已经获取到ip 不需要继续执行其他的线程
-                                        dispatch_semaphore_signal(sema);
-                                        
-                                    } failed:^{
-                                        
-                                        NSLog(@"shibai");
-                                        doNext = YES;//未获取到ip 需要继续执行其他的线程
-                                        dispatch_semaphore_signal(sema);
-                                        
-                                    }];
-                                });
-                            
-                            }
-                          
-                        }
-                    };
-                    weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-                         [weakSelf.serviceRequest fetchH5ip];
-                    };
+            
             }
         });
     }];
 
+}
+//这里主要是广告业加载完成后检测用来供给LT的Ip
+-(void)checkH5Ip{
+    //
+    __weak typeof(self) weakSelf = self;
+    [self.serviceRequest fetchH5ip];
+    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+        if (type == ServiceRequestTypeFetchH5Ip) {
+            NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
+            NSArray *ips = dic[@"data"];
+            NSLog(@"ips====%@",ips);
+            dispatch_group_t group = dispatch_group_create();
+            dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
+            __block NSInteger failTimes = 0;//计算失败次数
+            
+            for (NSString *ip in ips) {
+                 dispatch_group_async(group, queue, ^{
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                    [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
+                        NSLog(@"chengong == %@",ip);
+                        dispatch_semaphore_signal(semaphore);
+                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                        [appDelegate updateDomainName:ip];
+                    } failed:^{
+                        NSLog(@"shibai");
+                        failTimes++;
+                         dispatch_semaphore_signal(semaphore);
+                        
+                    }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            });
+            }
+            dispatch_group_notify(group, queue, ^{
+                //当全部失败的时候重新请求
+                if (failTimes == ips.count) {
+                    //全部没通过
+                    [weakSelf checkH5Ip];
+                }
+            });
+            
+        }
+    };
+    weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        [weakSelf.serviceRequest fetchH5ip];
+    };
 }
 
 - (void)showErrAlertWithErrCode:(NSString *)code otherInfo:(NSDictionary *)otherInfo
