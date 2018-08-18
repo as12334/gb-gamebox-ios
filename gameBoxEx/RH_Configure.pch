@@ -3420,6 +3420,17 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _toia //永利娱乐场
+
+#define CODE    @"toia"
+#define S        @"5709376e705a1b2d80265da46e6f6a33"
+#define SID        @"688"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */

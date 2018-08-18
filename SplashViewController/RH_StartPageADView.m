@@ -47,8 +47,9 @@
 - (void)setAdImageUrl:(NSString *)adImageUrl
 {
     _adImageUrl = adImageUrl;
-    [self.adIMG sd_setImageWithURL:[NSURL URLWithString:_adImageUrl] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.adIMG sd_setImageWithURL:[NSURL URLWithString:_adImageUrl] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageAllowInvalidSSLCertificates];
+    });
     [self counter];
 }
 
