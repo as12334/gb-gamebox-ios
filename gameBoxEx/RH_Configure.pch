@@ -38,7 +38,7 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"44"
+#define RH_APP_VERCODE                  @"45"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -3397,6 +3397,15 @@
 #define CODE    @"mqau"
 #define S        @"56935c1d0712905a3aba8fb97d8bae79"
 #define SID        @"678"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ncw6 //悉尼国际
+
+#define CODE    @"ncw6"
+#define S        @"6a30751b15735606c3dcf45cd1bcbf90"
+#define SID        @"689"
 #define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
