@@ -687,7 +687,6 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
-		BF5FF83F21240AEA0019EF30 /* CheckTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */; };
 		BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */; };
 		BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846420EE07D300ED3ACB /* No_AccessView.m */; };
 		BFF3846B20EE083D00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */; };
@@ -1999,8 +1998,6 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
-		BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckTimeManager.h; sourceTree = "<group>"; };
-		BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckTimeManager.m; sourceTree = "<group>"; };
 		BFCA3EE120EE139C0043F4EF /* RH_GestureLockMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureLockMainView.h; sourceTree = "<group>"; };
 		BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GestureLockMainView.m; sourceTree = "<group>"; };
 		BFF3846320EE07D000ED3ACB /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
@@ -3825,8 +3822,6 @@
 				BFF3846E20EE088500ED3ACB /* RH_StartPageADView.h */,
 				BFF3846F20EE088500ED3ACB /* RH_StartPageADView.m */,
 				BFF3847020EE088500ED3ACB /* RH_StartPageADView.xib */,
-				BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */,
-				BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */,
 			);
 			path = SplashViewController;
 			sourceTree = "<group>";
@@ -4995,7 +4990,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0109C8E1F878199004E6EF4 /* Build configuration list for PBXNativeTarget "gameBoxEx" */;
 			buildPhases = (
-				54C4F87720D7D07B00CCAD47 /* ShellScript */,
+				54C4F87720D7D07B00CCAD47 /* Run Script */,
 				A0109C5E1F878199004E6EF4 /* Sources */,
 				A0109C5F1F878199004E6EF4 /* Frameworks */,
 				A0109C601F878199004E6EF4 /* Resources */,
@@ -5337,13 +5332,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		54C4F87720D7D07B00CCAD47 /* ShellScript */ = {
+		54C4F87720D7D07B00CCAD47 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/myfile",
 			);
@@ -5835,7 +5831,6 @@
 				F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */,
 				A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */,
 				54CDEF7C20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m in Sources */,
-				BF5FF83F21240AEA0019EF30 /* CheckTimeManager.m in Sources */,
 				F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
@@ -5977,7 +5972,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_0001=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_n6pg=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5988,7 +5983,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid263;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -5996,14 +5991,14 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = "超博娱乐21";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_0001=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_hihk=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6013,7 +6008,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid263;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6062,6 +6057,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "_n6pg=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6072,7 +6068,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid263;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6080,14 +6076,14 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = "超博娱乐21";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_0001=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_hihk=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6097,7 +6093,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid263;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

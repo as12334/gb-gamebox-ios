@@ -721,7 +721,7 @@
         msg = [NSString stringWithFormat:@"\n线路获取失败，请确认您的网络连接正常后再次尝试！"];
     } else if ([code isEqualToString:@"003"]) {
         title = @"服务器连接失败";
-        msg = [NSString stringWithFormat:@"\n当前ip:%@\n版本号:%@\n出现未知错误，请联系在线客服并提供以上信息。", ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
+        msg = [NSString stringWithFormat:@"\n出现未知错误，请联系在线客服并提供以上信息。\n当前ip:%@\n版本号:%@", ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
     }
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     

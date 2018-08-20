@@ -56,7 +56,6 @@
     _wkWebView.UIDelegate = self;
     [self.view addSubview:_wkWebView];
     _wkWebView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     NSDictionary *headFields = request.allHTTPHeaderFields;
     NSString *    cookie = headFields[@"SID"];
@@ -66,7 +65,6 @@
         [request addValue:[NSString stringWithFormat:@"SID=%@",sid] forHTTPHeaderField:@"Cookie"];
     }
     [_wkWebView loadRequest:request];
-    
     // KVO，监听webView属性值得变化(estimatedProgress)
     [_wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];

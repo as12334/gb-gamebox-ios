@@ -18,7 +18,7 @@
 //===========================================================
 #pragma mark- 运行环境配制
 
-#define IS_DEV_SERVER_ENV                               0
+#define IS_DEV_SERVER_ENV                               1
 #define IS_TEST_SERVER_ENV                              0
 
 //开发环境
@@ -3375,13 +3375,14 @@
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _wj4a //E博国际
+#elif _0fh3 //乾宝国际娱乐
 
-#define CODE    @"wj3a"
-#define S        @"b6817fdb54a102b458bf15c5f3430ddb"
-#define SID        @"902"
+#define CODE    @"0fh3"
+#define S        @"baeb8ae52bbfcaeefc60430ee2c54090"
+#define SID        @"651"
 #define THEME    @"default.skin"
 #define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _rtyw //万通国际
 
@@ -3407,6 +3408,33 @@
 #define S        @"6a30751b15735606c3dcf45cd1bcbf90"
 #define SID        @"689"
 #define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _efd8 //盈丰娛樂
+
+#define CODE    @"efd8"
+#define S        @"d0d84fbb3611b8360c89ae128fcc1767"
+#define SID        @"683"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _njtk //永利娱乐城
+
+#define CODE    @"njtk"
+#define S        @"ef16d4629a453e4826ffcba53d44d993"
+#define SID        @"635"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _toia //永利娱乐场
+
+#define CODE    @"toia"
+#define S        @"5709376e705a1b2d80265da46e6f6a33"
+#define SID        @"688"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
