@@ -3438,6 +3438,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _sikm //保 利
+
+#define CODE    @"sikm"
+#define S        @"9b5d36486f270bc5509714b9d3dc67c1"
+#define SID        @"695"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
