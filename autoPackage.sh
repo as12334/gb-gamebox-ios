@@ -295,7 +295,8 @@ configuration_list=(  \
     # '_rtyw^681^"万通国际"' \
     # '_mqau^678^"澳门威尼斯人"' \
     # '_ncw6^689^"悉尼国际"' \
-    '_sikm^695^"保 利"' \
+    '_sikm^695^"保利"' \
+    '_njtk^635^"永利娱乐城"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)

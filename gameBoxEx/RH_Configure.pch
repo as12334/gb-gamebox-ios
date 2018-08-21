@@ -3447,6 +3447,17 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _njtk //永利娱乐城
+
+#define CODE    @"njtk"
+#define S        @"ef16d4629a453e4826ffcba53d44d993"
+#define SID        @"635"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
