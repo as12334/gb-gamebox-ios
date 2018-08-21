@@ -3456,7 +3456,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _hbon //鼎 彩
 
+#define CODE    @"hbon"
+#define S        @"cf8b26493880393b636d78da04ab11ce"
+#define SID        @"692"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
