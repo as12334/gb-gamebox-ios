@@ -48,21 +48,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "app_icon_330_120x120.png",
-=======
-      "filename" : "app_icon_71_120x120.png",
->>>>>>> 84bd98597d1db4518f521cd02aa3949e3cf19ece
+      "filename" : "app_icon_523_120x120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "app_icon_330_180x180.png",
-=======
-      "filename" : "app_icon_71_180x180.png",
->>>>>>> 84bd98597d1db4518f521cd02aa3949e3cf19ece
+      "filename" : "app_icon_523_180x180.png",
       "scale" : "3x"
     },
     {
