@@ -5977,11 +5977,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-<<<<<<< HEAD
-				GCC_PREPROCESSOR_DEFINITIONS = "_rucr=1";
-=======
-				GCC_PREPROCESSOR_DEFINITIONS = "_0001=1";
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				GCC_PREPROCESSOR_DEFINITIONS = "_mmrx=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -5992,11 +5988,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid565;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid523;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -6004,22 +5996,14 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-<<<<<<< HEAD
-				APP_DISPLAY_NAME = "永利娱乐城";
-=======
-				APP_DISPLAY_NAME = "超博娱乐";
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				APP_DISPLAY_NAME = "澳门威尼斯人";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-<<<<<<< HEAD
-				GCC_PREPROCESSOR_DEFINITIONS = "_rucr=1";
-=======
-				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				GCC_PREPROCESSOR_DEFINITIONS = "_mmrx=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6029,11 +6013,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid565;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid523;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6092,11 +6072,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid565;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid523;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6104,22 +6080,14 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-<<<<<<< HEAD
-				APP_DISPLAY_NAME = "永利娱乐城";
-=======
-				APP_DISPLAY_NAME = "超博娱乐";
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				APP_DISPLAY_NAME = "澳门威尼斯人";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-<<<<<<< HEAD
-				GCC_PREPROCESSOR_DEFINITIONS = "_rucr=1";
-=======
-				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				GCC_PREPROCESSOR_DEFINITIONS = "_mmrx=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6129,11 +6097,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid565;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid1;
->>>>>>> 7f478658ec041ce386f9731be561914dbb38b914
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid523;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
