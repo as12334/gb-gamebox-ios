@@ -61,7 +61,7 @@
     NSString *    cookie = headFields[@"SID"];
     NSArray *sidStringCompArr = [[RH_UserInfoManager shareUserManager].sidString componentsSeparatedByString:@";"];
     NSString *sid = [[sidStringCompArr firstObject] stringByReplacingOccurrencesOfString:@"SID=" withString:@""];
-    if (cookie == nil) {
+    if (cookie == nil && ![self.url hasPrefix:@"http"]) {
         [request addValue:[NSString stringWithFormat:@"SID=%@",sid] forHTTPHeaderField:@"Cookie"];
     }
     [_wkWebView loadRequest:request];
