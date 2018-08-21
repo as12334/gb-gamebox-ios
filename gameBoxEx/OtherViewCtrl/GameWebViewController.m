@@ -260,8 +260,14 @@
             else
             {
                 NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+                NSString *urlStr;
+                if (self.appDelegate.demainName.length > 0) {
+                    urlStr = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.demainName,url];
+                } else {
+                    urlStr = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,url];
+                }
                 
-                [weakSelf loadWithUrl:[NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,url]];
+                [weakSelf loadWithUrl:urlStr];
             }
         }
     } ;
@@ -278,8 +284,8 @@
     }
     NSArray *checkTypeComponents = [self.appDelegate.checkType componentsSeparatedByString:@"+"];
     NSString *preUrl = [NSString stringWithFormat:@"%@://%@",checkTypeComponents[0],domain];
-    
-    if ([url hasPrefix:preUrl] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
+    NSLog(@"url == %@",url);
+    if ([url hasPrefix:@"http"] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
         NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
         [cookieProperties setObject:domain forKey:NSHTTPCookieDomain];
         [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
