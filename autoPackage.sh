@@ -300,8 +300,11 @@ configuration_list=(  \
     # '_mqau^678^"澳门威尼斯人"' \
     # '_efd8^683^"盈丰娛樂d"' \
     # '_njtk^635^"永利娱乐城"' \
-    '_toia^688^"永利娱乐场"' \
-  )
+    # '_toia^688^"永利娱乐场"' \
+    # '_qawi^685^"威尼斯人娱乐城"' \
+    # '_mt4z^686^"美高梅娱乐城"' \
+      '_hbon^692^"鼎 彩"' \
+)
 
 shell_path=$(cd "$(dirname "$0")";pwd)
 uplevel_path=${shell_path%/*}
