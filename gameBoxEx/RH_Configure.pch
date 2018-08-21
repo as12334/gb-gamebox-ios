@@ -3501,8 +3501,30 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#define CODE    @"qawi"
+#define S        @"136a6ff0e33c127ee0b08f0fb92db2b7"
+#define SID        @"685"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
+#elif _mt4z //美高梅娱乐城
 
+#define CODE    @"mt4z"
+#define S        @"28d3d94f57633eea110fda9b9486b226"
+#define SID        @"686"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _hbon //鼎 彩
+
+#define CODE    @"hbon"
+#define S        @"cf8b26493880393b636d78da04ab11ce"
+#define SID        @"692"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 #endif
 
 #endif /* RH_Configure_h */

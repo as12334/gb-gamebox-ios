@@ -315,7 +315,7 @@ configuration_list=(  \
     # '_otec^668^"澳门威尼斯人"' \
     # '_ikyu^671^"门银河娱乐城"' \
     # '_otuc^666^"518纵博"' \
-  )
+)
 
 shell_path=$(cd "$(dirname "$0")";pwd)
 uplevel_path=${shell_path%/*}
