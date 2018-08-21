@@ -3501,7 +3501,6 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
-<<<<<<< HEAD
 #elif _lloi //亿博娱乐
 
 #define CODE    @"lloi"
@@ -3591,7 +3590,9 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
-=======
+
+#elif _qawi //威尼斯人娱乐城
+
 #define CODE    @"qawi"
 #define S        @"136a6ff0e33c127ee0b08f0fb92db2b7"
 #define SID        @"685"
@@ -3609,7 +3610,6 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 #elif _hbon //鼎 彩
->>>>>>> 99c1bf67141394c8b729ad14932f4618c518d1c2
 
 #define CODE    @"hbon"
 #define S        @"cf8b26493880393b636d78da04ab11ce"
@@ -3617,6 +3617,8 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
+
+
 #endif
 
 #endif /* RH_Configure_h */
