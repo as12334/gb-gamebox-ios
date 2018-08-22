@@ -38,7 +38,7 @@
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
 #else
 //正式环境
-#define RH_APP_VERCODE                  @"50"
+#define RH_APP_VERCODE                  @"52"
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
@@ -3618,6 +3618,25 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
+
+#elif _0chk //永利娱乐场
+
+#define CODE    @"0chk"
+#define S        @"e84b6d23674439cfa1c0bae1c90abec2"
+#define SID        @"696"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ccnr //新葡京娱乐
+
+#define CODE    @"ccnr"
+#define S        @"43a8384ccb3e712f2a0cd0d7c7aabaf2"
+#define SID        @"697"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
