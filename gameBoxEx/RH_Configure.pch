@@ -3647,7 +3647,6 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 
-
 #endif
 
 #endif /* RH_Configure_h */

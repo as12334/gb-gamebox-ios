@@ -11,11 +11,8 @@
 
 #自定义要编译打包的数据
 # configuration_list=('_DEBUG' '_98jb')
-<<<<<<< HEAD
-configuration_list=(  
-=======
+
 configuration_list=(  \
->>>>>>> 045064de47df309e41f07f7bd699f57bf473c1c8
     # '_0001^1^"超博娱乐"'  \
     # '_1qkq^65^"宏图娱乐"'  \
     # '_8l6r^71^"超博娱乐"'  \
@@ -319,8 +316,6 @@ configuration_list=(  \
     # '_otec^668^"澳门威尼斯人"' \
     # '_ikyu^671^"门银河娱乐城"' \
     # '_otuc^666^"518纵博"' \
-<<<<<<< HEAD
-=======
     # '_0chk^696^"永利娱乐场"' \
     # '_ccnr^697^"新葡京娱乐"' \
     # '_avz3^626^"皇冠国际"' \
@@ -328,7 +323,6 @@ configuration_list=(  \
     # '_orng^625^"金沙娱乐场"' \
     # '_vqxy^621^"来西亚云顶赌场"' \
     # '_vywq^629^"新葡京娱乐城"' \
->>>>>>> 045064de47df309e41f07f7bd699f57bf473c1c8
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
