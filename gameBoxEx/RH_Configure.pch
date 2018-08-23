@@ -323,7 +323,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _pnuw //太阳城集团
+#elif _pnuw //太阳城集团"
 
 #define CODE    @"pnuw"
 #define S        @"d257cafbc03b30460955d2027b8c96b1"

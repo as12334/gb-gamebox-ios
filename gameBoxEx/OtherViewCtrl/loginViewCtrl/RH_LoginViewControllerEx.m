@@ -307,10 +307,10 @@
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }
                 //登录成功后测试websocket
-                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
-
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
+//                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
+//
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSString *account = [defaults stringForKey:@"account"] ;
                 if ([RH_UserInfoManager shareUserManager].isScreenLock){
@@ -371,10 +371,10 @@
                 [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName
                                                                          LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
                 
-                //登录成功后测试websocket
-                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
+//                //登录成功后测试websocket
+//                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidOpen) name:kWebSocketDidOpenNote object:nil];
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SRWebSocketDidReceiveMsg:) name:kWebSocketdidReceiveMessageNote object:nil];
                 
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];

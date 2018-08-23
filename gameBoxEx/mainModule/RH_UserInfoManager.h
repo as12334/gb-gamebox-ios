@@ -52,7 +52,7 @@ typedef void(^AutoLoginCompletation)(BOOL result) ;
 //记录用户修改密码是否开启验证码
 @property(nonatomic,assign) BOOL updateUserVeifyCode        ;
 //记录用户登录后获取SID
-@property(nonatomic,strong)NSString *sidString ;
+@property(nonatomic,copy)NSString *sidString ;
 
 -(void)updatelanguageOption:(CLLanguageOption)languageOption ;
 -(void)updateVoickSwitchFlag:(BOOL)bSwitch  ;

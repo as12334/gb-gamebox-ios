@@ -277,7 +277,7 @@
 {
     NSString *domain;
     //如果有新的域名检测过了就是用新的域名
-    if (self.appDelegate.demainName.length > 0) {
+    if ([url  containsString:self.appDelegate.demainName]) {
         domain = self.appDelegate.demainName;
     } else {
         domain = self.appDelegate.headerDomain;
