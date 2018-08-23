@@ -215,7 +215,15 @@
     
     GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
     NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,phoneModel.link];
+    
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    NSString *url;
+    if (appDelegate.demainName.length > 0) {
+        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,phoneModel.link];
+    } else {
+        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,phoneModel.link];
+    }
+    gameViewController.url = url;
     [self.navigationController pushViewController:gameViewController animated:YES];
 
 //    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
