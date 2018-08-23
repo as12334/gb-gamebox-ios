@@ -188,10 +188,10 @@
         _contentLab2.text = [NSString stringWithFormat:@"双方各获%@元奖励",model.mMoney];
     }else if ([model.mReward isEqualToString:@"2"])
     {
-        _contentLab2.text = [NSString stringWithFormat:@"你将会获得%@元奖励",model.mMoney];
+        _contentLab2.text = [NSString stringWithFormat:@"你将会获得%.2f元奖励",[model.mMoney floatValue]];
     }else
     {
-         _contentLab2.text = [NSString stringWithFormat:@"推荐的好友将会获得%@元奖励",model.mMoney];
+         _contentLab2.text = [NSString stringWithFormat:@"推荐的好友将会获得%.2f元奖励",[model.mMoney floatValue]];
     }
     if (!model.mIsBonus) {
         _shareRedLab.hidden = YES;
