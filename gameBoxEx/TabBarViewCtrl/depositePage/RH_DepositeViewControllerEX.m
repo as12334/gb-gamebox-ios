@@ -194,12 +194,12 @@
         if ([self needLogin]){
             //check whether login
             if (!self.appDelegate.isLogin){
-                if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
-                    //push login viewController
-                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
-                    loginViewCtrlEx.delegate = self ;
-                    [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
-                }
+//                if ([SITE_TYPE isEqualToString:@"integratedv3"] || [SITE_TYPE isEqualToString:@"integratedv3oc"]){
+//                    //push login viewController
+//                    RH_LoginViewControllerEx *loginViewCtrlEx = [RH_LoginViewControllerEx viewControllerWithContext:@(YES)];
+//                    loginViewCtrlEx.delegate = self ;
+//                    [self presentViewController:loginViewCtrlEx animated:YES completion:nil] ;
+//                }
             }
             else
             {
