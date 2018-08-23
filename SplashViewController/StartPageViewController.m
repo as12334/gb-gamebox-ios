@@ -668,37 +668,40 @@
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeFetchH5Ip) {
             NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
-            NSArray *ips = dic[@"data"];
-            NSLog(@"ips====%@",ips);
-            dispatch_group_t group = dispatch_group_create();
-            dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
-            __block NSInteger failTimes = 0;//计算失败次数
-            
-            for (NSString *ip in ips) {
-                 dispatch_group_async(group, queue, ^{
-                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                    [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
-                        NSLog(@"chengong == %@",ip);
-                        dispatch_semaphore_signal(semaphore);
-                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                        [appDelegate updateDomainName:ip];
-                    } failed:^{
-                        NSLog(@"shibai");
-                        failTimes++;
-                         dispatch_semaphore_signal(semaphore);
-                        
-                    }];
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            });
-            }
-            dispatch_group_notify(group, queue, ^{
-                //当全部失败的时候重新请求
-                if (failTimes == ips.count) {
-                    //全部没通过
-                    [weakSelf checkH5Ip];
+            if (dic == nil) {
+                dic = @{@"data":@""};
+            } else {
+                NSArray *ips = dic[@"data"];
+                NSLog(@"ips====%@",ips);
+                dispatch_group_t group = dispatch_group_create();
+                dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
+                __block NSInteger failTimes = 0;//计算失败次数
+                
+                for (NSString *ip in ips) {
+                    dispatch_group_async(group, queue, ^{
+                        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                        [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
+                            NSLog(@"chengong == %@",ip);
+                            dispatch_semaphore_signal(semaphore);
+                            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                            [appDelegate updateDomainName:ip];
+                        } failed:^{
+                            NSLog(@"shibai");
+                            failTimes++;
+                            dispatch_semaphore_signal(semaphore);
+                            
+                        }];
+                        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                    });
                 }
-            });
-            
+                dispatch_group_notify(group, queue, ^{
+                    //当全部失败的时候重新请求
+                    if (failTimes == ips.count) {
+                        //全部没通过
+                        [weakSelf checkH5Ip];
+                    }
+                });
+            }
         }
     };
     weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
