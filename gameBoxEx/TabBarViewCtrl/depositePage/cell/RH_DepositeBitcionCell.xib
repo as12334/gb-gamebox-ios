@@ -385,7 +385,7 @@
                 <outlet property="submitBtnBackView" destination="pVm-X9-RVO" id="qsb-eY-Oja"/>
                 <outlet property="txidTextfield" destination="hm8-IP-Or4" id="45e-3G-TEU"/>
             </connections>
-            <point key="canvasLocation" x="-1" y="-68"/>
+            <point key="canvasLocation" x="43" y="-227"/>
         </tableViewCell>
     </objects>
 </document>

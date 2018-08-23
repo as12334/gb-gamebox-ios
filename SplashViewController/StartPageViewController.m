@@ -668,37 +668,40 @@
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeFetchH5Ip) {
             NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
-            NSArray *ips = dic[@"data"];
-            NSLog(@"ips====%@",ips);
-            dispatch_group_t group = dispatch_group_create();
-            dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
-            __block NSInteger failTimes = 0;//计算失败次数
-            
-            for (NSString *ip in ips) {
-                 dispatch_group_async(group, queue, ^{
-                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                    [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
-                        NSLog(@"chengong == %@",ip);
-                        dispatch_semaphore_signal(semaphore);
-                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                        [appDelegate updateDomainName:ip];
-                    } failed:^{
-                        NSLog(@"shibai");
-                        failTimes++;
-                         dispatch_semaphore_signal(semaphore);
-                        
-                    }];
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            });
-            }
-            dispatch_group_notify(group, queue, ^{
-                //当全部失败的时候重新请求
-                if (failTimes == ips.count) {
-                    //全部没通过
-                    [weakSelf checkH5Ip];
+            if (dic == nil) {
+                dic = @{@"data":@""};
+            } else {
+                NSArray *ips = dic[@"data"];
+                NSLog(@"ips====%@",ips);
+                dispatch_group_t group = dispatch_group_create();
+                dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
+                __block NSInteger failTimes = 0;//计算失败次数
+                
+                for (NSString *ip in ips) {
+                    dispatch_group_async(group, queue, ^{
+                        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                        [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
+                            NSLog(@"chengong == %@",ip);
+                            dispatch_semaphore_signal(semaphore);
+                            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                            [appDelegate updateDomainName:ip];
+                        } failed:^{
+                            NSLog(@"shibai");
+                            failTimes++;
+                            dispatch_semaphore_signal(semaphore);
+                            
+                        }];
+                        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                    });
                 }
-            });
-            
+                dispatch_group_notify(group, queue, ^{
+                    //当全部失败的时候重新请求
+                    if (failTimes == ips.count) {
+                        //全部没通过
+                        [weakSelf checkH5Ip];
+                    }
+                });
+            }
         }
     };
     weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
@@ -721,7 +724,7 @@
         msg = [NSString stringWithFormat:@"\n线路获取失败，请确认您的网络连接正常后再次尝试！"];
     } else if ([code isEqualToString:@"003"]) {
         title = @"服务器连接失败";
-        msg = [NSString stringWithFormat:@"\n出现未知错误，请联系在线客服并提供以上信息。\n当前ip:%@\n版本号:%@", ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
+        msg = [NSString stringWithFormat:@"\n出现未知错误，请联系在线客服并提供以下信息。\n当前ip:%@\n版本号:%@", ip, [NSString stringWithFormat:@"iOS %@.%@",appVersion,RH_APP_VERCODE]];
     }
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     
