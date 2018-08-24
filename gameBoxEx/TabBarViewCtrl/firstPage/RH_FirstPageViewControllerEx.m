@@ -460,7 +460,7 @@
 
         [self.serviceRequest setFailBlock:^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
             if (type == ServiceRequestTypeV3GameLinkForCheery) {
-                NSLog(@"");
+                NSLog(@"请求失败，请在后台打开免转开关");
             }
         }];
     }
