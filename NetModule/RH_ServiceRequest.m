@@ -2579,6 +2579,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (headerArguments) {
         [headerArg addEntriesFromDictionary:headerArguments];
     }
+    if (![[headerArg allKeys] containsObject:@"Cookie"]) {
+        [headerArg setValue:userInfo_manager.sidString?:@""forKey:@"Cookie"];
+    }
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:apiName
                                                                 pathFormat:pathFormat
                                                              pathArguments:pathArguments

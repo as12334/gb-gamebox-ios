@@ -304,7 +304,15 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
     NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,_withDrawModel.mAuditLogUrl];
+    
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    NSString *url;
+    if (appDelegate.demainName.length > 0) {
+        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,_withDrawModel.mAuditLogUrl];
+    } else {
+         url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,_withDrawModel.mAuditLogUrl];
+    }
+    gameViewController.url = url;
     [self.navigationController pushViewController:gameViewController animated:YES];
 
 //    self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
