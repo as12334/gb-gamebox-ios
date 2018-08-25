@@ -324,6 +324,9 @@ configuration_list=(  \
     # '_vywq^629^"新葡京娱乐城"' \
     # '_dnob^691^"bet365"' \
     # '_c7pd^699^"新發娱乐"' \
+    '_hc9f^700^"金沙娱乐场"' \
+    # '_noun^701^"辰龙娱乐"' \
+    # '_mope^702^"新万博"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
