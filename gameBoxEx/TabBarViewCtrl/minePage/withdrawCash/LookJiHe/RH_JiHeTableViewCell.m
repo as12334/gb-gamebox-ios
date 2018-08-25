@@ -36,10 +36,10 @@
     if ([creatTime isEqualToString:@"存款时间"]) {
         time = creatTime;
     }else{
-          NSDate *date = [NSDate dateWithTimeIntervalSince1970:[creatTime floatValue]/1000.0];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:[creatTime floatValue]/1000.0];
         time = dateStringWithFormatter(date, @"yyyy-MM-dd HH:mm:ss");
     }
-  
+    
     self.timeLab.text = time;
     NSString *rechargeAmount = [NSString stringWithFormat:@"%@",dic[@"rechargeAmount"]];
     NSString *str;
@@ -61,15 +61,20 @@
     self.CKJHDLab.text = str4;
     NSString *rechargeFee = [NSString stringWithFormat:@"%@",dic[@"rechargeFee"]];
     NSString *str1;
-    if ([rechargeFee integerValue] == 0) {
-        str1 = @"通过";
-    }else{
+    if ([rechargeFee isEqualToString:@"存款行政费用"]) {
         str1 = rechargeFee;
+    }else{
+        if ([rechargeFee integerValue] == 0) {
+            str1 = @"通过";
+        }else{
+            str1 = rechargeFee;
+        }
     }
+    
     self.XZFYLab.text = str1;
     NSString *favorableAmount = [NSString stringWithFormat:@"%@",dic[@"favorableAmount"]];
     NSString *str2;
-    if ([rechargeAmount isEqualToString:@"优惠金额"]) {
+    if ([favorableAmount isEqualToString:@"优惠金额"]) {
         str2 = favorableAmount;
     }else{
         str2 = [NSString stringWithFormat:@"￥%.1f",[favorableAmount floatValue]];
@@ -87,11 +92,17 @@
     self.YHJHDLab.text = str5;
     NSString *favorableFee = [NSString stringWithFormat:@"%@",dic[@"favorableFee"]];
     NSString *str3;
-    if ([favorableFee integerValue] == 0) {
-        str3 = @"通过";
-    }else{
+    
+    if ([favorableFee isEqualToString:@"优惠扣除"]) {
         str3 = favorableFee;
+    }else{
+        if ([favorableFee integerValue] == 0) {
+            str3 = @"通过";
+        }else{
+            str3 = favorableFee;
+        }
     }
+    
     self.YHKCLab.text = str3;
 }
 @end
