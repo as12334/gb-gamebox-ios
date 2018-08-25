@@ -687,6 +687,9 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */; };
+		BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */; };
+		BF563FC821302171008FEE8E /* RH_JiHeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */; };
 		BF5FF83F21240AEA0019EF30 /* CheckTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */; };
 		BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */; };
 		BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846420EE07D300ED3ACB /* No_AccessView.m */; };
@@ -1999,6 +2002,11 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeViewController.h; sourceTree = "<group>"; };
+		BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeViewController.m; sourceTree = "<group>"; };
+		BF563FC421302171008FEE8E /* RH_JiHeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeTableViewCell.h; sourceTree = "<group>"; };
+		BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeTableViewCell.m; sourceTree = "<group>"; };
+		BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_JiHeTableViewCell.xib; sourceTree = "<group>"; };
 		BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckTimeManager.h; sourceTree = "<group>"; };
 		BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckTimeManager.m; sourceTree = "<group>"; };
 		BFCA3EE120EE139C0043F4EF /* RH_GestureLockMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureLockMainView.h; sourceTree = "<group>"; };
@@ -4592,6 +4600,7 @@
 		B87A6B4B200D9CED00C9788F /* withdrawCash */ = {
 			isa = PBXGroup;
 			children = (
+				BF563FBE21301F19008FEE8E /* LookJiHe */,
 				B87A6B45200B7CC300C9788F /* cells */,
 				B87A6B4C200D9D6C00C9788F /* RH_WithdrawCashController.h */,
 				B87A6B4D200D9D6C00C9788F /* RH_WithdrawCashController.m */,
@@ -4605,6 +4614,18 @@
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
+			sourceTree = "<group>";
+		};
+		BF563FBE21301F19008FEE8E /* LookJiHe */ = {
+			isa = PBXGroup;
+			children = (
+				BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */,
+				BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */,
+				BF563FC421302171008FEE8E /* RH_JiHeTableViewCell.h */,
+				BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */,
+				BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */,
+			);
+			path = LookJiHe;
 			sourceTree = "<group>";
 		};
 		F61DA00120BBAE1C00E55BAB /* websocketVC */ = {
@@ -5069,6 +5090,7 @@
 				A07FE3811FEFA44A00D5DF71 /* RH_NaviUserInfoTableCell.xib in Resources */,
 				226BE38120297D3F003E98C9 /* tabbar_mark_black_bg@3x.png in Resources */,
 				A001B3C91F8EF7CA00309EA4 /* tab_blue_deposit@2x.png in Resources */,
+				BF563FC821302171008FEE8E /* RH_JiHeTableViewCell.xib in Resources */,
 				546CE6ED20CA2A5300273C40 /* README.md in Resources */,
 				221AE58E207DEE84008CD409 /* login_touxiang_orange@3x.png in Resources */,
 				228B932120272ACE008C8313 /* tab_v3_promo_selected_black@3x.png in Resources */,
@@ -5683,7 +5705,9 @@
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
 				A0109FE31F8788FF004E6EF4 /* MJPropertyKey.m in Sources */,
+				BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */,
 				B87A6B1D2006405100C9788F /* RH_PromoListController.m in Sources */,
+				BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */,
 				79FA65442068E8B6000C7DB6 /* RH_GetNoAutoTransferInfoModel.m in Sources */,
 				7937C42D2072073B0010CD0C /* PGDatePickManager.m in Sources */,
 				A05747C31FF635E00068D0E4 /* RH_HomeChildCategoryCell.m in Sources */,
@@ -6004,7 +6028,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_lnd9=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6089,7 +6113,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_lnd9=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_wjbn=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

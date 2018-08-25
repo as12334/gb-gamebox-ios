@@ -23,7 +23,7 @@
 #import "RH_WithdrawCashThreeCell.h"
 #import "RH_NavigationUserInfoView.h"
 #import "GameWebViewController.h"
-
+#import "RH_JiHeViewController.h"
 typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0    ,
     WithdrawCashStatus_NotEnoughCash            ,
@@ -302,18 +302,21 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (void)buttonCheckHandle {
     
-    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-    NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+//    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+//    NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+//    
+//    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+//    NSString *url;
+//    if (appDelegate.demainName.length > 0) {
+//        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,_withDrawModel.mAuditLogUrl];
+//    } else {
+//         url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,_withDrawModel.mAuditLogUrl];
+//    }
+//    gameViewController.url = url;
+//    [self.navigationController pushViewController:gameViewController animated:YES];
     
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    NSString *url;
-    if (appDelegate.demainName.length > 0) {
-        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,_withDrawModel.mAuditLogUrl];
-    } else {
-         url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,_withDrawModel.mAuditLogUrl];
-    }
-    gameViewController.url = url;
-    [self.navigationController pushViewController:gameViewController animated:YES];
+    RH_JiHeViewController *vc = [[RH_JiHeViewController alloc]init];
+      [self.navigationController pushViewController:vc animated:YES];
 
 //    self.appDelegate.customUrl = _withDrawModel.mAuditLogUrl;
 //    [self showViewController:[RH_CustomViewController viewControllerWithContext:self.withDrawModel] sender:nil];

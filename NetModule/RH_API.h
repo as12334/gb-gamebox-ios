@@ -1012,6 +1012,9 @@
 #define RH_GP_DEPOSITESEACHSALE_COUNTERFEE          @"counterFee"
 #define RH_GP_DEPOSITESEACHSALE_FAILURECOUNT        @"failureCount"
 
+//查看稽核列表
+#define RH_API_NAME_LOOKJIHE               @"mobile-api/withdrawOrigin/getAuditLog.html"
+
 #define RH_GP_DEPOSITESEACHSALE_SALES                    @"sales"
 #define RH_GP_DEPOSITESEACHSALE_ID                  @"id"
 #define RH_GP_DEPOSITESEACHSALE_PREFERENTIAL        @"preferential"
