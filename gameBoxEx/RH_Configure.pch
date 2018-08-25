@@ -3655,6 +3655,16 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _c7pd //新發娱乐
+
+#define CODE    @"c7pd"
+#define S        @"f9ca5c49646ccddcd65877d778b23b37"
+#define SID        @"699"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 #endif
 
