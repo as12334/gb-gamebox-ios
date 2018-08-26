@@ -386,7 +386,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _xwc7 //澳门威尼斯人
+#elif o //澳门威尼斯人
 
 #define CODE    @"xwc7"
 #define S        @"0accd87069ed4e9c5adff95abaa9ab11"
@@ -3655,6 +3655,41 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _c7pd //新發娱乐
+
+#define CODE    @"c7pd"
+#define S        @"f9ca5c49646ccddcd65877d778b23b37"
+#define SID        @"699"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _hc9f //金沙娱乐场
+
+#define CODE    @"hc9f"
+#define S        @"1f2f220c5584bbb1790864ec21b5f862"
+#define SID        @"700"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _noun //辰龙娱乐
+
+#define CODE    @"noun"
+#define S        @"0891c71176a1d89aac472c204c7b7252"
+#define SID        @"701"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
+
+#elif _mope //新万博
+
+#define CODE    @"mope"
+#define S        @"20484947515a5a4b46eb01df9a657155"
+#define SID        @"702"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integrated"
 
 #endif
 

@@ -100,6 +100,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3HelpDetail,     //常见问题详情
     ServiceRequestTypeV3DepositOriginSeachSale,  //存款获取优惠
     ServiceRequestTypeV3DepositOriginBittionSeachSale,//比特币优惠
+    ServiceRequestTypeLookJiHe,//查看稽核
     
     ServiceRequestTypeV3GetNoAutoTransferInfo,    // 非免转额度转换初始化
     ServiceRequestTypeV3SubmitTransfersMoney,     //非免转额度转换提交
@@ -283,7 +284,9 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 #pragma mark - 资金记录下拉列表
 -(void)startV3DepositPulldownList;
 
-
+#pragma mark--
+#pragma mark--查看稽核
+-(void)startLookJiHe;
 #pragma mark - 添加银行卡
 
 /**
