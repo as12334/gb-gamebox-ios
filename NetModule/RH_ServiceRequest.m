@@ -1495,7 +1495,21 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                        serviceType:ServiceRequestTypeV3VerifyRealNameForApp
                          scopeType:ServiceScopeTypePublic];
 }
-
+#pragma mark--
+#pragma mark--查看稽核
+-(void)startLookJiHe{
+    [self _startServiceWithAPIName:self.appDelegate.domain
+                        pathFormat:RH_API_NAME_LOOKJIHE
+                     pathArguments:nil
+                   headerArguments:@{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE],
+                                     @"Host":self.appDelegate.headerDomain
+                                     }
+                    queryArguments:nil
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypePost
+                       serviceType:ServiceRequestTypeLookJiHe
+                         scopeType:ServiceScopeTypePublic];
+}
 #pragma mark - 获取用户资产信息
 -(void)startV3GetUserAssertInfo
 {
