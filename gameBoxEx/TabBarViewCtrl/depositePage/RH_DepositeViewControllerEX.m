@@ -445,11 +445,11 @@
     NSString *depositeName = transferModel.mName;
     //每次选择平台就要初始化文案的数组
     self.reminderArray = [NSMutableArray array];
-    [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
     if ([depositeName isEqualToString:@"快充中心"]) {
         
     }else
     {
+        [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
         [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
     }
     //点击各个渠道，重置存款方式
@@ -491,11 +491,12 @@
 {
     //每次选择平台就要初始化文案的数组
     self.reminderArray = [NSMutableArray array];
-    [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
+    
     if ([depositName isEqualToString:@"快充中心"]) {
        
     }else
     {
+        [self.serviceRequest startV3RequestDepositOriginChannel:depositeCode];
          [self showProgressIndicatorViewWithAnimated:YES title:nil] ;
     }
     //点击各个渠道，重置存款方式
