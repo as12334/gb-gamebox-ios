@@ -670,6 +670,7 @@
             NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
             if (dic == nil) {
                 dic = @{@"data":@""};
+                return ;
             } else {
                 NSArray *ips = dic[@"data"];
                 NSLog(@"ips====%@",ips);
