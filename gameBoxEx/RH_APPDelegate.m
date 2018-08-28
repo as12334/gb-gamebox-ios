@@ -232,7 +232,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
             if (self.isLogin) {
                  RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
                  UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.selectedViewController);
-                [self.gestureView gestureViewShowWithController:nvc.childViewControllers.lastObject];
+                 [self.gestureView gestureViewShowWithController:nvc.childViewControllers.lastObject];
                
 //                NSLog(@"test == %@",tabBarController.selectedViewController);
 //                if (tabBarController) {

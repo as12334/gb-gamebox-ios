@@ -3217,7 +3217,7 @@
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _04du //澳门威尼斯人
+#elif _04du //金立方国际娱乐
 
 #define CODE    @"04du"
 #define S        @"4073a0344ddc9f46b16505f567a3d2ea"
@@ -3671,7 +3671,7 @@
 #define SID        @"700"
 #define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _noun //辰龙娱乐
 
@@ -3680,7 +3680,7 @@
 #define SID        @"701"
 #define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
 
 #elif _mope //新万博
 
@@ -3689,7 +3689,9 @@
 #define SID        @"702"
 #define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
-#define SITE_TYPE    @"integrated"
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 #endif
 
