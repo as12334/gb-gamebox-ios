@@ -2756,10 +2756,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
               error:(NSError *__autoreleasing *)error
 {
     NSData *tmpData = ConvertToClassPointer(NSData, data) ;
+    NSDictionary *dict = [tmpData mj_JSONObject];
     NSString *tmpResult = [tmpData mj_JSONString] ;
     NSLog(@"tmpResult==%@",tmpResult);
-    
-    
+    NSLog(@"====---%@",dict);
     RH_ServiceRequestContext * context = [request context];
     ServiceRequestType type = context.serivceType;
     if (type == ServiceRequestTypeUserAutoLogin) {

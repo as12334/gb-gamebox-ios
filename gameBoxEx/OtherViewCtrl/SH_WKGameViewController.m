@@ -49,12 +49,23 @@
     
     self.hiddenTabBar = YES;
     self.hiddenNavigationBar = YES;
-    
-    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-    _wkWebView = [[WKWebView alloc]initWithFrame:CGRectZero configuration:config];
-    _wkWebView.navigationDelegate = self;
+    WKUserContentController *controller = [[WKUserContentController alloc] init]; [controller addScriptMessageHandler: self name: @"Could be any srting value"];
+    WKPreferences *preferences = [[WKPreferences alloc] init]; preferences.javaScriptCanOpenWindowsAutomatically = YES;
+    WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    configuration.userContentController = controller;
+    configuration.preferences = preferences;
+    _wkWebView = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
     _wkWebView.UIDelegate = self;
+    _wkWebView.navigationDelegate = self;
     [self.view addSubview:_wkWebView];
+    
+//    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+//    _wkWebView = [[WKWebView alloc]initWithFrame:CGRectZero configuration:config];
+//    _wkWebView.navigationDelegate = self;
+//    _wkWebView.UIDelegate = self;
+//    [self.view addSubview:_wkWebView];
+    
+    
     _wkWebView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     NSDictionary *headFields = request.allHTTPHeaderFields;
