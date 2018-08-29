@@ -3646,14 +3646,6 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _dnob //bet365
-
-#define CODE    @"dnob"
-#define S        @"5cbc78a02af617578dd8d8db74547c1a"
-#define SID        @"691"
-#define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3oc"
 
 #elif _c7pd //新發娱乐
 
