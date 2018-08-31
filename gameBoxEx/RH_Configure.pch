@@ -3646,14 +3646,6 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _dnob //bet365
-
-#define CODE    @"dnob"
-#define S        @"5cbc78a02af617578dd8d8db74547c1a"
-#define SID        @"691"
-#define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
-#define THEME    @"default.skin"
-#define SITE_TYPE    @"integratedv3oc"
 
 #elif _c7pd //新發娱乐
 
@@ -3691,6 +3683,23 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _r23s //九亿娱乐
+
+#define CODE    @"r23s"
+#define S        @"c8624448dd38fb4a3d79969d08eeae31"
+#define SID        @"698"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _s9q3 //银河国际
+
+#define CODE    @"s9q3"
+#define S        @"0db36578229bdf5a27e2e4ced8ad1adb"
+#define SID        @"693"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 
 #endif
