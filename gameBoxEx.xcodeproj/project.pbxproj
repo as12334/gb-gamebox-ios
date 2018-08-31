@@ -687,6 +687,7 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		BF427BA0213940AF0076F05A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF427B9F213940AF0076F05A /* Launch Screen.storyboard */; };
 		BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */; };
 		BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */; };
 		BF563FC821302171008FEE8E /* RH_JiHeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */; };
@@ -2002,6 +2003,7 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		BF427B9F213940AF0076F05A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeViewController.h; sourceTree = "<group>"; };
 		BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeViewController.m; sourceTree = "<group>"; };
 		BF563FC421302171008FEE8E /* RH_JiHeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeTableViewCell.h; sourceTree = "<group>"; };
@@ -2915,6 +2917,7 @@
 				F6A3E1D2208F11AA005C8D4C /* RH_Crash.h */,
 				F6A3E1D3208F11AA005C8D4C /* RH_Crash.m */,
 				A0E367BD1F90DA5000758033 /* Assets.xcassets */,
+				BF427B9F213940AF0076F05A /* Launch Screen.storyboard */,
 				A0109C731F878199004E6EF4 /* Info.plist */,
 				A0109C741F878199004E6EF4 /* main.m */,
 			);
@@ -5330,6 +5333,7 @@
 				A001B3EB1F8EF7CA00309EA4 /* tab_mine@2x.png in Resources */,
 				228B931820272961008C8313 /* tab_v3_deposit_selected_green@2x.png in Resources */,
 				22F626A820566E5E00094564 /* login_touxiang_black@3x.png in Resources */,
+				BF427BA0213940AF0076F05A /* Launch Screen.storyboard in Resources */,
 				221AE59A207DEF4A008CD409 /* tab_v3_deposit_selected_red@3x.png in Resources */,
 				F69E3508206355780028D3A1 /* RH_DepositeChooseMoneyCell.xib in Resources */,
 				F69E35212063971C0028D3A1 /* RH_DepositeSubmitCircleCell.xib in Resources */,
@@ -6012,7 +6016,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid616;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid339;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -6020,7 +6024,7 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "环球娱乐";
+				APP_DISPLAY_NAME = 71;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -6028,7 +6032,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_81m3=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6038,7 +6042,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid616;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6097,7 +6101,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid616;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid339;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6105,7 +6109,7 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "环球娱乐";
+				APP_DISPLAY_NAME = 71;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -6113,7 +6117,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_81m3=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6123,7 +6127,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid616;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
