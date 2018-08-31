@@ -1735,7 +1735,7 @@
 #define THEMEV3             @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _jeia //澳门新葡京官方授权直营网
+#elif _jeia //幸运女神
 
 #define CODE    @"jeia"
 #define S        @"5e16369b35dbaf9b27107cab926a7de7"
@@ -3701,6 +3701,23 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _fxni //自由在线
+
+#define CODE    @"fxni"
+#define S        @"b6a567b7b26b0701a1ee69ad9c7cfa0a"
+#define SID        @"703"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _mkqw //澳门威尼斯人
+
+#define CODE    @"mkqw"
+#define S        @"00db32e411b82ee29d81aab2d2d560a3"
+#define SID        @"706"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
