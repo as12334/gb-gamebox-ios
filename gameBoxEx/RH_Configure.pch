@@ -3719,6 +3719,42 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _palc //易博娱乐城
+
+#define CODE    @"palc"
+#define S        @"ca4da7ffddaaa54e9ce476cf677e147a"
+#define SID        @"709"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _cbw8 //创维娱乐城
+
+#define CODE    @"cbw8"
+#define S        @"dd7d3983f302bd196a44f8d86f856259"
+#define SID        @"711"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
+
+
+#elif _eguy //太阳城集团
+
+#define CODE    @"eguy"
+#define S        @"b9fa7c9dd34dd9fe4a37eb6245bca9bf"
+#define SID        @"712"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
