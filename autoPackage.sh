@@ -330,10 +330,15 @@ configuration_list=(  \
     # '_r23s^698^"九亿娱乐"' \
     # '_s9q3^693^"银河国际"' \
     # '_fxni^703^"自由在线"' \
+<<<<<<< HEAD
     '_mkqw^706^"澳门威尼斯人"' \
+=======
+      '_mkqw^706^"澳门威尼斯人"' \
+>>>>>>> 8520cd5fc1bfa379e8059b97ae2ab01012cab862
 
 
   )
+
 
 shell_path=$(cd "$(dirname "$0")";pwd)
 uplevel_path=${shell_path%/*}
