@@ -3411,6 +3411,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _bvxu //宝天坊
+
+#define CODE    @"bvxu"
+#define S        @"881f456182a1e3c7b3bf6eb55ab89b40"
+#define SID        @"682"
+#define THEMEV3     @"orange_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #elif _efd8 //盈丰娛樂
 
 #define CODE    @"efd8"
