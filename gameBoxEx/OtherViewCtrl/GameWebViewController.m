@@ -277,11 +277,14 @@
 {
     NSString *domain;
     //如果有新的域名检测过了就是用新的域名
-    if ([url  containsString:self.appDelegate.demainName]) {
-        domain = self.appDelegate.demainName;
+    if (self.appDelegate.demainName) {
+        if ([url  containsString:self.appDelegate.demainName]) {
+            domain = self.appDelegate.demainName;
+        }
     } else {
         domain = self.appDelegate.headerDomain;
     }
+    
     NSArray *checkTypeComponents = [self.appDelegate.checkType componentsSeparatedByString:@"+"];
     NSString *preUrl = [NSString stringWithFormat:@"%@://%@",checkTypeComponents[0],domain];
     NSLog(@"url == %@",url);
