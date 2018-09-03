@@ -333,7 +333,6 @@ configuration_list=(  \
     '_mkqw^706^"澳门威尼斯人"' \
   )
 
-
 shell_path=$(cd "$(dirname "$0")";pwd)
 uplevel_path=${shell_path%/*}
 #自定义project 相关信息 
