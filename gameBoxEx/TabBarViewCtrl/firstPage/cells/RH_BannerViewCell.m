@@ -29,7 +29,12 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     self.pageControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8f, 0.8f);
+    
+    [self.pageControl setValue:[UIImage imageNamed:@"whitePoint"] forKeyPath:@"pageImage"];
+    [self.pageControl setValue:[UIImage imageNamed:@"orangePoint"] forKeyPath:@"currentPageImage"];
 }
 
 #pragma mark -
@@ -43,7 +48,10 @@
         _pageView.infinite = YES;
         _pageView.pagingEnabled = YES;
         _pageView.cellMargin = 5.f;
-        [self insertSubview:self.pageView belowSubview:self.pageControl];
+        [self.contentView addSubview:self.pageView];
+        [self.contentView bringSubviewToFront:self.pageControl];
+//        [self insertSubview:self.pageView belowSubview:self.pageControl];
+        
     }
     
     return _pageView;
