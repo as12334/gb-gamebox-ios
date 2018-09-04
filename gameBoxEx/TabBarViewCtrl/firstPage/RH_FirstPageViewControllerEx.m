@@ -294,7 +294,7 @@
         label.textColor = colorWithRGB(153, 153, 153);
         lineView.backgroundColor = colorWithRGB(239, 239, 239);
     }
-    label.text = @"COPYRIGHT © 2004-2018";
+    label.text = @"COPYRIGHT © 2007-2018";
     self.contentTableView.tableFooterView = foot_View;
 }
 
