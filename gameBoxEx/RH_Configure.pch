@@ -3755,6 +3755,24 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _imhs //好运来
+
+#define CODE    @"imhs"
+#define S        @"d5df2b98ffb7d30f060a581bf0f472e6"
+#define SID        @"717"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _jecq //BET365
+
+#define CODE    @"jecq"
+#define S        @"8667e3820d24a90da7392cf7c2a66ff7"
+#define SID        @"727"
+#define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
