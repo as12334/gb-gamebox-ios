@@ -336,6 +336,7 @@ configuration_list=(  \
     # '_eguy^712^"太阳城集团"' \
     # '_bvxu^682^"宝天坊"' \
 
+>>>>>>> 6b9024d14ffef47b01617647ae53d74a8d4e1814
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
