@@ -336,7 +336,8 @@ configuration_list=(  \
     # '_eguy^712^"太阳城集团"' \
     # '_bvxu^682^"宝天坊"' \
     # '_imhs^717^"好运来"' \
-    '_jecq^727^"BET365"' \
+    # '_jecq^727^"BET365"' \
+    '_pzib^713^"太阳城集团"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
