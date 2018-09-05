@@ -444,6 +444,9 @@
             
         }] ;
     }else {//移出动画
+        for (UIView *view in self.userInfoView.subviews) {
+            view.clipsToBounds = NO;
+        }
         [UIView animateWithDuration:0.5 animations:^{
             self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
                                                  64,
