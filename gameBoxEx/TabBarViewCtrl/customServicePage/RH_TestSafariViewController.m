@@ -113,7 +113,7 @@
 -(UIWebView *)webView
 {
     if (!_webView) {
-        _webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(MainScreenH==812?83.0:49.0))];
+        _webView = [[UIWebView alloc]init];
         _webView.delegate = self;
         [_webView setScalesPageToFit:NO];
     }
@@ -134,7 +134,7 @@
 //        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
 //    }
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(MainScreenH==812?83.0:49.0))];
+    self.webView.frame = CGRectMake(self.view.frame.origin.x, STATUS_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-STATUS_HEIGHT-(MainScreenH==812?83.0:49.0));
     [self.serviceRequest startV3GetCustomService];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
