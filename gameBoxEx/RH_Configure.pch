@@ -3782,6 +3782,24 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _rcs7 //大西洋城娱乐场
+
+#define CODE    @"rcs7"
+#define S        @"fcebfb9ab9defdd66e227ad4e08a96de"
+#define SID        @"705"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _notj //万利汇娱乐
+
+#define CODE    @"notj"
+#define S        @"848c9fea09a47ed5ce5bc856d31f057c"
+#define SID        @"722"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
