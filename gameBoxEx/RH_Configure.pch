@@ -3809,6 +3809,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _b855 //澳门威尼斯人
+
+#define CODE    @"b855"
+#define S        @"625d1139d1d9e453c289a432383ba220"
+#define SID        @"708"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
