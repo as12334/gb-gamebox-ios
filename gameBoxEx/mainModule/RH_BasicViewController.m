@@ -435,9 +435,9 @@
 {
     if (self.userInfoView.superview==nil) { //展现动画
         [self.view addSubview:self.userInfoView] ;
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.8 animations:^{
             self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
-                                                 64,
+                                                 NavigationBarHeight+heighStatusBar,
                                                  userInfoViewWidth,
                                                  userInfoViewHeigh);
         } completion:^(BOOL finished) {
@@ -449,7 +449,7 @@
         }
         [UIView animateWithDuration:0.5 animations:^{
             self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
-                                                 64,
+                                                 NavigationBarHeight+heighStatusBar,
                                                  userInfoViewWidth,
                                                  0);
         } completion:^(BOOL finished) {
