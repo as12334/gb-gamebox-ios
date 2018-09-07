@@ -3800,6 +3800,24 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _yqfj //兴隆国际娱乐
+
+#define CODE    @"yqfj"
+#define S        @"33c1bacff8259b84d1c93852c60b2d7d"
+#define SID        @"720"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _b855 //澳门威尼斯人
+
+#define CODE    @"b855"
+#define S        @"625d1139d1d9e453c289a432383ba220"
+#define SID        @"708"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
