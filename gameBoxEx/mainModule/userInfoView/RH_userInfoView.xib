@@ -16,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xmf-nD-1lV">
-                    <rect key="frame" x="0.0" y="0.0" width="200" height="328"/>
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="356"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jh6-ej-Nba">
-                    <rect key="frame" x="0.0" y="348" width="200" height="58"/>
+                    <rect key="frame" x="0.0" y="371" width="200" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0J-8W-JDP">
-                            <rect key="frame" x="20" y="10" width="160" height="30"/>
+                            <rect key="frame" x="20" y="-1.5" width="160" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="f94-kK-Hi3"/>
                             </constraints>
@@ -39,7 +39,7 @@
                         <constraint firstItem="N0J-8W-JDP" firstAttribute="centerX" secondItem="jh6-ej-Nba" secondAttribute="centerX" id="QZI-ig-RLv"/>
                         <constraint firstItem="N0J-8W-JDP" firstAttribute="leading" secondItem="jh6-ej-Nba" secondAttribute="leading" constant="20" id="drG-ES-lSc"/>
                         <constraint firstAttribute="trailing" secondItem="N0J-8W-JDP" secondAttribute="trailing" constant="20" id="k05-TA-BdV"/>
-                        <constraint firstAttribute="height" constant="58" id="ne8-jF-yj7"/>
+                        <constraint firstAttribute="height" constant="35" id="ne8-jF-yj7"/>
                     </constraints>
                 </view>
             </subviews>
@@ -50,7 +50,7 @@
                 <constraint firstAttribute="trailing" secondItem="jh6-ej-Nba" secondAttribute="trailing" id="9Mx-24-4IR"/>
                 <constraint firstAttribute="bottom" secondItem="jh6-ej-Nba" secondAttribute="bottom" id="9aY-JN-glq"/>
                 <constraint firstAttribute="trailing" secondItem="xmf-nD-1lV" secondAttribute="trailing" id="CxI-O0-fmL"/>
-                <constraint firstItem="jh6-ej-Nba" firstAttribute="top" secondItem="xmf-nD-1lV" secondAttribute="bottom" constant="20" id="vdI-Vm-4JG"/>
+                <constraint firstItem="jh6-ej-Nba" firstAttribute="top" secondItem="xmf-nD-1lV" secondAttribute="bottom" constant="15" id="vdI-Vm-4JG"/>
                 <constraint firstItem="xmf-nD-1lV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wrP-2p-m2T"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
