@@ -3800,6 +3800,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _yqfj //兴隆国际娱乐
+
+#define CODE    @"yqfj"
+#define S        @"33c1bacff8259b84d1c93852c60b2d7d"
+#define SID        @"720"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
