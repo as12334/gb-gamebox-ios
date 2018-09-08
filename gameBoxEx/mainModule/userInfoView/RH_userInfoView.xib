@@ -16,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xmf-nD-1lV">
-                    <rect key="frame" x="0.0" y="0.0" width="200" height="356"/>
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="351"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jh6-ej-Nba">
-                    <rect key="frame" x="0.0" y="371" width="200" height="35"/>
+                    <rect key="frame" x="0.0" y="366" width="200" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0J-8W-JDP">
-                            <rect key="frame" x="15" y="-2" width="170" height="37"/>
+                            <rect key="frame" x="15" y="-2" width="170" height="34"/>
                             <state key="normal" title="一键回收"/>
                             <connections>
                                 <action selector="btn_oneStepRecover:" destination="iN0-l3-epB" eventType="touchUpInside" id="SmZ-QW-8Rn"/>
@@ -32,11 +32,11 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="N0J-8W-JDP" firstAttribute="centerY" secondItem="jh6-ej-Nba" secondAttribute="centerY" constant="-1" id="Ff9-wF-lAX"/>
+                        <constraint firstItem="N0J-8W-JDP" firstAttribute="centerY" secondItem="jh6-ej-Nba" secondAttribute="centerY" constant="-5" id="Ff9-wF-lAX"/>
                         <constraint firstItem="N0J-8W-JDP" firstAttribute="centerX" secondItem="jh6-ej-Nba" secondAttribute="centerX" id="QZI-ig-RLv"/>
                         <constraint firstItem="N0J-8W-JDP" firstAttribute="leading" secondItem="jh6-ej-Nba" secondAttribute="leading" constant="15" id="drG-ES-lSc"/>
                         <constraint firstAttribute="trailing" secondItem="N0J-8W-JDP" secondAttribute="trailing" constant="15" id="k05-TA-BdV"/>
-                        <constraint firstAttribute="height" constant="35" id="ne8-jF-yj7"/>
+                        <constraint firstAttribute="height" constant="40" id="ne8-jF-yj7"/>
                         <constraint firstItem="N0J-8W-JDP" firstAttribute="top" secondItem="jh6-ej-Nba" secondAttribute="top" constant="-1.5" id="rxS-rL-AYs"/>
                     </constraints>
                 </view>
