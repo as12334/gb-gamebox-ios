@@ -3838,7 +3838,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _de33 //億 來
 
+#define CODE    @"de33"
+#define S        @"f4ebcd661ac856ee14327a1e183c39ee"
+#define SID        @"716"
+#define THEMEV3     @"black"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
