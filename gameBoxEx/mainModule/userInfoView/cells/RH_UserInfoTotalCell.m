@@ -24,7 +24,7 @@
 @implementation RH_UserInfoTotalCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    return 88.0f;
+    return 68.0f;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -33,101 +33,39 @@
     self.contentView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.backgroundColor = [UIColor clearColor] ;
     self.tBalanceView.borderMask = CLBorderMarkBottom ;
-    self.tBalanceView.borderColor = colorWithRGB(242, 242, 242) ;
+    self.tBalanceView.borderColor = [UIColor lightGrayColor] ;
     self.tBalanceView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
     self.tWalletView.backgroundColor = [UIColor clearColor] ;
     self.tWalletView.borderMask = CLBorderMarkBottom ;
-    self.tWalletView.borderColor = colorWithRGB(242, 242, 242) ;
+    self.tWalletView.borderColor = [UIColor lightGrayColor] ;
     self.tWalletView.borderLineInset = UIEdgeInsetsMake(0, 0, 0, 0) ;
     
-    self.balanceBGView.layer.cornerRadius = 5.0f ;
-    self.balanceBGView.layer.masksToBounds = YES ;
+//    self.balanceBGView.layer.cornerRadius = 5.0f ;
+//    self.balanceBGView.layer.masksToBounds = YES ;
 
+    self.balanceBGView.backgroundColor = colorWithRGB(68, 68, 68);
     
-    self.labTBalance.textColor = [UIColor whiteColor] ;
+    self.labTBalance.textColor = [UIColor lightGrayColor] ;
     self.labTBalance.font = [UIFont systemFontOfSize:12.0f] ;
     
-    self.labTBalanceValue.font = [UIFont systemFontOfSize:12.f];
-    self.labTBalanceValue.textColor = colorWithRGB(27, 117, 217);
-    
-    self.walletBGView.backgroundColor = colorWithRGB(14, 195, 146) ;
-    self.walletBGView.layer.cornerRadius = 5.0f ;
-    self.walletBGView.layer.masksToBounds = YES ;
-    self.labTWallet.textColor = [UIColor whiteColor] ;
+    self.walletBGView.backgroundColor = colorWithRGB(68, 68, 68) ;
+//    self.walletBGView.layer.cornerRadius = 5.0f ;
+//    self.walletBGView.layer.masksToBounds = YES ;
+    self.labTWallet.textColor = [UIColor lightGrayColor] ;
     self.labTWallet.font = [UIFont systemFontOfSize:12.0f] ;
     
-    self.labTBalanceValue.font = [UIFont systemFontOfSize:15.0f] ;
-    self.labTWalletValue.textColor = colorWithRGB(14, 195, 146) ;
-    self.labTWalletValue.font = [UIFont systemFontOfSize:15.0f] ;
-    
-    self.labTBalance.text = @"总资产" ;   //
+    self.labTBalance.text = @"总余额" ;   //
     self.labTBalanceValue.text = @"" ;
-    self.labTWallet.text = @"钱包"    ;  //
+    self.labTWallet.text = @"中心钱包"    ;  //
     self.labTWalletValue.text = @""  ;   //
-
-    if ([THEMEV3 isEqualToString:@"green"]){
-        self.balanceBGView.backgroundColor = colorWithRGB(35, 119, 214);
-        //        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Black;
-        self.labTBalanceValue.textColor =   colorWithRGB(23, 102, 187);
-        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
-        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
-    }else if ([THEMEV3 isEqualToString:@"red"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
-        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Red;
-        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
-        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
-    }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.balanceBGView.backgroundColor = colorWithRGB(35, 119, 214);
-//        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Black;
-        self.labTBalanceValue.textColor =   colorWithRGB(23, 102, 187);
-        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
-        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
-    }else if ([THEMEV3 isEqualToString:@"blue"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
-        //        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Black;
-        self.labTBalanceValue.textColor =   colorWithRGB(23, 102, 187);
-        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
-        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
-    }else if ([THEMEV3 isEqualToString:@"orange"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
-        //        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor_Black;
-        self.labTBalanceValue.textColor =   colorWithRGB(23, 102, 187);
-        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
-        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
-    }else if ([THEMEV3 isEqualToString:@"red_white"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
-        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
-    }else if ([THEMEV3 isEqualToString:@"green_white"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White;
-        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
-    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
-        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
-    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
-        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
-    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
-        self.labTBalanceValue.textColor =   colorWithRGB(23, 102, 187);
-        self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.tWalletView.borderColor = colorWithRGB(85, 85, 85) ;
-        self.tBalanceView.borderColor = colorWithRGB(85, 85, 85) ;
-    }else{
-        self.balanceBGView.backgroundColor = RH_NavigationBar_BackgroundColor;
-        self.labTBalanceValue.textColor = RH_NavigationBar_BackgroundColor;
-    }
+    
+    self.tWalletView.backgroundColor = colorWithRGB(68, 68, 68) ;
+    self.tBalanceView.backgroundColor = colorWithRGB(68, 68, 68) ;
+    
+    self.labTBalanceValue.textColor =   [UIColor lightGrayColor];
+    self.labTWalletValue.textColor = [UIColor lightGrayColor];
+    
 //    self.separatorLineStyle = CLTableViewCellSeparatorLineStyleLine ;
 //    self.separatorLineColor = colorWithRGB(204, 204, 204) ;
 }

@@ -26,23 +26,22 @@
     
     // Initialization code
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
-    self.labTitle.textColor = colorWithRGB(51, 51, 51) ;
-    self.labTitleValue.textColor = colorWithRGB(51, 51, 51) ;
-    self.labTitle.font = [UIFont systemFontOfSize:12.0f] ;
-    self.labTitleValue.font = [UIFont systemFontOfSize:12.0f] ;
     
     self.labTitle.text = @"" ;
     self.labTitleValue.text = @"" ;
     if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.contentView.backgroundColor = colorWithRGB(68, 68, 68) ;
-        self.labTitle.textColor = [UIColor whiteColor] ;
-        self.labTitleValue.textColor = [UIColor whiteColor] ;
     }
 }
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     RH_UserApiBalanceModel *userApiBalance = ConvertToClassPointer(RH_UserApiBalanceModel, context) ;
+    if (userApiBalance.Index == 1) {
+        self.contentView.backgroundColor = colorWithRGB(50, 55, 59);
+    } else {
+        self.contentView.backgroundColor = colorWithRGB(68, 68, 68) ;
+    }
     if (userApiBalance){
         self.labTitle.text = userApiBalance.mApiName ;
         self.labTitleValue.text = [NSString stringWithFormat:@"%.2f",userApiBalance.mBalance] ;

@@ -34,7 +34,7 @@
     self.orderNumTextfiled.delegate = self;
     if ([nameStr isEqualToString:@"other"]) {
         self.payforWayLabel.text = @"订单号后五位";
-        self.orderNumTextfiled.placeholder = @"请填“订单号”，非商户订单号(非必填)";
+        self.orderNumTextfiled.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"company"]){
         self.payforWayLabel.text = @"存款人";
@@ -42,11 +42,12 @@
     }
     else if ([nameStr isEqualToString:@"wechat"]){
         self.payforWayLabel.text = @"订单号后五位";
-        if ([SID isEqualToString:@"119"]|| [SID isEqualToString:@"270"]) {
-            self.orderNumTextfiled.placeholder = @"请填入“商户订单号”(必填)";
-        }else{
-            self.orderNumTextfiled.placeholder = @"请填入“商户订单号”(非必填)";
-        }
+//        if ([SID isEqualToString:@"119"]|| [SID isEqualToString:@"270"]) {
+//            self.orderNumTextfiled.placeholder = @"请填入“商户订单号”(必填)";
+//        }else{
+//            self.orderNumTextfiled.placeholder = @"请填入“商户订单号”(非必填)";
+//        }
+        self.orderNumTextfiled.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"alipay"]){
         self.payforWayLabel.text = @"您的支付宝账号";
@@ -54,19 +55,19 @@
     }
     else if ([nameStr isEqualToString:@"qq"]){
         self.payforWayLabel.text = @"订单号后五位";
-        self.orderNumTextfiled.placeholder = @"请填写“商户订单号”(非必填)";
+        self.orderNumTextfiled.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"jd"]){
         self.payforWayLabel.text = @"订单号后五位";
-        self.orderNumTextfiled.placeholder = @"请填写“商户订单号”(非必填)";
+        self.orderNumTextfiled.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"bd"]){
         self.payforWayLabel.text = @"订单号后五位";
-        self.orderNumTextfiled.placeholder = @"请填写“商户订单号”(非必填)";
+        self.orderNumTextfiled.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"oneCodePay"]){
         self.payforWayLabel.text = @"订单号后五位";
-        self.orderNumTextfiled.placeholder = @"请填写商户订单号(非必填)";
+        self.orderNumTextfiled.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"counter"]){
         self.payforWayLabel.text = @"存款人";

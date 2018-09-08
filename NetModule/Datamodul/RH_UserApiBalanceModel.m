@@ -34,4 +34,8 @@
     }
 }
 
+-(void)setIndex:(NSInteger)Index {
+    _Index = Index;
+}
+
 @end
