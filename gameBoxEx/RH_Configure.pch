@@ -3819,6 +3819,44 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 
+#elif _fgbw //永利皇宫娱乐城
+
+#define CODE    @"fgbw"
+#define S        @"a2483f1e3a90526c1909e920da16d507"
+#define SID        @"715"
+#define THEMEV3     @"red"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _m6ql //万达国际娱乐城
+
+#define CODE    @"m6ql"
+#define S        @"f61e8336d53e766440545a05fdae2f7e"
+#define SID        @"721"
+#define THEMEV3     @"red"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _de33 //億 來
+
+#define CODE    @"de33"
+#define S        @"f4ebcd661ac856ee14327a1e183c39ee"
+#define SID        @"716"
+#define THEMEV3     @"black"
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _iwgz //名门
+
+#define CODE    @"iwgz"
+#define S        @"7f30d62574b4984ed79144d01b2e724b"
+#define SID        @"729"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 #endif
 
