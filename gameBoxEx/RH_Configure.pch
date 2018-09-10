@@ -3847,6 +3847,17 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _iwgz //名门
+
+#define CODE    @"iwgz"
+#define S        @"7f30d62574b4984ed79144d01b2e724b"
+#define SID        @"729"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
