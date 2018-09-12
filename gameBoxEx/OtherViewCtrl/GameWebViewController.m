@@ -162,11 +162,12 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    
+    webView.userInteractionEnabled = NO;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    webView.userInteractionEnabled = YES;
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDiskImageCacheEnabled"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabled"];
