@@ -498,8 +498,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }else {
             if (_mainSegmentControl.superview==nil){
                 [self.contentView addSubview:self.mainSegmentControl];
-                self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
-                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+                CGFloat h=0;
+                if (self.withDrawModel.mIsBit==true) {
+                    h = 84;
+                }
+                
+                self.mainSegmentControl.whc_TopSpace(h).whc_CenterX(0).whc_Width(180).whc_Height(35);
+                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(h+16);
             }
             
             self.contentTableView.tableFooterView = self.footerView;
@@ -773,8 +778,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             _withdrawCashStatus = WithdrawCashStatus_HasOrder;
             [self setNeedUpdateView];
         }else if (error.code == RH_API_ERRORCODE_WITHDRAW_NO_MONEY) { //金额不足
-            _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
-            _withDrawMinMoneyStr = [[error userInfo] objectForKey:@"NSLocalizedDescription"] ;
+            NSDictionary *dic = ConvertToClassPointer(NSDictionary, [error userInfo]);
+            NSLog(@"是否有银行===%@",dic[@"hasBank"]);
+            BOOL hasBank = [dic[@"hasBank"] boolValue];
+            if (hasBank) {
+                _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
+                _withDrawMinMoneyStr = [[error userInfo] objectForKey:@"NSLocalizedDescription"] ;
+            }else{
+                _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+            }
+            
             [self setNeedUpdateView] ;
         }else{
             showMessage(self.view, nil, error.localizedDescription) ;

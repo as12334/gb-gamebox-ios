@@ -48,6 +48,7 @@
 @property(nonatomic,strong,readonly)UIButton *closeBtn;
 @property(nonatomic,strong)RH_DepositSuccessAlertView *successAlertView ;
 @property(nonatomic,strong)RH_DepositeMoneyBankCell *bankCell;
+@property(nonatomic,strong)RH_DepositeChooseMoneyCell *chooseMoneyCell;
 
 //柜台机下拉列表数组
 @property(nonatomic,strong)NSArray *counterArray;
@@ -386,9 +387,9 @@
         }
         else if (indexPath.item == [_markArray[2]integerValue]){
             RH_DepositeChooseMoneyCell *moneyCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_DepositeChooseMoneyCell defaultReuseIdentifier]] ;
-            [moneyCell updateCellWithInfo:nil context:self.channelModel.mQuickMoneys];
+            [moneyCell updateCellWithInfo:nil context:self.channelModel];
             moneyCell.delegate = self;
-            
+            self.chooseMoneyCell = moneyCell;
             return moneyCell ;
         }
         else if (indexPath.item == [_markArray[3]integerValue]){
@@ -537,6 +538,7 @@
     self.payforType = payType;
     self.listModel = accountModel;
     [self.numberCell updateCellWithInfo:nil context:accountModel];
+    [self.chooseMoneyCell updateUIWithListModelModel:accountModel];
     self.counterArray = acounterModel;
     //将通道方式也传入到reminderArray;
     if (self.reminderArray.count==1) {
@@ -807,7 +809,8 @@
                 [self.headerTitleView addSubview:lab];
                 self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
             }
-            [self.contentTableView reloadData];
+            //默认选中第一个
+            [self depositeSystemPlatformCellDidtouch:nil payTypeString:self.channelModel.mArrayListModel[0].mType accountModel:self.channelModel.mArrayListModel[0] acounterModel:self.channelModel.mAounterModel];
         }] ;
     }
     else if (type == ServiceRequestTypeV3DepositOriginSeachSale){
