@@ -19,7 +19,7 @@
 #pragma mark- 运行环境配制
 
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -3857,6 +3857,36 @@
 #define SITE_TYPE    @"integratedv3oc"
 
 
+
+#elif _6fhk //酷驰娱乐城
+
+#define CODE    @"6fhk"
+#define S        @"ce03a0126afa6fed8b0e597c285ffacc"
+#define SID        @"690"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
+#elif _aper //大西洋娱乐城
+
+#define CODE    @"aper"
+#define S        @"57f9ce64d6780cf7faa5e340a0a835bf"
+#define SID        @"718"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _qzk9 //必赢亚洲
+
+#define CODE    @"qzk9"
+#define S        @"3277a876295c505b29a1a44359189eb3"
+#define SID        @"723"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
