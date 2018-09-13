@@ -687,9 +687,9 @@
                             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
                             [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
                                 NSLog(@"chengong == %@",ip);
-                                dispatch_semaphore_signal(semaphore);
                                 RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
                                 [appDelegate updateDomainName:ip];
+                                dispatch_semaphore_signal(semaphore);
                             } failed:^{
                                 NSLog(@"shibai");
                                 failTimes++;
