@@ -581,6 +581,8 @@
         }
     };
     self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        NSLog(@"error===%@",error);
+        NSLog(@"error.description===%@",error.description);
         NSArray *checkTypeComponents = [checkType componentsSeparatedByString:@"+"];
         NSString *checkDomian = [NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]];
         //记录错误日志

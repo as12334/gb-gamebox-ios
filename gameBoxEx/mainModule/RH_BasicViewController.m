@@ -435,18 +435,21 @@
 {
     if (self.userInfoView.superview==nil) { //展现动画
         [self.view addSubview:self.userInfoView] ;
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.8 animations:^{
             self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
-                                                 64,
+                                                 NavigationBarHeight+heighStatusBar,
                                                  userInfoViewWidth,
                                                  userInfoViewHeigh);
         } completion:^(BOOL finished) {
             
         }] ;
     }else {//移出动画
+        for (UIView *view in self.userInfoView.subviews) {
+            view.clipsToBounds = NO;
+        }
         [UIView animateWithDuration:0.5 animations:^{
             self.userInfoView.frame = CGRectMake(self.view.frameWidth - userInfoViewWidth,
-                                                 64,
+                                                 NavigationBarHeight+heighStatusBar,
                                                  userInfoViewWidth,
                                                  0);
         } completion:^(BOOL finished) {

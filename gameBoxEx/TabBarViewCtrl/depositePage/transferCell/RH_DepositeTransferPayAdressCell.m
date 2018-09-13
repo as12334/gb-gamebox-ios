@@ -30,7 +30,7 @@
     self.payTextfield.delegate = self;
     if ([nameStr isEqualToString:@"other"]) {
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填“订单号”，非商户订单号(非必填)";
+        self.payTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"company"]){
         self.payLabel.text = @"存款人";
@@ -38,32 +38,32 @@
     }
     else if ([nameStr isEqualToString:@"wechat"]){
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填写“商户订单号”(非必填)";
+        self.payTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"alipay"]){
         self.payLabel.text = @"订单号后五位";
         if ([SID isEqualToString:@"119"]|| [SID isEqualToString:@"270"]) {
             self.payTextfield.placeholder = @"请填入“商户订单号”(必填)";
         }else{
-            self.payTextfield.placeholder = @"请填入“商户订单号”(非必填)";
+            self.payTextfield.placeholder = @"填写可提升到账速度";
         }
         
     }
     else if ([nameStr isEqualToString:@"qq"]){
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填写“商户订单号”(非必填)";
+        self.payTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"jd"]){
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填写“商户订单号”(非必填)";
+        self.payTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"bd"]){
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填写“商户订单号”(非必填)";
+        self.payTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"oneCodePay"]){
         self.payLabel.text = @"订单号后五位";
-        self.payTextfield.placeholder = @"请填写商户订单号(非必填)";
+        self.payTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([nameStr isEqualToString:@"counter"]){
         self.payLabel.text = @"存款地点";

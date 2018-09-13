@@ -57,7 +57,7 @@
     }
     else if ([self.nameString isEqualToString:@"onecodepay"]){
         self.payWayLabel.text = @"订单后五位";
-        self.payNumTextfield.placeholder = @"请填写商户订单号(非必填)";
+        self.payNumTextfield.placeholder = @"填写可提升到账速度";
     }
     else if ([self.nameString isEqualToString:@"counter"]){
         self.payWayLabel.text = @"存款方式";

@@ -167,11 +167,11 @@
         UITabBarItem *mineItem = [self.tabBar.items objectAtIndex:4];
         
         if ([THEMEV3 isEqualToString:@"green"]){
-            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_green"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_green"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+            promoItem.selectedImage = [[UIImage imageNamed:@"tab_v3_deposit_selected_green"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+            homeItem.selectedImage = [[UIImage imageNamed:@"tab_v3_promo_selected_green"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+            serviceItem.selectedImage = [[UIImage imageNamed:@"tab_v3_service_selected_green"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+            mineItem.selectedImage = [[UIImage imageNamed:@"tab_v3_my_selected_green"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
             self.tabBar.tintColor = RH_NavigationBar_BackgroundColor_Green;
         }else if ([THEMEV3 isEqualToString:@"red"]){
             saveMoneyItem.selectedImage = [[UIImage imageNamed:@"tab_v3_home_selected_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -255,13 +255,6 @@
         self.tabBar.tintColor = [UIColor colorWithRed:0.87 green:0.32 blue:0.30 alpha:1.0];
     }
 }
-//    if ([@"185" isEqualToString:SID]) {
-//        home.title = @"メインページ";
-//        deposit.title = @"振込";
-//        transfer.title = @"振替";
-//        service.title = @"サービス";
-//        mine.title = @"マイ";
-//    }
 }
 
 - (void)dealloc {
@@ -277,21 +270,6 @@
     }
 }
 
-#pragma mark -
-//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-//    static int index = 0;
-//    RH_CustomTabBar *tabbar = (RH_CustomTabBar *)tabBar;
-//    for (int i = 0; i < tabBar.items.count; i++) {
-//        if (tabBar.items[i] == item) {
-//            index = i;
-//        }
-//    }
-//    if (index != 2) {
-//        [tabbar setViewBackgroundColor:[UIColor whiteColor]];
-//    }else {
-//        [tabbar setViewBackgroundColor:[UIColor blackColor]];
-//    }
-//}
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
