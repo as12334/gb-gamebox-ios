@@ -114,7 +114,7 @@
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger num = [self.moneyNumArray[indexPath.row] integerValue];
-    if (num > self.model.mSingleDepositMin&&num < self.model.mSingleDepositMax) {
+    if (num >= self.model.mSingleDepositMin&&num <= self.model.mSingleDepositMax) {
         return YES;
     }else{
         return NO;
