@@ -690,11 +690,20 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		BF05287D214BBADA00C10B6E /* RH_DepositeBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */; };
+		BF052880214BBB3C00C10B6E /* RH_FundsTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */; };
 		BF427BA0213940AF0076F05A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF427B9F213940AF0076F05A /* Launch Screen.storyboard */; };
 		BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */; };
 		BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */; };
 		BF563FC821302171008FEE8E /* RH_JiHeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */; };
 		BF5FF83F21240AEA0019EF30 /* CheckTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */; };
+		BFC7CB46214BAE93004AAAA7 /* RH_ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */; };
+		BFC7CB49214BAF5C004AAAA7 /* RH_CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB48214BAF5C004AAAA7 /* RH_CustomLabel.m */; };
+		BFC7CB4F214BB039004AAAA7 /* RH_ScrollSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB4E214BB039004AAAA7 /* RH_ScrollSegmentView.m */; };
+		BFC7CB52214BB185004AAAA7 /* RH_ScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB51214BB185004AAAA7 /* RH_ScrollPageView.m */; };
+		BFC7CB55214BB1FC004AAAA7 /* RH_SegmentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB54214BB1FC004AAAA7 /* RH_SegmentStyle.m */; };
+		BFC7CB58214BB2BF004AAAA7 /* UIView+RHFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB57214BB2BF004AAAA7 /* UIView+RHFrame.m */; };
+		BFC7CB5B214BB309004AAAA7 /* UIViewController+RHScrollPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB5A214BB309004AAAA7 /* UIViewController+RHScrollPageController.m */; };
 		BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */; };
 		BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846420EE07D300ED3ACB /* No_AccessView.m */; };
 		BFF3846B20EE083D00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */; };
@@ -2010,6 +2019,10 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		BF05287B214BBADA00C10B6E /* RH_DepositeBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeBasicViewController.h; sourceTree = "<group>"; };
+		BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeBasicViewController.m; sourceTree = "<group>"; };
+		BF05287E214BBB3C00C10B6E /* RH_FundsTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FundsTransferViewController.h; sourceTree = "<group>"; };
+		BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FundsTransferViewController.m; sourceTree = "<group>"; };
 		BF427B9F213940AF0076F05A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeViewController.h; sourceTree = "<group>"; };
 		BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeViewController.m; sourceTree = "<group>"; };
@@ -2018,6 +2031,20 @@
 		BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_JiHeTableViewCell.xib; sourceTree = "<group>"; };
 		BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckTimeManager.h; sourceTree = "<group>"; };
 		BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckTimeManager.m; sourceTree = "<group>"; };
+		BFC7CB44214BAE93004AAAA7 /* RH_ContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ContentView.h; sourceTree = "<group>"; };
+		BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ContentView.m; sourceTree = "<group>"; };
+		BFC7CB47214BAF5C004AAAA7 /* RH_CustomLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomLabel.h; sourceTree = "<group>"; };
+		BFC7CB48214BAF5C004AAAA7 /* RH_CustomLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomLabel.m; sourceTree = "<group>"; };
+		BFC7CB4D214BB039004AAAA7 /* RH_ScrollSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ScrollSegmentView.h; sourceTree = "<group>"; };
+		BFC7CB4E214BB039004AAAA7 /* RH_ScrollSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ScrollSegmentView.m; sourceTree = "<group>"; };
+		BFC7CB50214BB185004AAAA7 /* RH_ScrollPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ScrollPageView.h; sourceTree = "<group>"; };
+		BFC7CB51214BB185004AAAA7 /* RH_ScrollPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ScrollPageView.m; sourceTree = "<group>"; };
+		BFC7CB53214BB1FC004AAAA7 /* RH_SegmentStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SegmentStyle.h; sourceTree = "<group>"; };
+		BFC7CB54214BB1FC004AAAA7 /* RH_SegmentStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SegmentStyle.m; sourceTree = "<group>"; };
+		BFC7CB56214BB2BF004AAAA7 /* UIView+RHFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+RHFrame.h"; sourceTree = "<group>"; };
+		BFC7CB57214BB2BF004AAAA7 /* UIView+RHFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+RHFrame.m"; sourceTree = "<group>"; };
+		BFC7CB59214BB309004AAAA7 /* UIViewController+RHScrollPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RHScrollPageController.h"; sourceTree = "<group>"; };
+		BFC7CB5A214BB309004AAAA7 /* UIViewController+RHScrollPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RHScrollPageController.m"; sourceTree = "<group>"; };
 		BFCA3EE120EE139C0043F4EF /* RH_GestureLockMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureLockMainView.h; sourceTree = "<group>"; };
 		BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GestureLockMainView.m; sourceTree = "<group>"; };
 		BFF3846320EE07D000ED3ACB /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
@@ -3865,6 +3892,7 @@
 		A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				BFC7CB2C214BAC7A004AAAA7 /* newDeposite */,
 				A04E60231F8DAFF000098A65 /* firstPage */,
 				A04E60201F8DAFF000098A65 /* depositePage */,
 				A0E368061F9459F800758033 /* lotteryHallPage */,
@@ -4642,6 +4670,47 @@
 			path = LookJiHe;
 			sourceTree = "<group>";
 		};
+		BFC7CB2C214BAC7A004AAAA7 /* newDeposite */ = {
+			isa = PBXGroup;
+			children = (
+				BFC7CB2E214BACAB004AAAA7 /* View */,
+				BFC7CB2D214BAC92004AAAA7 /* Controller */,
+			);
+			path = newDeposite;
+			sourceTree = "<group>";
+		};
+		BFC7CB2D214BAC92004AAAA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF05287B214BBADA00C10B6E /* RH_DepositeBasicViewController.h */,
+				BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */,
+				BF05287E214BBB3C00C10B6E /* RH_FundsTransferViewController.h */,
+				BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BFC7CB2E214BACAB004AAAA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFC7CB44214BAE93004AAAA7 /* RH_ContentView.h */,
+				BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */,
+				BFC7CB47214BAF5C004AAAA7 /* RH_CustomLabel.h */,
+				BFC7CB48214BAF5C004AAAA7 /* RH_CustomLabel.m */,
+				BFC7CB50214BB185004AAAA7 /* RH_ScrollPageView.h */,
+				BFC7CB51214BB185004AAAA7 /* RH_ScrollPageView.m */,
+				BFC7CB4D214BB039004AAAA7 /* RH_ScrollSegmentView.h */,
+				BFC7CB4E214BB039004AAAA7 /* RH_ScrollSegmentView.m */,
+				BFC7CB53214BB1FC004AAAA7 /* RH_SegmentStyle.h */,
+				BFC7CB54214BB1FC004AAAA7 /* RH_SegmentStyle.m */,
+				BFC7CB56214BB2BF004AAAA7 /* UIView+RHFrame.h */,
+				BFC7CB57214BB2BF004AAAA7 /* UIView+RHFrame.m */,
+				BFC7CB59214BB309004AAAA7 /* UIViewController+RHScrollPageController.h */,
+				BFC7CB5A214BB309004AAAA7 /* UIViewController+RHScrollPageController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F61DA00120BBAE1C00E55BAB /* websocketVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -5051,6 +5120,7 @@
 		A0109C5A1F878199004E6EF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = RH_;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = luis;
 				TargetAttributes = {
@@ -5425,6 +5495,7 @@
 				F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
+				BFC7CB5B214BB309004AAAA7 /* UIViewController+RHScrollPageController.m in Sources */,
 				79BB2DAF2032BA8E000CDE6B /* RH_FirstBigViewCell.m in Sources */,
 				79BB2DFA2036CC56000CDE6B /* RH_OldUserVerifyView.m in Sources */,
 				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
@@ -5535,6 +5606,7 @@
 				A010A0281F8795AC004E6EF4 /* RH_BasicModel.m in Sources */,
 				A044437E200E3250004F942B /* PXAlertView+Customization.m in Sources */,
 				B8248394202836F700CD1ECB /* RH_BasicAlertViewCell.m in Sources */,
+				BFC7CB52214BB185004AAAA7 /* RH_ScrollPageView.m in Sources */,
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
 				F682020120707418003593C9 /* THScrollChooseView.m in Sources */,
 				B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */,
@@ -5542,6 +5614,8 @@
 				5469BFDF20C7FA88006080D1 /* RH_GameItemView.m in Sources */,
 				189C13B01FF9E99F00B14298 /* RH_MineRecordStaticCell.m in Sources */,
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
+				BFC7CB49214BAF5C004AAAA7 /* RH_CustomLabel.m in Sources */,
+				BF05287D214BBADA00C10B6E /* RH_DepositeBasicViewController.m in Sources */,
 				A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */,
 				A010A02B1F8795AC004E6EF4 /* RH_HTTPRequest.m in Sources */,
 				54CDEF7F20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m in Sources */,
@@ -5559,6 +5633,7 @@
 				A0109FAC1F8788FF004E6EF4 /* NSString+Base64.m in Sources */,
 				54C8762F20FF396400AA0594 /* NJKWebViewProgress.m in Sources */,
 				F69E35162063613B0028D3A1 /* RH_DepositeReminderCell.m in Sources */,
+				BFC7CB55214BB1FC004AAAA7 /* RH_SegmentStyle.m in Sources */,
 				79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */,
 				F696B843206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m in Sources */,
 				7937C4292072073B0010CD0C /* PGDatePicker.m in Sources */,
@@ -5588,6 +5663,7 @@
 				F69E35482063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m in Sources */,
 				A0109FB31F8788FF004E6EF4 /* UICollectionView+Register.m in Sources */,
 				F69E35252063A1300028D3A1 /* RH_DepositeMoneyBankCell.m in Sources */,
+				BFC7CB58214BB2BF004AAAA7 /* UIView+RHFrame.m in Sources */,
 				A0109FB41F8788FF004E6EF4 /* UIColor+HexString.m in Sources */,
 				A0109FB51F8788FF004E6EF4 /* UIFont+CLCategory.m in Sources */,
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
@@ -5664,6 +5740,7 @@
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
+				BFC7CB46214BAE93004AAAA7 /* RH_ContentView.m in Sources */,
 				79E223FF200E0271006B0450 /* RH_SiteMyMessageDetailModel.m in Sources */,
 				A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
@@ -5865,6 +5942,7 @@
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				79595C73207B9DB90052F472 /* RH_PromoDetailViewController.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
+				BF052880214BBB3C00C10B6E /* RH_FundsTransferViewController.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
@@ -5880,6 +5958,7 @@
 				F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
+				BFC7CB4F214BB039004AAAA7 /* RH_ScrollSegmentView.m in Sources */,
 				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
