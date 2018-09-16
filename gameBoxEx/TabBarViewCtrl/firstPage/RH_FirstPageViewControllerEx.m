@@ -213,7 +213,8 @@
 {
     [advertisementView hideAdvertisementView] ;
     
-    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+    SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+//    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.url = phoneModel.link;
     [self.navigationController pushViewController:gameViewController animated:YES];
 }
