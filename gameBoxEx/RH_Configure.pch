@@ -3888,6 +3888,25 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+
+#elif _hzya //新葡京娱乐城
+
+#define CODE    @"hzya"
+#define S        @"9a9b8538677c042764ac6c331e933950"
+#define SID        @"725"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ii7l //顺8国际
+
+#define CODE    @"ii7l"
+#define S        @"70bd31842e05b278eb64d6917d6cd2b6"
+#define SID        @"731"
+#define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */

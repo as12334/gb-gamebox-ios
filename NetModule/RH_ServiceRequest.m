@@ -2928,7 +2928,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 //    }
     else if (type == ServiceRequestTypeV3RequetLoginWithGetLoadSid)
     {
-        [self configCookieAndSid:response];
+        NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+        NSMutableArray *mArr = [NSMutableArray array] ;
+        if (isSidStr(responseStr)) {
+            [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+        }
+        if (mArr.count>0) {
+            userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+        }
         
     }
   
@@ -2996,7 +3003,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
            case ServiceRequestTypeUserLogin:
            case ServiceRequestTypeUserAutoLogin:
             {
-                [self configCookieAndSid:response];
+                NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
+                NSMutableArray *mArr = [NSMutableArray array] ;
+                if (isSidStr(responseStr)) {
+                    [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+                }
+                if (mArr.count>0) {
+                    userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+                }
+                NSLog(@"....SID INFO...get.sid:%@",responseStr) ;
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;
                 if ([ConvertToClassPointer(NSDictionary, resultSendData) boolValueForKey:@"success" defaultValue:FALSE] &&
                     [SITE_TYPE isEqualToString:@"integratedv3oc"]){
@@ -3664,17 +3679,5 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     //移除上下文
     [self removeContextForType:type];
 }
-- (void)configCookieAndSid:(NSHTTPURLResponse *)httpURLResponse
-{
-    NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:httpURLResponse.allHeaderFields forURL:[NSURL URLWithString:httpURLResponse.URL.absoluteString]];
-    for(NSHTTPCookie *cookie in cookies)
-    {
-        if ([cookie.name isEqualToString:@"SID"] && cookie.value.length > 20) {
-            //获取到正确的Cookie和SID
-//            self.currentCookie = [NSString stringWithFormat:@"SID=%@; Path=/; HttpOnly",cookie.value];
-             userInfo_manager.sidString = cookie.value;
-            break;
-        }
-    }
-}
+
 @end
