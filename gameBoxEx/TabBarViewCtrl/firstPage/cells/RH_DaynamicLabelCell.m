@@ -102,7 +102,7 @@
     if ([self.labScrollText.text isEqualToString:strTmp])
         return ;
     if (strTmp.length<10) {
-        _dynamicTi demeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .38;
+        _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .38;
     }else if (strTmp.length>=10 && strTmp.length < 100)
     {
         _dynamicTimeInterval = [strTmp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * .105  ;
