@@ -710,6 +710,7 @@
                         NSLog(@">>>>>>>>>获取到彩票可用域名：%@",host);
                         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
                         [appDelegate updateDomainName:host];
+                        //todo
 #warning 这里是专门给test71的 打test71的时候一定要打开
                         //                                [appDelegate updateDomainName:@"test71.hongtubet.com"];
                     });
