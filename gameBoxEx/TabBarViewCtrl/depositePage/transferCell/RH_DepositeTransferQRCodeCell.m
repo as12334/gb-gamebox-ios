@@ -28,15 +28,15 @@
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
-    UIImageView *imageView = [[UIImageView alloc]init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
-    if (imageView.image) {
+    //很操蛋，没上传图片饭后返回的是带null的字符串列如：@"https://35.236.145.113:8989/(null)"
+    if ([listmodel.qrShowCover isKindOfClass:[NSNull class]]||[listmodel.qrShowCover containsString:@"null"]||listmodel.qrShowCover==nil) {
+        
+        return 0;
+    }else{
         NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:17.0]};//指定字号
         CGRect rect = [listmodel.mRemark boundingRectWithSize:CGSizeMake(MainScreenW - 30, 0)/*计算高度要先指定宽度*/ options:NSStringDrawingUsesLineFragmentOrigin |
                        NSStringDrawingUsesFontLeading attributes:dic context:nil];
         return 140+rect.size.height;
-    }else{
-        return 0;
     }
     
 }
