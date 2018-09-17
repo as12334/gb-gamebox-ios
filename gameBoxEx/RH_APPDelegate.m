@@ -18,8 +18,8 @@
 #import "StartPageViewController.h"
 #import "RH_GestureLockMainView.h"
 #import "RH_CheckAndCrashHelper.h"
-#import <AvoidCrash.h>
-#import <JPUSHService.h>
+#import "AvoidCrash.h"
+#import "JPUSHService.h"
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
