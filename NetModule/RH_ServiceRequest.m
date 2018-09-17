@@ -131,7 +131,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (!_appDelegate){
         _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     }
-    
     return _appDelegate ;
 }
 

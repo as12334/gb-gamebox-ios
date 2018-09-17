@@ -212,23 +212,10 @@
 {
     [advertisementView hideAdvertisementView] ;
     
-    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-    NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-    
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    NSString *url;
-    if (appDelegate.demainName.length > 0) {
-        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,phoneModel.link];
-    } else {
-        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,phoneModel.link];
-    }
-    gameViewController.url = url;
+    SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+//    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+    gameViewController.url = phoneModel.link;
     [self.navigationController pushViewController:gameViewController animated:YES];
-
-//    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
-//    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-    
-    return ;
 }
 
 #pragma mark- observer Touch gesture
