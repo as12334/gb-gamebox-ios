@@ -917,7 +917,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _3qj8 //大发OK
+#elif _3qj8 //BET365
 
 #define CODE    @"3qj8"
 #define S        @"c17df53748ec3c865c9fe0fefb09e62e"
