@@ -19,7 +19,7 @@
 #pragma mark- 运行环境配制
 
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -3904,6 +3904,25 @@
 #define S        @"70bd31842e05b278eb64d6917d6cd2b6"
 #define SID        @"731"
 #define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _2njx //弘宝娱乐
+
+#define CODE    @"2njx"
+#define S        @"ca0a62b07f14a6bbd80e656b28a9d5b9"
+#define SID        @"751"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _2tr1 //亚博国际
+
+#define CODE    @"2tr1"
+#define S        @"dbb0ecf3cb03934d26f137abed47bb66"
+#define SID        @"738"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 

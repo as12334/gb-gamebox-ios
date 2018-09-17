@@ -662,59 +662,74 @@
     }];
 
 }
+
 //这里主要是广告业加载完成后检测用来供给LT的Ip
 -(void)checkH5Ip{
     //
     __weak typeof(self) weakSelf = self;
-    [self.serviceRequest fetchH5ip];
-    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-        if (type == ServiceRequestTypeFetchH5Ip) {
-            NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
-            if (dic == nil) {
-                dic = @{@"data":@""};
-            }else if ([dic[@"data"] isKindOfClass:[NSNull class]]){
-                
-            }else {
-                NSArray *ips = dic[@"data"];
-                NSLog(@"dic====%@",dic);
-                NSLog(@"ips====%@",ips);
-                dispatch_group_t group = dispatch_group_create();
-                dispatch_queue_t queue = dispatch_queue_create("checkIP_with_type_queue", NULL);
-                __block NSInteger failTimes = 0;//计算失败次数
-                if (ips.count > 0) {
-                    for (NSString *ip in ips) {
-                        dispatch_group_async(group, queue, ^{
-                            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                            [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
-                                NSLog(@"chengong == %@",ip);
-                                RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                                [appDelegate updateDomainName:ip];
-#warning 这里是专门给test71的 打test71的时候一定要打开
-//                                [appDelegate updateDomainName:@"test71.hongtubet.com"];
-                                dispatch_semaphore_signal(semaphore);
-                            } failed:^{
-                                NSLog(@"shibai");
-                                failTimes++;
-                                dispatch_semaphore_signal(semaphore);
-                                
-                            }];
-                            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                        });
-                    }
+    if ([[CheckTimeManager shared] cacheHosts]) {
+        //有缓存 直接check
+        [self checkLotteryHost:[[CheckTimeManager shared] cacheHosts]];
+    }
+    else
+    {
+        [self.serviceRequest fetchH5ip];
+        self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+            if (type == ServiceRequestTypeFetchH5Ip) {
+                NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
+                if (dic != nil && ![dic[@"data"] isKindOfClass:[NSNull class]]) {
+                    NSArray *hosts = dic[@"data"];
+                    //测试数据 让其强制进行第二次检测做测试
+                    //ips = @[@"9988xx.com",@"9977xx.com"];
+                    [[CheckTimeManager shared] cacheLotteryHosts:hosts];
+                    [weakSelf checkLotteryHost:hosts];
                 }
-                dispatch_group_notify(group, queue, ^{
+            }
+        };
+        weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+            [weakSelf.serviceRequest fetchH5ip];
+        };
+    }
+}
+
+- (void)checkLotteryHost:(NSArray *)hosts
+{
+    __weak typeof(self) weakSelf = self;
+
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("check_lottery_with_http_type_queue", NULL);
+    __block NSInteger failTimes = 0;//计算失败次数
+    if (hosts.count > 0) {
+        for (NSString *host in hosts) {
+            dispatch_group_async(group, queue, ^{
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                [weakSelf checkIP:host checkType:@"http" complete:^(NSString *type) {
+                    static dispatch_once_t onceToken;
+                    dispatch_once(&onceToken, ^{
+                        NSLog(@">>>>>>>>>获取到彩票可用域名：%@",host);
+                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                        [appDelegate updateDomainName:host];
+                        //todo
+#warning 这里是专门给test71的 打test71的时候一定要打开
+                        //                                [appDelegate updateDomainName:@"test71.hongtubet.com"];
+                    });
+                    dispatch_semaphore_signal(semaphore);
+                } failed:^{
+                    failTimes++;
                     //当全部失败的时候重新请求
-                    if (failTimes == ips.count) {
+                    if (failTimes == hosts.count) {
                         //全部没通过
+                        NSLog(@">>>>>>>>>获取彩票可用域名失败");
+                        //清除缓存 重新获取
+                        [[CheckTimeManager shared] clearCaches];
                         [weakSelf checkH5Ip];
                     }
-                });
-            }
+                    dispatch_semaphore_signal(semaphore);
+                }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            });
         }
-    };
-    weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-        [weakSelf.serviceRequest fetchH5ip];
-    };
+    }
 }
 
 - (void)showErrAlertWithErrCode:(NSString *)code otherInfo:(NSDictionary *)otherInfo

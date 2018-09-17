@@ -7,8 +7,10 @@
 //
 
 #import "CheckTimeManager.h"
+
 static CheckTimeManager *_manager;
 @implementation CheckTimeManager
+
 +(instancetype)shared{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -17,6 +19,24 @@ static CheckTimeManager *_manager;
         }
     });
     return _manager;
+}
+
+- (void)cacheLotteryHosts:(NSArray *)cacheHosts
+{
+    [[NSUserDefaults standardUserDefaults] setObject:cacheHosts forKey:@"GB_Lottery_CACHE_DATA"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSArray *)cacheHosts
+{
+    NSArray *hosts = [[NSUserDefaults standardUserDefaults] objectForKey:@"GB_Lottery_CACHE_DATA"];
+    return hosts;
+}
+
+- (void)clearCaches
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"GB_Lottery_CACHE_DATA"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
