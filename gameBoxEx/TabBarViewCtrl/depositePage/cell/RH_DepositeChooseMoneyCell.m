@@ -10,6 +10,7 @@
 #import "RH_DepositeChooseMoneySubCell.h"
 #import "coreLib.h"
 #import "RH_DepositeTransferModel.h"
+#import "RH_DepositeTransferChannelModel.h"
 #define HomeCategoryItemsCellWidth                     floorf((MainScreenW-60)/5.0)
 #define HomeCategoryItemsCellHeight                     (MainScreenW-60)/5.0
 @interface RH_DepositeChooseMoneyCell()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -17,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 //@property (nonatomic,strong) RH_DepositePaydataModel *dataModel;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,strong)RH_DepositeTransferListModel * model;
+@property(nonatomic,strong)NSArray *moneyNumArray;
 @end
 @implementation RH_DepositeChooseMoneyCell
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
@@ -42,13 +45,15 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     self.dataArray = [NSMutableArray array];
-    NSArray *array = ConvertToClassPointer(NSArray, context);
+    RH_DepositeTransferChannelModel *channelModel =  ConvertToClassPointer(RH_DepositeTransferChannelModel, context);
+//    channelModel.
+    self.moneyNumArray = ConvertToClassPointer(NSArray, channelModel.mQuickMoneys);
     //图片名称数组
     NSArray *picNameArray = @[@"chip-blue",@"chip-red",@"chip-yellow",@"chip-green",@"chip-black"];
-    if (array.count == picNameArray.count) {
+    if (self.moneyNumArray.count == picNameArray.count) {
         for (int i = 0; i < picNameArray.count; i++) {
             NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-            [dic setObject:array[i] forKey:@"num"];
+            [dic setObject:self.moneyNumArray[i] forKey:@"num"];
             [dic setObject:picNameArray[i] forKey:@"imageName"];
             [self.dataArray addObject:dic];
         }
@@ -107,5 +112,16 @@
        [self.delegate depositeChooseMoneyCell:[self.dataArray[indexPath.item][@"num"] integerValue]] ;
     }
 }
-
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger num = [self.moneyNumArray[indexPath.row] integerValue];
+    if (num >= self.model.mSingleDepositMin&&num <= self.model.mSingleDepositMax) {
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+-(void)updateUIWithListModelModel:(RH_DepositeTransferListModel *)model{
+    self.model = model;
+}
 @end

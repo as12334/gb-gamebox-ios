@@ -45,9 +45,7 @@
         _pageView = [[KIPageView alloc] initWithFrame:self.bounds];
         _pageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _pageView.delegate = self;
-        _pageView.infinite = YES;
         _pageView.pagingEnabled = YES;
-        _pageView.cellMargin = 5.f;
         [self.contentView addSubview:self.pageView];
         [self.contentView bringSubviewToFront:self.pageControl];
 //        [self insertSubview:self.pageView belowSubview:self.pageControl];
@@ -146,7 +144,6 @@
         UIImageView * imageView = (id)[cell viewWithTag:TAGNUMBER];
         [imageView setImage:ImageWithName(@"default_banner.jpg")] ;
     }
-    
     return cell;
 }
 

@@ -70,12 +70,17 @@
         NSString *code = [NSString stringWithFormat:@"%@",dic[@"code"]];
         NSString *message = [NSString stringWithFormat:@"%@",dic[@"message"]];
         if ([code isEqualToString:@"0"]) {
-            NSArray *array  = dic[@"data"][@"withdrawAudit"];
-            if (array.count > 0) {
-                [self.dataArray addObjectsFromArray:array];
+            if ([dic[@"data"][@"withdrawAudit"] isKindOfClass:[NSNull class]]) {
+                 showMessage(self.view, @"暂无数据", nil);
             }else{
-                showMessage(self.view, @"暂无数据", nil);
+                NSArray *array  = dic[@"data"][@"withdrawAudit"];
+                if (array.count > 0) {
+                    [self.dataArray addObjectsFromArray:array];
+                }else{
+                    showMessage(self.view, @"暂无数据", nil);
+                }
             }
+          
             
         }else{
             showMessage(self.view, message, nil);

@@ -17,7 +17,8 @@
 #import "RH_API.h"
 #import "StartPageViewController.h"
 #import "RH_GestureLockMainView.h"
-
+#import "RH_CheckAndCrashHelper.h"
+#import "AvoidCrash.h"
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
 
@@ -33,6 +34,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 - (void)doSomethingWhenAppFirstLaunch
 {
+    //崩溃日志
+     [self avoidCrash];
+    
     //清理缓存的临时和缓存数据数据
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeTemp cacheFileFloderName:nil];
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeCaches cacheFileFloderName:nil];
@@ -61,7 +65,24 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     
     self.dictUserAgent = dictionnary ;
 }
-
+-(void)avoidCrash{
+    [AvoidCrash makeAllEffective];
+    NSArray *noneSelClassStrings = @[
+                                     @"NSNull",
+                                     @"NSNumber",
+                                     @"NSString",
+                                     @"NSDictionary",
+                                     @"NSArray"
+                                     ];
+    [AvoidCrash setupNoneSelClassStringsArr:noneSelClassStrings];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealwithCrashMessage:) name:AvoidCrashNotification object:nil];
+    
+}
+- (void)dealwithCrashMessage:(NSNotification *)note {
+    NSDictionary *dic = ConvertToClassPointer(NSDictionary, note.userInfo);
+    //收集错误信息
+    [[RH_CheckAndCrashHelper shared]uploadJournalWithMessages:@[@{RH_SP_COLLECTAPPERROR_DOMAIN:self.domain,RH_SP_COLLECTAPPERROR_CODE:CODE,RH_SP_COLLECTAPPERROR_ERRORMESSAGE:[NSString stringWithFormat:@"crashReason:%@;crashPlace:%@",dic[@"errorReason"],dic[@"errorPlace"]],RH_SP_COLLECTAPPERROR_TYPE:@"2"}]];
+}
 -(BOOL)needShowUserGuideView
 {
     return YES ;

@@ -300,7 +300,7 @@
                 self.isLogin = YES;
                 
                 [appDelegate updateLoginStatus:YES] ;
-                
+                NSLog(@"用户名 ===%@",self.loginViewCell.userName);
                 [[RH_UserInfoManager shareUserManager] updateLoginInfoWithUserName:self.loginViewCell.userName
                                                                          LoginTime:dateStringWithFormatter([NSDate date], @"yyyy-MM-dd HH:mm:ss")] ;
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){

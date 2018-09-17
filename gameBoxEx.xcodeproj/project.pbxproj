@@ -652,11 +652,34 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		BF05287D214BBADA00C10B6E /* RH_DepositeBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */; };
+		BF052880214BBB3C00C10B6E /* RH_FundsTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */; };
+		BF0EA784214F432B00CE237C /* RH_CheckAndCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA783214F432B00CE237C /* RH_CheckAndCrashHelper.m */; };
+		BF0EA7A0214F48C300CE237C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BF0EA786214F48C300CE237C /* LICENSE */; };
+		BF0EA7A1214F48C300CE237C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BF0EA787214F48C300CE237C /* README.md */; };
+		BF0EA7A2214F48C300CE237C /* NSArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA789214F48C300CE237C /* NSArray+AvoidCrash.m */; };
+		BF0EA7A3214F48C300CE237C /* NSString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA78B214F48C300CE237C /* NSString+AvoidCrash.m */; };
+		BF0EA7A4214F48C300CE237C /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA78C214F48C300CE237C /* NSDictionary+AvoidCrash.m */; };
+		BF0EA7A5214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA78F214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m */; };
+		BF0EA7A6214F48C300CE237C /* NSMutableString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA791214F48C300CE237C /* NSMutableString+AvoidCrash.m */; };
+		BF0EA7A7214F48C300CE237C /* NSObject+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA792214F48C300CE237C /* NSObject+AvoidCrash.m */; };
+		BF0EA7A8214F48C300CE237C /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA793214F48C300CE237C /* NSMutableArray+AvoidCrash.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BF0EA7A9214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA794214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m */; };
+		BF0EA7AA214F48C300CE237C /* NSAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA795214F48C300CE237C /* NSAttributedString+AvoidCrash.m */; };
+		BF0EA7AB214F48C300CE237C /* AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA798214F48C300CE237C /* AvoidCrash.m */; };
+		BF0EA7AC214F48C300CE237C /* AvoidCrashStubProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA79B214F48C300CE237C /* AvoidCrashStubProxy.m */; };
 		BF427BA0213940AF0076F05A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF427B9F213940AF0076F05A /* Launch Screen.storyboard */; };
 		BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */; };
 		BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */; };
 		BF563FC821302171008FEE8E /* RH_JiHeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */; };
 		BF5FF83F21240AEA0019EF30 /* CheckTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */; };
+		BFC7CB46214BAE93004AAAA7 /* RH_ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */; };
+		BFC7CB49214BAF5C004AAAA7 /* RH_CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB48214BAF5C004AAAA7 /* RH_CustomLabel.m */; };
+		BFC7CB4F214BB039004AAAA7 /* RH_ScrollSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB4E214BB039004AAAA7 /* RH_ScrollSegmentView.m */; };
+		BFC7CB52214BB185004AAAA7 /* RH_ScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB51214BB185004AAAA7 /* RH_ScrollPageView.m */; };
+		BFC7CB55214BB1FC004AAAA7 /* RH_SegmentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB54214BB1FC004AAAA7 /* RH_SegmentStyle.m */; };
+		BFC7CB58214BB2BF004AAAA7 /* UIView+RHFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB57214BB2BF004AAAA7 /* UIView+RHFrame.m */; };
+		BFC7CB5B214BB309004AAAA7 /* UIViewController+RHScrollPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC7CB5A214BB309004AAAA7 /* UIViewController+RHScrollPageController.m */; };
 		BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */; };
 		BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846420EE07D300ED3ACB /* No_AccessView.m */; };
 		BFF3846B20EE083D00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */; };
@@ -1934,6 +1957,37 @@
 		B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RH_ModifyPassword.plist; sourceTree = "<group>"; };
 		B8F0E5082002198F00A3AC94 /* RH_ModifyPasswordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ModifyPasswordCell.h; sourceTree = "<group>"; };
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
+		BF05287B214BBADA00C10B6E /* RH_DepositeBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_DepositeBasicViewController.h; sourceTree = "<group>"; };
+		BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_DepositeBasicViewController.m; sourceTree = "<group>"; };
+		BF05287E214BBB3C00C10B6E /* RH_FundsTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_FundsTransferViewController.h; sourceTree = "<group>"; };
+		BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FundsTransferViewController.m; sourceTree = "<group>"; };
+		BF0EA782214F432B00CE237C /* RH_CheckAndCrashHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CheckAndCrashHelper.h; sourceTree = "<group>"; };
+		BF0EA783214F432B00CE237C /* RH_CheckAndCrashHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CheckAndCrashHelper.m; sourceTree = "<group>"; };
+		BF0EA786214F48C300CE237C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		BF0EA787214F48C300CE237C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BF0EA789214F48C300CE237C /* NSArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA78A214F48C300CE237C /* AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrash.h; sourceTree = "<group>"; };
+		BF0EA78B214F48C300CE237C /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA78C214F48C300CE237C /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA78D214F48C300CE237C /* NSAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA78E214F48C300CE237C /* AvoidCrashStubProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashStubProxy.h; sourceTree = "<group>"; };
+		BF0EA78F214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA790214F48C300CE237C /* AvoidCrashProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashProtocol.h; sourceTree = "<group>"; };
+		BF0EA791214F48C300CE237C /* NSMutableString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA792214F48C300CE237C /* NSObject+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA793214F48C300CE237C /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA794214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA795214F48C300CE237C /* NSAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF0EA796214F48C300CE237C /* NSDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA797214F48C300CE237C /* NSString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA798214F48C300CE237C /* AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrash.m; sourceTree = "<group>"; };
+		BF0EA799214F48C300CE237C /* NSArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA79A214F48C300CE237C /* NSMutableDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA79B214F48C300CE237C /* AvoidCrashStubProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrashStubProxy.m; sourceTree = "<group>"; };
+		BF0EA79C214F48C300CE237C /* NSObject+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA79D214F48C300CE237C /* NSMutableString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA79E214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
+		BF0EA79F214F48C300CE237C /* NSMutableArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF427B9F213940AF0076F05A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeViewController.h; sourceTree = "<group>"; };
 		BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeViewController.m; sourceTree = "<group>"; };
@@ -1942,6 +1996,20 @@
 		BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_JiHeTableViewCell.xib; sourceTree = "<group>"; };
 		BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckTimeManager.h; sourceTree = "<group>"; };
 		BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckTimeManager.m; sourceTree = "<group>"; };
+		BFC7CB44214BAE93004AAAA7 /* RH_ContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ContentView.h; sourceTree = "<group>"; };
+		BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ContentView.m; sourceTree = "<group>"; };
+		BFC7CB47214BAF5C004AAAA7 /* RH_CustomLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomLabel.h; sourceTree = "<group>"; };
+		BFC7CB48214BAF5C004AAAA7 /* RH_CustomLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CustomLabel.m; sourceTree = "<group>"; };
+		BFC7CB4D214BB039004AAAA7 /* RH_ScrollSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ScrollSegmentView.h; sourceTree = "<group>"; };
+		BFC7CB4E214BB039004AAAA7 /* RH_ScrollSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ScrollSegmentView.m; sourceTree = "<group>"; };
+		BFC7CB50214BB185004AAAA7 /* RH_ScrollPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ScrollPageView.h; sourceTree = "<group>"; };
+		BFC7CB51214BB185004AAAA7 /* RH_ScrollPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ScrollPageView.m; sourceTree = "<group>"; };
+		BFC7CB53214BB1FC004AAAA7 /* RH_SegmentStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SegmentStyle.h; sourceTree = "<group>"; };
+		BFC7CB54214BB1FC004AAAA7 /* RH_SegmentStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SegmentStyle.m; sourceTree = "<group>"; };
+		BFC7CB56214BB2BF004AAAA7 /* UIView+RHFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+RHFrame.h"; sourceTree = "<group>"; };
+		BFC7CB57214BB2BF004AAAA7 /* UIView+RHFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+RHFrame.m"; sourceTree = "<group>"; };
+		BFC7CB59214BB309004AAAA7 /* UIViewController+RHScrollPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RHScrollPageController.h"; sourceTree = "<group>"; };
+		BFC7CB5A214BB309004AAAA7 /* UIViewController+RHScrollPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RHScrollPageController.m"; sourceTree = "<group>"; };
 		BFCA3EE120EE139C0043F4EF /* RH_GestureLockMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GestureLockMainView.h; sourceTree = "<group>"; };
 		BFCA3EE220EE139C0043F4EF /* RH_GestureLockMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_GestureLockMainView.m; sourceTree = "<group>"; };
 		BFF3846320EE07D000ED3ACB /* No_AccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = No_AccessView.h; sourceTree = "<group>"; };
@@ -3764,6 +3832,8 @@
 				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
 				54C4F84A20D6348C00CCAD47 /* StartPageViewController.m */,
 				54C4F84B20D6348C00CCAD47 /* StartPageViewController.xib */,
+				BF0EA782214F432B00CE237C /* RH_CheckAndCrashHelper.h */,
+				BF0EA783214F432B00CE237C /* RH_CheckAndCrashHelper.m */,
 				BFF3846E20EE088500ED3ACB /* RH_StartPageADView.h */,
 				BFF3846F20EE088500ED3ACB /* RH_StartPageADView.m */,
 				BFF3847020EE088500ED3ACB /* RH_StartPageADView.xib */,
@@ -3789,6 +3859,7 @@
 		A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				BFC7CB2C214BAC7A004AAAA7 /* newDeposite */,
 				A04E60231F8DAFF000098A65 /* firstPage */,
 				A04E60201F8DAFF000098A65 /* depositePage */,
 				A0E368061F9459F800758033 /* lotteryHallPage */,
@@ -4254,6 +4325,7 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				BF0EA785214F48C300CE237C /* AvoidCrash */,
 				F61DA00B20BBAF2800E55BAB /* SocketRocket */,
 			);
 			path = thirdPart;
@@ -4468,6 +4540,46 @@
 			path = withdrawCash;
 			sourceTree = "<group>";
 		};
+		BF0EA785214F48C300CE237C /* AvoidCrash */ = {
+			isa = PBXGroup;
+			children = (
+				BF0EA786214F48C300CE237C /* LICENSE */,
+				BF0EA787214F48C300CE237C /* README.md */,
+				BF0EA788214F48C300CE237C /* AvoidCrash */,
+			);
+			path = AvoidCrash;
+			sourceTree = "<group>";
+		};
+		BF0EA788214F48C300CE237C /* AvoidCrash */ = {
+			isa = PBXGroup;
+			children = (
+				BF0EA789214F48C300CE237C /* NSArray+AvoidCrash.m */,
+				BF0EA78A214F48C300CE237C /* AvoidCrash.h */,
+				BF0EA78B214F48C300CE237C /* NSString+AvoidCrash.m */,
+				BF0EA78C214F48C300CE237C /* NSDictionary+AvoidCrash.m */,
+				BF0EA78D214F48C300CE237C /* NSAttributedString+AvoidCrash.h */,
+				BF0EA78E214F48C300CE237C /* AvoidCrashStubProxy.h */,
+				BF0EA78F214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m */,
+				BF0EA790214F48C300CE237C /* AvoidCrashProtocol.h */,
+				BF0EA791214F48C300CE237C /* NSMutableString+AvoidCrash.m */,
+				BF0EA792214F48C300CE237C /* NSObject+AvoidCrash.m */,
+				BF0EA793214F48C300CE237C /* NSMutableArray+AvoidCrash.m */,
+				BF0EA794214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m */,
+				BF0EA795214F48C300CE237C /* NSAttributedString+AvoidCrash.m */,
+				BF0EA796214F48C300CE237C /* NSDictionary+AvoidCrash.h */,
+				BF0EA797214F48C300CE237C /* NSString+AvoidCrash.h */,
+				BF0EA798214F48C300CE237C /* AvoidCrash.m */,
+				BF0EA799214F48C300CE237C /* NSArray+AvoidCrash.h */,
+				BF0EA79A214F48C300CE237C /* NSMutableDictionary+AvoidCrash.h */,
+				BF0EA79B214F48C300CE237C /* AvoidCrashStubProxy.m */,
+				BF0EA79C214F48C300CE237C /* NSObject+AvoidCrash.h */,
+				BF0EA79D214F48C300CE237C /* NSMutableString+AvoidCrash.h */,
+				BF0EA79E214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.h */,
+				BF0EA79F214F48C300CE237C /* NSMutableArray+AvoidCrash.h */,
+			);
+			path = AvoidCrash;
+			sourceTree = "<group>";
+		};
 		BF563FBE21301F19008FEE8E /* LookJiHe */ = {
 			isa = PBXGroup;
 			children = (
@@ -4478,6 +4590,47 @@
 				BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */,
 			);
 			path = LookJiHe;
+			sourceTree = "<group>";
+		};
+		BFC7CB2C214BAC7A004AAAA7 /* newDeposite */ = {
+			isa = PBXGroup;
+			children = (
+				BFC7CB2E214BACAB004AAAA7 /* View */,
+				BFC7CB2D214BAC92004AAAA7 /* Controller */,
+			);
+			path = newDeposite;
+			sourceTree = "<group>";
+		};
+		BFC7CB2D214BAC92004AAAA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF05287B214BBADA00C10B6E /* RH_DepositeBasicViewController.h */,
+				BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */,
+				BF05287E214BBB3C00C10B6E /* RH_FundsTransferViewController.h */,
+				BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BFC7CB2E214BACAB004AAAA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFC7CB44214BAE93004AAAA7 /* RH_ContentView.h */,
+				BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */,
+				BFC7CB47214BAF5C004AAAA7 /* RH_CustomLabel.h */,
+				BFC7CB48214BAF5C004AAAA7 /* RH_CustomLabel.m */,
+				BFC7CB50214BB185004AAAA7 /* RH_ScrollPageView.h */,
+				BFC7CB51214BB185004AAAA7 /* RH_ScrollPageView.m */,
+				BFC7CB4D214BB039004AAAA7 /* RH_ScrollSegmentView.h */,
+				BFC7CB4E214BB039004AAAA7 /* RH_ScrollSegmentView.m */,
+				BFC7CB53214BB1FC004AAAA7 /* RH_SegmentStyle.h */,
+				BFC7CB54214BB1FC004AAAA7 /* RH_SegmentStyle.m */,
+				BFC7CB56214BB2BF004AAAA7 /* UIView+RHFrame.h */,
+				BFC7CB57214BB2BF004AAAA7 /* UIView+RHFrame.m */,
+				BFC7CB59214BB309004AAAA7 /* UIViewController+RHScrollPageController.h */,
+				BFC7CB5A214BB309004AAAA7 /* UIViewController+RHScrollPageController.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F61DA00120BBAE1C00E55BAB /* websocketVC */ = {
@@ -4889,6 +5042,7 @@
 		A0109C5A1F878199004E6EF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = RH_;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = luis;
 				TargetAttributes = {
@@ -5131,6 +5285,7 @@
 				B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */,
 				B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */,
 				A07AF4E02026DBE400D6D559 /* tab_v3_service_selected_black@2x.png in Resources */,
+				BF0EA7A0214F48C300CE237C /* LICENSE in Resources */,
 				A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */,
 				221AE59E207DEF7C008CD409 /* tab_v3_promo_selected_red@2x.png in Resources */,
 				22AB993B20809A3D001A6203 /* home_announce_close_coffee@2x.png in Resources */,
@@ -5216,6 +5371,7 @@
 				F69E351A20638F240028D3A1 /* RH_DepositeSubmitCircleView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
+				BF0EA7A6214F48C300CE237C /* NSMutableString+AvoidCrash.m in Sources */,
 				F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */,
 				7937C4372072073B0010CD0C /* PGDatePicker+TimeAndSecond.m in Sources */,
 				7937C42E2072073B0010CD0C /* PGDatePicker+Time.m in Sources */,
@@ -5225,6 +5381,7 @@
 				F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
+				BFC7CB5B214BB309004AAAA7 /* UIViewController+RHScrollPageController.m in Sources */,
 				79BB2DAF2032BA8E000CDE6B /* RH_FirstBigViewCell.m in Sources */,
 				79BB2DFA2036CC56000CDE6B /* RH_OldUserVerifyView.m in Sources */,
 				A06E0F6220181BD600EF275A /* RH_GameListViewController.m in Sources */,
@@ -5286,6 +5443,7 @@
 				F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */,
 				F696B83B2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m in Sources */,
 				B84A33CF2064E9F400A8BFEE /* RH_RegistrationViewItem.m in Sources */,
+				BF0EA7A8214F48C300CE237C /* NSMutableArray+AvoidCrash.m in Sources */,
 				F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
 				F69E352A2063A4470028D3A1 /* RH_DepositeSystemPlatformCell.m in Sources */,
@@ -5335,6 +5493,7 @@
 				A010A0281F8795AC004E6EF4 /* RH_BasicModel.m in Sources */,
 				A044437E200E3250004F942B /* PXAlertView+Customization.m in Sources */,
 				B8248394202836F700CD1ECB /* RH_BasicAlertViewCell.m in Sources */,
+				BFC7CB52214BB185004AAAA7 /* RH_ScrollPageView.m in Sources */,
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
 				F682020120707418003593C9 /* THScrollChooseView.m in Sources */,
 				B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */,
@@ -5342,6 +5501,8 @@
 				5469BFDF20C7FA88006080D1 /* RH_GameItemView.m in Sources */,
 				189C13B01FF9E99F00B14298 /* RH_MineRecordStaticCell.m in Sources */,
 				A010A02A1F8795AC004E6EF4 /* RH_ConcurrentServicesReqManager.m in Sources */,
+				BFC7CB49214BAF5C004AAAA7 /* RH_CustomLabel.m in Sources */,
+				BF05287D214BBADA00C10B6E /* RH_DepositeBasicViewController.m in Sources */,
 				A0C894E91FBACDE0002F743F /* RH_CustomTabBar.m in Sources */,
 				A010A02B1F8795AC004E6EF4 /* RH_HTTPRequest.m in Sources */,
 				54CDEF7F20CBC9F20080EB68 /* RH_FindbackPswSendPhoneCodeView.m in Sources */,
@@ -5359,11 +5520,13 @@
 				A0109FAC1F8788FF004E6EF4 /* NSString+Base64.m in Sources */,
 				54C8762F20FF396400AA0594 /* NJKWebViewProgress.m in Sources */,
 				F69E35162063613B0028D3A1 /* RH_DepositeReminderCell.m in Sources */,
+				BFC7CB55214BB1FC004AAAA7 /* RH_SegmentStyle.m in Sources */,
 				79F3FA7C200C4C17004612D2 /* RH_DiscountActivityModel.m in Sources */,
 				F696B843206BC9690038D1C5 /* RH_DepositeTransferButtonCell.m in Sources */,
 				7937C4292072073B0010CD0C /* PGDatePicker.m in Sources */,
 				F6FB6391200F851300EEED4E /* RH_MPSystemNoticeDetailController.m in Sources */,
 				797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */,
+				BF0EA7A4214F48C300CE237C /* NSDictionary+AvoidCrash.m in Sources */,
 				7937C4382072073B0010CD0C /* PGDatePicker+Date.m in Sources */,
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
@@ -5388,6 +5551,7 @@
 				F69E35482063DA5A0028D3A1 /* RH_DepositeTransferWXinInfoCell.m in Sources */,
 				A0109FB31F8788FF004E6EF4 /* UICollectionView+Register.m in Sources */,
 				F69E35252063A1300028D3A1 /* RH_DepositeMoneyBankCell.m in Sources */,
+				BFC7CB58214BB2BF004AAAA7 /* UIView+RHFrame.m in Sources */,
 				A0109FB41F8788FF004E6EF4 /* UIColor+HexString.m in Sources */,
 				A0109FB51F8788FF004E6EF4 /* UIFont+CLCategory.m in Sources */,
 				A0109FB61F8788FF004E6EF4 /* UIImage+Alpha.m in Sources */,
@@ -5413,6 +5577,7 @@
 				B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */,
 				54C8762520FF271100AA0594 /* SH_DragableMenuView.m in Sources */,
 				F69E35392063C8E10028D3A1 /* RH_DepositeTransferBankInfoCell.m in Sources */,
+				BF0EA7AC214F48C300CE237C /* AvoidCrashStubProxy.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
 				F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */,
@@ -5464,6 +5629,7 @@
 				A0109FCD1F8788FF004E6EF4 /* URLConnectionManager.m in Sources */,
 				A0E53DC01F984DCA00CE69E4 /* RH_IMMessageModel.m in Sources */,
 				A05747E61FF886810068D0E4 /* RH_UserInfoGengeralCell.m in Sources */,
+				BFC7CB46214BAE93004AAAA7 /* RH_ContentView.m in Sources */,
 				79E223FF200E0271006B0450 /* RH_SiteMyMessageDetailModel.m in Sources */,
 				A01CB49B1FF9C81800447130 /* RH_ActivithyView.m in Sources */,
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
@@ -5501,6 +5667,7 @@
 				546CE6F020CA5BFD00273C40 /* RH_GameListCategoryScrollView.m in Sources */,
 				546CE6EB20CA2A5300273C40 /* HTHorizontalSelectionList.m in Sources */,
 				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
+				BF0EA7A3214F48C300CE237C /* NSString+AvoidCrash.m in Sources */,
 				F6FB63A92010386100EEED4E /* RH_ApplyDiscountHeaderView.m in Sources */,
 				79BA36AD20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m in Sources */,
 				A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */,
@@ -5560,12 +5727,14 @@
 				7937C4302072073B0010CD0C /* PGDatePicker+Common.m in Sources */,
 				7937C4352072073B0010CD0C /* PGDatePickerView.m in Sources */,
 				F6FB638A200F851300EEED4E /* RH_MPSystemNoticeCell.m in Sources */,
+				BF0EA784214F432B00CE237C /* RH_CheckAndCrashHelper.m in Sources */,
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */,
+				BF0EA7A2214F48C300CE237C /* NSArray+AvoidCrash.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				F6FB640F20142C2800EEED4E /* RH_ForgetPasswordView.m in Sources */,
@@ -5608,7 +5777,9 @@
 				A0C3B7C51FD4F14000162B98 /* RH_ElecGameViewController.m in Sources */,
 				A0B5A5721FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.m in Sources */,
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
+				BF0EA7A7214F48C300CE237C /* NSObject+AvoidCrash.m in Sources */,
 				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
+				BF0EA7A9214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */,
 				79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */,
@@ -5638,6 +5809,7 @@
 				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
+				BF0EA7A5214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m in Sources */,
 				BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */,
 				79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
@@ -5652,6 +5824,7 @@
 				BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */,
 				B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */,
 				A0109F841F8787E4004E6EF4 /* CLBasicPageLoadController.m in Sources */,
+				BF0EA7AA214F48C300CE237C /* NSAttributedString+AvoidCrash.m in Sources */,
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
@@ -5665,6 +5838,7 @@
 				A05747E71FF886810068D0E4 /* RH_userInfoView.m in Sources */,
 				79595C73207B9DB90052F472 /* RH_PromoDetailViewController.m in Sources */,
 				A0109F8A1F8787E4004E6EF4 /* CLTableViewManagement.m in Sources */,
+				BF052880214BBB3C00C10B6E /* RH_FundsTransferViewController.m in Sources */,
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
@@ -5680,6 +5854,7 @@
 				F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
+				BFC7CB4F214BB039004AAAA7 /* RH_ScrollSegmentView.m in Sources */,
 				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
 				A0109F911F8787E4004E6EF4 /* CLScrollTriggerView.m in Sources */,
@@ -5741,6 +5916,7 @@
 				A0522A92200C922E00A5A6E9 /* RH_PromoTypeHeaderView.m in Sources */,
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
 				A0AE8AB31FFCD57300836C1B /* RH_MineMoreLanguageCell.m in Sources */,
+				BF0EA7AB214F48C300CE237C /* AvoidCrash.m in Sources */,
 				B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */,
 				B879E07A20231806007B3D45 /* RH_BankCardNumberCell.m in Sources */,
 				A0109C751F878199004E6EF4 /* main.m in Sources */,

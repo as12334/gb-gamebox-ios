@@ -24,18 +24,10 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击页面刷新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fB9-m6-u0U">
-                        <rect key="frame" x="151.5" y="109" width="80" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="duz-8y-ZLF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="D2m-Hm-bhU"/>
                     <constraint firstItem="duz-8y-ZLF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Iaw-5E-8zg"/>
-                    <constraint firstItem="fB9-m6-u0U" firstAttribute="top" secondItem="duz-8y-ZLF" secondAttribute="bottom" constant="3" id="JlH-YC-ptb"/>
-                    <constraint firstItem="fB9-m6-u0U" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Wur-se-yJq"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="65.5" y="128.5"/>

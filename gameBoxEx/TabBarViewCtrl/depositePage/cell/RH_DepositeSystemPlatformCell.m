@@ -39,7 +39,7 @@
     self.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
     self.separatorLineColor = RH_Line_DefaultColor ;
     self.separatorLineWidth = PixelToPoint(1.0f) ;
-    _cellStatusIndex = 100;
+    _cellStatusIndex = 0;
 //    [self.collectionView reloadData] ;
     [self setupUI];
 }
@@ -112,7 +112,6 @@
     }
     else
     {
-//        cell.contentView.backgroundColor = [UIColor lightGrayColor];
         cell.layer.borderWidth = 0.f;
         cell.layer.borderColor = colorWithRGB(23, 102, 187).CGColor;
     }

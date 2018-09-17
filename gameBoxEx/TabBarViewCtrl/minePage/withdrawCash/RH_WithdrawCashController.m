@@ -63,9 +63,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
-    self.navigationBarItem.rightBarButtonItem = itembar;
-    self.title = @"取款";
+//    self.hiddenTabBar = YES;
+    self.hiddenNavigationBar = YES;
+//    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
+//    self.navigationBarItem.rightBarButtonItem = itembar;
+//    self.title = @"取款";
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
@@ -83,6 +85,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     singleTap.delegate = self;
     [self.view addGestureRecognizer:singleTap];
 }
+
 -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     [self.view endEditing:YES];
@@ -120,80 +123,80 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     
     return _userInfoBtnView ;
 }
-+(void)configureNavigationBar:(UINavigationBar *)navigationBar
-{
-    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
-        navigationBar.barStyle = UIBarStyleDefault ;
-        if (GreaterThanIOS11System){
-            if ([THEMEV3 isEqualToString:@"green"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
-            }else if ([THEMEV3 isEqualToString:@"red"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
-            }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
-            }else if ([THEMEV3 isEqualToString:@"blue"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
-            }else if ([THEMEV3 isEqualToString:@"orange"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
-            }else if ([THEMEV3 isEqualToString:@"red_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
-            }else if ([THEMEV3 isEqualToString:@"green_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
-            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
-            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
-            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
-            }else{
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
-            }
-        }else
-        {
-            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
-            [navigationBar insertSubview:backgroundView atIndex:0] ;
-            if ([THEMEV3 isEqualToString:@"green"]){
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
-            }else if ([THEMEV3 isEqualToString:@"red"]){
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
-            }else if ([THEMEV3 isEqualToString:@"black"]){
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
-            }else if ([THEMEV3 isEqualToString:@"blue"]){
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
-            }else if ([THEMEV3 isEqualToString:@"orange"]){
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
-            }else if ([THEMEV3 isEqualToString:@"red_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
-            }else if ([THEMEV3 isEqualToString:@"green_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
-            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
-            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
-            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
-            }else{
-                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
-            }
-        }
-        
-        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
-                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
-    }else{
-        navigationBar.barStyle = UIBarStyleDefault ;
-        if (GreaterThanIOS11System){
-            navigationBar.barTintColor = [UIColor blackColor];
-        }else
-        {
-            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
-            [navigationBar insertSubview:backgroundView atIndex:0] ;
-            backgroundView.backgroundColor = [UIColor blackColor] ;
-        }
-        
-        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
-                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
-    }
-}
+//+(void)configureNavigationBar:(UINavigationBar *)navigationBar
+//{
+//    if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
+//        navigationBar.barStyle = UIBarStyleDefault ;
+//        if (GreaterThanIOS11System){
+//            if ([THEMEV3 isEqualToString:@"green"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green ;
+//            }else if ([THEMEV3 isEqualToString:@"red"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
+//            }else if ([THEMEV3 isEqualToString:@"black"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
+//            }else if ([THEMEV3 isEqualToString:@"blue"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
+//            }else if ([THEMEV3 isEqualToString:@"orange"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange ;
+//            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+//            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+//            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+//            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+//            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
+//            }else{
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor ;
+//            }
+//        }else
+//        {
+//            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+//            [navigationBar insertSubview:backgroundView atIndex:0] ;
+//            if ([THEMEV3 isEqualToString:@"green"]){
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
+//            }else if ([THEMEV3 isEqualToString:@"red"]){
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
+//            }else if ([THEMEV3 isEqualToString:@"black"]){
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Black ;
+//            }else if ([THEMEV3 isEqualToString:@"blue"]){
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Blue ;
+//            }else if ([THEMEV3 isEqualToString:@"orange"]){
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor_Orange ;
+//            }else if ([THEMEV3 isEqualToString:@"red_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red_White ;
+//            }else if ([THEMEV3 isEqualToString:@"green_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Green_White ;
+//            }else if ([THEMEV3 isEqualToString:@"orange_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Orange_White ;
+//            }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_White ;
+//            }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
+//                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Coffee_Black ;
+//            }else{
+//                backgroundView.backgroundColor = RH_NavigationBar_BackgroundColor ;
+//            }
+//        }
+//        
+//        navigationBar.titleTextAttributes = @{NSFontAttributeName:RH_NavigationBar_TitleFontSize,
+//                                              NSForegroundColorAttributeName:RH_NavigationBar_ForegroundColor} ;
+//    }else{
+//        navigationBar.barStyle = UIBarStyleDefault ;
+//        if (GreaterThanIOS11System){
+//            navigationBar.barTintColor = [UIColor blackColor];
+//        }else
+//        {
+//            UIView *backgroundView = [[UIView alloc] initWithFrame:navigationBar.bounds] ;
+//            [navigationBar insertSubview:backgroundView atIndex:0] ;
+//            backgroundView.backgroundColor = [UIColor blackColor] ;
+//        }
+//        
+//        navigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+//                                              NSForegroundColorAttributeName:[UIColor whiteColor]} ;
+//    }
+//}
 
 #pragma mark- handleNotification
 -(void)handleNotification:(NSNotification*)nt
@@ -498,8 +501,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         }else {
             if (_mainSegmentControl.superview==nil){
                 [self.contentView addSubview:self.mainSegmentControl];
-                self.mainSegmentControl.whc_TopSpace(84).whc_CenterX(0).whc_Width(180).whc_Height(35);
-                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
+                CGFloat h=0;
+                if (self.withDrawModel.mIsBit==true) {
+                    h = 84;
+                }
+                
+                self.mainSegmentControl.whc_TopSpace(h).whc_CenterX(0).whc_Width(180).whc_Height(35);
+                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(h+16);
             }
             
             self.contentTableView.tableFooterView = self.footerView;
@@ -773,8 +781,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
             _withdrawCashStatus = WithdrawCashStatus_HasOrder;
             [self setNeedUpdateView];
         }else if (error.code == RH_API_ERRORCODE_WITHDRAW_NO_MONEY) { //金额不足
-            _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
-            _withDrawMinMoneyStr = [[error userInfo] objectForKey:@"NSLocalizedDescription"] ;
+            NSDictionary *dic = ConvertToClassPointer(NSDictionary, [error userInfo]);
+            NSLog(@"是否有银行===%@",dic[@"hasBank"]);
+            BOOL hasBank = [dic[@"hasBank"] boolValue];
+            if (hasBank) {
+                _withdrawCashStatus = WithdrawCashStatus_NotEnoughCash ;
+                _withDrawMinMoneyStr = [[error userInfo] objectForKey:@"NSLocalizedDescription"] ;
+            }else{
+                _withdrawCashStatus = WithdrawCashStatus_EnterCash ;
+            }
+            
             [self setNeedUpdateView] ;
         }else{
             showMessage(self.view, nil, error.localizedDescription) ;
