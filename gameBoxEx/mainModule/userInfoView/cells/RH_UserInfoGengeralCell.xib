@@ -39,6 +39,7 @@
                     <constraint firstItem="5Mc-As-FXt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WSQ-aP-1T5"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="labTitle" destination="5Mc-As-FXt" id="YYP-Eb-D0t"/>
                 <outlet property="labTitleValue" destination="Z4b-Tz-9TP" id="HaV-YK-IND"/>

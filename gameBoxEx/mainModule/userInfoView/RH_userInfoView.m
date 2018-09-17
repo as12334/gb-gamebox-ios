@@ -21,11 +21,6 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-//    self.borderMask = CLBorderMarkAll ;
-//    self.borderColor = colorWithRGB(204, 204, 204) ;
-//    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
-//        self.borderColor = colorWithRGB(85, 85, 85) ;
-//    }
     self.borderWidth = PixelToPoint(1.0f) ;
     self.layer.masksToBounds = YES ;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
@@ -33,12 +28,14 @@
     [self.tableView registerCellWithClass:[RH_UserInfoGengeralCell class]] ;
     
     self.tableView.backgroundColor = colorWithRGB(68, 68, 68) ;
+
+
+    
     
     self.tableView.delegate = self ;
     self.tableView.dataSource = self ;
     
     if ([THEMEV3 isEqualToString:@"green"]){
-//         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
         self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
     }else if ([THEMEV3 isEqualToString:@"red"]){
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
@@ -71,10 +68,6 @@
     [self.btnRetrive setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
     [self.btnRetrive.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;
     
-//    self.btnSave.backgroundColor = colorWithRGB(14, 195, 146) ;
-//    self.btnSave.layer.cornerRadius = 5.0f ;
-//    [self.btnSave setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
-//    [self.btnSave.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotificatin:)
@@ -116,15 +109,9 @@
 {
     if (section==0) return 1 ;
     return MineSettingInfo.mApisBalanceList.count ;
-//    return GetUseAssertInfo.mApisBalanceList.count ;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 1) {
-        return 12;
-    }
-    return 0;
-}
+
 
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     view.tintColor = [UIColor clearColor];

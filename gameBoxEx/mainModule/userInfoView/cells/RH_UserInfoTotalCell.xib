@@ -108,6 +108,7 @@
                     <constraint firstAttribute="trailing" secondItem="JUE-fD-W1P" secondAttribute="trailing" id="gvQ-HW-1UH"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="balanceBGView" destination="jt1-kp-40R" id="Axx-IW-9p5"/>
                 <outlet property="labTBalance" destination="ALB-G2-Ww8" id="9if-7D-1dx"/>

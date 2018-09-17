@@ -358,7 +358,7 @@
                     <constraint firstAttribute="trailing" secondItem="AlM-h6-sq4" secondAttribute="trailing" id="amU-bR-4iQ"/>
                     <constraint firstItem="o3q-KJ-8pn" firstAttribute="top" secondItem="pP2-gR-7je" secondAttribute="bottom" constant="5" id="asr-J1-xzW"/>
                     <constraint firstItem="AlM-h6-sq4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="c4B-ja-2c0"/>
-                    <constraint firstItem="eFP-mz-NSn" firstAttribute="top" secondItem="o3q-KJ-8pn" secondAttribute="bottom" constant="15" id="fTj-wP-zrg"/>
+                    <constraint firstItem="eFP-mz-NSn" firstAttribute="top" secondItem="5um-xE-gwC" secondAttribute="bottom" constant="177" id="fTj-wP-zrg"/>
                     <constraint firstItem="73A-2P-ocH" firstAttribute="centerY" secondItem="e4n-ik-pjC" secondAttribute="centerY" id="gqf-b3-ffU"/>
                     <constraint firstItem="pP2-gR-7je" firstAttribute="top" secondItem="5um-xE-gwC" secondAttribute="bottom" constant="11" id="isP-Gp-c57"/>
                     <constraint firstItem="tZq-Aa-5xq" firstAttribute="top" secondItem="73A-2P-ocH" secondAttribute="bottom" constant="14.5" id="j7B-vi-uCy"/>
@@ -383,6 +383,7 @@
                 <outlet property="savePhoneBtn" destination="o3q-KJ-8pn" id="hGz-q0-9wv"/>
                 <outlet property="submitBtn" destination="vGP-er-Ab9" id="XUc-VH-w6E"/>
                 <outlet property="submitBtnBackView" destination="pVm-X9-RVO" id="qsb-eY-Oja"/>
+                <outlet property="topDistance" destination="fTj-wP-zrg" id="hvT-2d-v0Q"/>
                 <outlet property="txidTextfield" destination="hm8-IP-Or4" id="45e-3G-TEU"/>
             </connections>
             <point key="canvasLocation" x="43" y="-227"/>

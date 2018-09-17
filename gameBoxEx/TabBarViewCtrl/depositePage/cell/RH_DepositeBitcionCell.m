@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView *accountInfoBakcView;
 @property (weak, nonatomic) IBOutlet UIView *accountInfoView;
 @property (weak, nonatomic) IBOutlet UIButton *savePhoneBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topDistance;
 
 @end
 @implementation RH_DepositeBitcionCell
@@ -46,6 +47,16 @@ static NSString *content =  @"温馨提示：\n• 为了方便系统快速完�
     self.personNameLabel.text = self.listModel.mFullName;
 //    [self.qrImageView sd_setImageWithURL:[NSURL URLWithString:self.listModel.qrShowCover]];
     [self.qrImageView sd_setImageWithURL:[NSURL URLWithString:self.listModel.qrShowCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+    if (self.qrImageView.image) {
+        self.topDistance.constant = 177;
+        self.qrImageView.hidden = NO;
+        self.savePhoneBtn.hidden = NO;
+    }else{
+        self.topDistance.constant = 0;
+        self.qrImageView.hidden = YES;
+        self.savePhoneBtn.hidden = YES;
+    }
+    
 }
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
