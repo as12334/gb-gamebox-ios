@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface CheckTimeManager : NSObject
-@property(nonatomic,copy)NSString *times;
+@property(nonatomic,strong)NSString *times;
+
 +(instancetype)shared;
+- (void)cacheLotteryHosts:(NSArray *)cacheHosts;
+- (NSArray *)cacheHosts;
+- (void)clearCaches;
+
 @end

@@ -38,6 +38,7 @@
 #import "SH_WKGameViewController.h"
 #import "GameWebViewController.h"
 #import "CheckTimeManager.h"
+#import "NSString+CLCategory.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -214,7 +215,6 @@
     [advertisementView hideAdvertisementView] ;
     
     SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
-//    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.url = phoneModel.link;
     [self.navigationController pushViewController:gameViewController animated:YES];
 }
@@ -407,15 +407,16 @@
                 if (gameMsg == nil || [gameMsg isEqual:[NSNull null]] || [gameMsg isEqualToString:@""]) {
                     if (![[data objectForKey:@"gameLink"] hasPrefix:@"http"]) {
                         //是自己的游戏 需要传SID 则使用UIWebView
-                        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-                        NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
                         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
 
-                        if (appDelegate.demainName.length > 0) {
-                            gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,appDelegate.demainName,[data objectForKey:@"gameLink"]];
-                        } else {
-                            gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
+                        if (appDelegate.demainName == nil) {
+                            showErrorMessage(weakSelf.view, nil, @"api线路异常");
+                            return ;
                         }
+                        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+                        NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+
+                        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,appDelegate.demainName,[data objectForKey:@"gameLink"]];
                         
                         [gameViewController close:^{
                             //调用一次回收额度
