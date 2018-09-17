@@ -18,7 +18,11 @@
 #import "StartPageViewController.h"
 #import "RH_GestureLockMainView.h"
 #import "RH_CheckAndCrashHelper.h"
-#import "AvoidCrash.h"
+#import <AvoidCrash.h>
+#import <JPUSHService.h>
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
 NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification" ;
 //----------------------------------------------------------
 
@@ -26,7 +30,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 
 //----------------------------------------------------------
 
-@interface RH_APPDelegate ()<StartPageViewControllerDelegate,RH_GestureLockMainViewDelegate>
+@interface RH_APPDelegate ()<StartPageViewControllerDelegate,RH_GestureLockMainViewDelegate,JPUSHRegisterDelegate>
 @property(nonatomic,strong)RH_GestureLockMainView *gestureView;
 @end
 
@@ -36,7 +40,8 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 {
     //崩溃日志
      [self avoidCrash];
-    
+    //jpush
+    [self jpushInit];
     //清理缓存的临时和缓存数据数据
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeTemp cacheFileFloderName:nil];
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeCaches cacheFileFloderName:nil];
@@ -82,6 +87,22 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     NSDictionary *dic = ConvertToClassPointer(NSDictionary, note.userInfo);
     //收集错误信息
     [[RH_CheckAndCrashHelper shared]uploadJournalWithMessages:@[@{RH_SP_COLLECTAPPERROR_DOMAIN:self.domain,RH_SP_COLLECTAPPERROR_CODE:CODE,RH_SP_COLLECTAPPERROR_ERRORMESSAGE:[NSString stringWithFormat:@"crashReason:%@;crashPlace:%@",dic[@"errorReason"],dic[@"errorPlace"]],RH_SP_COLLECTAPPERROR_TYPE:@"2"}]];
+}
+//jpush初始化
+-(void)jpushInit{
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义 categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    [JPUSHService setupWithOption:self.launchOptions appKey:appKey
+                          channel:channel
+                 apsForProduction:isProduction
+            advertisingIdentifier:nil];
 }
 -(BOOL)needShowUserGuideView
 {
@@ -243,32 +264,18 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [super applicationWillEnterForeground:application];
-
-    
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]) {
         #define RH_GuseterLock            @"RH_GuseterLock"
         NSString * currentGuseterLockStr = [SAMKeychain passwordForService:@" " account:RH_GuseterLock];
-//         [RH_UserInfoManager shareUserManager].screenLockPassword.length
         if (currentGuseterLockStr.length > 0) {
             if (self.isLogin) {
                  RH_MainTabBarController *tabBarController = ConvertToClassPointer(RH_MainTabBarController, self.window.rootViewController);
                  UINavigationController *nvc = ConvertToClassPointer(UINavigationController, tabBarController.selectedViewController);
                  [self.gestureView gestureViewShowWithController:nvc.childViewControllers.lastObject];
-               
-//                NSLog(@"test == %@",tabBarController.selectedViewController);
-//                if (tabBarController) {
-//
-//                    [nvc pushViewController:[[RH_GesturelLockController alloc]init] animated:YES];
             }
-            
-         
-//                [tabBarController.selectedViewController presentViewController:[RH_GesturelLockController viewController]
-//                                                                      animated:YES
-//                                                                    completion:nil];
-//                [tabBarController.selectedViewController showViewController:[RH_GesturelLockController viewController] sender:self] ;
             }
-//            RH_GestureOpenLockView *openLockView = [[RH_GestureOpenLockView alloc] initWithFrame:self.window.bounds] ;
-//            [openLockView show] ;
         }
 }
 #pragma mark--
@@ -289,6 +296,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [super applicationDidEnterBackground:application] ;
+     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 
@@ -338,5 +346,52 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
         [defaults removeObjectForKey:@"account"];
         [defaults removeObjectForKey:@"loginIsRemberPassword"];
     }
+}
+
+#pragma mark--
+#pragma mark--Jpush
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [super application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    [super application:application didFailToRegisterForRemoteNotificationsWithError:error];
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+// iOS 10 Support
+#ifdef NSFoundationVersionNumber_iOS_10_x_Max
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+#endif
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // Required, iOS 7 Support
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required, For systems with less than or equal to iOS 6
+    [JPUSHService handleRemoteNotification:userInfo];
 }
 @end

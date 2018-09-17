@@ -7,7 +7,9 @@
 //
 
 #import "CLAPPDelegate.h"
-
+static NSString *appKey = @"AppKey copied from JiGuang Portal application";
+static NSString *channel = @"Publish channel";
+static BOOL isProduction = FALSE;
 UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 
 @interface RH_APPDelegate : CLAPPDelegate
