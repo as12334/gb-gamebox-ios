@@ -41,7 +41,7 @@
 @property (nonatomic, strong) CLRefreshControl *bottomLoadControl;
 @property (nonatomic, strong) HTHorizontalSelectionList *subTypeControl;//子分类选择器
 @property (nonatomic, strong) NSMutableArray *subTypeArray;
-
+@property(nonatomic,strong)UIButton *changeStyleBtn;
 @end
 
 @implementation RH_GameListViewController
@@ -133,35 +133,27 @@
                                               NSForegroundColorAttributeName:[UIColor whiteColor]} ;
     }
 }
-
+#pragma mark--
+#pragma mark--lazy
+- (UIButton *)changeStyleBtn{
+    if (!_changeStyleBtn) {
+        _changeStyleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _changeStyleBtn.frame = CGRectMake(0, 0, 30, 30);
+        [_changeStyleBtn setImage:[UIImage imageNamed:@"gamelist_3hover"] forState:UIControlStateNormal];
+        [_changeStyleBtn addTarget:self action:@selector(changeModel:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _changeStyleBtn;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = _lotteryApiModel.mName?:@"列表" ;
     self.currentGameListPageIndex = 1;//默认第一页
-//    self.isListMode = YES;
     [self.navigationBar setBackgroundColor:[UIColor blueColor]];
     if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"orange"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
         self.view.backgroundColor = [UIColor blackColor];
     }
     [self loadingIndicateViewDidTap:nil] ;
-
-    //item模式
-    CLButton *itemTypeBt = [CLButton buttonWithType:UIButtonTypeSystem];
-    itemTypeBt.frame = CGRectMake(0, 0, 30,30);
-    [itemTypeBt setImage:[UIImage imageNamed:@"gamelist_3hover"] forState:UIControlStateNormal];
-    [itemTypeBt addTarget:self action:@selector(changeToItemModel:) forControlEvents:UIControlEventTouchUpInside];
-    [itemTypeBt setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal];
-    UIBarButtonItem *itemTypeBtItem = [[UIBarButtonItem alloc] initWithCustomView:itemTypeBt] ;
-
-    //list模式
-    CLButton *listTypeBt = [CLButton buttonWithType:UIButtonTypeSystem];
-    listTypeBt.frame = CGRectMake(0, 0, 30, 30);
-    [listTypeBt setImage:[UIImage imageNamed:@"gamelist_column"] forState:UIControlStateNormal];
-    [listTypeBt addTarget:self action:@selector(changeToListModel:) forControlEvents:UIControlEventTouchUpInside];
-    [listTypeBt setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal];
-    UIBarButtonItem *listTypeBtItem = [[UIBarButtonItem alloc] initWithCustomView:listTypeBt] ;
-
     //搜索
     CLButton *searchBt = [CLButton buttonWithType:UIButtonTypeSystem];
     searchBt.frame = CGRectMake(0, 0, 30, 30);
@@ -170,7 +162,7 @@
     [searchBt setBackgroundColor:[UIColor clearColor] forState:UIControlStateNormal];
     UIBarButtonItem *searchBtItem = [[UIBarButtonItem alloc] initWithCustomView:searchBt] ;
 
-    self.navigationBarItem.rightBarButtonItems = @[itemTypeBtItem,listTypeBtItem,searchBtItem];
+    self.navigationBarItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:self.changeStyleBtn],searchBtItem];
 }
 
 - (NSMutableArray *)subTypeArray
@@ -294,15 +286,14 @@
                                             TagID:[self.currentTypeModel stringValueForKey:@"key"]] ;
 }
 
-- (void)changeToItemModel:(id)sender
+- (void)changeModel:(id)sender
 {
-    self.isListMode = NO;
-    [self.listTable reloadData];
-}
-
-- (void)changeToListModel:(id)sender
-{
-    self.isListMode = YES;
+    self.isListMode = !self.isListMode;
+    if (self.isListMode) {
+        [self.changeStyleBtn setImage:[UIImage imageNamed:@"gamelist_column"] forState:UIControlStateNormal];
+    }else{
+        [self.changeStyleBtn setImage:[UIImage imageNamed:@"gamelist_3hover"] forState:UIControlStateNormal];
+    }
     [self.listTable reloadData];
 }
 

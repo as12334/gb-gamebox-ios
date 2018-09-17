@@ -131,7 +131,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     if (!_appDelegate){
         _appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     }
-    
     return _appDelegate ;
 }
 
@@ -3007,10 +3006,10 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                 NSString *responseStr = response.allHeaderFields[@"Set-Cookie"] ;
                 NSMutableArray *mArr = [NSMutableArray array] ;
                 if (isSidStr(responseStr)) {
-                [mArr addObjectsFromArray:matchLongString(responseStr)] ;
+                    [mArr addObjectsFromArray:matchLongString(responseStr)] ;
                 }
                 if (mArr.count>0) {
-                     userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
+                    userInfo_manager.sidString = [NSString stringWithFormat:@"SID=%@",[mArr lastObject]] ;
                 }
                 NSLog(@"....SID INFO...get.sid:%@",responseStr) ;
                 resultSendData = ConvertToClassPointer(NSDictionary, dataObject) ;

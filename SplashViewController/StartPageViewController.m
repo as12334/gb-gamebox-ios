@@ -441,6 +441,7 @@
                 NSLog(@"已从%@获取到ip，执行回调",domain);
                 //todo
                 //test data
+#warning 这里是专门给test71的 打test71的时候一定要打开
 //                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
@@ -581,6 +582,8 @@
         }
     };
     self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+        NSLog(@"error===%@",error);
+        NSLog(@"error.description===%@",error.description);
         NSArray *checkTypeComponents = [checkType componentsSeparatedByString:@"+"];
         NSString *checkDomian = [NSString stringWithFormat:@"%@://%@%@",checkTypeComponents[0],ip,checkTypeComponents.count == 1 ? @"" : [NSString stringWithFormat:@":%@",checkTypeComponents[1]]];
         //记录错误日志
@@ -685,9 +688,11 @@
                             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
                             [weakSelf checkIP:ip checkType:@"https" complete:^(NSString *type) {
                                 NSLog(@"chengong == %@",ip);
-                                dispatch_semaphore_signal(semaphore);
                                 RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
                                 [appDelegate updateDomainName:ip];
+#warning 这里是专门给test71的 打test71的时候一定要打开
+//                                [appDelegate updateDomainName:@"test71.hongtubet.com"];
+                                dispatch_semaphore_signal(semaphore);
                             } failed:^{
                                 NSLog(@"shibai");
                                 failTimes++;

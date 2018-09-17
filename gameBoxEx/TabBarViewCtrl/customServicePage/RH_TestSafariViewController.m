@@ -113,9 +113,8 @@
 -(UIWebView *)webView
 {
     if (!_webView) {
-        _webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(MainScreenH==812?83.0:49.0))];
+        _webView = [[UIWebView alloc]init];
         _webView.delegate = self;
-        [_webView setScalesPageToFit:NO];
     }
     return _webView;
 }
@@ -125,7 +124,6 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
-
 //    if ([SID isEqualToString:@"119"] || [SID isEqualToString:@"270"]|| [SID isEqualToString:@"511"]) {
 //        self.webView.scrollView.contentInset = UIEdgeInsetsMake(MainScreenH==812?20.0:0.0, 0, self.isHiddenTabBar?0:49+heighStatusBar, 0);
 //    }else if ([SID isEqualToString:@"500"]||[SID isEqualToString:@"501"]){
@@ -134,7 +132,7 @@
 //        self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
 //    }
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(20, 0, self.isHiddenTabBar?0:49, 0);
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-(MainScreenH==812?83.0:49.0))];
+    self.webView.frame = CGRectMake(self.view.frame.origin.x, STATUS_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-STATUS_HEIGHT-(MainScreenH==812?83.0:49.0));
     [self.serviceRequest startV3GetCustomService];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(dismissFirstVC) name:UIApplicationDidBecomeActiveNotification object:nil];
