@@ -652,22 +652,10 @@
 		B8F0E5052001EFA100A3AC94 /* RH_ModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5042001EFA100A3AC94 /* RH_ModifyPasswordController.m */; };
 		B8F0E5072002110900A3AC94 /* RH_ModifyPassword.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8F0E5062002110900A3AC94 /* RH_ModifyPassword.plist */; };
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
+		BE9D4A0154243E6B56C666ED /* libPods-gameBoxEx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A409E7D9D41A2356E849929 /* libPods-gameBoxEx.a */; };
 		BF05287D214BBADA00C10B6E /* RH_DepositeBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05287C214BBADA00C10B6E /* RH_DepositeBasicViewController.m */; };
 		BF052880214BBB3C00C10B6E /* RH_FundsTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */; };
 		BF0EA784214F432B00CE237C /* RH_CheckAndCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA783214F432B00CE237C /* RH_CheckAndCrashHelper.m */; };
-		BF0EA7A0214F48C300CE237C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BF0EA786214F48C300CE237C /* LICENSE */; };
-		BF0EA7A1214F48C300CE237C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BF0EA787214F48C300CE237C /* README.md */; };
-		BF0EA7A2214F48C300CE237C /* NSArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA789214F48C300CE237C /* NSArray+AvoidCrash.m */; };
-		BF0EA7A3214F48C300CE237C /* NSString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA78B214F48C300CE237C /* NSString+AvoidCrash.m */; };
-		BF0EA7A4214F48C300CE237C /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA78C214F48C300CE237C /* NSDictionary+AvoidCrash.m */; };
-		BF0EA7A5214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA78F214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m */; };
-		BF0EA7A6214F48C300CE237C /* NSMutableString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA791214F48C300CE237C /* NSMutableString+AvoidCrash.m */; };
-		BF0EA7A7214F48C300CE237C /* NSObject+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA792214F48C300CE237C /* NSObject+AvoidCrash.m */; };
-		BF0EA7A8214F48C300CE237C /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA793214F48C300CE237C /* NSMutableArray+AvoidCrash.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BF0EA7A9214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA794214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m */; };
-		BF0EA7AA214F48C300CE237C /* NSAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA795214F48C300CE237C /* NSAttributedString+AvoidCrash.m */; };
-		BF0EA7AB214F48C300CE237C /* AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA798214F48C300CE237C /* AvoidCrash.m */; };
-		BF0EA7AC214F48C300CE237C /* AvoidCrashStubProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0EA79B214F48C300CE237C /* AvoidCrashStubProxy.m */; };
 		BF427BA0213940AF0076F05A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF427B9F213940AF0076F05A /* Launch Screen.storyboard */; };
 		BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */; };
 		BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */; };
@@ -944,6 +932,7 @@
 		22F626A520566E5E00094564 /* login_touxiang_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@2x.png"; sourceTree = "<group>"; };
 		22F626A620566E5E00094564 /* login_touxiang_black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_touxiang_black@3x.png"; sourceTree = "<group>"; };
 		22F9BDC8206A775A009A7994 /* tab_v3_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_v3_home@2x.png"; sourceTree = "<group>"; };
+		2A409E7D9D41A2356E849929 /* libPods-gameBoxEx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-gameBoxEx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		545B303320C6B1140040129B /* CLRefreshBaseControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRefreshBaseControl.m; sourceTree = "<group>"; };
 		545B303420C6B1140040129B /* CLRefreshBaseControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRefreshBaseControl.h; sourceTree = "<group>"; };
 		5469BFD820C7CC49006080D1 /* RH_GameListCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_GameListCategoryView.h; sourceTree = "<group>"; };
@@ -1026,6 +1015,7 @@
 		54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangePswSuccessView.h; sourceTree = "<group>"; };
 		54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangePswSuccessView.m; sourceTree = "<group>"; };
 		54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangePswSuccessView.xib; sourceTree = "<group>"; };
+		5F7A8E6DA0AAF551E78FB9B5 /* Pods-gameBoxEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameBoxEx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gameBoxEx/Pods-gameBoxEx.debug.xcconfig"; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -1218,6 +1208,7 @@
 		79FB81691FFE26C400325BF3 /* RH_CapitalRecordBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CapitalRecordBottomView.h; sourceTree = "<group>"; };
 		79FB816A1FFE26C400325BF3 /* RH_CapitalRecordBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalRecordBottomView.m; sourceTree = "<group>"; };
 		79FB816C1FFE26DC00325BF3 /* RH_CapitalRecordBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_CapitalRecordBottomView.xib; sourceTree = "<group>"; };
+		7C164086A0455B3D992EC253 /* Pods-gameBoxEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameBoxEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-gameBoxEx/Pods-gameBoxEx.release.xcconfig"; sourceTree = "<group>"; };
 		A001B3C51F8E130F00309EA4 /* RH_LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LoginViewController.h; sourceTree = "<group>"; };
 		A001B3C61F8E130F00309EA4 /* RH_LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LoginViewController.m; sourceTree = "<group>"; };
 		A001B3F01F8EFEB500309EA4 /* RH_TransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_TransferViewController.h; sourceTree = "<group>"; };
@@ -1963,31 +1954,6 @@
 		BF05287F214BBB3C00C10B6E /* RH_FundsTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_FundsTransferViewController.m; sourceTree = "<group>"; };
 		BF0EA782214F432B00CE237C /* RH_CheckAndCrashHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CheckAndCrashHelper.h; sourceTree = "<group>"; };
 		BF0EA783214F432B00CE237C /* RH_CheckAndCrashHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CheckAndCrashHelper.m; sourceTree = "<group>"; };
-		BF0EA786214F48C300CE237C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		BF0EA787214F48C300CE237C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		BF0EA789214F48C300CE237C /* NSArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA78A214F48C300CE237C /* AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrash.h; sourceTree = "<group>"; };
-		BF0EA78B214F48C300CE237C /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA78C214F48C300CE237C /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA78D214F48C300CE237C /* NSAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA78E214F48C300CE237C /* AvoidCrashStubProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashStubProxy.h; sourceTree = "<group>"; };
-		BF0EA78F214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA790214F48C300CE237C /* AvoidCrashProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashProtocol.h; sourceTree = "<group>"; };
-		BF0EA791214F48C300CE237C /* NSMutableString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA792214F48C300CE237C /* NSObject+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA793214F48C300CE237C /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA794214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA795214F48C300CE237C /* NSAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF0EA796214F48C300CE237C /* NSDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA797214F48C300CE237C /* NSString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA798214F48C300CE237C /* AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrash.m; sourceTree = "<group>"; };
-		BF0EA799214F48C300CE237C /* NSArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA79A214F48C300CE237C /* NSMutableDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA79B214F48C300CE237C /* AvoidCrashStubProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrashStubProxy.m; sourceTree = "<group>"; };
-		BF0EA79C214F48C300CE237C /* NSObject+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA79D214F48C300CE237C /* NSMutableString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA79E214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF0EA79F214F48C300CE237C /* NSMutableArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF427B9F213940AF0076F05A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeViewController.h; sourceTree = "<group>"; };
 		BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeViewController.m; sourceTree = "<group>"; };
@@ -1996,6 +1962,7 @@
 		BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_JiHeTableViewCell.xib; sourceTree = "<group>"; };
 		BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckTimeManager.h; sourceTree = "<group>"; };
 		BF5FF83E21240AEA0019EF30 /* CheckTimeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckTimeManager.m; sourceTree = "<group>"; };
+		BF90E1AB214F5D2500138830 /* gameBoxEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gameBoxEx.entitlements; sourceTree = "<group>"; };
 		BFC7CB44214BAE93004AAAA7 /* RH_ContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ContentView.h; sourceTree = "<group>"; };
 		BFC7CB45214BAE93004AAAA7 /* RH_ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ContentView.m; sourceTree = "<group>"; };
 		BFC7CB47214BAF5C004AAAA7 /* RH_CustomLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_CustomLabel.h; sourceTree = "<group>"; };
@@ -2269,12 +2236,22 @@
 				A0109C9D1F87829E004E6EF4 /* Security.framework in Frameworks */,
 				A0109C9B1F87828E004E6EF4 /* MobileCoreServices.framework in Frameworks */,
 				A0109C991F87827B004E6EF4 /* SystemConfiguration.framework in Frameworks */,
+				BE9D4A0154243E6B56C666ED /* libPods-gameBoxEx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A5171FD194C62C62BF6549D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C164086A0455B3D992EC253 /* Pods-gameBoxEx.release.xcconfig */,
+				5F7A8E6DA0AAF551E78FB9B5 /* Pods-gameBoxEx.debug.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		189C139C1FF9E99E00B14298 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2892,6 +2869,7 @@
 				A0109C631F878199004E6EF4 /* Products */,
 				A058FF3D1FE8BE39006EF279 /* Frameworks */,
 				A0E782741FFE5BD5007BFBF3 /* Recovered References */,
+				0A5171FD194C62C62BF6549D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2906,6 +2884,7 @@
 		A0109C641F878199004E6EF4 /* gameBoxEx */ = {
 			isa = PBXGroup;
 			children = (
+				BF90E1AB214F5D2500138830 /* gameBoxEx.entitlements */,
 				A07AF4C22026DBE400D6D559 /* v3Skins */,
 				A010A0631F879ACE004E6EF4 /* mainModule */,
 				A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */,
@@ -4064,6 +4043,7 @@
 				F61DA00720BBAEC200E55BAB /* CFNetwork.framework */,
 				F61DA00520BBAEBB00E55BAB /* libicucore.tbd */,
 				A058FF3E1FE8BE39006EF279 /* WebKit.framework */,
+				2A409E7D9D41A2356E849929 /* libPods-gameBoxEx.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4325,7 +4305,6 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				BF0EA785214F48C300CE237C /* AvoidCrash */,
 				F61DA00B20BBAF2800E55BAB /* SocketRocket */,
 			);
 			path = thirdPart;
@@ -4538,46 +4517,6 @@
 				B87A6B5A200DD38100C9788F /* WithdrawCashBitCoin.plist */,
 			);
 			path = withdrawCash;
-			sourceTree = "<group>";
-		};
-		BF0EA785214F48C300CE237C /* AvoidCrash */ = {
-			isa = PBXGroup;
-			children = (
-				BF0EA786214F48C300CE237C /* LICENSE */,
-				BF0EA787214F48C300CE237C /* README.md */,
-				BF0EA788214F48C300CE237C /* AvoidCrash */,
-			);
-			path = AvoidCrash;
-			sourceTree = "<group>";
-		};
-		BF0EA788214F48C300CE237C /* AvoidCrash */ = {
-			isa = PBXGroup;
-			children = (
-				BF0EA789214F48C300CE237C /* NSArray+AvoidCrash.m */,
-				BF0EA78A214F48C300CE237C /* AvoidCrash.h */,
-				BF0EA78B214F48C300CE237C /* NSString+AvoidCrash.m */,
-				BF0EA78C214F48C300CE237C /* NSDictionary+AvoidCrash.m */,
-				BF0EA78D214F48C300CE237C /* NSAttributedString+AvoidCrash.h */,
-				BF0EA78E214F48C300CE237C /* AvoidCrashStubProxy.h */,
-				BF0EA78F214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m */,
-				BF0EA790214F48C300CE237C /* AvoidCrashProtocol.h */,
-				BF0EA791214F48C300CE237C /* NSMutableString+AvoidCrash.m */,
-				BF0EA792214F48C300CE237C /* NSObject+AvoidCrash.m */,
-				BF0EA793214F48C300CE237C /* NSMutableArray+AvoidCrash.m */,
-				BF0EA794214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m */,
-				BF0EA795214F48C300CE237C /* NSAttributedString+AvoidCrash.m */,
-				BF0EA796214F48C300CE237C /* NSDictionary+AvoidCrash.h */,
-				BF0EA797214F48C300CE237C /* NSString+AvoidCrash.h */,
-				BF0EA798214F48C300CE237C /* AvoidCrash.m */,
-				BF0EA799214F48C300CE237C /* NSArray+AvoidCrash.h */,
-				BF0EA79A214F48C300CE237C /* NSMutableDictionary+AvoidCrash.h */,
-				BF0EA79B214F48C300CE237C /* AvoidCrashStubProxy.m */,
-				BF0EA79C214F48C300CE237C /* NSObject+AvoidCrash.h */,
-				BF0EA79D214F48C300CE237C /* NSMutableString+AvoidCrash.h */,
-				BF0EA79E214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.h */,
-				BF0EA79F214F48C300CE237C /* NSMutableArray+AvoidCrash.h */,
-			);
-			path = AvoidCrash;
 			sourceTree = "<group>";
 		};
 		BF563FBE21301F19008FEE8E /* LookJiHe */ = {
@@ -5021,6 +4960,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0109C8E1F878199004E6EF4 /* Build configuration list for PBXNativeTarget "gameBoxEx" */;
 			buildPhases = (
+				9B7E93297D69B4B9C5D3BF1F /* [CP] Check Pods Manifest.lock */,
 				54C4F87720D7D07B00CCAD47 /* ShellScript */,
 				A0109C5E1F878199004E6EF4 /* Sources */,
 				A0109C5F1F878199004E6EF4 /* Frameworks */,
@@ -5051,6 +4991,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -5246,6 +5189,8 @@
 				22AB992720809941001A6203 /* tab_v3_home_selected_coffee@3x.png in Resources */,
 				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
+				A001B3DE1F8EF7CA00309EA4 /* tab_lottery_home@2x.png in Resources */,
+				A001B3DF1F8EF7CA00309EA4 /* tab_lottery_mine@2x.png in Resources */,
 				A07AF4E42026DBE400D6D559 /* tab_blue_mid_selected@2x.png in Resources */,
 				F6A2AD452005A84A0077CB92 /* hongbao-01.png in Resources */,
 				A05747E31FF886810068D0E4 /* RH_UserInfoGengeralCell.xib in Resources */,
@@ -5285,7 +5230,6 @@
 				B87A6B4A200B7E1000C9788F /* RH_WithdrawMoneyLowCell.xib in Resources */,
 				B8F0E5022001BD3E00A3AC94 /* ModifySafetyPassword.plist in Resources */,
 				A07AF4E02026DBE400D6D559 /* tab_v3_service_selected_black@2x.png in Resources */,
-				BF0EA7A0214F48C300CE237C /* LICENSE in Resources */,
 				A0522A5F2007666700A5A6E9 /* ModifySafetyPasswordUsedCode.plist in Resources */,
 				221AE59E207DEF7C008CD409 /* tab_v3_promo_selected_red@2x.png in Resources */,
 				22AB993B20809A3D001A6203 /* home_announce_close_coffee@2x.png in Resources */,
@@ -5345,6 +5289,24 @@
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/dores.sh";
 		};
+		9B7E93297D69B4B9C5D3BF1F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gameBoxEx-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -5371,7 +5333,6 @@
 				F69E351A20638F240028D3A1 /* RH_DepositeSubmitCircleView.m in Sources */,
 				A05747B81FF4E2070068D0E4 /* RH_AnnouncementModel.m in Sources */,
 				F6FB63A52010380C00EEED4E /* RH_ApplyDiscountViewController.m in Sources */,
-				BF0EA7A6214F48C300CE237C /* NSMutableString+AvoidCrash.m in Sources */,
 				F66394BD208396A800D37EDA /* RH_CustomServiceSubViewController.m in Sources */,
 				7937C4372072073B0010CD0C /* PGDatePicker+TimeAndSecond.m in Sources */,
 				7937C42E2072073B0010CD0C /* PGDatePicker+Time.m in Sources */,
@@ -5443,7 +5404,6 @@
 				F6A2ACCD200494BA0077CB92 /* RH_CapitalRecordDetailsController.m in Sources */,
 				F696B83B2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m in Sources */,
 				B84A33CF2064E9F400A8BFEE /* RH_RegistrationViewItem.m in Sources */,
-				BF0EA7A8214F48C300CE237C /* NSMutableArray+AvoidCrash.m in Sources */,
 				F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
 				F69E352A2063A4470028D3A1 /* RH_DepositeSystemPlatformCell.m in Sources */,
@@ -5526,7 +5486,6 @@
 				7937C4292072073B0010CD0C /* PGDatePicker.m in Sources */,
 				F6FB6391200F851300EEED4E /* RH_MPSystemNoticeDetailController.m in Sources */,
 				797F678C200890DF009E3FAB /* RH_SystemNoticeDetailModel.m in Sources */,
-				BF0EA7A4214F48C300CE237C /* NSDictionary+AvoidCrash.m in Sources */,
 				7937C4382072073B0010CD0C /* PGDatePicker+Date.m in Sources */,
 				A05747E51FF886810068D0E4 /* RH_UserInfoTotalCell.m in Sources */,
 				F6FB6398200F851300EEED4E /* RH_MPGameNoticHeaderView.m in Sources */,
@@ -5577,7 +5536,6 @@
 				B87A6B5E200DDA6300C9788F /* RH_WithdrawCashFourCell.m in Sources */,
 				54C8762520FF271100AA0594 /* SH_DragableMenuView.m in Sources */,
 				F69E35392063C8E10028D3A1 /* RH_DepositeTransferBankInfoCell.m in Sources */,
-				BF0EA7AC214F48C300CE237C /* AvoidCrashStubProxy.m in Sources */,
 				A0109FBA1F8788FF004E6EF4 /* UIImage+Size.m in Sources */,
 				A058FF321FE8A6BC006EF279 /* CWInteractiveTransition.m in Sources */,
 				F647934B206CF0AF0076CE2B /* RH_DepositeTransferChannelModel.m in Sources */,
@@ -5667,7 +5625,6 @@
 				546CE6F020CA5BFD00273C40 /* RH_GameListCategoryScrollView.m in Sources */,
 				546CE6EB20CA2A5300273C40 /* HTHorizontalSelectionList.m in Sources */,
 				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
-				BF0EA7A3214F48C300CE237C /* NSString+AvoidCrash.m in Sources */,
 				F6FB63A92010386100EEED4E /* RH_ApplyDiscountHeaderView.m in Sources */,
 				79BA36AD20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m in Sources */,
 				A0522A88200C873D00A5A6E9 /* RH_PromoContentPageCell.m in Sources */,
@@ -5734,7 +5691,6 @@
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */,
-				BF0EA7A2214F48C300CE237C /* NSArray+AvoidCrash.m in Sources */,
 				A07FE3781FEF9EDE00D5DF71 /* RH_MainTabBarControllerEx.m in Sources */,
 				A0109FF51F8788FF004E6EF4 /* SDWebImageDownloaderOperation.m in Sources */,
 				F6FB640F20142C2800EEED4E /* RH_ForgetPasswordView.m in Sources */,
@@ -5777,9 +5733,7 @@
 				A0C3B7C51FD4F14000162B98 /* RH_ElecGameViewController.m in Sources */,
 				A0B5A5721FFF6C1400E2CDD8 /* RH_GameListCollectionViewCell.m in Sources */,
 				A0109F6D1F8787E4004E6EF4 /* CLButton.m in Sources */,
-				BF0EA7A7214F48C300CE237C /* NSObject+AvoidCrash.m in Sources */,
 				A01181561FFC6BE4008F6D1E /* RH_BettingSelectedDateView.m in Sources */,
-				BF0EA7A9214F48C300CE237C /* NSMutableAttributedString+AvoidCrash.m in Sources */,
 				A0109F6E1F8787E4004E6EF4 /* CLCalendarView.m in Sources */,
 				B87A6B6C200DF9C100C9788F /* RH_WithdrawAddBitCoinAddressController.m in Sources */,
 				79FA654120677EE8000C7DB6 /* RH_HelpCenterDetailViewCell.m in Sources */,
@@ -5809,7 +5763,6 @@
 				A0522A6720078C6F00A5A6E9 /* RH_ModifySafetyPwdCodeCell.m in Sources */,
 				A0109F7A1F8787E4004E6EF4 /* CLBasicFileCachePool.m in Sources */,
 				A0109F7B1F8787E4004E6EF4 /* CLDocumentCachePool.m in Sources */,
-				BF0EA7A5214F48C300CE237C /* NSMutableDictionary+AvoidCrash.m in Sources */,
 				BFCA3EE320EE139C0043F4EF /* RH_GestureLockMainView.m in Sources */,
 				79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
@@ -5824,7 +5777,6 @@
 				BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */,
 				B84F946720174F01003E40BC /* RH_GameListHeaderView.m in Sources */,
 				A0109F841F8787E4004E6EF4 /* CLBasicPageLoadController.m in Sources */,
-				BF0EA7AA214F48C300CE237C /* NSAttributedString+AvoidCrash.m in Sources */,
 				A0109F851F8787E4004E6EF4 /* CLPageLoadManagerForTableAndCollectionView.m in Sources */,
 				A0109F861F8787E4004E6EF4 /* CLSectionArrayPageLoadController.m in Sources */,
 				A0B609C31FBB096B00A44B37 /* RH_PromoViewController.m in Sources */,
@@ -5916,7 +5868,6 @@
 				A0522A92200C922E00A5A6E9 /* RH_PromoTypeHeaderView.m in Sources */,
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
 				A0AE8AB31FFCD57300836C1B /* RH_MineMoreLanguageCell.m in Sources */,
-				BF0EA7AB214F48C300CE237C /* AvoidCrash.m in Sources */,
 				B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */,
 				B879E07A20231806007B3D45 /* RH_BankCardNumberCell.m in Sources */,
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
@@ -6013,10 +5964,12 @@
 		};
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C164086A0455B3D992EC253 /* Pods-gameBoxEx.release.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "澳门威尼斯人";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
@@ -6029,6 +5982,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPart/MobileIMSDK4iLib",
+					"$(PROJECT_DIR)/thirdPart/Lib",
+					"$(PROJECT_DIR)/thirdPart/Jpush/Lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -6098,10 +6053,12 @@
 		};
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F7A8E6DA0AAF551E78FB9B5 /* Pods-gameBoxEx.debug.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "澳门威尼斯人";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
@@ -6114,6 +6071,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/thirdPart/MobileIMSDK4iLib",
+					"$(PROJECT_DIR)/thirdPart/Lib",
+					"$(PROJECT_DIR)/thirdPart/Jpush/Lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;

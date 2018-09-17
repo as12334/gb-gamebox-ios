@@ -1,0 +1,723 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		004FA43D0CA42D99FEDAC4D61DBD3734 /* NSMutableAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9A716EF349FD6A0F03D1A5416BCCE /* NSMutableAttributedString+AvoidCrash.m */; };
+		018DF08123A837198DC2A0534C76B18C /* NSMutableDictionary+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 39233942198E3B94C96FCA85A1E981C6 /* NSMutableDictionary+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0811410E84BBD80FBF4BFC606AF41075 /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1447501341E8C69EE982651D542CE423 /* NSDictionary+AvoidCrash.m */; };
+		0AF28E68BD72BE28B06A34253D663419 /* AvoidCrash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23549746B1D3368EA4EF63450667F1BC /* AvoidCrash-dummy.m */; };
+		0ED60E0919449B0B534703DA40244C39 /* Pods-gameBoxEx-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FD14F77078CC22D8D7D646CA8EA180 /* Pods-gameBoxEx-dummy.m */; };
+		10EBC062AE64A65BE99D01EA236DE598 /* NSObject+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 90339FE03190E79BDB03B015DEE3726B /* NSObject+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1174B9D2A6223D5C8DCCEFFF0F10A4DC /* NSAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6BC389AF6D0C0C0A2E899F1DBB49AF /* NSAttributedString+AvoidCrash.m */; };
+		1843A7AAE35F1E2D529C26E6E158E1EB /* NSMutableString+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B30ECF3CE55A3486E6FB1E980239284 /* NSMutableString+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1CA4CBA8DF601B416FB79348BCE3AC6D /* NSString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = EC52B508A07C81471A5836DE4B59FA92 /* NSString+AvoidCrash.m */; };
+		24C873ED1990144BFCA6B986426813F1 /* NSMutableAttributedString+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 93A54E411E71C61CFD84458E671FE2D4 /* NSMutableAttributedString+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2DD7140B68DE2B4F0FC289007CC7DBB2 /* NSString+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 100E9C52CDC078C18A21818C109D28AA /* NSString+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		39B506F9F85A953625E935972FF9CF96 /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = AB78DE551A8BA7A2D62C6203D8EA6202 /* NSMutableArray+AvoidCrash.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56EA968ED5E34FD29B8FF138E15B9DDA /* NSArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BE1223889AFF015759B85FB9FD96F /* NSArray+AvoidCrash.m */; };
+		5E49DF79C5865D813C32405C9EC0630C /* AvoidCrashStubProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = E33F4E1E96CEE9A871FB5B2E2D87AA18 /* AvoidCrashStubProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6C0415341A633C0FBB797898185760C9 /* AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = DB87544171E307EB4392AA141EC1111B /* AvoidCrash.m */; };
+		7E4022BEE4B9B5497CFCD972A88D8F86 /* NSDictionary+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 55E87CB6A4D836B12B12993F0F59CFEE /* NSDictionary+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8663F5C94D6345DE0DC7548008E8467E /* NSAttributedString+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 881F443D11D7839799DF1D817267DC7B /* NSAttributedString+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9C0E1B6C90356657AB3A15AE957FCA60 /* NSMutableArray+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 436367835ABEE4D532B3DCF86974B75F /* NSMutableArray+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9F760B3BC8B9C8FA21E228B63EC98D95 /* NSMutableString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = F073AE9C293B9E2C8F30473979748C08 /* NSMutableString+AvoidCrash.m */; };
+		A064172DC5AB251E21ED3ABB6E326F8C /* NSMutableDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = B68B0D70B1D82C7BDB2731C724AF6A4F /* NSMutableDictionary+AvoidCrash.m */; };
+		C74D33F47280EFA160385ECAC67C691B /* NSArray+AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 48FD11D1907B7A669D9802D6220E0A51 /* NSArray+AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DBE46D3461ECA5A0D9F5FDE6C4151A4E /* AvoidCrashProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 566CF867297B1134F7D8B3D16F6AC791 /* AvoidCrashProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E57CDC30BCF8B0853499572150C488BF /* AvoidCrashStubProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B7422AD56A0A9C4BE758D4CE56B /* AvoidCrashStubProxy.m */; };
+		E7543A600DDBB6FA567ED5789E9CE5E0 /* AvoidCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C944A9C73CECE12D57CCD6F1AD17357 /* AvoidCrash.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FDFDB0468B320A49638160BA9FE3C47F /* NSObject+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FCF4EFCF27DD0CE2B80C24337A1F6 /* NSObject+AvoidCrash.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BA120C2AD1732A052387CCF9DF477EAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5642F3BCD09A4C4FBC9274C63313C038;
+			remoteInfo = AvoidCrash;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04DD4EE484C9849D090AFDF958CC0563 /* Pods-gameBoxEx-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-gameBoxEx-acknowledgements.plist"; sourceTree = "<group>"; };
+		0AC9A716EF349FD6A0F03D1A5416BCCE /* NSMutableAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+AvoidCrash.m"; path = "AvoidCrash/NSMutableAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		0B30ECF3CE55A3486E6FB1E980239284 /* NSMutableString+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+AvoidCrash.h"; path = "AvoidCrash/NSMutableString+AvoidCrash.h"; sourceTree = "<group>"; };
+		100E9C52CDC078C18A21818C109D28AA /* NSString+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+AvoidCrash.h"; path = "AvoidCrash/NSString+AvoidCrash.h"; sourceTree = "<group>"; };
+		106BBF81C40E287B9B62BB51BC8725D2 /* libPods-gameBoxEx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-gameBoxEx.a"; path = "libPods-gameBoxEx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1447501341E8C69EE982651D542CE423 /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+AvoidCrash.m"; path = "AvoidCrash/NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		1E6BC389AF6D0C0C0A2E899F1DBB49AF /* NSAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+AvoidCrash.m"; path = "AvoidCrash/NSAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		1EE503179A784CC7B83D91D943B3A58D /* AvoidCrash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AvoidCrash-prefix.pch"; sourceTree = "<group>"; };
+		23549746B1D3368EA4EF63450667F1BC /* AvoidCrash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AvoidCrash-dummy.m"; sourceTree = "<group>"; };
+		2C7FCF4EFCF27DD0CE2B80C24337A1F6 /* NSObject+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AvoidCrash.m"; path = "AvoidCrash/NSObject+AvoidCrash.m"; sourceTree = "<group>"; };
+		2C944A9C73CECE12D57CCD6F1AD17357 /* AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AvoidCrash.h; path = AvoidCrash/AvoidCrash.h; sourceTree = "<group>"; };
+		3089BC6137AB2C8514083AF9EA4CA3A5 /* Pods-gameBoxEx-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-gameBoxEx-resources.sh"; sourceTree = "<group>"; };
+		37A5030D8A5F945B69D176EBC5907696 /* Pods-gameBoxEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-gameBoxEx.release.xcconfig"; sourceTree = "<group>"; };
+		39233942198E3B94C96FCA85A1E981C6 /* NSMutableDictionary+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+AvoidCrash.h"; path = "AvoidCrash/NSMutableDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		40FD14F77078CC22D8D7D646CA8EA180 /* Pods-gameBoxEx-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-gameBoxEx-dummy.m"; sourceTree = "<group>"; };
+		436367835ABEE4D532B3DCF86974B75F /* NSMutableArray+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+AvoidCrash.h"; path = "AvoidCrash/NSMutableArray+AvoidCrash.h"; sourceTree = "<group>"; };
+		487128793F7E64803B3E06BC28E311FC /* libAvoidCrash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAvoidCrash.a; path = libAvoidCrash.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		48FD11D1907B7A669D9802D6220E0A51 /* NSArray+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+AvoidCrash.h"; path = "AvoidCrash/NSArray+AvoidCrash.h"; sourceTree = "<group>"; };
+		538E43D0F0F5BB4CD1A10F0A460F09E8 /* Pods-gameBoxEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-gameBoxEx.debug.xcconfig"; sourceTree = "<group>"; };
+		55E87CB6A4D836B12B12993F0F59CFEE /* NSDictionary+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+AvoidCrash.h"; path = "AvoidCrash/NSDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		566CF867297B1134F7D8B3D16F6AC791 /* AvoidCrashProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AvoidCrashProtocol.h; path = AvoidCrash/AvoidCrashProtocol.h; sourceTree = "<group>"; };
+		6A91B7F440F3C5C37A00D110DC675131 /* JPUSHService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		6F6BE1223889AFF015759B85FB9FD96F /* NSArray+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+AvoidCrash.m"; path = "AvoidCrash/NSArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		727FCD37D324EA9B8EEE45AD52B9A52D /* libjcore-ios-1.2.2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.2.2.a"; sourceTree = "<group>"; };
+		881F443D11D7839799DF1D817267DC7B /* NSAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+AvoidCrash.h"; path = "AvoidCrash/NSAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
+		90339FE03190E79BDB03B015DEE3726B /* NSObject+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+AvoidCrash.h"; path = "AvoidCrash/NSObject+AvoidCrash.h"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A54E411E71C61CFD84458E671FE2D4 /* NSMutableAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+AvoidCrash.h"; path = "AvoidCrash/NSMutableAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
+		9829938C200943B1E6BF645B0EA225D4 /* Pods-gameBoxEx-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-gameBoxEx-frameworks.sh"; sourceTree = "<group>"; };
+		AB78DE551A8BA7A2D62C6203D8EA6202 /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+AvoidCrash.m"; path = "AvoidCrash/NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		B55F5BD46184FE89600FAD310C532122 /* Pods-gameBoxEx-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-gameBoxEx-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B68B0D70B1D82C7BDB2731C724AF6A4F /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+AvoidCrash.m"; path = "AvoidCrash/NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		BFBF3B7422AD56A0A9C4BE758D4CE56B /* AvoidCrashStubProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AvoidCrashStubProxy.m; path = AvoidCrash/AvoidCrashStubProxy.m; sourceTree = "<group>"; };
+		DB87544171E307EB4392AA141EC1111B /* AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AvoidCrash.m; path = AvoidCrash/AvoidCrash.m; sourceTree = "<group>"; };
+		E33F4E1E96CEE9A871FB5B2E2D87AA18 /* AvoidCrashStubProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AvoidCrashStubProxy.h; path = AvoidCrash/AvoidCrashStubProxy.h; sourceTree = "<group>"; };
+		EC52B508A07C81471A5836DE4B59FA92 /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+AvoidCrash.m"; path = "AvoidCrash/NSString+AvoidCrash.m"; sourceTree = "<group>"; };
+		F073AE9C293B9E2C8F30473979748C08 /* NSMutableString+AvoidCrash.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableString+AvoidCrash.m"; path = "AvoidCrash/NSMutableString+AvoidCrash.m"; sourceTree = "<group>"; };
+		F41A8FF4988FFF5D397D4317E591789A /* AvoidCrash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AvoidCrash.xcconfig; sourceTree = "<group>"; };
+		FBBE0B28D25032201EDA67AE86FC047F /* libjpush-ios-3.1.0.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.1.0.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9654CCF4D38A3C51D2D21AE5A365663 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6B113829046E80C7BC92C832A369DBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5F474B05E14B1D651470A21FF56664A6 /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				6A91B7F440F3C5C37A00D110DC675131 /* JPUSHService.h */,
+				7AE551830634D6A818F86B312C3ED083 /* Frameworks */,
+			);
+			name = JPush;
+			path = JPush;
+			sourceTree = "<group>";
+		};
+		73B8B25D3B6AF51AC2D4D56EF403AE65 /* AvoidCrash */ = {
+			isa = PBXGroup;
+			children = (
+				2C944A9C73CECE12D57CCD6F1AD17357 /* AvoidCrash.h */,
+				DB87544171E307EB4392AA141EC1111B /* AvoidCrash.m */,
+				566CF867297B1134F7D8B3D16F6AC791 /* AvoidCrashProtocol.h */,
+				E33F4E1E96CEE9A871FB5B2E2D87AA18 /* AvoidCrashStubProxy.h */,
+				BFBF3B7422AD56A0A9C4BE758D4CE56B /* AvoidCrashStubProxy.m */,
+				48FD11D1907B7A669D9802D6220E0A51 /* NSArray+AvoidCrash.h */,
+				6F6BE1223889AFF015759B85FB9FD96F /* NSArray+AvoidCrash.m */,
+				881F443D11D7839799DF1D817267DC7B /* NSAttributedString+AvoidCrash.h */,
+				1E6BC389AF6D0C0C0A2E899F1DBB49AF /* NSAttributedString+AvoidCrash.m */,
+				55E87CB6A4D836B12B12993F0F59CFEE /* NSDictionary+AvoidCrash.h */,
+				1447501341E8C69EE982651D542CE423 /* NSDictionary+AvoidCrash.m */,
+				436367835ABEE4D532B3DCF86974B75F /* NSMutableArray+AvoidCrash.h */,
+				AB78DE551A8BA7A2D62C6203D8EA6202 /* NSMutableArray+AvoidCrash.m */,
+				93A54E411E71C61CFD84458E671FE2D4 /* NSMutableAttributedString+AvoidCrash.h */,
+				0AC9A716EF349FD6A0F03D1A5416BCCE /* NSMutableAttributedString+AvoidCrash.m */,
+				39233942198E3B94C96FCA85A1E981C6 /* NSMutableDictionary+AvoidCrash.h */,
+				B68B0D70B1D82C7BDB2731C724AF6A4F /* NSMutableDictionary+AvoidCrash.m */,
+				0B30ECF3CE55A3486E6FB1E980239284 /* NSMutableString+AvoidCrash.h */,
+				F073AE9C293B9E2C8F30473979748C08 /* NSMutableString+AvoidCrash.m */,
+				90339FE03190E79BDB03B015DEE3726B /* NSObject+AvoidCrash.h */,
+				2C7FCF4EFCF27DD0CE2B80C24337A1F6 /* NSObject+AvoidCrash.m */,
+				100E9C52CDC078C18A21818C109D28AA /* NSString+AvoidCrash.h */,
+				EC52B508A07C81471A5836DE4B59FA92 /* NSString+AvoidCrash.m */,
+				8E6704DBD70D2CAA96967259105E71CF /* Support Files */,
+			);
+			name = AvoidCrash;
+			path = AvoidCrash;
+			sourceTree = "<group>";
+		};
+		74D5CE0486F83C10BD40579C40AC7AC7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				73B8B25D3B6AF51AC2D4D56EF403AE65 /* AvoidCrash */,
+				9AB5894B24E188A2BB2DF4C9C76A5235 /* JCore */,
+				5F474B05E14B1D651470A21FF56664A6 /* JPush */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7AE551830634D6A818F86B312C3ED083 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBBE0B28D25032201EDA67AE86FC047F /* libjpush-ios-3.1.0.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C6889917DB3AC7C6C72CB15EE840624 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C38FB26EA121E491810147826F374AFF /* Pods-gameBoxEx */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
+				74D5CE0486F83C10BD40579C40AC7AC7 /* Pods */,
+				BFE248F2E881D75155C1A65EE09EFBAA /* Products */,
+				7C6889917DB3AC7C6C72CB15EE840624 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8CF90B5ECB2DB7B234317756FD980B81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				727FCD37D324EA9B8EEE45AD52B9A52D /* libjcore-ios-1.2.2.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E6704DBD70D2CAA96967259105E71CF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F41A8FF4988FFF5D397D4317E591789A /* AvoidCrash.xcconfig */,
+				23549746B1D3368EA4EF63450667F1BC /* AvoidCrash-dummy.m */,
+				1EE503179A784CC7B83D91D943B3A58D /* AvoidCrash-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AvoidCrash";
+			sourceTree = "<group>";
+		};
+		9AB5894B24E188A2BB2DF4C9C76A5235 /* JCore */ = {
+			isa = PBXGroup;
+			children = (
+				8CF90B5ECB2DB7B234317756FD980B81 /* Frameworks */,
+			);
+			name = JCore;
+			path = JCore;
+			sourceTree = "<group>";
+		};
+		BFE248F2E881D75155C1A65EE09EFBAA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				487128793F7E64803B3E06BC28E311FC /* libAvoidCrash.a */,
+				106BBF81C40E287B9B62BB51BC8725D2 /* libPods-gameBoxEx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C38FB26EA121E491810147826F374AFF /* Pods-gameBoxEx */ = {
+			isa = PBXGroup;
+			children = (
+				B55F5BD46184FE89600FAD310C532122 /* Pods-gameBoxEx-acknowledgements.markdown */,
+				04DD4EE484C9849D090AFDF958CC0563 /* Pods-gameBoxEx-acknowledgements.plist */,
+				40FD14F77078CC22D8D7D646CA8EA180 /* Pods-gameBoxEx-dummy.m */,
+				9829938C200943B1E6BF645B0EA225D4 /* Pods-gameBoxEx-frameworks.sh */,
+				3089BC6137AB2C8514083AF9EA4CA3A5 /* Pods-gameBoxEx-resources.sh */,
+				538E43D0F0F5BB4CD1A10F0A460F09E8 /* Pods-gameBoxEx.debug.xcconfig */,
+				538E43D0F0F5BB4CD1A10F0A460F09E8 /* Pods-gameBoxEx.debug.xcconfig */,
+				37A5030D8A5F945B69D176EBC5907696 /* Pods-gameBoxEx.release.xcconfig */,
+			);
+			name = "Pods-gameBoxEx";
+			path = "Target Support Files/Pods-gameBoxEx";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3326D9669D8F2147FA627E9573FC6CBA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7543A600DDBB6FA567ED5789E9CE5E0 /* AvoidCrash.h in Headers */,
+				DBE46D3461ECA5A0D9F5FDE6C4151A4E /* AvoidCrashProtocol.h in Headers */,
+				5E49DF79C5865D813C32405C9EC0630C /* AvoidCrashStubProxy.h in Headers */,
+				C74D33F47280EFA160385ECAC67C691B /* NSArray+AvoidCrash.h in Headers */,
+				8663F5C94D6345DE0DC7548008E8467E /* NSAttributedString+AvoidCrash.h in Headers */,
+				7E4022BEE4B9B5497CFCD972A88D8F86 /* NSDictionary+AvoidCrash.h in Headers */,
+				9C0E1B6C90356657AB3A15AE957FCA60 /* NSMutableArray+AvoidCrash.h in Headers */,
+				24C873ED1990144BFCA6B986426813F1 /* NSMutableAttributedString+AvoidCrash.h in Headers */,
+				018DF08123A837198DC2A0534C76B18C /* NSMutableDictionary+AvoidCrash.h in Headers */,
+				1843A7AAE35F1E2D529C26E6E158E1EB /* NSMutableString+AvoidCrash.h in Headers */,
+				10EBC062AE64A65BE99D01EA236DE598 /* NSObject+AvoidCrash.h in Headers */,
+				2DD7140B68DE2B4F0FC289007CC7DBB2 /* NSString+AvoidCrash.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5642F3BCD09A4C4FBC9274C63313C038 /* AvoidCrash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1DB5BA33C5E673CBD24B2C97900107F /* Build configuration list for PBXNativeTarget "AvoidCrash" */;
+			buildPhases = (
+				5F9940742C4BB5E0F109812983B67245 /* Sources */,
+				D6B113829046E80C7BC92C832A369DBB /* Frameworks */,
+				3326D9669D8F2147FA627E9573FC6CBA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AvoidCrash;
+			productName = AvoidCrash;
+			productReference = 487128793F7E64803B3E06BC28E311FC /* libAvoidCrash.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D0CB743092F7F97D70644DF471EDDDCC /* Pods-gameBoxEx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEDA07618FBA1D0BAE3DC4D9665C1FDA /* Build configuration list for PBXNativeTarget "Pods-gameBoxEx" */;
+			buildPhases = (
+				C1784AC9F4ECE80E13814D826FC30FF9 /* Sources */,
+				A9654CCF4D38A3C51D2D21AE5A365663 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1CCF634B75C83A90B64AFA2DE1E7B50A /* PBXTargetDependency */,
+			);
+			name = "Pods-gameBoxEx";
+			productName = "Pods-gameBoxEx";
+			productReference = 106BBF81C40E287B9B62BB51BC8725D2 /* libPods-gameBoxEx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = BFE248F2E881D75155C1A65EE09EFBAA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5642F3BCD09A4C4FBC9274C63313C038 /* AvoidCrash */,
+				D0CB743092F7F97D70644DF471EDDDCC /* Pods-gameBoxEx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F9940742C4BB5E0F109812983B67245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AF28E68BD72BE28B06A34253D663419 /* AvoidCrash-dummy.m in Sources */,
+				6C0415341A633C0FBB797898185760C9 /* AvoidCrash.m in Sources */,
+				E57CDC30BCF8B0853499572150C488BF /* AvoidCrashStubProxy.m in Sources */,
+				56EA968ED5E34FD29B8FF138E15B9DDA /* NSArray+AvoidCrash.m in Sources */,
+				1174B9D2A6223D5C8DCCEFFF0F10A4DC /* NSAttributedString+AvoidCrash.m in Sources */,
+				0811410E84BBD80FBF4BFC606AF41075 /* NSDictionary+AvoidCrash.m in Sources */,
+				39B506F9F85A953625E935972FF9CF96 /* NSMutableArray+AvoidCrash.m in Sources */,
+				004FA43D0CA42D99FEDAC4D61DBD3734 /* NSMutableAttributedString+AvoidCrash.m in Sources */,
+				A064172DC5AB251E21ED3ABB6E326F8C /* NSMutableDictionary+AvoidCrash.m in Sources */,
+				9F760B3BC8B9C8FA21E228B63EC98D95 /* NSMutableString+AvoidCrash.m in Sources */,
+				FDFDB0468B320A49638160BA9FE3C47F /* NSObject+AvoidCrash.m in Sources */,
+				1CA4CBA8DF601B416FB79348BCE3AC6D /* NSString+AvoidCrash.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1784AC9F4ECE80E13814D826FC30FF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ED60E0919449B0B534703DA40244C39 /* Pods-gameBoxEx-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1CCF634B75C83A90B64AFA2DE1E7B50A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AvoidCrash;
+			target = 5642F3BCD09A4C4FBC9274C63313C038 /* AvoidCrash */;
+			targetProxy = BA120C2AD1732A052387CCF9DF477EAF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08F936AE00527CC288E74A1CA9CDA56C /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = debug;
+		};
+		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		4A92A87D4AE7757BE75BFA5C1735F1CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37A5030D8A5F945B69D176EBC5907696 /* Pods-gameBoxEx.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5405A1438AD17CACF42ACF613E5A426A /* debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 538E43D0F0F5BB4CD1A10F0A460F09E8 /* Pods-gameBoxEx.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = debug;
+		};
+		93740CC3195D39E5CDEB17F7325CAA85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F41A8FF4988FFF5D397D4317E591789A /* AvoidCrash.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/AvoidCrash/AvoidCrash-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = AvoidCrash;
+				PRODUCT_NAME = AvoidCrash;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAA092951D1AF8D9DA925D3C9408A2F4 /* debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F41A8FF4988FFF5D397D4317E591789A /* AvoidCrash.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/AvoidCrash/AvoidCrash-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = AvoidCrash;
+				PRODUCT_NAME = AvoidCrash;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = debug;
+		};
+		C3CFD159F6B07ADB73136E6DF6AC88BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 538E43D0F0F5BB4CD1A10F0A460F09E8 /* Pods-gameBoxEx.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E27193C01AB25F286A601CC2646C66DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F41A8FF4988FFF5D397D4317E591789A /* AvoidCrash.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/AvoidCrash/AvoidCrash-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = AvoidCrash;
+				PRODUCT_NAME = AvoidCrash;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE19F5DD95931924296F637BF18BD8F /* Debug */,
+				08F936AE00527CC288E74A1CA9CDA56C /* debug */,
+				F4568DEE257655D290C2B9CEAB37C934 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEDA07618FBA1D0BAE3DC4D9665C1FDA /* Build configuration list for PBXNativeTarget "Pods-gameBoxEx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3CFD159F6B07ADB73136E6DF6AC88BE /* Debug */,
+				5405A1438AD17CACF42ACF613E5A426A /* debug */,
+				4A92A87D4AE7757BE75BFA5C1735F1CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1DB5BA33C5E673CBD24B2C97900107F /* Build configuration list for PBXNativeTarget "AvoidCrash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E27193C01AB25F286A601CC2646C66DB /* Debug */,
+				BAA092951D1AF8D9DA925D3C9408A2F4 /* debug */,
+				93740CC3195D39E5CDEB17F7325CAA85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
