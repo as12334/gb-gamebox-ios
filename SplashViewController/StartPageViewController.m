@@ -16,11 +16,10 @@
 #import "UpdateStatusCacheManager.h"
 #import "RH_API.h"
 #import "RH_UserInfoManager.h"
-#import <sys/utsname.h>
 #import "RH_InitAdModel.h"
 #import "RH_StartPageADView.h"
 #import "CheckTimeManager.h"
-
+#import "RH_CheckAndCrashHelper.h"
 @interface StartPageViewController ()
 @property (nonatomic, strong) NSString *progressNote;
 @property (nonatomic, assign) CGFloat progress;
@@ -717,7 +716,7 @@
 {
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
-    NSString *ip = [self localIPAddress];
+    NSString *ip = [[RH_CheckAndCrashHelper shared] localIPAddress];
     NSString *title;
     NSString *msg ;
     if ([code isEqualToString:@"001"]) {
@@ -744,100 +743,14 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-//获取设备IP地址
-- (NSString *)localIPAddress
-{
-    NSError *error;
-    NSURL *ipURL = [NSURL URLWithString:@"http://pv.sohu.com/cityjson?ie=utf-8"];
-    NSMutableString *ip = [NSMutableString stringWithContentsOfURL:ipURL encoding:NSUTF8StringEncoding error:&error];
-    //判断返回字符串是否为所需数据
-    if ([ip hasPrefix:@"var returnCitySN = "]) {
-        //对字符串进行处理，然后进行json解析
-        //删除字符串多余字符串
-        NSRange range = NSMakeRange(0, 19);
-        [ip deleteCharactersInRange:range];
-        NSString * nowIp =[ip substringToIndex:ip.length-1];
-        //将字符串转换成二进制进行Json解析
-        NSData * data = [nowIp dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        return dict[@"cip"] ? dict[@"cip"] : @"";
-    }
-    return @"";
-}
+
 
 - (void)uploadLineCheckErr
 {
-    NSMutableDictionary *dictError = [[NSMutableDictionary alloc] init] ;
-    [dictError setValue:SID forKey:RH_SP_COLLECTAPPERROR_SITEID] ;
-    [dictError setValue:[self randomMark] forKey:RH_SP_COLLECTAPPERROR_MARK] ;
-    [dictError setValue:[self localIPAddress]?[self localIPAddress]:@"" forKey:RH_SP_COLLECTAPPERROR_IP] ;
-    if ([RH_UserInfoManager shareUserManager].loginUserName.length){
-        [dictError setValue:[RH_UserInfoManager shareUserManager].loginUserName
-                     forKey:RH_SP_COLLECTAPPERROR_USERNAME] ;
-        [dictError setValue:[RH_UserInfoManager shareUserManager].loginTime
-                     forKey:RH_SP_COLLECTAPPERROR_LASTLOGINTIME] ;
-    }
-    NSMutableString *domainList = [[NSMutableString alloc] init] ;
-    NSMutableString *errorCodeList = [[NSMutableString alloc] init] ;
-    NSMutableString *errorMessageList = [[NSMutableString alloc] init] ;
-    for (NSDictionary *dictTmp in self.ipCheckErrorList) {
-        if (domainList.length){
-            [domainList appendString:@";"] ;
-        }
-        
-        if (errorCodeList.length){
-            [errorCodeList appendString:@";"] ;
-        }
-        
-        if (errorMessageList.length){
-            [errorMessageList appendString:@";"] ;
-        }
-        
-        [domainList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_DOMAIN]] ;
-        [errorCodeList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_CODE]] ;
-        [errorMessageList appendString:[dictTmp stringValueForKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE]] ;
-    }
-    
-    [dictError setValue:domainList forKey:RH_SP_COLLECTAPPERROR_DOMAIN] ;
-    [dictError setValue:errorCodeList forKey:RH_SP_COLLECTAPPERROR_CODE] ;
-    [dictError setValue:errorMessageList forKey:RH_SP_COLLECTAPPERROR_ERRORMESSAGE] ;
-    [dictError setValue:@"1" forKey:RH_SP_COLLECTAPPERROR_TYPE];
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
-    [dictError setValue:appVersion forKey:RH_SP_COLLECTAPPERROR_VERSIONNAME];
-    NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
-    [dictError setValue:sysVersion forKey:RH_SP_COLLECTAPPERROR_SYSCODE];
-    [dictError setValue:@"iOS" forKey:RH_SP_COLLECTAPPERROR_CHANNEL];
-    NSString *deviceBrands = [[UIDevice currentDevice] model];
-    [dictError setValue:deviceBrands forKey:RH_SP_COLLECTAPPERROR_BRANDS];
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    [dictError setValue:deviceModel forKey:RH_SP_COLLECTAPPERROR_MODEL];
-    
-    [self.serviceRequest startUploadAPPErrorMessge:dictError] ;
-    self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-        //
-    };
-    self.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-        //
-    };
+    [[RH_CheckAndCrashHelper shared] uploadJournalWithMessages:self.ipCheckErrorList];
 }
 
-- (NSString *)randomMark
-{
-    static int kNumber = 6;
-    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    NSMutableString *resultStr = [[NSMutableString alloc] init];
-    srand((unsigned)time(0));
-    for (int i = 0; i < kNumber; i++)
-    {
-        unsigned index = rand() % [sourceStr length];
-        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
-        [resultStr appendString:oneStr];
-    }
-    return resultStr;
-}
+
 
 - (void)refreshLineCheck
 {

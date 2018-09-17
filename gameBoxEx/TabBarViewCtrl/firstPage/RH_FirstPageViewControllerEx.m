@@ -79,6 +79,9 @@
     // Do any additional setup after loading the view.
 //    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
 //    [self.serviceRequest startGetCustomService] ;
+    NSString *str = nil;
+    NSMutableArray *arr = [NSMutableArray array];
+    [arr addObject:str];
     [self.topView addSubview:self.mainNavigationView] ;
     
     [self setNeedUpdateView] ;
