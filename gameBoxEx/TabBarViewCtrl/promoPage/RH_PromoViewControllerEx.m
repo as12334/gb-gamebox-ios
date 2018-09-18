@@ -303,6 +303,16 @@
                 NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
                 if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
                     [self.appDelegate updateLoginStatus:true] ;
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    NSString *account = [defaults stringForKey:@"account"] ;
+                    //设置jpush别名
+                    [JPUSHService setAlias:account completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                        if (iResCode == 0) {
+                            NSLog(@"别名设置成功");
+                        }else{
+                            NSLog(@"别名设置失败");
+                        }
+                    } seq:1];
                 }else{
                     [self.appDelegate updateLoginStatus:false] ;
                 }

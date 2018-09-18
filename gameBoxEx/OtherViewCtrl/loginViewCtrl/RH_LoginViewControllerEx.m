@@ -17,8 +17,8 @@
 #import "RH_OldUserVerifyView.h"//老用户验证
 #import "RH_FindbackPswWaysViewController.h"
 #import "RH_WebsocketManagar.h"
-//#import "RH_GesturelLockController.h"
 #import "RH_GestureLockMainView.h"
+
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate,RH_GestureLockMainViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;
 @property (nonatomic,assign) BOOL isInitOk ;
@@ -306,6 +306,16 @@
                 ifRespondsSelector(self.delegate, @selector(loginViewViewControllerExLoginSuccessful:)){
                     [self.delegate loginViewViewControllerExLoginSuccessful:self];
                 }
+                
+                //极光推送设置别名,用用户名来设置
+                [JPUSHService setAlias:self.loginViewCell.userName completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                    if (iResCode == 0) {
+                        NSLog(@"别名设置成功");
+                    }else{
+                       NSLog(@"别名设置失败");
+                    }
+                } seq:1];
+                
                 //登录成功后测试websocket
 //                [[RH_WebsocketManagar instance] SRWebSocketOpenWithURLString:self.appDelegate.domain];
 //
