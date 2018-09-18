@@ -3922,7 +3922,26 @@
 #define CODE    @"2tr1"
 #define S        @"dbb0ecf3cb03934d26f137abed47bb66"
 #define SID        @"738"
-#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _22vj //永丰国际
+
+#define CODE    @"22vj"
+#define S        @"c604c64d6985c2f5f3d7d65cc827d4aa"
+#define SID        @"735"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _gwsu //钻石国际
+
+#define CODE    @"gwsu"
+#define S        @"a846b0664f4d181b15cb19da667b21fd"
+#define SID        @"736"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
