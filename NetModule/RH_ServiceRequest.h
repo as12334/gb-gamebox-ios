@@ -665,7 +665,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)fetchHost:(NSString *)url;
 #pragma mark--
 #pragma mark--获取H5ip
--(void)fetchH5ip;
+- (void)fetchH5ip:(int)times;
 
 #pragma mark -
 /**
