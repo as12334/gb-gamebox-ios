@@ -692,7 +692,7 @@
             }
         };
         weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-            //
+            [CheckTimeManager shared].lotteryLineCheckFail = YES;
         };
     }
 }
