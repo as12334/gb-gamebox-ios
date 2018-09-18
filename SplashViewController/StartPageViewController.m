@@ -685,6 +685,10 @@
                     [[CheckTimeManager shared] cacheLotteryHosts:hosts];
                     [weakSelf checkLotteryHost:hosts];
                 }
+                else
+                {
+                    [CheckTimeManager shared].lotteryLineCheckFail = YES;
+                }
             }
         };
         weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
