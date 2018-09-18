@@ -692,7 +692,9 @@
             }
         };
         weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-            [CheckTimeManager shared].lotteryLineCheckFail = YES;
+            if (type == ServiceRequestTypeFetchH5Ip) {
+                [CheckTimeManager shared].lotteryLineCheckFail = YES;
+            }
         };
     }
 }
