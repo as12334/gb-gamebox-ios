@@ -17,6 +17,7 @@
 #import "RH_BettingInfoModel.h"
 #import "RH_GamesViewController.h"
 #import "GameWebViewController.h"
+#import "CheckTimeManager.h"
 
 //#import "RH_BettingDetailWebController.h"
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
@@ -379,7 +380,12 @@
     if (self.pageLoadManager.currentDataCount){
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         
-        if (appDelegate.demainName == nil) {
+        if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
+            //线路正在检测 则提示 正在获取可用线路 请稍后
+            showErrorMessage(self.view, nil, @"正在获取可用线路 请稍后");
+            return ;
+        }
+        if ([CheckTimeManager shared].lotteryLineCheckFail) {
             showErrorMessage(self.view, nil, @"api线路异常");
             return ;
         }

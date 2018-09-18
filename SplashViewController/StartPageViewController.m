@@ -673,21 +673,27 @@
     }
     else
     {
-        [self.serviceRequest fetchH5ip];
+        [self.serviceRequest fetchH5ip:[CheckTimeManager shared].times];
         self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
             if (type == ServiceRequestTypeFetchH5Ip) {
                 NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
                 if (dic != nil && ![dic[@"data"] isKindOfClass:[NSNull class]]) {
                     NSArray *hosts = dic[@"data"];
                     //测试数据 让其强制进行第二次检测做测试
-                    //ips = @[@"9988xx.com",@"9977xx.com"];
+//                    hosts = @[@"9988xx.com",@"9977xx.com"];
                     [[CheckTimeManager shared] cacheLotteryHosts:hosts];
                     [weakSelf checkLotteryHost:hosts];
+                }
+                else
+                {
+                    [CheckTimeManager shared].lotteryLineCheckFail = YES;
                 }
             }
         };
         weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-            [weakSelf.serviceRequest fetchH5ip];
+            if (type == ServiceRequestTypeFetchH5Ip) {
+                [CheckTimeManager shared].lotteryLineCheckFail = YES;
+            }
         };
     }
 }
@@ -706,7 +712,7 @@
                 [weakSelf checkIP:host checkType:@"http" complete:^(NSString *type) {
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
-                        NSLog(@">>>>>>>>>获取到彩票可用域名：%@",host);
+                        NSLog(@">>>获取到彩票可用域名：%@",host);
                         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
                         [appDelegate updateDomainName:host];
                         //todo
@@ -719,10 +725,21 @@
                     //当全部失败的时候重新请求
                     if (failTimes == hosts.count) {
                         //全部没通过
-                        NSLog(@">>>>>>>>>获取彩票可用域名失败");
+                        NSLog(@">>>第%i次 获取彩票可用域名失败",[CheckTimeManager shared].times);
                         //清除缓存 重新获取
                         [[CheckTimeManager shared] clearCaches];
-                        [weakSelf checkH5Ip];
+                        if (hosts.count >= 10 && [CheckTimeManager shared].times < 3) {
+                            //每次拿到的数据不少于10条，且重试次数小于3次则重试
+                            //重试times自增1
+                            [CheckTimeManager shared].times++;
+                            NSLog(@">>>重试第%i次",[CheckTimeManager shared].times);
+                            [weakSelf checkH5Ip];
+                        }
+                        else
+                        {
+                            NSLog(@">>>彩票线路检测完全失败。");
+                            [CheckTimeManager shared].lotteryLineCheckFail = YES;
+                        }
                     }
                     dispatch_semaphore_signal(semaphore);
                 }];

@@ -14,6 +14,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_PromoDetailViewController.h"
 #import "GameWebViewController.h"
+#import "CheckTimeManager.h"
 
 @interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource,PromoTypeHeaderViewDelegate,PromoContentPageCellDelegate>
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;
@@ -195,7 +196,12 @@
 {
     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
     
-    if (appDelegate.demainName == nil) {
+    if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
+        //线路正在检测 则提示 正在获取可用线路 请稍后
+        showErrorMessage(self.view, nil, @"正在获取可用线路 请稍后");
+        return ;
+    }
+    if ([CheckTimeManager shared].lotteryLineCheckFail) {
         showErrorMessage(self.view, nil, @"api线路异常");
         return ;
     }

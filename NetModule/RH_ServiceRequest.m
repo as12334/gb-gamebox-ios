@@ -2473,23 +2473,16 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     //开始请求
     [self _startHttpRequest:httpRequest forType:ServiceRequestTypeFetchHost scopeType:ServiceScopeTypePublic];
 }
-- (void)fetchH5ip{
-    if ([CheckTimeManager shared].times) {
-        NSInteger num = [[CheckTimeManager shared].times integerValue];
-        NSInteger index = num+1;
-        [CheckTimeManager shared].times = [NSString stringWithFormat:@"%ld",(long)index];
-    }else{
-        [CheckTimeManager shared].times = @"0";
-    }
-    
+- (void)fetchH5ip:(int)times
+{
     [self _startServiceWithAPIName:self.appDelegate.domain
                         pathFormat:@"mobile-api/app/getHost.html"
                      pathArguments:nil
                    headerArguments:@{
-                                     @"User-Agent":@"app_ios, iPhone",
+                                     @"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE],
                                      @"Host":self.appDelegate.headerDomain
                                      }
-                    queryArguments:@{@"times":[CheckTimeManager shared].times}
+                    queryArguments:@{@"times":@(times)}
                      bodyArguments:nil
                           httpType:HTTPRequestTypeGet
                        serviceType:ServiceRequestTypeFetchH5Ip

@@ -407,8 +407,13 @@
                     if (![[data objectForKey:@"gameLink"] hasPrefix:@"http"]) {
                         //是自己的游戏 需要传SID 则使用UIWebView
                         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-
-                        if (appDelegate.demainName == nil) {
+                        
+                        if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
+                            //线路正在检测 则提示 正在获取可用线路 请稍后
+                            showErrorMessage(weakSelf.view, nil, @"正在获取可用线路 请稍后");
+                            return ;
+                        }
+                        if ([CheckTimeManager shared].lotteryLineCheckFail) {
                             showErrorMessage(weakSelf.view, nil, @"api线路异常");
                             return ;
                         }
