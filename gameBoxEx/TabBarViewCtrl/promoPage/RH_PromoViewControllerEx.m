@@ -14,6 +14,7 @@
 #import "RH_UserInfoManager.h"
 #import "RH_PromoDetailViewController.h"
 #import "GameWebViewController.h"
+#import "CheckTimeManager.h"
 
 @interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource,PromoTypeHeaderViewDelegate,PromoContentPageCellDelegate>
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;
@@ -193,23 +194,24 @@
 #pragma mark- RH_PromoContentPageCell delegate
 -(void)promoContentPageCellDidTouchCell:(RH_PromoContentPageCell*)promoContentPageCell CellModel:(RH_DiscountActivityModel *)discountActivityModel
 {
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    
+    if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
+        //线路正在检测 则提示 正在获取可用线路 请稍后
+        showErrorMessage(self.view, nil, @"正在获取可用线路 请稍后");
+        return ;
+    }
+    if ([CheckTimeManager shared].lotteryLineCheckFail) {
+        showErrorMessage(self.view, nil, @"api线路异常");
+        return ;
+    }
+
     GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.hideMenuView = YES;
     NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    if (appDelegate.demainName.length > 0) {
-        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,discountActivityModel.mUrl];
-    } else {
-        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,discountActivityModel.mUrl];
-    }
+    gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,discountActivityModel.mUrl];
     
     [self.navigationController pushViewController:gameViewController animated:YES];
-
-//    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-//    if (appDelegate){
-//        appDelegate.customUrl = discountActivityModel.showLink ;
-//        [self showViewController:[RH_PromoDetailViewController viewController] sender:self] ;
-//    }
 }
 
 #pragma mark -pageView

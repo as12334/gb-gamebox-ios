@@ -52,7 +52,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"url===%@",self.url);
     // Do any additional setup after loading the view from its nib.
     //开始加载网页内容
     //我们自己的游戏需要传入SID
@@ -233,19 +232,32 @@
         [weakSelf loginButtonItemHandle] ;
     };
     
+    jsContext[@"gotoTab"] = ^() {
+        NSArray *args = [JSContext currentArguments];
+        NSString *target;
+        for (JSValue *jsVal in args) {
+            target = jsVal.toString;
+        }
+        if (args[0] != nil) {
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            weakSelf.myTabBarController.selectedIndex = [target intValue] ;
+        }
+    };
+
     jsContext[@"gotoCustom"] = ^(){
         NSArray *args = [JSContext currentArguments];
         JSValue *customUrl;
         for (JSValue *jsVal in args) {
             customUrl = jsVal;
-            NSLog(@"%@", jsVal.toString);
         }
 
         if (args[0] != NULL) {
             NSString *url = customUrl.toString;
             if ([url containsString:@"/login/commonLogin.html"]) {
                 //回到首页并展示登录界面
-                [weakSelf.navigationController popViewControllerAnimated:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.navigationController popViewControllerAnimated:NO];
+                });
                 if (weakSelf.closeAndShowLoginBlock) {
                     weakSelf.closeAndShowLoginBlock();
                 }
@@ -253,7 +265,9 @@
             else if ([url containsString:@"/mainIndex.html"])
             {
                 //回到首页
-                [weakSelf.navigationController popViewControllerAnimated:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.navigationController popViewControllerAnimated:NO];
+                });
                 if (weakSelf.closeBlock) {
                     weakSelf.closeBlock();
                 }
@@ -261,12 +275,7 @@
             else
             {
                 NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-                NSString *urlStr;
-                if (self.appDelegate.demainName.length > 0) {
-                    urlStr = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.demainName,url];
-                } else {
-                    urlStr = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,url];
-                }
+                NSString *urlStr = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.demainName,url];
                 
                 [weakSelf loadWithUrl:urlStr];
             }
@@ -276,20 +285,11 @@
 
 - (void)loadWithUrl:(NSString *)url
 {
-    NSString *domain;
-    //如果有新的域名检测过了就是用新的域名
-    if (self.appDelegate.demainName) {
-        if ([url  containsString:self.appDelegate.demainName]) {
-            domain = self.appDelegate.demainName;
-        }
-    } else {
-        domain = self.appDelegate.headerDomain;
-    }
+    NSString *domain = self.appDelegate.demainName;
     
     NSArray *checkTypeComponents = [self.appDelegate.checkType componentsSeparatedByString:@"+"];
     NSString *preUrl = [NSString stringWithFormat:@"%@://%@",checkTypeComponents[0],domain];
-    NSLog(@"url == %@",url);
-    if ([url hasPrefix:@"http"] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
+    if ([url hasPrefix:preUrl] && ([RH_UserInfoManager shareUserManager].sidString != nil && ![[RH_UserInfoManager shareUserManager].sidString isEqualToString:@""])) {
         NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
         [cookieProperties setObject:domain forKey:NSHTTPCookieDomain];
         [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];

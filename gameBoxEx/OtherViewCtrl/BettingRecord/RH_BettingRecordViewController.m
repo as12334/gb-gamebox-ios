@@ -17,6 +17,7 @@
 #import "RH_BettingInfoModel.h"
 #import "RH_GamesViewController.h"
 #import "GameWebViewController.h"
+#import "CheckTimeManager.h"
 
 //#import "RH_BettingDetailWebController.h"
 @interface RH_BettingRecordViewController ()<BettingRecordHeaderViewDelegate>
@@ -377,22 +378,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        
+        if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
+            //线路正在检测 则提示 正在获取可用线路 请稍后
+            showErrorMessage(self.view, nil, @"正在获取可用线路 请稍后");
+            return ;
+        }
+        if ([CheckTimeManager shared].lotteryLineCheckFail) {
+            showErrorMessage(self.view, nil, @"api线路异常");
+            return ;
+        }
+
         RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
         
         GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
         NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        NSString *url;
-        if (appDelegate.demainName.length > 0) {
-            url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,bettingInfoModel.mURL];
-        } else {
-            url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,bettingInfoModel.mURL];
-        }
-        gameViewController.url = url;
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,bettingInfoModel.mURL];
         [self.navigationController pushViewController:gameViewController animated:YES];
-
-//        self.appDelegate.customUrl = bettingInfoModel.showDetailUrl ;
-//        [self showViewController:[RH_GamesViewController viewControllerWithContext:bettingInfoModel] sender:self] ;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO] ;
 }

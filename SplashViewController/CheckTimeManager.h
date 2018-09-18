@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface CheckTimeManager : NSObject
-@property(nonatomic,copy)NSString *times;
-+(instancetype)shared;
+@property (nonatomic, assign) int times; //重试次数
+@property (nonatomic, assign) BOOL lotteryLineCheckFail; //是否彻底检测失败
+
++ (instancetype)shared;
+
+- (void)cacheLotteryHosts:(NSArray *)cacheHosts;
+- (NSArray *)cacheHosts;
+- (void)clearCaches;
+
 @end
