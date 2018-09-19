@@ -29,6 +29,9 @@ typedef void(^GBCheckAllIPsFailed)(void);
 
 typedef void(^GBShowAdComplete)(void);
 
+typedef void(^GBFetchIPSFromBossComplete)(NSDictionary *ips);
+typedef void(^GBFetchIPSFromBossFailed)(void);
+
 @class StartPageViewController;
 @protocol StartPageViewControllerDelegate
 

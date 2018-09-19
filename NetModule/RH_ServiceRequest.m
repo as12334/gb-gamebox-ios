@@ -2459,6 +2459,60 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 #pragma mark - 获取动态IP列表 该IP列表用于获取check ips
 
+- (void)fetchIPSFromBoss:(NSString *)bossApi host:(NSString *)host times:(int)times invalidIPS:(NSDictionary *)invalidIPS
+{
+    [self _startServiceWithAPIName:bossApi
+                        pathFormat:nil
+                     pathArguments:nil
+                   headerArguments:(host == nil || [host isEqualToString:@""]) ? @{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE]} : @{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE], @"host":host}
+                    queryArguments:times == 0 ? @{RH_SP_COMMON_SITECODE:CODE,
+                                                  RH_SP_COMMON_SITESEC:S,
+                                                  RH_SP_COMMON_OSTYPE:@"ips",
+                                                  }:@{RH_SP_COMMON_SITECODE:CODE,
+                                                      RH_SP_COMMON_SITESEC:S,
+                                                      RH_SP_COMMON_OSTYPE:@"ips",@"times":@(times),@"ips":[self convertToJsonData:invalidIPS]}
+                     bodyArguments:nil
+                          httpType:HTTPRequestTypeGet
+                       serviceType:ServiceRequestTypeFetchIPSFromBoss
+                         scopeType:ServiceScopeTypePublic];
+}
+
+-(NSString *)convertToJsonData:(NSDictionary *)dict{
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString;
+    
+    if (!jsonData) {
+        
+        NSLog(@"%@",error);
+        
+    }else{
+        
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    
+    NSRange range = {0,jsonString.length};
+    
+    //去掉字符串中的空格
+    
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,mutStr.length};
+    
+    //去掉字符串中的换行符
+    
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    return mutStr;
+    
+}
+
 - (void)fetchHost:(NSString *)url
 {
     RH_HTTPRequest * httpRequest = [[RH_HTTPRequest alloc] initWithAPIName:url
@@ -2769,7 +2823,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     
 //    NSData *tmpDatas = ConvertToClassPointer(NSData, data) ;
 //    NSString *tmpResults = [tmpDatas mj_JSONString] ;
-
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
@@ -2905,6 +2958,14 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
     }
     else if (type == ServiceRequestTypeV3RegiestSubmit){
+        NSError * tempError = nil;
+        NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
+                                                                                      error:&tempError] : @{};
+        *reslutData = dataObject ;
+        return YES ;
+    }
+    else if (type == ServiceRequestTypeFetchIPSFromBoss){
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers

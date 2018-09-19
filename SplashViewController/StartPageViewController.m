@@ -172,6 +172,111 @@
     return _errDetailBT;
 }
 
+/**
+ 从boss-api域名获取ips
+
+ @param bossApis bossApi域名数组
+ @param host ip直连需要的域名
+ @param times 尝试次数
+ @param invalidIPS 无效的ips
+ @param complete 成功回调
+ @param failed 失败回调
+ */
+- (void)fetchIPsFromBoss:(NSArray *)bossApis host:(NSString *)host times:(int)times invalidIPS:(NSDictionary *)invalidIPS complete:(GBFetchIPSFromBossComplete)complete failed:(GBFetchIPSFromBossFailed)failed
+{
+    //将此数据随机打乱 减轻服务器压力
+    bossApis = [bossApis sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        int seed = arc4random_uniform(2);
+        if (seed) {
+            return [str1 compare:str2];
+        } else {
+            return [str2 compare:str1];
+        }
+    }];
+    
+    //【串行】获取动态ips
+    __weak typeof(self) weakSelf = self;
+    __block BOOL doNext = YES;
+    __block int failTimes = 0;
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("gb_fetchips_from_boss_queue", NULL);
+    dispatch_semaphore_t sema = dispatch_semaphore_create(1);
+
+    for (NSString *bossApi in bossApis) {
+        dispatch_group_async(group, queue, ^{
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            if (doNext != YES) {
+                //先检测是否需要继续执行 不需要执行则直接跳过本线程
+                dispatch_semaphore_signal(sema);
+                return ;
+            }
+            NSLog(@">>>start fetch IPS from boss: %@",bossApi);
+            
+            [weakSelf.serviceRequest fetchIPSFromBoss:bossApi host:host times:times invalidIPS:invalidIPS];
+            weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+                if (type == ServiceRequestTypeFetchIPSFromBoss) {
+                    if (data) {
+                        //已从boss-api获取到ips，执行回调
+                        NSDictionary *ips = ConvertToClassPointer(NSDictionary, data);
+                        if (ips) {
+                            NSLog(@">>>已从%@获取到IPS，执行回调",bossApi);
+                            //如果是域名方式获取到ips
+                            //则将获本次成功获取ips的bossApi记录
+                            if (host == nil || [host isEqualToString:@""]) {
+                                [IPsCacheManager sharedManager].bossDomainApi = bossApi;
+                            }
+                            if (complete) {
+                                complete(ips);
+                            }
+                            doNext = NO;
+                            weakSelf.progress += 0.1;
+                        }
+                        else
+                        {
+                            NSLog(@">>>从%@未获取到IPS，继续下一次获取...",bossApi);
+                            doNext = YES;
+                            failTimes++;
+                            weakSelf.progress += 0.1;
+                            if (failTimes == bossApis.count) {
+                                if (failed) {
+                                    failed();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NSLog(@">>>从%@未获取到IPS，继续下一次获取...",bossApi);
+                        doNext = YES;
+                        failTimes++;
+                        weakSelf.progress += 0.1;
+                        if (failTimes == bossApis.count) {
+                            if (failed) {
+                                failed();
+                            }
+                        }
+                    }
+                    dispatch_semaphore_signal(sema);
+                }
+            };
+            weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+                if (type == ServiceRequestTypeFetchIPSFromBoss) {
+                    NSLog(@">>>从%@未获取到IPS，继续下一次获取...",bossApi);
+                    doNext = YES;
+                    weakSelf.progress += 0.1;
+                    failTimes++;
+                    if (failTimes == bossApis.count) {
+                        if (failed) {
+                            failed();
+                        }
+                    }
+                    dispatch_semaphore_signal(sema);
+                }
+            };
+        });
+    }
+}
+
 //先从三个固定的链接获取动态ip地址
 //该动态ip地址用于获取check ip列表
 //以此减轻服务端压力
@@ -342,71 +447,104 @@
     }
     else
     {
-        //先从获取动态HOST
-        [self fetchHost:^(NSDictionary *host) {
-            //缓存bossApi
-            [[IPsCacheManager sharedManager] updateBossApiList:host];
-            
-            NSString *hostName = [host objectForKey:@"host"];
-            
-            //将此数据随机打乱 减轻服务器压力
-            NSArray *hostips = [host objectForKey:@"ips"];
-            hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
-                int seed = arc4random_uniform(2);
-                if (seed) {
-                    return [str1 compare:str2];
-                } else {
-                    return [str2 compare:str1];
+        //先从boss-api提供域名访问方式获取ips进行check
+        //获取成功则直接check
+        //获取失败则走DNS获取boss-api进行ip直连
+        NSArray *bossApis = @[@"https://apiplay.info:1344/boss-api/app/line.html",
+                              @"https://hpdbtopgolddesign.com:1344/boss-api/app/line.html",
+                              @"https://agpicdance.info:1344/boss-api/app/line.html"];
+        [self fetchIPsFromBoss:bossApis host:nil times:0 invalidIPS:nil complete:^(NSDictionary *ips) {
+            //成功后直接check
+            //采用bossApi域名方式重试
+            [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossDomainApi host:nil];
+        } failed:^{
+            //失败以后从DNS获取boss-api
+            [self fetchHost:^(NSDictionary *host) {
+                //缓存bossApi
+                [[IPsCacheManager sharedManager] updateBossApiList:host];
+                
+                NSString *hostName = [host objectForKey:@"host"];
+                
+                //将此数据随机打乱 减轻服务器压力
+                NSArray *hostips = [host objectForKey:@"ips"];
+                hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+                    int seed = arc4random_uniform(2);
+                    if (seed) {
+                        return [str1 compare:str2];
+                    } else {
+                        return [str2 compare:str1];
+                    }
+                }];
+                
+                NSMutableArray *hostUrlArr = [NSMutableArray array];
+                for (NSString *hostip in hostips) {
+                    NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
+                    [hostUrlArr addObject:hostUrl];
                 }
-            }];
-            
-            NSMutableArray *hostUrlArr = [NSMutableArray array];
-            for (NSString *hostip in hostips) {
-                NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
-                [hostUrlArr addObject:hostUrl];
-            }
-            
-            weakSelf.progressNote = @"正在检查线路,请稍候";
-            
-            //从动态域名列表依次尝试获取ip列表
-            [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
-                weakSelf.progress = 0.3;
                 
-                //从某个固定域名列表获取到了ip列表
-                //根据优先级并发check
-                /**
-                 * 优先级
-                 * 1 https+8989
-                 * 2 http+8787
-                 * 3 https
-                 * 4 http
-                 */
-                NSString *resultDomain = [ips objectForKey:@"domain"];
-                RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                [appDelegate updateHeaderDomain:resultDomain];
+                weakSelf.progressNote = @"正在检查线路,请稍候";
                 
-                NSArray *ipList = [ips objectForKey:@"ips"];
-                
-                //多ip地址【异步并发】check 但check的优先级是【串行】的
-                //使用NSOperationQueue 方便取消后续执行
-                
-                //check iplist
-                weakSelf.progressNote = @"正在匹配服务器...";
-                [weakSelf checkAllIP:ipList complete:^{
-                    [weakSelf startPageComplete];
+                //从动态域名列表依次尝试获取ip列表
+                [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+                    weakSelf.progress = 0.3;
+                    [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossApi host:hostName];
                 } failed:^{
-                    weakSelf.currentErrCode = @"003";
+                    //从所有的固定域名列表没有获取到ip列表
+                    weakSelf.progress = 0;
+                    weakSelf.currentErrCode = @"002";
                 }];
             } failed:^{
-                //从所有的固定域名列表没有获取到ip列表
                 weakSelf.progress = 0;
-                weakSelf.currentErrCode = @"002";
+                weakSelf.currentErrCode = @"001";
             }];
-        } failed:^{
-            weakSelf.progress = 0;
-            weakSelf.currentErrCode = @"001";
         }];
     }
+}
+
+//checkips 失败则重试
+- (void)checkIPSAndRetry:(NSDictionary *)checkingIPS retryBossApiUrl:(NSString *)url host:(NSString *)host
+{
+    //从某个固定域名列表获取到了ip列表
+    //根据优先级并发check
+    /**
+     * 优先级
+     * 1 https+8989
+     * 2 http+8787
+     * 3 https
+     * 4 http
+     */
+    __weak typeof(self) weakSelf = self;
+
+    NSString *resultDomain = [checkingIPS objectForKey:@"domain"];
+    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+    [appDelegate updateHeaderDomain:resultDomain];
+    
+    NSArray *ipList = [checkingIPS objectForKey:@"ips"];
+    
+    //多ip地址【异步并发】check 但check的优先级是【串行】的
+    //使用NSOperationQueue 方便取消后续执行
+    
+    //check iplist
+    self.progressNote = @"正在匹配服务器...";
+    [self checkAllIP:ipList complete:^{
+        [weakSelf startPageComplete];
+    } failed:^{
+        //check失败后重试获取ips
+        if ([IPsCacheManager sharedManager].retryFetchIPSTimes > 3 || ipList.count <10) {
+            //重试次数大于三次则不在重试 或者 每次拿到的ip小于10条
+            weakSelf.currentErrCode = @"003";
+            return ;
+        }
+        
+        //重试次数自增1
+        [IPsCacheManager sharedManager].retryFetchIPSTimes++;
+        [weakSelf fetchIPsFromBoss:@[url] host:host times:[IPsCacheManager sharedManager].retryFetchIPSTimes invalidIPS:checkingIPS complete:^(NSDictionary *ips) {
+            //递归调用check方法
+            [weakSelf checkIPSAndRetry:ips retryBossApiUrl:url host:host];
+        } failed:^{
+            weakSelf.currentErrCode = @"003";
+        }];
+    }];
 }
 
 /**
@@ -451,6 +589,8 @@
                 [appDelegate updateApiDomain:domain];
                 
                 [[IPsCacheManager sharedManager] updateIPsList:resultIPs];
+                //记录是哪条线路获取到了ips
+                [IPsCacheManager sharedManager].bossApi = domain;
                 
                 NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
                 if (resultIPs != nil) {
@@ -644,7 +784,7 @@
 
 - (void)startPageComplete
 {
-    [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5*60/30 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     

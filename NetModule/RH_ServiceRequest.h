@@ -132,6 +132,7 @@ typedef NS_ENUM(NSInteger, ServiceRequestType) {
     ServiceRequestTypeV3INITAD,            //初始化广告
     ServiceRequestTypeFetchHost,        //获取动态HOST
     ServiceRequestTypeFetchH5Ip,        //获取特殊ip
+    ServiceRequestTypeFetchIPSFromBoss,        //获取特殊ip
 };
 
 
@@ -661,6 +662,8 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 - (void)bindPhoneSendCode:(NSString *)phone;
 - (void)bindPhone:(NSString *)phone originalPhone:(NSString *)originalPhone code:(NSString *)code;
 
+#pragma mark - 从boss-api获取ips
+- (void)fetchIPSFromBoss:(NSString *)bossApi host:(NSString *)host times:(int)times invalidIPS:(NSDictionary *)invalidIPS;
 #pragma mark - 动态获取HOST
 - (void)fetchHost:(NSString *)url;
 #pragma mark--

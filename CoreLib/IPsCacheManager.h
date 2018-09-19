@@ -12,6 +12,10 @@
 
 + (instancetype)sharedManager;
 
+@property (nonatomic, assign) int retryFetchIPSTimes; //获取ips的重试次数
+@property (nonatomic, strong) NSString *bossDomainApi; //用于获取IPS的bossApi域名
+@property (nonatomic, strong) NSString *bossApi; //用于获取IPS的bossApi ip直连方式
+
 //缓存的IP是否还有效
 - (BOOL)isIPsValid;
 
@@ -29,5 +33,11 @@
 
 //更新bossApi
 - (void)updateBossApiList:(NSDictionary *)bossApis;
+
+////获取缓存的bossApi(域名)
+//- (NSString *)bossDomainApi;
+//
+////缓存bossApi(域名)
+//- (void)updateBossDomainApi:(NSString *)bossDomainApi;
 
 @end
