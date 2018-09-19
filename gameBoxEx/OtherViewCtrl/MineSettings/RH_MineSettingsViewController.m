@@ -133,10 +133,18 @@
 {
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                if (iResCode == 0) {
+                    NSLog(@"删除成功");
+                }else{
+                    NSLog(@"%@",iAlias);
+                }
+            } seq:1];
             showMessage_b(self.view, @"用户已成功退出", nil, ^{
 //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults] ;
 //                [defaults removeObjectForKey:@"password"];
 //                [defaults synchronize] ;
+                
                 [self backBarButtonItemHandle] ;
             });
         }] ;
@@ -148,6 +156,13 @@
     if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if (error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code == RH_API_ERRORCODE_SESSION_TAKEOUT || error.code == RH_API_ERRORCODE_SESSION_EXPIRED){
+                [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                    if (iResCode == 0) {
+                        NSLog(@"删除成功");
+                    }else{
+                        NSLog(@"%@",iAlias);
+                    }
+                } seq:1];
                 [self.appDelegate updateLoginStatus:NO] ;
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
                 [self backBarButtonItemHandle] ;

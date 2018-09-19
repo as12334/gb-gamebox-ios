@@ -404,12 +404,29 @@
             NSDictionary *dict = ConvertToClassPointer(NSDictionary, data) ;
             if ([dict boolValueForKey:@"success" defaultValue:FALSE]){
                 [self.appDelegate updateLoginStatus:YES] ;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSString *account = [defaults stringForKey:@"account"] ;
+                //设置jpush别名
+                [JPUSHService setAlias:account completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                    if (iResCode == 0) {
+                        NSLog(@"别名设置成功");
+                    }else{
+                        NSLog(@"别名设置失败");
+                    }
+                } seq:1];
             }else{
                 [self.appDelegate updateLoginStatus:NO] ;
             }
         }] ;
     }else if (type == ServiceRequestTypeV3UserLoginOut){
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+            [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                if (iResCode == 0) {
+                    NSLog(@"删除成功");
+                }else{
+                    NSLog(@"%@",iAlias);
+                }
+            } seq:1];
             showSuccessMessage(self.view, @"用户已成功退出",nil) ;
         }] ;
     }else if (type == ServiceRequestTypeV3GETUSERASSERT)
@@ -438,6 +455,13 @@
         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
             if (error.code==RH_API_ERRORCODE_USER_LOGOUT || error.code == RH_API_ERRORCODE_SESSION_TAKEOUT || error.code == RH_API_ERRORCODE_SESSION_EXPIRED){
                 [self.appDelegate updateLoginStatus:NO] ;
+                [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                    if (iResCode == 0) {
+                        NSLog(@"删除成功");
+                    }else{
+                        NSLog(@"%@",iAlias);
+                    }
+                } seq:1];
                 showSuccessMessage(self.view, @"用户已成功退出",nil) ;
             }else{
                 showErrorMessage(self.view, error, @"退出失败") ;
