@@ -27,11 +27,6 @@
     [self.tableView registerCellWithClass:[RH_UserInfoTotalCell class]] ;
     [self.tableView registerCellWithClass:[RH_UserInfoGengeralCell class]] ;
     
-    self.tableView.backgroundColor = colorWithRGB(68, 68, 68) ;
-
-
-    
-    
     self.tableView.delegate = self ;
     self.tableView.dataSource = self ;
     
@@ -39,16 +34,16 @@
         self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
     }else if ([THEMEV3 isEqualToString:@"red"]){
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
-        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+        
     }else if ([THEMEV3 isEqualToString:@"black"]){
          self.btnRetrive.backgroundColor = colorWithRGB(35, 119, 214);
-        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+        
     }else if ([THEMEV3 isEqualToString:@"blue"]){
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
-        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+        
     }else if ([THEMEV3 isEqualToString:@"orange"]){
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
-        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+        
     }else if ([THEMEV3 isEqualToString:@"red_white"]){
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White;
     }else if ([THEMEV3 isEqualToString:@"green_white"]){
@@ -59,7 +54,7 @@
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
     }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
         self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
-        self.tableView.backgroundColor = colorWithRGB(68, 68, 68);
+        
     }else{
          self.btnRetrive.backgroundColor = RH_NavigationBar_BackgroundColor;
     }
@@ -108,7 +103,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) return 1 ;
-    return MineSettingInfo.mApisBalanceList.count ;
+    return MineSettingInfo.mApisBalanceList.count ; 
 }
 
 
