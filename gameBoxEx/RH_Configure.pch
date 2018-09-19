@@ -19,7 +19,7 @@
 #pragma mark- 运行环境配制
 
 #define IS_DEV_SERVER_ENV                               0
-#define IS_TEST_SERVER_ENV                              1
+#define IS_TEST_SERVER_ENV                              0
 
 //开发环境
 #if  IS_DEV_SERVER_ENV
@@ -3942,6 +3942,26 @@
 #define S        @"a846b0664f4d181b15cb19da667b21fd"
 #define SID        @"736"
 #define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _uqgx //澳门金沙
+
+#define CODE    @"uqgx"
+#define S        @"45ff5f5fbfa6aec841f858e426e450aa"
+#define SID        @"733"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _vrgv //澳门新葡京官网
+
+#define CODE    @"vrgv"
+#define S        @"adb1aedfcb67820f897443f8740d248d"
+#define SID        @"719"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
