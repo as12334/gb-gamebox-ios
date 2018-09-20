@@ -3994,6 +3994,36 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+
+#elif _0ixl //澳门威尼斯人娱乐场
+
+#define CODE    @"0ixl"
+#define S        @"61f8d54f42ba6906730205db99c01970"
+#define SID        @"730"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _utpk //至尊娱乐
+
+#define CODE    @"utpk"
+#define S        @"241ec125c8c7d77d981f0d7bb608fefa"
+#define SID        @"750"
+#define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ktad //万博体育
+
+#define CODE    @"ktad"
+#define S        @"fe130d7286180ccc21ba3006ad635b58"
+#define SID        @"752"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
