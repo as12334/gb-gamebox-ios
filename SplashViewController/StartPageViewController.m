@@ -784,7 +784,7 @@
 
 - (void)startPageComplete
 {
-    [NSTimer scheduledTimerWithTimeInterval:5*60/30 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
