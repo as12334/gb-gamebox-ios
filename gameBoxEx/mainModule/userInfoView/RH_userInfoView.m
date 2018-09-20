@@ -33,7 +33,7 @@
     [self.tableView registerCellWithClass:[RH_UserInfoGengeralCell class]] ;
     
     self.tableView.backgroundColor = colorWithRGB(68, 68, 68) ;
-    
+    self.backgroundColor = colorWithRGB(68, 68, 68) ;
     self.tableView.delegate = self ;
     self.tableView.dataSource = self ;
     
