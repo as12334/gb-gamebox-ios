@@ -86,7 +86,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)dealwithCrashMessage:(NSNotification *)note {
     NSDictionary *dic = ConvertToClassPointer(NSDictionary, note.userInfo);
     //收集错误信息
-    [[RH_CheckAndCrashHelper shared]uploadJournalWithMessages:@[@{RH_SP_COLLECTAPPERROR_DOMAIN:self.domain,RH_SP_COLLECTAPPERROR_CODE:CODE,RH_SP_COLLECTAPPERROR_ERRORMESSAGE:[NSString stringWithFormat:@"crashReason:%@;crashPlace:%@",dic[@"errorReason"],dic[@"errorPlace"]],RH_SP_COLLECTAPPERROR_TYPE:@"2"}]];
+    [[RH_CheckAndCrashHelper shared]uploadJournalWithMessages:@[@{RH_SP_COLLECTAPPERROR_DOMAIN:self.domain==nil ? @"" : self.domain,RH_SP_COLLECTAPPERROR_CODE:CODE,RH_SP_COLLECTAPPERROR_ERRORMESSAGE:[NSString stringWithFormat:@"crashReason:%@;crashPlace:%@",dic[@"errorReason"],dic[@"errorPlace"]],RH_SP_COLLECTAPPERROR_TYPE:@"2"}]];
 }
 //jpush初始化
 -(void)jpushInit{
