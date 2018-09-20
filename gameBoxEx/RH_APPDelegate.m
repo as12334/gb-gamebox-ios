@@ -41,7 +41,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //崩溃日志
      [self avoidCrash];
     //jpush
-    [self jpushInit];
+    if ([SID intValue] == 119 || [SID intValue] == 270) {
+        [self jpushInit];
+    }
     //清理缓存的临时和缓存数据数据
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeTemp cacheFileFloderName:nil];
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeCaches cacheFileFloderName:nil];
