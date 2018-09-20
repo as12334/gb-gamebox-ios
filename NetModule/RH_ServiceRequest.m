@@ -197,22 +197,22 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                              scopeType:ServiceScopeTypePublic];
 }
 
--(void)startUpdateCheck
-{
-    [self _startServiceWithAPIName:self.appDelegate.apiDomain
-                        pathFormat:@"app/update.html"
-                     pathArguments:nil
-                   headerArguments:@{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE],
-                                     @"Host":self.appDelegate.headerDomain
-                                     }
-                    queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
-                                     RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
-                                     }
-                     bodyArguments:nil
-                          httpType:HTTPRequestTypeGet
-                       serviceType:ServiceRequestTypeUpdateCheck
-                         scopeType:ServiceScopeTypePublic];
-}
+//-(void)startUpdateCheck
+//{
+//    [self _startServiceWithAPIName:self.appDelegate.apiDomain
+//                        pathFormat:@"app/update.html"
+//                     pathArguments:nil
+//                   headerArguments:@{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE],
+//                                     @"Host":self.appDelegate.headerDomain
+//                                     }
+//                    queryArguments:@{RH_SP_COMMON_OSTYPE:@"ios",
+//                                     RH_SP_COMMON_CHECKVERSION:RH_APP_UPDATECHECK
+//                                     }
+//                     bodyArguments:nil
+//                          httpType:HTTPRequestTypeGet
+//                       serviceType:ServiceRequestTypeUpdateCheck
+//                         scopeType:ServiceScopeTypePublic];
+//}
 #pragma mark ==============updateCheck================
 -(void)startV3UpdateCheck
 {

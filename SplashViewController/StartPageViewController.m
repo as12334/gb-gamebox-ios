@@ -283,7 +283,6 @@
 
 - (void)fetchHost:(GBFetchHostComplete)complete failed:(GBFetchHostFailed)failed
 {
-    self.progressNote = @"正在获取服务器列表...";
     self.progress += 0.1;
     NSArray *hosts = @[@"http://203.107.1.33/194768/d?host=apiplay.info",
                        @"http://203.107.1.33/194768/d?host=hpdbtopgolddesign.com",
@@ -391,7 +390,6 @@
         NSArray *ipList = ConvertToClassPointer(NSArray, [[ips objectForKey:@"ips"] objectForKey:@"ips"]);
         
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-        [appDelegate updateApiDomain:[ips objectForKey:@"apiDomain"]];
         [appDelegate updateHeaderDomain:[[ips objectForKey:@"ips"] objectForKey:@"domain"]];
         
         //check iplist
@@ -447,6 +445,9 @@
     }
     else
     {
+        self.progressNote = @"正在获取服务器列表...";
+        self.progress = 0.1;
+
         //先从boss-api提供域名访问方式获取ips进行check
         //获取成功则直接check
         //获取失败则走DNS获取boss-api进行ip直连
@@ -456,6 +457,8 @@
         [self fetchIPsFromBoss:bossApis host:nil times:0 invalidIPS:nil complete:^(NSDictionary *ips) {
             //成功后直接check
             //采用bossApi域名方式重试
+            [[IPsCacheManager sharedManager] updateIPsList:ips];
+
             [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossDomainApi host:nil];
         } failed:^{
             //失败以后从DNS获取boss-api
@@ -585,8 +588,6 @@
                 
                 ///
                 //缓存ips和apiDomain
-                RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-                [appDelegate updateApiDomain:domain];
                 
                 [[IPsCacheManager sharedManager] updateIPsList:resultIPs];
                 //记录是哪条线路获取到了ips
@@ -784,7 +785,7 @@
 
 - (void)startPageComplete
 {
-    [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5*60/30 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
@@ -809,36 +810,58 @@
     __weak typeof(self) weakSelf = self;
     if ([[CheckTimeManager shared] cacheHosts]) {
         //有缓存 直接check
-        [self checkLotteryHost:[[CheckTimeManager shared] cacheHosts]];
+        [self checkLotteryHost:[[CheckTimeManager shared] cacheHosts] complete:^(NSString *h5Host) {
+            //
+        } failed:^{
+            //
+            [CheckTimeManager shared].lotteryLineCheckFail = YES;
+        }];
     }
     else
     {
-        [self.serviceRequest fetchH5ip:[CheckTimeManager shared].times];
-        self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
-            if (type == ServiceRequestTypeFetchH5Ip) {
-                NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
-                if (dic != nil && ![dic[@"data"] isKindOfClass:[NSNull class]]) {
-                    NSArray *hosts = dic[@"data"];
-                    //测试数据 让其强制进行第二次检测做测试
-//                    hosts = @[@"9988xx.com",@"9977xx.com"];
-                    [[CheckTimeManager shared] cacheLotteryHosts:hosts];
-                    [weakSelf checkLotteryHost:hosts];
+        //先check本身的域名
+        //不成功则去取新的check
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+        NSString *apiHost = appDelegate.headerDomain;
+        
+        [self checkLotteryHost:@[apiHost] complete:^(NSString *h5Host) {
+            [[CheckTimeManager shared] cacheLotteryHosts:@[apiHost]];
+
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomainName:apiHost];
+        } failed:^{
+            [weakSelf.serviceRequest fetchH5ip:[CheckTimeManager shared].times];
+            weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
+                if (type == ServiceRequestTypeFetchH5Ip) {
+                    NSDictionary *dic = ConvertToClassPointer(NSDictionary, data);
+                    if (dic != nil && ![dic[@"data"] isKindOfClass:[NSNull class]]) {
+                        NSArray *hosts = dic[@"data"];
+                        //测试数据 让其强制进行第二次检测做测试
+                        //                    hosts = @[@"9988xx.com",@"9977xx.com"];
+                        [[CheckTimeManager shared] cacheLotteryHosts:hosts];
+                        [weakSelf checkLotteryHost:hosts complete:^(NSString *h5Host) {
+                            //
+                        } failed:^{
+                            //
+                            [CheckTimeManager shared].lotteryLineCheckFail = YES;
+                        }];
+                    }
+                    else
+                    {
+                        [CheckTimeManager shared].lotteryLineCheckFail = YES;
+                    }
                 }
-                else
-                {
+            };
+            weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
+                if (type == ServiceRequestTypeFetchH5Ip) {
                     [CheckTimeManager shared].lotteryLineCheckFail = YES;
                 }
-            }
-        };
-        weakSelf.serviceRequest.failBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, NSError *error) {
-            if (type == ServiceRequestTypeFetchH5Ip) {
-                [CheckTimeManager shared].lotteryLineCheckFail = YES;
-            }
-        };
+            };
+        }];
     }
 }
 
-- (void)checkLotteryHost:(NSArray *)hosts
+- (void)checkLotteryHost:(NSArray *)hosts complete:(GBCheckH5LineComplete)complete failed:(GBCheckH5LineFailed)failed
 {
     __weak typeof(self) weakSelf = self;
 
@@ -855,6 +878,9 @@
                         NSLog(@">>>获取到彩票可用域名：%@",host);
                         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
                         [appDelegate updateDomainName:host];
+                        if (complete) {
+                            complete(host);
+                        }
                         //todo
 #warning 这里是专门给test71的 打test71的时候一定要打开
 //                                                        [appDelegate updateDomainName:@"test71.hongtubet.com"];
@@ -878,7 +904,9 @@
                         else
                         {
                             NSLog(@">>>彩票线路检测完全失败。");
-                            [CheckTimeManager shared].lotteryLineCheckFail = YES;
+                            if (failed) {
+                                failed();
+                            }
                         }
                     }
                     dispatch_semaphore_signal(semaphore);
@@ -967,30 +995,8 @@
     }
     else
     {
-        NSDictionary *host = [[IPsCacheManager sharedManager] bossApis];
-        if (host) {
-            NSString *hostName = [host objectForKey:@"host"];
-            
-            //将此数据随机打乱 减轻服务器压力
-            NSArray *hostips = [host objectForKey:@"ips"];
-            hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
-                int seed = arc4random_uniform(2);
-                if (seed) {
-                    return [str1 compare:str2];
-                } else {
-                    return [str2 compare:str1];
-                }
-            }];
-            
-            NSMutableArray *hostUrlArr = [NSMutableArray array];
-            for (NSString *hostip in hostips) {
-                NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
-                [hostUrlArr addObject:hostUrl];
-            }
-            
-            //从动态域名列表依次尝试获取ip列表
-            [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
-                
+        if ([IPsCacheManager sharedManager].bossDomainApi) {
+            [self fetchIPsFromBoss:@[[IPsCacheManager sharedManager].bossDomainApi] host:nil times:0 invalidIPS:nil complete:^(NSDictionary *ips) {
                 //从某个固定域名列表获取到了ip列表
                 //根据优先级并发check
                 /**
@@ -1015,8 +1021,62 @@
                 } failed:^{
                 }];
             } failed:^{
-                //从所有的固定域名列表没有获取到ip列表
+                //
             }];
+        }
+        else
+        {
+            NSDictionary *host = [[IPsCacheManager sharedManager] bossApis];
+            if (host) {
+                NSString *hostName = [host objectForKey:@"host"];
+                
+                //将此数据随机打乱 减轻服务器压力
+                NSArray *hostips = [host objectForKey:@"ips"];
+                hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+                    int seed = arc4random_uniform(2);
+                    if (seed) {
+                        return [str1 compare:str2];
+                    } else {
+                        return [str2 compare:str1];
+                    }
+                }];
+                
+                NSMutableArray *hostUrlArr = [NSMutableArray array];
+                for (NSString *hostip in hostips) {
+                    NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
+                    [hostUrlArr addObject:hostUrl];
+                }
+                
+                //从动态域名列表依次尝试获取ip列表
+                [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+                    
+                    //从某个固定域名列表获取到了ip列表
+                    //根据优先级并发check
+                    /**
+                     * 优先级
+                     * 1 https+8989
+                     * 2 http+8787
+                     * 3 https
+                     * 4 http
+                     */
+                    NSString *resultDomain = [ips objectForKey:@"domain"];
+                    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                    [appDelegate updateHeaderDomain:resultDomain];
+                    
+                    NSArray *ipList = [ips objectForKey:@"ips"];
+                    
+                    //多ip地址【异步并发】check 但check的优先级是【串行】的
+                    //使用NSOperationQueue 方便取消后续执行
+                    
+                    //check iplist
+                    [weakSelf checkAllIP:ipList complete:^{
+                        //check完成
+                    } failed:^{
+                    }];
+                } failed:^{
+                    //从所有的固定域名列表没有获取到ip列表
+                }];
+            }
         }
     }
 }

@@ -58,12 +58,10 @@
 {
     if (ips != nil) {
         //记录当前时间戳
-        RH_APPDelegate *appDelegate = (RH_APPDelegate *)[UIApplication sharedApplication].delegate;
         NSTimeInterval cachingTime =  [[NSDate date] timeIntervalSince1970];
         NSDictionary *ipsCacheDic = @{
                                       @"ips":ips,
                                       @"cachingTime":@(cachingTime),
-                                      @"apiDomain":appDelegate.apiDomain,
                                       @"code":CODE
                                       };
         [[NSUserDefaults standardUserDefaults] setObject:ipsCacheDic forKey:@"GB_IPS_CACHE_DATA"];

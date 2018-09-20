@@ -207,12 +207,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     }
 }
 
--(void)updateApiDomain:(NSString*)apiDomain
-{
-    if (_apiDomain.length==0){
-        _apiDomain = apiDomain;
-    }
-}
 -(void)updateHeaderDomain:(NSString *)headerDomain
 {
     if (_headerDomain.length==0) {

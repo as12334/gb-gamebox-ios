@@ -34,10 +34,4 @@
 //更新bossApi
 - (void)updateBossApiList:(NSDictionary *)bossApis;
 
-////获取缓存的bossApi(域名)
-//- (NSString *)bossDomainApi;
-//
-////缓存bossApi(域名)
-//- (void)updateBossDomainApi:(NSString *)bossDomainApi;
-
 @end

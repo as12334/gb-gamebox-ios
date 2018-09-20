@@ -32,6 +32,9 @@ typedef void(^GBShowAdComplete)(void);
 typedef void(^GBFetchIPSFromBossComplete)(NSDictionary *ips);
 typedef void(^GBFetchIPSFromBossFailed)(void);
 
+typedef void(^GBCheckH5LineComplete)(NSString *h5Host);
+typedef void(^GBCheckH5LineFailed)(void);
+
 @class StartPageViewController;
 @protocol StartPageViewControllerDelegate
 
