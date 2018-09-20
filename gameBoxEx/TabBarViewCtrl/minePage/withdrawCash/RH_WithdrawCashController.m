@@ -63,11 +63,9 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.hiddenTabBar = YES;
-    self.hiddenNavigationBar = YES;
-//    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
-//    self.navigationBarItem.rightBarButtonItem = itembar;
-//    self.title = @"取款";
+    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
+    self.navigationBarItem.rightBarButtonItem = itembar;
+    self.title = @"取款";
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
