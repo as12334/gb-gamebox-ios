@@ -3965,6 +3965,26 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+
+#elif _ruuh //威尼斯人娱乐城
+
+#define CODE    @"ruuh"
+#define S        @"09d835bf9dfac8ea9f6028fedecb5eee"
+#define SID        @"728"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _bsrz //188金宝博
+
+#define CODE    @"bsrz"
+#define S        @"a3162eb524c1d919287abecb843f4e79"
+#define SID        @"726"
+#define THEMEV3     @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
