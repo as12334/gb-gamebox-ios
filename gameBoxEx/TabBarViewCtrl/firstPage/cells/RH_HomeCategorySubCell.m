@@ -49,6 +49,20 @@
 
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
+    if (selected) {
+        [UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations: ^{
+            [UIView addKeyframeWithRelativeStartTime:1/3.0 relativeDuration:1/3.0 animations: ^{
+                self.imgIcon.transform = CGAffineTransformMakeScale(1.3, 1.3);
+            }];
+        } completion:nil];
+    } else {
+        [UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations:^{
+            [UIView addKeyframeWithRelativeStartTime:1/3.0 relativeDuration:1/3.0 animations:^{
+                self.imgIcon.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            }];
+        } completion:nil];
+    }
+    
     [super setSelected:selected animated:animated] ;
     self.indicatorImgView.hidden = !selected ;
     if (selected) {

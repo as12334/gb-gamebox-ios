@@ -115,7 +115,6 @@
     if (!_webView) {
         _webView = [[UIWebView alloc]init];
         _webView.delegate = self;
-        [_webView setScalesPageToFit:NO];
     }
     return _webView;
 }
@@ -125,7 +124,6 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [self.webView setScalesPageToFit:NO];
-
 //    if ([SID isEqualToString:@"119"] || [SID isEqualToString:@"270"]|| [SID isEqualToString:@"511"]) {
 //        self.webView.scrollView.contentInset = UIEdgeInsetsMake(MainScreenH==812?20.0:0.0, 0, self.isHiddenTabBar?0:49+heighStatusBar, 0);
 //    }else if ([SID isEqualToString:@"500"]||[SID isEqualToString:@"501"]){

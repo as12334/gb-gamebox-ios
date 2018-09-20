@@ -14,7 +14,6 @@
 @interface RH_userInfoView ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) IBOutlet UITableView *tableView ;
 @property(nonatomic,strong) IBOutlet UIButton *btnRetrive   ;
-@property(nonatomic,strong) IBOutlet UIButton *btnSave      ;
 
 @end
 
@@ -22,8 +21,8 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib] ;
-    self.borderMask = CLBorderMarkAll ;
-    self.borderColor = colorWithRGB(204, 204, 204) ;
+//    self.borderMask = CLBorderMarkAll ;
+//    self.borderColor = colorWithRGB(204, 204, 204) ;
 //    if ([THEMEV3 isEqualToString:@"black"]||[THEMEV3 isEqualToString:@"green"]||[THEMEV3 isEqualToString:@"blue"]||[THEMEV3 isEqualToString:@"red"]||[THEMEV3 isEqualToString:@"coffee_black"]) {
 //        self.borderColor = colorWithRGB(85, 85, 85) ;
 //    }
@@ -32,6 +31,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
     [self.tableView registerCellWithClass:[RH_UserInfoTotalCell class]] ;
     [self.tableView registerCellWithClass:[RH_UserInfoGengeralCell class]] ;
+    
+    self.tableView.backgroundColor = colorWithRGB(68, 68, 68) ;
     
     self.tableView.delegate = self ;
     self.tableView.dataSource = self ;
@@ -70,10 +71,10 @@
     [self.btnRetrive setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
     [self.btnRetrive.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;
     
-    self.btnSave.backgroundColor = colorWithRGB(14, 195, 146) ;
-    self.btnSave.layer.cornerRadius = 5.0f ;
-    [self.btnSave setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
-    [self.btnSave.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;
+//    self.btnSave.backgroundColor = colorWithRGB(14, 195, 146) ;
+//    self.btnSave.layer.cornerRadius = 5.0f ;
+//    [self.btnSave setTitleColor:colorWithRGB(239, 239, 239) forState:UIControlStateNormal] ;
+//    [self.btnSave.titleLabel setFont:[UIFont systemFontOfSize:15.0f]] ;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotificatin:)
@@ -118,6 +119,17 @@
 //    return GetUseAssertInfo.mApisBalanceList.count ;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        return 12;
+    }
+    return 0;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    view.tintColor = [UIColor clearColor];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
@@ -138,7 +150,13 @@
         RH_UserInfoGengeralCell *userInfoGeneralCell = [tableView dequeueReusableCellWithIdentifier:[RH_UserInfoGengeralCell defaultReuseIdentifier]] ;
         if (indexPath.item < MineSettingInfo.mApisBalanceList.count){
             [userInfoGeneralCell updateCellWithInfo:nil context:MineSettingInfo.mApisBalanceList[indexPath.item]] ;
-//             [userInfoGeneralCell updateCellWithInfo:nil context:GetUseAssertInfo.mApisBalanceList[indexPath.item]] ;
+            RH_UserApiBalanceModel *model = MineSettingInfo.mApisBalanceList[indexPath.item] ;
+            
+            NSInteger index = (NSInteger)(indexPath.row/+1)%2;
+            [model setIndex:index];
+            if (index == 1) {
+                userInfoGeneralCell.contentView.backgroundColor = colorWithRGB(95, 100, 104);
+            }
         }
         return userInfoGeneralCell ;
     }

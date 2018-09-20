@@ -38,6 +38,7 @@
 #import "SH_WKGameViewController.h"
 #import "GameWebViewController.h"
 #import "CheckTimeManager.h"
+#import "NSString+CLCategory.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,
@@ -213,23 +214,9 @@
 {
     [advertisementView hideAdvertisementView] ;
     
-    GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-    NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-    
-    RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
-    NSString *url;
-    if (appDelegate.demainName.length > 0) {
-        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,phoneModel.link];
-    } else {
-        url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.headerDomain,phoneModel.link];
-    }
-    gameViewController.url = url;
+    SH_WKGameViewController *gameViewController = [[SH_WKGameViewController alloc] initWithNibName:nil bundle:nil];
+    gameViewController.url = phoneModel.link;
     [self.navigationController pushViewController:gameViewController animated:YES];
-
-//    self.appDelegate.customUrl = [NSString stringWithFormat:@"https://%@:8989/%@",self.appDelegate.domain,phoneModel.link];
-//    [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-    
-    return ;
 }
 
 #pragma mark- observer Touch gesture
@@ -420,15 +407,21 @@
                 if (gameMsg == nil || [gameMsg isEqual:[NSNull null]] || [gameMsg isEqualToString:@""]) {
                     if (![[data objectForKey:@"gameLink"] hasPrefix:@"http"]) {
                         //是自己的游戏 需要传SID 则使用UIWebView
+                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+                        
+                        if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
+                            //线路正在检测 则提示 正在获取可用线路 请稍后
+                            showErrorMessage(weakSelf.view, nil, @"正在获取可用线路 请稍后");
+                            return ;
+                        }
+                        if ([CheckTimeManager shared].lotteryLineCheckFail) {
+                            showErrorMessage(weakSelf.view, nil, @"api线路异常");
+                            return ;
+                        }
                         GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
                         NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
-                        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
 
-                        if (appDelegate.demainName.length > 0) {
-                            gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,appDelegate.demainName,[data objectForKey:@"gameLink"]];
-                        } else {
-                            gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,weakSelf.appDelegate.headerDomain,[data objectForKey:@"gameLink"]];
-                        }
+                        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,appDelegate.demainName,[data objectForKey:@"gameLink"]];
                         
                         [gameViewController close:^{
                             //调用一次回收额度
