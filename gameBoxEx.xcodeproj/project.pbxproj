@@ -1024,6 +1024,7 @@
 		547ED91E215345CA00A0DD99 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		547ED920215345D700A0DD99 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		547ED922215345E900A0DD99 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		5488CAF821537825003D8D0D /* gameBoxEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gameBoxEx.entitlements; sourceTree = "<group>"; };
 		54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPsCacheManager.h; sourceTree = "<group>"; };
 		54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPsCacheManager.m; sourceTree = "<group>"; };
 		54C4F84920D6348C00CCAD47 /* StartPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
@@ -2972,6 +2973,7 @@
 		A0109C641F878199004E6EF4 /* gameBoxEx */ = {
 			isa = PBXGroup;
 			children = (
+				5488CAF821537825003D8D0D /* gameBoxEx.entitlements */,
 				A07AF4C22026DBE400D6D559 /* v3Skins */,
 				A010A0631F879ACE004E6EF4 /* mainModule */,
 				A04E601F1F8DAFF000098A65 /* TabBarViewCtrl */,
@@ -5080,9 +5082,12 @@
 				TargetAttributes = {
 					A0109C611F878199004E6EF4 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -6044,15 +6049,16 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = UEDBET;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SFMD88G3NR;
+				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9JKFA36C28;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6063,9 +6069,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps3.gamebox.sid119;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "374ca71e-2ec2-4061-81e7-e035bb461926";
+				PROVISIONING_PROFILE_SPECIFIER = com.apps3.gamebox.sid119_inhouse;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -6130,15 +6137,16 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = UEDBET;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SFMD88G3NR;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 9JKFA36C28;
 				ENABLE_BITCODE = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_nu9r=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6149,9 +6157,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apps3.gamebox.sid119;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "fab207e9-15cd-488a-97d0-251ed1f994a0";
+				PROVISIONING_PROFILE_SPECIFIER = com.apps3.gamebox.sid119_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
