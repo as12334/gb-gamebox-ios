@@ -44,40 +44,46 @@
 {
     RH_DepositeTransferListModel *listmodel = ConvertToClassPointer(RH_DepositeTransferListModel, context);
     self.transferModel = listmodel ;
-//    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover]];
-    [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+    if ([listmodel.qrShowCover isKindOfClass:[NSNull class]]||[listmodel.qrShowCover containsString:@"null"]||listmodel.qrShowCover==nil) {
+        
+        self.hidden = YES;
+    }else{
+        self.hidden = NO;
+        [self.qrurlImage sd_setImageWithURL:[NSURL URLWithString:listmodel.qrShowCover] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+        
+        if ([listmodel.mBankCode isEqualToString:@"qqwallet"]) {
+            [self.openAppBtn setTitle:@"启动QQ支付" forState:UIControlStateNormal];
+            self.mobileStr = @"mqq://";
+        }
+        else if ([listmodel.mBankCode isEqualToString:@"bdwallet"]) {
+            [self.openAppBtn setTitle:@"启动百度支付" forState:UIControlStateNormal];
+            self.mobileStr = @"baidu://";
+        }
+        else if ([listmodel.mBankCode isEqualToString:@"other"]) {
+            [self.openAppBtn setTitle:@"启动其他方式支付" forState:UIControlStateNormal];
+            self.openAppBtn.hidden = YES;
+            self.saveToPhoneCenterX.constant = 0;
+        }
+        else if ([listmodel.mBankCode isEqualToString:@"alipay"]) {
+            [self.openAppBtn setTitle:@"启动支付宝支付" forState:UIControlStateNormal];
+            self.mobileStr = @"alipay://";
+        }
+        else if ([listmodel.mBankCode isEqualToString:@"wechatpay"]) {
+            [self.openAppBtn setTitle:@"启动微信支付" forState:UIControlStateNormal];
+            self.mobileStr = @"weixin://";
+        }
+        else if ([listmodel.mBankCode isEqualToString:@"onecodepay"]) {
+            [self.openAppBtn setTitle:@"启动一码付支付" forState:UIControlStateNormal];
+            self.openAppBtn.hidden = YES;
+            self.saveToPhoneCenterX.constant = 0;
+        }
+        else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
+            [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
+            self.mobileStr = @"openapp.jdmoble://";
+        }
+        self.noticeLabel.text = listmodel.mRemark;
+    }
     
-    if ([listmodel.mBankCode isEqualToString:@"qqwallet"]) {
-        [self.openAppBtn setTitle:@"启动QQ支付" forState:UIControlStateNormal];
-        self.mobileStr = @"mqq://";
-    }
-    else if ([listmodel.mBankCode isEqualToString:@"bdwallet"]) {
-        [self.openAppBtn setTitle:@"启动百度支付" forState:UIControlStateNormal];
-        self.mobileStr = @"baidu://";
-    }
-    else if ([listmodel.mBankCode isEqualToString:@"other"]) {
-        [self.openAppBtn setTitle:@"启动其他方式支付" forState:UIControlStateNormal];
-        self.openAppBtn.hidden = YES;
-        self.saveToPhoneCenterX.constant = 0;
-    }
-    else if ([listmodel.mBankCode isEqualToString:@"alipay"]) {
-        [self.openAppBtn setTitle:@"启动支付宝支付" forState:UIControlStateNormal];
-        self.mobileStr = @"alipay://";
-    }
-    else if ([listmodel.mBankCode isEqualToString:@"wechatpay"]) {
-        [self.openAppBtn setTitle:@"启动微信支付" forState:UIControlStateNormal];
-        self.mobileStr = @"weixin://";
-    }
-    else if ([listmodel.mBankCode isEqualToString:@"onecodepay"]) {
-        [self.openAppBtn setTitle:@"启动一码付支付" forState:UIControlStateNormal];
-        self.openAppBtn.hidden = YES;
-        self.saveToPhoneCenterX.constant = 0;
-    }
-    else if ([listmodel.mBankCode isEqualToString:@"jdwallet"]) {
-        [self.openAppBtn setTitle:@"启动京东支付" forState:UIControlStateNormal];
-        self.mobileStr = @"openapp.jdmoble://";
-    }
-    self.noticeLabel.text = listmodel.mRemark;
 }
 - (IBAction)saveToPhone:(id)sender {
     ifRespondsSelector(self.delegate, @selector(depositeTransferQRCodeCellDidTouchSaveToPhoneWithImageUrl:)){

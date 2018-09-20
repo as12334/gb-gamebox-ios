@@ -7,7 +7,6 @@
 //
 
 #import "RH_BasicSubViewController.h"
-
 @interface RH_WithdrawCashController : RH_BasicSubViewController
 
 @end
