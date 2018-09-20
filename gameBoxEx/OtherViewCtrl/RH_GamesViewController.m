@@ -14,6 +14,7 @@
 #import <WebKit/WebKit.h>
 #import "coreLib.h"
 #import "RH_BettingInfoModel.h"
+#import "JPUSHService.h"
 
 @interface RH_GamesViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;

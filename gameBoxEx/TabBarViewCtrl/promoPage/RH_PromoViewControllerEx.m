@@ -15,6 +15,7 @@
 #import "RH_PromoDetailViewController.h"
 #import "GameWebViewController.h"
 #import "CheckTimeManager.h"
+#import "JPUSHService.h"
 
 @interface RH_PromoViewControllerEx ()<CLPageViewDelegate,CLPageViewDatasource,PromoTypeHeaderViewDelegate,PromoContentPageCellDelegate>
 @property(nonatomic,strong,readonly) RH_PromoTypeHeaderView *typeTopView  ;

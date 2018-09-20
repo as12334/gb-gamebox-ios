@@ -18,6 +18,7 @@
 #import "RH_FindbackPswWaysViewController.h"
 #import "RH_WebsocketManagar.h"
 #import "RH_GestureLockMainView.h"
+#import "JPUSHService.h"
 
 @interface RH_LoginViewControllerEx ()<LoginViewCellDelegate,RH_OldUserVerifyViewDelegate,RH_GestureLockMainViewDelegate>
 @property (nonatomic,strong,readonly) RH_LoginViewCell *loginViewCell ;

@@ -39,6 +39,7 @@
 #import "GameWebViewController.h"
 #import "CheckTimeManager.h"
 #import "NSString+CLCategory.h"
+#import "JPUSHService.h"
 
 @interface RH_FirstPageViewControllerEx ()<RH_ShowBannerDetailDelegate,HomeCategoryCellDelegate,HomeChildCategoryCellDelegate,
         ActivithyViewDelegate,

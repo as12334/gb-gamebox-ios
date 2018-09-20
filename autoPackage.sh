@@ -465,8 +465,18 @@ for num in "${configuration_list[@]}"; do
   -allowProvisioningUpdates
 
   #导出plist文件
-  curl -o plist.tmp -d 'siteId='$sid'&version='$app_version https://gbboss.com:1344/boss-api/app/package/createPlist.html
-  cat plist.tmp | jq -r .[0].plistStr > ${exportipa_path}/${exportipa_folder}/app${_macrokey}_${app_version}.plist
+  # curl -o plist.tmp -d 'siteId='$sid'&version='$app_version https://gbboss.com:1344/boss-api/app/package/createPlist.html
+  # cat plist.tmp | jq -r .[0].plistStr > ${exportipa_path}/${exportipa_folder}/app${_macrokey}_${app_version}.plist
+
+  plsitUrl="https://gbboss.com:1344/boss-api/app/package/createPlist.html?siteId=$sid&version=$app_version"
+  http_code=$(curl -I -m 10 -o /dev/null -s -w %{http_code} ${plsitUrl})
+  if [[ $http_code -eq 200 ]]; then
+      plistResponse=$(curl -s ${plsitUrl})
+      echo $plistResponse | jq -r .[0].plistStr > ${exportipa_path}/${exportipa_folder}/app${_macrokey}_${app_version}.plist
+      echo "plist文件生成完毕"
+    else
+      echo ">>>package/createPlist.html访问失败 httpcode:${http_code}"
+  fi
 
   #清除多余的文件
   rm -f ${exportipa_path}/${exportipa_folder}/DistributionSummary.plist

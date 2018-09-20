@@ -42,8 +42,8 @@
 
 //apiplay.info
 #define RH_API_MAIN_URL         @[@"https://apiplay.info:1344/boss-api",\
-                                @"https://agpicdance.info:1344/boss-api",\
-                                @"https://hpdbtopgolddesign.com:1344/boss-api"]
+@"https://agpicdance.info:1344/boss-api",\
+@"https://hpdbtopgolddesign.com:1344/boss-api"]
 
 #define RH_APP_UPDATECHECK                      @"j5ZSSGKixBXyF+Rub/BRig=="
 #endif
@@ -4027,3 +4027,4 @@
 #endif
 
 #endif /* RH_Configure_h */
+

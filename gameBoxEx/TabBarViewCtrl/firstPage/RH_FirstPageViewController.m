@@ -11,6 +11,7 @@
 #import "RH_APPDelegate.h"
 #import "RH_CustomViewController.h"
 #import "RH_API.h"
+#import "JPUSHService.h"
 
 @interface RH_FirstPageViewController ()
 @end
