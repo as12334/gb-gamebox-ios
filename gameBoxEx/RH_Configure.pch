@@ -10,9 +10,6 @@
 #ifndef RH_Configure_h
 #define RH_Configure_h
 
-#import "JPUSHService.h"
-
-
 //===========================================================
 //APP 信息
 //===========================================================
@@ -35,7 +32,7 @@
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
-#define RH_APP_VERCODE                  @"52"
+#define RH_APP_VERCODE                  @"1"
 //API的主URL
 #define RH_API_MAIN_URL                        @[@"https://test.gbboss.com:1344"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="
@@ -3925,9 +3922,107 @@
 #define CODE    @"2tr1"
 #define S        @"dbb0ecf3cb03934d26f137abed47bb66"
 #define SID        @"738"
+#define THEMEV3     @"default"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _22vj //永丰国际
+
+#define CODE    @"22vj"
+#define S        @"c604c64d6985c2f5f3d7d65cc827d4aa"
+#define SID        @"735"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _gwsu //钻石国际
+
+#define CODE    @"gwsu"
+#define S        @"a846b0664f4d181b15cb19da667b21fd"
+#define SID        @"736"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _uqgx //澳门金沙
+
+#define CODE    @"uqgx"
+#define S        @"45ff5f5fbfa6aec841f858e426e450aa"
+#define SID        @"733"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _vrgv //澳门新葡京官网
+
+#define CODE    @"vrgv"
+#define S        @"adb1aedfcb67820f897443f8740d248d"
+#define SID        @"719"
 #define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _ruuh //威尼斯人娱乐城
+
+#define CODE    @"ruuh"
+#define S        @"09d835bf9dfac8ea9f6028fedecb5eee"
+#define SID        @"728"
+#define THEMEV3     @"coffee_black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _bsrz //188金宝博
+
+#define CODE    @"bsrz"
+#define S        @"a3162eb524c1d919287abecb843f4e79"
+#define SID        @"726"
+#define THEMEV3     @"orange"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _obwn //荣鼎国际
+
+#define CODE    @"obwn"
+#define S        @"73b9e91d7298f2397d2a3154d4754efe"
+#define SID        @"707"
+#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+#elif _0ixl //澳门威尼斯人娱乐场
+
+#define CODE    @"0ixl"
+#define S        @"61f8d54f42ba6906730205db99c01970"
+#define SID        @"730"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _utpk //至尊娱乐
+
+#define CODE    @"utpk"
+#define S        @"241ec125c8c7d77d981f0d7bb608fefa"
+#define SID        @"750"
+#define THEMEV3     @"green_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+#elif _ktad //万博体育
+
+#define CODE    @"ktad"
+#define S        @"fe130d7286180ccc21ba3006ad635b58"
+#define SID        @"752"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
 
 #endif
 
