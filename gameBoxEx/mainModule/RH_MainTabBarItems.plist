@@ -185,7 +185,7 @@
 			<key>selectedImage</key>
 			<string>tab_v3_deposit_selected</string>
 			<key>viewControllerClass</key>
-			<string>RH_DepositeBasicViewController</string>
+			<string>RH_DepositeViewControllerEX</string>
 		</dict>
 		<dict>
 			<key>title</key>
