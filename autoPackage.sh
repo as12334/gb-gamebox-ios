@@ -359,6 +359,7 @@ configuration_list=(  \
       # '_vrgv^719^"澳门新葡京官网"' \
       '_ruuh^728^"威尼斯人娱乐城"' \
       '_bsrz^726^"188金宝博"' \
+    '_obwn^707^"荣鼎国际"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
