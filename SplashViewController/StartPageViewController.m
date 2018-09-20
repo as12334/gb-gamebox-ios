@@ -579,7 +579,7 @@
                 //todo
                 //test data
 #warning 这里是专门给test71的 打test71的时候一定要打开
-                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
+//                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
                 resultIPs = ips;
                 doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                 
@@ -784,7 +784,7 @@
 
 - (void)startPageComplete
 {
-    [NSTimer scheduledTimerWithTimeInterval:5*60/30 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5*60 target:self selector:@selector(refreshLineCheck) userInfo:nil repeats:YES];
     self.progressNote = @"检查完成,即将进入";
     self.progress = 1.0;
     
@@ -857,7 +857,7 @@
                         [appDelegate updateDomainName:host];
                         //todo
 #warning 这里是专门给test71的 打test71的时候一定要打开
-                                                        [appDelegate updateDomainName:@"test71.hongtubet.com"];
+//                                                        [appDelegate updateDomainName:@"test71.hongtubet.com"];
                     });
                     dispatch_semaphore_signal(semaphore);
                 } failed:^{
