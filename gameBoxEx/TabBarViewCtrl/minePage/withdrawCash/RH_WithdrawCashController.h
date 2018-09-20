@@ -6,8 +6,8 @@
 //  Copyright © 2018年 luis. All rights reserved.
 //
 
-#import "RH_BasicPageLoadViewController.h"
+#import "RH_BasicSubViewController.h"
 
-@interface RH_WithdrawCashController : RH_BasicPageLoadViewController
+@interface RH_WithdrawCashController : RH_BasicSubViewController
 
 @end
