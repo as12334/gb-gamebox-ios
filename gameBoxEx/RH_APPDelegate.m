@@ -41,7 +41,9 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     //崩溃日志
      [self avoidCrash];
     //jpush
-    [self jpushInit];
+    if ([SID intValue] == 119 || [SID intValue] == 270) {
+        [self jpushInit];
+    }
     //清理缓存的临时和缓存数据数据
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeTemp cacheFileFloderName:nil];
     [CLDocumentCachePool clearCacheFilesWithPathType:CLPathTypeCaches cacheFileFloderName:nil];
@@ -86,7 +88,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)dealwithCrashMessage:(NSNotification *)note {
     NSDictionary *dic = ConvertToClassPointer(NSDictionary, note.userInfo);
     //收集错误信息
-    [[RH_CheckAndCrashHelper shared]uploadJournalWithMessages:@[@{RH_SP_COLLECTAPPERROR_DOMAIN:self.domain,RH_SP_COLLECTAPPERROR_CODE:CODE,RH_SP_COLLECTAPPERROR_ERRORMESSAGE:[NSString stringWithFormat:@"crashReason:%@;crashPlace:%@",dic[@"errorReason"],dic[@"errorPlace"]],RH_SP_COLLECTAPPERROR_TYPE:@"2"}]];
+    [[RH_CheckAndCrashHelper shared]uploadJournalWithMessages:@[@{RH_SP_COLLECTAPPERROR_DOMAIN:self.domain==nil ? @"" : self.domain,RH_SP_COLLECTAPPERROR_CODE:CODE,RH_SP_COLLECTAPPERROR_ERRORMESSAGE:[NSString stringWithFormat:@"crashReason:%@;crashPlace:%@",dic[@"errorReason"],dic[@"errorPlace"]],RH_SP_COLLECTAPPERROR_TYPE:@"2"}]];
 }
 //jpush初始化
 -(void)jpushInit{
@@ -205,12 +207,6 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
     }
 }
 
--(void)updateApiDomain:(NSString*)apiDomain
-{
-    if (_apiDomain.length==0){
-        _apiDomain = apiDomain;
-    }
-}
 -(void)updateHeaderDomain:(NSString *)headerDomain
 {
     if (_headerDomain.length==0) {

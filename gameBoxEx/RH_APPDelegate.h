@@ -7,13 +7,12 @@
 //
 
 #import "CLAPPDelegate.h"
-static NSString *appKey = @"AppKey copied from JiGuang Portal application";
-static NSString *channel = @"Publish channel";
-static BOOL isProduction = FALSE;
+static NSString *appKey = @"6474cf94eea676728f54dad1";
+static NSString *channel = @"iOS";
+static BOOL isProduction = TRUE;
 UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 
 @interface RH_APPDelegate : CLAPPDelegate
-@property(nonatomic,readonly,strong) NSString *apiDomain ;//获取子域名list 的api 域名
 @property(nonatomic,readonly,strong)  NSString *domain  ;
 @property(nonatomic,readonly,strong)NSString *headerDomain;
 @property(nonatomic,readonly,strong)NSString *demainName;//保存检测通过的域名
@@ -33,7 +32,6 @@ UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 @property (nonatomic,strong)NSString *checkType;
 @property(assign,nonatomic)  BOOL openForgetPsw;
 
--(void)updateApiDomain:(NSString*)apiDomain ;
 -(void)updateDomain:(NSString*)domain ;
 -(void)updateServicePath:(NSString*)servicePath ;
 -(void)updateLoginStatus:(BOOL)loginStatus ;

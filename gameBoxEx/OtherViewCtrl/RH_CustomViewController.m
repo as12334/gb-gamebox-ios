@@ -15,6 +15,7 @@
 #import "RH_LotteryInfoModel.h"
 #import "RH_UserInfoManager.h"
 #import "RH_LotteryAPIInfoModel.h"
+#import "JPUSHService.h"
 
 @interface RH_CustomViewController ()
 @property(nonatomic,strong,readonly) UIImageView *gameBgImage ;

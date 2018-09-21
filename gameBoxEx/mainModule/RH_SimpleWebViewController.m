@@ -25,6 +25,7 @@
 #import "RH_MePageViewController.h"
 #import "RH_RegistrationViewController.h"
 #import "RH_CustomServiceSubViewController.h"
+#import "JPUSHService.h"
 
 //原生登录代理和H5代理。方便切换打包用
 @interface RH_SimpleWebViewController ()<LoginViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,LoginViewControllerExDelegate>

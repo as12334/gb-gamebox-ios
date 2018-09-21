@@ -13,6 +13,7 @@
 #import "RH_LockSetPWDController.h"
 #import "RH_GesturelLockView.h"
 #import "RH_VeriftyCloseViewController.h"
+#import "JPUSHService.h"
 
 @interface RH_MineSettingsViewController () <CLTableViewManagementDelegate>
 
