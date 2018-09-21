@@ -386,7 +386,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif o //澳门威尼斯人
+#elif _xwc7 //澳门威尼斯人
 
 #define CODE    @"xwc7"
 #define S        @"0accd87069ed4e9c5adff95abaa9ab11"
