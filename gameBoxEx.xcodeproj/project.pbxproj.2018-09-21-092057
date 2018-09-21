@@ -990,6 +990,42 @@
 		546CE71B20CAB1E400273C40 /* RH_ChangeBIndPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangeBIndPhoneView.h; sourceTree = "<group>"; };
 		546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangeBIndPhoneView.m; sourceTree = "<group>"; };
 		546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangeBIndPhoneView.xib; sourceTree = "<group>"; };
+		547ED8EA2153397700A0DD99 /* NSArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8EB2153397700A0DD99 /* AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrash.h; sourceTree = "<group>"; };
+		547ED8EC2153397700A0DD99 /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8ED2153397700A0DD99 /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8EE2153397700A0DD99 /* NSAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8EF2153397700A0DD99 /* AvoidCrashStubProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashStubProxy.h; sourceTree = "<group>"; };
+		547ED8F02153397700A0DD99 /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8F12153397700A0DD99 /* AvoidCrashProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashProtocol.h; sourceTree = "<group>"; };
+		547ED8F22153397700A0DD99 /* NSMutableString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8F32153397700A0DD99 /* NSObject+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8F42153397700A0DD99 /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8F52153397700A0DD99 /* NSMutableAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8F62153397700A0DD99 /* NSAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		547ED8F72153397700A0DD99 /* NSDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8F82153397700A0DD99 /* NSString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8F92153397700A0DD99 /* AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrash.m; sourceTree = "<group>"; };
+		547ED8FA2153397700A0DD99 /* NSArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8FB2153397700A0DD99 /* NSMutableDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8FC2153397700A0DD99 /* AvoidCrashStubProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrashStubProxy.m; sourceTree = "<group>"; };
+		547ED8FD2153397700A0DD99 /* NSObject+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8FE2153397700A0DD99 /* NSMutableString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED8FF2153397700A0DD99 /* NSMutableAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED9002153397700A0DD99 /* NSMutableArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AvoidCrash.h"; sourceTree = "<group>"; };
+		547ED9022153397A00A0DD99 /* jpush-extension-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-extension-ios-1.1.1.a"; sourceTree = "<group>"; };
+		547ED9032153397A00A0DD99 /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
+		547ED9042153397A00A0DD99 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		547ED9052153397A00A0DD99 /* jcore-ios-1.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.2.a"; sourceTree = "<group>"; };
+		547ED9062153397A00A0DD99 /* jpush-ios-3.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.0.a"; sourceTree = "<group>"; };
+		547ED915215339C500A0DD99 /* RH_CheckAndCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CheckAndCrashHelper.m; sourceTree = "<group>"; };
+		547ED916215339C500A0DD99 /* RH_CheckAndCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CheckAndCrashHelper.h; sourceTree = "<group>"; };
+		547ED9182153459A00A0DD99 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		547ED91A215345A900A0DD99 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		547ED91C215345B700A0DD99 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		547ED91E215345CA00A0DD99 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		547ED920215345D700A0DD99 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		547ED922215345E900A0DD99 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		5488CAF821537825003D8D0D /* gameBoxEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gameBoxEx.entitlements; sourceTree = "<group>"; };
 		54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPsCacheManager.h; sourceTree = "<group>"; };
 		54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPsCacheManager.m; sourceTree = "<group>"; };
@@ -6034,7 +6070,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_4w3g=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_bsrz=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6045,7 +6081,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid181;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid726;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -6053,7 +6089,7 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = BET365;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
@@ -6062,7 +6098,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_4w3g=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_3qj8=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6073,7 +6109,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid181;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid211;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6133,7 +6169,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid181;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid726;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6141,7 +6177,7 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "超博娱乐";
+				APP_DISPLAY_NAME = "188金宝博";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
@@ -6150,7 +6186,7 @@
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_4w3g=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_3qj8=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6161,7 +6197,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid181;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid726;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

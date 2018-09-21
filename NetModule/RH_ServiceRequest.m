@@ -2970,6 +2970,9 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers
                                                                                       error:&tempError] : @{};
+        if (tempError) {
+            dataObject = @{};
+        }
         *reslutData = dataObject ;
         return YES ;
     }

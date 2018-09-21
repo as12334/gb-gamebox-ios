@@ -215,7 +215,7 @@
             [weakSelf.serviceRequest fetchIPSFromBoss:bossApi host:host times:times invalidIPS:invalidIPS];
             weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
                 if (type == ServiceRequestTypeFetchIPSFromBoss) {
-                    if (data) {
+                    if (data && ((NSDictionary *)data).allKeys.count) {
                         //已从boss-api获取到ips，执行回调
                         NSDictionary *ips = ConvertToClassPointer(NSDictionary, data);
                         if (ips) {
@@ -535,6 +535,7 @@
         //check失败后重试获取ips
         if ([IPsCacheManager sharedManager].retryFetchIPSTimes > 3 || ipList.count <10) {
             //重试次数大于三次则不在重试 或者 每次拿到的ip小于10条
+            weakSelf.progress = 0;
             weakSelf.currentErrCode = @"003";
             return ;
         }
@@ -545,6 +546,7 @@
             //递归调用check方法
             [weakSelf checkIPSAndRetry:ips retryBossApiUrl:url host:host];
         } failed:^{
+            weakSelf.progress = 0;
             weakSelf.currentErrCode = @"003";
         }];
     }];

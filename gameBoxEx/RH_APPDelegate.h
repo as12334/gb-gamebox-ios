@@ -7,7 +7,7 @@
 //
 
 #import "CLAPPDelegate.h"
-static NSString *appKey = @"6474cf94eea676728f54dad1";
+static NSString *appKey = @"c90cbc31f7b5b2d38502fad8";
 static NSString *channel = @"iOS";
 static BOOL isProduction = TRUE;
 UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
