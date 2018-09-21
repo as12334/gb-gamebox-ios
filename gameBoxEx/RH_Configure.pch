@@ -4022,7 +4022,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _5eab //BET365
 
+#define CODE    @"5eab"
+#define S        @"d1d3e5a7a553664d3641d91aef80789a"
+#define SID        @"739"
+#define THEMEV3     @"green"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
