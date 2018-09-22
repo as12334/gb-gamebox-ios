@@ -462,7 +462,7 @@
             [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossDomainApi host:nil];
         } failed:^{
             //失败以后从DNS获取boss-api
-            [self fetchHost:^(NSDictionary *host) {
+            [weakSelf fetchHost:^(NSDictionary *host) {
                 //缓存bossApi
                 [[IPsCacheManager sharedManager] updateBossApiList:host];
                 
