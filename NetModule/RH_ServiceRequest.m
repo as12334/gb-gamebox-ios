@@ -169,7 +169,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                          scopeType:ServiceScopeTypePublic];
 }
 
--(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType IsLottery:(BOOL)isLottery
 {
     NSString *urlStr;
     if ([checkType isEqualToString:@"https"]) {
@@ -184,12 +184,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     else if ([checkType isEqualToString:@"http+8787"]){
         urlStr = @"http://%@:8787/__check";
     }
+    NSMutableDictionary *headDic = [[NSMutableDictionary alloc]init];
+    [headDic setValue:[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE] forKey:@"User-Agent"];
+    if (!isLottery) {
+        [headDic setValue:self.appDelegate.headerDomain forKey:@"Host"];
+    }
         [self _startServiceWithAPIName:nil
                             pathFormat:urlStr
                          pathArguments:@[doMain?:@""]
-                       headerArguments:@{@"User-Agent":[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE],
-                                         @"Host":self.appDelegate.headerDomain
-                                         }
+                       headerArguments:headDic
                         queryArguments:nil
                          bodyArguments:nil
                               httpType:HTTPRequestTypeGet
