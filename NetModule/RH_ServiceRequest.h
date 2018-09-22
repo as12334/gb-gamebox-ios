@@ -196,7 +196,7 @@ typedef void (^ServiceRequestFailBlock)(RH_ServiceRequest * serviceRequest, Serv
 /**
  * DOMAIN CHECK
  */
--(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType;
+-(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType IsLottery:(BOOL)isLottery;
 
 /**
  * update CHECK
