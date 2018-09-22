@@ -652,29 +652,28 @@
 		B8F0E50A2002198F00A3AC94 /* RH_ModifyPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */; };
 		BF34207A2155EBF500620B75 /* RH_StartPageADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3420732155EBF400620B75 /* RH_StartPageADView.xib */; };
 		BF34207B2155EBF500620B75 /* RH_StartPageADView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420742155EBF400620B75 /* RH_StartPageADView.m */; };
-		BF34207C2155EBF500620B75 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420752155EBF500620B75 /* SplashViewController.m */; };
 		BF34207D2155EBF500620B75 /* StartPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3420762155EBF500620B75 /* StartPageViewController.xib */; };
 		BF34207E2155EBF500620B75 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420772155EBF500620B75 /* StartPageViewController.m */; };
 		BF34207F2155EBF500620B75 /* RH_CheckAndCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420782155EBF500620B75 /* RH_CheckAndCrashHelper.m */; };
 		BF3420802155EBF500620B75 /* CheckTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420792155EBF500620B75 /* CheckTimeManager.m */; };
+		BF34208C2155ED1700620B75 /* NSMutableDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420812155ED1500620B75 /* NSMutableDictionary+AvoidCrash.m */; };
+		BF34208D2155ED1700620B75 /* NSObject+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420822155ED1500620B75 /* NSObject+AvoidCrash.m */; };
+		BF34208E2155ED1700620B75 /* NSString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420832155ED1600620B75 /* NSString+AvoidCrash.m */; };
+		BF34208F2155ED1700620B75 /* AvoidCrashStubProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420842155ED1600620B75 /* AvoidCrashStubProxy.m */; };
+		BF3420902155ED1700620B75 /* NSArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420852155ED1600620B75 /* NSArray+AvoidCrash.m */; };
+		BF3420912155ED1700620B75 /* NSMutableString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420862155ED1600620B75 /* NSMutableString+AvoidCrash.m */; };
+		BF3420922155ED1700620B75 /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420872155ED1600620B75 /* NSMutableArray+AvoidCrash.m */; };
+		BF3420932155ED1700620B75 /* NSAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420882155ED1600620B75 /* NSAttributedString+AvoidCrash.m */; };
+		BF3420942155ED1700620B75 /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3420892155ED1600620B75 /* NSDictionary+AvoidCrash.m */; };
+		BF3420952155ED1700620B75 /* AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF34208A2155ED1600620B75 /* AvoidCrash.m */; };
+		BF3420962155ED1700620B75 /* NSMutableAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF34208B2155ED1600620B75 /* NSMutableAttributedString+AvoidCrash.m */; };
+		BF34209A2155ED2E00620B75 /* jcore-ios-1.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3420972155ED2D00620B75 /* jcore-ios-1.2.2.a */; };
+		BF34209B2155ED2E00620B75 /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3420982155ED2D00620B75 /* jpush-extension-ios-1.1.1.a */; };
+		BF34209C2155ED2E00620B75 /* jpush-ios-3.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3420992155ED2E00620B75 /* jpush-ios-3.1.0.a */; };
 		BF427BA0213940AF0076F05A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF427B9F213940AF0076F05A /* Launch Screen.storyboard */; };
 		BF563FC221301F5E008FEE8E /* RH_JiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */; };
 		BF563FC721302171008FEE8E /* RH_JiHeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */; };
 		BF563FC821302171008FEE8E /* RH_JiHeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */; };
-		BF8E493E215340DF00143DBA /* NSArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4921215340DC00143DBA /* NSArray+AvoidCrash.m */; };
-		BF8E493F215340DF00143DBA /* NSString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4923215340DC00143DBA /* NSString+AvoidCrash.m */; };
-		BF8E4940215340DF00143DBA /* NSDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4924215340DC00143DBA /* NSDictionary+AvoidCrash.m */; };
-		BF8E4941215340DF00143DBA /* NSMutableDictionary+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4927215340DC00143DBA /* NSMutableDictionary+AvoidCrash.m */; };
-		BF8E4942215340DF00143DBA /* NSMutableString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4929215340DC00143DBA /* NSMutableString+AvoidCrash.m */; };
-		BF8E4943215340DF00143DBA /* NSObject+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E492A215340DC00143DBA /* NSObject+AvoidCrash.m */; };
-		BF8E4944215340DF00143DBA /* NSMutableArray+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E492B215340DC00143DBA /* NSMutableArray+AvoidCrash.m */; };
-		BF8E4945215340DF00143DBA /* NSMutableAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E492C215340DC00143DBA /* NSMutableAttributedString+AvoidCrash.m */; };
-		BF8E4946215340DF00143DBA /* NSAttributedString+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E492D215340DC00143DBA /* NSAttributedString+AvoidCrash.m */; };
-		BF8E4947215340DF00143DBA /* AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4930215340DC00143DBA /* AvoidCrash.m */; };
-		BF8E4948215340DF00143DBA /* AvoidCrashStubProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4933215340DC00143DBA /* AvoidCrashStubProxy.m */; };
-		BF8E4949215340DF00143DBA /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E4939215340DE00143DBA /* jpush-extension-ios-1.1.1.a */; };
-		BF8E494A215340DF00143DBA /* jcore-ios-1.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E493C215340DE00143DBA /* jcore-ios-1.2.2.a */; };
-		BF8E494B215340DF00143DBA /* jpush-ios-3.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E493D215340DE00143DBA /* jpush-ios-3.1.0.a */; };
 		BF8E4950215343B400143DBA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E494F215343B300143DBA /* CoreFoundation.framework */; };
 		BF8E4952215343C000143DBA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E4951215343C000143DBA /* CoreTelephony.framework */; };
 		BF8E4954215343D400143DBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E4953215343D300143DBA /* CoreGraphics.framework */; };
@@ -1967,11 +1966,24 @@
 		B8F0E5092002198F00A3AC94 /* RH_ModifyPasswordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ModifyPasswordCell.m; sourceTree = "<group>"; };
 		BF3420732155EBF400620B75 /* RH_StartPageADView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_StartPageADView.xib; sourceTree = "<group>"; };
 		BF3420742155EBF400620B75 /* RH_StartPageADView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_StartPageADView.m; sourceTree = "<group>"; };
-		BF3420752155EBF500620B75 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		BF3420762155EBF500620B75 /* StartPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartPageViewController.xib; sourceTree = "<group>"; };
 		BF3420772155EBF500620B75 /* StartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
 		BF3420782155EBF500620B75 /* RH_CheckAndCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CheckAndCrashHelper.m; sourceTree = "<group>"; };
 		BF3420792155EBF500620B75 /* CheckTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckTimeManager.m; sourceTree = "<group>"; };
+		BF3420812155ED1500620B75 /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420822155ED1500620B75 /* NSObject+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420832155ED1600620B75 /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420842155ED1600620B75 /* AvoidCrashStubProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrashStubProxy.m; sourceTree = "<group>"; };
+		BF3420852155ED1600620B75 /* NSArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420862155ED1600620B75 /* NSMutableString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420872155ED1600620B75 /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420882155ED1600620B75 /* NSAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420892155ED1600620B75 /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF34208A2155ED1600620B75 /* AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrash.m; sourceTree = "<group>"; };
+		BF34208B2155ED1600620B75 /* NSMutableAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
+		BF3420972155ED2D00620B75 /* jcore-ios-1.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.2.a"; sourceTree = "<group>"; };
+		BF3420982155ED2D00620B75 /* jpush-extension-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-extension-ios-1.1.1.a"; sourceTree = "<group>"; };
+		BF3420992155ED2E00620B75 /* jpush-ios-3.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.0.a"; sourceTree = "<group>"; };
 		BF427B9F213940AF0076F05A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BF563FBF21301F5E008FEE8E /* RH_JiHeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_JiHeViewController.h; sourceTree = "<group>"; };
 		BF563FC021301F5E008FEE8E /* RH_JiHeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeViewController.m; sourceTree = "<group>"; };
@@ -1979,34 +1991,20 @@
 		BF563FC521302171008FEE8E /* RH_JiHeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_JiHeTableViewCell.m; sourceTree = "<group>"; };
 		BF563FC621302171008FEE8E /* RH_JiHeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_JiHeTableViewCell.xib; sourceTree = "<group>"; };
 		BF5FF83D21240AEA0019EF30 /* CheckTimeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckTimeManager.h; sourceTree = "<group>"; };
-		BF8E4921215340DC00143DBA /* NSArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AvoidCrash.m"; sourceTree = "<group>"; };
 		BF8E4922215340DC00143DBA /* AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrash.h; sourceTree = "<group>"; };
-		BF8E4923215340DC00143DBA /* NSString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF8E4924215340DC00143DBA /* NSDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
 		BF8E4925215340DC00143DBA /* NSAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF8E4926215340DC00143DBA /* AvoidCrashStubProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashStubProxy.h; sourceTree = "<group>"; };
-		BF8E4927215340DC00143DBA /* NSMutableDictionary+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AvoidCrash.m"; sourceTree = "<group>"; };
 		BF8E4928215340DC00143DBA /* AvoidCrashProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvoidCrashProtocol.h; sourceTree = "<group>"; };
-		BF8E4929215340DC00143DBA /* NSMutableString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF8E492A215340DC00143DBA /* NSObject+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF8E492B215340DC00143DBA /* NSMutableArray+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF8E492C215340DC00143DBA /* NSMutableAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
-		BF8E492D215340DC00143DBA /* NSAttributedString+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AvoidCrash.m"; sourceTree = "<group>"; };
 		BF8E492E215340DC00143DBA /* NSDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF8E492F215340DC00143DBA /* NSString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF8E4930215340DC00143DBA /* AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrash.m; sourceTree = "<group>"; };
 		BF8E4931215340DC00143DBA /* NSArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF8E4932215340DC00143DBA /* NSMutableDictionary+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF8E4933215340DC00143DBA /* AvoidCrashStubProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvoidCrashStubProxy.m; sourceTree = "<group>"; };
 		BF8E4934215340DC00143DBA /* NSObject+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF8E4935215340DC00143DBA /* NSMutableString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF8E4936215340DC00143DBA /* NSMutableAttributedString+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AvoidCrash.h"; sourceTree = "<group>"; };
 		BF8E4937215340DC00143DBA /* NSMutableArray+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AvoidCrash.h"; sourceTree = "<group>"; };
-		BF8E4939215340DE00143DBA /* jpush-extension-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-extension-ios-1.1.1.a"; sourceTree = "<group>"; };
 		BF8E493A215340DE00143DBA /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
 		BF8E493B215340DE00143DBA /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
-		BF8E493C215340DE00143DBA /* jcore-ios-1.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.2.a"; sourceTree = "<group>"; };
-		BF8E493D215340DE00143DBA /* jpush-ios-3.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.0.a"; sourceTree = "<group>"; };
 		BF8E494C215341EC00143DBA /* RH_CheckAndCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CheckAndCrashHelper.h; sourceTree = "<group>"; };
 		BF8E494F215343B300143DBA /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		BF8E4951215343C000143DBA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -2284,19 +2282,19 @@
 				BF8E495B2153442700143DBA /* libresolv.tbd in Frameworks */,
 				BF8E49592153440C00143DBA /* UserNotifications.framework in Frameworks */,
 				BF8E4957215343F700143DBA /* libz.tbd in Frameworks */,
+				BF34209C2155ED2E00620B75 /* jpush-ios-3.1.0.a in Frameworks */,
 				BF8E4955215343E600143DBA /* UIKit.framework in Frameworks */,
 				BF8E4954215343D400143DBA /* CoreGraphics.framework in Frameworks */,
 				BF8E4952215343C000143DBA /* CoreTelephony.framework in Frameworks */,
 				BF8E4950215343B400143DBA /* CoreFoundation.framework in Frameworks */,
+				BF34209B2155ED2E00620B75 /* jpush-extension-ios-1.1.1.a in Frameworks */,
 				F61DA00A20BBAECA00E55BAB /* Foundation.framework in Frameworks */,
-				BF8E494B215340DF00143DBA /* jpush-ios-3.1.0.a in Frameworks */,
 				F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */,
+				BF34209A2155ED2E00620B75 /* jcore-ios-1.2.2.a in Frameworks */,
 				F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */,
 				A058FF3F1FE8BE3A006EF279 /* WebKit.framework in Frameworks */,
 				A0109C9F1F8782A7004E6EF4 /* JavaScriptCore.framework in Frameworks */,
-				BF8E494A215340DF00143DBA /* jcore-ios-1.2.2.a in Frameworks */,
 				A0109C9D1F87829E004E6EF4 /* Security.framework in Frameworks */,
-				BF8E4949215340DF00143DBA /* jpush-extension-ios-1.1.1.a in Frameworks */,
 				A0109C9B1F87828E004E6EF4 /* MobileCoreServices.framework in Frameworks */,
 				A0109C991F87827B004E6EF4 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -3867,7 +3865,6 @@
 				BFF3846E20EE088500ED3ACB /* RH_StartPageADView.h */,
 				BF3420742155EBF400620B75 /* RH_StartPageADView.m */,
 				BF3420732155EBF400620B75 /* RH_StartPageADView.xib */,
-				BF3420752155EBF500620B75 /* SplashViewController.m */,
 				54C4F84920D6348C00CCAD47 /* StartPageViewController.h */,
 				BF3420772155EBF500620B75 /* StartPageViewController.m */,
 				BF3420762155EBF500620B75 /* StartPageViewController.xib */,
@@ -4594,25 +4591,25 @@
 		BF8E4920215340DC00143DBA /* AvoidCrash */ = {
 			isa = PBXGroup;
 			children = (
-				BF8E4921215340DC00143DBA /* NSArray+AvoidCrash.m */,
+				BF34208A2155ED1600620B75 /* AvoidCrash.m */,
+				BF3420842155ED1600620B75 /* AvoidCrashStubProxy.m */,
+				BF3420852155ED1600620B75 /* NSArray+AvoidCrash.m */,
+				BF3420882155ED1600620B75 /* NSAttributedString+AvoidCrash.m */,
+				BF3420892155ED1600620B75 /* NSDictionary+AvoidCrash.m */,
+				BF3420872155ED1600620B75 /* NSMutableArray+AvoidCrash.m */,
+				BF34208B2155ED1600620B75 /* NSMutableAttributedString+AvoidCrash.m */,
+				BF3420812155ED1500620B75 /* NSMutableDictionary+AvoidCrash.m */,
+				BF3420862155ED1600620B75 /* NSMutableString+AvoidCrash.m */,
+				BF3420822155ED1500620B75 /* NSObject+AvoidCrash.m */,
+				BF3420832155ED1600620B75 /* NSString+AvoidCrash.m */,
 				BF8E4922215340DC00143DBA /* AvoidCrash.h */,
-				BF8E4923215340DC00143DBA /* NSString+AvoidCrash.m */,
-				BF8E4924215340DC00143DBA /* NSDictionary+AvoidCrash.m */,
 				BF8E4925215340DC00143DBA /* NSAttributedString+AvoidCrash.h */,
 				BF8E4926215340DC00143DBA /* AvoidCrashStubProxy.h */,
-				BF8E4927215340DC00143DBA /* NSMutableDictionary+AvoidCrash.m */,
 				BF8E4928215340DC00143DBA /* AvoidCrashProtocol.h */,
-				BF8E4929215340DC00143DBA /* NSMutableString+AvoidCrash.m */,
-				BF8E492A215340DC00143DBA /* NSObject+AvoidCrash.m */,
-				BF8E492B215340DC00143DBA /* NSMutableArray+AvoidCrash.m */,
-				BF8E492C215340DC00143DBA /* NSMutableAttributedString+AvoidCrash.m */,
-				BF8E492D215340DC00143DBA /* NSAttributedString+AvoidCrash.m */,
 				BF8E492E215340DC00143DBA /* NSDictionary+AvoidCrash.h */,
 				BF8E492F215340DC00143DBA /* NSString+AvoidCrash.h */,
-				BF8E4930215340DC00143DBA /* AvoidCrash.m */,
 				BF8E4931215340DC00143DBA /* NSArray+AvoidCrash.h */,
 				BF8E4932215340DC00143DBA /* NSMutableDictionary+AvoidCrash.h */,
-				BF8E4933215340DC00143DBA /* AvoidCrashStubProxy.m */,
 				BF8E4934215340DC00143DBA /* NSObject+AvoidCrash.h */,
 				BF8E4935215340DC00143DBA /* NSMutableString+AvoidCrash.h */,
 				BF8E4936215340DC00143DBA /* NSMutableAttributedString+AvoidCrash.h */,
@@ -4624,11 +4621,11 @@
 		BF8E4938215340DE00143DBA /* Jpush */ = {
 			isa = PBXGroup;
 			children = (
-				BF8E4939215340DE00143DBA /* jpush-extension-ios-1.1.1.a */,
+				BF3420972155ED2D00620B75 /* jcore-ios-1.2.2.a */,
+				BF3420982155ED2D00620B75 /* jpush-extension-ios-1.1.1.a */,
+				BF3420992155ED2E00620B75 /* jpush-ios-3.1.0.a */,
 				BF8E493A215340DE00143DBA /* JPushNotificationExtensionService.h */,
 				BF8E493B215340DE00143DBA /* JPUSHService.h */,
-				BF8E493C215340DE00143DBA /* jcore-ios-1.2.2.a */,
-				BF8E493D215340DE00143DBA /* jpush-ios-3.1.0.a */,
 			);
 			path = Jpush;
 			sourceTree = "<group>";
@@ -5430,6 +5427,7 @@
 				79FA652A20674550000C7DB6 /* RH_HelpCenterModel.m in Sources */,
 				A0E368111F94847A00758033 /* RH_LotteryRecPageViewController.m in Sources */,
 				7953D0272064F81800760FEB /* RH_AboutUsViewController.m in Sources */,
+				BF3420962155ED1700620B75 /* NSMutableAttributedString+AvoidCrash.m in Sources */,
 				22B8EEDD20945B39001BFA08 /* ErrorStateTopView.m in Sources */,
 				F6E402032001BDC900C52B97 /* RH_GesturelLockController.m in Sources */,
 				F6FB63C72011A13D00EEED4E /* RH_ApplyDiscountSiteSystemCell.m in Sources */,
@@ -5485,8 +5483,6 @@
 				F696B83B2068E7A20038D1C5 /* RH_DepositeTransferPayAdressCell.m in Sources */,
 				B84A33CF2064E9F400A8BFEE /* RH_RegistrationViewItem.m in Sources */,
 				F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */,
-				BF8E4946215340DF00143DBA /* NSAttributedString+AvoidCrash.m in Sources */,
-				BF8E493E215340DF00143DBA /* NSArray+AvoidCrash.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
 				F69E352A2063A4470028D3A1 /* RH_DepositeSystemPlatformCell.m in Sources */,
 				A010A0891F879B23004E6EF4 /* RH_BasicHelpView.m in Sources */,
@@ -5502,7 +5498,6 @@
 				F6FB638C200F851300EEED4E /* RH_MPSystemNoticeDetailCell.m in Sources */,
 				F6FB6397200F851300EEED4E /* RH_MPGameNoticePulldownView.m in Sources */,
 				F6E402042001BDC900C52B97 /* RH_LockSetPWDController.m in Sources */,
-				BF8E4945215340DF00143DBA /* NSMutableAttributedString+AvoidCrash.m in Sources */,
 				F69E34F8206274930028D3A1 /* RH_DepositeViewControllerEX.m in Sources */,
 				F682020A2071DD26003593C9 /* RH_DepositeSubmitSucceedView.m in Sources */,
 				A010A08E1F879B23004E6EF4 /* RH_MainTabBarController.m in Sources */,
@@ -5537,6 +5532,7 @@
 				797F678920085DA5009E3FAB /* RH_SystemNoticeModel.m in Sources */,
 				A010A0281F8795AC004E6EF4 /* RH_BasicModel.m in Sources */,
 				A044437E200E3250004F942B /* PXAlertView+Customization.m in Sources */,
+				BF3420942155ED1700620B75 /* NSDictionary+AvoidCrash.m in Sources */,
 				B8248394202836F700CD1ECB /* RH_BasicAlertViewCell.m in Sources */,
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
 				F682020120707418003593C9 /* THScrollChooseView.m in Sources */,
@@ -5576,7 +5572,6 @@
 				A0109FAE1F8788FF004E6EF4 /* NSString+Hash.m in Sources */,
 				795513DA203040420096CA77 /* RH_SiteMsgUnReadCountModel.m in Sources */,
 				79D8640F206CD1E400E527B7 /* RH_AdvertisementView.m in Sources */,
-				BF8E4940215340DF00143DBA /* NSDictionary+AvoidCrash.m in Sources */,
 				F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */,
 				A093D4A2201D642000B89820 /* RH_NavigationBarView.m in Sources */,
 				B84A33D22067A63D00A8BFEE /* RH_RegistrationSelectView.m in Sources */,
@@ -5662,6 +5657,7 @@
 				A0109FCB1F8788FF004E6EF4 /* CLNetReachability.m in Sources */,
 				54C8762C20FF38F800AA0594 /* GameWebViewController.m in Sources */,
 				A01181591FFC6BE4008F6D1E /* RH_BettingRecordHeaderView.m in Sources */,
+				BF34208C2155ED1700620B75 /* NSMutableDictionary+AvoidCrash.m in Sources */,
 				A0109FCC1F8788FF004E6EF4 /* CLWeakDelegate.m in Sources */,
 				B87A6B362008B47C00C9788F /* RH_BankPickerSelectView.m in Sources */,
 				F696B8362068E7780038D1C5 /* RH_DepositeTransferOrderNumCell.m in Sources */,
@@ -5677,7 +5673,6 @@
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
 				7937C4312072073B0010CD0C /* PGDatePicker+DateAndTime.m in Sources */,
-				BF8E493F215340DF00143DBA /* NSString+AvoidCrash.m in Sources */,
 				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
 				F6FB6395200F851300EEED4E /* RH_MPGameNoticeCell.m in Sources */,
 				A0109FD01F8788FF004E6EF4 /* DNAlbumTableViewController.m in Sources */,
@@ -5688,7 +5683,6 @@
 				A039BD9E200321B30080D56F /* RH_BettingInfoModel.m in Sources */,
 				B879E07E2026BC22007B3D45 /* RH_BankCardRealNameCell.m in Sources */,
 				A0109FD31F8788FF004E6EF4 /* DNImagePickerController.m in Sources */,
-				BF8E4943215340DF00143DBA /* NSObject+AvoidCrash.m in Sources */,
 				A0109FD41F8788FF004E6EF4 /* DNPhotoBrowser.m in Sources */,
 				A0109FD51F8788FF004E6EF4 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
 				79FB814C1FFDD37100325BF3 /* RH_CapitalRecordViewController.m in Sources */,
@@ -5697,6 +5691,7 @@
 				B8107AAF1FFCC83C0086DDC3 /* RH_BasicAlertView.m in Sources */,
 				79BB2DA12031699E000CDE6B /* RH_SharePlayerRecommendModel.m in Sources */,
 				A0109FD71F8788FF004E6EF4 /* UIView+DNImagePicker.m in Sources */,
+				BF34208F2155ED1700620B75 /* AvoidCrashStubProxy.m in Sources */,
 				A0109FD81F8788FF004E6EF4 /* DNAlbumTableViewCell.m in Sources */,
 				A0109FD91F8788FF004E6EF4 /* DNAssetsViewCell.m in Sources */,
 				A0109FDA1F8788FF004E6EF4 /* DNBadgeLabel.m in Sources */,
@@ -5706,6 +5701,7 @@
 				A0109FDE1F8788FF004E6EF4 /* DNUnAuthorizedTipsView.m in Sources */,
 				7937C4252072073B0010CD0C /* PGDatePicker+DateHour.m in Sources */,
 				F69E350220634C6F0028D3A1 /* RH_DepositePayforWaySubCell.m in Sources */,
+				BF3420952155ED1700620B75 /* AvoidCrash.m in Sources */,
 				546CE6F020CA5BFD00273C40 /* RH_GameListCategoryScrollView.m in Sources */,
 				546CE6EB20CA2A5300273C40 /* HTHorizontalSelectionList.m in Sources */,
 				79FA652020673C64000C7DB6 /* RH_RegisterClauseModel.m in Sources */,
@@ -5726,7 +5722,6 @@
 				79BB2DB22032BAE8000CDE6B /* RH_FirstBigCellHeadView.m in Sources */,
 				54CDEF7420CBC3E10080EB68 /* RH_FindbackPswInputAccountViewController.m in Sources */,
 				79E38665203C39CA002BF767 /* RH_MineMoreDetailWebViewController.m in Sources */,
-				BF8E4947215340DF00143DBA /* AvoidCrash.m in Sources */,
 				A0109FE01F8788FF004E6EF4 /* MJExtensionConst.m in Sources */,
 				A0109FE11F8788FF004E6EF4 /* MJFoundation.m in Sources */,
 				A0109FE21F8788FF004E6EF4 /* MJProperty.m in Sources */,
@@ -5748,6 +5743,7 @@
 				B8107AC01FFE1A3A0086DDC3 /* RH_MineSettingsViewController.m in Sources */,
 				7937C4282072073B0010CD0C /* PGDatePicker+Logic.m in Sources */,
 				A011815C1FFC6BE4008F6D1E /* RH_BettingRecordBottomView.m in Sources */,
+				BF34208E2155ED1700620B75 /* NSString+AvoidCrash.m in Sources */,
 				54CDEF6F20CBB8D60080EB68 /* RH_FindbackPswWayView.m in Sources */,
 				A0109FE81F8788FF004E6EF4 /* NSObject+MJProperty.m in Sources */,
 				A05747A41FF27F150068D0E4 /* RH_LotteryAPIInfoModel.m in Sources */,
@@ -5773,7 +5769,6 @@
 				A0109FF01F8788FF004E6EF4 /* SDImageCache.m in Sources */,
 				A0109FF11F8788FF004E6EF4 /* SDImageCacheConfig.m in Sources */,
 				A0109FF21F8788FF004E6EF4 /* SDWebImageCompat.m in Sources */,
-				BF34207C2155EBF500620B75 /* SplashViewController.m in Sources */,
 				A0109FF31F8788FF004E6EF4 /* SDWebImageDecoder.m in Sources */,
 				A0109FF41F8788FF004E6EF4 /* SDWebImageDownloader.m in Sources */,
 				F6A0BC97206F8787006DB380 /* RH_DepositBitcionViewController.m in Sources */,
@@ -5787,6 +5782,7 @@
 				797252ED2004953200A73F05 /* RH_CapitalTableViewCell.m in Sources */,
 				A0109FF71F8788FF004E6EF4 /* SDWebImagePrefetcher.m in Sources */,
 				A0109FF81F8788FF004E6EF4 /* UIButton+WebCache.m in Sources */,
+				BF3420912155ED1700620B75 /* NSMutableString+AvoidCrash.m in Sources */,
 				F6FB63BD201192B800EEED4E /* RH_ApplyDiscountSitePageCell.m in Sources */,
 				79FA653E20677BD0000C7DB6 /* RH_HelpCenterDetailViewController.m in Sources */,
 				A0109FF91F8788FF004E6EF4 /* UIImage+GIF.m in Sources */,
@@ -5831,7 +5827,6 @@
 				F69E352F2063A5F10028D3A1 /* RH_DepositeSystemPlatformSubCell.m in Sources */,
 				A0109F721F8787E4004E6EF4 /* CLHeaderTitleView.m in Sources */,
 				A0109F731F8787E4004E6EF4 /* CLLabel.m in Sources */,
-				BF8E4948215340DF00143DBA /* AvoidCrashStubProxy.m in Sources */,
 				A0B5A5741FFF6C1400E2CDD8 /* RH_LotteryGameListTopView.m in Sources */,
 				7937C445207209720010CD0C /* PGPickerTableView.m in Sources */,
 				A0109F741F8787E4004E6EF4 /* CLLineLayer.m in Sources */,
@@ -5883,19 +5878,18 @@
 				A0109F8B1F8787E4004E6EF4 /* CLImagePickerViewController.m in Sources */,
 				A0109F8C1F8787E4004E6EF4 /* CLMultipleImagePickerController.m in Sources */,
 				BF8E4972215348FF00143DBA /* RH_DepositeBasicViewController.m in Sources */,
-				BF8E4942215340DF00143DBA /* NSMutableString+AvoidCrash.m in Sources */,
 				A058FF331FE8A6BC006EF279 /* UIViewController+CWLateralSlide.m in Sources */,
 				A0109F8D1F8787E4004E6EF4 /* CLActivityIndicatorView.m in Sources */,
 				A0109F8E1F8787E4004E6EF4 /* CLIndicateView.m in Sources */,
 				54CDEF5D20CB64240080EB68 /* RH_BindNewPhoneView.m in Sources */,
 				A0109F8F1F8787E4004E6EF4 /* CLLoadingIndicateView.m in Sources */,
-				BF8E4944215340DF00143DBA /* NSMutableArray+AvoidCrash.m in Sources */,
 				B860F92A201DB699000EE66A /* RH_StaticAlertView.m in Sources */,
 				F681D265201B0EA600A7C449 /* RH_ActivityStatusModel.m in Sources */,
 				A0B86B9D20063E250009AB25 /* RH_CapitalInfoOverviewModel.m in Sources */,
 				54CDEF7C20CBC9C50080EB68 /* RH_FindbackPswSendCodeViewController.m in Sources */,
 				F69E34FD20634C070028D3A1 /* RH_DepositePayforWayCell.m in Sources */,
 				A0109F901F8787E4004E6EF4 /* CLRefreshControl.m in Sources */,
+				BF34208D2155ED1700620B75 /* NSObject+AvoidCrash.m in Sources */,
 				A0E367B11F9069F700758033 /* RH_CustomViewController.m in Sources */,
 				A039BDA320036B2C0080D56F /* RH_BettingRecordCell.m in Sources */,
 				A0AE8AB51FFCD57300836C1B /* RH_MineMoreInfoViewController.m in Sources */,
@@ -5915,6 +5909,7 @@
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
 				A0109F961F8787E4004E6EF4 /* CLScanImageView.m in Sources */,
+				BF3420902155ED1700620B75 /* NSArray+AvoidCrash.m in Sources */,
 				54C8762720FF271100AA0594 /* SH_WKGameViewController.m in Sources */,
 				A0109F971F8787E4004E6EF4 /* CLStaticCollectionView.m in Sources */,
 				A0109F981F8787E4004E6EF4 /* CLStaticCollectionViewCell.m in Sources */,
@@ -5954,12 +5949,13 @@
 				F6FB640C20142BF600EEED4E /* RH_ForgetPasswordController.m in Sources */,
 				B87A6B3A200AF20C00C9788F /* RH_BitCoinController.m in Sources */,
 				A0522A97200C9F1100A5A6E9 /* RH_PromoCategoryCell.m in Sources */,
-				BF8E4941215340DF00143DBA /* NSMutableDictionary+AvoidCrash.m in Sources */,
 				A0109FA41F8787E4004E6EF4 /* CLTabChangeTransitioning.m in Sources */,
 				A0109FA51F8787E4004E6EF4 /* CLViewController.m in Sources */,
 				A0522A92200C922E00A5A6E9 /* RH_PromoTypeHeaderView.m in Sources */,
 				A0109FA61F8787E4004E6EF4 /* CLViewControllerTransitioningDelegate.m in Sources */,
 				A0AE8AB31FFCD57300836C1B /* RH_MineMoreLanguageCell.m in Sources */,
+				BF3420922155ED1700620B75 /* NSMutableArray+AvoidCrash.m in Sources */,
+				BF3420932155ED1700620B75 /* NSAttributedString+AvoidCrash.m in Sources */,
 				B860F926201D6A96000EE66A /* RH_ModifyPasswordSpecialCell.m in Sources */,
 				B879E07A20231806007B3D45 /* RH_BankCardNumberCell.m in Sources */,
 				A0109C751F878199004E6EF4 /* main.m in Sources */,
