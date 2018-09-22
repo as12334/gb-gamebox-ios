@@ -215,7 +215,7 @@
             [weakSelf.serviceRequest fetchIPSFromBoss:bossApi host:host times:times invalidIPS:invalidIPS];
             weakSelf.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
                 if (type == ServiceRequestTypeFetchIPSFromBoss) {
-                    if (data) {
+                    if (data && ((NSDictionary *)data).allKeys.count) {
                         //已从boss-api获取到ips，执行回调
                         NSDictionary *ips = ConvertToClassPointer(NSDictionary, data);
                         if (ips) {
@@ -535,6 +535,7 @@
         //check失败后重试获取ips
         if ([IPsCacheManager sharedManager].retryFetchIPSTimes > 3 || ipList.count <10) {
             //重试次数大于三次则不在重试 或者 每次拿到的ip小于10条
+            weakSelf.progress = 0;
             weakSelf.currentErrCode = @"003";
             return ;
         }
@@ -545,6 +546,7 @@
             //递归调用check方法
             [weakSelf checkIPSAndRetry:ips retryBossApiUrl:url host:host];
         } failed:^{
+            weakSelf.progress = 0;
             weakSelf.currentErrCode = @"003";
         }];
     }];
@@ -682,7 +684,7 @@
                     return ;
                 }
                 NSLog(@">>>start check ip:%@ type:%@",ip,checkType);
-                [weakSelf checkIP:ip checkType:checkType complete:^(NSString *type) {
+                [weakSelf checkIP:ip checkType:checkType IsLottery:NO complete:^(NSString *type) {
                     NSLog(@"ip:%@check成功 type:%@", ip, type);
                     doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                     dispatch_semaphore_signal(sema);
@@ -710,10 +712,10 @@
     }
 }
 
-- (void)checkIP:(NSString *)ip checkType:(NSString *)checkType complete:(GBCheckIPComplete)complete failed:(GBCheckIPFailed)failed
+- (void)checkIP:(NSString *)ip checkType:(NSString *)checkType IsLottery:(BOOL)isLottery complete:(GBCheckIPComplete)complete failed:(GBCheckIPFailed)failed
 {
     __weak typeof(self) weakSelf = self;
-    [self.serviceRequest startCheckDomain:ip WithCheckType:checkType];
+    [self.serviceRequest startCheckDomain:ip WithCheckType:checkType IsLottery:isLottery];
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeDomainCheck) {
             if (complete) {
@@ -872,7 +874,7 @@
         for (NSString *host in hosts) {
             dispatch_group_async(group, queue, ^{
                 dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                [weakSelf checkIP:host checkType:@"http" complete:^(NSString *type) {
+                [weakSelf checkIP:host checkType:@"http" IsLottery:YES complete:^(NSString *type) {
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
                         NSLog(@">>>获取到彩票可用域名：%@",host);
