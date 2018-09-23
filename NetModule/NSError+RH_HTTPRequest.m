@@ -43,7 +43,7 @@ NSString * const HTTPRequestResultErrorDomin = @"HTTPRequestResultErrorDomin";
 + (NSError *)resultErrorWithURLResponse:(NSHTTPURLResponse *)response
 {
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
-        NSInteger errorCode = response.statusCode ;
+        NSInteger errorCode = [[response.allHeaderFields objectForKey:@"headerStatus"] integerValue] ;
         NSString *errorMessage = nil ;
         switch (errorCode) {
             case 403:
