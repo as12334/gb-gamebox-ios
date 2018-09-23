@@ -581,28 +581,39 @@
             }
             NSLog(@">>>start fetch url from %@",domain);
             [weakSelf fetchIPListFrom:domain host:host complete:^(NSDictionary *ips) {
-                NSLog(@"已从%@获取到ip，执行回调",domain);
-                //todo
-                //test data
-#warning 这里是专门给test71的 打test71的时候一定要打开
-//                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
                 resultIPs = ips;
-                doNext = NO;//已经获取到ip 不需要继续执行其他的线程
-                
-                ///
-                //缓存ips和apiDomain
-                
-                [[IPsCacheManager sharedManager] updateIPsList:resultIPs];
-                //记录是哪条线路获取到了ips
-                [IPsCacheManager sharedManager].bossApi = domain;
-                
-                NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
-                if (resultIPs != nil) {
+                if (resultIPs != nil && resultIPs.allKeys.count) {
+                    NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);
+                    NSLog(@"已从%@获取到ip，执行回调",domain);
+                    //todo
+                    //test data
+#warning 这里是专门给test71的 打test71的时候一定要打开
+                    //                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
+                    doNext = NO;//已经获取到ip 不需要继续执行其他的线程
+                    
+                    ///
+                    //缓存ips和apiDomain
+                    
+                    [[IPsCacheManager sharedManager] updateIPsList:resultIPs];
+                    //记录是哪条线路获取到了ips
+                    [IPsCacheManager sharedManager].bossApi = domain;
+
                     if (complete) {
                         complete(resultIPs);
                     }
                 }
-                
+                else
+                {
+                    weakSelf.progress += 0.05;
+                    NSLog(@"从%@未获取到ip，继续下一次获取...",domain);
+                    doNext = YES;//未获取到ip 需要继续执行其他的线程
+                    failedTimes ++;
+                    if (failedTimes == domains.count) {
+                        if (failed) {
+                            failed();
+                        }
+                    }
+                }
                 dispatch_semaphore_signal(sema);
             } failed:^{
                 weakSelf.progress += 0.05;

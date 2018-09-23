@@ -171,6 +171,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 
 -(void)startCheckDomain:(NSString*)doMain WithCheckType:(NSString *)checkType IsLottery:(BOOL)isLottery
 {
+    
     NSString *urlStr;
     if ([checkType isEqualToString:@"https"]) {
         urlStr = @"https://%@/__check";
@@ -184,6 +185,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
     else if ([checkType isEqualToString:@"http+8787"]){
         urlStr = @"http://%@:8787/__check";
     }
+    //彩票域名检测不用带host
     NSMutableDictionary *headDic = [[NSMutableDictionary alloc]init];
     [headDic setValue:[NSString stringWithFormat:@"app_ios, iPhone, %@.%@",GB_CURRENT_APPVERSION,RH_APP_VERCODE] forKey:@"User-Agent"];
     if (!isLottery) {
