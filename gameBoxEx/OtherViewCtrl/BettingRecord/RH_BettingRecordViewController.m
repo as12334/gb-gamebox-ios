@@ -386,7 +386,7 @@
             return ;
         }
         if ([CheckTimeManager shared].lotteryLineCheckFail) {
-            showErrorMessage(self.view, nil, @"api线路异常");
+            showErrorMessage(self.view, nil, @"您所在区域无法获取可用域名");
             return ;
         }
 

@@ -2826,52 +2826,15 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         }
     }
     
-//    NSData *tmpDatas = ConvertToClassPointer(NSData, data) ;
-//    NSString *tmpResults = [tmpDatas mj_JSONString] ;
     if (type == ServiceRequestTypeDomainCheck)
     {//处理结果数据
         NSData *tmpData = ConvertToClassPointer(NSData, data) ;
-        NSString *tmpResult = [tmpData mj_JSONString] ;
-        if ([[tmpResult lowercaseString] containsString:@"ok"]){ //域名响应ok
-            NSString* reqUrl = response.URL.absoluteString.lowercaseString;
-            if ([reqUrl hasPrefix:@"https://"]) {
-                *reslutData = @(YES) ;
-            }else{
-                *reslutData = @(NO) ;
-            }
-            if ([reqUrl containsString:@"https"]&&[reqUrl containsString:@"8989"]) {
-                self.appDelegate.checkType = @"https+8989";
-            }
-            else if ([reqUrl containsString:@"http"]&&[reqUrl containsString:@"8787"]){
-                self.appDelegate.checkType = @"http+8787";
-            }
-            else
-            {
-                if ([reqUrl containsString:@"https"]) {
-                    self.appDelegate.checkType = @"https";
-                }
-                else {
-                    self.appDelegate.checkType = @"http";
-                }
-            }
-            if (response.statusCode==605){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    showAlertView(@"ip被限制", nil) ;
-                    return ;
-                });
-            }
-            
+        NSString *tmpResult = [[tmpData mj_JSONString] stringByReplacingOccurrencesOfString:@"\n" withString:@""] ;
+        if (response.statusCode == 200 && [[tmpResult lowercaseString] isEqualToString:@"ok"]){
+            //域名响应ok
+            *reslutData = @(YES) ;
         }else{
-            *error = [NSError resultDataNoJSONError] ;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
-                NSString *errorCode = [NSString stringWithFormat:@"%ld",response.statusCode] ;
-                NSString *errorMessage = [response.description copy] ;
-                [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
-                                                                                        RH_SP_COLLECTAPPERROR_CODE:errorCode,
-                                                                                        RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
-                                                                                        }] ;
-            });
+            *reslutData = @(NO);
         }
         
         return YES ;
@@ -3645,26 +3608,6 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
 {
     //by shin
     RH_ServiceRequestContext * context = [request context];
-
-//    //此处收集域名 check fail 信息
-//    if (context.serivceType==ServiceRequestTypeDomainCheck){
-//        NSString *checkDomainStr = ConvertToClassPointer(NSString, [self contextForType:ServiceRequestTypeDomainCheck]) ;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSString *errorCode = [NSString stringWithFormat:@"%ld",error.code] ;
-//            NSString *errorMessage = [error.localizedDescription copy] ;
-//            NSLog(@"errorMessage==%@",errorMessage);
-//            [[RH_UserInfoManager shareUserManager].domainCheckErrorList addObject:@{RH_SP_COLLECTAPPERROR_DOMAIN:checkDomainStr?:@"",
-//                                                                                    RH_SP_COLLECTAPPERROR_CODE:errorCode,
-//                                                                                    RH_SP_COLLECTAPPERROR_ERRORMESSAGE:errorMessage,
-//                                                                                    }] ;
-//            //通知告诉splashViewController ,你特么没check成功，换下一个域名在check
-//            // 1.创建通知打开通知
-//            NSNotification *notificationClose =[NSNotification notificationWithName:@"youAreNotCheckSuccess" object:nil userInfo:nil];
-//            // 2.通过 通知中心 发送 通知
-//            [[NSNotificationCenter defaultCenter] postNotification:notificationClose];
-//        });
-//    }
-
     //移除标记
     [self.httpRequests removeObjectForKey:@(context.serivceType)];
     [self.requestingMarks removeObjectForKey:@(context.serivceType)];

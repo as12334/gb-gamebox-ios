@@ -363,7 +363,8 @@ configuration_list=(  \
     # '_0ixl^730^"澳门威尼斯人娱乐场"' \
     # '_utpk^750^"至尊娱乐"' \
     # '_ktad^752^"万博体育"' \
-    # '_5eab^739^"BET365"' \
+    '_5eab^739^"BET365"' \
+    # '_mhux^737^"天合娱乐"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)
