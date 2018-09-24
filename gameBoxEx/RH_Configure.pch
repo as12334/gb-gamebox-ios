@@ -2181,7 +2181,7 @@
 #define THEMEV3             @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define SITE_TYPE    @"integratedv3oc"
 
-#elif _u0er //乐鼎国际娱乐
+#elif _u0er //琅琊国际
 
 #define CODE    @"u0er"
 #define S        @"2e23942c041257c8f9a3e9a49b9960fb"
