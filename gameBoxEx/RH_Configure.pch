@@ -4040,6 +4040,17 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _mlbc //大众娱乐
+
+#define CODE    @"mlbc"
+#define S        @"d5ed3b137a40acb2b48d005b0d40df2d"
+#define SID        @"753"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
