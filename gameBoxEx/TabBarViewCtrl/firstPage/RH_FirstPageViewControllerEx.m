@@ -415,7 +415,7 @@
                             return ;
                         }
                         if ([CheckTimeManager shared].lotteryLineCheckFail) {
-                            showErrorMessage(weakSelf.view, nil, @"api线路异常");
+                            showErrorMessage(weakSelf.view, nil, @"您所在区域无法获取可用域名");
                             return ;
                         }
                         GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];

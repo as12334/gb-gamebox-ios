@@ -257,20 +257,20 @@
                 //回到首页并展示登录界面
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.navigationController popViewControllerAnimated:NO];
+                    if (weakSelf.closeAndShowLoginBlock) {
+                        weakSelf.closeAndShowLoginBlock();
+                    }
                 });
-                if (weakSelf.closeAndShowLoginBlock) {
-                    weakSelf.closeAndShowLoginBlock();
-                }
             }
             else if ([url containsString:@"/mainIndex.html"])
             {
                 //回到首页
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.navigationController popViewControllerAnimated:NO];
+                    if (weakSelf.closeBlock) {
+                        weakSelf.closeBlock();
+                    }
                 });
-                if (weakSelf.closeBlock) {
-                    weakSelf.closeBlock();
-                }
             }
             else
             {

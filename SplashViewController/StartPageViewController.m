@@ -448,60 +448,60 @@
         self.progressNote = @"正在获取服务器列表...";
         self.progress = 0.1;
 
-        //失败以后从DNS获取boss-api
-        [self fetchHost:^(NSDictionary *host) {
-            //缓存bossApi
-            [[IPsCacheManager sharedManager] updateBossApiList:host];
-            
-            NSString *hostName = [host objectForKey:@"host"];
-            
-            //将此数据随机打乱 减轻服务器压力
-            NSArray *hostips = [host objectForKey:@"ips"];
-            hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
-                int seed = arc4random_uniform(2);
-                if (seed) {
-                    return [str1 compare:str2];
-                } else {
-                    return [str2 compare:str1];
-                }
-            }];
-            
-            NSMutableArray *hostUrlArr = [NSMutableArray array];
-            for (NSString *hostip in hostips) {
-                NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
-                [hostUrlArr addObject:hostUrl];
-            }
-            
-            weakSelf.progressNote = @"正在检查线路,请稍候";
-            
-            //从动态域名列表依次尝试获取ip列表
-            [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
-                weakSelf.progress = 0.3;
-                [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossApi host:hostName];
-            } failed:^{
-                //从所有的固定域名列表没有获取到ip列表
-                weakSelf.progress = 0;
-                weakSelf.currentErrCode = @"002";
-            }];
-        } failed:^{
-            weakSelf.progress = 0;
-            weakSelf.currentErrCode = @"001";
-        }];
 
-//        //先从boss-api提供域名访问方式获取ips进行check
-//        //获取成功则直接check
-//        //获取失败则走DNS获取boss-api进行ip直连
-//        NSArray *bossApis = @[@"https://apiplay.info:1344/boss-api/app/line.html",
-//                              @"https://hpdbtopgolddesign.com:1344/boss-api/app/line.html",
-//                              @"https://agpicdance.info:1344/boss-api/app/line.html"];
-//        [self fetchIPsFromBoss:bossApis host:nil times:0 invalidIPS:nil complete:^(NSDictionary *ips) {
-//            //成功后直接check
-//            //采用bossApi域名方式重试
-//            [[IPsCacheManager sharedManager] updateIPsList:ips];
-//
-//            [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossDomainApi host:nil];
-//        } failed:^{
-//        }];
+        //先从boss-api提供域名访问方式获取ips进行check
+        //获取成功则直接check
+        //获取失败则走DNS获取boss-api进行ip直连
+        NSArray *bossApis = @[@"https://apiplay.info:1344/boss-api/app/line.html",
+                              @"https://hpdbtopgolddesign.com:1344/boss-api/app/line.html",
+                              @"https://agpicdance.info:1344/boss-api/app/line.html"];
+        [self fetchIPsFromBoss:bossApis host:nil times:0 invalidIPS:nil complete:^(NSDictionary *ips) {
+            //成功后直接check
+            //采用bossApi域名方式重试
+            [[IPsCacheManager sharedManager] updateIPsList:ips];
+
+            [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossDomainApi host:nil];
+        } failed:^{
+            //失败以后从DNS获取boss-api
+            [weakSelf fetchHost:^(NSDictionary *host) {
+                //缓存bossApi
+                [[IPsCacheManager sharedManager] updateBossApiList:host];
+                
+                NSString *hostName = [host objectForKey:@"host"];
+                
+                //将此数据随机打乱 减轻服务器压力
+                NSArray *hostips = [host objectForKey:@"ips"];
+                hostips = [hostips sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+                    int seed = arc4random_uniform(2);
+                    if (seed) {
+                        return [str1 compare:str2];
+                    } else {
+                        return [str2 compare:str1];
+                    }
+                }];
+                
+                NSMutableArray *hostUrlArr = [NSMutableArray array];
+                for (NSString *hostip in hostips) {
+                    NSString *hostUrl = [NSString stringWithFormat:@"https://%@:1344/boss-api",hostip];
+                    [hostUrlArr addObject:hostUrl];
+                }
+                
+                weakSelf.progressNote = @"正在检查线路,请稍候";
+                
+                //从动态域名列表依次尝试获取ip列表
+                [weakSelf fetchIPs:hostUrlArr host:hostName complete:^(NSDictionary *ips) {
+                    weakSelf.progress = 0.3;
+                    [weakSelf checkIPSAndRetry:ips retryBossApiUrl:[IPsCacheManager sharedManager].bossApi host:hostName];
+                } failed:^{
+                    //从所有的固定域名列表没有获取到ip列表
+                    weakSelf.progress = 0;
+                    weakSelf.currentErrCode = @"002";
+                }];
+            } failed:^{
+                weakSelf.progress = 0;
+                weakSelf.currentErrCode = @"001";
+            }];
+        }];
     }
 }
 
@@ -730,8 +730,16 @@
     [self.serviceRequest startCheckDomain:ip WithCheckType:checkType IsLottery:isLottery];
     self.serviceRequest.successBlock = ^(RH_ServiceRequest *serviceRequest, ServiceRequestType type, id data) {
         if (type == ServiceRequestTypeDomainCheck) {
-            if (complete) {
-                complete(checkType);
+            if ([data boolValue] == YES) {
+                if (complete) {
+                    complete(checkType);
+                }
+            }
+            else
+            {
+                if (failed) {
+                    failed();
+                }
             }
         }
     };
@@ -902,6 +910,7 @@
                     dispatch_semaphore_signal(semaphore);
                 } failed:^{
                     failTimes++;
+                    NSLog(@">>>彩票域名检测失败:%@",host);
                     //当全部失败的时候重新请求
                     if (failTimes == hosts.count) {
                         //全部没通过

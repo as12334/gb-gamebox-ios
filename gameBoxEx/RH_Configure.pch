@@ -4031,6 +4031,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _mhux //天合娱乐
+
+#define CODE    @"mhux"
+#define S        @"e215d92d47aaa927c4ec51f39274ae4b"
+#define SID        @"737"
+#define THEMEV3     @"red"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 #endif
 
 #endif /* RH_Configure_h */
