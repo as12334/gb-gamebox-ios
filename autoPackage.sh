@@ -14,6 +14,7 @@
 #     '_nu9r^119^UEDBET'  \
 #     '_57h0^270^LOVEBET'\
 configuration_list=(  \
+    '_nu9r^119^UEDBET'  \
     # '_0001^1^"超博娱乐"'  \
     # '_1qkq^65^"宏图娱乐"'  \
     # '_8l6r^71^"超博娱乐"'  \
