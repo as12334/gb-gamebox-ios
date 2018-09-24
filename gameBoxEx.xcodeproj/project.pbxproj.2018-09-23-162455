@@ -679,7 +679,7 @@
 		BF8E4954215343D400143DBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E4953215343D300143DBA /* CoreGraphics.framework */; };
 		BF8E4955215343E600143DBA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05E63B31F8C649E007BAA95 /* UIKit.framework */; };
 		BF8E4957215343F700143DBA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E4956215343F700143DBA /* libz.tbd */; };
-		BF8E49592153440C00143DBA /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E49582153440C00143DBA /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BF8E49592153440C00143DBA /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E49582153440C00143DBA /* UserNotifications.framework */; };
 		BF8E495B2153442700143DBA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8E495A2153442600143DBA /* libresolv.tbd */; };
 		BF8E4971215348FF00143DBA /* RH_FundsTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4960215348FE00143DBA /* RH_FundsTransferViewController.m */; };
 		BF8E4972215348FF00143DBA /* RH_DepositeBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E4961215348FE00143DBA /* RH_DepositeBasicViewController.m */; };
@@ -6034,7 +6034,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "_mppv=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_m6ql=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6045,7 +6045,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid371;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid721;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -6053,15 +6053,16 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "澳门新葡京娱乐城";
+				APP_DISPLAY_NAME = "万达国际娱乐城";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_qawi=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_m6ql=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6072,7 +6073,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid371;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid721;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6132,7 +6133,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid371;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid721;
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6140,15 +6141,16 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_DISPLAY_NAME = "澳门新葡京娱乐城";
+				APP_DISPLAY_NAME = "万达国际娱乐城";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "_qawi=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "_m6ql=1";
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6159,7 +6161,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid371;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid721;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
