@@ -71,7 +71,7 @@ static RH_CheckAndCrashHelper *_helper;
     [dictError setValue:type forKey: @"type"];
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
-    [dictError setValue:appVersion forKey:@"versionName"];
+    [dictError setValue:[appVersion stringByAppendingString:[NSString stringWithFormat:@".%@",RH_APP_VERCODE]] forKey:@"versionName"];
     NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
     [dictError setValue:sysVersion forKey:@"sysCode"];
     [dictError setValue:@"iOS" forKey:@"channel"];
