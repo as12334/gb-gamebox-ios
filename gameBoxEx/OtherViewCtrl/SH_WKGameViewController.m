@@ -54,17 +54,11 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.userContentController = controller;
     configuration.preferences = preferences;
+    configuration.allowsInlineMediaPlayback = YES;
     _wkWebView = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
     _wkWebView.UIDelegate = self;
     _wkWebView.navigationDelegate = self;
     [self.view addSubview:_wkWebView];
-    
-//    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-//    _wkWebView = [[WKWebView alloc]initWithFrame:CGRectZero configuration:config];
-//    _wkWebView.navigationDelegate = self;
-//    _wkWebView.UIDelegate = self;
-//    [self.view addSubview:_wkWebView];
-    
     
     _wkWebView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0) ;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
