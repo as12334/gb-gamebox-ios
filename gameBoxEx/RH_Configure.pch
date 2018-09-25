@@ -4049,7 +4049,14 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _okda //163
 
+#define CODE    @"okda"
+#define S        @"2ee98c48c0220a4c4ec2a7ec18ecd4b7"
+#define SID        @"757"
+#define THEMEV3     @"red_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
 
 #endif
 
