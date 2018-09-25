@@ -48,37 +48,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "app_icon_21_120x120.png",
-=======
-<<<<<<< HEAD
-      "filename" : "app_icon_119_120x120.png",
-=======
-<<<<<<< HEAD
-      "filename" : "app_icon_697_120x120.png",
-=======
-      "filename" : "app_icon_685_120x120.png",
->>>>>>> 8b11d67e3d80ee5d554b4bdafdec0c90e66ea6af
->>>>>>> 123a97a09de8a59359eaa3be2a9eecbdf2c21954
->>>>>>> 60dd17f43b1470acbfc1f34fb4275b9a4b44bcaa
+      "filename" : "app_icon_719_120x120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "app_icon_21_180x180.png",
-=======
-<<<<<<< HEAD
-      "filename" : "app_icon_119_180x180.png",
-=======
-<<<<<<< HEAD
-      "filename" : "app_icon_697_180x180.png",
-=======
-      "filename" : "app_icon_685_180x180.png",
->>>>>>> 8b11d67e3d80ee5d554b4bdafdec0c90e66ea6af
->>>>>>> 123a97a09de8a59359eaa3be2a9eecbdf2c21954
->>>>>>> 60dd17f43b1470acbfc1f34fb4275b9a4b44bcaa
+      "filename" : "app_icon_719_180x180.png",
       "scale" : "3x"
     },
     {

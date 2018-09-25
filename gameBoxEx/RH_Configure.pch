@@ -3961,7 +3961,7 @@
 #define CODE    @"vrgv"
 #define S        @"adb1aedfcb67820f897443f8740d248d"
 #define SID        @"719"
-#define THEMEV3     @"blue"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
