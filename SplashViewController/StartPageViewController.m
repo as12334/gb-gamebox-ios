@@ -44,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retryH5HostCheck:) name:@"GB_Retry_H5_Host" object:nil];
     
     [self setupUI];
     [self doRequest];
@@ -894,7 +895,7 @@
         for (NSString *host in hosts) {
             dispatch_group_async(group, queue, ^{
                 dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                [weakSelf checkIP:host checkType:@"http" IsLottery:YES complete:^(NSString *type) {
+                [weakSelf checkIP:host checkType:@"https+8989" IsLottery:YES complete:^(NSString *type) {
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
                         NSLog(@">>>获取到彩票可用域名：%@",host);
@@ -1137,6 +1138,51 @@
             complete();
         }
     };
+}
+
+- (void)retryH5HostCheck:(NSNotification *)notification
+{
+    __weak typeof(self) weakSelf = self;
+
+    NSString *bossApi = @"";
+    BOOL needHost = NO;
+    if ([IPsCacheManager sharedManager].bossDomainApi) {
+        //域名api
+        bossApi = [IPsCacheManager sharedManager].bossDomainApi;
+    }
+    else if ([IPsCacheManager sharedManager].bossApi)
+    {
+        //ip直连api
+        bossApi = [[IPsCacheManager sharedManager].bossApi stringByAppendingString:@"/app/line.html"];
+        needHost = YES;
+    }
+    
+    if ([bossApi isEqualToString:@""]) {
+        showErrorMessage([UIApplication sharedApplication].keyWindow, nil, @"您所在区域无法获取可用域名");
+        return;
+    }
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    [self fetchIPsFromBoss:@[bossApi] host:needHost ? [[[IPsCacheManager sharedManager] bossApis] objectForKey:@"host"] : nil  times:0 invalidIPS:nil complete:^(NSDictionary *ips) {
+        NSString *domain = [ips objectForKey:@"domain"];
+        //check此Host
+        [weakSelf checkIP:domain checkType:@"https+8989" IsLottery:YES complete:^(NSString *type) {
+            //check成功则更新
+            RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+            [appDelegate updateDomainName:domain];
+            //通知打开网页
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GB_Retry_Open_H5" object:notification.object];
+        } failed:^{
+            //check失败
+            showErrorMessage([UIApplication sharedApplication].keyWindow, nil, @"您所在区域无法获取可用域名");
+        }];
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+    } failed:^{
+        //check失败
+        showErrorMessage([UIApplication sharedApplication].keyWindow, nil, @"您所在区域无法获取可用域名");
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+    }];
+
 }
 
 @end

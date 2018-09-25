@@ -44,8 +44,21 @@
     self.title =@"投注记录";
     [self setupUI] ;
     self.isFirstLoad = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reOpenH5:) name:@"GB_Retry_Open_H5" object:nil];
 }
 
+- (void)reOpenH5:(NSNotification *)notification
+{
+    NSDictionary *obj = notification.object;
+    NSString *target = [obj objectForKey:@"targetController"];
+    if ([target isEqualToString:@"bettingRecordView"]) {
+        RH_BettingInfoModel *bettingInfoModel = [[obj objectForKey:@"data"] firstObject];
+        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+        NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,bettingInfoModel.mURL];
+        [self.navigationController pushViewController:gameViewController animated:YES];
+    }
+}
 -(BOOL)hasTopView
 {
     return TRUE ;
@@ -378,6 +391,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pageLoadManager.currentDataCount){
+        RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
+
         RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
         
         if (appDelegate.demainName == nil && [CheckTimeManager shared].lotteryLineCheckFail == NO) {
@@ -386,12 +401,10 @@
             return ;
         }
         if ([CheckTimeManager shared].lotteryLineCheckFail) {
-            showErrorMessage(self.view, nil, @"您所在区域无法获取可用域名");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GB_Retry_H5_Host" object:@{@"targetController":@"bettingRecordView",@"data":@[bettingInfoModel]}];
             return ;
         }
 
-        RH_BettingInfoModel *bettingInfoModel = ConvertToClassPointer(RH_BettingInfoModel, [self.pageLoadManager dataAtIndexPath:indexPath]) ;
-        
         GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
         NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
         gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,bettingInfoModel.mURL];

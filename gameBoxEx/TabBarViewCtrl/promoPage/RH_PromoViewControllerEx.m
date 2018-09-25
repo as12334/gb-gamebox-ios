@@ -125,8 +125,24 @@
 //    }
     //初始化 优惠类别信息
     [self loadingIndicateViewDidTap:nil] ;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reOpenH5:) name:@"GB_Retry_Open_H5" object:nil];
 }
 
+- (void)reOpenH5:(NSNotification *)notification
+{
+    NSDictionary *obj = notification.object;
+    NSString *target = [obj objectForKey:@"targetController"];
+    if ([target isEqualToString:@"promoView"]) {
+        RH_DiscountActivityModel *discountActivityModel = [[obj objectForKey:@"data"] firstObject];
+        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+        gameViewController.hideMenuView = YES;
+        NSString *checkType = [[self.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,self.appDelegate.demainName,discountActivityModel.mUrl];
+        
+        [self.navigationController pushViewController:gameViewController animated:YES];
+    }
+}
+    
 -(void)setupInfo
 {
 //    self.typeTopView.frame = CGRectMake(0, StatusBarHeight+NavigationBarHeight, MainScreenW, self.typeTopView.viewHeight) ;
@@ -203,7 +219,7 @@
         return ;
     }
     if ([CheckTimeManager shared].lotteryLineCheckFail) {
-        showErrorMessage(self.view, nil, @"您所在区域无法获取可用域名");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GB_Retry_H5_Host" object:@{@"targetController":@"promoView",@"data":@[discountActivityModel]}];
         return ;
     }
 
