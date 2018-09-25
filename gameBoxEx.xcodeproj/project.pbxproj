@@ -118,7 +118,6 @@
 		546CE71D20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CE71C20CAB1E400273C40 /* RH_ChangeBIndPhoneView.m */; };
 		546CE71F20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 546CE71E20CAB1EE00273C40 /* RH_ChangeBIndPhoneView.xib */; };
 		54C4F84820D3AC1400CCAD47 /* IPsCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */; };
-		54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */; };
 		54C4F87520D7CED000CCAD47 /* dores.sh in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F87320D7CECF00CCAD47 /* dores.sh */; };
 		54C4F87620D7CED000CCAD47 /* sid in Resources */ = {isa = PBXBuildFile; fileRef = 54C4F87420D7CED000CCAD47 /* sid */; };
 		54C8762520FF271100AA0594 /* SH_DragableMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C8762020FF270F00AA0594 /* SH_DragableMenuView.m */; };
@@ -142,6 +141,7 @@
 		54CDEF8920CBD3B30080EB68 /* RH_FBPChangePwView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8820CBD3B30080EB68 /* RH_FBPChangePwView.xib */; };
 		54CDEF8C20CBD6B70080EB68 /* RH_ChangePswSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */; };
 		54CDEF8E20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */; };
+		54F37EC3215A0C5500C12BB5 /* UpdateStatusCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F37EC2215A0C5400C12BB5 /* UpdateStatusCacheManager.m */; };
 		7907430B2063547900A4543A /* RH_LimitTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430A2063547900A4543A /* RH_LimitTransferViewController.m */; };
 		7907430F20635B5200A4543A /* RH_LimitTransferTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7907430E20635B5200A4543A /* RH_LimitTransferTopView.m */; };
 		790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 790743112063A0FD00A4543A /* RH_LimitTransferCell.m */; };
@@ -994,8 +994,6 @@
 		54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPsCacheManager.h; sourceTree = "<group>"; };
 		54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPsCacheManager.m; sourceTree = "<group>"; };
 		54C4F84920D6348C00CCAD47 /* StartPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
-		54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateStatusCacheManager.h; sourceTree = "<group>"; };
-		54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateStatusCacheManager.m; sourceTree = "<group>"; };
 		54C4F87320D7CECF00CCAD47 /* dores.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dores.sh; sourceTree = "<group>"; };
 		54C4F87420D7CED000CCAD47 /* sid */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sid; sourceTree = "<group>"; };
 		54C8762020FF270F00AA0594 /* SH_DragableMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SH_DragableMenuView.m; sourceTree = "<group>"; };
@@ -1033,6 +1031,8 @@
 		54CDEF8A20CBD6B70080EB68 /* RH_ChangePswSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_ChangePswSuccessView.h; sourceTree = "<group>"; };
 		54CDEF8B20CBD6B70080EB68 /* RH_ChangePswSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_ChangePswSuccessView.m; sourceTree = "<group>"; };
 		54CDEF8D20CBD6C10080EB68 /* RH_ChangePswSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_ChangePswSuccessView.xib; sourceTree = "<group>"; };
+		54F37EC1215A0C5400C12BB5 /* UpdateStatusCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateStatusCacheManager.h; sourceTree = "<group>"; };
+		54F37EC2215A0C5400C12BB5 /* UpdateStatusCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateStatusCacheManager.m; sourceTree = "<group>"; };
 		790743092063547900A4543A /* RH_LimitTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferViewController.h; sourceTree = "<group>"; };
 		7907430A2063547900A4543A /* RH_LimitTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_LimitTransferViewController.m; sourceTree = "<group>"; };
 		7907430D20635B5200A4543A /* RH_LimitTransferTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_LimitTransferTopView.h; sourceTree = "<group>"; };
@@ -2981,8 +2981,8 @@
 				A0109F681F87852F004E6EF4 /* ScreenAdaptation.m */,
 				54C4F84620D3AC1400CCAD47 /* IPsCacheManager.h */,
 				54C4F84720D3AC1400CCAD47 /* IPsCacheManager.m */,
-				54C4F87020D789B100CCAD47 /* UpdateStatusCacheManager.h */,
-				54C4F87120D789B100CCAD47 /* UpdateStatusCacheManager.m */,
+				54F37EC1215A0C5400C12BB5 /* UpdateStatusCacheManager.h */,
+				54F37EC2215A0C5400C12BB5 /* UpdateStatusCacheManager.m */,
 			);
 			path = CoreLib;
 			sourceTree = "<group>";
@@ -5630,7 +5630,6 @@
 				A05747B51FF4D6860068D0E4 /* RH_BannelModel.m in Sources */,
 				7937C446207209720010CD0C /* PGPickerColumnCell.m in Sources */,
 				A0109FC21F8788FF004E6EF4 /* UIView+Instance.m in Sources */,
-				54C4F87220D789B100CCAD47 /* UpdateStatusCacheManager.m in Sources */,
 				A0109FC31F8788FF004E6EF4 /* UIView+IntervalAnimation.m in Sources */,
 				B87A6B4E200D9D6C00C9788F /* RH_WithdrawCashController.m in Sources */,
 				223ED04F20CE94D300209110 /* RH_InitAdModel.m in Sources */,
@@ -5856,6 +5855,7 @@
 				A0ADD3211FEB613400B24B51 /* RH_BannerViewCell.m in Sources */,
 				A0109F801F8787E4004E6EF4 /* CLContentViewForCell.m in Sources */,
 				A0109F811F8787E4004E6EF4 /* CLImageCachePool.m in Sources */,
+				54F37EC3215A0C5500C12BB5 /* UpdateStatusCacheManager.m in Sources */,
 				A0109F821F8787E4004E6EF4 /* CLImageDownLoadManager.m in Sources */,
 				A0109F831F8787E4004E6EF4 /* CLArrayPageLoadController.m in Sources */,
 				BFF3846520EE07D300ED3ACB /* No_AccessView.m in Sources */,
@@ -6034,7 +6034,11 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/RH_Configure.pch";
+<<<<<<< HEAD
 				GCC_PREPROCESSOR_DEFINITIONS = "_w7ls=1";
+=======
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6045,7 +6049,11 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid217;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -6053,15 +6061,24 @@
 		A0109C8F1F878199004E6EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				APP_DISPLAY_NAME = "众盈国际";
+=======
+				APP_DISPLAY_NAME = "超博娱乐";
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
+<<<<<<< HEAD
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_2d4n=1";
+=======
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6072,7 +6089,11 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid217;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6132,7 +6153,11 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid217;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				SDKROOT = iphoneos;
 			};
 			name = debug;
@@ -6140,15 +6165,24 @@
 		F6DD595A208F4F1200290E84 /* debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+<<<<<<< HEAD
 				APP_DISPLAY_NAME = "众盈国际";
+=======
+				APP_DISPLAY_NAME = "超博娱乐";
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gameBoxEx/gameBoxEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SFMD88G3NR;
 				ENABLE_BITCODE = YES;
+<<<<<<< HEAD
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "_2d4n=1";
+=======
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "_8l6r=1";
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				INFOPLIST_FILE = gameBoxEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6159,7 +6193,11 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid217;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawoo.gamebox.sid71;
+>>>>>>> 5de5ac17bb334618dc3a1c19385bd74ada016ad7
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

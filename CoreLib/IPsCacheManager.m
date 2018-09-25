@@ -90,4 +90,32 @@
     }
 }
 
+- (void)setBossDomainApi:(NSString *)bossDomainApi
+{
+    if (bossDomainApi != nil) {
+        [[NSUserDefaults standardUserDefaults] setObject:bossDomainApi forKey:@"GB_DOMAIN_BOSSAPI_CACHE_DATA"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (NSString *)bossDomainApi
+{
+    NSString *domainApi = [[NSUserDefaults standardUserDefaults] objectForKey:@"GB_DOMAIN_BOSSAPI_CACHE_DATA"];
+    return domainApi;
+}
+
+- (void)setBossApi:(NSString *)bossApi
+{
+    if (bossApi != nil) {
+        [[NSUserDefaults standardUserDefaults] setObject:bossApi forKey:@"GB_BOSSAPI_CACHE_DATA"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (NSString *)bossApi
+{
+    NSString *api = [[NSUserDefaults standardUserDefaults] objectForKey:@"GB_BOSSAPI_CACHE_DATA"];
+    return api;
+}
+
 @end

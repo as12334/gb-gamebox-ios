@@ -88,6 +88,7 @@
     //增加login status changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:NT_LoginStatusChangedNotification object:nil] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"didRegistratedSuccessful" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reOpenH5:) name:@"GB_Retry_Open_H5" object:nil];
     _hud = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
     _hud.removeFromSuperViewOnHide = YES;
     
@@ -95,6 +96,33 @@
     //自动登录
     [self autoLogin] ;
     [self shoudShowUpdateAlert];
+}
+
+- (void)reOpenH5:(NSNotification *)notification
+{
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *obj = notification.object;
+    NSString *target = [obj objectForKey:@"targetController"];
+    if ([target isEqualToString:@"firstPageView"]) {
+        NSDictionary *data = [[obj objectForKey:@"data"] firstObject];
+        RH_LotteryInfoModel *cellItemModel = [[obj objectForKey:@"data"] lastObject];
+        
+        GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+        NSString *checkType = [[weakSelf.appDelegate.checkType componentsSeparatedByString:@"+"] firstObject];
+        
+        RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
+
+        gameViewController.url = [NSString stringWithFormat:@"%@://%@%@",checkType,appDelegate.demainName,[data objectForKey:@"gameLink"]];
+        
+        [gameViewController close:^{
+            //调用一次回收额度
+            [weakSelf.serviceRequest startV3OneStepRecoverySearchId:[NSString stringWithFormat:@"%li",(long)((RH_LotteryInfoModel *)cellItemModel).mApiID]];
+        }];
+        [gameViewController closeAndShowLogin:^{
+            [weakSelf loginButtonItemHandle];
+        }];
+        [self.navigationController pushViewController:gameViewController animated:YES];
+    }
 }
 
 - (void)shoudShowUpdateAlert
@@ -415,7 +443,7 @@
                             return ;
                         }
                         if ([CheckTimeManager shared].lotteryLineCheckFail) {
-                            showErrorMessage(weakSelf.view, nil, @"您所在区域无法获取可用域名");
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"GB_Retry_H5_Host" object:@{@"targetController":@"firstPageView",@"data":@[data,cellItemModel]}];
                             return ;
                         }
                         GameWebViewController *gameViewController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
