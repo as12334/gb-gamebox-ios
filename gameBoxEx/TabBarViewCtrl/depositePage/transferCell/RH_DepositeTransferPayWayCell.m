@@ -24,7 +24,9 @@
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
     NSArray *array = ConvertToClassPointer(NSArray, context);
+    NSLog(@"array===%@",array);
     self.nameString = array[2];
+    
     self.payNumTextfield.delegate=self;
     if ([self.nameString isEqualToString:@"other"]) {
         self.payWayLabel.text = @"您的其他方式账号";
@@ -36,8 +38,19 @@
         self.payNumTextfield.userInteractionEnabled = NO;
     }
     else if ([self.nameString isEqualToString:@"wechat"]){
-        self.payWayLabel.text = @"您的微信昵称";
-        self.payNumTextfield.placeholder = @"如：陈XX";
+        
+        RH_DepositeTransferListModel *model = ConvertToClassPointer(RH_DepositeTransferListModel, array[1]);
+        
+        if (model.mAccountInformation != nil) {
+            self.payWayLabel.text = model.mAccountInformation;
+        } else {
+            self.payWayLabel.text = @"您的微信昵称";
+        }
+        if (model.mAccountPrompt != nil) {
+            self.payNumTextfield.placeholder = model.mAccountPrompt;
+        } else {
+            self.payNumTextfield.placeholder = @"如：陈XX";
+        }
     }
     else if ([self.nameString isEqualToString:@"alipay"]){
         self.payWayLabel.text = @"您的支付户名";

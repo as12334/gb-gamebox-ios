@@ -4049,6 +4049,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _djgt //聚名彩票网
+
+#define CODE    @"djgt"
+#define S        @"595f2729c110b0732d15e2f139ab4ba8"
+#define SID        @"756"
+#define THEMEV3     @"coffee_white"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif

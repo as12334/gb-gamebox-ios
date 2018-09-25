@@ -10,10 +10,12 @@
 # eof
 
 #自定义要编译打包的数据
-# configuration_list=('_DEBUG' '_98jb')
-#     '_nu9r^119^UEDBET'  \
-#     '_57h0^270^LOVEBET'\
 configuration_list=(  \
+<<<<<<< HEAD
+=======
+    # '_nu9r^119^UEDBET'  \
+    # '_57h0^270^LOVEBET'\
+>>>>>>> 5272011097d3706c72f971ec4a8b81b41b589673
     # '_0001^1^"超博娱乐"'  \
     # '_1qkq^65^"宏图娱乐"'  \
     '_8l6r^71^"超博娱乐"'  \
@@ -323,7 +325,7 @@ configuration_list=(  \
     # '_vqxy^621^"来西亚云顶赌场"' \
     # '_vywq^629^"新葡京娱乐城"' \
     # '_dnob^691^"bet365"' \
-    # '_c7pd^699^"新發娱乐"' \
+    '_c7pd^699^"新發娱乐"' \
     # '_hc9f^700^"金沙娱乐场"' \
     # '_noun^701^"辰龙娱乐"' \
     # '_mope^702^"新万博"' \
@@ -366,6 +368,7 @@ configuration_list=(  \
     # '_5eab^739^"BET365"' \
     # '_mhux^737^"天合娱乐"' \
     # '_mlbc^753^"大众娱乐"' \
+    # '_djgt^756^"聚名彩票网"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)

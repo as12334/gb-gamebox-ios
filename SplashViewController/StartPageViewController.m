@@ -590,6 +590,8 @@
                     //test data
 #warning 这里是专门给test71的 打test71的时候一定要打开
                     //                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
+//                                                    ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
+
                     doNext = NO;//已经获取到ip 不需要继续执行其他的线程
                     
                     ///
@@ -907,6 +909,7 @@
                         //todo
 #warning 这里是专门给test71的 打test71的时候一定要打开
 //                                                        [appDelegate updateDomainName:@"test71.hongtubet.com"];
+//                         [appDelegate updateDomainName:@"test01.ccenter.test.so"];
                     });
                     dispatch_semaphore_signal(semaphore);
                 } failed:^{
