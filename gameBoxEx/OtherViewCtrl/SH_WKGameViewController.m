@@ -49,12 +49,12 @@
     
     self.hiddenTabBar = YES;
     self.hiddenNavigationBar = YES;
-    WKUserContentController *controller = [[WKUserContentController alloc] init]; [controller addScriptMessageHandler: self name: @"Could be any srting value"];
-    WKPreferences *preferences = [[WKPreferences alloc] init]; preferences.javaScriptCanOpenWindowsAutomatically = YES;
+//    WKUserContentController *controller = [[WKUserContentController alloc] init]; [controller addScriptMessageHandler: self name: @"Could be any srting value"];
+//    WKPreferences *preferences = [[WKPreferences alloc] init]; preferences.javaScriptCanOpenWindowsAutomatically = YES;
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    configuration.userContentController = controller;
-    configuration.preferences = preferences;
-    configuration.allowsInlineMediaPlayback = YES;
+//    configuration.userContentController = controller;
+//    configuration.preferences = preferences;
+//    configuration.allowsInlineMediaPlayback = YES;
     _wkWebView = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
     _wkWebView.UIDelegate = self;
     _wkWebView.navigationDelegate = self;
