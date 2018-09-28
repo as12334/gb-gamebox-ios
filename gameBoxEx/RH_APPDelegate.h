@@ -9,9 +9,9 @@
 #import "CLAPPDelegate.h"
 //6474cf94eea676728f54dad1      119
 //c90cbc31f7b5b2d38502fad8      270
-static NSString *appKey = @"6474cf94eea676728f54dad1";
+static NSString *appKey = @"c90cbc31f7b5b2d38502fad8";
 static NSString *channel = @"iOS";
-static BOOL isProduction = TRUE;
+static BOOL isProduction = FALSE;
 UIKIT_EXTERN NSString  *NT_LoginStatusChangedNotification ;
 
 @interface RH_APPDelegate : CLAPPDelegate
