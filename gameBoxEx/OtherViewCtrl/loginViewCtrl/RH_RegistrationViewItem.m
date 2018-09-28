@@ -141,7 +141,7 @@
             }
             if ([obj isEqualToString:@"regCode"]) {
                 label_Title.text = @"请输入推荐码⭐️";
-                textField.placeholder = @"请输入推荐码"; break ;
+                textField.placeholder = @"推荐码"; break ;
             }
             if ([obj isEqualToString:@"304"]) {
                 label_Title.text = @"请输入微信⭐️";
