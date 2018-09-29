@@ -12,14 +12,16 @@
 #import "RH_DepositeViewControllerEX.h"
 #import "RH_FundsTransferViewController.h"
 #import "RH_WithdrawCashController.h"
+#import "RH_SelectedHelper.h"
 @interface RH_DepositeBasicViewController ()
-
+@property(nonatomic,strong)RH_ScrollPageView *scrollView;
 @end
 @implementation RH_DepositeBasicViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(selectedWithDrawCash) name:@"selectedWithNotification" object:nil];
     [self configUI];
 }
 -(BOOL)tabBarHidden
@@ -49,21 +51,33 @@
     style.scaleTitle = YES;
     style.scrollTitle = NO;
     style.showLine = YES;
-//    style.titleMargin = 120;
     style.coverHeight = 40;
     style.titleFont = [UIFont systemFontOfSize:15];
     style.gradualChangeTitleColor = YES;
-    style.normalTitleColor = [UIColor greenColor];
-    style.selectedTitleColor = [UIColor yellowColor];
-    RH_ScrollPageView *scrollPageView = [[RH_ScrollPageView alloc] initWithFrame:CGRectMake(0, NavigationBarHeight+STATUS_HEIGHT, screenSize().width, screenSize().height-NavigationBarHeight-STATUS_HEIGHT-TabBarHeight) segmentStyle:style childVcs:childs Titles:@[@"存款",@"资金转账",@"提现"] parentViewController:self];
+    style.normalTitleColor = colorWithRGB(52, 52, 52);
+    style.selectedTitleColor = colorWithRGB(31, 103, 185);
+    CGFloat tab_height = TABBAR_HEIGHT;
+//    if (iPhoneX) {
+//        tab_height = 83
+//    }
+    RH_ScrollPageView *scrollPageView = [[RH_ScrollPageView alloc] initWithFrame:CGRectMake(0, NavigationBarHeight+STATUS_HEIGHT, screenSize().width, screenSize().height-NavigationBarHeight-STATUS_HEIGHT-tab_height) segmentStyle:style childVcs:childs Titles:@[@"存款",@"资金",@"提现"] parentViewController:self];
     self.view.backgroundColor = [UIColor redColor];
     [self.view addSubview:scrollPageView];
+    self.scrollView = scrollPageView;
+    //从未点击过存款tabbar的话从我的页面点击提现会默认选中第一个的 但事实上应该选中第三个,因为从未初始化过该控制器所有通知没有收到
+    [scrollPageView setSelectedIndex:[RH_SelectedHelper shared].selectedIndex animated:NO];
+}
+-(void)selectedWithDrawCash{
+    [self.scrollView setSelectedIndex:2 animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 /*
 #pragma mark - Navigation
 
