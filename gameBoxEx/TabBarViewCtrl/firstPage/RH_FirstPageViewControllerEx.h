@@ -6,7 +6,6 @@
 //  Copyright © 2017年 luis. All rights reserved.
 //
 
-#import "RH_BasicViewController.h"
 #import "RH_BasicPageLoadViewController.h"
 
 @interface RH_FirstPageViewControllerEx : RH_BasicPageLoadViewController

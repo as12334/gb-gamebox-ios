@@ -20,8 +20,8 @@
         self.scrollContentView = YES;
         self.adjustCoverOrLineWidth = NO;
         self.extraBtnBackgroundImageName = nil;
-        self.scrollLineHeight = 2.0;
-        self.scrollLineColor = [UIColor redColor];
+        self.scrollLineHeight = 1.0;
+        self.scrollLineColor = [UIColor colorWithRed:31/255.0 green:103/255.0 blue:185/255.0 alpha:1];
         self.coverBackgroundColor = [UIColor lightGrayColor];
         self.coverCornerRadius = 14.0;
         self.coverHeight = 28.0;

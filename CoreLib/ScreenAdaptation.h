@@ -14,7 +14,6 @@
 #define NavigationBarHeight     44.f
 #define TabBarHeight            49.f
 #define STATUS_HEIGHT  [[UIApplication  sharedApplication] statusBarFrame].size.height
-
 //---------------------------------------------
 
 typedef NS_ENUM(int,CLScreenSizeType) {
