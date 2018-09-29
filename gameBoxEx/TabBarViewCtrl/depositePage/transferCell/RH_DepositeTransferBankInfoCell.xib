@@ -45,15 +45,17 @@
                                     <constraint firstAttribute="height" constant="1" id="BzW-sp-xyS"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oql-Yi-lPz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oql-Yi-lPz">
                                 <rect key="frame" x="216" y="8" width="46" height="25"/>
-                                <color key="backgroundColor" red="0.8129581404320988" green="0.9329910754320988" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="J4P-NR-aUC"/>
                                     <constraint firstAttribute="height" constant="25" id="cNQ-XS-TQs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <state key="normal" title="复制"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="复制">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="cardNumCopySelect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZNF-p7-gPk"/>
                                 </connections>
