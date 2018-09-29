@@ -67,7 +67,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     if ([SITE_TYPE isEqualToString:@"integratedv3"] ||
         [SITE_TYPE isEqualToString:@"integratedv3oc"]){
         RH_CustomTabBar *tabbar = [[RH_CustomTabBar alloc] init] ;

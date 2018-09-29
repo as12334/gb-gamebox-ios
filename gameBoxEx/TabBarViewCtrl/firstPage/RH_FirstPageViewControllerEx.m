@@ -32,7 +32,6 @@
 #import "RH_AdvertisementView.h"
 #import <SafariServices/SafariServices.h>
 #import "RH_BannerDetailVCViewController.h"
-#import "RH_MainTabBarController.h"
 #import "RH_InitAdModel.h"
 #import "UpdateStatusCacheManager.h"
 #import "SH_WKGameViewController.h"
@@ -233,6 +232,8 @@
     if (!_advertisentView) {
         _advertisentView = [RH_AdvertisementView createInstance] ;
         _advertisentView.delegate = self ;
+        [[UIApplication sharedApplication].keyWindow addSubview:self.advertisentView];
+        _advertisentView.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(0).whc_BottomSpace(0) ;
     }
     return _advertisentView ;
 }
@@ -774,8 +775,6 @@
         NSArray *phoneDataArr = homePageModel.phoneDialogModel ;
         if (phoneDataArr.count > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.view.window addSubview:self.advertisentView];
-                self.advertisentView.whc_LeftSpace(0).whc_RightSpace(0).whc_TopSpace(0).whc_BottomSpace(0) ;
                 [self.advertisentView advertisementViewUpDataWithModel:homePageModel.phoneDialogModel[0]] ;
             }) ;
         }
