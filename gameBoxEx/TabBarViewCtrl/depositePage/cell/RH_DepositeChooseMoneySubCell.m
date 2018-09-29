@@ -24,6 +24,16 @@
     self.numLab.text = [NSString stringWithFormat:@"%@",num];
     
 }
+
+-(void)setSelected:(BOOL)selected {
+    if (selected == YES) {
+        self.chooseMoneyIcon.transform = CGAffineTransformMakeScale(0.95, 0.95);
+        [UIView animateWithDuration:0.3 animations:^{
+            self.chooseMoneyIcon.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        }];
+    }
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
