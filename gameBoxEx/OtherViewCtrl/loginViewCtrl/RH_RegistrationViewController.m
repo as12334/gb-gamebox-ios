@@ -11,9 +11,17 @@
 #import "coreLib.h"
 #import "RH_RegistrationViewItem.h"
 #import "RH_RegisterClauseViewController.h"
-@interface RH_RegistrationViewController ()<RH_ServiceRequestDelegate>
+#import "TTTAttributedLabel.h"
+#import "RH_RegistrationTopView.h"
+
+@interface RH_RegistrationViewController ()<RH_ServiceRequestDelegate,TTTAttributedLabelDelegate,RegistrationTopViewDelegate>
 
 @property (nonatomic, strong, readonly) WHC_StackView *stackView;
+
+@property (nonatomic ,strong)RH_RegistrationTopView *registTopView ;
+
+@property(nonatomic,strong)TTTAttributedLabel *tttLab;
+
 @end
 
 @implementation RH_RegistrationViewController
@@ -22,6 +30,7 @@
     UIScrollView *mainScrollView;
     NSInteger animate_Item_Index;
     BOOL isAgreedServiceTerm;
+    BOOL _isShowTopView;
 }
 @synthesize stackView = _stackView;
 - (BOOL)isSubViewController {
@@ -111,15 +120,26 @@
         _stackView.whc_Column = 1;
         _stackView.whc_Orientation = All;
         _stackView.whc_VSpace = 5;
-        _stackView.whc_SubViewHeight = 60;
-        _stackView.whc_Edge = UIEdgeInsetsMake(0, 0, 0, 0);
+        _stackView.whc_SubViewHeight = 45;
+        _stackView.whc_Edge = UIEdgeInsetsMake(40, 0, 0, 0);
     }
     return _stackView;
 }
 
+-(RH_RegistrationTopView *)registTopView
+{
+    if (_registTopView == nil) {
+        _registTopView = [RH_RegistrationTopView new] ;
+        _registTopView.delegate = self ;
+        [self.view addSubview:_registTopView];
+        _registTopView.whc_LeftSpace(0).whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_RightSpace(0).whc_Height(30);
+    }
+    return _registTopView ;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     [self.serviceRequest  startV3RequsetLoginWithGetLoadSid];
     self.title = @"免费注册";
     [self.contentLoadingIndicateView showLoadingStatusWithTitle:@"正在加载..." detailText:@"请稍候"];
@@ -128,15 +148,10 @@
     
     [self.serviceRequest startV3RegisetInit];
     isAgreedServiceTerm = YES;
+    _isShowTopView = YES ;
     //获取验证码
-//    [self.serviceRequest startV3RegisetCaptchaCode];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    
+    //    [self.serviceRequest startV3RegisetCaptchaCode];
+   
 }
 
 - (void)layoutContentViews {
@@ -146,16 +161,16 @@
     mainScrollView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     mainScrollView.backgroundColor = [UIColor clearColor];
     mainScrollView.alwaysBounceVertical = YES;
-    mainScrollView.scrollEnabled = YES;
     mainScrollView.showsVerticalScrollIndicator = YES;
     mainScrollView.showsHorizontalScrollIndicator = NO;
     mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 200);
     [mainScrollView addSubview:self.stackView];
-    self.stackView.whc_TopSpace(70).whc_LeftSpace(20).whc_Width(screenSize().width - 40).whc_HeightAuto();
+    self.stackView.whc_TopSpace(40).whc_LeftSpace(10).whc_Width(screenSize().width - 20).whc_HeightAuto();
     for (FieldModel *field in registrationInitModel.fieldModel) {
         if ([field.name isEqualToString:@"regCode"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
             [item setFieldModel:field];
+            item.isShowTopView = !self.registTopView.isHidden ;
             [item setRequiredJson:registrationInitModel.requiredJson];
             [self.stackView addSubview:item];
         }
@@ -171,12 +186,13 @@
             continue ;
         }
         RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
-//        FieldModel *field;
-//        for (FieldModel *model in registrationInitModel.fieldModel) {
-//            if ([model.name isEqualToString:obj]) {
-//                field = model;
-//            }
-//        }
+        //        FieldModel *field;
+        //        for (FieldModel *model in registrationInitModel.fieldModel) {
+        //            if ([model.name isEqualToString:obj]) {
+        //                field = model;
+        //            }
+        //        }
+        item.isShowTopView = !self.registTopView.isHidden ;
         [item setFieldModel:field];
         if ([field.name isEqualToString:@"defaultTimezone"]) {
             [item setTimeZone:registrationInitModel.paramsModel.timezone];
@@ -200,6 +216,7 @@
         
         if ([field.name isEqualToString:@"password"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+            item.isShowTopView = !self.registTopView.isHidden ;
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"password2";
             [item setFieldModel:field];
@@ -208,6 +225,7 @@
         if (registrationInitModel.isPhone) {
             if ([field.name isEqualToString:@"110"]) {
                 RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+                item.isShowTopView = !self.registTopView.isHidden ;
                 FieldModel *field = [[FieldModel alloc] init];
                 field.name = @"110verify";
                 [item setFieldModel:field];
@@ -216,6 +234,7 @@
         }
         if ([field.name isEqualToString:@"paymentPassword"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+            item.isShowTopView = !self.registTopView.isHidden ;
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"paymentPassword2";
             [item setFieldModel:field];
@@ -223,6 +242,7 @@
         }
         if ([field.name isEqualToString:@"securityIssues"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+            item.isShowTopView = self.registTopView.isHidden ;
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"securityIssues2";
             [item setFieldModel:field];
@@ -233,6 +253,7 @@
     for (FieldModel *f in registrationInitModel.fieldModel) {
         if ([f.name isEqualToString:@"verificationCode"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
+            item.isShowTopView = !self.registTopView.isHidden ;
             FieldModel *field = [[FieldModel alloc] init];
             field.name = @"verificationCode";
             [item setFieldModel:field];
@@ -243,30 +264,30 @@
     [self.stackView whc_StartLayout];
     [self.view layoutIfNeeded];
     if (self.stackView.boundHeigh > screenSize().height) {
-        mainScrollView.contentSize = CGSizeMake(screenSize().width, self.stackView.boundHeigh + 200);
+        mainScrollView.contentSize = CGSizeMake(screenSize().width, self.stackView.boundHeigh + 220);
     }
     for (RH_RegistrationViewItem *item in self.stackView.whc_Subviews) {
+        item.isShowTopView = !self.registTopView.isHidden ;
         item.transform = CGAffineTransformMakeTranslation(screenSize().width, 0);
     }
     [self startAnimate];
+    
 }
 
 - (void)setupBottomView {
     UIButton *button_Check = [UIButton new];
     button_Check.tag = 1023;
     [mainScrollView addSubview:button_Check];
-    button_Check.whc_TopSpaceToView(20, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
+    mainScrollView.userInteractionEnabled = YES ;
+    button_Check.whc_TopSpaceToView(40, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     
     [button_Check setSelected:YES];
     [button_Check setImage:ImageWithName(@"choose") forState:UIControlStateNormal];
     [button_Check addTarget:self action:@selector(button_CheckHandle:) forControlEvents:UIControlEventTouchUpInside];
-    UIButton *label = [UIButton new];
-    [mainScrollView addSubview:label];
-    label.whc_LeftSpaceToView(10, button_Check).whc_BottomSpaceEqualView(button_Check).whc_Height(20).whc_WidthAuto();
-    label.titleLabel.font = [UIFont systemFontOfSize:15];
-    [label setTitleColor:colorWithRGB(168, 168, 168) forState:UIControlStateNormal]; ;
-    [label setTitle:@"注册条款" forState:UIControlStateNormal];
-    [label addTarget:self action:@selector(zhucetiaokuan) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.tttLab.whc_LeftSpaceToView(10, button_Check).whc_BottomSpaceEqualView(button_Check).whc_Height(20).whc_WidthAuto();
+    [self setBottomLabWithMessage:@"同意 用户注册协议"];
+    
     UIButton *button = [UIButton new];
     [mainScrollView addSubview:button];
     button.whc_TopSpaceToView(20, button_Check).whc_LeftSpaceEqualView(button_Check).whc_RightSpaceEqualViewOffset(self.stackView, 20).whc_Height(44);
@@ -279,7 +300,7 @@
     }else if ([THEMEV3 isEqualToString:@"red"]) {
         [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Red];
     }else if ([THEMEV3 isEqualToString:@"black"]) {
-//        [button setBackgroundColor:colorWithRGB(4, 109, 79)];
+        //        [button setBackgroundColor:colorWithRGB(4, 109, 79)];
     }else if ([THEMEV3 isEqualToString:@"bule"]) {
         [button setBackgroundColor:RH_NavigationBar_BackgroundColor_Blue];
     }else if ([THEMEV3 isEqualToString:@"orange"]) {
@@ -296,6 +317,62 @@
     [button addTarget:self action:@selector(buttonRegistrationHandle) forControlEvents:UIControlEventTouchUpInside];
 }
 
+#pragma mark - lazy
+- (TTTAttributedLabel *)tttLab
+{
+    if (!_tttLab)
+    {
+        _tttLab = [TTTAttributedLabel  new];
+        _tttLab.lineBreakMode = NSLineBreakByWordWrapping;
+        _tttLab.numberOfLines = 0;
+        _tttLab.delegate = self;
+        _tttLab.lineSpacing = 1;
+        //要放在`text`, with either `setText:` or `setText:afterInheritingLabelAttributesAndConfiguringWithBlock:前面才有效
+        _tttLab.enabledTextCheckingTypes = NSTextCheckingTypePhoneNumber|NSTextCheckingTypeAddress|NSTextCheckingTypeLink;
+        _tttLab.textColor = colorWithRGB(168, 168, 168) ;
+        //链接正常状态文本属性
+        _tttLab.linkAttributes = @{NSForegroundColorAttributeName:colorWithRGB(31, 103, 185),NSUnderlineStyleAttributeName:@(1)};
+        //链接高亮状态文本属性
+        _tttLab.activeLinkAttributes = @{NSForegroundColorAttributeName:colorWithRGB(168, 168, 168),NSUnderlineStyleAttributeName:@(1)};
+        _tttLab.font = [UIFont  systemFontOfSize:14.0];
+        _tttLab.linkAttributes = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];
+        [mainScrollView addSubview:_tttLab];
+    }
+    return _tttLab;
+}
+
+-(void)setBottomLabWithMessage:(NSString *)message{
+    [self.tttLab  setText:message afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+        //设置可点击文字的范围
+        NSRange boldRange = [[mutableAttributedString string]rangeOfString:@"用户注册协议"options:NSCaseInsensitiveSearch];
+        //设定可点击文字的的大小
+        UIFont*boldSystemFont = [UIFont systemFontOfSize:14];
+        CTFontRef font =CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize,NULL);
+        if(font){
+            {
+                //设置可点击文本的大小
+                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName
+                                                value:(__bridge id)font
+                                                range:boldRange];
+                //文字颜色
+                [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName
+                                                value:colorWithRGB(31, 103, 185)
+                                                range:boldRange];
+                CFRelease(font);
+            }
+        }
+        return  mutableAttributedString;
+    }];
+    NSRange boldRange1 = [message rangeOfString:@"用户注册协议" options:NSCaseInsensitiveSearch];
+    [self.tttLab addLinkToURL:[NSURL URLWithString:@""]
+                    withRange:boldRange1];
+}
+#pragma mark - TTTAttributedLabelDelegate
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [self showViewController:[RH_RegisterClauseViewController viewController] sender:nil];
+}
+
 - (void)button_CheckHandle:(UIButton *)button {
     
     if ([button isSelected]) {
@@ -309,68 +386,87 @@
     }
 }
 
-- (void)zhucetiaokuan {
-    [self showViewController:[RH_RegisterClauseViewController viewController] sender:nil];
+
+#pragma mark - RegistrationTopViewDelegate
+//更新UI
+-(void)registrationTopViewbcloseBtnDidClick
+{
+    _isShowTopView = NO ;
+    for (UIView *view in self.stackView.subviews) {
+        if ([view isKindOfClass:[RH_RegistrationViewItem class]])
+        {
+            RH_RegistrationViewItem *item =  (RH_RegistrationViewItem *)view ;
+            item.isShowTopView = _isShowTopView ;
+        }
+    }
+    self.stackView.whc_TopSpace(20).whc_LeftSpace(10).whc_Width(screenSize().width - 20).whc_HeightAuto();
+    
+    UIButton *btn_check = [mainScrollView viewWithTag:1023];
+    if (btn_check)
+    {
+        btn_check.whc_TopSpaceToView(20, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
+    }
 }
+
 
 - (NSString *)obtainContent:(NSString *)name {
     
-//    FieldModel *model = [[FieldModel alloc] init];
+    //    FieldModel *model = [[FieldModel alloc] init];
     for (RH_RegistrationViewItem *item in self.stackView.whc_Subviews) {
         if ([item.contentType isEqualToString:name]) {
             NSString *content  = [item textFieldContent];
-//            if (content.length == 0) {
-//                if ([name isEqualToString:@"username"]) {
-//                    showMessage(self.contentView, @"请输入账号", @"");
-//                }
-//                if ([name isEqualToString:@"birthday"]) {
-//                    showMessage(self.contentView, @"请选择生日", @"");
-//                }
-//                if ([name isEqualToString:@"201"]) {
-//                    showMessage(self.contentView, @"请输入邮箱", @"");
-//                }
-//                if ([name isEqualToString:@"301"]) {
-//                    showMessage(self.contentView, @"请输入QQ号", @"");
-//                }
-//                if ([name isEqualToString:@"304"]) {
-//                    showMessage(self.contentView, @"请输入微信", @"");
-//                }
-//                if ([name isEqualToString:@"password"]) {
-//                    showMessage(self.contentView, @"请输入密码", @"");
-//                }
-//                if ([name isEqualToString:@"password2"]) {
-//                    showMessage(self.contentView, @"请再次输入密码", @"");
-//                }
-//                if ([name isEqualToString:@"realName"]) {
-//                    showMessage(self.contentView, @"请输入真实姓名", @"");
-//                }
-//                if ([name isEqualToString:@"verificationCode"]) {
-//                    showMessage(self.contentView, @"请输入验证码", @"");
-//                }
-//                if ([name isEqualToString:@"paymentPassword"]) {
-//                    showMessage(self.contentView, @"请输入安全密码", @"");
-//                }
-//                if ([name isEqualToString:@"paymentPassword2"]) {
-//                    showMessage(self.contentView, @"请再次输入安全密码", @"");
-//                }
-//                if ([name isEqualToString:@"defaultTimezone"]) {
-//                    showMessage(self.contentView, @"请选择时区", @"");
-//                }
-//                if ([name isEqualToString:@"sex"]) {
-//                    showMessage(self.contentView, @"请选择性别", @"");
-//                }
-//                if ([name isEqualToString:@"mainCurrency"]) {
-//                    showMessage(self.contentView, @"请选择货币", @"");
-//                }
-//                if ([name isEqualToString:@"defaultLocale"]) {
-//                    showMessage(self.contentView, @"请选择语言", @"");
-//                }
-//                if ([name isEqualToString:@"securityIssues"]) {
-//                    showMessage(self.contentView, @"请回答安全问题", @"");
-//                }
-//            }else {
-                return content;
-//            }
+            //            if (content.length == 0) {
+            //                if ([name isEqualToString:@"username"]) {
+            //                    showMessage(self.contentView, @"请输入账号", @"");
+            //                }
+            //                if ([name isEqualToString:@"birthday"]) {
+            //                    showMessage(self.contentView, @"请选择生日", @"");
+            //                }
+            //                if ([name isEqualToString:@"201"]) {
+            //                    showMessage(self.contentView, @"请输入邮箱", @"");
+            //                }
+            //                if ([name isEqualToString:@"301"]) {
+            //                    showMessage(self.contentView, @"请输入QQ号", @"");
+            //                }
+            //                if ([name isEqualToString:@"304"]) {
+            //                    showMessage(self.contentView, @"请输入微信", @"");
+            //                }
+            //                if ([name isEqualToString:@"password"]) {
+            //                    showMessage(self.contentView, @"请输入密码", @"");
+            //                }
+            //                if ([name isEqualToString:@"password2"]) {
+            //                    showMessage(self.contentView, @"请再次输入密码", @"");
+            //                }
+            //                if ([name isEqualToString:@"realName"]) {
+            //                    showMessage(self.contentView, @"请输入真实姓名", @"");
+            //                }
+            //                if ([name isEqualToString:@"verificationCode"]) {
+            //                    showMessage(self.contentView, @"请输入验证码", @"");
+            //                }
+            //                if ([name isEqualToString:@"paymentPassword"]) {
+            //                    showMessage(self.contentView, @"请输入安全密码", @"");
+            //                }
+            //                if ([name isEqualToString:@"paymentPassword2"]) {
+            //                    showMessage(self.contentView, @"请再次输入安全密码", @"");
+            //                }
+            //                if ([name isEqualToString:@"defaultTimezone"]) {
+            //                    showMessage(self.contentView, @"请选择时区", @"");
+            //                }
+            //                if ([name isEqualToString:@"sex"]) {
+            //                    showMessage(self.contentView, @"请选择性别", @"");
+            //                }
+            //                if ([name isEqualToString:@"mainCurrency"]) {
+            //                    showMessage(self.contentView, @"请选择货币", @"");
+            //                }
+            //                if ([name isEqualToString:@"defaultLocale"]) {
+            //                    showMessage(self.contentView, @"请选择语言", @"");
+            //                }
+            //                if ([name isEqualToString:@"securityIssues"]) {
+            //                    showMessage(self.contentView, @"请回答安全问题", @"");
+            //                }
+            //            }else {
+            return content;
+            //            }
         }
     }
     return @"";
@@ -513,11 +609,11 @@
             if (securityIssues.length == 0) {
                 showMessage(self.contentView, @"请选择安全问题", @"");
                 return;}
-//            if ([obj isEqualToString:@"securityIssues2"]) {
-                if (securityIssues2.length == 0) {
-                    showMessage(self.contentView, @"请回答安全问题", @"");
-                    return;}
-//            }
+            //            if ([obj isEqualToString:@"securityIssues2"]) {
+            if (securityIssues2.length == 0) {
+                showMessage(self.contentView, @"请回答安全问题", @"");
+                return;}
+            //            }
         }
         
     }
@@ -532,18 +628,18 @@
     NSString *registcode = registrationInitModel.paramsModel.registCode ?: @"";
     [self showProgressIndicatorViewWithAnimated:YES title:@"正在注册..."];
     [self.serviceRequest startV3RegisetSubmitWithBirthday:[NSString stringWithFormat:@"%@",birthday] sex:sex permissionPwd:permission defaultTimezone:timezone defaultLocale:defaultLocale phonecontactValue:phone realName:realname defaultCurrency:mainCurrency password:password question1:securityIssues emailValue:email qqValue:qq weixinValue:weixin userName:usernama captchaCode:verificationCode recommendRegisterCode:registcode editType:@"" recommendUserInputCode:regCode confirmPassword:password2 confirmPermissionPwd:permission2 answer1:securityIssues2 termsOfService:@"11" requiredJson:registrationInitModel.requiredJson phoneCode:phoneVerify checkPhone:@"checkPhone"];
-
+    
 }
 
 - (void)startAnimate {
     if (animate_Item_Index < self.stackView.whc_Subviews.count + 1) {
         RH_RegistrationViewItem *item = (RH_RegistrationViewItem *)self.stackView.whc_Subviews[animate_Item_Index - 1];
-//        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:1.0/0.4 options:UIViewAnimationOptionCurveLinear animations:^{
-//            item.transform = CGAffineTransformIdentity;
-//        } completion:^(BOOL finished) {
-//            animate_Item_Index++;
-//            [self startAnimate];
-//        }];
+        //        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:1.0/0.4 options:UIViewAnimationOptionCurveLinear animations:^{
+        //            item.transform = CGAffineTransformIdentity;
+        //        } completion:^(BOOL finished) {
+        //            animate_Item_Index++;
+        //            [self startAnimate];
+        //        }];
         [UIView animateWithDuration:0.2 animations:^{
             item.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
@@ -565,31 +661,34 @@
     NSLog(@"%@", error);
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     showErrorMessage(self.contentView, error, @"");
-
+    
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data {
     NSLog(@"%s", __func__);
-
+    
     [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil];
     if (type == ServiceRequestTypeV3RegiestInit) {
         registrationInitModel =( RH_RegisetInitModel *)data;
         [self.contentLoadingIndicateView hiddenView];
+        //头部跑马灯
+        [self.registTopView updateContentWithContext:@"1204567"] ;
         [self layoutContentViews];
+        
     }
     if (type == ServiceRequestTypeV3RegiestSubmit) {
-            NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
-            NSLog(@"···%@", dict);
+        NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
+        NSLog(@"···%@", dict);
         
         if ([dict[@"success"] isEqual:@true]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[self obtainContent:@"username"] forKey:@"account"];
             [defaults setObject:[self obtainContent:@"password"] forKey:@"password"];
-
+            
             [defaults synchronize];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didRegistratedSuccessful" object:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                 [self.navigationController popToRootViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             });
         }
         showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
@@ -597,7 +696,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"changeImageView_VerfyCode" object:self];
         }
     }
-
+    
 }
 
 @end
