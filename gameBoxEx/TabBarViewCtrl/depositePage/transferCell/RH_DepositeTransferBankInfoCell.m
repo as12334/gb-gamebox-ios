@@ -38,9 +38,10 @@
     RH_DepositeTransferListModel *listModel =array[0];
     self.listModel = listModel;
     if (mHide) {
-        [self.copBtn setTitle:@"联系客服" forState:UIControlStateNormal];
-        self.copBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+        [self.copBtn setTitle:@"" forState:UIControlStateNormal];
+//        self.copBtn.titleLabel.font = [UIFont systemFontOfSize:11];
         self.bankCardNumLabel.text = [NSString stringWithFormat:@"账号代码：%@",listModel.mCode];
+        [self.copBtn setImage:[UIImage imageNamed:@"icon_contact"] forState:UIControlStateNormal];
     }else{
         self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
     }
@@ -85,7 +86,9 @@
         }
         [pboard setString:self.bankCardNumLabel.text];
         //    pboard.string = self.bankCardNumLabel.text;
-        showMessage(self, @"复制成功",nil);
+//        showMessage(self, @"复制成功",nil);
+        UIImage *successImage = [UIImage imageNamed:@"icon_success"];
+        showMessageWithImage(self, @"复制成功", nil, successImage);
     }
     
     
@@ -97,7 +100,8 @@
         return;
     }
     pboard.string = self.bankCardNameLabel.text;
-    showMessage(self, @"复制成功",nil);
+    UIImage *successImage = [UIImage imageNamed:@"icon_success"];
+    showMessageWithImage(self, @"复制成功", nil, successImage);
 }
 - (IBAction)bankAdressSelect:(id)sender {
     if (self.bankAdressLabel.text.length == 0) {
@@ -105,7 +109,8 @@
     }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = self.bankAdressLabel.text;
-    showMessage(self, @"复制成功",nil);
+    UIImage *successImage = [UIImage imageNamed:@"icon_success"];
+    showMessageWithImage(self, @"复制成功", nil, successImage);
 }
 
 @end

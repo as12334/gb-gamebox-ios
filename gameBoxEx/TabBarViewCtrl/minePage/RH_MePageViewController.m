@@ -20,7 +20,7 @@
 #import "RH_LimitTransferViewController.h" // 额度转换原生
 #import "RH_SiteMsgUnReadCountModel.h"
 #import "JPUSHService.h"
-
+#import "RH_SelectedHelper.h"
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
@@ -286,7 +286,9 @@
 {
     if (HasLogin)
     {
-        [self showViewController:[RH_WithdrawCashController viewController] sender:self] ;
+        [RH_SelectedHelper shared].selectedIndex = 2;
+        [self.tabBarController setSelectedIndex:1];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectedWithNotification" object:nil];
     }else{
         [self loginButtonItemHandle] ;
     }
@@ -478,6 +480,4 @@
         }
     }
 }
-
-
 @end
