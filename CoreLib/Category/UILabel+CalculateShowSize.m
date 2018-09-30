@@ -70,4 +70,39 @@
                       MIN(intrinsicContentSize.height, size.height));
 }
 
+
+-(void)setTextWithFirstString:(NSString *)firstString
+                 SecondString:(NSString *)secondString
+                     FontSize:(CGFloat)fontSize
+                        Color:(UIColor *)color{
+    
+    NSMutableAttributedString * attributedStr = [[NSMutableAttributedString alloc] initWithString:firstString];
+    //富文本的属性通过字典的形式传入
+    NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [UIFont systemFontOfSize:fontSize],NSFontAttributeName,//字体
+                                   color,NSForegroundColorAttributeName,//字体颜色
+                                   nil ];
+    NSRange range = NSMakeRange(0, 0);
+    if (firstString&&secondString) {
+        range  = [firstString rangeOfString:secondString];
+    }
+    
+    //统一设置富文本对象的属性
+    [attributedStr addAttributes:attributeDict range:range];
+    self.attributedText = attributedStr;
+}
+
++ (CGFloat)getWidthWithText:(NSString *)text height:(CGFloat)height font:(CGFloat)font{
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, height)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}
+                                     context:nil];
+    return rect.size.width;
+}
++ (CGFloat)getLabelHeightWithText:(NSString *)text width:(CGFloat)width font: (CGFloat)font{
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
+    
+    return rect.size.height;
+}
+
 @end
