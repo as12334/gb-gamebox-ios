@@ -117,6 +117,7 @@
 #pragma mark ==============计算缓存================
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated] ;
     //计算缓存
     NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     CGFloat fileSize=[self folderSizeAtPath:libPath];

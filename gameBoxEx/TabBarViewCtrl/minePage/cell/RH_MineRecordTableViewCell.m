@@ -54,8 +54,14 @@
     if (_readCountModel!=nil) {
         [self.staticCollectionView reloadData];
     }
-    
 }
+
+-(void)setMbCache:(CGFloat)mbCache
+{
+    _mbCache = mbCache ;
+    [self.staticCollectionView reloadData];
+}
+
 #pragma mark--
 - (NSUInteger)numberOfSectionInStaticCollectionView:(CLStaticCollectionView *)collectionView
 {
@@ -77,7 +83,7 @@
             cell = [RH_MineRecordStaticCell createInstance]  ;
             [cell setupReuseIdentifier:[RH_MineRecordStaticCell defaultReuseIdentifier]] ;
         }
-        [cell updateCellWithInfo:[self.rowsList objectAtIndex:index] context:self.readCountModel] ;
+        [cell updateCellWithInfo:[self.rowsList objectAtIndex:index] context:@[self.readCountModel?self.readCountModel:@"",@(self.mbCache)]] ;
         return  cell ;
     }
     
