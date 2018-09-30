@@ -720,6 +720,8 @@
 		DA2DFC822160C0330012A977 /* RH_CollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2DFC792160C0330012A977 /* RH_CollectionHeaderView.xib */; };
 		DA2DFC832160C0330012A977 /* RH_CollectionContentPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC7B2160C0330012A977 /* RH_CollectionContentPageCell.m */; };
 		DA2DFC842160C0330012A977 /* RH_CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2DFC7C2160C0330012A977 /* RH_CollectionTableViewCell.xib */; };
+		DA2DFC872160C77B0012A977 /* RH_MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC862160C77B0012A977 /* RH_MineHeaderView.m */; };
+		DA2DFC892160C7880012A977 /* RH_MineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2DFC882160C7880012A977 /* RH_MineHeaderView.xib */; };
 		F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */; };
 		F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00520BBAEBB00E55BAB /* libicucore.tbd */; };
 		F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00720BBAEC200E55BAB /* CFNetwork.framework */; };
@@ -2116,6 +2118,9 @@
 		DA2DFC7C2160C0330012A977 /* RH_CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_CollectionTableViewCell.xib; sourceTree = "<group>"; };
 		DA2DFC7D2160C0330012A977 /* RH_CollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CollectionHeaderView.h; sourceTree = "<group>"; };
 		DA2DFC7E2160C0330012A977 /* RH_CollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CollectionTableViewCell.h; sourceTree = "<group>"; };
+		DA2DFC852160C77B0012A977 /* RH_MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_MineHeaderView.h; sourceTree = "<group>"; };
+		DA2DFC862160C77B0012A977 /* RH_MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_MineHeaderView.m; sourceTree = "<group>"; };
+		DA2DFC882160C7880012A977 /* RH_MineHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_MineHeaderView.xib; sourceTree = "<group>"; };
 		F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
 		F61DA00520BBAEBB00E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -2397,6 +2402,9 @@
 				189C13A61FF9E99E00B14298 /* RH_MineRecordTableViewCell.h */,
 				189C13A71FF9E99E00B14298 /* RH_MineRecordTableViewCell.m */,
 				189C13A81FF9E99E00B14298 /* RH_MineRecordTableViewCell.xib */,
+				DA2DFC852160C77B0012A977 /* RH_MineHeaderView.h */,
+				DA2DFC862160C77B0012A977 /* RH_MineHeaderView.m */,
+				DA2DFC882160C7880012A977 /* RH_MineHeaderView.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -5346,6 +5354,7 @@
 				F6FB6394200F851300EEED4E /* RH_GameNoticeDetailCell.xib in Resources */,
 				221AE5AA207DF2C4008CD409 /* home_announce_close_red@3x.png in Resources */,
 				221AE58D207DEE84008CD409 /* login_touxiang_orange@2x.png in Resources */,
+				DA2DFC892160C7880012A977 /* RH_MineHeaderView.xib in Resources */,
 				F69E1E9920C77DF2006F9185 /* RH_MineMoreClearStorageCell.xib in Resources */,
 				79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */,
 				A06E0F5A2010801B00EF275A /* BitCoinInit.plist in Resources */,
@@ -6113,6 +6122,7 @@
 				54CDEF7720CBC3FA0080EB68 /* RH_InputAccountView.m in Sources */,
 				F6A2AD4F2005F5930077CB92 /* RH_OpenActivityModel.m in Sources */,
 				A01CB4B31FFA1B8B00447130 /* RH_UserInfoManager.m in Sources */,
+				DA2DFC872160C77B0012A977 /* RH_MineHeaderView.m in Sources */,
 				A0109F941F8787E4004E6EF4 /* CLScanImageCell.m in Sources */,
 				A0109F951F8787E4004E6EF4 /* CLScanImageData.m in Sources */,
 				A0109F961F8787E4004E6EF4 /* CLScanImageView.m in Sources */,

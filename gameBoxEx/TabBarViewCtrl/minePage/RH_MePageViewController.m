@@ -82,6 +82,9 @@
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"mine_page_accountback"] forBarMetrics:UIBarMetricsDefault];
+    return;
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
         navigationBar.barStyle = UIBarStyleDefault ;
         if (GreaterThanIOS11System){
