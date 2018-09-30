@@ -712,6 +712,14 @@
 		BFF3846B20EE083D00ED3ACB /* RH_VerityPWDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3846820EE083D00ED3ACB /* RH_VerityPWDView.xib */; };
 		BFF3846C20EE083D00ED3ACB /* RH_VerityPWDView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846920EE083D00ED3ACB /* RH_VerityPWDView.m */; };
 		BFF3846D20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3846A20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m */; };
+		DA2DFC722160BF950012A977 /* DCPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC6F2160BF950012A977 /* DCPathButton.m */; };
+		DA2DFC732160BF950012A977 /* DCPathItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC702160BF950012A977 /* DCPathItemButton.m */; };
+		DA2DFC7F2160C0330012A977 /* RH_CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC762160C0330012A977 /* RH_CollectionViewController.m */; };
+		DA2DFC802160C0330012A977 /* RH_CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC772160C0330012A977 /* RH_CollectionHeaderView.m */; };
+		DA2DFC812160C0330012A977 /* RH_CollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC782160C0330012A977 /* RH_CollectionTableViewCell.m */; };
+		DA2DFC822160C0330012A977 /* RH_CollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2DFC792160C0330012A977 /* RH_CollectionHeaderView.xib */; };
+		DA2DFC832160C0330012A977 /* RH_CollectionContentPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2DFC7B2160C0330012A977 /* RH_CollectionContentPageCell.m */; };
+		DA2DFC842160C0330012A977 /* RH_CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA2DFC7C2160C0330012A977 /* RH_CollectionTableViewCell.xib */; };
 		F61DA00420BBAE1C00E55BAB /* RH_WebsocketManagar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */; };
 		F61DA00620BBAEBB00E55BAB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00520BBAEBB00E55BAB /* libicucore.tbd */; };
 		F61DA00820BBAEC300E55BAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61DA00720BBAEC200E55BAB /* CFNetwork.framework */; };
@@ -2094,6 +2102,20 @@
 		BFF3846920EE083D00ED3ACB /* RH_VerityPWDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VerityPWDView.m; sourceTree = "<group>"; };
 		BFF3846A20EE083D00ED3ACB /* RH_VeriftyLoginPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_VeriftyLoginPWDViewController.m; sourceTree = "<group>"; };
 		BFF3846E20EE088500ED3ACB /* RH_StartPageADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_StartPageADView.h; sourceTree = "<group>"; };
+		DA2DFC6E2160BF950012A977 /* DCPathItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPathItemButton.h; sourceTree = "<group>"; };
+		DA2DFC6F2160BF950012A977 /* DCPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPathButton.m; sourceTree = "<group>"; };
+		DA2DFC702160BF950012A977 /* DCPathItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPathItemButton.m; sourceTree = "<group>"; };
+		DA2DFC712160BF950012A977 /* DCPathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPathButton.h; sourceTree = "<group>"; };
+		DA2DFC752160C0330012A977 /* RH_CollectionContentPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CollectionContentPageCell.h; sourceTree = "<group>"; };
+		DA2DFC762160C0330012A977 /* RH_CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CollectionViewController.m; sourceTree = "<group>"; };
+		DA2DFC772160C0330012A977 /* RH_CollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CollectionHeaderView.m; sourceTree = "<group>"; };
+		DA2DFC782160C0330012A977 /* RH_CollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CollectionTableViewCell.m; sourceTree = "<group>"; };
+		DA2DFC792160C0330012A977 /* RH_CollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_CollectionHeaderView.xib; sourceTree = "<group>"; };
+		DA2DFC7A2160C0330012A977 /* RH_CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CollectionViewController.h; sourceTree = "<group>"; };
+		DA2DFC7B2160C0330012A977 /* RH_CollectionContentPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_CollectionContentPageCell.m; sourceTree = "<group>"; };
+		DA2DFC7C2160C0330012A977 /* RH_CollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		DA2DFC7D2160C0330012A977 /* RH_CollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CollectionHeaderView.h; sourceTree = "<group>"; };
+		DA2DFC7E2160C0330012A977 /* RH_CollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_CollectionTableViewCell.h; sourceTree = "<group>"; };
 		F61DA00220BBAE1C00E55BAB /* RH_WebsocketManagar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_WebsocketManagar.m; sourceTree = "<group>"; };
 		F61DA00320BBAE1C00E55BAB /* RH_WebsocketManagar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_WebsocketManagar.h; sourceTree = "<group>"; };
 		F61DA00520BBAEBB00E55BAB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -4242,6 +4264,7 @@
 		A08417DF1FA6B4CB00869133 /* loginViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				DA2DFC742160C0330012A977 /* Collection */,
 				54CDEF6420CBB2DC0080EB68 /* ForgotPsw */,
 				F6FB640920142BB000EEED4E /* forgetPassword */,
 				A06B64A71FD6910700323C12 /* cell */,
@@ -4448,6 +4471,7 @@
 		A0E53D681F97411F00CE69E4 /* thirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				DA2DFC6C2160BF950012A977 /* DCPathButton */,
 				BF8E4920215340DC00143DBA /* AvoidCrash */,
 				BF8E4938215340DE00143DBA /* Jpush */,
 				F61DA00B20BBAF2800E55BAB /* SocketRocket */,
@@ -4792,6 +4816,42 @@
 				BFA1344C215E16B7008B3463 /* RH_FundsFooterView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DA2DFC6C2160BF950012A977 /* DCPathButton */ = {
+			isa = PBXGroup;
+			children = (
+				DA2DFC6D2160BF950012A977 /* Classes */,
+			);
+			path = DCPathButton;
+			sourceTree = "<group>";
+		};
+		DA2DFC6D2160BF950012A977 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DA2DFC6E2160BF950012A977 /* DCPathItemButton.h */,
+				DA2DFC702160BF950012A977 /* DCPathItemButton.m */,
+				DA2DFC712160BF950012A977 /* DCPathButton.h */,
+				DA2DFC6F2160BF950012A977 /* DCPathButton.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DA2DFC742160C0330012A977 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				DA2DFC752160C0330012A977 /* RH_CollectionContentPageCell.h */,
+				DA2DFC762160C0330012A977 /* RH_CollectionViewController.m */,
+				DA2DFC772160C0330012A977 /* RH_CollectionHeaderView.m */,
+				DA2DFC782160C0330012A977 /* RH_CollectionTableViewCell.m */,
+				DA2DFC792160C0330012A977 /* RH_CollectionHeaderView.xib */,
+				DA2DFC7A2160C0330012A977 /* RH_CollectionViewController.h */,
+				DA2DFC7B2160C0330012A977 /* RH_CollectionContentPageCell.m */,
+				DA2DFC7C2160C0330012A977 /* RH_CollectionTableViewCell.xib */,
+				DA2DFC7D2160C0330012A977 /* RH_CollectionHeaderView.h */,
+				DA2DFC7E2160C0330012A977 /* RH_CollectionTableViewCell.h */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		F61DA00120BBAE1C00E55BAB /* websocketVC */ = {
@@ -5327,6 +5387,7 @@
 				B87A6B50200DAB5B00C9788F /* WithdrawCash.plist in Resources */,
 				A07DCEC51FEBCE460006FAE4 /* RH_HomeCategoryItemsCell.xib in Resources */,
 				22AB993A20809A3D001A6203 /* home_announce_close_coffee@3x.png in Resources */,
+				DA2DFC842160C0330012A977 /* RH_CollectionTableViewCell.xib in Resources */,
 				54CDEF7120CBB8E00080EB68 /* RH_FindbackPswWayView.xib in Resources */,
 				F6FB638D200F851300EEED4E /* RH_MPSystemNoticeDetailCell.xib in Resources */,
 				79BB2DEC20346BC2000CDE6B /* RH_ShareSeletedDateView.xib in Resources */,
@@ -5407,6 +5468,7 @@
 				22F626A420566E3E00094564 /* home_announce_close_black@3x.png in Resources */,
 				F6FB6388200F851300EEED4E /* RH_MPSiteSystemNoticeCell.xib in Resources */,
 				22AB992720809941001A6203 /* tab_v3_home_selected_coffee@3x.png in Resources */,
+				DA2DFC822160C0330012A977 /* RH_CollectionHeaderView.xib in Resources */,
 				B87A6B2B200892B600C9788F /* BankCardExist.plist in Resources */,
 				A06B64AC1FD6915300323C12 /* RH_LoginViewCell.xib in Resources */,
 				A07AF4E42026DBE400D6D559 /* tab_blue_mid_selected@2x.png in Resources */,
@@ -5544,6 +5606,7 @@
 				79FA6533206773B0000C7DB6 /* RH_HelpCenterSecondViewCell.m in Sources */,
 				F6A2ACDC2004DDE00077CB92 /* RH_MineDiscountRecordController.m in Sources */,
 				F681D24F2019729000A7C449 /* RH_CapitalRecordNameLabel.m in Sources */,
+				DA2DFC732160BF950012A977 /* DCPathItemButton.m in Sources */,
 				A07DCECA1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.m in Sources */,
 				A0E368101F94847A00758033 /* RH_LotteryRecPageViewController.h in Sources */,
 				79BB2DAF2032BA8E000CDE6B /* RH_FirstBigViewCell.m in Sources */,
@@ -5612,12 +5675,14 @@
 				B84A33CF2064E9F400A8BFEE /* RH_RegistrationViewItem.m in Sources */,
 				F6FB638E200F851300EEED4E /* RH_MPSystemNoticHeaderView.m in Sources */,
 				797F67922008A272009E3FAB /* RH_GameNoticeDetailModel.m in Sources */,
+				DA2DFC722160BF950012A977 /* DCPathButton.m in Sources */,
 				F69E352A2063A4470028D3A1 /* RH_DepositeSystemPlatformCell.m in Sources */,
 				A010A0891F879B23004E6EF4 /* RH_BasicHelpView.m in Sources */,
 				A010A08A1F879B23004E6EF4 /* RH_BasicPageLoadViewController.m in Sources */,
 				790743122063A0FD00A4543A /* RH_LimitTransferCell.m in Sources */,
 				A010A08B1F879B23004E6EF4 /* RH_BasicSubViewController.m in Sources */,
 				7937C449207212F80010CD0C /* RH_DepositSuccessAlertView.m in Sources */,
+				DA2DFC832160C0330012A977 /* RH_CollectionContentPageCell.m in Sources */,
 				A010A08C1F879B23004E6EF4 /* RH_BasicViewController.m in Sources */,
 				A010A08D1F879B23004E6EF4 /* RH_MainNavigationController.m in Sources */,
 				546CE6FA20CA6CDB00273C40 /* RH_GameEmptyDataCell.m in Sources */,
@@ -5803,6 +5868,7 @@
 				A0109FCE1F8788FF004E6EF4 /* URLSessionManager.m in Sources */,
 				A0109FCF1F8788FF004E6EF4 /* CircleProgressView.m in Sources */,
 				A01CB4AA1FFA116B00447130 /* RH_BasicMainViewController.m in Sources */,
+				DA2DFC812160C0330012A977 /* RH_CollectionTableViewCell.m in Sources */,
 				79BA77082006018800BBFC13 /* RH_CapitalDetailModel.m in Sources */,
 				7937C4312072073B0010CD0C /* PGDatePicker+DateAndTime.m in Sources */,
 				7953D02A206503B800760FEB /* RH_AboutUsTableViewCell.m in Sources */,
@@ -5934,6 +6000,7 @@
 				BFA13447215DFBDE008B3463 /* RH_FundsCollectionViewCell.m in Sources */,
 				5469BFE720C80801006080D1 /* RH_GameListScrollView.m in Sources */,
 				F6FB63B72010C60300EEED4E /* RH_ApplyDiscountSystemPageCell.m in Sources */,
+				DA2DFC7F2160C0330012A977 /* RH_CollectionViewController.m in Sources */,
 				A010A0001F8788FF004E6EF4 /* TTTAttributedLabel.m in Sources */,
 				A010A0011F8788FF004E6EF4 /* ScreenAdaptation.m in Sources */,
 				A0109F691F8787E4004E6EF4 /* CLAPPDelegate.m in Sources */,
@@ -5974,6 +6041,7 @@
 				A0109F771F8787E4004E6EF4 /* CLSelectionView.m in Sources */,
 				546CE6E920CA2A5300273C40 /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				BFA1344B215E16AA008B3463 /* RH_FundsFooterView.m in Sources */,
+				DA2DFC802160C0330012A977 /* RH_CollectionHeaderView.m in Sources */,
 				A0109F781F8787E4004E6EF4 /* CLTableViewCell.m in Sources */,
 				B87A6B40200B04BA00C9788F /* RH_BitCoinCell.m in Sources */,
 				A01460DF2021AAFD008928D1 /* RH_SafetyNaviBarView.m in Sources */,
