@@ -9,8 +9,8 @@
 #import "RH_DaynamicLabelCell.h"
 #import "coreLib.h"
 @interface  RH_DaynamicLabelCell()
-@property(nonatomic,strong) IBOutlet CLLabel *labRemark;
 @property(nonatomic,strong,readonly) UIView *scrollView ;
+@property (weak, nonatomic) IBOutlet UIImageView *daynamicImageView;
 @property(nonatomic,strong,readonly) UILabel *labScrollText;
 @property(nonatomic,assign) CGSize textSize;
 @property(nonatomic,assign) BOOL isAnimation;
@@ -36,40 +36,8 @@
     self.backgroundColor = [UIColor clearColor] ;
     self.contentView.backgroundColor = colorWithRGB(239, 239, 239) ;
     self.backgroundColor = colorWithRGB(21, 21, 21) ;
-    self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
-    
-    if ([THEMEV3 isEqualToString:@"green"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green ;
-    }else if ([THEMEV3 isEqualToString:@"red"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red ;
-    }else if ([THEMEV3 isEqualToString:@"black"]){
-        self.labRemark.backgroundColor = ColorWithNumberRGB(0x168df6) ;
-    }else if ([THEMEV3 isEqualToString:@"blue"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
-    }else if ([THEMEV3 isEqualToString:@"orange"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
-    }else if ([THEMEV3 isEqualToString:@"default"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor;
-    }else if ([THEMEV3 isEqualToString:@"red_white"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Red_White ;
-    }else if ([THEMEV3 isEqualToString:@"green_white"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Green_White ;
-    }else if ([THEMEV3 isEqualToString:@"orange_white"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Orange_White;
-    }else if ([THEMEV3 isEqualToString:@"coffee_white"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_White;
-    }else if ([THEMEV3 isEqualToString:@"coffee_black"]){
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor_Coffee_Black;
-    }else{
-        self.labRemark.backgroundColor = RH_NavigationBar_BackgroundColor ;
-    }
-    
-    self.labRemark.textColor = [UIColor whiteColor] ;
-    self.labRemark.font = [UIFont systemFontOfSize:14.0f] ;
-    self.labRemark.layer.cornerRadius = 4.0f ;
-    self.labRemark.clipsToBounds = YES;
-    self.labRemark.text = @"公告" ;
-    self.labRemark.whc_TopSpace(5).whc_BottomSpace(5).whc_LeftSpace(10).whc_Width(39).whc_Height(22);
+//    self.labRemark.intrinsicSizeExpansionLength = CGSizeMake(5, 5) ;
+    self.daynamicImageView.image = [UIImage imageNamed:@"icon_news"]; self.daynamicImageView.whc_TopSpace(6).whc_BottomSpace(6).whc_LeftSpace(30).whc_Width(18).whc_Height(15);
     [self.scrollView addSubview:self.labScrollText];
     [self.contentView addSubview:self.scrollView] ;
     
