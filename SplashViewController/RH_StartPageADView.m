@@ -42,6 +42,7 @@
     if (timer) {
         dispatch_source_cancel(timer);
     }
+    [self removeFromSuperview];
 }
 
 - (void)setAdImageUrl:(NSString *)adImageUrl
@@ -91,6 +92,8 @@
 }
 
 - (IBAction)skip:(id)sender {
+    dispatch_suspend(timer);
+    [self clearTimer];
     if (self.complete) {
         self.complete();
     }
