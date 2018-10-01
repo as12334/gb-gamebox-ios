@@ -199,10 +199,13 @@
 		798352892160A8F700208E08 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7983527F2160A8F700208E08 /* MASViewConstraint.m */; };
 		7983528A2160A8F700208E08 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 798352802160A8F700208E08 /* MASViewAttribute.m */; };
 		7991A3B120649CAF00133F74 /* RH_RegisetInitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */; };
+		79993DD62161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79993DD52161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.m */; };
+		79993DD92161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79993DD82161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.m */; };
 		79A5CC39201871AE0044435E /* RH_MineSafetyCenterBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */; };
 		79A5CC3B201872490044435E /* RH_MineSafetyCenterBankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */; };
 		79A5CC3E201978930044435E /* RH_CapitalQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */; };
 		79A9C95C200EFD9700E8FFFC /* RH_WithDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */; };
+		79B99B082161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B99B072161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.m */; };
 		79BA36AD20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA36AB20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m */; };
 		79BA36AE20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BA36AC20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.xib */; };
 		79BA77052005F63C00BBFC13 /* RH_CapitalInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BA77042005F63C00BBFC13 /* RH_CapitalInfoModel.m */; };
@@ -1180,6 +1183,10 @@
 		798352802160A8F700208E08 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		7991A3AF20649CAF00133F74 /* RH_RegisetInitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_RegisetInitModel.h; sourceTree = "<group>"; };
 		7991A3B020649CAF00133F74 /* RH_RegisetInitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_RegisetInitModel.m; sourceTree = "<group>"; };
+		79993DD42161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NewHelpCenterDetailViewController.h; sourceTree = "<group>"; };
+		79993DD52161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NewHelpCenterDetailViewController.m; sourceTree = "<group>"; };
+		79993DD72161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NewHelpCenterDetaliViewCell.h; sourceTree = "<group>"; };
+		79993DD82161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NewHelpCenterDetaliViewCell.m; sourceTree = "<group>"; };
 		79A5CC37201871AD0044435E /* RH_MineSafetyCenterBankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_MineSafetyCenterBankCell.m; sourceTree = "<group>"; };
 		79A5CC38201871AE0044435E /* RH_MineSafetyCenterBankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_MineSafetyCenterBankCell.h; sourceTree = "<group>"; };
 		79A5CC3A201872490044435E /* RH_MineSafetyCenterBankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_MineSafetyCenterBankCell.xib; sourceTree = "<group>"; };
@@ -1187,6 +1194,8 @@
 		79A5CC3D201978930044435E /* RH_CapitalQuickSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_CapitalQuickSelectView.m; sourceTree = "<group>"; };
 		79A9C95A200EFD9700E8FFFC /* RH_WithDrawModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_WithDrawModel.h; sourceTree = "<group>"; };
 		79A9C95B200EFD9700E8FFFC /* RH_WithDrawModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_WithDrawModel.m; sourceTree = "<group>"; };
+		79B99B062161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_NewHelpCenterDetailHeaderView.h; sourceTree = "<group>"; };
+		79B99B072161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_NewHelpCenterDetailHeaderView.m; sourceTree = "<group>"; };
 		79BA36AA20710A6500FD2BFE /* RH_DespositeBitCoinStaticDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RH_DespositeBitCoinStaticDataCell.h; sourceTree = "<group>"; };
 		79BA36AB20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RH_DespositeBitCoinStaticDataCell.m; sourceTree = "<group>"; };
 		79BA36AC20710A6600FD2BFE /* RH_DespositeBitCoinStaticDataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RH_DespositeBitCoinStaticDataCell.xib; sourceTree = "<group>"; };
@@ -2828,6 +2837,19 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		79993DD32161CDAB00BAC32C /* NewHelpCenterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				79993DD42161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.h */,
+				79993DD52161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.m */,
+				79993DD72161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.h */,
+				79993DD82161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.m */,
+				79B99B062161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.h */,
+				79B99B072161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.m */,
+			);
+			path = NewHelpCenterDetail;
+			sourceTree = "<group>";
+		};
 		79BB2D9420312F09000CDE6B /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -2926,6 +2948,7 @@
 		79FA652120674258000C7DB6 /* HelpCenter */ = {
 			isa = PBXGroup;
 			children = (
+				79993DD32161CDAB00BAC32C /* NewHelpCenterDetail */,
 				79FA653820677A5B000C7DB6 /* HelpCenterDetail */,
 				79FA652F2067736C000C7DB6 /* cell */,
 				79FA652220674297000C7DB6 /* RH_HelpCenterViewController.h */,
@@ -5615,6 +5638,7 @@
 				A07DCEBE1FEBA4170006FAE4 /* RH_HomeCategorySubCell.m in Sources */,
 				BF34207B2155EBF500620B75 /* RH_StartPageADView.m in Sources */,
 				A01181611FFC7B0A008F6D1E /* RH_BettingStaticHeaderCell.m in Sources */,
+				79993DD92161D02700BAC32C /* RH_NewHelpCenterDetaliViewCell.m in Sources */,
 				A01CB48A1FF9C09F00447130 /* RH_ActivityModel.m in Sources */,
 				79FA6536206773E8000C7DB6 /* RH_HelpCenterSecondModel.m in Sources */,
 				A06B64AB1FD6915300323C12 /* RH_LoginViewCell.m in Sources */,
@@ -5761,6 +5785,7 @@
 				A010A0291F8795AC004E6EF4 /* NSError+RH_HTTPRequest.m in Sources */,
 				F682020120707418003593C9 /* THScrollChooseView.m in Sources */,
 				B87A6B56200DAE7C00C9788F /* RH_WithdrawCashTwoCell.m in Sources */,
+				79993DD62161CF8900BAC32C /* RH_NewHelpCenterDetailViewController.m in Sources */,
 				B81568A82070D8D7003F5E79 /* WHC_KeyboardManager.m in Sources */,
 				5469BFDF20C7FA88006080D1 /* RH_GameItemView.m in Sources */,
 				189C13B01FF9E99F00B14298 /* RH_MineRecordStaticCell.m in Sources */,
@@ -6086,6 +6111,7 @@
 				79FA651D20673C48000C7DB6 /* RH_RegisterClauseViewCell.m in Sources */,
 				A0109F7E1F8787E4004E6EF4 /* CLPathManager.m in Sources */,
 				F6A2ACD1200495940077CB92 /* RH_CapitalRecordDetailsCell.m in Sources */,
+				79B99B082161FA2A003A0474 /* RH_NewHelpCenterDetailHeaderView.m in Sources */,
 				A011815B1FFC6BE4008F6D1E /* RH_BettingTableHeaderView.m in Sources */,
 				A0109F7F1F8787E4004E6EF4 /* CLCellContext.m in Sources */,
 				A0ADD3211FEB613400B24B51 /* RH_BannerViewCell.m in Sources */,

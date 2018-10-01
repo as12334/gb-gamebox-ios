@@ -8,6 +8,7 @@
 
 #import "DCPathButton.h"
 #import "coreLib.h"
+#import "Masonry.h"
 @interface DCPathButton ()<DCPathItemButtonDelegate, CAAnimationDelegate>
 {
     DCPathButtonOrientation _orientation;
@@ -98,6 +99,12 @@
         
         [self configureDeviceOrientationObserver];
         
+        UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+        if (orientation ==UIDeviceOrientationPortrait || orientation ==UIDeviceOrientationFaceUp||orientation==UIDeviceOrientationFaceDown ||orientation == UIDeviceOrientationUnknown || orientation ==UIDeviceOrientationLandscapeLeft) {
+            _orientation = DCPathButtonOrientationPortrait;
+        }else{
+            _orientation = DCPathButtonOrientationLandscape;
+        }
         
     }
     return self;
@@ -141,10 +148,10 @@
     
     // Configure bottom view
     //
-    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width * 2, self.bloomSize.height * 2)];
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenSize().width * 2, screenSize().height * 2)];
     _bottomView.backgroundColor = self.bottomViewColor;
     _bottomView.alpha = 0.0f;
-    
+
 }
 
 #pragma mark - Configure Bottom View Color
@@ -276,11 +283,20 @@
                                              selector:@selector(updateDCPathButtonForOrientationChangeNotification:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
-     UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     [self dcPathOrientationFromOrientation:orientation];
 }
 
 - (void)updateDCPathButtonForOrientationChangeNotification:(NSNotification *)notification {
+    
+    
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    if (orientation == UIDeviceOrientationFaceUp || orientation ==UIDeviceOrientationFaceDown ||orientation == UIDeviceOrientationPortraitUpsideDown || orientation ==UIDeviceOrientationUnknown){
+        return;
+    }
+    if ((_orientation ==DCPathButtonOrientationPortrait &&orientation == UIDeviceOrientationPortrait)||(_orientation ==DCPathButtonOrientationLandscape &&(orientation == UIDeviceOrientationLandscapeLeft || orientation==UIDeviceOrientationLandscapeRight)) ) {
+        return ;
+    }
     
     if (self.bloom) {
         __weak typeof(self)  weakSelf = self;
@@ -288,7 +304,7 @@
             [weakSelf pathCenterButtonFold];
         });
     }
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    
     if ([self.delegate respondsToSelector:@selector(pathButton:didUpdateOrientation:)]) {
         DCPathButtonOrientation dcPathOrientation = [self dcPathOrientationFromOrientation:orientation];
         
@@ -300,7 +316,7 @@
     if (orientation == UIDeviceOrientationUnknown) {
         return DCPathButtonOrientationUnknown;
     }
-    
+
     BOOL isPortrait = UIDeviceOrientationIsPortrait(orientation);
     _orientation = isPortrait ? DCPathButtonOrientationPortrait : DCPathButtonOrientationLandscape;
     if (orientation == UIDeviceOrientationPortraitUpsideDown) {
@@ -408,10 +424,9 @@
         CAAnimationGroup *foldAnimation = [self foldAnimationFromPoint:itemButton.center withFarPoint:farPoint];
         
         [itemButton.layer addAnimation:foldAnimation forKey:@"foldAnimation"];
-        itemButton.center = self.dcButtonCenter;
+        itemButton.center = CGPointMake(self.dcButtonCenter.x+80, self.dcButtonCenter.y);
         
         currentAngel += itemGapAngel;
-        
     }
     
     [self bringSubviewToFront:self.pathCenterButton];
@@ -447,7 +462,7 @@
                          _bottomView.alpha = 0.0f;
                      }
                      completion:nil];
-    
+    __weak  typeof(self)  weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         // Remove the button items from the superview
@@ -455,11 +470,11 @@
         [self.itemButtons makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
-        self.center = _dcButtonCenter;
+        self.center = _dcButtonCenter;                   
         
         self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
-        [self.bottomView removeFromSuperview];
+        [weakSelf.bottomView removeFromSuperview];
     });
     
     _bloom = NO;
@@ -588,7 +603,8 @@
         
         DCPathItemButton *pathItemButton = self.itemButtons[i];
         
-        pathItemButton.delegate = self;
+//        pathItemButton.delegate = self;
+        [pathItemButton addTarget:self action:@selector(itemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         pathItemButton.index = i;
         pathItemButton.transform = CGAffineTransformMakeTranslation(1, 1);
         pathItemButton.alpha = 1.0f;
@@ -596,7 +612,7 @@
         // 1. Add pathItem button to the view
         //
         
-        pathItemButton.center = self.pathCenterButtonBloomCenter;
+        pathItemButton.center = self.dcButtonCenter;
         
         [self insertSubview:pathItemButton belowSubview:self.pathCenterButton];
         

@@ -90,6 +90,7 @@
 #import "UIImageView+WebCache.h"
 #import "CLLabel.h"
 #import "MJExtension.h"
+#import "Masonry.h"
 #import "CLNavigationBar.h"
 #import "CLImageTitleStaticCollectionViewCell.h"
 #import "KIPageView.h"
