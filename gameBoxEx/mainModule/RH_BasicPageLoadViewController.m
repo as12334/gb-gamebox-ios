@@ -315,6 +315,7 @@
                       totalCount:(NSUInteger)totalCount
                   completedBlock:(void(^)(NSArray * filtedDatas))completedBlock
 {
+    
     if (self.pageLoadManager.dataLoadType == CLDataLoadTypeNone) {
         return;
     }

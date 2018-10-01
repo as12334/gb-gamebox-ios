@@ -359,6 +359,7 @@
            beginUpdateDatasBlock:(void(^)(NSArray * filtedDatas))beginUpdateDatasBlock
                   completedBlock:(void(^)(NSArray * filtedDatas))completedBlock
 {
+    
     if (self.pageLoadManager.dataLoadType == CLDataLoadTypeNone) {
         return;
     }

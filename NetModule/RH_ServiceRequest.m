@@ -2600,8 +2600,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      serviceType:(ServiceRequestType)type
                        scopeType:(ServiceScopeType)scopeType
 {
-    NSMutableDictionary *queryArgs = [NSMutableDictionary dictionary] ;
     
+    NSMutableDictionary *queryArgs = [NSMutableDictionary dictionary] ;
     if (queryArguments.count){
         [queryArgs addEntriesFromDictionary:queryArguments] ;
     }
