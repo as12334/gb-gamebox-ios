@@ -13,10 +13,9 @@
 #import "help.h"
 #import "CLNavigationBar.h"
 
-#define heighStatusBar          (GreaterThanIOS11System ? MainScreenH==812?44.0:20.0 : 20.0f)
+#define heighStatusBar          (GreaterThanIOS11System ? (MainScreenH==812||MainScreenH==896)?44.0:20.0 : 20.0f)
 #define heighNavigationBar      44.0f
-#define heighTabBar             (GreaterThanIOS11System ? MainScreenH==812?82.0:49: 49.0f)
-
+#define heighTabBar             (GreaterThanIOS11System ? (MainScreenH==812||MainScreenH==896)?82.0:49: 49.0f)
 
 @interface CLBasicViewController : CLViewController
 {

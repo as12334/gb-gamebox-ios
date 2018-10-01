@@ -71,7 +71,7 @@
 							<key>detailTitle</key>
 							<string>进行资金回收和转入</string>
 							<key>title</key>
-							<string>额度转换</string>
+							<string>资金账户</string>
 							<key>code</key>
 							<string>transfer</string>
 							<key>image</key>
@@ -172,6 +172,40 @@
 							<string>mine_page_sharefriends</string>
 							<key>title</key>
 							<string>分享朋友</string>
+						</dict>
+						<dict>
+							<key>detailTitle</key>
+							<string>被您宠爱的游戏</string>
+							<key>targetKey</key>
+							<string>RH_CollectionViewController</string>
+							<key>image</key>
+							<string>icon_favourite</string>
+							<key>title</key>
+							<string>我的收藏</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>sectionHeaderHeight</key>
+			<string>10</string>
+			<key>rowsInfo</key>
+			<array>
+				<dict>
+					<key>cellClass</key>
+					<string>RH_MineRecordTableViewCell</string>
+					<key>rowsInfo</key>
+					<array>
+						<dict>
+							<key>detailTitle</key>
+							<string>点一下就更流畅</string>
+							<key>title</key>
+							<string>申请优惠</string>
+							<key>image</key>
+							<string>mine_page_cleanCache</string>
+							<key>code</key>
+							<string>cleanCache</string>
 						</dict>
 					</array>
 				</dict>

@@ -12,17 +12,25 @@
 #import "MacroDef.h"
 #import "WHC_AutoLayout.h"
 #import "RH_UserInfoManager.h"
-@interface SH_WKGameViewController ()<WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate>
+#import "DCPathButton.h"
+#import "RH_SureLeaveApiView.h"
+
+@interface SH_WKGameViewController ()<WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate,DCPathButtonDelegate,RH_SureLeaveApiViewDelegate>
 
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, strong) SH_DragableMenuView *dragableMenuView;
 @property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong, readonly) RH_SureLeaveApiView *sureLeaveApiView;
 @property (nonatomic, copy) WKGameWebViewControllerClose closeBlock;
 @property (nonatomic, copy) WKGameWebViewControllerCloseAndShowLogin closeAndShowLoginBlock;
-
+@property (nonatomic, strong)DCPathButton *dcPathButton;
+@property (nonatomic, strong) UIView *shadeView;
 @end
 
 @implementation SH_WKGameViewController
+@synthesize sureLeaveApiView = _sureLeaveApiView;
+
+
 
 - (void)dealloc
 {
@@ -44,17 +52,17 @@
                                                      name:UIApplicationDidChangeStatusBarOrientationNotification
                                                    object:nil];
     }
-
+    
     [self setHiddenStatusBar:YES];
     
     self.hiddenTabBar = YES;
     self.hiddenNavigationBar = YES;
-//    WKUserContentController *controller = [[WKUserContentController alloc] init]; [controller addScriptMessageHandler: self name: @"Could be any srting value"];
-//    WKPreferences *preferences = [[WKPreferences alloc] init]; preferences.javaScriptCanOpenWindowsAutomatically = YES;
+    //    WKUserContentController *controller = [[WKUserContentController alloc] init]; [controller addScriptMessageHandler: self name: @"Could be any srting value"];
+    //    WKPreferences *preferences = [[WKPreferences alloc] init]; preferences.javaScriptCanOpenWindowsAutomatically = YES;
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-//    configuration.userContentController = controller;
-//    configuration.preferences = preferences;
-//    configuration.allowsInlineMediaPlayback = YES;
+    //    configuration.userContentController = controller;
+    //    configuration.preferences = preferences;
+    //    configuration.allowsInlineMediaPlayback = YES;
     _wkWebView = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
     _wkWebView.UIDelegate = self;
     _wkWebView.navigationDelegate = self;
@@ -83,12 +91,9 @@
     [self.view addSubview:_dragableMenuView];
     UIInterfaceOrientation oriention = [UIApplication sharedApplication].statusBarOrientation;
     _dragableMenuView.whc_TopSpace(60).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
-
+    
     [_dragableMenuView closeAction:^{
-        [weakSelf.navigationController popViewControllerAnimated:NO];
-        if (weakSelf.closeBlock) {
-            weakSelf.closeBlock();
-        }
+        [self showAlertView];
     }];
     
     [_dragableMenuView gobackAction:^{
@@ -97,12 +102,28 @@
         }
         else
         {
-            [weakSelf.navigationController popViewControllerAnimated:NO];
-            if (weakSelf.closeBlock) {
-                weakSelf.closeBlock();
-            }
+            [self showAlertView];
         }
     }];
+    
+    [self  configureDCPathButton];
+}
+
+-(void) showAlertView {
+    //遮罩层
+    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+    shadeView.backgroundColor = [UIColor lightGrayColor];
+    shadeView.alpha = 0.7f;
+    shadeView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+    [shadeView addGestureRecognizer:tap];
+    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+    _shadeView = shadeView;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
+}
+
+- (void) closeShadeView {
+    [self.shadeView removeFromSuperview];
 }
 
 - (void)close:(WKGameWebViewControllerClose)closeBlock
@@ -122,21 +143,21 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - WKUIDelegate M
 
 - (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
 {
     [_wkWebView loadRequest:[NSMutableURLRequest requestWithURL:navigationAction.request.URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60]];
-
+    
     return nil;
 }
 
@@ -235,6 +256,160 @@
 {
     //支持哪些转屏方向
     return UIInterfaceOrientationMaskAll;
+}
+
+-(void)configureDCPathButton{
+    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"floating_initial"]
+                                                         highlightedImage:nil];
+    dcPathButton.delegate = self;
+    
+    // Configure item buttons
+    //
+    DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_home"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    DCPathItemButton *itemButton_2 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_return"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    DCPathItemButton *itemButton_3 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_refresh"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    DCPathItemButton *itemButton_4 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_collection"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    // Add the item button into the center button
+    //
+    [dcPathButton addPathItems:@[itemButton_4,
+                                 itemButton_3,
+                                 itemButton_2,
+                                 itemButton_1
+                                 ]];
+    
+    // Change the bloom radius, default is 105.0f
+    //
+    //    dcPathButton.bloomRadius = 120.0f;
+    
+    // Change the DCButton's center
+    //
+    
+    dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-20, screenSize().height/2.0);
+    // Setting the DCButton appearance
+    //
+    dcPathButton.allowSounds = false;
+    dcPathButton.allowCenterButtonRotation = false;
+    
+    dcPathButton.bottomViewColor = [UIColor clearColor];
+    
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionLeft;
+    
+    [self.view addSubview:dcPathButton];
+    
+    [self.view bringSubviewToFront:dcPathButton];
+    
+    self.dcPathButton = dcPathButton;
+    
+}
+
+#pragma mark - DCPathButton Delegate
+
+- (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton will present");
+    
+}
+
+- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton did present");
+    
+}
+
+- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
+    NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
+    if (itemButtonIndex ==1) {
+        //refresh
+    }else if(itemButtonIndex ==2) {
+        if ([self.wkWebView canGoBack]) {
+            [self.wkWebView goBack];
+        }
+        else
+        {
+            [self showAlertView];
+        }
+    }else if (itemButtonIndex ==3){
+        [self showAlertView];
+    }else if (itemButtonIndex ==0){
+        // Collection
+        NSArray * array = [NSArray arrayWithContentsOfFile:[self pathForFile:@"gameURL"]];
+        NSMutableArray * url_array = [NSMutableArray arrayWithArray:array];
+        if (![array containsObject:self.url]) {
+            [url_array addObject:self.url];
+            [url_array writeToFile:[self pathForFile:@"gameURL"] atomically:YES];
+            NSLog(@"----%@",array);
+        }else{
+            showMessage(self.view, nil, @"已经收藏");
+        }
+    }
+}
+
+- (void)willDismissDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton will dismiss");
+}
+
+- (void)didDismissDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton did dismiss");
+    
+}
+
+-(NSString*)pathForFile:(NSString*)fileName{
+    NSString  * path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePatch = [path stringByAppendingPathComponent:fileName];
+    return filePatch;
+}
+- (void)pathButton:(DCPathButton *)dcPathButton didUpdateOrientation:(DCPathButtonOrientation)orientation{
+    if (orientation == DCPathButtonOrientationLandscape) {
+        UIDeviceOrientation orientations = [UIDevice currentDevice].orientation;
+        if (orientations ==UIDeviceOrientationLandscapeRight &&(iPhoneX||iPhoneXR||iPhoneXSM) ) {
+            self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-55, screenSize().width/2.0);
+        }else{
+           self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-20, screenSize().width/2.0);
+        }
+    }else if (orientation == DCPathButtonOrientationPortrait){
+        self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-20, screenSize().height/2.0);
+    }
+}
+
+- (RH_SureLeaveApiView *)sureLeaveApiView {
+    if (!_sureLeaveApiView) {
+        _sureLeaveApiView = [RH_SureLeaveApiView createInstance];
+        _sureLeaveApiView.frame = CGRectMake(0, 0, 270, 172);
+        _sureLeaveApiView.center = self.view.center;
+        _sureLeaveApiView.delegate = self;
+    }
+    return _sureLeaveApiView;
+}
+
+#pragma RH_SureLeaveApiViewDelegate -m
+- (void )sureLeaveApiViewDelegate {
+    [self.shadeView removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:NO];
+    if (self.closeBlock) {
+        self.closeBlock();
+    }
+}
+
+- (void) cancelLeaveApiViewDelegate {
+    [self.shadeView removeFromSuperview];
 }
 
 @end

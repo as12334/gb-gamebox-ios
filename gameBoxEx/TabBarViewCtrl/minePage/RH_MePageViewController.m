@@ -20,6 +20,8 @@
 #import "RH_LimitTransferViewController.h" // 额度转换原生
 #import "RH_SiteMsgUnReadCountModel.h"
 #import "JPUSHService.h"
+#import "RH_SelectedHelper.h"
+#import "IPsCacheManager.h"
 
 @interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom;
@@ -27,6 +29,8 @@
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property(nonatomic,strong)RH_SiteMsgUnReadCountModel *readCountModel;
+//缓存数据
+@property(nonatomic,assign)CGFloat mbCache;
 @end
 
 @implementation RH_MePageViewController
@@ -45,7 +49,36 @@
     {
         [self loadDataSuccessWithDatas:@[] totalCount:0];
     }
+    //计算缓存
+    NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+    CGFloat fileSize=[self folderSizeAtPath:libPath];
+    NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+    float mbCache = bytesCache/1000/1000 + fileSize;
+    //    self.detailLabel.text = [NSString stringWithFormat:@"%.2fM",mbCache];
+    self.mbCache = mbCache;
+    [self.tableViewManagement reloadData] ;
 }
+
+- (float ) folderSizeAtPath:(NSString*) folderPath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString* fileName;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    return folderSize/(1024.0*1024.0);
+}
+- (long long)fileSizeAtPath:(NSString *)filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+    
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,6 +115,9 @@
 
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"mine_page_accountback"] forBarMetrics:UIBarMetricsDefault];
+    return;
     if ([SITE_TYPE isEqualToString:@"integratedv3oc"] ){
         navigationBar.barStyle = UIBarStyleDefault ;
         if (GreaterThanIOS11System){
@@ -275,7 +311,9 @@
 {
     if (HasLogin)
     {
+        [RH_SelectedHelper shared].selectedIndex = 0;
         self.tabBarController.selectedIndex = 1  ;
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"selectedWithNotification" object:nil];
     }else{
         [self loginButtonItemHandle] ;
     }
@@ -286,7 +324,9 @@
 {
     if (HasLogin)
     {
-        [self showViewController:[RH_WithdrawCashController viewController] sender:self] ;
+        [RH_SelectedHelper shared].selectedIndex = 2;
+        [self.tabBarController setSelectedIndex:1];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"selectedWithNotification" object:nil];
     }else{
         [self loginButtonItemHandle] ;
     }
@@ -324,7 +364,9 @@
     }
     
     RH_MineRecordTableViewCell *mineRecordTableCell = ConvertToClassPointer(RH_MineRecordTableViewCell, cell) ;
+    mineRecordTableCell.tag = 10086 ;
     mineRecordTableCell.readCountModel = self.readCountModel;
+    mineRecordTableCell.mbCache = self.mbCache ;
     if (mineRecordTableCell){
         mineRecordTableCell.delegate = self ;
     }
@@ -343,6 +385,12 @@
 #pragma mark - RH_MineRecordTableViewCell delegate
 -(void)mineRecordTableViewCellDidTouchCell:(RH_MineRecordTableViewCell*)mineRecordTableCell CellInfo:(NSDictionary*)dictInfo
 {
+    if ([[dictInfo objectForKey:@"code"] isEqualToString:@"cleanCache"]) //清除缓存
+    {
+        [self cleanCacha] ;
+        return ;
+    }
+    
     if (self.appDelegate.isLogin){
         UIViewController *viewCtrl = [dictInfo targetViewControllerWithContext:[dictInfo targetContext]] ;
         if ([dictInfo[@"title"] isEqualToString:@"消息中心"]) {
@@ -361,9 +409,9 @@
             NSString *code = [dictInfo stringValueForKey:@"code"];
             if ([code isEqualToString:@"transfer"]){
                 //额度转换
-//                self.appDelegate.customUrl = @"/transfer/index.html" ;
-//                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                [self showViewController:[RH_LimitTransferViewController viewController] sender:self] ;
+                [RH_SelectedHelper shared].selectedIndex = 1;
+                [self.tabBarController setSelectedIndex:1];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"selectedWithNotification" object:nil];
                 return ;
             }else if ([code isEqualToString:@"gameNotice"]){
                 self.appDelegate.customUrl = @"/message/gameNotice.html?isSendMessage=true" ;
@@ -394,6 +442,48 @@
         
         [self loginButtonItemHandle] ;
         
+    }
+}
+
+#pragma mark -- 清理缓存
+-(void)cleanCacha
+{
+    if (self.mbCache == 0) {
+        showMessage(self.view, @"暂无可清理缓存", nil);
+        return;
+    }
+    [self showProgressIndicatorViewWithAnimated:YES title:@"清除缓存中"];
+    //清除缓存文件
+    [[IPsCacheManager sharedManager] clearCaches];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *path = [paths lastObject];
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:path];
+    for (NSString *p in files) {
+        NSError *error;
+        NSString *Path = [path stringByAppendingPathComponent:p];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:Path]) {
+            //清理缓存，保留Preference，里面含有NSUserDefaults保存的信息
+            if (![Path containsString:@"Preferences"]) {
+                [[NSFileManager defaultManager] removeItemAtPath:Path error:&error];
+                //清除sdimage缓存图片
+                [[SDImageCache sharedImageCache]clearMemory];
+                //计算缓存
+                NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
+                CGFloat fileSize=[self folderSizeAtPath:libPath];
+                NSUInteger bytesCache = [[SDImageCache sharedImageCache] getSize];
+                float mbCache = bytesCache/1000/1000 + fileSize;
+                self.mbCache = mbCache;
+                [self.tableViewManagement reloadData];
+                [self.contentTableView reloadData];
+                [self hideProgressIndicatorViewWithAnimated:YES completedBlock:^{
+                    showMessage(self.view, @"缓存已清除", nil);
+                }];                
+            }
+            
+        }else{
+            
+        }
     }
 }
 
@@ -478,6 +568,4 @@
         }
     }
 }
-
-
 @end

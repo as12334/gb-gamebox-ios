@@ -21,4 +21,6 @@
 @property(nonatomic,assign)NSInteger numberSection;
 @property(nonatomic,assign)NSInteger numberItems;
 @property(nonatomic,strong)RH_SiteMsgUnReadCountModel *readCountModel;
+//缓存数据
+@property(nonatomic,assign)CGFloat mbCache;
 @end

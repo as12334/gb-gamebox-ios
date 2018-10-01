@@ -9,7 +9,6 @@
 #import "RH_WithdrawCashController.h"
 #import "coreLib.h"
 #import "PXAlertView+Customization.h"
-#import "RH_WithdrawAddBitCoinAddressController.h"
 #import "RH_UserInfoManager.h"
 #import "RH_WithdrawMoneyLowCell.h"
 #import "RH_WithDrawModel.h"
@@ -28,13 +27,11 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     WithdrawCashStatus_Init              = 0    ,
     WithdrawCashStatus_NotEnoughCash            ,
     WithdrawCashStatus_EnterCash                ,
-    WithdrawCashStatus_EnterBitCoin             ,
     WithdrawCashStatus_HasOrder                 ,
 };
 
 @interface RH_WithdrawCashController ()<CLTableViewManagementDelegate,WithdrawMoneyLowCellDelegate,WithdrawCashTwoCellDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
-@property (nonatomic,strong,readonly) UISegmentedControl *mainSegmentControl ;
 @property (nonatomic, strong, readonly) UIView  *footerView;
 @property (nonatomic, strong) UIButton *button_Submit;
 @property (nonatomic, strong) UIButton *button_Check;
@@ -56,16 +53,16 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 }
 @synthesize userInfoBtnView = _userInfoBtnView ;
 @synthesize tableViewManagement = _tableViewManagement;
-@synthesize mainSegmentControl = _mainSegmentControl  ;
 @synthesize footerView = _footerView;
 @synthesize cashCell = _cashCell;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
-    self.navigationBarItem.rightBarButtonItem = itembar;
-    self.title = @"取款";
+//    UIBarButtonItem *itembar = [[UIBarButtonItem alloc]initWithCustomView:self.userInfoBtnView];
+//    self.navigationBarItem.rightBarButtonItem = itembar;
+      self.hiddenNavigationBar = YES;
+//    self.title = @"取款";
     _withdrawCashStatus = WithdrawCashStatus_Init ;
     [self setNeedUpdateView] ;
     [self setupInfo] ;
@@ -207,12 +204,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         UITextField *textF = ConvertToClassPointer(UITextField, nt.object) ;
         // UITextField 条件判断
         if (textF && [textF isMemberOfClass:[UITextField class]] && textF.tag !=998 && textF.tag != 999){
-            if (self.mainSegmentControl.selectedSegmentIndex){
-                _bitCoinWithdrawAmount = [textF.text floatValue] ;
-            }else
-            {
                 _bankWithdrawAmount = [textF.text floatValue] ;
-            }
         }
     }
 }
@@ -327,15 +319,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     if (self.appDelegate.isLogin) {
         [self.cashCell.textField resignFirstResponder] ;
         CGFloat amountValue = [self.cashCell.textField.text.trim floatValue] ;
-        if (self.mainSegmentControl.selectedSegmentIndex==0){
-            if ([self _checkShowBankCardInfo:YES]) {
-                return ;
-            }
-        }else{
-            if ([self _checkShowBitCoinInfo:YES]) {
-                return ;
-            }
-        }
+
         
         if (self.cashCell.textField.text.trim.length == 0 ) {
             showMessage(self.view, @"", @"请输入取款金额");
@@ -386,7 +370,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                     [self.serviceRequest startV3SubmitWithdrawAmount:amountValue
                                                            SafetyPwd:safetyPass
                                                              gbToken:self.withDrawModel.mToken
-                                                            CardType:self.mainSegmentControl.selectedSegmentIndex+1] ;
+                                                            CardType:1] ;
                     
                 }
             }
@@ -405,65 +389,6 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
     }
 }
 
-#pragma mark - mainSegmentControl
--(UISegmentedControl *)mainSegmentControl
-{
-    if (!_mainSegmentControl){
-        _mainSegmentControl = [[UISegmentedControl alloc] init] ;
-        if ([THEMEV3 isEqualToString:@"green"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Green;
-            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Green;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Green forState:UIControlStateNormal];
-        }else if ([THEMEV3 isEqualToString:@"red"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Red;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Red forState:UIControlStateNormal];
-            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Red;
-            
-        }else if ([THEMEV3 isEqualToString:@"black"]){
-//            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Black;
-//            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Black;
-//            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Black forState:UIControlStateNormal];
-            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor;
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
-        }else if ([THEMEV3 isEqualToString:@"blue"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Blue;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Blue forState:UIControlStateNormal];
-            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Blue;
-            
-        }else if ([THEMEV3 isEqualToString:@"orange"]){
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor_Orange;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor_Orange forState:UIControlStateNormal];
-            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor_Orange;
-            
-        }else{
-            _mainSegmentControl.tintColor = RH_NavigationBar_BackgroundColor;
-            self.button_Submit.backgroundColor = RH_NavigationBar_BackgroundColor;
-            [self.button_Check setTitleColor:RH_NavigationBar_BackgroundColor forState:UIControlStateNormal];
-        }
-        if (self.withDrawModel.mIsBit==true) {
-            [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
-            [_mainSegmentControl insertSegmentWithTitle:@"比特币账户" atIndex:1 animated:YES];
-        }
-        else
-        {
-             [_mainSegmentControl insertSegmentWithTitle:@"银行卡账户" atIndex:0 animated:YES];
-        }
-        
-        _mainSegmentControl.selectedSegmentIndex = 0;
-        [_mainSegmentControl addTarget:self action:@selector(segmentControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
-    }
-    
-    return _mainSegmentControl ;
-}
-
-- (void)segmentControlValueDidChange:(UISegmentedControl *)segmentControl {
-    
-    _withdrawCashStatus = segmentControl.selectedSegmentIndex?WithdrawCashStatus_EnterBitCoin:WithdrawCashStatus_EnterCash ;
-    [self setNeedUpdateView] ;
-}
-
-
 #pragma mark- updateView
 -(void)updateView
 {
@@ -475,39 +400,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
         [self.contentLoadingIndicateView hiddenView] ;
         [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashHasOrder"];
         self.contentTableView.tableFooterView =  nil;
-        
-        if (_mainSegmentControl.superview){
-            [_mainSegmentControl removeFromSuperview] ;
-            _mainSegmentControl = nil ;
-            [self.contentTableView  whc_ResetConstraints] ;
-            self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(0);
-        }
     }else {
         [self.contentLoadingIndicateView hiddenView] ;
         if (_withdrawCashStatus==WithdrawCashStatus_NotEnoughCash){
             [self.tableViewManagement reloadDataWithPlistName:@"WithdrawCashLow"] ;
             self.contentTableView.tableFooterView = nil;
-            
-            if (_mainSegmentControl.superview){
-                [_mainSegmentControl removeFromSuperview] ;
-                _mainSegmentControl = nil ;
-                [self.contentTableView  whc_ResetConstraints] ;
-                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(100);
-            }
-            
             return ;
         }else {
-            if (_mainSegmentControl.superview==nil){
-                [self.contentView addSubview:self.mainSegmentControl];
-                CGFloat h=0;
-                if (self.withDrawModel.mIsBit==true) {
-                    h = 84;
-                }
-                
-                self.mainSegmentControl.whc_TopSpace(h).whc_CenterX(0).whc_Width(180).whc_Height(35);
-                self.contentTableView.whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0).whc_TopSpace(h+16);
-            }
-            
             self.contentTableView.tableFooterView = self.footerView;
             
             if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
@@ -619,11 +518,7 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (BOOL)tableViewManagement:(CLTableViewManagement *)tableViewManagement didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_withdrawCashStatus == WithdrawCashStatus_EnterBitCoin) {
-        if (indexPath.section == 0) {
-            [self _checkShowBitCoinInfo:NO] ;
-        }
-    }else if (_withdrawCashStatus == WithdrawCashStatus_EnterCash){
+       if (_withdrawCashStatus == WithdrawCashStatus_EnterCash){
         if (indexPath.section == 0) {
             [self _checkShowBankCardInfo:NO] ;
         }
@@ -634,23 +529,13 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
 
 - (id)tableViewManagement:(CLTableViewManagement *)tableViewManagement cellContextAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_withdrawCashStatus == WithdrawCashStatus_EnterCash || _withdrawCashStatus ==  WithdrawCashStatus_EnterBitCoin){
+    if (_withdrawCashStatus == WithdrawCashStatus_EnterCash){
         if (indexPath.section==0){
             if (_withdrawCashStatus==WithdrawCashStatus_EnterCash){
                 return [self.withDrawModel.mBankcardMap objectForKey:@"1"] ;
-            }else if (_withdrawCashStatus==WithdrawCashStatus_EnterBitCoin) {
-                BankcardMapModel *bankCardModel = ConvertToClassPointer(BankcardMapModel,[self.withDrawModel.mBankcardMap objectForKey:@"2"]) ;
-                if (bankCardModel.mBankcardNumber.length){
-                    return @{@"title":@"比特币地址",
-                             @"detailTitle":bankCardModel.mBankcardNumber?:@""
-                                 };
-                }else{
-                    return @{@"title":@"请先绑定比特币地址",
-                             };
-                }
             }
         }else if (indexPath.section==1){
-            id value =  self.mainSegmentControl.selectedSegmentIndex?@(_bitCoinWithdrawAmount):@(_bankWithdrawAmount) ;
+            id value = @(_bankWithdrawAmount) ;
             return value ;
         }else if (indexPath.section==2){
             AuditMapModel *auditMap = nil ;
@@ -666,26 +551,26 @@ typedef NS_ENUM(NSInteger,WithdrawCashStatus ) {
                 case 0: //手续费
                 {
                     //self.cashCell.textField.text.trim.length>0
-                    return ((self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mCounterFee]:@"") ;
+                    return (_bankWithdrawAmount>0?[NSString stringWithFormat:@"%.02f",auditMap.mCounterFee]:@"") ;
 
                 }
                     break;
 
                 case 1: ////行政费
                 {
-                    return (self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee]:@"" ;
+                    return _bankWithdrawAmount>0?[NSString stringWithFormat:@"%.02f",auditMap.mAdministrativeFee]:@"" ;
                 }
                     break;
 
                 case 2: //扣除优惠
                 {
-                    return (self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable]:@"" ;
+                    return _bankWithdrawAmount>0?[NSString stringWithFormat:@"%.02f",auditMap.mDeductFavorable]:@"" ;
                 }
                     break;
 
                 case 3: //最终可取
                 {
-                    return (self.mainSegmentControl.selectedSegmentIndex==0?_bankWithdrawAmount:_bitCoinWithdrawAmount)>0?[NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw]:@"" ;
+                    return _bankWithdrawAmount>0?[NSString stringWithFormat:@"%.02f",auditMap.mActualWithdraw]:@"" ;
                 }
                     break;
 

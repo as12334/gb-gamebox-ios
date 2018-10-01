@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RH_FundsCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="152" height="91"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="152" height="91"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-LO-hEs">
+                        <rect key="frame" x="122" y="15" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="KPt-SE-dip"/>
+                            <constraint firstAttribute="height" constant="20" id="pXk-Nw-pO2"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="icon_recycling"/>
+                        <connections>
+                            <action selector="recoveryAndRefreshBtnClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Y9d-MI-xz4"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dib-tz-hcp">
+                        <rect key="frame" x="11" y="64.5" width="36" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HABA电子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zax-ft-9bU">
+                        <rect key="frame" x="12" y="15" width="120" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_maintaining_bg" translatesAutoresizingMaskIntoConstraints="NO" id="QFj-fE-HOO">
+                        <rect key="frame" x="0.0" y="0.0" width="152" height="91"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Zax-ft-9bU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="4a2-gZ-uCG"/>
+                <constraint firstItem="QFj-fE-HOO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7Of-Di-FxF"/>
+                <constraint firstItem="QFj-fE-HOO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7wT-LR-sY7"/>
+                <constraint firstItem="gP6-LO-hEs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="BqZ-n1-sbc"/>
+                <constraint firstAttribute="bottom" secondItem="QFj-fE-HOO" secondAttribute="bottom" id="Jb9-R3-2za"/>
+                <constraint firstAttribute="trailing" secondItem="gP6-LO-hEs" secondAttribute="trailing" constant="10" id="VSJ-mF-nNa"/>
+                <constraint firstItem="Dib-tz-hcp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="XFT-p8-hM2"/>
+                <constraint firstItem="Zax-ft-9bU" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Dib-tz-hcp" secondAttribute="top" constant="-10" id="aL7-H4-cyz"/>
+                <constraint firstItem="Zax-ft-9bU" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gP6-LO-hEs" secondAttribute="leading" constant="10" id="c7V-XP-5wd"/>
+                <constraint firstItem="Zax-ft-9bU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="jTr-8W-I2f"/>
+                <constraint firstItem="Dib-tz-hcp" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" constant="-12" id="nAu-Oh-MLb"/>
+                <constraint firstAttribute="trailing" secondItem="QFj-fE-HOO" secondAttribute="trailing" id="rOE-0d-qgS"/>
+            </constraints>
+            <size key="customSize" width="152" height="91"/>
+            <connections>
+                <outlet property="balanceLab" destination="Dib-tz-hcp" id="r4M-MR-aKG"/>
+                <outlet property="maintainImageView" destination="QFj-fE-HOO" id="lCg-jD-yFc"/>
+                <outlet property="nameLab" destination="Zax-ft-9bU" id="mZH-04-qMV"/>
+                <outlet property="refreshAndRecoveryBtn" destination="gP6-LO-hEs" id="vvM-tq-XjC"/>
+            </connections>
+            <point key="canvasLocation" x="211.19999999999999" y="172.26386806596702"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="app_maintaining_bg" width="124.5" height="72"/>
+        <image name="icon_recycling" width="15" height="14.5"/>
+    </resources>
+</document>

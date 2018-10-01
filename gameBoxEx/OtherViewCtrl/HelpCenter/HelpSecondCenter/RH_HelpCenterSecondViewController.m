@@ -10,7 +10,8 @@
 #import "RH_HelpCenterSecondModel.h"
 #import "RH_HelpCenterSecondViewCell.h"
 #import "RH_HelpCenterModel.h"
-#import "RH_HelpCenterDetailViewController.h"
+//#import "RH_HelpCenterDetailViewController.h"
+#import "RH_NewHelpCenterDetailViewController.h"
 
 @interface RH_HelpCenterSecondViewController ()
 
@@ -232,9 +233,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RH_HelpCenterSecondModel *model = [self.pageLoadManager dataAtIndexPath:indexPath] ;
-    NSLog(@"%@",model.mId) ;
-    [self.navigationController pushViewController:[RH_HelpCenterDetailViewController viewControllerWithContext:model]
-                                         animated:YES] ;
+//    [self.navigationController pushViewController:[RH_HelpCenterDetailViewController viewControllerWithContext:model]
+//                                         animated:YES] ;
+    [self showViewController:[RH_NewHelpCenterDetailViewController viewControllerWithContext:model] sender:self] ;
 }
 
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,16 +18,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="158.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDo-G4-jO5">
+                        <rect key="frame" x="15" y="0.0" width="290" height="158.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jb7-UA-PXm" customClass="CLStaticCollectionView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="159"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
+                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Jb7-UA-PXm" secondAttribute="trailing" id="GM4-ei-DDt"/>
+                    <constraint firstAttribute="trailing" secondItem="Jb7-UA-PXm" secondAttribute="trailing" constant="20" id="GM4-ei-DDt"/>
                     <constraint firstItem="Jb7-UA-PXm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MAF-Zr-XOc"/>
+                    <constraint firstAttribute="trailing" secondItem="lDo-G4-jO5" secondAttribute="trailing" constant="15" id="N7G-HC-gMR"/>
                     <constraint firstAttribute="bottom" secondItem="Jb7-UA-PXm" secondAttribute="bottom" constant="-0.5" id="Uqi-Uj-ifT"/>
-                    <constraint firstItem="Jb7-UA-PXm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xpV-rO-sRh"/>
+                    <constraint firstItem="lDo-G4-jO5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="vFD-1j-36a"/>
+                    <constraint firstItem="Jb7-UA-PXm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="xpV-rO-sRh"/>
+                    <constraint firstItem="lDo-G4-jO5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yup-H1-r1f"/>
+                    <constraint firstAttribute="bottom" secondItem="lDo-G4-jO5" secondAttribute="bottom" id="zpo-5z-QRR"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
