@@ -41,7 +41,7 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QFj-fE-HOO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_maintaining_bg" translatesAutoresizingMaskIntoConstraints="NO" id="QFj-fE-HOO">
                         <rect key="frame" x="0.0" y="0.0" width="152" height="91"/>
                     </imageView>
                 </subviews>
@@ -66,11 +66,13 @@
                 <outlet property="balanceLab" destination="Dib-tz-hcp" id="r4M-MR-aKG"/>
                 <outlet property="maintainImageView" destination="QFj-fE-HOO" id="lCg-jD-yFc"/>
                 <outlet property="nameLab" destination="Zax-ft-9bU" id="mZH-04-qMV"/>
+                <outlet property="refreshAndRecoveryBtn" destination="gP6-LO-hEs" id="vvM-tq-XjC"/>
             </connections>
             <point key="canvasLocation" x="211.19999999999999" y="172.26386806596702"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="app_maintaining_bg" width="124.5" height="72"/>
         <image name="icon_recycling" width="15" height="14.5"/>
     </resources>
 </document>
