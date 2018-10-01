@@ -239,7 +239,6 @@
     UIInterfaceOrientation oriention = [UIApplication sharedApplication].statusBarOrientation;
     if (oriention == UIInterfaceOrientationLandscapeLeft) {
         self.dragableMenuView.whc_TopSpace(60).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
-        self.dcPathButton.dcButtonCenter = CGPointMake(MainScreenH, MainScreenW/2.0);
     }
     else
     {
@@ -300,8 +299,8 @@
     
     // Change the DCButton's center
     //
-    dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-25, screenSize().height/2.0);
     
+    dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-20, screenSize().height/2.0);
     // Setting the DCButton appearance
     //
     dcPathButton.allowSounds = false;
@@ -316,6 +315,7 @@
     [self.view bringSubviewToFront:dcPathButton];
     
     self.dcPathButton = dcPathButton;
+    
 }
 
 #pragma mark - DCPathButton Delegate
@@ -378,9 +378,14 @@
 }
 - (void)pathButton:(DCPathButton *)dcPathButton didUpdateOrientation:(DCPathButtonOrientation)orientation{
     if (orientation == DCPathButtonOrientationLandscape) {
-        self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-25, screenSize().width/2.0);
+        UIDeviceOrientation orientations = [UIDevice currentDevice].orientation;
+        if (orientations ==UIDeviceOrientationLandscapeRight &&(iPhoneX||iPhoneXR||iPhoneXSM) ) {
+            self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-55, screenSize().width/2.0);
+        }else{
+           self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-20, screenSize().width/2.0);
+        }
     }else if (orientation == DCPathButtonOrientationPortrait){
-        self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-25, screenSize().height/2.0);
+        self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-20, screenSize().height/2.0);
     }
 }
 

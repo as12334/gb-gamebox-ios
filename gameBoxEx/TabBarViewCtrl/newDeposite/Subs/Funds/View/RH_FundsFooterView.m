@@ -17,8 +17,9 @@
     [super awakeFromNib];
 }
 - (IBAction)oneKeyRecoverBtnClick:(id)sender {
+    [self.delegate oneKeyRefreshOrRecoveryByTag:1];
 }
 - (IBAction)oneKeyRefreshBtnClick:(id)sender {
+    [self.delegate oneKeyRefreshOrRecoveryByTag:0];
 }
-
 @end

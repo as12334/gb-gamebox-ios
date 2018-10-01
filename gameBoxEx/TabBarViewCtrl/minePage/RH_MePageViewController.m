@@ -311,6 +311,7 @@
 {
     if (HasLogin)
     {
+        [RH_SelectedHelper shared].selectedIndex = 1;
         self.tabBarController.selectedIndex = 1  ;
     }else{
         [self loginButtonItemHandle] ;

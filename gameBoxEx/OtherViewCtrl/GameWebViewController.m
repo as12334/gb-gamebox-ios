@@ -17,7 +17,7 @@
 #import "RH_CustomServiceSubViewController.h"
 #import "RH_RegistrationViewController.h"
 #import "RH_SureLeaveApiView.h"
-
+#import "DCPathButton.h"
 //忽略证书访问
 @interface NSURLRequest (IgnoreSSL)
 +(BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host;
@@ -26,7 +26,8 @@
 +(BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host {return YES;}
 @end
 
-@interface GameWebViewController () <UIWebViewDelegate, RH_SureLeaveApiViewDelegate>
+@interface GameWebViewController () <UIWebViewDelegate, RH_SureLeaveApiViewDelegate, DCPathButtonDelegate>
+
 @property (nonatomic, strong) UIWebView *webview;
 @property (nonatomic, strong) SH_DragableMenuView *dragableMenuView;
 @property (nonatomic, strong) UIProgressView *progressView;
@@ -35,6 +36,7 @@
 @property (nonatomic, copy) GameWebViewControllerCloseAndShowLogin closeAndShowLoginBlock;
 @property (nonatomic, strong, readonly) RH_SureLeaveApiView *sureLeaveApiView;
 @property (nonatomic, strong) UIView *shadeView;
+@property (nonatomic, strong)DCPathButton *dcPathButton;
 @end
 
 @implementation GameWebViewController
@@ -106,30 +108,35 @@
     UIInterfaceOrientation oriention = [UIApplication sharedApplication].statusBarOrientation;
     _dragableMenuView.whc_TopSpace(470).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
     [_dragableMenuView closeAction:^{
-        //遮罩层
-        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-        shadeView.backgroundColor = [UIColor lightGrayColor];
-        shadeView.alpha = 0.7f;
-        shadeView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-        [shadeView addGestureRecognizer:tap];
-        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-        _shadeView = shadeView;
-        [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
+        [self showAlertView];
     }];
     
     [_dragableMenuView gobackAction:^{
-        //遮罩层
-        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
-        shadeView.backgroundColor = [UIColor lightGrayColor];
-        shadeView.alpha = 0.7f;
-        shadeView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
-        [shadeView addGestureRecognizer:tap];
-        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
-        _shadeView = shadeView;
-        [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
+        
+        if ([self.webview canGoBack]) {
+            [self.webview goBack];
+        }
+        else
+        {
+            [self showAlertView];
+        }
+        
     }];
+    
+    [self configureDCPathButton];
+}
+
+-(void) showAlertView {
+    //遮罩层
+    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+    shadeView.backgroundColor = [UIColor lightGrayColor];
+    shadeView.alpha = 0.7f;
+    shadeView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+    [shadeView addGestureRecognizer:tap];
+    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+    _shadeView = shadeView;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
 }
 
 -(void)closeShadeView {
@@ -350,15 +357,135 @@
 
 - (void) cancelLeaveApiViewDelegate {
     [self.shadeView removeFromSuperview];
-//    if ([self.webview canGoBack]) {
-//        [self.webview goBack];
-//    }
-//    else
-//    {
-//        [self.navigationController popViewControllerAnimated:NO];
-//        if (self.closeBlock) {
-//            self.closeBlock();
-//        }
-//    }
+}
+-(void)configureDCPathButton{
+    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"floating_initial"]
+                                                         highlightedImage:nil];
+    dcPathButton.delegate = self;
+    
+    // Configure item buttons
+    //
+    DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_home"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    DCPathItemButton *itemButton_2 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_return"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    DCPathItemButton *itemButton_3 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_refresh"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    DCPathItemButton *itemButton_4 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"floating_collection"]
+                                                           highlightedImage:nil
+                                                            backgroundImage:nil
+                                                 backgroundHighlightedImage:nil];
+    
+    // Add the item button into the center button
+    //
+    [dcPathButton addPathItems:@[itemButton_4,
+                                 itemButton_3,
+                                 itemButton_2,
+                                 itemButton_1
+                                 ]];
+    
+    // Change the bloom radius, default is 105.0f
+    //
+    //    dcPathButton.bloomRadius = 120.0f;
+    
+    // Change the DCButton's center
+    //
+    
+    dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-20, screenSize().height/2.0);
+    // Setting the DCButton appearance
+    //
+    dcPathButton.allowSounds = false;
+    dcPathButton.allowCenterButtonRotation = false;
+    
+    dcPathButton.bottomViewColor = [UIColor clearColor];
+    
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionLeft;
+    
+    [self.view addSubview:dcPathButton];
+    
+    [self.view bringSubviewToFront:dcPathButton];
+    
+    self.dcPathButton = dcPathButton;
+    
+}
+
+#pragma mark - DCPathButton Delegate
+
+- (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton will present");
+    
+}
+
+- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton did present");
+    
+}
+
+- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
+    NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
+    if (itemButtonIndex ==1) {
+        //refresh
+    }else if(itemButtonIndex ==2) {
+        if ([self.webview canGoBack]) {
+            [self.webview goBack];
+        }
+        else
+        {
+            [self showAlertView];
+        }
+    }else if (itemButtonIndex ==3){
+        [self showAlertView];
+    }else if (itemButtonIndex ==0){
+        // Collection
+        NSArray * array = [NSArray arrayWithContentsOfFile:[self pathForFile:@"gameURL"]];
+        NSMutableArray * url_array = [NSMutableArray arrayWithArray:array];
+        if (![array containsObject:self.url]) {
+            [url_array addObject:self.url];
+            [url_array writeToFile:[self pathForFile:@"gameURL"] atomically:YES];
+            NSLog(@"----%@",array);
+        }else{
+            showMessage(self.view, nil, @"已经收藏");
+        }
+    }
+}
+
+- (void)willDismissDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton will dismiss");
+}
+
+- (void)didDismissDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton did dismiss");
+    
+}
+
+-(NSString*)pathForFile:(NSString*)fileName{
+    NSString  * path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *filePatch = [path stringByAppendingPathComponent:fileName];
+    return filePatch;
+}
+- (void)pathButton:(DCPathButton *)dcPathButton didUpdateOrientation:(DCPathButtonOrientation)orientation{
+    if (orientation == DCPathButtonOrientationLandscape) {
+        UIDeviceOrientation orientations = [UIDevice currentDevice].orientation;
+        if (orientations ==UIDeviceOrientationLandscapeRight &&(iPhoneX||iPhoneXR||iPhoneXSM) ) {
+            self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-55, screenSize().width/2.0);
+        }else{
+            self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().height-20, screenSize().width/2.0);
+        }
+    }else if (orientation == DCPathButtonOrientationPortrait){
+        self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-20, screenSize().height/2.0);
+    }
 }
 @end
