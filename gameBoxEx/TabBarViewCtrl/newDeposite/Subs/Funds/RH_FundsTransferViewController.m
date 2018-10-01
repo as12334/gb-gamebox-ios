@@ -25,17 +25,19 @@
 -(CGFloat)bottomViewHeight{
     return 44;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-      self.hiddenNavigationBar = YES;
+//      self.hiddenNavigationBar = YES;
     CGFloat tab_height = TABBAR_HEIGHT;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.minimumLineSpacing =  1;
     layout.minimumInteritemSpacing = 1;
     layout.headerReferenceSize = CGSizeMake(screenSize().width, 73);
     layout.sectionInset = UIEdgeInsetsMake(1, 0, 0, 0);
-    self.contentCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, screenSize().width, screenSize().height-40-NavigationBarHeight-STATUS_HEIGHT-tab_height-44) collectionViewLayout:layout];
+    self.contentCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, screenSize().width, screenSize().height-tab_height-73-70) collectionViewLayout:layout];
     self.contentCollectionView.backgroundColor = colorWithRGB(230, 230, 230);
     self.contentCollectionView.delegate = self;
     self.contentCollectionView.dataSource = self;
@@ -45,10 +47,12 @@
     [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"RH_FundsHeadCollectionReusableView" bundle:[NSBundle mainBundle]] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"RH_FundsHeadCollectionReusableView"];
     self.bottomView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.bottomView];
+    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.contentCollectionView.bounds), screenSize().width, 44) ;
     
-    RH_FundsFooterView *footView = [[NSBundle mainBundle]loadNibNamed:@"RH_FundsFooterView" owner:self options:nil].firstObject;
+    RH_FundsFooterView *footView = [[NSBundle mainBundle]loadNibNamed:@"RH_FundsFooterView" owner:self options:nil].lastObject;
     footView.frame = CGRectMake(0, 0, screenSize().width, 44);
-    footView.backgroundColor = [UIColor whiteColor];
+    footView.backgroundColor = [UIColor yellowColor];
     [self.bottomView addSubview:footView];
     
      [self setupPageLoadManager] ;
