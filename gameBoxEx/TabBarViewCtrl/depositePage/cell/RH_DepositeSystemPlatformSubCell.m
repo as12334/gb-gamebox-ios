@@ -34,6 +34,7 @@
     self.backgroundColor = colorWithRGB(242, 242, 242);
     self.layer.cornerRadius = 2.f;
     self.layer.masksToBounds = YES;
+    self.payWayLabel.font = [UIFont systemFontOfSize:14 * WIDTH_PERCENT];
 }
 
 @end
