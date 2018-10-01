@@ -16,6 +16,7 @@
 #import "RH_PromoListController.h"
 #import "RH_CustomServiceSubViewController.h"
 #import "RH_RegistrationViewController.h"
+#import "RH_SureLeaveApiView.h"
 
 //忽略证书访问
 @interface NSURLRequest (IgnoreSSL)
@@ -25,18 +26,19 @@
 +(BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host {return YES;}
 @end
 
-@interface GameWebViewController () <UIWebViewDelegate>
+@interface GameWebViewController () <UIWebViewDelegate, RH_SureLeaveApiViewDelegate>
 @property (nonatomic, strong) UIWebView *webview;
 @property (nonatomic, strong) SH_DragableMenuView *dragableMenuView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NJKWebViewProgress *progressProxy;
 @property (nonatomic, copy) GameWebViewControllerClose closeBlock;
 @property (nonatomic, copy) GameWebViewControllerCloseAndShowLogin closeAndShowLoginBlock;
-
+@property (nonatomic, strong, readonly) RH_SureLeaveApiView *sureLeaveApiView;
+@property (nonatomic, strong) UIView *shadeView;
 @end
 
 @implementation GameWebViewController
-
+@synthesize sureLeaveApiView = _sureLeaveApiView;
 - (void)dealloc
 {
     [self.webview stopLoading];
@@ -48,6 +50,16 @@
 -(BOOL)isSubViewController
 {
     return YES;
+}
+
+-(RH_SureLeaveApiView *)sureLeaveApiView {
+    if (!_sureLeaveApiView) {
+        _sureLeaveApiView = [RH_SureLeaveApiView createInstance];
+        _sureLeaveApiView.frame = CGRectMake(0, 0, 270, 172);
+        _sureLeaveApiView.center = self.view.center;
+        _sureLeaveApiView.delegate = self;
+    }
+    return _sureLeaveApiView;
 }
 
 - (void)viewDidLoad {
@@ -94,24 +106,34 @@
     UIInterfaceOrientation oriention = [UIApplication sharedApplication].statusBarOrientation;
     _dragableMenuView.whc_TopSpace(470).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
     [_dragableMenuView closeAction:^{
-        [weakSelf.navigationController popViewControllerAnimated:NO];
-        if (weakSelf.closeBlock) {
-            weakSelf.closeBlock();
-        }
+        //遮罩层
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
     }];
     
     [_dragableMenuView gobackAction:^{
-        if ([weakSelf.webview canGoBack]) {
-            [weakSelf.webview goBack];
-        }
-        else
-        {
-            [weakSelf.navigationController popViewControllerAnimated:NO];
-            if (weakSelf.closeBlock) {
-                weakSelf.closeBlock();
-            }
-        }
+        //遮罩层
+        UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+        shadeView.backgroundColor = [UIColor lightGrayColor];
+        shadeView.alpha = 0.7f;
+        shadeView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+        [shadeView addGestureRecognizer:tap];
+        [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+        _shadeView = shadeView;
+        [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
     }];
+}
+
+-(void)closeShadeView {
+    [self.shadeView removeFromSuperview];
 }
 
 - (void)close:(GameWebViewControllerClose)closeBlock
@@ -316,5 +338,27 @@
         
         [self.webview loadRequest:request];
     }
+}
+
+- (void )sureLeaveApiViewDelegate {
+    [self.shadeView removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:NO];
+    if (self.closeBlock) {
+        self.closeBlock();
+    }
+}
+
+- (void) cancelLeaveApiViewDelegate {
+    [self.shadeView removeFromSuperview];
+//    if ([self.webview canGoBack]) {
+//        [self.webview goBack];
+//    }
+//    else
+//    {
+//        [self.navigationController popViewControllerAnimated:NO];
+//        if (self.closeBlock) {
+//            self.closeBlock();
+//        }
+//    }
 }
 @end

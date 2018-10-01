@@ -13,18 +13,22 @@
 #import "WHC_AutoLayout.h"
 #import "RH_UserInfoManager.h"
 #import "DCPathButton.h"
-@interface SH_WKGameViewController ()<WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate,DCPathButtonDelegate>
+#import "RH_SureLeaveApiView.h"
+
+@interface SH_WKGameViewController ()<WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate,DCPathButtonDelegate,RH_SureLeaveApiViewDelegate>
 
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, strong) SH_DragableMenuView *dragableMenuView;
 @property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong, readonly) RH_SureLeaveApiView *sureLeaveApiView;
 @property (nonatomic, copy) WKGameWebViewControllerClose closeBlock;
 @property (nonatomic, copy) WKGameWebViewControllerCloseAndShowLogin closeAndShowLoginBlock;
 @property (nonatomic, strong)DCPathButton *dcPathButton;
+@property (nonatomic, strong) UIView *shadeView;
 @end
 
 @implementation SH_WKGameViewController
-
+@synthesize sureLeaveApiView = _sureLeaveApiView;
 
 
 
@@ -89,10 +93,7 @@
     _dragableMenuView.whc_TopSpace(60).whc_RightSpace(iPhoneX && oriention == UIInterfaceOrientationLandscapeLeft ? 30 :  0).whc_Height(67).whc_Width(32);
     
     [_dragableMenuView closeAction:^{
-        [weakSelf.navigationController popViewControllerAnimated:NO];
-        if (weakSelf.closeBlock) {
-            weakSelf.closeBlock();
-        }
+        [self showAlertView];
     }];
     
     [_dragableMenuView gobackAction:^{
@@ -101,14 +102,28 @@
         }
         else
         {
-            [weakSelf.navigationController popViewControllerAnimated:NO];
-            if (weakSelf.closeBlock) {
-                weakSelf.closeBlock();
-            }
+            [self showAlertView];
         }
     }];
     
     [self  configureDCPathButton];
+}
+
+-(void) showAlertView {
+    //遮罩层
+    UIView *shadeView = [[UIView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame];
+    shadeView.backgroundColor = [UIColor lightGrayColor];
+    shadeView.alpha = 0.7f;
+    shadeView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeShadeView)];
+    [shadeView addGestureRecognizer:tap];
+    [[UIApplication sharedApplication].keyWindow addSubview:shadeView];
+    _shadeView = shadeView;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.sureLeaveApiView];
+}
+
+- (void) closeShadeView {
+    [self.shadeView removeFromSuperview];
 }
 
 - (void)close:(WKGameWebViewControllerClose)closeBlock
@@ -327,17 +342,10 @@
         }
         else
         {
-            [self.navigationController popViewControllerAnimated:NO];
-            if (self.closeBlock) {
-                self.closeBlock();
-            }
+            [self showAlertView];
         }
     }else if (itemButtonIndex ==3){
-        
-        [self.navigationController popViewControllerAnimated:NO];
-        if (self.closeBlock) {
-            self.closeBlock();
-        }
+        [self showAlertView];
     }else if (itemButtonIndex ==0){
         // Collection
         NSArray * array = [NSArray arrayWithContentsOfFile:[self pathForFile:@"gameURL"]];
@@ -375,4 +383,28 @@
         self.dcPathButton.dcButtonCenter = CGPointMake(screenSize().width-25, screenSize().height/2.0);
     }
 }
+
+- (RH_SureLeaveApiView *)sureLeaveApiView {
+    if (!_sureLeaveApiView) {
+        _sureLeaveApiView = [RH_SureLeaveApiView createInstance];
+        _sureLeaveApiView.frame = CGRectMake(0, 0, 270, 172);
+        _sureLeaveApiView.center = self.view.center;
+        _sureLeaveApiView.delegate = self;
+    }
+    return _sureLeaveApiView;
+}
+
+#pragma RH_SureLeaveApiViewDelegate -m
+- (void )sureLeaveApiViewDelegate {
+    [self.shadeView removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:NO];
+    if (self.closeBlock) {
+        self.closeBlock();
+    }
+}
+
+- (void) cancelLeaveApiViewDelegate {
+    [self.shadeView removeFromSuperview];
+}
+
 @end
