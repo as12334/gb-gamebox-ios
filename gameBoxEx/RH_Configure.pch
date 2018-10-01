@@ -4068,6 +4068,17 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _tgbi //澳门美高梅
+
+#define CODE    @"tgbi"
+#define S        @"e662ce9e239501549379fc66a1528cf2"
+#define SID        @"760"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
+
+
 #endif
 
 #endif /* RH_Configure_h */
