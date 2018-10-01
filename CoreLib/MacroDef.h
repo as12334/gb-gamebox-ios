@@ -9,6 +9,13 @@
 #ifndef MacroDef_h
 #define MacroDef_h
 
+//屏幕
+#define WIDTH_PERCENT                      [UIScreen mainScreen].bounds.size.width/375.0
+#define HEIGHT_PERCENT                     [UIScreen mainScreen].bounds.size.height/667.0
+#define SCREEN_WIDTH                       [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT                      [UIScreen mainScreen].bounds.size.height
+#define MainScreenBounds                   [UIScreen mainScreen].bounds
+
 #define iPhoneX  ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 #define TABBAR_HEIGHT iPhoneX ? 83.f : 49.f
