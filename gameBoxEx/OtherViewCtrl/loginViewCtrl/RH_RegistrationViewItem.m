@@ -52,8 +52,8 @@
         textField = [UITextField new];
         [self addSubview:textField];
         [textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(90) ;
-            make.top.mas_offset(self.isShowTopView?30:20) ;
+            make.left.mas_offset(70*WIDTH_PERCENT) ;
+            iPhoneX?make.top.mas_offset(self.isShowTopView?60:50):make.top.mas_offset(self.isShowTopView?30:20) ;
             make.right.mas_offset(-10) ;
             make.height.mas_offset(38) ;
         }] ;
@@ -255,11 +255,14 @@
 #pragma mark - 设置placeHolder
 -(void)setTextFieldPlaceHolder
 {
-    NSMutableAttributedString *placeholder = [[NSMutableAttributedString alloc] initWithString:textField.placeholder];
-    [placeholder addAttribute:NSFontAttributeName
-                        value:[UIFont boldSystemFontOfSize:12]
-                        range:NSMakeRange(0, textField.placeholder.length)];
-    textField.attributedPlaceholder = placeholder;
+    if (textField.placeholder)
+    {
+        NSMutableAttributedString *placeholder = [[NSMutableAttributedString alloc] initWithString:textField.placeholder];
+        [placeholder addAttribute:NSFontAttributeName
+                            value:[UIFont boldSystemFontOfSize:12]
+                            range:NSMakeRange(0, textField.placeholder.length)];
+        textField.attributedPlaceholder = placeholder;
+    }
 }
 
 - (void)setFieldModel:(FieldModel *)model {
@@ -613,7 +616,7 @@
     textField.whc_RightSpace(150);
     imageView_VerifyCode = [UIImageView new];
     [self addSubview:imageView_VerifyCode];
-    imageView_VerifyCode.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(25).whc_Height(35);
+    imageView_VerifyCode.whc_CenterYToView(0, textField).whc_LeftSpaceToView(10, textField).whc_RightSpace(10).whc_Height(35);
     imageView_VerifyCode.backgroundColor = [UIColor redColor];
     [self.serviceRequest startV3RegisetCaptchaCode];
     imageView_VerifyCode.userInteractionEnabled = YES;
