@@ -311,8 +311,9 @@
 {
     if (HasLogin)
     {
-        [RH_SelectedHelper shared].selectedIndex = 1;
+        [RH_SelectedHelper shared].selectedIndex = 0;
         self.tabBarController.selectedIndex = 1  ;
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"selectedWithNotification" object:nil];
     }else{
         [self loginButtonItemHandle] ;
     }
@@ -408,9 +409,9 @@
             NSString *code = [dictInfo stringValueForKey:@"code"];
             if ([code isEqualToString:@"transfer"]){
                 //额度转换
-//                self.appDelegate.customUrl = @"/transfer/index.html" ;
-//                [self showViewController:[RH_CustomViewController viewController] sender:self] ;
-                [self showViewController:[RH_LimitTransferViewController viewController] sender:self] ;
+                [RH_SelectedHelper shared].selectedIndex = 1;
+                [self.tabBarController setSelectedIndex:1];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"selectedWithNotification" object:nil];
                 return ;
             }else if ([code isEqualToString:@"gameNotice"]){
                 self.appDelegate.customUrl = @"/message/gameNotice.html?isSendMessage=true" ;

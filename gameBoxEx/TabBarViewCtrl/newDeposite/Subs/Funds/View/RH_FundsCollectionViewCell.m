@@ -43,7 +43,10 @@
     if (animation) {
          [self rotarionAnimationInView];
     }else{
-         [self stopAnimation];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self stopAnimation];
+        });
+        
     }
 }
 //刷新和回收哦是同一个按钮

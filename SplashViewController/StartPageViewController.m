@@ -582,6 +582,7 @@
             }
             NSLog(@">>>start fetch url from %@",domain);
             [weakSelf fetchIPListFrom:domain host:host complete:^(NSDictionary *ips) {
+                 ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
                 resultIPs = ips;
                 if (resultIPs != nil && resultIPs.allKeys.count) {
                     NSLog(@">>>从固定域名获取ip列表线程执行完毕 ips: %@",resultIPs);

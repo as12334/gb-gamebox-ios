@@ -32,8 +32,8 @@
 #import "RH_DepositPaylinkViewController.h"
 #import "RH_TestSafariViewController.h"
 #import "SH_WKGameViewController.h"
-
-@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate>
+#import "RH_DepositeHeadView.h"
+@interface RH_DepositeViewControllerEX ()<LoginViewControllerExDelegate,DepositeReminderCellCustomDelegate,DepositePayforWayCellDelegate,DepositeSystemPlatformCellDelegate,RH_ServiceRequestDelegate,DepositeSubmitCircleViewDelegate,DepositeChooseMoneyCellDelegate,DepositeTransferButtonCellDelegate,DepositeMoneyBankCellDeleaget,DepositSuccessAlertViewDelegate,RH_DepositeHeadViewDelegate>
 @property(nonatomic,strong,readonly)RH_DepositeSubmitCircleView *circleView;
 @property(nonatomic,strong)UIView *shadeView;
 @property(nonatomic,strong)NSArray *markArray;
@@ -70,8 +70,6 @@
 @property(nonatomic,strong)NSString *discountStr;
 //将平台和通道一并传给提示文案的cell
 @property(nonatomic,strong)NSMutableArray *reminderArray;
-@property(nonatomic,strong)UIView *headerTitleView;
-
 @end
 
 @implementation RH_DepositeViewControllerEX
@@ -192,8 +190,6 @@
 }
 #pragma mark --视图
 -(void)setupUI{
-    self.headerTitleView = [[UIView alloc]initWithFrame:CGRectMake(0,NavigationBarHeight+heighStatusBar, self.contentView.frameWidth, 20)];
-    self.headerTitleView.backgroundColor = [UIColor yellowColor];
     self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO] ;
     self.contentTableView.delegate = self   ;
     self.contentTableView.dataSource = self ;
@@ -473,7 +469,6 @@
 #pragma mark --选择金钱的代理
 -(void)depositeChooseMoneyCell:(NSInteger)moneyNumber
 {
-    NSInteger sum =  [self.numberCell.payMoneyNumLabel.text integerValue]+moneyNumber;
     self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",moneyNumber];
     
 }
@@ -718,15 +713,17 @@
                 self.numberCell.payMoneyNumLabel.placeholder =[NSString stringWithFormat:@"%ld~%ld",((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMin,((RH_DepositeTransferListModel*)self.channelModel.mArrayListModel[0]).mSingleDepositMax];
             }
             if (channelModel.mNewActivity==YES) {
-                [self.view addSubview:self.headerTitleView];
-                UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frameWidth, 20)];
-                lab.backgroundColor = [UIColor yellowColor];
-                [lab setTextColor:[UIColor lightGrayColor]];
-                lab.font = [UIFont systemFontOfSize:14.f];
-                lab.text = @"温馨提示：完成存款后，请前往活动大厅申请活动优惠。";
-                lab.textAlignment = NSTextAlignmentCenter;
-                [self.headerTitleView addSubview:lab];
-                self.contentTableView.contentInset = UIEdgeInsetsMake(NavigationBarHeight+20, 0, 0, 0);
+                UIView *v = [self.view viewWithTag:12345];
+                if (!v) {
+                    RH_DepositeHeadView *view = [[NSBundle mainBundle]loadNibNamed:@"RH_DepositeHeadView" owner:self options:nil].firstObject;
+                    view.frame = CGRectMake(0, 0, screenSize().width, 30);
+                    view.tag = 12345;
+                    view.delegate  = self;
+                    [self.view addSubview:view];
+                    self.contentTableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
+                    self.contentTableView.contentOffset = CGPointMake(0, -30);
+                }
+               
             }
             //默认选中第一个
             [self depositeSystemPlatformCellDidtouch:nil payTypeString:self.channelModel.mArrayListModel[0].mType accountModel:self.channelModel.mArrayListModel[0] acounterModel:self.channelModel.mAounterModel];
@@ -832,6 +829,8 @@
    [self.contentTableView setContentOffset:CGPointMake(0,0) animated:YES];
     
 }
-
+- (void)closeBtnClick{
+    self.contentTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+}
 
 @end

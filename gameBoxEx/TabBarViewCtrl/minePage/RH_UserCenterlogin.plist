@@ -67,7 +67,7 @@
 							<key>detailTitle</key>
 							<string>进行资金回收和转入</string>
 							<key>title</key>
-							<string>额度转换</string>
+							<string>资金账户</string>
 							<key>code</key>
 							<string>transfer</string>
 							<key>image</key>
