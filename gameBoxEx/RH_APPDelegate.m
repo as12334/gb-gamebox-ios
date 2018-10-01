@@ -39,7 +39,7 @@ NSString  *NT_LoginStatusChangedNotification  = @"LoginStatusChangedNotification
 - (void)doSomethingWhenAppFirstLaunch
 {
     //崩溃日志
-     [self avoidCrash];
+//     [self avoidCrash];
     //jpush
     if ([SID intValue] == 119 || [SID intValue] == 270) {
         [self jpushInit];

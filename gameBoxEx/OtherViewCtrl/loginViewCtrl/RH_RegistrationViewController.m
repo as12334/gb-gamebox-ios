@@ -279,7 +279,7 @@
     button_Check.tag = 1023;
     [mainScrollView addSubview:button_Check];
     mainScrollView.userInteractionEnabled = YES ;
-    button_Check.whc_TopSpaceToView(40, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
+    button_Check.whc_TopSpaceToView(iPhoneX?50:40, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     
     [button_Check setSelected:YES];
     [button_Check setImage:ImageWithName(@"choose") forState:UIControlStateNormal];
@@ -404,7 +404,7 @@
     UIButton *btn_check = [mainScrollView viewWithTag:1023];
     if (btn_check)
     {
-        btn_check.whc_TopSpaceToView(20, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
+        btn_check.whc_TopSpaceToView(iPhoneX?50:30, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     }
 }
 
