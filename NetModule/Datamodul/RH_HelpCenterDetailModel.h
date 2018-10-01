@@ -7,6 +7,7 @@
 //
 
 #import "RH_BasicModel.h"
+#import <UIKit/UIKit.h>
 
 
 
@@ -16,6 +17,16 @@
 @property (nonatomic , strong , readonly) NSString              * helpTitle;
 @property (nonatomic , strong , readonly) NSString              * local;
 @property (nonatomic , assign , readonly) NSInteger              helpDocumentId;
+
+/**
+ 是否展开
+ */
+@property (nonatomic, assign) BOOL isExpanded;
+
+/**
+ cell高度
+ */
+@property(nonatomic,assign)CGFloat cellHeight ;
 
 @end
 

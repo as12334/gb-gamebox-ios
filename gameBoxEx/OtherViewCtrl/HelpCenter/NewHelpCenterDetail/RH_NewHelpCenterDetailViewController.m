@@ -1,30 +1,31 @@
 //
-//  RH_HelpCenterSecondViewController.m
+//  RH_NewHelpCenterDetailViewController.m
 //  gameBoxEx
 //
-//  Created by Richard on 2018/3/25.
-//  Copyright © 2018年 luis. All rights reserved.
+//  Created by richard on 2018/10/1.
+//  Copyright © 2018 luis. All rights reserved.
 //
 
-#import "RH_HelpCenterSecondViewController.h"
-#import "RH_HelpCenterSecondModel.h"
-#import "RH_HelpCenterSecondViewCell.h"
-#import "RH_HelpCenterModel.h"
-//#import "RH_HelpCenterDetailViewController.h"
 #import "RH_NewHelpCenterDetailViewController.h"
+#import "RH_HelpCenterSecondModel.h"  //传值model
+#import "RH_HelpCenterDetailModel.h"
+#import "RH_NewHelpCenterDetaliViewCell.h"
+#import "RH_NewHelpCenterDetailHeaderView.h"
+#import "coreLib.h"
 
-@interface RH_HelpCenterSecondViewController ()
 
+@interface RH_NewHelpCenterDetailViewController ()
+{
+    RH_HelpCenterSecondModel *_helpCenterScondModel ;
+    NSArray *_dataSource ;
+}
 @end
 
-@implementation RH_HelpCenterSecondViewController
-{
-    RH_HelpCenterModel *_model ;
-}
+@implementation RH_NewHelpCenterDetailViewController
 
 -(void)setupViewContext:(id)context
 {
-    _model = ConvertToClassPointer(RH_HelpCenterModel, context) ;
+    _helpCenterScondModel = ConvertToClassPointer(RH_HelpCenterSecondModel, context) ;
 }
 
 -(BOOL)isSubViewController
@@ -34,20 +35,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _model.mName ;
-    [self setupInfo];
-    self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
-    
-}
-
-- (void)setupInfo
-{
-    self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO];
-    self.contentTableView.sectionHeaderHeight = 9.0f ;
+    self.title = _helpCenterScondModel.mName ;
+    self.contentTableView = [self createTableViewWithStyle:UITableViewStylePlain updateControl:NO loadControl:NO];
+    self.contentTableView.sectionHeaderHeight = 0.0f ;
     self.contentTableView.sectionFooterHeight = 0.0f ;
-    
-    [self.contentTableView registerCellWithClass:[RH_HelpCenterSecondViewCell class]] ;
     [self.contentView addSubview:self.contentTableView];
+    [self.contentTableView registerCellWithClass:[RH_NewHelpCenterDetaliViewCell class]] ;
+    [self.contentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_offset(0) ;
+    }] ;
+    self.contentView.backgroundColor = colorWithRGB(239, 239, 239);
     [self setupPageLoadManager] ;
 }
 
@@ -61,7 +58,7 @@
             }else if ([THEMEV3 isEqualToString:@"red"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Red ;
             }else if ([THEMEV3 isEqualToString:@"black"]){
-                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black;
+                navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Black ;
             }else if ([THEMEV3 isEqualToString:@"blue"]){
                 navigationBar.barTintColor = RH_NavigationBar_BackgroundColor_Blue ;
             }else if ([THEMEV3 isEqualToString:@"orange"]){
@@ -158,19 +155,11 @@
         [self startUpdateData] ;
     }
 }
--(NSUInteger)defaultPageSize
-{
-    CGFloat contentHeigh =  self.contentTableView.frameHeigh - self.contentTableView.contentInset.top - self.contentTableView.contentInset.bottom ;
-    CGFloat cellHeigh = [RH_HelpCenterSecondViewCell heightForCellWithInfo:nil tableView:nil context:nil] ;
-    return floorf(contentHeigh/cellHeigh) ;
-    
-}
-
 
 #pragma mark- 请求回调
 -(void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
-    [self.serviceRequest startV3HelpSecondTypeWithSearchId:_model.mId] ;
+    [self.serviceRequest startV3HelpDetailTypeWithSearchId:_helpCenterScondModel.mId] ;
 }
 
 -(void)cancelLoadDataHandle
@@ -188,61 +177,72 @@
 #pragma mark-
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest   serviceType:(ServiceRequestType)type didSuccessRequestWithData:(id)data
 {
-    if (type == ServiceRequestTypeV3FirstHelpSecondTyp) {
-        NSArray *model = data;
-        [self loadDataSuccessWithDatas:model?model:nil
-                            totalCount:model?model.count:1] ;
+    if (type == ServiceRequestTypeV3HelpDetail) {
+        _dataSource = ConvertToClassPointer(NSArray, data) ;
+        [self loadDataSuccessWithDatas:_dataSource?_dataSource:nil
+                            totalCount:_dataSource?_dataSource.count:1] ;
         
     }
 }
 
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
-    if (type == ServiceRequestTypeV3FirstHelpSecondTyp) {
+    if (type == ServiceRequestTypeV3HelpDetail) {
         [self loadDataFailWithError:error] ;
     }
 }
 
 #pragma mark-tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+     return MAX(1, self.pageLoadManager.currentDataCount) ;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return MAX(1, self.pageLoadManager.currentDataCount) ;
+    RH_HelpCenterDetailModel *model = _dataSource[section] ;
+    return model.isExpanded ? 1:0 ;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.pageLoadManager.currentDataCount){
-        return [RH_HelpCenterSecondViewCell heightForCellWithInfo:nil tableView:tableView context:nil] ;
-    }else{
-        CGFloat height = MainScreenH - tableView.contentInset.top - tableView.contentInset.bottom ;
-        return height ;
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    RH_HelpCenterDetailModel *model = _dataSource[indexPath.section] ;
+    return model.cellHeight ;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    RH_NewHelpCenterDetaliViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[RH_NewHelpCenterDetaliViewCell defaultReuseIdentifier]];
+    
+    if (!cell) {
+        cell = [[RH_NewHelpCenterDetaliViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[RH_NewHelpCenterDetaliViewCell defaultReuseIdentifier]];
     }
+    [cell updateCellWithInfo:nil context:_dataSource[indexPath.section]] ;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.separatorLineStyle = CLTableViewCellSeparatorLineStyleNone ;
+    return cell;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.pageLoadManager.currentDataCount){
-        RH_HelpCenterSecondViewCell *helpCenterCell = [self.contentTableView dequeueReusableCellWithIdentifier:[RH_HelpCenterSecondViewCell defaultReuseIdentifier]] ;
-        [helpCenterCell updateCellWithInfo:nil context:[self.pageLoadManager dataAtIndexPath:indexPath]];
-        return helpCenterCell ;
-    }else{
-        return self.loadingIndicateTableViewCell ;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    RH_NewHelpCenterDetailHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[RH_NewHelpCenterDetailHeaderView defaultReuseIdentifier]];
+    
+    if (!headerView) {
+        headerView = [[RH_NewHelpCenterDetailHeaderView alloc] initWithReuseIdentifier:[RH_NewHelpCenterDetailHeaderView defaultReuseIdentifier]];
     }
+    headerView.sectionModel = _dataSource[section] ;
+    headerView.HeaderClickedBack = ^(BOOL isExpand){
+        
+        [tableView reloadSections:[[NSIndexSet alloc] initWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    return  headerView;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RH_HelpCenterSecondModel *model = [self.pageLoadManager dataAtIndexPath:indexPath] ;
-//    [self.navigationController pushViewController:[RH_HelpCenterDetailViewController viewControllerWithContext:model]
-//                                         animated:YES] ;
-    [self showViewController:[RH_NewHelpCenterDetailViewController viewControllerWithContext:model] sender:self] ;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return  34.5f*WIDTH_PERCENT;
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation
