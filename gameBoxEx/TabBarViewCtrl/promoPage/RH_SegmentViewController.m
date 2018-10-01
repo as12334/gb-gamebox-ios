@@ -12,7 +12,7 @@
 #define HEADBTN_TAG                 10000
 #define Default_BottomLineColor     [UIColor redColor]
 #define Default_BottomLineHeight    2
-#define Default_ButtonHeight        45
+#define Default_ButtonHeight        55
 #define Default_TitleColor          [UIColor blackColor]
 #define Default_HeadViewBackgroundColor  [UIColor whiteColor]
 #define Default_FontSize            16
@@ -27,15 +27,6 @@
 @end
 
 @implementation RH_SegmentViewController
--(BOOL)hasTopView
-{
-    return TRUE ;
-}
-
--(CGFloat)topViewHeight
-{
-    return 0.0f ;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"优惠";
@@ -52,7 +43,8 @@
 }
 - (void)addButtonInScrollHeader:(NSArray *)titleArray
 {
-    self.headerView.frame = CGRectMake(0, 64, MainScreenWidth, self.buttonHeight);
+    CGFloat iphoneHeight = iPhoneX?88:64;
+    self.headerView.frame = CGRectMake(0, iphoneHeight, MainScreenWidth, self.buttonHeight);
     if (_segmentHeaderType == 0) {
         self.headerView.contentSize = CGSizeMake(self.buttonWidth * titleArray.count, self.buttonHeight);
     }
@@ -90,7 +82,8 @@
  */
 - (void)addContentViewScrollView:(NSArray *)subViewControllers
 {
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.buttonHeight + 64, MainScreenWidth, MainScreenHeight - self.buttonHeight)];
+    CGFloat iphoneHeight = iPhoneX?88:64;
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.buttonHeight + iphoneHeight, MainScreenWidth, MainScreenHeight - self.buttonHeight)];
     _mainScrollView.contentSize = CGSizeMake(MainScreenWidth * subViewControllers.count, MainScreenHeight - self.buttonHeight);
     [_mainScrollView setPagingEnabled:YES];
     if (_segmentControlType == 0) {
