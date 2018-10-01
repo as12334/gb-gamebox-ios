@@ -377,7 +377,8 @@ configuration_list=(  \
     # '_mlbc^753^"大众娱乐"' \
     # '_okda^757^"163"' \
     # '_djgt^756^"聚名彩票网"' \
-    '_tgbi^760^"澳门美高梅"' \
+    # '_tgbi^760^"澳门美高梅"' \
+    '_cdwm^758^"太陽城集團"' \
   )
 
 shell_path=$(cd "$(dirname "$0")";pwd)

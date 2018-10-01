@@ -4077,6 +4077,15 @@
 #define THEME    @"default.skin"
 #define SITE_TYPE    @"integratedv3oc"
 
+#elif _cdwm //太陽城集團
+
+#define CODE    @"cdwm"
+#define S        @"815a764597e44d57f7a5b50349079308"
+#define SID        @"758"
+#define THEMEV3     @"black"   //green,red,black,default,orange,blue,red_white,green_white,orange_white,coffee_white,coffee_black
+#define THEME    @"default.skin"
+#define SITE_TYPE    @"integratedv3oc"
+
 
 
 #endif
