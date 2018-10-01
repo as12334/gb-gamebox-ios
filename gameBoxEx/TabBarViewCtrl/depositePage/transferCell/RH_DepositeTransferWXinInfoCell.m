@@ -11,6 +11,10 @@
 #import "RH_API.h"
 #import "RH_DepositeTransferChannelModel.h"
 @interface RH_DepositeTransferWXinInfoCell ()
+@property (weak, nonatomic) IBOutlet UIButton *btn;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+
 @property (weak, nonatomic) IBOutlet UIButton *accountInfo;
 @property (weak, nonatomic) IBOutlet UIView *accountInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *bankIconImage;
@@ -56,7 +60,8 @@
     }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.personIdNumLabel.text];
-    showMessage(self, @"复制成功",nil);
+    UIImage *successImage = [UIImage imageNamed:@"icon_success"];
+    showMessageWithImage(self, @"复制成功", nil, successImage);
     
 }
 - (IBAction)personNameCopyClick:(id)sender {
@@ -65,7 +70,8 @@
     }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.personNameLabel.text];
-    showMessage(self, @"复制成功",nil);
+    UIImage *successImage = [UIImage imageNamed:@"icon_success"];
+    showMessageWithImage(self, @"复制成功", nil, successImage);
 }
 - (IBAction)customCopyBtn:(id)sender {
     if (self.customBankLabel.text.length==0) {
@@ -73,7 +79,8 @@
     }
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     [pboard setString:self.customBankLabel.text];
-    showMessage(self, @"复制成功", nil);
+    UIImage *successImage = [UIImage imageNamed:@"icon_success"];
+    showMessageWithImage(self, @"复制成功", nil, successImage);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
