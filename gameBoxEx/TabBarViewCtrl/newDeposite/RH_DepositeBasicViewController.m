@@ -68,7 +68,7 @@
     [scrollPageView setSelectedIndex:[RH_SelectedHelper shared].selectedIndex animated:NO];
 }
 -(void)selectedWithDrawCash{
-    [self.scrollView setSelectedIndex:2 animated:NO];
+    [self.scrollView setSelectedIndex:[RH_SelectedHelper shared].selectedIndex animated:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
