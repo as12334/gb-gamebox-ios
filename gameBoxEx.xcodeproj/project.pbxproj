@@ -82,6 +82,8 @@
 		22AB993A20809A3D001A6203 /* home_announce_close_coffee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993820809A3C001A6203 /* home_announce_close_coffee@3x.png */; };
 		22AB993B20809A3D001A6203 /* home_announce_close_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */; };
 		22B8EEDD20945B39001BFA08 /* ErrorStateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */; };
+		22C188BF2161CFC100778196 /* RH_SureLeaveApiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C188BE2161CFC100778196 /* RH_SureLeaveApiView.m */; };
+		22C188C12161CFCC00778196 /* RH_SureLeaveApiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C188C02161CFCC00778196 /* RH_SureLeaveApiView.xib */; };
 		22C2E1482026F8AF008C0C06 /* home_announce_close_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */; };
 		22C2E1492026F8AF008C0C06 /* home_announce_close_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */; };
 		22C2E14C2026F93B008C0C06 /* home_announce_close_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */; };
@@ -969,6 +971,9 @@
 		22AB993920809A3C001A6203 /* home_announce_close_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_coffee@2x.png"; sourceTree = "<group>"; };
 		22B8EEDB20945B39001BFA08 /* ErrorStateTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorStateTopView.h; sourceTree = "<group>"; };
 		22B8EEDC20945B39001BFA08 /* ErrorStateTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErrorStateTopView.m; sourceTree = "<group>"; };
+		22C188BD2161CFC100778196 /* RH_SureLeaveApiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RH_SureLeaveApiView.h; sourceTree = "<group>"; };
+		22C188BE2161CFC100778196 /* RH_SureLeaveApiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RH_SureLeaveApiView.m; sourceTree = "<group>"; };
+		22C188C02161CFCC00778196 /* RH_SureLeaveApiView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RH_SureLeaveApiView.xib; sourceTree = "<group>"; };
 		22C2E1462026F8AF008C0C06 /* home_announce_close_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@2x.png"; sourceTree = "<group>"; };
 		22C2E1472026F8AF008C0C06 /* home_announce_close_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_green@3x.png"; sourceTree = "<group>"; };
 		22C2E14A2026F93B008C0C06 /* home_announce_close_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_announce_close_default@3x.png"; sourceTree = "<group>"; };
@@ -2539,6 +2544,16 @@
 			path = errorStatesVC;
 			sourceTree = "<group>";
 		};
+		22C188BC2161CF6700778196 /* sureLeaveApi */ = {
+			isa = PBXGroup;
+			children = (
+				22C188BD2161CFC100778196 /* RH_SureLeaveApiView.h */,
+				22C188BE2161CFC100778196 /* RH_SureLeaveApiView.m */,
+				22C188C02161CFCC00778196 /* RH_SureLeaveApiView.xib */,
+			);
+			path = sureLeaveApi;
+			sourceTree = "<group>";
+		};
 		22C2E1412026F7FD008C0C06 /* home_announce_close */ = {
 			isa = PBXGroup;
 			children = (
@@ -4083,6 +4098,7 @@
 		A04E60521F8DB02400098A65 /* OtherViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				22C188BC2161CF6700778196 /* sureLeaveApi */,
 				F663018020CF9E4C00DC6E56 /* datePicker */,
 				F61DA00120BBAE1C00E55BAB /* websocketVC */,
 				222790D620A28B900017F9F2 /* bannerDetail */,
@@ -5365,6 +5381,7 @@
 				A07DCECB1FEBD1620006FAE4 /* RH_HomeCategoryItemSubCell.xib in Resources */,
 				22AB9922208098D9001A6203 /* login_touxiang_coffee@2x.png in Resources */,
 				228B93112027287E008C8313 /* tab_v3_service_selected_green@2x.png in Resources */,
+				22C188C12161CFCC00778196 /* RH_SureLeaveApiView.xib in Resources */,
 				221AE5A9207DF2C4008CD409 /* home_announce_close_red@2x.png in Resources */,
 				221AE58A207DEE0F008CD409 /* tab_v3_my_selected_orange@2x.png in Resources */,
 				546CE71820CA986700273C40 /* RH_BindUserPhone.xib in Resources */,
@@ -6022,6 +6039,7 @@
 				79BB2DAC2032775B000CDE6B /* RH_NonTableViewCell.m in Sources */,
 				A011816F1FFCAB21008F6D1E /* WHC_StackView.m in Sources */,
 				A0109FFA1F8788FF004E6EF4 /* UIImage+MultiFormat.m in Sources */,
+				22C188BF2161CFC100778196 /* RH_SureLeaveApiView.m in Sources */,
 				B87A6B182005EA8100C9788F /* RH_ModifyPasswordCodeCell.m in Sources */,
 				A0109FFB1F8788FF004E6EF4 /* UIImage+WebP.m in Sources */,
 				A0109FFC1F8788FF004E6EF4 /* UIImageView+HighlightedWebCache.m in Sources */,

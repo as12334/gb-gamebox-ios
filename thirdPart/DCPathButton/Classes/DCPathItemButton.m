@@ -47,7 +47,7 @@
         
         // Add an action for the item button
         //
-        [self addTarget:_delegate action:@selector(itemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+  //      [self addTarget:_delegate action:@selector(itemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     return self;

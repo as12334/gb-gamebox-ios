@@ -93,7 +93,6 @@
             amountLab.text = userApiBalance.mStatus ;
         }else
         {
-//            amountLab.text = [NSString stringWithFormat:@"%.2f",userApiBalance.mBalance] ;
             CGFloat balance = userApiBalance.mBalance;
             NSString *balanceStr = [NSString stringWithFormat:@"%.2f",balance];
             amountLab.text = [self countNumAndChangeformat:balanceStr];
