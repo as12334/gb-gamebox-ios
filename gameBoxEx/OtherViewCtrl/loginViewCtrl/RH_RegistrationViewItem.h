@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "RH_RegisetInitModel.h"
 @interface RH_RegistrationViewItem : UIView
+
+@property(nonatomic,assign)BOOL isShowTopView ;
+
 - (void)setRequiredJson:(NSArray<NSString *> *)requiredJson;
 - (void)setFieldModel:(FieldModel *)model;
 - (void)setTimeZone:(NSString *)zone;

@@ -11,12 +11,16 @@
 #import "coreLib.h"
 #import "RH_ServiceRequest.h"
 #import "RH_UserInfoManager.h"
+#import "Masonry.h"
+
+
 @interface RH_RegistrationViewItem() <RH_RegistrationSelectViewDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate,RH_ServiceRequestDelegate>
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic,strong,readonly)RH_ServiceRequest *serviceRequest;
 @end
 @implementation RH_RegistrationViewItem
 {
+    UIImageView *_startImageView;
     UILabel *label_Title;
     UITextField *textField;
     UIButton *button_Check;
@@ -36,28 +40,23 @@
     id selectedItem;
     NSInteger countDownNumber;
     
+    
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
+@synthesize serviceRequest = _serviceRequest ;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        label_Title = [UILabel new];
-        [self addSubview:label_Title];
-        label_Title.whc_TopSpace(2).whc_LeftSpace(20).whc_Height(18).whc_WidthAuto();
-        label_Title.font = [UIFont systemFontOfSize:13];
-        label_Title.textColor = colorWithRGB(131, 131, 131);
-        label_Title.textAlignment = NSTextAlignmentCenter;
         
         textField = [UITextField new];
         [self addSubview:textField];
-        textField.whc_TopSpaceToView(1, label_Title).whc_LeftSpace(20).whc_RightSpace(20).whc_Height(38);
+        [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_offset(90) ;
+            make.top.mas_offset(self.isShowTopView?30:20) ;
+            make.right.mas_offset(-10) ;
+            make.height.mas_offset(38) ;
+        }] ;
         textField.layer.borderColor = colorWithRGB(234, 234, 234).CGColor;
         textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.layer.borderWidth = 1;
@@ -67,17 +66,35 @@
         textField.textColor = colorWithRGB(99, 99, 99);
         textField.delegate = self;
         
+        label_Title = [UILabel new];
+        [self addSubview:label_Title];
+        
+        [label_Title mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(textField.mas_centerY) ;
+            make.right.mas_equalTo(textField.mas_left).offset(-5) ;
+        }] ;
+        label_Title.font = [UIFont systemFontOfSize:13];
+        label_Title.textColor = colorWithRGB(131, 131, 131);
+        label_Title.textAlignment = NSTextAlignmentRight;
+
+        _startImageView = [UIImageView new] ;
+        [self addSubview:_startImageView];
+        [_startImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(label_Title.mas_left) ;
+            make.centerY.mas_equalTo(textField.mas_centerY) ;
+            make.height.width.mas_offset(8) ;
+        }] ;
+        _startImageView.image = [UIImage imageNamed:@"star"] ;
+        _startImageView.hidden = YES ;
+        
         fieldModel = [[FieldModel alloc] init];
         
         serverRequest = [[RH_ServiceRequest alloc] init] ;
         serverRequest.delegate = self ;
-        
-        
-        
     }
     return self;
 }
-@synthesize serviceRequest = _serviceRequest ;
+
 
 - (BOOL)isRequire {
     if ([fieldModel.isRequired isEqualToString:@"2"]) {
@@ -85,6 +102,13 @@
     }
     return YES;
 }
+
+
+-(void)setIsShowTopView:(BOOL)isShowTopView
+{
+    _isShowTopView = isShowTopView ;
+}
+
 -(RH_ServiceRequest *)serviceRequest
 {
     if (!_serviceRequest){
@@ -121,130 +145,162 @@
 
 - (void)setRequiredJson:(NSArray<NSString *> *)requiredJson {
     for (NSString *obj in requiredJson) {
-        
+        // ⭐️
         if ([obj isEqualToString:fieldModel.name]) {
             if ([obj isEqualToString:@"username"]) {
-                label_Title.text = @"请输入用户名⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"用户名";
                 textField.placeholder = @"请输入用户名"; break ;
             }
             if ([obj isEqualToString:@"password"]) {
-                label_Title.text = @"请输入密码⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"密码";
                 textField.placeholder = @"请输入6-20个字母数字或字符"; break ;
             }
             if ([obj isEqualToString:@"password2"]) {
-                label_Title.text = @"请再次输入密码⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"确认密码";
                 textField.placeholder = @"请再次输入登录密码"; break ;
             }
             if ([obj isEqualToString:@"verificationCode"]) {
-                label_Title.text = @"请输入验证码⭐️";
+                _startImageView.hidden = NO;
+                textField.keyboardType = UIKeyboardTypeNumberPad ;
+                label_Title.text = @"验证码";
                 textField.placeholder = @"请输入验证码"; break ;
             }
             if ([obj isEqualToString:@"regCode"]) {
-                label_Title.text = @"请输入推荐码⭐️";
-                textField.placeholder = @"推荐码"; break ;
+                _startImageView.hidden = NO;
+                label_Title.text = @"推荐码";
+                textField.placeholder = @"请输入推荐码"; break ;
             }
             if ([obj isEqualToString:@"304"]) {
-                label_Title.text = @"请输入微信⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"微信";
                 textField.placeholder = @"请输入微信"; break ;
             }
             if ([obj isEqualToString:@"110"]) {
-                label_Title.text = @"请输入手机号⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"手机号";
                 textField.placeholder = @"请输入手机号"; break ;
             }
             if ([obj isEqualToString:@"110verify"]) {
-                label_Title.text = @"请输入手机验证码⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"验证码";
                 textField.placeholder = @"请输入手机验证码"; break ;
             }
             if ([obj isEqualToString:@"201"]) {
-                label_Title.text = @"邮箱⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"邮箱";
                 textField.placeholder = @"请输入邮箱地址"; break ;
             }
             if ([obj isEqualToString:@"realName"]) {
-                label_Title.text = @"请输入真实姓名⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"真实姓名";
                 textField.placeholder = @"请输入真实姓名"; break ;
             }
             if ([obj isEqualToString:@"301"]) {
-                label_Title.text = @"请输入QQ号码⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"QQ号码";
                 textField.placeholder = @"请输入QQ号码"; break ;
             }
             if ([obj isEqualToString:@"paymentPassword"]) {
-                label_Title.text = @"请输入6位数字安全密码⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"安全密码";
                 textField.placeholder = @"请输入6位数字安全密码"; break ;
             }
             if ([obj isEqualToString:@"paymentPassword2"]) {
-                label_Title.text = @"请再次输入6位数字安全密码";
+                label_Title.text = @"确认密码";
                 textField.placeholder = @"请再次输入6位数字安全密码"; break ;
             }
             if ([obj isEqualToString:@"defaultTimezone"]) {
-                label_Title.text = @"时区⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"时区";
                 textField.placeholder = @"";
                 textField.enabled = NO; break ;
             }
             if ([obj isEqualToString:@"birthday"]) {
-                label_Title.text = @"生日⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"生日";
                 textField.placeholder = @""; break ;
             }
             if ([obj isEqualToString:@"sex"]) {
-                label_Title.text = @"性别⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"性别";
                 textField.placeholder = @"请选择性别"; break ;
             }
             if ([obj isEqualToString:@"mainCurrency"]) {
-                label_Title.text = @"货币⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"货币";
                 textField.placeholder = @"人民币"; break ;
             }
             if ([obj isEqualToString:@"defaultLocale"]) {
-                label_Title.text = @"主语言⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"主语言";
                 textField.placeholder = @"简体中文"; break ;
             }
             if ([obj isEqualToString:@"securityIssues"]) {
-                label_Title.text = @"请选择安全问题⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"安全问题";
                 textField.placeholder = @"请选择安全问题"; break ;
             }
             if ([obj isEqualToString:@"securityIssues2"]) {
-                label_Title.text = @"回答安全问题⭐️";
+                _startImageView.hidden = NO;
+                label_Title.text = @"回答问题";
                 textField.placeholder = @"请输入回答";break ;
             }
         }
-        
+        [self setTextFieldPlaceHolder] ;
     }
+}
+#pragma mark - 设置placeHolder
+-(void)setTextFieldPlaceHolder
+{
+    NSMutableAttributedString *placeholder = [[NSMutableAttributedString alloc] initWithString:textField.placeholder];
+    [placeholder addAttribute:NSFontAttributeName
+                        value:[UIFont boldSystemFontOfSize:12]
+                        range:NSMakeRange(0, textField.placeholder.length)];
+    textField.attributedPlaceholder = placeholder;
 }
 
 - (void)setFieldModel:(FieldModel *)model {
     fieldModel = model;
     if ([model.name isEqualToString:@"username"]) {
-        label_Title.text = @"请输入用户名";
+        label_Title.text = @"用户名";
         textField.placeholder = @"请输入用户名";
     }
     if ([model.name isEqualToString:@"password"]) {
-        label_Title.text = @"请输入密码";
+        label_Title.text = @"密码";
         textField.placeholder = @"请输入6-20个字母数字或字符";
         [self setPasswordLayout];
     }
     if ([model.name isEqualToString:@"password2"]) {
-        label_Title.text = @"请再次输入密码⭐️";
+        _startImageView.hidden = NO ;
+        label_Title.text = @"确认密码";
         textField.placeholder = @"请再次输入登录密码";
         [self setPasswordLayout];
     }
     if ([model.name isEqualToString:@"verificationCode"]) {
-        label_Title.text = @"请输入验证码";
+        label_Title.text = @"验证码";
         textField.placeholder = @"请输入验证码";
         [self setVerifyCodeLayout];
     }
     if ([model.name isEqualToString:@"regCode"]) {
-        label_Title.text = @"请输入推荐码";
+        label_Title.text = @"推荐码";
         textField.placeholder = @"请输入推荐码";
     }
     if ([model.name isEqualToString:@"304"]) {
-        label_Title.text = @"请输入微信";
+        label_Title.text = @"微信";
         textField.placeholder = @"请输入微信";
     }
     if ([model.name isEqualToString:@"110"]) {
-        label_Title.text = @"请输入手机号";
+        label_Title.text = @"手机号";
         textField.placeholder = @"请输入手机号";
+        textField.keyboardType = UIKeyboardTypeNumberPad ;
     }
     if ([model.name isEqualToString:@"110verify"]) {
-        label_Title.text = @"请输入手机验证码";
+        label_Title.text = @"验证码";
         textField.placeholder = @"请输入手机验证码";
+        textField.keyboardType = UIKeyboardTypeNumberPad ;
         [self setPhoneVerifyCodeLayout];
     }
     
@@ -253,20 +309,23 @@
         textField.placeholder = @"请输入邮箱地址";
     }
     if ([model.name isEqualToString:@"realName"]) {
-        label_Title.text = @"请输入真实姓名";
+        label_Title.text = @"真实姓名";
         textField.placeholder = @"请输入真实姓名";
     }
     if ([model.name isEqualToString:@"301"]) {
-        label_Title.text = @"请输入QQ号码";
+        label_Title.text = @"QQ号码";
         textField.placeholder = @"请输入QQ号码";
+        textField.keyboardType = UIKeyboardTypeNumberPad ;
     }
     if ([model.name isEqualToString:@"paymentPassword"]) {
-        label_Title.text = @"请输入6位数字安全密码";
+        label_Title.text = @"安全密码";
         textField.placeholder = @"请输入6位数字安全密码";
+        textField.keyboardType = UIKeyboardTypeNumberPad ;
     }
     if ([model.name isEqualToString:@"paymentPassword2"]) {
-        label_Title.text = @"请再次输入6位数字安全密码";
+        label_Title.text = @"确认密码";
         textField.placeholder = @"请再次输入6位数字安全密码";
+        textField.keyboardType = UIKeyboardTypeNumberPad ;
     }
     if ([model.name isEqualToString:@"defaultTimezone"]) {
         label_Title.text = @"时区";
@@ -291,13 +350,14 @@
         textField.placeholder = @"简体中文";
     }
     if ([model.name isEqualToString:@"securityIssues"]) {
-        label_Title.text = @"请选择安全问题";
+        label_Title.text = @"安全问题";
         textField.placeholder = @"请选择安全问题";
     }
     if ([model.name isEqualToString:@"securityIssues2"]) {
-        label_Title.text = @"回答安全问题";
+        label_Title.text = @"回答问题";
         textField.placeholder = @"请输入回答";
     }
+    [self setTextFieldPlaceHolder] ;
 }
 
 - (void)setTimeZone:(NSString *)zone {
@@ -532,7 +592,6 @@
     button_Check = [UIButton new];
     [self addSubview:button_Check];
     button_Check.whc_CenterYToView(0, textField).whc_RightSpace(25).whc_Width(25).whc_Height(25);
-//    button_Check.backgroundColor = [UIColor blueColor];
     textField.secureTextEntry = YES;
     [button_Check setImage:ImageWithName(@"eyeclose") forState:UIControlStateNormal];
     [button_Check addTarget:self action:@selector(button_CheckHandle:) forControlEvents:UIControlEventTouchUpInside];

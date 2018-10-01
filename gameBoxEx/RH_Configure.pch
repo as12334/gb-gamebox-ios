@@ -32,7 +32,7 @@
 #else
 //测试环境
 #if  IS_TEST_SERVER_ENV
-#define RH_APP_VERCODE                  @"1"
+#define RH_APP_VERCODE                  @"100"
 //API的主URL
 #define RH_API_MAIN_URL                        @[@"https://test.gbboss.com:1344"]
 #define RH_APP_UPDATECHECK                      @"XVrxwwW0nRKS7TXZhXf1oA=="

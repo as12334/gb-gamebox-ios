@@ -32,12 +32,14 @@
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
     
-    return 124;
+    return 180;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.imgUserBG.layer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"mine_page_accountback"].CGImage);
+    return;
     UIImageView *imageBackView = [[UIImageView alloc] init];
     imageBackView.frame = CGRectMake(0, 0, screenSize().width, [RH_MinePageBannarCell heightForCellWithInfo:nil tableView:nil context:nil]);
     [self.contentView insertSubview:imageBackView atIndex:0];

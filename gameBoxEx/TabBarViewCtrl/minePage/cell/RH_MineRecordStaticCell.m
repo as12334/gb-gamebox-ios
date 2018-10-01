@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (weak, nonatomic) IBOutlet UILabel *explainLab;
 @property (weak, nonatomic) IBOutlet UIView *readCountMarkView;
+//缓存数据
+@property(nonatomic,copy)NSString  * mbCache;
 
 @property (nonatomic, strong) NSString *title;
 
@@ -34,11 +36,11 @@
 //        self.backgroundColor = colorWithRGB(37, 37, 37);
 //    }
     self.titleLab.font = [UIFont systemFontOfSize:14];
-    self.explainLab.font = [UIFont systemFontOfSize:11];
+    self.explainLab.font = [UIFont systemFontOfSize:9];
     
-    self.cellImageView.whc_TopSpace(15).whc_LeftSpace(22);
-    self.titleLab.whc_TopSpaceEqualView(self.cellImageView).whc_LeftSpaceToView(17, self.cellImageView);
-    self.explainLab.whc_TopSpaceToView(5, self.titleLab).whc_LeftSpaceEqualView(self.titleLab);
+//    self.cellImageView.whc_TopSpace(15).whc_LeftSpace(22);
+//    self.titleLab.whc_TopSpaceEqualView(self.cellImageView).whc_LeftSpaceToView(17, self.cellImageView);
+//    self.explainLab.whc_TopSpaceToView(5, self.titleLab).whc_LeftSpaceEqualView(self.titleLab);
     
     self.readCountMarkView.layer.cornerRadius = 5;
     self.readCountMarkView.layer.masksToBounds = YES;
@@ -51,8 +53,11 @@
     self.titleLab.text = info.myTitle ;
     self.explainLab.text = info.myDetailTitle;
     NSLog(@"----%@",info);
+    NSArray *dataArr = ConvertToClassPointer(NSArray,context) ;
+  
     //消息中心提示
-    RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, context);
+    RH_SiteMsgUnReadCountModel *model = ConvertToClassPointer(RH_SiteMsgUnReadCountModel, dataArr[0]);
+    self.mbCache = [NSString stringWithFormat:@"%.2f",[dataArr[1] floatValue]] ;
 //    if ([[NSString stringWithFormat:@"%ld",(long)model.siteMsgUnReadCount] isEqualToString:@"0"]&&[[NSString stringWithFormat:@"%ld",(long)model.sysMsgUnreadCount] isEqualToString:@"0"]&&[[NSString stringWithFormat:@"%ld",(long)model.mineMsgUnreadCount] isEqualToString:@"0"]) {
 //        self.readCountMarkView.hidden = YES;
 //        return;
@@ -66,12 +71,18 @@
     {
         self.readCountMarkView.hidden = YES;
     }
-    
+   
+   
     
 //    [[NSNotificationCenter defaultCenter] addObserverForName:@"NotUnReadMsg_NT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
 ////        RH_SiteMsgUnReadCountModel *model = note.object ;
 //        self.readCountMarkView.hidden = YES;
 //    }];
+    
+    if ([[info objectForKey:@"code"] isEqualToString:@"cleanCache"])
+    {
+        [self.titleLab setTextWithFirstString:[NSString stringWithFormat:@"清理缓存(%@M)",self.mbCache] SecondString:[NSString stringWithFormat:@"(%@M)",self.mbCache] FontSize:14.f Color:colorWithRGB(217, 0, 4)] ;
+    }
 }
 
 -(void)tongzhi:(NSNotification *)notification

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,16 +18,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="366" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uI2-KN-LaQ">
+                        <rect key="frame" x="15" y="0.0" width="336" height="49.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFb-MB-RUN" customClass="CLSelectionControl">
-                        <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
+                        <rect key="frame" x="20" y="0.0" width="163" height="49.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_withdrawcash" translatesAutoresizingMaskIntoConstraints="NO" id="xs0-RH-dWi">
-                                <rect key="frame" x="42" y="9" width="33" height="33"/>
+                                <rect key="frame" x="35" y="8.5" width="33" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTL-7y-WS3">
-                                <rect key="frame" x="86" y="14" width="42" height="21"/>
+                                <rect key="frame" x="79" y="14" width="42" height="21.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="xTl-WH-Ox3"/>
                                 </constraints>
@@ -39,7 +48,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xs0-RH-dWi" firstAttribute="leading" secondItem="hFb-MB-RUN" secondAttribute="leading" constant="42" id="NRq-0L-zj4"/>
+                            <constraint firstItem="xs0-RH-dWi" firstAttribute="leading" secondItem="hFb-MB-RUN" secondAttribute="leading" constant="35" id="NRq-0L-zj4"/>
                             <constraint firstItem="aTL-7y-WS3" firstAttribute="top" secondItem="hFb-MB-RUN" secondAttribute="top" constant="14" id="Xa8-HB-BSf"/>
                             <constraint firstItem="aTL-7y-WS3" firstAttribute="centerY" secondItem="hFb-MB-RUN" secondAttribute="centerY" id="Yed-xn-QgF"/>
                             <constraint firstItem="xs0-RH-dWi" firstAttribute="centerY" secondItem="hFb-MB-RUN" secondAttribute="centerY" id="e3d-2S-DXf"/>
@@ -51,20 +60,20 @@
                         </connections>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsC-1H-Pms" customClass="CLSelectionControl">
-                        <rect key="frame" x="183" y="0.0" width="183" height="50"/>
+                        <rect key="frame" x="183" y="0.0" width="163" height="49.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWt-Oi-iYv">
-                                <rect key="frame" x="88" y="17" width="29" height="17"/>
+                                <rect key="frame" x="81" y="16.5" width="29" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_page_toppedup" translatesAutoresizingMaskIntoConstraints="NO" id="adg-mr-ABf">
-                                <rect key="frame" x="47" y="9" width="33" height="33"/>
+                                <rect key="frame" x="40" y="8.5" width="33" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdS-TC-EcQ">
-                                <rect key="frame" x="88" y="35" width="0.0" height="0.0"/>
+                                <rect key="frame" x="81" y="34.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -76,7 +85,7 @@
                             <constraint firstItem="oWt-Oi-iYv" firstAttribute="leading" secondItem="adg-mr-ABf" secondAttribute="trailing" constant="8" symbolic="YES" id="UcS-Fh-KMG"/>
                             <constraint firstItem="adg-mr-ABf" firstAttribute="centerY" secondItem="dsC-1H-Pms" secondAttribute="centerY" id="b3o-qB-mgA"/>
                             <constraint firstItem="JdS-TC-EcQ" firstAttribute="leading" secondItem="oWt-Oi-iYv" secondAttribute="leading" id="hgq-uw-kUM"/>
-                            <constraint firstItem="adg-mr-ABf" firstAttribute="leading" secondItem="dsC-1H-Pms" secondAttribute="leading" constant="47" id="n3B-bw-aC4"/>
+                            <constraint firstItem="adg-mr-ABf" firstAttribute="leading" secondItem="dsC-1H-Pms" secondAttribute="leading" constant="40" id="n3B-bw-aC4"/>
                             <constraint firstItem="oWt-Oi-iYv" firstAttribute="centerY" secondItem="dsC-1H-Pms" secondAttribute="centerY" id="xRx-NA-WAP"/>
                         </constraints>
                         <connections>
@@ -84,16 +93,20 @@
                         </connections>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="dsC-1H-Pms" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5EL-kf-Zat"/>
-                    <constraint firstAttribute="trailing" secondItem="dsC-1H-Pms" secondAttribute="trailing" id="LZA-u5-LNu"/>
+                    <constraint firstItem="uI2-KN-LaQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="790-PM-S2p"/>
+                    <constraint firstItem="uI2-KN-LaQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="9et-Rg-3tB"/>
+                    <constraint firstItem="dsC-1H-Pms" firstAttribute="width" secondItem="hFb-MB-RUN" secondAttribute="width" id="Ei6-MY-3qi"/>
+                    <constraint firstAttribute="trailing" secondItem="dsC-1H-Pms" secondAttribute="trailing" constant="20" id="LZA-u5-LNu"/>
                     <constraint firstItem="dsC-1H-Pms" firstAttribute="leading" secondItem="hFb-MB-RUN" secondAttribute="trailing" id="MCJ-h9-EUp"/>
                     <constraint firstAttribute="bottom" secondItem="dsC-1H-Pms" secondAttribute="bottom" id="Zqj-qX-vfO"/>
-                    <constraint firstItem="hFb-MB-RUN" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1:2" id="dHQ-QB-qhN"/>
-                    <constraint firstItem="hFb-MB-RUN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dmB-AA-6dE"/>
+                    <constraint firstItem="hFb-MB-RUN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="dmB-AA-6dE"/>
+                    <constraint firstAttribute="trailing" secondItem="uI2-KN-LaQ" secondAttribute="trailing" constant="15" id="h4Q-Qs-J09"/>
                     <constraint firstAttribute="bottom" secondItem="hFb-MB-RUN" secondAttribute="bottom" id="lh2-Ou-wGP"/>
                     <constraint firstItem="hFb-MB-RUN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nKw-9a-Rk2"/>
+                    <constraint firstAttribute="bottom" secondItem="uI2-KN-LaQ" secondAttribute="bottom" id="s5m-qS-WQU"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -105,7 +118,7 @@
                 <outlet property="withDrawControl" destination="dsC-1H-Pms" id="XQb-xx-gsX"/>
                 <outlet property="withdrawDealLab" destination="JdS-TC-EcQ" id="qgq-sZ-U4w"/>
             </connections>
-            <point key="canvasLocation" x="-101" y="-53"/>
+            <point key="canvasLocation" x="-102.40000000000001" y="-53.073463268365821"/>
         </tableViewCell>
     </objects>
     <resources>

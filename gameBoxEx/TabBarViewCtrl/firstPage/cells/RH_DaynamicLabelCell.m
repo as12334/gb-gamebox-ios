@@ -55,10 +55,6 @@
     self.selectionColor = [UIColor lightGrayColor] ;
 }
 
--(UIView *)showSelectionView
-{
-    return self.scrollView ;
-}
 
 -(void)updateCellWithInfo:(NSDictionary *)info context:(id)context
 {
