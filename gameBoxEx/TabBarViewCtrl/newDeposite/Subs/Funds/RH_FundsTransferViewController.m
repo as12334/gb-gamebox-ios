@@ -23,7 +23,7 @@
     return YES;
 }
 -(CGFloat)bottomViewHeight{
-    return 44;
+    return  0;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +33,7 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.minimumLineSpacing =  1;
     layout.minimumInteritemSpacing = 1;
-    layout.headerReferenceSize = CGSizeMake(screenSize().width, 73);
+    layout.headerReferenceSize = CGSizeMake(screenSize().width, 130);
     layout.sectionInset = UIEdgeInsetsMake(1, 0, 0, 0);
     self.contentCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, screenSize().width, screenSize().height-40-NavigationBarHeight-STATUS_HEIGHT-tab_height-44) collectionViewLayout:layout];
     self.contentCollectionView.backgroundColor = colorWithRGB(230, 230, 230);
@@ -44,13 +44,11 @@
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"RH_FundsCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"RH_FundsCollectionViewCell"];
     [self.contentCollectionView registerCellWithClass:[RH_LoadingIndicaterCollectionViewCell class]] ;
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"RH_FundsHeadCollectionReusableView" bundle:[NSBundle mainBundle]] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"RH_FundsHeadCollectionReusableView"];
-    self.bottomView.backgroundColor = [UIColor redColor];
     
     RH_FundsFooterView *footView = [[NSBundle mainBundle]loadNibNamed:@"RH_FundsFooterView" owner:self options:nil].firstObject;
-    footView.frame = CGRectMake(0, 0, screenSize().width, 44);
+    footView.frame = CGRectMake(0, screenSize().height-40-NavigationBarHeight-STATUS_HEIGHT-tab_height-44, screenSize().width, 44);
     footView.backgroundColor = [UIColor whiteColor];
-    [self.bottomView addSubview:footView];
-    
+    [self.view addSubview:footView];
      [self setupPageLoadManager] ;
 }
 - (void)viewWillAppear:(BOOL)animated{
