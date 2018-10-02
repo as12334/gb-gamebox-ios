@@ -170,7 +170,7 @@
             if ([obj isEqualToString:@"regCode"]) {
                 _startImageView.hidden = NO;
                 label_Title.text = @"推荐码";
-                textField.placeholder = @"请输入推荐码"; break ;
+                textField.placeholder = @"推荐码"; break ;
             }
             if ([obj isEqualToString:@"304"]) {
                 _startImageView.hidden = NO;
@@ -288,7 +288,7 @@
     }
     if ([model.name isEqualToString:@"regCode"]) {
         label_Title.text = @"推荐码";
-        textField.placeholder = @"请输入推荐码";
+        textField.placeholder = @"推荐码";
     }
     if ([model.name isEqualToString:@"304"]) {
         label_Title.text = @"微信";

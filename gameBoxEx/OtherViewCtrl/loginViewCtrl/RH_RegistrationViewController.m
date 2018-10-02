@@ -121,7 +121,7 @@
         _stackView.whc_Orientation = All;
         _stackView.whc_VSpace = 5;
         _stackView.whc_SubViewHeight = 45;
-        _stackView.backgroundColor = [UIColor redColor] ;
+//        _stackView.backgroundColor = [UIColor redColor] ;
         _stackView.whc_Edge = UIEdgeInsetsMake(40, 0, 0, 0);
     }
     return _stackView;
@@ -680,19 +680,24 @@
     if (type == ServiceRequestTypeV3RegiestSubmit) {
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         NSLog(@"···%@", dict);
-        
+        UIImage *image;
         if ([dict[@"success"] isEqual:@true]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[self obtainContent:@"username"] forKey:@"account"];
             [defaults setObject:[self obtainContent:@"password"] forKey:@"password"];
             
             [defaults synchronize];
+            image = [UIImage imageNamed:@"icon_success"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didRegistratedSuccessful" object:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:YES];
             });
+        } else {
+            image = [UIImage imageNamed:@"icon_unsuccess"];
         }
-        showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
+        
+        showMessageWithImage(self.view, nil, [dict objectForKey:@"message"], image);
+//        showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
         if ([[dict objectForKey:@"message"] isEqualToString:@"验证码输入错误"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"changeImageView_VerfyCode" object:self];
         }
