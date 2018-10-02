@@ -67,14 +67,13 @@ static CGFloat const ButtonHeight = 50;
         [segmentVC addParentController:self];
         [self.contentLoadingIndicateView hiddenView];
         [segmentVC didSelectSegmentIndex:10000];
-       
-        
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
     }
 }
 - (void)serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
 {
     if (type == ServiceRequestTypeV3PromoActivityType){
-      
+       [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
     }
 }
 

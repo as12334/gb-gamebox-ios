@@ -28,12 +28,13 @@
 }
 - (void)initWithIndex:(NSInteger)index ActivityTypeModel:(RH_DiscountActivityTypeModel *)activityTypeModel
 {
+    [self showProgressIndicatorViewWithAnimated:YES title:@"正在加载..."] ;
     _strKey = activityTypeModel.mActivityKey;
-    [self startUpdateData];
+    [self startUpdateData_e:NO];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.contentTableView = [self createTableViewWithStyle:(UITableViewStylePlain) updateControl:YES loadControl:NO];
+    self.contentTableView = [self createTableViewWithStyle:(UITableViewStylePlain) updateControl:NO loadControl:NO];
     self.contentTableView.frame = CGRectMake(0,-40, ScreenWidth, ScreenHeight);
     self.contentTableView.delegate = self;
     self.contentTableView.dataSource = self;
@@ -75,7 +76,6 @@
        return self.loadingIndicateTableViewCell ;
     }
 }
-
 -(void)cellToJump:(NSIndexPath *)cellIndexPath
 {
     RH_APPDelegate *appDelegate = ConvertToClassPointer(RH_APPDelegate, [UIApplication sharedApplication].delegate) ;
@@ -103,11 +103,15 @@
     if (type==ServiceRequestTypeV3ActivityDetailList)
     {
         NSArray *arrTmp = ConvertToClassPointer(NSArray, data);
+        NSLog(@"--count----%ld",arrTmp.count);
         [self loadDataSuccessWithDatas:arrTmp
                             totalCount:arrTmp.count
-                        completedBlock:nil];
-        [self endUpdateHandle];
+                        completedBlock:^(NSArray *filtedDatas) {
+                            NSLog(@"filtedDatas --- %@",filtedDatas);
+                        }];
+        
         [self.contentTableView reloadData];
+        [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
     }
 }
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
@@ -115,12 +119,13 @@
     if (type==ServiceRequestTypeV3ActivityDetailList )
     {
          [self loadDataFailWithError:error] ;
+         [self hideProgressIndicatorViewWithAnimated:YES completedBlock:nil] ;
     }
 }
 #pragma mark-
 -(void)loadingIndicateViewDidTap:(CLLoadingIndicateView *)loadingIndicateView
 {
-    [self startUpdateData] ;
+    [self startUpdateData_e:NO] ;
 }
 - (void)loadDataHandleWithPage:(NSUInteger)page andPageSize:(NSUInteger)pageSize
 {
@@ -134,6 +139,7 @@
 }
 -(void)cancelLoadDataHandle
 {
+    [self.serviceRequest cancleAllServices];
 }
 //进行页面刷新
 -(RH_LoadingIndicateView*)contentLoadingIndicateView

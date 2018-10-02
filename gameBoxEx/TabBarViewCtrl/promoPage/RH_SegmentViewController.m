@@ -60,6 +60,7 @@
         [segmentBtn setTitle:model.mActivityTypeName forState:UIControlStateNormal];
         segmentBtn.titleLabel.font = [UIFont systemFontOfSize:self.fontSize];
         segmentBtn.tag = index + HEADBTN_TAG;
+        [segmentBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         segmentBtn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [segmentBtn setTitleColor:self.titleColor forState:UIControlStateNormal];
         [segmentBtn setTitleColor:self.titleSelectedColor forState:UIControlStateSelected];
@@ -83,6 +84,7 @@
 - (void)addContentViewScrollView:(NSArray *)subViewControllers
 {
     CGFloat iphoneHeight = iPhoneX?88:64;
+
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.buttonHeight + iphoneHeight, MainScreenWidth, MainScreenHeight - self.buttonHeight)];
     _mainScrollView.contentSize = CGSizeMake(MainScreenWidth * subViewControllers.count, MainScreenHeight - self.buttonHeight);
     [_mainScrollView setPagingEnabled:YES];
@@ -92,6 +94,7 @@
     else {
         _mainScrollView.scrollEnabled = NO;
     }
+    _mainScrollView.backgroundColor = [UIColor redColor];
     [_mainScrollView setShowsVerticalScrollIndicator:NO];
     [_mainScrollView setShowsHorizontalScrollIndicator:NO];
     _mainScrollView.bounces = NO;
