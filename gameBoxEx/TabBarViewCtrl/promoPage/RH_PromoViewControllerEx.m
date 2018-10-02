@@ -111,7 +111,8 @@
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+//   Do any additional setup after loading the view.
 //    self.navigationBarItem.leftBarButtonItem = self.logoButtonItem      ;
     self.title = @"优惠" ;
     //增加login status changed notification
@@ -126,6 +127,7 @@
     //初始化 优惠类别信息
     [self loadingIndicateViewDidTap:nil] ;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reOpenH5:) name:@"GB_Retry_Open_H5" object:nil];
+
 }
 
 - (void)reOpenH5:(NSNotification *)notification
@@ -165,7 +167,7 @@
     
     //注册复用
     [self.pageView registerCellForPage:[RH_PromoContentPageCell class] andReuseIdentifier:[RH_PromoContentPageCell defaultReuseIdentifier]] ;
-
+    
     //设置索引
     self.pageView.dispalyPageIndex = self.typeTopView.selectedIndex;
 }
@@ -373,4 +375,5 @@
         [self.serviceRequest startV3LoadDiscountActivityType] ;
     }
 }
+
 @end

@@ -71,5 +71,6 @@
 
 - (CGSize)perfectShowSizeInScale:(CGFloat)scale;
 - (CGSize)perfectShowSize;
++ (UIImage *)ct_imageFromImage:(UIImage *)image inRect:(CGRect)rect;
 
 @end

@@ -13,9 +13,7 @@
 
 #import "THScrollChooseView.h"
 
-
 @interface THScrollChooseView()<UIPickerViewDataSource, UIPickerViewDelegate>
-
 
 @property (strong, nonatomic) UIPickerView *pickerView;
 
@@ -140,12 +138,9 @@ static NSInteger recordRowOfQuestion;
     [self dismissView];
 }
 
-
 #pragma mark - pickerView 代理方法
-
 // 列数
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    
     return 1;
 }
 
@@ -208,8 +203,5 @@ static NSInteger recordRowOfQuestion;
     }
     return row;
 }
-
-
-
 
 @end

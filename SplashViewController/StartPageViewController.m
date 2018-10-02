@@ -287,7 +287,7 @@
     self.progress += 0.1;
     NSArray *hosts = @[@"http://203.107.1.33/194768/d?host=apiplay.info",
                        @"http://203.107.1.33/194768/d?host=hpdbtopgolddesign.com",
-                       @"http://203.107.1.33/194768/d?host=agpicdance.info"
+                       @"htt p://203.107.1.33/194768/d?host=agpicdance.info"
                        ];
     //将此数据随机打乱 减轻服务器压力
     hosts = [hosts sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
@@ -590,7 +590,7 @@
                     //todo
                     //test data
 #warning 这里是专门给test71的 打test71的时候一定要打开
-                    //                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
+                //                                ips = @{@"domain":@"test71.hongtubet.com",@"ips":@[@"47.90.51.75"]};
 //                                                    ips = @{@"domain":@"test01.ccenter.test.so",@"ips":@[@"192.168.0.92"]};
 
                     doNext = NO;//已经获取到ip 不需要继续执行其他的线程

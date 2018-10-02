@@ -27,7 +27,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgO-ib-94u">
                     <rect key="frame" x="0.0" y="0.0" width="381" height="64"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0s-BB-M2i">
+                        <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0s-BB-M2i">
                             <rect key="frame" x="0.0" y="20" width="60" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="6su-FQ-MMt"/>
@@ -38,7 +38,7 @@
                                 <action selector="buttonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="swP-6i-NrX"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz9-AL-jbA">
+                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hz9-AL-jbA">
                             <rect key="frame" x="321" y="20" width="60" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="616-zD-2QJ"/>
@@ -195,10 +195,12 @@
             <connections>
                 <outlet property="balance_label" destination="3X4-1n-AjZ" id="gfk-qn-hju"/>
                 <outlet property="logonTime_label" destination="siE-bp-dyf" id="2cQ-rF-aL5"/>
+                <outlet property="topViewConstraintHeight" destination="beb-cP-Lca" id="gNf-MM-vhm"/>
                 <outlet property="totalAmount_label" destination="oRX-bg-hrY" id="VQI-kq-ZeB"/>
+                <outlet property="userImageView" destination="POe-HT-xmc" id="dKy-Gb-j76"/>
                 <outlet property="userName_label" destination="8CF-n2-EvI" id="hig-7y-Ig5"/>
             </connections>
-            <point key="canvasLocation" x="317.60000000000002" y="79.160419790104953"/>
+            <point key="canvasLocation" x="12" y="69"/>
         </view>
     </objects>
     <resources>

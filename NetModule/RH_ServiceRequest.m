@@ -2600,8 +2600,8 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
                      serviceType:(ServiceRequestType)type
                        scopeType:(ServiceScopeType)scopeType
 {
-    NSMutableDictionary *queryArgs = [NSMutableDictionary dictionary] ;
     
+    NSMutableDictionary *queryArgs = [NSMutableDictionary dictionary] ;
     if (queryArguments.count){
         [queryArgs addEntriesFromDictionary:queryArguments] ;
     }
@@ -2934,6 +2934,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
     }
     else if (type == ServiceRequestTypeFetchIPSFromBoss){
+        
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers

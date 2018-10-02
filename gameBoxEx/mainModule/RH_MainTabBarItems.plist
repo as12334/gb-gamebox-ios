@@ -195,7 +195,7 @@
 			<key>selectedImage</key>
 			<string>tab_v3_promo_selected</string>
 			<key>viewControllerClass</key>
-			<string>RH_PromoViewControllerEx</string>
+			<string>RH_NewPromoViewControllerEx</string>
 		</dict>
 		<dict>
 			<key>title</key>
