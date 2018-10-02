@@ -31,7 +31,6 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    
     return 180;
 }
 
@@ -96,12 +95,14 @@
 {
     self.label_UserNickName.text = MineSettingInfo.mUserName ;
     CGFloat totalMoney = MineSettingInfo.mTotalAssets;
-    NSString *totalMoneyStr = [NSString stringWithFormat:@"¥ %.2f",totalMoney];
+    NSString *totalMoneyStr = [NSString stringWithFormat:@" %.2f",totalMoney];
     self.label_TotalMoney.text = [self countNumAndChangeformat:totalMoneyStr];
+    self.label_TotalMoney.text = [NSString stringWithFormat:@"¥ %@",self.label_TotalMoney.text];
     
     CGFloat walletBalance = MineSettingInfo.mWalletBalance;
-    NSString *walletBalanceStr = [NSString stringWithFormat:@"¥ %.2f",walletBalance];
+    NSString *walletBalanceStr = [NSString stringWithFormat:@"%.2f",walletBalance];
     self.label_leftMoney.text = [self countNumAndChangeformat:walletBalanceStr];
+    self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %@",self.label_leftMoney.text];
     
 //    self.label_TotalMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mTotalAssets];
 //    self.label_leftMoney.text = [NSString stringWithFormat:@"¥ %.2f",MineSettingInfo.mWalletBalance];

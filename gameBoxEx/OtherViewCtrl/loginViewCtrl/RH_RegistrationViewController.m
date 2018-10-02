@@ -38,11 +38,14 @@
 }
 
 - (BOOL)hasTopView {
-    return NO;
+    return YES;
 }
 
 - (BOOL)hasNavigationBar {
     return YES;
+}
+-(CGFloat)topViewHeight{
+    return 30;
 }
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
@@ -121,7 +124,8 @@
         _stackView.whc_Orientation = All;
         _stackView.whc_VSpace = 5;
         _stackView.whc_SubViewHeight = 45;
-        _stackView.whc_Edge = UIEdgeInsetsMake(40, 0, 0, 0);
+//        _stackView.backgroundColor = [UIColor redColor] ;
+        _stackView.whc_Edge = UIEdgeInsetsMake(0, 0, 0, 0);
     }
     return _stackView;
 }
@@ -131,8 +135,9 @@
     if (_registTopView == nil) {
         _registTopView = [RH_RegistrationTopView new] ;
         _registTopView.delegate = self ;
-        [self.view addSubview:_registTopView];
-        _registTopView.whc_LeftSpace(0).whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_RightSpace(0).whc_Height(30);
+        [self.topView addSubview:_registTopView];
+        _registTopView.whc_TopSpace(0).whc_LeadingSpace(0).whc_TrailingSpace(0).whc_BottomSpace(0);
+//        _registTopView.whc_LeftSpace(0).whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_RightSpace(0).whc_Height(30);
     }
     return _registTopView ;
 }
@@ -158,14 +163,15 @@
     
     mainScrollView = [UIScrollView new];
     [self.contentView addSubview:mainScrollView];
-    mainScrollView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
+    mainScrollView.whc_TopSpaceToView(0, self.topView).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     mainScrollView.backgroundColor = [UIColor clearColor];
     mainScrollView.alwaysBounceVertical = YES;
     mainScrollView.showsVerticalScrollIndicator = YES;
     mainScrollView.showsHorizontalScrollIndicator = NO;
     mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 200);
+    mainScrollView.contentOffset = CGPointMake(0, -45);
     [mainScrollView addSubview:self.stackView];
-    self.stackView.whc_TopSpace(40).whc_LeftSpace(10).whc_Width(screenSize().width - 20).whc_HeightAuto();
+    self.stackView.whc_TopSpace(0).whc_LeftSpace(10).whc_Width(screenSize().width - 20).whc_HeightAuto();
     for (FieldModel *field in registrationInitModel.fieldModel) {
         if ([field.name isEqualToString:@"regCode"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
@@ -279,7 +285,7 @@
     button_Check.tag = 1023;
     [mainScrollView addSubview:button_Check];
     mainScrollView.userInteractionEnabled = YES ;
-    button_Check.whc_TopSpaceToView(iPhoneX?50:40, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
+    button_Check.whc_TopSpaceToView(iPhoneX?45:35, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     
     [button_Check setSelected:YES];
     [button_Check setImage:ImageWithName(@"choose") forState:UIControlStateNormal];
@@ -391,7 +397,9 @@
 //更新UI
 -(void)registrationTopViewbcloseBtnDidClick
 {
+   
     _isShowTopView = NO ;
+     mainScrollView.whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     for (UIView *view in self.stackView.subviews) {
         if ([view isKindOfClass:[RH_RegistrationViewItem class]])
         {
@@ -404,8 +412,10 @@
     UIButton *btn_check = [mainScrollView viewWithTag:1023];
     if (btn_check)
     {
-        btn_check.whc_TopSpaceToView(iPhoneX?50:30, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
+        btn_check.whc_TopSpaceToView(iPhoneX?45:35, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     }
+    
+    
 }
 
 
@@ -679,19 +689,24 @@
     if (type == ServiceRequestTypeV3RegiestSubmit) {
         NSDictionary *dict = ConvertToClassPointer(NSDictionary, data);
         NSLog(@"···%@", dict);
-        
+        UIImage *image;
         if ([dict[@"success"] isEqual:@true]) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[self obtainContent:@"username"] forKey:@"account"];
             [defaults setObject:[self obtainContent:@"password"] forKey:@"password"];
             
             [defaults synchronize];
+            image = [UIImage imageNamed:@"icon_success"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didRegistratedSuccessful" object:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popToRootViewControllerAnimated:YES];
             });
+        } else {
+            image = [UIImage imageNamed:@"icon_unsuccess"];
         }
-        showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
+        
+        showMessageWithImage(self.view, nil, [dict objectForKey:@"message"], image);
+//        showMessage(self.view, @"提示信息",[dict objectForKey:@"message"] );
         if ([[dict objectForKey:@"message"] isEqualToString:@"验证码输入错误"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"changeImageView_VerfyCode" object:self];
         }

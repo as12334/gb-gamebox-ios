@@ -6,17 +6,6 @@
 	<array>
 		<dict>
 			<key>sectionHeaderHeight</key>
-			<string>1</string>
-			<key>rowsInfo</key>
-			<array>
-				<dict>
-					<key>cellClass</key>
-					<string>RH_MinePageBannarCell</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>sectionHeaderHeight</key>
 			<string>10</string>
 			<key>rowsInfo</key>
 			<array>

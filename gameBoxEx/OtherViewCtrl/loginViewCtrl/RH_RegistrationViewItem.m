@@ -53,7 +53,8 @@
         [self addSubview:textField];
         [textField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_offset(70*WIDTH_PERCENT) ;
-            iPhoneX?make.top.mas_offset(self.isShowTopView?60:50):make.top.mas_offset(self.isShowTopView?30:20) ;
+//            iPhoneX?make.top.mas_offset(35):make.top.mas_offset(20) ;
+            make.centerY.mas_equalTo(0);
             make.right.mas_offset(-10) ;
             make.height.mas_offset(38) ;
         }] ;
@@ -170,7 +171,7 @@
             if ([obj isEqualToString:@"regCode"]) {
                 _startImageView.hidden = NO;
                 label_Title.text = @"推荐码";
-                textField.placeholder = @"请输入推荐码"; break ;
+                textField.placeholder = @"推荐码"; break ;
             }
             if ([obj isEqualToString:@"304"]) {
                 _startImageView.hidden = NO;
@@ -288,7 +289,7 @@
     }
     if ([model.name isEqualToString:@"regCode"]) {
         label_Title.text = @"推荐码";
-        textField.placeholder = @"请输入推荐码";
+        textField.placeholder = @"推荐码";
     }
     if ([model.name isEqualToString:@"304"]) {
         label_Title.text = @"微信";

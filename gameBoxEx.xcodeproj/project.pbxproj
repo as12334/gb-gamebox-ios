@@ -4920,16 +4920,16 @@
 		DA2DFC742160C0330012A977 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				DA2DFC752160C0330012A977 /* RH_CollectionContentPageCell.h */,
-				DA2DFC762160C0330012A977 /* RH_CollectionViewController.m */,
-				DA2DFC772160C0330012A977 /* RH_CollectionHeaderView.m */,
-				DA2DFC782160C0330012A977 /* RH_CollectionTableViewCell.m */,
-				DA2DFC792160C0330012A977 /* RH_CollectionHeaderView.xib */,
 				DA2DFC7A2160C0330012A977 /* RH_CollectionViewController.h */,
+				DA2DFC762160C0330012A977 /* RH_CollectionViewController.m */,
+				DA2DFC752160C0330012A977 /* RH_CollectionContentPageCell.h */,
 				DA2DFC7B2160C0330012A977 /* RH_CollectionContentPageCell.m */,
+				DA2DFC7E2160C0330012A977 /* RH_CollectionTableViewCell.h */,
+				DA2DFC782160C0330012A977 /* RH_CollectionTableViewCell.m */,
 				DA2DFC7C2160C0330012A977 /* RH_CollectionTableViewCell.xib */,
 				DA2DFC7D2160C0330012A977 /* RH_CollectionHeaderView.h */,
-				DA2DFC7E2160C0330012A977 /* RH_CollectionTableViewCell.h */,
+				DA2DFC772160C0330012A977 /* RH_CollectionHeaderView.m */,
+				DA2DFC792160C0330012A977 /* RH_CollectionHeaderView.xib */,
 			);
 			path = Collection;
 			sourceTree = "<group>";

@@ -106,7 +106,7 @@
 
 -(BOOL)topViewIncludeStatusBar
 {
-    return YES ;
+    return false ;
 }
 -(BOOL)hasBottomView{
     return false;
@@ -114,7 +114,7 @@
 
 -(CGFloat)topViewHeight
 {
-    return StatusBarHeight+NavigationBarHeight;
+    return 44;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,8 +127,8 @@
 -(void)configUI{
     [self.view addSubview:self.headerView] ;
     [self.contentView addSubview:self.pageView] ;
- self.headerView.whc_TopSpace(heighStatusBar+NavigationBarHeight).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(44) ;
-    self.pageView.whc_TopSpace(heighStatusBar + NavigationBarHeight +54).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(0) ;
+ self.headerView.whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_LeftSpace(0).whc_RightSpace(0).whc_Height(44) ;
+    self.pageView.whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT +54).whc_LeftSpace(10).whc_RightSpace(10).whc_BottomSpace(0) ;
     //注册复用
     [self.pageView registerCellForPage:[RH_CollectionContentPageCell class] andReuseIdentifier:[RH_CollectionContentPageCell defaultReuseIdentifier]] ;
     //设置索引
