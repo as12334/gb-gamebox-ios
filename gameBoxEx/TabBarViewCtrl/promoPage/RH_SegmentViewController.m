@@ -99,7 +99,7 @@
     [self.view addSubview:_mainScrollView];
     [subViewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         UIViewController *viewController = (UIViewController *)_subViewControllers[idx];
-        viewController.view.frame = CGRectMake(idx * MainScreenWidth, 0, MainScreenWidth, _mainScrollView.frame.size.height);
+        viewController.view.frame = CGRectMake(idx * MainScreenWidth, 0, MainScreenWidth, _mainScrollView.frame.size.height - 60);
         [_mainScrollView addSubview:viewController.view];
         [self addChildViewController:viewController];
     }];

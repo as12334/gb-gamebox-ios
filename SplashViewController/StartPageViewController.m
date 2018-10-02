@@ -287,7 +287,7 @@
     self.progress += 0.1;
     NSArray *hosts = @[@"http://203.107.1.33/194768/d?host=apiplay.info",
                        @"http://203.107.1.33/194768/d?host=hpdbtopgolddesign.com",
-                       @"http://203.107.1.33/194768/d?host=agpicdance.info"
+                       @"htt p://203.107.1.33/194768/d?host=agpicdance.info"
                        ];
     //将此数据随机打乱 减轻服务器压力
     hosts = [hosts sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {

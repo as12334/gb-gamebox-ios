@@ -2934,6 +2934,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         return YES ;
     }
     else if (type == ServiceRequestTypeFetchIPSFromBoss){
+        
         NSError * tempError = nil;
         NSDictionary * dataObject = [data length] ? [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers

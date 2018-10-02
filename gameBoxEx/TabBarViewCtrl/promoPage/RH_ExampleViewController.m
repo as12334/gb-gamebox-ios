@@ -106,8 +106,8 @@
         [self loadDataSuccessWithDatas:arrTmp
                             totalCount:arrTmp.count
                         completedBlock:nil];
+        [self endUpdateHandle];
         [self.contentTableView reloadData];
-
     }
 }
 - (void) serviceRequest:(RH_ServiceRequest *)serviceRequest serviceType:(ServiceRequestType)type didFailRequestWithError:(NSError *)error
