@@ -53,7 +53,8 @@
         [self addSubview:textField];
         [textField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_offset(70*WIDTH_PERCENT) ;
-            iPhoneX?make.top.mas_offset(self.isShowTopView?70:35):make.top.mas_offset(self.isShowTopView?30:20) ;
+//            iPhoneX?make.top.mas_offset(35):make.top.mas_offset(20) ;
+            make.centerY.mas_equalTo(0);
             make.right.mas_offset(-10) ;
             make.height.mas_offset(38) ;
         }] ;

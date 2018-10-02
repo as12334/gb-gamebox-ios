@@ -23,12 +23,14 @@
 #import "RH_SelectedHelper.h"
 #import "IPsCacheManager.h"
 
-@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol>
+#import "RH_MineHeaderView.h"
+@interface RH_MePageViewController ()<CLTableViewManagementDelegate,MineAccountCellDelegate,MineRecordTableViewCellProtocol,RH_MineHeaderViewDelegate>
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonCustom;
 @property(nonatomic,strong,readonly)UIBarButtonItem *barButtonSetting;
 @property(nonatomic,strong)RH_MinePageBannarCell *bannarCell;
 @property(nonatomic,strong,readonly) CLTableViewManagement *tableViewManagement;
 @property(nonatomic,strong)RH_SiteMsgUnReadCountModel *readCountModel;
+@property(nonatomic,strong)RH_MineHeaderView * headerView;
 //缓存数据
 @property(nonatomic,assign)CGFloat mbCache;
 @end
@@ -37,7 +39,9 @@
 @synthesize barButtonCustom = _barButtonCustom;
 @synthesize barButtonSetting = _barButtonSetting;
 @synthesize tableViewManagement = _tableViewManagement;
-
+-(BOOL)hasNavigationBar{
+    return false;
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -48,6 +52,7 @@
     }else
     {
         [self loadDataSuccessWithDatas:@[] totalCount:0];
+        [self.headerView updateCell];
     }
     //计算缓存
     NSString *libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
@@ -232,6 +237,7 @@
 }
 
 #pragma mark-
+/*
 -(UIBarButtonItem *)barButtonCustom
 {
     if (!_barButtonCustom){
@@ -245,12 +251,13 @@
     
     return _barButtonCustom ;
 }
+ */
 
 -(void)_barButtonCustomHandle
 {
      [self.tabBarController setSelectedIndex:3];
 }
-
+/*
 #pragma mark-
 -(UIBarButtonItem *)barButtonSetting
 {
@@ -265,7 +272,7 @@
     
     return _barButtonSetting ;
 }
-
+*/
 -(void)_barButtonSettingHandle
 {
 //    [self showViewController:[RH_MineSettingsViewController viewController] sender:self] ;
@@ -275,14 +282,31 @@
 #pragma mark-
 -(void)setupUI
 {
-    
+    /*
     self.navigationBarItem.leftBarButtonItem = self.barButtonCustom;
     if (self.appDelegate.isLogin) {
         self.navigationBarItem.rightBarButtonItem = self.barButtonSetting;
-    }
+    }*/
     self.view.backgroundColor = colorWithRGB(242, 242, 242);
     self.contentTableView = [self createTableViewWithStyle:UITableViewStyleGrouped updateControl:NO loadControl:NO] ;
     [self.contentView addSubview:self.contentTableView] ;
+    [self.contentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(-STATUS_HEIGHT);
+    }];
+    CGFloat y ;
+    if (iPhoneX||iPhoneXR||iPhoneXSM) {
+        y = 264;
+    }else{
+        y= 240;
+    }
+    UIView * topView = [[UIView  alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, y)];
+    [topView addSubview:self.headerView];
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    self.contentTableView.tableHeaderView = topView;
+    
     [self.tableViewManagement reloadData] ;
 }
 
@@ -523,6 +547,7 @@
     }else if (type == ServiceRequestTypeV3GETUSERASSERT)
     {
         [self loadDataSuccessWithDatas:@[] totalCount:0] ;
+        [self.headerView updateCell];
     }else if (type == ServiceRequestTypeV3UserSafeInfo)
     {
         RH_UserInfoManager *manager = [RH_UserInfoManager shareUserManager] ;
@@ -566,6 +591,25 @@
         if (error.code == RH_API_ERRORCODE_SESSION_TAKEOUT) {
              [self.appDelegate updateLoginStatus:NO] ;
         }
+        [self.headerView updateCell];
+    }
+}
+
+#pragma mark -- getter method
+-(RH_MineHeaderView *)headerView{
+    if (!_headerView) {
+        _headerView = [RH_MineHeaderView  createInstanceMineHeaderView];
+        _headerView.delegate = self;
+    }
+    return _headerView;
+}
+
+#pragma mark --- headerView delegate method
+-(void)mineHeaderViewButtonClickWithTag:(NSInteger)tag{
+    if (tag==100) {
+        [self _barButtonCustomHandle];
+    }else if (tag==101){
+        [self _barButtonSettingHandle];
     }
 }
 @end

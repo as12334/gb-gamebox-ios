@@ -31,7 +31,6 @@
 
 +(CGFloat)heightForCellWithInfo:(NSDictionary *)info tableView:(UITableView *)tableView context:(id)context
 {
-    
     return 180;
 }
 

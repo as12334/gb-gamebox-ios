@@ -38,11 +38,14 @@
 }
 
 - (BOOL)hasTopView {
-    return NO;
+    return YES;
 }
 
 - (BOOL)hasNavigationBar {
     return YES;
+}
+-(CGFloat)topViewHeight{
+    return 30;
 }
 +(void)configureNavigationBar:(UINavigationBar *)navigationBar
 {
@@ -121,8 +124,8 @@
         _stackView.whc_Orientation = All;
         _stackView.whc_VSpace = 5;
         _stackView.whc_SubViewHeight = 45;
-        _stackView.backgroundColor = [UIColor redColor] ;
-        _stackView.whc_Edge = UIEdgeInsetsMake(40, 0, 0, 0);
+//        _stackView.backgroundColor = [UIColor redColor] ;
+        _stackView.whc_Edge = UIEdgeInsetsMake(0, 0, 0, 0);
     }
     return _stackView;
 }
@@ -132,8 +135,9 @@
     if (_registTopView == nil) {
         _registTopView = [RH_RegistrationTopView new] ;
         _registTopView.delegate = self ;
-        [self.view addSubview:_registTopView];
-        _registTopView.whc_LeftSpace(0).whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_RightSpace(0).whc_Height(30);
+        [self.topView addSubview:_registTopView];
+        _registTopView.whc_TopSpace(0).whc_LeadingSpace(0).whc_TrailingSpace(0).whc_BottomSpace(0);
+//        _registTopView.whc_LeftSpace(0).whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_RightSpace(0).whc_Height(30);
     }
     return _registTopView ;
 }
@@ -159,14 +163,15 @@
     
     mainScrollView = [UIScrollView new];
     [self.contentView addSubview:mainScrollView];
-    mainScrollView.whc_TopSpace(0).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
+    mainScrollView.whc_TopSpaceToView(0, self.topView).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     mainScrollView.backgroundColor = [UIColor clearColor];
     mainScrollView.alwaysBounceVertical = YES;
     mainScrollView.showsVerticalScrollIndicator = YES;
     mainScrollView.showsHorizontalScrollIndicator = NO;
     mainScrollView.contentSize = CGSizeMake(screenSize().width, screenSize().height + 200);
+    mainScrollView.contentOffset = CGPointMake(0, -45);
     [mainScrollView addSubview:self.stackView];
-    self.stackView.whc_TopSpace(40).whc_LeftSpace(10).whc_Width(screenSize().width - 20).whc_HeightAuto();
+    self.stackView.whc_TopSpace(0).whc_LeftSpace(10).whc_Width(screenSize().width - 20).whc_HeightAuto();
     for (FieldModel *field in registrationInitModel.fieldModel) {
         if ([field.name isEqualToString:@"regCode"]) {
             RH_RegistrationViewItem *item = [[RH_RegistrationViewItem alloc] init];
@@ -392,7 +397,9 @@
 //更新UI
 -(void)registrationTopViewbcloseBtnDidClick
 {
+   
     _isShowTopView = NO ;
+     mainScrollView.whc_TopSpace(NavigationBarHeight+STATUS_HEIGHT).whc_LeftSpace(0).whc_RightSpace(0).whc_BottomSpace(0);
     for (UIView *view in self.stackView.subviews) {
         if ([view isKindOfClass:[RH_RegistrationViewItem class]])
         {
@@ -407,6 +414,8 @@
     {
         btn_check.whc_TopSpaceToView(iPhoneX?45:35, self.stackView).whc_LeftSpace(40).whc_Width(25).whc_Height(25);
     }
+    
+    
 }
 
 
