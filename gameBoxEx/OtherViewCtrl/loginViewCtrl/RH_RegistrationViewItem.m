@@ -164,7 +164,6 @@
             }
             if ([obj isEqualToString:@"verificationCode"]) {
                 _startImageView.hidden = NO;
-                textField.keyboardType = UIKeyboardTypeNumberPad ;
                 label_Title.text = @"验证码";
                 textField.placeholder = @"请输入验证码"; break ;
             }
