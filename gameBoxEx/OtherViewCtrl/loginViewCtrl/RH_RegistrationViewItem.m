@@ -53,7 +53,7 @@
         [self addSubview:textField];
         [textField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_offset(70*WIDTH_PERCENT) ;
-            iPhoneX?make.top.mas_offset(self.isShowTopView?60:50):make.top.mas_offset(self.isShowTopView?30:20) ;
+            iPhoneX?make.top.mas_offset(self.isShowTopView?70:35):make.top.mas_offset(self.isShowTopView?30:20) ;
             make.right.mas_offset(-10) ;
             make.height.mas_offset(38) ;
         }] ;
@@ -164,7 +164,6 @@
             }
             if ([obj isEqualToString:@"verificationCode"]) {
                 _startImageView.hidden = NO;
-                textField.keyboardType = UIKeyboardTypeNumberPad ;
                 label_Title.text = @"验证码";
                 textField.placeholder = @"请输入验证码"; break ;
             }

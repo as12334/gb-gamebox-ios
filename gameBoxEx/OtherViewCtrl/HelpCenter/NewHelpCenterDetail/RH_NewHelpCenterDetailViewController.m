@@ -200,8 +200,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    RH_HelpCenterDetailModel *model = _dataSource[section] ;
-    return model.isExpanded ? 1:0 ;
+    if (_dataSource.count>0) {
+        RH_HelpCenterDetailModel *model = _dataSource[section] ;
+        return model.isExpanded ? 1:0 ;
+    }else
+    {
+        return 0 ;
+    }
+   
 }
 
 
@@ -228,6 +234,9 @@
     
     if (!headerView) {
         headerView = [[RH_NewHelpCenterDetailHeaderView alloc] initWithReuseIdentifier:[RH_NewHelpCenterDetailHeaderView defaultReuseIdentifier]];
+    }
+    if (_dataSource.count == 0) {
+        return  nil;
     }
     headerView.sectionModel = _dataSource[section] ;
     headerView.HeaderClickedBack = ^(BOOL isExpand){

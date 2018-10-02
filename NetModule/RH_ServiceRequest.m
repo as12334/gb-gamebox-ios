@@ -2857,7 +2857,7 @@ typedef NS_ENUM(NSInteger,ServiceScopeType) {
         if ([[tmpResult lowercaseString] containsString:@"true"]){ //域名响应ok
             *reslutData = @(YES) ;
             
-            if ([SITE_TYPE isEqualToString:@"integratedv3oc"]){
+            if ([SITE_TYPE isEqualToString:@"integratedv3oc"]&&HasLogin){
                 [self startV3UserInfo] ;
             }
         }else{
