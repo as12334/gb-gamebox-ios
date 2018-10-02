@@ -54,7 +54,7 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
 //    configuration.userContentController = controller;
 //    configuration.preferences = preferences;
-//    configuration.allowsInlineMediaPlayback = YES;
+    configuration.allowsInlineMediaPlayback = YES; //全屏问题
     _wkWebView = [[WKWebView alloc] initWithFrame: CGRectZero configuration: configuration];
     _wkWebView.UIDelegate = self;
     _wkWebView.navigationDelegate = self;
