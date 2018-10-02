@@ -33,13 +33,15 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-DB-H52">
                                 <rect key="frame" x="188" y="2" width="36" height="22"/>
-                                <color key="backgroundColor" red="0.81295814040000003" green="0.93299107540000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="0p8-Oc-1dv"/>
                                     <constraint firstAttribute="height" constant="22" id="Rn3-SK-57a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="复制"/>
+                                <state key="normal" title="复制">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="bankNumCopyClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="o1B-fZ-mOa"/>
                                 </connections>
@@ -56,13 +58,15 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2N-ev-8tH">
                                 <rect key="frame" x="188" y="39" width="36" height="22"/>
-                                <color key="backgroundColor" red="0.81295814040000003" green="0.93299107540000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="dXb-rZ-XWD"/>
                                     <constraint firstAttribute="width" constant="36" id="kaq-yH-rcr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="复制"/>
+                                <state key="normal" title="复制">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="personNameCopyClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xc9-2R-24v"/>
                                 </connections>
@@ -156,7 +160,7 @@
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG7-JU-eVz">
                         <rect key="frame" x="227" y="62" width="36" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.81295814040000003" green="0.93299107540000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="复制"/>
                         <connections>
@@ -182,6 +186,9 @@
                 <outlet property="accountInfoView" destination="3ZR-UB-Vfc" id="lFP-tT-veG"/>
                 <outlet property="aliasNameLabel" destination="kaB-3s-sJV" id="AOL-ke-5xi"/>
                 <outlet property="bankIconImage" destination="Nbw-iR-5pS" id="rOe-Hp-Vz5"/>
+                <outlet property="btn" destination="lG7-JU-eVz" id="nh8-Qd-mqr"/>
+                <outlet property="btn2" destination="PEt-DB-H52" id="qDs-Sb-uvS"/>
+                <outlet property="btn3" destination="n2N-ev-8tH" id="6O9-Ez-qU8"/>
                 <outlet property="colorView" destination="zPB-vc-cMh" id="Jy4-F9-dPx"/>
                 <outlet property="customBankLabel" destination="KGA-9R-JBp" id="g99-Y7-pob"/>
                 <outlet property="downLineView" destination="5d5-Dz-3rO" id="qex-k3-Cha"/>

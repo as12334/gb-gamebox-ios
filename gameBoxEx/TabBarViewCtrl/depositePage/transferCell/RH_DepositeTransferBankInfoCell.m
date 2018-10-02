@@ -38,11 +38,13 @@
     RH_DepositeTransferListModel *listModel =array[0];
     self.listModel = listModel;
     if (mHide) {
+        self.copBtn.backgroundColor = [UIColor clearColor];
         [self.copBtn setTitle:@"" forState:UIControlStateNormal];
 //        self.copBtn.titleLabel.font = [UIFont systemFontOfSize:11];
         self.bankCardNumLabel.text = [NSString stringWithFormat:@"账号代码：%@",listModel.mCode];
         [self.copBtn setImage:[UIImage imageNamed:@"icon_contact"] forState:UIControlStateNormal];
     }else{
+        self.copBtn.backgroundColor = [UIColor whiteColor];
         self.bankCardNumLabel.text = [NSString stringWithFormat:@"%@",listModel.mAccount];
     }
     self.bankCardNameLabel.text = listModel.mFullName;
@@ -62,11 +64,11 @@
     self.bankInfoView.layer.masksToBounds=YES;
     self.bankInfoView.backgroundColor = colorWithRGB(242, 242, 242);
     self.colorView.backgroundColor = colorWithRGB(23, 102, 204);
-    self.copBtn.layer.cornerRadius = 5.f;
+    self.copBtn.layer.cornerRadius = 10.f;
     self.copBtn.layer.masksToBounds = YES;
-    self.copBtnTwo.layer.cornerRadius = 5.f;
+    self.copBtnTwo.layer.cornerRadius = 10.f;
     self.copBtnTwo.layer.masksToBounds = YES;
-    self.copBtnThr.layer.cornerRadius = 5.f;
+    self.copBtnThr.layer.cornerRadius = 10.f;
     self.copBtnThr.layer.masksToBounds = YES;
     self.mHide = NO;
 }
