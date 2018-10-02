@@ -22,20 +22,20 @@
                         <rect key="frame" x="40" y="104.5" width="240" height="67"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6Z-xb-vJA" customClass="CLBorderView">
-                                <rect key="frame" x="4" y="31" width="236" height="1"/>
+                                <rect key="frame" x="4" y="34" width="236" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WX1314520" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ka-cc-6VS">
-                                <rect key="frame" x="45" y="4" width="139" height="17"/>
+                                <rect key="frame" x="45" y="7" width="125" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.56354288819999998" blue="0.0098983085100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-DB-H52">
-                                <rect key="frame" x="188" y="2" width="36" height="22"/>
+                                <rect key="frame" x="174" y="5" width="50" height="22"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="0p8-Oc-1dv"/>
+                                    <constraint firstAttribute="width" constant="50" id="0p8-Oc-1dv"/>
                                     <constraint firstAttribute="height" constant="22" id="Rn3-SK-57a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIF-1y-D8x">
-                                <rect key="frame" x="4" y="40" width="33" height="21"/>
+                                <rect key="frame" x="4" y="43" width="33" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="3vL-QI-kOQ"/>
                                     <constraint firstAttribute="width" constant="33" id="G2A-Mw-fdI"/>
@@ -57,11 +57,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2N-ev-8tH">
-                                <rect key="frame" x="188" y="39" width="36" height="22"/>
+                                <rect key="frame" x="174" y="42" width="50" height="22"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="dXb-rZ-XWD"/>
-                                    <constraint firstAttribute="width" constant="36" id="kaq-yH-rcr"/>
+                                    <constraint firstAttribute="width" constant="50" id="kaq-yH-rcr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="复制">
@@ -79,7 +79,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BES-y9-ElR">
-                                <rect key="frame" x="4" y="4" width="33" height="17"/>
+                                <rect key="frame" x="4" y="7" width="33" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="LRP-FQ-9vI"/>
                                     <constraint firstAttribute="width" constant="33" id="cwG-aZ-JXe"/>
@@ -89,7 +89,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="冠希" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEd-m9-KyJ">
-                                <rect key="frame" x="45" y="42" width="100" height="17"/>
+                                <rect key="frame" x="45" y="45" width="86" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                             <constraint firstItem="3ka-cc-6VS" firstAttribute="centerY" secondItem="BES-y9-ElR" secondAttribute="centerY" id="UIU-F2-tOm"/>
                             <constraint firstItem="P6Z-xb-vJA" firstAttribute="top" secondItem="PEt-DB-H52" secondAttribute="bottom" constant="7" id="Vvj-h3-20t"/>
                             <constraint firstItem="OIF-1y-D8x" firstAttribute="leading" secondItem="BES-y9-ElR" secondAttribute="leading" id="Z8j-bW-Wkf"/>
-                            <constraint firstItem="PEt-DB-H52" firstAttribute="top" secondItem="3ZR-UB-Vfc" secondAttribute="top" constant="2" id="a3o-9N-jJU"/>
+                            <constraint firstItem="PEt-DB-H52" firstAttribute="top" secondItem="3ZR-UB-Vfc" secondAttribute="top" constant="5" id="a3o-9N-jJU"/>
                             <constraint firstAttribute="trailing" secondItem="P6Z-xb-vJA" secondAttribute="trailing" id="aH8-5L-7nJ"/>
                             <constraint firstItem="3ka-cc-6VS" firstAttribute="leading" secondItem="BES-y9-ElR" secondAttribute="trailing" constant="8" id="bkT-8t-xP3"/>
                             <constraint firstAttribute="trailing" secondItem="n2N-ev-8tH" secondAttribute="trailing" constant="16" id="d7W-Ry-tnH"/>
@@ -114,7 +114,7 @@
                             <constraint firstAttribute="width" constant="240" id="sNP-uu-dcm"/>
                             <constraint firstItem="SEd-m9-KyJ" firstAttribute="centerY" secondItem="OIF-1y-D8x" secondAttribute="centerY" id="tjU-aD-yWJ"/>
                             <constraint firstAttribute="trailing" secondItem="PEt-DB-H52" secondAttribute="trailing" constant="16" id="z87-bF-RxT"/>
-                            <constraint firstItem="BES-y9-ElR" firstAttribute="top" secondItem="3ZR-UB-Vfc" secondAttribute="top" constant="4" id="zHH-dR-Mwp"/>
+                            <constraint firstItem="BES-y9-ElR" firstAttribute="top" secondItem="3ZR-UB-Vfc" secondAttribute="top" constant="7" id="zHH-dR-Mwp"/>
                             <constraint firstItem="PEt-DB-H52" firstAttribute="leading" secondItem="3ka-cc-6VS" secondAttribute="trailing" constant="4" id="zsV-91-lmw"/>
                         </constraints>
                     </view>
@@ -158,9 +158,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lG7-JU-eVz">
-                        <rect key="frame" x="227" y="62" width="36" height="22"/>
+                        <rect key="frame" x="230" y="63" width="50" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96470588235294119" green="0.98039215686274506" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="复制"/>
                         <connections>
@@ -195,7 +195,7 @@
                 <outlet property="personIdNumLabel" destination="3ka-cc-6VS" id="pfu-4l-kHG"/>
                 <outlet property="personNameLabel" destination="SEd-m9-KyJ" id="X8L-fv-dOR"/>
             </connections>
-            <point key="canvasLocation" x="-758.39999999999998" y="163.26836581709148"/>
+            <point key="canvasLocation" x="-1051" y="152"/>
         </tableViewCell>
     </objects>
     <resources>

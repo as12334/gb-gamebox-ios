@@ -49,6 +49,16 @@
     self.accountInfo.layer.masksToBounds = YES;
     self.accountInfoView.layer.cornerRadius = 10.f;
     self.accountInfoView.layer.masksToBounds = YES;
+    
+    self.btn.layer.cornerRadius = 10.f;
+    self.btn.layer.masksToBounds = YES;
+    
+    self.btn2.layer.cornerRadius = 10.f;
+    self.btn2.layer.masksToBounds = YES;
+    
+    self.btn3.layer.cornerRadius = 10.f;
+    self.btn3.layer.masksToBounds = YES;
+    
     self.accountInfoView.backgroundColor = colorWithRGB(242, 242, 242);
     self.colorView.backgroundColor = colorWithRGB(23, 102, 204);
     self.downLineView.backgroundColor = colorWithRGB(242, 242, 242);
