@@ -35,7 +35,7 @@
     
     //右上角箭头图片
     self.directionImageView.image = [UIImage imageNamed:@"brand_expand"];
-    self.directionImageView.frame = CGRectMake(screenSize().width - 30, (44-8)/2, 15, 8);
+    self.directionImageView.frame = CGRectMake(screenSize().width - 30, (34-8)/2*WIDTH_PERCENT, 15, 8);
     [self.contentView addSubview:self.directionImageView];
     
     //btn覆盖header,相应点击
