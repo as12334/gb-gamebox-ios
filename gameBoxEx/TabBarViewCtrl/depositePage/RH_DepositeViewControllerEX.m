@@ -469,6 +469,7 @@
 #pragma mark --选择金钱的代理
 -(void)depositeChooseMoneyCell:(NSInteger)moneyNumber
 {
+    moneyNumber = moneyNumber + [self.numberCell.payMoneyNumLabel.text integerValue];
     self.numberCell.payMoneyNumLabel.text = [NSString stringWithFormat:@"%ld",moneyNumber];
     
 }
